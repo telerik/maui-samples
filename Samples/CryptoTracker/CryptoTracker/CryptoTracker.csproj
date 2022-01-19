@@ -1,0 +1,107 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>$(MauiPlatforms)</TargetFrameworks>
+		<OutputType>Exe</OutputType>
+		<RootNamespace>CryptoTracker</RootNamespace>
+		<UseMaui>true</UseMaui>
+		<SingleProject>true</SingleProject>
+		<EnablePreviewMsixTooling>true</EnablePreviewMsixTooling>
+
+		<!-- Display name -->
+		<ApplicationTitle>CryptoTracker</ApplicationTitle>
+
+		<!-- App Identifier -->
+		<ApplicationId>com.telerik.CryptoTracker</ApplicationId>
+
+		<!-- Versions -->
+		<ApplicationVersion>1</ApplicationVersion>
+
+		<!-- Required for C# Hot Reload -->
+		<UseInterpreter Condition="'$(Configuration)' == 'Debug'">False</UseInterpreter>
+		<MtouchLink Condition="'$(TargetFramework)' == 'net6.0-ios'  OR '$(TargetFramework)' == 'net6.0-maccatalyst'">SdkOnly</MtouchLink>
+
+	</PropertyGroup>
+
+	<ItemGroup>
+		<!-- App Icon -->
+		<MauiIcon Include="Resources\appicon.svg" ForegroundFile="Resources\appiconfg.svg" Color="#512BD4" />
+
+		<!-- Splash Screen -->
+		<MauiSplashScreen Include="Resources\appiconfg.svg" Color="#512BD4" />
+
+		<!-- Images -->
+		<MauiImage Include="Resources\Images\*" />
+
+		<!-- Custom Fonts -->
+		<MauiFont Include="Resources\Fonts\*" />
+	</ItemGroup>
+
+	<ItemGroup Condition="$(TargetFramework.Contains('-windows'))">
+		<!-- Required - WinUI does not yet have buildTransitive for everything -->
+		<PackageReference Include="Microsoft.WindowsAppSDK" Version="1.0.0" />
+		<PackageReference Include="Microsoft.Graphics.Win2D" Version="1.0.0.30" />
+	</ItemGroup>
+
+	<PropertyGroup Condition="$(TargetFramework.Contains('-windows'))">
+		<OutputType>WinExe</OutputType>
+		<RuntimeIdentifier>win-x64</RuntimeIdentifier>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <None Remove="Data\Coins\coin_Aave.csv" />
+	  <None Remove="Data\Coins\coin_BinanceCoin.csv" />
+	  <None Remove="Data\Coins\coin_Bitcoin.csv" />
+	  <None Remove="Data\Coins\coin_Cardano.csv" />
+	  <None Remove="Data\Coins\coin_ChainLink.csv" />
+	  <None Remove="Data\Coins\coin_Cosmos.csv" />
+	  <None Remove="Data\Coins\coin_CryptocomCoin.csv" />
+	  <None Remove="Data\Coins\coin_Dogecoin.csv" />
+	  <None Remove="Data\Coins\coin_EOS.csv" />
+	  <None Remove="Data\Coins\coin_Ethereum.csv" />
+	  <None Remove="Data\Coins\coin_Iota.csv" />
+	  <None Remove="Data\Coins\coin_Litecoin.csv" />
+	  <None Remove="Data\Coins\coin_Monero.csv" />
+	  <None Remove="Data\Coins\coin_NEM.csv" />
+	  <None Remove="Data\Coins\coin_Polkadot.csv" />
+	  <None Remove="Data\Coins\coin_Solana.csv" />
+	  <None Remove="Data\Coins\coin_Stellar.csv" />
+	  <None Remove="Data\Coins\coin_Tether.csv" />
+	  <None Remove="Data\Coins\coin_Tron.csv" />
+	  <None Remove="Data\Coins\coin_Uniswap.csv" />
+	  <None Remove="Data\Coins\coin_USDCoin.csv" />
+	  <None Remove="Data\Coins\coin_WrappedBitcoin.csv" />
+	  <None Remove="Data\Coins\coin_XRP.csv" />
+	  <None Remove="Resources\Fonts\telerikfontexamples.ttf" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Include="Data\Coins\coin_Aave.csv" />
+	  <EmbeddedResource Include="Data\Coins\coin_BinanceCoin.csv" />
+	  <EmbeddedResource Include="Data\Coins\coin_Bitcoin.csv" />
+	  <EmbeddedResource Include="Data\Coins\coin_Cardano.csv" />
+	  <EmbeddedResource Include="Data\Coins\coin_Chainlink.csv" />
+	  <EmbeddedResource Include="Data\Coins\coin_Cosmos.csv" />
+	  <EmbeddedResource Include="Data\Coins\coin_CryptocomCoin.csv" />
+	  <EmbeddedResource Include="Data\Coins\coin_Dogecoin.csv" />
+	  <EmbeddedResource Include="Data\Coins\coin_EOS.csv" />
+	  <EmbeddedResource Include="Data\Coins\coin_Ethereum.csv" />
+	  <EmbeddedResource Include="Data\Coins\coin_Iota.csv" />
+	  <EmbeddedResource Include="Data\Coins\coin_Litecoin.csv" />
+	  <EmbeddedResource Include="Data\Coins\coin_Monero.csv" />
+	  <EmbeddedResource Include="Data\Coins\coin_NEM.csv" />
+	  <EmbeddedResource Include="Data\Coins\coin_Polkadot.csv" />
+	  <EmbeddedResource Include="Data\Coins\coin_Solana.csv" />
+	  <EmbeddedResource Include="Data\Coins\coin_Stellar.csv" />
+	  <EmbeddedResource Include="Data\Coins\coin_Tether.csv" />
+	  <EmbeddedResource Include="Data\Coins\coin_Tron.csv" />
+	  <EmbeddedResource Include="Data\Coins\coin_Uniswap.csv" />
+	  <EmbeddedResource Include="Data\Coins\coin_USDCoin.csv" />
+	  <EmbeddedResource Include="Data\Coins\coin_WrappedBitcoin.csv" />
+	  <EmbeddedResource Include="Data\Coins\coin_XRP.csv" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="Telerik.UI.for.Maui" Version="0.3.0" />
+	</ItemGroup>
+</Project>

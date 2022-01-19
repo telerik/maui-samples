@@ -1,0 +1,160 @@
+﻿<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.Maui.Controls.Compatibility"
+             xmlns:telerikChart="clr-namespace:Telerik.XamarinForms.Chart;assembly=Telerik.Maui.Controls.Compatibility"
+             xmlns:local="clr-namespace:CryptoTracker.ViewModels"
+             xmlns:telerikMauiControls="clr-namespace:Telerik.Maui.Controls;assembly=Telerik.Maui.Controls"
+             xmlns:telerikDataGrid="clr-namespace:Telerik.XamarinForms.DataGrid;assembly=Telerik.Maui.Controls.Compatibility"
+             x:Class="CryptoTracker.Views.CoinInfoView"
+             x:Name="coinInfoView"
+             BackgroundColor="AliceBlue">
+
+    <ContentView.BindingContext>
+        <local:CoinInfoViewModel/>
+    </ContentView.BindingContext>
+
+    <GridLayout RowDefinitions="140, *" RowSpacing="5">
+        <telerikMauiControls:RadBorder GridLayout.Row="0" Margin="10" Padding="10" Style="{StaticResource ListViewBorderWrapStyle}" >
+            <VerticalStackLayout Spacing="10">
+                <HorizontalStackLayout Spacing="5">
+                    <Label Text="{Binding CoinCurrentPrice, Mode=OneWay, StringFormat='${0:N2}'}" 
+                           FontSize="20"
+                           TextColor="Black"
+                           FontAttributes="Bold"/>
+                    <Label FontAttributes="Bold" FontSize="14" TextColor="{Binding CoinPriceChangePercentage, Mode=OneWay, 
+                           Converter={StaticResource ValueToColorConverter}}" 
+                           Text="{Binding CoinPriceChangePercentage,
+                           StringFormat='{0:+ 0.00;- 0.00;0.00}%'}"/>
+                </HorizontalStackLayout>
+
+                <Label FontSize="14" FontAttributes="Bold">
+                    <MultiBinding StringFormat="{}{0} Price ({1})">
+                        <Binding Path="CoinName"/>
+                        <Binding Path="CoinSymbol"/>
+                    </MultiBinding>
+                </Label>
+                <telerikMauiControls:RadBorder CornerRadius="8" BackgroundColor="{StaticResource TrendingItemBackgroundColor}" Padding="15,10,30,10">
+                    <telerikMauiControls:RadBorder.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding OpenUrl}"/>
+                    </telerikMauiControls:RadBorder.GestureRecognizers>
+
+                    <GridLayout RowDefinitions="*" ColumnDefinitions="*, Auto">
+                        <Label FontAttributes="Bold" FontSize="16" Text="{Binding CoinLink, Mode=OneWay}" HorizontalTextAlignment="Start" VerticalTextAlignment="Center"/>
+                        <Image Source="arrowrightout.png" GridLayout.Column="1" WidthRequest="24" HeightRequest="24" />
+                    </GridLayout>
+                </telerikMauiControls:RadBorder>
+            </VerticalStackLayout>
+        </telerikMauiControls:RadBorder>
+
+        <telerikMauiControls:RadBorder GridLayout.Row="1"  Style="{StaticResource ListViewBorderWrapStyle}" Margin="10,0,10,10" Padding="10" >
+            <GridLayout GridLayout.Row="1" RowDefinitions="Auto, 40, Auto, *, 40, Auto, Auto" ColumnDefinitions="*">
+                <Label Margin="5,5,5,15" FontAttributes="Bold" Text="Show prices for the last:" FontSize="14"/>
+
+                <telerikInput:RadSegmentedControl x:Name="timePeriodsSegmentedControl"
+                                                  GridLayout.Row="1"
+                                                  ItemsSource="{Binding TimePeriods}"
+                                                  SelectedIndex="{Binding SelectedTimePeriod, Mode=TwoWay}"
+                                                  SelectionChanged="ChangedTimePeriod"
+                                                  Style="{StaticResource SegmentedControlStyle}" />
+
+                <Label GridLayout.Row="2" 
+                       Margin="5,15,5,5"
+                       TextColor="Black" 
+                       FontAttributes="Bold" 
+                       FontSize="18" 
+                       Text="{Binding CoinName, StringFormat='{0} to USD Chart'}"/>
+
+                <telerikChart:RadCartesianChart IsVisible="{Binding IsLineChartVisible, Mode=OneWay}" GridLayout.Row="3">
+                    <telerikChart:RadCartesianChart.HorizontalAxis>
+                        <telerikChart:DateTimeContinuousAxis 
+                            LabelTextColor="Black"
+                            LabelFitMode="Rotate"
+                            LabelFormat="{Binding ChartLabelFormat}"
+                            MajorStep="{Binding ChartMajorStep}"
+                            MajorStepUnit="{Binding ChartMajorStepUnit}">
+                        </telerikChart:DateTimeContinuousAxis>
+                    </telerikChart:RadCartesianChart.HorizontalAxis>
+                    <telerikChart:RadCartesianChart.VerticalAxis>
+                        <telerikChart:NumericalAxis LabelTextColor="Black"/>
+                    </telerikChart:RadCartesianChart.VerticalAxis>
+                    <telerikChart:RadCartesianChart.Series>
+                        <telerikChart:LineSeries
+                            StrokeThickness="2.5"
+                            Stroke="{StaticResource NewBlue}"
+                            CategoryBinding="Date"
+                            ValueBinding="ClosingPrice"
+                            ItemsSource="{Binding DataForChart}">
+                        </telerikChart:LineSeries>
+                    </telerikChart:RadCartesianChart.Series>
+                    <telerikChart:RadCartesianChart.ChartBehaviors>
+                        <telerikChart:ChartTrackBallBehavior
+                                            ShowIntersectionPoints="True"
+                                            ShowTrackInfo="True" />
+                    </telerikChart:RadCartesianChart.ChartBehaviors>
+                </telerikChart:RadCartesianChart>
+
+                <telerikChart:RadCartesianChart IsVisible="{Binding IsCandlestickChartVisible, Mode=OneWay}" GridLayout.Row="3">
+                    <telerikChart:RadCartesianChart.HorizontalAxis>
+                        <telerikChart:DateTimeContinuousAxis 
+                            LabelTextColor="Black"
+                            LabelFitMode="Rotate"
+                            LabelFormat="{Binding ChartLabelFormat}"
+                            MajorStepUnit="{Binding ChartMajorStepUnit}"
+                            MajorStep="1">
+                        </telerikChart:DateTimeContinuousAxis>
+                    </telerikChart:RadCartesianChart.HorizontalAxis>
+                    <telerikChart:RadCartesianChart.VerticalAxis>
+                        <telerikChart:NumericalAxis LabelTextColor="Black"/>
+                    </telerikChart:RadCartesianChart.VerticalAxis>
+                    <telerikChart:RadCartesianChart.Series>
+                        <telerikChart:CandlestickSeries
+                            CategoryBinding="Date"
+                            OpenBinding="OpeningPrice"
+                            HighBinding="Price24High"
+                            LowBinding="Price24Low"
+                            CloseBinding="ClosingPrice"
+                            ItemsSource="{Binding DataForChart}" />
+                    </telerikChart:RadCartesianChart.Series>
+                </telerikChart:RadCartesianChart>
+
+                <GridLayout GridLayout.Row="4" HorizontalOptions="Start" WidthRequest="150">
+                    <telerikInput:RadSegmentedControl x:Name="chartTypesSegmentedControl"
+                                                      SelectionChanged="ChangedChartType"
+                                                      SelectedIndex="{Binding SelectedChartType, Mode=TwoWay}"
+                                                      Style="{StaticResource SegmentedControlStyle}">
+                        <telerikInput:RadSegmentedControl.ItemsSource>
+                            <x:Array Type="{x:Type FileImageSource}">
+                                <FileImageSource>chartlineactive.png</FileImageSource>
+                                <FileImageSource>chartcandleactive.png</FileImageSource>
+                            </x:Array>
+                        </telerikInput:RadSegmentedControl.ItemsSource>
+                    </telerikInput:RadSegmentedControl>
+                </GridLayout>
+
+                <Label Margin="5,15,5,5"
+                       FontSize="18" 
+                       FontAttributes="Bold"
+                       TextColor="Black"
+                       GridLayout.Row="5"
+                       Text="Historical Data"
+                       IsVisible="{Binding IsDataGridVisible, Mode=OneWay}" />
+
+                <telerikDataGrid:RadDataGrid GridLayout.Row="6" 
+                                             AutoGenerateColumns="False" 
+                                             IsVisible="{Binding IsDataGridVisible, Mode=OneWay}"
+                                             ItemsSource="{Binding DataForDataGrid}"
+                                             GridLinesThickness="1"
+                                             GridLinesVisibility="Horizontal"
+                                             GridLinesColor="{StaticResource DataGridLineColor}"
+                                             HeightRequest="150">
+                    <telerikDataGrid:RadDataGrid.Columns>
+                        <telerikDataGrid:DataGridDateColumn HeaderStyle="{StaticResource dataGridHeaderStyle}" CellContentStyle="{StaticResource dataGridColumnStyle}" CellContentFormat="{}{0:MMM d, yyyy}" PropertyName="Date" HeaderText="Date"/>
+                        <telerikDataGrid:DataGridNumericalColumn HeaderStyle="{StaticResource dataGridHeaderStyle}" CellContentStyle="{StaticResource dataGridColumnStyle}" CellContentFormat="{}${0:N2}" PropertyName="OpeningPrice" HeaderText="Open"/>
+                        <telerikDataGrid:DataGridNumericalColumn HeaderStyle="{StaticResource dataGridHeaderStyle}" CellContentStyle="{StaticResource dataGridColumnStyle}" CellContentFormat="{}${0:N2}" PropertyName="Price24High" HeaderText="High"/>
+                        <telerikDataGrid:DataGridNumericalColumn HeaderStyle="{StaticResource dataGridHeaderStyle}" CellContentStyle="{StaticResource dataGridColumnStyle}" CellContentFormat="{}${0:N2}" PropertyName="Price24Low" HeaderText="Low"/>
+                    </telerikDataGrid:RadDataGrid.Columns>
+                </telerikDataGrid:RadDataGrid>
+            </GridLayout>
+        </telerikMauiControls:RadBorder>
+    </GridLayout>
+</ContentView>
