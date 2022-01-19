@@ -1,0 +1,117 @@
+﻿<Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:windows="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.WindowsSpecific;assembly=Microsoft.Maui.Controls"
+             xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.Maui.Controls.Compatibility"
+             xmlns:telerikMauiControls="clr-namespace:Telerik.Maui.Controls;assembly=Telerik.Maui.Controls"
+             xmlns:telerikDataGrid="clr-namespace:Telerik.XamarinForms.DataGrid;assembly=Telerik.Maui.Controls.Compatibility"
+             xmlns:local="clr-namespace:CryptoTracker.Converters"
+             x:Class="CryptoTracker.App"
+             windows:Application.ImageDirectory="Assets">
+    <Application.Resources>
+        <ResourceDictionary>
+            <local:ValueToColorConverter x:Key="ValueToColorConverter" PositiveColor="LimeGreen" NegativeColor="Red" NeutralColor="Gray"/>
+
+            <Color x:Key="TrendingItemBackgroundColor">#ECF3FD</Color>
+            <Color x:Key="RadBorderColor">#DFDFDF</Color>
+            <Color x:Key="PageBarColor">#121212</Color>
+            <Color x:Key="SegmentedControlBackgroundColor">#F8F8F8</Color>
+            <Color x:Key="DataGridLineColor">#DFDFDF</Color>
+            <Color x:Key="NewBlue">#045DEA</Color>
+
+            <Style TargetType="Label">
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="FontFamily" Value="telerikFontExamples" />
+            </Style>
+
+
+            <Style x:Key="TrendingTitleStyle" TargetType="Label">
+                <Setter Property="Margin" Value="10"/>
+                <Setter Property="FontSize" Value="Title"/>
+                <Setter Property="HeightRequest" Value="30"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="TextColor" Value="Black"/>
+            </Style>
+            
+            <Style x:Key="TrendingCoinsCounterStyle" TargetType="Label">
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="Margin" Value="15, 0, 0, 0"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+                <Setter Property="TextColor" Value="{DynamicResource NewBlue}"/>
+            </Style>
+            
+            <Style x:Key="TrendingListViewItemBorderWrapStyle" TargetType="telerikMauiControls:RadBorder">
+                <Setter Property="Margin" Value="10, 5, 10, 0"/>
+                <Setter Property="CornerRadius" Value="8"/>
+                <Setter Property="BackgroundColor" Value="{DynamicResource TrendingItemBackgroundColor}"/>
+            </Style>
+            
+            <Style x:Key="ListViewBorderWrapStyle" TargetType="telerikMauiControls:RadBorder">
+                <Setter Property="CornerRadius" Value="8"/>
+                <Setter Property="BackgroundColor" Value="White"/>
+                <Setter Property="BorderColor" Value="White"/>
+            </Style>
+            
+            <Style x:Key="TrendingCoinSymbolStyle" TargetType="Label">
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="Margin" Value="10, 10, 5, 10"/>
+                <Setter Property="TextColor" Value="DimGray"/>
+            </Style>
+
+            <Style x:Key="TrendingCoinNameStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="Margin" Value="0, 10, 10, 10"/>
+            </Style>
+
+            <Style x:Key="TrendingCoinPercentage" TargetType="Label">
+                <Setter Property="Margin" Value="10, 10, 25, 10"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="TextColor" Value="{DynamicResource NewBlue}"/>
+            </Style>
+
+            <Style x:Key="ListViewCoinSymbolStyle" TargetType="Label">
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="TextColor" Value="{DynamicResource NewBlue}"/>
+                <Setter Property="Margin" Value="20, 10, 5, 10"/>
+            </Style>
+
+            <Style x:Key="ListViewCoinNameStyle" TargetType="Label">
+                <Setter Property="Margin" Value="0, 10, 10, 10"/>
+                <Setter Property="HeightRequest" Value="20"/>
+                <Setter Property="FontSize" Value="14"/>
+            </Style>
+            
+            <Style x:Key="ListViewCoinPriceStyle" TargetType="Label">
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="FontSize" Value="14"/>
+            </Style>
+
+            
+            <telerikDataGrid:DataGridTextCellStyle x:Key="dataGridColumnStyle" 
+                                                   FontAttributes="Bold"
+                                                   TextColor="DimGray"
+                                                   VerticalTextAlignment="Center"
+                                                   HorizontalTextAlignment="Start">
+            </telerikDataGrid:DataGridTextCellStyle>
+
+            <telerikDataGrid:DataGridColumnHeaderStyle x:Key="dataGridHeaderStyle"
+                                                      TextFontAttributes="Bold"
+                                                      BorderThickness="0"
+                                                      TextFontSize="18"
+                                                      TextColor="DimGray">
+
+            </telerikDataGrid:DataGridColumnHeaderStyle>
+
+            <Style x:Key="SegmentedControlStyle" TargetType="telerikInput:RadSegmentedControl">
+                <Setter Property="BackgroundColor" Value="{DynamicResource SegmentedControlBackgroundColor}"/>
+                <Setter Property="SegmentTextColor" Value="Black"/>
+                <Setter Property="SelectedSegmentBackgroundColor" Value="{DynamicResource TrendingItemBackgroundColor}"/>
+                <Setter Property="SelectedSegmentTextColor" Value="{StaticResource NewBlue}"/>
+                <Setter Property="HeightRequest" Value="40"/>
+            </Style>
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
