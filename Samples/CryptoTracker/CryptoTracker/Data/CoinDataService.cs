@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 
@@ -22,11 +23,6 @@ namespace CryptoTracker.Data
             foreach (var path in this.coinFilePaths)
             {
                 coins.Add(GetCurrentCoin(path));
-            }
-
-            foreach (var coin in coins)
-            {
-                Console.WriteLine(coin.ToString());
             }
 
             return coins;
@@ -55,10 +51,10 @@ namespace CryptoTracker.Data
                             Name = line[1],
                             Symbol = line[2],
                             Date = DateTime.Parse(line[3]),
-                            Price24High = double.Parse(line[4]),
-                            Price24Low = double.Parse(line[5]),
-                            OpeningPrice = double.Parse(line[6]),
-                            ClosingPrice = double.Parse(line[7]),
+                            Price24High = double.Parse(line[4], CultureInfo.InvariantCulture),
+                            Price24Low = double.Parse(line[5], CultureInfo.InvariantCulture),
+                            OpeningPrice = double.Parse(line[6], CultureInfo.InvariantCulture),
+                            ClosingPrice = double.Parse(line[7], CultureInfo.InvariantCulture),
                         };
 
                         if (currentCoin.Date >= start && currentCoin.Date < end)
@@ -94,10 +90,10 @@ namespace CryptoTracker.Data
                         Name = splitedLastLine[1],
                         Symbol = splitedLastLine[2],
                         Date = DateTime.Parse(splitedLastLine[3]),
-                        Price24High = double.Parse(splitedLastLine[4]),
-                        Price24Low = double.Parse(splitedLastLine[5]),
-                        OpeningPrice = double.Parse(splitedLastLine[6]),
-                        ClosingPrice = double.Parse(splitedLastLine[7]),
+                        Price24High = double.Parse(splitedLastLine[4], CultureInfo.InvariantCulture),
+                        Price24Low = double.Parse(splitedLastLine[5], CultureInfo.InvariantCulture),
+                        OpeningPrice = double.Parse(splitedLastLine[6], CultureInfo.InvariantCulture),
+                        ClosingPrice = double.Parse(splitedLastLine[7], CultureInfo.InvariantCulture),
                     };
 
                     return currentCoin;

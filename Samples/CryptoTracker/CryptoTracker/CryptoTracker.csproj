@@ -25,10 +25,10 @@
 
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\appicon.svg" ForegroundFile="Resources\appiconfg.svg" Color="#512BD4" />
+		<MauiImage Include="Resources\appicon.svg" ForegroundFile="Resources\launcher.svg" Color="#512BD4" IsAppIcon="true" />
 
 		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\appiconfg.svg" Color="#512BD4" />
+		<MauiSplashScreen Include="Resources\loading.svg" Color="#512BD4" />
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
@@ -66,10 +66,8 @@
 	  <None Remove="Data\Coins\coin_Polkadot.csv" />
 	  <None Remove="Data\Coins\coin_Solana.csv" />
 	  <None Remove="Data\Coins\coin_Stellar.csv" />
-	  <None Remove="Data\Coins\coin_Tether.csv" />
 	  <None Remove="Data\Coins\coin_Tron.csv" />
 	  <None Remove="Data\Coins\coin_Uniswap.csv" />
-	  <None Remove="Data\Coins\coin_USDCoin.csv" />
 	  <None Remove="Data\Coins\coin_WrappedBitcoin.csv" />
 	  <None Remove="Data\Coins\coin_XRP.csv" />
 	  <None Remove="Resources\Fonts\telerikfontexamples.ttf" />
@@ -93,15 +91,13 @@
 	  <EmbeddedResource Include="Data\Coins\coin_Polkadot.csv" />
 	  <EmbeddedResource Include="Data\Coins\coin_Solana.csv" />
 	  <EmbeddedResource Include="Data\Coins\coin_Stellar.csv" />
-	  <EmbeddedResource Include="Data\Coins\coin_Tether.csv" />
 	  <EmbeddedResource Include="Data\Coins\coin_Tron.csv" />
 	  <EmbeddedResource Include="Data\Coins\coin_Uniswap.csv" />
-	  <EmbeddedResource Include="Data\Coins\coin_USDCoin.csv" />
 	  <EmbeddedResource Include="Data\Coins\coin_WrappedBitcoin.csv" />
 	  <EmbeddedResource Include="Data\Coins\coin_XRP.csv" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="Telerik.UI.for.Maui" Version="0.3.0" />
+	  <PackageReference Include="Telerik.UI.for.Maui" Version="0.4.0" />
 	</ItemGroup>
 </Project>

@@ -5,6 +5,7 @@
              xmlns:local="clr-namespace:CryptoTracker.ViewModels"
              xmlns:telerikMauiControls="clr-namespace:Telerik.Maui.Controls;assembly=Telerik.Maui.Controls"
              xmlns:telerikDataGrid="clr-namespace:Telerik.XamarinForms.DataGrid;assembly=Telerik.Maui.Controls.Compatibility"
+             xmlns:formatters="clr-namespace:CryptoTracker.Formatters"
              x:Class="CryptoTracker.Views.CoinInfoView"
              x:Name="coinInfoView"
              BackgroundColor="AliceBlue">
@@ -33,7 +34,7 @@
                         <Binding Path="CoinSymbol"/>
                     </MultiBinding>
                 </Label>
-                <telerikMauiControls:RadBorder CornerRadius="8" BackgroundColor="{StaticResource TrendingItemBackgroundColor}" Padding="15,10,30,10">
+                <telerikMauiControls:RadBorder CornerRadius="8" BackgroundColor="{StaticResource TrendingItemBackgroundColor}" Padding="15,10,15,10">
                     <telerikMauiControls:RadBorder.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding OpenUrl}"/>
                     </telerikMauiControls:RadBorder.GestureRecognizers>
@@ -64,7 +65,9 @@
                        FontSize="18" 
                        Text="{Binding CoinName, StringFormat='{0} to USD Chart'}"/>
 
-                <telerikChart:RadCartesianChart IsVisible="{Binding IsLineChartVisible, Mode=OneWay}" GridLayout.Row="3">
+                <telerikChart:RadCartesianChart IsVisible="{Binding IsLineChartVisible, Mode=OneWay}"
+                                                GridLayout.Row="3"
+                                                HandlerChanged="RadCartesianChart_HandlerChanged">
                     <telerikChart:RadCartesianChart.HorizontalAxis>
                         <telerikChart:DateTimeContinuousAxis 
                             LabelTextColor="Black"
@@ -75,7 +78,11 @@
                         </telerikChart:DateTimeContinuousAxis>
                     </telerikChart:RadCartesianChart.HorizontalAxis>
                     <telerikChart:RadCartesianChart.VerticalAxis>
-                        <telerikChart:NumericalAxis LabelTextColor="Black"/>
+                        <telerikChart:NumericalAxis LabelTextColor="Black">
+                            <telerikChart:NumericalAxis.LabelFormatter>
+                                <formatters:ShortPriceFormatter/>
+                            </telerikChart:NumericalAxis.LabelFormatter>
+                        </telerikChart:NumericalAxis>
                     </telerikChart:RadCartesianChart.VerticalAxis>
                     <telerikChart:RadCartesianChart.Series>
                         <telerikChart:LineSeries
@@ -93,7 +100,8 @@
                     </telerikChart:RadCartesianChart.ChartBehaviors>
                 </telerikChart:RadCartesianChart>
 
-                <telerikChart:RadCartesianChart IsVisible="{Binding IsCandlestickChartVisible, Mode=OneWay}" GridLayout.Row="3">
+                <telerikChart:RadCartesianChart IsVisible="{Binding IsCandlestickChartVisible, Mode=OneWay}"
+                                                GridLayout.Row="3">
                     <telerikChart:RadCartesianChart.HorizontalAxis>
                         <telerikChart:DateTimeContinuousAxis 
                             LabelTextColor="Black"
@@ -104,7 +112,11 @@
                         </telerikChart:DateTimeContinuousAxis>
                     </telerikChart:RadCartesianChart.HorizontalAxis>
                     <telerikChart:RadCartesianChart.VerticalAxis>
-                        <telerikChart:NumericalAxis LabelTextColor="Black"/>
+                        <telerikChart:NumericalAxis LabelTextColor="Black">
+                            <telerikChart:NumericalAxis.LabelFormatter>
+                                <formatters:ShortPriceFormatter/>
+                            </telerikChart:NumericalAxis.LabelFormatter>
+                        </telerikChart:NumericalAxis>
                     </telerikChart:RadCartesianChart.VerticalAxis>
                     <telerikChart:RadCartesianChart.Series>
                         <telerikChart:CandlestickSeries
@@ -119,13 +131,14 @@
 
                 <GridLayout GridLayout.Row="4" HorizontalOptions="Start" WidthRequest="150">
                     <telerikInput:RadSegmentedControl x:Name="chartTypesSegmentedControl"
+                                                      IsVisible="{OnPlatform Default='True', UWP='False'}"
                                                       SelectionChanged="ChangedChartType"
                                                       SelectedIndex="{Binding SelectedChartType, Mode=TwoWay}"
                                                       Style="{StaticResource SegmentedControlStyle}">
                         <telerikInput:RadSegmentedControl.ItemsSource>
                             <x:Array Type="{x:Type FileImageSource}">
-                                <FileImageSource>chartlineactive.png</FileImageSource>
-                                <FileImageSource>chartcandleactive.png</FileImageSource>
+                                <FileImageSource File="{OnPlatform Default='lineactive.png', Android='chartlineactive.png'}"/>
+                                <FileImageSource File="{OnPlatform Default='candleactive.png', Android='chartcandleactive.png'}"/>
                             </x:Array>
                         </telerikInput:RadSegmentedControl.ItemsSource>
                     </telerikInput:RadSegmentedControl>
@@ -139,7 +152,7 @@
                        Text="Historical Data"
                        IsVisible="{Binding IsDataGridVisible, Mode=OneWay}" />
 
-                <telerikDataGrid:RadDataGrid GridLayout.Row="6" 
+                <telerikDataGrid:RadDataGrid GridLayout.Row="6"
                                              AutoGenerateColumns="False" 
                                              IsVisible="{Binding IsDataGridVisible, Mode=OneWay}"
                                              ItemsSource="{Binding DataForDataGrid}"

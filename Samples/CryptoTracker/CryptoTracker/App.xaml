@@ -21,6 +21,7 @@
             <Style TargetType="Label">
                 <Setter Property="VerticalTextAlignment" Value="Center" />
                 <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="TextColor" Value="DimGray"/>
                 <Setter Property="FontFamily" Value="telerikFontExamples" />
             </Style>
 
@@ -56,7 +57,6 @@
                 <Setter Property="FontAttributes" Value="Bold"/>
                 <Setter Property="FontSize" Value="16"/>
                 <Setter Property="Margin" Value="10, 10, 5, 10"/>
-                <Setter Property="TextColor" Value="DimGray"/>
             </Style>
 
             <Style x:Key="TrendingCoinNameStyle" TargetType="Label">
@@ -90,7 +90,6 @@
 
             
             <telerikDataGrid:DataGridTextCellStyle x:Key="dataGridColumnStyle" 
-                                                   FontAttributes="Bold"
                                                    TextColor="DimGray"
                                                    VerticalTextAlignment="Center"
                                                    HorizontalTextAlignment="Start">
