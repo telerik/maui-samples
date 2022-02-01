@@ -12,7 +12,7 @@ It uses the [Telerik UI for .NET MAUI controls](https://www.telerik.com/maui-ui)
 1. Copy the path to "Packages" folder from the installation folder.
     - For Windows - **C:\Program Files (x86)\Progress\Telerik UI for .NET MAUI 0.4.0\Packages**
     - For Mac - **/Users/<Your User Name>/Documents/Progress/Telerik_UI_for_NET_MAUI_0.4.0/Packages**
-1. Add this path to the [NuGet.Config](../main/Samples/NuGet.Config) file. It should look like this:
+1. Add this path to the [NuGet.Config](../NuGet.Config) file. It should look like this:
 
      `<add key="PackageSource" value="C:\Program Files (x86)\Progress\Telerik UI for .NET MAUI 0.4.0\Packages"/>`
 1. Build the app like any other .NET MAUI solution. You can use [this](https://docs.telerik.com/devtools/maui/demos-and-sample-apps/crypto-app) help article for guidance.
