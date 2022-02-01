@@ -1,6 +1,6 @@
 <p align="center"> <img src="../main/Samples/CryptoTracker/Telerik-UI-For-MAUI-CryptoTracker-Image.png"/></p>
 
-# Telerik UI for .NET MAUI Samples Applications
+# Telerik UI for .NET MAUI Sample Applications
 
 This repository contains sample applications related to Telerik UI for .NET MAUI components.
 
