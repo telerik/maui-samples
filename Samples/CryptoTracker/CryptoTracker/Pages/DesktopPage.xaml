@@ -1,13 +1,18 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:CryptoTracker.ViewModels"
              x:Class="CryptoTracker.Pages.DesktopPage"
              xmlns:Views="clr-namespace:CryptoTracker.Views"
              Title="Crypto Tracker"
              BackgroundColor="AliceBlue"
              x:Name="mainPage">
 
-    <GridLayout ColumnDefinitions="500, *">
-        <Views:CoinSelectionView CoinSelected="OnCoinSelected"/>
-        <Views:CoinInfoView x:Name="selectedCoinInfo" Margin="0,15,0,5" GridLayout.Column="1"/>
-    </GridLayout>
+    <Grid ColumnDefinitions="500, *">
+        <Views:CoinSelectionView CoinSelected="OnCoinSelected" Padding="20, 20, 20, 10"/>
+        <Views:CoinInfoChartView x:Name="selectedCoinInfo" Padding="0, 20, 25, 10" Grid.Column="1">
+            <Views:CoinInfoChartView.BindingContext>
+                <local:CoinInfoViewModel/>
+            </Views:CoinInfoChartView.BindingContext>
+        </Views:CoinInfoChartView>
+    </Grid>
 </ContentPage>

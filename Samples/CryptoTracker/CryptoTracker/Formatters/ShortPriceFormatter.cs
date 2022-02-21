@@ -17,25 +17,32 @@ namespace CryptoTracker.Formatters
 
         private string FormatNumber(double num)
         {
-            if (num >= 100000)
-                return FormatNumber(num / 1000) + "K";
-
-            if (num >= 1000)
-                return (num / 1000D).ToString("0.#") + "K";
-
-            if (num < 1)
+            if (num <= 0.001)
             {
-                return num.ToString("F2");
+                return String.Empty;
             }
 
-            if (num > 10)
+            if (num >= 1000000)
+            {
+                return (num / 1000000).ToString("0.#") + "M";
+            }
+
+            if (num >= 1000)
+            {
+                return (num / 1000.0).ToString("0.#") + "K";
+            }
+
+            if (num >= 10)
             {
                 return num.ToString("F0");
             }
-            else
+
+            if (num > 1)
             {
                 return num.ToString("F1");
             }
+
+            return num.ToString("F2");
         }
     }
 
