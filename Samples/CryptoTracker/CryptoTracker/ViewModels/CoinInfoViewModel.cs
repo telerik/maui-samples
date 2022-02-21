@@ -20,7 +20,6 @@ namespace CryptoTracker.ViewModels
         private DateTime fromDate;
         private DateTime toDate;
         private int selectedTimePeriod;
-        private string coinLink;
         private double coinPriceChangePercentage;
         private TimeInterval chartMajorStepUnit;
         private double chartMajorStep;
@@ -39,7 +38,6 @@ namespace CryptoTracker.ViewModels
             this.DataForChart = new List<CoinData>();
             this.DataForDataGrid = new List<CoinData>();
             this.TimePeriods = new List<string>() { "1D", "1W", "1M", "6M", "1Y"};
-            this.OpenUrl = new Command(this.OnOpenUrlCommand);
             this.IsLineChartVisible = true;
 #if ANDROID || IOS
             this.IsDataGridVisible = true;
@@ -130,12 +128,6 @@ namespace CryptoTracker.ViewModels
             private set => this.UpdateValue(ref this.coinName, value);
         }
 
-        public string CoinLink
-        {
-            get => this.coinLink;
-            private set => this.UpdateValue(ref this.coinLink, value);
-        }
-
         public DateTime FromDate
         {
             get => this.fromDate;
@@ -166,8 +158,6 @@ namespace CryptoTracker.ViewModels
             private set => this.UpdateValue(ref this.chartLabelFormat, value);
         }
 
-        public ICommand OpenUrl { get; }
-
         public void InitializeCoinData(CoinData currentCoinInfo)
         {
             this.CoinName = currentCoinInfo.Name;
@@ -175,7 +165,6 @@ namespace CryptoTracker.ViewModels
             this.CoinCurrentPrice = currentCoinInfo.ClosingPrice;
             this.CoinPriceChangePercentage = currentCoinInfo.ChangeInPricePercentage;
             this.ToDate = currentCoinInfo.Date;
-            this.CoinLink = currentCoinInfo.Name.ToLower().Replace(" ", "") + ".org";
             this.SelectedTimePeriod = 0; // so that UpdateValue gets called when we change from 2 to 2 (that happens when we select a new coin from the ListView)
             this.SelectedTimePeriod = 2;
             this.SelectedChartType = 1;
@@ -283,11 +272,6 @@ namespace CryptoTracker.ViewModels
             data.Add(current);
 
             return data;
-        }
-
-        private void OnOpenUrlCommand()
-        {
-            Launcher.OpenAsync("https://" + this.CoinLink);
         }
 
         private void OnDatePeriodSelection()

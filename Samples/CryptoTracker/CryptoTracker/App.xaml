@@ -5,8 +5,7 @@
              xmlns:telerikMauiControls="clr-namespace:Telerik.Maui.Controls;assembly=Telerik.Maui.Controls"
              xmlns:telerikDataGrid="clr-namespace:Telerik.XamarinForms.DataGrid;assembly=Telerik.Maui.Controls.Compatibility"
              xmlns:local="clr-namespace:CryptoTracker.Converters"
-             x:Class="CryptoTracker.App"
-             windows:Application.ImageDirectory="Assets">
+             x:Class="CryptoTracker.App">
     <Application.Resources>
         <ResourceDictionary>
             <local:ValueToColorConverter x:Key="ValueToColorConverter" PositiveColor="LimeGreen" NegativeColor="Red" NeutralColor="Gray"/>
@@ -82,13 +81,13 @@
                 <Setter Property="HeightRequest" Value="20"/>
                 <Setter Property="FontSize" Value="14"/>
             </Style>
-            
+
             <Style x:Key="ListViewCoinPriceStyle" TargetType="Label">
                 <Setter Property="FontAttributes" Value="Bold"/>
                 <Setter Property="FontSize" Value="14"/>
             </Style>
 
-            
+
             <telerikDataGrid:DataGridTextCellStyle x:Key="dataGridColumnStyle" 
                                                    TextColor="DimGray"
                                                    VerticalTextAlignment="Center"
@@ -97,6 +96,7 @@
 
             <telerikDataGrid:DataGridColumnHeaderStyle x:Key="dataGridHeaderStyle"
                                                       TextFontAttributes="Bold"
+                                                      BackgroundColor="#F8F8F8"
                                                       BorderThickness="0"
                                                       TextFontSize="18"
                                                       TextColor="DimGray">
@@ -108,9 +108,18 @@
                 <Setter Property="SegmentTextColor" Value="Black"/>
                 <Setter Property="SelectedSegmentBackgroundColor" Value="{DynamicResource TrendingItemBackgroundColor}"/>
                 <Setter Property="SelectedSegmentTextColor" Value="{StaticResource NewBlue}"/>
-                <Setter Property="HeightRequest" Value="40"/>
+                <Setter Property="Margin" Value="6"/>
             </Style>
 
+            <Style x:Key="TabViewHeaderStyle" TargetType="telerikMauiControls:TabViewHeaderItem">
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="FontSize" Value="16"/>
+            </Style>
+
+            <Style x:Key="TabViewItemGridLayouStyle" TargetType="Grid">
+                <Setter Property="RowSpacing" Value="10"/>
+            </Style>
+            
         </ResourceDictionary>
     </Application.Resources>
 </Application>
