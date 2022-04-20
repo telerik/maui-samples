@@ -11,6 +11,7 @@ namespace CryptoTracker
 	{
 		public App()
 		{
+			Application.AccentColor = Color.FromArgb("#045DEA");
 			InitializeComponent();
 			DependencyService.Register<ICoinDataService, CoinDataService>();
 			// We use preprocessor directives in order to apply platform specific implementation.

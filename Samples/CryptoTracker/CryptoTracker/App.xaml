@@ -15,7 +15,6 @@
             <Color x:Key="PageBarColor">#121212</Color>
             <Color x:Key="SegmentedControlBackgroundColor">#F8F8F8</Color>
             <Color x:Key="DataGridLineColor">#DFDFDF</Color>
-            <Color x:Key="NewBlue">#045DEA</Color>
 
             <Style TargetType="Label">
                 <Setter Property="VerticalTextAlignment" Value="Center" />
@@ -37,7 +36,7 @@
                 <Setter Property="FontAttributes" Value="Bold"/>
                 <Setter Property="Margin" Value="15, 0, 0, 0"/>
                 <Setter Property="VerticalTextAlignment" Value="Center"/>
-                <Setter Property="TextColor" Value="{DynamicResource NewBlue}"/>
+                <Setter Property="TextColor" Value="{x:Static Application.AccentColor}"/>
             </Style>
             
             <Style x:Key="TrendingListViewItemBorderWrapStyle" TargetType="telerikMauiControls:RadBorder">
@@ -66,13 +65,13 @@
             <Style x:Key="TrendingCoinPercentage" TargetType="Label">
                 <Setter Property="Margin" Value="10, 10, 25, 10"/>
                 <Setter Property="FontAttributes" Value="Bold"/>
-                <Setter Property="TextColor" Value="{DynamicResource NewBlue}"/>
+                <Setter Property="TextColor" Value="{x:Static Application.AccentColor}"/>
             </Style>
 
             <Style x:Key="ListViewCoinSymbolStyle" TargetType="Label">
                 <Setter Property="FontAttributes" Value="Bold"/>
                 <Setter Property="FontSize" Value="16"/>
-                <Setter Property="TextColor" Value="{DynamicResource NewBlue}"/>
+                <Setter Property="TextColor" Value="{x:Static Application.AccentColor}"/>
                 <Setter Property="Margin" Value="20, 10, 5, 10"/>
             </Style>
 
@@ -95,6 +94,7 @@
             </telerikDataGrid:DataGridTextCellStyle>
 
             <telerikDataGrid:DataGridColumnHeaderStyle x:Key="dataGridHeaderStyle"
+                                                      OptionsButtonMargin="0, 0, 10, 0"
                                                       TextFontAttributes="Bold"
                                                       BackgroundColor="#F8F8F8"
                                                       BorderThickness="0"
@@ -107,15 +107,33 @@
                 <Setter Property="BackgroundColor" Value="{DynamicResource SegmentedControlBackgroundColor}"/>
                 <Setter Property="SegmentTextColor" Value="Black"/>
                 <Setter Property="SelectedSegmentBackgroundColor" Value="{DynamicResource TrendingItemBackgroundColor}"/>
-                <Setter Property="SelectedSegmentTextColor" Value="{StaticResource NewBlue}"/>
+                <Setter Property="SelectedSegmentTextColor" Value="{x:Static Application.AccentColor}"/>
                 <Setter Property="Margin" Value="6"/>
             </Style>
 
             <Style x:Key="TabViewHeaderStyle" TargetType="telerikMauiControls:TabViewHeaderItem">
                 <Setter Property="FontAttributes" Value="Bold"/>
                 <Setter Property="FontSize" Value="16"/>
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup Name="CommonStates">
+                            <VisualState Name="Normal" />
+                            <VisualState Name="Disabled">
+                                <VisualState.Setters>
+                                    <Setter Property="TextColor" Value="#61000000" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="Selected">
+                                <VisualState.Setters>
+                                    <Setter Property="TextColor" Value="{x:Static Application.AccentColor}" />
+                                    <Setter Property="BorderColor" Value="{x:Static Application.AccentColor}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
             </Style>
-
+            
             <Style x:Key="TabViewItemGridLayouStyle" TargetType="Grid">
                 <Setter Property="RowSpacing" Value="10"/>
             </Style>
