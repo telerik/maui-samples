@@ -1,11 +1,9 @@
-﻿using System;
-using CryptoTracker.Data;
+﻿using CryptoTracker.Data;
 using Microsoft.Maui.Controls;
+using System;
+using System.Collections.Generic;
 using Telerik.XamarinForms.Chart;
 using Telerik.XamarinForms.Common;
-using System.Windows.Input;
-using Microsoft.Maui.Essentials;
-using System.Collections.Generic;
 
 namespace CryptoTracker.ViewModels
 {

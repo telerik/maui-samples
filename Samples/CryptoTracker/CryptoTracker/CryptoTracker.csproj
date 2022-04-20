@@ -6,7 +6,6 @@
 		<RootNamespace>CryptoTracker</RootNamespace>
 		<UseMaui>true</UseMaui>
 		<SingleProject>true</SingleProject>
-		<EnablePreviewMsixTooling>true</EnablePreviewMsixTooling>
 
 		<!-- Display name -->
 		<ApplicationTitle>CryptoTracker</ApplicationTitle>
@@ -17,8 +16,6 @@
 		<!-- Versions -->
 		<ApplicationVersion>1</ApplicationVersion>
 
-		<!-- Required for C# Hot Reload -->
-		<UseInterpreter Condition="'$(Configuration)' == 'Debug'">False</UseInterpreter>
 		<MtouchLink Condition="'$(TargetFramework)' == 'net6.0-ios'  OR '$(TargetFramework)' == 'net6.0-maccatalyst'">SdkOnly</MtouchLink>
 
 	</PropertyGroup>
@@ -36,17 +33,6 @@
 		<!-- Custom Fonts -->
 		<MauiFont Include="Resources\Fonts\*" />
 	</ItemGroup>
-
-	<ItemGroup Condition="$(TargetFramework.Contains('-windows'))">
-		<!-- Required - WinUI does not yet have buildTransitive for everything -->
-		<PackageReference Include="Microsoft.WindowsAppSDK" Version="1.0.0" />
-		<PackageReference Include="Microsoft.Graphics.Win2D" Version="1.0.0.30" />
-	</ItemGroup>
-
-	<PropertyGroup Condition="$(TargetFramework.Contains('-windows'))">
-		<OutputType>WinExe</OutputType>
-		<RuntimeIdentifier>win-x64</RuntimeIdentifier>
-	</PropertyGroup>
 
 	<ItemGroup>
 	  <None Remove="Data\Coins\coin_Aave.csv" />
@@ -98,6 +84,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="Telerik.UI.for.Maui" Version="0.5.0" />
+	  <PackageReference Include="Telerik.UI.for.Maui" Version="0.7.0" />
 	</ItemGroup>
 </Project>

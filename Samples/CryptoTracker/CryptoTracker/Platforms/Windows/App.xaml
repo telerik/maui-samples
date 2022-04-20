@@ -2,22 +2,5 @@
     x:Class="CryptoTracker.WinUI.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:maui="using:Microsoft.Maui"
-    xmlns:core="using:Telerik.Core"
-    xmlns:local="using:CryptoTracker.WinUI">
-    <maui:MauiWinUIApplication.Resources>
-        <ResourceDictionary>
-            <core:StringFormatConverter x:Key="StringFormatConverter"/>
-            <DataTemplate x:Key="CustomTrackBallTemplate">
-                <StackPanel CornerRadius="10"
-                            Background="#B3000000"
-                            Padding="8">
-                    <TextBlock Text="{Binding Path=DataPoint.DataItem.Date, Converter={StaticResource StringFormatConverter}, ConverterParameter='{}{0:d}'}"
-                               Foreground="White"/>
-                    <TextBlock Text="{Binding DataPoint.DataItem.ClosingPrice}"
-                               Foreground="White"/>
-                </StackPanel>
-            </DataTemplate>
-        </ResourceDictionary>
-    </maui:MauiWinUIApplication.Resources>
+    xmlns:maui="using:Microsoft.Maui">
 </maui:MauiWinUIApplication>

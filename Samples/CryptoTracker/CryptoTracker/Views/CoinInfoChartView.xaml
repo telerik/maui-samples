@@ -33,14 +33,14 @@
 
         <telerikMauiControls:RadBorder Grid.Row="1" Style="{StaticResource ListViewBorderWrapStyle}" Padding="10,10,10,20" BorderThickness="1" BorderColor="{StaticResource RadBorderColor}" >
             <Grid RowDefinitions="60, *, 60" RowSpacing="10">
-                <Grid ColumnDefinitions="190, *" ColumnSpacing="30">
+                <Grid ColumnDefinitions="2*,*" ColumnSpacing="30">
                     <Label 
                                VerticalOptions="Center"
                                Margin="5,15,5,5"
                                TextColor="Black" 
                                FontAttributes="Bold" 
                                FontSize="18" 
-                               Text="{Binding CoinName, StringFormat='{0} to USD Chart'}" LineBreakMode="TailTruncation"/>
+                               Text="{Binding CoinName, StringFormat='{0} to USD Chart'}" LineBreakMode="{OnPlatform Default='TailTruncation', UWP='NoWrap', MacCatalyst='NoWrap'}"/>
 
                     <telerikInput:RadSegmentedControl x:Name="chartTypesSegmentedControl" Grid.Column="1"
                                                       HorizontalOptions="End" 
@@ -58,7 +58,9 @@
                     </telerikInput:RadSegmentedControl>
                 </Grid>
 
-                <telerikChart:RadCartesianChart IsVisible="{Binding IsLineChartVisible, Mode=OneWay}" Grid.Row="1">
+                <telerikChart:RadCartesianChart IsVisible="{Binding IsLineChartVisible, Mode=OneWay}"
+                                                Grid.Row="1"
+                                                PropertyChanged="OnChartPropertyChanged">
                     <telerikChart:RadCartesianChart.HorizontalAxis>
                         <telerikChart:DateTimeContinuousAxis 
                             LabelTextColor="Black"
@@ -85,7 +87,9 @@
                     </telerikChart:RadCartesianChart.Series>
                 </telerikChart:RadCartesianChart>
 
-                <telerikChart:RadCartesianChart IsVisible="{Binding IsCandlestickChartVisible, Mode=OneWay}" Grid.Row="1">
+                <telerikChart:RadCartesianChart IsVisible="{Binding IsCandlestickChartVisible, Mode=OneWay}"
+                                                Grid.Row="1"
+                                                PropertyChanged="OnChartPropertyChanged">
                     <telerikChart:RadCartesianChart.HorizontalAxis>
                         <telerikChart:DateTimeContinuousAxis 
                             LabelTextColor="Black"
