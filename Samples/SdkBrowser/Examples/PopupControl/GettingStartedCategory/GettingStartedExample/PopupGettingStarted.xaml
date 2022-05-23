@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        x:Class="SDKBrowserMaui.Examples.PopupControl.GettingStartedCategory.GettingStartedExample.PopupGettingStarted"
+                        Margin="5">
+    <telerik:RadContentView.Content>
+        <Grid Margin="10">
+            <!-- >> popup-getting-started-xaml -->
+            <Button x:Name="button"
+                    HorizontalOptions="Center" 
+                    VerticalOptions="Start" 
+                    Text="Show more info" 
+                    Clicked="ShowPopup">
+                <telerik:RadPopup.Popup>
+                    <telerik:RadPopup x:Name="popup"
+                                      IsModal="True"
+                                      OutsideBackgroundColor="#6F000000">
+                        <telerik:RadBorder CornerRadius="8" 
+                                           BackgroundColor="Wheat">
+                            <Grid Padding="10"
+                                  WidthRequest="200"
+                                  HeightRequest="150">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Label Text="Thank you for choosing Telerik UI for .NET MAUI." 
+                                       LineBreakMode="WordWrap" />
+                                <telerik:RadButton Grid.Row="1"
+                                                   Padding="2"
+                                                   HorizontalOptions="End"
+                                                   Text="Close"
+                                                   Clicked="ClosePopup" />
+                            </Grid>
+                        </telerik:RadBorder>
+                    </telerik:RadPopup>
+                </telerik:RadPopup.Popup>
+            </Button>
+            <!-- << popup-getting-started-xaml -->
+        </Grid>
+    </telerik:RadContentView.Content>
+</telerik:RadContentView>

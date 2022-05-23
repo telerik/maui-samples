@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        xmlns:local="clr-namespace:SDKBrowserMaui.Examples.TemplatedPickerControl"
+                        x:Class="SDKBrowserMaui.Examples.TemplatedPickerControl.StylingCategory.PopupStylingExample.PopupStyling">
+    <telerik:RadContentView.BindingContext>
+        <local:LocationViewModel />
+    </telerik:RadContentView.BindingContext>
+    <telerik:RadContentView.Resources>
+        <ResourceDictionary>
+            <!-- >> templatedpicker-accentcolor -->
+            <Color x:Key="AccentColor">#B73562</Color>
+            <!-- << templatedpicker-accentcolor -->
+
+            <!-- >> templatedpicker-headelabelstyle -->
+            <Style x:Key="pickerHeaderLabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+            <!-- << templatedpicker-headelabelstyle -->
+
+            <!-- >> templatedpicker-headerstyle -->
+            <Style x:Key="pickerHeaderStyle" TargetType="telerik:PickerPopupHeaderView">
+                <Setter Property="HeightRequest" Value="56" />
+            </Style>
+            <!-- << templatedpicker-headerstyle -->
+
+            <!-- >> templatedpicker-headertemplate -->
+            <ControlTemplate x:Key="pickerHeaderTemplaye">
+                <Grid BackgroundColor="{StaticResource AccentColor}" ColumnDefinitions="*,*">
+                    <Label Text="Origin Country"
+                           Style="{StaticResource pickerHeaderLabelStyle}" />
+                    <Label Grid.Column="1"
+                           Text="Origin City"
+                           Style="{StaticResource pickerHeaderLabelStyle}" />
+                </Grid>
+            </ControlTemplate>
+            <!-- << templatedpicker-headertemplate -->
+
+            <!-- >> templatedpicker-commonbuttonstyle -->
+            <Style x:Key="pickerFooterButtonStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+                <Setter Property="TextColor" Value="{StaticResource AccentColor}"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="Margin">
+                    <OnPlatform x:TypeArguments="Thickness">
+                        <On Platform="iOS, MacCatalyst">0, 0, 20, 0</On>
+                    </OnPlatform>
+                </Setter>
+            </Style>
+            <!-- << templatedpicker-commonbuttonstyle -->
+
+            <!-- >> templatedpicker-acceptbuttonstyle -->
+            <Style x:Key="pickerAcceptButtonStyle" BasedOn="{StaticResource pickerFooterButtonStyle}"
+                   TargetType="Button">
+                <Setter Property="HorizontalOptions" Value="End"/>
+            </Style>
+            <!-- << templatedpicker-acceptbuttonstyle -->
+
+            <!-- >> templatedpicker-cancelbuttonstyle -->
+            <Style x:Key="pickerCancelButtonStyle" BasedOn="{StaticResource pickerFooterButtonStyle}"
+                   TargetType="Button">
+                <Setter Property="HorizontalOptions" Value="EndAndExpand"/>
+            </Style>
+            <!-- << templatedpicker-cancelbuttonstyle -->
+
+            <!-- >> templatedpicker-borderstyle -->
+            <Style x:Key="defaultRadBorderStyle" TargetType="telerik:RadBorder">
+                <Setter Property="HeightRequest" Value="24" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="BorderColor" Value="#D9D9D9" />
+                <Setter Property="BorderThickness" Value="0,1" />
+            </Style>
+            <!-- << templatedpicker-borderstyle -->        
+        </ResourceDictionary>
+    </telerik:RadContentView.Resources>
+    <VerticalStackLayout WidthRequest="360" HorizontalOptions="Center">
+        <!-- >> templatedpicker-popup-style -->
+        <telerik:RadTemplatedPicker x:Name="picker"
+                                    PickerMode="Popup"
+                                    Placeholder="Pick a destination!" 
+                                    DisplayStringFormat="Destination: {0}"
+                                    SelectedValue="{Binding FromCity, Mode=TwoWay}"
+                                    DisplayMemberPath="Name">
+            <telerik:RadTemplatedPicker.PopupSettings>
+                <telerik:PickerPopupSettings HeaderStyle="{StaticResource pickerHeaderStyle}"
+                                             HeaderTemplate="{StaticResource pickerHeaderTemplaye}"
+                                             AcceptButtonStyle="{StaticResource pickerAcceptButtonStyle}"
+                                             CancelButtonStyle="{StaticResource pickerCancelButtonStyle}" />
+            </telerik:RadTemplatedPicker.PopupSettings>
+            <telerik:RadTemplatedPicker.SelectorTemplate>
+                <ControlTemplate>
+                    <Grid ColumnDefinitions="*,*" HeightRequest="250">
+                        <Grid.Style>
+                            <OnPlatform x:TypeArguments="Style">
+                                <On Platform="WinUI">
+                                    <Style TargetType="Grid">
+                                        <!--The MinimumWidthRequest of the PickerPopupContentView taken from its default style.-->
+                                        <Setter Property="MinimumWidthRequest" Value="280" />
+                                    </Style>
+                                </On>
+                            </OnPlatform>
+                        </Grid.Style>
+                        <telerik:RadBorder Grid.ColumnSpan="2"
+                                           Style="{StaticResource defaultRadBorderStyle}" />
+                        <telerik:RadSpinner x:Name="countriesSpinner"
+                                            Grid.Column="0"
+                                            ItemsSource="{Binding Countries}"
+                                            DisplayMemberPath="Name" />
+                        <telerik:RadSpinner x:Name="citiesSpinner"
+                                            Grid.Column="1"
+                                            ItemsSource="{Binding SelectedItem.Cities, Source={x:Reference countriesSpinner}}"
+                                            SelectedItem="{TemplateBinding SelectedValue}"
+                                            DisplayMemberPath="Name" />
+                    </Grid>
+                </ControlTemplate>
+            </telerik:RadTemplatedPicker.SelectorTemplate>
+        </telerik:RadTemplatedPicker>
+        <!-- << templatedpicker-popup-style -->
+    </VerticalStackLayout>
+</telerik:RadContentView>

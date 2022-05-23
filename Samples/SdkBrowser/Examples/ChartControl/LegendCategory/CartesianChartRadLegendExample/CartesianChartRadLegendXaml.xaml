@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        xmlns:local="clr-namespace:SDKBrowser.Examples.ChartControl.LegendCategory"
+                        x:Class="SDKBrowserMaui.Examples.ChartControl.LegendCategory.CartesianChartRadLegendExample.CartesianChartRadLegendXaml"
+                        Margin="5">
+    <StackLayout>
+        <!-- >> chart-features-cartesianchart-legend-definition-xaml -->
+        <telerik:RadCartesianChart x:Name="chart" HeightRequest="300">
+            <telerik:RadCartesianChart.BindingContext>
+                <local:ViewModel />
+            </telerik:RadCartesianChart.BindingContext>
+            <telerik:RadCartesianChart.HorizontalAxis>
+                <telerik:CategoricalAxis />
+            </telerik:RadCartesianChart.HorizontalAxis>
+            <telerik:RadCartesianChart.VerticalAxis>
+                <telerik:NumericalAxis />
+            </telerik:RadCartesianChart.VerticalAxis>
+            <telerik:RadCartesianChart.Series>
+                <telerik:LineSeries CategoryBinding="Category"
+                                    ValueBinding="Value" 
+                                    DisplayName=" Data1"
+                                    ItemsSource="{Binding Data1}" />
+                <telerik:LineSeries CategoryBinding="Category" 
+                                    ValueBinding="Value" 
+                                    DisplayName=" Data2"
+                                    ItemsSource="{Binding Data2}" />
+                <telerik:LineSeries CategoryBinding="Category" 
+                                    ValueBinding="Value" 
+                                    DisplayName=" Data3"
+                                    ItemsSource="{Binding Data3}" />
+            </telerik:RadCartesianChart.Series>
+        </telerik:RadCartesianChart>
+        <telerik:RadLegend LegendProvider="{x:Reference Name=chart}" 
+                           LegendItemFontColor="DarkGreen"
+                           HeightRequest="200"/>
+        <!-- << chart-features-cartesianchart-legend-definition-xaml -->
+    </StackLayout>
+</telerik:RadContentView>

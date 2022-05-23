@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        x:Class="SDKBrowserMaui.Examples.ComboBoxControl.GettingStartedCategory.GettingStartedExample.ComboBoxGettingStartedXaml"
+                        Margin="5">
+    <telerik:RadContentView.Content>
+        <VerticalStackLayout WidthRequest="300" HorizontalOptions="Center">
+            <Label Text="ComboBox with static items" Margin="0,0,0,5"/>
+            <!-- >> combobox-getting-started-static-items-xaml -->
+            <telerik:RadComboBox>
+                <telerik:RadComboBox.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>USA</x:String>
+                        <x:String>Uganda</x:String>
+                        <x:String>Ukraine</x:String>
+                        <x:String>Canada</x:String>
+                        <x:String>France</x:String>
+                        <x:String>Italy</x:String>
+                        <x:String>United Kingdom</x:String>
+                        <x:String>China</x:String>
+                        <x:String>Japan</x:String>
+                    </x:Array>
+                </telerik:RadComboBox.ItemsSource>
+            </telerik:RadComboBox>
+            <!-- << combobox-getting-started-static-items-xaml -->
+
+            <Label Text="ComboBox with binding to a complex object using DisplayMemberPath property" Margin="0,20,0,5"/>
+            <!-- >> combobox-getting-started-complex-object-xaml -->
+            <telerik:RadComboBox ItemsSource="{Binding Items}" 
+                                 DisplayMemberPath="Population"/>
+            <!-- << combobox-getting-started-complex-object-xaml -->
+        </VerticalStackLayout>
+    </telerik:RadContentView.Content>
+</telerik:RadContentView>

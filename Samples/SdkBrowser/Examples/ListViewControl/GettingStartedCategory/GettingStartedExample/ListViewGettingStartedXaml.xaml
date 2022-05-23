@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        xmlns:local="clr-namespace:SDKBrowserMaui.Examples.ListViewControl.GettingStartedCategory.GettingStartedExample"
+                        x:Class="SDKBrowserMaui.Examples.ListViewControl.GettingStartedCategory.GettingStartedExample.ListViewGettingStartedXaml"
+                        Margin="5">
+    <telerik:RadContentView.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="DefaultTemplate">
+                <telerik:ListViewTemplateCell>
+                    <telerik:ListViewTemplateCell.View>
+                        <Grid>
+                            <Label Margin="10" 
+                                   Text="{Binding Name}" />
+                        </Grid>
+                    </telerik:ListViewTemplateCell.View>
+                </telerik:ListViewTemplateCell>
+            </DataTemplate>
+            <DataTemplate x:Key="UWPTemplate">
+                <telerik:ListViewTextCell Text="{Binding Name}"
+                                                  TextColor="{AppThemeBinding Light={StaticResource DefaultTextColor}, Dark={StaticResource DefaultTextColorDark}}" />
+            </DataTemplate>
+        </ResourceDictionary>
+    </telerik:RadContentView.Resources>
+    <telerik:RadContentView.Content>
+        <Grid>
+            <!--  >> listview-gettingstarted-listview-xaml  -->
+            <telerik:RadListView x:Name="listView" ItemsSource="{Binding Source}" AutomationId="listView">
+                <telerik:RadListView.BindingContext>
+                    <local:ViewModel />
+                </telerik:RadListView.BindingContext>
+                <telerik:RadListView.ItemTemplate>
+                    <OnPlatform x:TypeArguments="DataTemplate">
+                        <On Platform="Android, iOS, MacCatalyst" Value="{StaticResource DefaultTemplate}" />
+                        <On Platform="UWP" Value="{StaticResource UWPTemplate}" />
+                    </OnPlatform>
+                </telerik:RadListView.ItemTemplate>
+            </telerik:RadListView>
+            <!--  << listview-gettingstarted-listview-xaml  -->
+        </Grid>
+    </telerik:RadContentView.Content>
+</telerik:RadContentView>

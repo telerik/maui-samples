@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        x:Class="SDKBrowserMaui.Examples.SideDrawerControl.GettingStartedCategory.GettingStartedExample.SideDrawerGettingStartedXaml">
+    <telerik:RadContentView.Resources>
+        <ResourceDictionary>
+            <Style x:Key="DefaultButtonStyle" TargetType="Button">
+                <Setter Property="WidthRequest" Value="180" />
+                <Setter Property="HeightRequest" Value="40" />
+                <Setter Property="BackgroundColor" Value="#b1b1b1" />
+                <Setter Property="TextColor" Value="Black" />
+            </Style>
+        </ResourceDictionary>
+    </telerik:RadContentView.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <HorizontalStackLayout Spacing="10">
+            <ImageButton WidthRequest="{OnPlatform Default='25', WinUI='32'}" 
+                         HeightRequest="{OnPlatform Default='25', WinUI='32'}" 
+                         BorderWidth="0" 
+                         BorderColor="Transparent" 
+                         BackgroundColor="Transparent" 
+                         Source="hamburgermenu.png"
+                         Clicked="OnButtonClicked">
+            </ImageButton>
+            <Label VerticalOptions="Center"
+                   Text="SideDrawer" />
+        </HorizontalStackLayout>
+        <Grid Grid.Row="1">
+        <!--  >> sidedrawer-gettingstarted-xaml  -->
+            <telerik:RadSideDrawer x:Name="drawer" 
+                                   DrawerLength="200">
+                <telerik:RadSideDrawer.MainContent>
+                    <Grid>
+                        <Label Text="Main content" />
+                    </Grid>
+                </telerik:RadSideDrawer.MainContent>
+                <telerik:RadSideDrawer.DrawerContent>
+                    <VerticalStackLayout Spacing="10"
+                                         Padding="10, 10, 0, 0">
+                        <Button Text="Mail"
+                                Style="{StaticResource DefaultButtonStyle}" />
+                        <Button Text="Calendar"
+                                Style="{StaticResource DefaultButtonStyle}" />
+                        <Button Text="People"
+                                Style="{StaticResource DefaultButtonStyle}" />
+                        <Button Text="Tasks"
+                                Style="{StaticResource DefaultButtonStyle}" />
+                    </VerticalStackLayout>
+                </telerik:RadSideDrawer.DrawerContent>
+            </telerik:RadSideDrawer>
+        <!--  << sidedrawer-gettingstarted-xaml  -->
+        </Grid>
+    </Grid>
+</telerik:RadContentView>

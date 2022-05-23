@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        x:Class="SDKBrowserMaui.Examples.DateTimePickerControl.FeaturesCategory.CustomTemplateExample.CustomTemplate">
+    <telerik:RadContentView.Resources>
+        <ResourceDictionary>
+            <!-- >> datetimepicker-placeholder-template -->
+            <ControlTemplate x:Key="placeholderTemplate">
+                <Button Text="{TemplateBinding Placeholder}" 
+                       FontAttributes="Bold" 
+                       TextColor="White"
+                       BackgroundColor="#B73562" 
+                       HeightRequest="50"
+                       Command="{TemplateBinding ToggleCommand}" />
+            </ControlTemplate>
+            <!-- << datetimepicker-placeholder-template -->
+
+            <!-- >> datetimepicker-display-template -->
+            <ControlTemplate x:Key="displayTemplate">
+                <Button Text="{TemplateBinding DisplayString}" 
+                       TextColor="White" 
+                       BackgroundColor="#7BAEFF"
+                       HeightRequest="50"
+                       Command="{TemplateBinding ToggleCommand}" />
+            </ControlTemplate>
+            <!-- << datetimepicker-display-template -->
+
+            <!-- >> datetimepicker-header-template -->
+            <ControlTemplate x:Key="headerTemplate">
+                <Label Text="{TemplateBinding HeaderLabelText}" 
+                       TextColor="White"
+                       VerticalTextAlignment="Center"
+                       HorizontalTextAlignment="Center"
+                       BackgroundColor="#B73562"/>
+            </ControlTemplate>
+            <!-- << datetimepicker-header-template -->
+
+            <!-- >> datetimepicker-footer-template -->
+            <ControlTemplate x:Key="footerTemplate">
+                <StackLayout Orientation="Horizontal" Spacing="0" HorizontalOptions="FillAndExpand" BackgroundColor="#B73562">
+                    <Button Text="{TemplateBinding CancelButtonText}" 
+                            TextColor="White"
+                            BackgroundColor="Transparent"
+                            Command="{TemplateBinding CancelCommand}" />
+                    <Button Text="{TemplateBinding AcceptButtonText}" 
+                            TextColor="White"
+                            BackgroundColor="Transparent"
+                            Command="{TemplateBinding AcceptCommand}" />
+                </StackLayout>
+            </ControlTemplate>
+            <!-- << datetimepicker-footer-template -->
+        </ResourceDictionary>
+    </telerik:RadContentView.Resources>
+
+    <VerticalStackLayout WidthRequest="300" HorizontalOptions="Center">
+        <!-- >> datetimepicker-custom-templates -->
+        <telerik:RadDateTimePicker MinimumDate="2019,12,11" 
+                                   MaximumDate="2020,02,14"
+                                   PlaceholderTemplate="{StaticResource placeholderTemplate}"
+                                   DisplayTemplate="{StaticResource displayTemplate}">
+            <telerik:RadDateTimePicker.PopupSettings>
+                <telerik:PickerPopupSettings HeaderTemplate="{StaticResource headerTemplate}"
+                                             HeaderLabelText="This is the Header Template"
+                                             FooterTemplate="{StaticResource footerTemplate}"/>
+            </telerik:RadDateTimePicker.PopupSettings>
+            <telerik:RadDateTimePicker.DropDownSettings>
+                <telerik:PickerDropDownSettings FooterTemplate="{StaticResource footerTemplate}"/>
+            </telerik:RadDateTimePicker.DropDownSettings>
+        </telerik:RadDateTimePicker>
+        <!-- << datetimepicker-custom-templates -->
+    </VerticalStackLayout>
+
+</telerik:RadContentView>

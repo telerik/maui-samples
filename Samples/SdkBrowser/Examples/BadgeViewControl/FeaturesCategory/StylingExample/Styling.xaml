@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui" 
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        x:Class="SDKBrowserMaui.Examples.BadgeViewControl.FeaturesCategory.StylingExample.Styling">
+    <VerticalStackLayout>
+        <!-- >> badgeview-styling -->
+        <telerik:RadBadgeView BadgeText="&#xE80D;"
+                                        BadgeFontFamily="TelerikFont"
+                                        BadgeTextColor="White"
+                                        BadgeBorderThickness="2"
+                                        BadgeCornerRadius="3"
+                                        BadgeMinimumHeight="25"
+                                        BadgeMinimumWidth="25"
+                                        BadgeFontSize="18"
+                                        BadgeBorderColor="#0DA6FF"
+                                        HorizontalOptions="Center"
+                                        BadgeBackgroundColor="#FF6F00"
+                                        x:Name="badgeView">
+            <telerik:RadBadgeView.Content>
+                <Image WidthRequest="100"
+                       HeightRequest="100"
+                       Source="avatar.png"/>
+            </telerik:RadBadgeView.Content>
+        </telerik:RadBadgeView>
+        <!-- << badgeview-styling -->
+    </VerticalStackLayout>
+</telerik:RadContentView>

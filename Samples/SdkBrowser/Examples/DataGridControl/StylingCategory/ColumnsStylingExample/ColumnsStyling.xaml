@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        x:Class="SDKBrowserMaui.Examples.DataGridControl.StylingCategory.ColumnsStylingExample.ColumnsStyling">
+        <telerik:RadDataGrid x:Name="DataGrid" 
+                                 ItemsSource="{Binding}" 
+                                 AutoGenerateColumns="False"
+                                 IsVisible="True"
+                                 UserEditMode="Cell">
+            <telerik:RadDataGrid.Columns>
+            <telerik:DataGridTextColumn PropertyName="Country"/>
+            <telerik:DataGridTextColumn PropertyName="Capital">
+                    <!-- >> datagrid-columnstyle-headerstyle -->
+                    <telerik:DataGridTextColumn.HeaderStyle>
+                        <telerik:DataGridColumnHeaderStyle BackgroundColor="LightSkyBlue"
+                                                           TextColor="Black"
+                                                           BorderColor="Black" 
+                                                           BorderThickness="2"/>
+                    </telerik:DataGridTextColumn.HeaderStyle>
+                    <!-- << datagrid-columnstyle-headerstyle -->
+
+                    <!-- >> datagrid-columnstyle-celleditor -->
+                    <telerik:DataGridTextColumn.CellEditorStyle>
+                        <Style TargetType="Entry">
+                            <Setter Property="FontSize" Value="Large"/>
+                            <Setter Property="FontAttributes" Value="Bold"/>
+                        </Style>
+                    </telerik:DataGridTextColumn.CellEditorStyle>
+                    <!-- << datagrid-columnstyle-celleditor -->
+
+                    <!-- >> datagrid-columnstyle-celldecoration -->
+                    <telerik:DataGridTextColumn.CellDecorationStyle>
+                        <telerik:DataGridBorderStyle BorderColor="DarkBlue"  
+                                                     BorderThickness="3" 
+                                                     BackgroundColor="LightBlue" />
+                    </telerik:DataGridTextColumn.CellDecorationStyle>
+                    <!-- << datagrid-columnstyle-celldecoration -->
+
+                    <!-- >> datagrid-columnstyle-cellcontent -->
+                    <telerik:DataGridTextColumn.CellContentStyle>
+                        <telerik:DataGridTextCellStyle TextColor="DarkOliveGreen"
+                                                       FontSize="12"
+                                                       TextMargin="2"
+                                                       VerticalTextAlignment="Center" 
+                                                       HorizontalTextAlignment="Center"
+                                                       SelectedTextColor="Brown">
+                        </telerik:DataGridTextCellStyle>
+                    </telerik:DataGridTextColumn.CellContentStyle>
+                    <!-- << datagrid-columnstyle-cellcontent -->
+                </telerik:DataGridTextColumn>
+            </telerik:RadDataGrid.Columns>
+        </telerik:RadDataGrid>
+</telerik:RadContentView>

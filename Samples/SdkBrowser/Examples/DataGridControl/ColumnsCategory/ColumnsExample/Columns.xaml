@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        xmlns:local="clr-namespace:SDKBrowserMaui.Examples.DataGridControl.ColumnsCategory"
+                        x:Class="SDKBrowserMaui.Examples.DataGridControl.ColumnsCategory.ColumnsExample.Columns"
+                        Margin="5">
+    <telerik:RadContentView.Content>
+        <Grid>
+            <!-- >> datagrid-columns-example -->
+            <telerik:RadDataGrid x:Name="grid" 
+                                 ItemsSource="{Binding Clubs}" 
+                                 AutoGenerateColumns="False">
+                <telerik:RadDataGrid.BindingContext>
+                    <local:ViewModel />
+                </telerik:RadDataGrid.BindingContext>
+                <telerik:RadDataGrid.Columns>
+                    <telerik:DataGridTextColumn PropertyName="Name" 
+                                                HeaderText="Name">
+                        <telerik:DataGridTextColumn.CellContentStyle>
+                            <telerik:DataGridTextCellStyle TextColor="Green" 
+                                                           FontSize="15" 
+                                                           SelectedTextColor="Orange"  />   
+                        </telerik:DataGridTextColumn.CellContentStyle>
+                    </telerik:DataGridTextColumn>
+                    <telerik:DataGridNumericalColumn PropertyName="StadiumCapacity" 
+                                                     HeaderText="Stadium Capacity"/>
+                    <telerik:DataGridBooleanColumn PropertyName="IsChampion" 
+                                                   HeaderText="Champion?"/>
+                    <telerik:DataGridDateColumn PropertyName="Established" 
+                                                HeaderText="Date Established"/>
+                    <telerik:DataGridComboBoxColumn PropertyName="Country"
+                                                    HeaderText="Country"
+                                                    ItemsSourcePath="Countries"/> 
+                    <telerik:DataGridTemplateColumn HeaderText="Template Column">
+                        <telerik:DataGridTemplateColumn.CellContentTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <VerticalStackLayout InputTransparent="True">
+                                        <Grid BackgroundColor="Orange"
+                                              Margin="0, 10, 0, 0">
+                                            <Label Text="{Binding Country}"
+                                                   Margin="0, 5, 0, 5"
+                                                   HorizontalOptions="Center"
+                                                   VerticalTextAlignment="Center" /> 
+                                        </Grid>
+                                        <Label Text="Some Custom Text"
+                                               TextColor="DarkGreen"
+                                               FontSize="10" />  
+                                    </VerticalStackLayout>
+                                </Grid>
+                            </DataTemplate>
+                        </telerik:DataGridTemplateColumn.CellContentTemplate>
+                    </telerik:DataGridTemplateColumn>
+                    <telerik:DataGridTimeColumn PropertyName="Time" 
+                                                HeaderText="Time Column"/>
+                </telerik:RadDataGrid.Columns>
+            </telerik:RadDataGrid>
+            <!-- << datagrid-columns-example -->
+        </Grid>
+    </telerik:RadContentView.Content>
+</telerik:RadContentView>

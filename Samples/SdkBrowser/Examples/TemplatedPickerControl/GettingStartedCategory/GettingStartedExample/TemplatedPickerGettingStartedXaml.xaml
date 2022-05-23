@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        xmlns:local="clr-namespace:SDKBrowserMaui.Examples.TemplatedPickerControl"
+                        x:Class="SDKBrowserMaui.Examples.TemplatedPickerControl.GettingStartedCategory.GettingStartedExample.TemplatedPickerGettingStartedXaml">
+    <telerik:RadContentView.BindingContext>
+        <local:ColorViewModel />
+    </telerik:RadContentView.BindingContext>
+    <VerticalStackLayout WidthRequest="300" HorizontalOptions="Center">
+        <!-- >> templatedpicker-getting-started-xaml -->
+        <telerik:RadTemplatedPicker x:Name="picker"
+                                    Placeholder="Select a Color"
+                                    SelectedValue="{Binding SelectedColor}"
+                                    AutomationId="templatedPicker">
+            <telerik:RadTemplatedPicker.DisplayTemplate>
+                <ControlTemplate>
+                    <Grid ColumnDefinitions="Auto, *">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{TemplateBinding ToggleCommand}" />
+                        </Grid.GestureRecognizers>
+                        <telerik:RadBorder WidthRequest="20"
+                                           HeightRequest="20"
+                                           CornerRadius="10"
+                                           VerticalOptions="Center"
+                                           BorderColor="LightGray"
+                                           BorderThickness="1"
+                                           BackgroundColor="{Binding SelectedColor}" />
+                        <Label Grid.Column="1"
+                               Text="{Binding SelectedValue}"
+                               Style="{TemplateBinding DisplayLabelStyle}" />
+                    </Grid>
+                </ControlTemplate>
+            </telerik:RadTemplatedPicker.DisplayTemplate>
+            <telerik:RadTemplatedPicker.SelectorTemplate>
+                <ControlTemplate>
+                    <CollectionView HeightRequest="240"
+                                    SelectionMode="Single"
+                                    ItemsSource="{Binding Colors}"
+                                    SelectedItem="{TemplateBinding SelectedValue, Mode=TwoWay}">
+                        <CollectionView.Style>
+                            <OnPlatform x:TypeArguments="Style">
+                                <On Platform="WinUI">
+                                    <Style TargetType="Grid">
+                                        <Setter Property="WidthRequest" Value="{Binding Width, Source={x:Reference picker}}" />
+                                    </Style>
+                                </On>
+                            </OnPlatform>
+                        </CollectionView.Style>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid HeightRequest="60">
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup Name="CommonStates">
+                                            <VisualState Name="Normal">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="White" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                            <VisualState Name="Selected">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="WhiteSmoke" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                    <telerik:RadBorder WidthRequest="40"
+                                                       HeightRequest="40"
+                                                       CornerRadius="20"
+                                                       HorizontalOptions="Center"
+                                                       VerticalOptions="Center"
+                                                       BorderColor="LightGray"
+                                                       BorderThickness="2"
+                                                       BackgroundColor="{Binding}" />
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                        <CollectionView.ItemsLayout>
+                            <GridItemsLayout Orientation="Vertical" Span="5" />
+                        </CollectionView.ItemsLayout>
+                    </CollectionView>
+                </ControlTemplate>
+            </telerik:RadTemplatedPicker.SelectorTemplate>
+        </telerik:RadTemplatedPicker>
+        <!-- << templatedpicker-getting-started-xaml -->
+    </VerticalStackLayout>
+</telerik:RadContentView>

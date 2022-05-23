@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        xmlns:local="clr-namespace:SDKBrowser.Examples.ChartControl.FeaturesCategory.NullValuesExample"
+                        x:Class="SDKBrowserMaui.Examples.ChartControl.FeaturesCategory.NullValuesExample.NullValuesSupport"
+                        Margin="5">
+    <!-- >> chart-nullvalues-xaml -->
+    <telerik:RadCartesianChart>
+        <telerik:RadCartesianChart.BindingContext>
+            <local:ViewModel />
+        </telerik:RadCartesianChart.BindingContext>
+        <telerik:RadCartesianChart.HorizontalAxis>
+            <telerik:CategoricalAxis />
+        </telerik:RadCartesianChart.HorizontalAxis>
+        <telerik:RadCartesianChart.VerticalAxis>
+            <telerik:NumericalAxis Minimum="0" Maximum="100" />
+        </telerik:RadCartesianChart.VerticalAxis>
+        <telerik:RadCartesianChart.Series>
+            <telerik:SplineAreaSeries ValueBinding="Value"
+                                      CategoryBinding="Category"
+                                      ItemsSource="{Binding Data}" />
+        </telerik:RadCartesianChart.Series>
+    </telerik:RadCartesianChart>
+    <!-- << chart-nullvalues-xaml -->
+</telerik:RadContentView>

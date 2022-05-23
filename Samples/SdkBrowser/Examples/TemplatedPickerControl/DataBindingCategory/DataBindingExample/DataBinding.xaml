@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        xmlns:local="clr-namespace:SDKBrowserMaui.Examples.TemplatedPickerControl"
+                        x:Class="SDKBrowserMaui.Examples.TemplatedPickerControl.DataBindingCategory.DataBindingExample.DataBinding">
+    <telerik:RadContentView.BindingContext>
+        <local:LocationViewModel />
+    </telerik:RadContentView.BindingContext>
+    <telerik:RadContentView.Resources>
+        <ResourceDictionary>
+            <!-- >> templatedpicker-keyfeatures-headertemplate -->
+            <ControlTemplate x:Key="HeaderTemplate">
+                <Grid BackgroundColor="DarkGray">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Origin Country"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           TextColor="White" />
+                    <Label Grid.Column="1"
+                           Text="Origin City" 
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           TextColor="White" />
+                </Grid>
+            </ControlTemplate>
+            <!-- << templatedpicker-keyfeatures-headertemplate -->
+            
+            <!-- >> templatedpicker-keyfeatures-selectortemplate -->
+            <ControlTemplate x:Key="SelectorTemplate">
+                <Grid ColumnDefinitions="*, *"
+                      HeightRequest="250">
+                    <Grid.Style>
+                        <OnPlatform x:TypeArguments="Style">
+                            <On Platform="WinUI">
+                                <Style TargetType="Grid">
+                                    <Setter Property="WidthRequest" Value="{Binding Width, Source={x:Reference picker}}" />
+                                </Style>
+                            </On>
+                        </OnPlatform>
+                    </Grid.Style>
+                    <telerik:RadSpinner x:Name="countriesSpinner"
+                                        Grid.Column="0"
+                                        ItemsSource="{Binding Countries}"
+                                        DisplayMemberPath="Name" />
+                    <telerik:RadSpinner x:Name="citiesSpinner"
+                                        Grid.Column="1"
+                                        ItemsSource="{Binding SelectedItem.Cities, Source={x:Reference countriesSpinner}}"
+                                        SelectedItem="{TemplateBinding SelectedValue}"
+                                        DisplayMemberPath="Name" />
+                </Grid>
+            </ControlTemplate>
+            <!-- << templatedpicker-keyfeatures-selectortemplate -->
+        </ResourceDictionary>
+    </telerik:RadContentView.Resources>
+    <VerticalStackLayout WidthRequest="300" HorizontalOptions="Center">
+        <!-- >> templatedpicker-keyfeatures -->
+        <telerik:RadTemplatedPicker x:Name="picker"
+                                    SelectedValue="{Binding FromCity, Mode=TwoWay}"
+                                    DisplayMemberPath="Name"
+                                    SelectorTemplate="{StaticResource SelectorTemplate}">
+            <telerik:RadTemplatedPicker.PopupSettings>
+                <telerik:PickerPopupSettings HeaderTemplate="{StaticResource HeaderTemplate}"/>
+            </telerik:RadTemplatedPicker.PopupSettings>
+        </telerik:RadTemplatedPicker>
+        <!-- << templatedpicker-keyfeatures -->
+    </VerticalStackLayout>
+</telerik:RadContentView>

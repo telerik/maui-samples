@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        x:Class="SDKBrowserMaui.Examples.PopupControl.ContentTemplateCategory.ContentTemplateExample.ContentTemplate"
+                        Margin="5">
+    <telerik:RadContentView.Resources>
+        <!-- >> popup-features-contenttemplate-resource -->
+        <ResourceDictionary>
+            <DataTemplate x:Key="PopupTemplate">
+                <telerik:RadBorder CornerRadius="8"
+                                   BackgroundColor="#93D7FF"
+                                   WidthRequest="250"
+                                   Padding="10">
+                    <Grid Padding="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="50" />
+                            <RowDefinition Height="30" />
+                        </Grid.RowDefinitions>
+                        <Label Text="ACCEPT TERMS" />
+                        <Label Grid.Row="1"
+                               Text="By checking this, you agree to the Terms of Service and Privacy Policy." />
+                        <telerik:RadButton Grid.Row="2"
+                                           Padding="2"
+                                           HorizontalOptions="Start"
+                                           Text="Agree &amp; Continue"
+                                           Clicked="ClosePopup"
+                                           CornerRadius="6"
+                                           BackgroundColor="#7A9BFF"
+                                           TextColor="White"/>
+                    </Grid>
+                </telerik:RadBorder>
+            </DataTemplate>
+        </ResourceDictionary>
+        <!-- << popup-features-contenttemplate-resource -->
+    </telerik:RadContentView.Resources>
+    <telerik:RadContentView.Content>
+        <Grid Margin="10">
+            <!-- >> popup-features-contenttemplate-xaml -->
+            <HorizontalStackLayout VerticalOptions="Start">
+                <telerik:RadCheckBox x:Name="checkbox"
+                                               IsCheckedChanged="Checkbox_IsCheckedChanged">
+                    <telerik:RadPopup.Popup>
+                        <telerik:RadPopup x:Name="popup"
+                                          Placement="Bottom"
+                                          ContentTemplate="{StaticResource PopupTemplate}" />
+                    </telerik:RadPopup.Popup>
+                </telerik:RadCheckBox>
+                <Label Text="Agree to the Terms &amp; Conditions"/>
+            </HorizontalStackLayout>
+            <!-- << popup-features-contenttemplate-xaml -->
+        </Grid>
+    </telerik:RadContentView.Content>
+</telerik:RadContentView>

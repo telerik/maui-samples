@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui" 
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        xmlns:local="clr-namespace:SDKBrowserMaui.Examples.MapControl.FeaturesCategory.ShapeStyleSelectorExample"
+                        x:Class="SDKBrowserMaui.Examples.MapControl.FeaturesCategory.ShapeStyleSelectorExample.ShapeStyleSelector">
+    <ContentView.Resources>
+        <!-- >> map-styling-shapeslstyleselector-styles -->
+        <ResourceDictionary>
+            <local:PopulationShapeStyleSelector x:Key="PopulationShapeStyleSelector">
+                <local:PopulationShapeStyleSelector.HighPopulationShapeStyle>
+                    <telerik:MapShapeStyle FillColor="DarkGreen" StrokeColor="LightGray"/>
+                </local:PopulationShapeStyleSelector.HighPopulationShapeStyle>
+                <local:PopulationShapeStyleSelector.MediumPopulationShapeStyle>
+                    <telerik:MapShapeStyle FillColor="Green" StrokeColor="LightGray"/>
+                </local:PopulationShapeStyleSelector.MediumPopulationShapeStyle>
+                <local:PopulationShapeStyleSelector.LowPopulationShapeStyle>
+                    <telerik:MapShapeStyle FillColor="LightGreen" StrokeColor="LightGray"/>
+                </local:PopulationShapeStyleSelector.LowPopulationShapeStyle>
+            </local:PopulationShapeStyleSelector>
+        </ResourceDictionary>
+        <!-- << map-styling-shapeslstyleselector-styles -->
+    </ContentView.Resources>
+    <!-- >> map-styling-shapeslstyleselector-xaml -->
+    <telerik:RadMap x:Name="map">
+        <telerik:RadMap.Layers>
+            <telerik:ShapefileLayer ShapeStyleSelector="{StaticResource PopulationShapeStyleSelector}">
+                <telerik:ShapefileLayer.Reader>
+                    <telerik:MapShapeReader x:Name="reader"/>
+                </telerik:ShapefileLayer.Reader>
+            </telerik:ShapefileLayer>
+        </telerik:RadMap.Layers>
+    </telerik:RadMap>
+    <!-- << map-styling-shapeslstyleselector-xaml -->
+</telerik:RadContentView>

@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:local="clr-namespace:SDKBrowserMaui.Examples.DataGridControl.DecorationsCategory.GridLinesExample"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        x:Class="SDKBrowserMaui.Examples.DataGridControl.DecorationsCategory.GridLinesExample.GridLines">
+    <telerik:RadContentView.Resources>
+        <ResourceDictionary>
+            <local:StringToColorConverter x:Key="colorConverter" />
+        </ResourceDictionary>
+    </telerik:RadContentView.Resources>
+    <Grid x:Name="panel">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Label Text="Choose visibility" />
+        <Picker x:Name="LinesVisibilityPicker" 
+                Grid.Row="1"
+                ItemsSource="{Binding LinesVisibilityPickerSource}"
+                SelectedItem="{Binding GridLinesVisibility, Mode=TwoWay}"/>
+        <Label Text="Choose Color" Grid.Column="1" />
+        <Picker x:Name="LinesColorPicker"
+                Grid.Column="1" 
+                Grid.Row="1"
+                ItemsSource="{Binding LinesColorPickerSource}" 
+                SelectedItem="{Binding GridLinesColor, Mode=TwoWay}" />
+        <Label Text="Choose thickness" 
+               Grid.Column="2" />
+        <Picker x:Name="LinesThicknessPicker"
+                Grid.Column="2" Grid.Row="1"
+                ItemsSource="{Binding LinesThicknessPickerSource}"
+                SelectedItem="{Binding GridLinesThickness, Mode=TwoWay}" />
+        <telerik:RadDataGrid GridLinesVisibility="{Binding GridLinesVisibility}"
+                             Grid.Row="2"
+                             Grid.ColumnSpan="3" 
+                             ItemsSource="{Binding GridSource}" 
+                             GridLinesColor="{Binding GridLinesColor, Converter={StaticResource colorConverter}}" 
+                             GridLinesThickness="{Binding GridLinesThickness}" />
+    </Grid>
+</telerik:RadContentView>

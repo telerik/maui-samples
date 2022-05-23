@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        xmlns:local="clr-namespace:SDKBrowserMaui.Examples.ListViewControl.SortingCategory.PropertySortDescriptorExample"
+                        x:Class="SDKBrowserMaui.Examples.ListViewControl.SortingCategory.PropertySortDescriptorExample.PropertySorting"
+                        Margin="5">
+    <telerik:RadContentView.Content>
+        <Grid>
+            <telerik:RadListView x:Name="listView" 
+                                             ItemsSource="{Binding Items}">
+                <telerik:RadListView.BindingContext>
+                    <local:ViewModel/>
+                </telerik:RadListView.BindingContext>
+                <telerik:RadListView.SortDescriptors>
+                    <telerik:PropertySortDescriptor PropertyName="Age" SortOrder="Ascending" />
+                </telerik:RadListView.SortDescriptors>
+                <telerik:RadListView.ItemTemplate>
+                    <DataTemplate>
+                        <telerik:ListViewTemplateCell>
+                            <telerik:ListViewTemplateCell.View>
+                                <HorizontalStackLayout>
+                                    <Label Text="Name:"/>
+                                    <Label Text="{Binding Name}"/>
+                                    <Label Text=", Age:"/>
+                                    <Label Text="{Binding Age}"/>
+                                </HorizontalStackLayout>
+                            </telerik:ListViewTemplateCell.View>
+                        </telerik:ListViewTemplateCell>
+                    </DataTemplate>
+                </telerik:RadListView.ItemTemplate>
+            </telerik:RadListView>
+        </Grid>
+    </telerik:RadContentView.Content>
+</telerik:RadContentView>

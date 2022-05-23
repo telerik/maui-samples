@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        xmlns:local="clr-namespace:SDKBrowser.Examples.ChartControl.PieChartCategory.PieChartExample"
+                        x:Class="SDKBrowserMaui.Examples.ChartControl.PieChartCategory.DonutSeriesExample.DonutSeriesXaml"
+                        Margin="5">
+    <!-- >> chart-series-donut-xaml -->
+    <telerik:RadPieChart>
+        <telerik:RadPieChart.BindingContext>
+            <local:ViewModel />
+        </telerik:RadPieChart.BindingContext>
+        <telerik:RadPieChart.Series>
+            <telerik:DonutSeries ShowLabels="True"
+                                 InnerRadiusFactor="0.4"
+                                 ValueBinding="Value"
+                                 ItemsSource="{Binding Data}" />
+        </telerik:RadPieChart.Series>
+    </telerik:RadPieChart>
+    <!-- << chart-series-donut-xaml -->
+</telerik:RadContentView>

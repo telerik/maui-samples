@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui" 
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        x:Class="SDKBrowserMaui.Examples.MapControl.SelectionCategory.ProgrammaticSelectionExample.ProgrammaticSelection">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <HorizontalStackLayout>
+            <Label Text="Selection Mode:" VerticalOptions="Center"/>
+            <telerik:RadSegmentedControl x:Name="smSegmented" WidthRequest="180" HeightRequest="48" SelectionChanged="SelectedModeChanged"/>
+        </HorizontalStackLayout>
+        <HorizontalStackLayout Grid.Row="1">
+            <Label HorizontalTextAlignment="Start" VerticalTextAlignment="Center" Text="Select country:" />
+            <Entry x:Name="cntrSelectEntry" HorizontalOptions="StartAndExpand" WidthRequest="100"/>
+            <Button Text="Select" Clicked="SelectClicked" HorizontalOptions="End"/>
+        </HorizontalStackLayout>
+        <HorizontalStackLayout Grid.Row="2">           
+            <Label HorizontalTextAlignment="Start" VerticalTextAlignment="Center" Text="Deselect country:" />
+            <Entry x:Name="cntrDeselectEntry" HorizontalOptions="StartAndExpand" WidthRequest="100"/>
+            <Button Text="Deselect" Clicked="DeselectClicked" HorizontalOptions="End"/>
+        </HorizontalStackLayout>
+        <HorizontalStackLayout Grid.Row="3">
+            <!-- >> map-selectshapes-xaml -->
+            <Button Text="Select France" Clicked="SelectFranceClicked" Padding="5"/>
+            <Button Text="Deselect France" Clicked="DeselectFranceClicked" Padding="5" />
+            <!-- << map-selectshapes-xaml -->
+            <Button Text="Deselect All" Clicked="DeselectAllClicked" Padding="5" />
+        </HorizontalStackLayout>        
+        <Grid Grid.Row="5">
+            <!-- >> map-selection-mode-xaml -->
+            <telerik:RadMap x:Name="map">
+                <telerik:RadMap.Layers>
+                    <telerik:ShapefileLayer x:Name="mapShapeLayer" SelectionMode="Multiple">
+                        <telerik:ShapefileLayer.Reader>
+                            <telerik:MapShapeReader x:Name="reader"/>
+                        </telerik:ShapefileLayer.Reader>
+                    </telerik:ShapefileLayer>
+                </telerik:RadMap.Layers>
+            </telerik:RadMap>
+            <!-- << map-selection-mode-xaml -->
+        </Grid>
+    </Grid>
+</telerik:RadContentView>

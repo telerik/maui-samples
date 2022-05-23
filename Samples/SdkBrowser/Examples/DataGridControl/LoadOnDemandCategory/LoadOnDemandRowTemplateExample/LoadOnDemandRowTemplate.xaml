@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        x:Class="SDKBrowserMaui.Examples.DataGridControl.LoadOnDemandCategory.LoadOnDemandRowTemplateExample.LoadOnDemandRowTemplate">
+    <telerik:RadContentView.Resources>
+        <ResourceDictionary>
+            <!-- >> datagrid-loadondemandrowtemplate-xaml -->
+            <DataTemplate x:Key="CustomLoadOnDemandRowTemplate">
+                <Label Text="Load more from Template"
+                       Margin="0,30,0,30"
+                       HorizontalOptions="CenterAndExpand"
+                       VerticalOptions="CenterAndExpand"
+                       IsEnabled="{Binding IsDataLoading}">
+                    <Label.Triggers>
+                        <Trigger TargetType="Label"
+                                 Property="IsEnabled" Value="False">
+                            <Setter Property="BackgroundColor" Value="LightBlue" />
+                        </Trigger>
+                    </Label.Triggers>
+                </Label>
+            </DataTemplate>
+            <!-- << datagrid-loadondemandrowtemplate-xaml -->
+        </ResourceDictionary>
+    </telerik:RadContentView.Resources>
+    <Grid>
+        <!-- >> datagrid-setting-loadondemandrowtemplate-xaml -->
+        <telerik:RadDataGrid x:Name="dataGrid"
+                             ItemsSource="{Binding Items}"
+                             LoadOnDemand="dataGrid_LoadOnDemand"
+                             LoadOnDemandMode="Manual"
+                             LoadOnDemandRowTemplate="{StaticResource CustomLoadOnDemandRowTemplate}"/>
+        <!-- << datagrid-setting-loadondemandrowtemplate-xaml -->
+    </Grid>
+</telerik:RadContentView>

@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        x:Class="SDKBrowserMaui.Examples.DataGridControl.SelectionCategory.ProgrammaticSelectionExample.ProgrammaticSelection">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />          
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Label Text="Selection Mode:" 
+               Grid.ColumnSpan="2" />
+        <Label Text="Selection Unit:"
+               Grid.Column="2"
+               Grid.ColumnSpan="2" />
+        <Picker x:Name="smPicker" 
+                ItemsSource="{Binding SelectionModeSource}"
+                SelectedItem="{Binding SelectedMode}"
+                Grid.Row="1"
+                Grid.ColumnSpan="2" />
+        <Picker x:Name="suPicker" 
+                ItemsSource="{Binding SelectionUnitSource}"
+                SelectedItem="{Binding SelectedUnit}"
+                Grid.Row="1" Grid.Column="2"
+                Grid.ColumnSpan="2" />
+        <Button Text="Select first employee from Marketing"
+                Clicked="SelectItemClick"
+                Grid.Row="2"
+                Grid.ColumnSpan="4"/>     
+        <Button Clicked="SelectAllClick"
+                Text="Select All"
+                IsEnabled="{Binding IsSelectAllEnabled, Mode=TwoWay}"
+                Grid.Row="3"
+                Grid.ColumnSpan="2"  />
+        <Button Clicked="DeselectAllClick"
+                Text="Deselect All" 
+                Grid.Row="3" 
+                Grid.Column="2" 
+                Grid.ColumnSpan="2"  />
+        <telerik:RadDataGrid x:Name="dataGrid" 
+                             ItemsSource="{Binding GridSource}" 
+                             Grid.Row="4" 
+                             Grid.ColumnSpan="4" 
+                             SelectionMode="{Binding SelectedMode}"
+                             SelectionUnit="{Binding SelectedUnit}" />  
+    </Grid>
+</telerik:RadContentView>

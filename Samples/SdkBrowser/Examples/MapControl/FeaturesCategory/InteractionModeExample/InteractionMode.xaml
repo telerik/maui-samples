@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui" 
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        x:Class="SDKBrowserMaui.Examples.MapControl.FeaturesCategory.InteractionModeExample.InteractionMode">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <!-- >> map-interaction-mode-xaml -->
+        <telerik:RadMap x:Name="map" InteractionMode="Zoom">
+            <telerik:RadMap.Layers>
+                <telerik:ShapefileLayer>
+                    <telerik:ShapefileLayer.Reader>
+                        <telerik:MapShapeReader x:Name="reader"/>
+                    </telerik:ShapefileLayer.Reader>
+                </telerik:ShapefileLayer>
+            </telerik:RadMap.Layers>
+        </telerik:RadMap>
+        <!-- << map-interaction-mode-xaml -->
+        <telerik:RadSegmentedControl x:Name="interactionModeSegmented" Grid.Row="1" HeightRequest="48" SelectionChanged="InteractionModeChanged"/>
+    </Grid>
+</telerik:RadContentView>

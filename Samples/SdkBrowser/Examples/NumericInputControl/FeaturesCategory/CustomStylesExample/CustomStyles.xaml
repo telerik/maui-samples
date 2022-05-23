@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        x:Class="SDKBrowserMaui.Examples.NumericInputControl.FeaturesCategory.CustomStylesExample.CustomStyles"
+                        Margin="5">
+    <telerik:RadContentView.Content>
+        <StackLayout>
+            <StackLayout.Resources>
+                <ResourceDictionary>
+                    <Style TargetType="telerik:NumericInputButton" Class="CustomStyle">
+                        <Setter Property="CornerRadius" Value="10"/>
+                        <Setter Property="BorderColor" Value="Orange"/>
+                        <Setter Property="BorderWidth" Value="3"/>
+                        <Setter Property="TextColor" Value="Yellow"/>
+                        <Setter Property="BackgroundColor" Value="Violet"/>
+                    </Style>
+
+                    <Style TargetType="telerik:RadEntry" Class="CustomStyle">
+                        <Setter Property="TextColor" Value="Orange"/>
+                        <Setter Property="BackgroundColor" Value="Transparent"/>
+                    </Style>
+                </ResourceDictionary>
+            </StackLayout.Resources>
+            <telerik:RadNumericInput x:Name="input" StyleClass="CustomStyle"/>
+        </StackLayout>
+    </telerik:RadContentView.Content>
+</telerik:RadContentView>

@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui" 
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        x:Class="SDKBrowserMaui.Examples.BadgeViewControl.FeaturesCategory.BadgeAlignPositionExample.BadgeAlignPosition">
+    <VerticalStackLayout HorizontalOptions="Center">
+        <!-- >> badgeview-align-position-offset -->
+        <telerik:RadBadgeView BadgeText="12"
+                                        BadgeVerticalPosition="End"
+                                        BadgeHorizontalAlignment="End"
+                                        BadgeOffsetX="-5"
+                                        VerticalOptions="Center">
+            <telerik:RadBadgeView.Content>
+                <telerik:RadButton Padding="15, 10, 15, 10"
+                                   CornerRadius="20"
+                                   Text="Shopping Cart"
+                                   TextColor="White"
+                                   VerticalOptions="Center"
+                                   VerticalContentAlignment="Center"
+                                   BackgroundColor="#0E88F2"/>
+            </telerik:RadBadgeView.Content>
+        </telerik:RadBadgeView>
+        <!-- << badgeview-align-position-offset -->
+    </VerticalStackLayout>
+</telerik:RadContentView>

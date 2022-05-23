@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        x:Class="SDKBrowserMaui.Examples.DateTimePickerControl.FeaturesCategory.KeyFeaturesExample.KeyFeatures">
+    <telerik:RadContentView.Resources>
+        <ResourceDictionary>
+            <!-- >> datetimepicker-keyfeatures-labelstyle -->
+            <Style TargetType="Label" x:Key="labelStyle">
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="Margin" Value="0,10,0,0"/>
+            </Style>
+            <!-- << datetimepicker-keyfeatures-labelstyle -->
+        </ResourceDictionary>
+    </telerik:RadContentView.Resources>
+
+    <VerticalStackLayout WidthRequest="300" HorizontalOptions="Center">
+        <Label Text="DateTime Picker with d date string format" Style="{StaticResource labelStyle}"/>
+        <!-- >> datetimepicker-keyfeatures-date -->
+        <telerik:RadDateTimePicker MinimumDate="2019,12,25" 
+                                   MaximumDate="2020,02,14"
+                                   SpinnerFormat="d"/>
+        <!-- << datetimepicker-keyfeatures-date -->
+
+        <Label Text="DateTime Picker with T time string format, minimum date and maximum date defined" Style="{StaticResource labelStyle}"/>
+        <!-- >> datetimepicker-keyfeatures-time -->
+        <telerik:RadDateTimePicker MinimumDate="2021,02,01 9:00:00" 
+                                   MaximumDate="2021,02,01 18:00:00"
+                                   SpinnerFormat="T"
+                                   DisplayStringFormat="HH:mm:ss"
+                                   Placeholder="Pick a time!"
+                                   AreSpinnerHeadersVisible="True"/>
+        <!-- << datetimepicker-keyfeatures-time -->
+
+
+        <Label Text="DateTime Picker with general date short time g string format" Style="{StaticResource labelStyle}"/>
+        <!-- >> datetimepicker-keyfeatures-date-time -->
+        <telerik:RadDateTimePicker MinimumDate="2019,12,25" 
+                                   MaximumDate="2020,02,14"
+                                   Placeholder="Pick date and time!"
+                                   AreSpinnerHeadersVisible="True"/>
+        <!-- << datetimepicker-keyfeatures-date-time -->
+    </VerticalStackLayout>
+
+</telerik:RadContentView>

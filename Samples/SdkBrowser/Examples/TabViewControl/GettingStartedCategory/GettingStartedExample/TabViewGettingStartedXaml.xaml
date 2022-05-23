@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView x:Class="SDKBrowserMaui.Examples.TabViewControl.GettingStartedCategory.GettingStartedExample.TabViewGettingStartedXaml"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+>
+    <!--  >> tabview-getting-started-xaml  -->
+    <telerik:RadTabView x:Name="tabView" AutomationId="tabView">
+        <telerik:TabViewItem HeaderText="Home">
+            <Label Margin="10" Text="This is the content of the Home tab" />
+        </telerik:TabViewItem>
+        <telerik:TabViewItem HeaderText="Folder">
+            <Label Margin="10" Text="This is the content of the Folder tab" />
+        </telerik:TabViewItem>
+        <telerik:TabViewItem HeaderText="View">
+            <Label Margin="10" Text="This is the content of the View tab" />
+        </telerik:TabViewItem>
+    </telerik:RadTabView>
+    <!--  << tabview-getting-started-xaml  -->
+</ContentView>

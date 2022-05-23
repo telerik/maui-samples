@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        xmlns:local="clr-namespace:SDKBrowser.Examples.ChartControl.SeriesCategory.FinancialIndicatorsExample"
+                        x:Class="SDKBrowserMaui.Examples.ChartControl.SeriesCategory.FinancialIndicatorsExample.FinancialIndicatorsExampleXaml">
+    <!-- >> chart-series-indicators-xaml -->
+    <telerik:RadCartesianChart PaletteName="Light" 
+                               SelectionPaletteName="LightSelected"
+                               BackgroundColor="White" >
+        <telerik:RadCartesianChart.BindingContext>
+            <local:ViewModel />
+        </telerik:RadCartesianChart.BindingContext>
+        <telerik:RadCartesianChart.HorizontalAxis>
+            <telerik:DateTimeContinuousAxis LineColor="#A9A9A9"
+                                            LabelFitMode="Rotate"
+                                            LabelFormat="dd/MM"
+                                            PlotMode="BetweenTicks" 
+                                            MajorStep="2"
+                                            MajorStepUnit="Day"/>
+        </telerik:RadCartesianChart.HorizontalAxis>
+        <telerik:RadCartesianChart.VerticalAxis>
+            <telerik:NumericalAxis LineColor="#A9A9A9"
+                                   Minimum="320"
+                                   Maximum="350"
+                                   MajorTickBackgroundColor="#A9A9A9" />
+        </telerik:RadCartesianChart.VerticalAxis>
+        <telerik:RadCartesianChart.Series>
+            <telerik:OhlcSeries CategoryBinding="Category"
+                                DisplayName="AppleStocks-OHLC"
+                                OpenBinding="Open"
+                                HighBinding="High"
+                                LowBinding="Low"
+                                CloseBinding="Close"
+                                ItemsSource="{Binding SeriesData}"/>
+
+            <telerik:ExponentialMovingAverageIndicator CategoryBinding="Category"
+                                                       DisplayName="EMA 7days"
+                                                       ValueBinding="Close"
+                                                       Period="7"
+                                                       StrokeThickness="1"
+                                                       Stroke="DarkGreen"
+                                                       ItemsSource="{Binding SeriesData}"/>
+
+            <telerik:ExponentialMovingAverageIndicator CategoryBinding="Category"
+                                                       DisplayName="EMA 14days"
+                                                       ValueBinding="Close"
+                                                       Period="14"
+                                                       StrokeThickness="1"
+                                                       Stroke="DarkOrange"
+                                                       ItemsSource="{Binding SeriesData}"/>
+        </telerik:RadCartesianChart.Series>
+    </telerik:RadCartesianChart>
+    <!-- <<  chart-series-indicators-xaml -->
+</telerik:RadContentView>

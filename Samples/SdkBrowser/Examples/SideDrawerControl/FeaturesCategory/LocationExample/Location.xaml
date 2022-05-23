@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        x:Class="SDKBrowserMaui.Examples.SideDrawerControl.FeaturesCategory.LocationExample.Location">
+    <Grid RowDefinitions="Auto, *">
+        <HorizontalStackLayout Spacing="10">
+            <ImageButton AutomationId="openCloseButton" 
+                         WidthRequest="32"
+                         HeightRequest="32" 
+                         BorderWidth="0"
+                         BorderColor="Transparent"
+                         Source="hamburgermenu.png"
+                         BackgroundColor="Transparent" 
+                         Clicked="OnButtonClicked" />
+            <Label Text="SideDrawer" 
+                   Margin="0, 5, 0, 0" />
+        </HorizontalStackLayout>
+        <!--  >> sidedrawer-location-xaml  -->
+        <telerik:RadSideDrawer x:Name="drawer"
+                               Grid.Row="1" 
+                               DrawerLength="220">
+            <telerik:RadSideDrawer.MainContent>
+                <VerticalStackLayout>
+                    <Label Text="Drawer Location:" />
+                    <telerik:RadListPicker x:Name="picker"
+                                           WidthRequest="300"
+                                           HeightRequest="60" />
+                </VerticalStackLayout>
+            </telerik:RadSideDrawer.MainContent>
+            <telerik:RadSideDrawer.DrawerContent>
+                <Grid>
+                    <ListView x:Name="drawerList" />
+                </Grid>
+            </telerik:RadSideDrawer.DrawerContent>
+        </telerik:RadSideDrawer>
+        <!--  << sidedrawer-location-xaml  -->
+    </Grid>
+</telerik:RadContentView>

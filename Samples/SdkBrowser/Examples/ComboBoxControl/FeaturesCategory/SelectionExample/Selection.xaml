@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        xmlns:local="clr-namespace:SDKBrowserMaui.Examples.ComboBoxControl"
+                        x:Class="SDKBrowserMaui.Examples.ComboBoxControl.FeaturesCategory.SelectionExample.Selection"
+                        Margin="5">
+    <telerik:RadContentView.Content>
+        <VerticalStackLayout WidthRequest="300" HorizontalOptions="Center">
+            <Label Text="ComboBox with Single Selection using SelectedIndex" Margin="0, 0, 0, 5"/>
+            <!-- >> combobox-single-selection-selectedindex -->
+            <telerik:RadComboBox ItemsSource="{Binding Items}"
+                                 DisplayMemberPath="Name"
+                                 SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}"
+                                 SelectionMode="Single">
+                <telerik:RadComboBox.BindingContext>
+                    <local:ViewModel/>
+                </telerik:RadComboBox.BindingContext>
+            </telerik:RadComboBox>
+            <!-- << combobox-single-selection-selectedindex -->
+
+            <Label Text="ComboBox with Single Selection using SelectedItem" Margin="0, 20, 0, 5"/>
+            <!-- >> combobox-single-selection-selecteditem -->
+            <telerik:RadComboBox ItemsSource="{Binding Items}"
+                                 DisplayMemberPath="Name"
+                                 SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+                                 SelectionMode="Single">
+                <telerik:RadComboBox.BindingContext>
+                    <local:ViewModel/>
+                </telerik:RadComboBox.BindingContext>
+            </telerik:RadComboBox>
+            <!-- << combobox-single-selection-selecteditem -->
+
+            <Label Text="ComboBox with Multiple Selection" Margin="0, 20, 0, 5"/>
+            <!-- >> combobox-multiple-selection -->
+            <telerik:RadComboBox ItemsSource="{Binding Items}"
+                                 SelectionMode="Multiple"
+                                 DisplayMemberPath="Name"
+                                 SelectedItems="{Binding SelectedItems}"
+                                 SelectionChanged="RadComboBox_SelectionChanged">
+                <telerik:RadComboBox.BindingContext>
+                    <local:ViewModel/>
+                </telerik:RadComboBox.BindingContext>
+            </telerik:RadComboBox>
+            <!-- << combobox-multiple-selection -->        
+        </VerticalStackLayout>
+    </telerik:RadContentView.Content>
+</telerik:RadContentView>

@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui" 
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        x:Class="SDKBrowserMaui.Examples.MapControl.FeaturesCategory.SetBestViewExample.SetBestView">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <telerik:RadMap x:Name="map">
+            <telerik:RadMap.Layers>
+                <telerik:ShapefileLayer x:Name="mapShapeLayer">
+                    <telerik:ShapefileLayer.Reader>
+                        <telerik:MapShapeReader x:Name="reader"/>
+                    </telerik:ShapefileLayer.Reader>
+                </telerik:ShapefileLayer>
+            </telerik:RadMap.Layers>
+        </telerik:RadMap>
+        <HorizontalStackLayout Grid.Row="1">
+            <Button Text="Set view to Italy" Clicked="OnSetViewItalyClicked" />
+            <Button Text="Set best view" Clicked="OnSetBestViewClicked"/>
+        </HorizontalStackLayout>       
+    </Grid>
+</telerik:RadContentView>

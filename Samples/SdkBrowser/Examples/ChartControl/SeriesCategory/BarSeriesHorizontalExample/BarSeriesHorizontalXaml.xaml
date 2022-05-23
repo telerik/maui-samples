@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        xmlns:local="clr-namespace:SDKBrowserMaui.Examples.ChartControl.SeriesCategory"
+                        x:Class="SDKBrowserMaui.Examples.ChartControl.SeriesCategory.BarSeriesHorizontalExample.BarSeriesHorizontalXaml">
+    <telerik:RadContentView.Content>
+        <Grid>
+            <!-- >> chart-series-barhorizontal-xaml -->
+            <telerik:RadCartesianChart>
+                <telerik:RadCartesianChart.BindingContext>
+                    <local:CategoricalDataViewModel />
+                </telerik:RadCartesianChart.BindingContext>
+                <telerik:RadCartesianChart.VerticalAxis>
+                    <telerik:CategoricalAxis />
+                </telerik:RadCartesianChart.VerticalAxis>
+                <telerik:RadCartesianChart.HorizontalAxis>
+                    <telerik:NumericalAxis />
+                </telerik:RadCartesianChart.HorizontalAxis>
+                <telerik:RadCartesianChart.Series>
+                    <telerik:BarSeries ValueBinding="Value"
+                                            CategoryBinding="Category"
+                                            ItemsSource="{Binding Data}" />
+                </telerik:RadCartesianChart.Series>
+            </telerik:RadCartesianChart>
+            <!-- << chart-series-barhorizontal-xaml -->
+        </Grid>
+    </telerik:RadContentView.Content>
+</telerik:RadContentView>

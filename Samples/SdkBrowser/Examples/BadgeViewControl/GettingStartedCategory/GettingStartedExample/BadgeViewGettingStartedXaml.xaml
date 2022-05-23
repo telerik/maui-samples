@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.BadgeViewControl.GettingStartedCategory.GettingStartedExample.BadgeViewGettingStartedXaml">
+    <VerticalStackLayout HorizontalOptions="Center">
+        <!-- >> badgeview-getting-started-xaml -->
+        <telerik:RadBadgeView BadgeText="1" AutomationId="badgeView">
+            <telerik:RadBadgeView.Content>
+                <telerik:RadBorder WidthRequest="80"
+                                   HeightRequest="80"
+                                   BorderThickness="1"
+                                   BorderColor="LightGray">
+                    <Label Text="Telerik Badge View for MAUI" 
+                           FontSize="14"
+                           VerticalTextAlignment="Center"
+                           HorizontalTextAlignment="Center"/>
+                </telerik:RadBorder>
+            </telerik:RadBadgeView.Content>
+        </telerik:RadBadgeView>
+        <!-- << badgeview-getting-started-xaml -->
+    </VerticalStackLayout>
+</telerik:RadContentView>

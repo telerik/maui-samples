@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        x:Class="SDKBrowserMaui.Examples.DatePickerControl.TemplatesCategory.CustomTemplatesExample.CustomTemplates">
+    <telerik:RadContentView.Resources>
+        <ResourceDictionary>
+            <!-- >> datepicker-placeholder-template -->
+            <ControlTemplate x:Key="placeholderTemplate">
+                <Button Text="{TemplateBinding Placeholder}" 
+                        FontAttributes="Bold" 
+                        TextColor="White"
+                        BackgroundColor="#B73562" 
+                        HeightRequest="50"
+                        Command="{TemplateBinding ToggleCommand}" />
+            </ControlTemplate>
+            <!-- << datepicker-placeholder-template -->
+
+            <!-- >> datepicker-display-template -->
+            <ControlTemplate x:Key="displayTemplate">
+                <Button Text="{TemplateBinding DisplayString}" 
+                        TextColor="White" 
+                        BackgroundColor="#7BAEFF"
+                        HeightRequest="50"
+                        Command="{TemplateBinding ToggleCommand}" />
+            </ControlTemplate>
+            <!-- << datepicker-display-template -->
+
+            <!-- >> datepicker-header-template -->
+            <ControlTemplate x:Key="headerTemplate">
+                <Grid>
+                    <Label Text="Date Picker"
+                           Padding="20"
+                           TextColor="White"
+                           VerticalTextAlignment="Center"
+                           HorizontalTextAlignment="Center"
+                           BackgroundColor="#B73562"/>
+                </Grid>
+            </ControlTemplate>
+            <!-- << datepicker-header-template -->
+
+            <!-- >> datepicker-footer-template -->
+            <ControlTemplate x:Key="footerTemplate">
+                <HorizontalStackLayout Spacing="0" HorizontalOptions="FillAndExpand" BackgroundColor="#B73562">
+                    <telerik:RadButton Text="Cancel"
+                                       WidthRequest="80"
+                                       TextColor="White"
+                                       BackgroundColor="Transparent"
+                                       Command="{TemplateBinding CancelCommand}" />
+                    <telerik:RadButton Text="OK"
+                                       WidthRequest="80"
+                                       TextColor="White"
+                                       BackgroundColor="Transparent"
+                                       Command="{TemplateBinding AcceptCommand}" />
+                </HorizontalStackLayout>
+            </ControlTemplate>
+            <!-- << datepicker-footer-template -->
+        </ResourceDictionary>
+    </telerik:RadContentView.Resources>
+
+    <VerticalStackLayout WidthRequest="300" HorizontalOptions="Center">
+        <!-- >> datepicker-custom-templates -->
+        <telerik:RadDatePicker MinimumDate="2020,01,1" 
+                               MaximumDate="2025,12,31"
+                               SpinnerFormat="MMM/dd/yyyy"
+                               PlaceholderTemplate="{StaticResource placeholderTemplate}"
+                               DisplayTemplate="{StaticResource displayTemplate}">
+            <telerik:RadDatePicker.PopupSettings>
+                <telerik:PickerPopupSettings HeaderTemplate="{StaticResource headerTemplate}" 
+                                             HeaderLabelText="This is the Header Template"
+                                             FooterTemplate="{StaticResource footerTemplate}"/>
+            </telerik:RadDatePicker.PopupSettings>
+            <telerik:RadDatePicker.DropDownSettings>
+                <telerik:PickerDropDownSettings FooterTemplate="{StaticResource footerTemplate}"/>
+            </telerik:RadDatePicker.DropDownSettings>
+        </telerik:RadDatePicker>
+        <!-- << datepicker-custom-templates -->
+    </VerticalStackLayout>
+</telerik:RadContentView>
