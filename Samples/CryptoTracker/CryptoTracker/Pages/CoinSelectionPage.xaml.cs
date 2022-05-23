@@ -21,5 +21,10 @@ namespace CryptoTracker.Pages
             destination.InitializeCoinData(coinInfo);
             this.Navigation.PushAsync(destination, true);
         }
+
+        private void DownloadButtonClicked(object sender, System.EventArgs e)
+        {
+            Utils.Utils.TryNavigateToDownloadUrl();
+        }
     }
 }

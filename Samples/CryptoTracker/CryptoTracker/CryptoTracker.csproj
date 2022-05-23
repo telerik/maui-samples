@@ -16,6 +16,9 @@
 		<!-- Versions -->
 		<ApplicationVersion>1</ApplicationVersion>
 
+		<!-- TODO: Remove it when Maui is officially released. -->
+		<AndroidLinkResources>false</AndroidLinkResources>
+
 		<MtouchLink Condition="'$(TargetFramework)' == 'net6.0-ios'  OR '$(TargetFramework)' == 'net6.0-maccatalyst'">SdkOnly</MtouchLink>
 
 	</PropertyGroup>
@@ -84,6 +87,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="Telerik.UI.for.Maui" Version="0.8.0" />
+	  <PackageReference Include="Telerik.UI.for.Maui" Version="1.0.0" />
 	</ItemGroup>
 </Project>

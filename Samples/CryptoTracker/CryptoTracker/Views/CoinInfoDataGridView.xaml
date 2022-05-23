@@ -1,10 +1,7 @@
 ﻿<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.Maui.Controls.Compatibility"
-             xmlns:telerikChart="clr-namespace:Telerik.XamarinForms.Chart;assembly=Telerik.Maui.Controls.Compatibility"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
              xmlns:local="clr-namespace:CryptoTracker.ViewModels"
-             xmlns:telerikMauiControls="clr-namespace:Telerik.Maui.Controls;assembly=Telerik.Maui.Controls"
-             xmlns:telerikDataGrid="clr-namespace:Telerik.XamarinForms.DataGrid;assembly=Telerik.Maui.Controls.Compatibility"
              xmlns:formatters="clr-namespace:CryptoTracker.Formatters"
              x:Class="CryptoTracker.Views.CoinInfoDataGridView"
              x:Name="coinInfoDataGridView">
@@ -19,20 +16,20 @@
                        Text="Historical Data"
                        IsVisible="{Binding IsDataGridVisible, Mode=OneWay}" />
 
-        <telerikDataGrid:RadDataGrid Grid.Row="1"
+        <telerik:RadDataGrid Grid.Row="1"
                                              AutoGenerateColumns="False" 
                                              IsVisible="{Binding IsDataGridVisible, Mode=OneWay}"
                                              ItemsSource="{Binding DataForDataGrid}"
                                              GridLinesThickness="1"
                                              GridLinesVisibility="Horizontal"
                                              GridLinesColor="{StaticResource DataGridLineColor}">
-            <telerikDataGrid:RadDataGrid.Columns>
-                <telerikDataGrid:DataGridDateColumn HeaderStyle="{StaticResource dataGridHeaderStyle}" CellContentStyle="{StaticResource dataGridColumnStyle}" CellContentFormat="{}{0:MMM d, yyyy}" PropertyName="Date" HeaderText="Date"/>
-                <telerikDataGrid:DataGridNumericalColumn HeaderStyle="{StaticResource dataGridHeaderStyle}" CellContentStyle="{StaticResource dataGridColumnStyle}" CellContentFormat="{}${0:N2}" PropertyName="OpeningPrice" HeaderText="Open"/>
-                <telerikDataGrid:DataGridNumericalColumn HeaderStyle="{StaticResource dataGridHeaderStyle}" CellContentStyle="{StaticResource dataGridColumnStyle}" CellContentFormat="{}${0:N2}" PropertyName="Price24High" HeaderText="High"/>
-                <telerikDataGrid:DataGridNumericalColumn HeaderStyle="{StaticResource dataGridHeaderStyle}" CellContentStyle="{StaticResource dataGridColumnStyle}" CellContentFormat="{}${0:N2}" PropertyName="Price24Low" HeaderText="Low"/>
-            </telerikDataGrid:RadDataGrid.Columns>
-        </telerikDataGrid:RadDataGrid>
+            <telerik:RadDataGrid.Columns>
+                <telerik:DataGridDateColumn HeaderStyle="{StaticResource dataGridHeaderStyle}" CellContentStyle="{StaticResource dataGridColumnStyle}" CellContentFormat="{}{0:MMM d, yyyy}" PropertyName="Date" HeaderText="Date"/>
+                <telerik:DataGridNumericalColumn HeaderStyle="{StaticResource dataGridHeaderStyle}" CellContentStyle="{StaticResource dataGridColumnStyle}" CellContentFormat="{}${0:N2}" PropertyName="OpeningPrice" HeaderText="Open"/>
+                <telerik:DataGridNumericalColumn HeaderStyle="{StaticResource dataGridHeaderStyle}" CellContentStyle="{StaticResource dataGridColumnStyle}" CellContentFormat="{}${0:N2}" PropertyName="Price24High" HeaderText="High"/>
+                <telerik:DataGridNumericalColumn HeaderStyle="{StaticResource dataGridHeaderStyle}" CellContentStyle="{StaticResource dataGridColumnStyle}" CellContentFormat="{}${0:N2}" PropertyName="Price24Low" HeaderText="Low"/>
+            </telerik:RadDataGrid.Columns>
+        </telerik:RadDataGrid>
     </Grid>
 
 

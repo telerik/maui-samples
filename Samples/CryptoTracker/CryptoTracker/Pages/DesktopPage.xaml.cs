@@ -31,5 +31,10 @@ namespace CryptoTracker.Pages
             var viewModel = (CoinInfoViewModel)this.selectedCoinInfo.BindingContext;
             viewModel.InitializeCoinData(coinInfo);
         }
+
+        private void DownloadButtonClicked(object sender, System.EventArgs e)
+        {
+            Utils.Utils.TryNavigateToDownloadUrl();
+        }
     }
 }

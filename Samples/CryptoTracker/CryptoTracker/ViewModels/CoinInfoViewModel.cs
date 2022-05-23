@@ -2,8 +2,8 @@
 using Microsoft.Maui.Controls;
 using System;
 using System.Collections.Generic;
+using Telerik.Maui.Controls;
 using Telerik.XamarinForms.Chart;
-using Telerik.XamarinForms.Common;
 
 namespace CryptoTracker.ViewModels
 {
