@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        x:Class="QSF.Examples.SpreadStreamProcessingControl.FirstLookExample.FirstLookView"
+                        Margin="5">
+    <Grid RowDefinitions="*,Auto">
+        <telerik:RadListView x:Name="list" 
+                             ItemsSource="{Binding Courses}"
+                             SelectionMode="None">
+            <telerik:RadListView.LayoutDefinition>
+                <telerik:ListViewLinearLayout ItemLength="80" />
+            </telerik:RadListView.LayoutDefinition>
+            <telerik:RadListView.ItemTemplate>
+                <DataTemplate>
+                    <telerik:ListViewTemplateCell>
+                        <telerik:ListViewTemplateCell.View>
+                            <Grid ColumnSpacing="0" 
+                                  HorizontalOptions="Start"
+                                  RowSpacing="0" 
+                                  ColumnDefinitions="*,200,Auto,*">
+                                <VerticalStackLayout HorizontalOptions="Start"
+                                                     VerticalOptions="Center"
+                                                     Grid.Column="1"
+                                                     Margin="16, 0">
+                                    <Label Text="{Binding CourseName}"
+                                           FontSize="16" HorizontalTextAlignment="Start" />
+                                    <Label Text="{Binding University}" 
+                                           FontSize="13" HorizontalTextAlignment="Start" />
+                                </VerticalStackLayout>
+
+                                <Label Text="{Binding Path=Progress, StringFormat='{0} %'}" 
+                                       FontSize="16" HorizontalOptions="Start" 
+                                       Grid.Column="2"
+                                       VerticalOptions="Center" 
+                                       Margin="16, 0" />
+                            </Grid>
+                        </telerik:ListViewTemplateCell.View>
+                    </telerik:ListViewTemplateCell>
+                </DataTemplate>
+            </telerik:RadListView.ItemTemplate>
+        </telerik:RadListView>
+
+        <telerik:RadButton Text="Generate Spreadsheet"
+                           VerticalOptions="{OnIdiom Default=Center, Phone=End}"
+                           HorizontalOptions="{OnIdiom Default=Start, Phone=FillAndExpand}"
+                           Command="{Binding GenerateSpreadsheetCommand}"
+                           Style="{StaticResource SubmitButtonStyle}"
+                           Grid.Row="1" />
+    </Grid>
+</telerik:RadContentView>

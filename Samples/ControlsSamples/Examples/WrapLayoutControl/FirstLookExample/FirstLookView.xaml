@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        x:Class="QSF.Examples.WrapLayoutControl.FirstLookExample.FirstLookView"
+                        Margin="5">
+    <telerik:RadContentView.Resources>
+        <ResourceDictionary>
+            <Style TargetType="telerik:RadBorder" x:Key="DefaultBorderStyle">
+                <Setter Property="CornerRadius" Value="25"/>
+                <Setter Property="BorderThickness" Value="2"/>
+                <Setter Property="Margin" Value="4,0,4,8"/>
+                <Setter Property="Padding" Value="8"/>
+            </Style>
+            
+            <Style TargetType="Label">
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                <Setter Property="Margin" Value="2"/>
+            </Style>
+        </ResourceDictionary>
+    </telerik:RadContentView.Resources>
+    <telerik:RadContentView.Content>
+        <telerik:RadWrapLayout Padding="8,0,0,0">
+            <telerik:RadBorder Style="{StaticResource DefaultBorderStyle}" WidthRequest="100" BorderColor="#8660C5">
+                <Label Text="Cakes" TextColor="#8660C5"/>
+            </telerik:RadBorder>
+            <telerik:RadBorder Style="{StaticResource DefaultBorderStyle}" WidthRequest="120" BorderColor="#04A2AA">
+                <Label Text="Fruits" TextColor="#04A2AA"/>
+            </telerik:RadBorder>
+            <telerik:RadBorder Style="{StaticResource DefaultBorderStyle}" WidthRequest="100" BorderColor="#FF9040">
+                <Label Text="Bread" TextColor="#FF9040"/>
+            </telerik:RadBorder>
+            <telerik:RadBorder Style="{StaticResource DefaultBorderStyle}" WidthRequest="150" BorderColor="#0E88F2">
+                <Label Text="Pancakes" TextColor="#0E88F2"/>
+            </telerik:RadBorder>
+            <telerik:RadBorder Style="{StaticResource DefaultBorderStyle}" WidthRequest="90" BorderColor="#FFAC3E">
+                <Label Text="Pizza" TextColor="#FFAC3E"/>
+            </telerik:RadBorder>
+            <telerik:RadBorder Style="{StaticResource DefaultBorderStyle}" WidthRequest="200" BorderColor="#DE2C2C">
+                <Label Text="Brownies" TextColor="#DE2C2C"/>
+            </telerik:RadBorder>
+            <telerik:RadBorder Style="{StaticResource DefaultBorderStyle}" WidthRequest="100" BorderColor="#8660C5">
+                <Label Text="Cocktails" TextColor="#8660C5"/>
+            </telerik:RadBorder>
+            <telerik:RadBorder Style="{StaticResource DefaultBorderStyle}" WidthRequest="120" BorderColor="#04A2AA">
+                <Label Text="Dips" TextColor="#04A2AA"/>
+            </telerik:RadBorder>
+            <telerik:RadBorder Style="{StaticResource DefaultBorderStyle}" WidthRequest="160" BorderColor="#DE2C2C">
+                <Label Text="Soups" TextColor="#DE2C2C"/>
+            </telerik:RadBorder>
+            <telerik:RadBorder Style="{StaticResource DefaultBorderStyle}" WidthRequest="120" BorderColor="#FF9040">
+                <Label Text="Sandwiches" TextColor="#FF9040"/>
+            </telerik:RadBorder>
+        </telerik:RadWrapLayout>
+    </telerik:RadContentView.Content>
+</telerik:RadContentView>

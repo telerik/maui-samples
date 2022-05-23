@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:system="clr-namespace:System;assembly=netstandard"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        x:Class="QSF.Examples.WordsProcessingControl.ExportExample.ExportView"
+                        Margin="5">
+    <Grid>
+        <VerticalStackLayout>
+            <HorizontalStackLayout HorizontalOptions="Center"
+                                   VerticalOptions="End"
+                                   Spacing="10"
+                                   Margin="0, 0, 0, 21">
+                <Label Text="File:" />
+                <Label Text="DocToBeProcessed.docx" />
+            </HorizontalStackLayout>
+
+            <Label Text="Export to:"
+                   TextColor="Black"
+                   HorizontalOptions="Center"
+                   Margin="0, 0, 0, 8" />
+
+            <Picker WidthRequest="{OnPlatform WinUI='300', MacCatalyst='300'}"
+                    TextColor="#919191"
+                    MaximumWidthRequest="{OnPlatform WinUI='300', MacCatalyst='300'}"
+                    HorizontalTextAlignment="Center"
+                    ItemsSource="{Binding ExportFormats}"
+                    SelectedItem="{Binding SelectedExportFormat, Mode=TwoWay}" />
+
+            <telerik:RadButton Text="Export"
+                               Margin="0,20,0,0"
+                               VerticalOptions="{OnPlatform WinUI='Center', MacCatalyst='Center'}"
+                               HorizontalOptions="{OnPlatform WinUI='Center', MacCatalyst='Center'}"
+                               Style="{StaticResource SubmitButtonStyle}"
+                               Command="{Binding ExportCommand}" />
+        </VerticalStackLayout>
+    </Grid>
+</telerik:RadContentView>

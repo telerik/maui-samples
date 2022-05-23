@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="QSF.Examples.EntryControl.FirstLookExample.FirstLookView">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Style x:Key="EntryStyle" TargetType="telerik:RadEntry">
+                <Setter Property="TextColor" Value="{AppThemeBinding Light=Black, Dark=White}"/>
+                <Setter Property="PlaceholderColor" Value="{AppThemeBinding Light=#8A000000, Dark=#8AFFFFFF}"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <ScrollView>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="192"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="{OnIdiom Default=*, Phone=Auto}" />
+            </Grid.ColumnDefinitions>
+            <VerticalStackLayout Grid.Row="0"
+                                 Grid.ColumnSpan="2"
+                                 BackgroundColor="{AppThemeBinding Light=#F8F8F8, Dark=#121212}"
+                                 Margin="0, 25"
+                                 HorizontalOptions="FillAndExpand">
+                <Label Text="Subscribe To Our Newsletter"
+                       FontSize="22"
+                       HorizontalOptions="Center"
+                       TextColor="#0E88F2"/>
+                <Label Text="Sign up to receive our monthly newsletter."
+                       FontSize="14"
+                       HorizontalOptions="Center"
+                       TextColor="#191919"/>
+                <Image Source="entryfirstlook.png" MaximumHeightRequest="80" MaximumWidthRequest="110" Margin="0, 24, 0, 0"/>
+            </VerticalStackLayout>
+            <VerticalStackLayout Grid.Row="1" 
+                                 Grid.Column="0" 
+                                 Margin="{OnIdiom Default='0, 40, 20, 40', Phone=14}">
+                <VerticalStackLayout>
+                    <Label Text="Username: (max 10 symbols)" 
+                       TextColor="{AppThemeBinding Light=Black, Dark=White}"/>
+                    <telerik:RadEntry AutomationId="UsernameEntry" 
+                                      Placeholder="Enter Username" 
+                                      Text="{Binding Username}"
+                                      MaxLength="10"
+                                      Style="{StaticResource EntryStyle}"/>
+                </VerticalStackLayout>
+                <VerticalStackLayout Margin="0, 40, 0, 20">
+                    <Label Text="Email address:" 
+                           TextColor="{AppThemeBinding Light=Black, Dark=White}"/>
+                    <telerik:RadEntry AutomationId="EmailAddressEntry"
+                                      Placeholder="Enter Email" 
+                                      Text="{Binding EmailAddress}"
+                                      Style="{StaticResource EntryStyle}"
+                                      Keyboard="Email"/>
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+            <VerticalStackLayout Grid.Column="{OnIdiom Default=1, Phone=0}" 
+                                 Grid.Row="{OnIdiom Default=1, Phone=2}"
+                                 Margin="{OnIdiom Default='0, 40', Phone=14}">
+                <VerticalStackLayout Margin="0, 0, 0, 40">
+                    <Label Text="Password:" 
+                           TextColor="{AppThemeBinding Light=Black, Dark=White}"/>
+                    <telerik:RadEntry AutomationId="PasswordEntry"
+                                      Placeholder="Enter Password" 
+                                      Text="{Binding Password}"
+                                      Style="{StaticResource EntryStyle}"
+                                      IsPassword="True"/>
+                </VerticalStackLayout>
+                <VerticalStackLayout>
+                    <Label Text="Repeat Password:" 
+                           TextColor="{AppThemeBinding Light=Black, Dark=White}"/>
+                    <telerik:RadEntry AutomationId="RepeatPasswordEntry"
+                                      Margin="{OnIdiom Default=0, Phone='0, 0, 0, 15'}"
+                                      Placeholder="Repeat Password" 
+                                      Text="{Binding RepeatPassword}"
+                                      Style="{StaticResource EntryStyle}"
+                                      IsPassword="True"/>
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+            <telerik:RadButton Grid.ColumnSpan="{OnIdiom Default=1, Phone=2}"
+                               VerticalOptions="{OnIdiom Default=Center, Phone=End}"
+                               Grid.Row="{OnIdiom Default=2, Phone=3}"
+                               Margin="0, 0, 0, 15"
+                               Text="Subscribe"
+                               FontSize="14"
+                               TextColor="{StaticResource AccentColor8}"
+                               HeightRequest="40"
+                               HorizontalOptions="{OnIdiom Default=Start, Phone=FillAndExpand}"
+                               Style="{StaticResource SubmitButtonStyle}"
+                               Command="{Binding RegisterCommand}"/>
+        </Grid>
+    </ScrollView>
+</ContentView>
