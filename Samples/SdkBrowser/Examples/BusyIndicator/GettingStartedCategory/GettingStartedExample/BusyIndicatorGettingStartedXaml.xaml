@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        x:Class="SDKBrowserMaui.Examples.BusyIndicatorControl.GettingStartedCategory.GettingStartedExample.BusyIndicatorGettingStartedXaml"
+                        Margin="5">
+    <telerik:RadContentView.Content>
+        <Grid>
+            <!--  >> busyindicator-getting-started-xaml  -->
+            <telerik:RadBusyIndicator x:Name="BusyIndicator"
+                                                AnimationContentHeightRequest="100"
+                                                AnimationContentWidthRequest="100"
+                                                AnimationContentColor="#674bb2"
+                                                AutomationId="busyIndicator"
+                                                IsBusy="True">
+                <telerik:RadBusyIndicator.Content>
+                    <Label Text="This is the content of the RadBusyIndicator control displayed when the indicator is not busy." TextColor="Black" />
+                </telerik:RadBusyIndicator.Content>
+            </telerik:RadBusyIndicator>
+            <!--  << busyindicator-getting-started-xaml  -->
+        </Grid>
+    </telerik:RadContentView.Content>
+</telerik:RadContentView>

@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        xmlns:local="clr-namespace:SDKBrowserMaui.Examples.ListPickerControl"
+                        x:Class="SDKBrowserMaui.Examples.ListPickerControl.GettingStartedCategory.GettingStartedExample.ListPickerGettingStartedXaml">
+    <VerticalStackLayout WidthRequest="300" HorizontalOptions="Center">
+        <!-- >> listpicker-getting-started-xaml -->
+        <telerik:RadListPicker Placeholder="Pick a name!" 
+                               AutomationId="listPicker"
+                               ItemsSource="{Binding Items}" 
+                               DisplayMemberPath="FullName">
+            <telerik:RadListPicker.BindingContext>
+                <local:PeopleViewModel/>
+            </telerik:RadListPicker.BindingContext>
+            <telerik:RadListPicker.ItemTemplate>
+                <DataTemplate>
+                    <Label Text="{Binding Name}" 
+                           HorizontalTextAlignment="Center" 
+                           VerticalTextAlignment="Center"/>
+                </DataTemplate>
+            </telerik:RadListPicker.ItemTemplate>
+        </telerik:RadListPicker>
+        <!-- << listpicker-getting-started-xaml -->
+    </VerticalStackLayout>
+</telerik:RadContentView>

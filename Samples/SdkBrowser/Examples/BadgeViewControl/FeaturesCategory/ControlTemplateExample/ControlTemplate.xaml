@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.BadgeViewControl.FeaturesCategory.ControlTemplateExample.ControlTemplate">
+    <telerik:RadContentView.Resources>
+        <ResourceDictionary>
+            <!-- >> badgeview-badge-custom-control-template -->
+            <Style TargetType="telerik:Badge">
+                <Setter Property="ControlTemplate">
+                    <Setter.Value>
+                        <ControlTemplate>
+                            <!-- you can change the control tempalte in order to customize the bage default look  -->
+                            <telerik:RadBorder HeightRequest="30"
+                                               WidthRequest="60"
+                                               BackgroundColor="#0DA6FF"
+                                               CornerRadius="15">
+                                <Grid ColumnDefinitions="Auto, Auto" 
+                                      ColumnSpacing="0"
+                                      HorizontalOptions="Center">
+                                    <Label Text="&#xE809;"
+                                           TextColor="White"
+                                           VerticalOptions="Center"
+                                           FontFamily="TelerikFont"/>
+                                    <Label Text="234"
+                                           VerticalOptions="Center"
+                                           Grid.Column="1"
+                                           TextColor="White"/>
+                                </Grid>
+                            </telerik:RadBorder>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <!-- << badgeview-badge-custom-control-template -->
+        </ResourceDictionary>
+    </telerik:RadContentView.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <VerticalStackLayout>
+            <VerticalStackLayout.Resources>
+                <ResourceDictionary>
+                    <!-- >> badgeview-badge-control-template -->
+                    <Style TargetType="telerik:Badge">
+                        <Setter Property="ControlTemplate">
+                            <Setter.Value>
+                                <ControlTemplate>
+                                    <!-- you can change the control tempalte in order to customize the bage default look  -->
+                                    <telerik:RadBorder BorderThickness="{TemplateBinding BorderThickness}"
+                                                       BorderColor="{TemplateBinding BorderColor}"
+                                                       CornerRadius="{TemplateBinding CornerRadius}"
+                                                       BackgroundColor="{TemplateBinding BackgroundColor}"
+                                                       MinimumHeightRequest="{TemplateBinding MinimumHeightRequest}"
+                                                       MinimumWidthRequest="{TemplateBinding MinimumWidthRequest}">
+                                        <Label x:Name="PART_BadgeContent"
+                                               Text="{TemplateBinding Text}" 
+                                               TextColor="{TemplateBinding TextColor}"
+                                               Margin="{TemplateBinding TextMargin}"
+                                               FontSize="{TemplateBinding FontSize}"
+                                               FontFamily="{TemplateBinding FontFamily}"
+                                               FontAttributes="{TemplateBinding FontAttributes}"
+                                               HorizontalTextAlignment="Center"
+                                               VerticalTextAlignment="Center" />
+                                    </telerik:RadBorder>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                    <!-- << badgeview-badge-control-template -->
+                </ResourceDictionary>
+            </VerticalStackLayout.Resources>
+            <Label Text="Badge Default ControlTemplate"/>
+            <!-- >> badgeview-controltemplate -->
+            <telerik:RadBadgeView VerticalOptions="Start"
+                                            HorizontalOptions="Start">
+                <telerik:RadBadgeView.Content>
+                    <BoxView BackgroundColor="LightGray"
+                             VerticalOptions="Center"
+                             WidthRequest="80"
+                             HeightRequest="80"
+                             HorizontalOptions="Center"/>
+                </telerik:RadBadgeView.Content>
+            </telerik:RadBadgeView>
+            <!-- << badgeview-controltemplate -->
+        </VerticalStackLayout>
+        <VerticalStackLayout Grid.Row="1">
+            <Label Text="Badge Custom ControlTemplate"/>
+            <!-- >> badgeview-custom-controltemplate -->
+            <telerik:RadBadgeView VerticalOptions="Start"
+                                            HorizontalOptions="Start">
+                <telerik:RadBadgeView.Content>
+                    <BoxView BackgroundColor="LightGray"
+                             VerticalOptions="Center"
+                             HorizontalOptions="Center"
+                             WidthRequest="80"
+                             HeightRequest="80"/>
+                </telerik:RadBadgeView.Content>
+            </telerik:RadBadgeView>
+            <!-- << badgeview-custom-controltemplate -->
+        </VerticalStackLayout>
+    </Grid>
+</telerik:RadContentView>

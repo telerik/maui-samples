@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        x:Class="SDKBrowserMaui.Examples.TimePickerControl.TemplatesCategory.CustomTemplatesExample.CustomTemplates">
+    <telerik:RadContentView.Resources>
+        <ResourceDictionary>
+            <!-- >> timepicker-placeholder-template -->
+            <ControlTemplate x:Key="placeholderTemplate">
+                <Button Text="Pick a time" 
+                        FontAttributes="Bold" 
+                        TextColor="White"
+                        BackgroundColor="#B73562" 
+                        HeightRequest="50" Command="{TemplateBinding ToggleCommand}" />
+            </ControlTemplate>
+            <!-- << timepicker-placeholder-template -->
+
+            <!-- >> timepicker-display-template -->
+            <ControlTemplate x:Key="displayTemplate">
+                <Button Text="{TemplateBinding DisplayString}" 
+                        TextColor="White" 
+                        BackgroundColor="#7BAEFF"
+                        HeightRequest="50"
+                        Command="{TemplateBinding ToggleCommand}" />
+            </ControlTemplate>
+            <!-- << timepicker-display-template -->
+
+            <!-- >> timepicker-header-template -->
+            <ControlTemplate x:Key="headerTemplate">
+                <Grid>
+                    <Label Text="Time Picker"
+                           Padding="20"
+                           TextColor="White"
+                           VerticalTextAlignment="Center"
+                           HorizontalTextAlignment="Center"
+                           BackgroundColor="#B73562"/>
+                </Grid>
+            </ControlTemplate>
+            <!-- << timepicker-header-template -->
+
+            <!-- >> timepicker-footer-template -->
+            <ControlTemplate x:Key="footerTemplate">
+                <StackLayout Orientation="Horizontal" Spacing="0" HorizontalOptions="FillAndExpand" BackgroundColor="#B73562">
+                    <telerik:RadButton Text="No"
+                                       WidthRequest="75"
+                                       TextColor="White"
+                                       BackgroundColor="Transparent"
+                                       Command="{TemplateBinding CancelCommand}" />
+                    <telerik:RadButton Text="Yes"
+                                       WidthRequest="75"
+                                       TextColor="White"
+                                       BackgroundColor="Transparent"
+                                       Command="{TemplateBinding AcceptCommand}" />
+                </StackLayout>
+            </ControlTemplate>
+            <!-- << timepicker-footer-template -->
+        </ResourceDictionary>
+    </telerik:RadContentView.Resources>
+
+    <VerticalStackLayout WidthRequest="300" HorizontalOptions="Center">
+        <!-- >> timepicker-custom-templates -->
+        <telerik:RadTimePicker SpinnerFormat="H:mm"
+                               PlaceholderTemplate="{StaticResource placeholderTemplate}"
+                               DisplayTemplate="{StaticResource displayTemplate}">
+            <telerik:RadTimePicker.PopupSettings>
+                <telerik:PickerPopupSettings HeaderTemplate="{StaticResource headerTemplate}"
+                                             FooterTemplate="{StaticResource footerTemplate}"/>
+            </telerik:RadTimePicker.PopupSettings>
+            <telerik:RadTimePicker.DropDownSettings>
+                <telerik:PickerDropDownSettings FooterTemplate="{StaticResource footerTemplate}"/>
+            </telerik:RadTimePicker.DropDownSettings>
+        </telerik:RadTimePicker>
+        <!-- << timepicker-custom-templates -->
+    </VerticalStackLayout>
+</telerik:RadContentView>

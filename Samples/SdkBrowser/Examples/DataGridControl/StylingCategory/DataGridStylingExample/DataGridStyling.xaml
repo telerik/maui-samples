@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        x:Class="SDKBrowserMaui.Examples.DataGridControl.StylingCategory.DataGridStylingExample.DataGridStyling">
+    <telerik:RadDataGrid x:Name="DataGrid"
+                             IsVisible="True"
+                             UserEditMode="Cell">
+        <!-- >> datagrid-styling-alternaterowbackgroundstyle -->
+        <telerik:RadDataGrid.AlternateRowBackgroundStyle>
+            <telerik:DataGridBorderStyle BackgroundColor="LightBlue" 
+                                         BorderThickness="1"
+                                         BorderColor="BlanchedAlmond"/>
+        </telerik:RadDataGrid.AlternateRowBackgroundStyle>
+        <!-- << datagrid-styling-alternaterowbackgroundstyle -->
+        <!-- >> datagrid-styling-groupheaderstyle -->
+        <telerik:RadDataGrid.GroupHeaderStyle>
+            <telerik:DataGridGroupHeaderStyle BorderThickness="1"
+                                              TextColor="DarkTurquoise"
+                                              BorderColor="Brown"/>
+        </telerik:RadDataGrid.GroupHeaderStyle>
+        <!-- << datagrid-styling-groupheaderstyle -->
+        <!-- >> datagrid-styling-rowbackgroundstyle -->
+        <telerik:RadDataGrid.RowBackgroundStyle>
+            <telerik:DataGridBorderStyle BackgroundColor="CadetBlue" 
+                                         BorderColor="DarkOrchid" 
+                                         BorderThickness="1"/>
+        </telerik:RadDataGrid.RowBackgroundStyle>
+        <!-- << datagrid-styling-rowbackgroundstyle -->
+        <!-- >> datagrid-styling-selectionstyle -->
+        <telerik:RadDataGrid.SelectionStyle>
+            <telerik:DataGridBorderStyle BackgroundColor="SeaGreen" 
+                                         BorderColor="Wheat" 
+                                         BorderThickness="2"/>
+        </telerik:RadDataGrid.SelectionStyle>
+        <!-- << datagrid-styling-selectionstyle -->
+    </telerik:RadDataGrid>
+</telerik:RadContentView>

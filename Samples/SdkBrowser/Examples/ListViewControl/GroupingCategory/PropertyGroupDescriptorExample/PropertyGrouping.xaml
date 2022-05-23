@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        xmlns:local="clr-namespace:SDKBrowserMaui.Examples.ListViewControl.GroupingCategory"
+                        x:Class="SDKBrowserMaui.Examples.ListViewControl.GroupingCategory.PropertyGroupDescriptorExample.PropertyGrouping"
+                        Margin="5">
+    <telerik:RadContentView.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="ListViewItemTemplate">
+                <telerik:ListViewTemplateCell>
+                    <telerik:ListViewTemplateCell.View>
+                        <Grid HeightRequest="40" Padding="28, 0, 0, 0">
+                            <Label Text="{Binding Name}" TextColor="#6F6F70" FontSize="Small" VerticalOptions="Center" />
+                        </Grid>
+                    </telerik:ListViewTemplateCell.View>
+                </telerik:ListViewTemplateCell>
+            </DataTemplate>
+            <DataTemplate x:Key="ListViewGroupHeaderTemplate">
+                <Grid HeightRequest="40" BackgroundColor="#F1F2F5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Label Text="&#xE806;" Margin="8, 0, 0, 0" TextColor="DarkGray" FontFamily="TelerikFontExamples" FontSize="Medium" VerticalOptions="Center">
+                        <Label.Triggers>
+                            <DataTrigger TargetType="Label" Binding="{Binding IsExpanded}" Value="True">
+                                <Setter Property="Text" Value="&#xE80D;" />
+                            </DataTrigger>
+                        </Label.Triggers>
+                    </Label>
+                    <Label Margin="8, 0, 0, 0" Text="{Binding }" Grid.Column="1" TextColor="DarkGray" FontSize="Medium" VerticalOptions="Center" />
+                </Grid>
+            </DataTemplate>
+            <telerik:ListViewGroupStyle x:Key="ListViewGroupHeaderStyle" BackgroundColor="Transparent" />
+        </ResourceDictionary>
+    </telerik:RadContentView.Resources>
+    <telerik:RadContentView.Content>
+        <Grid>
+            <telerik:RadListView x:Name="listView" ItemsSource="{Binding Cities}"
+                                     ItemTemplate="{StaticResource ListViewItemTemplate}"
+                                     GroupHeaderTemplate="{StaticResource ListViewGroupHeaderTemplate}"
+                                     GroupHeaderStyle="{StaticResource ListViewGroupHeaderStyle}">
+                <telerik:RadListView.BindingContext>
+                    <local:GroupingViewModel/>
+                </telerik:RadListView.BindingContext>
+                <telerik:RadListView.GroupDescriptors>
+                    <telerik:PropertyGroupDescriptor PropertyName="Country"/>
+                </telerik:RadListView.GroupDescriptors>
+            </telerik:RadListView>
+        </Grid>
+    </telerik:RadContentView.Content>
+</telerik:RadContentView>

@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        x:Class="SDKBrowserMaui.Examples.DataGridControl.GroupingCategory.PropertyGroupDescriptorExample.PropertyGroupDescriptor">
+    <!-- >> datagrid-grouping-groupheadertemplate -->
+    <telerik:RadDataGrid x:Name="dataGrid"
+                         ItemsSource="{Binding People}">
+        <telerik:RadDataGrid.GroupHeaderTemplate>
+            <DataTemplate>
+                <HorizontalStackLayout Margin="5,0,0,0" VerticalOptions="Center" >
+                    <Label Text="Employees working in: " 
+                           TextColor="DarkBlue"
+                           FontSize="Small" />
+                    <Label Text="{Binding Group.Key}" 
+                           FontAttributes="Bold" 
+                           TextColor="DarkBlue" 
+                           FontSize="Small" />
+                </HorizontalStackLayout>
+            </DataTemplate>
+        </telerik:RadDataGrid.GroupHeaderTemplate>        
+    </telerik:RadDataGrid>
+    <!-- << datagrid-grouping-groupheadertemplate -->
+</telerik:RadContentView>

@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        xmlns:local="clr-namespace:SDKBrowserMaui.Examples.ListPickerControl"
+                        x:Class="SDKBrowserMaui.Examples.ListPickerControl.LoopingCategory.LoopingExample.Looping">
+    <VerticalStackLayout WidthRequest="300" HorizontalOptions="Center">
+        <!-- >> listpicker-features-looping -->
+        <telerik:RadListPicker Placeholder="Pick a City Name!"
+                               IsLooping="True"
+                               ItemLength="40"
+                               ItemSpacing="3"
+                               ItemsSource="{Binding Items}" 
+                               DisplayMemberPath="Name">
+            <telerik:RadListPicker.BindingContext>
+                <local:CitiesViewModel/>
+            </telerik:RadListPicker.BindingContext>
+            <telerik:RadListPicker.ItemTemplate>
+                <DataTemplate>
+                    <Label Text="{Binding Name}" 
+                           HorizontalTextAlignment="Center" 
+                           VerticalTextAlignment="Center"/>
+                </DataTemplate>
+            </telerik:RadListPicker.ItemTemplate>
+        </telerik:RadListPicker>
+        <!-- << listpicker-features-looping -->
+    </VerticalStackLayout>
+</telerik:RadContentView>

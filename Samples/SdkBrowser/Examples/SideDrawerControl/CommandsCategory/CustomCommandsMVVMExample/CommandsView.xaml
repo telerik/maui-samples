@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.SideDrawerControl.CommandsCategory.CustomCommandsMVVMExample"
+             x:Class="SDKBrowserMaui.Examples.SideDrawerControl.CommandsCategory.CustomCommandsMVVMExample.CommandsView">
+    <Grid>
+        <!--  >> sidedrawer-commandsviewmodel-xaml  -->
+        <telerik:RadSideDrawer x:Name="drawer" DrawerLength="200">
+            <telerik:RadSideDrawer.BindingContext>
+                <local:CommandsViewModel/>
+            </telerik:RadSideDrawer.BindingContext>
+            <telerik:RadSideDrawer.Commands>
+                <telerik:SideDrawerUserCommand Command="{Binding Command}" Id="Opening"/>
+            </telerik:RadSideDrawer.Commands>
+            <telerik:RadSideDrawer.MainContent>
+                <Label Text="Main content" />
+            </telerik:RadSideDrawer.MainContent>
+            <telerik:RadSideDrawer.DrawerContent>
+                <StackLayout>
+                    <Button Text="Mail" />
+                    <Button Text="Calendar" />
+                    <Button Text="People" />
+                    <Button Text="Tasks" />
+                </StackLayout>
+            </telerik:RadSideDrawer.DrawerContent>
+        </telerik:RadSideDrawer>
+        <!--  << sidedrawer-commandsviewmodel-xaml  -->
+    </Grid>
+</telerik:RadContentView>

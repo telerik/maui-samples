@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        xmlns:local="clr-namespace:SDKBrowserMaui.Examples.ListViewControl.StylingCategory.GroupHeadersStylingExample"
+                        x:Class="SDKBrowserMaui.Examples.ListViewControl.StylingCategory.GroupHeadersStylingExample.ListViewGroupHeaderStyle"
+                        Margin="5">
+    <telerik:RadContentView.Content>
+        <Grid>
+            <!--  >> listview-groupstyle-listview-xaml  -->
+            <telerik:RadListView x:Name="listView"
+                                             ItemsSource="{Binding Cities}">
+                <telerik:RadListView.BindingContext>
+                    <local:ViewModel />
+                </telerik:RadListView.BindingContext>
+                <telerik:RadListView.ItemTemplate>
+                    <DataTemplate>
+                        <telerik:ListViewTextCell Text="{Binding Name}"
+                                                          TextColor="#1263E5" />
+                    </DataTemplate>
+                </telerik:RadListView.ItemTemplate>
+                <telerik:RadListView.GroupHeaderStyle>
+                    <telerik:ListViewGroupStyle BackgroundColor="#1263E5"
+                                                        TextColor="#AAC7F6"
+                                                        BorderColor="#0A3A82"              
+                                                        BorderWidth="1" />  
+                </telerik:RadListView.GroupHeaderStyle>
+                <telerik:RadListView.GroupDescriptors>
+                    <telerik:PropertyGroupDescriptor PropertyName="Country" />
+                </telerik:RadListView.GroupDescriptors>
+            </telerik:RadListView>
+            <!--  << listview-groupstyle-listview-xaml  -->
+        </Grid>
+    </telerik:RadContentView.Content>
+</telerik:RadContentView>

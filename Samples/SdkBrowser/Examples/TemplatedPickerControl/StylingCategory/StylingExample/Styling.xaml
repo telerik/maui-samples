@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        xmlns:local="clr-namespace:SDKBrowserMaui.Examples.TemplatedPickerControl"
+                        x:Class="SDKBrowserMaui.Examples.TemplatedPickerControl.StylingCategory.StylingExample.Styling">
+    <telerik:RadContentView.BindingContext>
+        <local:LocationViewModel />
+    </telerik:RadContentView.BindingContext>
+    <telerik:RadContentView.Resources>
+        <ResourceDictionary>
+            <!-- >> templatedpicker-accentcolor -->
+            <Color x:Key="AccentColor">#B73562</Color>
+            <!-- << templatedpicker-accentcolor -->
+
+            <!-- >> templatedpicker-displaylabelstyle -->
+            <Style x:Key="displayLabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="#4A4949"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+            </Style>
+            <!-- << templatedpicker-displaylabelstyle -->
+
+            <!-- >> templatedpicker-placeholderlabelstyle -->
+            <Style x:Key="defaultPlaceholderLabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="#4A4949"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+            </Style>
+            <!-- << templatedpicker-placeholderlabelstyle -->
+            
+            <!-- >> templatedpicker-defaulttemplatedpicker -->
+            <Style x:Key="defaultTemplatedPickerStyle" TargetType="telerik:RadTemplatedPicker">
+                <Setter Property="BorderThickness" Value="0, 0, 0, 1" />
+                <Setter Property="BorderColor" Value="#B7B7BA" />
+                <Setter Property="HeightRequest" Value="44" />
+                <Setter Property="Margin" Value="0, 4, 0, 0" />
+                <Setter Property="IsEnabled" Value="True" />
+            </Style>
+            <!-- << templatedpicker-defaulttemplatedpicker -->
+            
+            <!-- >> templatedpicker-headelabelstyle -->
+            <Style x:Key="pickerHeaderLabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+            <!-- << templatedpicker-headelabelstyle -->           
+         
+            <!-- >> templatedpicker-borderstyle -->
+            <Style x:Key="defaultRadBorderStyle" TargetType="telerik:RadBorder">
+                <Setter Property="HeightRequest" Value="24" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="BorderColor" Value="#D9D9D9" />
+                <Setter Property="BorderThickness" Value="0,1" />
+            </Style>
+            <!-- << templatedpicker-borderstyle -->
+            
+            <!-- >> templatedpicker-itemstyle -->
+            <Style x:Key="itemStyle" TargetType="{x:Type telerik:SpinnerItemView}">
+                <Setter Property="TextColor" Value="#C7CACA" />
+            </Style>
+            <!-- << templatedpicker-itemstyle -->
+            
+            <!-- >> templatedpicker-selecteditemstyle -->
+            <Style x:Key="selectedItemStyle" TargetType="{x:Type telerik:SpinnerItemView}">
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="FontAttributes" Value="Bold" />
+            </Style>
+            <!-- << templatedpicker-selecteditemstyle -->
+
+            <!-- >> datepicker-style-clear-button-style -->
+            <Style TargetType="telerik:RadButton" x:Key="clearButtonStyle">
+                <Setter Property="TextColor" Value="Blue"/>
+            </Style>
+            <!-- << datepicker-style-clear-button-style -->
+
+            <!-- >> datepicker-style-toggle-button-style -->
+            <Style TargetType="telerik:RadButton" x:Key="toggleButtonStyle">
+                <Setter Property="TextColor" Value="LightBlue"/>
+            </Style>
+            <!-- << datepicker-style-toggle-button-style -->
+        </ResourceDictionary>
+    </telerik:RadContentView.Resources>
+    <VerticalStackLayout WidthRequest="360" HorizontalOptions="Center">
+        <!-- >> templatedpicker-style -->
+        <telerik:RadTemplatedPicker x:Name="picker"
+                                    Placeholder="Pick a destination!" 
+                                    DisplayStringFormat="Destination: {0}"
+                                    DisplayLabelStyle="{StaticResource displayLabelStyle}"
+                                    PlaceholderLabelStyle="{StaticResource defaultPlaceholderLabelStyle}"
+                                    Style="{StaticResource defaultTemplatedPickerStyle}"
+                                    ClearButtonStyle="{StaticResource clearButtonStyle}"
+                                    ToggleButtonStyle="{StaticResource toggleButtonStyle}"
+                                    IsClearButtonVisible="True"
+                                    IsToggleButtonVisible="True"
+                                    SelectedValue="{Binding FromCity, Mode=TwoWay}"
+                                    DisplayMemberPath="Name">
+            <telerik:RadTemplatedPicker.SelectorTemplate>
+                <ControlTemplate>
+                    <Grid ColumnDefinitions="*,*" HeightRequest="250">
+                        <Grid.Style>
+                            <OnPlatform x:TypeArguments="Style">
+                                <On Platform="WinUI">
+                                    <Style TargetType="Grid">
+                                        <Setter Property="WidthRequest" Value="{Binding Width, Source={x:Reference picker}}" />
+                                    </Style>
+                                </On>
+                            </OnPlatform>
+                        </Grid.Style> 
+                        <telerik:RadBorder Grid.ColumnSpan="2"
+                                           Style="{StaticResource defaultRadBorderStyle}" />
+                        <telerik:RadSpinner x:Name="countriesSpinner"
+                                            Grid.Column="0"
+                                            ItemsSource="{Binding Countries}"
+                                            ItemStyle="{StaticResource itemStyle}"
+                                            SelectedItemStyle="{StaticResource selectedItemStyle}"
+                                            DisplayMemberPath="Name" />
+                        <telerik:RadSpinner x:Name="citiesSpinner"
+                                            Grid.Column="1"
+                                            ItemsSource="{Binding SelectedItem.Cities, Source={x:Reference countriesSpinner}}"
+                                            SelectedItem="{TemplateBinding SelectedValue}"
+                                            ItemStyle="{StaticResource itemStyle}"
+                                            SelectedItemStyle="{StaticResource selectedItemStyle}"
+                                            DisplayMemberPath="Name" />
+                    </Grid>
+                </ControlTemplate>
+            </telerik:RadTemplatedPicker.SelectorTemplate>
+        </telerik:RadTemplatedPicker>
+        <!-- << templatedpicker-style -->
+    </VerticalStackLayout>
+</telerik:RadContentView>

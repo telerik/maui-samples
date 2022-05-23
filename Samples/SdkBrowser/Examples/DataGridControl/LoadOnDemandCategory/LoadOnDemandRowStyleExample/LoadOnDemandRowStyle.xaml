@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        x:Class="SDKBrowserMaui.Examples.DataGridControl.LoadOnDemandCategory.LoadOnDemandRowStyleExample.LoadOnDemandRowStyle">
+    <telerik:RadContentView.Resources>
+        <ResourceDictionary>
+            <!-- >> datagrid-loadondemandrowstyle-xaml -->
+            <telerik:DataGridLoadOnDemandRowStyle x:Key="CustomDataGridLoadOnDemandRowStyle" 
+                                                  BackgroundColor="LightYellow"
+                                                  BorderColor="LightBlue"
+                                                  IndicatorAnimationColor="Orange"
+                                                  IndicatorAnimationType="Animation5"
+                                                  HorizontalTextAlignment="Center"
+                                                  VerticalTextAlignment="Center"
+                                                  OverlayOpacity="0.5"
+                                                  Text="Some Text"
+                                                  TextFontSize="16"
+                                                  TextColor="DarkGray"
+                                                  TextFontFamily="Times New Roman"/>
+            <!-- << datagrid-loadondemandrowstyle-xaml -->
+        </ResourceDictionary>
+    </telerik:RadContentView.Resources>
+    <Grid>
+        <!-- >> datagrid-setting-loadondemandrowstyle-xaml -->
+        <telerik:RadDataGrid x:Name="dataGrid" ItemsSource="{Binding Items}"
+                             LoadOnDemand="dataGrid_LoadOnDemand"
+                             LoadOnDemandMode="Manual"
+                             LoadOnDemandRowStyle="{StaticResource CustomDataGridLoadOnDemandRowStyle}"/>
+        <!-- << datagrid-setting-loadondemandrowstyle-xaml -->
+    </Grid>
+</telerik:RadContentView>

@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.TimePickerControl.StylingCategory.PopupStylingExample.PopupStyling">
+    <telerik:RadContentView.Resources>
+        <ResourceDictionary>
+            <!-- >> timepicker-style-header-style -->
+            <Style TargetType="telerik:PickerPopupHeaderView" x:Key="headerStyle">
+                <Setter Property="BackgroundColor" Value="#00B5DC"/>
+                <Setter Property="HeightRequest" Value="60"/>
+                <Setter Property="Margin" Value="0"/>
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+                <Setter Property="VerticalOptions" Value="FillAndExpand"/>
+            </Style>
+            <!-- << timepicker-style-header-style -->
+
+            <!-- >> timepicker-style-header-label-style -->
+            <Style TargetType="Label" x:Key="headerLabelStyle">
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="FontSize" Value="Title"/>
+            </Style>
+            <!-- << timepicker-style-header-label-style -->
+
+            <!-- >> timepicker-style-footer-style -->
+            <Style TargetType="telerik:PickerPopupFooterView" x:Key="footerStyle">
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+            </Style>
+            <!-- << timepicker-style-footer-style -->
+
+            <!-- >> timepicker-style-popupview-style -->
+            <Style TargetType="telerik:PickerPopupContentView" x:Key="popupViewStyle">
+                <Setter Property="BackgroundColor" Value="White"/>
+                <Setter Property="WidthRequest" Value="270"/>
+            </Style>
+            <!-- << timepicker-style-popupview-style -->
+
+            <!-- >> timepicker-style-accept-button-style -->
+            <Style TargetType="Button" x:Key="acceptButtonStyle">
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+                <Setter Property="Text" Value="OK"/>
+                <Setter Property="TextColor" Value="#00B5DC"/>
+            </Style>
+            <!-- << timepicker-style-accept-button-style -->
+
+            <!-- >> timepicker-style-cancel-button-style -->
+            <Style TargetType="Button" x:Key="cancelButtonStyle">
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+                <Setter Property="Text" Value="X"/>
+                <Setter Property="TextColor" Value="#00B5DC"/>
+            </Style>
+            <!-- << timepicker-style-cancel-button-style -->
+        </ResourceDictionary>
+    </telerik:RadContentView.Resources>
+    <VerticalStackLayout WidthRequest="300" HorizontalOptions="Center">        
+        <!-- >> timepicker-popup-style -->
+        <telerik:RadTimePicker PickerMode="Popup"
+                               DefaultHighlightedTime="10:30"
+                               DisplayStringFormat="HH:mm">
+            <telerik:RadTimePicker.PopupSettings>
+                <telerik:PickerPopupSettings PopupOutsideBackgroundColor="#D9D9D9CC"
+                                             PopupViewStyle="{StaticResource popupViewStyle}"
+                                             HeaderStyle="{StaticResource headerStyle}"
+                                             HeaderLabelText="Time Picker"
+                                             HeaderLabelStyle="{StaticResource headerLabelStyle}"
+                                             FooterStyle="{StaticResource footerStyle}"
+                                             AcceptButtonStyle="{StaticResource acceptButtonStyle}"
+                                             CancelButtonStyle="{StaticResource cancelButtonStyle}"/>
+            </telerik:RadTimePicker.PopupSettings>
+        </telerik:RadTimePicker>
+        <!-- << timepicker-popup-style -->
+    </VerticalStackLayout>
+</telerik:RadContentView>

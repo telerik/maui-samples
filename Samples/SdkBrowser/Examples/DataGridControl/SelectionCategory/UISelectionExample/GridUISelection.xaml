@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        x:Class="SDKBrowserMaui.Examples.DataGridControl.SelectionCategory.UISelectionExample.GridUISelection">
+    <Grid Padding="10" RowSpacing="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Label Text="Selection Mode:" />
+        <Label Text="Selection Unit:" Grid.Column="1" />
+        <Picker x:Name="smPicker"
+                ItemsSource="{Binding SelectionModeSource}"
+                Grid.Row="1"
+                SelectedItem="{Binding SelectedMode}"/>
+        <Picker x:Name="suPicker" 
+                ItemsSource="{Binding SelectionUnitSource}"
+                Grid.Row="1"
+                Grid.Column="1" 
+                SelectedItem="{Binding SelectedUnit}"/>
+        <telerik:RadDataGrid Grid.Row="2"
+                             Grid.ColumnSpan="2" 
+                             SelectionUnit="{Binding SelectedUnit}"
+                             SelectionMode="{Binding SelectedMode}"
+                             ItemsSource="{Binding GridSource}" 
+                             x:Name="grid" />
+    </Grid>
+</telerik:RadContentView>

@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        x:Class="SDKBrowserMaui.Examples.DataGridControl.NestedPropertyCategory.NestedPropertyExample.NestedProperty">
+    <!-- >> datagrid-nested-property-xaml -->
+    <telerik:RadDataGrid Grid.Row="1" x:Name="grid"
+                         ItemsSource="{Binding Persons}"
+                         AutoGenerateColumns="False"
+                         UserEditMode="Cell">
+        <telerik:RadDataGrid.Columns>
+            <telerik:DataGridTextColumn x:Name="nameColumn" PropertyName="Name"/>
+            <telerik:DataGridNumericalColumn PropertyName="Age"/>
+            <telerik:DataGridTextColumn PropertyName="Address.City" HeaderText="City"/>
+        </telerik:RadDataGrid.Columns>
+    </telerik:RadDataGrid>
+    <!-- << datagrid-nested-property-xaml -->
+</telerik:RadContentView>

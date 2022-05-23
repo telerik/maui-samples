@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        xmlns:local="clr-namespace:SDKBrowserMaui.Examples.ListPickerControl"
+                        x:Class="SDKBrowserMaui.Examples.ListPickerControl.StylingCategory.StylingExample.Styling">
+    <telerik:RadContentView.Resources>
+        <ResourceDictionary>
+            <!-- >> listpicker-features-itemstyle -->
+            <Style TargetType="telerik:SpinnerItemView" x:Key="ItemStyle">
+                <Setter Property="BackgroundColor" Value="#F8F8F8"/>
+                <Setter Property="CornerRadius" Value="0"/>
+                <Setter Property="TextColor" Value="#919191" />
+                <Setter Property="FontSize" Value="12"/>
+            </Style>
+            <!-- << listpicker-features-itemstyle -->
+
+            <!-- >> listpicker-features-selecteditemstyle -->
+            <Style TargetType="telerik:SpinnerItemView" x:Key="SelectedItemStyle">
+                <Setter Property="BackgroundColor" Value="#F0F0F0"/>
+                <Setter Property="CornerRadius" Value="0"/>
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="TextColor" Value="#4A4949" />
+                <Setter Property="FontSize" Value="16"/>
+            </Style>
+            <!-- << listpicker-features-selecteditemstyle -->
+
+            <!-- >> listpicker-style-placeholder-label-style -->
+            <Style TargetType="Label" x:Key="placeholderLabelStyle">
+                <Setter Property="TextColor" Value="#4A4949"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>                
+            </Style>
+            <!-- << listpicker-style-placeholder-label-style -->
+
+            <!-- >> listpicker-style-display-label-style -->
+            <Style TargetType="Label" x:Key="displayLabelStyle">
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+            </Style>
+            <!-- << listpicker-style-display-label-style -->
+
+            <!-- >> datepicker-style-clear-button-style -->
+            <Style TargetType="telerik:RadButton" x:Key="clearButtonStyle">
+                <Setter Property="TextColor" Value="Blue"/>
+            </Style>
+            <!-- << datepicker-style-clear-button-style -->
+
+            <!-- >> datepicker-style-toggle-button-style -->
+            <Style TargetType="telerik:RadButton" x:Key="toggleButtonStyle">
+                <Setter Property="TextColor" Value="LightBlue"/>
+            </Style>
+            <!-- << datepicker-style-toggle-button-style -->
+        </ResourceDictionary>
+    </telerik:RadContentView.Resources>
+    <telerik:RadContentView.Content>
+        <VerticalStackLayout WidthRequest="340" HorizontalOptions="Center">
+            <!-- >> listpicker-style -->
+            <telerik:RadListPicker Placeholder="Pick a City Name!"
+                                   ItemsSource="{Binding Items}" 
+                                   DisplayMemberPath="Name"
+                                   IsLooping="True"
+                                   DisplayStringFormat="You have picked: {0}"
+                                   DisplayLabelStyle="{StaticResource displayLabelStyle}"
+                                   ItemStyle="{StaticResource ItemStyle}"
+                                   SelectedItemStyle="{StaticResource SelectedItemStyle}"
+                                   PlaceholderLabelStyle="{StaticResource placeholderLabelStyle}"
+                                   ClearButtonStyle="{StaticResource clearButtonStyle}"
+                                   ToggleButtonStyle="{StaticResource toggleButtonStyle}"
+                                   IsClearButtonVisible="True"
+                                   IsToggleButtonVisible="True">
+                <telerik:RadListPicker.BindingContext>
+                    <local:CitiesViewModel/>
+                </telerik:RadListPicker.BindingContext>
+            </telerik:RadListPicker>
+            <!-- << listpicker-style -->
+        </VerticalStackLayout>
+    </telerik:RadContentView.Content>
+</telerik:RadContentView>

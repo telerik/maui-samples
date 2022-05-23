@@ -1,0 +1,35 @@
+﻿<Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:windows="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.WindowsSpecific;assembly=Microsoft.Maui.Controls"
+             xmlns:telerik="clr-namespace:Telerik.Maui.Controls;assembly=Telerik.Maui.Controls"
+             x:Class="SDKBrowserMaui.App">
+    <Application.Resources>
+        <ResourceDictionary>
+
+            <Color x:Key="PrimaryColor">#1188FF</Color>
+            <Color x:Key="SecondaryColor">White</Color>
+            <Color x:Key="DefaultTextColor">#000000</Color>
+            <Color x:Key="DefaultTextColorDark">#B8B8B8</Color>
+            <Color x:Key="ApplicationAccentColor">#8660C5</Color>
+
+            <Style TargetType="ImageButton" x:Key="DefaultBackButtonStyle">
+                <Setter Property="Source" Value="arrowleft.png" />
+                <Setter Property="WidthRequest" Value="{OnPlatform Android='25', Default='40'}" />
+                <Setter Property="HeightRequest" Value="{OnPlatform Android='20', Default='35'}" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+            </Style>
+            
+            <Style TargetType="ImageButton" x:Key="IOSBackButtonStyle">
+                <Setter Property="Source" Value="arrowleft.png" />
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+            </Style>
+
+            <Style TargetType="telerik:RadBorder" x:Key="BackButtonBorderStyle">
+                <Setter Property="BorderThickness" Value="0, 0, 1, 0" />
+                <Setter Property="BorderColor" Value="{StaticResource PrimaryColor}" />
+            </Style>
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

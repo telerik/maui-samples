@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        x:Class="SDKBrowserMaui.Examples.DataGridControl.LoadOnDemandCategory.LoadOnDemandAutoTemplateExample.LoadOnDemandAutoTemplate">
+    <telerik:RadContentView.Resources>
+        <ResourceDictionary>
+            <!-- >> datagrid-loadondemandautotemplate-xaml -->
+            <DataTemplate x:Key="CustomLoadOnDemandAutoTemplate">
+                <Label HorizontalOptions="FillAndExpand" 
+                       VerticalOptions="CenterAndExpand" 
+                       Text="Auto Loading" 
+                       FontSize="25"
+                       TextColor="Orange"
+                       BackgroundColor="PaleTurquoise"
+                       IsVisible="{Binding IsDataLoading}"/>
+            </DataTemplate>
+            <!-- << datagrid-loadondemandautotemplate-xaml -->
+        </ResourceDictionary>
+    </telerik:RadContentView.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <!-- >> datagrid-setting-loadondemandautotemplate-xaml -->
+        <telerik:RadDataGrid x:Name="dataGrid" ItemsSource="{Binding Items}"
+                             LoadOnDemand="dataGrid_LoadOnDemand"
+                             LoadOnDemandMode="Automatic"
+                             LoadOnDemandAutoTemplate="{StaticResource CustomLoadOnDemandAutoTemplate}"
+                             LoadOnDemandBufferItemsCount="{Binding Source={x:Reference slider}, Path=Value}"/>
+        <!-- << datagrid-setting-loadondemandautotemplate-xaml -->
+        <VerticalStackLayout Grid.Row="1">
+            <Label Text="LoadOnDemandBufferItemsCount"/>
+            <Slider x:Name="slider" Minimum="0" Maximum="10"/>
+        </VerticalStackLayout>
+    </Grid>
+</telerik:RadContentView>

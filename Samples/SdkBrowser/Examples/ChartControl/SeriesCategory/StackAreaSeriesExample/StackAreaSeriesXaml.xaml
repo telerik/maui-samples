@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        xmlns:local="clr-namespace:SDKBrowserMaui.Examples.ChartControl.SeriesCategory"
+                        x:Class="SDKBrowserMaui.Examples.ChartControl.SeriesCategory.StackAreaSeriesExample.StackAreaSeriesXaml">
+    <telerik:RadContentView.Content>
+        <Grid>
+            <!-- >> chart-series-stackarea-xaml -->
+            <telerik:RadCartesianChart>
+                <telerik:RadCartesianChart.BindingContext>
+                    <local:SeriesCategoricalViewModel />
+                </telerik:RadCartesianChart.BindingContext>
+                <telerik:RadCartesianChart.HorizontalAxis>
+                    <telerik:CategoricalAxis LabelFitMode="MultiLine"
+                                          PlotMode="OnTicks" />
+                </telerik:RadCartesianChart.HorizontalAxis>
+                <telerik:RadCartesianChart.VerticalAxis>
+                    <telerik:NumericalAxis />
+                </telerik:RadCartesianChart.VerticalAxis>
+                <telerik:RadCartesianChart.Series>
+                    <telerik:AreaSeries ValueBinding="Value"
+                                     CategoryBinding="Category"
+                                     CombineMode="Stack"
+                                     ItemsSource="{Binding Data1}" />
+                    <telerik:AreaSeries ValueBinding="Value"
+                                     CategoryBinding="Category"
+                                     CombineMode="Stack"
+                                     ItemsSource="{Binding Data2}" />
+                </telerik:RadCartesianChart.Series>
+            </telerik:RadCartesianChart>
+            <!-- << chart-series-stackarea-xaml -->
+        </Grid>
+    </telerik:RadContentView.Content>
+</telerik:RadContentView>

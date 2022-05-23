@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui" 
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        x:Class="SDKBrowserMaui.Examples.MapControl.FeaturesCategory.ProgrammaticZoomExample.ProgrammaticZoom">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <!-- >> map-zoom-level-xaml -->
+        <telerik:RadMap x:Name="map" MinZoomLevel="2" MaxZoomLevel="5">
+            <telerik:RadMap.Layers>
+                <telerik:ShapefileLayer>
+                    <telerik:ShapefileLayer.Reader>
+                        <telerik:MapShapeReader x:Name="reader"/>
+                    </telerik:ShapefileLayer.Reader>
+                </telerik:ShapefileLayer>
+            </telerik:RadMap.Layers>
+        </telerik:RadMap>
+        <!-- << map-zoom-level-xaml -->
+        <VerticalStackLayout Grid.Row="1">
+            <Button Text="Zoom In" Command="{Binding Source={x:Reference map}, Path=ZoomInCommand}"/>
+            <Button Text="Zoom Out" Command="{Binding Source={x:Reference map}, Path=ZoomOutCommand}"/>
+            <HorizontalStackLayout>
+                <Label VerticalTextAlignment="Center" Text="Zoom to level: "/>
+                <Entry x:Name="zoomLevelEntry" Completed="OnEntryCompleted" WidthRequest="50"/>
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+    </Grid>
+</telerik:RadContentView>

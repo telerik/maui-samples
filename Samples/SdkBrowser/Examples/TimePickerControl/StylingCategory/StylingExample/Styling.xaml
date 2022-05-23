@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        x:Class="SDKBrowserMaui.Examples.TimePickerControl.StylingCategory.StylingExample.Styling">
+    <telerik:RadContentView.Resources>
+        <ResourceDictionary>
+            <!-- >> timepicker-style-spinner-header-style -->
+            <Style TargetType="Label" x:Key="spinnerHeaderStyle">
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+                <Setter Property="VerticalOptions" Value="FillAndExpand"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+            </Style>
+            <!-- << timepicker-style-spinner-header-style -->
+
+            <!-- >> timepicker-style-spinner-style -->
+            <Style TargetType="telerik:RadSpinner" x:Key="spinnerStyle">
+                <Setter Property="ItemStyle">
+                    <Setter.Value>
+                        <Style TargetType="telerik:SpinnerItemView">
+                            <Setter Property="TextColor" Value="#797979" />
+                            <Setter Property="BackgroundColor" Value="#F2F2F2" />
+                            <Setter Property="CornerRadius" Value="10" />
+                            <Setter Property="Margin" Value="6, 4" />
+                        </Style>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="SelectedItemStyle">
+                    <Setter.Value>
+                        <Style TargetType="telerik:SpinnerItemView">
+                            <Setter Property="TextColor" Value="#00B5DC" />
+                            <Setter Property="BackgroundColor" Value="#E4F3F9" />
+                            <Setter Property="CornerRadius" Value="10" />
+                            <Setter Property="Margin" Value="6, 4" />
+
+                        </Style>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="HeightRequest" Value="240"/>
+            </Style>
+            <!-- << timepicker-style-spinner-style -->
+
+            <!-- >> timepicker-style-selection-highlight-style -->
+            <Style TargetType="telerik:RadBorder" x:Key="selectionHighlightStyle">
+                <Setter Property="BorderColor" Value="#00B5DC"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="Padding" Value="0,6,0,6"/>
+                <Setter Property="HeightRequest" Value="40"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+            </Style>
+            <!-- << timepicker-style-selection-highlight-style -->
+
+            <!-- >> timepicker-style-display-label-style -->
+            <Style TargetType="Label" x:Key="displayLabelStyle">
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                <Setter Property="Margin" Value="20"/>
+            </Style>
+            <!-- << timepicker-style-display-label-style -->
+
+            <!-- >> timepicker-style-placeholder-label-style -->
+            <Style TargetType="Label" x:Key="placeholderLabelStyle">
+                <Setter Property="TextColor" Value="#4A4949"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                <Setter Property="Margin" Value="20"/>
+            </Style>
+            <!-- << timepicker-style-placeholder-label-style -->
+
+            <!-- >> datepicker-style-clear-button-style -->
+            <Style TargetType="telerik:RadButton" x:Key="clearButtonStyle">
+                <Setter Property="TextColor" Value="Blue"/>
+            </Style>
+            <!-- << datepicker-style-clear-button-style -->
+
+            <!-- >> datepicker-style-toggle-button-style -->
+            <Style TargetType="telerik:RadButton" x:Key="toggleButtonStyle">
+                <Setter Property="TextColor" Value="LightBlue"/>
+            </Style>
+            <!-- << datepicker-style-toggle-button-style -->
+        </ResourceDictionary>
+    </telerik:RadContentView.Resources>
+
+    <VerticalStackLayout WidthRequest="300" HorizontalOptions="Center">
+        <!-- >> timepicker-style -->
+        <telerik:RadTimePicker SpinnerHeaderStyle="{StaticResource spinnerHeaderStyle}"
+                               SpinnerStyle="{StaticResource spinnerStyle}"
+                               SelectionHighlightStyle="{StaticResource selectionHighlightStyle}"
+                               DisplayLabelStyle="{StaticResource displayLabelStyle}"
+                               PlaceholderLabelStyle="{StaticResource placeholderLabelStyle}"
+                               ClearButtonStyle="{StaticResource clearButtonStyle}"
+                               ToggleButtonStyle="{StaticResource toggleButtonStyle}"
+                               DefaultHighlightedTime="10:30"
+                               DisplayStringFormat="HH:mm"
+                               IsClearButtonVisible="True"
+                               IsToggleButtonVisible="True"/>
+        <!-- << timepicker-style -->
+    </VerticalStackLayout>
+</telerik:RadContentView>

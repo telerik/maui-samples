@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        xmlns:local="clr-namespace:SDKBrowserMaui.Examples.ChartControl.SeriesCategory"
+                        x:Class="SDKBrowserMaui.Examples.ChartControl.SeriesCategory.ScatterAreaSeriesExample.ScatterAreaSeriesXaml">
+    <telerik:RadContentView.Content>
+        <Grid>
+            <!-- >> chart-series-scatterarea-xaml -->
+            <telerik:RadCartesianChart>
+                <telerik:RadCartesianChart.BindingContext>
+                    <local:NumericalViewModel />
+                </telerik:RadCartesianChart.BindingContext>
+                <telerik:RadCartesianChart.HorizontalAxis>
+                    <telerik:NumericalAxis LabelFitMode="MultiLine" />
+                </telerik:RadCartesianChart.HorizontalAxis>
+                <telerik:RadCartesianChart.VerticalAxis>
+                    <telerik:NumericalAxis />
+                </telerik:RadCartesianChart.VerticalAxis>
+                <telerik:RadCartesianChart.Series>
+                    <telerik:ScatterAreaSeries XValueBinding="XData"
+                                            YValueBinding="YData"
+                                            ItemsSource="{Binding Data}" />
+                </telerik:RadCartesianChart.Series>
+            </telerik:RadCartesianChart>
+            <!-- << chart-series-scatterarea-xaml -->
+        </Grid>
+    </telerik:RadContentView.Content>
+</telerik:RadContentView>

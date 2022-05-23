@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        xmlns:local="clr-namespace:SDKBrowserMaui.Examples.ListPickerControl"
+                        x:Class="SDKBrowserMaui.Examples.ListPickerControl.TemplatesCategory.CustomTemplatesExample.CustomTemplates">
+
+    <telerik:RadContentView.Resources>
+        <ResourceDictionary>
+            <!-- >> listpicker-features-itemtemplate -->
+            <DataTemplate x:Key="itemTemplate">
+                <Label Text="{Binding Population}" 
+                       BackgroundColor="LightYellow"
+                       HorizontalTextAlignment="Center" 
+                       VerticalTextAlignment="Center"/>
+            </DataTemplate>
+            <!-- << listpicker-features-itemtemplate -->
+
+            <!-- >> listpicker-features-selecteditemtemplate -->
+            <DataTemplate x:Key="selectedItemTemplate">
+                <Label Text="{Binding Name}" 
+                       BackgroundColor="LightBlue"
+                       HorizontalTextAlignment="Center" 
+                       VerticalTextAlignment="Center"/>
+            </DataTemplate>
+            <!-- << listpicker-features-selecteditemtemplate -->
+
+            <!-- >> listpicker-features-placeholdertemplate -->
+            <ControlTemplate x:Key="placeholderTemplate">
+                <Grid>
+                    <Button Text="Tap to open list picker"
+                           FontAttributes="Bold"
+                           TextColor="White"
+                           BackgroundColor="#B73562"
+                           Padding="20"
+                           Command="{TemplateBinding ToggleCommand}" />
+                </Grid>
+            </ControlTemplate>
+            <!-- << listpicker-features-placeholdertemplate -->
+
+            <!-- >> listpicker-features-headertemplate -->
+            <ControlTemplate x:Key="headerTemplate">
+                <Grid>
+                    <Label Text="Select city:"
+                           TextColor="White"
+                           Padding="20"
+                           FontSize="16"
+                           VerticalTextAlignment="Center"
+                           HorizontalTextAlignment="Center"
+                           BackgroundColor="#B73562"/>
+                </Grid>
+            </ControlTemplate>
+            <!-- << listpicker-features-headertemplate -->
+
+            <!-- >> listpicker-features-footertemplate -->
+            <ControlTemplate x:Key="footerTemplate">
+                <StackLayout Orientation="Horizontal" Spacing="0" HorizontalOptions="FillAndExpand" BackgroundColor="#B73562">
+                    <telerik:RadButton Text="Cancel"
+                                       WidthRequest="80"
+                                       TextColor="White"
+                                       BackgroundColor="Transparent"
+                                       Command="{TemplateBinding CancelCommand}" />
+                    <telerik:RadButton Text="OK"
+                                       WidthRequest="80"
+                                       TextColor="White"
+                                       BackgroundColor="Transparent"
+                                       Command="{TemplateBinding AcceptCommand}" />
+                </StackLayout>
+            </ControlTemplate>
+            <!-- << listpicker-features-footertemplate -->
+        </ResourceDictionary>
+    </telerik:RadContentView.Resources>
+    <VerticalStackLayout WidthRequest="300" HorizontalOptions="Center">
+        <!-- >> listpicker-features-templates -->
+        <telerik:RadListPicker PlaceholderTemplate="{StaticResource placeholderTemplate}"
+                               ItemTemplate="{StaticResource itemTemplate}"
+                               SelectedItemTemplate="{StaticResource selectedItemTemplate}"
+                               ItemLength="40"
+                               ItemSpacing="4"
+                               ItemsSource="{Binding Items}" 
+                               DisplayMemberPath="Name"
+                               x:Name="listPicker">
+            <telerik:RadListPicker.BindingContext>
+                <local:CitiesViewModel/>
+            </telerik:RadListPicker.BindingContext>
+            <telerik:RadListPicker.PopupSettings>
+                <telerik:PickerPopupSettings HeaderTemplate="{StaticResource headerTemplate}"
+                                             FooterTemplate="{StaticResource footerTemplate}"/>
+            </telerik:RadListPicker.PopupSettings>
+            <telerik:RadListPicker.DropDownSettings>
+                <telerik:PickerDropDownSettings FooterTemplate="{StaticResource footerTemplate}"/>
+            </telerik:RadListPicker.DropDownSettings>
+        </telerik:RadListPicker>
+        <!-- << listpicker-features-templates -->
+    </VerticalStackLayout>
+</telerik:RadContentView>

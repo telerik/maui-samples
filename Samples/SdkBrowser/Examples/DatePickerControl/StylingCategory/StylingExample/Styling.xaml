@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        x:Class="SDKBrowserMaui.Examples.DatePickerControl.StylingCategory.StylingExample.Styling">
+    <telerik:RadContentView.Resources>
+        <ResourceDictionary>
+            <!-- >> datepicker-style-spinner-header-style -->
+            <Style TargetType="Label" x:Key="spinnerHeaderStyle">
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+                <Setter Property="VerticalOptions" Value="FillAndExpand"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+            </Style>
+            <!-- << datepicker-style-spinner-header-style -->
+
+            <!-- >> datepicker-style-spinner-style -->
+            <Style TargetType="telerik:RadSpinner" x:Key="spinnerStyle">
+                <Setter Property="ItemStyle">
+                    <Setter.Value>
+                        <Style TargetType="telerik:SpinnerItemView">
+                            <Setter Property="TextColor" Value="#4A4949"/>
+                        </Style>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="SelectedItemStyle">
+                    <Setter.Value>
+                        <Style TargetType="telerik:SpinnerItemView">
+                            <Setter Property="TextColor" Value="Black"/>
+                            <Setter Property="FontAttributes" Value="Bold"/>
+                        </Style>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="HeightRequest" Value="240"/>
+            </Style>
+            <!-- << datepicker-style-spinner-style -->
+
+            <!-- >> datepicker-style-selection-highlight-style -->
+            <Style TargetType="telerik:RadBorder" x:Key="selectionHighlightStyle">
+                <Setter Property="BorderColor" Value="#00B5DC"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="Padding" Value="0,6,0,6"/>
+                <Setter Property="HeightRequest" Value="40"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+            </Style>
+            <!-- << datepicker-style-selection-highlight-style -->
+
+            <!-- >> datepicker-style-display-label-style -->
+            <Style TargetType="Label" x:Key="displayLabelStyle">
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                <Setter Property="Margin" Value="20"/>
+            </Style>
+            <!-- << datepicker-style-display-label-style -->
+
+            <!-- >> datepicker-style-placeholder-label-style -->
+            <Style TargetType="Label" x:Key="placeholderLabelStyle">
+                <Setter Property="TextColor" Value="#4A4949"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                <Setter Property="Margin" Value="20"/>
+            </Style>
+            <!-- << datepicker-style-placeholder-label-style -->
+
+            <!-- >> datepicker-style-clear-button-style -->
+            <Style TargetType="telerik:RadButton" x:Key="clearButtonStyle">
+                <Setter Property="TextColor" Value="Blue"/>
+            </Style>
+            <!-- << datepicker-style-clear-button-style -->
+
+            <!-- >> datepicker-style-toggle-button-style -->
+            <Style TargetType="telerik:RadButton" x:Key="toggleButtonStyle">
+                <Setter Property="TextColor" Value="LightBlue"/>
+            </Style>
+            <!-- << datepicker-style-toggle-button-style -->
+        </ResourceDictionary>
+    </telerik:RadContentView.Resources>
+
+    <VerticalStackLayout WidthRequest="300" HorizontalOptions="Center">
+        <!-- >> datepicker-style -->
+        <telerik:RadDatePicker BackgroundColor="AliceBlue"
+                               SpinnerHeaderStyle="{StaticResource spinnerHeaderStyle}"
+                               SpinnerStyle="{StaticResource spinnerStyle}"
+                               SelectionHighlightStyle="{StaticResource selectionHighlightStyle}"
+                               DisplayLabelStyle="{StaticResource displayLabelStyle}"
+                               PlaceholderLabelStyle="{StaticResource placeholderLabelStyle}"
+                               ClearButtonStyle="{StaticResource clearButtonStyle}"
+                               ToggleButtonStyle="{StaticResource toggleButtonStyle}"
+                               DefaultHighlightedDate="2020,05,15"
+                               SpinnerFormat="yyy/MMM/dd"
+                               DisplayStringFormat="yyyy/MMM/dd"
+                               IsClearButtonVisible="True"
+                               IsToggleButtonVisible="True"/>
+        <!-- << datepicker-style -->
+    </VerticalStackLayout>
+</telerik:RadContentView>

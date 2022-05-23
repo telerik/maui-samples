@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        xmlns:local="clr-namespace:SDKBrowserMaui.Examples.ComboBoxControl"
+                        x:Class="SDKBrowserMaui.Examples.ComboBoxControl.TemplatesCategory.HeaderFooterExample.HeaderFooter"
+                        Margin="5">  
+    <telerik:RadContentView.Content>
+        <VerticalStackLayout WidthRequest="300" HorizontalOptions="Center">
+            <!-- >> combobox-header-footer-template -->
+            <telerik:RadComboBox ItemsSource="{Binding Items}" 
+                                 DisplayMemberPath="Name"
+                                 IsEditable="True"
+                                 SearchMode="Contains"
+                                 SearchTextPath="Name"
+                                 Placeholder="Select which city you want to visit"
+                                 SelectionMode="Multiple"
+                                 DropDownHeight="300"
+                                 x:Name="comboBox">
+                <telerik:RadComboBox.HeaderTemplate>
+                    <DataTemplate>
+                        <StackLayout BackgroundColor="LightBlue">
+                            <Label Text="To Visit List!" 
+                                   FontSize="20"
+                                   TextColor="Black"
+                                   BackgroundColor="LightBlue"
+                                   VerticalOptions="Center" 
+                                   HorizontalOptions="Center"/>
+                        </StackLayout>
+                    </DataTemplate>
+                </telerik:RadComboBox.HeaderTemplate>
+                <telerik:RadComboBox.FooterTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Button Text="Add Items" 
+                                    Clicked="Button_Clicked" 
+                                    BackgroundColor="LightBlue"/>
+                        </StackLayout>
+                    </DataTemplate>
+                </telerik:RadComboBox.FooterTemplate>
+            </telerik:RadComboBox>
+            <!-- << combobox-header-footer-template -->
+        </VerticalStackLayout>
+    </telerik:RadContentView.Content>
+</telerik:RadContentView>

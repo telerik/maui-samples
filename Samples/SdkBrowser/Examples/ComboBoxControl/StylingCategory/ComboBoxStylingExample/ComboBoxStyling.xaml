@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        xmlns:local="clr-namespace:SDKBrowserMaui.Examples.ComboBoxControl"
+                        x:Class="SDKBrowserMaui.Examples.ComboBoxControl.StylingCategory.ComboBoxStylingExample.ComboBoxStyling"
+                        Margin="5">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <!-- >> combobox-clearbutton-style -->
+            <Style TargetType="telerik:RadButton" x:Key="ClearButtonStyle">
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="WidthRequest" Value="24"/>
+                <Setter Property="HeightRequest" Value="24"/>
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="BackgroundColor" Value="Transparent"/>      
+                <Setter Property="TextColor" Value="Blue"/>
+                <Setter Property="Padding" Value="{OnPlatform Android='6, 2, 8, 2', iOS='4, 2, 4, 2', MacCatalyst='4, 0, 4, 0', WinUI='5, 0, 5, 0'}"/>
+            </Style>
+            <!-- << combobox-clearbutton-style -->
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <telerik:RadContentView.Content>
+        <VerticalStackLayout WidthRequest="300" HorizontalOptions="Center">
+            <!-- >> combobox-styling -->
+            <telerik:RadComboBox ItemsSource="{Binding Items}" 
+                                 Placeholder="Select City!"
+                                 PlaceholderColor="Blue"
+                                 BackgroundColor="LightGray"
+                                 BorderColor="Black"
+                                 BorderThickness="2"
+                                 ClearButtonStyle="{StaticResource ClearButtonStyle}"
+                                 DisplayMemberPath="Name">
+                <telerik:RadComboBox.BindingContext>
+                    <local:ViewModel/>
+                </telerik:RadComboBox.BindingContext>
+            </telerik:RadComboBox>
+            <!-- << combobox-styling -->
+        </VerticalStackLayout>
+    </telerik:RadContentView.Content>
+</telerik:RadContentView>

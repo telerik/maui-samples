@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView x:Class="SDKBrowserMaui.Examples.TabViewControl.StylingCategory.HeaderItemStyleExample.TabViewHeaderItemStyle"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+>
+    <!--  >> tabview-styling-headeritemstyle  -->
+    <telerik:RadTabView x:Name="tabView">
+        <telerik:RadTabView.HeaderItemStyle>
+            <Style TargetType="telerik:TabViewHeaderItem">
+                <Setter Property="FontAttributes" Value="Italic"/>
+                <Setter Property="TextColor" Value="#99000000" />
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup Name="CommonStates">
+                            <VisualState Name="Normal" />
+                            <VisualState Name="Disabled">
+                                <VisualState.Setters>
+                                    <Setter Property="TextColor" Value="#61000000" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="Selected">
+                                <VisualState.Setters>
+                                    <Setter Property="TextColor" Value="#e05194" />
+                                    <Setter Property="BorderColor" Value="#e05194" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+        </telerik:RadTabView.HeaderItemStyle>
+        <telerik:TabViewItem HeaderText="Home">
+            <Label Margin="10" Text="This is the content of the Home tab" />
+        </telerik:TabViewItem>
+        <telerik:TabViewItem HeaderText="Folder">
+            <Label Margin="10" Text="This is the content of the Folder tab" />
+        </telerik:TabViewItem>
+        <telerik:TabViewItem HeaderText="View">
+            <Label Margin="10" Text="This is the content of the View tab" />
+        </telerik:TabViewItem>
+    </telerik:RadTabView>
+    <!--  << tabview-styling-headeritemstyle  -->
+</ContentView>

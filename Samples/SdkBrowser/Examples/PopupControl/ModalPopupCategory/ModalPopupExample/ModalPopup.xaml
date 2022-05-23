@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        x:Class="SDKBrowserMaui.Examples.PopupControl.ModalPopupCategory.ModalPopupExample.ModalPopup"
+                        Margin="5">
+    <telerik:RadContentView.Content>
+        <Grid Margin="10">
+            <!-- >> popup-features-modal -->
+            <Button HorizontalOptions="Center"
+                    VerticalOptions="Start"
+                    BackgroundColor="#7A9BFF"
+                    TextColor="White"
+                    Text="Show modal popup"
+                    Clicked="ShowPopup"
+                    x:Name="button">
+                <telerik:RadPopup.Popup>
+                    <telerik:RadPopup x:Name="popup"
+                                      IsModal="True"
+                                      OutsideBackgroundColor="#B3FFF493">
+                        <telerik:RadBorder CornerRadius="6" 
+                                           BackgroundColor="#93D7FF"
+                                           Padding="5">
+                            <Grid Padding="10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="60" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Label Text="Popup for .NET MAUI" LineBreakMode="WordWrap"/>
+                                <telerik:RadButton Grid.Row="1"
+                                                   MinimumWidthRequest="60"
+                                                   Padding="2"
+                                                   HorizontalOptions="Center"
+                                                   Text="Close"
+                                                   Clicked="ClosePopup"
+                                                   CornerRadius="6"
+                                                   BackgroundColor="#7A9BFF"
+                                                   TextColor="White" />
+                            </Grid>
+                        </telerik:RadBorder>
+                    </telerik:RadPopup>
+                </telerik:RadPopup.Popup>
+            </Button>
+            <!-- << popup-features-modal -->
+        </Grid>
+    </telerik:RadContentView.Content>
+</telerik:RadContentView>

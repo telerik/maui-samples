@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        x:Class="SDKBrowserMaui.Examples.DataGridControl.SortingCategory.ProgrammaticSortingExample.ProgrammaticSorting">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Picker x:Name="columnPicker" />
+        <Button Clicked="SortAscButtonClicked" 
+                Text="Sort Ascending"
+                Grid.Column="1" />
+        <Button Clicked="SortDescButtonClicked"
+                Text="Sort Descending" 
+                Grid.Row="1" />
+        <Button Clicked="ClearSortClicked"
+                Text="Clear Sort"
+                Grid.Row="1"
+                Grid.Column="1" />
+        <telerik:RadDataGrid x:Name="grid" 
+                             ItemsSource="{Binding}"
+                             Grid.Row="2" 
+                             Grid.ColumnSpan="2"
+                             AutoGenerateColumns="False">
+            <telerik:RadDataGrid.Columns>
+                <telerik:DataGridTextColumn PropertyName="Name" />
+                <telerik:DataGridNumericalColumn PropertyName="Population" />
+            </telerik:RadDataGrid.Columns>
+        </telerik:RadDataGrid>
+    </Grid>
+</telerik:RadContentView>

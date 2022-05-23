@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        x:Class="SDKBrowserMaui.Examples.SideDrawerControl.FeaturesCategory.TransitionsExample.Transitions">
+    <Grid RowDefinitions="Auto, *">
+        <StackLayout Orientation="Horizontal" Spacing="10">
+            <ImageButton WidthRequest="32" 
+                         HeightRequest="32" 
+                         BorderWidth="0" 
+                         Source="hamburgermenu.png"
+                         BorderColor="Transparent" 
+                         BackgroundColor="Transparent" 
+                         Clicked="OnButtonClicked" />
+            <Label VerticalOptions="Center" Text="SideDrawer" />
+        </StackLayout>
+        <!--  >> sidedrawer-transition-xaml  -->
+        <telerik:RadSideDrawer x:Name="drawer" 
+                               Grid.Row="1" 
+                               DrawerLength="250">
+            <telerik:RadSideDrawer.MainContent>
+                <StackLayout Orientation="Vertical">
+                    <Label Text="Transition Type:" />
+                    <telerik:RadListPicker WidthRequest="300" 
+                                           x:Name="picker" BindingContext="{x:Reference drawer }" 
+                                           SelectedItem="{Binding DrawerTransitionType, Mode=TwoWay}" />
+                </StackLayout>
+            </telerik:RadSideDrawer.MainContent>
+            <telerik:RadSideDrawer.DrawerContent>
+                <Grid WidthRequest="220">
+                    <ListView x:Name="drawerList" />
+                </Grid>
+            </telerik:RadSideDrawer.DrawerContent>
+        </telerik:RadSideDrawer>
+        <!--  << sidedrawer-transition-xaml  -->
+    </Grid>
+</telerik:RadContentView>

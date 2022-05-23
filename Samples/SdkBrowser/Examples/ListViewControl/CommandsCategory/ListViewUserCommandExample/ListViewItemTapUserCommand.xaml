@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        xmlns:local="clr-namespace:SDKBrowserMaui.Examples.ListViewControl.CommandsCategory"
+                        x:Class="SDKBrowserMaui.Examples.ListViewControl.CommandsCategory.ListViewUserCommandExample.ListViewItemTapUserCommand"
+                        Margin="5">
+    <telerik:RadContentView.Content>
+        <VerticalStackLayout Margin="5" Spacing="20">
+            <Label Text="Tap any of the items" />
+            <telerik:RadListView x:Name="listView" 
+                                             ItemsSource="{Binding Source}">
+                <telerik:RadListView.BindingContext>
+                    <local:ViewModel />
+                </telerik:RadListView.BindingContext>
+                <telerik:RadListView.Commands>
+                    <telerik:ListViewUserCommand Id="ItemTap" 
+                                                                 Command="{Binding ItemTapCommand}" />
+                </telerik:RadListView.Commands>
+            </telerik:RadListView>
+        </VerticalStackLayout>
+    </telerik:RadContentView.Content>
+</telerik:RadContentView>

@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        xmlns:local="clr-namespace:SDKBrowser.Examples.ChartControl.LegendCategory"
+                        x:Class="SDKBrowserMaui.Examples.ChartControl.LegendCategory.PieChartRadLegendExample.PieChartRadLegendXaml"
+                        Margin="5">
+    <StackLayout>
+        <!-- >> chart-features-piechart-legend-definition-xaml -->
+        <telerik:RadPieChart x:Name="pieChart" HeightRequest="300">
+            <telerik:RadCartesianChart.BindingContext>
+                <local:ViewModel />
+            </telerik:RadCartesianChart.BindingContext>
+            <!-- >> chart-features-piechart-legendtitlebinding-xaml -->
+            <telerik:RadPieChart.Series>
+                <telerik:PieSeries DisplayName="Value" LegendTitleBinding="Category" ItemsSource="{Binding Data1}" ValueBinding="Value"/>
+            </telerik:RadPieChart.Series>
+            <!-- << chart-features-piechart-legendtitlebinding-xaml -->
+        </telerik:RadPieChart>
+        <telerik:RadLegend HeightRequest="200" 
+                           LegendItemFontColor="DarkGreen"
+                           LegendItemFontSize="20"
+                           LegendProvider="{x:Reference Name=pieChart}"/>
+        <!-- << chart-features-piechart-legend-definition-xaml -->
+    </StackLayout>
+</telerik:RadContentView>

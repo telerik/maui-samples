@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        x:Class="SDKBrowserMaui.Examples.MaskedEntryControl.MaskTypesCategory.NumericMaskExample.NumericMask"
+                        Margin="5">
+    <telerik:RadContentView.Content>
+        <ScrollView>
+            <VerticalStackLayout>
+
+                <Label Text="Percent (double) mask:" Margin="0, 10, 0, 0" />
+                <!-- >> numericmaskedentry-mask-p-xaml -->
+                <telerik:RadNumericMaskedEntry Mask="P" />
+                <!-- << numericmaskedentry-mask-p-xaml -->
+
+                <Label Text="Fixed (decimal) mask:" Margin="0, 10, 0, 0" />
+                <!-- >> numericmaskedentry-mask-f-xaml -->
+                <telerik:RadNumericMaskedEntry Mask="F" />
+                <!-- << numericmaskedentry-mask-f-xaml -->
+
+                <Label Text="Fixed (decimal) mask:" Margin="0, 10, 0, 0" />
+                <!-- >> numericmaskedentry-mask-g-xaml -->
+                <telerik:RadNumericMaskedEntry Mask="G" />
+                <!-- << numericmaskedentry-mask-g-xaml -->
+
+                <Label Text="Decimal (decimal) mask:" Margin="0, 10, 0, 0" />
+                <!-- >> numericmaskedentry-mask-n-xaml -->
+                <telerik:RadNumericMaskedEntry Mask="N" />
+                <!-- << numericmaskedentry-mask-n-xaml -->
+
+                <Label Text="Standart (long) mask:" Margin="0, 10, 0, 0" />
+                <!-- >> numericmaskedentry-mask-d-xaml -->
+                <telerik:RadNumericMaskedEntry Mask="D" />
+                <!-- << numericmaskedentry-mask-d-xaml -->
+
+                <Label Text="Currency (decimal) mask:" Margin="0, 10, 0, 0" />
+                <!-- >> numericmaskedentry-mask-c-xaml -->
+                <telerik:RadNumericMaskedEntry Mask="C" />
+                <!-- << numericmaskedentry-mask-c-xaml -->
+
+            </VerticalStackLayout>
+        </ScrollView>
+    </telerik:RadContentView.Content>
+</telerik:RadContentView>

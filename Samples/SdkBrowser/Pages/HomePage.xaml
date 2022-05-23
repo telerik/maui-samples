@@ -1,0 +1,47 @@
+﻿<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+    xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+    xmlns:views="clr-namespace:SDKBrowserMaui.Views"
+    ios:Page.UseSafeArea="True"
+    NavigationPage.HasNavigationBar="False"
+    x:Class="SDKBrowserMaui.Pages.HomePage">
+    <Grid RowDefinitions="50, *">
+        <views:HeaderView />
+        <telerik:RadListView x:Name="controlsListView" 
+                                         Grid.Row="1"
+                                         ItemsSource="{Binding Controls}"
+                                         SelectionMode="None"
+                                         PropertyChanged="OnPropertyChanged">
+            <telerik:RadListView.Commands>
+                <telerik:ListViewUserCommand  Command="{Binding NextCommand}" />
+            </telerik:RadListView.Commands>
+            <telerik:RadListView.PressedItemStyle>
+                <telerik:ListViewItemStyle BackgroundColor="Transparent" />
+            </telerik:RadListView.PressedItemStyle>
+            <telerik:RadListView.ItemTemplate>
+                <DataTemplate>
+                    <telerik:ListViewTemplateCell>
+                        <telerik:ListViewTemplateCell.View>
+                            <Grid ColumnSpacing="5"
+                                  RowDefinitions="40"
+                                  ColumnDefinitions="50,*">
+                                <Image Source="{Binding Icon}"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"
+                                       Aspect="Fill"
+                                       WidthRequest="16"
+                                       HeightRequest="16" />
+                                <Label Grid.Column="1"
+                                       Text="{Binding Title}"
+                                       TextColor="{AppThemeBinding Light={StaticResource DefaultTextColor}, Dark={StaticResource DefaultTextColorDark}}"
+                                       VerticalOptions="Center" />
+                            </Grid>
+                        </telerik:ListViewTemplateCell.View>
+                    </telerik:ListViewTemplateCell>
+                </DataTemplate>
+            </telerik:RadListView.ItemTemplate>
+        </telerik:RadListView>
+    </Grid>
+</ContentPage>

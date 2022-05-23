@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.MaskedEntryControl.FeaturesCategory.StylingExample.Styling">
+    <telerik:RadContentView.Content>
+        <VerticalStackLayout>
+            <!-- >> maskedentry-styling-xaml -->
+            <telerik:RadEmailMaskedEntry x:Name="styleEmailMaskedEntry" 
+                                         Placeholder="your_email@gmail.com"
+                                         EntryCornerRadius="25" 
+                                         FontSize="20"
+                                         TextColor="Black"
+                                         BackgroundColor="Transparent"
+                                         ClearButtonColor="Red"
+                                         HoveredClearButtonColor="Blue"
+                                         PressedClearButtonColor="Black"
+                                         EntryBackgroundColor="LightGray"/>
+            <!-- << maskedentry-styling-xaml -->
+        </VerticalStackLayout>
+    </telerik:RadContentView.Content>
+</telerik:RadContentView>

@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        xmlns:local="clr-namespace:SDKBrowserMaui.Examples.ComboBoxControl"
+                        x:Class="SDKBrowserMaui.Examples.ComboBoxControl.TemplatesCategory.ItemSelectedItemTemplatesExample.ItemSelectedItemTemplates"
+                        Margin="5">  
+    <telerik:RadContentView.Content>
+        <VerticalStackLayout WidthRequest="300" HorizontalOptions="Center">
+            <!-- >> combobox-item-selecteditem-templates -->
+            <telerik:RadComboBox ItemsSource="{Binding Items}" 
+                                 DisplayMemberPath="Name"
+                                 Placeholder="Select City">
+                <telerik:RadComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <telerik:RadBorder BackgroundColor="LightYellow"
+                                           MinimumWidthRequest="300">
+                            <Label Text="{Binding Name}" 
+                                   Padding="8, 7, 0, 7"
+                                   TextColor="Black"/>
+                        </telerik:RadBorder>
+                    </DataTemplate>
+                </telerik:RadComboBox.ItemTemplate>
+                <telerik:RadComboBox.SelectedItemTemplate>
+                    <DataTemplate>
+                        <telerik:RadBorder BackgroundColor="LightBlue"
+                                           MinimumWidthRequest="300">
+                            <VerticalStackLayout>
+                                <Label Text="{Binding Name}"
+                                       Padding="8, 7, 0, 7"
+                                       TextColor="Black"/>
+                                <Label Text="{Binding Population}" 
+                                       FontSize="12"
+                                       Padding="8, 7, 0, 7"/>
+                            </VerticalStackLayout>                            
+                        </telerik:RadBorder>
+                    </DataTemplate>
+                </telerik:RadComboBox.SelectedItemTemplate>
+            </telerik:RadComboBox>
+            <!-- << combobox-item-selecteditem-templates -->
+        </VerticalStackLayout>
+    </telerik:RadContentView.Content>
+</telerik:RadContentView>

@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        xmlns:local="clr-namespace:SDKBrowserMaui.Examples.ListViewControl.LoadOnDemandCategory.LoadOnDemandCommandExample"
+                        x:Class="SDKBrowserMaui.Examples.ListViewControl.LoadOnDemandCategory.LoadOnDemandCommandExample.LoadOnDemandCommand"
+                        Margin="5">
+    <telerik:RadContentView.Content>
+        <Grid>
+            <!--  >> listview-loadondemand-loadondemandcommand-declaration  -->
+            <telerik:RadListView x:Name="listView"
+                                             ItemsSource="{Binding Source}"
+                                             IsLoadOnDemandEnabled="True"
+                                             IsLoadOnDemandActive="{Binding IsLoadingMoreItems}"
+                                             LoadOnDemandMode="Manual">
+                <telerik:RadListView.BindingContext>
+                    <local:ViewModel/>
+                </telerik:RadListView.BindingContext>
+                <telerik:RadListView.Commands>
+                    <telerik:ListViewUserCommand Id="LoadOnDemand" 
+                                                             Command="{Binding LoadItemsCommand}" />
+                </telerik:RadListView.Commands>
+            </telerik:RadListView>
+            <!--  << listview-loadondemand-loadondemandcommand-declaration  -->
+        </Grid>
+    </telerik:RadContentView.Content>
+</telerik:RadContentView>
