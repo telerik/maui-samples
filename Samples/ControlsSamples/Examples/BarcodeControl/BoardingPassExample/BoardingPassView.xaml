@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        x:Class="QSF.Examples.BarcodeControl.BoardingPassExample.BoardingPassView"
+                        Margin="5">
+    <telerik:RadContentView.Resources>
+        <ResourceDictionary>
+            <Color x:Key="BoardingPassAccentColor">#3A6BC7</Color>
+            <Color x:Key="DarkBackgroundColorLight">#F5F6F7</Color>
+            <Color x:Key="TextColorLight">#4A4E52</Color>
+
+            <Style TargetType="Label" x:Key="PassBoxHeaderLabelStyle">
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="Margin" Value="0" />
+                <Setter Property="FontSize" Value="24" />
+            </Style>
+            <Style TargetType="Label" x:Key="BodyLabelStyle">
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="TextColor" Value="#4A4E52" />
+            </Style>
+            <Style BasedOn="{StaticResource HeaderLabelStyle}" TargetType="Label" x:Key="DestinationsHeaderLabelStyle">
+                <Setter Property="TextColor" Value="{StaticResource BoardingPassAccentColor}" />
+                <Setter Property="FontSize" Value="30" />
+            </Style>
+
+            <Style BasedOn="{StaticResource BodyLabelStyle}" TargetType="Label" x:Key="DestinationsBodyLabelStyle">
+                <Setter Property="Margin" Value="0, -10, 0, 0" />
+            </Style>
+
+            <Style TargetType="StackLayout" x:Key="DestinationsHeaderContainerStyle">
+                <Setter Property="Margin" Value="0, 20, 0, 20" />
+                <Setter Property="Spacing" Value="4" />
+            </Style>
+
+            <Style TargetType="Label" x:Key="PassBoxPropertyNameLabelStyle" BasedOn="{StaticResource BodyLabelStyle}">
+                <Setter Property="TextColor" Value="{StaticResource BoardingPassAccentColor}" />
+                <Setter Property="Margin" Value="0, 30, 0, 0" />
+            </Style>
+
+            <Style TargetType="Label" x:Key="PassBoxPropertyValueLabelStyle" BasedOn="{StaticResource BodyLabelStyle}">
+                <Setter Property="FontSize" Value="18" />
+            </Style>
+        </ResourceDictionary>
+    </telerik:RadContentView.Resources>
+
+    <ScrollView>
+        <Grid Padding="20"
+              BackgroundColor="{AppThemeBinding Light={StaticResource DarkBackgroundColorLight}}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <telerik:RadBorder BackgroundColor="{StaticResource BoardingPassAccentColor}" HeightRequest="80" CornerRadius="6, 6, 0, 0">
+                <HorizontalStackLayout Margin="20, 0, 0, 0" VerticalOptions="Center">
+                    <Label Text="SOF " Style="{StaticResource PassBoxHeaderLabelStyle}" />
+                    <Image Source="arrowright.png" HeightRequest="22" Margin="0, 5, 0, 0" />
+                    <Label Text=" LIS" Style="{StaticResource PassBoxHeaderLabelStyle}" />
+                </HorizontalStackLayout>
+            </telerik:RadBorder>
+
+            <telerik:RadBorder BackgroundColor="{AppThemeBinding Light=White}" 
+                               Grid.Row="1" 
+                               CornerRadius="0, 0, 6, 6">
+                <Grid Padding="20, 0" 
+                      ColumnDefinitions="*,2*,*"
+                      RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,*">
+                    <VerticalStackLayout HorizontalOptions="End" Style="{StaticResource DestinationsHeaderContainerStyle}">
+                        <Label Text="SOF" HorizontalOptions="Center" Style="{StaticResource DestinationsHeaderLabelStyle}" />
+                        <Label Text="Sofia," HorizontalOptions="Center" Style="{StaticResource DestinationsBodyLabelStyle}" />
+                        <Label Text="Bulgaria" HorizontalOptions="Center" Style="{StaticResource DestinationsBodyLabelStyle}" />
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="1" Spacing="10">
+                        <Image Source="airplane.png" HeightRequest="22" HorizontalOptions="Center" />
+                        <Label Text="3 hrs 35 min" HorizontalOptions="Center" Style="{StaticResource DestinationsBodyLabelStyle}" />
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout HorizontalOptions="Start" Grid.Column="2" Style="{StaticResource DestinationsHeaderContainerStyle}">
+                        <Label Text="LIS" HorizontalOptions="Center" Style="{StaticResource DestinationsHeaderLabelStyle}" />
+                        <Label Text="Lisbon," HorizontalOptions="Center" Style="{StaticResource DestinationsBodyLabelStyle}" />
+                        <Label Text="Portugal" HorizontalOptions="Center" Style="{StaticResource DestinationsBodyLabelStyle}" />
+                    </VerticalStackLayout>
+
+                    <BoxView BackgroundColor="{StaticResource DarkBackgroundColorLight}" Grid.Row="1" Grid.ColumnSpan="3" HeightRequest="2" Margin="0, 10" />
+
+                    <Label Text="Passenger" Style="{StaticResource PassBoxPropertyNameLabelStyle}" Grid.Row="2" Grid.ColumnSpan="2" />
+                    <Label Text="Mrs. Lara Howard" Grid.Row="3" Grid.ColumnSpan="2" Style="{StaticResource PassBoxPropertyValueLabelStyle}" />
+
+                    <Label Text="Seat" Style="{StaticResource PassBoxPropertyNameLabelStyle}" Grid.Row="2" Grid.Column="2" />
+                    <Label Text="12C" Grid.Row="3" Grid.Column="2" Style="{StaticResource PassBoxPropertyValueLabelStyle}" />
+
+                    <Label Text="Flight" Style="{StaticResource PassBoxPropertyNameLabelStyle}" Grid.Row="4" />
+                    <Label Text="S7 129" Grid.Row="5" Grid.ColumnSpan="2" Style="{StaticResource PassBoxPropertyValueLabelStyle}" />
+
+                    <Label Text="Departure" Style="{StaticResource PassBoxPropertyNameLabelStyle}" Grid.Row="4" Grid.Column="1" />
+                    <Label Text="06 June 2018" Grid.Row="5" Grid.Column="1" Style="{StaticResource PassBoxPropertyValueLabelStyle}" />
+
+                    <Label Text="Hour" Style="{StaticResource PassBoxPropertyNameLabelStyle}" Grid.Row="4" Grid.Column="2" />
+                    <Label Text="6.30 pm" Grid.Row="5" Grid.Column="2" Style="{StaticResource PassBoxPropertyValueLabelStyle}" />
+
+                    <BoxView BackgroundColor="{StaticResource DarkBackgroundColorLight}" Grid.Row="6" Grid.ColumnSpan="3" HeightRequest="2" Margin="0, 30, 0, 0" />
+
+                    <Label Text="Terminal" Style="{StaticResource PassBoxPropertyNameLabelStyle}" Grid.Row="7" />
+                    <Label Text="12" Grid.Row="8" Grid.ColumnSpan="2" Style="{StaticResource PassBoxPropertyValueLabelStyle}" />
+
+                    <Label Text="Gate" Style="{StaticResource PassBoxPropertyNameLabelStyle}" Grid.Row="7" Grid.Column="1" />
+                    <Label Text="36" Grid.Row="8" Grid.Column="1" Style="{StaticResource PassBoxPropertyValueLabelStyle}" />
+
+                    <Label Text="Boarding" Style="{StaticResource PassBoxPropertyNameLabelStyle}" Grid.Row="7" Grid.Column="2" />
+                    <Label Text="4.30 pm" Grid.Row="8" Grid.Column="2" Style="{StaticResource PassBoxPropertyValueLabelStyle}" />
+
+                    <telerik:RadBarcode Grid.Row="9" Grid.ColumnSpan="3" WidthRequest="260" HeightRequest="260" HorizontalOptions="Center" VerticalOptions="Center"
+                                    Margin="0, 20, 0, 0"
+                                    Value="Mrs Lara Howard SOF LIS S7 129 12C 06 June 2018 6:30 pm 12 36">
+                        <telerik:RadBarcode.Symbology>
+                            <telerik:QRCode SizingMode="Stretch" />
+                        </telerik:RadBarcode.Symbology>
+                    </telerik:RadBarcode>
+                </Grid>
+            </telerik:RadBorder>
+        </Grid>
+    </ScrollView>
+</telerik:RadContentView>

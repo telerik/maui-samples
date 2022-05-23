@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:GalleryExampleViewBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                              xmlns:views="clr-namespace:QSF.Views"
+                              xmlns:styles="clr-namespace:QSF.Styles"
+                              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                              x:Class="QSF.Examples.ChartControl.PieDonutSeriesExample.PieDonutSeriesView" >
+    <views:GalleryExampleViewBase.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <styles:GalleryResources/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+        <DataTemplate x:Key="Pie">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <telerik:RadLegend Margin="0, 10, 0, 0" 
+                                        LegendProvider="{x:Reference chart}" 
+                                        HeightRequest="50" 
+                                        Orientation="Horizontal" 
+                                        StyleClass="TelerikTheme">
+                </telerik:RadLegend>
+                <telerik:RadPieChart x:Name="chart"
+                                          Grid.Row="1"  
+                                          BackgroundColor="{AppThemeBinding Light=White}" 
+                                          StyleClass="TelerikTheme">
+                    <telerik:RadPieChart.ChartBehaviors>
+                        <telerik:ChartSelectionBehavior DataPointSelectionMode="Single" 
+                                                             SeriesSelectionMode="None"/>
+                    </telerik:RadPieChart.ChartBehaviors>
+                    <telerik:RadPieChart.Series>
+                        <telerik:PieSeries ValueBinding="Value" 
+                                                ItemsSource="{Binding SeriesData}" 
+                                                RadiusFactor="0.9" 
+                                                LegendTitleBinding="Category" />
+                    </telerik:RadPieChart.Series>
+                </telerik:RadPieChart>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="Pie2">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <telerik:RadLegend Margin="0, 10, 0, 0" 
+                                        LegendProvider="{x:Reference chart}" 
+                                        HeightRequest="50" 
+                                        Orientation="Horizontal" 
+                                        StyleClass="TelerikTheme">
+                </telerik:RadLegend>
+                <telerik:RadPieChart x:Name="chart"
+                                          Grid.Row="1" 
+                                          BackgroundColor="{AppThemeBinding Light=White}"
+                                          StyleClass="TelerikTheme">
+                    <telerik:RadPieChart.ChartBehaviors>
+                        <telerik:ChartSelectionBehavior DataPointSelectionMode="Single" 
+                                                             SeriesSelectionMode="None"/>
+                    </telerik:RadPieChart.ChartBehaviors>
+                    <telerik:RadPieChart.Series>
+                        <telerik:PieSeries ValueBinding="Value" 
+                                                ItemsSource="{Binding SeriesData}" 
+                                                RadiusFactor="0.9" 
+                                                LegendTitleBinding="Category" />
+                    </telerik:RadPieChart.Series>
+                </telerik:RadPieChart>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="Donut">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <telerik:RadLegend Margin="0, 10, 0, 0" 
+                                        LegendProvider="{x:Reference chart}" 
+                                        HeightRequest="50" 
+                                        Orientation="Horizontal" 
+                                        StyleClass="TelerikTheme">
+                </telerik:RadLegend>
+                <telerik:RadPieChart x:Name="chart"
+                                          Grid.Row="1" 
+                                          BackgroundColor="{AppThemeBinding Light=White}" 
+                                          StyleClass="TelerikTheme">
+                    <telerik:RadPieChart.ChartBehaviors>
+                        <telerik:ChartSelectionBehavior DataPointSelectionMode="Single" 
+                                                             SeriesSelectionMode="None"/>
+                    </telerik:RadPieChart.ChartBehaviors>
+                    <telerik:RadPieChart.Series>
+                        <telerik:DonutSeries ValueBinding="Value" 
+                                                  ItemsSource="{Binding SeriesData}" 
+                                                  RadiusFactor="0.9" 
+                                                  InnerRadiusFactor="0.4" 
+                                                  LegendTitleBinding="Category" />
+                    </telerik:RadPieChart.Series>
+                </telerik:RadPieChart>
+            </Grid>
+        </DataTemplate>
+    </views:GalleryExampleViewBase.Resources>
+</views:GalleryExampleViewBase>

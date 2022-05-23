@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<views:PickerExampleViewBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                             xmlns:views="clr-namespace:QSF.Views"
+                             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                             x:Class="QSF.Examples.TimePickerControl.FirstLookExample.FirstLookView"
+                             ItemsSource="{Binding Cards}"
+                             CollectionTitle="Applications:"
+                             ButtonCommand="{Binding SendOrderCommand}"
+                             ButtonText="Make an Order">
+    
+    <ContentView.Resources>
+        <Style TargetType="telerik:RadTimePicker">
+            <Setter Property="Margin" Value="0, 0, 0, 15" />
+            <Setter Property="BorderThickness" Value="0, 0, 0, 1" />
+            <Setter Property="Placeholder" Value="Select Time" />
+            <Setter Property="HorizontalOptions" Value="Start" />
+            <Setter Property="IsToggleButtonVisible" Value="False" />
+        </Style>
+        <Style TargetType="telerik:RadDatePicker">
+            <Setter Property="Margin" Value="0, 0, 0, 15" />
+            <Setter Property="BorderThickness" Value="0, 0, 0, 1" />
+            <Setter Property="Placeholder" Value="Select Date" />
+            <Setter Property="HorizontalOptions" Value="Start" />
+            <Setter Property="IsToggleButtonVisible" Value="False" />
+        </Style>
+    </ContentView.Resources>
+    
+    <VerticalStackLayout x:Name="layout" HorizontalOptions="Start">
+        <Label Text="Cleaning Service"
+               Style="{StaticResource DefaultSubtitleLabelStyle}"
+               FontSize="24"
+               Margin="0, 0, 0, 24" />
+        <Label Text="Specify Date:"
+               Style="{StaticResource DefaultSubtitleLabelStyle}" />
+        <telerik:RadDatePicker x:Name="datePicker"
+                               Date="{Binding SelectedDate}"
+                               DefaultHighlightedDate="{Static sys:DateTime.Now}"
+                               PlaceholderLabelStyle="{StaticResource DefaultPlaceholderLabelStyle}">
+            <telerik:RadDatePicker.PopupSettings>
+                <telerik:PickerPopupSettings HeaderLabelText="Select Date" />
+            </telerik:RadDatePicker.PopupSettings>
+        </telerik:RadDatePicker>
+        <Label Text="Specify Time:"
+               Style="{StaticResource DefaultSubtitleLabelStyle}"
+               Margin="0, 26, 0, 0" />
+        <telerik:RadTimePicker x:Name="timePicker"
+                               Time="{Binding SelectedTime}"
+                               DefaultHighlightedTime="{Binding CurrentTime}"
+                               PlaceholderLabelStyle="{StaticResource DefaultPlaceholderLabelStyle}">
+            <telerik:RadTimePicker.PopupSettings>
+                <telerik:PickerPopupSettings HeaderLabelText="Select Time" />
+            </telerik:RadTimePicker.PopupSettings>
+        </telerik:RadTimePicker>
+    </VerticalStackLayout>
+</views:PickerExampleViewBase>

@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:PickerExampleViewBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:views="clr-namespace:QSF.Views"
+             xmlns:local="clr-namespace:QSF.Examples.DatePickerControl.FirstLookExample"
+             x:Class="QSF.Examples.DateTimePickerControl.FirstLookExample.FirstLookView"
+             ItemsSource="{Binding Cards}"
+             CollectionTitle="Transport Type:" 
+             ButtonCommand="{Binding SendRequestCommand}"
+             ButtonText="Request Transport">
+    <views:PickerExampleViewBase.Resources>
+        <Style TargetType="telerik:RadDateTimePicker">
+            <Setter Property="Margin" Value="0, 0, 0, 15" />
+            <Setter Property="BorderThickness" Value="0, 0, 0, 1" />
+            <Setter Property="Placeholder" Value="Select Date &amp; Time" />
+            <Setter Property="HorizontalOptions" Value="Start" />
+            <Setter Property="IsToggleButtonVisible" Value="False" />
+        </Style>
+        
+    </views:PickerExampleViewBase.Resources>
+
+    <VerticalStackLayout x:Name="layout" HorizontalOptions="Start">
+        <Label Text="Good Afternoon, Joe"
+               Style="{StaticResource DefaultSubtitleLabelStyle}"
+               FontSize="24"
+               Margin="0, 0, 0, 24" />
+        <Label Text="Schedule a Trip:"
+               Style="{StaticResource DefaultSubtitleLabelStyle}" />
+        <telerik:RadDateTimePicker x:Name="dateTimePicker"
+                                   Date="{Binding Date}"
+                                   DefaultHighlightedDate="{Static sys:DateTime.Now}"
+                                   PlaceholderLabelStyle="{StaticResource DefaultPlaceholderLabelStyle}">
+            <telerik:RadDateTimePicker.PopupSettings>
+                <telerik:PickerPopupSettings HeaderLabelText="Select Date &amp; Time" />
+            </telerik:RadDateTimePicker.PopupSettings>
+        </telerik:RadDateTimePicker>
+    </VerticalStackLayout>
+</views:PickerExampleViewBase>

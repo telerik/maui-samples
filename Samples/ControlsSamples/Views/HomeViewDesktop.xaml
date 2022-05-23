@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:views="clr-namespace:QSF.Views"
+             xmlns:layouts="clr-namespace:QSF.Layouts"
+             x:Class="QSF.Views.HomeViewDesktop">
+
+    <VisualElement.Resources>
+        <DataTemplate x:Key="ControlItemTemplate">
+            <views:SmoothItemView Header="{Binding DisplayName}"
+                                  Icon="{Binding Icon}"
+                                  Description="{Binding ShortDescription}"
+                                  TapCommand="{Binding BindingContext.SelectControlCommand, Source={RelativeSource AncestorType={Type views:HomeViewDesktop}}}"
+                                  Margin="6"
+                                  Padding="6" />
+        </DataTemplate>
+    </VisualElement.Resources>
+
+    <Grid RowDefinitions="Auto, Auto, Auto, *">
+        <Grid ColumnDefinitions="*, *"
+              Margin="0, 20, 0, 20">
+            <Label Text="Telerik UI for .NET MAUI"
+                   Style="{StaticResource PageHeaderLabelStyle}"
+                   HorizontalOptions="Center"
+                   Grid.ColumnSpan="2"/>
+            <telerik:RadButton Text="Download Free Trial"
+                               Command="{Binding NavigateToDownloadTrialCommand}"
+                               Grid.Column="1"
+                               Margin="0, 0, 5, 0"
+                               HorizontalOptions="End"
+                               Style="{StaticResource DownloadTrialButtonStyle}" />
+        </Grid>
+        <views:HighlightsView Grid.Row="1" />
+        <Label Text="All Controls"
+               TextColor="Black"
+               FontSize="Small"
+               FontAttributes="Bold" 
+               Grid.Row="2"
+               Margin="7, 19, 0, 6"/>
+        <telerik:NonVirtualizedItemsControl ItemTemplate="{StaticResource ControlItemTemplate}"
+                                            ItemsSource="{Binding Controls}"
+                                            Grid.Row="3">
+            <telerik:NonVirtualizedItemsControl.ItemsLayoutTemplate>
+                <DataTemplate>
+                    <telerik:RadUniformGrid />
+                </DataTemplate>
+            </telerik:NonVirtualizedItemsControl.ItemsLayoutTemplate>
+        </telerik:NonVirtualizedItemsControl>
+    </Grid>
+    
+</ContentView>

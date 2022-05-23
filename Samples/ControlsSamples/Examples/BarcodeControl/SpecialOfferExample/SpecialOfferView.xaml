@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        x:Class="QSF.Examples.BarcodeControl.SpecialOfferExample.SpecialOfferView"
+                        Margin="5">
+    <telerik:RadContentView.Resources>
+        <ResourceDictionary>
+            <Color x:Key="SpecialOfferPercentColor">#F12448</Color>
+            <Color x:Key="SpecialOfferCouponLimitColor">#B0B0B0</Color>
+
+            <Style TargetType="Label" x:Key="SpecialOfferHeaderLabelStyle">
+                <Setter Property="FontSize" Value="40" />
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+            </Style>
+
+            <Style TargetType="Label" x:Key="SpecialOfferPercentValueLabelStyle">
+                <Setter Property="FontSize" Value="55" />
+                <Setter Property="TextColor" Value="{StaticResource SpecialOfferPercentColor}" />
+            </Style>
+
+            <Style TargetType="Label" x:Key="SpecialOfferPercentLabelStyle">
+                <Setter Property="FontSize" Value="45" />
+                <Setter Property="TextColor" Value="{StaticResource SpecialOfferPercentColor}" />
+                <Setter Property="VerticalOptions" Value="End" />
+            </Style>
+
+            <Style TargetType="Label" x:Key="SpecialOfferConditionLabelStyle">
+                <Setter Property="FontSize" Value="22" />
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+                <Setter Property="TextColor" Value="Black"/>
+            </Style>
+
+            <Style TargetType="Label" x:Key="SpecialOfferCouponLimitLabelStyle">
+                <Setter Property="FontSize" Value="15" />
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+                <Setter Property="TextColor" Value="{StaticResource SpecialOfferCouponLimitColor}" />
+            </Style>
+        </ResourceDictionary>
+    </telerik:RadContentView.Resources>
+
+    <ScrollView>
+        <telerik:RadBorder Margin="20" CornerRadius="6">
+            <Grid ColumnDefinitions="*,Auto,*"
+                  RowDefinitions="Auto,Auto,Auto,Auto,*,Auto">
+                <Label Text="SPECIAL OFFER" Style="{StaticResource SpecialOfferHeaderLabelStyle}" Grid.Column="1" Margin="0, 10"/>
+
+                <HorizontalStackLayout Grid.Row="1" Grid.Column="1" Margin="20, 10, 0, 10" VerticalOptions="Center" HorizontalOptions="Center">
+                    <Label Text="20%" Style="{StaticResource SpecialOfferPercentValueLabelStyle}" />
+                    <Label Text="OFF" Style="{StaticResource SpecialOfferPercentLabelStyle}" />
+                </HorizontalStackLayout>
+
+                <Label Text="for any salad until May 21st" Grid.Row="2" Grid.Column="1" Style="{StaticResource SpecialOfferConditionLabelStyle}" Margin="0, 10" />
+
+                <Image Grid.Row="3" HeightRequest="150" Grid.Column="1" Source="barcodespecialoffersalad.png" HorizontalOptions="Center" Margin="0, 10" />
+
+                <telerik:RadBarcode Grid.Row="4" Grid.Column="1" WidthRequest="260" HeightRequest="100" HorizontalOptions="Center" Value="38000106">
+                    <telerik:RadBarcode.Symbology>
+                        <telerik:Codabar SizingMode="Stretch" ShowText="True" HorizontalTextAlignment="Center"/>
+                    </telerik:RadBarcode.Symbology>
+                </telerik:RadBarcode>
+
+                <Label Text="Only one coupon per customer per visit" Grid.Row="5" Grid.Column="1" Style="{StaticResource SpecialOfferCouponLimitLabelStyle}" Margin="0, 10" />
+            </Grid>
+        </telerik:RadBorder>
+    </ScrollView>
+</telerik:RadContentView>

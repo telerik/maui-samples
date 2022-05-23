@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:QSF.Examples.MapControl.FirstLookExample"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             SizeChanged="OnSizeChanged"
+             x:Class="QSF.Examples.MapControl.FirstLookExample.FirstLookView">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <local:DensityShapeStyleSelector x:Key="DensityShapeStyleSelector">
+                <local:DensityShapeStyleSelector.HighDensityStyle>
+                    <telerik:MapShapeStyle StrokeColor="White" FillColor="#14333D"/>
+                </local:DensityShapeStyleSelector.HighDensityStyle>
+                <local:DensityShapeStyleSelector.MediumHighDensityStyle>
+                    <telerik:MapShapeStyle StrokeColor="White" FillColor="#1E4C5C"/>
+                </local:DensityShapeStyleSelector.MediumHighDensityStyle>
+                <local:DensityShapeStyleSelector.MediumDensityStyle>
+                    <telerik:MapShapeStyle StrokeColor="White" FillColor="#28667A"/>
+                </local:DensityShapeStyleSelector.MediumDensityStyle>
+                <local:DensityShapeStyleSelector.MediumLowDensityStyle>
+                    <telerik:MapShapeStyle StrokeColor="White" FillColor="#327F99"/>
+                </local:DensityShapeStyleSelector.MediumLowDensityStyle>
+                <local:DensityShapeStyleSelector.LowDensityStyle>
+                    <telerik:MapShapeStyle StrokeColor="White" FillColor="#3C99B7"/>
+                </local:DensityShapeStyleSelector.LowDensityStyle>
+                <local:DensityShapeStyleSelector.LowerDensityStyle>
+                    <telerik:MapShapeStyle StrokeColor="White" FillColor="#46B2D6"/>
+                </local:DensityShapeStyleSelector.LowerDensityStyle>
+                <local:DensityShapeStyleSelector.LowestDensityStyle>
+                    <telerik:MapShapeStyle StrokeColor="White" FillColor="#95D3E8"/>
+                </local:DensityShapeStyleSelector.LowestDensityStyle>
+            </local:DensityShapeStyleSelector>
+            <Color x:Key="HeaderTitleTextColorLight">#4B4C4C</Color>
+            <Color x:Key="HeaderTitleTextColorDark">#FFFFFF</Color>
+            <Color x:Key="FooterTitleTextColorLight">#4B4C4C</Color>
+            <Color x:Key="FooterTitleTextColorDark">#FFFFFF</Color>
+            <Color x:Key="FooterDetailTextColorLight">#8E8E93</Color>
+            <Color x:Key="FooterDetailTextColorDark">#99FFFFFF</Color>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <Grid BackgroundColor="{AppThemeBinding Dark=#121212}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Label Text="Population density (2019)"
+               FontSize="19"
+               Margin="24, 26, 0, 26"
+               TextColor="{AppThemeBinding Light={StaticResource HeaderTitleTextColorLight}, 
+                                           Dark={StaticResource HeaderTitleTextColorDark}}" />
+        <telerik:RadMap x:Name="map"
+                        Grid.Row="1"
+                        HorizontalOptions="Start">
+            <telerik:RadMap.Layers>
+                <telerik:ShapefileLayer x:Name="shapeLayer"
+                                        SelectionMode="Single"
+                                        SelectedShape="{Binding SelectedShape, Mode=TwoWay}"
+                                        ShapeStyleSelector="{StaticResource DensityShapeStyleSelector}">
+                    <telerik:ShapefileLayer.SelectedShapeStyle>
+                        <telerik:MapShapeStyle FillColor="#FE6078" StrokeColor="White"/>
+                    </telerik:ShapefileLayer.SelectedShapeStyle>
+                    <telerik:ShapefileLayer.Reader>
+                        <telerik:MapShapeReader x:Name="shapeReader"
+                                                ReadCompleted="OnReadCompleted"/>
+                    </telerik:ShapefileLayer.Reader>
+                </telerik:ShapefileLayer>
+            </telerik:RadMap.Layers>
+        </telerik:RadMap>
+        <StackLayout Grid.Row="2"
+                     Margin="24, 26, 32, 30">
+            <Label Text="Population per square mile by state. 2019 census figures."
+                   FontSize="14"
+                   Margin="0, 0, 26, 0"
+                   TextColor="{AppThemeBinding Light={StaticResource HeaderTitleTextColorLight}, Dark={StaticResource HeaderTitleTextColorDark}}" />
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <telerik:RadListView ItemsSource="{Binding Densities}" 
+                                     SelectionMode="None"
+                                     Grid.ColumnSpan="{OnPlatform Default= 2, WinUI= 1, MacCatalyst= 1}">
+                    <telerik:RadListView.ItemTemplate>
+                        <DataTemplate>
+                            <telerik:ListViewTemplateCell>
+                                <telerik:ListViewTemplateCell.View>
+                                    <StackLayout Orientation="Horizontal">
+                                        <telerik:RadBorder BackgroundColor="{Binding DensityLevelColor}"
+                                                           WidthRequest="32"
+                                                           HeightRequest="12"
+                                                           VerticalOptions="CenterAndExpand"
+                                                           Margin="0, 0, 8, 0"/>
+                                        <Label Text="{Binding Density}" 
+                                               TextColor="{AppThemeBinding Light={StaticResource FooterDetailTextColorLight}, 
+                                                                           Dark={StaticResource FooterDetailTextColorDark}}"
+                                               VerticalTextAlignment="Center"
+                                               FontSize="12"/>
+                                    </StackLayout>
+                                </telerik:ListViewTemplateCell.View>
+                            </telerik:ListViewTemplateCell>
+                        </DataTemplate>
+                    </telerik:RadListView.ItemTemplate>
+                    <telerik:RadListView.LayoutDefinition>
+                        <telerik:ListViewGridLayout SpanCount="2" 
+                                                    Orientation="Vertical"
+                                                    VerticalItemSpacing="2"
+                                                    ItemLength="20">
+                        </telerik:ListViewGridLayout>
+                    </telerik:RadListView.LayoutDefinition>
+                    <telerik:RadListView.ItemStyle>
+                        <telerik:ListViewItemStyle BorderLocation="None" 
+                                                   BackgroundColor="Transparent"/>
+                    </telerik:RadListView.ItemStyle>
+                </telerik:RadListView>
+            </Grid>
+            <telerik:RadPopup.Popup>
+                <telerik:RadPopup x:Name="popup"
+                                  IsOpen="{Binding IsOpen}"
+                                  Placement="Top"
+                                  VerticalOffset="-35">
+                    <telerik:RadBorder CornerRadius="2"
+                                       WidthRequest="180"
+                                       BorderThickness="0"
+                                       BackgroundColor="#F8F8F8">
+                        <Grid>
+                            <StackLayout Margin="17, 17, 0, 0">
+                                <Label Text="{Binding StateName}"
+                                       FontSize="16"/>
+                                <Label Text="{Binding StateDensity}"
+                                       FontSize="12"
+                                       Margin="0, 0, 0, 16"/>
+                            </StackLayout>
+                            <Label HorizontalOptions="End"
+                                   VerticalOptions="Start"
+                                   BackgroundColor="Transparent"
+                                   TextColor="DarkGray"
+                                   FontSize="12"
+                                   Text="&#xe877;"
+                                   FontFamily="TelerikFontExamples"
+                                   HorizontalTextAlignment="Center"
+                                   VerticalTextAlignment="Center"
+                                   WidthRequest="35"
+                                   HeightRequest="35">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding ClosePopupCommand}"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </Grid>
+                    </telerik:RadBorder>
+                </telerik:RadPopup>
+            </telerik:RadPopup.Popup>
+        </StackLayout>
+    </Grid>
+</ContentView>

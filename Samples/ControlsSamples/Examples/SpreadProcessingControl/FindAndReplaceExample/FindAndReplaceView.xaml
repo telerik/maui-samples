@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:system="clr-namespace:System;assembly=netstandard"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        x:Class="QSF.Examples.SpreadProcessingControl.FindAndReplaceExample.FindAndReplaceView"
+                        Margin="5">
+    <telerik:RadContentView.Resources>
+        <ResourceDictionary>
+            <Style TargetType="telerik:RadEntry">
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+            </Style>
+
+            <Style x:Key="checkBoxLabel" TargetType="Label">
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+            </Style>
+
+            <Style x:Key="boldLabel" TargetType="Label">
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="Margin" Value="0, 0, 0, 15"/>
+                <Setter Property="TextColor" Value="Black"/>
+            </Style>
+
+            <Style TargetType="telerik:RadCheckBox">
+                <Setter Property="UncheckedColor" Value="#CCCCCC"/>
+                <Setter Property="CheckedColor" Value="{StaticResource AccentColor8}"/>
+                <Setter Property="Margin" Value="30, 0, 0, 0"/>
+            </Style>
+        </ResourceDictionary>
+    </telerik:RadContentView.Resources>
+    <ScrollView>
+        <VerticalStackLayout>
+            <Grid BackgroundColor="#F0F0F0" 
+                  RowDefinitions="*,*"
+                  Padding="16"
+                  Margin="0, 0, 0, 15">
+                <HorizontalStackLayout HorizontalOptions="Center"
+                                       VerticalOptions="End" 
+                                       Spacing="10"
+                                       Margin="0, 0, 0, 21">
+                    <Label Text="File:" />
+                    <Label Text="SpreadProcessingDocument1.xlsx"/>
+                </HorizontalStackLayout>
+
+                <telerik:RadButton Grid.Row="1" 
+                                   BackgroundColor="Transparent"
+                                   VerticalOptions="{OnPlatform WinUI='Center', MacCatalyst='Center'}"
+                                   HorizontalOptions="{OnPlatform WinUI='Center', MacCatalyst='Center'}"
+                                   Text="{Binding ViewDocumentText}"
+                                   Command="{Binding ViewDocumentCommand}" 
+                                   Style="{StaticResource SubmitButtonStyle}" />
+            </Grid>
+
+            <Label Text="Find Text:" Style="{StaticResource boldLabel}" />
+
+            <telerik:RadEntry Placeholder="Enter Text to be found ex. fast"
+                              Margin="0, 0, 0, 18"
+                              MaximumWidthRequest="{OnPlatform WinUI='300', MacCatalyst='300'}"
+                              Text="{Binding FindWhat, Mode=OneWayToSource}" />
+
+            <Label Text="Replace with:" Style="{StaticResource boldLabel}" />
+
+            <telerik:RadEntry Placeholder="Enter Text to be replaced ex. slow"
+                              Margin="0, 0, 0, 41"
+                              MaximumWidthRequest="{OnPlatform WinUI='300', MacCatalyst='300'}"
+                              Text="{Binding ReplaceWith, Mode=OneWayToSource}" />
+
+            <VerticalStackLayout Margin="35, 0, 35, 0" HorizontalOptions="Center">
+                <HorizontalStackLayout Margin="0, 0, 0, 24" Spacing="10">
+                    <telerik:RadCheckBox IsChecked="{Binding MatchCase}" />
+                    <Label Text="Match Case" Style="{StaticResource checkBoxLabel}" />
+                </HorizontalStackLayout>
+                <HorizontalStackLayout Margin="0, 0, 0, 24" Spacing="10">
+                    <telerik:RadCheckBox IsChecked="{Binding MatchEntireCellContents}" />
+                    <Label Text="Match Entire Cell Contents" Style="{StaticResource checkBoxLabel}" />
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+
+            <telerik:RadButton Style="{StaticResource SubmitButtonStyle}"
+                               Text="{Binding ReplaceAndSaveText}"
+                               HorizontalOptions="{OnPlatform WinUI='Center', MacCatalyst='Center'}"
+                               Command="{Binding ReplaceAndSaveCommand}" 
+                               VerticalOptions="EndAndExpand" />
+        </VerticalStackLayout>
+    </ScrollView>
+</telerik:RadContentView>

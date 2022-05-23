@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        x:Class="QSF.Examples.BarcodeControl.SwissQRCodeExample.SwissQRCodeView"
+                        Margin="5">
+    <telerik:RadContentView.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label" x:Key="boldLabel">
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="TextColor" Value="Black"/>
+            </Style>
+            
+            <Style TargetType="Label" x:Key="whiteLabel">
+                <Setter Property="TextColor" Value="White" />
+            </Style>
+            
+            <Style TargetType="Label" x:Key="whiteBoldLabel" BasedOn="{StaticResource whiteLabel}">
+                <Setter Property="FontAttributes" Value="Bold" />
+            </Style>
+            
+            <Style TargetType="Label" x:Key="gridLabelStyle">
+                <Setter Property="Text" Value="{Binding HeaderText}" />
+                <Setter Property="WidthRequest" Value="{Binding Width}" />
+                <Setter Property="Margin" Value="7, 14, 7, 14" />
+                <Setter Property="TextColor" Value="{AppThemeBinding Light=#4A4949}" />
+                <Setter Property="LineBreakMode" Value="WordWrap" />
+                <Setter Property="FontSize" Value="12" />
+            </Style>
+            
+            <Style TargetType="Label" x:Key="gridContentLabelStyle">
+                <Setter Property="Margin" Value="7, 10, 7, 10" />
+                <Setter Property="HorizontalTextAlignment" Value="Start" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="TextColor" Value="{AppThemeBinding Light=#4A4949}" />
+                <Setter Property="LineBreakMode" Value="WordWrap" />
+                <Setter Property="FontSize" Value="12" />
+            </Style>
+        </ResourceDictionary>
+    </telerik:RadContentView.Resources>
+
+    <ScrollView>
+        <Grid RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="200" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <telerik:RadBorder BackgroundColor="{AppThemeBinding Light=#F8F8F8}">
+                <Label Text="{Binding UnstructuredMessage}" 
+                       TextColor="{AppThemeBinding Light=Black}"
+                       FontSize="22" 
+                       HorizontalTextAlignment="Center" 
+                       Margin="0,13"/>
+            </telerik:RadBorder>
+
+            <telerik:RadBarcode Grid.Row="1" 
+                                Margin="0,5,0,15"                                 
+                                WidthRequest="180"
+                                HorizontalOptions="Center" 
+                                VerticalOptions="Center"
+                                Value="{Binding Path=Value}"
+                                IsValid="{Binding Path=IsValid}"
+                                ErrorMessage="{Binding Path=ErrorMessage}">
+                <telerik:RadBarcode.Symbology>
+                    <telerik:SwissQRCode />
+                </telerik:RadBarcode.Symbology>
+            </telerik:RadBarcode>
+
+            <Grid Margin="16,0" Grid.Row="2" RowSpacing="16">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="1" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="50" />
+                </Grid.RowDefinitions>
+
+                <VerticalStackLayout Grid.Row="0">
+                    <Label Text="Account / Payable to:" Style="{StaticResource boldLabel}" />
+                    <Label Text="{Binding IbanText}" />
+                    <Label Text="{Binding CreditorName}" />
+                    <HorizontalStackLayout>
+                        <Label Text="{Binding CreditorStreet}" />
+                        <Label Text="{Binding CreditorHouseNumber}" />
+                    </HorizontalStackLayout>
+                    <HorizontalStackLayout>
+                        <Label Text="{Binding CreditorZipCode}" />
+                        <StackLayout Orientation="Horizontal" Spacing="0">
+                            <Label Text="{Binding CreditorCountry}" />
+                            <Label Text="-"/>
+                            <Label Text="{Binding CreditorCity}" />
+                        </StackLayout>
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+
+                <BoxView Color="{AppThemeBinding Light=#000000}" Grid.Row="1"/>
+
+                <VerticalStackLayout Grid.Row="2">
+                    <Label Text="Payable by:" Style="{StaticResource boldLabel}" />
+                    <Label Text="{Binding DebtorName}" />
+                    <HorizontalStackLayout>
+                        <Label Text="{Binding DebtorStreet}" />
+                        <Label Text="{Binding DebtorHouseNumber}" />
+                    </HorizontalStackLayout>
+                    <HorizontalStackLayout>
+                        <Label Text="{Binding DebtorZipCode}" />
+                        <StackLayout Orientation="Horizontal" Spacing="0">
+                            <Label Text="{Binding DebtorCountry}" />
+                            <Label Text="-" />
+                            <Label Text="{Binding DebtorCity}" />
+                        </StackLayout>
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+
+                <Grid BackgroundColor="{AppThemeBinding Light=#000000}" 
+                      Grid.Row="4"
+                      Padding="4,4">
+                    <HorizontalStackLayout HorizontalOptions="Start" VerticalOptions="Center">
+                        <Label Text="Currency: " Style="{StaticResource whiteLabel}" />
+                        <Label Text="{Binding CodeCurrency}" Style="{StaticResource whiteBoldLabel}" />
+                    </HorizontalStackLayout>
+                    <HorizontalStackLayout HorizontalOptions="End" VerticalOptions="Center">
+                        <Label Text="Total Amount: " Style="{StaticResource whiteLabel}" />
+                        <Label Text="{Binding Total, StringFormat='{0:0.00}'}" Style="{StaticResource whiteBoldLabel}" />
+                    </HorizontalStackLayout>
+                </Grid>
+            </Grid>
+        </Grid>
+    </ScrollView>
+</telerik:RadContentView>

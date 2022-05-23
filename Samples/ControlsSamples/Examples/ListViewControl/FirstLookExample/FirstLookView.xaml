@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        x:Class="QSF.Examples.ListViewControl.FirstLookExample.FirstLookView"
+                        xmlns:local="clr-namespace:QSF.Examples.ListViewControl.FirstLookExample"
+                        Margin="5">
+    <telerik:RadContentView.Resources>
+        <ResourceDictionary>
+            <local:NameToAbbreviationConverter x:Key="NameToAbbreviationConverter"/>
+            <local:BoolToColorConverter x:Key="BoolToColorConverter"/>
+        </ResourceDictionary>
+    </telerik:RadContentView.Resources>
+    <telerik:RadContentView.Content>
+        <telerik:RadListView x:Name="listView" 
+                             ItemsSource="{Binding People}"
+                             SelectionMode="None">
+            <telerik:RadListView.ItemTemplate>
+                <DataTemplate>
+                    <telerik:ListViewTemplateCell>
+                        <telerik:ListViewTemplateCell.View>
+                            <telerik:RadBorder BorderThickness="0, 0, 0, 1"
+                                               BackgroundColor="White"
+                                               BorderColor="#b1b1b1">
+                                <Grid RowDefinitions="Auto" 
+                                      ColumnSpacing="5"
+                                      ColumnDefinitions="Auto,*,Auto">
+                                    <telerik:RadBorder CornerRadius="20" 
+                                                       WidthRequest="40" 
+                                                       VerticalOptions="Center"
+                                                       HorizontalOptions="Center"
+                                                       BackgroundColor="{Binding Color}" 
+                                                       Padding="12,6"
+                                                       Margin="10"
+                                                       HeightRequest="40">
+                                        <Label FontSize="20"
+                                               Text="{Binding Name, Converter={StaticResource NameToAbbreviationConverter}}"
+                                               TextColor="#FFFFFFDE"
+                                               VerticalOptions="Center" 
+                                               HorizontalOptions="Center"/>
+                                    </telerik:RadBorder>
+                                    <VerticalStackLayout Grid.Column="1" 
+                                                         Spacing="3"
+                                                         Margin="0,6,0,6"
+                                                         VerticalOptions="Center">
+                                        <Label Text="{Binding Name}" 
+                                               VerticalOptions="Center"
+                                               HorizontalOptions="Start"
+                                               FontSize="14"
+                                               FontAttributes="Bold"
+                                               TextColor="Black"/>
+                                        <Label Text="{Binding Information}"
+                                               HorizontalOptions="Start"
+                                               VerticalOptions="Start"
+                                               TextColor="{AppThemeBinding Light='#99000000'}" 
+                                               FontSize="12"/>
+                                        <Label Text="{Binding Date}"
+                                               HorizontalOptions="Start"
+                                               VerticalOptions="Start"
+                                               TextColor="{AppThemeBinding Light='#7E7E7E'}" 
+                                               FontSize="10"/>
+                                    </VerticalStackLayout>
+                                    <telerik:RadShapeRating Grid.Column="2"
+                                                            ItemsCount="1"
+                                                            Margin="14"
+                                                            IsReadOnly="True"
+                                                            ItemFill="Transparent"
+                                                            ItemStroke="{Binding IsContrastStarIcon, Converter={StaticResource BoolToColorConverter}}"
+                                                            HorizontalOptions="End"
+                                                            VerticalOptions="Center"/>
+                                </Grid>
+                            </telerik:RadBorder>
+                        </telerik:ListViewTemplateCell.View>
+                    </telerik:ListViewTemplateCell>
+                </DataTemplate>
+            </telerik:RadListView.ItemTemplate>
+        </telerik:RadListView>
+    </telerik:RadContentView.Content>
+</telerik:RadContentView>

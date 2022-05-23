@@ -1,0 +1,79 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>$(MauiPlatforms)</TargetFrameworks>
+		<OutputType>Exe</OutputType>
+		<RootNamespace>QSF</RootNamespace>
+		<UseMaui>true</UseMaui>
+		<SingleProject>true</SingleProject>
+
+		<!-- Display name -->
+		<ApplicationTitle>ControlsSamples</ApplicationTitle>
+
+		<!-- App Identifier -->
+		<ApplicationId>com.companyname.ControlsSamples</ApplicationId>
+
+		<!-- Versions -->
+		<ApplicationVersion>1</ApplicationVersion>
+
+		<!-- TODO: Remove it when Maui is officially released. -->
+		<AndroidLinkResources>false</AndroidLinkResources>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<!-- App Icon -->
+		<MauiImage Include="Resources\appicon.svg" ForegroundFile="Resources\logo.svg" Color="#00000000" IsAppIcon="true" />
+
+		<!-- Splash Screen -->
+		<MauiSplashScreen Include="Resources\appiconfg.svg" Color="#512BD4" />
+
+		<!-- Images -->
+		<MauiImage Include="Resources\Images\*" />
+
+		<!-- Custom Fonts -->
+		<MauiFont Include="Resources\Fonts\*" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Include="config.xml" />
+		<EmbeddedResource Include="Examples\ChartControl\FinancialSeriesExample\AppleStockPrices.json" />
+		<EmbeddedResource Include="Examples\DataGridControl\FirstLookExample\Common\OrdersDataSource.xml" />
+		<EmbeddedResource Include="Examples\DataGridControl\FirstLookExample\Common\PeopleDataSource.xml" />
+		<EmbeddedResource Include="Examples\MapControl\FirstLookExample\usa.dbf" />
+		<EmbeddedResource Include="Examples\MapControl\FirstLookExample\usa.shp" />
+		<EmbeddedResource Include="Examples\PdfProcessingControl\FirstLookExample\banner.jpg" />
+		<EmbeddedResource Include="Examples\PdfProcessingControl\FirstLookExample\teleriklogo.jpg" />
+		<EmbeddedResource Include="Examples\PdfProcessingControl\NotEmbeddingFontsExample\pdfviewer-firstlook.pdf" />
+		<EmbeddedResource Include="Examples\SpreadProcessingControl\ConditionalFormattingExample\SpreadProcessingDocument2.xlsx" />
+		<EmbeddedResource Include="Examples\SpreadProcessingControl\ConvertExample\SpreadProcessingDocument1.xlsx" />
+		<EmbeddedResource Include="Examples\WordsProcessingControl\ExportExample\DocToBeProcessed.docx" />
+		<EmbeddedResource Include="Examples\WordsProcessingControl\FindAndReplaceExample\JohnGrisham.docx" />
+		<EmbeddedResource Include="Examples\ZipLibraryControl\CreateArchiveExample\Resources\ZipSampleDocuments\Balance Sheet.xlsx" />
+		<EmbeddedResource Include="Examples\ZipLibraryControl\CreateArchiveExample\Resources\ZipSampleDocuments\Book.pdf" />
+		<EmbeddedResource Include="Examples\ZipLibraryControl\CreateArchiveExample\Resources\ZipSampleDocuments\Food Order.xlsx" />
+		<EmbeddedResource Include="Examples\ZipLibraryControl\CreateArchiveExample\Resources\ZipSampleDocuments\Freeze Panes.xlsx" />
+		<EmbeddedResource Include="Examples\ZipLibraryControl\CreateArchiveExample\Resources\ZipSampleDocuments\Monthly Report.xlsx" />
+		<EmbeddedResource Include="Examples\ZipLibraryControl\CreateArchiveExample\Resources\ZipSampleDocuments\Multipage Document.pdf" />
+		<EmbeddedResource Include="Examples\ZipLibraryControl\CreateArchiveExample\Resources\ZipSampleDocuments\Orders Log.xlsx" />
+		<EmbeddedResource Include="Examples\ZipLibraryControl\CreateArchiveExample\Resources\ZipSampleDocuments\photo1.png" />
+		<EmbeddedResource Include="Examples\ZipLibraryControl\CreateArchiveExample\Resources\ZipSampleDocuments\photo2.png" />
+		<EmbeddedResource Include="Examples\ZipLibraryControl\CreateArchiveExample\Resources\ZipSampleDocuments\photo3.png" />
+		<EmbeddedResource Include="Examples\ZipLibraryControl\CreateArchiveExample\Resources\ZipSampleDocuments\Printing.xlsx" />
+		<EmbeddedResource Include="Examples\ZipLibraryControl\CreateArchiveExample\Resources\ZipSampleDocuments\RadImageEditor.png" />
+		<EmbeddedResource Include="Examples\ZipLibraryControl\CreateArchiveExample\Resources\ZipSampleDocuments\RadRichTextBox.docx" />
+		<EmbeddedResource Include="Examples\ZipLibraryControl\CreateArchiveExample\Resources\ZipSampleDocuments\RepeatHeaderRows.docx" />
+		<EmbeddedResource Include="Examples\ZipLibraryControl\CreateArchiveExample\Resources\ZipSampleDocuments\Sample.pdf" />
+		<EmbeddedResource Include="Examples\ZipLibraryControl\CreateArchiveExample\Resources\ZipSampleDocuments\thumbnail.png" />
+	</ItemGroup>
+
+	<PropertyGroup Condition="$(TargetFramework.Contains('-windows'))">
+		<DefineConstants>$(DefineConstants)TRACE;WINDOWS</DefineConstants>
+	</PropertyGroup>
+
+	<ItemGroup Condition="$(SolutionName) != 'Telerik.Maui'">
+		<PackageReference Include="Telerik.UI.for.Maui" Version="1.0.0" />
+	</ItemGroup>
+
+	<Import Condition="'$(SolutionName)' == 'Telerik.Maui'" Project="..\AddSourceReferences.proj" />
+
+</Project>

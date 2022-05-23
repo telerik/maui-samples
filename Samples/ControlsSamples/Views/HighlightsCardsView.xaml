@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:layouts="clr-namespace:QSF.Layouts"
+             xmlns:styles="clr-namespace:QSF.Styles"
+             xmlns:views="clr-namespace:QSF.Views"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="QSF.Views.HighlightsCardsView">
+
+    <VisualElement.Resources>
+        <OnPlatform x:TypeArguments="Color" x:Key="Color1" Default="{StaticResource AccentColor4}" />
+        <OnPlatform x:TypeArguments="Color" x:Key="Color2" Default="{StaticResource AccentColor5}" />
+        <OnPlatform x:TypeArguments="Color" x:Key="Color3" Default="{StaticResource AccentColor6}" />
+        <OnPlatform x:TypeArguments="Color" x:Key="Color4" Default="{StaticResource AccentColor2}" />
+    </VisualElement.Resources>
+
+    <telerik:RadBorder CornerRadius="4"
+                       Margin="0, 6, 0, 12">
+        <layouts:QGrid x:Name="grid" />
+    </telerik:RadBorder>
+
+</ContentView>

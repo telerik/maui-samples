@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:QSF.Converters"
+             xmlns:helpers="clr-namespace:QSF.Helpers"
+             xmlns:layouts="clr-namespace:QSF.Layouts"
+             xmlns:styles="clr-namespace:QSF.Styles"
+             xmlns:views="clr-namespace:QSF.Views"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="QSF.Views.HighlightsView">
+
+    <VisualElement.Resources>
+        <converters:NullOrEmptyToValueConverter x:Key="UrlToOpacityConverter" NullVaule="0.3" DefaultVaule="1.0" />
+        <Style x:Key="BorderStyle" TargetType="telerik:RadBorder">
+            <Setter Property="Padding" Value="12" />
+            <Setter Property="CornerRadius" Value="{StaticResource BorderCornerRadius}" />
+        </Style>
+        <Style x:Key="TitleHighlightLabelStyle" TargetType="Label">
+            <Setter Property="TextColor" Value="{StaticResource PrimaryTextColor1}" />
+            <Setter Property="FontSize" Value="Medium" />
+            <Setter Property="Margin" Value="{OnIdiom Desktop='0, 12, 0, 6', Default='0, 4, 0, 6'}" />
+        </Style>
+        <Style x:Key="MainHighlightLabelStyle" TargetType="Label">
+            <Setter Property="TextColor" Value="{StaticResource PrimaryTextColor1}" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="VerticalOptions" Value="Center" />
+        </Style>
+        <Style x:Key="SubHighlightLabelStyle" TargetType="Label">
+            <Setter Property="TextColor" Value="#99FFFFFF" />
+            <Setter Property="FontSize" Value="Caption" />
+            <Setter Property="LineBreakMode" Value="TailTruncation" />
+        </Style>
+        <Style x:Key="ImageStyle" TargetType="Image">
+            <Setter Property="MaximumWidthRequest" Value="62" />
+            <Setter Property="MaximumHeightRequest" Value="62" />
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="Aspect" Value="Center" />
+            <Setter Property="Opacity" Value="{Binding Url, Converter={StaticResource UrlToOpacityConverter}}" />
+        </Style>
+        <Style x:Key="HighlightItemLabelStyle" TargetType="Label">
+            <Setter Property="TextColor" Value="{StaticResource PrimaryTextColor1}" />
+        </Style>
+        <DataTemplate x:Key="HighlightedControlTemplate">
+            <telerik:RadBorder BackgroundColor="{StaticResource BasicBackgroundColor1}"
+                               BorderThickness="0, 0, 0, 1"
+                               BorderColor="#33FFFFFF"
+                               helpers:DesktopUtils.MouseCursorType="Hand">
+                <View.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding BindingContext.SelectControlCommand, Source={RelativeSource AncestorType={Type views:HighlightsView}}}"
+                                          CommandParameter="{Binding}" />
+                </View.GestureRecognizers>
+                <Grid RowDefinitions="Auto, Auto"
+                      ColumnDefinitions="Auto, *"
+                      Margin="6">
+                    <Image Source="{Binding Icon}"
+                           WidthRequest="20"
+                           Grid.RowSpan="2"
+                           Margin="10, 5, 15, 5" />
+                    <Label Text="{Binding DisplayName}"
+                           Grid.Column="1"
+                           Grid.RowSpan="{OnIdiom Desktop=1, Default=2}"
+                           Style="{StaticResource MainHighlightLabelStyle}" />
+                    <Label Text="{Binding ShortDescription}"
+                           Grid.Column="1"
+                           Grid.Row="1"
+                           IsVisible="{OnIdiom Desktop=true, Default=false}"
+                           Style="{StaticResource SubHighlightLabelStyle}" />
+                </Grid>
+            </telerik:RadBorder>
+        </DataTemplate>
+        <DataTemplate x:Key="HighlightItemTemplate">
+            <HorizontalStackLayout HorizontalOptions="Center"
+                                   Margin="{OnIdiom Desktop=0, Default='15, 0, 15, 0'}"
+                                   Spacing="5">
+                <Image Source="{Binding Icon}"
+                       Style="{StaticResource ImageStyle}" />
+                <Label Text="{Binding DisplayText}"
+                       VerticalOptions="Center"
+                       MaxLines="3"
+                       Style="{StaticResource HighlightItemLabelStyle}" />
+            </HorizontalStackLayout>
+        </DataTemplate>
+    </VisualElement.Resources>
+
+    <views:LayoutView Orientation="{OnIdiom Desktop=Neither, Default=Horizontal}">
+        <views:LayoutView.Layout>
+            <OnPlatform x:TypeArguments="Layout">
+                <On Platform="Android, iOS">
+                    <HorizontalStackLayout Spacing="10" />
+                </On>
+                <On Platform="WinUI, MacCatalyst">
+                    <layouts:UniformLayout Spacing="10" />
+                </On>
+            </OnPlatform>
+        </views:LayoutView.Layout>
+        <telerik:RadBorder BackgroundColor="{StaticResource AccentColor2}"
+                           Style="{StaticResource BorderStyle}">
+            <VerticalStackLayout>
+                <Label Text="Highlighted Controls:"
+                       Style="{StaticResource TitleHighlightLabelStyle}"
+                       Padding="{OnIdiom Desktop=0, Default='0, 0, 99, 0'}" />
+                <telerik:NonVirtualizedItemsControl ItemTemplate="{StaticResource HighlightedControlTemplate}"
+                                                    ItemsSource="{Binding HighlightControls}"
+                                                    SelectionMode="None"
+                                                    Margin="0, 6, 0, 12" 
+                                                    VerticalOptions="FillAndExpand" />
+            </VerticalStackLayout>
+        </telerik:RadBorder>
+        <telerik:RadBorder BackgroundColor="{StaticResource AccentColor3}"
+                           Style="{StaticResource BorderStyle}">
+            <layouts:QGrid RowDefinitions="Auto, *">
+                <Label Text="Why Evolve to .NET MAUI?"
+                       Style="{StaticResource TitleHighlightLabelStyle}" />
+                <views:HighlightsCardsView ItemTemplate="{StaticResource HighlightItemTemplate}"
+                                           ItemTappedCommand="{Binding SelectMauiHighlightCommand}"
+                                           ItemsSource="{Binding MauiHighlights}"
+                                           Grid.Row="1" />
+            </layouts:QGrid>
+        </telerik:RadBorder>
+        <telerik:RadBorder BackgroundColor="{StaticResource AccentColor7}"
+                           Style="{StaticResource BorderStyle}">
+            <layouts:QGrid RowDefinitions="Auto, *">
+                <Label Text="Demo Apps"
+                       Style="{StaticResource TitleHighlightLabelStyle}" />
+                <views:HighlightsCardsView ItemTemplate="{StaticResource HighlightItemTemplate}"
+                                           ItemTappedCommand="{Binding SelectDemoAppCommand}"
+                                           ItemsSource="{Binding DemoApps}"
+                                           Grid.Row="1" />
+            </layouts:QGrid>
+        </telerik:RadBorder>
+    </views:LayoutView>
+
+</ContentView>

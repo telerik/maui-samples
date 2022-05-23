@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        x:Class="QSF.Examples.TabViewControl.WorldClockExample.WorldClockView"
+                        Margin="5">
+    <ContentView.Resources>
+        <ResourceDictionary>
+
+            <Color x:Key="PrimaryColorLight">#99000000</Color>
+            <Color x:Key="SecondaryColorLight">#DE000000</Color>
+            
+            <Style TargetType="telerik:TabViewHeader" x:Key="TabViewHeaderStyle">
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=#F8F8F8}"/>
+            </Style>
+
+            <Style TargetType="telerik:TabViewHeaderItem" x:Key="TabViewHeaderItemStyle">
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup Name="CommonStates">
+                            <VisualState Name="Normal"/>
+                            <VisualState Name="Disabled">
+                                <VisualState.Setters>
+                                    <Setter Property="TextColor" Value="#61000000" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="Selected">
+                                <VisualState.Setters>
+                                    <Setter Property="TextColor" Value="White" />
+                                    <Setter Property="BackgroundColor" Value="{StaticResource AccentColor8}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+            
+            <Style x:Key="CurrentDateStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource PrimaryColorLight}}" />
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="Margin" Value="0, 24, 0, 24" />
+            </Style>
+            
+            <Style x:Key="TimeIconStyle" TargetType="Image">
+                <Setter Property="Source" Value="clock.png" />
+                <Setter Property="WidthRequest" Value="100"/>
+                <Setter Property="HeightRequest" Value="100"/>
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="Margin" Value="0, 0, 0, 24" />
+            </Style>
+            
+            <Style x:Key="GmtStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource PrimaryColorLight}}" />
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="Margin" Value="0, 0, 0, 3" />
+            </Style>
+            
+            <Style x:Key="CityNameStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource SecondaryColorLight}}" />
+                <Setter Property="FontSize" Value="Title" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="Margin" Value="0, 0, 0, 20" />
+            </Style>
+            
+            <Style x:Key="CurrentTimeStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource SecondaryColorLight}}" />
+                <Setter Property="FontSize" Value="100" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="FontAttributes" Value="Bold" />
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <ContentView.Content>
+        <telerik:RadTabView BackgroundColor="White" 
+                            HeaderStyle="{StaticResource TabViewHeaderStyle}"
+                            HeaderItemStyle="{StaticResource TabViewHeaderItemStyle}">
+            <telerik:TabViewItem HeaderText="Sofia">
+                    <telerik:TabViewItem.Content>
+                        <VerticalStackLayout x:Name="sofia">
+                            <Label Text="{Binding Date, StringFormat='{0:dd MMM yy}'}"
+                                   Style="{StaticResource CurrentDateStyle}" />
+                            <Image Style="{StaticResource TimeIconStyle}" />
+                            <Label Text="GMT + 2"
+                                   Style="{StaticResource GmtStyle}" />
+                            <Label Text="Sofia"
+                                   Style="{StaticResource CityNameStyle}" />
+                            <Label Text="{Binding ., StringFormat='{0:hh:mm}'}"
+                                   Style="{StaticResource CurrentTimeStyle}" />
+                        </VerticalStackLayout>
+                    </telerik:TabViewItem.Content>
+                </telerik:TabViewItem>
+            <telerik:TabViewItem HeaderText="Auckland">
+                <telerik:TabViewItem.Content>
+                    <VerticalStackLayout x:Name="auckland">
+                        <Label Text="{Binding Date, StringFormat='{0:dd MMM yy}'}"
+                                   Style="{StaticResource CurrentDateStyle}" />
+                        <Image Style="{StaticResource TimeIconStyle}" />
+                        <Label Text="GMT + 13"
+                                   Style="{StaticResource GmtStyle}" />
+                        <Label Text="Auckland"
+                                   Style="{StaticResource CityNameStyle}" />
+                        <Label Text="{Binding ., StringFormat='{0:hh:mm}'}"
+                                   Style="{StaticResource CurrentTimeStyle}" />
+                    </VerticalStackLayout>
+                </telerik:TabViewItem.Content>
+            </telerik:TabViewItem>
+            <telerik:TabViewItem HeaderText="New York">
+                    <telerik:TabViewItem.Content>
+                        <VerticalStackLayout x:Name="newYork">
+                            <Label Text="{Binding Date, StringFormat='{0:dd MMM yy}'}"
+                                   Style="{StaticResource CurrentDateStyle}" />
+                            <Image Style="{StaticResource TimeIconStyle}" />
+                            <Label Text="GMT - 5"
+                                   Style="{StaticResource GmtStyle}" />
+                            <Label Text="New York"
+                                   Style="{StaticResource CityNameStyle}" />
+                            <Label Text="{Binding ., StringFormat='{0:hh:mm}'}"
+                                   Style="{StaticResource CurrentTimeStyle}" />
+                        </VerticalStackLayout>
+                    </telerik:TabViewItem.Content>
+                </telerik:TabViewItem>
+                <telerik:TabViewItem HeaderText="Brussels">
+                    <telerik:TabViewItem.Content>
+                        <VerticalStackLayout x:Name="brussels">
+                            <Label Text="{Binding Date, StringFormat='{0:dd MMM yy}'}"
+                                   Style="{StaticResource CurrentDateStyle}" />
+                            <Image Style="{StaticResource TimeIconStyle}" />
+                            <Label Text="GMT + 1"
+                                   Style="{StaticResource GmtStyle}" />
+                            <Label Text="Brussels"
+                                   Style="{StaticResource CityNameStyle}" />
+                            <Label Text="{Binding ., StringFormat='{0:hh:mm}'}"
+                                   Style="{StaticResource CurrentTimeStyle}" />
+                        </VerticalStackLayout>
+                    </telerik:TabViewItem.Content>
+                </telerik:TabViewItem>
+                <telerik:TabViewItem HeaderText="Moscow">
+                    <telerik:TabViewItem.Content>
+                        <VerticalStackLayout x:Name="moscow">
+                            <Label Text="{Binding Date, StringFormat='{0:dd MMM yy}'}"
+                                   Style="{StaticResource CurrentDateStyle}" />
+                            <Image Style="{StaticResource TimeIconStyle}" />
+                            <Label Text="GMT + 3"
+                                   Style="{StaticResource GmtStyle}" />
+                            <Label Text="Moscow"
+                                   Style="{StaticResource CityNameStyle}" />
+                            <Label Text="{Binding ., StringFormat='{0:hh:mm}'}"
+                                   Style="{StaticResource CurrentTimeStyle}" />
+                        </VerticalStackLayout>
+                    </telerik:TabViewItem.Content>
+                </telerik:TabViewItem>
+        </telerik:RadTabView>
+    </ContentView.Content>
+</ContentView>

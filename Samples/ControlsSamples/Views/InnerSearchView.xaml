@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<telerik:RadBorder xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                   xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                   xmlns:converters="clr-namespace:QSF.Converters"
+                   xmlns:selectors="clr-namespace:QSF.Selectors"
+                   xmlns:views="clr-namespace:QSF.Views"
+                   xmlns:layouts="clr-namespace:QSF.Layouts"
+                   x:Class="QSF.Views.InnerSearchView">
+
+    <VisualElement.Resources>
+        <converters:HightlitedTextConverter x:Key="HightlitedTextConverter" />
+        <Style x:Key="NoResultsLabelStyle" TargetType="Label">
+            <Setter Property="TextColor" Value="{StaticResource DefaultTextColor}" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="VerticalOptions" Value="Center" />
+        </Style>
+        <Style x:Key="GroupHeaderLabelStyle" TargetType="Label">
+            <Setter Property="TextColor" Value="{StaticResource DefaultTextColor}" />
+            <Setter Property="FontSize" Value="Medium" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="Margin" Value="6, 10, 0, 0" />
+        </Style>
+        <Style x:Key="LabelStyle" TargetType="Label">
+        </Style>
+        <Style x:Key="TitleStyle" TargetType="Label" BasedOn="{StaticResource LabelStyle}">
+            <Setter Property="FontAttributes" Value="Bold" />
+        </Style>
+        <Style x:Key="LayoutStyle" TargetType="Layout">
+            <Setter Property="Margin" Value="0, 0, 0, 7" />
+            <Setter Property="Padding" Value="12, 0, 0, 0" />
+        </Style>
+        <telerik:ListViewGroupStyle x:Key="GroupHeaderStyle"
+                                    BorderWidth="0"  />
+        <telerik:ListViewItemStyle x:Key="ListViewItemStyle"
+                                   BorderWidth="0"  />
+        <DataTemplate x:Key="GroupHeaderTemplate">
+            <Label Text="{Binding Key}"
+                   Style="{StaticResource GroupHeaderLabelStyle}" />
+        </DataTemplate>
+        <DataTemplate x:Key="HighlightedTextTemplate">
+            <telerik:ListViewTemplateCell>
+                <telerik:ListViewTemplateCell.View>
+                    <Grid Style="{StaticResource LayoutStyle}">
+                        <Label FormattedText="{Binding HighlightedText, Converter={StaticResource HightlitedTextConverter}}"
+                               Margin="0, 6, 0, 0"
+                               Style="{StaticResource LabelStyle}" />
+                    </Grid>
+                </telerik:ListViewTemplateCell.View>
+            </telerik:ListViewTemplateCell>
+        </DataTemplate>
+        <DataTemplate x:Key="ControlHighlightedTextTemplate">
+            <telerik:ListViewTemplateCell>
+                <telerik:ListViewTemplateCell.View>
+                    <Grid Style="{StaticResource LayoutStyle}">
+                        <Label Text="{Binding ControlDisplayName}"
+                               Margin="0, 6, 0, 0"
+                               Style="{StaticResource TitleStyle}" />
+                    </Grid>
+                </telerik:ListViewTemplateCell.View>
+            </telerik:ListViewTemplateCell>
+        </DataTemplate>
+        <DataTemplate x:Key="ControlNameAndHighlightedTextTemplate">
+            <telerik:ListViewTemplateCell>
+                <telerik:ListViewTemplateCell.View>
+                    <Grid Style="{StaticResource LayoutStyle}"
+                          RowDefinitions="Auto, Auto">
+                        <Label Text="{Binding ControlDisplayName}"
+                               Margin="0, 6, 0, 0"
+                               Style="{StaticResource TitleStyle}" />
+                        <Label FormattedText="{Binding HighlightedText, Converter={StaticResource HightlitedTextConverter}}"
+                               Grid.Row="1"
+                               Style="{StaticResource LabelStyle}" />
+                    </Grid>
+                </telerik:ListViewTemplateCell.View>
+            </telerik:ListViewTemplateCell>
+        </DataTemplate>
+        <DataTemplate x:Key="ExampleNameAndHighlightedTextTemplate">
+            <telerik:ListViewTemplateCell>
+                <telerik:ListViewTemplateCell.View>
+                    <Grid Style="{StaticResource LayoutStyle}"
+                          RowDefinitions="Auto, Auto">
+                        <Label Text="{Binding ExampleDisplayName}"
+                               Margin="0, 6, 0, 0"
+                               Style="{StaticResource TitleStyle}" />
+                        <Label FormattedText="{Binding HighlightedText, Converter={StaticResource HightlitedTextConverter}}"
+                               Grid.Row="1"
+                               Style="{StaticResource LabelStyle}" />
+                    </Grid>
+                </telerik:ListViewTemplateCell.View>
+            </telerik:ListViewTemplateCell>
+        </DataTemplate>
+        <selectors:SearchResultTemplateSelector x:Key="SearchResultTemplateSelector"
+                                                ControlTemplate="{StaticResource ControlHighlightedTextTemplate}"
+                                                ControlDescriptionTemplate="{StaticResource ControlNameAndHighlightedTextTemplate}"
+                                                ExampleTemplate="{StaticResource ControlNameAndHighlightedTextTemplate}"
+                                                ExampleDescriptionTemplate="{StaticResource ExampleNameAndHighlightedTextTemplate}"
+                                                AllControlsTemplate="{StaticResource HighlightedTextTemplate}" />
+    </VisualElement.Resources>
+
+    <Grid RowDefinitions="Auto, *">
+        <Grid Grid.Row="1">
+            <telerik:RadListView x:Name="searchResultsListView"
+                                 GroupHeaderTemplate="{StaticResource GroupHeaderTemplate}"
+                                 GroupHeaderStyle="{StaticResource GroupHeaderStyle}"
+                                 ItemStyle="{StaticResource ListViewItemStyle}"
+                                 ItemTemplateSelector="{StaticResource SearchResultTemplateSelector}"
+                                 ItemsSource="{Binding SearchResults}"
+                                 IsVisible="{Binding HasSearchResults}"
+                                 SelectedItem="{Binding SelectedSearchResult, Mode=TwoWay}"
+                                 PropertyChanged="searchResultsListView_PropertyChanged">
+                <telerik:RadListView.GroupDescriptors>
+                    <telerik:PropertyGroupDescriptor PropertyName="ResultTypeText"
+                                                     SortOrder="Ascending" />
+                </telerik:RadListView.GroupDescriptors>
+            </telerik:RadListView>
+            <Label Text="No results found"
+                   Style="{StaticResource NoResultsLabelStyle}"
+                   IsVisible="{Binding HasSearchResults, Converter={StaticResource InvertedBooleanConverter}}" />
+        </Grid>
+    </Grid>
+
+</telerik:RadBorder>

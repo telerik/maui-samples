@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:QSF.Views"
+             xmlns:layouts="clr-namespace:QSF.Layouts"
+             x:Class="QSF.Views.UniformView">
+
+    <VisualElement.Resources>
+        <ControlTemplate x:Key="HorizontalStack_ControlTemplate">
+            <ScrollView Orientation="Horizontal">
+                <ContentPresenter />
+            </ScrollView>
+        </ControlTemplate>
+        <ControlTemplate x:Key="VerticalStack_ControlTemplate">
+            <ScrollView Orientation="Vertical">
+                <ContentPresenter />
+            </ScrollView>
+        </ControlTemplate>
+    </VisualElement.Resources>
+
+    <ContentView.Content>
+        <layouts:UniformLayout x:Name="layout" />
+    </ContentView.Content>
+
+</ContentView>

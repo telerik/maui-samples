@@ -1,0 +1,82 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:converters="clr-namespace:QSF.Converters"
+             xmlns:layouts="clr-namespace:QSF.Layouts"
+             xmlns:pages="clr-namespace:QSF.Pages"
+             ios:Page.UseSafeArea="True"
+             NavigationPage.HasNavigationBar="False"
+             NavigationPage.HasBackButton="False"
+             x:Class="QSF.Pages.ControlPage">
+
+    <VisualElement.Resources>
+        <converters:RandomItemConverter x:Key="RandomBackgroundConverter">
+            <SolidColorBrush Color="{StaticResource AccentColor2}" />
+            <SolidColorBrush Color="{StaticResource AccentColor3}" />
+            <SolidColorBrush Color="{StaticResource AccentColor4}" />
+            <SolidColorBrush Color="{StaticResource AccentColor5}" />
+            <SolidColorBrush Color="{StaticResource AccentColor6}" />
+            <SolidColorBrush Color="{StaticResource AccentColor7}" />
+        </converters:RandomItemConverter>
+        <Style x:Key="BorderStyle" TargetType="telerik:RadBorder">
+            <Setter Property="BackgroundColor" Value="{StaticResource BasicBackgroundColor3}" />
+            <Setter Property="CornerRadius" Value="{StaticResource BorderCornerRadius}" />
+            <Setter Property="Margin" Value="4" />
+        </Style>
+        <Style x:Key="ExampleBorderStyle" TargetType="telerik:RadBorder">
+            <Setter Property="Background" Value="{Binding Source={RelativeSource Mode=Self}, Converter={StaticResource RandomBackgroundConverter}}" />
+            <Setter Property="CornerRadius" Value="{StaticResource BorderCornerRadius}" />
+            <Setter Property="Opacity" Value="0.3" />
+        </Style>
+        <Style x:Key="LabelStyle" TargetType="Label">
+            <Setter Property="TextColor" Value="{StaticResource DefaultTextColor}" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="Margin" Value="0, 8, 0, 0" />
+        </Style>
+        <DataTemplate x:Key="ExampleItemTemplate">
+            <telerik:RadBorder Style="{StaticResource BorderStyle}">
+                <View.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding BindingContext.NavigateToExampleCommand, Source={RelativeSource AncestorType={Type pages:ControlPage}}}"
+                                          CommandParameter="{Binding}" />
+                </View.GestureRecognizers>
+                <VerticalStackLayout Margin="12, 12, 12, 24">
+                    <layouts:QGrid>
+                        <telerik:RadBorder MinimumWidthRequest="130"
+                                           MinimumHeightRequest="130"
+                                           Style="{StaticResource ExampleBorderStyle}" />
+                        <Image Source="{Binding Icon}"
+                               Margin="35" />
+                    </layouts:QGrid>
+                    <Label Text="{Binding DisplayName}"
+                           LineBreakMode="WordWrap"
+                           Style="{StaticResource LabelStyle}" />
+                </VerticalStackLayout>
+            </telerik:RadBorder>
+        </DataTemplate>
+    </VisualElement.Resources>
+    
+    <Grid BackgroundColor="{StaticResource DefaultBackgroundColor}"
+          RowDefinitions="Auto, *">
+        <Grid ColumnDefinitions="Auto, Auto, *"
+              Style="{StaticResource HeaderStyle}">
+            <ImageButton Command="{Binding NavigateBackCommand}"
+                         Style="{OnPlatform Default={StaticResource DefaultBackButtonStyle}, iOS={StaticResource IOSBackButtonStyle}}" />
+            <Label Grid.Column="1" 
+                   Style="{StaticResource HeaderLabelStyle}"
+                   Text="{Binding HeaderTitle}" />
+        </Grid>
+        <telerik:NonVirtualizedItemsControl ItemTemplate="{StaticResource ExampleItemTemplate}"
+                                            ItemsSource="{Binding Examples}"
+                                            SelectionMode="None"                                            
+                                            Grid.Row="1"
+                                            Margin="4">
+            <telerik:NonVirtualizedItemsControl.ItemsLayoutTemplate>
+                <DataTemplate>
+                    <layouts:VerticalUniformLayout />
+                </DataTemplate>
+            </telerik:NonVirtualizedItemsControl.ItemsLayoutTemplate>
+        </telerik:NonVirtualizedItemsControl>
+    </Grid>
+    
+</ContentPage>
