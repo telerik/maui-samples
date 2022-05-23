@@ -15,6 +15,7 @@
             <Color x:Key="PageBarColor">#121212</Color>
             <Color x:Key="SegmentedControlBackgroundColor">#F8F8F8</Color>
             <Color x:Key="DataGridLineColor">#DFDFDF</Color>
+            <Color x:Key="DownloadButtonColor">#045DEA</Color>
 
             <Style TargetType="Label">
                 <Setter Property="VerticalTextAlignment" Value="Center" />
@@ -48,7 +49,6 @@
             <Style x:Key="ListViewBorderWrapStyle" TargetType="telerikMauiControls:RadBorder">
                 <Setter Property="CornerRadius" Value="8"/>
                 <Setter Property="BackgroundColor" Value="White"/>
-                <Setter Property="BorderColor" Value="White"/>
             </Style>
             
             <Style x:Key="TrendingCoinSymbolStyle" TargetType="Label">
@@ -136,6 +136,19 @@
             
             <Style x:Key="TabViewItemGridLayouStyle" TargetType="Grid">
                 <Setter Property="RowSpacing" Value="10"/>
+            </Style>
+
+            <Style x:Key="DownloadButtonStyle" TargetType="telerikMauiControls:RadButton">
+                <Setter Property="Text" Value="Try Telerik UI for .NET MAUI" />
+                <Setter Property="CornerRadius" Value="8" />
+                <Setter Property="WidthRequest" Value="224" />
+                <Setter Property="HeightRequest" Value="36" />
+                <Setter Property="ImageSource" Value="download.png" />
+                <Setter Property="BackgroundColor" Value="{StaticResource DownloadButtonColor}" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="BorderColor" Value="Transparent" />
+                <Setter Property="IsVisible" Value="{OnPlatform WinUI=false, Default=true}" />
             </Style>
             
         </ResourceDictionary>

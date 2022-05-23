@@ -1,10 +1,7 @@
 ﻿<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.Maui.Controls.Compatibility"
-             xmlns:telerikChart="clr-namespace:Telerik.XamarinForms.Chart;assembly=Telerik.Maui.Controls.Compatibility"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
              xmlns:local="clr-namespace:CryptoTracker.ViewModels"
-             xmlns:telerikMauiControls="clr-namespace:Telerik.Maui.Controls;assembly=Telerik.Maui.Controls"
-             xmlns:telerikDataGrid="clr-namespace:Telerik.XamarinForms.DataGrid;assembly=Telerik.Maui.Controls.Compatibility"
              xmlns:formatters="clr-namespace:CryptoTracker.Formatters"
              x:Class="CryptoTracker.Views.CoinInfoChartView"
              x:Name="coinInfoChartView">
@@ -19,7 +16,7 @@
 
         </VerticalStackLayout>
         
-        <telerikMauiControls:RadBorder Grid.Row="0"
+        <telerik:RadBorder Grid.Row="0"
                                        VerticalOptions="Center" 
                                        HorizontalOptions="End" 
                                        BackgroundColor="{Binding CoinPriceChangePercentage, Mode=OneWay, 
@@ -27,11 +24,11 @@
             <Label FontSize="14" FontAttributes="Bold" TextColor="White"
                            Text="{Binding CoinPriceChangePercentage,
                            StringFormat='{0:+ 0.00;- 0.00;0.00}%'}"/>
-        </telerikMauiControls:RadBorder>
+        </telerik:RadBorder>
 
 
 
-        <telerikMauiControls:RadBorder Grid.Row="1" Style="{StaticResource ListViewBorderWrapStyle}" Padding="10,10,10,20" BorderThickness="1" BorderColor="{StaticResource RadBorderColor}" >
+        <telerik:RadBorder Grid.Row="1" Style="{StaticResource ListViewBorderWrapStyle}" Padding="10,10,10,20" BorderThickness="1" BorderColor="{StaticResource RadBorderColor}" >
             <Grid RowDefinitions="60, *, 60" RowSpacing="10">
                 <Grid ColumnDefinitions="2*,*" ColumnSpacing="30">
                     <Label 
@@ -42,82 +39,82 @@
                                FontSize="18" 
                                Text="{Binding CoinName, StringFormat='{0} to USD Chart'}" LineBreakMode="{OnPlatform Default='TailTruncation', UWP='NoWrap', MacCatalyst='NoWrap'}"/>
 
-                    <telerikInput:RadSegmentedControl x:Name="chartTypesSegmentedControl" Grid.Column="1"
+                    <telerik:RadSegmentedControl x:Name="chartTypesSegmentedControl" Grid.Column="1"
                                                       HorizontalOptions="End" 
                                                       VerticalOptions="Center"
                                                       WidthRequest="{OnPlatform UWP=150, MacCatalyst=150, Default=100}"
                                                       SelectionChanged="ChangedChartType"
                                                       SelectedIndex="{Binding SelectedChartType, Mode=TwoWay}"
                                                       Style="{StaticResource SegmentedControlStyle}">
-                        <telerikInput:RadSegmentedControl.ItemsSource>
+                        <telerik:RadSegmentedControl.ItemsSource>
                             <x:Array Type="{x:Type FileImageSource}">
                                 <FileImageSource File="{OnPlatform Default='lineactive.png', Android='chartlineactive.png'}"/>
                                 <FileImageSource File="{OnPlatform Default='candleactive.png', Android='chartcandleactive.png'}"/>
                             </x:Array>
-                        </telerikInput:RadSegmentedControl.ItemsSource>
-                    </telerikInput:RadSegmentedControl>
+                        </telerik:RadSegmentedControl.ItemsSource>
+                    </telerik:RadSegmentedControl>
                 </Grid>
 
-                <telerikChart:RadCartesianChart IsVisible="{Binding IsLineChartVisible, Mode=OneWay}"
+                <telerik:RadCartesianChart IsVisible="{Binding IsLineChartVisible, Mode=OneWay}"
                                                 Grid.Row="1"
                                                 PropertyChanged="OnChartPropertyChanged">
-                    <telerikChart:RadCartesianChart.HorizontalAxis>
-                        <telerikChart:DateTimeContinuousAxis 
+                    <telerik:RadCartesianChart.HorizontalAxis>
+                        <telerik:DateTimeContinuousAxis 
                             LabelTextColor="Black"
                             LabelFitMode="Rotate"
                             LabelFormat="{Binding ChartLabelFormat}"
                             MajorStep="{Binding ChartMajorStep}"
                             MajorStepUnit="{Binding ChartMajorStepUnit}">
-                        </telerikChart:DateTimeContinuousAxis>
-                    </telerikChart:RadCartesianChart.HorizontalAxis>
-                    <telerikChart:RadCartesianChart.VerticalAxis>
-                        <telerikChart:NumericalAxis LabelTextColor="Black">
-                            <telerikChart:NumericalAxis.LabelFormatter>
+                        </telerik:DateTimeContinuousAxis>
+                    </telerik:RadCartesianChart.HorizontalAxis>
+                    <telerik:RadCartesianChart.VerticalAxis>
+                        <telerik:NumericalAxis LabelTextColor="Black">
+                            <telerik:NumericalAxis.LabelFormatter>
                                 <formatters:ShortPriceFormatter/>
-                            </telerikChart:NumericalAxis.LabelFormatter>
-                        </telerikChart:NumericalAxis>
-                    </telerikChart:RadCartesianChart.VerticalAxis>
-                    <telerikChart:RadCartesianChart.Series>
-                        <telerikChart:LineSeries
+                            </telerik:NumericalAxis.LabelFormatter>
+                        </telerik:NumericalAxis>
+                    </telerik:RadCartesianChart.VerticalAxis>
+                    <telerik:RadCartesianChart.Series>
+                        <telerik:LineSeries
                             StrokeThickness="2.5"
                             CategoryBinding="Date"
                             ValueBinding="ClosingPrice"
                             ItemsSource="{Binding DataForChart}">
-                        </telerikChart:LineSeries>
-                    </telerikChart:RadCartesianChart.Series>
-                </telerikChart:RadCartesianChart>
+                        </telerik:LineSeries>
+                    </telerik:RadCartesianChart.Series>
+                </telerik:RadCartesianChart>
 
-                <telerikChart:RadCartesianChart IsVisible="{Binding IsCandlestickChartVisible, Mode=OneWay}"
+                <telerik:RadCartesianChart IsVisible="{Binding IsCandlestickChartVisible, Mode=OneWay}"
                                                 Grid.Row="1"
                                                 PropertyChanged="OnChartPropertyChanged">
-                    <telerikChart:RadCartesianChart.HorizontalAxis>
-                        <telerikChart:DateTimeContinuousAxis 
+                    <telerik:RadCartesianChart.HorizontalAxis>
+                        <telerik:DateTimeContinuousAxis 
                             LabelTextColor="Black"
                             LabelFitMode="Rotate"
                             LabelFormat="{Binding ChartLabelFormat}"
                             MajorStepUnit="{Binding ChartMajorStepUnit}"
                             MajorStep="1">
-                        </telerikChart:DateTimeContinuousAxis>
-                    </telerikChart:RadCartesianChart.HorizontalAxis>
-                    <telerikChart:RadCartesianChart.VerticalAxis>
-                        <telerikChart:NumericalAxis LabelTextColor="Black">
-                            <telerikChart:NumericalAxis.LabelFormatter>
+                        </telerik:DateTimeContinuousAxis>
+                    </telerik:RadCartesianChart.HorizontalAxis>
+                    <telerik:RadCartesianChart.VerticalAxis>
+                        <telerik:NumericalAxis LabelTextColor="Black">
+                            <telerik:NumericalAxis.LabelFormatter>
                                 <formatters:ShortPriceFormatter/>
-                            </telerikChart:NumericalAxis.LabelFormatter>
-                        </telerikChart:NumericalAxis>
-                    </telerikChart:RadCartesianChart.VerticalAxis>
-                    <telerikChart:RadCartesianChart.Series>
-                        <telerikChart:CandlestickSeries
+                            </telerik:NumericalAxis.LabelFormatter>
+                        </telerik:NumericalAxis>
+                    </telerik:RadCartesianChart.VerticalAxis>
+                    <telerik:RadCartesianChart.Series>
+                        <telerik:CandlestickSeries
                             CategoryBinding="Date"
                             OpenBinding="OpeningPrice"
                             HighBinding="Price24High"
                             LowBinding="Price24Low"
                             CloseBinding="ClosingPrice"
                             ItemsSource="{Binding DataForChart}" />
-                    </telerikChart:RadCartesianChart.Series>
-                </telerikChart:RadCartesianChart>
+                    </telerik:RadCartesianChart.Series>
+                </telerik:RadCartesianChart>
 
-                <telerikInput:RadSegmentedControl x:Name="timePeriodsSegmentedControl"
+                <telerik:RadSegmentedControl x:Name="timePeriodsSegmentedControl"
                                                   Grid.Row="2"
                                                   HorizontalOptions="CenterAndExpand"
                                                   WidthRequest="{OnPlatform Default=290, UWP=720, MacCatalyst=720}"
@@ -127,7 +124,7 @@
                                                   Style="{StaticResource SegmentedControlStyle}" />
             </Grid>
 
-        </telerikMauiControls:RadBorder>
+        </telerik:RadBorder>
     </Grid>
 
 </ContentView>

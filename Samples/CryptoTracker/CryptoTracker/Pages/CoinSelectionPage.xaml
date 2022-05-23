@@ -1,9 +1,20 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:view="clr-namespace:CryptoTracker.Views"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
              x:Class="CryptoTracker.Pages.CoinSelectionPage"
              Title="Crypto Tracker"
              x:Name="mainPage">
 
-    <view:CoinSelectionView CoinSelected="OnCoinSelected" Padding="20, 25, 25, 15"/>
+    <Grid RowDefinitions="Auto, *" BackgroundColor="{StaticResource TrendingItemBackgroundColor}">
+        <telerik:RadButton Grid.Column="2"
+                           Padding="8, 0, 0, 0"
+                           ContentLayout="Left, -8"
+                           Style="{StaticResource DownloadButtonStyle}"
+                           FontSize="{OnPlatform iOS='Small'}"
+                           HorizontalOptions="End"
+                           Margin="0, 12, 25, 0" 
+                           Clicked="DownloadButtonClicked" />
+        <view:CoinSelectionView Grid.Row="1" CoinSelected="OnCoinSelected" Padding="20, 25, 25, 15"/>
+    </Grid>
 </ContentPage>

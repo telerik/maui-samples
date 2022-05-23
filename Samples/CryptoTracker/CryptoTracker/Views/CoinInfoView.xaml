@@ -1,10 +1,7 @@
 ﻿<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.Maui.Controls.Compatibility"
-             xmlns:telerikChart="clr-namespace:Telerik.XamarinForms.Chart;assembly=Telerik.Maui.Controls.Compatibility"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
              xmlns:local="clr-namespace:CryptoTracker.ViewModels"
-             xmlns:telerikMauiControls="clr-namespace:Telerik.Maui.Controls;assembly=Telerik.Maui.Controls"
-             xmlns:telerikDataGrid="clr-namespace:Telerik.XamarinForms.DataGrid;assembly=Telerik.Maui.Controls.Compatibility"
              xmlns:formatters="clr-namespace:CryptoTracker.Formatters"
              xmlns:coinViews="clr-namespace:CryptoTracker.Views"
              x:Class="CryptoTracker.Views.CoinInfoView"
@@ -14,15 +11,15 @@
         <local:CoinInfoViewModel/>
     </ContentView.BindingContext>
 
-    <telerikMauiControls:RadTabView x:Name="tabView" HeaderItemStyle="{StaticResource TabViewHeaderStyle}">
-        <telerikMauiControls:TabViewItem HeaderText="Overview">
+    <telerik:RadTabView x:Name="tabView" HeaderItemStyle="{StaticResource TabViewHeaderStyle}">
+        <telerik:TabViewItem HeaderText="Overview">
             <coinViews:CoinInfoChartView x:Name="coinInfoChartView" Padding="20,15,20,30"/>
-        </telerikMauiControls:TabViewItem>
+        </telerik:TabViewItem>
 
-        <telerikMauiControls:TabViewItem HeaderText="Historical Data">
+        <telerik:TabViewItem HeaderText="Historical Data">
             <coinViews:CoinInfoDataGridView x:Name="coinInfoDataGridView" Padding="20,15,20,30"/>
-        </telerikMauiControls:TabViewItem>
-    </telerikMauiControls:RadTabView>
+        </telerik:TabViewItem>
+    </telerik:RadTabView>
     
     
 </ContentView>
