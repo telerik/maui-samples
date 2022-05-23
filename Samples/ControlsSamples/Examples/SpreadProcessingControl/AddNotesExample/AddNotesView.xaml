@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        x:Class="QSF.Examples.SpreadProcessingControl.AddNotesExample.AddNotesView"
+                        Margin="5">
+    <telerik:RadContentView.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label" x:Key="МainConditionLabelStyle" >
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="TextColor" Value="{AppThemeBinding Dark=#FFFFFF, Light=#000000}" />
+                <Setter Property="Margin" Value="0,25,0,0"/>
+            </Style>
+
+            <Style TargetType="Picker" x:Key="CommonPickerStyle">
+                <Setter Property="TextColor" Value="{AppThemeBinding Dark=#FFFFFF, Light=#000000}"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+            </Style>
+
+            <Style TargetType="Entry" x:Key="CommonEntryStyle">
+                <Setter Property="Keyboard" Value="Numeric"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                <Setter Property="FontSize" Value="12"/>
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+            </Style>
+        </ResourceDictionary>
+    </telerik:RadContentView.Resources>
+    <Grid RowDefinitions="*,Auto"
+          BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#121212}">
+        <ScrollView >
+            <Grid RowDefinitions="Auto,Auto,Auto,Auto" 
+                  RowSpacing="24">
+                <VerticalStackLayout VerticalOptions="Center" 
+                                     HorizontalOptions="Center"
+                                     Padding="16,10,16,7" 
+                                     Spacing="9"
+                                     BackgroundColor="{AppThemeBinding Light=#F0F0F0, Dark=#373737}">
+                    <Label Text="Note Preview:" />
+                    <telerik:RadBorder HeightRequest="90" 
+                                       BorderColor="#D7E3B2"
+                                       BorderThickness="1"
+                                       Padding="8,8,0,0"
+                                       BackgroundColor="#FAFFEA">
+                        <Label BackgroundColor="Transparent" 
+                               VerticalOptions="Start" 
+                               TextColor="Black"
+                               Text="{Binding Text, Mode=TwoWay}" />
+                    </telerik:RadBorder>
+                </VerticalStackLayout>
+                <VerticalStackLayout Grid.Row="1" 
+                                     Padding="62,0"
+                                     Spacing="8">
+                    <Label Text="Note Configuration:" 
+                           FontSize="18" 
+                           TextColor="{AppThemeBinding Dark=#FFFFFF, Light=#000000}"
+                           FontAttributes="Bold"
+                           HorizontalOptions="Center" />
+                    <Label Text="Author's name:"
+                           Style="{StaticResource МainConditionLabelStyle}" />
+                    <Entry Style="{StaticResource CommonEntryStyle}" 
+                           Text="{Binding Author, Mode=TwoWay}"
+                           MaximumWidthRequest="{OnPlatform WinUI='300', MacCatalyst='300'}" />
+                </VerticalStackLayout>
+                <VerticalStackLayout Grid.Row="2"
+                                     Padding="62,0"
+                                     Spacing="10">
+                    <Label Text="Description:" 
+                           Style="{StaticResource МainConditionLabelStyle}" />
+                    <Entry Style="{StaticResource CommonEntryStyle}" 
+                           Text="{Binding Description, Mode=TwoWay}" 
+                           MaximumWidthRequest="{OnPlatform WinUI='300', MacCatalyst='300'}" />
+                </VerticalStackLayout>
+                <VerticalStackLayout Grid.Row="3"
+                                     Spacing="8"
+                                     Padding="62,0">
+                    <Label Text="Related property:" 
+                           Style="{StaticResource МainConditionLabelStyle}"/>
+                    <Picker ItemsSource="{Binding Items, Mode=TwoWay}" 
+                            SelectedItem="{Binding SelectedItem, Mode=TwoWay}" 
+                            Style="{StaticResource CommonPickerStyle}" 
+                            WidthRequest="{OnPlatform WinUI='300', MacCatalyst='300'}" />
+
+                </VerticalStackLayout>
+            </Grid>
+        </ScrollView>
+        <telerik:RadButton Grid.Row="1" 
+                           Style="{StaticResource SubmitButtonStyle}"
+                           Text="View Document"
+                           VerticalOptions="{OnPlatform WinUI='Center', MacCatalyst='Center'}"
+                           HorizontalOptions="{OnPlatform WinUI='Center', MacCatalyst='Center'}"
+                           Command="{Binding ViewDocumentWithNotesCommand}" />
+    </Grid>
+</telerik:RadContentView>

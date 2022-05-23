@@ -1,0 +1,60 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:views="clr-namespace:QSF.Views"
+             ios:Page.UseSafeArea="True"
+             NavigationPage.HasNavigationBar="False"
+             NavigationPage.HasBackButton="False"
+             x:Class="QSF.Pages.SearchPageMobile">
+    
+    <VisualElement.Resources>
+        <Style x:Key="EntryStyle_iOS" TargetType="telerik:RadEntry">
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="FocusedBorderThickness" Value="0" />
+        </Style>
+        <Style x:Key="EntryStyle" TargetType="telerik:RadEntry" BasedOn="{OnPlatform iOS={StaticResource EntryStyle_iOS}}">
+            <Setter Property="TextColor" Value="{StaticResource PrimaryTextColor1}" />
+            <Setter Property="BorderBrush" Value="{StaticResource PrimaryTextColor1}" />
+            <Setter Property="FocusedBorderBrush" Value="{StaticResource PrimaryTextColor1}" />
+            <Setter Property="PlaceholderColor" Value="{StaticResource PlaceholderColor}" />
+            <Setter Property="ClearButtonColor" Value="{StaticResource PlaceholderColor}" />
+        </Style>
+        <Style x:Key="InnerSearchViewStyle_iOS" TargetType="views:InnerSearchView">
+            <Setter Property="Margin" Value="10" />
+        </Style>
+        <Style x:Key="BoxViewStyle_iOS" TargetType="BoxView">
+            <Setter Property="IsVisible" Value="{OnPlatform iOS=true, Default=false}" />
+            <Setter Property="HeightRequest" Value="1" />
+            <Setter Property="Margin" Value="0, 0, 0, 4" />
+            <Setter Property="VerticalOptions" Value="End" />
+            <Setter Property="BackgroundColor" Value="{StaticResource PrimaryTextColor1}" />
+        </Style>
+    </VisualElement.Resources>
+
+    <Grid RowDefinitions="Auto, *">
+        <Grid ColumnDefinitions="Auto, *" 
+              Style="{StaticResource HeaderStyle}">
+            <ImageButton Command="{Binding NavigateBackCommand}"
+                         Style="{OnPlatform Default={StaticResource DefaultBackButtonStyle}, iOS={StaticResource IOSBackButtonStyle}}" />
+            <telerik:RadBorder Grid.Column="1"
+                               CornerRadius="{StaticResource BorderCornerRadius}">
+                <Grid ColumnDefinitions="Auto, *">
+                    <Image Source="searchentry.png"
+                           Aspect="Center" />
+                    <telerik:RadEntry x:Name="searchEntry"
+                                      Placeholder="Search"
+                                      Grid.Column="1"
+                                      Style="{StaticResource EntryStyle}" />
+                    <BoxView Grid.Column="1"
+                             Style="{StaticResource BoxViewStyle_iOS}" />
+                </Grid>
+            </telerik:RadBorder>
+        </Grid>
+        <views:InnerSearchView Grid.Row="1"
+                               SearchText="{Binding Text, Source={Reference searchEntry}}"
+                               SelectedSearchResult="{Binding SelectedSearchResult}"
+                               Style="{OnPlatform iOS={StaticResource InnerSearchViewStyle_iOS}}" />
+    </Grid>
+    
+</ContentPage>

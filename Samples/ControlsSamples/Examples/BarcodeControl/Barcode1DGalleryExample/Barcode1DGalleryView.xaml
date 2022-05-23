@@ -1,0 +1,878 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        x:Class="QSF.Examples.BarcodeControl.Barcode1DGalleryExample.Barcode1DGalleryView"
+                        Margin="5">
+    <telerik:RadContentView.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label" x:Key="BarcodeHeaderStyle">
+                <Setter Property="Margin" Value="0"/>
+            </Style>
+
+            <Style TargetType="Image" x:Key="EncodingIconStyle">
+                <Setter Property="Source" Value="encoding.png"/>
+                <Setter Property="HeightRequest" Value="22"/>
+                <Setter Property="WidthRequest" Value="22"/>
+                <Setter Property="Margin" Value="0"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+            </Style>
+
+            <Style TargetType="Image" x:Key="LengthIconStyle">
+                <Setter Property="Source" Value="length.png"/>
+                <Setter Property="WidthRequest" Value="22"/>
+                <Setter Property="HeightRequest" Value="22"/>
+                <Setter Property="Margin" Value="0"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+            </Style>
+
+            <Style TargetType="Label" x:Key="BarcodeBodyLabelStyle">
+                <Setter Property="LineBreakMode" Value="WordWrap"/>
+                <Setter Property="Margin" Value="0"/>
+                <Setter Property="HorizontalTextAlignment" Value="Start"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+            </Style>
+
+            <Style TargetType="Grid" x:Key="Container">
+                <Setter Property="HeightRequest" Value="120"/>
+                <Setter Property="ColumnSpacing" Value="20"/>
+            </Style>
+        </ResourceDictionary>
+    </telerik:RadContentView.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Margin="20" Spacing="40">
+            <Grid Style="{StaticResource Container}" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="3*" />
+                </Grid.ColumnDefinitions>
+                <telerik:RadBarcode Value="0123456789">
+                    <telerik:RadBarcode.Symbology>
+                        <telerik:Codabar SizingMode="Stretch" ShowText="True" HorizontalTextAlignment="Center" />
+                    </telerik:RadBarcode.Symbology>
+                </telerik:RadBarcode>
+
+                <Grid Grid.Column="1" VerticalOptions="Start" RowSpacing="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="Codabar" Grid.ColumnSpan="2" Style="{StaticResource BarcodeHeaderStyle}" />
+
+                    <Image Grid.Row="1" Style="{StaticResource EncodingIconStyle}" />
+                    <Label Text="0123456789-$:/.+ABCD" Grid.Row="1" Grid.Column="1" Style="{StaticResource BarcodeBodyLabelStyle}" />
+
+                    <Image Grid.Row="2" Style="{StaticResource LengthIconStyle}" />
+                    <Label Text="Variable (no fixed lenght)" Grid.Row="2" Grid.Column="1" Style="{StaticResource BarcodeBodyLabelStyle}" />
+                </Grid>
+            </Grid>
+
+            <Grid Style="{StaticResource Container}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="3*" />
+                </Grid.ColumnDefinitions>
+                <telerik:RadBarcode Value="0123456789">
+                    <telerik:RadBarcode.Symbology>
+                        <telerik:Code11 SizingMode="Stretch" ShowText="True" HorizontalTextAlignment="Center" />
+                    </telerik:RadBarcode.Symbology>
+                </telerik:RadBarcode>
+
+                <Grid Grid.Column="1" VerticalOptions="Start" RowSpacing="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="Code11" Grid.ColumnSpan="2" Style="{StaticResource BarcodeHeaderStyle}" />
+
+                    <Image Grid.Row="1" Style="{StaticResource EncodingIconStyle}" />
+                    <Label Text="0123456789-" Grid.Row="1" Grid.Column="1" Style="{StaticResource BarcodeBodyLabelStyle}" />
+
+                    <Image Grid.Row="2" Style="{StaticResource LengthIconStyle}" />
+                    <Label Text="Variable (no fixed lenght)" Grid.Row="2" Grid.Column="1" Style="{StaticResource BarcodeBodyLabelStyle}" />
+                </Grid>
+            </Grid>
+
+            <Grid Style="{StaticResource Container}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="3*" />
+                </Grid.ColumnDefinitions>
+                <telerik:RadBarcode Value="ASCII characters">
+                    <telerik:RadBarcode.Symbology>
+                        <telerik:Code128 SizingMode="Stretch" ShowText="True" HorizontalTextAlignment="Center" />
+                    </telerik:RadBarcode.Symbology>
+                </telerik:RadBarcode>
+
+                <Grid Grid.Column="1" VerticalOptions="Start" RowSpacing="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="Code128" Grid.ColumnSpan="2" Style="{StaticResource BarcodeHeaderStyle}" />
+
+                    <Image Grid.Row="1" Style="{StaticResource EncodingIconStyle}" />
+                    <Label Text="All 128 ASCII characters" Grid.Row="1" Grid.Column="1" Style="{StaticResource BarcodeBodyLabelStyle}" />
+
+                    <Image Grid.Row="2" Style="{StaticResource LengthIconStyle}" />
+                    <Label Text="Variable (no fixed lenght)" Grid.Row="2" Grid.Column="1" Style="{StaticResource BarcodeBodyLabelStyle}" />
+                </Grid>
+            </Grid>
+
+            <Grid Style="{StaticResource Container}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="3*" />
+                </Grid.ColumnDefinitions>
+                <telerik:RadBarcode Value="0123456789">
+                    <telerik:RadBarcode.Symbology>
+                        <telerik:Code128A SizingMode="Stretch" ShowText="True" HorizontalTextAlignment="Center" />
+                    </telerik:RadBarcode.Symbology>
+                </telerik:RadBarcode>
+
+                <Grid Grid.Column="1" VerticalOptions="Start" RowSpacing="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="Code128A" Grid.ColumnSpan="2" Style="{StaticResource BarcodeHeaderStyle}" />
+
+                    <Image Grid.Row="1" Style="{StaticResource EncodingIconStyle}" />
+                    <Label Text="Upper latin letters, numbers, some special chars" Grid.Row="1" Grid.Column="1" Style="{StaticResource BarcodeBodyLabelStyle}" />
+
+                    <Image Grid.Row="2" Style="{StaticResource LengthIconStyle}" />
+                    <Label Text="Variable (no fixed lenght)" Grid.Row="2" Grid.Column="1" Style="{StaticResource BarcodeBodyLabelStyle}" />
+                </Grid>
+            </Grid>
+
+            <Grid Style="{StaticResource Container}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="3*" />
+                </Grid.ColumnDefinitions>
+                <telerik:RadBarcode Value="0123456789">
+                    <telerik:RadBarcode.Symbology>
+                        <telerik:Code128B SizingMode="Stretch" ShowText="True" HorizontalTextAlignment="Center" />
+                    </telerik:RadBarcode.Symbology>
+                </telerik:RadBarcode>
+
+                <Grid Grid.Column="1" VerticalOptions="Start" RowSpacing="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="Code128B" Grid.ColumnSpan="2" Style="{StaticResource BarcodeHeaderStyle}" />
+
+                    <Image Grid.Row="1" Style="{StaticResource EncodingIconStyle}" />
+                    <Label Text="Latin letters, numbers, some special chars" Grid.Row="1" Grid.Column="1" Style="{StaticResource BarcodeBodyLabelStyle}" />
+
+                    <Image Grid.Row="2" Style="{StaticResource LengthIconStyle}" />
+                    <Label Text="Variable (no fixed lenght)" Grid.Row="2" Grid.Column="1" Style="{StaticResource BarcodeBodyLabelStyle}" />
+                </Grid>
+            </Grid>
+
+            <Grid Style="{StaticResource Container}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="3*" />
+                </Grid.ColumnDefinitions>
+                <telerik:RadBarcode Value="0123456789">
+                    <telerik:RadBarcode.Symbology>
+                        <telerik:Code128C SizingMode="Stretch" ShowText="True" HorizontalTextAlignment="Center" />
+                    </telerik:RadBarcode.Symbology>
+                </telerik:RadBarcode>
+
+                <Grid Grid.Column="1" VerticalOptions="Start" RowSpacing="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="Code128C" Grid.ColumnSpan="2" Style="{StaticResource BarcodeHeaderStyle}" />
+
+                    <Image Grid.Row="1" Style="{StaticResource EncodingIconStyle}" />
+                    <Label Text="Upper and lower latin letters, numbers, some special chars" Grid.Row="1" Grid.Column="1" Style="{StaticResource BarcodeBodyLabelStyle}" />
+
+                    <Image Grid.Row="2" Style="{StaticResource LengthIconStyle}" />
+                    <Label Text="Variable (no fixed lenght)" Grid.Row="2" Grid.Column="1" Style="{StaticResource BarcodeBodyLabelStyle}" />
+                </Grid>
+            </Grid>
+
+            <Grid Style="{StaticResource Container}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="3*" />
+                </Grid.ColumnDefinitions>
+                <telerik:RadBarcode Value="0123456789">
+                    <telerik:RadBarcode.Symbology>
+                        <telerik:Code25Standard SizingMode="Stretch" ShowText="True" HorizontalTextAlignment="Center" />
+                    </telerik:RadBarcode.Symbology>
+                </telerik:RadBarcode>
+
+                <Grid Grid.Column="1" VerticalOptions="Start" RowSpacing="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="Code25Standard" Grid.ColumnSpan="2" Style="{StaticResource BarcodeHeaderStyle}" />
+
+                    <Image Grid.Row="1" Style="{StaticResource EncodingIconStyle}" />
+                    <Label Text="Digits" Grid.Row="1" Grid.Column="1" Style="{StaticResource BarcodeBodyLabelStyle}" />
+
+                    <Image Grid.Row="2" Style="{StaticResource LengthIconStyle}" />
+                    <Label Text="Variable (no fixed lenght)" Grid.Row="2" Grid.Column="1" Style="{StaticResource BarcodeBodyLabelStyle}" />
+                </Grid>
+            </Grid>
+
+            <Grid Style="{StaticResource Container}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="3*" />
+                </Grid.ColumnDefinitions>
+                <telerik:RadBarcode Value="0123456789">
+                    <telerik:RadBarcode.Symbology>
+                        <telerik:Code25Interleaved SizingMode="Stretch" ShowText="True" HorizontalTextAlignment="Center" />
+                    </telerik:RadBarcode.Symbology>
+                </telerik:RadBarcode>
+
+                <Grid Grid.Column="1" VerticalOptions="Start" RowSpacing="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="Code25Interleaved" Grid.ColumnSpan="2" Style="{StaticResource BarcodeHeaderStyle}" />
+
+                    <Image Grid.Row="1" Style="{StaticResource EncodingIconStyle}" />
+                    <Label Text="Digits" Grid.Row="1" Grid.Column="1" Style="{StaticResource BarcodeBodyLabelStyle}" />
+
+                    <Image Grid.Row="2" Style="{StaticResource LengthIconStyle}" />
+                    <Label Text="Variable (no fixed lenght)" Grid.Row="2" Grid.Column="1" Style="{StaticResource BarcodeBodyLabelStyle}" />
+                </Grid>
+            </Grid>
+
+            <Grid Style="{StaticResource Container}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="3*" />
+                </Grid.ColumnDefinitions>
+                <telerik:RadBarcode Value="0123456789">
+                    <telerik:RadBarcode.Symbology>
+                        <telerik:Code39 SizingMode="Stretch" ShowText="True" HorizontalTextAlignment="Center" />
+                    </telerik:RadBarcode.Symbology>
+                </telerik:RadBarcode>
+
+                <Grid Grid.Column="1" VerticalOptions="Start" RowSpacing="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="Code39" Grid.ColumnSpan="2" Style="{StaticResource BarcodeHeaderStyle}" />
+
+                    <Image Grid.Row="1" Style="{StaticResource EncodingIconStyle}" />
+                    <Label Text="Upper latin letters, numbers, some special chars" Grid.Row="1" Grid.Column="1" Style="{StaticResource BarcodeBodyLabelStyle}" />
+
+                    <Image Grid.Row="2" Style="{StaticResource LengthIconStyle}" />
+                    <Label Text="Variable (no fixed lenght)" Grid.Row="2" Grid.Column="1" Style="{StaticResource BarcodeBodyLabelStyle}" />
+                </Grid>
+            </Grid>
+
+            <Grid Style="{StaticResource Container}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="3*" />
+                </Grid.ColumnDefinitions>
+                <telerik:RadBarcode Value="ASCII characters">
+                    <telerik:RadBarcode.Symbology>
+                        <telerik:Code39Extended SizingMode="Stretch" ShowText="True" HorizontalTextAlignment="Center" />
+                    </telerik:RadBarcode.Symbology>
+                </telerik:RadBarcode>
+
+                <Grid Grid.Column="1" VerticalOptions="Start" RowSpacing="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="Code39Extended" Grid.ColumnSpan="2" Style="{StaticResource BarcodeHeaderStyle}" />
+
+                    <Image Grid.Row="1" Style="{StaticResource EncodingIconStyle}" />
+                    <Label Text="All 128 ASCII characters" Grid.Row="1" Grid.Column="1" Style="{StaticResource BarcodeBodyLabelStyle}" />
+
+                    <Image Grid.Row="2" Style="{StaticResource LengthIconStyle}" />
+                    <Label Text="Variable (no fixed lenght)" Grid.Row="2" Grid.Column="1" Style="{StaticResource BarcodeBodyLabelStyle}" />
+                </Grid>
+            </Grid>
+
+            <Grid Style="{StaticResource Container}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="3*" />
+                </Grid.ColumnDefinitions>
+                <telerik:RadBarcode Value="0123456789">
+                    <telerik:RadBarcode.Symbology>
+                        <telerik:Code93 SizingMode="Stretch" ShowText="True" HorizontalTextAlignment="Center" />
+                    </telerik:RadBarcode.Symbology>
+                </telerik:RadBarcode>
+
+                <Grid Grid.Column="1" VerticalOptions="Start" RowSpacing="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="Code93" Grid.ColumnSpan="2" Style="{StaticResource BarcodeHeaderStyle}" />
+
+                    <Image Grid.Row="1" Style="{StaticResource EncodingIconStyle}" />
+                    <Label Text="Upper latin letters, numbers, some special chars" Grid.Row="1" Grid.Column="1" Style="{StaticResource BarcodeBodyLabelStyle}" />
+
+                    <Image Grid.Row="2" Style="{StaticResource LengthIconStyle}" />
+                    <Label Text="Variable (no fixed lenght)" Grid.Row="2" Grid.Column="1" Style="{StaticResource BarcodeBodyLabelStyle}" />
+                </Grid>
+            </Grid>
+
+            <Grid Style="{StaticResource Container}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="3*" />
+                </Grid.ColumnDefinitions>
+                <telerik:RadBarcode Value="ASCII characters">
+                    <telerik:RadBarcode.Symbology>
+                        <telerik:Code93Extended SizingMode="Stretch" ShowText="True" HorizontalTextAlignment="Center" />
+                    </telerik:RadBarcode.Symbology>
+                </telerik:RadBarcode>
+
+                <Grid Grid.Column="1" VerticalOptions="Start" RowSpacing="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="Code93Extended" Grid.ColumnSpan="2" Style="{StaticResource BarcodeHeaderStyle}" />
+
+                    <Image Grid.Row="1" Style="{StaticResource EncodingIconStyle}" />
+                    <Label Text="All 128 ASCII characters" Grid.Row="1" Grid.Column="1" Style="{StaticResource BarcodeBodyLabelStyle}" />
+
+                    <Image Grid.Row="2" Style="{StaticResource LengthIconStyle}" />
+                    <Label Text="Variable (no fixed lenght)" Grid.Row="2" Grid.Column="1" Style="{StaticResource BarcodeBodyLabelStyle}" />
+                </Grid>
+            </Grid>
+
+            <Grid Style="{StaticResource Container}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="3*" />
+                </Grid.ColumnDefinitions>
+                <telerik:RadBarcode Value="0123456789">
+                    <telerik:RadBarcode.Symbology>
+                        <telerik:CodeMSI SizingMode="Stretch" ShowText="True" HorizontalTextAlignment="Center" />
+                    </telerik:RadBarcode.Symbology>
+                </telerik:RadBarcode>
+
+                <Grid Grid.Column="1" VerticalOptions="Start" RowSpacing="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="CodeMSI" Grid.ColumnSpan="2" Style="{StaticResource BarcodeHeaderStyle}" />
+
+                    <Image Grid.Row="1" Style="{StaticResource EncodingIconStyle}" />
+                    <Label Text="Digits" Grid.Row="1" Grid.Column="1" Style="{StaticResource BarcodeBodyLabelStyle}" />
+
+                    <Image Grid.Row="2" Style="{StaticResource LengthIconStyle}" />
+                    <Label Text="Variable (no fixed lenght)" Grid.Row="2" Grid.Column="1" Style="{StaticResource BarcodeBodyLabelStyle}" />
+                </Grid>
+            </Grid>
+
+            <Grid Style="{StaticResource Container}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="3*" />
+                </Grid.ColumnDefinitions>
+                <telerik:RadBarcode Value="0123456789">
+                    <telerik:RadBarcode.Symbology>
+                        <telerik:EAN128 SizingMode="Stretch" ShowText="True" HorizontalTextAlignment="Center" />
+                    </telerik:RadBarcode.Symbology>
+                </telerik:RadBarcode>
+
+                <Grid Grid.Column="1" VerticalOptions="Start" RowSpacing="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="EAN128" Grid.ColumnSpan="2" Style="{StaticResource BarcodeHeaderStyle}" />
+
+                    <Image Grid.Row="1" Style="{StaticResource EncodingIconStyle}" />
+                    <Label Text="All 128 ASCII characters" Grid.Row="1" Grid.Column="1" Style="{StaticResource BarcodeBodyLabelStyle}" />
+
+                    <Image Grid.Row="2" Style="{StaticResource LengthIconStyle}" />
+                    <Label Text="Variable (no fixed lenght)" Grid.Row="2" Grid.Column="1" Style="{StaticResource BarcodeBodyLabelStyle}" />
+                </Grid>
+            </Grid>
+
+            <Grid Style="{StaticResource Container}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="3*" />
+                </Grid.ColumnDefinitions>
+                <telerik:RadBarcode Value="0123456789">
+                    <telerik:RadBarcode.Symbology>
+                        <telerik:EAN128A SizingMode="Stretch" ShowText="True" HorizontalTextAlignment="Center" />
+                    </telerik:RadBarcode.Symbology>
+                </telerik:RadBarcode>
+
+                <Grid Grid.Column="1" VerticalOptions="Start" RowSpacing="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="EAN128A" Grid.ColumnSpan="2" Style="{StaticResource BarcodeHeaderStyle}" />
+
+                    <Image Grid.Row="1" Style="{StaticResource EncodingIconStyle}" />
+                    <Label Text="ASCII 0 to 95 (plus special characters)" Grid.Row="1" Grid.Column="1" Style="{StaticResource BarcodeBodyLabelStyle}" />
+
+                    <Image Grid.Row="2" Style="{StaticResource LengthIconStyle}" />
+                    <Label Text="Variable (no fixed lenght)" Grid.Row="2" Grid.Column="1" Style="{StaticResource BarcodeBodyLabelStyle}" />
+                </Grid>
+            </Grid>
+
+            <Grid Style="{StaticResource Container}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="3*" />
+                </Grid.ColumnDefinitions>
+                <telerik:RadBarcode Value="0123456789">
+                    <telerik:RadBarcode.Symbology>
+                        <telerik:EAN128B SizingMode="Stretch" ShowText="True" HorizontalTextAlignment="Center" />
+                    </telerik:RadBarcode.Symbology>
+                </telerik:RadBarcode>
+
+                <Grid Grid.Column="1" VerticalOptions="Start" RowSpacing="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="EAN128B" Grid.ColumnSpan="2" Style="{StaticResource BarcodeHeaderStyle}" />
+
+                    <Image Grid.Row="1" Style="{StaticResource EncodingIconStyle}" />
+                    <Label Text="ASCII 32 to 127 (plus special characters)" Grid.Row="1" Grid.Column="1" Style="{StaticResource BarcodeBodyLabelStyle}" />
+
+                    <Image Grid.Row="2" Style="{StaticResource LengthIconStyle}" />
+                    <Label Text="Variable (no fixed lenght)" Grid.Row="2" Grid.Column="1" Style="{StaticResource BarcodeBodyLabelStyle}" />
+                </Grid>
+            </Grid>
+
+            <Grid Style="{StaticResource Container}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="3*" />
+                </Grid.ColumnDefinitions>
+                <telerik:RadBarcode Value="0123456789">
+                    <telerik:RadBarcode.Symbology>
+                        <telerik:EAN128C SizingMode="Stretch" ShowText="True" HorizontalTextAlignment="Center" />
+                    </telerik:RadBarcode.Symbology>
+                </telerik:RadBarcode>
+
+                <Grid Grid.Column="1" VerticalOptions="Start" RowSpacing="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="EAN128C" Grid.ColumnSpan="2" Style="{StaticResource BarcodeHeaderStyle}" />
+
+                    <Image Grid.Row="1" Style="{StaticResource EncodingIconStyle}" />
+                    <Label Text="'0' to '9' (plus special characters)" Grid.Row="1" Grid.Column="1" Style="{StaticResource BarcodeBodyLabelStyle}" />
+
+                    <Image Grid.Row="2" Style="{StaticResource LengthIconStyle}" />
+                    <Label Text="Variable (no fixed lenght)" Grid.Row="2" Grid.Column="1" Style="{StaticResource BarcodeBodyLabelStyle}" />
+                </Grid>
+            </Grid>
+
+            <Grid Style="{StaticResource Container}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="3*" />
+                </Grid.ColumnDefinitions>
+                <telerik:RadBarcode Value="012345678912">
+                    <telerik:RadBarcode.Symbology>
+                        <telerik:EAN13 SizingMode="Stretch" ShowText="True" HorizontalTextAlignment="Center" />
+                    </telerik:RadBarcode.Symbology>
+                </telerik:RadBarcode>
+
+                <Grid Grid.Column="1" VerticalOptions="Start" RowSpacing="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="EAN13" Grid.ColumnSpan="2" Style="{StaticResource BarcodeHeaderStyle}" />
+
+                    <Image Grid.Row="1" Style="{StaticResource EncodingIconStyle}" />
+                    <Label Text="Digits" Grid.Row="1" Grid.Column="1" Style="{StaticResource BarcodeBodyLabelStyle}" />
+
+                    <Image Grid.Row="2" Style="{StaticResource LengthIconStyle}" />
+                    <Label Text="12 digits + 1 check digit" Grid.Row="2" Grid.Column="1" Style="{StaticResource BarcodeBodyLabelStyle}" />
+                </Grid>
+            </Grid>
+
+            <Grid Style="{StaticResource Container}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="3*" />
+                </Grid.ColumnDefinitions>
+                <telerik:RadBarcode Value="0123456">
+                    <telerik:RadBarcode.Symbology>
+                        <telerik:EAN8 SizingMode="Stretch" ShowText="True" HorizontalTextAlignment="Center" />
+                    </telerik:RadBarcode.Symbology>
+                </telerik:RadBarcode>
+
+                <Grid Grid.Column="1" VerticalOptions="Start" RowSpacing="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="EAN8" Grid.ColumnSpan="2" Style="{StaticResource BarcodeHeaderStyle}" />
+
+                    <Image Grid.Row="1" Style="{StaticResource EncodingIconStyle}" />
+                    <Label Text="Digits" Grid.Row="1" Grid.Column="1" Style="{StaticResource BarcodeBodyLabelStyle}" />
+
+                    <Image Grid.Row="2" Style="{StaticResource LengthIconStyle}" />
+                    <Label Text="7 digits + 1 check digit" Grid.Row="2" Grid.Column="1" Style="{StaticResource BarcodeBodyLabelStyle}" />
+                </Grid>
+            </Grid>
+
+            <Grid ColumnSpacing="20" Style="{StaticResource Container}" x:Name="intelligentMail">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="3*" />
+                </Grid.ColumnDefinitions>
+                <telerik:RadBarcode Value="01234567899876543210">
+                    <telerik:RadBarcode.Symbology>
+                        <telerik:IntelligentMail SizingMode="Stretch" ShowText="True" HorizontalTextAlignment="Center" />
+                    </telerik:RadBarcode.Symbology>
+                </telerik:RadBarcode>
+
+                <Grid Grid.Column="1" VerticalOptions="Start" RowSpacing="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="IntelligentMail" Grid.ColumnSpan="2" Style="{StaticResource BarcodeHeaderStyle}" />
+
+                    <Image Grid.Row="1" Style="{StaticResource EncodingIconStyle}" />
+                    <Label Text="Upper latin letters, numbers, some special chars" Grid.Row="1" Grid.Column="1" Style="{StaticResource BarcodeBodyLabelStyle}" />
+
+                    <Image Grid.Row="2" Style="{StaticResource LengthIconStyle}" />
+                    <Label Text="20 / 25 / 29 / 31 symbols" Grid.Row="2" Grid.Column="1" Style="{StaticResource BarcodeBodyLabelStyle}" />
+                </Grid>
+            </Grid>
+
+            <Grid Style="{StaticResource Container}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="3*" />
+                </Grid.ColumnDefinitions>
+                <telerik:RadBarcode Value="012345678998">
+                    <telerik:RadBarcode.Symbology>
+                        <telerik:Planet SizingMode="Stretch" ShowText="True" HorizontalTextAlignment="Center" />
+                    </telerik:RadBarcode.Symbology>
+                </telerik:RadBarcode>
+
+                <Grid Grid.Column="1" VerticalOptions="Start" RowSpacing="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="Planet" Grid.ColumnSpan="2" Style="{StaticResource BarcodeHeaderStyle}" />
+
+                    <Image Grid.Row="1" Style="{StaticResource EncodingIconStyle}" />
+                    <Label Text="Digits" Grid.Row="1" Grid.Column="1" Style="{StaticResource BarcodeBodyLabelStyle}" />
+
+                    <Image Grid.Row="2" Style="{StaticResource LengthIconStyle}" />
+                    <Label Text="12 / 14 symbols" Grid.Row="2" Grid.Column="1" Style="{StaticResource BarcodeBodyLabelStyle}" />
+                </Grid>
+            </Grid>
+
+            <Grid Style="{StaticResource Container}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="3*" />
+                </Grid.ColumnDefinitions>
+                <telerik:RadBarcode Value="0123456789">
+                    <telerik:RadBarcode.Symbology>
+                        <telerik:Postnet SizingMode="Stretch" ShowText="True" HorizontalTextAlignment="Center" />
+                    </telerik:RadBarcode.Symbology>
+                </telerik:RadBarcode>
+
+                <Grid Grid.Column="1" VerticalOptions="Start" RowSpacing="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="Postnet" Grid.ColumnSpan="2" Style="{StaticResource BarcodeHeaderStyle}" />
+
+                    <Image Grid.Row="1" Style="{StaticResource EncodingIconStyle}" />
+                    <Label Text="Digits" Grid.Row="1" Grid.Column="1" Style="{StaticResource BarcodeBodyLabelStyle}" />
+
+                    <Image Grid.Row="2" Style="{StaticResource LengthIconStyle}" />
+                    <Label Text="Variable (no fixed lenght)" Grid.Row="2" Grid.Column="1" Style="{StaticResource BarcodeBodyLabelStyle}" />
+                </Grid>
+            </Grid>
+
+            <Grid Style="{StaticResource Container}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="3*" />
+                </Grid.ColumnDefinitions>
+                <telerik:RadBarcode Value="0123456789">
+                    <telerik:RadBarcode.Symbology>
+                        <telerik:UPCA SizingMode="Stretch" ShowText="True" HorizontalTextAlignment="Center" />
+                    </telerik:RadBarcode.Symbology>
+                </telerik:RadBarcode>
+
+                <Grid Grid.Column="1" VerticalOptions="Start" RowSpacing="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="UPCA" Grid.ColumnSpan="2" Style="{StaticResource BarcodeHeaderStyle}" />
+
+                    <Image Grid.Row="1" Style="{StaticResource EncodingIconStyle}" />
+                    <Label Text="Digits" Grid.Row="1" Grid.Column="1" Style="{StaticResource BarcodeBodyLabelStyle}" />
+
+                    <Image Grid.Row="2" Style="{StaticResource LengthIconStyle}" />
+                    <Label Text="12 digits" Grid.Row="2" Grid.Column="1" Style="{StaticResource BarcodeBodyLabelStyle}" />
+                </Grid>
+            </Grid>
+
+            <Grid Style="{StaticResource Container}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="3*" />
+                </Grid.ColumnDefinitions>
+                <telerik:RadBarcode Value="02345000001">
+                    <telerik:RadBarcode.Symbology>
+                        <telerik:UPCE SizingMode="Stretch" ShowText="True" HorizontalTextAlignment="Center" />
+                    </telerik:RadBarcode.Symbology>
+                </telerik:RadBarcode>
+
+                <Grid Grid.Column="1" VerticalOptions="Start" RowSpacing="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="UPCE" Grid.ColumnSpan="2" Style="{StaticResource BarcodeHeaderStyle}" />
+
+                    <Image Grid.Row="1" Style="{StaticResource EncodingIconStyle}" />
+                    <Label Text="Digits" Grid.Row="1" Grid.Column="1" Style="{StaticResource BarcodeBodyLabelStyle}" />
+
+                    <Image Grid.Row="2" Style="{StaticResource LengthIconStyle}" />
+                    <Label Text="8 digits" Grid.Row="2" Grid.Column="1" Style="{StaticResource BarcodeBodyLabelStyle}" />
+                </Grid>
+            </Grid>
+
+            <Grid Style="{StaticResource Container}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="3*" />
+                </Grid.ColumnDefinitions>
+                <telerik:RadBarcode Value="01">
+                    <telerik:RadBarcode.Symbology>
+                        <telerik:UPCSupplement2 SizingMode="Stretch" ShowText="True" HorizontalTextAlignment="Center" />
+                    </telerik:RadBarcode.Symbology>
+                </telerik:RadBarcode>
+
+                <Grid Grid.Column="1" VerticalOptions="Start" RowSpacing="5" ColumnSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="UPC Supplement 2" Grid.ColumnSpan="2" Style="{StaticResource BarcodeHeaderStyle}" />
+
+                    <Image Grid.Row="1" Style="{StaticResource EncodingIconStyle}" />
+                    <Label Text="Digits" Grid.Row="1" Grid.Column="1" Style="{StaticResource BarcodeBodyLabelStyle}" />
+
+                    <Image Grid.Row="2" Style="{StaticResource LengthIconStyle}" />
+                    <Label Text="2 digits" Grid.Row="2" Grid.Column="1" Style="{StaticResource BarcodeBodyLabelStyle}" />
+                </Grid>
+            </Grid>
+
+            <Grid Style="{StaticResource Container}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="3*" />
+                </Grid.ColumnDefinitions>
+                <telerik:RadBarcode Value="01234">
+                    <telerik:RadBarcode.Symbology>
+                        <telerik:UPCSupplement5 SizingMode="Stretch" ShowText="True" HorizontalTextAlignment="Center" />
+                    </telerik:RadBarcode.Symbology>
+                </telerik:RadBarcode>
+
+                <Grid Grid.Column="1" VerticalOptions="Start" RowSpacing="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="UPC Supplement 5" Grid.ColumnSpan="2" Style="{StaticResource BarcodeHeaderStyle}" />
+
+                    <Image Grid.Row="1" Style="{StaticResource EncodingIconStyle}" />
+                    <Label Text="Digits" Grid.Row="1" Grid.Column="1" Style="{StaticResource BarcodeBodyLabelStyle}" />
+
+                    <Image Grid.Row="2" Style="{StaticResource LengthIconStyle}" />
+                    <Label Text="5 digits" Grid.Row="2" Grid.Column="1" Style="{StaticResource BarcodeBodyLabelStyle}" />
+                </Grid>
+            </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
+</telerik:RadContentView>

@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        x:Class="QSF.Examples.SegmentedControlControl.FirstLookExample.FirstLookView"
+                        Margin="5">
+
+
+    <telerik:RadContentView.Resources>
+        <ResourceDictionary>
+            <Style TargetType="VerticalStackLayout">
+                <Setter Property="Spacing" Value="20"/>
+            </Style>
+            <Style TargetType="Label" x:Key="descriptionLabel">
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="Margin" Value="0,4,0,0"/>
+                <Setter Property="HorizontalOptions" Value="Start"/>
+            </Style>
+            <Style TargetType="telerik:RadSegmentedControl" x:Key="segmentedStyle">
+                <Setter Property="SegmentTextColor" Value="Black"/>
+                <Setter Property="HorizontalOptions" Value="Start"/>
+                <Setter Property="SelectedSegmentTextColor" Value="White"/>
+                <Setter Property="SegmentBackgroundColor" Value="White"/>
+                <Setter Property="SelectedSegmentBackgroundColor" Value="#8660C5"/>
+                <Setter Property="DisabledSegmentTextColor" Value="#888660C5"/>
+            </Style>
+        </ResourceDictionary>
+    </telerik:RadContentView.Resources>
+    <VerticalStackLayout>
+        <Label Grid.Row="1"
+               Text="Modes" 
+               FontSize="18"
+               TextColor="Black"/>
+        <VerticalStackLayout IsVisible="{OnPlatform Android='False', iOS='False'}">
+            <Label Text="Image"
+                   Style="{StaticResource descriptionLabel}"/>
+            <telerik:RadSegmentedControl ItemsSource="{Binding SmallImages}"
+                                         SelectedIndex="0"
+                                         HorizontalOptions="Start"
+                                         MaximumWidthRequest="{OnPlatform WinUI='400', MacCatalyst='400'}"
+                                         SelectedSegmentBackgroundColor="LightGray"/>
+        </VerticalStackLayout>
+        <VerticalStackLayout>
+            <Label Text="Text" 
+                   Style="{StaticResource descriptionLabel}"/>
+            <telerik:RadSegmentedControl ItemsSource="{Binding Categories}"
+                                         MaximumWidthRequest="{OnPlatform WinUI='400', MacCatalyst='400'}"
+                                         Style="{StaticResource segmentedStyle}"
+                                         SelectedIndex="1" />
+        </VerticalStackLayout>
+        <VerticalStackLayout IsVisible="{OnPlatform Android='False'}">
+            <Label Text="Disabled" 
+                   Style="{StaticResource descriptionLabel}"/>
+            <telerik:RadSegmentedControl x:Name="segmented"
+                                         MaximumWidthRequest="{OnPlatform WinUI='400', MacCatalyst='400'}"
+                                         Style="{StaticResource segmentedStyle}"
+                                         ItemsSource="{Binding Categories}"
+                                         SelectedIndex="0"/>
+        </VerticalStackLayout>
+    </VerticalStackLayout>
+</telerik:RadContentView>

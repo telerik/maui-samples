@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<views:NavigationItemView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                          xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                          xmlns:views="clr-namespace:QSF.Views"
+                          x:Class="QSF.Views.SmoothItemView"
+                          BackgroundColor="{StaticResource BasicBackgroundColor3}">
+
+    <VisualElement.Resources>
+        <Style x:Key="BorderStyle" TargetType="telerik:RadBorder">
+            <Setter Property="CornerRadius" Value="{StaticResource BorderCornerRadius}" />
+        </Style>
+        <Style x:Key="HeaderLabelStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="Subtitle" />
+        </Style>
+        <Style x:Key="DescriptionLabelStyle" TargetType="Label">
+            <Setter Property="TextColor" Value="{StaticResource TextColor2}" />
+            <Setter Property="FontSize" Value="14" />
+        </Style>
+    </VisualElement.Resources>
+
+    <ContentView.ControlTemplate>
+        <ControlTemplate>
+            <HorizontalStackLayout>
+                <telerik:RadBorder BackgroundColor="{StaticResource BasicBackgroundColor2}"
+                                   Margin="6, 12, 12, 12"
+                                   Style="{StaticResource BorderStyle}">
+                    <Image Source="{TemplateBinding Icon}"
+                           Aspect="Center"
+                           Margin="12" />
+                </telerik:RadBorder>
+                <VerticalStackLayout>
+                    <Label Text="{TemplateBinding Header}"
+                           Margin="0, 12, 12, 3"
+                           Style="{StaticResource HeaderLabelStyle}" />
+                    <Label Text="{TemplateBinding Description}"
+                           MinimumWidthRequest="100"
+                           MaximumWidthRequest="200"
+                           MaxLines="3"
+                           Margin="0, 3, 12, 12"
+                           Style="{StaticResource DescriptionLabelStyle}" />
+                </VerticalStackLayout>
+            </HorizontalStackLayout>
+        </ControlTemplate>
+    </ContentView.ControlTemplate>
+
+</views:NavigationItemView>

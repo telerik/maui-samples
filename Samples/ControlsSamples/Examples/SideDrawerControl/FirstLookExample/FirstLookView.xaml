@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        x:Class="QSF.Examples.SideDrawerControl.FirstLookExample.FirstLookView"
+                        Margin="5">
+    <telerik:RadContentView.Content>
+        <telerik:RadSideDrawer x:Name="drawer"
+                               DrawerLength="300">
+            <telerik:RadSideDrawer.MainContent>
+                <Grid RowDefinitions="Auto,*,Auto"
+                      BackgroundColor="White">
+                    <HorizontalStackLayout Spacing="10" Margin="0,0,0,20">
+                        <Image Source="sidedrawer.png"
+                               WidthRequest="40" 
+                               HeightRequest="40">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OpenDrawer"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <Label Text="List of Controls" 
+                               VerticalTextAlignment="Center"
+                               FontSize="20" 
+                               VerticalOptions="Center"/>
+                    </HorizontalStackLayout>
+                    <Grid Grid.Row="1">
+                        <telerik:RadListView ItemsSource="{Binding Items}" 
+                                             Margin="50,0,0,0"
+                                             SelectionMode="None">
+                            <telerik:RadListView.ItemTemplate>
+                                <DataTemplate>
+                                    <telerik:ListViewTemplateCell>
+                                        <telerik:ListViewTemplateCell.View>
+                                            <telerik:RadBorder BorderThickness="0, 0, 0, 1"
+                                                               BorderColor="#b1b1b1">
+                                                <Grid ColumnSpacing="10"
+                                                      RowDefinitions="Auto"
+                                                      ColumnDefinitions="Auto,*"
+                                                      Padding="10">
+                                                    <Image Source="{Binding Icon}"
+                                                           HorizontalOptions="Center"
+                                                           VerticalOptions="Center"
+                                                           WidthRequest="30"
+                                                           HeightRequest="30"/>
+                                                    <Label Grid.Column="1"
+                                                           Text="{Binding Title}"
+                                                           TextColor="{StaticResource DefaultTextColor}"
+                                                           VerticalOptions="Center" />
+                                                </Grid>
+                                            </telerik:RadBorder>
+                                        </telerik:ListViewTemplateCell.View>
+                                    </telerik:ListViewTemplateCell>
+                                </DataTemplate>
+                            </telerik:RadListView.ItemTemplate>
+                            <telerik:RadListView.FilterDescriptors>
+                                <telerik:DelegateFilterDescriptor Filter="{Binding FilterCondition}" />
+                            </telerik:RadListView.FilterDescriptors>
+                            <telerik:RadListView.PressedItemStyle>
+                                <telerik:ListViewItemStyle BackgroundColor="Transparent" />
+                            </telerik:RadListView.PressedItemStyle>
+                        </telerik:RadListView>
+                    </Grid>
+                    <telerik:RadButton Text="Navigate to Product Page" 
+                                       Grid.Row="2"
+                                       Margin="50, 20"
+                                       VerticalOptions="{OnIdiom Default=Center, Phone=End}"
+                                       HorizontalOptions="{OnIdiom Default=Start, Phone=FillAndExpand}"
+                                       Command="{Binding NavigateToProductPageCommand}"
+                                       Style="{StaticResource SubmitButtonStyle}"/>
+                </Grid>
+            </telerik:RadSideDrawer.MainContent>
+            <telerik:RadSideDrawer.DrawerContent>
+                <Grid RowDefinitions="100,*" 
+                      Padding="16, 16, 16, 0"
+                      BackgroundColor="#F8F8F8">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Text="Telerik UI for .NET MAUI" 
+                               FontSize="20" 
+                               FontAttributes="Bold"/>
+                        <Label Text="All controls separated in categories"/>
+                    </VerticalStackLayout>
+                    <Grid Grid.ColumnSpacing="0"
+                          Grid.RowSpacing="0"
+                          Grid.Row="1">
+                        <telerik:RadListView ItemsSource="{Binding Categories}" 
+                                             HeightRequest="500"
+                                             SelectedItem="{Binding SelectedCategory, Mode=TwoWay}">
+                            <telerik:RadListView.ItemStyle>
+                                <telerik:ListViewItemStyle BackgroundColor="#F8F8F8"
+                                        BorderColor="Transparent"/>
+                            </telerik:RadListView.ItemStyle>
+                            <telerik:RadListView.SelectedItemStyle>
+                                <telerik:ListViewItemStyle BackgroundColor="#E1DAEE"/>
+                            </telerik:RadListView.SelectedItemStyle>
+                            <telerik:RadListView.PressedItemStyle>
+                                <telerik:ListViewItemStyle BackgroundColor="#D3C7E6"/>
+                            </telerik:RadListView.PressedItemStyle>
+                            <telerik:RadListView.LayoutDefinition>
+                                <telerik:ListViewLinearLayout ItemLength="{OnPlatform Default='50', iOS='44'}"/>
+                            </telerik:RadListView.LayoutDefinition>
+                            <telerik:RadListView.ItemTemplate>
+                                <DataTemplate>
+                                    <telerik:ListViewTemplateCell>
+                                        <telerik:ListViewTemplateCell.View>
+                                            <Grid Padding="16, 0, 16, 0">
+                                                <Label Text="{Binding}" 
+                                                       VerticalOptions="Center"/>
+                                            </Grid>
+                                        </telerik:ListViewTemplateCell.View>
+                                    </telerik:ListViewTemplateCell>
+                                </DataTemplate>
+                            </telerik:RadListView.ItemTemplate>
+                        </telerik:RadListView>
+                    </Grid>
+                </Grid>
+            </telerik:RadSideDrawer.DrawerContent>
+        </telerik:RadSideDrawer>
+    </telerik:RadContentView.Content>
+</telerik:RadContentView>

@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:views="clr-namespace:QSF.Views"
+             xmlns:layouts="clr-namespace:QSF.Layouts"
+             x:Class="QSF.Views.SearchViewDesktop">
+
+    <VisualElement.Resources>
+        <Style x:Key="BorderStyle" TargetType="telerik:RadBorder">
+            <Setter Property="BackgroundColor" Value="{StaticResource BasicBackgroundColor3}" />
+            <Setter Property="CornerRadius" Value="{StaticResource BorderCornerRadius}" />
+        </Style>
+        <Style x:Key="InnerSearchViewStyle_MacCatalyst" TargetType="views:InnerSearchView">
+            <Setter Property="Margin" Value="10" />
+        </Style>
+        <Style x:Key="NoResultsLabelStyle" TargetType="Label">
+            <Setter Property="TextColor" Value="{StaticResource DefaultTextColor}" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="VerticalOptions" Value="Center" />
+        </Style>
+    </VisualElement.Resources>
+
+    <Grid RowDefinitions="Auto, Auto, *">
+        <Grid Margin="0, 20, 0, 20">
+            <Label Text="Telerik UI for .NET MAUI"
+                   Style="{StaticResource PageHeaderLabelStyle}"
+                   HorizontalOptions="Center" />
+        </Grid>
+        <telerik:RadBorder Grid.Row="1"
+                           Grid.RowSpan="2"
+                           Style="{StaticResource BorderStyle}" />
+        <telerik:RadEntry x:Name="searchEntry"
+                          ReserveSpaceForErrorView="False"
+                          Grid.Row="1" />
+        <views:InnerSearchView Grid.Row="2"
+                               SearchText="{Binding Text, Source={Reference searchEntry}}"
+                               SelectedSearchResult="{Binding SelectedSearchResult, Source={RelativeSource AncestorType={Type views:SearchViewDesktop}}}"
+                               Style="{OnPlatform MacCatalyst={StaticResource InnerSearchViewStyle_MacCatalyst}}" />
+    </Grid>
+    
+</ContentView>

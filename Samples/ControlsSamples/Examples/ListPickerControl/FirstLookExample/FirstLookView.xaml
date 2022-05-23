@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<views:PickerExampleViewBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:QSF.Examples.ListPickerControl.FirstLookExample"
+             xmlns:views="clr-namespace:QSF.Views"
+             x:Class="QSF.Examples.ListPickerControl.FirstLookExample.FirstLookView"
+             ItemsSource="{Binding Cards}"
+             CollectionTitle="Followed Channels:" 
+             ButtonCommand="{Binding SendRequestCommand}"
+             ButtonText="Play Music">
+
+    <ContentView.Resources>
+        <Style TargetType="telerik:RadListPicker">
+            <Setter Property="Margin" Value="0, 0, 0, 15" />
+            <Setter Property="BorderThickness" Value="0, 0, 0, 1" />
+            <Setter Property="Placeholder" Value="Select Music Genre to listen" />
+            <Setter Property="HorizontalOptions" Value="Start" />
+            <Setter Property="IsToggleButtonVisible" Value="False" />
+        </Style>
+    </ContentView.Resources>
+
+    <VerticalStackLayout HorizontalOptions="Start">
+        <Label Text="Listen to Top Music Genres"
+               Style="{StaticResource DefaultSubtitleLabelStyle}"
+               FontSize="24"
+               Margin="0, 0, 0, 24" />
+        <Label Text="Music Genre:"
+               Style="{StaticResource DefaultSubtitleLabelStyle}" />
+        <telerik:RadListPicker x:Name="listPicker"
+                               ItemsSource="{Binding Genres}"
+                               SelectedItem="{Binding SelectedGenre}"
+                               PlaceholderLabelStyle="{StaticResource DefaultPlaceholderLabelStyle}">
+            <telerik:RadListPicker.PopupSettings>
+                <telerik:PickerPopupSettings HeaderLabelText="Select Music Genre" />
+            </telerik:RadListPicker.PopupSettings>
+        </telerik:RadListPicker>
+    </VerticalStackLayout>
+</views:PickerExampleViewBase>

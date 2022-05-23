@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="QSF.Examples.DockLayoutControl.FirstLookExample.DockLayoutConfigurationView">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Style TargetType="StackLayout">
+                <Setter Property="Margin" Value="0, 15, 0, 0"/>
+                <Setter Property="Spacing" Value="12"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <ScrollView>
+        <Grid Margin="16,20" RowSpacing="20" RowDefinitions ="Auto, *, Auto, *">
+            <Label Text="Panel Positions:" FontSize="Large"/>
+            <VerticalStackLayout Grid.Row="1">
+                <Grid>
+                    <Label Text="Title:"/>
+                    <Picker Grid.Column="1" 
+                            AutomationId="TitlePicker" 
+                            ItemsSource="{Binding DockPickerOptions}" 
+                            SelectedItem="{Binding TitlePanelDock, Mode=TwoWay}"/>
+                </Grid>
+                <Grid>
+                    <Label Text="List:"/>
+                    <Picker Grid.Column="1" 
+                            AutomationId="ListPicker" 
+                            ItemsSource="{Binding DockPickerOptions}" 
+                            SelectedItem="{Binding ListPanelDock, Mode=TwoWay}"/>
+                </Grid>
+                <Grid>
+                    <Label Text="Navigation:"/>
+                    <Picker Grid.Column="1" 
+                            AutomationId="NavigationPicker" 
+                            ItemsSource="{Binding DockPickerOptions}" 
+                            SelectedItem="{Binding NavigationPanelDock, Mode=TwoWay}"/>
+                </Grid>
+            </VerticalStackLayout>
+            <Label Grid.Row="2"
+                   Text="Panel Visibility:" 
+                   FontSize="Large"/>
+            <VerticalStackLayout Grid.Row="3">
+                <HorizontalStackLayout>
+                    <telerik:RadCheckBox AutomationId="TitleCheckbox" 
+                                                   IsChecked="{Binding IsTitlePanelVisible, Mode=TwoWay}"/>
+                    <Label Text="Title"/>
+                </HorizontalStackLayout>
+                <HorizontalStackLayout>
+                    <telerik:RadCheckBox AutomationId="ListCheckbox" 
+                                                   IsChecked="{Binding IsListPanelVisible, Mode=TwoWay}"/>
+                    <Label Text="List"/>
+                </HorizontalStackLayout>
+                <HorizontalStackLayout>
+                    <telerik:RadCheckBox AutomationId="NavigationCheckbox" 
+                                                   IsChecked="{Binding IsNavigationPanelVisible, Mode=TwoWay}"/>
+                    <Label Text="Navigation"/>
+                </HorizontalStackLayout>
+                <HorizontalStackLayout>
+                    <telerik:RadCheckBox AutomationId="ContentCheckbox" 
+                                                   IsChecked="{Binding IsContentPanelVisible, Mode=TwoWay}"/>
+                    <Label Text="Content" Margin="0,0,0,16"/>
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+        </Grid>
+    </ScrollView>
+</ContentView>
