@@ -53,7 +53,7 @@
                                 </DataTemplate>
                             </telerik:RadListView.ItemTemplate>
                             <telerik:RadListView.FilterDescriptors>
-                                <telerik:DelegateFilterDescriptor Filter="{Binding FilterCondition}" />
+                                <telerik:ListViewDelegateFilterDescriptor Filter="{Binding FilterCondition}" />
                             </telerik:RadListView.FilterDescriptors>
                             <telerik:RadListView.PressedItemStyle>
                                 <telerik:ListViewItemStyle BackgroundColor="Transparent" />

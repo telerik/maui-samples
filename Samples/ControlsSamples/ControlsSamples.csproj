@@ -11,26 +11,16 @@
 		<ApplicationTitle>ControlsSamples</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.companyname.ControlsSamples</ApplicationId>
+		<ApplicationId>com.telerik.ControlsSamples</ApplicationId>
 
 		<!-- Versions -->
 		<ApplicationVersion>1</ApplicationVersion>
-
-		<!-- TODO: Remove it when Maui is officially released. -->
-		<AndroidLinkResources>false</AndroidLinkResources>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<!-- App Icon -->
-		<MauiImage Include="Resources\appicon.svg" ForegroundFile="Resources\logo.svg" Color="#00000000" IsAppIcon="true" />
-
-		<!-- Splash Screen -->
+		<MauiImage IsAppIcon="true" Include="Resources\appicon.svg" ForegroundFile="Resources\appicon.svg" />
 		<MauiSplashScreen Include="Resources\appiconfg.svg" Color="#512BD4" />
-
-		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
-
-		<!-- Custom Fonts -->
 		<MauiFont Include="Resources\Fonts\*" />
 	</ItemGroup>
 
@@ -71,7 +61,7 @@
 	</PropertyGroup>
 
 	<ItemGroup Condition="$(SolutionName) != 'Telerik.Maui'">
-		<PackageReference Include="Telerik.UI.for.Maui" Version="1.0.0" />
+		<PackageReference Include="Telerik.UI.for.Maui" Version="2.0.0" />
 	</ItemGroup>
 
 	<Import Condition="'$(SolutionName)' == 'Telerik.Maui'" Project="..\AddSourceReferences.proj" />

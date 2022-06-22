@@ -10,7 +10,7 @@
         </ResourceDictionary>
     </ContentView.Resources>
     <ScrollView>
-        <Grid RowDefinitions="Auto, Auto, *, Auto">
+        <Grid RowDefinitions="Auto, Auto, *, Auto" Padding="{OnIdiom Phone='16, 10'}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="{OnIdiom Default=*, Phone=Auto}"/>

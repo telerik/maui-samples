@@ -1,8 +1,8 @@
 ﻿using Microsoft.Maui.Controls;
 using System;
 using System.Windows.Input;
-using Telerik.XamarinForms.DataControls;
-using Telerik.XamarinForms.DataControls.ListView;
+using Telerik.Maui.Controls.Compatibility.DataControls;
+using Telerik.Maui.Controls.Compatibility.DataControls.ListView;
 
 namespace QSF.Examples.ZipLibraryControl.CreateArchiveExample
 {

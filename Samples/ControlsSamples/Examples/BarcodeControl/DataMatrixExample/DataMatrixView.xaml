@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        x:Class="QSF.Examples.BarcodeControl.DataMatrixExample.DataMatrixView"
+                        Margin="5">
+	<ScrollView>
+        <Grid RowSpacing="0"
+			  RowDefinitions="Auto, 220, *">
+            <telerik:RadBorder BackgroundColor="{AppThemeBinding Light=#F8F8F8, Dark=#373737}">
+				<Label Text="Ultra Precision Syringe - 50 cc"
+					   TextColor="{AppThemeBinding Light=Black, Dark=White}"
+					   FontSize="22"
+					   HorizontalTextAlignment="Center"
+					   Margin="0, 13"/>
+			</telerik:RadBorder>
+
+			<Grid BackgroundColor="White"
+                  Grid.Row="1">
+				<telerik:RadBarcode HeightRequest="180"
+									Value="{Binding Value}">
+					<telerik:RadBarcode.Symbology>
+						<telerik:DataMatrix SymbolSize="SquareAuto" />
+					</telerik:RadBarcode.Symbology>
+				</telerik:RadBarcode>
+			</Grid>
+
+			<VerticalStackLayout Margin="16"
+								 Grid.Row="2">
+					<Label Text="{Binding GTN}"/>
+					<Label Text="{Binding ProdDate}"/>
+					<Label Text="{Binding SerialN}"/>
+					<Label Text="{Binding Batch}"/>
+
+				<telerik:RadBorder BorderColor="{AppThemeBinding Light=#202223, Dark=#373737}"
+								   BorderThickness="0, 0, 0, 1"
+								   Margin="0, 15" />
+                
+				<Label Text="Manufacturer:" 
+					   FontAttributes="Bold" />
+				<Label Text="{Binding Manufacturer}"/>
+				<Label Text="{Binding Address}"/>
+				<Label Text="{Binding City}"/>
+				<Label Text="{Binding PhoneNumber}"/>
+				<Label Text="{Binding WebSite}"/>
+				<Label Text="This volume repeater syringe accurately delivers a preselected dose ranging from 1 to 5 ml. Chrome and metal construction."
+					   Margin="0, 15, 0, 0" />
+			</VerticalStackLayout>
+		</Grid>
+	</ScrollView>
+</telerik:RadContentView>

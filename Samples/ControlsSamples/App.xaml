@@ -129,17 +129,20 @@
                 <Setter Property="Margin" Value="4, 0, 0, 0" />
             </Style>
 
-            <Style x:Key="DownloadTrialButtonStyle" TargetType="telerik:RadButton">
+             <Style x:Key="MoreInfoButtonStyle" TargetType="telerik:RadButton">
                 <Setter Property="BackgroundColor" Value="Transparent" />
                 <Setter Property="BorderWidth" Value="2" />
+                <Setter Property="WidthRequest" Value="{OnPlatform iOS=120, MacCatalyst=110, WinUI=114, Android=142}" />
                 <Setter Property="CornerRadius" Value="4" />
+                <Setter Property="Text" Value="More Info" />
+                <Setter Property="HorizontalContentAlignment" Value="End" />
                 <Setter Property="TextColor" Value="{OnIdiom Desktop={StaticResource PrimaryTextColor1}, Default={StaticResource AccentColor8}}" />
                 <Setter Property="BorderColor" Value="{OnIdiom Desktop={StaticResource PrimaryTextColor1}, Default={StaticResource AccentColor8}}" />
-                <Setter Property="FontSize" Value="{OnIdiom Desktop=Caption}" />
-                <Setter Property="ImageSource" Value="{OnIdiom Desktop=download_desktop.png, Default=download_mobile.png}" />
-                <Setter Property="TextTransform" Value="{OnIdiom Desktop=None, Default=Uppercase}" />
-                <Setter Property="ContentLayout" Value="Left, 0" />
-                <Setter Property="Padding" Value="{OnPlatform Android='0, 0, 7, 0', iOS='2, 7, 7, 7', MacCatalyst='2, 7, 7, 7', WinUI='0, 0, 7, 0'}" />
+                <Setter Property="FontSize" Value="{OnPlatform MacCatalyst=Small, iOS=Small, Default=Default}" />
+                <Setter Property="ImageSource" Value="{OnIdiom Desktop=info_desktop.png, Default=info_mobile.png}" />
+                <Setter Property="TextTransform" Value="{OnPlatform Android=Uppercase, Default=None}" />
+                <Setter Property="ContentLayout" Value="{OnPlatform MacCatalyst='Left, -6', iOS='Left, -10', Android='Left, 4', WinUI='Left, 8'}" />
+                <Setter Property="Padding" Value="{OnPlatform Android='7, 0', iOS='12, 8, 10, 8', MacCatalyst='0, 8, 8, 8', WinUI='12, 8'}" />
             </Style>
 
             <Style x:Key="PageHeaderLabelStyle" TargetType="Label">

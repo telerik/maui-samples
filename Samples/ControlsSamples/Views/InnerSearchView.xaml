@@ -111,7 +111,7 @@
                                  SelectedItem="{Binding SelectedSearchResult, Mode=TwoWay}"
                                  PropertyChanged="searchResultsListView_PropertyChanged">
                 <telerik:RadListView.GroupDescriptors>
-                    <telerik:PropertyGroupDescriptor PropertyName="ResultTypeText"
+                    <telerik:ListViewPropertyGroupDescriptor PropertyName="ResultTypeText"
                                                      SortOrder="Ascending" />
                 </telerik:RadListView.GroupDescriptors>
             </telerik:RadListView>

@@ -5,8 +5,7 @@
                         xmlns:exampleConverters="clr-namespace:QSF.Examples.ZipLibraryControl.CreateArchiveExample.Converters"
                         xmlns:converters="clr-namespace:QSF.Converters"
                         xmlns:local="clr-namespace:QSF.Examples.ZipLibraryControl.CreateArchiveExample"
-                        x:Class="QSF.Examples.ZipLibraryControl.CreateArchiveExample.CreateArchiveView"
-                        Margin="5">
+                        x:Class="QSF.Examples.ZipLibraryControl.CreateArchiveExample.CreateArchiveView">
     <telerik:RadContentView.Resources>
         <ResourceDictionary>
             <exampleConverters:FileExtensionToIconConverter x:Key="FileExtensionToIconConverter" />
@@ -76,6 +75,7 @@
         </telerik:RadListView>
 
         <telerik:RadButton Style="{StaticResource SubmitButtonStyle}" 
+                           Margin="16, 20"
                            Text="Create Zip Archive" 
                            VerticalOptions="{OnIdiom Default=Center, Phone=End}"
                            HorizontalOptions="{OnIdiom Default=Start, Phone=FillAndExpand}"

@@ -86,7 +86,7 @@
                 <Setter Property="BorderThickness" Value="3" />
             </Style>
             <Style x:Key="CommentTextBorderStyle" TargetType="telerik:RadBorder">
-                <Setter Property="Margin" Value="45, 0, 16, 0" />
+                <Setter Property="Margin" Value="45, 0, 0, 0" />
                 <Setter Property="HorizontalOptions" Value="Start" />
                 <Setter Property="CornerRadius" Value="0, 16, 16, 16" />
                 <Setter Property="BackgroundColor" Value="#F8F8F8" />
@@ -107,7 +107,7 @@
         </ResourceDictionary>
     </ContentView.Resources>
 
-        <Grid RowDefinitions="*, Auto, *, Auto">
+        <Grid RowDefinitions="Auto, Auto, *, Auto">
             <VerticalStackLayout BackgroundColor="#F8F8F8">
                 <Grid Margin="0, 15, 15, 0">
                     <Label x:Name="awatingApprovalLabel" Text="Awaiting approval." Style="{StaticResource ApprovalSentLabelStyle}" />
@@ -224,7 +224,7 @@
                            Text="Connect"
                            Command="{Binding ConnectCommand}"
                            Style="{StaticResource SubmitButtonStyle}"
-                           Margin="{OnIdiom Desktop=10}"
+                           Margin="10"
                            HorizontalOptions="{OnIdiom Default=Start, Phone=FillAndExpand}"/>
     </Grid>
     

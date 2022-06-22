@@ -26,7 +26,8 @@
             <VerticalStackLayout Grid.Row="0"
                                  Grid.ColumnSpan="2"
                                  BackgroundColor="{AppThemeBinding Light=#F8F8F8, Dark=#121212}"
-                                 Margin="0, 25"
+                                 Margin="0, 0, 0, 25"
+                                 Padding="0, 25, 0, 0"
                                  HorizontalOptions="FillAndExpand">
                 <Label Text="Subscribe To Our Newsletter"
                        FontSize="22"
@@ -40,7 +41,7 @@
             </VerticalStackLayout>
             <VerticalStackLayout Grid.Row="1" 
                                  Grid.Column="0" 
-                                 Margin="{OnIdiom Default='0, 40, 20, 40', Phone=14}">
+                                 Margin="{OnIdiom Default='16, 40', Phone=16}">
                 <VerticalStackLayout>
                     <Label Text="Username: (max 10 symbols)" 
                        TextColor="{AppThemeBinding Light=Black, Dark=White}"/>
@@ -62,7 +63,7 @@
             </VerticalStackLayout>
             <VerticalStackLayout Grid.Column="{OnIdiom Default=1, Phone=0}" 
                                  Grid.Row="{OnIdiom Default=1, Phone=2}"
-                                 Margin="{OnIdiom Default='0, 40', Phone=14}">
+                                 Margin="{OnIdiom Default='0, 40, 16, 40', Phone=16}">
                 <VerticalStackLayout Margin="0, 0, 0, 40">
                     <Label Text="Password:" 
                            TextColor="{AppThemeBinding Light=Black, Dark=White}"/>
@@ -86,7 +87,7 @@
             <telerik:RadButton Grid.ColumnSpan="{OnIdiom Default=1, Phone=2}"
                                VerticalOptions="{OnIdiom Default=Center, Phone=End}"
                                Grid.Row="{OnIdiom Default=2, Phone=3}"
-                               Margin="0, 0, 0, 15"
+                               Margin="16, 0, 16, 20"
                                Text="Subscribe"
                                FontSize="14"
                                TextColor="{StaticResource AccentColor8}"

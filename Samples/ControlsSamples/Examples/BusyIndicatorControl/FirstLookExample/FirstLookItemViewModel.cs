@@ -1,5 +1,5 @@
 ﻿using QSF.ViewModels;
-using Telerik.XamarinForms.Primitives;
+using Telerik.Maui.Controls.Compatibility.Primitives;
 
 namespace QSF.Examples.BusyIndicatorControl.FirstLookExample
 {

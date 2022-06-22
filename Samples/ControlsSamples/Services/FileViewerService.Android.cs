@@ -63,8 +63,7 @@ namespace QSF.Services
 
                 if (file.Exists())
                 {
-                    Android.Net.Uri path = AndroidX.Core.Content.FileProvider.GetUriForFile(context, "com.companyname.QSF.fileprovider", file);
-
+                    Android.Net.Uri path = AndroidX.Core.Content.FileProvider.GetUriForFile(context, context.PackageName + ".fileprovider", file);
                     string extension = Android.Webkit.MimeTypeMap.GetFileExtensionFromUrl(Android.Net.Uri.FromFile(file).ToString());
                     string mimeType = Android.Webkit.MimeTypeMap.Singleton.GetMimeTypeFromExtension(extension);
                     Android.Content.Intent intent = new Android.Content.Intent(Android.Content.Intent.ActionView);

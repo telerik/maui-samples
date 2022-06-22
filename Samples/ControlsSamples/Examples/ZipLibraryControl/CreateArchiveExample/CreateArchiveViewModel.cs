@@ -6,7 +6,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Windows.Input;
-using Telerik.XamarinForms.DataControls.ListView;
+using Telerik.Maui.Controls.Compatibility.DataControls.ListView;
 using Telerik.Zip;
 
 namespace QSF.Examples.ZipLibraryControl.CreateArchiveExample

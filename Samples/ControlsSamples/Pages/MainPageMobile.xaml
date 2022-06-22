@@ -36,12 +36,11 @@
                    VerticalOptions="Center"
                    VerticalTextAlignment="Center"
                    FontSize="Medium" />
-            <telerik:RadButton Text="Free Trial" 
-                               Command="{Binding NavigateToDownloadTrialCommand}"
+            <telerik:RadButton Command="{Binding NavigateToDownloadTrialCommand}"
                                Grid.Column="1"
                                HorizontalOptions="End"
                                Margin="0, 0, 15, 0"
-                               Style="{StaticResource DownloadTrialButtonStyle}" />
+                               Style="{StaticResource MoreInfoButtonStyle}" />
         </Grid>
         <telerik:RadListView x:Name="controlsListView"
                              Grid.Row="3"

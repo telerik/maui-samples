@@ -1,6 +1,6 @@
 ﻿using QSF.ViewModels;
 using Microsoft.Maui.Graphics;
-using Telerik.XamarinForms.Common;
+using Telerik.Maui.Controls.Compatibility.Common;
 using Telerik.Maui.Controls;
 
 namespace QSF.Examples.TemplatedPickerControl.FirstLookExample

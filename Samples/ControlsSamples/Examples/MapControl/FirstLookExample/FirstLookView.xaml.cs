@@ -1,6 +1,6 @@
 ﻿using Microsoft.Maui.Controls;
 using Microsoft.Maui.Controls.Xaml;
-using Telerik.XamarinForms.Map;
+using Telerik.Maui.Controls.Compatibility.Map;
 
 namespace QSF.Examples.MapControl.FirstLookExample
 {
