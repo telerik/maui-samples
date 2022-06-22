@@ -28,7 +28,7 @@ namespace CryptoTracker.Pages
 
         private void SelectCoin(CoinData coinInfo)
         {
-            var viewModel = (CoinInfoViewModel)this.selectedCoinInfo.BindingContext;
+            var viewModel = (CoinInfoViewModel)this.BindingContext;
             viewModel.InitializeCoinData(coinInfo);
         }
 

@@ -3,7 +3,7 @@ using Microsoft.Maui.Controls;
 using System;
 using System.Collections.Generic;
 using Telerik.Maui.Controls;
-using Telerik.XamarinForms.Chart;
+using Telerik.Maui.Controls.Compatibility.Chart;
 
 namespace CryptoTracker.ViewModels
 {
@@ -26,7 +26,6 @@ namespace CryptoTracker.ViewModels
         private IList<string> timePeriods;
         private bool isLineChartVisible;
         private bool isCandlestickChartVisible;
-        private bool isDataGridVisible;
         private int selectedChartType;
         private string chartLabelFormat;
 
@@ -37,9 +36,6 @@ namespace CryptoTracker.ViewModels
             this.DataForDataGrid = new List<CoinData>();
             this.TimePeriods = new List<string>() { "1D", "1W", "1M", "6M", "1Y"};
             this.IsLineChartVisible = true;
-#if ANDROID || IOS
-            this.IsDataGridVisible = true;
-#endif
         }
 
         public IList<CoinData> DataForChart
@@ -64,12 +60,6 @@ namespace CryptoTracker.ViewModels
         {
             get => this.isCandlestickChartVisible;
             private set => this.UpdateValue(ref this.isCandlestickChartVisible, value);
-        }
-
-        public bool IsDataGridVisible
-        {
-            get => this.isDataGridVisible;
-            private set => this.UpdateValue(ref this.isDataGridVisible, value);
         }
 
         public IList<string> TimePeriods

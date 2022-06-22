@@ -1,0 +1,71 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:CryptoTracker.ViewModels"
+             xmlns:Views="clr-namespace:CryptoTracker.Views"
+             xmlns:viewModels="clr-namespace:CryptoTracker.ViewModels"
+             xmlns:views="clr-namespace:CryptoTracker.Views"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="CryptoTracker.Pages.DesktopPage"
+             Title="Crypto Tracker"
+             BackgroundColor="AliceBlue"
+             x:Name="mainPage">
+
+    <ContentPage.BindingContext>
+        <viewModels:CoinInfoViewModel />
+    </ContentPage.BindingContext>
+    
+    <Grid RowDefinitions="Auto, *" ColumnDefinitions="500, *, Auto">
+        <telerik:RadButton Grid.Column="2"
+                           Style="{StaticResource DownloadButtonStyle}"
+                           ContentLayout="{OnPlatform MacCatalyst='Left, -20'}"
+                           FontSize="{OnPlatform MacCatalyst='Small'}"
+                           Padding="{OnPlatform  MacCatalyst='5, 0, 0, 0'}"
+                           Margin="0, 12, 20, 0"
+                           Clicked="DownloadButtonClicked"/>
+        <Views:CoinSelectionView Grid.Row="1" CoinSelected="OnCoinSelected" Padding="20, 20, 20, 10"/>
+
+        <telerik:RadTabView Grid.Row="1"
+                            Grid.Column="1"
+                            Grid.ColumnSpan="2"
+                            Padding="0, 20, 25, 10">
+            <telerik:TabViewItem HeaderText="Overview">
+                <Grid RowDefinitions="Auto, *" Style="{StaticResource TabViewItemGridLayouStyle}">
+                    <telerik:RadBorder Style="{StaticResource ListViewBorderWrapStyle}"
+                                       Padding="10,10,10,20"
+                                       BorderThickness="1"
+                                       BorderColor="{StaticResource RadBorderColor}">
+                        <Grid>
+                            <VerticalStackLayout Spacing="5">
+                                <views:CoinHeaderView CoinName="{Binding CoinName}" CoinSymbol="{Binding CoinSymbol}"/>
+                                <Label Text="{Binding CoinCurrentPrice, Mode=OneWay, StringFormat='${0:N2}'}"
+                                       FontSize="18"
+                                       TextColor="Black"
+                                       FontAttributes="Bold"/>
+                            </VerticalStackLayout>
+                            <telerik:RadBorder VerticalOptions="Center"
+                                               HorizontalOptions="End"
+                                               BackgroundColor="{Binding CoinPriceChangePercentage, Mode=OneWay, 
+                                                    Converter={StaticResource ValueToColorConverter}}"
+                                               CornerRadius="8"
+                                               Padding="10">
+                                <Label FontSize="14"
+                                       FontAttributes="Bold"
+                                       TextColor="White"
+                                       Text="{Binding CoinPriceChangePercentage,
+                                                    StringFormat='{0:+ 0.00;- 0.00;0.00}%'}"/>
+                            </telerik:RadBorder>
+                        </Grid>
+                    </telerik:RadBorder>
+                    <views:CoinInfoChartView Grid.Row="1"/>
+                </Grid>
+            </telerik:TabViewItem>
+
+            <telerik:TabViewItem HeaderText="Historical Data">
+                <Grid RowDefinitions="Auto, *" ColumnDefinitions="*" Style="{StaticResource TabViewItemGridLayouStyle}">
+                    <views:CoinHeaderView CoinName="{Binding CoinName}" CoinSymbol="{Binding CoinSymbol}"/>
+                    <views:CoinInfoDataGridView Grid.Row="1"/>
+                </Grid>
+            </telerik:TabViewItem>
+        </telerik:RadTabView>
+    </Grid>
+</ContentPage>

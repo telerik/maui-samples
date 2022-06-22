@@ -1,5 +1,5 @@
 ﻿using System;
-using Telerik.XamarinForms.Chart;
+using Telerik.Maui.Controls.Compatibility.Chart;
 
 namespace CryptoTracker.Formatters
 {
