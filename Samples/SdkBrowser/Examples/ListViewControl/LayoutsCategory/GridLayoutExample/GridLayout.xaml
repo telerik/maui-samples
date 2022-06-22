@@ -7,7 +7,7 @@
                         Margin="5">
     
     <telerik:RadContentView.Content>
-        <!--  >> listview-layouts-linearlayout-listview  -->
+        <!--  >> listview-layouts-gridlayout-listview  -->
         <telerik:RadListView x:Name="listView" ItemsSource="{Binding Items}">
             <telerik:RadListView.BindingContext>
                 <local:ViewModel/>
@@ -29,6 +29,6 @@
                                                     VerticalItemSpacing="2" />
             </telerik:RadListView.LayoutDefinition>
         </telerik:RadListView>
-        <!--  << listview-layouts-linearlayout-listview  -->
+        <!--  << listview-layouts-gridlayout-listview  -->
     </telerik:RadContentView.Content>
 </telerik:RadContentView>

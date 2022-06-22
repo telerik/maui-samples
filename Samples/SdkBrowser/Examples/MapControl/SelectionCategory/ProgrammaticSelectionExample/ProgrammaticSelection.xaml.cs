@@ -2,15 +2,15 @@
 using System;
 using System.Collections.Generic;
 using Telerik.Maui.Controls;
-using Telerik.XamarinForms.Map;
-using Telerik.XamarinForms.ShapefileReader;
+using Telerik.Maui.Controls.Compatibility.Map;
+using Telerik.Maui.Controls.Compatibility.ShapefileReader;
 
 namespace SDKBrowserMaui.Examples.MapControl.SelectionCategory.ProgrammaticSelectionExample
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ProgrammaticSelection : RadContentView
     {
-        private List<Telerik.XamarinForms.Map.SelectionMode> modes;
+        private List<Telerik.Maui.Controls.Compatibility.Map.SelectionMode> modes;
 
         public ProgrammaticSelection()
         {

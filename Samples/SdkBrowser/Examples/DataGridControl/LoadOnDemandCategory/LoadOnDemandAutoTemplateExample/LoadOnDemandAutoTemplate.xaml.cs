@@ -3,7 +3,7 @@ using Microsoft.Maui.Controls.Xaml;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Telerik.Maui.Controls;
-using Telerik.XamarinForms.DataGrid;
+using Telerik.Maui.Controls.Compatibility.DataGrid;
 
 namespace SDKBrowserMaui.Examples.DataGridControl.LoadOnDemandCategory.LoadOnDemandAutoTemplateExample;
 
@@ -17,7 +17,7 @@ public partial class LoadOnDemandAutoTemplate : RadContentView
         this.BindingContext = new LoadOnDemandAutoTemplateViewModel();
     }
 
-    private async void dataGrid_LoadOnDemand(object sender, Telerik.XamarinForms.DataGrid.LoadOnDemandEventArgs e)
+    private async void dataGrid_LoadOnDemand(object sender, Telerik.Maui.Controls.Compatibility.DataGrid.LoadOnDemandEventArgs e)
     {
         await Task.Delay(3000);
         for (int i = 0; i < 15; i++)

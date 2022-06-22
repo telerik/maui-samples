@@ -2,11 +2,15 @@
 
 namespace SDKBrowserMaui.Examples.ListViewControl.SortingCategory.PropertySortDescriptorExample
 {
+    // >> listview-features-sorting-data-class
     public class Person
     {
         public string Name { get; set; }
         public int Age { get; set; }
     }
+    // << listview-features-sorting-data-class
+
+    // >> listview-features-sorting-viewmodel
     public class ViewModel
     {
         public ViewModel()
@@ -37,4 +41,5 @@ namespace SDKBrowserMaui.Examples.ListViewControl.SortingCategory.PropertySortDe
             return items;
         }
     }
+    // << listview-features-sorting-viewmodel
 }

@@ -1,7 +1,7 @@
 ﻿using Microsoft.Maui.Controls;
 using SDKBrowserMaui.Services;
 using Telerik.Maui.Controls;
-using Telerik.XamarinForms.Common;
+using Telerik.Maui.Controls.Compatibility.Common;
 
 namespace SDKBrowserMaui.ViewModels
 {

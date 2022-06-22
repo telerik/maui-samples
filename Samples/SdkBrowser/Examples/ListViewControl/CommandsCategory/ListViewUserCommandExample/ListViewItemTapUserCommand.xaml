@@ -8,16 +8,18 @@
     <telerik:RadContentView.Content>
         <VerticalStackLayout Margin="5" Spacing="20">
             <Label Text="Tap any of the items" />
+            <!-- >> listview-commands-listviewusercommand-xaml -->
             <telerik:RadListView x:Name="listView" 
-                                             ItemsSource="{Binding Source}">
+                                 ItemsSource="{Binding Source}">
                 <telerik:RadListView.BindingContext>
                     <local:ViewModel />
                 </telerik:RadListView.BindingContext>
                 <telerik:RadListView.Commands>
-                    <telerik:ListViewUserCommand Id="ItemTap" 
-                                                                 Command="{Binding ItemTapCommand}" />
+                    <telerik:ListViewUserCommand Id="ItemTap"
+                                                 Command="{Binding ItemTapCommand}" />
                 </telerik:RadListView.Commands>
             </telerik:RadListView>
+            <!-- << listview-commands-listviewusercommand-xaml -->
         </VerticalStackLayout>
     </telerik:RadContentView.Content>
 </telerik:RadContentView>

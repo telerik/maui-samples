@@ -1,6 +1,6 @@
 ﻿using Microsoft.Maui.Controls.Xaml;
 using Telerik.Maui.Controls;
-using Telerik.XamarinForms.DataControls;
+using Telerik.Maui.Controls.Compatibility.DataControls;
 
 namespace SDKBrowserMaui.Examples.ListViewControl.FilteringCategory.FilterDescriptorExample
 {
@@ -11,7 +11,7 @@ namespace SDKBrowserMaui.Examples.ListViewControl.FilteringCategory.FilterDescri
         {
             InitializeComponent();
 
-            this.listView.FilterDescriptors.Add(new Telerik.XamarinForms.DataControls.ListView.DelegateFilterDescriptor { Filter = this.AgeFilter });
+            this.listView.FilterDescriptors.Add(new Telerik.Maui.Controls.Compatibility.DataControls.ListView.ListViewDelegateFilterDescriptor { Filter = this.AgeFilter });
         }
 
         private bool AgeFilter(object arg)

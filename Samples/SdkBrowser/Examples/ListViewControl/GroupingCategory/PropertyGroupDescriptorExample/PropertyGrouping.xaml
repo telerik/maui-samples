@@ -6,6 +6,7 @@
                         x:Class="SDKBrowserMaui.Examples.ListViewControl.GroupingCategory.PropertyGroupDescriptorExample.PropertyGrouping"
                         Margin="5">
     <telerik:RadContentView.Resources>
+        <!-- >> listview-grouping-templates -->
         <ResourceDictionary>
             <DataTemplate x:Key="ListViewItemTemplate">
                 <telerik:ListViewTemplateCell>
@@ -34,9 +35,11 @@
             </DataTemplate>
             <telerik:ListViewGroupStyle x:Key="ListViewGroupHeaderStyle" BackgroundColor="Transparent" />
         </ResourceDictionary>
+        <!-- << listview-grouping-templates -->
     </telerik:RadContentView.Resources>
     <telerik:RadContentView.Content>
         <Grid>
+            <!-- >> listview-grouping-propertygroupdescriptor -->
             <telerik:RadListView x:Name="listView" ItemsSource="{Binding Cities}"
                                      ItemTemplate="{StaticResource ListViewItemTemplate}"
                                      GroupHeaderTemplate="{StaticResource ListViewGroupHeaderTemplate}"
@@ -45,9 +48,10 @@
                     <local:GroupingViewModel/>
                 </telerik:RadListView.BindingContext>
                 <telerik:RadListView.GroupDescriptors>
-                    <telerik:PropertyGroupDescriptor PropertyName="Country"/>
+                    <telerik:ListViewPropertyGroupDescriptor PropertyName="Country"/>
                 </telerik:RadListView.GroupDescriptors>
             </telerik:RadListView>
+            <!-- << listview-grouping-propertygroupdescriptor -->
         </Grid>
     </telerik:RadContentView.Content>
 </telerik:RadContentView>

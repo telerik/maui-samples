@@ -1,6 +1,6 @@
 ﻿using Microsoft.Maui.Controls;
 using System;
-using Telerik.XamarinForms.Chart;
+using Telerik.Maui.Controls.Compatibility.Chart;
 
 namespace SDKBrowser.Examples.ChartControl.PieChartCategory.PieChartPercentageExample
 {

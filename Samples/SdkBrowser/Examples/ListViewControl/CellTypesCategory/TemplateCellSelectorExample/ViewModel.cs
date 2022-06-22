@@ -5,10 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Telerik.Maui.Controls;
-using Telerik.XamarinForms.Common;
+using Telerik.Maui.Controls.Compatibility.Common;
 
 namespace SDKBrowserMaui.Examples.ListViewControl.CellTypesCategory.TemplateCellSelectorExample
 {
+    // >> listview-itemtemplateselector-dataitem
     public class DataItem : NotifyPropertyChangedBase
     {
         private string name;
@@ -26,7 +27,9 @@ namespace SDKBrowserMaui.Examples.ListViewControl.CellTypesCategory.TemplateCell
             set { this.UpdateValue(ref this.isSpecial, value); }
         }    
     }
+    // << listview-itemtemplateselector-dataitem
 
+    // >> listview-itemtemplateselector-sourcecollection
     public class ViewModel
     {
         public ViewModel()
@@ -53,4 +56,5 @@ namespace SDKBrowserMaui.Examples.ListViewControl.CellTypesCategory.TemplateCell
 
         public ObservableCollection<DataItem> Source { get; private set; }
     }
+    // << listview-itemtemplateselector-sourcecollection
 }

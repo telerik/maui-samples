@@ -1,6 +1,6 @@
 ﻿using Microsoft.Maui.Controls.Xaml;
 using Telerik.Maui.Controls;
-using Telerik.XamarinForms.Map;
+using Telerik.Maui.Controls.Compatibility.Map;
 
 namespace SDKBrowserMaui.Examples.MapControl.GettingStartedCategory.GettingStartedExample
 {

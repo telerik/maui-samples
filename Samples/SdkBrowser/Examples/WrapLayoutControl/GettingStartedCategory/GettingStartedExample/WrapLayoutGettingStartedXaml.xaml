@@ -6,6 +6,7 @@
                         Margin="5">
     <telerik:RadContentView.Resources>
         <ResourceDictionary>
+            <!--  >> wraplayout-getting-started-xaml-resources -->
             <Style x:Key="DefaultBorderStyle" TargetType="telerik:RadBorder">
                 <Setter Property="BorderColor" Value="Gray"/>
                 <Setter Property="BorderThickness" Value="1"/>
@@ -15,10 +16,11 @@
                 <Setter Property="HorizontalOptions" Value="Center"/>
                 <Setter Property="Margin" Value="2"/>
             </Style>
+            <!--  << wraplayout-getting-started-xaml-resources -->
         </ResourceDictionary>
     </telerik:RadContentView.Resources>
-    
     <telerik:RadContentView.Content>
+        <!--  >> wraplayout-getting-started-xaml -->
         <telerik:RadWrapLayout Orientation="Horizontal">
             <telerik:RadBorder Style="{StaticResource DefaultBorderStyle}" WidthRequest="100">
                 <Label Text="Item 1" HorizontalOptions="Center" Margin="2"/>
@@ -36,5 +38,6 @@
                 <Label Text="Item 5" Style="{StaticResource DefaultLabelStyle}"/>
             </telerik:RadBorder>
         </telerik:RadWrapLayout>
+        <!--  << wraplayout-getting-started-xaml -->
     </telerik:RadContentView.Content>
 </telerik:RadContentView>

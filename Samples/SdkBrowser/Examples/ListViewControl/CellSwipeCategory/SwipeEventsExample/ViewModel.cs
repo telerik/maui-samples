@@ -1,6 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using Telerik.Maui.Controls;
-using Telerik.XamarinForms.Common;
+using Telerik.Maui.Controls.Compatibility.Common;
 
 namespace SDKBrowserMaui.Examples.ListViewControl.CellSwipeCategory.SwipeEventsExample
 {

@@ -1,5 +1,5 @@
 ﻿using Microsoft.Maui.Graphics;
-using Telerik.XamarinForms.DataControls.ListView;
+using Telerik.Maui.Controls.Compatibility.DataControls.ListView;
 
 namespace SDKBrowserMaui.Examples.ListViewControl.StylingCategory.StyleSelectorExample
 {

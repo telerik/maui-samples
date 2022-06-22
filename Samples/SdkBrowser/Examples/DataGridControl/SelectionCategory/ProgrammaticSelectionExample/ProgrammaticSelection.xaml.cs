@@ -3,7 +3,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Telerik.Maui.Controls;
-using Telerik.XamarinForms.DataGrid;
+using Telerik.Maui.Controls.Compatibility.DataGrid;
 
 namespace SDKBrowserMaui.Examples.DataGridControl.SelectionCategory.ProgrammaticSelectionExample;
 

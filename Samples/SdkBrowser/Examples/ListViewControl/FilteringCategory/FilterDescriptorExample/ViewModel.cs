@@ -10,6 +10,7 @@ namespace SDKBrowserMaui.Examples.ListViewControl.FilteringCategory.FilterDescri
     }
     // << listview-features-filtering-data-class
 
+    // >> listview-features-filtering-viewmodel
     public class ViewModel
     {
         public ViewModel()

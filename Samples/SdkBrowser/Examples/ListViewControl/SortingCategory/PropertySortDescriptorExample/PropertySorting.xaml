@@ -7,13 +7,15 @@
                         Margin="5">
     <telerik:RadContentView.Content>
         <Grid>
+            <!-- >> listview-features-sorting-xaml -->
             <telerik:RadListView x:Name="listView" 
-                                             ItemsSource="{Binding Items}">
+                                 ItemsSource="{Binding Items}">
                 <telerik:RadListView.BindingContext>
                     <local:ViewModel/>
                 </telerik:RadListView.BindingContext>
                 <telerik:RadListView.SortDescriptors>
-                    <telerik:PropertySortDescriptor PropertyName="Age" SortOrder="Ascending" />
+                    <telerik:ListViewPropertySortDescriptor PropertyName="Age" 
+                                                            SortOrder="Ascending" />
                 </telerik:RadListView.SortDescriptors>
                 <telerik:RadListView.ItemTemplate>
                     <DataTemplate>
@@ -30,6 +32,7 @@
                     </DataTemplate>
                 </telerik:RadListView.ItemTemplate>
             </telerik:RadListView>
+            <!-- << listview-features-sorting-xaml -->
         </Grid>
     </telerik:RadContentView.Content>
 </telerik:RadContentView>

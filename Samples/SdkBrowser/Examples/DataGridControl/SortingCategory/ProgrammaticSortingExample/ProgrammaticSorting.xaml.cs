@@ -2,9 +2,9 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using Telerik.Maui.Controls;
-using Telerik.XamarinForms.Common;
-using Telerik.XamarinForms.Common.Data;
-using Telerik.XamarinForms.DataGrid;
+using Telerik.Maui.Controls.Compatibility.Common;
+using Telerik.Maui.Controls.Compatibility.Common.Data;
+using Telerik.Maui.Controls.Compatibility.DataGrid;
 
 namespace SDKBrowserMaui.Examples.DataGridControl.SortingCategory.ProgrammaticSortingExample;
 

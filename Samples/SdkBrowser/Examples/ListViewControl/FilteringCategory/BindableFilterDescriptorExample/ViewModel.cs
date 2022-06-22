@@ -5,8 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Telerik.Maui.Controls;
-using Telerik.XamarinForms.Common;
-using Telerik.XamarinForms.DataControls.ListView;
+using Telerik.Maui.Controls.Compatibility.Common;
+using Telerik.Maui.Controls.Compatibility.DataControls.ListView;
 
 namespace SDKBrowserMaui.Examples.ListViewControl.FilteringCategory.BindableFilterDescriptorExample
 {
@@ -74,7 +74,7 @@ namespace SDKBrowserMaui.Examples.ListViewControl.FilteringCategory.BindableFilt
 
             if (this.FilterDescriptors.Count == 0)
             {
-                this.FilterDescriptors.Add(new DelegateFilterDescriptor()
+                this.FilterDescriptors.Add(new ListViewDelegateFilterDescriptor()
                 {
                     Filter = new Func<object, bool>((item) => ((Person)item).Name.Equals("A"))
                 });
@@ -82,7 +82,7 @@ namespace SDKBrowserMaui.Examples.ListViewControl.FilteringCategory.BindableFilt
 
             if (propertyName.Equals(nameof(IsFilterSwitchToggled)))
             {
-                ((DelegateFilterDescriptor)this.FilterDescriptors.FirstOrDefault()).Filter =
+                ((ListViewDelegateFilterDescriptor)this.FilterDescriptors.FirstOrDefault()).Filter =
                                 this.isFilterSwitchToggled ?
                                 new Func<object, bool>((item) => ((Person)item).Name.StartsWith("T")) :
                                 new Func<object, bool>((item) => ((Person)item).Name.StartsWith("A"));

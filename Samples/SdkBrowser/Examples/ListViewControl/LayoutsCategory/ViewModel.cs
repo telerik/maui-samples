@@ -2,6 +2,7 @@
 
 namespace SDKBrowserMaui.Examples.ListViewControl.LayoutsCategory
 {
+    // >> listview-layouts-linearlayout-source
     public class ViewModel
     {
         public ViewModel()
@@ -15,4 +16,5 @@ namespace SDKBrowserMaui.Examples.ListViewControl.LayoutsCategory
         }
         public ObservableCollection<Item> Items { get; set; }
     }
+    // << listview-layouts-linearlayout-source
 }

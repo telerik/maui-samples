@@ -1,6 +1,6 @@
 ﻿using SDKBrowser.Examples.DataGridControl;
-using Telerik.XamarinForms.DataGrid;
-using Telerik.XamarinForms.DataGrid.Commands;
+using Telerik.Maui.Controls.Compatibility.DataGrid;
+using Telerik.Maui.Controls.Compatibility.DataGrid.Commands;
 
 namespace SDKBrowserMaui.Examples.DataGridControl.LoadOnDemandCategory.LoadMoreDataCommandExample;
 

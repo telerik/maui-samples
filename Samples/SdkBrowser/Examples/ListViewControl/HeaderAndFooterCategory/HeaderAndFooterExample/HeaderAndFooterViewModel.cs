@@ -6,7 +6,7 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Telerik.XamarinForms.Common;
+using Telerik.Maui.Controls.Compatibility.Common;
 
 namespace SDKBrowserMaui.Examples.ListViewControl.HeaderAndFooterCategory.HeaderAndFooterExample
 {
