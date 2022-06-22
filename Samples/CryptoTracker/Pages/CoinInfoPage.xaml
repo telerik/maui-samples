@@ -1,0 +1,52 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:views="clr-namespace:CryptoTracker.Views"
+             xmlns:viewModels="clr-namespace:CryptoTracker.ViewModels"
+             x:Class="CryptoTracker.Pages.CoinInfoPage"
+             x:Name="coinInfoPage"
+             BackgroundColor="{DynamicResource RadBorderColor}">
+
+    <ContentPage.BindingContext>
+        <viewModels:CoinInfoViewModel />
+    </ContentPage.BindingContext>
+    
+    <telerik:RadTabView x:Name="tabView">
+        <telerik:TabViewItem HeaderText="Overview">
+            <Grid RowDefinitions="Auto, *" Style="{StaticResource TabViewItemGridLayouStyle}">
+                <VerticalStackLayout Spacing="5">
+                    <Label Text="{Binding CoinCurrentPrice, Mode=OneWay, StringFormat='${0:N2}'}"
+                           FontSize="24"
+                           TextColor="Black"
+                           FontAttributes="Bold"/>
+                    <Label FontSize="14" Text="{Binding CoinSymbol, StringFormat='Price ({0})'}" FontAttributes="Bold"/>
+
+                </VerticalStackLayout>
+
+                <telerik:RadBorder VerticalOptions="Center"
+                           HorizontalOptions="End"
+                           BackgroundColor="{Binding CoinPriceChangePercentage, Mode=OneWay, 
+                                                     Converter={StaticResource ValueToColorConverter}}"
+                           CornerRadius="8"
+                           Padding="10">
+                    <Label FontSize="14" FontAttributes="Bold" TextColor="White"
+                           Text="{Binding CoinPriceChangePercentage,
+                           StringFormat='{0:+ 0.00;- 0.00;0.00}%'}"/>
+                </telerik:RadBorder>
+                <views:CoinInfoChartView Grid.Row="1" />
+            </Grid>
+        </telerik:TabViewItem>
+
+        <telerik:TabViewItem HeaderText="Historical Data">
+            <Grid RowDefinitions="Auto, *" ColumnDefinitions="*" Style="{StaticResource TabViewItemGridLayouStyle}">
+                <Label Margin="5,15,5,5"
+                       FontSize="24" 
+                       FontAttributes="Bold"
+                       TextColor="Black"
+                       Grid.Row="0"
+                       Text="Historical Data" />
+                <views:CoinInfoDataGridView Grid.Row="1"/>
+            </Grid>
+        </telerik:TabViewItem>
+    </telerik:RadTabView>
+</ContentPage>  

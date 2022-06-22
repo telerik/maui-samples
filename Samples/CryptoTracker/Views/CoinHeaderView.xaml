@@ -1,0 +1,26 @@
+﻿<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="CryptoTracker.Views.CoinHeaderView"
+             x:Name="coinHeaderView"
+             ControlTemplate="{DynamicResource HeaderTemplate}">
+    <ContentView.Resources>
+        <ControlTemplate x:Key="HeaderTemplate">
+            <telerik:RadBadgeView BadgeText="{TemplateBinding CoinSymbol}"
+                                  BadgeTextColor="DimGray"
+                                  BadgeFontAttributes="Bold"
+                                  BadgeBackgroundColor="Transparent"
+                                  HorizontalOptions="Start"
+                                  BadgeHorizontalAlignment="Start"
+                                  BadgeHorizontalPosition="End">
+                <telerik:RadBadgeView.Content>
+                    <Label Text="{TemplateBinding CoinName}"
+                           FontSize="28"
+                           HorizontalOptions="Start"
+                           FontAttributes="Bold"
+                           TextColor="{StaticResource DownloadButtonColor}"/>
+                </telerik:RadBadgeView.Content>
+            </telerik:RadBadgeView>
+        </ControlTemplate>
+    </ContentView.Resources>
+</ContentView>

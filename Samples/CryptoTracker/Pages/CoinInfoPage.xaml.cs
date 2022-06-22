@@ -2,11 +2,11 @@
 using CryptoTracker.ViewModels;
 using Microsoft.Maui.Controls;
 
-namespace CryptoTracker.Views
+namespace CryptoTracker.Pages
 {
-    public partial class CoinInfoView : ContentView
+    public partial class CoinInfoPage : ContentPage
     {
-        public CoinInfoView()
+        public CoinInfoPage()
         {
             this.InitializeComponent();
         }
@@ -15,7 +15,6 @@ namespace CryptoTracker.Views
         {
             var viewModel = (CoinInfoViewModel)this.BindingContext;
             viewModel.InitializeCoinData(coinInfo);
-
         }
     }
 }
