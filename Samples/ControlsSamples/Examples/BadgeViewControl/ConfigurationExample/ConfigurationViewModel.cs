@@ -1,6 +1,6 @@
 ﻿using QSF.ViewModels;
 using System;
-using Telerik.XamarinForms.Primitives;
+using Telerik.Maui.Controls.Compatibility.Primitives;
 using Microsoft.Maui;
 using System.Windows.Input;
 using System.Collections.ObjectModel;

@@ -36,6 +36,7 @@
                     <Label Text="{TemplateBinding Description}"
                            MinimumWidthRequest="100"
                            MaximumWidthRequest="200"
+                           MinimumHeightRequest="{OnPlatform MacCatalyst=45, Default=NaN}"
                            MaxLines="3"
                            Margin="0, 3, 12, 12"
                            Style="{StaticResource DescriptionLabelStyle}" />

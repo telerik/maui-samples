@@ -85,8 +85,9 @@
             </Grid>
         </ScrollView>
         <telerik:RadButton Grid.Row="1" 
-                           Style="{StaticResource SubmitButtonStyle}"
                            Text="View Document"
+                           Margin="16, 20"
+                           Style="{StaticResource SubmitButtonStyle}"
                            VerticalOptions="{OnPlatform WinUI='Center', MacCatalyst='Center'}"
                            HorizontalOptions="{OnPlatform WinUI='Center', MacCatalyst='Center'}"
                            Command="{Binding ViewDocumentWithNotesCommand}" />

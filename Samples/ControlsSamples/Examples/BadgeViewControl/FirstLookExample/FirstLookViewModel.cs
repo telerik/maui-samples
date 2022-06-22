@@ -2,7 +2,7 @@
 using QSF.ViewModels;
 using System;
 using System.Collections.ObjectModel;
-using Telerik.XamarinForms.Primitives;
+using Telerik.Maui.Controls.Compatibility.Primitives;
 
 namespace QSF.Examples.BadgeViewControl.FirstLookExample
 {

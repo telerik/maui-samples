@@ -20,10 +20,9 @@
         </ResourceDictionary>
     </ContentView.Resources>
     <ScrollView>
-        <Grid RowDefinitions="80,Auto,Auto,Auto"
+        <Grid RowDefinitions="80, Auto, Auto, Auto"
               RowSpacing="10"
-              ColumnSpacing="20" 
-              Padding="16">
+              ColumnSpacing="20" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="{OnIdiom Default=*, Phone=Auto}" />
@@ -40,7 +39,8 @@
             </VerticalStackLayout>
 
             <VerticalStackLayout Grid.Row="1"
-                                 Grid.Column="0">
+                                 Grid.Column="0"
+                                 Padding="16, 0">
                 <Label Text="Skills:"
                        Style="{StaticResource ComboBoxTitleStyle}"/>
                 <telerik:RadComboBox ItemsSource="{Binding Skills}"
@@ -63,7 +63,8 @@
             </VerticalStackLayout>
 
             <VerticalStackLayout Grid.Column="{OnIdiom Default=1, Phone=0}"
-                                 Grid.Row="{OnIdiom Default=1, Phone=2}">
+                                 Grid.Row="{OnIdiom Default=1, Phone=2}"
+                                 Padding="16, 0">
                 <Label Text="Time Posted:"
                        Style="{StaticResource ComboBoxTitleStyle}"/>
                 <telerik:RadComboBox ItemsSource="{Binding Times}"
@@ -74,7 +75,7 @@
             </VerticalStackLayout>
 
             <telerik:RadBorder Grid.Row="3"
-                               Margin="0,40,0,0"
+                               Margin="16, 40, 16, 0"
                                VerticalOptions="{OnIdiom Default=Center, Phone=End}"
                                HorizontalOptions="{OnIdiom Default=Start, Phone=FillAndExpand}">
                 <telerik:RadButton Command="{Binding SearchJobButtonCommand}"

@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:converters="clr-namespace:QSF.Converters"
+             xmlns:local="clr-namespace:QSF.Examples.DataGridControl.ColumnTypesExample"
+             x:Class="QSF.Examples.DataGridControl.ColumnTypesExample.ColumnTypesView"
+             Margin="{OnIdiom Phone='16,20', Desktop=0}">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <converters:BooleanToTextConverter x:Key="boolToTextConverter"/>
+            <local:StatusFlightToBooleanConverter x:Key="statusFlightToBooleanConverter"/>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <Grid RowDefinitions="*">
+        <telerik:RadDataGrid UserFilterMode="Disabled"
+                             ItemsSource="{Binding Flights}"
+                             UserEditMode="None"
+                             SelectionMode="None"
+                             UserSortMode="None"
+                             AutoGenerateColumns="False"
+                             GridLinesThickness="1"
+                             GridLinesVisibility="Both"
+                             GridLinesColor="#DFDFDF">
+            <telerik:RadDataGrid.Columns>
+                <telerik:DataGridDateColumn HeaderText="Date"
+                                            PropertyName="Date" />
+                <telerik:DataGridTimeColumn HeaderText="Time" 
+                                            PropertyName="Date" />
+                <telerik:DataGridTextColumn HeaderText="Flight"
+                                            PropertyName="Id" />
+                <telerik:DataGridTemplateColumn HeaderText="To" 
+                                                SizeMode="Fixed"
+                                                Width="80">
+                    <telerik:DataGridTemplateColumn.CellContentTemplate>
+                        <DataTemplate>
+                            <VerticalStackLayout VerticalOptions="Center"
+                                                 Padding="{OnPlatform Default='10,0,0,0',Android='5,0,0,0'}">
+                                <Label Text="{Binding DestinationFullName}" />
+                                <Label Text="{Binding DestinationShortName}"
+                                       FontSize="Caption"
+                                       TextColor="{StaticResource AccentColor8}" />
+                            </VerticalStackLayout>
+                        </DataTemplate>
+                    </telerik:DataGridTemplateColumn.CellContentTemplate>
+                </telerik:DataGridTemplateColumn>
+                <telerik:DataGridBooleanColumn HeaderText="Direct"
+                                               PropertyName="IsDirect">
+                    <telerik:DataGridColumn.CellContentTemplate>
+                        <DataTemplate>
+                            <HorizontalStackLayout Padding="10,0,0,0">
+                                <Label VerticalOptions="Center"
+                                        Text="{Binding IsDirect, Converter={StaticResource boolToTextConverter}}" />
+                            </HorizontalStackLayout>
+                        </DataTemplate>
+                    </telerik:DataGridColumn.CellContentTemplate>
+                </telerik:DataGridBooleanColumn>
+                <telerik:DataGridNumericalColumn HeaderText="Terminal"
+                                                 PropertyName="Terminal"/>
+                <telerik:DataGridTemplateColumn HeaderText="Status">
+                    <telerik:DataGridColumn.CellContentTemplate>
+                        <DataTemplate>
+                            <HorizontalStackLayout VerticalOptions="Center">
+                                <Label Margin="10,0,4,0"
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="Start"
+                                       Text="{Binding Status}"/>
+                                <Label Text="{Binding StatusTime}"
+                                       FontSize="Caption"
+                                       IsVisible="{Binding Status, Converter={StaticResource statusFlightToBooleanConverter}}"
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="Start"
+                                       TextColor="{StaticResource AccentColor8}"/>
+                            </HorizontalStackLayout>
+                        </DataTemplate>
+                    </telerik:DataGridColumn.CellContentTemplate>
+                </telerik:DataGridTemplateColumn>
+            </telerik:RadDataGrid.Columns>
+        </telerik:RadDataGrid>
+    </Grid>
+</ContentView>

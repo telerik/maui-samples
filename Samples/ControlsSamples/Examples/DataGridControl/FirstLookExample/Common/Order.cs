@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Xml.Serialization;
 using QSF.ViewModels;
-using Telerik.XamarinForms.Common.DataAnnotations;
+using Telerik.Maui.Controls.Compatibility.Common.DataAnnotations;
 
 namespace QSF.Examples.DataGridControl.Common
 {

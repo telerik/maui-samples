@@ -3,7 +3,7 @@ using Microsoft.Maui.Controls;
 using Microsoft.Maui.Controls.Xaml;
 using QSF.Layouts;
 using System.Collections.Generic;
-using Telerik.XamarinForms.Common;
+using Telerik.Maui;
 
 namespace QSF.Views;
 

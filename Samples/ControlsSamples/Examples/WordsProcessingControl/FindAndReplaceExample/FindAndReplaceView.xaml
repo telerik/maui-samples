@@ -3,8 +3,7 @@
                         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                         xmlns:system="clr-namespace:System;assembly=netstandard"
                         xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
-                        x:Class="QSF.Examples.WordsProcessingControl.FindAndReplaceExample.FindAndReplaceView"
-                        Margin="5">
+                        x:Class="QSF.Examples.WordsProcessingControl.FindAndReplaceExample.FindAndReplaceView">
     <telerik:RadContentView.Resources>
         <ResourceDictionary>
             <Style TargetType="telerik:RadEntry">
@@ -52,40 +51,42 @@
                                    Style="{StaticResource SubmitButtonStyle}" />
             </Grid>
 
-            <Label Text="Find Text:" Style="{StaticResource boldLabel}" />
+            <VerticalStackLayout Padding="16, 0">
+                <Label Text="Find Text:" Style="{StaticResource boldLabel}" />
 
-            <telerik:RadEntry Placeholder="Enter Text to be found ex. fast"
+                <telerik:RadEntry Placeholder="Enter Text to be found ex. fast"
                               Margin="0, 0, 0, 18"
                               MaximumWidthRequest="{OnPlatform WinUI='300', MacCatalyst='300'}"
                               Text="{Binding FindWhat, Mode=OneWayToSource}" />
 
-            <Label Text="Replace with:" Style="{StaticResource boldLabel}" />
+                <Label Text="Replace with:" Style="{StaticResource boldLabel}" />
 
-            <telerik:RadEntry Placeholder="Enter Text to be replaced ex. slow"
+                <telerik:RadEntry Placeholder="Enter Text to be replaced ex. slow"
                               Margin="0, 0, 0, 41"
                               MaximumWidthRequest="{OnPlatform WinUI='300', MacCatalyst='300'}"
                               Text="{Binding ReplaceWith, Mode=OneWayToSource}" />
 
-            <VerticalStackLayout Margin="35, 0, 35, 0" HorizontalOptions="Center">
-                <HorizontalStackLayout Margin="0, 0, 0, 24" Spacing="10">
-                    <telerik:RadCheckBox IsChecked="{Binding MatchCase}" />
-                    <Label Text="Match Case" Style="{StaticResource checkBoxLabel}" />
-                </HorizontalStackLayout>
-                <HorizontalStackLayout Margin="0, 0, 0, 24" Spacing="10">
-                    <telerik:RadCheckBox IsChecked="{Binding MatchWholeWord}" />
-                    <Label Text="Match Whole Word" Style="{StaticResource checkBoxLabel}" />
-                </HorizontalStackLayout>
-                <HorizontalStackLayout Margin="0, 0, 0, 24" Spacing="10">
-                    <telerik:RadCheckBox IsChecked="{Binding UseRegex}" />
-                    <Label Text="Use Regular Expression" Style="{StaticResource checkBoxLabel}" />
-                </HorizontalStackLayout>
-            </VerticalStackLayout>
+                <VerticalStackLayout Margin="35, 0, 35, 0" HorizontalOptions="Center">
+                    <HorizontalStackLayout Margin="0, 0, 0, 24" Spacing="10">
+                        <telerik:RadCheckBox IsChecked="{Binding MatchCase}" />
+                        <Label Text="Match Case" Style="{StaticResource checkBoxLabel}" />
+                    </HorizontalStackLayout>
+                    <HorizontalStackLayout Margin="0, 0, 0, 24" Spacing="10">
+                        <telerik:RadCheckBox IsChecked="{Binding MatchWholeWord}" />
+                        <Label Text="Match Whole Word" Style="{StaticResource checkBoxLabel}" />
+                    </HorizontalStackLayout>
+                    <HorizontalStackLayout Margin="0, 0, 0, 24" Spacing="10">
+                        <telerik:RadCheckBox IsChecked="{Binding UseRegex}" />
+                        <Label Text="Use Regular Expression" Style="{StaticResource checkBoxLabel}" />
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
 
-            <telerik:RadButton Style="{StaticResource SubmitButtonStyle}"
+                <telerik:RadButton Style="{StaticResource SubmitButtonStyle}"
                                Text="Replace and Save"
                                HorizontalOptions="{OnPlatform WinUI='Center', MacCatalyst='Center'}"
                                Command="{Binding ReplaceAndSaveCommand}" 
                                VerticalOptions="EndAndExpand" />
+            </VerticalStackLayout>
         </VerticalStackLayout>
     </ScrollView>
 </telerik:RadContentView>

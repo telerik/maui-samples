@@ -1,28 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:telerikDataGrid="clr-namespace:Telerik.XamarinForms.DataGrid;assembly=Telerik.Maui.Controls.Compatibility"
-             xmlns:telerikCommon="clr-namespace:Telerik.XamarinForms.Common.Data;assembly=Telerik.Maui.Controls.Compatibility"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
              xmlns:local="clr-namespace:QSF.Examples.DataGridControl.FirstLookExample"
-             x:Class="QSF.Examples.DataGridControl.FirstLookExample.FirstLookView">
+             x:Class="QSF.Examples.DataGridControl.FirstLookExample.FirstLookView"
+             Margin="{OnIdiom Phone='16,20', Desktop=0}">
 
     <ContentView.Resources>
-        <telerikDataGrid:DataGridColumnHeaderStyle x:Key="columHeaderStyle"
+        <telerik:DataGridColumnHeaderStyle x:Key="columHeaderStyle"
                                                    TextMargin="10, 20"
                                                    TextFontSize="16"
                                                    BorderThickness="1"
                                                    BorderColor="#DFDFDF"
-                                                   OptionsButtonMargin="10"
                                                    FilterIndicatorMargin="10"
                                                    BackgroundColor="#f8f8f8" />
-        <telerikDataGrid:DataGridGroupHeaderStyle x:Key="groupHeaderStyle"
+        <telerik:DataGridGroupHeaderStyle x:Key="groupHeaderStyle"
                                                   BorderThickness="1"
                                                   BorderColor="#DFDFDF"
                                                   BackgroundColor="#f8f8f8" />
     </ContentView.Resources>
 
-   <Grid>
-        <telerikDataGrid:RadDataGrid Grid.Row="1" 
+    <Grid>
+        <telerik:RadDataGrid Grid.Row="1" 
                                      ItemsSource="{Binding People}"
                                      AutoGenerateColumns="False"
                                      SelectionUnit="Row"
@@ -32,27 +31,27 @@
                                      GridLinesVisibility="Both"
                                      GridLinesColor="#DFDFDF"
                                      GroupHeaderStyle="{StaticResource groupHeaderStyle}">
-            <telerikDataGrid:RadDataGrid.GroupDescriptors>
-                <telerikCommon:PropertyGroupDescriptor PropertyName="CountryName"/>
-            </telerikDataGrid:RadDataGrid.GroupDescriptors>
-            <telerikDataGrid:RadDataGrid.Columns>
-                <telerikDataGrid:DataGridTextColumn PropertyName="FullName"
+            <telerik:RadDataGrid.GroupDescriptors>
+              <telerik:PropertyGroupDescriptor PropertyName="CountryName"/>
+            </telerik:RadDataGrid.GroupDescriptors>
+            <telerik:RadDataGrid.Columns>
+                <telerik:DataGridTextColumn PropertyName="FullName"
                                                     HeaderText="Name"
                                                     HeaderStyle="{StaticResource columHeaderStyle}"/>
-                <telerikDataGrid:DataGridTextColumn PropertyName="PhoneNumberWithCountryCode"
+                <telerik:DataGridTextColumn PropertyName="PhoneNumberWithCountryCode"
                                                     HeaderText="Phone"
                                                     HeaderStyle="{StaticResource columHeaderStyle}"/>
-                <telerikDataGrid:DataGridBooleanColumn HeaderText="Is Member"
+                <telerik:DataGridBooleanColumn HeaderText="Is Member"
                                                        PropertyName="IsMember"
                                                        SizeMode="Auto"
                                                        HeaderStyle="{StaticResource columHeaderStyle}">
-                </telerikDataGrid:DataGridBooleanColumn>
-                <telerikDataGrid:DataGridNumericalColumn PropertyName="Id"
+                </telerik:DataGridBooleanColumn>
+                <telerik:DataGridNumericalColumn PropertyName="Id"
                                                          HeaderText="Id"
                                                          HeaderStyle="{StaticResource columHeaderStyle}"/>
-                <telerikDataGrid:DataGridTemplateColumn HeaderText="Country"
+                <telerik:DataGridTemplateColumn HeaderText="Country"
                                                         HeaderStyle="{StaticResource columHeaderStyle}">
-                    <telerikDataGrid:DataGridTemplateColumn.CellContentTemplate>
+                    <telerik:DataGridTemplateColumn.CellContentTemplate>
                         <DataTemplate>
                             <Grid>
                                 <Image Source="{Binding CountryFlag}"
@@ -62,10 +61,10 @@
                                        HeightRequest="40"/>
                             </Grid>
                         </DataTemplate>
-                    </telerikDataGrid:DataGridTemplateColumn.CellContentTemplate>
-                </telerikDataGrid:DataGridTemplateColumn>
-            </telerikDataGrid:RadDataGrid.Columns>
-        </telerikDataGrid:RadDataGrid>
+                    </telerik:DataGridTemplateColumn.CellContentTemplate>
+                </telerik:DataGridTemplateColumn>
+            </telerik:RadDataGrid.Columns>
+        </telerik:RadDataGrid>
     </Grid>
-    
+
 </ContentView>

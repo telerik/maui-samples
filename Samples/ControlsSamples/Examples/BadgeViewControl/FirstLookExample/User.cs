@@ -1,5 +1,5 @@
 ﻿using Microsoft.Maui.Graphics;
-using Telerik.XamarinForms.Primitives;
+using Telerik.Maui.Controls.Compatibility.Primitives;
 using Microsoft.Maui.Controls;
 using Microsoft.Maui.ApplicationModel;
 using Telerik.Maui.Controls;

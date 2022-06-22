@@ -2,12 +2,12 @@
 <views:GalleryExampleViewBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
                               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                               xmlns:views="clr-namespace:QSF.Views"
-                              xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.Maui.Controls.Compatibility"
+                              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
                               x:Class="QSF.Examples.BusyIndicatorControl.FirstLookExample.FirstLookView">
   <views:GalleryExampleViewBase.Resources>
     <ResourceDictionary>
       <DataTemplate x:Key="busyIndicator">
-        <telerikPrimitives:RadBusyIndicator AnimationContentHeightRequest="200"
+                <telerik:RadBusyIndicator AnimationContentHeightRequest="200"
                                             AnimationContentWidthRequest="200"
                                             AnimationType="{Binding AnimationType}"
                                             AnimationContentColor="{Static Application.AccentColor}"

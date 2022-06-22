@@ -42,6 +42,7 @@
         </Style>
         <Style x:Key="ButtonStyleBase_MacCatalyst" TargetType="telerik:RadButton">
             <Setter Property="CornerRadius" Value="4" />
+            <Setter Property="ContentLayout" Value="Left, 0" />
         </Style>
         <Style x:Key="ButtonStyleBase" TargetType="telerik:RadButton" BasedOn="{OnPlatform MacCatalyst={StaticResource ButtonStyleBase_MacCatalyst}}">
             <Setter Property="TextColor" Value="{StaticResource PrimaryTextColor1}" />

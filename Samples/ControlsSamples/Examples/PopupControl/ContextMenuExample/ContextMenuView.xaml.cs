@@ -21,18 +21,21 @@ public partial class ContextMenuView : ContentView
         this.popupViewModel = new PopupViewModel();
         this.popupViewModel.ClosePopup += (sender, args) => this.popup.IsOpen = false;
         this.popup = new RadPopup();
-        this.popup.Content = (View)this.Resources["popupContent"];
+        var content = (View)this.Resources["popupContent"];
+        if(DeviceInfo.Idiom == DeviceIdiom.Phone)
+        {
+            content.SetBinding(View.WidthRequestProperty, new Binding("Width", source: Application.Current.MainPage));
+        }
+
+        this.popup.Content = content;
         this.popup.Content.BindingContext = this.popupViewModel;
-        this.popup.OutsideBackgroundColor = Color.FromArgb("#3C000000");
+        this.popup.OutsideBackgroundColor = Color.FromArgb("#99696969");
     }
 
     private void RadButton_Clicked(object sender, System.EventArgs e)
     {
         this.popup.IsOpen = true;
-        if(DeviceInfo.Idiom == DeviceIdiom.Phone)
-        {
-            this.popup.Content.WidthRequest = Application.Current.MainPage.Width;
-        }
+
         if(DeviceInfo.Idiom == DeviceIdiom.Desktop)
         {
             this.popup.PlacementTarget = this.ListView;

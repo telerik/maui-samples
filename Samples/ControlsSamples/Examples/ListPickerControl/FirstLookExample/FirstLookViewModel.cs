@@ -1,11 +1,10 @@
 ﻿using QSF.Services;
 using QSF.ViewModels;
 using QSF.ExampleUtilities;
-using System.Windows.Input;
-using Telerik.XamarinForms.Common;
 using Microsoft.Maui.Graphics;
 using Microsoft.Maui.Controls;
 using System.Collections.Generic;
+using Telerik.Maui;
 using System;
 
 namespace QSF.Examples.ListPickerControl.FirstLookExample

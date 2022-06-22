@@ -3,7 +3,7 @@
                         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                         xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
                         x:Class="QSF.Examples.SegmentedControlControl.FirstLookExample.FirstLookView"
-                        Margin="5">
+                        Margin="16, 20">
 
 
     <telerik:RadContentView.Resources>
@@ -49,7 +49,7 @@
                                          Style="{StaticResource segmentedStyle}"
                                          SelectedIndex="1" />
         </VerticalStackLayout>
-        <VerticalStackLayout IsVisible="{OnPlatform Android='False'}">
+        <VerticalStackLayout>
             <Label Text="Disabled" 
                    Style="{StaticResource descriptionLabel}"/>
             <telerik:RadSegmentedControl x:Name="segmented"

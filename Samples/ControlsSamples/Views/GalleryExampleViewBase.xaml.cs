@@ -3,7 +3,7 @@ using QSF.ViewModels;
 using System;
 using System.Collections.Specialized;
 using System.Linq;
-using Telerik.XamarinForms.DataControls;
+using Telerik.Maui.Controls.Compatibility.DataControls;
 
 namespace QSF.Views;
 

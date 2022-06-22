@@ -50,8 +50,7 @@
                TextColor="{AppThemeBinding Light={StaticResource HeaderTitleTextColorLight}, 
                                            Dark={StaticResource HeaderTitleTextColorDark}}" />
         <telerik:RadMap x:Name="map"
-                        Grid.Row="1"
-                        HorizontalOptions="Start">
+                        Grid.Row="1">
             <telerik:RadMap.Layers>
                 <telerik:ShapefileLayer x:Name="shapeLayer"
                                         SelectionMode="Single"

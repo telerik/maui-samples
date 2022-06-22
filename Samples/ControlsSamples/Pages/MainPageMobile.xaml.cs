@@ -20,7 +20,7 @@ public partial class MainPageMobile : ContentPage
         vm.NavigateToSearch();
     }
 
-    private void controlsListView_ItemTapped(object sender, Telerik.XamarinForms.DataControls.ListView.ItemTapEventArgs e)
+    private void controlsListView_ItemTapped(object sender, Telerik.Maui.Controls.Compatibility.DataControls.ListView.ItemTapEventArgs e)
     {
         HomeViewModel vm = (HomeViewModel)this.BindingContext;
         vm?.SelectControlCommand?.Execute(e.Item);

@@ -2,7 +2,7 @@ using Microsoft.Maui.Controls;
 using Microsoft.Maui.Devices;
 using Microsoft.Maui.Graphics;
 using System;
-using Telerik.XamarinForms.Chart;
+using Telerik.Maui.Controls.Compatibility.Chart;
 
 namespace QSF.Examples.ChartControl.FinancialIndicatorsExample;
 

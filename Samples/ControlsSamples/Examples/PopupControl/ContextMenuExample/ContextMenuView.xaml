@@ -11,105 +11,91 @@
                                HeightRequest="280" 
                                WidthRequest="360" 
                                CornerRadius="8">
-                <Grid RowDefinitions="24, *, *, *, *, *">
+                <telerik:RadButton.Resources>
+                    <ResourceDictionary>
+                        <Color x:Key="ButtonTextColor">#919191</Color>
+                        <Style TargetType="telerik:RadButton">
+                            <Setter Property="BorderThickness" Value="0"/>
+                            <Setter Property="VerticalOptions" Value="Center"/>
+                            <Setter Property="HorizontalOptions" Value="Start"/>
+                            <Setter Property="BackgroundColor" Value="Transparent"/>
+                            <Setter Property="FontSize" Value="14"/>
+                            <Setter Property="TextColor" Value="{StaticResource ButtonTextColor}"/>
+                        </Style>
+                    </ResourceDictionary>
+                </telerik:RadButton.Resources>
+                <Grid RowDefinitions="Auto, *, *, *, *, *"
+                      Padding="{OnPlatform Default='15, 10, 15, 15', WinUI='10'}">
                     <telerik:RadButton Clicked="RadButton_ClosePopup" 
                                        HorizontalOptions="End"
-                                       Padding="0"
-                                       VerticalOptions="Center"
-                                       BorderThickness="0"
-                                       BackgroundColor="#F8F8F8"
-                                       IsVisible="{OnIdiom Default=True, Phone=False}">
+                                       Padding="0">
                         <telerik:RadButton.ImageSource>
                             <FontImageSource FontFamily="TelerikFontExamples" 
-                                             Glyph="&#xe877;"
-                                             Color="DarkGray"
+                                             Glyph="{OnIdiom Default='&#xe877;', Phone=''}"
+                                             Color="{StaticResource ButtonTextColor}"
                                              Size="Medium"/>
                         </telerik:RadButton.ImageSource>
                     </telerik:RadButton>
-                    <HorizontalStackLayout Grid.Row="1">
-                        <telerik:RadButton Command="{Binding Path=AddPeople}"
-                                           CommandParameter="Sharing permissions updated"
-                                           BorderThickness="0"
-                                           HorizontalOptions="Fill"
-                                           VerticalOptions="Center"
-                                           Text="Add People"
-                                           BackgroundColor="#F8F8F8">
-                            <telerik:RadButton.ImageSource>
-                                <FontImageSource FontFamily="TelerikFontExamples" 
-                                                 Glyph="&#xE813;"
-                                                 Color="DarkGray" 
-                                                 Size="Small"/>
-                            </telerik:RadButton.ImageSource>
-                        </telerik:RadButton>
-                    </HorizontalStackLayout>
 
-                    <HorizontalStackLayout Grid.Row="2">
-                        <telerik:RadButton Command="{Binding Path=LinkShare}"
-                                           CommandParameter="Link shared"
-                                           BorderThickness="0"
-                                           VerticalOptions="Center"
-                                           HorizontalOptions="Fill"
-                                           Text="Link Sharing"
-                                           BackgroundColor="#F8F8F8">
-                            <telerik:RadButton.ImageSource>
-                                <FontImageSource FontFamily="TelerikFontExamples" 
-                                                 Glyph="&#xE83E;"
-                                                 Color="DarkGray" 
-                                                 Size="Small"/>
-                            </telerik:RadButton.ImageSource>
-                        </telerik:RadButton>
-                    </HorizontalStackLayout>
+                    <telerik:RadButton Grid.Row="1"
+                                       Command="{Binding Path=AddPeople}"
+                                       CommandParameter="Sharing permissions updated"
+                                       Text="Add People">
+                        <telerik:RadButton.ImageSource>
+                            <FontImageSource FontFamily="TelerikFontExamples"
+                                             Glyph="&#xE813;"
+                                             Color="{StaticResource ButtonTextColor}"
+                                             Size="Medium"/>
+                        </telerik:RadButton.ImageSource>
+                    </telerik:RadButton>
 
-                    <HorizontalStackLayout Grid.Row="3">
-                        <telerik:RadButton Command="{Binding Path=CopyLink}"
-                                           CommandParameter="Link copied"
-                                           BorderThickness="0"
-                                           VerticalOptions="Center"
-                                           HorizontalOptions="Fill"
-                                           Text="Copy Link"
-                                           BackgroundColor="#F8F8F8">
-                            <telerik:RadButton.ImageSource>
-                                <FontImageSource FontFamily="TelerikFontExamples"
-                                                 Glyph="&#xE819;"
-                                                 Color="DarkGray"
-                                                 Size="Small"/>
-                            </telerik:RadButton.ImageSource>
-                        </telerik:RadButton>
-                    </HorizontalStackLayout>
+                    <telerik:RadButton Grid.Row="2"
+                                       Command="{Binding Path=LinkShare}"
+                                       CommandParameter="Link shared"
+                                       Text="Link Sharing">
+                        <telerik:RadButton.ImageSource>
+                            <FontImageSource FontFamily="TelerikFontExamples"
+                                             Glyph="&#xE83E;"
+                                             Color="{StaticResource ButtonTextColor}"
+                                             Size="Small"/>
+                        </telerik:RadButton.ImageSource>
+                    </telerik:RadButton>
 
-                    <HorizontalStackLayout Grid.Row="4">
-                        <telerik:RadButton Command="{Binding Path=Rename}"
-                                           CommandParameter="Shared resource renamed"
-                                           BorderThickness="0"
-                                           VerticalOptions="Center"
-                                           HorizontalOptions="Fill"
-                                           Text="Rename"
-                                           BackgroundColor="#F8F8F8">
-                            <telerik:RadButton.ImageSource>
-                                <FontImageSource FontFamily="TelerikFontExamples" 
-                                                 Glyph="&#xE818;"
-                                                 Color="DarkGray" 
-                                                 Size="Small"/>
-                            </telerik:RadButton.ImageSource>
-                        </telerik:RadButton>
-                    </HorizontalStackLayout>
+                    <telerik:RadButton Grid.Row="3" 
+                                       Command="{Binding Path=CopyLink}"
+                                       CommandParameter="Link copied"
+                                       Text="Copy Link">
+                        <telerik:RadButton.ImageSource>
+                            <FontImageSource FontFamily="TelerikFontExamples"
+                                             Glyph="&#xE819;"
+                                             Color="{StaticResource ButtonTextColor}"
+                                             Size="Small"/>
+                        </telerik:RadButton.ImageSource>
+                    </telerik:RadButton>
 
-                    <HorizontalStackLayout Grid.Row="5" >
-                        <telerik:RadButton Command="{Binding Path=Remove}"
-                                           CommandParameter="Sharing permissions removed"
-                                           BorderThickness="0"
-                                           VerticalOptions="Center"
-                                           HorizontalOptions="Fill"
-                                           Text="Remove"
-                                           BackgroundColor="#F8F8F8">
-                            <telerik:RadButton.ImageSource>
-                                <FontImageSource FontFamily="TelerikFontExamples" 
-                                                 Glyph="&#xE817;"
-                                                 Color="DarkGray" 
-                                                 Size="Small"/>
-                            </telerik:RadButton.ImageSource>
-                        </telerik:RadButton>
-                    </HorizontalStackLayout>
+                    <telerik:RadButton Grid.Row="4"
+                                       Command="{Binding Path=Rename}"
+                                       CommandParameter="Shared resource renamed"
+                                       Text="Rename">
+                        <telerik:RadButton.ImageSource>
+                            <FontImageSource FontFamily="TelerikFontExamples"
+                                             Glyph="&#xE818;"
+                                             Color="{StaticResource ButtonTextColor}"
+                                             Size="Small"/>
+                        </telerik:RadButton.ImageSource>
+                    </telerik:RadButton>
+
+                    <telerik:RadButton Grid.Row="5"
+                                       Command="{Binding Path=Remove}"
+                                       CommandParameter="Sharing permissions removed"
+                                       Text="Remove">
+                        <telerik:RadButton.ImageSource>
+                            <FontImageSource FontFamily="TelerikFontExamples"
+                                             Glyph="&#xE817;"
+                                             Color="{StaticResource ButtonTextColor}"
+                                             Size="Small"/>
+                        </telerik:RadButton.ImageSource>
+                    </telerik:RadButton>
                 </Grid>
             </telerik:RadBorder>
             <DataTemplate x:Key="ListViewTemplate">

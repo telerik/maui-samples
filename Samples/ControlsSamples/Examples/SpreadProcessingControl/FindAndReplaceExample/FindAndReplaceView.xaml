@@ -52,36 +52,38 @@
                                    Style="{StaticResource SubmitButtonStyle}" />
             </Grid>
 
-            <Label Text="Find Text:" Style="{StaticResource boldLabel}" />
+            <VerticalStackLayout Padding="16, 0">
+                <Label Text="Find Text:" Style="{StaticResource boldLabel}" />
 
-            <telerik:RadEntry Placeholder="Enter Text to be found ex. fast"
+                <telerik:RadEntry Placeholder="Enter Text to be found ex. fast"
                               Margin="0, 0, 0, 18"
                               MaximumWidthRequest="{OnPlatform WinUI='300', MacCatalyst='300'}"
                               Text="{Binding FindWhat, Mode=OneWayToSource}" />
 
-            <Label Text="Replace with:" Style="{StaticResource boldLabel}" />
+                <Label Text="Replace with:" Style="{StaticResource boldLabel}" />
 
-            <telerik:RadEntry Placeholder="Enter Text to be replaced ex. slow"
+                <telerik:RadEntry Placeholder="Enter Text to be replaced ex. slow"
                               Margin="0, 0, 0, 41"
                               MaximumWidthRequest="{OnPlatform WinUI='300', MacCatalyst='300'}"
                               Text="{Binding ReplaceWith, Mode=OneWayToSource}" />
 
-            <VerticalStackLayout Margin="35, 0, 35, 0" HorizontalOptions="Center">
-                <HorizontalStackLayout Margin="0, 0, 0, 24" Spacing="10">
-                    <telerik:RadCheckBox IsChecked="{Binding MatchCase}" />
-                    <Label Text="Match Case" Style="{StaticResource checkBoxLabel}" />
-                </HorizontalStackLayout>
-                <HorizontalStackLayout Margin="0, 0, 0, 24" Spacing="10">
-                    <telerik:RadCheckBox IsChecked="{Binding MatchEntireCellContents}" />
-                    <Label Text="Match Entire Cell Contents" Style="{StaticResource checkBoxLabel}" />
-                </HorizontalStackLayout>
-            </VerticalStackLayout>
+                <VerticalStackLayout Margin="35, 0, 35, 0" HorizontalOptions="Center">
+                    <HorizontalStackLayout Margin="0, 0, 0, 24" Spacing="10">
+                        <telerik:RadCheckBox IsChecked="{Binding MatchCase}" />
+                        <Label Text="Match Case" Style="{StaticResource checkBoxLabel}" />
+                    </HorizontalStackLayout>
+                    <HorizontalStackLayout Margin="0, 0, 0, 24" Spacing="10">
+                        <telerik:RadCheckBox IsChecked="{Binding MatchEntireCellContents}" />
+                        <Label Text="Match Entire Cell Contents" Style="{StaticResource checkBoxLabel}" />
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
 
-            <telerik:RadButton Style="{StaticResource SubmitButtonStyle}"
+                <telerik:RadButton Style="{StaticResource SubmitButtonStyle}"
                                Text="{Binding ReplaceAndSaveText}"
                                HorizontalOptions="{OnPlatform WinUI='Center', MacCatalyst='Center'}"
                                Command="{Binding ReplaceAndSaveCommand}" 
                                VerticalOptions="EndAndExpand" />
+            </VerticalStackLayout>
         </VerticalStackLayout>
     </ScrollView>
 </telerik:RadContentView>
