@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 
 namespace SDKBrowser.Examples.ChartControl.SeriesCategory.FinancialIndicatorsExample
 {
+    // >> chart-financial-indicator-viewmodel
     public class ViewModel
     {
         public ViewModel()
@@ -42,5 +43,6 @@ namespace SDKBrowser.Examples.ChartControl.SeriesCategory.FinancialIndicatorsExa
             return points;
         }
     }
+    // << chart-financial-indicator-viewmodel
 }
 

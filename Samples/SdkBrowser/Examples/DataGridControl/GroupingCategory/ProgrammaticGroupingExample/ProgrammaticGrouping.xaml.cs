@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Telerik.Maui.Controls;
-using Telerik.XamarinForms.Common.Data;
+using Telerik.Maui.Controls.Compatibility.Common.Data;
 
 namespace SDKBrowserMaui.Examples.DataGridControl.GroupingCategory.ProgrammaticGroupingExample;
 

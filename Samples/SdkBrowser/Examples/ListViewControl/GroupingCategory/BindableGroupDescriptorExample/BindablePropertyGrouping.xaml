@@ -9,6 +9,7 @@
         <local:ViewModel/>
     </telerik:RadContentView.BindingContext>
     <telerik:RadContentView.Content>
+        <!-- >> listview-features-bindable-groupdescriptor-xaml -->
         <Grid Margin="16,0,0,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="40" />
@@ -30,12 +31,10 @@
                 </VerticalStackLayout>
                 <Switch IsToggled="{Binding IsPropertyNameGroupSwitchToggled, Mode=OneWayToSource}" AutomationId="GroupOrderSwitch"/>
             </HorizontalStackLayout>
-            <!-- >> listview-features-bindable-groupdescriptor-xaml -->
             <telerik:RadListView x:Name="listView" 
                                         Grid.Row="2" 
                                         GroupDescriptors="{Binding GroupDescriptors, Mode=OneWayToSource}"  
                                         ItemsSource="{Binding Items}">
-                <!-- << listview-features-bindable-groupdescriptor-xaml -->
                 <telerik:RadListView.GroupHeaderTemplate>
                     <DataTemplate>
                         <Label Text="{Binding }" TextColor="Violet" FontSize="Large" HorizontalOptions="CenterAndExpand" />
@@ -55,6 +54,7 @@
                     </DataTemplate>
                 </telerik:RadListView.ItemTemplate>
             </telerik:RadListView>
-         </Grid>
+            <!-- << listview-features-bindable-groupdescriptor-xaml -->
+        </Grid>
     </telerik:RadContentView.Content>
 </telerik:RadContentView>

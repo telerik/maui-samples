@@ -1,10 +1,11 @@
 ﻿using Microsoft.Maui.Controls;
 using System.Collections.Generic;
 using System.Windows.Input;
-using Telerik.XamarinForms.DataControls.ListView.Commands;
+using Telerik.Maui.Controls.Compatibility.DataControls.ListView.Commands;
 
 namespace SDKBrowserMaui.Examples.ListViewControl.CommandsCategory
 {
+    // >> listview-features-commands-viewmodel
     public class ViewModel
     {
         public ViewModel()
@@ -21,4 +22,5 @@ namespace SDKBrowserMaui.Examples.ListViewControl.CommandsCategory
         public List<string> Source { get; set; }
         public ICommand ItemTapCommand { get; set; }
     }
+    // << listview-features-commands-viewmodel
 }

@@ -7,6 +7,7 @@
                         x:Class="SDKBrowserMaui.Examples.ListViewControl.GroupingCategory.MultiLevelGroupingExample.MultiLevelGrouping"
                         Margin="5">
     <telerik:RadContentView.Resources>
+        <!-- >> listview-grouping-multilevel-templates -->
         <ResourceDictionary>
             <multiLevelGrouping:LevelToMarginConverter x:Key="LevelToMarginConverter" />
             <DataTemplate x:Key="ListViewItemTemplate">
@@ -37,21 +38,24 @@
             </DataTemplate>
             <telerik:ListViewGroupStyle x:Key="ListViewGroupHeaderStyle" BackgroundColor="Transparent" />
         </ResourceDictionary>
+        <!-- << listview-grouping-multilevel-templates -->
     </telerik:RadContentView.Resources>
     <telerik:RadContentView.Content>
         <Grid>
+            <!-- >> listview-grouping-multilevel-definition -->
             <telerik:RadListView x:Name="listView" ItemsSource="{Binding Cities}"
-                                     ItemTemplate="{StaticResource ListViewItemTemplate}"
-                                     GroupHeaderTemplate="{StaticResource ListViewMultiLevelGroupHeaderTemplate}"
-                                     GroupHeaderStyle="{StaticResource ListViewGroupHeaderStyle}">
+                                 ItemTemplate="{StaticResource ListViewItemTemplate}"
+                                 GroupHeaderTemplate="{StaticResource ListViewMultiLevelGroupHeaderTemplate}"
+                                 GroupHeaderStyle="{StaticResource ListViewGroupHeaderStyle}">
                 <telerik:RadListView.BindingContext>
                     <local:GroupingViewModel/>
                 </telerik:RadListView.BindingContext>
                 <telerik:RadListView.GroupDescriptors>
-                    <telerik:PropertyGroupDescriptor PropertyName="Continent"/>
-                    <telerik:PropertyGroupDescriptor PropertyName="Country"/>
+                    <telerik:ListViewPropertyGroupDescriptor PropertyName="Continent"/>
+                    <telerik:ListViewPropertyGroupDescriptor PropertyName="Country"/>
                 </telerik:RadListView.GroupDescriptors>
             </telerik:RadListView>
+            <!-- << listview-grouping-multilevel-definition -->
         </Grid>
     </telerik:RadContentView.Content>
 </telerik:RadContentView>

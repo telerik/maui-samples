@@ -7,23 +7,25 @@
                         Margin="5">
     <telerik:RadContentView.Content>
         <Grid>
+            <!-- >> listview-celltypes-textcell-listview-xaml -->
             <telerik:RadListView x:Name="listView"
-                                             ItemsSource="{Binding Source}">
+                                 ItemsSource="{Binding Source}">
                 <telerik:RadListView.BindingContext>
                     <local:ViewModel />
                 </telerik:RadListView.BindingContext>
                 <telerik:RadListView.ItemTemplate>
                     <DataTemplate>
                         <telerik:ListViewTextCell Text="{Binding Title}" 
-                                                          Detail="{Binding Author}" 
-                                                          TextColor="Black" 
-                                                          DetailColor="Gray" /> 
+                                                  Detail="{Binding Author}" 
+                                                  TextColor="Black" 
+                                                  DetailColor="Gray" /> 
                     </DataTemplate>
                 </telerik:RadListView.ItemTemplate>
                 <telerik:RadListView.LayoutDefinition>
                     <telerik:ListViewLinearLayout ItemLength="60" />
                 </telerik:RadListView.LayoutDefinition>
             </telerik:RadListView>
+            <!-- << listview-celltypes-textcell-listview-xaml -->
         </Grid>
     </telerik:RadContentView.Content>
 </telerik:RadContentView>

@@ -1,8 +1,8 @@
 ﻿using Microsoft.Maui.Controls.Xaml;
 using System.Collections.ObjectModel;
 using Telerik.Maui.Controls;
-using Telerik.XamarinForms.DataControls;
-using Telerik.XamarinForms.DataControls.ListView;
+using Telerik.Maui.Controls.Compatibility.DataControls;
+using Telerik.Maui.Controls.Compatibility.DataControls.ListView;
 
 namespace SDKBrowserMaui.Examples.ListViewControl.CellSwipeCategory.SwipeEventsExample
 {

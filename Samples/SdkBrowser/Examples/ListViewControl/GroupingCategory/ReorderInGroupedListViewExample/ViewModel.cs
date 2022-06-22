@@ -1,10 +1,11 @@
 ﻿using Microsoft.Maui.Controls;
 using System.Collections.ObjectModel;
-using Telerik.XamarinForms.Common;
-using Telerik.XamarinForms.DataControls.ListView.Commands;
+using Telerik.Maui.Controls.Compatibility.Common;
+using Telerik.Maui.Controls.Compatibility.DataControls.ListView.Commands;
 
 namespace SDKBrowserMaui.Examples.ListViewControl.GroupingCategory.ReorderInGroupedListViewExample
 {
+    // >> listview-grouping-reorderitems-viewmodel
     public class ViewModel
     {
         public ViewModel()
@@ -44,4 +45,5 @@ namespace SDKBrowserMaui.Examples.ListViewControl.GroupingCategory.ReorderInGrou
             this.Events.Insert(destinationIndex, sourceItem);
         }
     }
+    // << listview-grouping-reorderitems-viewmodel
 }

@@ -12,10 +12,13 @@ namespace SDKBrowserMaui.Examples.ListViewControl.CellSwipeCategory.InteractiveC
         {
             InitializeComponent();
         }
+
+        // >> listview-gestures-cellswipe-interactivecontent-deleteitem
         void RemoveBook(object sender, EventArgs e)
         {
             var item = (sender as BindableObject).BindingContext as Book;
             (this.listView.BindingContext as ViewModel).Source.Remove(item);
         }
+        // << listview-gestures-cellswipe-interactivecontent-deleteitem
     }
 }

@@ -2,8 +2,8 @@
 using Microsoft.Maui.Controls.Xaml;
 using System;
 using Telerik.Maui.Controls;
-using Telerik.XamarinForms.DataControls;
-using Telerik.XamarinForms.DataControls.ListView;
+using Telerik.Maui.Controls.Compatibility.DataControls;
+using Telerik.Maui.Controls.Compatibility.DataControls.ListView;
 
 namespace SDKBrowserMaui.Examples.ListViewControl.SelectionCategory.SelectionExample
 {
@@ -52,13 +52,13 @@ namespace SDKBrowserMaui.Examples.ListViewControl.SelectionCategory.SelectionExa
             switch ((sender as Picker).SelectedIndex)
             {
                 case 0:
-                    listView.SelectionMode = Telerik.XamarinForms.DataControls.ListView.SelectionMode.None;
+                    listView.SelectionMode = Telerik.Maui.Controls.Compatibility.DataControls.ListView.SelectionMode.None;
                     break;
                 case 1:
-                    listView.SelectionMode = Telerik.XamarinForms.DataControls.ListView.SelectionMode.Single;
+                    listView.SelectionMode = Telerik.Maui.Controls.Compatibility.DataControls.ListView.SelectionMode.Single;
                     break;
                 case 2:
-                    listView.SelectionMode = Telerik.XamarinForms.DataControls.ListView.SelectionMode.Multiple;
+                    listView.SelectionMode = Telerik.Maui.Controls.Compatibility.DataControls.ListView.SelectionMode.Multiple;
                     break;
             }
         }

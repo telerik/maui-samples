@@ -3,7 +3,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Telerik.Maui.Controls;
-using Telerik.XamarinForms.Common;
+using Telerik.Maui.Controls.Compatibility.Common;
 
 namespace SDKBrowserMaui.Examples.BusyIndicatorControl.IntegrationCategory.ListViewIntegrationExample
 {

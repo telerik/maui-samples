@@ -7,9 +7,9 @@
                         Margin="5">
     <telerik:RadContentView.Content>
         <Grid>
-            <!--  >> listview-gettingstarted-listview-xaml  -->
+            <!--  >> listview-styleselector-listview-xaml  -->
             <telerik:RadListView x:Name="listView" 
-                                             ItemsSource="{Binding Source}">
+                                 ItemsSource="{Binding Source}">
                 <telerik:RadListView.BindingContext>
                     <local:ViewModel />
                 </telerik:RadListView.BindingContext>
@@ -32,7 +32,7 @@
                     <local:ExampleListViewStyleSelector />
                 </telerik:RadListView.ItemStyleSelector>
             </telerik:RadListView>
-            <!--  << listview-gettingstarted-listview-xaml  -->
+            <!--  << listview-styleselector-listview-xaml  -->
         </Grid>
     </telerik:RadContentView.Content>
 </telerik:RadContentView>

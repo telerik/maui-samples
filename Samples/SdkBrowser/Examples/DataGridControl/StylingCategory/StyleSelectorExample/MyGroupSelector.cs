@@ -1,5 +1,5 @@
 ﻿using Microsoft.Maui.Controls;
-using Telerik.XamarinForms.DataGrid;
+using Telerik.Maui.Controls.Compatibility.DataGrid;
 
 namespace SDKBrowserMaui.Examples.DataGridControl.StylingCategory.StyleSelectorExample;
 

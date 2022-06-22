@@ -1,5 +1,5 @@
 ﻿using Microsoft.Maui.Controls;
-using Telerik.XamarinForms.DataControls.ListView.Commands;
+using Telerik.Maui.Controls.Compatibility.DataControls.ListView.Commands;
 
 namespace SDKBrowserMaui.Examples.ListViewControl.CommandsCategory.ListViewCommandExample
 {

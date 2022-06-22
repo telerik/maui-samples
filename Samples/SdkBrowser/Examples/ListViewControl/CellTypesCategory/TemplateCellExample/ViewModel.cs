@@ -2,6 +2,7 @@
 
 namespace SDKBrowserMaui.Examples.ListViewControl.CellTypesCategory.TemplateCellExample
 {
+    // >> listview-celltypes-templatecell-viewmodel
     public class Book
     {
         public string Title { get; set; }
@@ -30,4 +31,5 @@ namespace SDKBrowserMaui.Examples.ListViewControl.CellTypesCategory.TemplateCell
 
         public List<Book> Source { get; set; }
     }
+    // << listview-celltypes-templatecell-viewmodel
 }

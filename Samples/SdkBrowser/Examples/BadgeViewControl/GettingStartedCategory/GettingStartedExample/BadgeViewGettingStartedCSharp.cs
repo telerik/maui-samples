@@ -2,7 +2,7 @@
 using Microsoft.Maui.Controls;
 using Microsoft.Maui.Graphics;
 using Telerik.Maui.Controls;
-using Telerik.XamarinForms.Primitives;
+using Telerik.Maui.Controls.Compatibility.Primitives;
 
 namespace SDKBrowserMaui.Examples.BadgeViewControl.GettingStartedCategory.GettingStartedExample
 {

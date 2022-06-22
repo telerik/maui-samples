@@ -37,15 +37,17 @@
     </telerik:RadContentView.Resources>
     <telerik:RadContentView.Content>
         <Grid>
+            <!-- >> listview-grouping-delegategroupdescriptor -->
             <telerik:RadListView x:Name="listView" 
-                                             ItemsSource="{Binding Cities}"
-                                             ItemTemplate="{StaticResource ListViewItemTemplate}"
-                                             GroupHeaderTemplate="{StaticResource ListViewGroupHeaderTemplate}"
-                                             GroupHeaderStyle="{StaticResource ListViewGroupHeaderStyle}">
+                                 ItemsSource="{Binding Cities}"
+                                 ItemTemplate="{StaticResource ListViewItemTemplate}"
+                                 GroupHeaderTemplate="{StaticResource ListViewGroupHeaderTemplate}"
+                                 GroupHeaderStyle="{StaticResource ListViewGroupHeaderStyle}">
                 <telerik:RadListView.BindingContext>
                     <local:GroupingViewModel/>
                 </telerik:RadListView.BindingContext>
             </telerik:RadListView>
+            <!-- << listview-grouping-delegategroupdescriptor -->
         </Grid>
     </telerik:RadContentView.Content>
 </telerik:RadContentView>

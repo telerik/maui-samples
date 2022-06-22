@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Telerik.XamarinForms.DataControls.ListView;
+using Telerik.Maui.Controls.Compatibility.DataControls.ListView;
 
 namespace SDKBrowserMaui.Examples.ListViewControl.LoadOnDemandCategory.LoadOnDemandTemplateExample
 {

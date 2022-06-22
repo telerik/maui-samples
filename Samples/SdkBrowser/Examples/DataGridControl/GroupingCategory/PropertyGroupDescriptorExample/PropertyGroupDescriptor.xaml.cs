@@ -14,7 +14,7 @@ public partial class PropertyGroupDescriptor : RadContentView
         this.BindingContext = new ViewModel();
         // << datagrid-grouping-propertygroupdescriptor-setvm
 
-        this.dataGrid.GroupDescriptors.Add(new Telerik.XamarinForms.Common.Data.PropertyGroupDescriptor()
+        this.dataGrid.GroupDescriptors.Add(new Telerik.Maui.Controls.Compatibility.Common.Data.PropertyGroupDescriptor()
         {
             PropertyName="Department"
         });

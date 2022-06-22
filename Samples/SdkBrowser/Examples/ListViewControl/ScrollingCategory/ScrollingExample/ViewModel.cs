@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 
 namespace SDKBrowserMaui.Examples.ListViewControl.ScrollingCategory.ScrollingExample
 {
+    // >> listview-features-programmatic-scrolling
     public class ViewModel
     {
         public ViewModel()
@@ -16,4 +17,5 @@ namespace SDKBrowserMaui.Examples.ListViewControl.ScrollingCategory.ScrollingExa
         }
         public ObservableCollection<string> Items { get; set; }
     }
+    // << listview-features-programmatic-scrolling
 }
