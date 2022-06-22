@@ -1,4 +1,4 @@
-<p align="center"> <img src="../main/Samples/CryptoTracker/Telerik-UI-For-MAUI-CryptoTracker-Image.png"/></p>
+<p align="center"> <img src="../main/Images/Telerik-UI-For-MAUI-CryptoTracker-Image.png"/></p>
 
 # Telerik UI for .NET MAUI Sample Applications
 
