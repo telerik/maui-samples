@@ -6,8 +6,8 @@ using SDKBrowserMaui.Pages;
 using SDKBrowserMaui.Services;
 using System.Threading;
 using Application = Microsoft.Maui.Controls.Application;
-using Telerik.XamarinForms.Primitives;
-using Telerik.XamarinForms.Input;
+using Telerik.Maui.Controls.Compatibility.Primitives;
+using Telerik.Maui.Controls.Compatibility.Input;
 using Telerik.Maui.Controls;
 using Microsoft.Maui.Devices;
 

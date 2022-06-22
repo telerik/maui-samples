@@ -9,24 +9,24 @@
         <Grid>
             <!--  >> listview-groupstyle-listview-xaml  -->
             <telerik:RadListView x:Name="listView"
-                                             ItemsSource="{Binding Cities}">
+                                 ItemsSource="{Binding Cities}">
                 <telerik:RadListView.BindingContext>
                     <local:ViewModel />
                 </telerik:RadListView.BindingContext>
                 <telerik:RadListView.ItemTemplate>
                     <DataTemplate>
                         <telerik:ListViewTextCell Text="{Binding Name}"
-                                                          TextColor="#1263E5" />
+                                                  TextColor="#1263E5" />
                     </DataTemplate>
                 </telerik:RadListView.ItemTemplate>
                 <telerik:RadListView.GroupHeaderStyle>
                     <telerik:ListViewGroupStyle BackgroundColor="#1263E5"
-                                                        TextColor="#AAC7F6"
-                                                        BorderColor="#0A3A82"              
-                                                        BorderWidth="1" />  
+                                                TextColor="#AAC7F6"
+                                                BorderColor="#0A3A82" 
+                                                BorderWidth="1" />  
                 </telerik:RadListView.GroupHeaderStyle>
                 <telerik:RadListView.GroupDescriptors>
-                    <telerik:PropertyGroupDescriptor PropertyName="Country" />
+                    <telerik:ListViewPropertyGroupDescriptor PropertyName="Country" />
                 </telerik:RadListView.GroupDescriptors>
             </telerik:RadListView>
             <!--  << listview-groupstyle-listview-xaml  -->

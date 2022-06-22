@@ -9,16 +9,16 @@
         <Grid>
             <!--  >> listview-loadondemand-loadondemandcommand-declaration  -->
             <telerik:RadListView x:Name="listView"
-                                             ItemsSource="{Binding Source}"
-                                             IsLoadOnDemandEnabled="True"
-                                             IsLoadOnDemandActive="{Binding IsLoadingMoreItems}"
-                                             LoadOnDemandMode="Manual">
+                                 ItemsSource="{Binding Source}"
+                                 IsLoadOnDemandEnabled="True"
+                                 IsLoadOnDemandActive="{Binding IsLoadingMoreItems}"
+                                 LoadOnDemandMode="Manual">
                 <telerik:RadListView.BindingContext>
                     <local:ViewModel/>
                 </telerik:RadListView.BindingContext>
                 <telerik:RadListView.Commands>
-                    <telerik:ListViewUserCommand Id="LoadOnDemand" 
-                                                             Command="{Binding LoadItemsCommand}" />
+                    <telerik:ListViewUserCommand Id="LoadOnDemand"
+                                                 Command="{Binding LoadItemsCommand}" />
                 </telerik:RadListView.Commands>
             </telerik:RadListView>
             <!--  << listview-loadondemand-loadondemandcommand-declaration  -->

@@ -8,21 +8,21 @@
     <telerik:RadContentView.Content>
         <!--  >> listview-gestures-reorderitems-listview  -->
         <telerik:RadListView x:Name="listView"
-                                         IsItemsReorderEnabled="True"
-                                         SelectionMode="None">
+                             IsItemsReorderEnabled="True"
+                             SelectionMode="None">
             <telerik:RadListView.ItemTemplate>
                 <DataTemplate>
                     <telerik:ListViewTemplateCell>
                         <telerik:ListViewTemplateCell.View>
                             <StackLayout Spacing="0">
                                 <Label Margin="5,10,5,10"
-                                   FontSize="16"
-                                   Text="{Binding}"
-                                   TextColor="Black"
-                                   VerticalTextAlignment="Center" />
+                                       FontSize="16"
+                                       Text="{Binding}"
+                                       TextColor="Black"
+                                       VerticalTextAlignment="Center" />
                                 <BoxView Margin="0"
-                                     BackgroundColor="Gray"
-                                     HeightRequest="1" />
+                                         BackgroundColor="Gray"
+                                         HeightRequest="1" />
                             </StackLayout>
                         </telerik:ListViewTemplateCell.View>
                     </telerik:ListViewTemplateCell>

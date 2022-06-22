@@ -4,7 +4,7 @@ using SDKBrowserMaui.Services;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
-using Telerik.XamarinForms.DataControls.ListView.Commands;
+using Telerik.Maui.Controls.Compatibility.DataControls.ListView.Commands;
 
 namespace SDKBrowserMaui.ViewModels
 {

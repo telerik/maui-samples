@@ -3,7 +3,7 @@ using Microsoft.Maui.Controls.Xaml;
 using System;
 using Telerik.Maui;
 using Telerik.Maui.Controls;
-using Telerik.XamarinForms.Common;
+using Telerik.Maui.Controls.Compatibility.Common;
 
 namespace SDKBrowserMaui.Examples.BusyIndicatorControl.AnimationsCategory.CustomAnimationExample
 {

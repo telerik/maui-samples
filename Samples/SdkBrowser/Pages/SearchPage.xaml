@@ -112,10 +112,10 @@
                         </DataTemplate>
                     </telerik:RadListView.GroupHeaderTemplate>
                     <telerik:RadListView.FilterDescriptors>
-                        <telerik:DelegateFilterDescriptor Filter="{Binding SearchFilter}" />
+                        <telerik:ListViewDelegateFilterDescriptor Filter="{Binding SearchFilter}" />
                     </telerik:RadListView.FilterDescriptors>
                     <telerik:RadListView.GroupDescriptors>
-                        <telerik:DelegateGroupDescriptor KeyExtractor="{Binding SearchGrouping}" />
+                        <telerik:ListViewDelegateGroupDescriptor KeyExtractor="{Binding SearchGrouping}" />
                     </telerik:RadListView.GroupDescriptors>
                 </telerik:RadListView>
             </telerik:RadBorder>

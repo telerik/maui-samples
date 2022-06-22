@@ -3,11 +3,12 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using Telerik.Maui.Controls;
-using Telerik.XamarinForms.Common;
-using Telerik.XamarinForms.DataControls.ListView;
+using Telerik.Maui.Controls.Compatibility.Common;
+using Telerik.Maui.Controls.Compatibility.DataControls.ListView;
 
 namespace SDKBrowserMaui.Examples.ListViewControl.GroupingCategory.BindableGroupDescriptorExample
 {
+    // >> listview-features-bindable-groupdescriptor-viewmodel
     public class ViewModel : NotifyPropertyChangedBase
     {
         private ObservableCollection<GroupDescriptorBase> groupDescriptors;
@@ -20,14 +21,14 @@ namespace SDKBrowserMaui.Examples.ListViewControl.GroupingCategory.BindableGroup
             this.Items = this.GetItems();
             this.groupDescriptors = new ObservableCollection<GroupDescriptorBase>();
         }
-        // >> listview-features-bindable-groupdescriptor-viewmodel
+     
         public ObservableCollection<GroupDescriptorBase> GroupDescriptors
         {
             get { return this.groupDescriptors; }
             set { this.UpdateValue(ref this.groupDescriptors, value); }
 
         }
-        // << listview-features-bindable-groupdescriptor-viewmodel
+    
         public bool IsPropertyNameGroupSwitchToggled
         {
             get { return this.isPropertyNameGroupSwitchToggled; }
@@ -84,7 +85,7 @@ namespace SDKBrowserMaui.Examples.ListViewControl.GroupingCategory.BindableGroup
 
             if (this.GroupDescriptors.Count == 0)
             {
-                this.GroupDescriptors.Add(new PropertyGroupDescriptor()
+                this.GroupDescriptors.Add(new ListViewPropertyGroupDescriptor()
                 {
                     PropertyName = "Day",
                     SortOrder = SortOrder.Ascending
@@ -93,14 +94,15 @@ namespace SDKBrowserMaui.Examples.ListViewControl.GroupingCategory.BindableGroup
 
             if (propertyToUpdate.Equals(nameof(IsSortOrderGroupSwitchToggled)))
             {
-                var descriptor = (PropertyGroupDescriptor)this.GroupDescriptors.FirstOrDefault();
+                var descriptor = (ListViewPropertyGroupDescriptor)this.GroupDescriptors.FirstOrDefault();
                 descriptor.SortOrder = isSortOrderGroupSwitchToggled ? SortOrder.Descending : SortOrder.Ascending;
             }
             else if (propertyToUpdate.Equals(nameof(IsPropertyNameGroupSwitchToggled)))
             {
-                var descriptor = (PropertyGroupDescriptor)this.GroupDescriptors.FirstOrDefault();
+                var descriptor = (ListViewPropertyGroupDescriptor)this.GroupDescriptors.FirstOrDefault();
                 descriptor.PropertyName = isPropertyNameGroupSwitchToggled ? "Category" : "Day";
             }
         }
     }
+    // << listview-features-bindable-groupdescriptor-viewmodel
 }

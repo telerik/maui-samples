@@ -2,6 +2,7 @@
 
 namespace SDKBrowserMaui.Examples.ListViewControl.StylingCategory.StyleSelectorExample
 {
+    // >> listview-styleselector-source
     public class Person
     {
         public Person(string name, int age)
@@ -11,7 +12,6 @@ namespace SDKBrowserMaui.Examples.ListViewControl.StylingCategory.StyleSelectorE
         }
 
         public string Name { get; set; }
-
         public int Age { get; set; }
     }
 

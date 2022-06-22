@@ -6,6 +6,7 @@
                         Margin="5">
     <telerik:RadContentView.Resources>
         <ResourceDictionary>
+            <!-- >> wraplayout-orientation-resources -->
             <Style x:Key="DefaultBorderStyle" TargetType="telerik:RadBorder">
                 <Setter Property="BorderColor" Value="Gray"/>
                 <Setter Property="BorderThickness" Value="1"/>
@@ -15,10 +16,11 @@
                 <Setter Property="HorizontalOptions" Value="Center"/>
                 <Setter Property="Margin" Value="2"/>
             </Style>
+            <!-- << wraplayout-orientation-resources -->
         </ResourceDictionary>
     </telerik:RadContentView.Resources>
-    
     <telerik:RadContentView.Content>
+        <!-- >> wraplayout-orientation -->
         <VerticalStackLayout VerticalOptions="StartAndExpand" Margin="0,0,0,5">
             <Label Text="Horizontal Orientation:"/>
             <telerik:RadWrapLayout Orientation="Horizontal">
@@ -58,5 +60,6 @@
                 </telerik:RadBorder>
             </telerik:RadWrapLayout>
         </VerticalStackLayout>
+        <!-- << wraplayout-orientation -->
     </telerik:RadContentView.Content>
 </telerik:RadContentView>

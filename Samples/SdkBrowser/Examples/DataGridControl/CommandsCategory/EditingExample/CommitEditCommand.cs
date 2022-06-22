@@ -1,5 +1,5 @@
 ﻿using Microsoft.Maui.Controls;
-using Telerik.XamarinForms.DataGrid.Commands;
+using Telerik.Maui.Controls.Compatibility.DataGrid.Commands;
 
 namespace SDKBrowserMaui.Examples.DataGridControl.CommandsCategory.EditingExample;
 

@@ -1,10 +1,11 @@
 ﻿using System.Collections.ObjectModel;
 using Microsoft.Maui.Graphics;
 using Telerik.Maui.Controls;
-using Telerik.XamarinForms.Common;
+using Telerik.Maui.Controls.Compatibility.Common;
 
 namespace SDKBrowserMaui.Examples.TemplatedPickerControl
 {
+    // >> templatedpicker-color-viewmodel
     public class ColorViewModel : NotifyPropertyChangedBase
     {
         private Color selectedColor;
@@ -57,4 +58,5 @@ namespace SDKBrowserMaui.Examples.TemplatedPickerControl
 
         public ObservableCollection<Color> Colors { get; }
     }
+    // << templatedpicker-color-viewmodel
 }

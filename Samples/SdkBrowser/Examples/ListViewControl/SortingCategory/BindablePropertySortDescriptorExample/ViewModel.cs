@@ -5,8 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Telerik.Maui.Controls;
-using Telerik.XamarinForms.Common;
-using Telerik.XamarinForms.DataControls.ListView;
+using Telerik.Maui.Controls.Compatibility.Common;
+using Telerik.Maui.Controls.Compatibility.DataControls.ListView;
 
 namespace SDKBrowserMaui.Examples.ListViewControl.SortingCategory.BindablePropertySortDescriptorExample
 {
@@ -92,7 +92,7 @@ namespace SDKBrowserMaui.Examples.ListViewControl.SortingCategory.BindableProper
 
             if (this.SortDescriptors.Count == 0)
             {
-                this.SortDescriptors.Add(new PropertySortDescriptor()
+                this.SortDescriptors.Add(new ListViewPropertySortDescriptor()
                 {
                     PropertyName = "Age",
                     SortOrder = SortOrder.Ascending
@@ -101,12 +101,12 @@ namespace SDKBrowserMaui.Examples.ListViewControl.SortingCategory.BindableProper
 
             if (propertyToUpdate.Equals(nameof(IsSortOrderSortSwitchToggled)))
             {
-                var descriptor = (PropertySortDescriptor)this.SortDescriptors.FirstOrDefault();
+                var descriptor = (ListViewPropertySortDescriptor)this.SortDescriptors.FirstOrDefault();
                 descriptor.SortOrder = isSortOrderSortSwitchToggled ? SortOrder.Descending : SortOrder.Ascending;
             }
             else if (propertyToUpdate.Equals(nameof(IsPropertyNameSortSwitchToggled)))
             {
-                var descriptor = (PropertySortDescriptor)this.SortDescriptors.FirstOrDefault();
+                var descriptor = (ListViewPropertySortDescriptor)this.SortDescriptors.FirstOrDefault();
                 descriptor.PropertyName = isPropertyNameSortSwitchToggled ? "Name" : "Age";
             }
         }

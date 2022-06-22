@@ -7,6 +7,7 @@
                         Margin="5">
     <telerik:RadContentView.Content>
         <Grid>
+            <!-- >> listview-celltypes-templatecell-listview-xaml -->
             <telerik:RadListView ItemsSource="{Binding Source}" x:Name="listView">
                 <telerik:RadListView.BindingContext>
                     <local:ViewModel />
@@ -37,6 +38,7 @@
                     <telerik:ListViewLinearLayout ItemLength="60" />
                 </telerik:RadListView.LayoutDefinition>
             </telerik:RadListView>
+            <!-- << listview-celltypes-templatecell-listview-xaml -->
         </Grid>
     </telerik:RadContentView.Content>
 </telerik:RadContentView>

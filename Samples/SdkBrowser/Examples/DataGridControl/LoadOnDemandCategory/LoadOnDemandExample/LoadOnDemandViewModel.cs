@@ -3,7 +3,7 @@ using SDKBrowser.Examples.DataGridControl;
 using System.Collections.Generic;
 using System.Windows.Input;
 using Telerik.Maui.Controls;
-using Telerik.XamarinForms.Common;
+using Telerik.Maui.Controls.Compatibility.Common;
 
 namespace SDKBrowserMaui.Examples.DataGridControl.LoadOnDemandCategory.LoadOnDemandExample;
 

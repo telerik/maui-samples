@@ -1,4 +1,4 @@
-﻿using Telerik.XamarinForms.Common.Data;
+﻿using Telerik.Maui.Controls.Compatibility.Common.Data;
 using Microsoft.Maui.Controls.Xaml;
 using Telerik.Maui.Controls;
 
@@ -20,7 +20,7 @@ public partial class DelegateGroupDescriptorGroups : RadContentView
 }
 
 // >> datagrid-grouping-delegategroupdescriptor-lookup
-class CustomIKeyLookup : Telerik.XamarinForms.Common.Data.IKeyLookup
+class CustomIKeyLookup : Telerik.Maui.Controls.Compatibility.Common.Data.IKeyLookup
 {
     public object GetKey(object instance)
     {

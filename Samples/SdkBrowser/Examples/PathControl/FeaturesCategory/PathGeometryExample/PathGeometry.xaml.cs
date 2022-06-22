@@ -1,7 +1,7 @@
 ﻿using Microsoft.Maui.Controls.Xaml;
 using Microsoft.Maui.Graphics;
 using Telerik.Maui.Controls;
-using Telerik.XamarinForms.Common;
+using Telerik.Maui.Controls.Compatibility.Common;
 
 namespace SDKBrowserMaui.Examples.PathControl.FeaturesCategory.PathGeometryExample
 {

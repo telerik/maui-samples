@@ -7,14 +7,16 @@
                         Margin="5">
     <telerik:RadContentView.Content>
         <Grid>
+            <!--  >> listview-loadondemand-loadondemandcollection-declaration  -->
             <telerik:RadListView x:Name="listView"
-                                             IsLoadOnDemandEnabled="True"
-                                             ItemsSource="{Binding Source}"
-                                             LoadOnDemandMode="Automatic" >
+                                 IsLoadOnDemandEnabled="True"
+                                 ItemsSource="{Binding Source}"
+                                 LoadOnDemandMode="Automatic">
                 <telerik:RadListView.BindingContext>
                     <local:ViewModel />
                 </telerik:RadListView.BindingContext>
             </telerik:RadListView>
+            <!--  << listview-loadondemand-loadondemandcollection-declaration  -->
         </Grid>
     </telerik:RadContentView.Content>
 </telerik:RadContentView>

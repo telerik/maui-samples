@@ -1,6 +1,6 @@
 ﻿using Microsoft.Maui.Controls.Xaml;
 using Telerik.Maui.Controls;
-using Telerik.XamarinForms.DataControls;
+using Telerik.Maui.Controls.Compatibility.DataControls;
 
 namespace SDKBrowserMaui.Examples.DockLayoutControl.GettingStartedCategory.GettingStartedExample
 {

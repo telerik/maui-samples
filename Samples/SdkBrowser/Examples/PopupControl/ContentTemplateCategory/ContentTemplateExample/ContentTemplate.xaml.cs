@@ -1,7 +1,7 @@
 ﻿using Microsoft.Maui.Controls.Xaml;
 using System;
 using Telerik.Maui.Controls;
-using Telerik.XamarinForms.Primitives.CheckBox;
+using Telerik.Maui.Controls.Compatibility.Primitives.CheckBox;
 
 namespace SDKBrowserMaui.Examples.PopupControl.ContentTemplateCategory.ContentTemplateExample
 {

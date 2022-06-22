@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 
 namespace SDKBrowserMaui.Examples.ChartControl.SeriesCategory
 {
+    // >> chart-series-ohlc-viewmodel
     public class SeriesOhlcViewModel
     {
         public SeriesOhlcViewModel()
@@ -17,4 +18,5 @@ namespace SDKBrowserMaui.Examples.ChartControl.SeriesCategory
         }
         public ObservableCollection<OhlcDataPoint> SeriesData { get; private set; }
     }
+    // << chart-series-ohlc-viewmodel
 }
