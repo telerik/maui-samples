@@ -17,4 +17,6 @@ public class Example
     public string ExcludeFrom { get; set; }
 
     public string ControlName { get; set; }
+
+    public bool IsConfigurable { get; set; } = false;
 }

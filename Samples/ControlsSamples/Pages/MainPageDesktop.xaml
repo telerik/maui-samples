@@ -71,7 +71,8 @@
                                                   Grid.Column="1" />
                     </Grid>
                 </VerticalStackLayout>
-                <telerik:NonVirtualizedItemsControl x:Name="controlsView"
+                <telerik:NonVirtualizedItemsControl x:Name="controlsView" 
+                                                    MinimumWidthRequest="{OnPlatform Default='0', MacCatalyst='210'}"
                                                     ItemTemplate="{StaticResource ControlItemTemplate}"
                                                     ItemsSource="{Binding Controls}"
                                                     SelectedItem="{Binding SelectedControl, Mode=TwoWay}"

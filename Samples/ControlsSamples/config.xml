@@ -95,6 +95,14 @@
 				  <Icon>border.png</Icon>
 				  <Description>This example demonstrates the most commonly used features of the RadBorder.</Description>
 			  </Example>
+              <Example>
+				  <ExcludeFrom>Android,iOS,MacCatalyst,WinUI</ExcludeFrom>
+                  <Name>Configuration</Name>
+                  <Page>ConfigurationView</Page>
+                  <DisplayName>Configuration</DisplayName>
+                  <Icon>border.png</Icon>
+                  <Description>RadBorder provides a few useful properties for configuring its color, thickness and corner radius. This example lets you play with these properties and see the result right away.</Description>
+              </Example>
 		  </Examples>
 	  </Control>
 
@@ -248,12 +256,35 @@
           <Icon>datagrid.png</Icon>
           <Description>Demonstrates how you can easily configure the DataGrid to display data and perform data operations on it.</Description>
         </Example>
+        <Example>
+			<ExcludeFrom>Android,iOS,MacCatalyst,WinUI</ExcludeFrom>
+            <Name>BillionCells</Name>
+            <Page>BillionCellsView</Page>
+            <DisplayName>One Billion Cells</DisplayName>
+            <Icon>datagrid.png</Icon>
+            <Description>Demonstrates how you can easily store big clusters of data in the DataGrid</Description>
+        </Example>
+        <Example>
+          <Name>ColumnTypes</Name>
+          <Page>ColumnTypesView</Page>
+          <DisplayName>Column Types</DisplayName>
+          <Icon>datagrid.png</Icon>
+          <Description>Demonstrates the different type of columns that DataGrid control provides. Column types such as Text, Boolean, Template, Date, Time, Numeric.</Description>
+        </Example>
+        <Example>
+          <Name>Selection</Name>
+          <Page>SelectionView</Page>
+          <DisplayName>Selection</DisplayName>
+          <Icon>datagrid.png</Icon>
+          <IsConfigurable>true</IsConfigurable>
+          <Description>Demonstrates the DataGrid Selection feature. You can easily disable the selection, apply single or multiple selection. When selection is on, it can be applied to DataGrid Cell or Row.</Description>
+       </Example>
 		  <Example>
-			  <Name>ColumnTypes</Name>
-			  <Page>ColumnTypesView</Page>
-			  <DisplayName>Column Types</DisplayName>
+			  <Name>Customization</Name>
+			  <Page>CustomizationView</Page>
+			  <DisplayName>Customization</DisplayName>
 			  <Icon>datagrid.png</Icon>
-			  <Description>Demonstrates the different type of columns that DataGrid control provides. Column types such as Text, Boolean, Template, Date, Time, Numeric.</Description>
+			  <Description>Demonstrates how you could customize the visual appearance of the DataGrid control through various Style and StyleSelector properties such as CellContentStyle, CellDecorationStyle, SelectionStyle, GroupHeaderStyleSelector, etc.</Description>
 		  </Example>
       </Examples>
     </Control>
@@ -322,6 +353,14 @@
           <DisplayName>First Look</DisplayName>
           <Icon>entry.png</Icon>
           <Description>Demonstrates how you could utilize the key features of RadEntry.</Description>
+        </Example>
+        <Example>
+			<ExcludeFrom>Android,iOS,MacCatalyst,WinUI</ExcludeFrom>
+            <Name>Configuration</Name>
+            <Page>ConfigurationView</Page>
+            <DisplayName>Configuration</DisplayName>
+            <Icon>entry.png</Icon>
+            <Description>This example presents various configuration options that the RadEntry control provides..</Description>
         </Example>
       </Examples>
     </Control>

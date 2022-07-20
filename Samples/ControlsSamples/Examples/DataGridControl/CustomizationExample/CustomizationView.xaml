@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:QSF.Examples.DataGridControl.CustomizationExample"
+             x:Class="QSF.Examples.DataGridControl.CustomizationExample.CustomizationView"
+             Margin="{OnIdiom Phone='16,20', Desktop=0}">
+
+    <ContentView.Resources>
+        <Color x:Key="lightPurple">#1A7C59B6</Color>
+        <Color x:Key="selectedCellColor">#A790CE</Color>
+        <Color x:Key="purple">#7C59B6</Color>
+        <local:GroupStyleSelector x:Key="GroupSelector">
+            <local:GroupStyleSelector.RegionStyleTemplate>
+                <telerik:DataGridGroupHeaderStyle BorderThickness="0, 0, 0, 1"
+                                                  BorderColor="White"
+                                                  ButtonMargin="60, 5, 10, 5"
+                                                  BackgroundColor="{StaticResource lightPurple}" />
+            </local:GroupStyleSelector.RegionStyleTemplate>
+            <local:GroupStyleSelector.CountryStyleTemplate>
+                <telerik:DataGridGroupHeaderStyle BorderThickness="0, 0, 0, 1"
+                                                  BorderColor="White"
+                                                  ButtonMargin="30, 5, 10, 5"
+                                                  BackgroundColor="{StaticResource lightPurple}" />
+            </local:GroupStyleSelector.CountryStyleTemplate>
+        </local:GroupStyleSelector>
+        <telerik:DataGridColumnHeaderStyle x:Key="columHeaderStyle"
+                                           TextMargin="10, 20"
+                                           TextColor="White"
+                                           TextFontSize="16"
+                                           TextFontAttributes="Bold"
+                                           BorderThickness="0"
+                                           SortIndicatorColor="White"
+                                           SortIndicatorMargin="{OnPlatform iOS='10, 5, 10, 10', Default=10}"
+                                           FilterIndicatorMargin="10"
+                                           FilterIndicatorFontAttributes="Bold"
+                                           FilterIndicatorTextColor="#99FFFFFF"
+                                           FilterIndicatorActiveTextColor="White"
+                                           BackgroundColor="{StaticResource purple}" />
+        <telerik:DataGridTextCellStyle x:Key="cityCellContentStyle"
+                                       TextColor="Black"
+                                       HorizontalTextAlignment="Start"
+                                       FontAttributes="Italic"/>
+        <telerik:DataGridTextCellStyle x:Key="numericCellContentStyle"
+                                       TextColor="{StaticResource purple}"
+                                       HoverTextColor="{StaticResource purple}"
+                                       SelectedTextColor="Black" />
+        <telerik:DataGridBorderStyle x:Key="numericCellDecorationsStyle"
+                                     BackgroundColor="{OnPlatform WinUI=Transparent, Default=#E1DAEE}" />
+        <telerik:DataGridBorderStyle x:Key="selectedRowStyle"
+                                     BorderThickness="0"
+                                     BackgroundColor="{StaticResource selectedCellColor}" />
+        <telerik:DataGridBorderStyle x:Key="hoverStyle"
+                                     BackgroundColor="#C4B5DE"/>
+    </ContentView.Resources>
+
+    <Grid>
+        <telerik:RadDataGrid Grid.Row="1"
+                             ItemsSource="{Binding People}"
+                             AutoGenerateColumns="False"
+                             MouseHoverStyle="{StaticResource hoverStyle}"
+                             SelectionUnit="Row"
+                             SelectionMode="Multiple"
+                             SelectionStyle="{StaticResource selectedRowStyle}"
+                             UserEditMode="Cell"
+                             GridLinesThickness="1"
+                             GridLinesVisibility="Horizontal"
+                             GridLinesColor="#DFDFDF"
+                             GroupHeaderStyleSelector="{StaticResource GroupSelector}">
+            <telerik:RadDataGrid.GroupDescriptors>
+                <telerik:PropertyGroupDescriptor PropertyName="CountryName"/>
+                <telerik:PropertyGroupDescriptor PropertyName="RegionName"/>
+            </telerik:RadDataGrid.GroupDescriptors>
+            <telerik:RadDataGrid.Columns>
+                <telerik:DataGridTextColumn PropertyName="FullName"
+                                            HeaderText="Sales Person"
+                                            HeaderStyle="{StaticResource columHeaderStyle}">
+                    <telerik:DataGridTextColumn.CellContentTemplate>
+                        <DataTemplate>
+                            <HorizontalStackLayout Spacing="15" Margin="5">
+                                <Image Source="{Binding Image}" WidthRequest="40" HeightRequest="40" />
+                                <Label Text="{Binding FullName}" VerticalOptions="Center"/>
+                            </HorizontalStackLayout>
+                        </DataTemplate>
+                    </telerik:DataGridTextColumn.CellContentTemplate>
+                </telerik:DataGridTextColumn>
+                <telerik:DataGridNumericalColumn PropertyName="Sales"
+                                                 HeaderText="Sales"
+                                                 HeaderStyle="{StaticResource columHeaderStyle}"
+                                                 CellContentFormat="${0:N0}"
+                                                 CellContentStyle="{StaticResource numericCellContentStyle}"
+                                                 CellDecorationStyle="{StaticResource numericCellDecorationsStyle}" />
+                <telerik:DataGridTextColumn PropertyName="City"
+                                            HeaderText="City"
+                                            HeaderStyle="{StaticResource columHeaderStyle}"
+                                            CellContentStyle="{StaticResource cityCellContentStyle}" />
+            </telerik:RadDataGrid.Columns>
+        </telerik:RadDataGrid>
+    </Grid>
+
+</ContentView>
