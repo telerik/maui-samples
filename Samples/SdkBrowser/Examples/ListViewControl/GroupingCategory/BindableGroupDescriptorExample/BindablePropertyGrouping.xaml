@@ -44,11 +44,11 @@
                     <DataTemplate>
                         <telerik:ListViewTemplateCell>
                             <telerik:ListViewTemplateCell.View>
-                                <StackLayout>
+                                <Grid RowDefinitions="Auto,Auto,Auto">
                                     <Label Text="{Binding Content}" FontSize="Medium" />
-                                    <Label Text="{Binding Day}" FontSize="Small" TextColor="LimeGreen" />
-                                    <Label Text="{Binding Category}" FontSize="Micro" TextColor="Red" />
-                                </StackLayout>
+                                    <Label Text="{Binding Day}" FontSize="Small" TextColor="LimeGreen" Grid.Row="1"/>
+                                    <Label Text="{Binding Category}" FontSize="Micro" TextColor="Red" Grid.Row="2"/>
+                                </Grid>
                             </telerik:ListViewTemplateCell.View>
                         </telerik:ListViewTemplateCell>
                     </DataTemplate>

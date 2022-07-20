@@ -8,11 +8,13 @@
             <RowDefinition/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
+        <!-- >> datagrid-loadondemand-event-xaml -->
         <telerik:RadDataGrid x:Name="dataGrid"
                              ItemsSource="{Binding Items}"
                              LoadOnDemand="dataGrid_LoadOnDemand"
                              LoadOnDemandMode="Automatic"
                              LoadOnDemandBufferItemsCount="{Binding Source={x:Reference slider}, Path=Value}"/>
+        <!-- << datagrid-loadondemand-event-xaml -->
         <VerticalStackLayout Grid.Row="1">
             <Label Text="LoadOnDemandBufferItemsCount"/>
             <Slider x:Name="slider" Minimum="0" Maximum="10"/>

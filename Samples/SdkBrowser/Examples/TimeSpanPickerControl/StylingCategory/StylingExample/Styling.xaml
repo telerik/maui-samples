@@ -55,38 +55,38 @@
 
             <!-- >> timespanpicker-style-display-label-style -->
             <Style TargetType="Label" x:Key="displayLabelStyle">
-                <Setter Property="TextColor" Value="#1188FF"/>
+                <Setter Property="TextColor" Value="#151950"/>
                 <Setter Property="VerticalTextAlignment" Value="Center"/>
                 <Setter Property="HorizontalTextAlignment" Value="Center"/>
-                <Setter Property="Margin" Value="20"/>
+                <Setter Property="Margin" Value="10"/>
             </Style>
             <!-- << timespanpicker-style-display-label-style -->
 
             <!-- >> timespanpicker-style-placeholder-label-style -->
             <Style TargetType="Label" x:Key="placeholderLabelStyle">
-                <Setter Property="TextColor" Value="#1188FF"/>
+                <Setter Property="TextColor" Value="#4A4949"/>
                 <Setter Property="VerticalTextAlignment" Value="Center"/>
                 <Setter Property="HorizontalTextAlignment" Value="Center"/>
-                <Setter Property="Margin" Value="20"/>
+                <Setter Property="Margin" Value="10"/>
             </Style>
             <!-- << timespanpicker-style-placeholder-label-style -->
 
             <!-- >> timespanpicker-style-clear-button-style -->
             <Style TargetType="telerik:RadButton" x:Key="clearButtonStyle">
-                <Setter Property="TextColor" Value="Blue"/>
+                <Setter Property="TextColor" Value="#8660C5"/>
             </Style>
             <!-- << timespanpicker-style-clear-button-style -->
 
             <!-- >> timespanpicker-style-toggle-button-style -->
             <Style TargetType="telerik:RadButton" x:Key="toggleButtonStyle">
-                <Setter Property="TextColor" Value="LightBlue"/>
+                <Setter Property="TextColor" Value="#7C59B6"/>
             </Style>
             <!-- << timespanpicker-style-toggle-button-style -->
         </ResourceDictionary>
     </ContentView.Resources>
     <VerticalStackLayout WidthRequest="300" HorizontalOptions="Center">
         <!-- >> timespanpicker-style -->
-        <telerik:RadTimeSpanPicker BackgroundColor="AliceBlue"
+        <telerik:RadTimeSpanPicker BorderColor="#8660C5"
                                    SpinnerHeaderStyle="{StaticResource spinnerHeaderStyle}"
                                    SpinnerStyle="{StaticResource spinnerStyle}"
                                    SelectionHighlightStyle="{StaticResource selectionHighlightStyle}"
