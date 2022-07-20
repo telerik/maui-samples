@@ -16,7 +16,7 @@ public partial class LoadOnDemandRowTemplate : RadContentView
 
         this.BindingContext = new LoadOnDemandRowTemplateViewModel();
     }
-    
+
     // >> datagrid-loadondemandrowtemplate-csharp
     private async void dataGrid_LoadOnDemand(object sender, Telerik.Maui.Controls.Compatibility.DataGrid.LoadOnDemandEventArgs e)
     {
