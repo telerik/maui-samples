@@ -19,12 +19,12 @@ public static class Utils
         return type;
     }
 
-    public static object CreateView(Example example)
+    public static object CreateView(Example example, bool createBindingContext)
     {
         IExampleService exampleService = DependencyService.Get<IExampleService>();
         View exampleView = exampleService.CreateExample(example) as View;
 
-        if (exampleView != null && exampleView.BindingContext == null)
+        if (createBindingContext && exampleView != null && exampleView.BindingContext == null)
         {
             Type viewModelType = GetExampleViewModelType(example.ControlName, example.Name);
 
@@ -45,6 +45,13 @@ public static class Utils
         ControlViewModel controlViewModel = new ControlViewModel(control);
         ControlViewDesktop controlView = new ControlViewDesktop { BindingContext = controlViewModel };
         return controlView;
+    }
+
+    public static View CreateConfigurationArea(Example example)
+    {
+        IConfigurationAreaService configurationAreaService = DependencyService.Get<IConfigurationAreaService>();
+        View configurationArea = configurationAreaService.CreateConfigurationArea(example);
+        return configurationArea;
     }
 
     public static string GetExampleCodeURL(Example example)

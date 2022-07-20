@@ -79,9 +79,7 @@
                                FontAttributes="Bold"/>
                         <Label Text="All controls separated in categories"/>
                     </VerticalStackLayout>
-                    <Grid Grid.ColumnSpacing="0"
-                          Grid.RowSpacing="0"
-                          Grid.Row="1">
+                    <VerticalStackLayout Grid.Row="1">
                         <telerik:RadListView ItemsSource="{Binding Categories}" 
                                              HeightRequest="500"
                                              SelectedItem="{Binding SelectedCategory, Mode=TwoWay}">
@@ -111,7 +109,7 @@
                                 </DataTemplate>
                             </telerik:RadListView.ItemTemplate>
                         </telerik:RadListView>
-                    </Grid>
+                    </VerticalStackLayout>
                 </Grid>
             </telerik:RadSideDrawer.DrawerContent>
         </telerik:RadSideDrawer>

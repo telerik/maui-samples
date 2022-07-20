@@ -15,53 +15,51 @@
             </Style>
         </ResourceDictionary>
     </ContentView.Resources>
-    <ScrollView>
-        <telerik:RadDockLayout>
-            <Grid x:Name="titlePanel"
-                  HeightRequest="60"
-                  BackgroundColor="{StaticResource AccentColor8}"
-                  IsVisible="{Binding IsTitlePanelVisible}"
-                  telerik:RadDockLayout.Dock="{Binding TitlePanelDock, Converter={StaticResource StringToDockConverter}}">
-                <Label Text="Title" TextColor="White"/>
-            </Grid>
-            <Grid x:Name="navigationPanel"
-                  HeightRequest="60"
-                  BackgroundColor="#ADD9FC"
-                  IsVisible="{Binding IsNavigationPanelVisible}"
-                  telerik:RadDockLayout.Dock="{Binding NavigationPanelDock, Converter={StaticResource StringToDockConverter}}">
-                <Label Text="Navigation" />
-            </Grid>
-            <Grid x:Name="listPanel"
-                  WidthRequest="120"
-                  BackgroundColor="#DFDFDF"
-                  IsVisible="{Binding IsListPanelVisible}"
-                  telerik:RadDockLayout.Dock="{Binding ListPanelDock, Converter={StaticResource StringToDockConverter}}">
-                <VerticalStackLayout Margin="20">
-                    <Label Text="List" FontSize="Small" Margin="0"/>
-                    <Label Margin="0" Text="&#xE84A;" FontSize="50"/>
-                    <Label Margin="0" Text="&#xE84A;" FontSize="50"/>
-                    <Label Margin="0" Text="&#xE84A;" FontSize="50"/>
-                    <Label Margin="0" Text="&#xE84A;" FontSize="50"/>
-                </VerticalStackLayout>
-            </Grid>
-            <Grid BackgroundColor="#F8F8F8" 
-                  IsVisible="{Binding IsContentPanelVisible}">
-                <VerticalStackLayout Margin="20">
-                    <Label Text="Content" FontSize="Small" Margin="0"/>
-                    <Label Margin="0" Text="&#xE84A;" FontSize="130"/>
-                    <Label Margin="0" FontSize="16">
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <FormattedString.Spans>
-                                    <Span Text="The DockLayout control in Telerik UI for .NET MAUI enables you to dock child elements of the application at a certain position on the screen.&#10; 
-                                                &#10;Various Docking Positions.&#10;
-                                                &#10;The child elements can be positioned at a desired location on the screen – left, right, top, bottom or center."/>
-                                </FormattedString.Spans>
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
-                </VerticalStackLayout>
-            </Grid>
-        </telerik:RadDockLayout>
-    </ScrollView>
+    <telerik:RadDockLayout>
+        <Grid x:Name="titlePanel"
+              HeightRequest="60"
+              BackgroundColor="{StaticResource AccentColor8}"
+              IsVisible="{Binding IsTitlePanelVisible}"
+              telerik:RadDockLayout.Dock="{Binding TitlePanelDock, Converter={StaticResource StringToDockConverter}}">
+            <Label Text="Title" TextColor="White"/>
+        </Grid>
+        <Grid x:Name="navigationPanel"
+              HeightRequest="60"
+              BackgroundColor="#ADD9FC"
+              IsVisible="{Binding IsNavigationPanelVisible}"
+              telerik:RadDockLayout.Dock="{Binding NavigationPanelDock, Converter={StaticResource StringToDockConverter}}">
+            <Label Text="Navigation" />
+        </Grid>
+        <Grid x:Name="listPanel"
+              WidthRequest="120"
+              BackgroundColor="#DFDFDF"
+              IsVisible="{Binding IsListPanelVisible}"
+              telerik:RadDockLayout.Dock="{Binding ListPanelDock, Converter={StaticResource StringToDockConverter}}">
+            <VerticalStackLayout Margin="20">
+                <Label Text="List" FontSize="Small" Margin="0"/>
+                <Label Margin="0" Text="&#xE84A;" FontSize="50"/>
+                <Label Margin="0" Text="&#xE84A;" FontSize="50"/>
+                <Label Margin="0" Text="&#xE84A;" FontSize="50"/>
+                <Label Margin="0" Text="&#xE84A;" FontSize="50"/>
+            </VerticalStackLayout>
+        </Grid>
+        <Grid BackgroundColor="#F8F8F8" 
+              IsVisible="{Binding IsContentPanelVisible}">
+            <VerticalStackLayout Margin="20">
+                <Label Text="Content" FontSize="Small" Margin="0"/>
+                <Label Margin="0" Text="&#xE84A;" FontSize="130"/>
+                <Label Margin="0" FontSize="16">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <FormattedString.Spans>
+                                <Span Text="The DockLayout control in Telerik UI for .NET MAUI enables you to dock child elements of the application at a certain position on the screen.&#10; 
+                                            &#10;Various Docking Positions.&#10;
+                                            &#10;The child elements can be positioned at a desired location on the screen – left, right, top, bottom or center."/>
+                            </FormattedString.Spans>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </VerticalStackLayout>
+        </Grid>
+    </telerik:RadDockLayout>
 </ContentView>

@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:QSF.Converters"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:QSF.Converters"
+             x:Class="QSF.Examples.BorderControl.ConfigurationExample.ConfigurationView">
+
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <local:KeyValueConverter x:Key="colorConverter">
+                <Color x:Key="Black">Black</Color>
+                <Color x:Key="Red">Red</Color>
+                <Color x:Key="Green">Green</Color>
+                <Color x:Key="Blue">Blue</Color>
+                <Color x:Key="Cyan">Cyan</Color>
+                <Color x:Key="Magenta">Magenta</Color>
+                <Color x:Key="Yellow">Yellow</Color>
+                <Color x:Key="White">White</Color>
+            </local:KeyValueConverter>
+
+            <Style x:Key="AvatarBorderStyle" TargetType="telerik:RadBorder">
+                <Setter Property="CornerRadius" Value="{Binding BorderCornerRadius}" />
+                <Setter Property="WidthRequest" Value="150" />
+                <Setter Property="HeightRequest" Value="150" />
+                <Setter Property="BorderColor" Value="Red" />
+                <Setter Property="BorderColor" Value="{Binding SelectedBorderColor, Converter={StaticResource colorConverter}}" />
+                <Setter Property="BorderThickness" Value="{Binding BorderThickness}" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="Margin" Value="0, 22, 0, 35" />
+            </Style>
+
+            <Style x:Key="DefaultLabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="TextColor" Value="{AppThemeBinding Light=#4b4c4c, Dark=Default}" />
+            </Style>
+
+            <Style x:Key="SliderMinMaxLabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="#b4b4b5" />
+                <Setter Property="FontSize" Value="14" />
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    
+    <ScrollView>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <telerik:RadBorder Style="{StaticResource AvatarBorderStyle}">
+                <Image Aspect="AspectFill"
+                       HorizontalOptions="Center"
+                       WidthRequest="150" 
+                       HeightRequest="150" 
+                       Source="{Binding Avatar}" />
+            </telerik:RadBorder>
+            <VerticalStackLayout Grid.Row="1" Padding="20, 0, 25, 0">
+                <Label Style="{StaticResource DefaultLabelStyle}" 
+                       Text="Border Thickness:" />
+                <Grid Margin="0, 7, 0, 7">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="3*" />
+                    </Grid.ColumnDefinitions>
+                    <HorizontalStackLayout>
+                        <Label Style="{StaticResource DefaultLabelStyle}" 
+                               Text="B" 
+                               VerticalOptions="Center" />
+                        <Label Style="{StaticResource DefaultLabelStyle}" 
+                               Text="{Binding BorderThickness.Left}" 
+                               VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+                    <Grid Grid.Column="1">
+                        <Label Style="{StaticResource SliderMinMaxLabelStyle}" 
+                               Text="0" 
+                               VerticalOptions="Center" 
+                               Margin="0, 0, 5, 0" />
+                        <Slider HorizontalOptions="FillAndExpand" 
+                                Value="{Binding BorderThickness.Left}" 
+                                Minimum="0" 
+                                Maximum="30" 
+                                Margin="20, 0"
+                                ValueChanged="BorderThicknessSliderValueChanged" 
+                                AutomationId="borderThicknesSlider"/>
+                        <Label Style="{StaticResource SliderMinMaxLabelStyle}" 
+                               Text="75"
+                               HorizontalOptions="End"
+                               VerticalOptions="Center" />
+                    </Grid>
+                </Grid>
+
+                <Label Style="{StaticResource DefaultLabelStyle}" 
+                       Text="Border Color:" />
+                <Picker x:Name="picker" 
+                        ItemsSource="{Binding BorderColors}" 
+                        SelectedItem="{Binding Path=SelectedBorderColor, Mode=TwoWay}" 
+                        Margin="0, 0, 0, 10" />
+                <Label Style="{StaticResource DefaultLabelStyle}" 
+                       Text="Corner Radius:" />
+                <Grid Margin="0, 7, 0, 7">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="3*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Style="{StaticResource DefaultLabelStyle}" 
+                           Text="{Binding LeftCornerRadiusLabelText}" 
+                           VerticalOptions="Center" />
+                    <Grid Grid.Column="1">
+                        <Label Style="{StaticResource SliderMinMaxLabelStyle}" 
+                               Text="0"
+                               VerticalOptions="Center" 
+                               Margin="0, 0, 5, 0" />
+                        <Slider HorizontalOptions="Fill" 
+                                Value="{Binding LeftCornerRadius}" 
+                                Minimum="0" Maximum="75" 
+                                Margin="20, 0"
+                                ValueChanged="LeftCornerRadiusSliderValueChanged" 
+                                AutomationId="leftCornerRadiusSlider"/>
+                        <Label Style="{StaticResource SliderMinMaxLabelStyle}" 
+                               Text="75" 
+                               HorizontalOptions="End"
+                               VerticalOptions="Center" />
+                    </Grid>
+                </Grid>
+                <Grid Margin="0, 7, 0, 7">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="3*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Style="{StaticResource DefaultLabelStyle}" 
+                           Text="{Binding TopCornerRadiusLabelText}" 
+                           VerticalOptions="Center" />
+                    <Grid Grid.Column="1">
+                        <Label Style="{StaticResource SliderMinMaxLabelStyle}" 
+                               Text="0" 
+                               VerticalOptions="Center" 
+                               Margin="0, 0, 5, 0" />
+                        <Slider HorizontalOptions="FillAndExpand" 
+                                Value="{Binding TopCornerRadius}" 
+                                Minimum="0" 
+                                Margin="20, 0"
+                                Maximum="75" 
+                                ValueChanged="TopCornerRadiusSliderValueChanged" 
+                                AutomationId="topCornerRadiusSlider"/>
+                        <Label Style="{StaticResource SliderMinMaxLabelStyle}" 
+                               Text="75" 
+                               HorizontalOptions="End"
+                               VerticalOptions="Center" />
+                    </Grid>
+                </Grid>
+                <Grid Margin="0, 7, 0, 7">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="3*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Style="{StaticResource DefaultLabelStyle}" 
+                           Text="{Binding RightCornerRadiusLabelText}" 
+                           VerticalOptions="Center" />
+                    <Grid Grid.Column="1">
+                        <Label Style="{StaticResource SliderMinMaxLabelStyle}" 
+                               Text="0" 
+                               VerticalOptions="Center" 
+                               Margin="0, 0, 5, 0" />
+                        <Slider HorizontalOptions="FillAndExpand" 
+                                Value="{Binding RightCornerRadius}" 
+                                Minimum="0" 
+                                Maximum="75"
+                                Margin="20, 0"
+                                ValueChanged="RightCornerRadiusSliderValueChanged" 
+                                AutomationId="rightCornerRadiusSlider"/>
+                        <Label Style="{StaticResource SliderMinMaxLabelStyle}" 
+                               Text="75" 
+                               HorizontalOptions="End"
+                               VerticalOptions="Center" />
+                    </Grid>
+                </Grid>
+                <Grid Margin="0, 7, 0, 20">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="3*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Style="{StaticResource DefaultLabelStyle}" 
+                           Text="{Binding BottomCornerRadiusLabelText}" 
+                           VerticalOptions="Center" />
+                    <Grid Grid.Column="1">
+                        <Label Style="{StaticResource SliderMinMaxLabelStyle}" 
+                               Text="0" 
+                               VerticalOptions="Center" 
+                               Margin="0, 0, 5, 0" />
+                        <Slider HorizontalOptions="FillAndExpand" 
+                                Value="{Binding BottomCornerRadius}" 
+                                Minimum="0" 
+                                Maximum="75" 
+                                Margin="20, 0"
+                                ValueChanged="BottomCornerRadiusSliderValueChanged" 
+                                AutomationId="bottomCornerRadiusSlider"/>
+                        <Label Style="{StaticResource SliderMinMaxLabelStyle}" 
+                               Text="75" 
+                               HorizontalOptions="End"
+                               VerticalOptions="Center" />
+                    </Grid>
+                </Grid>
+            </VerticalStackLayout>
+        </Grid>
+    </ScrollView>
+</ContentView>

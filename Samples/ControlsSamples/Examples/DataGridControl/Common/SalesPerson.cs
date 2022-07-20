@@ -13,7 +13,7 @@ namespace QSF.Examples.DataGridControl.Common
         private int sales;
         private string city;
         private string countryName;
-        private string region;
+        private string regionName;
         private List<string> regions;
         private List<string> images;
         private List<string> flags;
@@ -70,8 +70,8 @@ namespace QSF.Examples.DataGridControl.Common
                 {"Germany", this.flags[5]},
             };
 
-            this.region = this.regions[random.Next(0, this.regions.Count)];
-            this.sales = random.Next(2, 100) * random.Next(100, 999);
+            this.RegionName = this.regions[random.Next(0, this.regions.Count)];
+            this.Sales = random.Next(2, 100) * random.Next(100, 999);
             this.Image = this.images[random.Next(0, this.images.Count)];
         }
 
@@ -180,11 +180,13 @@ namespace QSF.Examples.DataGridControl.Common
         public int Sales
         {
             get => this.sales;
+            set => UpdateValue(ref this.sales, value);
         }
 
-        public string Region
+        public string RegionName
         {
-            get => this.region;
+            get => this.regionName;
+            set => UpdateValue(ref this.regionName, value);
         }
 
         private void UpdatePhoneWithCountryCode()

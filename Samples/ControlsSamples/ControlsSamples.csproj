@@ -27,8 +27,8 @@
 	<ItemGroup>
 		<EmbeddedResource Include="config.xml" />
 		<EmbeddedResource Include="Examples\ChartControl\FinancialSeriesExample\AppleStockPrices.json" />
-		<EmbeddedResource Include="Examples\DataGridControl\FirstLookExample\Common\OrdersDataSource.xml" />
-		<EmbeddedResource Include="Examples\DataGridControl\FirstLookExample\Common\PeopleDataSource.xml" />
+		<EmbeddedResource Include="Examples\DataGridControl\Common\OrdersDataSource.xml" />
+		<EmbeddedResource Include="Examples\DataGridControl\Common\PeopleDataSource.xml" />
 		<EmbeddedResource Include="Examples\MapControl\FirstLookExample\usa.dbf" />
 		<EmbeddedResource Include="Examples\MapControl\FirstLookExample\usa.shp" />
 		<EmbeddedResource Include="Examples\PdfProcessingControl\FirstLookExample\banner.jpg" />
@@ -61,7 +61,7 @@
 	</PropertyGroup>
 
 	<ItemGroup Condition="$(SolutionName) != 'Telerik.Maui'">
-		<PackageReference Include="Telerik.UI.for.Maui" Version="2.0.0" />
+		<PackageReference Include="Telerik.UI.for.Maui" Version="2.2.0" />
 	</ItemGroup>
 
 	<Import Condition="'$(SolutionName)' == 'Telerik.Maui'" Project="..\AddSourceReferences.proj" />

@@ -17,16 +17,26 @@
             <Label Grid.Column="1"
                    Style="{StaticResource HeaderLabelStyle}"
                    Text="{Binding HeaderTitle}" />
-            <ImageButton Grid.Column="2"
-                         WidthRequest="40"
-                         HeightRequest="40"
-                         Command="{Binding NavigateToExampleCodeCommand}"
-                         CommandParameter="{Binding Example}"
-                         Source="viewcode_white.png"
-                         HorizontalOptions="End"
-                         VerticalOptions="Center"/>
+                   <HorizontalStackLayout Grid.Column="2"
+                                          HorizontalOptions="End"
+                                          Spacing="10">
+                        <ImageButton Command="{Binding NavigateToConfigurationPage}"
+                                     CommandParameter="{Binding Example}"
+                                     Source="settings.png"
+                                     IsVisible="{Binding Example.IsConfigurable}"
+                                     VerticalOptions="Center" 
+                                     HeightRequest="30"
+                                     WidthRequest="30" />
+                        <ImageButton WidthRequest="40"
+                                     HeightRequest="40"
+                                     Command="{Binding NavigateToExampleCodeCommand}"
+                                     CommandParameter="{Binding Example}"
+                                     Source="viewcode_white.png"
+                                     VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+
         </Grid>
-        <ContentView Content="{Binding Content}" 
+        <ContentView Content="{Binding Converter={StaticResource ModelToViewConverter}}"
                      Grid.Row="1" />
     </Grid>
 </ContentPage>

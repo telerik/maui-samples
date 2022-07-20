@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:QSF.Examples.DataGridControl.FirstLookExample"
+             x:Class="QSF.Examples.DataGridControl.SelectionExample.ConfigurationArea">
+    <VerticalStackLayout>
+        <telerik:RadBorder BackgroundColor="#E1DAEE"
+                           Margin="0, 0, 0, 11"
+                           IsVisible="{OnIdiom Desktop='true', Phone='false'}">
+            <Label Text="Configuration:"
+                   FontSize="Small"
+                   Margin="6, 5" />
+        </telerik:RadBorder>
+        <Label Text="Selection Unit:"
+               Margin="0, 0, 0, 8" />
+        <telerik:RadComboBox ItemsSource="{Binding SelectionUnits}"
+                             BackgroundColor="White"
+                             DropDownHeight="{OnPlatform Default='80', MacCatalyst='50', iOS='70'}"
+                             DropDownBackgroundColor="White"
+                             SelectedItem="{Binding SelectedUnit, Mode=TwoWay}"
+                             Margin="0, 0, 0, 16" />
+        <Label Text="Selection Mode:"
+               Margin="0, 0, 0, 8" />
+        <telerik:RadComboBox ItemsSource="{Binding SelectionModes}"
+                             BackgroundColor="White"
+                             DropDownHeight="{OnPlatform Default='120', MacCatalyst='80', iOS='140'}"
+                             DropDownBackgroundColor="White"
+                             SelectedItem="{Binding SelectedMode, Mode=TwoWay}" />
+    </VerticalStackLayout>
+</ContentView>

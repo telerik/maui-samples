@@ -99,11 +99,10 @@
                 <Label Text="Highlighted Controls:"
                        Style="{StaticResource TitleHighlightLabelStyle}"
                        Padding="{OnIdiom Desktop=0, Default='0, 0, 99, 0'}" />
-                <telerik:NonVirtualizedItemsControl ItemTemplate="{StaticResource HighlightedControlTemplate}"
-                                                    ItemsSource="{Binding HighlightControls}"
-                                                    SelectionMode="None"
-                                                    Margin="0, 6, 0, 12" 
-                                                    VerticalOptions="FillAndExpand" />
+                <VerticalStackLayout BindableLayout.ItemTemplate="{StaticResource HighlightedControlTemplate}"
+                                     BindableLayout.ItemsSource="{Binding HighlightControls}"
+                                     Margin="0, 6, 0, 12" 
+                                     VerticalOptions="FillAndExpand" />
             </VerticalStackLayout>
         </telerik:RadBorder>
         <telerik:RadBorder BackgroundColor="{StaticResource AccentColor3}"

@@ -13,7 +13,6 @@ public abstract class PageViewModel : ViewModelBase
     private string headerTitle;
     private string headerDescription;
     private string headerIcon;
-    private bool isBackVisible;
     private IConfigurationService configurationService;
 
     public PageViewModel()
@@ -45,7 +44,7 @@ public abstract class PageViewModel : ViewModelBase
         {
             return this.headerTitle;
         }
-        protected set
+        set
         {
             this.UpdateValue(ref this.headerTitle, value);
         }
@@ -72,18 +71,6 @@ public abstract class PageViewModel : ViewModelBase
         protected set
         {
             this.UpdateValue(ref this.headerIcon, value);
-        }
-    }
-
-    public bool IsBackVisible
-    {
-        get
-        {
-            return this.isBackVisible;
-        }
-        protected set
-        {
-            this.UpdateValue(ref this.isBackVisible, value);
         }
     }
 

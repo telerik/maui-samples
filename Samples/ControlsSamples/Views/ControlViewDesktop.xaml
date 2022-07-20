@@ -118,20 +118,31 @@
                                        CommandParameter="{Binding SelectedExample}"
                                        ImageSource="viewcode.png"
                                        Style="{StaticResource ViewCodeButtonStyle}"/>
-                    <telerik:RadBorder Content="{Binding SelectedExample, Converter={StaticResource ModelToViewConverter}}"
+                    <telerik:RadBorder x:Name="exampleContainer"
+                                       Content="{Binding SelectedExample, Converter={StaticResource ModelToViewConverter}}"
                                        Grid.Row="1"
                                        Style="{StaticResource ExampleBorderStyle}" />
                     <telerik:RadBorder Grid.Row="1"
                                        Grid.Column="1"
                                        BackgroundColor="{StaticResource BasicBackgroundColor2}"
                                        Style="{StaticResource BorderStyle}">
-                        <Label Text="{Binding SelectedExample.Description}"
-                               Margin="15" />
+                        <VerticalStackLayout Padding="15"
+                                             BackgroundColor="#66DFDFDF">
+                            <Label Text="{Binding SelectedExample.Description}"
+                                       Margin="0, 0, 0, 20" />
+                            <telerik:RadBorder>
+                                <telerik:RadBorder.Content>
+                                    <MultiBinding Converter="{StaticResource ModelToConfigurationAreaConverter}">
+                                        <Binding Path="SelectedExample" />
+                                        <Binding Path="Content.BindingContext" Source="{Reference exampleContainer}" />
+                                    </MultiBinding>
+                                </telerik:RadBorder.Content>
+                            </telerik:RadBorder>
+                        </VerticalStackLayout>
+
                     </telerik:RadBorder>
                 </Grid>
             </telerik:RadBorder>
-
         </Grid>
     </Grid>
-
 </ContentView>

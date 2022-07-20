@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:localConverter="clr-namespace:QSF.Converters"
+             xmlns:converter="clr-namespace:Microsoft.Maui.Converters;assembly=Microsoft.Maui"
+             xmlns:styleConverter="clr-namespace:Microsoft.Maui.Graphics.Converters;assembly=Microsoft.Maui.Graphics"
+             x:Class="QSF.Examples.EntryControl.ConfigurationExample.ConfigurationView">
+    <ContentView.Resources>
+            <localConverter:ValueTypeConverter x:Key="keyboardConverter">
+                <converter:KeyboardTypeConverter />
+            </localConverter:ValueTypeConverter>
+
+            <localConverter:ValueTypeConverter x:Key="colorConverter">
+                <styleConverter:ColorTypeConverter />
+            </localConverter:ValueTypeConverter>
+
+            <localConverter:ValueTypeConverter x:Key="fontSizeConverter">
+                <FontSizeConverter />
+            </localConverter:ValueTypeConverter>
+            
+            <Style TargetType="Label" x:Key="CommonLabelStyle">
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="HorizontalOptions" Value="Start"/>
+            </Style>
+
+            <Style TargetType="Label" BasedOn="{StaticResource CommonLabelStyle}" x:Key="SwitchLabelStyle">
+                <Setter Property="VerticalOptions" Value="Center"/>
+            </Style>
+
+            <Style TargetType="Label" BasedOn="{StaticResource CommonLabelStyle}" x:Key="InfoLabelStyle">
+                <Setter Property="VerticalOptions" Value="End"/>
+                <Setter Property="Margin" Value="0,18,0,3"/>
+            </Style>
+
+            <Style TargetType="Picker" x:Key="PickerStyle">
+                <Setter Property="Margin" Value="0,6,0,6"/>
+            </Style>
+
+            <Style TargetType="Entry" x:Key="EntryStyle">
+                <Setter Property="Margin" Value="0,6"/>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+            </Style>
+    </ContentView.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="90"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid Margin="16, 12" >
+            <telerik:RadEntry x:Name="entry"
+                              MaxLength="{Binding Source={x:Reference maxLengthNumeric}, Path=Value}"
+                              Keyboard="{Binding SelectedKeyboard, Converter={StaticResource keyboardConverter}}"
+                              TextColor="{Binding SelectedTextColor, Converter={StaticResource colorConverter}}"
+                              FontSize="{Binding SelectedFontSize, Converter={StaticResource fontSizeConverter}}"
+                              VerticalOptions="Center"
+                              Placeholder="Enter Text"/>
+        </Grid>
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Margin="16,0,24,0">
+                <Grid Margin="0,18,0,19">
+                    <Label Text="isPassword:" Style="{StaticResource SwitchLabelStyle}"/>
+                    <Switch IsToggled="{Binding Source={x:Reference entry}, Path=IsPassword, Mode=TwoWay}"
+                            HorizontalOptions="End" VerticalOptions="Center"/>
+                </Grid>
+
+                <Grid Margin="0,18,0,19" IsVisible="{OnIdiom Desktop=False, Phone=True}">
+                    <Label Text="isReadonly:" Style="{StaticResource SwitchLabelStyle}"/>
+                    <Switch IsToggled="{Binding Source={x:Reference entry}, Path=IsReadOnly, Mode=TwoWay}"
+                            HorizontalOptions="End" VerticalOptions="Center"/>
+                </Grid>
+
+                <Label Text="MaxLength (symbols):" Style="{StaticResource InfoLabelStyle}"/>
+                <telerik:RadNumericInput x:Name="maxLengthNumeric"                                          
+                                         IsReadOnly="True"
+                                         Value="6"
+                                         Minimum="0"
+                                         HorizontalOptions="FillAndExpand"
+                                         Margin="0,6"/>
+
+                <Label Text="Text:" Style="{StaticResource InfoLabelStyle}"/>
+                <telerik:RadEntry Style="{StaticResource EntryStyle}"
+                                  Placeholder="Enter Text"
+                                  Text="{Binding Source={x:Reference entry}, Path=Text, Mode=TwoWay}"/>
+
+                <VerticalStackLayout IsVisible="{OnIdiom Desktop=False, Phone=True}">
+                    <Label Text="Keyboard:" Style="{StaticResource InfoLabelStyle}"/>
+                    <Picker x:Name="keyboardPicker" 
+                            Style="{StaticResource PickerStyle}"
+                            SelectedItem="{Binding SelectedKeyboard}" 
+                            ItemsSource="{Binding Keyboards}" />
+                </VerticalStackLayout>
+
+                <Label Text="Placeholder:" Style="{StaticResource InfoLabelStyle}"/>
+                <telerik:RadEntry Placeholder="Placeholder text"
+                                  Style="{StaticResource EntryStyle}"/>
+                
+                <Label Text="Text Color:" Style="{StaticResource InfoLabelStyle}"/>
+                <Picker x:Name="textColorPicker" 
+                        Style="{StaticResource PickerStyle}"
+                        SelectedItem="{Binding SelectedTextColor}" 
+                        ItemsSource="{Binding TextColors}" />
+
+                <Label Text="Font Size:" Style="{StaticResource InfoLabelStyle}"/>
+                <Picker x:Name="fontSizePicker"
+                        Style="{StaticResource PickerStyle}"
+                        SelectedItem="{Binding SelectedFontSize}" 
+                        ItemsSource="{Binding FontSizes}"/>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentView>
