@@ -2,7 +2,7 @@
 using System.Collections.ObjectModel;
 
 namespace SDKBrowserMaui.Examples.DataGridControl.LoadOnDemandCategory.LoadOnDemandRowStyleExample;
-
+// >> datagrid-loadondemandrowstyle-viewmodel-csharp
 public class LoadOnDemandRowStyleViewModel
 {
     public LoadOnDemandRowStyleViewModel()
@@ -19,3 +19,4 @@ public class LoadOnDemandRowStyleViewModel
     public ObservableCollection<Person> Items { get; set; }
 
 }
+// << datagrid-loadondemandrowstyle-viewmodel-csharp

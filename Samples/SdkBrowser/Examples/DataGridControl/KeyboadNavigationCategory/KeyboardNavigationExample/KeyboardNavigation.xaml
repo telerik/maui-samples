@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        x:Class="SDKBrowserMaui.Examples.DataGridControl.KeyboardNavigationCategory.KeyboardNavigationExample.KeyboardNavigation">
+    <telerik:RadContentView.Resources>
+        <ResourceDictionary>
+            <!-- >> datagrid-keyboard-navigation-style -->
+            <telerik:DataGridBorderStyle x:Key="CurrentCellStyle"
+                                         BorderColor="Black"
+                                         BackgroundColor="LightGray"
+                                         BorderThickness="2"/>
+            <!-- << datagrid-keyboard-navigation-style -->
+        </ResourceDictionary>
+    </telerik:RadContentView.Resources>
+    <Grid RowDefinitions="Auto,*">
+        <HorizontalStackLayout Spacing="10" 
+                               Margin="5">
+            <Label Text="Current cell info:"/>
+            <Label x:Name="cellInfo"/>
+        </HorizontalStackLayout>
+        <!-- >> datagrid-keyboard-navigation-xaml -->
+        <telerik:RadDataGrid x:Name="dataGrid" 
+                             Grid.Row="1"
+                             ItemsSource="{Binding People}"
+                             CurrentCellChanged="dataGrid_CurrentCellChanged"
+                             CurrentCell="{Binding Cell, Mode=TwoWay}"
+                             CurrentCellStyle="{StaticResource CurrentCellStyle}"/>
+        <!-- << datagrid-keyboard-navigation-xaml -->
+    </Grid>
+</telerik:RadContentView>

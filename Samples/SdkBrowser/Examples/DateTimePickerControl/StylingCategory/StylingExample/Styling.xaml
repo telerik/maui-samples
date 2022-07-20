@@ -39,18 +39,16 @@
 
             <!-- >> datetimepicker-style-selection-highlight-style -->
             <Style TargetType="telerik:RadBorder" x:Key="selectionHighlightStyle">
-                <Setter Property="BackgroundColor" Value="Transparent"/>
-                <Setter Property="BorderColor" Value="#00B5DC"/>
-                <Setter Property="BorderThickness" Value="1"/>
-                <Setter Property="Padding" Value="0,6,0,6"/>
-                <Setter Property="HeightRequest" Value="40"/>
+                <Setter Property="BorderColor" Value="#8660C5"/>
+                <Setter Property="BorderThickness" Value="2"/>
                 <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="BackgroundColor" Value="Transparent"/>
             </Style>
             <!-- << datetimepicker-style-selection-highlight-style -->
 
             <!-- >> datetimepicker-style-display-label-style -->
             <Style TargetType="Label" x:Key="displayLabelStyle">
-                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="TextColor" Value="#151950"/>
                 <Setter Property="VerticalTextAlignment" Value="Center"/>
                 <Setter Property="HorizontalTextAlignment" Value="Center"/>
                 <Setter Property="Margin" Value="20"/>
@@ -62,26 +60,26 @@
                 <Setter Property="TextColor" Value="#4A4949"/>
                 <Setter Property="VerticalTextAlignment" Value="Center"/>
                 <Setter Property="HorizontalTextAlignment" Value="Center"/>
-                <Setter Property="Margin" Value="20"/>
+                <Setter Property="Margin" Value="10"/>
             </Style>
             <!-- << datetimepicker-style-placeholder-label-style -->
 
             <!-- >> datetimepicker-style-clear-button-style -->
             <Style TargetType="telerik:RadButton" x:Key="clearButtonStyle">
-                <Setter Property="TextColor" Value="Blue"/>
+                <Setter Property="TextColor" Value="#8660C5"/>
             </Style>
             <!-- << datetimepicker-style-clear-button-style -->
 
             <!-- >> datetimepicker-style-toggle-button-style -->
             <Style TargetType="telerik:RadButton" x:Key="toggleButtonStyle">
-                <Setter Property="TextColor" Value="LightBlue"/>
+                <Setter Property="TextColor" Value="#7C59B6"/>
             </Style>
             <!-- << datetimepicker-style-toggle-button-style -->
         </ResourceDictionary>
     </telerik:RadContentView.Resources>
     <VerticalStackLayout WidthRequest="300" HorizontalOptions="Center">
         <!-- >> datetimepicker-style -->
-        <telerik:RadDateTimePicker BackgroundColor="AliceBlue"
+        <telerik:RadDateTimePicker BorderColor="#8660C5"
                                    SpinnerHeaderStyle="{StaticResource spinnerHeaderStyle}"
                                    SpinnerStyle="{StaticResource spinnerStyle}"
                                    SelectionHighlightStyle="{StaticResource selectionHighlightStyle}"
@@ -90,7 +88,6 @@
                                    ClearButtonStyle="{StaticResource clearButtonStyle}"
                                    ToggleButtonStyle="{StaticResource toggleButtonStyle}"
                                    AreSpinnerHeadersVisible="True"
-                                   DefaultHighlightedDate="2020,05,15"
                                    IsClearButtonVisible="True"
                                    IsToggleButtonVisible="True"/>
         <!-- << datetimepicker-style -->

@@ -7,7 +7,7 @@
         <ResourceDictionary>
             <!-- >> datepicker-style-dropdownview-style -->
             <Style TargetType="telerik:PickerDropDownContentView" x:Key="dropDownViewStyle">
-                <Setter Property="BackgroundColor" Value="LightYellow"/>
+                <Setter Property="BackgroundColor" Value="#E4FCFF"/>
             </Style>
             <!-- << datepicker-style-dropdownview-style -->
             
@@ -38,7 +38,6 @@
     <VerticalStackLayout WidthRequest="300" HorizontalOptions="Center">
         <!-- >> datepicker-dropdown-style -->
         <telerik:RadDatePicker PickerMode="DropDown"
-                               DefaultHighlightedDate="2020,05,15"
                                SpinnerFormat="yyy/MMM/dd"
                                DisplayStringFormat="yyyy/MMM/dd">
             <telerik:RadDatePicker.DropDownSettings>

@@ -8,10 +8,12 @@
             <RowDefinition/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
+        <!-- >> datagrid-loadondemand-xaml -->
         <telerik:RadDataGrid x:Name="dataGrid"
                              ItemsSource="{Binding Items}"
                              LoadOnDemandMode="{Binding LoadOnDemandMode}"
                              LoadOnDemandBufferItemsCount="{Binding Source={x:Reference slider}, Path=Value}"/>
+        <!-- << datagrid-loadondemand-xaml -->
         <VerticalStackLayout Grid.Row="1">
             <Label Text="Load on demand mode - Auto or Manual"/>
             <Button Text="Toggle LoadOnDemandMode" Command="{Binding LoadOnDemandChangeModeCommand}"/>

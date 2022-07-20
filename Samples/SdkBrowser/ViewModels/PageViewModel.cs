@@ -1,5 +1,6 @@
 ﻿using Microsoft.Maui.Controls;
 using SDKBrowserMaui.Services;
+using System;
 using Telerik.Maui.Controls;
 using Telerik.Maui.Controls.Compatibility.Common;
 
@@ -76,7 +77,14 @@ namespace SDKBrowserMaui.ViewModels
         private void OnSearchCommand()
         {
             var navigationService = DependencyService.Get<INavigationService>();
-            navigationService.NavigateToAsync<SearchViewModel>();
+            if (Environment.GetEnvironmentVariable("EnableTelerikUIAutomation") == "true")
+            {
+                navigationService.NavigateToAsync<UITestsHomeViewModel>();
+            }
+            else
+            {
+                navigationService.NavigateToAsync<SearchViewModel>();
+            }
         }
 
         private void OnBackCommand()
