@@ -2,6 +2,7 @@
 using CryptoTracker.Views;
 using CryptoTracker.Data;
 using CryptoTracker.ViewModels;
+using System.Linq;
 
 namespace CryptoTracker.Pages
 {
@@ -10,15 +11,16 @@ namespace CryptoTracker.Pages
         public DesktopPage()
         {
             this.InitializeComponent();
-            this.InirializeSelection();
+            this.InitializeSelection();
         }
 
-        private void InirializeSelection()
+        private async void InitializeSelection()
         {
+            this.BusyIndicator.IsBusy = true;
             var coinDataService = DependencyService.Get<ICoinDataService>();
-            var initiallySelectedCoin = coinDataService.GetCurrentCoin("coin_Aave.csv");
-
+            var initiallySelectedCoin = (await coinDataService.GetCoinsAsync(1)).FirstOrDefault();
             this.SelectCoin(initiallySelectedCoin);
+            this.BusyIndicator.IsBusy = false;
         }
 
         private void OnCoinSelected(object sender, CoinSelectionEventArgs e)

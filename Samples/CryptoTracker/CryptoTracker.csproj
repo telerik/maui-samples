@@ -19,8 +19,6 @@
 		<!-- TODO: Remove it when Maui is officially released. -->
 		<AndroidLinkResources>false</AndroidLinkResources>
 
-		<MtouchLink Condition="'$(TargetFramework)' == 'net6.0-ios'  OR '$(TargetFramework)' == 'net6.0-maccatalyst'">SdkOnly</MtouchLink>
-
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -38,55 +36,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Remove="Data\Coins\coin_Aave.csv" />
-	  <None Remove="Data\Coins\coin_BinanceCoin.csv" />
-	  <None Remove="Data\Coins\coin_Bitcoin.csv" />
-	  <None Remove="Data\Coins\coin_Cardano.csv" />
-	  <None Remove="Data\Coins\coin_ChainLink.csv" />
-	  <None Remove="Data\Coins\coin_Cosmos.csv" />
-	  <None Remove="Data\Coins\coin_CryptocomCoin.csv" />
-	  <None Remove="Data\Coins\coin_Dogecoin.csv" />
-	  <None Remove="Data\Coins\coin_EOS.csv" />
-	  <None Remove="Data\Coins\coin_Ethereum.csv" />
-	  <None Remove="Data\Coins\coin_Iota.csv" />
-	  <None Remove="Data\Coins\coin_Litecoin.csv" />
-	  <None Remove="Data\Coins\coin_Monero.csv" />
-	  <None Remove="Data\Coins\coin_NEM.csv" />
-	  <None Remove="Data\Coins\coin_Polkadot.csv" />
-	  <None Remove="Data\Coins\coin_Solana.csv" />
-	  <None Remove="Data\Coins\coin_Stellar.csv" />
-	  <None Remove="Data\Coins\coin_Tron.csv" />
-	  <None Remove="Data\Coins\coin_Uniswap.csv" />
-	  <None Remove="Data\Coins\coin_WrappedBitcoin.csv" />
-	  <None Remove="Data\Coins\coin_XRP.csv" />
 	  <None Remove="Resources\Fonts\telerikfontexamples.ttf" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <EmbeddedResource Include="Data\Coins\coin_Aave.csv" />
-	  <EmbeddedResource Include="Data\Coins\coin_BinanceCoin.csv" />
-	  <EmbeddedResource Include="Data\Coins\coin_Bitcoin.csv" />
-	  <EmbeddedResource Include="Data\Coins\coin_Cardano.csv" />
-	  <EmbeddedResource Include="Data\Coins\coin_Chainlink.csv" />
-	  <EmbeddedResource Include="Data\Coins\coin_Cosmos.csv" />
-	  <EmbeddedResource Include="Data\Coins\coin_CryptocomCoin.csv" />
-	  <EmbeddedResource Include="Data\Coins\coin_Dogecoin.csv" />
-	  <EmbeddedResource Include="Data\Coins\coin_EOS.csv" />
-	  <EmbeddedResource Include="Data\Coins\coin_Ethereum.csv" />
-	  <EmbeddedResource Include="Data\Coins\coin_Iota.csv" />
-	  <EmbeddedResource Include="Data\Coins\coin_Litecoin.csv" />
-	  <EmbeddedResource Include="Data\Coins\coin_Monero.csv" />
-	  <EmbeddedResource Include="Data\Coins\coin_NEM.csv" />
-	  <EmbeddedResource Include="Data\Coins\coin_Polkadot.csv" />
-	  <EmbeddedResource Include="Data\Coins\coin_Solana.csv" />
-	  <EmbeddedResource Include="Data\Coins\coin_Stellar.csv" />
-	  <EmbeddedResource Include="Data\Coins\coin_Tron.csv" />
-	  <EmbeddedResource Include="Data\Coins\coin_Uniswap.csv" />
-	  <EmbeddedResource Include="Data\Coins\coin_WrappedBitcoin.csv" />
-	  <EmbeddedResource Include="Data\Coins\coin_XRP.csv" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <PackageReference Include="Telerik.UI.for.Maui" Version="2.0.0" />
+	  <PackageReference Include="Telerik.UI.for.Maui" Version="2.2.0" />
 	</ItemGroup>
 </Project>

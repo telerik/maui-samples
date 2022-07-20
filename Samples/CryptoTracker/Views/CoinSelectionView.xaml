@@ -30,7 +30,7 @@
                                                 <Label Style="{StaticResource TrendingCoinsCounterStyle}" Text="{Binding Index}"/>
                                                 <Label Grid.Column="1" Style="{StaticResource TrendingCoinSymbolStyle}" Text="{Binding Data.Symbol}"/>
                                                 <Label Grid.Column="2" Style="{StaticResource TrendingCoinNameStyle}" Text="{Binding Data.Name}"/>
-                                                <Label Grid.Column="3" Style="{StaticResource TrendingCoinPercentage}" Text="{Binding Data.ChangeInPricePercentage, StringFormat='+{0:f2}%'}"/>
+                                                <Label Grid.Column="3" Style="{StaticResource TrendingCoinPercentage}" Text="{Binding Data.ChangeInPricePercentage, StringFormat='{0:+0.00;- 0.00;0.00}%'}"/>
                                             </Grid>
                                         </telerik:RadBorder>
                                     </Grid>
@@ -48,6 +48,15 @@
                         <telerik:ListViewItemStyle BackgroundColor="Transparent"/>
                     </telerik:RadListView.PressedItemStyle>
                 </telerik:RadListView>
+
+                <telerik:RadBusyIndicator Grid.Row="1"
+                                      VerticalOptions="Center"
+                                      AnimationType="Animation2"
+                                      AnimationContentColor="{StaticResource DownloadButtonColor}"
+                                      AnimationContentHeightRequest="100"
+                                      AnimationContentWidthRequest="100"
+                                      HeightRequest="100" 
+                                      IsBusy="{Binding IsListLoading}"/>
             </Grid>
         </telerik:RadBorder>
 
@@ -68,7 +77,7 @@
                                     <Label Style="{StaticResource ListViewCoinSymbolStyle}" Text="{Binding Symbol}"/>
                                     <Label Grid.Column="1" Style="{StaticResource ListViewCoinNameStyle}" Text="{Binding Name}"/>
                                     <VerticalStackLayout Spacing="5" Grid.Column="2" VerticalOptions="Center">
-                                        <Label HorizontalTextAlignment="End" Style="{StaticResource ListViewCoinPriceStyle}" Text="{Binding ClosingPrice, StringFormat='${0:N2}'}"/>
+                                        <Label HorizontalTextAlignment="End" Style="{StaticResource ListViewCoinPriceStyle}" Text="{Binding OpeningPrice, StringFormat='${0:N2}'}"/>
                                         <Label HorizontalTextAlignment="End" FontSize="14" TextColor="{Binding ChangeInPriceAmount, Converter={StaticResource ValueToColorConverter}}">
                                             <Label.Text>
                                                 <MultiBinding StringFormat="{}{0:+0.00;- 0.00;0.00} ({1:0.00;0.00;0.00}%)">
@@ -111,6 +120,13 @@
                 </telerik:RadListView.SelectedItemStyle>
             </telerik:RadListView>
         </telerik:RadBorder>
-
+        <telerik:RadBusyIndicator Grid.Row="1"
+                                  VerticalOptions="Center"
+                                  AnimationType="Animation2"
+                                  AnimationContentColor="{StaticResource DownloadButtonColor}"
+                                  AnimationContentHeightRequest="100"
+                                  AnimationContentWidthRequest="100"
+                                  HeightRequest="100" 
+                                  IsBusy="{Binding IsChartLoading}"/>
     </Grid>
 </ContentView>

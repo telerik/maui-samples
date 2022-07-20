@@ -1,18 +1,17 @@
 ﻿<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
-             xmlns:local="clr-namespace:CryptoTracker.ViewModels"
-             xmlns:formatters="clr-namespace:CryptoTracker.Formatters"
              x:Class="CryptoTracker.Views.CoinInfoDataGridView"
              x:Name="coinInfoDataGridView">
     
     <telerik:RadDataGrid AutoGenerateColumns="False" 
-                         ItemsSource="{Binding DataForDataGrid}"
+                         UserEditMode="None"
+                         ItemsSource="{Binding IntervalCoinData}"
                          GridLinesThickness="1"
                          GridLinesVisibility="Horizontal"
                          GridLinesColor="{StaticResource DataGridLineColor}">
         <telerik:RadDataGrid.Columns>
-            <telerik:DataGridDateColumn CellContentFormat="{}{0:MMM d, yyyy}" PropertyName="Date" HeaderText="Date"/>
+            <telerik:DataGridDateColumn CellContentFormat="{Binding DataGridLabelFormat}" PropertyName="Date" HeaderText="Date"/>
             <telerik:DataGridNumericalColumn CellContentFormat="{}${0:N2}" PropertyName="OpeningPrice" HeaderText="Open"/>
             <telerik:DataGridNumericalColumn CellContentFormat="{}${0:N2}" PropertyName="Price24High" HeaderText="High"/>
             <telerik:DataGridNumericalColumn CellContentFormat="{}${0:N2}" PropertyName="Price24Low" HeaderText="Low"/>

@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace CryptoTracker.Data
 {
     public interface ICoinDataService
     {
-        IList<CoinData> GetCoinDataFromDateToDate(string coinName, DateTime fromDate, DateTime toDate);
-        IList<CoinData> GetAllCurrentCoins();
-        CoinData GetCurrentCoin(string coinPath);
+        Task<IList<CoinData>> GetOHLCCoinDataAsync(CoinData selectedCoin, int days);
+        Task<IList<CoinData>> GetCoinsAsync(int coinsCount);
+        Task<IList<CoinData>> GetHourlyOHLCCoinDataAsync(CoinData selectedCoin);
     }
 }
