@@ -1,5 +1,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:CryptoTracker.ViewModels"
+             xmlns:Views="clr-namespace:CryptoTracker.Views"
              xmlns:viewModels="clr-namespace:CryptoTracker.ViewModels"
              xmlns:views="clr-namespace:CryptoTracker.Views"
              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
@@ -11,7 +13,7 @@
     <ContentPage.BindingContext>
         <viewModels:CoinInfoViewModel />
     </ContentPage.BindingContext>
-
+    
     <Grid RowDefinitions="Auto, *" ColumnDefinitions="500, *, Auto">
         <telerik:RadButton Grid.Column="2"
                            Style="{StaticResource DownloadButtonStyle}"
@@ -20,7 +22,7 @@
                            Padding="{OnPlatform  MacCatalyst='5, 0, 0, 0'}"
                            Margin="0, 12, 20, 0"
                            Clicked="DownloadButtonClicked"/>
-        <views:CoinSelectionView Grid.Row="1" CoinSelected="OnCoinSelected" Padding="20, 20, 20, 10"/>
+        <Views:CoinSelectionView Grid.Row="1" CoinSelected="OnCoinSelected" Padding="20, 20, 20, 10"/>
         <telerik:RadBusyIndicator Grid.Row="1"
                                   x:Name="BusyIndicator"
                                   VerticalOptions="Center"

@@ -1,5 +1,6 @@
 ﻿using CryptoTracker.ViewModels;
 using CryptoTracker.Data;
+using Telerik.Maui.Controls.Compatibility.Common;
 using Microsoft.Maui.Controls;
 
 namespace CryptoTracker.Views
@@ -10,7 +11,7 @@ namespace CryptoTracker.Views
         {
             this.InitializeComponent();
         }
-        
+
         private void OnChartPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
 #if __IOS__ || MACCATALYST
