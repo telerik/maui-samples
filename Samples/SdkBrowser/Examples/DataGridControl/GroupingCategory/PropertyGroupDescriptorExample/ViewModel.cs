@@ -1,10 +1,14 @@
 ﻿using System.Collections.ObjectModel;
+using Telerik.Maui.Controls;
+using Telerik.Maui.Controls.Compatibility.DataGrid;
 
 namespace SDKBrowserMaui.Examples.DataGridControl.GroupingCategory.PropertyGroupDescriptorExample;
 
 // >> datagrid-grouping-propertygroupdescriptor-viewmodel
-public class ViewModel
+public class ViewModel : NotifyPropertyChangedBase
 {
+    private DataGridCellInfo cell;
+
     public ViewModel()
     {
         this.People = new ObservableCollection<Person>()
@@ -21,6 +25,18 @@ public class ViewModel
         };
     }
 
+    public DataGridCellInfo Cell
+    {
+        get => this.cell;
+        set
+        {
+            if (this.cell != value)
+            {
+                this.cell = value;
+                this.OnPropertyChanged();
+            }
+        }
+    }
     public ObservableCollection<Person> People { get; set; }
 }
 // << datagrid-grouping-propertygroupdescriptor-viewmodel

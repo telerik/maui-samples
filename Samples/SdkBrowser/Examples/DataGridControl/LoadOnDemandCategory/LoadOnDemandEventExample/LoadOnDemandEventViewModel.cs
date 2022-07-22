@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 
 namespace SDKBrowserMaui.Examples.DataGridControl.LoadOnDemandCategory.LoadOnDemandEventExample;
 
+// >> datagrid-loadondemand-event-viewmodel-csharp
 public class LoadOnDemandEventViewModel
 {
     public LoadOnDemandEventViewModel()
@@ -19,3 +20,4 @@ public class LoadOnDemandEventViewModel
 
     public ObservableCollection<Person> Items { get; set; }
 }
+// << datagrid-loadondemand-event-viewmodel-csharp

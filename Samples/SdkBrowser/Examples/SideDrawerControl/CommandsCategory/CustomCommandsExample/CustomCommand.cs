@@ -3,9 +3,9 @@ using System.Windows.Input;
 
 namespace SDKBrowserMaui.Examples.SideDrawerControl.CommandsCategory.CustomCommandsExample;
 
+// >> sidedrawer-customcommands-cs
 public class CustomCommand : ICommand
 {
-    // >> sidedrawer-customcommands-cs
     public event EventHandler CanExecuteChanged;
 
     public bool CanExecute(object parameter)
@@ -17,5 +17,5 @@ public class CustomCommand : ICommand
     {
         // implement some logic here
     }
-    // << sidedrawer-customcommands-cs
 }
+// << sidedrawer-customcommands-cs

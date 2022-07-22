@@ -8,11 +8,7 @@
         <local:LocationViewModel />
     </telerik:RadContentView.BindingContext>
     <telerik:RadContentView.Resources>
-        <ResourceDictionary>
-            <!-- >> templatedpicker-accentcolor -->
-            <Color x:Key="AccentColor">#B73562</Color>
-            <!-- << templatedpicker-accentcolor -->
-
+        <ResourceDictionary>         
             <!-- >> templatedpicker-headelabelstyle -->
             <Style x:Key="pickerHeaderLabelStyle" TargetType="Label">
                 <Setter Property="TextColor" Value="White" />
@@ -29,8 +25,8 @@
             <!-- << templatedpicker-headerstyle -->
 
             <!-- >> templatedpicker-headertemplate -->
-            <ControlTemplate x:Key="pickerHeaderTemplaye">
-                <Grid BackgroundColor="{StaticResource AccentColor}" ColumnDefinitions="*,*">
+            <ControlTemplate x:Key="pickerHeaderTemplate">
+                <Grid BackgroundColor="#1188FF" ColumnDefinitions="*,*">
                     <Label Text="Origin Country"
                            Style="{StaticResource pickerHeaderLabelStyle}" />
                     <Label Grid.Column="1"
@@ -43,7 +39,7 @@
             <!-- >> templatedpicker-commonbuttonstyle -->
             <Style x:Key="pickerFooterButtonStyle" TargetType="Button">
                 <Setter Property="BackgroundColor" Value="Transparent"/>
-                <Setter Property="TextColor" Value="{StaticResource AccentColor}"/>
+                <Setter Property="TextColor" Value="#1188FF"/>
                 <Setter Property="VerticalOptions" Value="Center"/>
                 <Setter Property="Margin">
                     <OnPlatform x:TypeArguments="Thickness">
@@ -86,8 +82,9 @@
                                     SelectedValue="{Binding FromCity, Mode=TwoWay}"
                                     DisplayMemberPath="Name">
             <telerik:RadTemplatedPicker.PopupSettings>
-                <telerik:PickerPopupSettings HeaderStyle="{StaticResource pickerHeaderStyle}"
-                                             HeaderTemplate="{StaticResource pickerHeaderTemplaye}"
+                <telerik:PickerPopupSettings PopupOutsideBackgroundColor="#D9D9D9CC"
+                                             HeaderStyle="{StaticResource pickerHeaderStyle}"
+                                             HeaderTemplate="{StaticResource pickerHeaderTemplate}"
                                              AcceptButtonStyle="{StaticResource pickerAcceptButtonStyle}"
                                              CancelButtonStyle="{StaticResource pickerCancelButtonStyle}" />
             </telerik:RadTemplatedPicker.PopupSettings>

@@ -17,6 +17,7 @@ public partial class LoadOnDemandRowStyle : RadContentView
         this.BindingContext = new LoadOnDemandRowStyleViewModel();
     }
 
+    // >> datagrid-loadondemandrowstyle-csharp
     private async void dataGrid_LoadOnDemand(object sender, Telerik.Maui.Controls.Compatibility.DataGrid.LoadOnDemandEventArgs e)
     {
         await Task.Delay(3000);
@@ -26,4 +27,5 @@ public partial class LoadOnDemandRowStyle : RadContentView
         }
         e.IsDataLoaded = true;
     }
+    // << datagrid-loadondemandrowstyle-csharp
 }

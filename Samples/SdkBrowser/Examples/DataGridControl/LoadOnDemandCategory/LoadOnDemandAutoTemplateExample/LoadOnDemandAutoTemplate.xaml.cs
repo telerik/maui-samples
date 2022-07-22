@@ -17,6 +17,7 @@ public partial class LoadOnDemandAutoTemplate : RadContentView
         this.BindingContext = new LoadOnDemandAutoTemplateViewModel();
     }
 
+    // >> datagrid-loadondemandautotemplate-csharp
     private async void dataGrid_LoadOnDemand(object sender, Telerik.Maui.Controls.Compatibility.DataGrid.LoadOnDemandEventArgs e)
     {
         await Task.Delay(3000);
@@ -26,4 +27,5 @@ public partial class LoadOnDemandAutoTemplate : RadContentView
         }
         e.IsDataLoaded = true;
     }
+    // << datagrid-loadondemandautotemplate-csharp
 }

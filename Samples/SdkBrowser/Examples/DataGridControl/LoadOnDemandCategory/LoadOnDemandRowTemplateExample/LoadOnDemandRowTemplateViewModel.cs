@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 
 namespace SDKBrowserMaui.Examples.DataGridControl.LoadOnDemandCategory.LoadOnDemandRowTemplateExample
 {
+    // >> datagrid-loadondemandrowtemplate-viewmodel-csharp
     public class LoadOnDemandRowTemplateViewModel
     {
         public LoadOnDemandRowTemplateViewModel()
@@ -18,4 +19,5 @@ namespace SDKBrowserMaui.Examples.DataGridControl.LoadOnDemandCategory.LoadOnDem
 
         public ObservableCollection<Person> Items { get; set; }
     }
+    // << datagrid-loadondemandrowtemplate-viewmodel-csharp
 }

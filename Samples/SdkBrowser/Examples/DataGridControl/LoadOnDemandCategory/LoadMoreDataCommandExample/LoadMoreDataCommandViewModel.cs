@@ -2,7 +2,7 @@
 using System.Collections.ObjectModel;
 
 namespace SDKBrowserMaui.Examples.DataGridControl.LoadOnDemandCategory.LoadMoreDataCommandExample;
-
+// >> datagrid-customloadmoredatacommand-viewmodel-csharp
 public class LoadMoreDataCommandViewModel
 {
     public LoadMoreDataCommandViewModel()
@@ -18,3 +18,4 @@ public class LoadMoreDataCommandViewModel
 
     public ObservableCollection<Person> Items { get; set; }
 }
+// << datagrid-customloadmoredatacommand-viewmodel-csharp

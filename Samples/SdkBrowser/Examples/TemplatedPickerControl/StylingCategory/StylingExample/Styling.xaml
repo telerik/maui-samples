@@ -8,14 +8,10 @@
         <local:LocationViewModel />
     </telerik:RadContentView.BindingContext>
     <telerik:RadContentView.Resources>
-        <ResourceDictionary>
-            <!-- >> templatedpicker-accentcolor -->
-            <Color x:Key="AccentColor">#B73562</Color>
-            <!-- << templatedpicker-accentcolor -->
-
+        <ResourceDictionary>          
             <!-- >> templatedpicker-displaylabelstyle -->
             <Style x:Key="displayLabelStyle" TargetType="Label">
-                <Setter Property="TextColor" Value="#4A4949"/>
+                <Setter Property="TextColor" Value="#151950"/>
                 <Setter Property="HorizontalTextAlignment" Value="Center"/>
                 <Setter Property="VerticalTextAlignment" Value="Center"/>
             </Style>
@@ -28,17 +24,7 @@
                 <Setter Property="VerticalTextAlignment" Value="Center"/>
             </Style>
             <!-- << templatedpicker-placeholderlabelstyle -->
-            
-            <!-- >> templatedpicker-defaulttemplatedpicker -->
-            <Style x:Key="defaultTemplatedPickerStyle" TargetType="telerik:RadTemplatedPicker">
-                <Setter Property="BorderThickness" Value="0, 0, 0, 1" />
-                <Setter Property="BorderColor" Value="#B7B7BA" />
-                <Setter Property="HeightRequest" Value="44" />
-                <Setter Property="Margin" Value="0, 4, 0, 0" />
-                <Setter Property="IsEnabled" Value="True" />
-            </Style>
-            <!-- << templatedpicker-defaulttemplatedpicker -->
-            
+           
             <!-- >> templatedpicker-headelabelstyle -->
             <Style x:Key="pickerHeaderLabelStyle" TargetType="Label">
                 <Setter Property="TextColor" Value="White" />
@@ -52,7 +38,7 @@
             <Style x:Key="defaultRadBorderStyle" TargetType="telerik:RadBorder">
                 <Setter Property="HeightRequest" Value="24" />
                 <Setter Property="VerticalOptions" Value="Center" />
-                <Setter Property="BorderColor" Value="#D9D9D9" />
+                <Setter Property="BorderColor" Value="#8660C5"/>
                 <Setter Property="BorderThickness" Value="0,1" />
             </Style>
             <!-- << templatedpicker-borderstyle -->
@@ -70,27 +56,27 @@
             </Style>
             <!-- << templatedpicker-selecteditemstyle -->
 
-            <!-- >> datepicker-style-clear-button-style -->
+            <!-- >> templatedpicker-style-clear-button-style -->
             <Style TargetType="telerik:RadButton" x:Key="clearButtonStyle">
-                <Setter Property="TextColor" Value="Blue"/>
+                <Setter Property="TextColor" Value="#8660C5"/>
             </Style>
-            <!-- << datepicker-style-clear-button-style -->
+            <!-- << templatedpicker-style-clear-button-style -->
 
-            <!-- >> datepicker-style-toggle-button-style -->
+            <!-- >> templatedpicker-style-toggle-button-style -->
             <Style TargetType="telerik:RadButton" x:Key="toggleButtonStyle">
-                <Setter Property="TextColor" Value="LightBlue"/>
+                <Setter Property="TextColor" Value="#7C59B6"/>
             </Style>
-            <!-- << datepicker-style-toggle-button-style -->
+            <!-- << templatedpicker-style-toggle-button-style -->
         </ResourceDictionary>
     </telerik:RadContentView.Resources>
     <VerticalStackLayout WidthRequest="360" HorizontalOptions="Center">
         <!-- >> templatedpicker-style -->
-        <telerik:RadTemplatedPicker x:Name="picker"
+        <telerik:RadTemplatedPicker x:Name="picker" 
+                                    BorderColor="#8660C5"
                                     Placeholder="Pick a destination!" 
-                                    DisplayStringFormat="Destination: {0}"
+                                    DisplayStringFormat="Destination: {0}"                                 
                                     DisplayLabelStyle="{StaticResource displayLabelStyle}"
-                                    PlaceholderLabelStyle="{StaticResource defaultPlaceholderLabelStyle}"
-                                    Style="{StaticResource defaultTemplatedPickerStyle}"
+                                    PlaceholderLabelStyle="{StaticResource defaultPlaceholderLabelStyle}"                                  
                                     ClearButtonStyle="{StaticResource clearButtonStyle}"
                                     ToggleButtonStyle="{StaticResource toggleButtonStyle}"
                                     IsClearButtonVisible="True"

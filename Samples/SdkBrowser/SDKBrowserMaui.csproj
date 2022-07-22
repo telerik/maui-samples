@@ -12,8 +12,6 @@
 
 		<!-- TODO: Remove it when Maui is officially released. -->
 		<AndroidLinkResources>false</AndroidLinkResources>
-
-		<MtouchLink Condition="'$(TargetFramework)' == 'net6.0-ios'  OR '$(TargetFramework)' == 'net6.0-maccatalyst'">SdkOnly</MtouchLink>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(TargetFramework)' == 'net6.0-maccatalyst'">
@@ -33,7 +31,7 @@
 		<EmbeddedResource Include="Examples\MapControl\world.shp" />
 	</ItemGroup>
 	<ItemGroup Condition="$(SolutionName) != 'Telerik.Maui'">
-	<PackageReference Include="Telerik.UI.for.Maui" Version="2.0.0" />
+	<PackageReference Include="Telerik.UI.for.Maui" Version="2.2.0" />
 	</ItemGroup>
 
 	<Import Condition="'$(SolutionName)' == 'Telerik.Maui'" Project="..\AddSourceReferences.proj" />
