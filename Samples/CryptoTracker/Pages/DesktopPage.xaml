@@ -23,7 +23,14 @@
                            Margin="0, 12, 20, 0"
                            Clicked="DownloadButtonClicked"/>
         <Views:CoinSelectionView Grid.Row="1" CoinSelected="OnCoinSelected" Padding="20, 20, 20, 10"/>
-
+        <telerik:RadBusyIndicator Grid.Row="1"
+                                  x:Name="BusyIndicator"
+                                  VerticalOptions="Center"
+                                  AnimationType="Animation2"
+                                  AnimationContentColor="{StaticResource DownloadButtonColor}"
+                                  AnimationContentHeightRequest="100"
+                                  AnimationContentWidthRequest="100"
+                                  HeightRequest="100" />
         <telerik:RadTabView Grid.Row="1"
                             Grid.Column="1"
                             Grid.ColumnSpan="2"

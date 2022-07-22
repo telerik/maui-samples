@@ -1,104 +1,77 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
-using System.IO;
-using System.Linq;
+using System.Net.Http;
+using System.Text.Json;
+using System.Threading.Tasks;
 
 namespace CryptoTracker.Data
 {
     public class CoinDataService : ICoinDataService
     {
-        private readonly string[] coinFilePaths;
-
-        public CoinDataService()
+        private const string baseUrl = "https://min-api.cryptocompare.com/data";
+        private const int CoinAPILimit = 100;
+        private static async Task<string> GetAsync(string uri)
         {
-            var assembly = typeof(CoinDataService).Assembly;
-
-            this.coinFilePaths = assembly.GetManifestResourceNames().Where(x => x.StartsWith("CryptoTracker.Data.Coins")).ToArray();
+            using var client = new HttpClient();
+            var response = await client.GetStringAsync(uri);
+            return response;
         }
 
-        public IList<CoinData> GetAllCurrentCoins()
+        public async Task<IList<CoinData>> GetCoinsAsync(int coinsCount)
         {
+            coinsCount = Math.Min(coinsCount, CoinAPILimit);
             var coins = new List<CoinData>();
-            foreach (var path in this.coinFilePaths)
+
+            var uri = baseUrl + $"/top/totalvolfull?limit={coinsCount}&tsym=USD";
+            var json = await GetAsync(uri);
+            var coinsResponse = JsonDocument.Parse(json).RootElement.GetProperty("Data");
+            for (int i = 0; i < coinsResponse.GetArrayLength(); i++)
             {
-                coins.Add(GetCurrentCoin(path));
+                var coinInfo = coinsResponse[i].GetProperty("CoinInfo");
+                if (coinsResponse[i].TryGetProperty("RAW", out var rawData) && rawData.TryGetProperty("USD", out var usdData))
+                {
+                    var coinPrices = coinsResponse[i].GetProperty("RAW").GetProperty("USD");
+                    var coin = new CoinData()
+                    {
+                        Symbol = coinInfo.GetProperty("Name").GetString(),
+                        Name = coinInfo.GetProperty("FullName").GetString(),
+                        Price24Low = coinPrices.GetProperty("LOWDAY").GetDouble(),
+                        Price24High = coinPrices.GetProperty("HIGHDAY").GetDouble(),
+                        OpeningPrice = coinPrices.GetProperty("OPENDAY").GetDouble(),
+                        ChangeInPriceAmount = coinPrices.GetProperty("CHANGE24HOUR").GetDouble(),
+                        ChangeInPricePercentage = coinPrices.GetProperty("CHANGEPCT24HOUR").GetDouble(),
+                    };
+
+                    coins.Add(coin);
+                }
+            }
+            return coins;
+        }
+
+        public async Task<IList<CoinData>> GetOHLCCoinDataAsync(CoinData selectedCoin, int days)
+        {
+            var uri = $"{baseUrl}/v2/histoday?fsym={selectedCoin.Symbol}&tsym=USD&limit={days}";
+            if (days == 1)
+            {
+                uri = $"{baseUrl}/v2/histohour?fsym={selectedCoin.Symbol}&tsym=USD&limit=24";
+            }
+            var doc = JsonDocument.Parse(await GetAsync(uri));
+            var coinsJson = doc.RootElement.GetProperty("Data").GetProperty("Data");
+
+            var coins = coinsJson.Deserialize<List<CoinData>>();
+
+            foreach (var coin in coins)
+            {
+                coin.Name = selectedCoin.Name;
+                coin.Symbol = selectedCoin.Symbol;
             }
 
             return coins;
         }
 
-        public IList<CoinData> GetCoinDataFromDateToDate(string coinName, DateTime start, DateTime end)
+        public async Task<IList<CoinData>> GetHourlyOHLCCoinDataAsync(CoinData selectedCoin)
         {
-            var coinInfo = new List<CoinData>();
-            var coinFile = this.coinFilePaths.Where(x => x.Contains(coinName.Replace(" ", "").Replace(".", ""), StringComparison.OrdinalIgnoreCase)).First();
-            var assembly = typeof(CoinDataService).Assembly;
-
-            using (var input = assembly.GetManifestResourceStream(coinFile))
-            {
-                using (var reader = new StreamReader(input))
-                {
-                    if (reader != null)
-                    {
-                        reader.ReadLine();
-                    }
-
-                    while (!reader.EndOfStream)
-                    {
-                        var line = reader.ReadLine().Split(',');
-                        var currentCoin = new CoinData()
-                        {
-                            Name = line[1],
-                            Symbol = line[2],
-                            Date = DateTime.Parse(line[3]),
-                            Price24High = double.Parse(line[4], CultureInfo.InvariantCulture),
-                            Price24Low = double.Parse(line[5], CultureInfo.InvariantCulture),
-                            OpeningPrice = double.Parse(line[6], CultureInfo.InvariantCulture),
-                            ClosingPrice = double.Parse(line[7], CultureInfo.InvariantCulture),
-                        };
-
-                        if (currentCoin.Date >= start && currentCoin.Date < end)
-                        {
-                            coinInfo.Add(currentCoin);
-                        }
-                    }
-                }
-            }
-
-            return coinInfo;
-        }
-
-        public CoinData GetCurrentCoin(string coinPath)
-        {
-            var coinPathToGet = this.coinFilePaths.Where(x => x.Contains($"{coinPath}")).First();
-            var assembly = typeof(CoinDataService).Assembly;
-
-            using (var input = assembly.GetManifestResourceStream(coinPathToGet))
-            {
-                using (var reader = new StreamReader(input))
-                {
-                    var lastLine = string.Empty;
-
-                    while (!reader.EndOfStream)
-                    {
-                        lastLine = reader.ReadLine();
-                    }
-
-                    var splitedLastLine = lastLine.Split(',');
-                    var currentCoin = new CoinData()
-                    {
-                        Name = splitedLastLine[1],
-                        Symbol = splitedLastLine[2],
-                        Date = DateTime.Parse(splitedLastLine[3]),
-                        Price24High = double.Parse(splitedLastLine[4], CultureInfo.InvariantCulture),
-                        Price24Low = double.Parse(splitedLastLine[5], CultureInfo.InvariantCulture),
-                        OpeningPrice = double.Parse(splitedLastLine[6], CultureInfo.InvariantCulture),
-                        ClosingPrice = double.Parse(splitedLastLine[7], CultureInfo.InvariantCulture),
-                    };
-
-                    return currentCoin;
-                }
-            }
+            return await GetOHLCCoinDataAsync(selectedCoin, 1);
         }
     }
 }

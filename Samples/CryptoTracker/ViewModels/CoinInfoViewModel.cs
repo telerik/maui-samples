@@ -1,7 +1,8 @@
-﻿using CryptoTracker.Data;
-using Microsoft.Maui.Controls;
-using System;
+﻿using System;
+using System.Linq;
 using System.Collections.Generic;
+using CryptoTracker.Data;
+using Microsoft.Maui.Controls;
 using Telerik.Maui.Controls;
 using Telerik.Maui.Controls.Compatibility.Chart;
 
@@ -9,51 +10,76 @@ namespace CryptoTracker.ViewModels
 {
     public class CoinInfoViewModel : NotifyPropertyChangedBase
     {
+        private const string dailySymbol = "1D";
+        private const string weeklySymbol = "1W";
+        private const string monthlySymbol = "1M";
+        private const string halfYearlySymbol = "6M";
+        private const string yearlySymbol = "1Y";
+        private const int dataLimit = 365;
+
+        private CoinData selectedCoin;
         private const int LineChartType = 0;
         private const int CandlestickChartType = 1;
-
         private double coinCurrentPrice;
         private string coinName;
         private string coinSymbol;
-        private DateTime fromDate;
-        private DateTime toDate;
+        private int countDays;
         private int selectedTimePeriod;
         private double coinPriceChangePercentage;
         private TimeInterval chartMajorStepUnit;
         private double chartMajorStep;
-        private IList<CoinData> dataForChart;
-        private IList<CoinData> dataForDataGrid;
+        private string chartLabelFormat;
+        private string dataGridLabelFormat;
+        private IList<CoinData> coinData;
+        private IList<CoinData> candlestickChartData;
+        private IList<CoinData> intervalCoinData;
+        private IList<CoinData> hourlyCoinData;
         private IList<string> timePeriods;
         private bool isLineChartVisible;
         private bool isCandlestickChartVisible;
+        private bool isChartLoading;
         private int selectedChartType;
-        private string chartLabelFormat;
 
         public CoinInfoViewModel()
         {
             this.ChartMajorStep = 1.0;
-            this.DataForChart = new List<CoinData>();
-            this.DataForDataGrid = new List<CoinData>();
-            this.TimePeriods = new List<string>() { "1D", "1W", "1M", "6M", "1Y"};
+            this.CoinData = new List<CoinData>();
+            this.CandlestickChartData = new List<CoinData>();
+            this.IntervalCoinData = new List<CoinData>();
+            this.hourlyCoinData = new List<CoinData>();
+            this.TimePeriods = new List<string>() { dailySymbol, weeklySymbol, monthlySymbol, halfYearlySymbol, yearlySymbol};
             this.IsLineChartVisible = true;
+            this.IsChartLoading = false;
         }
 
-        public IList<CoinData> DataForChart
+        public IList<CoinData> CoinData
         {
-            get => this.dataForChart;
-            private set => this.UpdateValue(ref this.dataForChart, value);
+            get => this.coinData;
+            private set => this.UpdateValue(ref this.coinData, value);
         }
 
-        public IList<CoinData> DataForDataGrid
+        public IList<CoinData> CandlestickChartData
         {
-            get => this.dataForDataGrid;
-            private set => this.UpdateValue(ref this.dataForDataGrid, value);
+            get => this.candlestickChartData;
+            private set => this.UpdateValue(ref this.candlestickChartData, value);
+        }
+
+        public IList<CoinData> IntervalCoinData
+        {
+            get => this.intervalCoinData;
+            private set => this.UpdateValue(ref this.intervalCoinData, value);
         }
 
         public bool IsLineChartVisible
         {
             get => this.isLineChartVisible;
             private set => this.UpdateValue(ref this.isLineChartVisible, value);
+        }
+
+        public bool IsChartLoading
+        {
+            get => this.isChartLoading;
+            private set => this.UpdateValue(ref this.isChartLoading, value);
         }
 
         public bool IsCandlestickChartVisible
@@ -66,6 +92,12 @@ namespace CryptoTracker.ViewModels
         {
             get => this.timePeriods;
             private set => this.UpdateValue(ref this.timePeriods, value);
+        }
+
+        public CoinData SelectedCoin
+        {
+            get => this.selectedCoin;
+            private set => UpdateValue(ref this.selectedCoin, value);
         }
 
         public int SelectedTimePeriod
@@ -116,16 +148,10 @@ namespace CryptoTracker.ViewModels
             private set => this.UpdateValue(ref this.coinName, value);
         }
 
-        public DateTime FromDate
+        public int CountDays
         {
-            get => this.fromDate;
-            private set => this.UpdateValue(ref this.fromDate, value);
-        }
-
-        public DateTime ToDate
-        {
-            get => this.toDate;
-            private set => this.UpdateValue(ref this.toDate, value);
+            get => this.countDays;
+            private set => this.UpdateValue(ref this.countDays, value);
         }
 
         public TimeInterval ChartMajorStepUnit
@@ -146,156 +172,188 @@ namespace CryptoTracker.ViewModels
             private set => this.UpdateValue(ref this.chartLabelFormat, value);
         }
 
+        public string DataGridLabelFormat
+        {
+            get => this.dataGridLabelFormat;
+            private set => this.UpdateValue(ref this.dataGridLabelFormat, value);
+        }
+
         public void InitializeCoinData(CoinData currentCoinInfo)
         {
+            this.SelectedCoin = currentCoinInfo;
             this.CoinName = currentCoinInfo.Name;
             this.CoinSymbol = currentCoinInfo.Symbol;
-            this.CoinCurrentPrice = currentCoinInfo.ClosingPrice;
+            this.CoinCurrentPrice = currentCoinInfo.OpeningPrice;
             this.CoinPriceChangePercentage = currentCoinInfo.ChangeInPricePercentage;
-            this.ToDate = currentCoinInfo.Date;
-            this.SelectedTimePeriod = 0; // so that UpdateValue gets called when we change from 2 to 2 (that happens when we select a new coin from the ListView)
+            this.CountDays = 31;
+            if (this.SelectedTimePeriod == 2)
+            {
+                this.OnDatePeriodSelection();
+            }
+            else
+            {
+                this.SelectedTimePeriod = 2;
+            }
             this.SelectedTimePeriod = 2;
-            this.SelectedChartType = 1;
-            this.SelectedChartType = 0; // so that UpdateValue gets called when we change from 0 to 0 (that happens when we select a new coin from the ListView)
+
+            if (this.SelectedChartType == 0)
+            {
+                this.OnChartTypeSelection();
+            }
+            else
+            {
+                this.SelectedChartType = 0;
+
+            }
+
+            this.DownLoadDailyCoinData(dataLimit);
+            this.DownLoadHourlyCoinData();
+        }
+
+        private async void DownLoadDailyCoinData(int limitDays)
+        {
+            this.IsChartLoading = true;
+            var coinService = DependencyService.Get<ICoinDataService>();
+            this.CoinData = await coinService.GetOHLCCoinDataAsync(this.SelectedCoin, limitDays);
+            this.LoadCoinData();
+            this.IsChartLoading = false;
+        }
+
+        private async void DownLoadHourlyCoinData()
+        {
+            var coinService = DependencyService.Get<ICoinDataService>();
+            this.hourlyCoinData = await coinService.GetHourlyOHLCCoinDataAsync(this.SelectedCoin);
         }
 
         private void LoadCoinData()
         {
-            var coinService = DependencyService.Get<ICoinDataService>();
-            var coinData = coinService.GetCoinDataFromDateToDate(this.CoinName, this.FromDate, this.ToDate);
-
-            this.DataForChart = coinData;
-            this.DataForDataGrid = coinData;
-
-            if (this.TimePeriods[this.SelectedTimePeriod] == "1D")
+            if (this.CoinData.Count == 0)
             {
-                this.DataForChart = this.Get24HourCoinInfo(this.DataForChart[0]);
+                return;
             }
-            else if (this.IsCandlestickChartVisible && this.TimePeriods[this.SelectedTimePeriod] != "1W" && this.DataForChart.Count > 0)
+
+            if (this.CountDays == 1)
             {
-                this.DataForChart = this.GetCandlestickChartData(this.DataForChart);
+                this.IntervalCoinData = hourlyCoinData;
+                this.CandlestickChartData = this.Get24HourCandlestickData();
+                return;
             }
+
+            var currentData = new List<CoinData>();
+            for (int i = this.CoinData.Count-1; i >= this.CoinData.Count - this.CountDays; i--)
+            {
+                currentData.Add(this.CoinData[i]);
+            }
+
+            this.IntervalCoinData = currentData;
+            this.LoadCandlestickData(currentData);
         }
 
-        private IList<CoinData> GetCandlestickChartData(IList<CoinData> initialData)
+        private void LoadCandlestickData(IList<CoinData> lineChartCoinData)
         {
             var newData = new List<CoinData>();
+            newData.Add(lineChartCoinData[0]);
 
-            var newElementAdditionInterval = this.TimePeriods[this.SelectedTimePeriod] == "1M" ? 7 : 30;
-            
             var newOpen = 0.0;
-            var newClose = 0.0;
             var newHigh = 0.0;
             var newLow = double.MaxValue;
-            var newDate = DateTime.Now;
             bool isNewElement = true;
 
-            for (int i = 0; i < initialData.Count; i++)
+            var previousDate = lineChartCoinData[0].Date;
+            var nextDate = new DateTime();
+
+            for (int i = 1; i < lineChartCoinData.Count; i++)
             {
                 if (isNewElement)
                 {
-                    newOpen = initialData[i].OpeningPrice;
-                    newDate = initialData[i].Date;
-
+                    newOpen = lineChartCoinData[i].OpeningPrice;
                     isNewElement = false;
                 }
 
-                newHigh = initialData[i].Price24High > newHigh ? initialData[i].Price24High : newHigh;
-                newLow = initialData[i].Price24Low < newLow ? initialData[i].Price24Low : newLow;
+                newHigh = lineChartCoinData[i].Price24High > newHigh ? lineChartCoinData[i].Price24High : newHigh;
+                newLow = lineChartCoinData[i].Price24Low < newLow ? lineChartCoinData[i].Price24Low : newLow;
 
-                if (i % newElementAdditionInterval == 0 && i != 0)
+                var currentDate = lineChartCoinData[i].Date;
+                switch (this.TimePeriods[this.SelectedTimePeriod])
                 {
-                    newClose = initialData[i].ClosingPrice;
+                    case weeklySymbol:
+                        this.CandlestickChartData = lineChartCoinData;
+                        return;
+                    case monthlySymbol:
+                        nextDate = previousDate.AddDays(-7);
+                        break;
+                    case halfYearlySymbol:
+                    case yearlySymbol:
+                        nextDate = previousDate.AddMonths(-1);
+                        break;
+                }
+
+                if (currentDate.Date == nextDate.Date)
+                {
                     newData.Add(new CoinData()
                     {
-                        Name = initialData[i].Name,
-                        Symbol = initialData[i].Symbol,
+                        Name = lineChartCoinData[i].Name,
+                        Symbol = lineChartCoinData[i].Symbol,
+                        UnixTimeStamp = lineChartCoinData[i].UnixTimeStamp,
+                        ClosingPrice = lineChartCoinData[i].ClosingPrice,
                         OpeningPrice = newOpen,
-                        ClosingPrice = newClose,
                         Price24Low = newLow,
                         Price24High = newHigh,
-                        Date = newDate,
                     });
 
                     newHigh = 0;
                     newLow = double.MaxValue;
                     isNewElement = true;
+                    previousDate = currentDate;
                 }
+            }
+            this.CandlestickChartData = newData;
+        }
+
+        private IList<CoinData> Get24HourCandlestickData()
+        {
+            var newData = new List<CoinData>();
+            for (int i = 0; i < this.hourlyCoinData.Count; i += (int)this.ChartMajorStep)
+            {
+                newData.Add(this.hourlyCoinData[i]);
             }
 
             return newData;
-        }
-
-        private IList<CoinData> Get24HourCoinInfo(CoinData current)
-        {
-            var data = new List<CoinData>();
-
-            var priceToAdd = current.OpeningPrice;
-
-            for (int i = 23; i >= 1; i--)
-            {
-                data.Add(new CoinData()
-                {
-                    Name = current.Name,
-                    Date = current.Date.AddHours(-i).AddSeconds(1),
-                    ClosingPrice = priceToAdd,
-                });
-
-                switch (i)
-                {
-                    case 10:
-                        priceToAdd = current.Price24Low;
-                        break;
-                    case 20:
-                        priceToAdd = current.Price24High;
-                        break;
-                    default:
-                        priceToAdd = priceToAdd >= current.ClosingPrice
-                            ? priceToAdd - (current.Price24High - current.Price24Low) / 23
-                            : priceToAdd + (current.Price24High - current.Price24Low) / 23; ;
-                        break;
-                }
-            }
-
-            data.Add(current);
-
-            return data;
         }
 
         private void OnDatePeriodSelection()
         {
             var timePeriod = this.TimePeriods[this.SelectedTimePeriod];
 
-            if (this.ToDate.Year < 2000) return;
             this.ChartMajorStep = 1;
-
+            this.ChartMajorStepUnit = TimeInterval.Month;
+            this.ChartLabelFormat = "MMM";
+            this.DataGridLabelFormat = "{0:MMM d, yyyy}";
+            
             switch (timePeriod)
             {
-                case "1D":
-                    this.FromDate = this.ToDate.AddDays(-1);
+                case dailySymbol:
+                    this.CountDays = 1;
                     this.ChartMajorStepUnit = TimeInterval.Hour;
                     this.ChartLabelFormat = "h tt";
+                    this.DataGridLabelFormat = "{0:MMM d, yyyy, h tt}";
                     this.ChartMajorStep = 4;
                     break;
-                case "1W":
-                    this.FromDate = this.ToDate.AddDays(-7);
+                case weeklySymbol:
+                    this.CountDays = 7;
                     this.ChartMajorStepUnit = TimeInterval.Day;
                     this.ChartLabelFormat = "ddd";
                     break;
-                case "1M":
-                    this.FromDate = this.ToDate.AddMonths(-1);
+                case monthlySymbol:
+                    this.CountDays = 31;
                     this.ChartMajorStepUnit = TimeInterval.Week;
                     this.ChartLabelFormat = "MMM, dd";
                     break;
-                case "6M":
-                    this.FromDate = this.ToDate.AddMonths(-6);
-                    this.ChartMajorStepUnit = TimeInterval.Month;
-                    this.ChartLabelFormat = "MMM";
+                case halfYearlySymbol:
+                    this.CountDays = 182;
                     break;
-                case "1Y":
-                    this.FromDate = this.ToDate.AddYears(-1);
-                    this.ChartMajorStepUnit = TimeInterval.Month;
-                    this.ChartLabelFormat = "MMM";
+                case yearlySymbol:
+                    this.CountDays = 365;
                     break;
             }
 
@@ -306,8 +364,6 @@ namespace CryptoTracker.ViewModels
         {
             this.IsLineChartVisible = this.SelectedChartType == LineChartType;
             this.IsCandlestickChartVisible = this.SelectedChartType == CandlestickChartType;
-
-            this.LoadCoinData();
         }
     }
 }

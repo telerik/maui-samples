@@ -24,7 +24,6 @@
                                              HorizontalOptions="End" 
                                              VerticalOptions="Center"
                                              WidthRequest="{OnPlatform UWP=150, MacCatalyst=150, Default=100}"
-                                             SelectionChanged="ChangedChartType"
                                              SelectedIndex="{Binding SelectedChartType, Mode=TwoWay}"
                                              Style="{StaticResource SegmentedControlStyle}">
                     <telerik:RadSegmentedControl.ItemsSource>
@@ -59,8 +58,8 @@
                     <telerik:LineSeries
                         StrokeThickness="2.5"
                         CategoryBinding="Date"
-                        ValueBinding="ClosingPrice"
-                        ItemsSource="{Binding DataForChart}">
+                        ValueBinding="Price24High"
+                        ItemsSource="{Binding IntervalCoinData}">
                     </telerik:LineSeries>
                 </telerik:RadCartesianChart.Series>
             </telerik:RadCartesianChart>
@@ -73,8 +72,8 @@
                         LabelTextColor="Black"
                         LabelFitMode="Rotate"
                         LabelFormat="{Binding ChartLabelFormat}"
-                        MajorStepUnit="{Binding ChartMajorStepUnit}"
-                        MajorStep="1">
+                        MajorStep="{Binding ChartMajorStep}"
+                        MajorStepUnit="{Binding ChartMajorStepUnit}">
                     </telerik:DateTimeContinuousAxis>
                 </telerik:RadCartesianChart.HorizontalAxis>
                 <telerik:RadCartesianChart.VerticalAxis>
@@ -91,17 +90,26 @@
                         HighBinding="Price24High"
                         LowBinding="Price24Low"
                         CloseBinding="ClosingPrice"
-                        ItemsSource="{Binding DataForChart}" />
+                        ItemsSource="{Binding CandlestickChartData}" />
                 </telerik:RadCartesianChart.Series>
             </telerik:RadCartesianChart>
 
+            <telerik:RadBusyIndicator Grid.Row="1"
+                                      VerticalOptions="Center"
+                                      AnimationType="Animation2"
+                                      AnimationContentColor="{StaticResource DownloadButtonColor}"
+                                      AnimationContentHeightRequest="100"
+                                      AnimationContentWidthRequest="100"
+                                      HeightRequest="100"
+                                      IsVisible="{Binding IsChartLoading}"
+                                      IsBusy="{Binding IsChartLoading}"/>
+            
             <telerik:RadSegmentedControl x:Name="timePeriodsSegmentedControl"
                                          Grid.Row="2"
                                          HorizontalOptions="CenterAndExpand"
                                          WidthRequest="{OnPlatform Default=290, UWP=720, MacCatalyst=720}"
                                          ItemsSource="{Binding TimePeriods}"
                                          SelectedIndex="{Binding SelectedTimePeriod, Mode=TwoWay}"
-                                         SelectionChanged="ChangedTimePeriod"
                                          Style="{StaticResource SegmentedControlStyle}" />
         </Grid>
     </telerik:RadBorder>
