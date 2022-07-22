@@ -125,8 +125,8 @@
             </telerik:RadTemplatedPicker.DropDownSettings>
             <telerik:RadTemplatedPicker.SelectorTemplate>
                 <ControlTemplate>
-                    <ScrollView>
-                        <VerticalStackLayout HeightRequest="{OnPlatform MacCatalyst=301, iOS=301}">
+                    <ScrollView HeightRequest="{OnPlatform MacCatalyst=301, iOS=301}">
+                        <VerticalStackLayout>
                             <telerik:RadUniformGrid Style="{StaticResource DefaultUniformGridStyle}"
                                                     HeightRequest="{OnPlatform MacCatalyst=150, iOS=150}"
                                                     HorizontalOptions="Start">

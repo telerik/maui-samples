@@ -2,14 +2,13 @@
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
-             xmlns:converters="clr-namespace:QSF.Converters"
              xmlns:local="clr-namespace:QSF.Examples.DataGridControl.ColumnTypesExample"
              x:Class="QSF.Examples.DataGridControl.ColumnTypesExample.ColumnTypesView"
              Margin="{OnIdiom Phone='16,20', Desktop=0}">
     <ContentView.Resources>
         <ResourceDictionary>
-            <converters:BooleanToTextConverter x:Key="boolToTextConverter"/>
-            <local:StatusFlightToBooleanConverter x:Key="statusFlightToBooleanConverter"/>
+            <telerik:BoolToValueConverter x:Key="BoolToValueConverter" TrueValue="Yes" FalseValue="No"/>
+            <local:StatusFlightToBooleanConverter x:Key="StatusFlightToBooleanConverter"/>
         </ResourceDictionary>
     </ContentView.Resources>
     <Grid RowDefinitions="*">
@@ -50,7 +49,7 @@
                         <DataTemplate>
                             <HorizontalStackLayout Padding="10,0,0,0">
                                 <Label VerticalOptions="Center"
-                                        Text="{Binding IsDirect, Converter={StaticResource boolToTextConverter}}" />
+                                       Text="{Binding IsDirect, Converter={StaticResource BoolToValueConverter}}" />
                             </HorizontalStackLayout>
                         </DataTemplate>
                     </telerik:DataGridColumn.CellContentTemplate>
@@ -67,7 +66,7 @@
                                        Text="{Binding Status}"/>
                                 <Label Text="{Binding StatusTime}"
                                        FontSize="Caption"
-                                       IsVisible="{Binding Status, Converter={StaticResource statusFlightToBooleanConverter}}"
+                                       IsVisible="{Binding Status, Converter={StaticResource StatusFlightToBooleanConverter}}"
                                        VerticalOptions="Center"
                                        HorizontalOptions="Start"
                                        TextColor="{StaticResource AccentColor8}"/>

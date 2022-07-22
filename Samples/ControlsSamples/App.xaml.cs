@@ -33,6 +33,7 @@ public partial class App : Application
         DependencyService.Register<IFileViewerService, FileViewerService>();
         DependencyService.Register<INavigationService, NavigationService>();
         DependencyService.Register<IExampleService, ExampleService>();
+        DependencyService.Register<IConfigurationAreaService, ConfigurationAreaService>();
         DependencyService.Register<IControlsService, ControlsService>();
         DependencyService.Register<ISearchService, SearchService>();
         DependencyService.Register<IToastMessageService, ToastMessageService>();

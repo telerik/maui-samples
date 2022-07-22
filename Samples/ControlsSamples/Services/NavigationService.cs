@@ -4,7 +4,6 @@ using QSF.Helpers;
 using QSF.Pages;
 using QSF.ViewModels;
 using System;
-using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -42,11 +41,18 @@ public class NavigationService : INavigationService
         }
 
         var viewModel = (ExampleViewModel)Activator.CreateInstance(viewModelType);
-        viewModel.ConfigurateExampleViewModel(example);
+        viewModel.Example = example;
+        viewModel.HeaderTitle = example.DisplayName;
         view.BindingContext = viewModel;
 
         return this.navigation.PushAsync(view);
-        //await this.navigation.PushAsync(view);
+    }
+
+    public Task NavigateToConfigurationPageAsync(ExampleViewModel viewmodel)
+    {
+        ConfigurationPage configurationPage = new ConfigurationPage();
+        configurationPage.BindingContext = viewmodel;
+        return this.navigation.PushAsync(configurationPage);
     }
 
     public Task NavigateToRootAsync()

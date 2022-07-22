@@ -38,11 +38,9 @@
         </ResourceDictionary>
     </ContentView.Resources>
     <Grid RowDefinitions="*, Auto">
-        <telerik:NonVirtualizedItemsControl Grid.Row="0"
-                                            ItemsSource="{Binding Users}"
-                                            SelectionMode="None"
-                                            VerticalOptions="StartAndExpand">
-            <telerik:NonVirtualizedItemsControl.ItemTemplate>
+        <telerik:RadItemsControl Grid.Row="0"
+                                 ItemsSource="{Binding Users}">
+            <telerik:RadItemsControl.ItemTemplate>
                 <DataTemplate>
                     <Grid ColumnDefinitions="Auto, *, *"
                           Padding="16, 8">
@@ -83,8 +81,8 @@
                         </VerticalStackLayout>
                     </Grid>
                 </DataTemplate>
-            </telerik:NonVirtualizedItemsControl.ItemTemplate>
-        </telerik:NonVirtualizedItemsControl>
+            </telerik:RadItemsControl.ItemTemplate>
+        </telerik:RadItemsControl>
         <Grid Grid.Row="1"
               ColumnDefinitions="*, *, *, *"
               VerticalOptions="EndAndExpand"

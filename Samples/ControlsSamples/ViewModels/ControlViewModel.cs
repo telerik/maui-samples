@@ -18,7 +18,6 @@ public class ControlViewModel : PageViewModel
     public ControlViewModel(Control control)
     {
         this.control = control;
-        this.IsBackVisible = true;
         this.HeaderTitle = control.DisplayName;
         this.Examples = new ObservableCollection<Example>();
 
