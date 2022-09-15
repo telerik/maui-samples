@@ -2,40 +2,20 @@
 	<PropertyGroup>
 		<IncludeWindowsTargetFrameworks Condition="($([MSBuild]::IsOSPlatform('windows')) and '$(MSBuildRuntimeType)' == 'Full') or ('$(Packing)' == 'true')">true</IncludeWindowsTargetFrameworks>
 		<IncludeOSXTargetFrameworks>true</IncludeOSXTargetFrameworks>
-		<IncludeAndroidTargetFrameworks>true</IncludeAndroidTargetFrameworks>
-		<IncludeNet60TargetFramework>true</IncludeNet60TargetFramework>
 		<AndroidOnly>false</AndroidOnly>
 		<WindowsOnly>false</WindowsOnly>
 		<iOSOnly>false</iOSOnly>
 		<MacCatalystOnly>false</MacCatalystOnly>
-		<Net60Only>false</Net60Only>
 	</PropertyGroup>
 	<PropertyGroup>
 		<OSXMauiPlatforms>net6.0-ios;net6.0-maccatalyst</OSXMauiPlatforms>
 		<WindowsMauiPlatforms>net6.0-windows10.0.19041.0</WindowsMauiPlatforms>
-		<AndroidMauiPlatforms>net6.0-android</AndroidMauiPlatforms>
-		<Net6MauiPlatforms>net6.0</Net6MauiPlatforms>
-	</PropertyGroup>
-
-	<PropertyGroup>
-		<MauiAppPlatforms Condition="'$(IncludeAndroidTargetFrameworks)' == 'true'">$(MauiAppPlatforms);$(AndroidMauiPlatforms)</MauiAppPlatforms>
-		<MauiAppPlatforms Condition="'$(IncludeOSXTargetFrameworks)' == 'true'">$(MauiAppPlatforms);$(OSXMauiPlatforms)</MauiAppPlatforms>
-		<MauiAppPlatforms Condition="'$(IncludeWindowsTargetFrameworks)' == 'true'">$(MauiAppPlatforms);$(WindowsMauiPlatforms)</MauiAppPlatforms>
+		<MauiPlatforms>net6.0-android</MauiPlatforms>
+		<MauiAppPlatforms Condition="'$(IncludeOSXTargetFrameworks)' == 'true'">$(MauiPlatforms);$(OSXMauiPlatforms)</MauiAppPlatforms>
+		<MauiAppPlatforms Condition="'$(IncludeWindowsTargetFrameworks)' == 'true'">$(MauiPlatforms);$(WindowsMauiPlatforms)</MauiAppPlatforms>
 		<MauiAppPlatforms Condition="'$(AndroidOnly)' == 'true'">net6.0-android</MauiAppPlatforms>
 		<MauiAppPlatforms Condition="'$(WindowsOnly)' == 'true'">$(WindowsMauiPlatforms)</MauiAppPlatforms>
 		<MauiAppPlatforms Condition="'$(iOSOnly)' == 'true'">net6.0-ios</MauiAppPlatforms>
 		<MauiAppPlatforms Condition="'$(MacCatalystOnly)' == 'true'">net6.0-maccatalyst</MauiAppPlatforms>
-		<MauiAppPlatforms Condition="'$(Net60Only)' == 'true'"></MauiAppPlatforms>
-
-		<MauiPlatforms Condition="'$(IncludeAndroidTargetFrameworks)' == 'true'">$(MauiPlatforms);$(AndroidMauiPlatforms)</MauiPlatforms>
-		<MauiPlatforms Condition="'$(IncludeOSXTargetFrameworks)' == 'true'">$(MauiPlatforms);$(OSXMauiPlatforms)</MauiPlatforms>
-		<MauiPlatforms Condition="'$(IncludeWindowsTargetFrameworks)' == 'true'">$(MauiPlatforms);$(WindowsMauiPlatforms)</MauiPlatforms>
-		<MauiPlatforms Condition="'$(IncludeNet60TargetFramework)' == 'true'">$(MauiPlatforms);$(Net6MauiPlatforms)</MauiPlatforms>
-		<MauiPlatforms Condition="'$(AndroidOnly)' == 'true'">net6.0-android</MauiPlatforms>
-		<MauiPlatforms Condition="'$(WindowsOnly)' == 'true'">$(WindowsMauiPlatforms)</MauiPlatforms>
-		<MauiPlatforms Condition="'$(iOSOnly)' == 'true'">net6.0-ios</MauiPlatforms>
-		<MauiPlatforms Condition="'$(MacCatalystOnly)' == 'true'">net6.0-maccatalyst</MauiPlatforms>
-		<MauiPlatforms Condition="'$(Net60Only)' == 'true'">net6.0</MauiPlatforms>
-
 	</PropertyGroup>
 </Project>
