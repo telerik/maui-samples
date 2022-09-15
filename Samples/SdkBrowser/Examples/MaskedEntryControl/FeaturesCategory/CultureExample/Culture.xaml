@@ -10,13 +10,13 @@
                 
                 <!-- >> numericmaskedentry-globalization-xaml -->
                 <Label Text="Culture = default" Margin="0, 30, 0, 0" />
-                <telerik:RadNumericMaskedEntry  Mask="C"/>
+                <telerik:RadNumericMaskedEntry  Mask="C" AutomationId="numericMask"/>
 
                 <Label Text="Culture = de-DE" Margin="0, 30, 0, 0" />
-                <telerik:RadNumericMaskedEntry x:Name="germanCultureMask" Mask="C" />
+                <telerik:RadNumericMaskedEntry x:Name="germanCultureMask" Mask="C" AutomationId="numericMaskDE"/>
 
                 <Label Text="Culture = bg-BG" Margin="0, 30, 0, 0" />
-                <telerik:RadNumericMaskedEntry x:Name="bulgarianCultureMask" Mask="C"  />
+                <telerik:RadNumericMaskedEntry x:Name="bulgarianCultureMask" Mask="C" AutomationId="numericMaskBG"/>
                 <!-- << numericmaskedentry-globalization-xaml -->
                 
             </VerticalStackLayout>

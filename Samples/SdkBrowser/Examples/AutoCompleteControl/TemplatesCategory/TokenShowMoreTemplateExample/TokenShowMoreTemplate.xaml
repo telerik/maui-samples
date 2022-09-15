@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.AutoCompleteControl.ViewModels"
+             x:Class="SDKBrowserMaui.Examples.AutoCompleteControl.TemplatesCategory.TokenShowMoreTemplateExample.TokenShowMoreTemplate">
+    <VerticalStackLayout Spacing="10">
+        <telerik:RadAutoComplete x:Name="autoCompleteTokenTemplate"
+                                 ItemsSource="{Binding Source}"
+                                 DisplayMode="Tokens" 
+                                 SuggestionViewHeight="150"
+                                 TextSearchPath="Name"
+                                 Placeholder="Search Here...">
+            <telerik:RadAutoComplete.BindingContext>
+                <local:CityViewModel/>
+            </telerik:RadAutoComplete.BindingContext>
+            <!-- >> autocomplete-templates-token-template-xaml -->
+            <telerik:RadAutoComplete.TokenTemplate>
+                <DataTemplate>
+                    <telerik:RadBorder BorderColor="#8660C5" 
+                                       BorderThickness="2" 
+                                       CornerRadius="5"
+                                       Margin="2">
+                        <HorizontalStackLayout BackgroundColor="White" 
+                                               Margin="2">
+                            <Label Text="{Binding Name}"
+                                   TextColor="Black"
+                                   VerticalTextAlignment="Center"
+                                   Margin="2" />
+                            <Label Text="X" FontSize="Small"
+                                   VerticalTextAlignment="Center"
+                                   TextColor="Black"
+                                   Margin="2">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </HorizontalStackLayout>
+                    </telerik:RadBorder>
+                </DataTemplate>
+            </telerik:RadAutoComplete.TokenTemplate>
+            <!-- << autocomplete-templates-token-template-xaml -->
+            <!-- >> autocomplete-templates-show-more-template-xaml -->
+            <telerik:RadAutoComplete.ShowMoreTemplate>
+                <DataTemplate>
+                    <Label Text="{Binding Path=., StringFormat='+{0} more'}" 
+                           VerticalTextAlignment="Center" />
+                </DataTemplate>
+            </telerik:RadAutoComplete.ShowMoreTemplate>
+            <!-- << autocomplete-templates-show-more-template-xaml -->
+        </telerik:RadAutoComplete>
+        <telerik:RadEntry x:Name="entry" Placeholder="Lose focus here"/>
+    </VerticalStackLayout>
+</ContentView>

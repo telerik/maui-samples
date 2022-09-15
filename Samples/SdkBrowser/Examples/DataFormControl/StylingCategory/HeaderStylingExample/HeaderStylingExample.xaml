@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.DataFormControl.EditorsCategory.DataTypeEditorsExample"
+             x:Class="SDKBrowserMaui.Examples.DataFormControl.StylingCategory.HeaderStylingExample.HeaderStylingExample">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <!-- >> dataform-header-styling-common-style -->
+            <Style x:Key="CommonHeaderLabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="RoyalBlue" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+            </Style>
+            <!-- << dataform-header-styling-common-style -->
+            <!-- >> dataform-header-styling-header-style -->
+            <Style x:Key="HeaderLabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="#FF734C" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="Start" />
+            </Style>
+            <!-- << dataform-header-styling-header-style -->
+            <!-- >> dataform-header-styling-header-style-alt -->
+            <Style x:Key="HeaderLabelStyleAlternative" TargetType="Label">
+                <Setter Property="TextColor" Value="#9A4CFF" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="Start" />
+            </Style>
+            <!-- << dataform-header-styling-header-style-alt -->
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <Grid RowDefinitions="Auto,*,Auto,*">
+        <Label Text="Common header label styling" 
+               Margin="0,0,0,20" 
+               HorizontalOptions="Center"/>
+
+        <!-- >> dataform-header-styling-common -->
+        <telerik:RadDataForm x:Name="dataForm" 
+                             Grid.Row="1" 
+                             HeaderLabelStyle="{StaticResource CommonHeaderLabelStyle}">
+            <telerik:RadDataForm.BindingContext>
+                <local:DataTypeEditorsModel/>
+            </telerik:RadDataForm.BindingContext>
+        </telerik:RadDataForm>
+        <!-- << dataform-header-styling-common -->
+
+        <Label Text="Individual header label styling" 
+               Grid.Row="2" 
+               Margin="0,20" 
+               HorizontalOptions="Center" />
+
+        <!-- >> dataform-header-styling-individual -->
+        <telerik:RadDataForm x:Name="dataForm2" 
+                             AutoGenerateItems="False" 
+                             Grid.Row="3">
+            <telerik:DataFormRadEntryEditor PropertyName="FirstName" 
+                                        HeaderText="Name" 
+                                        HeaderLabelStyle="{StaticResource HeaderLabelStyle}" />
+            <telerik:DataFormRadNumericEditor PropertyName="People" 
+                                           HeaderText="People" 
+                                           Minimum="1" 
+                                           HeaderLabelStyle="{StaticResource HeaderLabelStyleAlternative}" />
+            <telerik:DataFormRadComboBoxEditor PropertyName="Accommodation" 
+                                            HeaderText="Accomodation options" 
+                                            HeaderLabelStyle="{StaticResource HeaderLabelStyle}" />
+            <telerik:DataFormDatePickerEditor PropertyName="StartDate" 
+                                              HeaderText="From:" 
+                                              HeaderLabelStyle="{StaticResource HeaderLabelStyleAlternative}" />
+            <telerik:DataFormRadTimeSpanPickerEditor PropertyName="Duration" 
+                                                  HeaderText="Duration" 
+                                                  HeaderLabelStyle="{StaticResource HeaderLabelStyle}" />
+            <telerik:DataFormRadCheckBoxEditor PropertyName="Visited" 
+                                            HeaderText="Visited before" 
+                                            HeaderLabelStyle="{StaticResource HeaderLabelStyleAlternative}" />
+            <telerik:RadDataForm.BindingContext>
+                <local:DataTypeEditorsModel />
+            </telerik:RadDataForm.BindingContext>
+        </telerik:RadDataForm>
+        <!-- << dataform-header-styling-individual -->
+    </Grid>
+
+</ContentView>

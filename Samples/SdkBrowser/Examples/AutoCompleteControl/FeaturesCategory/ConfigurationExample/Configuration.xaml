@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.AutoCompleteControl.FeaturesCategory.ConfigurationExample"
+             x:Class="SDKBrowserMaui.Examples.AutoCompleteControl.FeaturesCategory.ConfigurationExample.Configuration">
+    <VerticalStackLayout Spacing="10">
+        <Label Text="Placeholder" />
+        <!-- >> autocomplete-placeholder -->
+        <telerik:RadAutoComplete x:Name="autoCompletePlaceholder"
+                                 ItemsSource="{Binding Source}"
+                                 TextSearchPath="Name"
+                                 Placeholder="Enter name..."
+                                 PlaceholderColor="LightBlue" />
+        <!-- << autocomplete-placeholder -->
+
+        <Label Text="Clear Button Visibility" />
+        <!-- >> autocomplete-clearbutton-visibility -->
+        <telerik:RadAutoComplete x:Name="autoCompleteClearButtonVisibility"
+                                 ItemsSource="{Binding Source}"
+                                 TextSearchPath="Name"
+                                 IsClearButtonVisible="False" />
+        <!-- << autocomplete-clearbutton-visibility -->
+
+        <Label Text="NoResults Message" />
+        <!-- >> autocomplete-noresultsmessage -->
+        <telerik:RadAutoComplete x:Name="autoCompleteNoResults"
+                                 ItemsSource="{Binding Source}"
+                                 TextSearchPath="Name"
+                                 NoResultsMessage="there are no matching items..." />
+        <!-- << autocomplete-noresultsmessage -->
+
+        <Label Text="Search Threshold" />
+        <!-- >> autocomplete-searchthreshold -->
+        <telerik:RadAutoComplete x:Name="autoCompleteSearchTreshold"
+                                 ItemsSource="{Binding Source}"
+                                 TextSearchPath="Name"
+                                 SearchThreshold="3" />
+        <!-- << autocomplete-searchthreshold -->
+
+        <Label Text="Hidden SuggestionView" />
+        <!-- >> autocomplete-suggestionview -->
+        <telerik:RadAutoComplete x:Name="autoCompleteSuggestionView"
+                                 ItemsSource="{Binding Source}"
+                                 TextSearchPath="Name"
+                                 CompletionMode="StartsWith"
+                                 SuggestMode="Append"
+                                 ShowSuggestionView="False"
+                                 SuggestionViewHeight="100"
+                                 SuggestionViewBackgroundColor="LightBlue" />
+        <!-- << autocomplete-suggestionview -->
+        <Label Text="SuggestionView Position" />
+        <!-- >> autocomplete-suggestionview-position -->
+        <telerik:RadAutoComplete ItemsSource="{Binding Source}"
+                                 TextSearchPath="Name"
+                                 SuggestionViewPosition="Top" />
+        <!-- << autocomplete-suggestionview-position -->
+    </VerticalStackLayout>
+</ContentView>

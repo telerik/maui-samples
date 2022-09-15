@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.DataGridControl.AggregatesCategory.DelegateAggregateDescriptorsExample"
+             x:Class="SDKBrowserMaui.Examples.DataGridControl.AggregatesCategory.DelegateAggregateDescriptorsExample.DelegateAggregateDescriptors">
+    <!-- >> datagrid-property-delegate-descriptor-example -->
+    <telerik:RadDataGrid x:Name="dataGrid"
+                         UserGroupMode="Disabled"
+                         AutoGenerateColumns="False"
+                         UserEditMode="Cell"
+                         ShowColumnFooters="True">
+        <telerik:RadDataGrid.Columns>
+            <telerik:DataGridTextColumn PropertyName="Name" />
+            <telerik:DataGridNumericalColumn PropertyName="Price"
+                                             CellContentFormat="{}{0:C}">
+                <telerik:DataGridNumericalColumn.AggregateDescriptors>
+                    <telerik:DelegateAggregateDescriptor>
+                        <telerik:DelegateAggregateDescriptor.ValueLookup>
+                            <local:SumIfKeyLookUp/>
+                        </telerik:DelegateAggregateDescriptor.ValueLookup>
+                        <telerik:DelegateAggregateDescriptor.Function>
+                            <local:SumIfAggregateFunction GreaterThanValue="100"/>
+                        </telerik:DelegateAggregateDescriptor.Function>
+                    </telerik:DelegateAggregateDescriptor>
+                </telerik:DataGridNumericalColumn.AggregateDescriptors>
+            </telerik:DataGridNumericalColumn>
+        </telerik:RadDataGrid.Columns>
+    </telerik:RadDataGrid>
+    <!-- << datagrid-property-delegate-descriptor-example -->
+</ContentView>

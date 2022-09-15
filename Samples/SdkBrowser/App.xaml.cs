@@ -45,10 +45,12 @@ namespace SDKBrowserMaui
             Microsoft.Maui.Handlers.SwitchHandler.Mapper.AppendToMapping(nameof(IView.AutomationId), (h, v) => SetAutomationId(v));
             Microsoft.Maui.Handlers.TimePickerHandler.Mapper.AppendToMapping(nameof(IView.AutomationId), (h, v) => SetAutomationId(v));
             Microsoft.Maui.Handlers.DatePickerHandler.Mapper.AppendToMapping(nameof(IView.AutomationId), (h, v) => SetAutomationId(v));
+            Microsoft.Maui.Handlers.ButtonHandler.Mapper.AppendToMapping(nameof(IView.AutomationId), (h, v) => SetAutomationId(v));
             Telerik.Maui.Handlers.RadEntryHandler.EntryViewMapper.AppendToMapping(nameof(IView.AutomationId), (h, v) => SetAutomationId(v));
             Telerik.Maui.Handlers.RadButtonHandler.RadButtonMapper.AppendToMapping(nameof(IView.AutomationId), (h, v) => SetAutomationId(v));
             Telerik.Maui.Handlers.RadBorderHandler.BorderMapper.AppendToMapping(nameof(IView.AutomationId), (h, v) => SetAutomationId(v));
             Telerik.Maui.Handlers.RadItemsControlHandler.ItemsControlMapper.AppendToMapping(nameof(IView.AutomationId), (h, v) => SetAutomationId(v));
+            Telerik.Maui.Handlers.RadCheckBoxHandler.RadCheckBoxMapper.AppendToMapping(nameof(IView.AutomationId), (h, v) => SetAutomationId(v));
 #endif
 
         }
@@ -63,7 +65,6 @@ namespace SDKBrowserMaui
                 {
                     SemanticProperties.SetDescription(element, automationId);
                 }
-
             }
         }
 

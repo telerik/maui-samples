@@ -10,12 +10,12 @@
 
                 <Label Text="Email mask:" Margin="0, 10, 0, 0" />
                 <!-- >> emailmaskedentry-validationerrormessage-xaml -->
-                <telerik:RadEmailMaskedEntry x:Name="emailMaskedEntry" ValidationErrorMessage="Please, enter a valid e-mail adress"/>
+                <telerik:RadEmailMaskedEntry x:Name="emailMaskedEntry" ValidationErrorMessage="Please, enter a valid e-mail adress" AutomationId="emailMask" />
                 <!-- << emailmaskedentry-validationerrormessage-xaml -->
                 
                 <Label Text="Regex mask:" Margin="0, 30, 0, 0" />
                 <!-- >> regexmaskedentry-validationerrormessage-xaml -->
-                <telerik:RadRegexMaskedEntry x:Name="regexMaskedEntry" Mask="^[a-z]$" Placeholder="^[a-z]$" ValidationErrorMessage="Only one symbol can be entered" />
+                <telerik:RadRegexMaskedEntry x:Name="regexMaskedEntry" Mask="^[a-z]$" Placeholder="^[a-z]$" ValidationErrorMessage="Only one symbol can be entered" AutomationId="regexMask" />
                 <!-- << regexmaskedentry-validationerrormessage-xaml -->
                 
             </VerticalStackLayout>

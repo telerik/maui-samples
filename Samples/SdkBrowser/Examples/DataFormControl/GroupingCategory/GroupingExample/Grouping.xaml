@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:model="clr-namespace:SDKBrowserMaui.Examples.DataFormControl.GroupingCategory.GroupingExample"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.DataFormControl.EditorsCategory.EditorsExample"
+             x:Class="SDKBrowserMaui.Examples.DataFormControl.GroupingCategory.GroupingExample.Grouping">
+
+    <Grid RowDefinitions="Auto,*,Auto,*,Auto,*"
+          RowSpacing="5">
+        
+        <Label Text="Grouping from XAML and adding editors in XAML to the concrete group"/>
+        <!-- >> dataform-grouping-from-XAML -->
+        <telerik:RadDataForm x:Name="dataFormGrouping"
+                             Grid.Row="1"
+                             AutoGenerateItems="False">
+            <telerik:RadDataForm.BindingContext>
+                <local:EditorsModel/>
+            </telerik:RadDataForm.BindingContext>
+            <telerik:DataFormGroup HeaderText="Personal Information">
+                <telerik:DataFormRadEntryEditor PropertyName="FirstName"/>
+                <telerik:DataFormRadNumericEditor PropertyName="People" Minimum="1" Maximum="10"/>
+                <telerik:DataFormRadComboBoxEditor PropertyName="Accommodation" HeaderText="Accomodation options"/>
+            </telerik:DataFormGroup>
+            <telerik:DataFormGroup HeaderText="Select Dates">
+                <telerik:DataFormRadDatePickerEditor PropertyName="StartDate" HeaderText="From:"/>
+                <telerik:DataFormRadDatePickerEditor PropertyName="EndDate" HeaderText="To:"/>
+            </telerik:DataFormGroup>
+            <telerik:DataFormGroup HeaderText="Additional Information" >
+                <telerik:DataFormRadTimeSpanPickerEditor PropertyName="Duration" HeaderText="Duration"/>
+                <telerik:DataFormRadCheckBoxEditor PropertyName="Visited" HeaderText="Visited before"/>
+            </telerik:DataFormGroup>
+        </telerik:RadDataForm>
+        <!-- << dataform-grouping-from-XAML -->
+
+        <Label Text="Grouping from Model" Grid.Row="2"/>
+        <!-- >> dataform-grouping-from-model -->
+        <telerik:RadDataForm x:Name="dataFormGroupingFromModel" 
+                             Grid.Row="3">
+            <telerik:RadDataForm.BindingContext>
+                <model:GroupingModel/>
+            </telerik:RadDataForm.BindingContext>
+        </telerik:RadDataForm>
+        <!-- << dataform-grouping-from-model -->
+        <Label Text="Grouping from XAML using GroupName and applying GroupName in the model" Grid.Row="4"/>
+       
+        <!-- >> dataform-grouping-mix -->
+        <telerik:RadDataForm x:Name="dataFormMixGrouping" 
+                             Grid.Row="5">
+            <telerik:RadDataForm.BindingContext>
+                <model:GroupModel/>
+            </telerik:RadDataForm.BindingContext>
+            <telerik:DataFormGroup GroupName="Additional Information"/>
+        </telerik:RadDataForm>
+        <!-- << dataform-grouping-mix -->
+    </Grid>
+</ContentView>

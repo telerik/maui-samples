@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        x:Class="SDKBrowserMaui.Examples.ExpanderControl.FeaturesCategory.StylingExample.Styling">
+    <VerticalStackLayout Margin="10,20,10,0">
+        <!-- >> expander-features-borderstyling -->
+        <telerik:RadExpander x:Name="expander"
+                             HeaderText="Read more"
+                             BorderColor="LightBlue"
+                             BorderThickness="2">
+            <!-- >> expander-features-headertext-styling -->
+            <telerik:RadExpander.HeaderTextStyle>
+                <Style TargetType="Label">
+                    <Setter Property="TextColor" Value="BlueViolet"/>
+                    <Setter Property="FontAttributes"  Value="Italic"/>
+                </Style>
+            </telerik:RadExpander.HeaderTextStyle>
+            <!-- << expander-features-headertext-styling -->
+            <telerik:RadExpander.Content>
+                <VerticalStackLayout Margin="10">
+                    <Label Text="You could apply BorderColor and BorderThickness properties of RadExpander to make it consistent with the design of your app." HeightRequest="60"/>
+                </VerticalStackLayout>
+            </telerik:RadExpander.Content>
+        </telerik:RadExpander>
+        <!-- << expander-features-borderstyling -->
+    </VerticalStackLayout>
+</telerik:RadContentView>

@@ -1,6 +1,6 @@
-﻿using Microsoft.Maui.Controls.Xaml;
+﻿using System.Collections.Generic;
+using Microsoft.Maui.Controls.Xaml;
 using Telerik.Maui.Controls;
-using System.Collections.Generic;
 
 namespace SDKBrowserMaui.Examples.SegmentedControl.GettingStartedCategory.GettingStartedExample
 {

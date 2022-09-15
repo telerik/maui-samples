@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.AutoCompleteControl.ViewModels"
+             x:Class="SDKBrowserMaui.Examples.AutoCompleteControl.FeaturesCategory.TokensExample.Tokens">
+    <VerticalStackLayout Spacing="10">
+        <!-- >> autocomplete-tokens -->
+        <telerik:RadAutoComplete DisplayMode="Tokens"
+                                 ItemsSource="{Binding Source}"
+                                 TextSearchPath="Name"
+                                 Placeholder="Search Here..."
+                                 BackgroundColor="White">
+            <telerik:RadAutoComplete.BindingContext>
+                <local:CityViewModel/>
+            </telerik:RadAutoComplete.BindingContext>
+            <telerik:RadAutoComplete.ShowMoreTemplate>
+                <DataTemplate>
+                    <Label Text="{Binding Path=., StringFormat='+{0} more'}" VerticalTextAlignment="Center" />
+                </DataTemplate>
+            </telerik:RadAutoComplete.ShowMoreTemplate>
+            <telerik:RadAutoComplete.NoResultsTemplate>
+                <DataTemplate>
+                    <Label Text="No match was found for the specific search. Please try again."/>
+                </DataTemplate>
+            </telerik:RadAutoComplete.NoResultsTemplate>
+        </telerik:RadAutoComplete>
+        <!-- << autocomplete-tokens -->
+        <telerik:RadEntry x:Name="entry" Placeholder="Lose focus here"/>
+    </VerticalStackLayout>
+</ContentView>

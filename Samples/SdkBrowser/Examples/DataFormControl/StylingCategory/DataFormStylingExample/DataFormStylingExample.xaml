@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.DataFormControl.EditorsCategory.DataTypeEditorsExample"
+             x:Class="SDKBrowserMaui.Examples.DataFormControl.StylingCategory.DataFormStylingExample.DataFormStylingExample">
+
+    <Grid>
+        <!-- >> dataform-styling -->
+        <telerik:RadDataForm x:Name="dataForm" 
+                             BackgroundColor="#E0E9FC" 
+                             BorderColor="#8660C5" 
+                             BorderThickness="2">
+            <telerik:RadDataForm.BindingContext>
+                <local:DataTypeEditorsModel />
+            </telerik:RadDataForm.BindingContext>
+        </telerik:RadDataForm>
+        <!-- << dataform-styling -->
+    </Grid>
+</ContentView>

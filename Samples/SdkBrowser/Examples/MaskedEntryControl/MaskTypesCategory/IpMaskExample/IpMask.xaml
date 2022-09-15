@@ -10,12 +10,12 @@
 
                 <Label Text="Default IP Mask:" Margin="0, 10, 0, 0" />
                 <!-- >> ipmaskedentry-xaml -->
-                <telerik:RadIPMaskedEntry/>
+                <telerik:RadIPMaskedEntry AutomationId="ipMask"/>
                 <!-- << ipmaskedentry-xaml -->
 
                 <Label Text="IP Mask with changed PropmtChar:" Margin="0, 10, 0, 0"  />
                 <!-- >> ipmaskedentry-promptchar-xaml -->
-                <telerik:RadIPMaskedEntry PromptChar="#"/>
+                <telerik:RadIPMaskedEntry PromptChar="#" AutomationId="ipMaskChangedPropmtChar"/>
                 <!-- << ipmaskedentry-promptchar-xaml -->
 
             </VerticalStackLayout>

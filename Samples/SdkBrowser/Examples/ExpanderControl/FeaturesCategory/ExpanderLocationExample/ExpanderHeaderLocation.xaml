@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        x:Class="SDKBrowserMaui.Examples.ExpanderControl.FeaturesCategory.ExpanderLocationExample.ExpanderHeaderLocation">
+    <VerticalStackLayout Margin="10">
+        <!-- >> expander-features-headerlocation -->
+        <telerik:RadExpander x:Name="expander"
+	                         HeaderText="Read more"
+                             HeaderLocation="Bottom">
+            <telerik:RadExpander.Content>
+                <VerticalStackLayout Margin="10">
+                    <Label Text="You could place the Header at the top or at the bottom of the expandable container." HeightRequest="50"/>
+                </VerticalStackLayout>
+            </telerik:RadExpander.Content>
+        </telerik:RadExpander>
+        <!-- << expander-features-headerlocation -->
+    </VerticalStackLayout>
+</telerik:RadContentView>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.DataFormControl.EditorsCategory.EditorsExample"
+             x:Class="SDKBrowserMaui.Examples.DataFormControl.ValidationCategory.ValidationConfigurationExample.ValidationConfiguration">
+    <!-- >> dataform-validation-configuration -->
+    <Grid RowDefinitions="Auto,*" 
+          Padding="10">
+        <HorizontalStackLayout Margin="0,0,0,10">
+            <Button Text="Validate Data" 
+                    Clicked="OnValidateChangesClicked"/>
+        </HorizontalStackLayout>
+        <telerik:RadDataForm x:Name="dataForm"
+                             Grid.Row="1"
+                             IsValidationSummaryVisible="True"
+                             ValidationSummaryImageSource="away.png"
+                             ValidationMode="LostFocus">
+            <telerik:RadDataForm.BindingContext>
+                <local:EditorsModel/>
+            </telerik:RadDataForm.BindingContext>
+        </telerik:RadDataForm>
+    </Grid>
+    <!-- << dataform-validation-configuration -->
+</ContentView>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.AutoCompleteControl.FeaturesCategory.NestedPropertyExample"
+             x:Class="SDKBrowserMaui.Examples.AutoCompleteControl.FeaturesCategory.NestedPropertyExample.NestedProperty">
+    <VerticalStackLayout>
+        <!-- >> autocomplete-nestedproperty -->
+        <telerik:RadAutoComplete x:Name="autoComplete"
+                                 ItemsSource="{Binding Source}"
+                                 TextSearchPath="Person.Name"
+                                 Placeholder="Search here..."
+                                 CompletionMode="Contains" 
+                                 SuggestionViewHeight="300">
+            <telerik:RadAutoComplete.BindingContext>
+                <local:NestedPropertyViewModel/>
+            </telerik:RadAutoComplete.BindingContext>
+        </telerik:RadAutoComplete>
+        <!-- << autocomplete-nestedproperty -->
+    </VerticalStackLayout>
+</ContentView>

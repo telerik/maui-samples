@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.DataFormControl.EditorsCategory.EditorsExample"
+             x:Class="SDKBrowserMaui.Examples.DataFormControl.StylingCategory.ValidationStylingExample.ValidationStylingExample">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <!-- >> dataform-validation-label-style -->
+            <Style x:Key="ValidationLabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="Red" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+            </Style>
+            <!-- << dataform-validation-label-style -->
+            <!-- >> dataform-validation-summary-style -->
+            <Style x:Key="ValidationSummaryStyle" TargetType="telerik:DataFormValidationSummaryView">
+                <Setter Property="BackgroundColor" Value="LightGrey" />
+                <Setter Property="BorderThickness" Value="2" />
+                <Setter Property="BorderColor" Value="Red" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+            </Style>
+            <!-- << dataform-validation-summary-style -->
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <Grid>
+        <!-- >> dataform-validation-style -->
+        <telerik:RadDataForm x:Name="dataForm"
+                             ValidationSummaryLabelStyle="{StaticResource ValidationLabelStyle}"
+                             ValidationSummaryImageSource="away.png"
+                             ValidationSummaryStyle="{StaticResource ValidationSummaryStyle}"
+                             IsValidationSummaryVisible="True"
+                             ValidationMode="LostFocus">
+            <telerik:RadDataForm.BindingContext>
+                <local:EditorsModel />
+            </telerik:RadDataForm.BindingContext>
+        </telerik:RadDataForm>
+        <!-- << dataform-validation-style -->
+    </Grid>
+</ContentView>
