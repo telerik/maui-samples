@@ -13,66 +13,65 @@
     <ContentPage.BindingContext>
         <viewModels:CoinInfoViewModel />
     </ContentPage.BindingContext>
-    
-    <Grid RowDefinitions="Auto, *" ColumnDefinitions="500, *, Auto">
-        <telerik:RadButton Grid.Column="2"
-                           Style="{StaticResource DownloadButtonStyle}"
-                           ContentLayout="{OnPlatform MacCatalyst='Left, -20'}"
-                           FontSize="{OnPlatform MacCatalyst='Small'}"
-                           Padding="{OnPlatform  MacCatalyst='5, 0, 0, 0'}"
-                           Margin="0, 12, 20, 0"
-                           Clicked="DownloadButtonClicked"/>
-        <Views:CoinSelectionView Grid.Row="1" CoinSelected="OnCoinSelected" Padding="20, 20, 20, 10"/>
-        <telerik:RadBusyIndicator Grid.Row="1"
-                                  x:Name="BusyIndicator"
-                                  VerticalOptions="Center"
-                                  AnimationType="Animation2"
-                                  AnimationContentColor="{StaticResource DownloadButtonColor}"
-                                  AnimationContentHeightRequest="100"
-                                  AnimationContentWidthRequest="100"
-                                  HeightRequest="100" />
-        <telerik:RadTabView Grid.Row="1"
-                            Grid.Column="1"
-                            Grid.ColumnSpan="2"
-                            Padding="0, 20, 25, 10">
-            <telerik:TabViewItem HeaderText="Overview">
-                <Grid RowDefinitions="Auto, *" Style="{StaticResource TabViewItemGridLayouStyle}">
-                    <telerik:RadBorder Style="{StaticResource ListViewBorderWrapStyle}"
-                                       Padding="10,10,10,20"
-                                       BorderThickness="1"
-                                       BorderColor="{StaticResource RadBorderColor}">
-                        <Grid>
-                            <VerticalStackLayout Spacing="5">
-                                <views:CoinHeaderView CoinName="{Binding CoinName}" CoinSymbol="{Binding CoinSymbol}"/>
-                                <Label Text="{Binding CoinCurrentPrice, Mode=OneWay, StringFormat='${0:N2}'}"
-                                       FontSize="18"
-                                       TextColor="Black"
-                                       FontAttributes="Bold"/>
-                            </VerticalStackLayout>
-                            <telerik:RadBorder VerticalOptions="Center"
-                                               HorizontalOptions="End"
-                                               BackgroundColor="{Binding CoinPriceChangePercentage, Mode=OneWay, 
-                                                    Converter={StaticResource ValueToColorConverter}}"
-                                               CornerRadius="8"
-                                               Padding="10">
-                                <Label FontSize="14"
-                                       FontAttributes="Bold"
-                                       TextColor="White"
-                                       Text="{Binding CoinPriceChangePercentage,
-                                                    StringFormat='{0:+ 0.00;- 0.00;0.00}%'}"/>
-                            </telerik:RadBorder>
-                        </Grid>
-                    </telerik:RadBorder>
-                    <views:CoinInfoChartView Grid.Row="1"/>
-                </Grid>
-            </telerik:TabViewItem>
 
-            <telerik:TabViewItem HeaderText="Historical Data">
-                <Grid RowDefinitions="Auto, *" ColumnDefinitions="*" Style="{StaticResource TabViewItemGridLayouStyle}">
-                    <views:CoinHeaderView CoinName="{Binding CoinName}" CoinSymbol="{Binding CoinSymbol}"/>
-                    <views:CoinInfoDataGridView Grid.Row="1"/>
-                </Grid>
-            </telerik:TabViewItem>
-        </telerik:RadTabView>
-    </Grid>
+    <telerik:RadBusyIndicator x:Name="BusyIndicator" 
+                              IsBusy="{Binding IsChartLoading, Mode=TwoWay}"
+                              Style="{StaticResource DefaultBusyIndicatorStyle}">
+        <telerik:RadBusyIndicator.BusyContent>
+            <Label Text="Loading Data" HorizontalOptions="Center" HeightRequest="60" />
+        </telerik:RadBusyIndicator.BusyContent>
+        <Grid RowDefinitions="Auto, *" ColumnDefinitions="500, *, Auto">
+            <telerik:RadButton Grid.Column="2"
+                               Style="{StaticResource DownloadButtonStyle}"
+                               ContentLayout="{OnPlatform MacCatalyst='Left, -20'}"
+                               FontSize="{OnPlatform MacCatalyst='Small'}"
+                               Padding="{OnPlatform  MacCatalyst='5, 0, 0, 0'}"
+                               Margin="0, 12, 23, 0"
+                               Clicked="DownloadButtonClicked"/>
+            <Views:CoinSelectionView Grid.Row="1" CoinSelected="OnCoinSelected" Padding="20, 20, 20, 10"/>
+            <telerik:RadTabView Grid.Row="1"
+                                Grid.Column="1"
+                                Grid.ColumnSpan="2"
+                                Padding="0, 20, 25, 10">
+                <telerik:TabViewItem HeaderText="Overview">
+                    <Grid RowDefinitions="Auto, *" Style="{StaticResource TabViewItemGridLayouStyle}">
+                        <telerik:RadBorder Style="{StaticResource ListViewBorderWrapStyle}"
+                                           Padding="10,10,10,20"
+                                           BorderThickness="1"
+                                           BorderColor="{StaticResource BorderColor}">
+                            <Grid>
+                                <VerticalStackLayout Spacing="5">
+                                    <views:CoinHeaderView CoinName="{Binding CoinName}" CoinSymbol="{Binding CoinSymbol}"/>
+                                    <Label Text="{Binding CoinCurrentPrice, Mode=OneWay, StringFormat='${0:N2}'}"
+                                           FontSize="18"
+                                           TextColor="Black"
+                                           FontAttributes="Bold"/>
+                                </VerticalStackLayout>
+                                <telerik:RadBorder VerticalOptions="Center"
+                                                   HorizontalOptions="End"
+                                                   BackgroundColor="{Binding CoinPriceChangePercentage, Mode=OneWay, 
+                                                Converter={StaticResource ValueToColorConverter}}"
+                                                   CornerRadius="8"
+                                                   Padding="10">
+                                    <Label FontSize="14"
+                                           FontAttributes="Bold"
+                                           TextColor="White"
+                                           Text="{Binding CoinPriceChangePercentage,
+                                                StringFormat='{0:+ 0.00;- 0.00;0.00}%'}"/>
+                                </telerik:RadBorder>
+                            </Grid>
+                        </telerik:RadBorder>
+                        <views:CoinInfoChartView Grid.Row="1"/>
+                    </Grid>
+                </telerik:TabViewItem>
+
+                <telerik:TabViewItem HeaderText="Historical Data">
+                    <Grid RowDefinitions="Auto, *" ColumnDefinitions="*" Style="{StaticResource TabViewItemGridLayouStyle}">
+                        <views:CoinHeaderView CoinName="{Binding CoinName}" CoinSymbol="{Binding CoinSymbol}"/>
+                        <views:CoinInfoDataGridView Grid.Row="1"/>
+                    </Grid>
+                </telerik:TabViewItem>
+            </telerik:RadTabView>
+        </Grid>
+    </telerik:RadBusyIndicator>
 </ContentPage>

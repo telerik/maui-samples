@@ -19,7 +19,10 @@ namespace CryptoTracker.Pages
             this.BusyIndicator.IsBusy = true;
             var coinDataService = DependencyService.Get<ICoinDataService>();
             var initiallySelectedCoin = (await coinDataService.GetCoinsAsync(1)).FirstOrDefault();
-            this.SelectCoin(initiallySelectedCoin);
+            if (initiallySelectedCoin != null)
+            {
+                this.SelectCoin(initiallySelectedCoin);
+            }
             this.BusyIndicator.IsBusy = false;
         }
 

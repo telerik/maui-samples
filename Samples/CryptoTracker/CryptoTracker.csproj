@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>$(MauiPlatforms)</TargetFrameworks>
+		<TargetFrameworks>$(MauiAppPlatforms)</TargetFrameworks>
 		<OutputType>Exe</OutputType>
 		<RootNamespace>CryptoTracker</RootNamespace>
 		<UseMaui>true</UseMaui>
@@ -36,10 +36,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Remove="Resources\Fonts\telerikfontexamples.ttf" />
+		<None Remove="Resources\Fonts\telerikfontexamples.ttf" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <PackageReference Include="Telerik.UI.for.Maui" Version="2.2.0" />
+	<ItemGroup Condition="$(SolutionName) != 'Telerik.Maui'">
+		<PackageReference Include="Telerik.UI.for.Maui" Version="3.0.0" />
 	</ItemGroup>
+
+	<Import Condition="'$(SolutionName)' == 'Telerik.Maui'" Project="..\AddSourceReferences.proj" />
 </Project>

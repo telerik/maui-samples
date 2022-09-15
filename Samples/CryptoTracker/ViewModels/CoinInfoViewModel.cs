@@ -47,7 +47,7 @@ namespace CryptoTracker.ViewModels
             this.CandlestickChartData = new List<CoinData>();
             this.IntervalCoinData = new List<CoinData>();
             this.hourlyCoinData = new List<CoinData>();
-            this.TimePeriods = new List<string>() { dailySymbol, weeklySymbol, monthlySymbol, halfYearlySymbol, yearlySymbol};
+            this.TimePeriods = new List<string>() { dailySymbol, weeklySymbol, monthlySymbol, halfYearlySymbol, yearlySymbol };
             this.IsLineChartVisible = true;
             this.IsChartLoading = false;
         }
@@ -103,7 +103,7 @@ namespace CryptoTracker.ViewModels
         public int SelectedTimePeriod
         {
             get => this.selectedTimePeriod;
-            set 
+            set
             {
                 if (this.UpdateValue(ref this.selectedTimePeriod, value))
                 {
@@ -115,7 +115,7 @@ namespace CryptoTracker.ViewModels
         public int SelectedChartType
         {
             get => this.selectedChartType;
-            set 
+            set
             {
                 if (this.UpdateValue(ref this.selectedChartType, value))
                 {
@@ -221,8 +221,10 @@ namespace CryptoTracker.ViewModels
 
         private async void DownLoadHourlyCoinData()
         {
+            this.IsChartLoading = true;
             var coinService = DependencyService.Get<ICoinDataService>();
             this.hourlyCoinData = await coinService.GetHourlyOHLCCoinDataAsync(this.SelectedCoin);
+            this.IsChartLoading = false;
         }
 
         private void LoadCoinData()
@@ -240,7 +242,7 @@ namespace CryptoTracker.ViewModels
             }
 
             var currentData = new List<CoinData>();
-            for (int i = this.CoinData.Count-1; i >= this.CoinData.Count - this.CountDays; i--)
+            for (int i = this.CoinData.Count - 1; i >= this.CoinData.Count - this.CountDays; i--)
             {
                 currentData.Add(this.CoinData[i]);
             }
@@ -329,7 +331,7 @@ namespace CryptoTracker.ViewModels
             this.ChartMajorStepUnit = TimeInterval.Month;
             this.ChartLabelFormat = "MMM";
             this.DataGridLabelFormat = "{0:MMM d, yyyy}";
-            
+
             switch (timePeriod)
             {
                 case dailySymbol:
