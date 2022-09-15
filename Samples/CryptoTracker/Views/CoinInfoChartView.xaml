@@ -6,22 +6,22 @@
              x:Class="CryptoTracker.Views.CoinInfoChartView"
              x:Name="coinInfoChartView">
 
-    <telerik:RadBorder Style="{StaticResource ListViewBorderWrapStyle}" 
+    <telerik:RadBorder Style="{StaticResource ListViewBorderWrapStyle}"
                        Padding="10,10,10,20"
                        BorderThickness="1"
-                       BorderColor="{StaticResource RadBorderColor}" >
+                       BorderColor="{StaticResource BorderColor}" >
         <Grid RowDefinitions="60, *, 60" RowSpacing="10">
             <Grid ColumnDefinitions="2*,*" ColumnSpacing="30">
                 <Label VerticalOptions="Center"
                        Margin="5,15,5,5"
-                       TextColor="Black" 
-                       FontAttributes="Bold" 
-                       FontSize="18" 
+                       TextColor="Black"
+                       FontAttributes="Bold"
+                       FontSize="18"
                        Text="{Binding CoinName, StringFormat='{0} to USD Chart'}"
                        LineBreakMode="{OnPlatform Default='TailTruncation', UWP='NoWrap', MacCatalyst='NoWrap'}"/>
 
                 <telerik:RadSegmentedControl x:Name="chartTypesSegmentedControl" Grid.Column="1"
-                                             HorizontalOptions="End" 
+                                             HorizontalOptions="End"
                                              VerticalOptions="Center"
                                              WidthRequest="{OnPlatform UWP=150, MacCatalyst=150, Default=100}"
                                              SelectedIndex="{Binding SelectedChartType, Mode=TwoWay}"
@@ -39,7 +39,7 @@
                                        Grid.Row="1"
                                        PropertyChanged="OnChartPropertyChanged">
                 <telerik:RadCartesianChart.HorizontalAxis>
-                    <telerik:DateTimeContinuousAxis 
+                    <telerik:DateTimeContinuousAxis
                         LabelTextColor="Black"
                         LabelFitMode="Rotate"
                         LabelFormat="{Binding ChartLabelFormat}"
@@ -68,7 +68,7 @@
                                        Grid.Row="1"
                                        PropertyChanged="OnChartPropertyChanged">
                 <telerik:RadCartesianChart.HorizontalAxis>
-                    <telerik:DateTimeContinuousAxis 
+                    <telerik:DateTimeContinuousAxis
                         LabelTextColor="Black"
                         LabelFitMode="Rotate"
                         LabelFormat="{Binding ChartLabelFormat}"

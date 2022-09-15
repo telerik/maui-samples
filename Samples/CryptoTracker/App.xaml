@@ -9,7 +9,7 @@
             <local:ValueToColorConverter x:Key="ValueToColorConverter" PositiveColor="LimeGreen" NegativeColor="Red" NeutralColor="Gray"/>
 
             <Color x:Key="TrendingItemBackgroundColor">#ECF3FD</Color>
-            <Color x:Key="RadBorderColor">#DFDFDF</Color>
+            <Color x:Key="BorderColor">#DFDFDF</Color>
             <Color x:Key="PageBarColor">#121212</Color>
             <Color x:Key="SegmentedControlBackgroundColor">#F8F8F8</Color>
             <Color x:Key="DataGridLineColor">#DFDFDF</Color>
@@ -24,7 +24,7 @@
             <Style x:Key="TrendingTitleStyle" TargetType="Label">
                 <Setter Property="Margin" Value="0, 10"/>
                 <Setter Property="FontSize" Value="Title"/>
-                <Setter Property="HeightRequest" Value="30"/>
+                <Setter Property="HeightRequest" Value="35"/>
                 <Setter Property="FontAttributes" Value="Bold"/>
                 <Setter Property="TextColor" Value="Black"/>
             </Style>
@@ -94,6 +94,15 @@
                 <Setter Property="BorderThickness" Value="0" />
                 <Setter Property="BorderColor" Value="Transparent" />
                 <Setter Property="IsVisible" Value="{OnPlatform WinUI=false, Default=true}" />
+            </Style>
+            <Style x:Key="DefaultBusyIndicatorStyle" TargetType="telerik:RadBusyIndicator">
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="ContentUnderOpacity" Value="0.7" />
+                <Setter Property="AnimationContentColor" Value="{StaticResource DownloadButtonColor}" />
+                <Setter Property="AnimationContentWidthRequest" Value="48" />
+                <Setter Property="AnimationContentHeightRequest" Value="48" />
+                <Setter Property="AnimationType" Value="Animation3" />
             </Style>
         </ResourceDictionary>
     </Application.Resources>

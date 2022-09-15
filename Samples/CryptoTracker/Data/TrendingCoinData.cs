@@ -4,7 +4,7 @@
     {
         public CoinData Data { get; set; }
 
-        public int Index { get; set; }
+        public int ListNumber { get; set; }
 
     }
 }

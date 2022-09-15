@@ -6,15 +6,15 @@ using Telerik.Maui.Controls;
 
 namespace CryptoTracker.ViewModels
 {
-    public class CoinsViewModel : NotifyPropertyChangedBase
+    public class CoinSelectionViewModel : NotifyPropertyChangedBase
     {
         private const int trendingCoinsCount = 2;
 
         private IList<CoinData> source;
         private IList<TrendingCoinData> trendingCoins;
-        private bool isListLoading;
+        private bool isDataLoading;
 
-        public CoinsViewModel()
+        public CoinSelectionViewModel()
         {
             this.Source = new List<CoinData>();
             this.TrendingCoins = new List<TrendingCoinData>();
@@ -23,25 +23,25 @@ namespace CryptoTracker.ViewModels
 
         public async void DownloadCoinsAsync(int coinsCount)
         {
-            this.IsListLoading = true;
+            this.IsDataLoading = true;
             var coinService = DependencyService.Get<ICoinDataService>();
             var coins = await coinService.GetCoinsAsync(coinsCount);
             coins = coins.Where(c => c.OpeningPrice >= 0.01).ToList();
 
             var topCoins = new List<TrendingCoinData>();
 
-            for(int i = 0; i < trendingCoinsCount; i++)
+            for (int i = 0; i < trendingCoinsCount && i < coins.Count; i++)
             {
                 topCoins.Add(new TrendingCoinData()
                 {
                     Data = coins[i],
-                    Index = i+1,
+                    ListNumber = i + 1,
                 });
             }
 
             this.Source = coins;
             this.TrendingCoins = topCoins;
-            this.IsListLoading = false;
+            this.IsDataLoading = false;
         }
 
         public IList<CoinData> Source
@@ -56,10 +56,10 @@ namespace CryptoTracker.ViewModels
             set => UpdateValue(ref this.trendingCoins, value);
         }
 
-        public bool IsListLoading
+        public bool IsDataLoading
         {
-            get => this.isListLoading;
-            set => UpdateValue(ref this.isListLoading, value);
+            get => this.isDataLoading;
+            set => UpdateValue(ref this.isDataLoading, value);
         }
     }
 }

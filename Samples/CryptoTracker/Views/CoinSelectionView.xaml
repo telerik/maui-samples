@@ -6,33 +6,88 @@
              x:Name="mainView"
              BackgroundColor="AliceBlue">
 
-    <Grid RowDefinitions="160, *" RowSpacing="20">
-        <telerik:RadBorder Style="{StaticResource ListViewBorderWrapStyle}" Padding="20, 10">
-            <Grid RowDefinitions="Auto, *">
-                <Label Text="Trending" Style="{StaticResource TrendingTitleStyle}"/>
+    <ContentView.BindingContext>
+        <local:CoinSelectionViewModel />
+    </ContentView.BindingContext>
 
-                <telerik:RadListView Grid.Row="1"
-                                     ItemTapped="OnTrendingListViewItemTapped"
-                                     SelectionMode="None"
-                                     x:Name="trendingListView"
-                                     ItemsSource="{Binding TrendingCoins}">
-                    <telerik:RadListView.BindingContext>
-                        <local:CoinsViewModel/>
-                    </telerik:RadListView.BindingContext>
+    <telerik:RadBusyIndicator x:Name="BusyIndicator"
+                              IsBusy="{Binding IsDataLoading}"
+                              Style="{StaticResource DefaultBusyIndicatorStyle}">
+        <telerik:RadBusyIndicator.BusyContent>
+            <Label Text="Loading Data" HorizontalOptions="Center" HeightRequest="60" />
+        </telerik:RadBusyIndicator.BusyContent>
+        <Grid RowDefinitions="160, *" RowSpacing="20">
+            <telerik:RadBorder Style="{StaticResource ListViewBorderWrapStyle}" Padding="20, 10">
+                <Grid RowDefinitions="Auto, *">
+                    <Label Text="Trending" Style="{StaticResource TrendingTitleStyle}"/>
 
+                    <telerik:RadListView Grid.Row="1"
+                                         ItemTapped="OnTrendingListViewItemTapped"
+                                         SelectionMode="None"
+                                         x:Name="trendingListView"
+                                         ItemsSource="{Binding TrendingCoins}">
+                        <telerik:RadListView.ItemTemplate>
+                            <DataTemplate>
+                                <telerik:ListViewTemplateCell>
+                                    <telerik:ListViewTemplateCell.View>
+                                        <Grid>
+                                            <telerik:RadBorder Style="{StaticResource TrendingListViewItemBorderWrapStyle}">
+                                                <Grid ColumnDefinitions="Auto, Auto, *, Auto" RowDefinitions="Auto, *" >
+                                                    <Label Style="{StaticResource TrendingCoinsCounterStyle}" Text="{Binding ListNumber}"/>
+                                                    <Label Grid.Column="1" Style="{StaticResource TrendingCoinSymbolStyle}" Text="{Binding Data.Symbol}"/>
+                                                    <Label Grid.Column="2" Style="{StaticResource TrendingCoinNameStyle}" Text="{Binding Data.Name}"/>
+                                                    <Label Grid.Column="3" Style="{StaticResource TrendingCoinPercentage}" Text="{Binding Data.ChangeInPricePercentage, StringFormat='{0:+0.00;- 0.00;0.00}%'}"/>
+                                                </Grid>
+                                            </telerik:RadBorder>
+                                        </Grid>
+                                    </telerik:ListViewTemplateCell.View>
+                                </telerik:ListViewTemplateCell>
+                            </DataTemplate>
+                        </telerik:RadListView.ItemTemplate>
+                        <telerik:RadListView.LayoutDefinition>
+                            <telerik:ListViewLinearLayout ItemLength="40" VerticalItemSpacing="2" />
+                        </telerik:RadListView.LayoutDefinition>
+                        <telerik:RadListView.ItemStyle>
+                            <telerik:ListViewItemStyle BorderWidth="0"/>
+                        </telerik:RadListView.ItemStyle>
+                        <telerik:RadListView.PressedItemStyle>
+                            <telerik:ListViewItemStyle BackgroundColor="Transparent"/>
+                        </telerik:RadListView.PressedItemStyle>
+                    </telerik:RadListView>
+                </Grid>
+            </telerik:RadBorder>
+
+            <telerik:RadBorder Grid.Row="1" Style="{StaticResource ListViewBorderWrapStyle}">
+                <telerik:RadListView ItemTapped="OnListViewItemTapped"
+                                     SelectionMode="{OnIdiom Default=Single, Phone=None}"
+                                     x:Name="listView"
+                                     ItemsSource="{Binding Source}">
                     <telerik:RadListView.ItemTemplate>
                         <DataTemplate>
                             <telerik:ListViewTemplateCell>
                                 <telerik:ListViewTemplateCell.View>
-                                    <Grid>
-                                        <telerik:RadBorder Style="{StaticResource TrendingListViewItemBorderWrapStyle}">
-                                            <Grid ColumnDefinitions="Auto, Auto, *, Auto" RowDefinitions="Auto, *" >
-                                                <Label Style="{StaticResource TrendingCoinsCounterStyle}" Text="{Binding Index}"/>
-                                                <Label Grid.Column="1" Style="{StaticResource TrendingCoinSymbolStyle}" Text="{Binding Data.Symbol}"/>
-                                                <Label Grid.Column="2" Style="{StaticResource TrendingCoinNameStyle}" Text="{Binding Data.Name}"/>
-                                                <Label Grid.Column="3" Style="{StaticResource TrendingCoinPercentage}" Text="{Binding Data.ChangeInPricePercentage, StringFormat='{0:+0.00;- 0.00;0.00}%'}"/>
-                                            </Grid>
-                                        </telerik:RadBorder>
+                                    <Grid ColumnDefinitions="Auto, *, Auto, Auto" >
+                                        <Label Style="{StaticResource ListViewCoinSymbolStyle}" Text="{Binding Symbol}"/>
+                                        <Label Grid.Column="1" Style="{StaticResource ListViewCoinNameStyle}" Text="{Binding Name}"/>
+                                        <VerticalStackLayout Spacing="5" Grid.Column="2" Padding="0, 1, 0, 10">
+                                            <Label HorizontalTextAlignment="End" Style="{StaticResource ListViewCoinPriceStyle}" Text="{Binding OpeningPrice, StringFormat='${0:N2}'}"/>
+                                            <Label HorizontalTextAlignment="End" FontSize="14" TextColor="{Binding ChangeInPriceAmount, Converter={StaticResource ValueToColorConverter}}">
+                                                <Label.Text>
+                                                    <MultiBinding StringFormat="{}{0:+0.00;- 0.00;0.00} ({1:0.00;0.00;0.00}%)">
+                                                        <Binding Path="ChangeInPriceAmount"/>
+                                                        <Binding Path="ChangeInPricePercentage"/>
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+                                        </VerticalStackLayout>
+
+                                        <Image Grid.Column="3"
+                                               Source="arrowright.png"
+                                               Margin="20, 12, 20, 12"
+                                               HorizontalOptions="Center"
+                                               VerticalOptions="Center"
+                                               WidthRequest="24"
+                                               HeightRequest="24" />
                                     </Grid>
                                 </telerik:ListViewTemplateCell.View>
                             </telerik:ListViewTemplateCell>
@@ -41,92 +96,23 @@
                     <telerik:RadListView.LayoutDefinition>
                         <telerik:ListViewLinearLayout ItemLength="40" VerticalItemSpacing="2" />
                     </telerik:RadListView.LayoutDefinition>
-                <telerik:RadListView.ItemStyle>
-                        <telerik:ListViewItemStyle BorderWidth="0"/>
+                    <telerik:RadListView.ItemStyle>
+                        <telerik:ListViewItemStyle BackgroundColor="Transparent"
+                                                   BorderColor="{StaticResource BorderColor}"
+                                                   BorderWidth="1"
+                                                   BorderLocation="Bottom" />
                     </telerik:RadListView.ItemStyle>
                     <telerik:RadListView.PressedItemStyle>
                         <telerik:ListViewItemStyle BackgroundColor="Transparent"/>
                     </telerik:RadListView.PressedItemStyle>
+                    <telerik:RadListView.SelectedItemStyle>
+                        <telerik:ListViewItemStyle BackgroundColor="{StaticResource SegmentedControlBackgroundColor}"
+                                                   BorderColor="{StaticResource BorderColor}"
+                                                   BorderWidth="1"
+                                                   BorderLocation="Bottom" />
+                    </telerik:RadListView.SelectedItemStyle>
                 </telerik:RadListView>
-
-                <telerik:RadBusyIndicator Grid.Row="1"
-                                      VerticalOptions="Center"
-                                      AnimationType="Animation2"
-                                      AnimationContentColor="{StaticResource DownloadButtonColor}"
-                                      AnimationContentHeightRequest="100"
-                                      AnimationContentWidthRequest="100"
-                                      HeightRequest="100" 
-                                      IsBusy="{Binding IsListLoading}"/>
-            </Grid>
-        </telerik:RadBorder>
-
-        <telerik:RadBorder Grid.Row="1" Style="{StaticResource ListViewBorderWrapStyle}">
-            <telerik:RadListView ItemTapped="OnListViewItemTapped"
-                                 SelectionMode="{OnIdiom Default=Single, Phone=None}"
-                                 x:Name="listView"
-                                 ItemsSource="{Binding Source}">
-                <telerik:RadListView.BindingContext>
-                    <local:CoinsViewModel/>
-                </telerik:RadListView.BindingContext>
-
-                <telerik:RadListView.ItemTemplate>
-                    <DataTemplate>
-                        <telerik:ListViewTemplateCell>
-                            <telerik:ListViewTemplateCell.View>
-                                <Grid ColumnDefinitions="Auto, *, Auto, Auto" >
-                                    <Label Style="{StaticResource ListViewCoinSymbolStyle}" Text="{Binding Symbol}"/>
-                                    <Label Grid.Column="1" Style="{StaticResource ListViewCoinNameStyle}" Text="{Binding Name}"/>
-                                    <VerticalStackLayout Spacing="5" Grid.Column="2" VerticalOptions="Center">
-                                        <Label HorizontalTextAlignment="End" Style="{StaticResource ListViewCoinPriceStyle}" Text="{Binding OpeningPrice, StringFormat='${0:N2}'}"/>
-                                        <Label HorizontalTextAlignment="End" FontSize="14" TextColor="{Binding ChangeInPriceAmount, Converter={StaticResource ValueToColorConverter}}">
-                                            <Label.Text>
-                                                <MultiBinding StringFormat="{}{0:+0.00;- 0.00;0.00} ({1:0.00;0.00;0.00}%)">
-                                                    <Binding Path="ChangeInPriceAmount"/>
-                                                    <Binding Path="ChangeInPricePercentage"/>
-                                            </MultiBinding>
-                                            </Label.Text>
-                                        </Label>
-                                    </VerticalStackLayout>
-
-                                    <Image Grid.Column="3"
-                                           Source="arrowright.png"
-                                           Margin="20, 12, 20, 12"
-                                           HorizontalOptions="Center"
-                                           VerticalOptions="Center"
-                                           WidthRequest="24"
-                                           HeightRequest="24" />
-                                </Grid>
-                            </telerik:ListViewTemplateCell.View>
-                        </telerik:ListViewTemplateCell>
-                    </DataTemplate>
-                </telerik:RadListView.ItemTemplate>
-                <telerik:RadListView.LayoutDefinition>
-                    <telerik:ListViewLinearLayout ItemLength="40" VerticalItemSpacing="2" />
-                </telerik:RadListView.LayoutDefinition>
-                <telerik:RadListView.ItemStyle>
-                    <telerik:ListViewItemStyle BackgroundColor="Transparent"
-                                               BorderColor="Gray"
-                                               BorderWidth="1"
-                                               BorderLocation="Bottom" />
-                </telerik:RadListView.ItemStyle>
-                <telerik:RadListView.PressedItemStyle>
-                    <telerik:ListViewItemStyle BackgroundColor="Transparent"/>
-                </telerik:RadListView.PressedItemStyle>
-                <telerik:RadListView.SelectedItemStyle>
-                    <telerik:ListViewItemStyle BackgroundColor="{StaticResource SegmentedControlBackgroundColor}"
-                                               BorderColor="Gray"
-                                               BorderWidth="1"
-                                               BorderLocation="Bottom" />
-                </telerik:RadListView.SelectedItemStyle>
-            </telerik:RadListView>
-        </telerik:RadBorder>
-        <telerik:RadBusyIndicator Grid.Row="1"
-                                  VerticalOptions="Center"
-                                  AnimationType="Animation2"
-                                  AnimationContentColor="{StaticResource DownloadButtonColor}"
-                                  AnimationContentHeightRequest="100"
-                                  AnimationContentWidthRequest="100"
-                                  HeightRequest="100" 
-                                  IsBusy="{Binding IsChartLoading}"/>
-    </Grid>
+            </telerik:RadBorder>
+        </Grid>
+    </telerik:RadBusyIndicator>
 </ContentView>
