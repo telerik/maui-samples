@@ -10,38 +10,38 @@
 
                 <Label Text="ValueFormat = ExcludePromptAndLiterals" Margin="0, 30, 0, 0" />
                 <!-- >> textmaskedentry-excludepromptandliterals-xaml -->
-                <telerik:RadTextMaskedEntry x:Name="excludePromptAndLiteralsMask" Mask="##-##" ValueFormat="ExcludePromptAndLiterals" Value="222"/>
+                <telerik:RadTextMaskedEntry x:Name="excludePromptAndLiteralsMask" Mask="##-##" ValueFormat="ExcludePromptAndLiterals" Value="222" AutomationId="excludePromptAndLiteralsMask"/>
                 <!-- << textmaskedentry-excludepromptandliterals-xaml -->
                 <HorizontalStackLayout>
                     <Label Text="Current Value: " Margin="0,0,10,0"/>
-                    <Label Text="{Binding Source={x:Reference excludePromptAndLiteralsMask}, Path=Value}"/>
+                    <Label Text="{Binding Source={x:Reference excludePromptAndLiteralsMask}, Path=Value}" AutomationId="excludePromptAndLiteralsMaskValue"/>
                 </HorizontalStackLayout>
 
                 <Label Text="ValueFormat = IncludeLiterals" Margin="0, 30, 0, 0" />
                 <!-- >> textmaskedentry-includeliterals-xaml -->
-                <telerik:RadTextMaskedEntry x:Name="includeLiteralsMask" Mask="##-##" ValueFormat="IncludeLiterals"  Value="22-2"/>
+                <telerik:RadTextMaskedEntry x:Name="includeLiteralsMask" Mask="##-##" ValueFormat="IncludeLiterals"  Value="22-2" AutomationId="includeLiteralsMask"/>
                 <!-- << textmaskedentry-includeliterals-xaml -->
                 <HorizontalStackLayout>
                     <Label Text="Current Value: " Margin="0,0,10,0"/>
-                    <Label Text="{Binding Source={x:Reference includeLiteralsMask}, Path=Value}"/>
+                    <Label Text="{Binding Source={x:Reference includeLiteralsMask}, Path=Value}" AutomationId="includeLiteralsMaskValue"/>
                 </HorizontalStackLayout>
 
                 <Label Text="ValueFormat = IncludePrompt" Margin="0, 30, 0, 0" />
                 <!-- >> textmaskedentry-includelprompt-xaml -->
-                <telerik:RadTextMaskedEntry x:Name="includePromptMask" Mask="##-##" ValueFormat="IncludePrompt"  Value="222_"/>
+                <telerik:RadTextMaskedEntry x:Name="includePromptMask" Mask="##-##" ValueFormat="IncludePrompt"  Value="222_" AutomationId="includePromptMask"/>
                 <!-- << textmaskedentry-includelprompt-xaml -->
                 <HorizontalStackLayout>
                     <Label Text="Current Value: " Margin="0,0,10,0"/>
-                    <Label Text="{Binding Source={x:Reference includePromptMask}, Path=Value}"/>
+                    <Label Text="{Binding Source={x:Reference includePromptMask}, Path=Value}" AutomationId="includePromptMaskValue"/>
                 </HorizontalStackLayout>
 
                 <Label Text="ValueFormat = IncludePromptAndLiterals" Margin="0, 30, 0, 0" />
                 <!-- >> textmaskedentry-includelpromptandliterals-xaml -->
-                <telerik:RadTextMaskedEntry x:Name="includePromptAndLiteralsMask" Mask="##-##" ValueFormat="IncludePromptAndLiterals" Value="22-2_"/>
+                <telerik:RadTextMaskedEntry x:Name="includePromptAndLiteralsMask" Mask="##-##" ValueFormat="IncludePromptAndLiterals" Value="22-2_" AutomationId="includePromptAndLiteralsMask"/>
                 <!-- << textmaskedentry-includelpromptandliterals-xaml -->
                 <HorizontalStackLayout>
                     <Label Text="Current Value: " Margin="0,0,10,0"/>
-                    <Label Text="{Binding Source={x:Reference includePromptAndLiteralsMask}, Path=Value}"/>
+                    <Label Text="{Binding Source={x:Reference includePromptAndLiteralsMask}, Path=Value}" AutomationId="includePromptAndLiteralsMaskValue"/>
                 </HorizontalStackLayout>
 
             </VerticalStackLayout>

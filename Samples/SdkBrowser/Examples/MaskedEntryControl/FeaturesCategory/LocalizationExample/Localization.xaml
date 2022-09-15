@@ -10,12 +10,12 @@
             
             <Label Text="Email mask:" Margin="0, 25, 0, 0" />
                 <!-- >> emailmaskedentry-localization-xaml -->
-                <telerik:RadEmailMaskedEntry x:Name="emailMaskedEntry" Value="WrongEmailText"/>
+                <telerik:RadEmailMaskedEntry x:Name="emailMaskedEntry" Value="WrongEmailText" AutomationId="emailMask"/>
                 <!-- << emailmaskedentry-localization-xaml -->
 
                 <Label Text="Regex mask:" Margin="0, 30, 0, 0" />
                 <!-- >> regexmaskedentry-localization-xaml -->
-                <telerik:RadRegexMaskedEntry x:Name="regexMaskedEntry" Mask="^[1-9]$" Value="WrongRegex" />
+                <telerik:RadRegexMaskedEntry x:Name="regexMaskedEntry" Mask="^[1-9]$" Value="WrongRegex" AutomationId="regexMask"/>
                 <!-- << regexmaskedentry-localization-xaml -->
             </VerticalStackLayout>
     </telerik:RadContentView.Content>

@@ -10,12 +10,12 @@
 
                 <Label Text="Numbers only Text Mask" Margin="0, 10, 0, 0" />
                 <!-- >> textmaskedentry-numbers-xaml -->
-                <telerik:RadTextMaskedEntry Mask="(000) 000-000" PromptChar=" "/>
+                <telerik:RadTextMaskedEntry Mask="(000) 000-000" PromptChar=" " AutomationId="textMaskNumbersOnly"/>
                 <!-- << textmaskedentry-numbers-xaml -->
                 
                 <Label Text="Letters only Text Mask" Margin="0, 10, 0, 0"  />
                 <!-- >> textmaskedentry-mask-xaml -->
-                <telerik:RadTextMaskedEntry Mask="LLLLL"/>
+                <telerik:RadTextMaskedEntry Mask="LLLLL" AutomationId="textMaskTextOnly"/>
                 <!-- << textmaskedentry-mask-xaml -->
                 
             </VerticalStackLayout>

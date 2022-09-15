@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        x:Class="SDKBrowserMaui.Examples.ExpanderControl.FeaturesCategory.CustomExpanderHeaderExample.CustomExpanderHeader">
+    <VerticalStackLayout Margin="10,20,10,0">
+        <!-- >> expander-features-expanderheader -->
+        <telerik:RadExpander x:Name="expander"
+                             BorderColor="LightBlue"
+                             BorderThickness="2">
+            <telerik:RadExpander.Header>
+                <telerik:ExpanderHeader IndicatorText="&#x203A;"
+                                        IndicatorColor="Blue"
+                                        IndicatorFontFamily="Arial"
+                                        IndicatorFontSize="16"
+                                        IndicatorLocation="End"
+                                        IndicatorAnimationDuration="1000"
+                                        BorderColor="LightBlue"
+                                        BorderThickness="2">
+                    <Label Text="More Options"
+                           VerticalOptions="Center"
+                           Margin="10" />
+                </telerik:ExpanderHeader>
+            </telerik:RadExpander.Header>
+            <telerik:RadExpander.Content>
+                <VerticalStackLayout Margin="10, 20, 10, 20">
+                    <Label Text="RadExpander for .NET MAUI is a flexible content control that helps you save screen space." HeightRequest="50" />
+                </VerticalStackLayout>
+            </telerik:RadExpander.Content>
+        </telerik:RadExpander>
+        <!-- << expander-features-expanderheader -->
+    </VerticalStackLayout>
+</telerik:RadContentView>

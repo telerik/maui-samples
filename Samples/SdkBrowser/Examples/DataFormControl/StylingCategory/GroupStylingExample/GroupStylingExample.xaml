@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.DataFormControl.EditorsCategory.DataTypeEditorsExample"
+             x:Class="SDKBrowserMaui.Examples.DataFormControl.StylingCategory.GroupStylingExample.GroupStylingExample">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <!-- >> dataform-group-styling-header-label-style -->
+            <Style x:Key="GroupHeaderLabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="ForestGreen" />
+                <Setter Property="FontSize" Value="22" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+            </Style>
+            <!-- << dataform-group-styling-header-label-style -->
+            <!-- >> dataform-group-styling-header-label-style-alt -->
+            <Style x:Key="GroupHeaderLabelStyleAlt" TargetType="Label">
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="FontSize" Value="22" />
+                <Setter Property="BackgroundColor" Value="#8660C5" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+            </Style>
+            <!-- << dataform-group-styling-header-label-style-alt -->
+            <!-- >> dataform-group-styling-header-view-style -->
+            <Style x:Key="GroupHeaderViewStyle" TargetType="telerik:DataFormGroupHeaderView">
+                <Setter Property="BorderColor" Value="Black" />
+                <Setter Property="BorderThickness" Value="2" />
+                <Setter Property="BackgroundColor" Value="LightGray" />
+            </Style>
+            <!-- << dataform-group-styling-header-view-style -->
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <Grid>
+        <!-- >> dataform-group-styling -->
+        <telerik:RadDataForm x:Name="dataForm" 
+                             AutoGenerateItems="False" 
+                             Grid.Column="1">
+            <telerik:RadDataForm.BindingContext>
+                <local:DataTypeEditorsModel/>
+            </telerik:RadDataForm.BindingContext>
+            <telerik:RadDataForm.Items>
+                <telerik:DataFormGroup HeaderText="Group 1" 
+                                       HeaderLabelStyle="{StaticResource GroupHeaderLabelStyle}"
+                                       HeaderStyle="{StaticResource GroupHeaderViewStyle}">
+                    <telerik:DataFormRadEntryEditor PropertyName="FirstName" />
+                    <telerik:DataFormRadNumericEditor PropertyName="People" 
+                                                      Minimum="1" />
+                    <telerik:DataFormRadComboBoxEditor PropertyName="Accommodation" 
+                                                    HeaderText="Accomodation options" />
+                    <telerik:DataFormDatePickerEditor PropertyName="StartDate" 
+                                                      HeaderText="From:" />
+                </telerik:DataFormGroup>
+                <telerik:DataFormGroup HeaderText="Group 2" 
+                                       HeaderLabelStyle="{StaticResource GroupHeaderLabelStyleAlt}">
+                    <telerik:DataFormDatePickerEditor PropertyName="EndDate" 
+                                                      HeaderText="To:" />
+                    <telerik:DataFormRadTimeSpanPickerEditor PropertyName="Duration" 
+                                                          HeaderText="Duration" />
+                    <telerik:DataFormRadCheckBoxEditor PropertyName="Visited" 
+                                                    HeaderText="Visited before" 
+                                                    IsThreeState="True" />
+                </telerik:DataFormGroup>
+            </telerik:RadDataForm.Items>
+        </telerik:RadDataForm>
+        <!-- << dataform-group-styling -->
+    </Grid>
+</ContentView>

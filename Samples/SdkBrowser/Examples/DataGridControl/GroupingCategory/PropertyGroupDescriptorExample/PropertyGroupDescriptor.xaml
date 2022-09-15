@@ -11,11 +11,11 @@
                 <HorizontalStackLayout Margin="5,0,0,0" VerticalOptions="Center" >
                     <Label Text="Employees working in: " 
                            TextColor="DarkBlue"
-                           FontSize="Small" />
+                           FontSize="{OnPlatform MacCatalyst=Default, Default=Small}" />
                     <Label Text="{Binding Group.Key}" 
                            FontAttributes="Bold" 
                            TextColor="DarkBlue" 
-                           FontSize="Small" />
+                           FontSize="{OnPlatform MacCatalyst=Default, Default=Small}" />
                 </HorizontalStackLayout>
             </DataTemplate>
         </telerik:RadDataGrid.GroupHeaderTemplate>        

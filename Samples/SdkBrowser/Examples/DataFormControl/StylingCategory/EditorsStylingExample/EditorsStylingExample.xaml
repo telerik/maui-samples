@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.DataFormControl.EditorsCategory.EditorsExample"
+             x:Class="SDKBrowserMaui.Examples.DataFormControl.StylingCategory.EditorsStylingExample.EditorsStylingExample">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <!-- >> dataform-editors-stlying-checkbox-style -->
+            <Style x:Key="CheckBoxStyle" TargetType="telerik:RadCheckBox">
+                <Setter Property="CheckedColor" Value="DarkSeaGreen" />
+                <Setter Property="UncheckedColor" Value="Orange" />
+            </Style>
+            <!-- << dataform-editors-stlying-checkbox-style -->
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+    <Grid RowDefinitions="Auto">
+        <Grid.BindingContext>
+            <local:EditorsModel />
+        </Grid.BindingContext>
+        <!-- >> dataform-editors-styling -->
+        <telerik:RadDataForm x:Name="dataForm" AutoGenerateItems="False">
+            <telerik:DataFormRadEntryEditor PropertyName="FirstName" 
+                                        HeaderText="Name" 
+                                        BackgroundColor="#8AAAFF" />
+            <telerik:DataFormRadNumericEditor PropertyName="People" 
+                                           HeaderText="People" 
+                                           Minimum="1" 
+                                           BorderColor="Navy" 
+                                           BorderThickness="2" />
+            <telerik:DataFormRadTimeSpanPickerEditor PropertyName="Duration" 
+                                                  HeaderText="Duration" 
+                                                  BackgroundColor="BlanchedAlmond" 
+                                                  BorderColor="Orange" 
+                                                  BorderThickness="2" />
+            <telerik:DataFormRadCheckBoxEditor PropertyName="Visited" 
+                                            HeaderText="Visited before"  
+                                            EditorStyle="{StaticResource CheckBoxStyle}" />
+        </telerik:RadDataForm>
+        <!-- << dataform-editors-styling -->
+    </Grid>
+</ContentView>

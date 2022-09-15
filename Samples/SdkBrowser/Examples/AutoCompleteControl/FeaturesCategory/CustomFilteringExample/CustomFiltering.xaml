@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.AutoCompleteControl.ViewModels"
+             x:Class="SDKBrowserMaui.Examples.AutoCompleteControl.FeaturesCategory.CustomFilteringExample.CustomFiltering">
+    <VerticalStackLayout>
+        <!-- >> autocomplete-customfiltering -->
+        <telerik:RadAutoComplete x:Name="аutoComplete"
+                                 Filter="{Binding Filter}"
+                                 TextSearchPath="FirstName"
+                                 ItemsSource="{Binding Source}"
+                                 Placeholder="Search here..."
+                                 SuggestionViewHeight="300">
+            <telerik:RadAutoComplete.SuggestionItemTemplate>
+                <DataTemplate>
+                    <HorizontalStackLayout HeightRequest="30" 
+                                           Spacing="5" 
+                                           Margin="5">
+                        <Label Text="{Binding FirstName}"/>
+                        <Label Text="{Binding LastName}"/>
+                    </HorizontalStackLayout>
+                </DataTemplate>
+            </telerik:RadAutoComplete.SuggestionItemTemplate>
+            <telerik:RadAutoComplete.BindingContext>
+                <local:CustomFilteringViewModel/>
+            </telerik:RadAutoComplete.BindingContext>
+        </telerik:RadAutoComplete>
+        <!-- << autocomplete-customfiltering -->
+    </VerticalStackLayout>
+</ContentView>

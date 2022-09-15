@@ -1,7 +1,7 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>$(MauiPlatforms)</TargetFrameworks>
+		<TargetFrameworks>$(MauiAppPlatforms)</TargetFrameworks>
 		<OutputType>Exe</OutputType>
 		<RootNamespace>SDKBrowserMaui</RootNamespace>
 		<UseMaui>true</UseMaui>
@@ -31,7 +31,7 @@
 		<EmbeddedResource Include="Examples\MapControl\world.shp" />
 	</ItemGroup>
 	<ItemGroup Condition="$(SolutionName) != 'Telerik.Maui'">
-	<PackageReference Include="Telerik.UI.for.Maui" Version="2.2.0" />
+	<PackageReference Include="Telerik.UI.for.Maui" Version="3.0.0" />
 	</ItemGroup>
 
 	<Import Condition="'$(SolutionName)' == 'Telerik.Maui'" Project="..\AddSourceReferences.proj" />

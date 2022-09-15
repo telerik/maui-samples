@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.DataFormControl.EditorsCategory.DataTypeEditorsExample"
+             x:Class="SDKBrowserMaui.Examples.DataFormControl.StylingCategory.ErrorMessageStylingExample.ErrorMessageStylingExample">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <!-- >> dataform-error-label-style -->
+            <Style x:Key="ErrorLabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="Orange" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+            </Style>
+            <!-- << dataform-error-label-style -->
+            <!-- >> dataform-error-label-style-alt -->
+            <Style x:Key="ErrorLabelStyleAlt" TargetType="Label">
+                <Setter Property="TextColor" Value="DarkGray" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+            </Style>
+            <!-- << dataform-error-label-style-alt -->
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <Grid RowDefinitions="Auto,2*,Auto,*">
+        <Label Text="Common error message styling" 
+               Margin="0,0,0,20" 
+               HorizontalOptions="Center" />
+
+        <!-- >> dataform-error-label-style-common -->
+        <telerik:RadDataForm x:Name="dataFormCommonErrorStyle" 
+                             Grid.Row="1" 
+                             ErrorLabelStyle="{StaticResource ErrorLabelStyle}"
+                             ValidationMode="LostFocus">
+            <telerik:RadDataForm.BindingContext>
+                <local:DataTypeEditorsModel />
+            </telerik:RadDataForm.BindingContext>
+        </telerik:RadDataForm>
+        <!-- << dataform-error-label-style-common -->
+
+        <Label Text="Individual error message styling" 
+               Grid.Row="2" 
+               Margin="0,20" 
+               HorizontalOptions="Center" />
+
+        <!-- >> dataform-error-label-style-individual -->
+        <telerik:RadDataForm x:Name="dataFormIndividualErrorStyle" 
+                             AutoGenerateItems="False" 
+                             Grid.Row="3"  
+                             ValidationMode="LostFocus">
+            <telerik:DataFormRadEntryEditor PropertyName="FirstName" 
+                                        HeaderText="Name" 
+                                        ErrorLabelStyle="{StaticResource ErrorLabelStyle}" />
+            <telerik:DataFormRadNumericEditor PropertyName="Email" 
+                                              HeaderText="Email address" 
+                                              Minimum="1" 
+                                              ErrorLabelStyle="{StaticResource ErrorLabelStyleAlt}" />
+            <telerik:RadDataForm.BindingContext>
+                <local:DataTypeEditorsModel />
+            </telerik:RadDataForm.BindingContext>
+        </telerik:RadDataForm>
+        <!-- << dataform-error-label-style-individual -->
+    </Grid>
+</ContentView>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.AutoCompleteControl.ViewModels"
+             x:Class="SDKBrowserMaui.Examples.AutoCompleteControl.FeaturesCategory.RemoteSearchExample.RemoteSearch">
+    <VerticalStackLayout>
+        <!-- >> autocomplete-remote-search -->
+        <telerik:RadAutoComplete x:Name="autoCompleteView"
+                                 TextChanged="OnTextChanged"
+                                 TextSearchPath="Name"
+                                 Placeholder="Remote Search..."
+                                 SuggestionViewHeight="200">
+            <telerik:RadAutoComplete.LoadingTemplate>
+                <DataTemplate>
+                    <HorizontalStackLayout HorizontalOptions="Center"
+                                           Margin="0, 20, 0, 20">
+                        <Label Text="Searching... " 
+                               FontSize="16" 
+                               TextColor="#8E8E93"/>
+                        <telerik:RadBusyIndicator x:Name="busyIndicator" 
+                                                  HeightRequest="24" 
+                                                  WidthRequest="24"
+                                                  IsBusy="True"
+                                                  VerticalOptions="Start"
+                                                  AnimationContentColor="#8660C5"
+                                                  AnimationType="Animation9"/>
+                    </HorizontalStackLayout>
+                </DataTemplate>
+            </telerik:RadAutoComplete.LoadingTemplate>
+            <telerik:RadAutoComplete.NoResultsTemplate>
+                <DataTemplate>
+                    <Label Text="No match was found for the specific search. Please try again."
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"/>
+                </DataTemplate>
+            </telerik:RadAutoComplete.NoResultsTemplate>
+        </telerik:RadAutoComplete>
+        <!-- << autocomplete-remote-search -->
+    </VerticalStackLayout>
+</ContentView>

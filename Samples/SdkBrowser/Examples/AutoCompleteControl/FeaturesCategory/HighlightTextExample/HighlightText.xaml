@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.AutoCompleteControl.FeaturesCategory.HighlightTextExample"
+             x:Class="SDKBrowserMaui.Examples.AutoCompleteControl.FeaturesCategory.HighlightTextExample.HighlightText">
+	<VerticalStackLayout Spacing="10">
+		<Label Text="Using the default SuggestionItemTemplate" />
+		<!-- >> autocomplete-highlight-text -->
+		<telerik:RadAutoComplete x:Name="autoCompleteView1"
+                                 ItemsSource="{Binding Source}"
+                                 TextSearchPath="Name"
+                                 Placeholder="Search Here..."
+                                 SuggestionItemHighlightTextColor="BlueViolet"
+                                 SuggestionViewHeight="100" />
+		<!-- << autocomplete-highlight-text -->
+
+		<Label Text="Using a custom SuggestionItemTemplate" />
+		<!-- >> autocomplete-highlight-text-behavior -->
+		<telerik:RadAutoComplete x:Name="autoCompleteView2"
+                                 ItemsSource="{Binding Source}"
+                                 TextSearchPath="Name"
+                                 Placeholder="Search Here..."
+                                 SuggestionViewHeight="100">
+			<telerik:RadAutoComplete.SuggestionItemTemplate>
+				<DataTemplate>
+					<telerik:RadHighlightLabel TextColor="Black" Padding="10"
+											   HighlightTextColor="BlueViolet"
+											   UnformattedText="{Binding Name}"
+											   HighlightText="{Binding Source={x:Reference autoCompleteView2}, Path=Text}" />
+				</DataTemplate>
+			</telerik:RadAutoComplete.SuggestionItemTemplate>
+		</telerik:RadAutoComplete>
+		<!-- << autocomplete-highlight-text-behavior -->
+	</VerticalStackLayout>
+</ContentView>

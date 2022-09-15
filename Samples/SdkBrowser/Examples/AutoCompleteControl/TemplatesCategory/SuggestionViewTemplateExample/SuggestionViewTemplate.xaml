@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.AutoCompleteControl.ViewModels"
+             x:Class="SDKBrowserMaui.Examples.AutoCompleteControl.TemplatesCategory.SuggestionViewTemplateExample.SuggestionViewTemplate">
+    <VerticalStackLayout>
+        <!-- >> autocomplete-templates-suggestion-view-template-xaml -->
+        <telerik:RadAutoComplete x:Name="autoComplete"
+                                 ItemsSource="{Binding Items}"
+                                 TextSearchPath="FirstName"
+                                 DisplayMode="Tokens"
+                                 VerticalOptions="Start"
+                                 CompletionMode="Contains"
+                                 Placeholder="Search here..."
+                                 SuggestionViewHeight="250">
+            <telerik:RadAutoComplete.BindingContext>
+                <local:PeopleViewModel/>
+            </telerik:RadAutoComplete.BindingContext>
+            <telerik:RadAutoComplete.SuggestionViewTemplate>
+                <DataTemplate>
+                    <telerik:RadDataGrid x:Name="dataGrid"
+                                         ItemsSource="{Binding FilteredItems, Source={x:Reference autoComplete}}" 
+                                         AutoGenerateColumns="False"
+                                         UserEditMode="None"
+                                         UserFilterMode="Disabled"
+                                         UserSortMode="None"
+                                         UserGroupMode="Disabled"
+                                         SelectionChanged="DataGrid_SelectionChanged">
+                        <telerik:RadDataGrid.Columns>
+                            <telerik:DataGridTextColumn HeaderText="First Name"
+                                                        PropertyName="FirstName"/>
+                            <telerik:DataGridTextColumn HeaderText="Last Name"
+                                                        PropertyName="LastName"/>
+                        </telerik:RadDataGrid.Columns>
+                    </telerik:RadDataGrid>
+                </DataTemplate>
+            </telerik:RadAutoComplete.SuggestionViewTemplate>
+        </telerik:RadAutoComplete>
+        <!-- << autocomplete-templates-suggestion-view-template-xaml -->
+    </VerticalStackLayout>
+</ContentView>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.SegmentedControl.StylingCategory.StylingExample.Styling">
+    <VerticalStackLayout>
+        <!--  >> segmentcontrol-styling-xaml  -->
+        <telerik:RadSegmentedControl x:Name="segmentControl"
+                                     Margin="10"
+                                     DisabledSegmentTextColor="#808660C5"
+                                     HeightRequest="60"
+                                     SegmentBackgroundColor="#FFFFFF"
+                                     SegmentTextColor="#3A9BFD"
+                                     SelectedSegmentBackgroundColor="#3A9BFD"
+                                     SelectedSegmentTextColor="#FFFFFF"
+                                     VerticalOptions="Start">
+            <telerik:RadSegmentedControl.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>Popular</x:String>
+                    <x:String>Library</x:String>
+                    <x:String>Playlists</x:String>
+                    <x:String>Friends</x:String>
+                </x:Array>
+            </telerik:RadSegmentedControl.ItemsSource>
+        </telerik:RadSegmentedControl>
+        <!--  << segmentcontrol-styling-xaml  -->
+    </VerticalStackLayout>
+</ContentView>

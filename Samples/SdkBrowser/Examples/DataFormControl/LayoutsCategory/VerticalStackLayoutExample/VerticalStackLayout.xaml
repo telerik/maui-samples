@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.DataFormControl.EditorsCategory.EditorsExample"
+             x:Class="SDKBrowserMaui.Examples.DataFormControl.LayoutsCategory.VerticalStackLayoutExample.VerticalStackLayout">
+    <Grid>
+        <!-- >> dataform-layouts-stack -->
+        <telerik:RadDataForm x:Name="dataForm">
+            <telerik:RadDataForm.LayoutDefinition>
+                <telerik:DataFormVerticalStackLayout Spacing="30"/>
+            </telerik:RadDataForm.LayoutDefinition>
+            <telerik:RadDataForm.BindingContext>
+                <local:EditorsModel/>
+            </telerik:RadDataForm.BindingContext>
+        </telerik:RadDataForm>
+        <!-- << dataform-layouts-stack -->
+    </Grid>
+</ContentView>

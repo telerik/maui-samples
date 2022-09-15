@@ -14,12 +14,12 @@
 
             <Style TargetType="ImageButton" x:Key="DefaultBackButtonStyle">
                 <Setter Property="Source" Value="arrowleft.png" />
-                <Setter Property="WidthRequest" Value="{OnPlatform Android='25', Default='40'}" />
-                <Setter Property="HeightRequest" Value="{OnPlatform Android='20', Default='35'}" />
+                <Setter Property="WidthRequest" Value="{OnPlatform Default='25', MacCatalyst='40'}" />
+                <Setter Property="HeightRequest" Value="{OnPlatform Default='20', MacCatalyst='35'}" />
                 <Setter Property="VerticalOptions" Value="Center" />
                 <Setter Property="BackgroundColor" Value="Transparent"/>
             </Style>
-            
+
             <Style TargetType="ImageButton" x:Key="IOSBackButtonStyle">
                 <Setter Property="Source" Value="arrowleft.png" />
                 <Setter Property="BackgroundColor" Value="Transparent"/>

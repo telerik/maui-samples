@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.AutoCompleteControl.ViewModels"
+             x:Class="SDKBrowserMaui.Examples.AutoCompleteControl.StylingCategory.StylingExample.Styling">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Style TargetType="telerik:RadButton" x:Key="ClearButtonStyle">
+                <Setter Property="TextColor" Value="#8660C5"/>
+                <Setter Property="FontSize" Value="12"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <VerticalStackLayout>
+        <telerik:RadAutoComplete ItemsSource="{Binding Source}" 
+                                 TextSearchPath="Name"
+                                 BackgroundColor="White"
+                                 TextColor="Black"
+                                 FontAttributes="Italic"
+                                 FontSize="16"
+                                 BorderThickness="2"
+                                 BorderBrush="#B8B8B8"
+                                 FocusedBorderBrush="#8660C5"
+                                 SuggestionItemHighlightTextColor="#8660C5"
+                                 SuggestionViewBackgroundColor="White"
+                                 SuggestionViewBorderColor="#8660C5"
+                                 CornerRadius="5"
+                                 PlaceholderColor="#8660C5"
+                                 Placeholder="Search here"
+                                 ClearButtonStyle="{StaticResource ClearButtonStyle}">
+            <telerik:RadAutoComplete.BindingContext>
+                <local:ExtendedClientsViewModel/>
+            </telerik:RadAutoComplete.BindingContext>
+        </telerik:RadAutoComplete>
+    </VerticalStackLayout>
+</ContentView>

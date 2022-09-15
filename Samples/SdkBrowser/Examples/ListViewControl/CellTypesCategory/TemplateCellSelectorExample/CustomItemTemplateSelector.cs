@@ -2,6 +2,7 @@
 
 namespace SDKBrowserMaui.Examples.ListViewControl.CellTypesCategory.TemplateCellSelectorExample
 {
+    // >> listview-itemtemplateselector-customitemtemplateselector
     public class CustomItemTemplateSelector : DataTemplateSelector
     {
         public DataTemplate Template1 { get; set; }
@@ -18,4 +19,5 @@ namespace SDKBrowserMaui.Examples.ListViewControl.CellTypesCategory.TemplateCell
             return this.Template1;
         }
     }
+    // << listview-itemtemplateselector-customitemtemplateselector
 }

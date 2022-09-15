@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.AutoCompleteControl.ViewModels"
+             x:Class="SDKBrowserMaui.Examples.AutoCompleteControl.FeaturesCategory.SuggestModeExample.SuggestMode">
+    <VerticalStackLayout Spacing="5">
+        <VerticalStackLayout.BindingContext>
+            <local:ClientsViewModel/>
+        </VerticalStackLayout.BindingContext>
+        <Label Text="SuggestMode - Suggest"/>
+        <!-- >> autocomplete-suggestmode-suggest -->
+        <telerik:RadAutoComplete x:Name="autoCompleteSuggest"
+                                 SuggestMode="Suggest"
+                                 ItemsSource="{Binding Source}"
+                                 TextSearchPath="Name"
+                                 Placeholder="Search"
+                                 SuggestionViewHeight="150"/>
+        <!-- << autocomplete-suggestmode-suggest -->
+
+        <Label Text="SuggestMode - Append"/>
+        <!-- >> autocomplete-suggestmode-append -->
+        <telerik:RadAutoComplete x:Name="autoCompleteAppend"
+                                 SuggestMode="Append"
+                                 ItemsSource="{Binding Source}"
+                                 TextSearchPath="Name"
+                                 Placeholder="Search"
+                                 SuggestionViewHeight="150"/>
+        <!-- << autocomplete-suggestmode-append -->
+
+        <Label Text="SuggestMode - SuggestAppend"/>
+        <!-- >> autocomplete-suggestmode-suggest-append -->
+        <telerik:RadAutoComplete x:Name="autoCompleteSuggestAppend"
+                                 SuggestMode="SuggestAppend"
+                                 ItemsSource="{Binding Source}"
+                                 TextSearchPath="Name"
+                                 Placeholder="Search"
+                                 SuggestionViewHeight="100"/>
+        <!-- << autocomplete-suggestmode-suggest-append -->
+    </VerticalStackLayout>
+</ContentView>

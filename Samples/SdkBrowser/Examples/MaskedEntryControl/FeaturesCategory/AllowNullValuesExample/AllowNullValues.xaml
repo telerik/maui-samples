@@ -10,15 +10,15 @@
 
                 <Label Text="Text mask with AllowNullValues = false" Margin="0, 30, 0, 0" />
                 <!-- >> numericmaskedentry-allownullvalues-false-xaml -->
-                <telerik:RadNumericMaskedEntry x:Name="textMaskedEntry"  Value="5" AllowNullValue="False" />
+                <telerik:RadNumericMaskedEntry x:Name="textMaskedEntry"  Value="5" AllowNullValue="False" AutomationId="textMask"/>
                 <!-- << numericmaskedentry-allownullvalues-false-xaml -->
-                <Button Text="Value = null" Clicked="TextMaskValueToNull_Clicked" HorizontalOptions="Center"  Margin="0,5,0,0"/>
+                <Button Text="Value = null" Clicked="TextMaskValueToNull_Clicked" HorizontalOptions="Center"  Margin="0,5,0,0" AutomationId="nullValueButton"/>
 
                 <Label Text="Text mask with AllowNullValues = true" Margin="0, 30, 0, 0" />
                 <!-- >> numericmaskedentry-allownullvalues-true-xaml -->
-                <telerik:RadNumericMaskedEntry x:Name="allowNullValuesTextMaskedEntry" Value="5"  AllowNullValue="True"/>
+                <telerik:RadNumericMaskedEntry x:Name="allowNullValuesTextMaskedEntry" Value="5"  AllowNullValue="True" AutomationId="textMaskNullAllowed"/>
                 <!-- << numericmaskedentry-allownullvalues-true-xaml -->
-                <Button Text="Value = null" Clicked="AllowNullValuesValueToNull_Clicked" HorizontalOptions="Center" Margin="0,5,0,0"/>
+                <Button Text="Value = null" Clicked="AllowNullValuesValueToNull_Clicked" HorizontalOptions="Center" Margin="0,5,0,0" AutomationId="nullAllowedButton"/>
 
             </VerticalStackLayout>
         </ScrollView>
