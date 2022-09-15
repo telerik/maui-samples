@@ -2,24 +2,20 @@
 using System;
 using System.Globalization;
 
-namespace QSF.Examples.DataGridControl.ColumnTypesExample
+namespace QSF.Examples.DataGridControl.ColumnTypesExample;
+
+public class StatusFlightToBooleanConverter : IValueConverter
 {
-    public class StatusFlightToBooleanConverter : IValueConverter
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            var data = (string)value;
+        var data = (string)value;
 
-            if (data == "Departed")
-            {
-                return true;
-            }
-            else return false;
-        }
+        bool isDeparted = data == "Departed";
+        return isDeparted;
+    }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        throw new NotImplementedException();
     }
 }

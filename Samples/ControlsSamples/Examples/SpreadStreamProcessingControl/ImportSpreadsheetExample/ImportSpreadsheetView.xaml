@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        x:Class="QSF.Examples.SpreadStreamProcessingControl.ImportSpreadsheetExample.ImportSpreadsheetView">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <HorizontalStackLayout Grid.Row="0"
+                               Grid.ColumnSpan="3"
+                               Margin="0,6"
+                               HorizontalOptions="Center">
+            <Label Text="File: "
+                   FontAttributes="Bold" />
+            <Label Text="{Binding FileLabelText}"/>
+        </HorizontalStackLayout>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <VerticalStackLayout VerticalOptions="Center"
+                                 Margin="6,6,30,6"
+                                 HorizontalOptions="End">
+                <telerik:RadButton Text="Load Custom Document"
+                                   Padding="8,4"
+                                   Command="{Binding ImportFileCommand}"
+                                   HorizontalOptions="Center"
+                                   Style="{StaticResource SubmitButtonStyle}" />
+            </VerticalStackLayout>
+
+            <Label Text="- OR -"
+                   Grid.Column="1"
+                   VerticalOptions="Center" />
+            <VerticalStackLayout Grid.Column="2"
+                                 VerticalOptions="Center"
+                                 Margin="30,6,6,6"
+                                 HorizontalOptions="Start">
+                <telerik:RadButton Text="Load Sample Document"
+                                   Padding="8,4"
+                                   Command="{Binding ImportSampleCommand}"
+                                   HorizontalOptions="Center"
+                                   Style="{StaticResource SubmitButtonStyle}" />
+            </VerticalStackLayout>
+        </Grid>
+        <ScrollView x:Name="Scroller"
+                    Margin="0"
+                    Padding="8,4"
+                    Background="LightGray"
+                    Grid.Row="2">
+            <Label x:Name="consoleLabel" Text="{Binding Console}" VerticalOptions="Start" />
+        </ScrollView>
+    </Grid>
+</telerik:RadContentView>

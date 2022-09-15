@@ -63,6 +63,7 @@
                              SelectionMode="Multiple"
                              SelectionStyle="{StaticResource selectedRowStyle}"
                              UserEditMode="Cell"
+                             UserGroupMode="Enabled"
                              GridLinesThickness="1"
                              GridLinesVisibility="Horizontal"
                              GridLinesColor="#DFDFDF"
@@ -72,6 +73,12 @@
                 <telerik:PropertyGroupDescriptor PropertyName="RegionName"/>
             </telerik:RadDataGrid.GroupDescriptors>
             <telerik:RadDataGrid.Columns>
+                <telerik:DataGridTextColumn PropertyName="CountryName"
+                                            HeaderText="Country"
+                                            IsVisible="False" />
+                <telerik:DataGridTextColumn PropertyName="RegionName"
+                                            HeaderText="Region"
+                                            IsVisible="False" />
                 <telerik:DataGridTextColumn PropertyName="FullName"
                                             HeaderText="Sales Person"
                                             HeaderStyle="{StaticResource columHeaderStyle}">

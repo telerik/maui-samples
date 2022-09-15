@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:views="clr-namespace:QSF.Views"
+             x:Class="QSF.Examples.ExpanderControl.FirstLookExample.FirstLookView">
+    <ContentView.Resources>
+        <Color x:Key="lightPurple">#A790CE</Color>
+        <Color x:Key="purple">#7C59B6</Color>
+        <Style x:Key="ImageBorderStyle" TargetType="telerik:RadBorder">
+            <Setter Property="CornerRadius" Value="48" />
+            <Setter Property="WidthRequest" Value="48" />
+            <Setter Property="HeightRequest" Value="48" />
+            <Setter Property="BorderColor" Value="{StaticResource purple}" />
+            <Setter Property="BorderThickness" Value="4" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+        </Style>
+    </ContentView.Resources>
+    <VerticalStackLayout Margin="20" >
+        <telerik:RadExpander HeaderText="Sales Person" 
+                             MaximumWidthRequest="{OnIdiom Default='645', Phone='338'}" >
+            <telerik:RadExpander.Content>
+                <Grid Padding="{OnIdiom Default='5,0,5,0', Phone='15,0,15,0'}">
+                    <telerik:RadListView x:Name="listView" 
+                                         ItemsSource="{Binding SalesReps}" 
+                                         SelectionMode="None" >
+                        <telerik:RadListView.ItemTemplate>
+                            <DataTemplate>
+                                <telerik:ListViewTemplateCell>
+                                    <telerik:ListViewTemplateCell.View>
+                                        <telerik:RadBorder WidthRequest="304" 
+                                                           HeightRequest="75" 
+                                                           BorderThickness="1" 
+                                                           BorderColor="LightGrey">
+                                            <HorizontalStackLayout Spacing="15" 
+                                                                   HorizontalOptions="Start"  >
+                                                <telerik:RadBorder Style="{StaticResource ImageBorderStyle}" 
+                                                                   Margin="10,0,0,0">
+                                                    <Image Source="{Binding Image}" 
+                                                           HeightRequest="48" 
+                                                           BackgroundColor="Transparent" 
+                                                           VerticalOptions="Center" 
+                                                           HorizontalOptions="Center" 
+                                                           WidthRequest="48" />
+                                                </telerik:RadBorder>
+                                                <VerticalStackLayout VerticalOptions="Center" 
+                                                                     HorizontalOptions="Start">
+                                                    <Label Text="{Binding FullName}" 
+                                                           VerticalOptions="Center" 
+                                                           FontSize="20" 
+                                                           HeightRequest="27" 
+                                                           TextColor="{StaticResource purple}"/>
+                                                    <Label Text="{Binding CountryName}" 
+                                                           VerticalOptions="Center" 
+                                                           FontSize="14" 
+                                                           HeightRequest="19"/>
+                                                    <Label Text="{Binding Sales}" 
+                                                           VerticalOptions="Center" 
+                                                           FontSize="12"  
+                                                           HeightRequest="17" 
+                                                           TextColor="{StaticResource lightPurple}">
+                                                        <Label.FormattedText>
+                                                            <FormattedString>
+                                                                <Span Text="$" />
+                                                                <Span Text="{Binding Sales}" />
+                                                            </FormattedString>
+                                                        </Label.FormattedText>
+                                                    </Label>
+                                                </VerticalStackLayout>
+                                            </HorizontalStackLayout>
+                                        </telerik:RadBorder>
+                                    </telerik:ListViewTemplateCell.View>
+                                </telerik:ListViewTemplateCell>
+                            </DataTemplate>
+                        </telerik:RadListView.ItemTemplate>
+                        <telerik:RadListView.LayoutDefinition >
+                            <telerik:ListViewGridLayout ItemLength="93" 
+                                                        SpanCount="{OnIdiom Default='2', Phone='1'}"
+                                                        HorizontalItemSpacing="{OnIdiom Default='0', Phone='0'}" 
+                                                        VerticalItemSpacing="{OnIdiom Default='0', Phone='5'}">
+                                
+                            </telerik:ListViewGridLayout>
+                        </telerik:RadListView.LayoutDefinition>
+                        <telerik:RadListView.ItemStyle>
+                            <telerik:ListViewItemStyle BorderWidth="0" 
+                                                       BorderLocation="None"/>
+                        </telerik:RadListView.ItemStyle>
+                        <telerik:RadListView.SelectedItemStyle>
+                            <telerik:ListViewItemStyle BackgroundColor="Transparent"/>
+                        </telerik:RadListView.SelectedItemStyle>
+                        <telerik:RadListView.PressedItemStyle>
+                            <telerik:ListViewItemStyle BackgroundColor="Transparent" />
+                        </telerik:RadListView.PressedItemStyle>
+                    </telerik:RadListView>
+                </Grid>
+            </telerik:RadExpander.Content>
+        </telerik:RadExpander>
+    </VerticalStackLayout>
+</ContentView>

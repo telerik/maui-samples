@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>$(MauiPlatforms)</TargetFrameworks>
+		<TargetFrameworks>$(MauiAppPlatforms)</TargetFrameworks>
 		<OutputType>Exe</OutputType>
 		<RootNamespace>QSF</RootNamespace>
 		<UseMaui>true</UseMaui>
@@ -36,8 +36,10 @@
 		<EmbeddedResource Include="Examples\PdfProcessingControl\NotEmbeddingFontsExample\pdfviewer-firstlook.pdf" />
 		<EmbeddedResource Include="Examples\SpreadProcessingControl\ConditionalFormattingExample\SpreadProcessingDocument2.xlsx" />
 		<EmbeddedResource Include="Examples\SpreadProcessingControl\ConvertExample\SpreadProcessingDocument1.xlsx" />
+		<EmbeddedResource Include="Examples\SpreadStreamProcessingControl\ImportSpreadsheetExample\sample.xlsx" />
 		<EmbeddedResource Include="Examples\WordsProcessingControl\ExportExample\DocToBeProcessed.docx" />
 		<EmbeddedResource Include="Examples\WordsProcessingControl\FindAndReplaceExample\JohnGrisham.docx" />
+		<EmbeddedResource Include="Examples\WordsProcessingControl\NumberingFields\SampleDocument.docx" />
 		<EmbeddedResource Include="Examples\ZipLibraryControl\CreateArchiveExample\Resources\ZipSampleDocuments\Balance Sheet.xlsx" />
 		<EmbeddedResource Include="Examples\ZipLibraryControl\CreateArchiveExample\Resources\ZipSampleDocuments\Book.pdf" />
 		<EmbeddedResource Include="Examples\ZipLibraryControl\CreateArchiveExample\Resources\ZipSampleDocuments\Food Order.xlsx" />
@@ -61,7 +63,7 @@
 	</PropertyGroup>
 
 	<ItemGroup Condition="$(SolutionName) != 'Telerik.Maui'">
-		<PackageReference Include="Telerik.UI.for.Maui" Version="2.2.0" />
+		<PackageReference Include="Telerik.UI.for.Maui" Version="3.0.0" />
 	</ItemGroup>
 
 	<Import Condition="'$(SolutionName)' == 'Telerik.Maui'" Project="..\AddSourceReferences.proj" />

@@ -12,11 +12,12 @@
         </ResourceDictionary>
     </ContentView.Resources>
     <Grid RowDefinitions="*">
-        <telerik:RadDataGrid UserFilterMode="Disabled"
-                             ItemsSource="{Binding Flights}"
-                             UserEditMode="None"
+        <telerik:RadDataGrid ItemsSource="{Binding Flights}"
                              SelectionMode="None"
+                             UserEditMode="None"
                              UserSortMode="None"
+                             UserFilterMode="Disabled"
+                             UserGroupMode="Disabled"
                              AutoGenerateColumns="False"
                              GridLinesThickness="1"
                              GridLinesVisibility="Both"

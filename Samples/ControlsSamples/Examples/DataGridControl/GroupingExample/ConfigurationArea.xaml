@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="QSF.Examples.DataGridControl.GroupingExample.ConfigurationArea">
+    
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label" x:Key="ColumnTextGroup">
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="Margin" Value="11, 6, 0, 6" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+            </Style>
+            <Style TargetType="telerik:RadCheckBox">
+                <Setter Property="CheckedColor" Value="{StaticResource AccentColor8}" />
+                <Setter Property="Margin" Value="11, 6, 0, 6" />
+                <Setter Property="UncheckedColor" Value="{StaticResource TextColor2}" />
+                <Setter Property="IsThreeState" Value="False" />
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+    <VerticalStackLayout>
+        <telerik:RadBorder IsVisible="{OnIdiom Desktop=true, Phone=false}"
+                           BackgroundColor="#E1DAEE"
+                           Margin="0, 0, 0, 11">
+            <Label Text="Configuration:" FontSize="Small" Margin="6, 5" />
+        </telerik:RadBorder>
+        <HorizontalStackLayout telerik:RadCheckBox.ToggleOnTap="{Reference CheckBoxIsGroupingAllowed}">
+            <telerik:RadCheckBox x:Name="CheckBoxIsGroupingAllowed" IsChecked="{Binding IsGroupingAllowed}" />
+            <Label Text="Is Grouping Allowed" Style="{StaticResource ColumnTextGroup}" />
+        </HorizontalStackLayout>
+        <Label Text="Group by:" FontSize="18" Margin="6, 5" />
+        <HorizontalStackLayout telerik:RadCheckBox.ToggleOnTap="{Reference CheckBoxAirline}">
+            <telerik:RadCheckBox x:Name="CheckBoxAirline"
+                                 IsChecked="{Binding IsGroupedByAirline}"
+                                 IsEnabled="{Binding IsGroupingAllowed}" />
+            <Label Text="Airline" Style="{StaticResource ColumnTextGroup}" />
+        </HorizontalStackLayout>
+        <HorizontalStackLayout telerik:RadCheckBox.ToggleOnTap="{Reference CheckBoxDate}">
+            <telerik:RadCheckBox x:Name="CheckBoxDate"
+                                 IsChecked="{Binding IsGroupedByDate}"
+                                 IsEnabled="{Binding IsGroupingAllowed}" />
+            <Label Text="Date" Style="{StaticResource ColumnTextGroup}" />
+        </HorizontalStackLayout>
+        <HorizontalStackLayout telerik:RadCheckBox.ToggleOnTap="{Reference CheckBoxDirect}">
+            <telerik:RadCheckBox x:Name="CheckBoxDirect"
+                                 IsChecked="{Binding IsGroupedByDirectFlight}"
+                                 IsEnabled="{Binding IsGroupingAllowed}" />
+            <Label Text="Is Direct Flight" Style="{StaticResource ColumnTextGroup}" />
+        </HorizontalStackLayout>
+        <HorizontalStackLayout telerik:RadCheckBox.ToggleOnTap="{Reference CheckBoxDestination}">
+            <telerik:RadCheckBox x:Name="CheckBoxDestination"
+                                 IsChecked="{Binding IsGroupedByDestination}"
+                                 IsEnabled="{Binding IsGroupingAllowed}" />
+            <Label Text="Destination" Style="{StaticResource ColumnTextGroup}" />
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
+    
+</ContentView>

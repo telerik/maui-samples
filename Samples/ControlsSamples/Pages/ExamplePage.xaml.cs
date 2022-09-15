@@ -2,7 +2,6 @@
 using System;
 using System.ComponentModel;
 using QSF.ViewModels;
-using QSF.Services.Interfaces;
 
 
 namespace QSF.Pages
@@ -12,26 +11,6 @@ namespace QSF.Pages
         public ExamplePage()
         {
             InitializeComponent();
-        }
-
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-            ExampleViewModel vm = (ExampleViewModel)this.BindingContext;
-            if (vm.Content is INavigationView appearable)
-            {
-                appearable.OnAppearing();
-            }
-        }
-
-        protected override void OnDisappearing()
-        {
-            base.OnDisappearing();
-            ExampleViewModel vm = (ExampleViewModel)this.BindingContext;
-            if (vm.Content is INavigationView appearable)
-            {
-                appearable.OnDisappearing();
-            }
         }
 
         private async void Back_Clicked(object sender, EventArgs e)

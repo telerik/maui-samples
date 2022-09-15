@@ -15,6 +15,8 @@ namespace QSF.Examples.WordsProcessingControl.FindAndReplaceExample
 {
     public class FindAndReplaceViewModel : ExampleViewModel
     {
+        private const string documentName = "JohnGrisham.docx";
+
         private readonly IFileViewerService fileViewerService;
         private bool useRegex;
         private bool matchCase;
@@ -116,11 +118,25 @@ namespace QSF.Examples.WordsProcessingControl.FindAndReplaceExample
             }
         }
 
+        internal static RadFlowDocument OpenSample(string docName)
+        {
+            Assembly assembly = typeof(FindAndReplaceView).Assembly;
+            string fileName = assembly.GetManifestResourceNames().FirstOrDefault(n => n.Contains(docName));
+
+            RadFlowDocument doc = new RadFlowDocument();
+            using (Stream stream = assembly.GetManifestResourceStream(fileName))
+            {
+                doc = new DocxFormatProvider().Import(stream);
+            }
+
+            return doc;
+        }
+
         private async void GenerateSampleExecute()
         {
             if (this.sampleDocument == null)
             {
-                this.sampleDocument = this.OpenSample();
+                this.sampleDocument = OpenSample(documentName);
             }
 
             IFormatProvider<RadFlowDocument> formatProvider = new DocxFormatProvider();
@@ -134,25 +150,11 @@ namespace QSF.Examples.WordsProcessingControl.FindAndReplaceExample
             }
         }
 
-        private RadFlowDocument OpenSample()
-        {
-            Assembly assembly = typeof(FindAndReplaceView).Assembly;
-            string fileName = assembly.GetManifestResourceNames().FirstOrDefault(n => n.Contains("JohnGrisham.docx"));
-
-            RadFlowDocument doc = new RadFlowDocument();
-            using (Stream stream = assembly.GetManifestResourceStream(fileName))
-            {
-                doc = new DocxFormatProvider().Import(stream);
-            }
-
-            return doc;
-        }
-
         private async void ReplaceAndSaveExecute()
         {
             if (this.replacedDocument == null)
             {
-                this.replacedDocument = this.OpenSample();
+                this.replacedDocument = OpenSample(documentName);
             }
 
             this.ReplaceText();
