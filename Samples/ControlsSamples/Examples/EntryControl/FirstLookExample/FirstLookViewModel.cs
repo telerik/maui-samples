@@ -89,6 +89,7 @@ namespace QSF.Examples.EntryControl.FirstLookExample
                 this.Username = string.Empty;
                 this.EmailAddress = string.Empty;
                 this.Password = string.Empty;
+                this.RepeatPassword = string.Empty;
             }
             var toastService = DependencyService.Get<IToastMessageService>();
             toastService.ShortAlert(registerMessage);

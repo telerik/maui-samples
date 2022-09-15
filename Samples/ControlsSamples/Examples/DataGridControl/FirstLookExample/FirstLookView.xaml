@@ -8,49 +8,53 @@
 
     <ContentView.Resources>
         <telerik:DataGridColumnHeaderStyle x:Key="columHeaderStyle"
-                                                   TextMargin="10, 20"
-                                                   TextFontSize="16"
-                                                   BorderThickness="1"
-                                                   BorderColor="#DFDFDF"
-                                                   FilterIndicatorMargin="10"
-                                                   BackgroundColor="#f8f8f8" />
+                                           TextMargin="10, 20"
+                                           TextFontSize="16"
+                                           BorderThickness="1"
+                                           BorderColor="#DFDFDF"
+                                           FilterIndicatorMargin="10"
+                                           BackgroundColor="#f8f8f8" />
         <telerik:DataGridGroupHeaderStyle x:Key="groupHeaderStyle"
-                                                  BorderThickness="1"
-                                                  BorderColor="#DFDFDF"
-                                                  BackgroundColor="#f8f8f8" />
+                                          BorderThickness="1"
+                                          BorderColor="#DFDFDF"
+                                          BackgroundColor="#f8f8f8" />
     </ContentView.Resources>
 
     <Grid>
-        <telerik:RadDataGrid Grid.Row="1" 
-                                     ItemsSource="{Binding People}"
-                                     AutoGenerateColumns="False"
-                                     SelectionUnit="Row"
-                                     SelectionMode="Multiple"
-                                     UserEditMode="Cell"
-                                     GridLinesThickness="1"
-                                     GridLinesVisibility="Both"
-                                     GridLinesColor="#DFDFDF"
-                                     GroupHeaderStyle="{StaticResource groupHeaderStyle}">
+        <telerik:RadDataGrid Grid.Row="1"
+                             ItemsSource="{Binding People}"
+                             AutoGenerateColumns="False"
+                             SelectionUnit="Row"
+                             SelectionMode="Multiple"
+                             UserEditMode="Cell"
+                             UserGroupMode="Enabled"
+                             GridLinesThickness="1"
+                             GridLinesVisibility="Both"
+                             GridLinesColor="#DFDFDF"
+                             GroupHeaderStyle="{StaticResource groupHeaderStyle}">
             <telerik:RadDataGrid.GroupDescriptors>
-              <telerik:PropertyGroupDescriptor PropertyName="CountryName"/>
+              <telerik:PropertyGroupDescriptor PropertyName="CountryName" />
             </telerik:RadDataGrid.GroupDescriptors>
             <telerik:RadDataGrid.Columns>
+                <telerik:DataGridTextColumn PropertyName="CountryName"
+                                            HeaderText="Country"
+                                            IsVisible="False" />
                 <telerik:DataGridTextColumn PropertyName="FullName"
-                                                    HeaderText="Name"
-                                                    HeaderStyle="{StaticResource columHeaderStyle}"/>
+                                            HeaderText="Name"
+                                            HeaderStyle="{StaticResource columHeaderStyle}" />
                 <telerik:DataGridTextColumn PropertyName="PhoneNumberWithCountryCode"
-                                                    HeaderText="Phone"
-                                                    HeaderStyle="{StaticResource columHeaderStyle}"/>
+                                            HeaderText="Phone"
+                                            HeaderStyle="{StaticResource columHeaderStyle}" />
                 <telerik:DataGridBooleanColumn HeaderText="Is Member"
-                                                       PropertyName="IsMember"
-                                                       SizeMode="Auto"
-                                                       HeaderStyle="{StaticResource columHeaderStyle}">
+                                               PropertyName="IsMember"
+                                               SizeMode="Auto"
+                                               HeaderStyle="{StaticResource columHeaderStyle}">
                 </telerik:DataGridBooleanColumn>
                 <telerik:DataGridNumericalColumn PropertyName="Id"
-                                                         HeaderText="Id"
-                                                         HeaderStyle="{StaticResource columHeaderStyle}"/>
+                                                 HeaderText="Id"
+                                                 HeaderStyle="{StaticResource columHeaderStyle}" />
                 <telerik:DataGridTemplateColumn HeaderText="Country"
-                                                        HeaderStyle="{StaticResource columHeaderStyle}">
+                                                HeaderStyle="{StaticResource columHeaderStyle}">
                     <telerik:DataGridTemplateColumn.CellContentTemplate>
                         <DataTemplate>
                             <Grid>
@@ -58,7 +62,7 @@
                                        Aspect="AspectFit"
                                        Margin="10, 5"
                                        WidthRequest="40"
-                                       HeightRequest="40"/>
+                                       HeightRequest="40" />
                             </Grid>
                         </DataTemplate>
                     </telerik:DataGridTemplateColumn.CellContentTemplate>

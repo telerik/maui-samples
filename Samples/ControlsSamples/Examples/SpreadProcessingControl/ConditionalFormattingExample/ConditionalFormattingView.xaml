@@ -8,12 +8,13 @@
         <ResourceDictionary>
             <Style x:Key="mainConditionLabelStyle" TargetType="Label">
                 <Setter Property="FontAttributes" Value="Bold" />
-                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="{OnIdiom Default=Start, Phone=Center}" />
                 <Setter Property="TextColor" Value="#000000" />
+                <Setter Property="Margin" Value="0,0,0,5"/>
             </Style>
 
             <Style x:Key="additioLabelStyle" TargetType="Label">
-                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="{OnIdiom Default=Start, Phone=Center}" />
                 <Setter Property="Margin" Value="0, 0, 0, 18" />
                 <Setter Property="TextColor" Value="#919191" />
             </Style>
@@ -21,20 +22,21 @@
             <Style TargetType="Picker" x:Key="CommonPickerStyle">
                 <Setter Property="TextColor" Value="#000000"/>
                 <Setter Property="HorizontalTextAlignment" Value="Center"/>
-                <Setter Property="HorizontalOptions" Value="Center"/>
-                <Setter Property="BackgroundColor" Value="Transparent"/>
+                <Setter Property="Margin" Value="{OnIdiom Default='0, 0, 0, 5', Phone=0}" />
+
             </Style>
 
             <Style TargetType="Entry" x:Key="CommonEntryStyle">
                 <Setter Property="Keyboard" Value="Numeric"/>
                 <Setter Property="HorizontalTextAlignment" Value="Center"/>
-                <Setter Property="BackgroundColor" Value="Transparent"/>
+                <Setter Property="Margin" Value="{OnIdiom Default='0, 0, 0, 5', Phone=0}" />
             </Style>
         </ResourceDictionary>
     </telerik:RadContentView.Resources>
     <Grid RowDefinitions="*,Auto">
         <ScrollView>
             <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto" 
+                  ColumnSpacing="10"
                   RowSpacing="24"
                   Margin="0,24,0,0"
                   Padding="16,10,16,0">
@@ -47,7 +49,7 @@
                            Style="{StaticResource mainConditionLabelStyle}"/>
                     <Label Text="Highlight clients that are" 
                            Style="{StaticResource additioLabelStyle}"/>
-                    <Picker ItemsSource="{Binding ClientsRules}" 
+                    <Picker ItemsSource="{Binding ClientsRules}"
                             SelectedItem="{Binding SelectedClientsRule, Mode=TwoWay}"
                             MaximumWidthRequest="{OnPlatform WinUI='300', MacCatalyst='300'}"
                             Style="{StaticResource CommonPickerStyle}"/>
@@ -64,7 +66,7 @@
                             Style="{StaticResource CommonPickerStyle}"/>
                 </VerticalStackLayout>
                 <VerticalStackLayout Grid.Row="{OnIdiom Default=1, Phone=2}">
-                    <Grid RowDefinitions="Auto,Auto,Auto"
+                    <Grid RowDefinitions="Auto,Auto,Auto,Auto"
                           ColumnDefinitions="*,*"
                           ColumnSpacing="9">
                         <Label Text="&#34;Discount&#34; column rule:" 
@@ -74,13 +76,14 @@
                                Grid.Row="1" 
                                Style="{StaticResource additioLabelStyle}" 
                                Grid.ColumnSpan="2"/>
-                        <Picker Grid.Row="2" Grid.Column="0" 
+                        <Picker Grid.Row="2" 
+                                Grid.Column="0" 
                                 Style="{StaticResource CommonPickerStyle}"
                                 ItemsSource="{Binding DiscountComparisonOperators}"
                                 MaximumWidthRequest="{OnPlatform WinUI='300', MacCatalyst='300'}"
                                 SelectedItem="{Binding SelectedDiscountComparison, Mode=TwoWay}"/>
-                        <Entry Grid.Row="2"
-                               Grid.Column="1" 
+                        <Entry Grid.Row="{OnIdiom Default=3, Phone=2}" 
+                               Grid.Column="{OnIdiom Default=0, Phone=1}" 
                                Text="{Binding DiscountThreshold}"
                                MaximumWidthRequest="{OnPlatform WinUI='300', MacCatalyst='300'}"
                                Style="{StaticResource CommonEntryStyle}"/>
@@ -88,7 +91,7 @@
                 </VerticalStackLayout>
                 <VerticalStackLayout Grid.Row="{OnIdiom Default=1, Phone=3}"
                                      Grid.Column="{OnIdiom Default=1, Phone=0}">
-                    <Grid RowDefinitions="Auto,Auto,Auto"
+                    <Grid RowDefinitions="Auto,Auto,Auto,Auto"
                           ColumnDefinitions="*,*" 
                           ColumnSpacing="9">
                         <Label Text="&#34;TOTAL PRICE&#34; column rule:" 
@@ -97,13 +100,14 @@
                         <Label Text="Highlight prices that are in" Grid.Row="1" 
                                Style="{StaticResource additioLabelStyle}" 
                                Grid.ColumnSpan="2"/>
-                        <Picker Grid.Row="2" Grid.Column="0" 
+                        <Picker Grid.Row="2" 
+                                Grid.Column="0" 
                                 Style="{StaticResource CommonPickerStyle}"
                                 ItemsSource="{Binding PriceFilters}"
                                 MaximumWidthRequest="{OnPlatform WinUI='300', MacCatalyst='300'}"
                                 SelectedItem="{Binding SelectedPriceFilter, Mode=TwoWay}"/>
-                        <Entry Grid.Row="2" 
-                               Grid.Column="1" 
+                        <Entry Grid.Row="{OnIdiom Default=3, Phone=2}"  
+                               Grid.Column="{OnIdiom Default=0, Phone=1}"
                                MaximumWidthRequest="{OnPlatform WinUI='300', MacCatalyst='300'}"
                                Style="{StaticResource CommonEntryStyle}"
                                Text="{Binding PriceRank}"/>
@@ -115,8 +119,8 @@
                            Text="View Document"
                            Margin="16, 20"
                            Style="{StaticResource SubmitButtonStyle}"
-                           VerticalOptions="{OnPlatform WinUI='Center', MacCatalyst='Center'}"
-                           HorizontalOptions="{OnPlatform WinUI='Center', MacCatalyst='Center'}"
+                           VerticalOptions="{OnIdiom Default=Start, Phone=End}"
+                           HorizontalOptions="{OnIdiom Default=Start, Phone=FillAndExpand}"
                            Command="{Binding ViewFormattedDocumentCommand}" />
     </Grid>
 </telerik:RadContentView>

@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Grid xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:QSF.Examples.AutoCompleteControl.FirstLookExample"
+             x:Class="QSF.Examples.AutoCompleteControl.FirstLookExample.FirstLookView"
+             Padding="{OnIdiom Desktop='16,18,45,0', Phone='16'}">
+
+    <Grid.Resources>
+        <Color x:Key="buttonColor">#7C59B6</Color>
+
+        <Style TargetType="StackLayout" x:Key="detailsLayoutStyle">
+            <Setter Property="Orientation" Value="{OnIdiom Desktop=Vertical, Default=Horizontal}"/>
+            <Setter Property="Spacing" Value="{OnIdiom Desktop=12, Default=0}"/>
+        </Style>
+
+        <Style TargetType="Label" x:Key="labelStyle">
+            <Setter Property="TextColor" Value="Black"/>
+        </Style>
+
+        <Style TargetType="Label" x:Key="detailsLabelStyle" BasedOn="{StaticResource labelStyle}">
+            <Setter Property="HorizontalTextAlignment" Value="Start"/>
+            <Setter Property="HorizontalOptions" Value="Start"/>
+            <Setter Property="VerticalTextAlignment" Value="Center"/>
+            <Setter Property="WidthRequest" Value="{OnPlatform iOS=60, Default=50}"/>
+        </Style>
+
+        <Style TargetType="telerik:RadAutoComplete" x:Key="autoCompleteStyle">
+            <Setter Property="DisplayMode" Value="Tokens"/>
+            <Setter Property="HorizontalOptions" Value="{OnIdiom Phone=FillAndExpand, Default=FillAndExpand}"/>
+            <Setter Property="Placeholder" Value="Enter Recepient"/>
+            <Setter Property="BackgroundColor" Value="White"/>
+            <Setter Property="Margin" Value="{OnIdiom Phone='20,0,0,0', Default=0}"/>
+        </Style>
+    </Grid.Resources>
+    <Grid RowSpacing="{OnIdiom Desktop='40', Phone='30'}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="{OnIdiom Phone=*, Desktop=Auto}"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid RowSpacing="{OnIdiom Desktop='40', Phone='30'}" ColumnSpacing="{OnIdiom Desktop='20', Phone='0'}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="{OnIdiom Desktop=*, Default=Auto}"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="{OnIdiom Phone=*, Default=Auto}"/>
+            </Grid.RowDefinitions>
+
+            <StackLayout Style="{StaticResource detailsLayoutStyle}" >
+                <Label Text="To:" Style="{StaticResource detailsLabelStyle}" />
+                <telerik:RadAutoComplete x:Name="autoComplete"
+                                         Style="{StaticResource autoCompleteStyle}"
+                                         ItemsSource="{Binding People}"/>
+            </StackLayout>
+
+            <StackLayout Style="{StaticResource detailsLayoutStyle}"
+                         Grid.Row="{OnIdiom Phone=1, Default=0}"
+                         Grid.Column="{OnIdiom Phone=0, Default=1}">
+                <Label Text="Cc/Bcc:" Style="{StaticResource detailsLabelStyle}"/>
+                <telerik:RadAutoComplete x:Name="autoComplete2"
+                                         Style="{StaticResource autoCompleteStyle}"
+                                         ItemsSource="{Binding People}"/>
+            </StackLayout>
+
+        </Grid>
+
+        <StackLayout Style="{StaticResource detailsLayoutStyle}" Grid.Row="1">
+            <Label Text="Subject:" Style="{StaticResource detailsLabelStyle}"/>
+            <telerik:RadEntry Text="Telerik UI for .NET MAUI" 
+                              BackgroundColor="White" 
+                              HorizontalOptions="FillAndExpand"
+                              Margin="{OnIdiom Phone='20,0,0,0', Default=0}"/>
+        </StackLayout>
+
+        <Label Text="{Binding Description}" Grid.Row="2" Style="{StaticResource labelStyle}" />
+
+        <Grid Grid.Row="3" 
+              RowDefinitions="20, *"
+              VerticalOptions="{OnIdiom Default=Center, Phone=End}"
+              HorizontalOptions="{OnIdiom Default=Start, Phone=FillAndExpand}">
+            <telerik:RadPopup.Popup>
+                <telerik:RadPopup IsOpen="{Binding IsSendNotificationOpen}"
+                                  Placement="Center"
+                                  VerticalOffset="-50">
+                    <telerik:RadBorder CornerRadius="4"
+                                       BackgroundColor="#E1DAEE">
+                        <Label Text="Sending..."
+                                   TextColor="Black"
+                                   Padding="33, 7"
+                                   FontSize="12"/>
+                    </telerik:RadBorder>
+                </telerik:RadPopup>
+            </telerik:RadPopup.Popup>
+            <telerik:RadButton Text="Send"
+                           Command="{Binding SendCommand}"
+                           Grid.Row="1"
+                           Style="{StaticResource SubmitButtonStyle}"/>
+        </Grid>
+    </Grid>
+</Grid>

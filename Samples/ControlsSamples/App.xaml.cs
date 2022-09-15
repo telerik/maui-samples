@@ -38,6 +38,7 @@ public partial class App : Application
         DependencyService.Register<ISearchService, SearchService>();
         DependencyService.Register<IToastMessageService, ToastMessageService>();
         DependencyService.Register<ISerializationService, SerializationService>();
+        DependencyService.Register<IFilePickerService, FilePickerService>();
     }
 
     public static void DisplayAlert(string text)

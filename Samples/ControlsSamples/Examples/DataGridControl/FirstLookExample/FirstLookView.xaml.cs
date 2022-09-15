@@ -1,12 +1,11 @@
 ﻿using Microsoft.Maui.Controls;
 
-namespace QSF.Examples.DataGridControl.FirstLookExample
+namespace QSF.Examples.DataGridControl.FirstLookExample;
+
+public partial class FirstLookView : ContentView
 {
-    public partial class FirstLookView : ContentView
+    public FirstLookView()
     {
-        public FirstLookView()
-        {
-            this.InitializeComponent();
-        }
+        this.InitializeComponent();
     }
 }

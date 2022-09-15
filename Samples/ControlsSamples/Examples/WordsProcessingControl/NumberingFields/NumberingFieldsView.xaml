@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        xmlns:converters="clr-namespace:QSF.Converters"
+                        x:Class="QSF.Examples.WordsProcessingControl.NumberingFieldsExample.NumberingFieldsView">
+
+    <telerik:RadContentView.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Border" x:Key="ExampleBorderStyle">
+                <Setter Property="Stroke" Value="#D6D4D4"/>
+                <Setter Property="StrokeThickness" Value="1"/>
+                <Setter Property="Margin" Value="0,5,0,5"/>
+            </Style>
+
+            <Style TargetType="Label" x:Key="ExampleLabelStyle">
+                <Setter Property="LineBreakMode" Value="WordWrap"/>
+                <Setter Property="VerticalTextAlignment" Value="Start"/>
+                <Setter Property="HorizontalTextAlignment" Value="Start"/>
+                <Setter Property="Margin" Value="3"/>
+            </Style>
+
+            <Style TargetType="telerik:RadButton" BasedOn="{StaticResource SubmitButtonStyle}" x:Key="ExampleButtonStyle">
+                <Setter Property="FontSize" Value="{OnPlatform Android='13', Default='14'}"/>
+            </Style>
+        </ResourceDictionary>
+    </telerik:RadContentView.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout>
+            <Grid BackgroundColor="#F0F0F0" 
+                  RowDefinitions="*,*"
+                  Padding="16"
+                  Margin="0, 0, 0, 15">
+                <HorizontalStackLayout HorizontalOptions="Center"
+                                       VerticalOptions="End" 
+                                       Spacing="10"
+                                       Margin="0, 0, 0, 10">
+                    <Label Text="File: " />
+                    <Label Text="{Binding FileName}" />
+                </HorizontalStackLayout>
+                <telerik:RadButton Grid.Row="1" 
+                                   BackgroundColor="Transparent"
+                                   VerticalOptions="{OnPlatform WinUI='Center', MacCatalyst='Center'}"
+                                   HorizontalOptions="{OnPlatform WinUI='Center', MacCatalyst='Center'}"
+                                   Text="Load Document"
+                                   Command="{Binding LoadSampleCommand}" 
+                                   Style="{StaticResource SubmitButtonStyle}" />
+            </Grid>
+
+            <VerticalStackLayout Padding="13,0,13,0">
+                <VerticalStackLayout Margin="6" Spacing="4">
+                    <Label Text="{OnPlatform 
+                                   Android='Insert footer and bookmarks fields',
+                                   iOS='Insert footer and bookmarks fields',
+                                   MacCatalyst='Insert footer and bookmarks fields',
+                                   WinUI='Insert a predefined set of fields in footer in the following format:'}"
+                            FontAttributes="Bold"/>
+                    <Border Style="{StaticResource ExampleBorderStyle}" 
+                            IsVisible="{OnPlatform 
+                                         Android='false',
+                                         iOS='false',
+                                         MacCatalyst='false',
+                                         WinUI='true'}">
+                        <VerticalStackLayout>
+                            <Label Text="Page {PAGE \* Ordinal} of {NUMPAGES}"
+                                   Style="{StaticResource ExampleLabelStyle}"/>
+                            <Label Text="(in section {SECTION \* CardText} with total pages in the section - {SECTIONPAGES \* CardText})"
+                                   Style="{StaticResource ExampleLabelStyle}"/>
+                        </VerticalStackLayout>
+                    </Border>
+                    <Label Text="Insert PageRefField for every Level 1 Heading in the following format:"
+                           FontAttributes="Bold"
+                           IsVisible="{OnPlatform 
+                                        Android='false',
+                                        iOS='false',
+                                        MacCatalyst='false',
+                                        WinUI='true'}"/>
+                    <Border Style="{StaticResource ExampleBorderStyle}"
+                            IsVisible="{OnPlatform 
+                                         Android='false',
+                                         iOS='false',
+                                         MacCatalyst='false',
+                                         WinUI='true'}">
+                        <VerticalStackLayout>
+                            <Label Text="&lt;&lt;Heading &gt;&gt; {PAGEREF heading1}"
+                                   Style="{StaticResource ExampleLabelStyle}"/>
+                        </VerticalStackLayout>
+                    </Border>
+                    <HorizontalStackLayout Margin="0,0,0,10" Spacing="8" >
+                        <telerik:RadButton Text="Insert Numbering Fields" Padding="8,4"
+                                           Style="{StaticResource ExampleButtonStyle}"
+                                           Command="{Binding InsertNumberingFieldsCommand}">
+                        </telerik:RadButton>
+                        <telerik:RadButton Text="Update Numbering Fields" Padding="8,4"
+                                           Style="{StaticResource ExampleButtonStyle}"
+                                           Command="{Binding UpdateNumberingFieldsCommand}" />
+                    </HorizontalStackLayout>
+                    <Label Text="First page footer content preview:" 
+                           FontAttributes="Bold"/>
+                    <Border Style="{StaticResource ExampleBorderStyle}">
+                        <Label Text="{Binding FooterPreview, Mode=TwoWay}"
+                               Style="{StaticResource ExampleLabelStyle}"/>
+                    </Border>
+                    <Label Text="Bookmarks preview:" 
+                           FontAttributes="Bold"/>
+                    <Border Style="{StaticResource ExampleBorderStyle}">
+                        <Label Text="{Binding BookmarksPreview, Mode=TwoWay}"
+                               Style="{StaticResource ExampleLabelStyle}"/>
+                    </Border>
+                </VerticalStackLayout>
+
+                <HorizontalStackLayout Spacing="10">
+                    <Label Text="Export to: " 
+                           VerticalTextAlignment="Center" 
+                           FontAttributes="Bold"/>
+                    <telerik:RadComboBox Margin="2" 
+                                         x:Name="exportCombox" 
+                                         ItemsSource="{Binding ExportFormats, Mode=OneTime}"
+                                         SelectedItem="{Binding SelectedExportFormat, Mode=OneWayToSource}"
+                                         WidthRequest="{OnPlatform Default='160', MacCatalyst='220'}"/>
+                    <telerik:RadButton Margin="2"
+                                       Text="Export" 
+                                       Style="{StaticResource SubmitButtonStyle}"
+                                       Command="{Binding ExportCommand}" 
+                                       IsEnabled="{Binding IsDocumentLoaded}" 
+                                       WidthRequest="100"/>
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+
+</telerik:RadContentView>

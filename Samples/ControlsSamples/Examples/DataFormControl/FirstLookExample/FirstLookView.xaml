@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:QSF.Examples.DataFormControl.FirstLookExample"
+             x:Class="QSF.Examples.DataFormControl.FirstLookExample.FirstLookView">
+    <ContentView.Resources>
+        <telerik:DataFormVerticalStackLayout x:Key="stackLayout" />
+        <telerik:DataFormGridLayout x:Key="gridLayout" />
+    </ContentView.Resources>
+    <Grid Margin="16"
+          RowDefinitions="*, Auto"
+          RowSpacing="16">
+        <telerik:RadDataForm x:Name="dataForm"
+                             CommitMode="Explicit"
+                             HeaderPosition="{OnIdiom Default=Above, Phone=Beside}"
+                             LayoutDefinition="{OnIdiom Default={StaticResource gridLayout},
+                                                        Phone={StaticResource stackLayout}}">
+            <telerik:RadDataForm.BindingContext>
+                <local:ReservationViewModel />
+            </telerik:RadDataForm.BindingContext>
+            <telerik:DataFormRadComboBoxEditor PropertyName="Section" />
+            <telerik:DataFormRadSegmentedEditor PropertyName="Reservation" />
+        </telerik:RadDataForm>
+        <telerik:RadButton Grid.Row="1"
+                           Text="Reserve"
+                           Style="{StaticResource SubmitButtonStyle}"
+                           HorizontalOptions="{OnIdiom Default=Start, Phone=Fill}"
+                           Command="{Binding CommitCommand, Source={x:Reference dataForm}}" />
+    </Grid>
+</ContentView>

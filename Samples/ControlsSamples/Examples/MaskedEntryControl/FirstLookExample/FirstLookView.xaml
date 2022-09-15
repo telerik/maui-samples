@@ -67,7 +67,8 @@
                     <telerik:RadTextMaskedEntry Placeholder="Zip Code" 
                                                 Grid.Row="5" 
                                                 Grid.Column="1"
-                                                Value="{Binding ZipCode}"
+                                                AllowOnlyCompletedValues="False"
+                                                Value="{Binding ZipCode, Mode=TwoWay}"
                                                 MaximumWidthRequest="{OnPlatform WinUI='300', MacCatalyst='300'}"
                                                 Mask="0000-000"/>
                     <Label Text="Total Cost:" 
