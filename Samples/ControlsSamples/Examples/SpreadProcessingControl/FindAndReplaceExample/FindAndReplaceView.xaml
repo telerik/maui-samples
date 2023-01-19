@@ -22,9 +22,7 @@
                 <Setter Property="TextColor" Value="Black"/>
             </Style>
 
-            <Style TargetType="telerik:RadCheckBox">
-                <Setter Property="UncheckedColor" Value="#CCCCCC"/>
-                <Setter Property="CheckedColor" Value="{StaticResource AccentColor8}"/>
+            <Style TargetType="telerik:RadCheckBox" BasedOn="{StaticResource ExampleCheckBoxStyle}">
                 <Setter Property="Margin" Value="30, 0, 0, 0"/>
             </Style>
         </ResourceDictionary>

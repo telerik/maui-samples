@@ -18,104 +18,95 @@
         </Style>
     </ContentView.Resources>
     <ContentView.Content>
-        <telerik:RadWrapLayout>
+        <telerik:RadUniformGrid>
             <VerticalStackLayout>
-                <telerik:RadPath Fill="#0E88F2"
-                                           StrokeThickness="1">
+                <telerik:RadPath Fill="#0E88F2" StrokeThickness="1">
                     <telerik:RadPath.Geometry>
                         <telerik:RadPathGeometry>
-                            <telerik:RadPathFigure StartPoint="0.8, 0.1">
-                                <telerik:RadLineSegment Point="0.1, 0.8" />
-                                <telerik:RadArcSegment Center="0.125, 0.825"
-                                                             StartAngle="135"
-                                                             SweepAngle="180"
-                                                             Size="0.070710678, 0.070710678" />
-                                <telerik:RadLineSegment Point="0.85, 0.15" />
-                                <telerik:RadArcSegment Center="0.825, 0.125"
-                                                             StartAngle="315"
-                                                             SweepAngle="180"
-                                                             Size="0.070710678, 0.070710678" />
+                            <telerik:RadPathFigure StartPoint="0.825, 0.125">
+                                <telerik:RadLineSegment Point="0.125, 0.825" />
+                                <telerik:RadArcSegment Center="0.150, 0.850"
+                                                       StartAngle="135"
+                                                       SweepAngle="180"
+                                                       Size="0.070710678, 0.070710678" />
+                                <telerik:RadLineSegment Point="0.875, 0.175" />
+                                <telerik:RadArcSegment Center="0.850, 0.150"
+                                                       StartAngle="315"
+                                                       SweepAngle="180"
+                                                       Size="0.070710678, 0.070710678" />
                             </telerik:RadPathFigure>
                         </telerik:RadPathGeometry>
                     </telerik:RadPath.Geometry>
                 </telerik:RadPath>
-                <Label Text="Diagonal Line"
-                   HorizontalOptions="Center" />
+                <Label Text="Diagonal Line" HorizontalOptions="Center" />
             </VerticalStackLayout>
             <VerticalStackLayout>
                 <telerik:RadPath Fill="#FFAC3E"
-                                           StrokeThickness="1"
-                                           Stroke="Orange"
-                                           Geometry="{x:Static telerik:Geometries.Star}" />
-                <Label Text="Star"
-                   HorizontalOptions="Center"/>
+                                 StrokeThickness="1"
+                                 Stroke="Orange"
+                                 Geometry="{x:Static telerik:Geometries.Star}" />
+                <Label Text="Star" HorizontalOptions="Center"/>
             </VerticalStackLayout>
             <VerticalStackLayout>
-                <telerik:RadPath Fill="#FF9040"
-                                           StrokeThickness="1">
+                <telerik:RadPath Fill="#FF9040" StrokeThickness="1">
                     <telerik:RadPath.Geometry>
                         <telerik:RadPathGeometry>
-                            <telerik:RadPathFigure StartPoint="0.9, 0.45">
-                                <telerik:RadLineSegment Point="0.1, 0.45" />
-                                <telerik:RadArcSegment Center="0.1, 0.475"
-                                                             StartAngle="90"
-                                                             SweepAngle="180"
-                                                             Size="0.05, 0.05" />
-                                <telerik:RadLineSegment Point="0.9, 0.5" />
-                                <telerik:RadArcSegment Center="0.9, 0.475"
-                                                             StartAngle="270"
-                                                             SweepAngle="180"
-                                                             Size="0.05, 0.05" />
+                            <telerik:RadPathFigure StartPoint="0.9, 0.475">
+                                <telerik:RadLineSegment Point="0.1, 0.475" />
+                                <telerik:RadArcSegment Center="0.1, 0.500"
+                                                       StartAngle="90"
+                                                       SweepAngle="180"
+                                                       Size="0.05, 0.05" />
+                                <telerik:RadLineSegment Point="0.9, 0.525" />
+                                <telerik:RadArcSegment Center="0.9, 0.500"
+                                                       StartAngle="270"
+                                                       SweepAngle="180"
+                                                       Size="0.05, 0.05" />
                             </telerik:RadPathFigure>
                         </telerik:RadPathGeometry>
                     </telerik:RadPath.Geometry>
                 </telerik:RadPath>
-                <Label Text="Horizontal Line"
-                       HorizontalOptions="Center"/>
+                <Label Text="Horizontal Line" HorizontalOptions="Center"/>
             </VerticalStackLayout>
             <VerticalStackLayout>
-                <telerik:RadPath StrokeThickness="0"
-                                           Fill="#04A2AA">
+                <telerik:RadPath StrokeThickness="0" Fill="#04A2AA">
                     <telerik:RadPath.Geometry>
                         <telerik:RadPathGeometry>
                             <telerik:RadPathFigure StartPoint="0.5, 0.5">
                                 <telerik:RadArcSegment Center="0.5, 0.5"
-                                                             StartAngle="0"
-                                                             SweepAngle="360"
-                                                             Size="1, 1" />
+                                                       StartAngle="0"
+                                                       SweepAngle="360"
+                                                       Size="1, 1" />
                                 <telerik:RadArcSegment Center="0.5, 0.5"
-                                                             StartAngle="0"
-                                                             SweepAngle="-360"
-                                                             Size="0.8, 0.8" />
+                                                       StartAngle="0"
+                                                       SweepAngle="-360"
+                                                       Size="0.8, 0.8" />
                             </telerik:RadPathFigure>
                         </telerik:RadPathGeometry>
                     </telerik:RadPath.Geometry>
                 </telerik:RadPath>
-                <Label Text="Circular"
-                       HorizontalOptions="Center" />
+                <Label Text="Circular" HorizontalOptions="Center" />
             </VerticalStackLayout>
             <VerticalStackLayout>
                 <telerik:RadPath StrokeThickness="1"
-                                           Stroke="White"
-                                           Fill="#71559B"
-                                           Geometry="{x:Static telerik:Geometries.Heart}"/>
-                <Label Text="Heart"
-                       HorizontalOptions="Center"/>
+                                 Stroke="White"
+                                 Fill="#71559B"
+                                 Geometry="{x:Static telerik:Geometries.Heart}" />
+                <Label Text="Heart" HorizontalOptions="Center"/>
             </VerticalStackLayout>
             <VerticalStackLayout>
-                <telerik:RadPath StrokeThickness="0" 
-                                           Fill="#55d3de">
+                <telerik:RadPath StrokeThickness="0" Fill="#55d3de">
                     <telerik:RadPath.Geometry>
                         <telerik:RadPathGeometry>
                             <telerik:RadPathFigure StartPoint="0.5, 0.5">
                                 <telerik:RadArcSegment Center="0.5, 0.5"
-                                                             StartAngle="315"
-                                                             SweepAngle="270"
-                                                             Size="1, 1" />
+                                                       StartAngle="315"
+                                                       SweepAngle="270"
+                                                       Size="1, 1" />
                                 <telerik:RadArcSegment Center="0.5, 0.5"
-                                                             StartAngle="225"
-                                                             SweepAngle="-270"
-                                                             Size="0.9, 0.9" />
+                                                       StartAngle="225"
+                                                       SweepAngle="-270"
+                                                       Size="0.9, 0.9" />
                             </telerik:RadPathFigure>
                         </telerik:RadPathGeometry>
                     </telerik:RadPath.Geometry>
@@ -124,6 +115,6 @@
                        HorizontalOptions="Center"
                        Grid.Row="1"/>
             </VerticalStackLayout>
-        </telerik:RadWrapLayout>
+        </telerik:RadUniformGrid>
     </ContentView.Content>
 </ContentView>

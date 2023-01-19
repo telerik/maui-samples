@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:converters="clr-namespace:QSF.Converters"
+             xmlns:imageEditorExample="clr-namespace:QSF.Examples.ImageEditorControl"
+             x:Class="QSF.Examples.ImageEditorControl.FirstLookExample.EditImageView"
+             NavigationPage.HasNavigationBar="False">
+    
+    <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto, *, Auto" BackgroundColor="#989898">
+
+        <!-- Toolbar with save and discard buttons -->
+        <telerik:RadToolbar x:Name="toolbar"
+                            Grid.Column="0"
+                            Grid.Row="0"
+                            Grid.ColumnSpan="1"
+                            HorizontalOptions="Fill">
+            
+            <telerik:RadToolbar.Resources>
+                <ResourceDictionary>
+                    <Style TargetType="telerik:ButtonToolbarItemView">
+                        <Setter Property="HorizontalOptions" Value="{OnIdiom Default=Start, Phone=End}"/>
+                    </Style>
+                </ResourceDictionary>
+            </telerik:RadToolbar.Resources>
+
+            <telerik:ButtonToolbarItem Text="Save"
+                                       Command="{Binding SaveCommand}">
+                <telerik:ButtonToolbarItem.ImageSource>
+                    <FontImageSource Glyph="&#xe87b;"
+                                     FontFamily="TelerikFontExamples"
+                                     Size="20" />
+                </telerik:ButtonToolbarItem.ImageSource>
+                <telerik:ButtonToolbarItem.CommandParameter>
+                    <imageEditorExample:ImageCommandContext ImageEditor="{Reference imageEditor}"/>
+                </telerik:ButtonToolbarItem.CommandParameter>
+            </telerik:ButtonToolbarItem>
+
+            <telerik:ButtonToolbarItem Text="Discard"
+                                       Command="{Binding DiscardCommand}">
+                <telerik:ButtonToolbarItem.ImageSource>
+                    <FontImageSource Glyph="&#xe80a;"
+                                     FontFamily="TelerikFontExamples"
+                                     Size="14" />
+                </telerik:ButtonToolbarItem.ImageSource>
+                <telerik:ButtonToolbarItem.CommandParameter>
+                    <imageEditorExample:ImageCommandContext ImageEditor="{Reference imageEditor}"/>
+                </telerik:ButtonToolbarItem.CommandParameter>
+            </telerik:ButtonToolbarItem>
+
+        </telerik:RadToolbar>
+
+        <!-- Image Editor Toolbar with default buttons -->
+        <telerik:RadImageEditorToolbar x:Name="imageEditorToolbar"
+                                        Grid.Column="{OnIdiom Default=1, Phone=0}"
+                                        Grid.Row="{OnIdiom Default=0, Phone=2}"
+                                        HorizontalOptions="{OnIdiom Default=End, Phone=Fill}"
+                                        ImageEditor="{x:Reference imageEditor}"
+                                        OptionsPanel="{x:Reference optionsPanel}">
+        </telerik:RadImageEditorToolbar>
+
+        <Grid ColumnDefinitions="*, Auto"
+              Grid.Column="0"
+              Grid.ColumnSpan="2"
+              Grid.Row="1" >
+             
+            <!-- Image Editor -->
+            <telerik:RadImageEditor x:Name="imageEditor" Grid.Column="0" Padding="32" Source="{Binding ImagePath}"/>
+
+            <!-- Toolbar Option Panel for displaying filter options, crop options and resize options -->
+            <telerik:RadToolbarOptionsPanel x:Name="optionsPanel" Grid.Column="1"/>
+        </Grid>
+
+    </Grid>
+</telerik:RadContentView>

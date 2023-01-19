@@ -17,7 +17,8 @@
             </DataTemplate>
             <DataTemplate x:Key="DataGridBooleanColumnDataTemplate">
                 <Label Text="{Binding IsDirect, Converter={StaticResource BoolToValueConverter}}"
-                       VerticalOptions="Center" 
+                       VerticalOptions="Center"
+                       LineBreakMode="NoWrap"
                        Padding="10" />
             </DataTemplate>
         </ResourceDictionary>
@@ -29,6 +30,7 @@
                          UserEditMode="None"
                          UserGroupMode="Disabled"
                          AutoGenerateColumns="False"
+                         CanUserReorderColumns="False"
                          GridLinesThickness="1"
                          GridLinesVisibility="Both"
                          GridLinesColor="#DFDFDF">
@@ -42,6 +44,7 @@
         <telerik:DataGridTemplateColumn HeaderText="To"
                                         CellContentTemplate="{StaticResource DataGridTemplateColumnDataTemplate}"
                                         SizeMode="Fixed"
+                                        MinimumWidth="{OnPlatform Default='80', iOS='90'}"
                                         Width="{OnPlatform Default='80', iOS='90'}"/>
         <telerik:DataGridBooleanColumn HeaderText="Direct"
                                        PropertyName="IsDirect" 

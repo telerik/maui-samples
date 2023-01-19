@@ -20,7 +20,7 @@
             <SolidColorBrush Color="{StaticResource AccentColor7}" />
         </converters:RandomItemConverter>
         <Style x:Key="BorderStyle" TargetType="telerik:RadBorder">
-            <Setter Property="BackgroundColor" Value="{StaticResource BasicBackgroundColor3}" />
+            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource SecondaryBackgroundColor}, Dark={StaticResource SecondaryBackgroundColorDark}}" />
             <Setter Property="CornerRadius" Value="{StaticResource BorderCornerRadius}" />
             <Setter Property="Margin" Value="4" />
         </Style>
@@ -30,8 +30,7 @@
             <Setter Property="Opacity" Value="0.3" />
         </Style>
         <Style x:Key="LabelStyle" TargetType="Label">
-            <Setter Property="TextColor" Value="{StaticResource DefaultTextColor}" />
-            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource DefaultTextColor}, Dark={StaticResource DefaultTextColorDark}}" />
             <Setter Property="Margin" Value="0, 8, 0, 0" />
         </Style>
         <DataTemplate x:Key="ExampleItemTemplate">
@@ -55,20 +54,29 @@
             </telerik:RadBorder>
         </DataTemplate>
     </VisualElement.Resources>
-    
-    <Grid BackgroundColor="{StaticResource DefaultBackgroundColor}"
+
+    <Grid BackgroundColor="{AppThemeBinding Light={StaticResource DefaultBackgroundColor}, Dark={StaticResource DefaultBackgroundColorDark}}"
           RowDefinitions="Auto, *">
         <Grid ColumnDefinitions="Auto, Auto, *"
               Style="{StaticResource HeaderStyle}">
             <ImageButton Command="{Binding NavigateBackCommand}"
                          Style="{OnPlatform Default={StaticResource DefaultBackButtonStyle}, iOS={StaticResource IOSBackButtonStyle}}" />
-            <Label Grid.Column="1" 
+            <Label Grid.Column="1"
                    Style="{StaticResource HeaderLabelStyle}"
                    Text="{Binding HeaderTitle}" />
+            <ImageButton Grid.Column="2"
+                         HorizontalOptions="End"
+                         Command="{Binding NavigateToDescriptionCommand}"
+                         CommandParameter="{Binding Control}"
+                         Source="info_mobile_white.png"
+                         IsVisible="{Binding Control.FullDescription, Converter={StaticResource NullOrEmptyToBoolConverter}}"
+                         VerticalOptions="Center"
+                         HeightRequest="24"
+                         WidthRequest="24" />
         </Grid>
         <telerik:NonVirtualizedItemsControl ItemTemplate="{StaticResource ExampleItemTemplate}"
                                             ItemsSource="{Binding Examples}"
-                                            SelectionMode="None"                                            
+                                            SelectionMode="None"
                                             Grid.Row="1"
                                             Margin="4">
             <telerik:NonVirtualizedItemsControl.ItemsLayoutTemplate>
@@ -78,5 +86,4 @@
             </telerik:NonVirtualizedItemsControl.ItemsLayoutTemplate>
         </telerik:NonVirtualizedItemsControl>
     </Grid>
-    
 </ContentPage>

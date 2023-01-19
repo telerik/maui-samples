@@ -7,27 +7,28 @@ namespace QSF.Services
 {
     public class FilePickerService : IFilePickerService
     {
-        public async Task<string> PickFileAsync(string pickerTitle, params string[] fileExtensions)
+        public async Task<string> PickFileAsync(string pickerTitle, params string[] fileTypes)
         {
-            var customFileType = new FilePickerFileType(
-                new Dictionary<DevicePlatform, IEnumerable<string>>
-                {
-                    { DevicePlatform.iOS, fileExtensions },
-                    { DevicePlatform.Android, fileExtensions },
-                    { DevicePlatform.WinUI, fileExtensions },
-                    { DevicePlatform.Tizen, fileExtensions },
-                    { DevicePlatform.macOS, fileExtensions },
-                });
-
-            PickOptions options = new()
+            var pickOptions = new PickOptions
             {
-                PickerTitle = pickerTitle,
-                FileTypes = customFileType,
+                PickerTitle = pickerTitle
             };
 
-            FileResult result = await FilePicker.PickAsync(options);
+            if (fileTypes.Length > 0)
+            {
+                var currentPlatform = DeviceInfo.Current.Platform;
+                var platformFileTypes = new Dictionary<DevicePlatform, IEnumerable<string>>
+                {
+                    { currentPlatform, fileTypes }
+                };
+                var pickFileTypes = new FilePickerFileType(platformFileTypes);
 
-            return result?.FullPath;
+                pickOptions.FileTypes = pickFileTypes;
+            }
+
+            var fileResult = await FilePicker.PickAsync(pickOptions);
+
+            return fileResult?.FullPath;
         }
     }
 }

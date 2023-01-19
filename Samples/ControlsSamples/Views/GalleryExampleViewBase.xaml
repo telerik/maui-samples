@@ -11,11 +11,11 @@
         </Grid.RowDefinitions>
 
         <telerik:RadListView ItemsSource="{Binding Path=GalleryItems}"
-                                         SelectedItems="{Binding Path=SelectedItems}"
-                                         x:Name="listView"
-                                         SelectionChanged="RadListView_SelectionChanged"
-                                         BackgroundColor="#5D65B1"
-                                         AutomationId="GalleryListView">
+                             SelectedItems="{Binding Path=SelectedItems}"
+                             x:Name="listView"
+                             SelectionChanged="RadListView_SelectionChanged"
+                             BackgroundColor="#5D65B1"
+                             AutomationId="GalleryListView">
             <telerik:RadListView.LayoutDefinition>
                 <telerik:ListViewLinearLayout Orientation="Horizontal" ItemLength="60" />
             </telerik:RadListView.LayoutDefinition>
@@ -43,7 +43,7 @@
                                          HorizontalOptions="Center" 
                                          VerticalOptions="End"
                                          IsVisible="{Binding Path=IsSelected}" 
-                                         Color="{AppThemeBinding Light={StaticResource GalleryHeaderUnderlineColorLight}, Dark={StaticResource GalleryHeaderUnderlineColorDark}}" 
+                                         Color="{AppThemeBinding Light='#E0E9FC', Dark='#FFFFFF'}" 
                                          Margin="0, 2, 0, -1" />
                             </VerticalStackLayout>
                         </telerik:ListViewTemplateCell.View>

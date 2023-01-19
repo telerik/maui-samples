@@ -2,7 +2,7 @@
 using Telerik.Windows.Documents.Extensibility;
 using Telerik.Windows.Documents.Fixed.FormatProviders.Pdf.Export;
 
-namespace QSF.Examples.WordsProcessingControl.NumberingFieldsExample
+namespace QSF.Examples.WordsProcessingControl.Converters
 {
     public class SkiaImageConverter : JpegImageConverterBase
     {

@@ -6,8 +6,8 @@
     <ContentView.Resources>
         <ResourceDictionary>
             <Style x:Key="EntryStyle" TargetType="telerik:RadEntry">
-                <Setter Property="TextColor" Value="{AppThemeBinding Light=Black, Dark=White}"/>
-                <Setter Property="PlaceholderColor" Value="{AppThemeBinding Light=#8A000000, Dark=#8AFFFFFF}"/>
+                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource DefaultTextColor}, Dark={StaticResource DefaultTextColorDark}}"/>
+                <Setter Property="PlaceholderColor" Value="{AppThemeBinding Light={StaticResource PlaceholderColor}, Dark={StaticResource PlaceholderColorDark}}"/>
             </Style>
         </ResourceDictionary>
     </ContentView.Resources>
@@ -15,8 +15,8 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="192"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="{OnIdiom Default=*, Desktop={OnPlatform Default=*, WinUI=180}}"/>
+                <RowDefinition Height="{OnIdiom Default=*, Desktop={OnPlatform Default=*, WinUI=180}}"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
@@ -25,7 +25,7 @@
             </Grid.ColumnDefinitions>
             <VerticalStackLayout Grid.Row="0"
                                  Grid.ColumnSpan="2"
-                                 BackgroundColor="{AppThemeBinding Light=#F8F8F8, Dark=#121212}"
+                                 BackgroundColor="{AppThemeBinding Light={StaticResource DefaultBackgroundColor}, Dark={StaticResource DefaultBackgroundColorDark}}"
                                  Margin="0, 0, 0, 25"
                                  Padding="0, 25, 0, 0"
                                  HorizontalOptions="FillAndExpand">

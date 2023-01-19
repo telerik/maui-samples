@@ -3,17 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
              x:Class="QSF.Views.NavigationItemView"
-             BackgroundColor="{StaticResource BasicBackgroundColor3}">
+             BackgroundColor="{AppThemeBinding Light={StaticResource ItemBackgroundColor}, Dark={StaticResource ItemBackgroundColorDark}}">
 
     <ContentView.ControlTemplate>
         <ControlTemplate>
-            <HorizontalStackLayout Spacing="6"
-                                   Padding="0, 2, 0, 2">
+            <HorizontalStackLayout Padding="0, 2">
                 <Image Source="{TemplateBinding Icon}"
-                       Aspect="Center" />
-                <Label Text="{TemplateBinding Header}" />
+                       Aspect="Center"
+                       Margin="4, 0, 8, 0"/>
+                <Label Text="{TemplateBinding Header}"
+                       VerticalOptions="Center"/>
             </HorizontalStackLayout>
         </ControlTemplate>
     </ContentView.ControlTemplate>
-
 </ContentView>

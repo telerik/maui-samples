@@ -64,7 +64,7 @@ public class UniformLayoutHorizontalManager : ILayoutManager
             return Size.Zero;
         }
 
-        Size desiredSize = this.Measure(bounds.Width, bounds.Height);
+        Size desiredSize = this.layout.DesiredSize;
         double arrangeWidth = this.layout.LayoutMode == UniformLayoutMode.HorizontalStretch ? Math.Max(desiredSize.Width, bounds.Width) : desiredSize.Width;
         double spacing = this.layout.Spacing;
         double totalSpacing = (count - 1) * spacing;

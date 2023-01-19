@@ -13,17 +13,23 @@
             <Setter Property="BackgroundColor" Value="{StaticResource ApplicationAccentColor}" />
         </Style>
         <DataTemplate x:Key="ControlItemTemplate">
-            <telerik:RadBorder>
-                <views:NavigationItemView Header="{Binding DisplayName}"
-                                          Icon="{Binding Icon}"
-                                          Margin="4, 0, 0, 0" />
-            </telerik:RadBorder>
+            <VerticalStackLayout>
+                <BoxView HeightRequest="6"
+                         BackgroundColor="{AppThemeBinding Light={StaticResource SecondaryBackgroundColor}, Dark={StaticResource SecondaryBackgroundColorDark}}"/>
+                <telerik:RadBorder HeightRequest="32">
+                    <views:NavigationItemView Header="{Binding DisplayName}"
+                                              Icon="{Binding Icon}"
+                                              Margin="4, 0, 0, 0"/>
+                </telerik:RadBorder>
+                <BoxView HeightRequest="6"
+                         BackgroundColor="{AppThemeBinding Light={StaticResource SecondaryBackgroundColor}, Dark={StaticResource SecondaryBackgroundColorDark}}"/>
+            </VerticalStackLayout>
         </DataTemplate>
     </VisualElement.Resources>
 
     <Grid>
         
-        <Grid BackgroundColor="{StaticResource BasicBackgroundColor2}">
+        <Grid BackgroundColor="{AppThemeBinding Light={StaticResource DefaultBackgroundColor}, Dark={StaticResource DefaultBackgroundColorDark}}">
             <HorizontalStackLayout VerticalOptions="Start">
                 <Image Source="homepagebackground.png"
                        Aspect="Center" />
@@ -47,28 +53,35 @@
                                IsClippedToBounds="True">
             <Grid x:Name="navigationMenu"
                   RowDefinitions="Auto, *"
-                  BackgroundColor="{StaticResource BasicBackgroundColor3}"
-                  RowSpacing="10">
+                  BackgroundColor="{AppThemeBinding Light={StaticResource SecondaryBackgroundColor}, Dark={StaticResource SecondaryBackgroundColorDark}}">
                 <VerticalStackLayout>
-                    <Grid ColumnDefinitions="4, *">
+                    <Grid ColumnDefinitions="4, *"
+                          Padding="0, 8">
                         <views:NavigationItemView x:Name="burgerView"
                                                   Icon="icon_burger.png"
                                                   Grid.Column="1" />
                     </Grid>
                     <Grid ColumnDefinitions="4, *">
+                        <Grid IsVisible="{Binding IsSearchSelected}"
+                              BackgroundColor="{StaticResource ApplicationAccentColor}"
+                              HeightRequest="32"
+                              VerticalOptions="Center"/>
+                        <views:NavigationItemView Icon="search.png"
+                                                  TapCommand="{Binding SelectSearchCommand}"
+                                                  Grid.Column="1"
+                                                  Padding="0, 8"/>
+                    </Grid>
+                    <Grid ColumnDefinitions="4, *"
+                          Margin="0, 24, 0, 0">
                         <Grid IsVisible="{Binding IsHomeSelected}"
-                              BackgroundColor="{StaticResource ApplicationAccentColor}" />
+                              BackgroundColor="{StaticResource ApplicationAccentColor}"
+                              HeightRequest="32"
+                              VerticalOptions="Center"/>
                         <views:NavigationItemView Header="Home"
                                                   Icon="home.png"
                                                   TapCommand="{Binding SelectHomeCommand}"
-                                                  Grid.Column="1" />
-                    </Grid>
-                    <Grid ColumnDefinitions="4, *">
-                        <Grid IsVisible="{Binding IsSearchSelected}"
-                              BackgroundColor="{StaticResource ApplicationAccentColor}" />
-                        <views:NavigationItemView Icon="search.png"
-                                                  TapCommand="{Binding SelectSearchCommand}"
-                                                  Grid.Column="1" />
+                                                  Grid.Column="1"
+                                                  Padding="0, 8"/>
                     </Grid>
                 </VerticalStackLayout>
                 <telerik:NonVirtualizedItemsControl x:Name="controlsView" 

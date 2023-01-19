@@ -48,11 +48,18 @@ public class NavigationService : INavigationService
         return this.navigation.PushAsync(view);
     }
 
-    public Task NavigateToConfigurationPageAsync(ExampleViewModel viewmodel)
+    public Task NavigateToConfigurationPageAsync(ExampleViewModel viewModel)
     {
         ConfigurationPage configurationPage = new ConfigurationPage();
-        configurationPage.BindingContext = viewmodel;
+        configurationPage.BindingContext = viewModel;
         return this.navigation.PushAsync(configurationPage);
+    }
+
+    public Task NavigateToDescriptionPageAsync(DescriptionViewModel descriptionViewModel)
+    {
+        DescriptionPage descriptionPage = new DescriptionPage();
+        descriptionPage.BindingContext = descriptionViewModel;
+        return this.navigation.PushAsync(descriptionPage);
     }
 
     public Task NavigateToRootAsync()

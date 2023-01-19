@@ -1,5 +1,6 @@
 ﻿using Microsoft.Maui.Controls;
 using Microsoft.Maui.Controls.Xaml;
+using QSF.Examples.WordsProcessingControl.Converters;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Telerik.Maui.Controls;

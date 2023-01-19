@@ -15,13 +15,23 @@
 
 		<!-- Versions -->
 		<ApplicationVersion>1</ApplicationVersion>
+
+		<!-- TODO: Remove it when Maui fixes Skia linker issue for net7. -->
+		<AndroidLinkResources Condition=" $(IsNet7) == 'true' ">false</AndroidLinkResources>
 	</PropertyGroup>
 
 	<ItemGroup>
 		<MauiImage IsAppIcon="true" Include="Resources\appicon.svg" ForegroundFile="Resources\appicon.svg" />
-		<MauiSplashScreen Include="Resources\appiconfg.svg" Color="#512BD4" />
 		<MauiImage Include="Resources\Images\*" />
 		<MauiFont Include="Resources\Fonts\*" />
+	</ItemGroup>
+
+	<ItemGroup Condition="$(TargetFramework.Contains('-android')) == true">
+		<MauiSplashScreen Include="Resources\appiconfg_android.svg" Color="#8660C5" />
+	</ItemGroup>
+
+	<ItemGroup Condition="$(TargetFramework.Contains('-android')) == false">
+		<MauiSplashScreen Include="Resources\appiconfg.svg" Color="#8660C5" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -40,6 +50,7 @@
 		<EmbeddedResource Include="Examples\WordsProcessingControl\ExportExample\DocToBeProcessed.docx" />
 		<EmbeddedResource Include="Examples\WordsProcessingControl\FindAndReplaceExample\JohnGrisham.docx" />
 		<EmbeddedResource Include="Examples\WordsProcessingControl\NumberingFields\SampleDocument.docx" />
+		<EmbeddedResource Include="Examples\WordsProcessingControl\TableOfContentsExample\TableOfContents.docx" />
 		<EmbeddedResource Include="Examples\ZipLibraryControl\CreateArchiveExample\Resources\ZipSampleDocuments\Balance Sheet.xlsx" />
 		<EmbeddedResource Include="Examples\ZipLibraryControl\CreateArchiveExample\Resources\ZipSampleDocuments\Book.pdf" />
 		<EmbeddedResource Include="Examples\ZipLibraryControl\CreateArchiveExample\Resources\ZipSampleDocuments\Food Order.xlsx" />
@@ -56,6 +67,12 @@
 		<EmbeddedResource Include="Examples\ZipLibraryControl\CreateArchiveExample\Resources\ZipSampleDocuments\RepeatHeaderRows.docx" />
 		<EmbeddedResource Include="Examples\ZipLibraryControl\CreateArchiveExample\Resources\ZipSampleDocuments\Sample.pdf" />
 		<EmbeddedResource Include="Examples\ZipLibraryControl\CreateArchiveExample\Resources\ZipSampleDocuments\thumbnail.png" />
+		<EmbeddedResource Include="Resources\ImageEditor\FirstLookExample\SampleImage1.jpg" />
+		<EmbeddedResource Include="Resources\ImageEditor\FirstLookExample\SampleImage2.jpg" />
+		<EmbeddedResource Include="Resources\ImageEditor\FirstLookExample\SampleImage3.jpg" />
+		<EmbeddedResource Include="Resources\ImageEditor\FirstLookExample\SampleImage4.jpg" />
+		<EmbeddedResource Include="Resources\ImageEditor\FirstLookExample\SampleImage5.jpg" />
+		<EmbeddedResource Include="Resources\ImageEditor\FirstLookExample\SampleImage6.jpg" />
 	</ItemGroup>
 
 	<PropertyGroup Condition="$(TargetFramework.Contains('-windows'))">
@@ -63,7 +80,7 @@
 	</PropertyGroup>
 
 	<ItemGroup Condition="$(SolutionName) != 'Telerik.Maui'">
-		<PackageReference Include="Telerik.UI.for.Maui" Version="3.0.0" />
+		<PackageReference Include="Telerik.UI.for.Maui" Version="5.0.0" />
 	</ItemGroup>
 
 	<Import Condition="'$(SolutionName)' == 'Telerik.Maui'" Project="..\AddSourceReferences.proj" />

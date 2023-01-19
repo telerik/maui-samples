@@ -4,7 +4,16 @@
              ios:Page.UseSafeArea="True"
              NavigationPage.HasNavigationBar="False"
              NavigationPage.HasBackButton="False"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
              x:Class="QSF.Pages.ExamplePage">
+    <VisualElement.Resources>
+        <Style x:Key="ExamplePageImageButtonStyle" TargetType="ImageButton">
+            <Setter Property="VerticalOptions" Value="Center" />
+            <Setter Property="HeightRequest" Value="24" />
+            <Setter Property="WidthRequest" Value="24" />
+            <Setter Property="Margin" Value="8,0,0,0" />
+        </Style>
+    </VisualElement.Resources>
     <Grid PropertyChanged="OnPropertyChanged">
         <Grid.RowDefinitions>
             <RowDefinition Height="50" />
@@ -17,26 +26,25 @@
             <Label Grid.Column="1"
                    Style="{StaticResource HeaderLabelStyle}"
                    Text="{Binding HeaderTitle}" />
-                   <HorizontalStackLayout Grid.Column="2"
-                                          HorizontalOptions="End"
-                                          Spacing="10">
-                        <ImageButton Command="{Binding NavigateToConfigurationPage}"
-                                     CommandParameter="{Binding Example}"
-                                     Source="settings.png"
-                                     IsVisible="{Binding Example.IsConfigurable}"
-                                     VerticalOptions="Center" 
-                                     HeightRequest="30"
-                                     WidthRequest="30" />
-                        <ImageButton WidthRequest="40"
-                                     HeightRequest="40"
-                                     Command="{Binding NavigateToExampleCodeCommand}"
-                                     CommandParameter="{Binding Example}"
-                                     Source="viewcode_white.png"
-                                     VerticalOptions="Center" />
-                    </HorizontalStackLayout>
-
+            <HorizontalStackLayout Grid.Column="2"
+                                   HorizontalOptions="End"
+                                   Spacing="16">
+                <ImageButton Command="{Binding NavigateToConfigurationPage}"
+                             CommandParameter="{Binding Example}"
+                             Source="settings.png"
+                             IsVisible="{Binding Example.IsConfigurable}"
+                             Style="{StaticResource ExamplePageImageButtonStyle}"/>
+                <ImageButton Command="{Binding NavigateToDescriptionCommand}"
+                             CommandParameter="{Binding Example}"
+                             Source="info_mobile_white.png"
+                             IsVisible="{Binding Example.Description, Converter={StaticResource NullOrEmptyToBoolConverter}}"
+                             Style="{StaticResource ExamplePageImageButtonStyle}"/>
+                <ImageButton Command="{Binding NavigateToExampleCodeCommand}"
+                             CommandParameter="{Binding Example}"
+                             Source="viewcode_white.png"
+                             Style="{StaticResource ExamplePageImageButtonStyle}"/>
+            </HorizontalStackLayout>
         </Grid>
-        <ContentView Content="{Binding Converter={StaticResource ModelToViewConverter}}"
-                     Grid.Row="1" />
+        <ContentView Content="{Binding Converter={StaticResource ModelToViewConverter}}" Grid.Row="1" />
     </Grid>
 </ContentPage>

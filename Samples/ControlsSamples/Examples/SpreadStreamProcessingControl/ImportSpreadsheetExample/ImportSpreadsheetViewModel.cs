@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Dynamic;
 using System.IO;
-using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Maui.Controls;
+using Microsoft.Maui.Devices;
 using QSF.Services;
 using QSF.ViewModels;
 using Telerik.Documents.SpreadsheetStreaming;
@@ -11,98 +13,236 @@ namespace QSF.Examples.SpreadStreamProcessingControl.ImportSpreadsheetExample
 {
     internal class ImportSpreadsheetViewModel : ExampleViewModel
     {
-        private string console = String.Empty;
-        private string fileLabelText = String.Empty;
+        private const string importPickerTitle = "Please select a spreadsheet or a CSV file";
+        private const string sampleResourceName = "sample.xlsx";
 
-        public string Console
+        private static readonly string[] importFileTypes;
+
+        static ImportSpreadsheetViewModel()
         {
-            get => console;
-            set => UpdateValue(ref console, value);
+            var currentPlatform = DeviceInfo.Current.Platform;
+
+            if (currentPlatform == DevicePlatform.Android)
+            {
+                importFileTypes = new[] { "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "text/comma-separated-values" };
+            }
+            else if (currentPlatform == DevicePlatform.iOS)
+            {
+                importFileTypes = new[] { "org.openxmlformats.spreadsheetml.sheet", "public.comma-separated-values-text" };
+            }
+            else if (currentPlatform == DevicePlatform.MacCatalyst)
+            {
+                importFileTypes = new[] { "xlsx", "csv" };
+            }
+            else if (currentPlatform == DevicePlatform.WinUI)
+            {
+                importFileTypes = new[] { ".xlsx", ".csv" };
+            }
+            else
+            {
+                importFileTypes = Array.Empty<string>();
+            }
         }
-        public string FileLabelText
+
+        private WorkbookViewModel workbook;
+        private bool isBusy;
+
+        public WorkbookViewModel Workbook
         {
-            get => fileLabelText;
-            set => UpdateValue(ref fileLabelText, value);
+            get => this.workbook;
+            private set => this.UpdateValue(ref this.workbook, value);
         }
-        public Command ImportFileCommand { get; }
-        public Command ImportSampleCommand { get; }
+
+        public bool IsBusy
+        {
+            get => this.isBusy;
+            private set
+            {
+                if (this.UpdateValue(ref this.isBusy, value))
+                {
+                    this.UpdateCommands();
+                }
+            }
+        }
 
         public ImportSpreadsheetViewModel()
         {
-            Console = "Import the sample or a custom file and see the data here.";
-            ImportFileCommand = new Command(ImportFile);
-            ImportSampleCommand = new Command(ImportSample);
+            this.ImportFileCommand = new Command(this.ImportFile, this.CanImport);
+            this.ImportSampleCommand = new Command(this.ImportSample, this.CanImport);
+        }
+
+        public Command ImportFileCommand { get; }
+        public Command ImportSampleCommand { get; }
+
+        private void UpdateCommands()
+        {
+            this.ImportFileCommand.ChangeCanExecute();
+            this.ImportSampleCommand.ChangeCanExecute();
+        }
+
+        private bool CanImport()
+        {
+            return !this.IsBusy;
         }
 
         private async void ImportFile()
         {
             var filePickerService = DependencyService.Get<IFilePickerService>();
-            string selectedFilePath = await filePickerService.PickFileAsync("Please select a spreadsheet or a CSV file",  ".xlsx", ".csv" );
+            var filePath = await filePickerService.PickFileAsync(importPickerTitle, importFileTypes);
 
-            if (selectedFilePath == null)
+            if (filePath is null)
             {
                 return;
             }
-            string extension = Path.GetExtension(selectedFilePath);
 
-            using (FileStream fileStream = File.OpenRead(selectedFilePath))
+            var fileName = Path.GetFileName(filePath);
+            var fileExtension = Path.GetExtension(filePath);
+
+            SpreadDocumentFormat fileFormat;
+
+            if (string.Equals(fileExtension, ".xlsx", StringComparison.OrdinalIgnoreCase))
             {
-                FileLabelText = Path.GetFileName(selectedFilePath);
-
-                if (extension == ".xlsx")
-                {
-                    await ImportAsync(fileStream, SpreadDocumentFormat.Xlsx);
-                }
-                else
-                {
-                    await ImportAsync(fileStream, SpreadDocumentFormat.Csv);
-                }
+                fileFormat = SpreadDocumentFormat.Xlsx;
             }
+            else if (string.Equals(fileExtension, ".csv", StringComparison.OrdinalIgnoreCase))
+            {
+                fileFormat = SpreadDocumentFormat.Csv;
+            }
+            else
+            {
+                return;
+            }
+
+            using (var fileStream = File.OpenRead(filePath))
+            {
+                await this.InportWorkbookAsync(fileStream, fileFormat);
+            }
+
+            this.Workbook.Name = fileName;
         }
 
         private async void ImportSample()
         {
-            FileLabelText = "Sample.xlsx";
-
             var resourceService = DependencyService.Get<IResourceService>();
 
-            using (var resourceStream = resourceService.GetResourceStream("sample.xlsx"))
+            using (var resourceStream = resourceService.GetResourceStream(sampleResourceName))
             {
-                await ImportAsync(resourceStream, SpreadDocumentFormat.Xlsx);
+                await this.InportWorkbookAsync(resourceStream, SpreadDocumentFormat.Xlsx);
             }
 
-        }
-        private async Task ImportAsync(Stream stream, SpreadDocumentFormat format)
-        {
-            await Task.Run(() =>
-            {
-                Import(stream, format);
-            });
+            this.Workbook.Name = sampleResourceName;
         }
 
-        private void Import(Stream stream, SpreadDocumentFormat format)
+        private async Task InportWorkbookAsync(Stream stream, SpreadDocumentFormat format)
         {
-            StringBuilder stringBuilder = new StringBuilder();
+            this.IsBusy = true;
+            this.Workbook = await this.LoadWorkbookAsync(stream, format);
+            this.IsBusy = false;
+        }
 
-            using (IWorkbookImporter workBookImporter = SpreadImporter.CreateWorkbookImporter(format, stream))
+        private Task<WorkbookViewModel> LoadWorkbookAsync(Stream stream, SpreadDocumentFormat format)
+        {
+            return Task.Run(() => this.LoadWorkbookCore(stream, format));
+        }
+
+        private WorkbookViewModel LoadWorkbookCore(Stream stream, SpreadDocumentFormat format)
+        {
+            var workbookViewModel = new WorkbookViewModel();
+
+            using (var workBookImporter = SpreadImporter.CreateWorkbookImporter(format, stream))
             {
-                foreach (IWorksheetImporter worksheetImporter in workBookImporter.WorksheetImporters)
+                foreach (var worksheetImporter in workBookImporter.WorksheetImporters)
                 {
-                    foreach (IRowImporter rowImporter in worksheetImporter.Rows)
+                    var worksheetViewModel = new WorksheetViewModel
                     {
-                        foreach (ICellImporter cell in rowImporter.Cells)
+                        Name = worksheetImporter.Name
+                    };
+
+                    var columnImporters = worksheetImporter.Columns;
+
+                    if (columnImporters is not null)
+                    {
+                        foreach (var columnImporter in columnImporters)
                         {
-                            if (cell.Value != null)
+                            var minimumIndex = columnImporter.FromIndex;
+                            var maximumIndex = columnImporter.ToIndex;
+
+                            for (int columnIndex = minimumIndex; columnIndex <= maximumIndex; columnIndex++)
                             {
-                                stringBuilder.Append(cell.Value);
-                                stringBuilder.Append(", ");
+                                var columnName = $"Column {columnIndex}";
+                                var columnViewModel = new ColumnViewModel
+                                {
+                                    Name = columnName
+                                };
+
+                                worksheetViewModel.Columns.Add(columnViewModel);
                             }
                         }
-                        stringBuilder.AppendLine();
                     }
+
+                    var rowImporters = worksheetImporter.Rows;
+
+                    if (rowImporters is not null)
+                    {
+                        var columnCount = worksheetViewModel.Columns.Count;
+
+                        foreach (var rowImporter in rowImporters)
+                        {
+                            var cellImporters = rowImporter.Cells;
+
+                            if (cellImporters is not null)
+                            {
+                                var dataObject = new ExpandoObject();
+                                var cellValues = (IDictionary<string, object>)dataObject;
+
+                                foreach (var cellImporter in cellImporters)
+                                {
+                                    var columnIndex = cellImporter.ColumnIndex;
+
+                                    while (columnIndex >= columnCount)
+                                    {
+                                        var columnName = $"Column {columnIndex}";
+                                        var columnViewModel = new ColumnViewModel
+                                        {
+                                            Name = columnName
+                                        };
+
+                                        worksheetViewModel.Columns.Add(columnViewModel);
+                                        columnCount++;
+                                    }
+
+                                    var currentViewModel = worksheetViewModel.Columns[columnIndex];
+                                    var currentName = currentViewModel.Name;
+                                    var currentValue = cellImporter.Value;
+
+                                    cellValues.Add(currentName, currentValue);
+                                }
+
+                                worksheetViewModel.Rows.Add(dataObject);
+                            }
+                        }
+                    }
+
+                    foreach (var dataObject in worksheetViewModel.Rows)
+                    {
+                        var cellValues = (IDictionary<string, object>)dataObject;
+
+                        foreach (var columnViewModel in worksheetViewModel.Columns)
+                        {
+                            var columnName = columnViewModel.Name;
+
+                            if (!cellValues.ContainsKey(columnName))
+                            {
+                                cellValues.Add(columnName, string.Empty);
+                            }
+                        }
+                    }
+
+                    workbookViewModel.Worksheets.Add(worksheetViewModel);
                 }
             }
-            Console = stringBuilder.ToString();
+
+            return workbookViewModel;
         }
     }
 }

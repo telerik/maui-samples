@@ -62,7 +62,7 @@ public partial class MainPageDesktop : ContentPage
         }
 
         double oldWidth = this.navigationMenu.Bounds.Width;
-        double newWidth = this.isNavigationMenuOpen ? this.navigationMenuDesiredWidth : 32;
+        double newWidth = this.isNavigationMenuOpen ? this.navigationMenuDesiredWidth : 40;
 
         if (oldWidth != newWidth)
         {
