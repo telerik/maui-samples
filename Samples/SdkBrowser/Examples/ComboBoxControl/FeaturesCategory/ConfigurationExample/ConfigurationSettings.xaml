@@ -10,32 +10,36 @@
             <!-- >> combobox-configuration-placeholder -->
             <telerik:RadComboBox Placeholder="Select City!" 
                                  ItemsSource="{Binding Items}"
-                                 DisplayMemberPath="Name"/>
+                                 DisplayMemberPath="Name"
+                                 AutomationId="placeholderCombo"/>
             <!-- << combobox-configuration-placeholder -->
-            <Label Text="ComboBox with IsClearButtonVisible=False"/>
+            <Label Text="ComboBox with IsClearButtonVisible=False" Margin="0, 40, 0, 0" />
             <!-- >> combobox-configuration-clearbuttonvisible-false -->
             <telerik:RadComboBox IsClearButtonVisible="False" 
                                  ItemsSource="{Binding Items}"
                                  DisplayMemberPath="Population"
                                  IsEditable="True"
                                  SearchTextPath="Population"
-                                 Keyboard="Numeric"/>
+                                 Keyboard="Numeric"
+                                 AutomationId="noClearnButtonCombo"/>
             <!-- << combobox-configuration-clearbuttonvisible-false -->
 
-            <Label Text="Drop Down visibility on focus, valid for editable mode"/>
+            <Label Text="OpenOnFocus=False, IsEditable=True" Margin="0, 40, 0, 0" />
             <!-- >> combobox-configuration-dropdownvisibility-openonfocus -->
             <telerik:RadComboBox OpenOnFocus="False" 
                                  ItemsSource="{Binding Items}"
                                  IsEditable="True"
                                  SearchTextPath="Name"
-                                 DisplayMemberPath="Name"/>
+                                 DisplayMemberPath="Name"
+                                 AutomationId="notOpeningOnFocusCombo"/>
             <!-- << combobox-configuration-dropdownvisibility-openonfocus -->
 
-            <Label Text="IsDropDown Closed when selection is made"/>
+            <Label Text="IsDropDown Closed when selection is made" Margin="0, 40, 0, 0" />
             <!-- >> combobox-configuration-dropdownvisibility-isdropdownclosed -->
             <telerik:RadComboBox IsDropDownClosedOnSelection="False"
                                  ItemsSource="{Binding Items}"
-                                 DisplayMemberPath="Name"/>
+                                 DisplayMemberPath="Name"
+                                 AutomationId="openedAfterSelectionCombo"/>
             <!-- << combobox-configuration-dropdownvisibility-isdropdownclosed -->
         </VerticalStackLayout>
     </telerik:RadContentView.Content>

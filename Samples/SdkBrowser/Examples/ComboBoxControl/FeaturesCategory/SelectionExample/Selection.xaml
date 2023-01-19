@@ -12,7 +12,8 @@
             <telerik:RadComboBox ItemsSource="{Binding Items}"
                                  DisplayMemberPath="Name"
                                  SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}"
-                                 SelectionMode="Single">
+                                 SelectionMode="Single"
+                                 AutomationId="selectedIndexCombo">
                 <telerik:RadComboBox.BindingContext>
                     <local:ViewModel/>
                 </telerik:RadComboBox.BindingContext>
@@ -24,7 +25,8 @@
             <telerik:RadComboBox ItemsSource="{Binding Items}"
                                  DisplayMemberPath="Name"
                                  SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
-                                 SelectionMode="Single">
+                                 SelectionMode="Single"
+                                 AutomationId="selectedItemCombo">
                 <telerik:RadComboBox.BindingContext>
                     <local:ViewModel/>
                 </telerik:RadComboBox.BindingContext>
@@ -37,7 +39,8 @@
                                  SelectionMode="Multiple"
                                  DisplayMemberPath="Name"
                                  SelectedItems="{Binding SelectedItems}"
-                                 SelectionChanged="RadComboBox_SelectionChanged">
+                                 SelectionChanged="RadComboBox_SelectionChanged"
+                                 AutomationId="selectedItemMultipleCombo">
                 <telerik:RadComboBox.BindingContext>
                     <local:ViewModel/>
                 </telerik:RadComboBox.BindingContext>

@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.ProgressBarControl.StylingCategory.StylingExample.Styling">
+    <ScrollView Padding="20">
+        <VerticalStackLayout HorizontalOptions="FillAndExpand"
+                             VerticalOptions="FillAndExpand"
+                             Spacing="10">
+            <VerticalStackLayout.Resources>
+                <Style TargetType="telerik:RadLinearProgressBar">
+                    <Setter Property="Margin" Value="0, 0, 0, 24" />
+                </Style>
+            </VerticalStackLayout.Resources>
+
+            <!-- >> progressbar-styling-trackfill -->
+            <Label Text="Custom TrackFill:" />
+            <telerik:RadLinearProgressBar Value="20"
+                                          TrackFill="LightBlue" />
+            <!-- << progressbar-styling-trackfill -->
+
+            <!-- >> progressbar-styling-progressfill -->
+            <Label Text="Custom ProgressFill:" />
+            <telerik:RadLinearProgressBar Value="20"
+                                          ProgressFill="#FFAC3E" />
+            <!-- << progressbar-styling-progressfill -->
+
+            <!-- >> progressbar-styling-indeterminate-mode-->
+            <Label Text="Indeterminate mode with custom ProgressFill:" />
+            <telerik:RadLinearProgressBar Value="25"
+                                          IsIndeterminate="True"
+                                          ProgressFill="#F85446" />
+            <!-- << progressbar-styling-indeterminate-mode -->
+
+            <!-- >> progressbar-styling-separator-segments -->
+            <Label Text="Segments - custom fill and separator thickness:" />
+            <telerik:RadLinearProgressBar Value="25"
+                                          SegmentCount="10"
+                                          SegmentSeparatorFill="Black"
+                                          SegmentSeparatorThickness="2" />
+            <!-- << progressbar-styling-separator-segments -->
+
+            <!-- >> progressbar-styling-track-height -->
+            <Label Text="Custom TrackFill and TrackThickness:"/>
+            <telerik:RadLinearProgressBar Value="30"
+                                          HeightRequest="10"
+                                          TrackThickness="5"
+                                          TrackFill="DarkGray"
+                                          ValueDisplayMode="None" />
+            <!-- << progressbar-styling-track-height -->
+
+            <!-- >> progressbar-styling-corner-radius -->
+            <Label Text="Custom CornerRadius:" />
+            <telerik:RadLinearProgressBar Value="50"
+                                          HeightRequest="20"
+                                          ProgressCornerRadius="5"
+                                          TrackCornerRadius="5" />
+            <!-- << progressbar-styling-corner-radius -->
+
+            <!-- >> progressbar-styling-text -->
+            <Label Text="Custom ValueDisplayMode and FontSize:" />
+            <telerik:RadLinearProgressBar Value="90"
+                                          ValueDisplayMode="Percent"
+                                          FontSize="20"
+                                          HeightRequest="30" />
+            <!-- << progressbar-styling-text -->
+
+            <!-- >> progressbar-styling-custom-value -->
+            <Label Text="Custom value:" />
+            <telerik:RadLinearProgressBar x:Name="progressBar"
+                                          Minimum="0"
+                                          Maximum="1"
+                                          Value="0.71"
+                                          Margin="0, 0, 0, 8" />
+            <Label Text="{Binding Value, Source={x:Reference progressBar}, StringFormat='Placing your order... {0:P0}'}}"
+                   HorizontalOptions="Center" />
+            <!-- << progressbar-styling-custom-value -->
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentView>

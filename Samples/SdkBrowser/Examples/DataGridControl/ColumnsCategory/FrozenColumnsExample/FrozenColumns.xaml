@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.DataGridControl.ColumnsCategory"
+             x:Class="SDKBrowserMaui.Examples.DataGridControl.ColumnsCategory.FrozenColumnsExample.FrozenColumns"
+             Margin="5">
+    <!-- >> datagrid-frozen-columns-example -->
+    <Grid RowDefinitions="Auto,*">
+        <HorizontalStackLayout Spacing="10" Margin="5">
+            <Button Text="Freeze first column" Clicked="OnFirstColumnFrozenClicked"/>
+            <Button Text="Freeze last column" Clicked="OnLastColumnFrozenClicked"/>
+        </HorizontalStackLayout>
+        <telerik:RadDataGrid x:Name="grid" 
+                             Grid.Row="1"
+                             ItemsSource="{Binding Clubs}" 
+                             AutoGenerateColumns="False">
+            <telerik:RadDataGrid.BindingContext>
+                <local:ViewModel />
+            </telerik:RadDataGrid.BindingContext>
+            <telerik:RadDataGrid.Columns>
+                <telerik:DataGridTextColumn PropertyName="Name" 
+                                            HeaderText="Name"/>
+                <telerik:DataGridNumericalColumn PropertyName="StadiumCapacity" 
+                                                 HeaderText="Stadium Capacity"/>
+                <telerik:DataGridBooleanColumn PropertyName="IsChampion" 
+                                               HeaderText="Champion?"/>
+                <telerik:DataGridDateColumn PropertyName="Established" 
+                                            HeaderText="Date Established"/>
+                <telerik:DataGridComboBoxColumn PropertyName="Country"
+                                                HeaderText="Country"
+                                                ItemsSourcePath="Countries"/>
+                <telerik:DataGridTemplateColumn HeaderText="Template Column">
+                    <telerik:DataGridTemplateColumn.CellContentTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <VerticalStackLayout InputTransparent="True">
+                                    <Label Text="{Binding Country}"
+                                           Margin="0, 5, 0, 5"
+                                           HorizontalOptions="Center"
+                                           VerticalTextAlignment="Center" />
+                                </VerticalStackLayout>
+                            </Grid>
+                        </DataTemplate>
+                    </telerik:DataGridTemplateColumn.CellContentTemplate>
+                </telerik:DataGridTemplateColumn>
+                <telerik:DataGridTimeColumn PropertyName="Time" 
+                                            HeaderText="Time Column"/>
+            </telerik:RadDataGrid.Columns>
+        </telerik:RadDataGrid>
+    </Grid>
+    <!-- << datagrid-frozen-columns-example -->
+</ContentView>

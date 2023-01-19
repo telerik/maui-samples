@@ -43,6 +43,7 @@
                                 <On Platform="WinUI">
                                     <Style TargetType="Grid">
                                         <Setter Property="WidthRequest" Value="{Binding Width, Source={x:Reference picker}}" />
+                                        <Setter Property="BackgroundColor" Value="Transparent"/>
                                     </Style>
                                 </On>
                             </OnPlatform>
@@ -54,7 +55,7 @@
                                         <VisualStateGroup Name="CommonStates">
                                             <VisualState Name="Normal">
                                                 <VisualState.Setters>
-                                                    <Setter Property="BackgroundColor" Value="White" />
+                                                    <Setter Property="BackgroundColor" Value="{OnPlatform Default=White, WinUI=Transparent}" />
                                                 </VisualState.Setters>
                                             </VisualState>
                                             <VisualState Name="Selected">

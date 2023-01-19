@@ -1,0 +1,1 @@
+dotnet build SwitchToNetVersion.proj -target:SwitchFiles -verbosity:n -property:DotNetVersion=Net6

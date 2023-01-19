@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.AccordionControl.FeaturesCategory.KeyFeaturesExample.KeyFeatures">
+    <Grid Margin="10">
+        <!-- >> accordion-key-features-xaml -->
+        <telerik:RadAccordion CanCollapseAllItems="True"
+                              CanExpandMultipleItems="True"
+                              AnimationDuration="1500"
+                              AnimationEasing="{Static Easing.SpringOut}"
+                              Spacing="5">
+            <telerik:AccordionItem HeaderText="Attachments" IsExpanded="True">
+                <telerik:AccordionItem.Content>
+                    <Button Text="Attach files" FontSize="20" Margin="10" />
+                </telerik:AccordionItem.Content>
+            </telerik:AccordionItem>
+            <telerik:AccordionItem HeaderText="Comments">
+                <telerik:AccordionItem.Content>
+                    <Label Text="Add your comment here" Margin="30" />
+                </telerik:AccordionItem.Content>
+            </telerik:AccordionItem>
+            <telerik:AccordionItem HeaderText="Rating">
+                <telerik:AccordionItem.Content>
+                    <telerik:RadShapeRating x:Name="rating" Margin="20" />
+                </telerik:AccordionItem.Content>
+            </telerik:AccordionItem>
+        </telerik:RadAccordion>
+        <!-- << accordion-key-features-xaml -->
+    </Grid>
+</ContentView>

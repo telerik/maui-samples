@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.AccordionControl.FeaturesCategory.AccordionItemExample.AccordionItem"
+             Padding="20">
+    <telerik:RadAccordion x:Name="accordion">
+        <telerik:AccordionItem HeaderText="Profile">
+            <telerik:AccordionItem.Content>
+                <Label Text="John Smith" Margin="8" />
+            </telerik:AccordionItem.Content>
+        </telerik:AccordionItem>
+        <telerik:AccordionItem HeaderText="Messages">
+            <telerik:AccordionItem.Content>
+                <Label Text="Messages listed here" Margin="8" />
+            </telerik:AccordionItem.Content>
+        </telerik:AccordionItem>
+        <!-- >> accordion-features-accordionitem -->
+        <telerik:AccordionItem IsExpanded="True"
+                               HeaderText="Settings" 
+                               BorderColor="#CEBEE7"
+                               BorderThickness="2"
+                               CornerRadius="0, 0, 8, 8">
+            <telerik:AccordionItem.Resources>
+                <Style TargetType="telerik:AccordionItemHeader">
+                    <Setter Property="BackgroundColor" Value="#CEBEE7" />
+                    <Setter Property="BorderColor" Value="#CEBEE7" />
+                    <Setter Property="BorderThickness" Value="2" />
+                </Style>
+            </telerik:AccordionItem.Resources>
+            <telerik:AccordionItem.Content>
+                <VerticalStackLayout Margin="8, 12"
+                                     Spacing="8">
+                    <HorizontalStackLayout Spacing="8">
+                        <telerik:RadCheckBox />
+                        <Label Text="Make my profile private"
+                               VerticalTextAlignment="Center" />
+                    </HorizontalStackLayout>
+                    <Grid ColumnDefinitions="Auto, *">
+                        <telerik:RadCheckBox />
+                        <Label Grid.Column="1"
+                               Text="Only show my posts to people who follow me"
+                               LineBreakMode="WordWrap"
+                               VerticalTextAlignment="Center"
+                               Margin="8, 0, 0, 0" />
+                    </Grid>
+                </VerticalStackLayout>
+            </telerik:AccordionItem.Content>
+        </telerik:AccordionItem>
+        <!-- << accordion-features-accordionitem -->
+    </telerik:RadAccordion>
+</ContentView>

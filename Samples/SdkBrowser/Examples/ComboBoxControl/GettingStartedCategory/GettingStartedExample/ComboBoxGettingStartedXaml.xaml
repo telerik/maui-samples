@@ -8,7 +8,7 @@
         <VerticalStackLayout WidthRequest="300" HorizontalOptions="Center">
             <Label Text="ComboBox with static items" Margin="0,0,0,5"/>
             <!-- >> combobox-getting-started-static-items-xaml -->
-            <telerik:RadComboBox>
+            <telerik:RadComboBox AutomationId="staticItemsComboBox">
                 <telerik:RadComboBox.ItemsSource>
                     <x:Array Type="{x:Type x:String}">
                         <x:String>USA</x:String>
@@ -28,7 +28,8 @@
             <Label Text="ComboBox with binding to a complex object using DisplayMemberPath property" Margin="0,20,0,5"/>
             <!-- >> combobox-getting-started-complex-object-xaml -->
             <telerik:RadComboBox ItemsSource="{Binding Items}" 
-                                 DisplayMemberPath="Population"/>
+                                 DisplayMemberPath="Population"
+                                 AutomationId="boundComboBox"/>
             <!-- << combobox-getting-started-complex-object-xaml -->
         </VerticalStackLayout>
     </telerik:RadContentView.Content>
