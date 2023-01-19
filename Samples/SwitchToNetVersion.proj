@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="SwitchFiles" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  
+  <PropertyGroup>
+    <IsNet6 Condition="$(DotNetVersion) == 'Net6' ">true</IsNet6>
+    <IsNet7 Condition="$(DotNetVersion) == 'Net7' ">true</IsNet7>
+
+    <InputFile>Directory.Build.props</InputFile>
+  </PropertyGroup>
+
+  <Target Name="SwitchFiles" DependsOnTargets="ReplaceDotNetVersion">
+    <Copy Condition="$(IsNet6) == true" SourceFiles="global.Net6.json" DestinationFiles="global.json"/>
+    <Copy Condition="$(IsNet7) == true" SourceFiles="global.Net7.json" DestinationFiles="global.json"/>
+  </Target>
+
+  <Target Name="ReplaceDotNetVersion" AfterTargets="Build">
+    <ReplaceFileText
+       InputFilename="$(InputFile)"
+       OutputFilename="$(InputFile)"
+       MatchExpression="Net\d..DotNetVersion"
+       ReplacementText="$(DotNetVersion)%3C/DotNetVersion"/>
+  </Target>
+
+  <UsingTask
+    TaskName="ReplaceFileText"
+    TaskFactory="RoslynCodeTaskFactory"
+    AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
+    <ParameterGroup>
+      <InputFilename ParameterType="System.String" Required="true" />
+      <OutputFilename ParameterType="System.String" Required="true" />
+      <MatchExpression ParameterType="System.String" Required="true" />
+      <ReplacementText ParameterType="System.String" Required="true" />
+    </ParameterGroup>
+    <Task>
+      <Using Namespace="System"/>
+      <Using Namespace="System.IO"/>
+      <Using Namespace="System.Text.RegularExpressions" />
+      <Code Type="Fragment" Language="cs">
+        <![CDATA[  
+          File.WriteAllText(
+            OutputFilename,
+            Regex.Replace(File.ReadAllText(InputFilename), MatchExpression, ReplacementText)
+            );
+        ]]>
+      </Code>
+    </Task>
+  </UsingTask>
+
+</Project>

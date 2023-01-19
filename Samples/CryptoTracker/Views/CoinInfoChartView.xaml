@@ -18,18 +18,18 @@
                        FontAttributes="Bold"
                        FontSize="18"
                        Text="{Binding CoinName, StringFormat='{0} to USD Chart'}"
-                       LineBreakMode="{OnPlatform Default='TailTruncation', UWP='NoWrap', MacCatalyst='NoWrap'}"/>
+                       LineBreakMode="{OnPlatform Default='TailTruncation', WinUI='NoWrap', MacCatalyst='NoWrap'}"/>
 
                 <telerik:RadSegmentedControl x:Name="chartTypesSegmentedControl" Grid.Column="1"
                                              HorizontalOptions="End"
                                              VerticalOptions="Center"
-                                             WidthRequest="{OnPlatform UWP=150, MacCatalyst=150, Default=100}"
+                                             WidthRequest="{OnPlatform WinUI=150, MacCatalyst=150, Default=100}"
                                              SelectedIndex="{Binding SelectedChartType, Mode=TwoWay}"
                                              Style="{StaticResource SegmentedControlStyle}">
                     <telerik:RadSegmentedControl.ItemsSource>
                         <x:Array Type="{x:Type FileImageSource}">
-                            <FileImageSource File="{OnPlatform Default='lineactive.png', Android='chartlineactive.png'}"/>
-                            <FileImageSource File="{OnPlatform Default='candleactive.png', Android='chartcandleactive.png'}"/>
+                            <FileImageSource File="chartlineactive.png"/>
+                            <FileImageSource File="chartcandleactive.png"/>
                         </x:Array>
                     </telerik:RadSegmentedControl.ItemsSource>
                 </telerik:RadSegmentedControl>
@@ -94,20 +94,10 @@
                 </telerik:RadCartesianChart.Series>
             </telerik:RadCartesianChart>
 
-            <telerik:RadBusyIndicator Grid.Row="1"
-                                      VerticalOptions="Center"
-                                      AnimationType="Animation2"
-                                      AnimationContentColor="{StaticResource DownloadButtonColor}"
-                                      AnimationContentHeightRequest="100"
-                                      AnimationContentWidthRequest="100"
-                                      HeightRequest="100"
-                                      IsVisible="{Binding IsChartLoading}"
-                                      IsBusy="{Binding IsChartLoading}"/>
-            
             <telerik:RadSegmentedControl x:Name="timePeriodsSegmentedControl"
                                          Grid.Row="2"
                                          HorizontalOptions="CenterAndExpand"
-                                         WidthRequest="{OnPlatform Default=290, UWP=720, MacCatalyst=720}"
+                                         WidthRequest="{OnPlatform Default=290, WinUI=720, MacCatalyst=720}"
                                          ItemsSource="{Binding TimePeriods}"
                                          SelectedIndex="{Binding SelectedTimePeriod, Mode=TwoWay}"
                                          Style="{StaticResource SegmentedControlStyle}" />

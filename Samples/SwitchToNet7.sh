@@ -1,0 +1,1 @@
+dotnet build SwitchToNetVersion.proj /p:DotNetVersion=Net7
