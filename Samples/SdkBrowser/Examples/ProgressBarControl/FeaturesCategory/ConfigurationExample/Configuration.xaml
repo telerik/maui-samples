@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.ProgressBarControl.FeaturesCategory.ConfigurationExample.Configuration">
+    <ScrollView Padding="20">
+        <VerticalStackLayout HorizontalOptions="FillAndExpand"
+                             VerticalOptions="FillAndExpand"
+                             Spacing="10">
+            <VerticalStackLayout.Resources>
+                <Style TargetType="telerik:RadLinearProgressBar">
+                    <Setter Property="Margin" Value="0, 0, 0, 24" />
+                </Style>
+            </VerticalStackLayout.Resources>
+
+            <!-- >> progressbar-configuration-value -->
+            <Label Text="Updating Value and getting Progress:" />
+            <telerik:RadLinearProgressBar x:Name="progressBar"
+                                          Margin="0, 0, 0, 8" />
+            <HorizontalStackLayout Spacing="10"
+                                   Margin="0, 0, 0, 24">
+                <Button x:Name="updateButton"
+                        Text="Update"
+                        Clicked="ProgressBarUpdateClicked" />
+                <Label Text="{Binding Progress, Source={x:Reference progressBar}, StringFormat='Current progress: {0}'}"
+                       VerticalOptions="Center" />
+            </HorizontalStackLayout>
+            <!-- << progressbar-configuration-value -->
+
+            <!-- >> progressbar-configuration-minmax -->
+            <Label Text="Min=0, Max=60:" />
+            <telerik:RadLinearProgressBar Value="30"
+                                          Minimum="0"
+                                          Maximum="60" />
+            <!-- << progressbar-configuration-minmax -->
+
+            <!-- >> progressbar-configuration-stringformat -->
+            <Label Text="StringFormat applied:" />
+            <telerik:RadLinearProgressBar Value="25"
+                                          StringFormat="N2"
+                                          ValueDisplayMode="Percent" />
+            <!-- << progressbar-configuration-stringformat -->
+
+            <!-- >> progressbar-configuration-valuedisplaymode -->
+            <Label Text="ValueDisplayMode=Value" />
+            <telerik:RadLinearProgressBar Value="35"
+                                          ValueDisplayMode="Value" />
+            <!-- << progressbar-configuration-valuedisplaymode -->
+
+            <!-- >> progressbar-configuration-customtext -->
+            <Label Text="ValueDisplayMode=Text with CustomText applied" />
+            <telerik:RadLinearProgressBar Value="45"
+                                          ValueDisplayMode="Text"
+                                          CustomText="loading..." />
+            <!-- << progressbar-configuration-customtext -->
+
+            <!-- >> progressbar-configuration-segments -->
+            <Label Text="Segments:" />
+            <telerik:RadLinearProgressBar Value="45"
+                                          ValueDisplayMode="Value"
+                                          SegmentCount="8" />
+            <!-- << progressbar-configuration-segments -->
+
+            <!-- >> progressbar-configuration-labelalignment -->
+            <Label Text="Horizintally centered Label:" />
+            <telerik:RadLinearProgressBar Value="55"
+                                          ValueDisplayMode="Percent"
+                                          LabelHorizontalOptions="Center" />
+            <!-- << progressbar-configuration-labelalignment -->
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentView>

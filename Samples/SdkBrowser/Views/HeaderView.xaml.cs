@@ -9,6 +9,8 @@ namespace SDKBrowserMaui.Views
 {
     public partial class HeaderView : ContentView
     {
+        private int tapCounter;
+
         public HeaderView()
         {
             InitializeComponent();
@@ -18,6 +20,15 @@ namespace SDKBrowserMaui.Views
         {
             var navigationService = DependencyService.Get<INavigationService>();
             await navigationService.NavigateBackAsync();
+        }
+
+        private void OnTapGestureRecognizerTapped(object sender, EventArgs e)
+        {
+            this.tapCounter++;
+            if (this.tapCounter > 8)
+            {
+                UIAutomation.IsEnabled = true;
+            }
         }
     }
 }

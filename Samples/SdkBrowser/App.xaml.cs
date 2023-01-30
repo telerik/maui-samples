@@ -2,6 +2,7 @@
 using Microsoft.Maui.Controls;
 using Microsoft.Maui.Controls.PlatformConfiguration.WindowsSpecific;
 using Microsoft.Maui.Graphics;
+using SDKBrowserMaui.Common;
 using SDKBrowserMaui.Pages;
 using SDKBrowserMaui.Services;
 using System.Threading;
@@ -24,6 +25,7 @@ namespace SDKBrowserMaui
             if (Environment.GetEnvironmentVariable("EnableTelerikUIAutomation") == "true")
             {
                 MainPage = new NavigationPage(new UITestsHomePage());
+                UIAutomation.IsEnabled = true;
             }
             else
             {

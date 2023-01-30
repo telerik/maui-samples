@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.ImageEditorControl.FeaturesCategory.SaveImageExample.SaveImage">
+    <!-- >> imageeditor-save-image -->
+    <Grid RowDefinitions="Auto,*">
+        <HorizontalStackLayout Spacing="5"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center">
+            <Button Text="Original Size" Clicked="OnSaveOriginalClicked"/>
+            <Button Text="Specific Size" Clicked="OnSaveMaxSizeClicked"/>
+            <Button Text="Downscaled" Clicked="OnSaveDownscaledClicked"/>
+        </HorizontalStackLayout>
+        <telerik:RadImageEditor x:Name="imageEditor" 
+                                Grid.Row="1"
+                                Source="https://raw.githubusercontent.com/telerik/maui-samples/main/Samples/ControlsSamples/Resources/Images/borderconfigurationavatar.png" />
+    </Grid>
+    <!-- << imageeditor-save-image -->
+</ContentView>

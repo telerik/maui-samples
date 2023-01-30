@@ -10,7 +10,8 @@
             <!-- >> combobox-item-selecteditem-templates -->
             <telerik:RadComboBox ItemsSource="{Binding Items}" 
                                  DisplayMemberPath="Name"
-                                 Placeholder="Select City">
+                                 Placeholder="Select City"
+                                 AutomationId="comboBox">
                 <telerik:RadComboBox.ItemTemplate>
                     <DataTemplate>
                         <telerik:RadBorder BackgroundColor="LightYellow"

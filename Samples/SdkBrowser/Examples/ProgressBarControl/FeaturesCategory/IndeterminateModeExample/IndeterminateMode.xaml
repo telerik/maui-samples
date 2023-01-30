@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.ProgressBarControl.FeaturesCategory.IndeterminateModeExample.IndeterminateMode">
+    <VerticalStackLayout Padding="20"
+                         HorizontalOptions="FillAndExpand"
+                         VerticalOptions="FillAndExpand"
+                         Spacing="10">
+        <!-- >> progressbar-indeterminate-mode -->
+        <Label Text="IsIndeterminate = True" />
+        <telerik:RadLinearProgressBar IsIndeterminate="True"
+                                      Margin="0, 0, 0, 24" />
+        <!-- << progressbar-indeterminate-mode -->
+
+        <!-- >> progressbar-default-mode -->
+        <Label Text="IsIndeterminate = False (Default mode)" />
+        <telerik:RadLinearProgressBar Value="25" />
+        <!-- << progressbar-default-mode -->
+    </VerticalStackLayout>
+</ContentView>

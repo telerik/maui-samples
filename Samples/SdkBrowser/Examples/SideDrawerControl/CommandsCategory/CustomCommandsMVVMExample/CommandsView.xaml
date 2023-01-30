@@ -4,17 +4,36 @@
              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
              xmlns:local="clr-namespace:SDKBrowserMaui.Examples.SideDrawerControl.CommandsCategory.CustomCommandsMVVMExample"
              x:Class="SDKBrowserMaui.Examples.SideDrawerControl.CommandsCategory.CustomCommandsMVVMExample.CommandsView">
-    <Grid>
+    <telerik:RadContentView.BindingContext>
+        <local:CommandsViewModel/>
+    </telerik:RadContentView.BindingContext>
+    <Grid RowDefinitions="Auto, *">
         <!--  >> sidedrawer-commandsviewmodel-xaml  -->
-        <telerik:RadSideDrawer x:Name="drawer" DrawerLength="200">
-            <telerik:RadSideDrawer.BindingContext>
-                <local:CommandsViewModel/>
-            </telerik:RadSideDrawer.BindingContext>
+        <HorizontalStackLayout>
+            <VerticalStackLayout>
+                <ImageButton Source="hamburgermenu.png"
+                             BorderWidth="0" 
+                             BackgroundColor="Transparent"
+                             Command="{Binding ChangeIsOpenCommand}"/>
+            </VerticalStackLayout>
+        </HorizontalStackLayout>
+        <telerik:RadSideDrawer x:Name="drawer" 
+                               Grid.Row="1"
+                               DrawerLength="200"
+                               IsOpen="{Binding IsDrawerOpen}">
             <telerik:RadSideDrawer.Commands>
-                <telerik:SideDrawerUserCommand Command="{Binding Command}" Id="Opening"/>
+                <telerik:SideDrawerUserCommand Command="{Binding CustomOpenedCommand}" Id="Opened"/>
+                <telerik:SideDrawerUserCommand Command="{Binding CustomOpeningCommand}" Id="Opening"/>
+                <telerik:SideDrawerUserCommand Command="{Binding CustomClosedCommand}" Id="Closed"/>
+                <telerik:SideDrawerUserCommand Command="{Binding CustomClosingCommand}" Id="Closing"/>
             </telerik:RadSideDrawer.Commands>
             <telerik:RadSideDrawer.MainContent>
-                <Label Text="Main content" />
+                <Grid RowDefinitions="Auto, Auto, *">
+                    <Label Grid.Row="1" 
+                           Text="Invoked commands:" />
+                    <telerik:RadListView Grid.Row="2"
+                                         ItemsSource="{Binding InvokedCommands}" />
+                </Grid>
             </telerik:RadSideDrawer.MainContent>
             <telerik:RadSideDrawer.DrawerContent>
                 <StackLayout>

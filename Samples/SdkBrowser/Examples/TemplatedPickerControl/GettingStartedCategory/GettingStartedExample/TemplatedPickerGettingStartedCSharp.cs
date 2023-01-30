@@ -125,7 +125,7 @@ namespace SDKBrowserMaui.Examples.TemplatedPickerControl.GettingStartedCategory.
                                         new Setter
                                         {
                                             Property = VisualElement.BackgroundColorProperty,
-                                            Value = Colors.White
+                                            Value = DeviceInfo.Platform == DevicePlatform.WinUI ? Colors.Transparent : Colors.White
                                         }
                                     }
                                 },
@@ -164,6 +164,7 @@ namespace SDKBrowserMaui.Examples.TemplatedPickerControl.GettingStartedCategory.
                 if (DeviceInfo.Platform == DevicePlatform.WinUI)
                 {
                     collectionView.SetBinding(SelectableItemsView.WidthRequestProperty, new Binding { Path = nameof(templatedPicker.Width), Source = templatedPicker });
+                    collectionView.BackgroundColor = Colors.Transparent;
                 }
 
                 return collectionView;

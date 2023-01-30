@@ -14,7 +14,7 @@ public partial class DelegateGroupDescriptorGroups : RadContentView
         this.BindingContext = new ViewModel();
 
         // >> datagrid-grouping-delegategroupdescriptor
-        this.dataGrid.GroupDescriptors.Add(new DelegateGroupDescriptor() { KeyLookup = new CustomIKeyLookup() });
+        this.dataGrid.GroupDescriptors.Add(new DelegateGroupDescriptor() { DisplayContent = "Name", KeyLookup = new CustomIKeyLookup() });
         // << datagrid-grouping-delegategroupdescriptor
     }
 }
