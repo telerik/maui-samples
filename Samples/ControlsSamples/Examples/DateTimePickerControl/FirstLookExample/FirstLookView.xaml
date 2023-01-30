@@ -14,14 +14,14 @@
         <Style TargetType="telerik:RadDateTimePicker">
             <Setter Property="Margin" Value="0, 0, 0, 15" />
             <Setter Property="BorderThickness" Value="0, 0, 0, 1" />
+            <Setter Property="CornerRadius" Value="0" />
             <Setter Property="Placeholder" Value="Select Date &amp; Time" />
-            <Setter Property="HorizontalOptions" Value="Start" />
             <Setter Property="IsToggleButtonVisible" Value="False" />
         </Style>
         
     </views:PickerExampleViewBase.Resources>
 
-    <VerticalStackLayout x:Name="layout" HorizontalOptions="Start">
+    <VerticalStackLayout x:Name="layout">
         <Label Text="Good Afternoon, Joe"
                Style="{StaticResource DefaultSubtitleLabelStyle}"
                FontSize="24"
@@ -31,7 +31,7 @@
         <telerik:RadDateTimePicker x:Name="dateTimePicker"
                                    Date="{Binding Date}"
                                    DefaultHighlightedDate="{Static sys:DateTime.Now}"
-                                   PlaceholderLabelStyle="{StaticResource DefaultPlaceholderLabelStyle}">
+                                   PlaceholderLabelStyle="{StaticResource PlaceholderLabelStyle}">
             <telerik:RadDateTimePicker.PopupSettings>
                 <telerik:PickerPopupSettings HeaderLabelText="Select Date &amp; Time" />
             </telerik:RadDateTimePicker.PopupSettings>

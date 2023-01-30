@@ -8,14 +8,14 @@
 
     <VisualElement.Resources>
         <Style x:Key="BorderStyle" TargetType="telerik:RadBorder">
-            <Setter Property="BackgroundColor" Value="{StaticResource BasicBackgroundColor3}" />
+            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource SecondaryBackgroundColor}, Dark={StaticResource SecondaryBackgroundColorDark}}" />
             <Setter Property="CornerRadius" Value="{StaticResource BorderCornerRadius}" />
         </Style>
         <Style x:Key="InnerSearchViewStyle_MacCatalyst" TargetType="views:InnerSearchView">
             <Setter Property="Margin" Value="10" />
         </Style>
         <Style x:Key="NoResultsLabelStyle" TargetType="Label">
-            <Setter Property="TextColor" Value="{StaticResource DefaultTextColor}" />
+            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource DefaultTextColor}, Dark={StaticResource DefaultTextColorDark}}" />
             <Setter Property="FontAttributes" Value="Bold" />
             <Setter Property="HorizontalOptions" Value="Center" />
             <Setter Property="VerticalOptions" Value="Center" />

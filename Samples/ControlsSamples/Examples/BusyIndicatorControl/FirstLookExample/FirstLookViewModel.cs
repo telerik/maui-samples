@@ -2,7 +2,7 @@
 using System;
 using System.Linq;
 using System.Collections.Generic;
-using Telerik.Maui.Controls.Compatibility.Primitives;
+using Telerik.Maui.Controls;
 
 namespace QSF.Examples.BusyIndicatorControl.FirstLookExample
 {

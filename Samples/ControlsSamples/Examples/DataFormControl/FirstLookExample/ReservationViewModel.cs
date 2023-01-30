@@ -8,16 +8,18 @@ public class ReservationViewModel : NotifyPropertyChangedBase
 {
     private string name;
     private string phone;
-    private DateTime date;
-    private TimeSpan time;
+    private DateOnly date;
+    private TimeOnly time;
     private int guests;
     private SectionType section;
     private ReservationType reservation;
 
     public ReservationViewModel()
     {
-        this.Date = DateTime.Today;
-        this.Time = DateTime.Now.TimeOfDay;
+        var currentTime = DateTime.Now;
+
+        this.Date = DateOnly.FromDateTime(currentTime);
+        this.Time = TimeOnly.FromDateTime(currentTime);
         this.Guests = 1;
     }
 
@@ -39,14 +41,14 @@ public class ReservationViewModel : NotifyPropertyChangedBase
     }
 
     [Display(Name = "Date", Prompt = "Select Date")]
-    public DateTime Date
+    public DateOnly Date
     {
         get => this.date;
         set => this.UpdateValue(ref this.date, value);
     }
 
     [Display(Name = "Time", Prompt = "Select Time")]
-    public TimeSpan Time
+    public TimeOnly Time
     {
         get => this.time;
         set => this.UpdateValue(ref this.time, value);

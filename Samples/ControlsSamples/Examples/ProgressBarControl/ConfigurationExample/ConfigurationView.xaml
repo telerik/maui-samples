@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        xmlns:converters="clr-namespace:QSF.Converters"
+                        xmlns:example="clr-namespace:QSF.Examples.ProgressBarControl.ConfigurationExample"
+                        x:Class="QSF.Examples.ProgressBarControl.ConfigurationExample.ConfigurationView">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <converters:NameToEasingConverter x:Key="NameToEasingConverter" />
+            <example:NameToColorConverter x:Key="NameToColorConverter" />
+            <example:ColorToBrushConverter x:Key="ColorToBrushConverter" />
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <Grid RowDefinitions="80, *">
+        <Grid BackgroundColor="{AppThemeBinding Light='#F3F3F3', Dark='#202020'}">
+            <telerik:RadLinearProgressBar x:Name="progressBar"
+                                          Minimum="0"
+                                          Maximum="100"
+                                          Value="40"
+                                          VerticalOptions="Center"
+                                          CustomText="Custom text"
+                                          WidthRequest="240"
+                                          ProgressAnimationEasing="{Binding AnimationEasing}"
+                                          ProgressFill="{Binding ProgressColor, Converter={StaticResource ColorToBrushConverter}}"
+                                          TrackFill="{Binding TrackColor, Converter={StaticResource ColorToBrushConverter}}"
+                                          TextColor="{Binding TextColor, Converter={StaticResource NameToColorConverter}}"
+                                          AlternateTextColor="{Binding AlternateTextColor, Converter={StaticResource NameToColorConverter}}"
+                                          ValueDisplayMode="{Binding ValueDisplayMode}" />
+        </Grid>
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Padding="16, 20">
+                <Grid ColumnDefinitions="*, *"
+                      RowDefinitions="Auto, Auto, Auto, Auto, Auto"
+                      ColumnSpacing="30"
+                      RowSpacing="{OnIdiom Desktop=40, Phone=24}">
+                    <VerticalStackLayout Spacing="12">
+                        <Label Text="Track Color:" />
+                        <telerik:RadComboBox ItemsSource="{Binding Colors}"
+                                             SelectedItem="{Binding TrackColor, Mode=TwoWay}"
+                                             IsClearButtonVisible="False" />
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Spacing="12"
+                                         Grid.Column="1">
+                        <Label Text="Progress Color:" />
+                        <telerik:RadComboBox ItemsSource="{Binding Colors}"
+                                             SelectedItem="{Binding ProgressColor, Mode=TwoWay}"
+                                             IsClearButtonVisible="False" />
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Spacing="12"
+                                         Grid.Row="1">
+                        <Label Text="Text Color:" />
+                        <telerik:RadComboBox ItemsSource="{Binding Colors}"
+                                             SelectedItem="{Binding TextColor, Mode=TwoWay}"
+                                             IsClearButtonVisible="False" />
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Spacing="12"
+                                         Grid.Row="1"
+                                         Grid.Column="1">
+                        <Label Text="Alternate Text Color:" />
+                        <telerik:RadComboBox ItemsSource="{Binding Colors}"
+                                             SelectedItem="{Binding AlternateTextColor, Mode=TwoWay}"
+                                             IsClearButtonVisible="False" />
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Spacing="12"
+                                         Grid.Row="2">
+                        <Label Text="Value Display Mode:" />
+                        <telerik:RadComboBox ItemsSource="{Binding ValueDisplayModes}"
+                                             SelectedItem="{Binding ValueDisplayMode, Mode=TwoWay}"
+                                             IsClearButtonVisible="False"
+                                             DropDownHeight="{OnPlatform WinUI='130'}" />
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Spacing="12"
+                                         Grid.Row="2"
+                                         Grid.Column="1">
+                        <Label Text="Value:" />
+                        <telerik:RadNumericInput x:Name="valueNumeric"
+                                                 Minimum="0"
+                                                 Maximum="100"
+                                                 VerticalOptions="Center"
+                                                 Value="{Binding Value, Source={x:Reference progressBar}}"
+                                                 Step="20"/>
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Spacing="12"
+                                         Grid.Row="3">
+                        <Label Text="Animation Easing:" />
+                        <telerik:RadComboBox ItemsSource="{Binding Easings}"
+                                             SelectedItem="{Binding AnimationEasing, Mode=TwoWay, Converter={StaticResource NameToEasingConverter}}"
+                                             IsClearButtonVisible="False" />
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Spacing="12"
+                                         Grid.Row="3"
+                                         Grid.Column="1">
+                        <Label Text="Is Indeterminate:" />
+                        <Switch VerticalOptions="Center"
+                                HorizontalOptions="Start"
+                                IsToggled="{Binding IsIndeterminate, Source={x:Reference progressBar}}"
+                                Margin="{OnPlatform Default=0, WinUI='0, -2, 0, 0'}" />
+                    </VerticalStackLayout>
+                </Grid>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</telerik:RadContentView>

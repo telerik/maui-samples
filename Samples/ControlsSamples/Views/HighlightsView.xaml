@@ -10,23 +10,24 @@
              x:Class="QSF.Views.HighlightsView">
 
     <VisualElement.Resources>
-        <converters:NullOrEmptyToValueConverter x:Key="UrlToOpacityConverter" NullVaule="0.3" DefaultVaule="1.0" />
+        <converters:NullOrEmptyToValueConverter x:Key="UrlToOpacityConverter" NullValue="0.3" DefaultValue="1.0" />
         <Style x:Key="BorderStyle" TargetType="telerik:RadBorder">
             <Setter Property="Padding" Value="12" />
             <Setter Property="CornerRadius" Value="{StaticResource BorderCornerRadius}" />
         </Style>
         <Style x:Key="TitleHighlightLabelStyle" TargetType="Label">
-            <Setter Property="TextColor" Value="{StaticResource PrimaryTextColor1}" />
+            <Setter Property="TextColor" Value="{StaticResource TextOnAccentColor}" />
             <Setter Property="FontSize" Value="Medium" />
             <Setter Property="Margin" Value="{OnIdiom Desktop='0, 12, 0, 6', Default='0, 4, 0, 6'}" />
         </Style>
         <Style x:Key="MainHighlightLabelStyle" TargetType="Label">
-            <Setter Property="TextColor" Value="{StaticResource PrimaryTextColor1}" />
+            <Setter Property="TextColor" Value="{StaticResource TextOnAccentColor}" />
             <Setter Property="FontSize" Value="16" />
             <Setter Property="VerticalOptions" Value="Center" />
         </Style>
         <Style x:Key="SubHighlightLabelStyle" TargetType="Label">
-            <Setter Property="TextColor" Value="#99FFFFFF" />
+            <Setter Property="TextColor" Value="{StaticResource TextOnAccentColor}" />
+            <Setter Property="Opacity" Value="0.6" />
             <Setter Property="FontSize" Value="Caption" />
             <Setter Property="LineBreakMode" Value="TailTruncation" />
         </Style>
@@ -38,12 +39,12 @@
             <Setter Property="Opacity" Value="{Binding Url, Converter={StaticResource UrlToOpacityConverter}}" />
         </Style>
         <Style x:Key="HighlightItemLabelStyle" TargetType="Label">
-            <Setter Property="TextColor" Value="{StaticResource PrimaryTextColor1}" />
+            <Setter Property="TextColor" Value="{StaticResource TextOnAccentColor}" />
         </Style>
         <DataTemplate x:Key="HighlightedControlTemplate">
-            <telerik:RadBorder BackgroundColor="{StaticResource BasicBackgroundColor1}"
+            <telerik:RadBorder BackgroundColor="{StaticResource AccentColor9}"
                                BorderThickness="0, 0, 0, 1"
-                               BorderColor="#33FFFFFF"
+                               BorderColor="{StaticResource SeparatorOnAccentColor}"
                                helpers:DesktopUtils.MouseCursorType="Hand">
                 <View.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding BindingContext.SelectControlCommand, Source={RelativeSource AncestorType={Type views:HighlightsView}}}"

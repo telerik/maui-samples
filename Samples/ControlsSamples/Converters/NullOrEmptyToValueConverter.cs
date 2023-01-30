@@ -6,22 +6,22 @@ namespace QSF.Converters
 {
     public class NullOrEmptyToValueConverter : IValueConverter
     {
-        public object NullVaule { get; set; }
-        public object DefaultVaule { get; set; }
+        public object NullValue { get; set; }
+        public object DefaultValue { get; set; }
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value == null)
             {
-                return this.NullVaule;
+                return this.NullValue;
             }
             else if (value is string str && string.IsNullOrEmpty(str))
             {
-                return this.NullVaule;
+                return this.NullValue;
             }
             else
             {
-                return this.DefaultVaule;
+                return this.DefaultValue;
             }
         }
 

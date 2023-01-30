@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="QSF.Examples.SignaturePadControl.FirstLookExample.FirstLookView">
+    <telerik:RadContentView.Resources>
+        <Color x:Key="ClearButtonColor">#919191</Color>
+        <Color x:Key="InfoLabelTextColorLight">#5F5F5F</Color>
+        <Color x:Key="InfoLabelTextColorDark">#FFFFFF</Color>
+        <Style TargetType="telerik:RadBorder" x:Key="BorderStyle">
+            <Setter Property="CornerRadius" Value="{StaticResource BorderCornerRadius}" />
+            <Setter Property="BorderThickness" Value="2" />
+            <Setter Property="BorderColor" Value="{StaticResource AccentColor8}" />
+            <Setter Property="BackgroundColor" Value="Transparent" />
+            <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+            <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+            <Setter Property="Padding" Value="{OnPlatform Default='24, 10', WinUI='24, 6', MacCatalyst='24, 4'}" />
+            <Setter Property="Margin" Value="0, 0, 8, 0" />
+        </Style>
+        <Style TargetType="telerik:RadBorder" BasedOn="{StaticResource BorderStyle}" x:Key="SelectedBorderStyle">
+            <Setter Property="BackgroundColor" Value="{StaticResource AccentColor8}" />
+        </Style>
+        <Style TargetType="Label" x:Key="ExampleBaseLabelStyle" BasedOn="{StaticResource BaseLabelStyle}">
+            <Setter Property="VerticalOptions" Value="Center" />
+        </Style>
+        <Style TargetType="Label" x:Key="TipLabelStyle" BasedOn="{StaticResource ExampleBaseLabelStyle}">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="TextTransform" Value="{OnPlatform Default=None, Android=Uppercase}" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="VerticalTextAlignment" Value="Center" />
+            <Setter Property="HorizontalTextAlignment" Value="Center" />
+            <Setter Property="TextColor" Value="{StaticResource AccentColor8}" />
+        </Style>
+        <Style TargetType="Label" x:Key="DetailsLabelStyle" BasedOn="{StaticResource ExampleBaseLabelStyle}">
+            <Setter Property="FontSize" Value="16" />
+        </Style>
+        <Style TargetType="Label" x:Key="InfoLabelStyle" BasedOn="{StaticResource ExampleBaseLabelStyle}">
+            <Setter Property="FontSize" Value="14" />
+        </Style>
+        <Style TargetType="telerik:RadSignaturePad" x:Key="SignaturePadStyle">
+            <Setter Property="BackgroundColor" Value="#F3F3F3" />
+            <Setter Property="StrokeColor" Value="Black" />
+            <Setter Property="StrokeThickness" Value="{OnIdiom Desktop=4, Default=10}" />
+            <Setter Property="HeightRequest" Value="{OnIdiom Desktop=240, Default=200}" />
+        </Style>
+        <Style TargetType="telerik:RadBorder" x:Key="PopupBorderStyle">
+            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=#666666, Dark=#A0A0A0}" />
+            <Setter Property="HeightRequest" Value="16" />
+            <Setter Property="WidthRequest" Value="42" />
+        </Style>
+        <ControlTemplate x:Key="PopupControlTemplate">
+            <telerik:RadBorder CornerRadius="{OnPlatform Default=8, Android=4}"
+                               BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#121212}"
+                               Margin="{OnIdiom Phone='24, 0', Desktop=0}">
+                <Grid RowDefinitions="Auto, *">
+                    <Button Text="&#xe877;"
+                            TextColor="#99000000"
+                            FontFamily="TelerikFontExamples"
+                            WidthRequest="44"
+                            HeightRequest="44"
+                            BackgroundColor="Transparent"
+                            BorderWidth="0"
+                            HorizontalOptions="End"
+                            VerticalOptions="Start"
+                            FontSize="20"
+                            Clicked="ClearButton_Clicked" />
+                    <VerticalStackLayout Grid.Row="1"
+                                         Padding="24">
+                        <Label Text="Amount Paid: $93.36"
+                               FontSize="21"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Center"
+                               TextColor="{AppThemeBinding Light=#000000, Dark=#FFFFFF}" />
+                        <Label Text="Tip included" 
+                               Style="{StaticResource InfoLabelStyle}"
+                               HorizontalOptions="Center"
+                               Margin="0, 4, 0, 0" />
+                        <Grid RowSpacing="24"
+                              Margin="0, 24, 0, 0"
+                              RowDefinitions="Auto, Auto, Auto, Auto"
+                              ColumnDefinitions="110, *">
+                            <Label Text="Name:"
+                                   Style="{StaticResource InfoLabelStyle}" />
+                            <Label Text="Neta J. Flynn"
+                                   Grid.Column="1"
+                                   Style="{StaticResource DetailsLabelStyle}" />
+                            <Label Text="Address:"
+                                   Grid.Row="1"
+                                   Style="{StaticResource InfoLabelStyle}" />
+                            <Label Grid.Row="1" Grid.Column="1"
+                                   Text="2865 Geneva Street"
+                                   Style="{StaticResource DetailsLabelStyle}" />
+                            <Label Grid.Row="2" Grid.Column="1"
+                                   Text="New York, NY 10029" Style="{StaticResource DetailsLabelStyle}"
+                                   Margin="0, -24 , 0, 0" />
+                            <Label Text="Card:"
+                                   Grid.Row="3"
+                                   Style="{StaticResource InfoLabelStyle}" />
+                            <HorizontalStackLayout Grid.Row="3" Grid.Column="1" Spacing="4">
+                                <telerik:RadBorder Style="{StaticResource PopupBorderStyle}" />
+                                <telerik:RadBorder Style="{StaticResource PopupBorderStyle}" />
+                                <telerik:RadBorder Style="{StaticResource PopupBorderStyle}" />
+                                <Label Text="3205"
+                                       Style="{StaticResource DetailsLabelStyle}"
+                                       Margin="4, 0, 0, 0" />
+                            </HorizontalStackLayout>
+                        </Grid>
+                        <Grid RowDefinitions="58, 1"
+                              Margin="0, 48, 0, 0"
+                              BackgroundColor="{AppThemeBinding Light=Transparent, Dark=#A0A0A0}">
+                            <Image x:Name="signatureImage"
+                                   Opacity="0.5" />
+                            <BoxView Grid.Row="1"
+                                     BackgroundColor="{AppThemeBinding Light={StaticResource InfoLabelTextColorLight}, Dark={StaticResource InfoLabelTextColorDark}}" />
+                        </Grid>
+
+                        <Label Text="Signature (Neta J. Flynn)"
+                               TextColor="{AppThemeBinding Light={StaticResource InfoLabelTextColorLight}, Dark={StaticResource InfoLabelTextColorDark}}"
+                               FontSize="12"
+                               FontAttributes="Italic"
+                               HorizontalOptions="End"
+                               Margin="0, 8, 0, 0"
+                               VerticalOptions="Start" />
+                    </VerticalStackLayout>
+                </Grid>
+            </telerik:RadBorder>
+        </ControlTemplate>
+    </telerik:RadContentView.Resources>
+    
+    <Grid RowDefinitions="Auto, Auto, Auto, Auto" Margin="16, 24">
+        <Label Text="Signature Required"
+               FontSize="20" />
+        <telerik:NonVirtualizedItemsControl Grid.Row="1"
+                                            HorizontalOptions="{OnIdiom Desktop=Start, Default=FillAndExpand}"
+                                            Margin="0, 24"
+                                            Orientation="Horizontal"
+                                            ItemsSource="{Binding Tips}"
+                                            SelectedItem="{Binding SelectedTip, Mode=TwoWay}">
+            <telerik:NonVirtualizedItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <telerik:RadBorder Style="{StaticResource BorderStyle}">
+                        <Label Text="{Binding .}"
+                               Style="{StaticResource TipLabelStyle}" />
+                    </telerik:RadBorder>
+                </DataTemplate>
+            </telerik:NonVirtualizedItemsControl.ItemTemplate>
+            <telerik:NonVirtualizedItemsControl.SelectedItemTemplate>
+                <DataTemplate>
+                    <telerik:RadBorder Style="{StaticResource SelectedBorderStyle}">
+                        <Label Text="{Binding .}"
+                               Style="{StaticResource LabelOnAccentStyle}" />
+                    </telerik:RadBorder>
+                </DataTemplate>
+            </telerik:NonVirtualizedItemsControl.SelectedItemTemplate>
+            <telerik:NonVirtualizedItemsControl.SelectedItemStyle>
+                <Style TargetType="telerik:RadBorder">
+                    <Setter Property="BackgroundColor" Value="Transparent" />
+                </Style>
+            </telerik:NonVirtualizedItemsControl.SelectedItemStyle>
+        </telerik:NonVirtualizedItemsControl>
+        <telerik:RadSignaturePad x:Name="signaturePad"
+                                 Grid.Row="2"
+                                 Style="{StaticResource SignaturePadStyle}"
+                                 StrokeStarted="SignaturePad_StrokeStarted"
+                                 Cleared="SignaturePad_Cleared" />
+        <Grid Grid.Row="3"
+              ColumnDefinitions="{OnIdiom Phone='*, *', Desktop='Auto, Auto'}"
+              Margin="0, 24, 0, 0">
+            <telerik:RadButton Text="Clear"
+                               TextColor="{StaticResource ClearButtonColor}"
+                               BorderColor="{StaticResource ClearButtonColor}"
+                               Style="{StaticResource SubmitButtonStyle}"
+                               Command="{Binding Source={x:Reference signaturePad}, Path=ClearCommand}"
+                               Margin="0, 0, 4, 0" />
+            <telerik:RadButton Grid.Column="1"
+                               Style="{StaticResource SubmitButtonStyle}"
+                               IsEnabled="{Binding IsSigned}"
+                               Text="Confirm"
+                               Clicked="SaveButton_Clicked"
+                               Margin="4, 0, 0, 0" />
+        </Grid>
+    </Grid>
+</telerik:RadContentView>

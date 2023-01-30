@@ -14,12 +14,6 @@
             <On Platform="WinUI" Value="Black" />
         </OnPlatform>
         <Color x:Key="BasicFontColorDark">#FFFFFF</Color>
-        <telerik:DataGridColumnHeaderStyle x:Key="ColumHeaderStyle"
-                                           TextMargin="10, 10"
-                                           TextFontSize="16"
-                                           BorderThickness="1"
-                                           BorderColor="{StaticResource BorderColor1}"
-                                           BackgroundColor="{StaticResource BasicBackgroundColor2}" />
         <telerik:DataGridBorderStyle x:Key="TextCellDecorationsStyle"
                                      BackgroundColor="#1A7C59B6" />
         <telerik:BoolToValueConverter x:Key="BoolToValueConverter"
@@ -41,11 +35,13 @@
             <Label Text="{Binding IsDirect, Converter={StaticResource BoolToValueConverter}}"
                    TextColor="{AppThemeBinding Light={StaticResource BasicFontColor}, Dark={StaticResource BasicFontColorDark}}"
                    VerticalOptions="Center"
+                   LineBreakMode="NoWrap"
                    Margin="{OnPlatform MacCatalyst=6, Default='6, 0, 6, 0'}"
                    Style="{OnPlatform iOS={StaticResource LabelStyle_iOS}, MacCatalyst={StaticResource LabelStyle_iOS}}" />
         </DataTemplate>
         <DataTemplate x:Key="StatusCellTemplate">
-            <HorizontalStackLayout VerticalOptions="Center"
+            <HorizontalStackLayout IsClippedToBounds="True"
+                                   VerticalOptions="Center"
                                    Margin="4, 0, 4, 0">
                 <Label Text="{Binding Status}"
                        TextColor="{AppThemeBinding Light={StaticResource BasicFontColor}, Dark={StaticResource BasicFontColorDark}}"
@@ -66,33 +62,25 @@
                          UserGroupMode="{Binding IsGroupingAllowed, Converter={StaticResource BoolToUserGroupModeConverter}}"
                          UserFilterMode="Disabled"
                          UserEditMode="None"
-                         UserSortMode="None"                         
-                         SelectionMode="None"
-                         GridLinesColor="{StaticResource BorderColor1}">
+                         UserSortMode="None"
+                         SelectionMode="None">
         <telerik:RadDataGrid.Columns>
             <telerik:DataGridDateColumn HeaderText="Date"
-                                        PropertyName="Date"
-                                        HeaderStyle="{StaticResource ColumHeaderStyle}" />
+                                        PropertyName="Date" />
             <telerik:DataGridTimeColumn HeaderText="Time"
-                                        PropertyName="Date"
-                                        HeaderStyle="{StaticResource ColumHeaderStyle}" />
+                                        PropertyName="Date" />
             <telerik:DataGridTextColumn HeaderText="Flight"
-                                        PropertyName="Id"
-                                        HeaderStyle="{StaticResource ColumHeaderStyle}" />
+                                        PropertyName="Id" />
             <telerik:DataGridTextColumn HeaderText="To"
-                                        PropertyName="DestinationFullName"
-                                        HeaderStyle="{StaticResource ColumHeaderStyle}" />
+                                        PropertyName="DestinationFullName" />
             <telerik:DataGridBooleanColumn HeaderText="Direct"
                                            PropertyName="IsDirect"
-                                           HeaderStyle="{StaticResource ColumHeaderStyle}"
                                            CellContentTemplate="{StaticResource IsDirectCellTemplate}" />
             <telerik:DataGridTextColumn HeaderText="Airline"
-                                        PropertyName="AirlineName"
-                                        HeaderStyle="{StaticResource ColumHeaderStyle}" />
+                                        PropertyName="AirlineName" />
             <telerik:DataGridTextColumn HeaderText="Status"
                                         PropertyName="Status"
                                         CellDecorationStyle="{StaticResource TextCellDecorationsStyle}"
-                                        HeaderStyle="{StaticResource ColumHeaderStyle}"
                                         CellContentTemplate="{StaticResource StatusCellTemplate}" />
         </telerik:RadDataGrid.Columns>
     </telerik:RadDataGrid>

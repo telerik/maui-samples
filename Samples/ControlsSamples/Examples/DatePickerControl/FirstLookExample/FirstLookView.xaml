@@ -14,13 +14,13 @@
         <Style TargetType="telerik:RadDatePicker">
             <Setter Property="Margin" Value="0, 0, 0, 15" />
             <Setter Property="BorderThickness" Value="0, 0, 0, 1" />
+            <Setter Property="CornerRadius" Value="0" />
             <Setter Property="Placeholder" Value="Select Date" />
-            <Setter Property="HorizontalOptions" Value="Start" />
             <Setter Property="IsToggleButtonVisible" Value="False" />
         </Style>
     </views:PickerExampleViewBase.Resources>
     
-    <VerticalStackLayout x:Name="layout" HorizontalOptions="Start">
+    <VerticalStackLayout x:Name="layout">
         <Label Text="Remote Work Request"
                Style="{StaticResource DefaultSubtitleLabelStyle}"
                FontSize="24"
@@ -30,7 +30,7 @@
         <telerik:RadDatePicker x:Name="datePicker1"
                                Date="{Binding StartDate}"
                                DefaultHighlightedDate="{Static sys:DateTime.Now}"
-                               PlaceholderLabelStyle="{StaticResource DefaultPlaceholderLabelStyle}">
+                               PlaceholderLabelStyle="{StaticResource PlaceholderLabelStyle}">
             <telerik:RadDatePicker.PopupSettings>
                 <telerik:PickerPopupSettings HeaderLabelText="Select Date" />
             </telerik:RadDatePicker.PopupSettings>
@@ -41,7 +41,7 @@
         <telerik:RadDatePicker x:Name="datePicker2"
                                Date="{Binding EndDate}"
                                DefaultHighlightedDate="{Static sys:DateTime.Now}"
-                               PlaceholderLabelStyle="{StaticResource DefaultPlaceholderLabelStyle}">
+                               PlaceholderLabelStyle="{StaticResource PlaceholderLabelStyle}">
             <telerik:RadDatePicker.PopupSettings>
                 <telerik:PickerPopupSettings HeaderLabelText="Select Date" />
             </telerik:RadDatePicker.PopupSettings>

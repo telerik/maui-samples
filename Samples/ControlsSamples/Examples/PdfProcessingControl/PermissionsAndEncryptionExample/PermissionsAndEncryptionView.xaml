@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:QSF.Examples.PdfProcessingControl.PermissionsAndEncryptionExample"
+             x:Class="QSF.Examples.PdfProcessingControl.PermissionsAndEncryptionExample.PermissionsAndEncryptionView">
+
+    <ContentView.Resources>
+        <Style TargetType="telerik:RadBorder">
+            <Setter Property="Margin" Value="10" />
+            <Setter Property="BorderColor" Value="{StaticResource DefaultBorderColor}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Padding" Value="{OnIdiom Phone='10, 5, 15, 5', Desktop=10}" />
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="LineBreakMode" Value="WordWrap" />
+            <Setter Property="VerticalOptions" Value="Center" />
+            <Setter Property="HorizontalOptions" Value="Start" />
+        </Style>
+        <Style TargetType="telerik:RadComboBox">
+            <Setter Property="MinimumWidthRequest" Value="{OnIdiom Desktop=310, Phone=230}" />
+            <Setter Property="IsEnabled" Value="{Binding IsEditingRestricted}" />
+            <Setter Property="HorizontalOptions" Value="{OnIdiom Phone=Fill, Desktop=Start}" />
+            <Setter Property="VerticalOptions" Value="Center" />
+        </Style>
+        <Style TargetType="HorizontalStackLayout">
+            <Setter Property="Spacing" Value="5" />
+        </Style>
+        <Style TargetType="VerticalStackLayout">
+            <Setter Property="Spacing" Value="5" />
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <Setter.Value>
+                    <VisualStateGroupList>
+                        <VisualStateGroup Name="CommonStates">
+                            <VisualState Name="Normal" />
+                            <VisualState Name="PointerOver" />
+                            <VisualState Name="Disabled">
+                                <VisualState.Setters>
+                                    <Setter Property="Opacity" Value="0.5" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="LabelTitleStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="Margin" Value="0, 10, 0, 5" />
+        </Style>
+        <Style TargetType="telerik:RadCheckBox" BasedOn="{StaticResource ExampleCheckBoxStyle}">
+            <Setter Property="HorizontalOptions" Value="Start" />
+            <Setter Property="VerticalOptions" Value="Center" />
+            <Setter Property="Margin" Value="{OnPlatform Android='-3, 0, 0, 0', Default=0}" />
+        </Style>
+    </ContentView.Resources>
+
+    <ScrollView>
+        <Grid RowDefinitions="Auto, Auto, Auto">
+            <telerik:RadBorder>
+                <VerticalStackLayout>
+                    <Label Text="Permissions"
+                       Style="{StaticResource LabelTitleStyle}" />
+                    <VerticalStackLayout Spacing="15">
+                        <Grid ColumnDefinitions="Auto, *"
+                          ColumnSpacing="5">
+                            <telerik:RadCheckBox IsChecked="{Binding IsEditingRestricted, Mode=TwoWay}" />
+                            <Label Grid.Column="1"
+                               Text="Restrict editing and printing of the document. A password will be required in order to change these permission settings." />
+                        </Grid>
+                        <VerticalStackLayout Spacing="15" IsEnabled="{Binding IsEditingRestricted}">
+                            <Grid RowDefinitions="Auto, Auto"
+                          ColumnDefinitions="Auto, *"
+                          RowSpacing="5"
+                          ColumnSpacing="5">
+                                <Label Text="Printing Allowed:" />
+                                <telerik:RadComboBox Grid.Column="1"
+                                             ItemsSource="{Binding PrintingPermissionTypes}"
+                                             SelectedItem="{Binding PrintingPermissionTypeSelection, Mode=TwoWay}"/>
+                                <Label Grid.Row="1"
+                               Text="Changes Allowed:" />
+                                <telerik:RadComboBox Grid.Row="1" 
+                                             Grid.Column="1"
+                                             ItemsSource="{Binding ChangingPermissionTypes}"
+                                             SelectedItem="{Binding ChangingPermissionTypeSelection, Mode=TwoWay}" />
+                            </Grid>
+                            <Grid RowDefinitions="Auto, Auto"
+                          ColumnDefinitions="Auto, *"
+                          RowSpacing="5"
+                          ColumnSpacing="5">
+                                <telerik:RadCheckBox IsChecked="{Binding IsCopyingRestricted, Mode=TwoWay}" />
+                                <Label Grid.Column="1" 
+                               Text="Enable copying of text, images, and other content" />
+                                <telerik:RadCheckBox Grid.Row="1" 
+                                             IsEnabled="{Binding IsCopyingRestricted, Converter={StaticResource InvertedBooleanConverter}}"
+                                             IsChecked="{Binding IsAccessibilityCopyingRestricted, Mode=TwoWay}" />
+                                <Label Grid.Row="1" 
+                               Grid.Column="1" 
+                               Text="Enable text access for screen reading devices" />
+                            </Grid>
+                            <Grid ColumnDefinitions="Auto, *" 
+                          ColumnSpacing="10"
+                          Margin="0, 5, 0, 20">
+                                <Label Text="Set Permissions Password:" 
+                               HorizontalOptions="Start" />
+                                <telerik:RadEntry x:Name="entryPassword" 
+                                          Grid.Column="1"
+                                          Text="{Binding Password}"
+                                          IsEnabled="{Binding IsEditingRestricted, Mode=TwoWay}"
+                                          HorizontalOptions="{OnIdiom Phone=Fill, Desktop=Start}"
+                                          FontAttributes="None"
+                                          IsPassword="True"
+                                          Placeholder="Enter a password" />
+                            </Grid>
+                        </VerticalStackLayout>
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+            </telerik:RadBorder>
+            <telerik:RadBorder Grid.Row="1">
+                <VerticalStackLayout>
+                    <Label Text="Encryption Type" 
+                       Style="{StaticResource LabelTitleStyle}" />
+                    <Grid ColumnDefinitions="Auto, *"
+                      ColumnSpacing="10"
+                      Margin="0, 5, 0, 16">
+                        <Label Text="Compatibility:" />
+                        <telerik:RadComboBox Grid.Column="1" 
+                                         IsEnabled="True"
+                                         ItemsSource="{Binding EncryptionTypes}"
+                                         SelectedItem="{Binding EncryptionTypeSelection}" />
+                    </Grid>
+                </VerticalStackLayout>
+            </telerik:RadBorder>
+            <telerik:RadButton Text="Export"
+                           Grid.Row="2"
+                           Command="{Binding ExportCommand}"
+                           VerticalOptions="{OnIdiom Desktop='Center', Default='Fill'}"
+                           HorizontalOptions="{OnIdiom Desktop='Start', Default='Fill'}"
+                           Style="{StaticResource SubmitButtonStyle}"
+                           Margin="10, 0"/>
+        </Grid>
+    </ScrollView>
+</ContentView>

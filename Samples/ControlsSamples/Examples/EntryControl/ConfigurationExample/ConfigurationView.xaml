@@ -7,105 +7,152 @@
              xmlns:styleConverter="clr-namespace:Microsoft.Maui.Graphics.Converters;assembly=Microsoft.Maui.Graphics"
              x:Class="QSF.Examples.EntryControl.ConfigurationExample.ConfigurationView">
     <ContentView.Resources>
-            <localConverter:ValueTypeConverter x:Key="keyboardConverter">
-                <converter:KeyboardTypeConverter />
-            </localConverter:ValueTypeConverter>
-
-            <localConverter:ValueTypeConverter x:Key="colorConverter">
-                <styleConverter:ColorTypeConverter />
-            </localConverter:ValueTypeConverter>
-
-            <localConverter:ValueTypeConverter x:Key="fontSizeConverter">
-                <FontSizeConverter />
-            </localConverter:ValueTypeConverter>
-            
-            <Style TargetType="Label" x:Key="CommonLabelStyle">
-                <Setter Property="FontAttributes" Value="Bold"/>
-                <Setter Property="HorizontalOptions" Value="Start"/>
-            </Style>
-
-            <Style TargetType="Label" BasedOn="{StaticResource CommonLabelStyle}" x:Key="SwitchLabelStyle">
-                <Setter Property="VerticalOptions" Value="Center"/>
-            </Style>
-
-            <Style TargetType="Label" BasedOn="{StaticResource CommonLabelStyle}" x:Key="InfoLabelStyle">
-                <Setter Property="VerticalOptions" Value="End"/>
-                <Setter Property="Margin" Value="0,18,0,3"/>
-            </Style>
-
-            <Style TargetType="Picker" x:Key="PickerStyle">
-                <Setter Property="Margin" Value="0,6,0,6"/>
-            </Style>
-
-            <Style TargetType="Entry" x:Key="EntryStyle">
-                <Setter Property="Margin" Value="0,6"/>
-                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
-            </Style>
+        <localConverter:ValueTypeConverter x:Key="KeyboardConverter">
+            <converter:KeyboardTypeConverter />
+        </localConverter:ValueTypeConverter>
+    
+        <localConverter:ValueTypeConverter x:Key="ColorConverter">
+            <styleConverter:ColorTypeConverter />
+        </localConverter:ValueTypeConverter>
+    
+        <localConverter:ValueTypeConverter x:Key="FontSizeConverter">
+            <FontSizeConverter />
+        </localConverter:ValueTypeConverter>
+        
+        <Style TargetType="Label" x:Key="CommonLabelStyle">
+            <Setter Property="HorizontalOptions" Value="Start"/>
+        </Style>
+    
+        <Style TargetType="Label" BasedOn="{StaticResource CommonLabelStyle}" x:Key="SwitchLabelStyle">
+            <Setter Property="VerticalOptions" Value="Center"/>
+        </Style>
+    
+        <Style TargetType="Label" BasedOn="{StaticResource CommonLabelStyle}" x:Key="InfoLabelStyle">
+            <Setter Property="VerticalOptions" Value="End"/>
+            <Setter Property="Margin" Value="0,18,0,3"/>
+        </Style>
+    
+        <Style TargetType="telerik:RadComboBox" x:Key="ComboStyle">
+            <Setter Property="Margin" Value="0,6"/>
+            <Setter Property="FontSize" Value="Default"/>
+        </Style>
+    
+        <Style TargetType="Entry" x:Key="EntryStyle">
+            <Setter Property="Margin" Value="0,6"/>
+            <Setter Property="FontSize" Value="Default"/>
+            <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+        </Style>
     </ContentView.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="90"/>
             <RowDefinition />
         </Grid.RowDefinitions>
-        <Grid Margin="16, 12" >
-            <telerik:RadEntry x:Name="entry"
-                              MaxLength="{Binding Source={x:Reference maxLengthNumeric}, Path=Value}"
-                              Keyboard="{Binding SelectedKeyboard, Converter={StaticResource keyboardConverter}}"
-                              TextColor="{Binding SelectedTextColor, Converter={StaticResource colorConverter}}"
-                              FontSize="{Binding SelectedFontSize, Converter={StaticResource fontSizeConverter}}"
-                              VerticalOptions="Center"
-                              Placeholder="Enter Text"/>
-        </Grid>
+        <telerik:RadBorder Margin="16, 12" BackgroundColor="#F8F8F8">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="{OnIdiom Default=*, Phone=0}"/>
+                </Grid.ColumnDefinitions>
+                <telerik:RadEntry x:Name="entry"
+                                  MaxLength="{Binding Source={x:Reference maxLengthNumeric}, Path=Value}"
+                                  Keyboard="{Binding SelectedKeyboard, Converter={StaticResource KeyboardConverter}}"
+                                  TextColor="{Binding TextColor, Converter={StaticResource ColorConverter}}"
+                                  FontSize="{Binding SelectedFontSize, Converter={StaticResource FontSizeConverter}}"
+                                  BackgroundColor="White"
+                                  Placeholder="Enter Text"
+                                  Margin="16,0"
+                                  VerticalOptions="Center"/>
+            </Grid>
+        </telerik:RadBorder>
         <ScrollView Grid.Row="1">
             <VerticalStackLayout Margin="16,0,24,0">
-                <Grid Margin="0,18,0,19">
-                    <Label Text="isPassword:" Style="{StaticResource SwitchLabelStyle}"/>
-                    <Switch IsToggled="{Binding Source={x:Reference entry}, Path=IsPassword, Mode=TwoWay}"
-                            HorizontalOptions="End" VerticalOptions="Center"/>
+                <Grid RowSpacing="20">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="{OnIdiom Default=*, Phone=0}"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="{OnIdiom Default=0, Phone=*}"/>
+                    </Grid.RowDefinitions>
+                    <HorizontalStackLayout Margin="{OnIdiom Default=10, Phone=0}" >
+                        <Label Text="Is Password:" Style="{StaticResource SwitchLabelStyle}"/>
+                        <Switch IsToggled="{Binding Source={x:Reference entry}, Path=IsPassword, Mode=TwoWay}"
+                                Margin="8, 0, 0, 0"
+                                HorizontalOptions="Center" 
+                                VerticalOptions="Center"/>
+                    </HorizontalStackLayout>
+                    <HorizontalStackLayout Grid.Column="{OnIdiom Default=1, Phone=0}" 
+                                           Grid.Row="{OnIdiom Default=0, Phone=1}"
+                                           Margin="{OnIdiom Default=10, Phone=0}" 
+                                           IsVisible="{OnPlatform WinUI=True}">
+                        <Label Text="Is Read Only:" Style="{StaticResource SwitchLabelStyle}"/>
+                        <Switch IsToggled="{Binding Source={x:Reference entry}, Path=IsReadOnly, Mode=TwoWay}"
+                                Margin="8, 0, 0, 0"
+                                HorizontalOptions="Center" 
+                                VerticalOptions="Center"/>
+                    </HorizontalStackLayout>
                 </Grid>
-
-                <Grid Margin="0,18,0,19" IsVisible="{OnIdiom Desktop=False, Phone=True}">
-                    <Label Text="isReadonly:" Style="{StaticResource SwitchLabelStyle}"/>
-                    <Switch IsToggled="{Binding Source={x:Reference entry}, Path=IsReadOnly, Mode=TwoWay}"
-                            HorizontalOptions="End" VerticalOptions="Center"/>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="{OnIdiom Default=0, Phone=*}"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="{OnIdiom Default=*, Phone=0}"/>
+                    </Grid.ColumnDefinitions>
+                    <VerticalStackLayout Margin="{OnIdiom Default='10, 0', Phone=0}">
+                        <Label Text="Text:" Style="{StaticResource InfoLabelStyle}"/>
+                        <telerik:RadEntry Style="{StaticResource EntryStyle}"
+                                          Placeholder="Enter Text"
+                                          ReserveSpaceForErrorView="False"
+                                          Text="{Binding Source={x:Reference entry}, Path=Text, Mode=TwoWay}"/>
+                        
+                        <Label Text="Text Color:" Style="{StaticResource InfoLabelStyle}"/>
+                        <telerik:RadComboBox x:Name="textColorComboBox" 
+                                             Style="{StaticResource ComboStyle}"
+                                             SelectedItem="{Binding SelectedTextColor, Mode=TwoWay}" 
+                                             DropDownHeight="120"
+                                             ItemsSource="{Binding TextColors}" />
+                        
+                        <Label Text="Max Length (symbols):" Style="{StaticResource InfoLabelStyle}"/>
+                        <telerik:RadNumericInput x:Name="maxLengthNumeric"                                          
+                                                 IsReadOnly="False"
+                                                 Value="6"
+                                                 Minimum="0"
+                                                 HorizontalOptions="FillAndExpand"
+                                                 Margin="0,6"/>
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Grid.Row="{OnIdiom Default=0, Phone=1}" 
+                                         Grid.Column="{OnIdiom Default=1, Phone=0}"
+                                         Margin="{OnPlatform WinUI='10, 0', MacCatalyst='10, 0'}">
+                        <VerticalStackLayout IsVisible="{OnIdiom Desktop=False, Phone=True}">
+                            <Label Text="Keyboard:" 
+                                   Style="{StaticResource InfoLabelStyle}"/>
+                            <telerik:RadComboBox x:Name="keyboardComboBox" 
+                                                 Style="{StaticResource ComboStyle}"
+                                                 DropDownHeight="120"
+                                                 SelectedItem="{Binding SelectedKeyboard, Mode=TwoWay}" 
+                                                 ItemsSource="{Binding Keyboards}" />
+                        </VerticalStackLayout>
+                        <Label Text="Placeholder Text:" 
+                               Style="{StaticResource InfoLabelStyle}"/>
+                        <telerik:RadEntry Placeholder="Placeholder text"
+                                          Text="{Binding Source={x:Reference entry}, Path=Placeholder, Mode=TwoWay}"
+                                          ReserveSpaceForErrorView="False"
+                                          Style="{StaticResource EntryStyle}"/>
+                        
+                        <Label Text="Font Size:" Style="{StaticResource InfoLabelStyle}"/>
+                        <telerik:RadComboBox x:Name="fontSizeComboBox"
+                                             Style="{StaticResource ComboStyle}"
+                                             SelectedItem="{Binding SelectedFontSize, Mode=TwoWay}"
+                                             Margin="{OnPlatform iOS='0, 0, 0, 40', Default='0, 6'}"
+                                             DropDownHeight="{OnPlatform MacCatalyst=70, Default=120}"
+                                             ItemsSource="{Binding FontSizes}"/>
+                    </VerticalStackLayout>
                 </Grid>
-
-                <Label Text="MaxLength (symbols):" Style="{StaticResource InfoLabelStyle}"/>
-                <telerik:RadNumericInput x:Name="maxLengthNumeric"                                          
-                                         IsReadOnly="True"
-                                         Value="6"
-                                         Minimum="0"
-                                         HorizontalOptions="FillAndExpand"
-                                         Margin="0,6"/>
-
-                <Label Text="Text:" Style="{StaticResource InfoLabelStyle}"/>
-                <telerik:RadEntry Style="{StaticResource EntryStyle}"
-                                  Placeholder="Enter Text"
-                                  Text="{Binding Source={x:Reference entry}, Path=Text, Mode=TwoWay}"/>
-
-                <VerticalStackLayout IsVisible="{OnIdiom Desktop=False, Phone=True}">
-                    <Label Text="Keyboard:" Style="{StaticResource InfoLabelStyle}"/>
-                    <Picker x:Name="keyboardPicker" 
-                            Style="{StaticResource PickerStyle}"
-                            SelectedItem="{Binding SelectedKeyboard}" 
-                            ItemsSource="{Binding Keyboards}" />
-                </VerticalStackLayout>
-
-                <Label Text="Placeholder:" Style="{StaticResource InfoLabelStyle}"/>
-                <telerik:RadEntry Placeholder="Placeholder text"
-                                  Style="{StaticResource EntryStyle}"/>
-                
-                <Label Text="Text Color:" Style="{StaticResource InfoLabelStyle}"/>
-                <Picker x:Name="textColorPicker" 
-                        Style="{StaticResource PickerStyle}"
-                        SelectedItem="{Binding SelectedTextColor}" 
-                        ItemsSource="{Binding TextColors}" />
-
-                <Label Text="Font Size:" Style="{StaticResource InfoLabelStyle}"/>
-                <Picker x:Name="fontSizePicker"
-                        Style="{StaticResource PickerStyle}"
-                        SelectedItem="{Binding SelectedFontSize}" 
-                        ItemsSource="{Binding FontSizes}"/>
             </VerticalStackLayout>
         </ScrollView>
     </Grid>

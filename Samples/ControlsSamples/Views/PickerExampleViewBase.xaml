@@ -59,7 +59,7 @@
                 </Grid>
             </ControlTemplate>
             <ControlTemplate x:Key="verticalLayout">
-                <Grid ColumnDefinitions="*, Auto" Padding="15">
+                <Grid ColumnDefinitions="300, *, 200" Padding="15">
                     <VerticalStackLayout>
                         <ContentView Content="{TemplateBinding Content}"/>
                         <telerik:RadButton Margin="0, 10, 0, 0"
@@ -69,7 +69,7 @@
                                            Command="{TemplateBinding ButtonCommand}"
                                            Text="{TemplateBinding ButtonText}"/>
                     </VerticalStackLayout>
-                    <Grid RowDefinitions="Auto, *" Grid.Column="1" HorizontalOptions="End">
+                    <Grid RowDefinitions="Auto, *" Grid.Column="2">
                         <Label Text="{TemplateBinding CollectionTitle}"
                                Style="{StaticResource DefaultSubtitleLabelStyle}"
                                HorizontalOptions="Center"

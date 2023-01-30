@@ -12,6 +12,8 @@ public interface INavigationService
 
     public Task NavigateToConfigurationPageAsync(ExampleViewModel viewmodel);
 
+    public Task NavigateToDescriptionPageAsync(DescriptionViewModel viewmodel);
+
     public Task NavigateToRootAsync();
 
     public Task NavigateBackAsync();

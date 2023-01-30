@@ -1,20 +1,14 @@
 ﻿<Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:converters="clr-namespace:QSF.Converters"
+             xmlns:extensions="clr-namespace:QSF.MarkupExtensions"
              xmlns:windows="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.WindowsSpecific;assembly=Microsoft.Maui.Controls"
              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
              x:Class="QSF.App">
     <Application.Resources>
         <ResourceDictionary>
-            <Color x:Key="GalleryHeaderUnderlineColorDark">White</Color>
-            <Color x:Key="GalleryHeaderUnderlineColorLight">#E0E9FC</Color>
-            <Color x:Key="AccentColorDark">#2196F3</Color>
-            <Color x:Key="AccentColorLight">#2548D8</Color>
+            <!--Accent colors-->
             <Color x:Key="ApplicationAccentColor">#8660C5</Color>
-            <Color x:Key="PrimaryColor">#1188FF</Color>
-            <Color x:Key="SecondaryColor">White</Color>
-            <Color x:Key="DefaultTextColor">#000000</Color>
-            <Color x:Key="DefaultBackgroundColor">#E1E1E1</Color>
             <Color x:Key="AccentColor2">#3341A1</Color>
             <Color x:Key="AccentColor3">#04A2AA</Color>
             <Color x:Key="AccentColor4">#FF9040</Color>
@@ -22,36 +16,80 @@
             <Color x:Key="AccentColor6">#55D3DE</Color>
             <Color x:Key="AccentColor7">#FFAC3E</Color>
             <Color x:Key="AccentColor8">#7C59B6</Color>
-            <Color x:Key="PrimaryTextColor1">#FFFFFF</Color>
-            <Color x:Key="BasicBackgroundColor1">#4652AA</Color>
-            <Color x:Key="BasicBackgroundColor2">#F8F8F8</Color>
-            <Color x:Key="BasicBackgroundColor3">White</Color>
-            <Color x:Key="TextColor2">#696969</Color>
-            <Color x:Key="BorderColor1">#DFDFDF</Color>
-            <Color x:Key="HeaderLabelColor">White</Color>
-            <Color x:Key="PlaceholderColor">#DFDFDF</Color>
-            
-            <Color x:Key="ButtonBackgroundColor1">#0E88F2</Color>
-            <OnPlatform x:TypeArguments="Color" x:Key="ButtonBackgroundColor2" Default="{StaticResource AccentColor3}" />
+            <Color x:Key="AccentColor9">#4652AA</Color>
+
+            <!--Text colors-->
+            <Color x:Key="DefaultTextColor">#000000</Color>
+            <Color x:Key="DefaultTextColorDark">#FFFFFF</Color>
+            <Color x:Key="TextOnAccentColor">#FFFFFF</Color>
+            <Color x:Key="PlaceholderColor">#99000000</Color>
+            <Color x:Key="PlaceholderColorDark">#CCFFFFFF</Color>
+
+            <!--Background colors-->
+            <Color x:Key="DefaultBackgroundColor">#F8F8F8</Color>
+            <Color x:Key="DefaultBackgroundColorDark">#121212</Color>
+            <Color x:Key="SecondaryBackgroundColor">#FFFFFF</Color>
+            <Color x:Key="SecondaryBackgroundColorDark">#000000</Color>
+            <Color x:Key="ItemBackgroundColor">#FFFFFF</Color>
+            <Color x:Key="ItemBackgroundColorDark">#1E1E1E</Color>
+
+            <!--Border/stroke colors-->
+            <Color x:Key="DefaultBorderColor">#DFDFDF</Color>
+            <Color x:Key="DefaultBorderColorWinUI">#0F000000</Color>
+            <Color x:Key="DefaultBorderColorDark">#373737</Color>
+            <Color x:Key="DefaultBorderColorDarkWinUI">#12FFFFFF</Color>
+            <Color x:Key="SeparatorColor">#E3E4E5</Color>
+            <Color x:Key="SeparatorColorDark">#373737</Color>
+            <Color x:Key="SeparatorOnAccentColor">#36FFFFFF</Color>
 
             <x:Double x:Key="BorderCornerRadius">4</x:Double>
-            <x:Double x:Key="PageHeaderLabelFontSize">28</x:Double>
 
             <telerik:InvertedBooleanConverter x:Key="InvertedBooleanConverter" />
+            <telerik:NullOrEmptyToBoolConverter x:Key="NullOrEmptyToBoolConverter" />
             <converters:ModelToViewConverter x:Key="ModelToViewConverter" />
             <converters:ModelToConfigurationAreaConverter x:Key="ModelToConfigurationAreaConverter" />
 
-            <Style TargetType="Button">
-                <Setter Property="TextColor" Value="{DynamicResource SecondaryColor}" />
-                <Setter Property="FontFamily" Value="OpenSansRegular" />
-                <Setter Property="BackgroundColor" Value="{DynamicResource PrimaryColor}" />
-                <Setter Property="Padding" Value="14,10" />
+            <Style x:Key="BaseLabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource DefaultTextColor}, Dark={StaticResource DefaultTextColorDark}}" />
+            </Style>
+
+            <Style x:Key="LabelOnAccentStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource TextOnAccentColor}" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+
+            <Style x:Key="PageHeaderLabelStyle" TargetType="Label" BasedOn="{StaticResource LabelOnAccentStyle}">
+                <Setter Property="FontSize" Value="28" />
+            </Style>
+
+            <Style x:Key="HeaderLabelStyle" TargetType="Label" BasedOn="{StaticResource LabelOnAccentStyle}">
+                <Setter Property="Text" Value="{Binding AppTitle}" />
+                <Setter Property="FontSize" Value="{OnPlatform Default=18, Android=20, iOS=17}"/>
+            </Style>
+
+            <Style x:Key="PlaceholderLabelStyle" TargetType="Label" BasedOn="{StaticResource BaseLabelStyle}">
+                <Setter Property="Opacity" Value="0.6" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+            </Style>
+
+            <Style x:Key="ControlNameLabelStyle" TargetType="Label" BasedOn="{StaticResource BaseLabelStyle}">
+                <Setter Property="FontSize" Value="{OnPlatform Default=17, Android=16}"/>
+            </Style>
+
+            <Style x:Key="DescriptionLabelStyle" TargetType="Label" BasedOn="{StaticResource BaseLabelStyle}">
+                <Setter Property="Opacity" Value="0.6"/>
+                <Setter Property="FontSize" Value="14"/>
+            </Style>
+
+            <Style x:Key="DescriptionLabelWithTruncationStyle" TargetType="Label" BasedOn="{StaticResource DescriptionLabelStyle}">
+                <Setter Property="MaxLines" Value="2"/>
+                <Setter Property="LineBreakMode" Value="TailTruncation"/>
             </Style>
 
             <Style TargetType="ImageButton" x:Key="DefaultBackButtonStyle">
                 <Setter Property="Source" Value="arrowleft.png" />
-                <Setter Property="WidthRequest" Value="40" />
-                <Setter Property="HeightRequest" Value="35" />
+                <Setter Property="WidthRequest" Value="24" />
+                <Setter Property="HeightRequest" Value="24" />
                 <Setter Property="Aspect" Value="Center" />
                 <Setter Property="VerticalOptions" Value="Center" />
                 <Setter Property="BackgroundColor" Value="Transparent"/>
@@ -76,34 +114,24 @@
                 <Setter Property="Padding" Value="10, 0, 20, 0" />
             </Style>
 
-            <Style TargetType="Label" x:Key="HeaderLabelStyle">
-                <Setter Property="Text" Value="{Binding AppTitle}" />
-                <Setter Property="TextColor" Value="{StaticResource HeaderLabelColor}" />
-                <Setter Property="VerticalOptions" Value="Center" />
-            </Style>
-
-            <Style TargetType="telerik:RadButton" x:Key="SubmitButtonStyle">
+            <Style x:Key="ButtonBaseStyle" TargetType="telerik:RadButton">
                 <Setter Property="CornerRadius" Value="4" />
                 <Setter Property="BorderWidth" Value="2" />
                 <Setter Property="BackgroundColor" Value="Transparent" />
-                <Setter Property="Text" Value="Submit Request" />
                 <Setter Property="TextTransform" Value="{OnPlatform Default=None, Android=Uppercase}" />
-                <Setter Property="HorizontalContentAlignment" Value="Center" />
-                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
-                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
-                <Setter Property="Padding" Value="{OnPlatform Default='10',
-                                                              WinUI='24, 6',
-                                                              MacCatalyst='24, 4'}" />
+                <Setter Property="TextColor" Value="{OnIdiom Desktop={StaticResource TextOnAccentColor}, Default={StaticResource AccentColor8}}" />
+                <Setter Property="BorderColor" Value="{OnIdiom Desktop={StaticResource TextOnAccentColor}, Default={StaticResource AccentColor8}}" />
+                <Setter Property="Padding" Value="{OnPlatform Default='10', WinUI='24, 6', MacCatalyst='24, 4'}" />
+            </Style>
+
+            <Style x:Key="AccentButtonStyle" TargetType="telerik:RadButton" BasedOn="{StaticResource ButtonBaseStyle}">
+                <Setter Property="TextColor" Value="{StaticResource AccentColor8}" />
+                <Setter Property="BorderColor" Value="{StaticResource AccentColor8}" />
                 <Setter Property="VisualStateManager.VisualStateGroups">
                     <VisualStateGroupList>
                         <VisualStateGroup x:Name="CommonGroups">
-                            <VisualState x:Name="Normal" >
-                                <VisualState.Setters>
-                                    <Setter Property="BorderColor" Value="{StaticResource AccentColor8}" />
-                                    <Setter Property="TextColor" Value="{StaticResource AccentColor8}" />
-                                </VisualState.Setters>
-                            </VisualState>
-                            <VisualState x:Name="Focused" />
+                            <VisualState x:Name="Normal"/>
+                            <VisualState x:Name="Focused"/>
                             <VisualState x:Name="Pressed">
                                 <VisualState.Setters>
                                     <Setter Property="BorderColor" Value="{StaticResource AccentColor8}" />
@@ -121,36 +149,30 @@
                     </VisualStateGroupList>
                 </Setter>
             </Style>
-            
-            <Style x:Key="DefaultPlaceholderLabelStyle" TargetType="Label">
-                <Setter Property="Padding" Value="8" />
-                <Setter Property="TextColor" Value="Black" />
-                <Setter Property="Opacity" Value="0.6" />
-                <Setter Property="VerticalTextAlignment" Value="Center" />
-                <Setter Property="Margin" Value="4, 0, 0, 0" />
+
+            <Style x:Key="SubmitButtonStyle" TargetType="telerik:RadButton" BasedOn="{StaticResource AccentButtonStyle}">
+                <Setter Property="Text" Value="Submit Request" />
+                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
             </Style>
 
-             <Style x:Key="MoreInfoButtonStyle" TargetType="telerik:RadButton">
-                <Setter Property="BackgroundColor" Value="Transparent" />
-                <Setter Property="BorderWidth" Value="2" />
-                <Setter Property="WidthRequest" Value="{OnPlatform iOS=120, MacCatalyst=110, WinUI=114, Android=142}" />
-                <Setter Property="CornerRadius" Value="4" />
+            <Style x:Key="MoreInfoButtonStyle" TargetType="telerik:RadButton" BasedOn="{StaticResource ButtonBaseStyle}">
                 <Setter Property="Text" Value="More Info" />
                 <Setter Property="HorizontalContentAlignment" Value="End" />
-                <Setter Property="TextColor" Value="{OnIdiom Desktop={StaticResource PrimaryTextColor1}, Default={StaticResource AccentColor8}}" />
-                <Setter Property="BorderColor" Value="{OnIdiom Desktop={StaticResource PrimaryTextColor1}, Default={StaticResource AccentColor8}}" />
                 <Setter Property="FontSize" Value="{OnPlatform MacCatalyst=Small, iOS=Small, Default=Default}" />
                 <Setter Property="ImageSource" Value="{OnIdiom Desktop=info_desktop.png, Default=info_mobile.png}" />
-                <Setter Property="TextTransform" Value="{OnPlatform Android=Uppercase, Default=None}" />
-                <Setter Property="ContentLayout" Value="{OnPlatform MacCatalyst='Left, -6', iOS='Left, -10', Android='Left, 4', WinUI='Left, 8'}" />
-                <Setter Property="Padding" Value="{OnPlatform Android='7, 0', iOS='12, 8, 10, 8', MacCatalyst='0, 8, 8, 8', WinUI='7, 5'}" />
+                <Setter Property="Padding" Value="{OnPlatform Default='12, 10', WinUI='11, 6'}" />
             </Style>
 
-            <Style x:Key="PageHeaderLabelStyle" TargetType="Label">
-                <Setter Property="TextColor" Value="{StaticResource HeaderLabelColor}" />
-                <Setter Property="FontSize" Value="{StaticResource PageHeaderLabelFontSize}" />
+            <Style x:Key="DefaultBusyIndicatorStyle" TargetType="telerik:RadBusyIndicator">
+                <Setter Property="AnimationContentColor" Value="{StaticResource AccentColor8}" />
             </Style>
-            
+
+            <Style x:Key="ExampleCheckBoxStyle" TargetType="telerik:RadCheckBox">
+                <Setter Property="UncheckedColor" Value="#CCCCCC"/>
+                <Setter Property="CheckedColor" Value="{StaticResource ApplicationAccentColor}"/>
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

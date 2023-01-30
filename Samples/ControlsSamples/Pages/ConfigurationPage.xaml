@@ -15,15 +15,15 @@
                          Style="{OnPlatform Default={StaticResource DefaultBackButtonStyle}, iOS={StaticResource IOSBackButtonStyle}}" />
             <Label Grid.Column="1"
                    Text="Configuration"
-                   TextColor="White" 
-                   VerticalOptions="Center" />
+                   VerticalOptions="Center"
+                   Style="{StaticResource HeaderLabelStyle}" />
         </Grid>
         <ContentView Grid.Row="1" 
                      Padding="10">
             <ContentView.Content>
                 <MultiBinding Converter="{StaticResource ModelToConfigurationAreaConverter}">
                     <Binding Path="Example" />
-                    <Binding Path="BindingContext" Source="{x:Reference configurationContainer}"/>
+                    <Binding Path="BindingContext" Source="{x:Reference configurationContainer}" />
                 </MultiBinding>
             </ContentView.Content>
         </ContentView>

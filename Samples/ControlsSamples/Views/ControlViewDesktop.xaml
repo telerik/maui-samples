@@ -9,35 +9,53 @@
 
     <VisualElement.Resources>
         <Style x:Key="PageHeaderLabelStyle" TargetType="Span">
-            <Setter Property="TextColor" Value="{StaticResource HeaderLabelColor}" />
-            <Setter Property="FontSize" Value="{StaticResource PageHeaderLabelFontSize}" />
+            <Setter Property="TextColor" Value="{StaticResource TextOnAccentColor}" />
+            <Setter Property="FontSize" Value="28" />
         </Style>
         <Style x:Key="BorderStyle" TargetType="telerik:RadBorder">
             <Setter Property="CornerRadius" Value="{StaticResource BorderCornerRadius}" />
         </Style>
-        <Style x:Key="ExampleItemStyle" TargetType="telerik:NonVirtualizedItemsControlItemContainer" BasedOn="{StaticResource BorderStyle}">
-            <Setter Property="BackgroundColor" Value="{StaticResource BasicBackgroundColor3}" />
-        </Style>
-        <Style x:Key="SelectedExampleItemStyle" TargetType="telerik:NonVirtualizedItemsControlItemContainer" BasedOn="{StaticResource BorderStyle}">
+        <Style x:Key="SelectedExampleItemStyle" TargetType="telerik:NonVirtualizedItemsControlItemContainer">
             <Setter Property="BackgroundColor" Value="{StaticResource ApplicationAccentColor}" />
         </Style>
         <DataTemplate x:Key="ExampleItemTemplate">
             <VerticalStackLayout>
-                <BoxView HeightRequest="8"
-                         BackgroundColor="{StaticResource BasicBackgroundColor3}" />
-                <views:SmoothItemView Header="{Binding DisplayName}"
-                                      Icon="{Binding Icon}"
-                                      Description="{Binding Description}"
-                                      Margin="6, 0, 0, 0" />
-                <BoxView HeightRequest="8"
-                         BackgroundColor="{StaticResource BasicBackgroundColor3}" />
+                <BoxView HeightRequest="4"
+                         BackgroundColor="{AppThemeBinding Light={StaticResource ItemBackgroundColor}, Dark={StaticResource ItemBackgroundColorDark}}" />
+                <views:NavigationItemView BackgroundColor="{AppThemeBinding Light={StaticResource ItemBackgroundColor}, Dark={StaticResource ItemBackgroundColorDark}}"
+                                          Header="{Binding DisplayName}"
+                                          Icon="{Binding Icon}"
+                                          Margin="6, 0, 0, 0">
+                    <views:NavigationItemView.ControlTemplate>
+                        <ControlTemplate>
+                            <HorizontalStackLayout>
+                                <telerik:RadBorder BackgroundColor="{AppThemeBinding Light={StaticResource DefaultBackgroundColor}, Dark={StaticResource DefaultBackgroundColorDark}}"
+                                                   Margin="6, 4, 4, 4"
+                                                   CornerRadius="{StaticResource BorderCornerRadius}">
+                                    <Image Source="{TemplateBinding Icon}"
+                                           Aspect="Center"
+                                           Margin="4" />
+                                </telerik:RadBorder>
+                                <Label Text="{TemplateBinding Header}"
+                                       Margin="12, 0"
+                                       FontSize="16"
+                                       VerticalOptions="Center"
+                                       VerticalTextAlignment="Center"/>
+                            </HorizontalStackLayout>
+                        </ControlTemplate>
+                    </views:NavigationItemView.ControlTemplate>
+                </views:NavigationItemView>
+                <BoxView HeightRequest="4"
+                         BackgroundColor="{AppThemeBinding Light={StaticResource ItemBackgroundColor}, Dark={StaticResource ItemBackgroundColorDark}}" />
             </VerticalStackLayout>
         </DataTemplate>
         <Style x:Key="ExampleHeaderStyle" TargetType="Label">
             <Setter Property="FontSize" Value="Title" />
         </Style>
         <Style x:Key="ExampleBorderStyle" TargetType="telerik:RadBorder">
-            <Setter Property="BorderColor" Value="{StaticResource BorderColor1}" />
+            <Setter Property="BorderColor"
+                    Value="{AppThemeBinding Light={OnPlatform Default={StaticResource DefaultBorderColor}, WinUI={StaticResource DefaultBorderColorWinUI}},
+                                            Dark={OnPlatform Default={StaticResource DefaultBorderColorDark}, WinUI={StaticResource DefaultBorderColorDarkWinUI}}}" />
             <Setter Property="BorderThickness" Value="1" />
         </Style>
         <Style x:Key="ButtonStyleBase_MacCatalyst" TargetType="telerik:RadButton">
@@ -45,14 +63,14 @@
             <Setter Property="ContentLayout" Value="Left, 0" />
         </Style>
         <Style x:Key="ButtonStyleBase" TargetType="telerik:RadButton" BasedOn="{OnPlatform MacCatalyst={StaticResource ButtonStyleBase_MacCatalyst}}">
-            <Setter Property="TextColor" Value="{StaticResource PrimaryTextColor1}" />
+            <Setter Property="TextColor" Value="{StaticResource TextOnAccentColor}" />
             <Setter Property="BorderThickness" Value="0" />
         </Style>
         <Style x:Key="DocumentationButtonStyle" TargetType="telerik:RadButton" BasedOn="{StaticResource ButtonStyleBase}">
-            <Setter Property="BackgroundColor" Value="{StaticResource ButtonBackgroundColor1}" />
+            <Setter Property="BackgroundColor" Value="#0E88F2" />
         </Style>
         <Style x:Key="FeedbackButtonStyle" TargetType="telerik:RadButton" BasedOn="{StaticResource ButtonStyleBase}">
-            <Setter Property="BackgroundColor" Value="{StaticResource ButtonBackgroundColor2}" />
+            <Setter Property="BackgroundColor" Value="{StaticResource AccentColor3}" />
         </Style>
         <Style x:Key="ViewCodeButtonStyle" TargetType="telerik:RadButton" BasedOn="{StaticResource ButtonStyleBase}">
             <Setter Property="HorizontalOptions" Value="End" />
@@ -77,7 +95,7 @@
                 <telerik:RadButton Text="Documentation"
                                    Command="{Binding NavigateToControlDocumentationCommand}"
                                    CommandParameter="{Binding Name}"
-                                   ImageSource="icon_documentation_white.png"                                   
+                                   ImageSource="icon_documentation_white.png"
                                    Style="{StaticResource DocumentationButtonStyle}" />
                 <telerik:RadButton Text="Feedback"
                                    Command="{Binding NavigateToControlFeedbackPortalCommand}"
@@ -88,23 +106,26 @@
         <Grid ColumnDefinitions="280, 3*"
               Grid.Row="1"
               ColumnSpacing="10">
-            <telerik:NonVirtualizedItemsControl x:Name="examplesList"
-                                                ItemTemplate="{StaticResource ExampleItemTemplate}"
-                                                ItemStyle="{StaticResource ExampleItemStyle}"
-                                                SelectedItemStyle="{StaticResource SelectedExampleItemStyle}"
-                                                ItemsSource="{Binding Examples}"
-                                                SelectedItem="{Binding SelectedExample, Mode=TwoWay}"
-                                                CanUnselectSingleItem="False">
-                <telerik:NonVirtualizedItemsControl.ItemsLayoutTemplate>
-                    <DataTemplate>
-                        <VerticalStackLayout Spacing="8" />
-                    </DataTemplate>
-                </telerik:NonVirtualizedItemsControl.ItemsLayoutTemplate>
-            </telerik:NonVirtualizedItemsControl>
+            <telerik:RadBorder BackgroundColor="{AppThemeBinding Light={StaticResource SecondaryBackgroundColor}, Dark={StaticResource SecondaryBackgroundColorDark}}"
+                               CornerRadius="{StaticResource BorderCornerRadius}"
+                               VerticalOptions="Start">
+                <telerik:NonVirtualizedItemsControl x:Name="examplesList"
+                                                    ItemTemplate="{StaticResource ExampleItemTemplate}"
+                                                    SelectedItemStyle="{StaticResource SelectedExampleItemStyle}"
+                                                    ItemsSource="{Binding Examples}"
+                                                    SelectedItem="{Binding SelectedExample, Mode=TwoWay}"
+                                                    CanUnselectSingleItem="False">
+                    <telerik:NonVirtualizedItemsControl.ItemsLayoutTemplate>
+                        <DataTemplate>
+                            <VerticalStackLayout Padding="0, 14"/>
+                        </DataTemplate>
+                    </telerik:NonVirtualizedItemsControl.ItemsLayoutTemplate>
+                </telerik:NonVirtualizedItemsControl>
+            </telerik:RadBorder>
 
             <telerik:RadBorder Grid.Column="1"
                                Padding="12"
-                               Background="{StaticResource BasicBackgroundColor3}"
+                               Background="{AppThemeBinding Light={StaticResource SecondaryBackgroundColor}, Dark={StaticResource SecondaryBackgroundColorDark}}"
                                Style="{StaticResource BorderStyle}">
                 <Grid RowDefinitions="Auto, *"
                       ColumnDefinitions="3*, *"
@@ -124,12 +145,12 @@
                                        Style="{StaticResource ExampleBorderStyle}" />
                     <telerik:RadBorder Grid.Row="1"
                                        Grid.Column="1"
-                                       BackgroundColor="{StaticResource BasicBackgroundColor2}"
+                                       BackgroundColor="{AppThemeBinding Light={StaticResource DefaultBackgroundColor}, Dark={StaticResource DefaultBackgroundColorDark}}"
                                        Style="{StaticResource BorderStyle}">
-                        <VerticalStackLayout Padding="15"
-                                             BackgroundColor="#66DFDFDF">
+                        <VerticalStackLayout Padding="15">
                             <Label Text="{Binding SelectedExample.Description}"
-                                       Margin="0, 0, 0, 20" />
+                                   TextType="Html"
+                                   Margin="0, 0, 0, 20" />
                             <telerik:RadBorder>
                                 <telerik:RadBorder.Content>
                                     <MultiBinding Converter="{StaticResource ModelToConfigurationAreaConverter}">
@@ -139,7 +160,6 @@
                                 </telerik:RadBorder.Content>
                             </telerik:RadBorder>
                         </VerticalStackLayout>
-
                     </telerik:RadBorder>
                 </Grid>
             </telerik:RadBorder>

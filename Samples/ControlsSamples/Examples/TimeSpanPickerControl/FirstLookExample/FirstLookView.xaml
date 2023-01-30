@@ -14,13 +14,13 @@
         <Style TargetType="telerik:RadTimeSpanPicker">
             <Setter Property="Margin" Value="0, 0, 0, 15" />
             <Setter Property="BorderThickness" Value="0, 0, 0, 1" />
+            <Setter Property="CornerRadius" Value="0" />
             <Setter Property="Placeholder" Value="Max Flight Duration:" />
-            <Setter Property="HorizontalOptions" Value="Start" />
             <Setter Property="IsToggleButtonVisible" Value="False" />
         </Style>
     </ContentView.Resources>
 
-    <VerticalStackLayout HorizontalOptions="Start">
+    <VerticalStackLayout x:Name="layout">
         <Label Text="Flight Search SOF - NYC"
                Style="{StaticResource DefaultSubtitleLabelStyle}"
                FontSize="24"
@@ -29,7 +29,7 @@
                Style="{StaticResource DefaultSubtitleLabelStyle}" />
         <telerik:RadTimeSpanPicker x:Name="timeSpanPicker"
                                    Time="{Binding SelectedTime}"
-                                   PlaceholderLabelStyle="{StaticResource DefaultPlaceholderLabelStyle}">
+                                   PlaceholderLabelStyle="{StaticResource PlaceholderLabelStyle}">
             <telerik:RadTimeSpanPicker.PopupSettings>
                 <telerik:PickerPopupSettings HeaderLabelText="Select Flight Duration" />
             </telerik:RadTimeSpanPicker.PopupSettings>

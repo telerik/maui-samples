@@ -1,0 +1,32 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             ios:Page.UseSafeArea="True"
+             NavigationPage.HasNavigationBar="False"
+             NavigationPage.HasBackButton="False"
+             x:Class="QSF.Pages.DescriptionPage">
+    <Grid RowDefinitions="Auto, *">
+        <Grid ColumnDefinitions="Auto, *"
+              Style="{StaticResource HeaderStyle}">
+            <ImageButton Clicked="Back_Clicked"
+                         HorizontalOptions="Start"
+                         Style="{OnPlatform Default={StaticResource DefaultBackButtonStyle}, iOS={StaticResource IOSBackButtonStyle}}" />
+            <Label Grid.Column="1"
+                   Text="{Binding HeaderLabel}"
+                   VerticalOptions="Center"
+                   Style="{StaticResource HeaderLabelStyle}"/>
+        </Grid>
+        <Grid Grid.Row="1" RowDefinitions="Auto, *" Padding="16">
+            <Label Text="{Binding DescriptionLabel}"
+                   TextColor="{AppThemeBinding Light={StaticResource DefaultTextColor}, Dark={StaticResource DefaultTextColorDark}}"
+                   FontSize="{OnPlatform Default=24, iOS=22}"
+                   Margin="0,8,0,24"/>
+            <Label Grid.Row="1"
+                   TextColor="{AppThemeBinding Light={StaticResource DefaultTextColor}, Dark={StaticResource DefaultTextColorDark}}"
+                   Text="{Binding Description}"
+                   TextType="Html"
+                   FontSize="{OnPlatform Default=14, iOS=17}"/>
+        </Grid>
+    </Grid>
+</ContentPage>

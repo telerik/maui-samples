@@ -24,6 +24,7 @@ public abstract class PageViewModel : ViewModelBase
         this.NavigateToFeedbackPortalCommand = new Command(this.NavigateToFeedbackPortal);
         this.NavigateToDownloadTrialCommand = new Command(this.NavigateToDownloadTrial);
         this.NavigateToExampleCodeCommand = new Command(this.NavigateToExampleCode);
+        this.NavigateToDescriptionCommand = new Command(this.NavigateToDescription);
     }
 
     public string AppTitle
@@ -84,6 +85,8 @@ public abstract class PageViewModel : ViewModelBase
 
     public ICommand NavigateToExampleCodeCommand { get; private set; }
 
+    public ICommand NavigateToDescriptionCommand { get; private set; }
+
     public static void TryNavigateToUrl(string url)
     {
         if (url == null)
@@ -128,5 +131,22 @@ public abstract class PageViewModel : ViewModelBase
         Example example = (Example)obj;
         string url = Utils.GetExampleCodeURL(example) ?? this.configurationService.Configuration.ExampleCodeUrl; 
         TryNavigateToUrl(url);
+    }
+
+    private void NavigateToDescription(object obj)
+    {
+        DescriptionViewModel descriptionViewModel;
+        Example example = obj as Example;
+        if (example != null)
+        {
+            descriptionViewModel = new DescriptionViewModel(example.Description, example.DisplayName, true);
+        }
+        else
+        {
+            Control control = (Control)obj;
+            descriptionViewModel = new DescriptionViewModel(control.FullDescription, control.DisplayName);
+        }
+
+        this.NavigationService.NavigateToDescriptionPageAsync(descriptionViewModel);
     }
 }

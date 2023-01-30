@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        x:Class="QSF.Examples.ProgressBarControl.FirstLookExample.FirstLookView">
+    <telerik:RadContentView.Content>
+        <ScrollView>
+            <VerticalStackLayout>
+                <VerticalStackLayout BackgroundColor="{AppThemeBinding Light='#F3F3F3', Dark='#202020'}"
+                                     Padding="{OnIdiom Desktop='0, 24, 0, 0', Phone='0, 50, 0, 0'}">
+                    <Label Text="Your Order"
+                           FontSize="20"
+                           FontAttributes="{OnPlatform Default=None, Android=Bold}"
+                           HorizontalTextAlignment="Center"
+                           VerticalOptions="Center"
+                           VerticalTextAlignment="Center" />
+                    <telerik:RadBorder WidthRequest="120"
+                                       HeightRequest="120"
+                                       CornerRadius="120"
+                                       Margin="0, 12">
+                        <Image HeightRequest="120"
+                               Source="{Binding OrderImage}"
+                               Aspect="Fill" />
+                    </telerik:RadBorder>
+                    <Label Text="{Binding StatusText, Mode=TwoWay}"
+                           HorizontalTextAlignment="Center"
+                           Style="{StaticResource PlaceholderLabelStyle}" />
+                    <telerik:RadLinearProgressBar Minimum="0"
+                                                  Maximum="100"
+                                                  Value="{Binding OrderProgress, Mode=TwoWay}"
+                                                  ProgressAnimationDuration="{Binding AnimationDuration, Mode=TwoWay}"
+                                                  WidthRequest="240"
+                                                  Margin="{OnIdiom Desktop='0, 15, 0, 30', Phone='0, 12, 0, 24'}" />
+                </VerticalStackLayout>
+                <telerik:RadButton Text="{Binding PlaceOrderButtonText, Mode=TwoWay}"
+                                   Style="{StaticResource AccentButtonStyle}"
+                                   Margin="{OnIdiom Desktop='0, 20, 0, 0', Phone='0, 24, 0, 0'}"
+                                   HorizontalOptions="Center"
+                                   Command="{Binding PlaceOrderCommand}" />
+            </VerticalStackLayout>
+        </ScrollView>
+    </telerik:RadContentView.Content>
+</telerik:RadContentView>
