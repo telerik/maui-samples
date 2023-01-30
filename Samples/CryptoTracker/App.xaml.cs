@@ -11,7 +11,8 @@ namespace CryptoTracker
 	{
 		public App()
 		{
-			Application.AccentColor = Color.FromArgb("#045DEA");
+            this.UserAppTheme = Microsoft.Maui.ApplicationModel.AppTheme.Light;
+            Application.AccentColor = Color.FromArgb("#045DEA");
 			InitializeComponent();
 			DependencyService.Register<ICoinDataService, CoinDataService>();
 			// We use preprocessor directives in order to apply platform specific implementation.
