@@ -16,8 +16,8 @@
 		<!-- Versions -->
 		<ApplicationVersion>1</ApplicationVersion>
 
-		<!-- TODO: Remove it when Maui is officially released. -->
-		<AndroidLinkResources>false</AndroidLinkResources>
+		<!-- TODO: Remove it when Maui fixes Skia linker issue for net7. -->
+		<AndroidLinkResources Condition=" $(IsNet7) == 'true' ">false</AndroidLinkResources>
 
 	</PropertyGroup>
 
@@ -40,7 +40,7 @@
 	</ItemGroup>
 
 	<ItemGroup Condition="$(SolutionName) != 'Telerik.Maui'">
-		<PackageReference Include="Telerik.UI.for.Maui" Version="3.0.0" />
+		<PackageReference Include="Telerik.UI.for.Maui" Version="5.0.0" />
 	</ItemGroup>
 
 	<Import Condition="'$(SolutionName)' == 'Telerik.Maui'" Project="..\AddSourceReferences.proj" />
