@@ -14,7 +14,8 @@
                                      Step="{Binding Step}"
                                      Value="{Binding Value, Mode=TwoWay}"                                    
                                      IncreaseCommand="{Binding CustomIncreaseCommand}"
-                                     DecreaseCommand="{Binding CustomDecreaseCommand}">
+                                     DecreaseCommand="{Binding CustomDecreaseCommand}"
+                                     AutomationId="numericCommands">
                 <telerik:RadNumericInput.BindingContext>
                     <local:CommandsViewModel />
                 </telerik:RadNumericInput.BindingContext>

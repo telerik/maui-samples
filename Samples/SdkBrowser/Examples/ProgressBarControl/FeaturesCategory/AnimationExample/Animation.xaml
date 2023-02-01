@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.ProgressBarControl.FeaturesCategory.AnimationExample.Animation">
+    <VerticalStackLayout Padding="20"
+                         Spacing="10">
+        <!-- >> progressbar-progress-animation-duration-easing -->
+        <Label Text="ProgressAnimationDuration = 1000 and ProgressAnimationEasing = CubicIn." />
+        <Label Text="Update the value to observe the duration and easing:" />
+        <telerik:RadNumericInput x:Name="valueNumeric"
+                                 Minimum="0"
+                                 Maximum="100"
+                                 WidthRequest="{OnIdiom Phone='-1', Desktop='300'}"
+                                 HorizontalOptions="{OnIdiom Phone='Fill', Desktop='Start'}"
+                                 Value="20"
+                                 Step="20"/>
+        <telerik:RadLinearProgressBar x:Name="progressBar"
+                                      Minimum="0"
+                                      Maximum="100"
+                                      Value="{Binding Value, Source={x:Reference valueNumeric}}"
+                                      ProgressAnimationDuration="1000"
+                                      ProgressAnimationEasing="{Static Easing.CubicIn}"
+                                      Margin="0, 8, 0, 24" />
+        <!-- << progressbar-progress-animation-duration-easing -->
+
+        <!-- >> progressbar-indeterminate-animation-duration-easing -->
+        <Label Text="IndeterminateAnimationDuration = 1000, IndeterminateAnimationEasing = CubicIn:" />
+        <telerik:RadLinearProgressBar Value="25"
+                                      IndeterminateAnimationDuration="1000"
+                                      IndeterminateAnimationEasing="{Static Easing.CubicIn}"
+                                      IsIndeterminate="True" />
+        <!-- << progressbar-indeterminate-animation-duration-easing -->
+    </VerticalStackLayout>
+</ContentView>

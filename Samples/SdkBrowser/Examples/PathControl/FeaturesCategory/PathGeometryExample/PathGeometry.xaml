@@ -8,8 +8,8 @@
                         Margin="5">
     <telerik:RadContentView.Resources>
         <Style TargetType="telerik:RadPath" x:Key="pathStyle">
-            <Setter Property="WidthRequest" Value="{OnPlatform UWP='200', Default='150'}"/>
-            <Setter Property="HeightRequest" Value="{OnPlatform UWP='200', Default='150'}"/>
+            <Setter Property="WidthRequest" Value="150"/>
+            <Setter Property="HeightRequest" Value="150"/>
             <Setter Property="VerticalOptions" Value="Center"/>
             <Setter Property="HorizontalOptions" Value="Center"/>
         </Style>
@@ -17,8 +17,8 @@
     <telerik:RadContentView.Content>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="230"/>
-                <RowDefinition Height="230"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -28,7 +28,7 @@
             <Grid Margin="10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
-                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <!--  >> path-geometry-simpleline-xaml  -->
                 <telerik:RadPath x:Name="simpleLinePath"
@@ -53,7 +53,7 @@
             <Grid Margin="10" Grid.Column="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
-                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <!--  >> path-geometry-simplearc-xaml  -->
                 <telerik:RadPath x:Name="simpleArcPath"
@@ -81,7 +81,7 @@
             <Grid Grid.Row="1" Margin="10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
-                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <!--  >> path-geometry-customline-xaml  -->
                 <telerik:RadPath x:Name="customLinePath"

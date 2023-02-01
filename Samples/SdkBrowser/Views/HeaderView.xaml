@@ -22,7 +22,12 @@
         <Label Grid.Column="2"
                Text="{Binding AppTitle}" 
                TextColor="White" 
-               VerticalOptions="Center" />
+               VerticalOptions="Center"
+               AutomationId="titleLabel">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnTapGestureRecognizerTapped" />
+            </Label.GestureRecognizers>
+        </Label>
         <ImageButton Grid.Column="3"
                      WidthRequest="20"
                      Command="{Binding SearchCommand}"

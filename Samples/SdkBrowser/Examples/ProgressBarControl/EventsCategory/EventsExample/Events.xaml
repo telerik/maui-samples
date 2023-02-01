@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.ProgressBarControl.EventsCategory.EventsExample.Events">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="FontSize"
+                        Value="16" />
+                <Setter Property="TextColor"
+                        Value="Black" />
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <!-- >> progressbar-events -->
+    <VerticalStackLayout Margin="20"
+                         HorizontalOptions="FillAndExpand"
+                         VerticalOptions="FillAndExpand"
+                         Spacing="20">
+        <HorizontalStackLayout>
+            <Label Text="{Binding Value, Source={x:Reference progressBar}}"
+                   VerticalTextAlignment="Center" />
+            <Stepper Minimum="0"
+                     Maximum="180"
+                     Increment="20"
+                     Value="{Binding Value, Source={x:Reference progressBar}}" />
+        </HorizontalStackLayout>
+        <HorizontalStackLayout>
+            <Label Text="Events: " />
+            <Label x:Name="statusLabel" />
+        </HorizontalStackLayout>
+        <telerik:RadLinearProgressBar x:Name="progressBar"
+                                      Minimum="0"
+                                      Maximum="180"
+                                      Value="20"
+                                      ProgressChanged="OnProgressChanged"
+                                      ProgressCompleted="OnProgressCompleted" />
+    </VerticalStackLayout>
+    <!-- << progressbar-events  -->
+</ContentView>

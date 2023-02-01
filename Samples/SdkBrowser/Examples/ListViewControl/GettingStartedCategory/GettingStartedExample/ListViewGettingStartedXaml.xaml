@@ -33,7 +33,7 @@
                 <telerik:RadListView.ItemTemplate>
                     <OnPlatform x:TypeArguments="DataTemplate">
                         <On Platform="Android, iOS, MacCatalyst" Value="{StaticResource DefaultTemplate}" />
-                        <On Platform="UWP" Value="{StaticResource UWPTemplate}" />
+                        <On Platform="WinUI" Value="{StaticResource UWPTemplate}" />
                     </OnPlatform>
                 </telerik:RadListView.ItemTemplate>
             </telerik:RadListView>

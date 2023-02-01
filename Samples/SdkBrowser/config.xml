@@ -8,6 +8,45 @@
 	<SourceUrl>https://github.com/telerik/xamarin-forms-sdk/tree/master/XamarinSDK/SDKBrowser/SDKBrowser</SourceUrl>
 	<Controls>
 		<Control>
+			<Name>Accordion</Name>
+			<Title>Accordion</Title>
+			<Icon>accordion.png</Icon>
+			<Categories>
+				<Category>
+					<Name>GettingStarted</Name>
+					<Title>Getting Started</Title>
+					<Examples>
+						<Example>
+							<Page>AccordionGettingStartedXaml</Page>
+							<Name>GettingStarted</Name>
+							<Title>Getting Started - Xaml</Title>
+						</Example>
+						<Example>
+							<Page>AccordionGettingStartedCSharp</Page>
+							<Name>GettingStarted</Name>
+							<Title>Getting Started - Code</Title>
+						</Example>
+					</Examples>
+				</Category>
+				<Category>
+					<Name>Features</Name>
+					<Title>Features</Title>
+					<Examples>
+						<Example>
+							<Page>KeyFeatures</Page>
+							<Name>KeyFeatures</Name>
+							<Title>Key Features</Title>
+						</Example>
+						<Example>
+							<Page>AccordionItem</Page>
+							<Name>AccordionItem</Name>
+							<Title>Custom AccordionItem</Title>
+						</Example>
+					</Examples>
+				</Category>
+			</Categories>
+		</Control>
+		<Control>
 			<Name>AutoComplete</Name>
 			<Title>AutoComplete</Title>
 			<Icon>autocomplete.png</Icon>
@@ -295,7 +334,7 @@
 						</Example>
 					</Examples>
 				</Category>
-				<!--<Category>
+				<Category>
 					<Name>CustomBusyContent</Name>
 					<Title>Custom Busy Content</Title>
 					<Examples>
@@ -305,7 +344,7 @@
 							<Title>CustomBusyContent</Title>
 						</Example>
 					</Examples>
-				</Category>-->
+				</Category>
 				<!--<Category>
 					<Name>Integration</Name>
 					<Title>Integration</Title>
@@ -756,6 +795,11 @@
                     <Name>Aggregates</Name>
                     <Title>Aggregates</Title>
                     <Examples>
+						<Example>
+                            <Page>GroupFooterAggregateStyle</Page>
+                            <Name>GroupFooterAggregateStyle</Name>
+                            <Title>Group Footer Aggregate Styling</Title>
+                        </Example>
                         <Example>
                             <Page>PropertyAggregateDescriptors</Page>
                             <Name>PropertyAggregateDescriptors</Name>
@@ -791,6 +835,16 @@
 							<Page>HeaderFooterContentTemplate</Page>
 							<Name>HeaderFooterContentTemplate</Name>
 							<Title>Header and Footer ContentTemplate</Title>
+						</Example>
+						<Example>
+							<Page>Reordering</Page>
+							<Name>Reordering</Name>
+							<Title>Reordering</Title>
+						</Example>
+						<Example>
+							<Page>FrozenColumns</Page>
+							<Name>FrozenColumns</Name>
+							<Title>Frozen Columns</Title>
 						</Example>
 					</Examples>
 				</Category>
@@ -1245,6 +1299,76 @@
 							<Page>RadialGauge</Page>
 							<Name>RadialGauge</Name>
 							<Title>Radial Gauge</Title>
+						</Example>
+					</Examples>
+				</Category>
+			</Categories>
+		</Control>
+		<Control>
+			<Name>ImageEditor</Name>
+			<Title>ImageEditor</Title>
+			<Icon>imageeditor.png</Icon>
+			<Categories>
+				<Category>
+					<Name>GettingStarted</Name>
+					<Title>Getting Started</Title>
+					<Examples>
+						<Example>
+							<Page>ImageEditorGettingStartedXaml</Page>
+							<Name>GettingStarted</Name>
+							<Title>Getting Started - Xaml</Title>
+						</Example>
+						<Example>
+							<Page>ImageEditorGettingStartedCSharp</Page>
+							<Name>GettingStarted</Name>
+							<Title>Getting Started - Code</Title>
+						</Example>
+					</Examples>
+				</Category>
+				<Category>
+					<Name>Features</Name>
+					<Title>Features</Title>
+					<Examples>
+						<Example>
+							<Page>ZoomLevel</Page>
+							<Name>ZoomLevel</Name>
+							<Title>Zoom Level</Title>
+						</Example>
+						<Example>
+							<Page>SaveImage</Page>
+							<Name>SaveImage</Name>
+							<Title>Save Image</Title>
+						</Example>
+						<Example>
+							<Page>BusyTemplate</Page>
+							<Name>BusyTemplate</Name>
+							<Title>Busy Template</Title>
+						</Example>
+						<Example>
+							<Page>Commands</Page>
+							<Name>Commands</Name>
+							<Title>Commands</Title>
+						</Example>
+					</Examples>
+				</Category>
+				<Category>
+					<Name>Toolbar</Name>
+					<Title>Toolbar</Title>
+					<Examples>
+						<Example>
+							<Page>CustomToolbar</Page>
+							<Name>CustomToolbar</Name>
+							<Title>Custom Toolbar</Title>
+						</Example>
+						<Example>
+							<Page>CustomCropToolbar</Page>
+							<Name>CustomCropToolbar</Name>
+							<Title>Custom Crop ToolbarItem</Title>
+						</Example>
+						<Example>
+							<Page>Styling</Page>
+							<Name>Styling</Name>
+							<Title>Toolbar Styling</Title>
 						</Example>
 					</Examples>
 				</Category>
@@ -1878,6 +2002,73 @@
 				</Category>
 			</Categories>
 		</Control>
+
+		<Control>
+			<Name>ProgressBar</Name>
+			<Title>ProgressBar</Title>
+			<Icon>progressbar.png</Icon>
+			<Categories>
+				<Category>
+					<Name>GettingStarted</Name>
+					<Title>Getting Started</Title>
+					<Examples>
+						<Example>
+							<Page>ProgressBarGettingStartedXaml</Page>
+							<Name>GettingStarted</Name>
+							<Title>Getting Started - Xaml</Title>
+						</Example>
+						<Example>
+							<Page>ProgressBarGettingStartedCSharp</Page>
+							<Name>GettingStarted</Name>
+							<Title>Getting Started - Code</Title>
+						</Example>
+					</Examples>
+				</Category>
+				<Category>
+					<Name>Features</Name>
+					<Title>Features</Title>
+					<Examples>
+						<Example>
+							<Page>Configuration</Page>
+							<Name>Configuration</Name>
+							<Title>Configuration</Title>
+						</Example>
+						<Example>
+							<Page>IndeterminateMode</Page>
+							<Name>IndeterminateMode</Name>
+							<Title>Indeterminate Mode</Title>
+						</Example>
+						<Example>
+							<Page>Animation</Page>
+							<Name>Animation</Name>
+							<Title>Animation</Title>
+						</Example>
+					</Examples>
+				</Category>
+				<Category>
+					<Name>Events</Name>
+					<Title>Events</Title>
+					<Examples>
+						<Example>
+							<Page>Events</Page>
+							<Name>Events</Name>
+							<Title>Events</Title>
+						</Example>
+					</Examples>
+				</Category>
+				<Category>
+					<Name>Styling</Name>
+					<Title>Styling</Title>
+					<Examples>
+						<Example>
+							<Page>Styling</Page>
+							<Name>Styling</Name>
+							<Title>Styling</Title>
+						</Example>
+					</Examples>
+				</Category>
+			</Categories>
+		</Control>
 		<Control>
 			<Name>Rating</Name>
 			<Title>Rating</Title>
@@ -2032,6 +2223,73 @@
 							<Page>CommandsView</Page>
 							<Name>CustomCommandsMVVM</Name>
 							<Title>Commands - ViewModel</Title>
+						</Example>
+					</Examples>
+				</Category>
+			</Categories>
+		</Control>
+		<Control>
+			<Name>SignaturePad</Name>
+			<Title>SignaturePad</Title>
+			<Icon>signaturepad.png</Icon>
+			<Categories>
+				<Category>
+					<Name>GettingStarted</Name>
+					<Title>Getting Started</Title>
+					<Examples>
+						<Example>
+							<Page>SignaturePadGettingStartedXaml</Page>
+							<Name>GettingStarted</Name>
+							<Title>Getting Started - Xaml</Title>
+						</Example>
+						<Example>
+							<Page>SignaturePadGettingStartedCSharp</Page>
+							<Name>GettingStarted</Name>
+							<Title>Getting Started - CSharp</Title>
+						</Example>
+					</Examples>
+				</Category>
+				<Category>
+					<Name>Configuration</Name>
+					<Title>Configuration</Title>
+					<Examples>
+						<Example>
+							<Page>Configuration</Page>
+							<Name>Configuration</Name>
+							<Title>Configuration</Title>
+						</Example>
+					</Examples>
+				</Category>
+				<Category>
+					<Name>SavingOptions</Name>
+					<Title>Saving Options</Title>
+					<Examples>
+						<Example>
+							<Page>SaveSignatureAsImage</Page>
+							<Name>SavingOptions</Name>
+							<Title>Save Signature As Image</Title>
+						</Example>
+					</Examples>
+				</Category>
+				<Category>
+					<Name>Events</Name>
+					<Title>Events</Title>
+					<Examples>
+						<Example>
+							<Page>Events</Page>
+							<Name>Events</Name>
+							<Title>Events</Title>
+						</Example>
+					</Examples>
+				</Category>
+				<Category>
+					<Name>Commands</Name>
+					<Title>Commands</Title>
+					<Examples>
+						<Example>
+							<Page>Commands</Page>
+							<Name>Commands</Name>
+							<Title>Clear Command</Title>
 						</Example>
 					</Examples>
 				</Category>
@@ -2274,6 +2532,35 @@
 							<Page>DropDownStyling</Page>
 							<Name>DropDownStyling</Name>
 							<Title>DropDown Styling</Title>
+						</Example>
+					</Examples>
+				</Category>
+			</Categories>
+		</Control>
+		<Control>
+			<Name>Toolbar</Name>
+			<Title>Toolbar</Title>
+			<Icon>toolbar.png</Icon>
+			<Categories>
+				<Category>
+					<Name>GettingStarted</Name>
+					<Title>Getting Started</Title>
+					<Examples>
+						<Example>
+							<Page>GettingStartedXaml</Page>
+							<Name>GettingStarted</Name>
+							<Title>Getting Started</Title>
+						</Example>
+					</Examples>
+				</Category>
+				<Category>
+					<Name>Configuration</Name>
+					<Title>Configuration</Title>
+					<Examples>
+						<Example>
+							<Page>Configuration</Page>
+							<Name>Configuration</Name>
+							<Title>Configuration</Title>
 						</Example>
 					</Examples>
 				</Category>

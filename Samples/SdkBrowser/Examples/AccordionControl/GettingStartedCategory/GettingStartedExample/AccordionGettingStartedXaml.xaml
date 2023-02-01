@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.AccordionControl.GettingStartedCategory.GettingStartedExample.AccordionGettingStartedXaml">
+    <Grid Margin="10">
+        <!-- >> accordion-getting-started-xaml -->
+        <telerik:RadAccordion x:Name="accordion">
+            <telerik:AccordionItem HeaderText="Attachments">
+                <telerik:AccordionItem.Content>
+                    <Label Text="Attach files"  Margin="30" />
+                </telerik:AccordionItem.Content>
+            </telerik:AccordionItem>
+            <telerik:AccordionItem HeaderText="Comments">
+                <telerik:AccordionItem.Content>
+                    <Label Text="Add your comment here" Margin="30" />
+                </telerik:AccordionItem.Content>
+            </telerik:AccordionItem>
+            <telerik:AccordionItem HeaderText="Rating" IsExpanded="True">
+                <telerik:AccordionItem.Content>
+                    <telerik:RadShapeRating x:Name="rating" Margin="20"/>
+                </telerik:AccordionItem.Content>
+            </telerik:AccordionItem>
+        </telerik:RadAccordion>
+        <!-- << accordion-getting-started-xaml -->
+    </Grid>
+</ContentView>

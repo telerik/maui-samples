@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.SignaturePadControl.EventsCategory.EventsExample.Events">
+    <Grid RowDefinitions="Auto,*">
+        <Label x:Name="logInfo"/>
+        <Grid Grid.Row="1">
+            <!-- >> signaturepad-events -->
+            <telerik:RadSignaturePad x:Name="signaturePad" BorderThickness="1" 
+                                     BorderColor="LightGray"
+                                     StrokeStarted="RadSignaturePad_StrokeStarted"
+                                     StrokeCompleted="RadSignaturePad_StrokeCompleted"
+                                     Cleared="RadSignaturePad_Cleared"/>
+            <!-- << signaturepad-events -->
+            <Button x:Name="clearButton" 
+                    Text="X"
+                    BackgroundColor="Transparent" 
+                    Command="{Binding Source={x:Reference signaturePad}, Path=ClearCommand}" 
+                    HorizontalOptions="End" 
+                    VerticalOptions="Start" 
+                    Margin="0,10,10,0">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="TextColor" Value="DarkGray" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Disabled">
+                            <VisualState.Setters>
+                                <Setter Property="TextColor" Value="LightGray" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+            </Button>
+
+            <Label x:Name="timeStampLabel" 
+                   HorizontalOptions="End"
+                   VerticalOptions="End" 
+                   Margin="0,0,10,10"/>
+        </Grid>
+    </Grid>
+</ContentView>
