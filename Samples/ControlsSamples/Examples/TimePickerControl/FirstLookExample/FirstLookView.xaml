@@ -14,20 +14,20 @@
         <Style TargetType="telerik:RadTimePicker">
             <Setter Property="Margin" Value="0, 0, 0, 15" />
             <Setter Property="BorderThickness" Value="0, 0, 0, 1" />
+            <Setter Property="CornerRadius" Value="0" />
             <Setter Property="Placeholder" Value="Select Time" />
-            <Setter Property="HorizontalOptions" Value="Start" />
             <Setter Property="IsToggleButtonVisible" Value="False" />
         </Style>
         <Style TargetType="telerik:RadDatePicker">
             <Setter Property="Margin" Value="0, 0, 0, 15" />
             <Setter Property="BorderThickness" Value="0, 0, 0, 1" />
+            <Setter Property="CornerRadius" Value="0" />
             <Setter Property="Placeholder" Value="Select Date" />
-            <Setter Property="HorizontalOptions" Value="Start" />
             <Setter Property="IsToggleButtonVisible" Value="False" />
         </Style>
     </ContentView.Resources>
     
-    <VerticalStackLayout x:Name="layout" HorizontalOptions="Start">
+    <VerticalStackLayout x:Name="layout">
         <Label Text="Cleaning Service"
                Style="{StaticResource DefaultSubtitleLabelStyle}"
                FontSize="24"
@@ -37,7 +37,7 @@
         <telerik:RadDatePicker x:Name="datePicker"
                                Date="{Binding SelectedDate}"
                                DefaultHighlightedDate="{Static sys:DateTime.Now}"
-                               PlaceholderLabelStyle="{StaticResource DefaultPlaceholderLabelStyle}">
+                               PlaceholderLabelStyle="{StaticResource PlaceholderLabelStyle}">
             <telerik:RadDatePicker.PopupSettings>
                 <telerik:PickerPopupSettings HeaderLabelText="Select Date" />
             </telerik:RadDatePicker.PopupSettings>
@@ -48,7 +48,7 @@
         <telerik:RadTimePicker x:Name="timePicker"
                                Time="{Binding SelectedTime}"
                                DefaultHighlightedTime="{Binding CurrentTime}"
-                               PlaceholderLabelStyle="{StaticResource DefaultPlaceholderLabelStyle}">
+                               PlaceholderLabelStyle="{StaticResource PlaceholderLabelStyle}">
             <telerik:RadTimePicker.PopupSettings>
                 <telerik:PickerPopupSettings HeaderLabelText="Select Time" />
             </telerik:RadTimePicker.PopupSettings>

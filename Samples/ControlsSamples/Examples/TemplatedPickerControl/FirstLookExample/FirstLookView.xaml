@@ -19,8 +19,8 @@
         <Style TargetType="telerik:RadTemplatedPicker">
             <Setter Property="Margin" Value="0, 0, 0, 15" />
             <Setter Property="BorderThickness" Value="0, 0, 0, 1" />
+            <Setter Property="CornerRadius" Value="0" />
             <Setter Property="Placeholder" Value="Select Size and Colour" />
-            <Setter Property="HorizontalOptions" Value="Start" />
             <Setter Property="IsToggleButtonVisible" Value="False" />
         </Style>
         <Style x:Key="DefaultUniformGridStyle" TargetType="telerik:RadUniformGrid">
@@ -88,7 +88,7 @@
         </DataTemplate>
     </ContentView.Resources>
     
-    <VerticalStackLayout HorizontalOptions="Start">
+    <VerticalStackLayout>
         <Label Text="Women's Short Sleeve Top"
                Style="{StaticResource DefaultSubtitleLabelStyle}"
                FontSize="24"
@@ -98,7 +98,7 @@
                FontSize="16"/>
         <telerik:RadTemplatedPicker x:Name="templatedPicker"
                                     Placeholder="Choose Your Size and Color"
-                                    PlaceholderLabelStyle="{StaticResource DefaultPlaceholderLabelStyle}"
+                                    PlaceholderLabelStyle="{StaticResource PlaceholderLabelStyle}"
                                     SelectedValue="{Binding SelectedValue}">
             <telerik:RadTemplatedPicker.PopupSettings>
                 <telerik:PickerPopupSettings AcceptCommand="{Binding AcceptCommand}" 

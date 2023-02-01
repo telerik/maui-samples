@@ -14,13 +14,13 @@
         <Style TargetType="telerik:RadListPicker">
             <Setter Property="Margin" Value="0, 0, 0, 15" />
             <Setter Property="BorderThickness" Value="0, 0, 0, 1" />
+            <Setter Property="CornerRadius" Value="0" />
             <Setter Property="Placeholder" Value="Select Music Genre to listen" />
-            <Setter Property="HorizontalOptions" Value="Start" />
             <Setter Property="IsToggleButtonVisible" Value="False" />
         </Style>
     </ContentView.Resources>
 
-    <VerticalStackLayout HorizontalOptions="Start">
+    <VerticalStackLayout x:Name="layout">
         <Label Text="Listen to Top Music Genres"
                Style="{StaticResource DefaultSubtitleLabelStyle}"
                FontSize="24"
@@ -30,7 +30,7 @@
         <telerik:RadListPicker x:Name="listPicker"
                                ItemsSource="{Binding Genres}"
                                SelectedItem="{Binding SelectedGenre}"
-                               PlaceholderLabelStyle="{StaticResource DefaultPlaceholderLabelStyle}">
+                               PlaceholderLabelStyle="{StaticResource PlaceholderLabelStyle}">
             <telerik:RadListPicker.PopupSettings>
                 <telerik:PickerPopupSettings HeaderLabelText="Select Music Genre" />
             </telerik:RadListPicker.PopupSettings>

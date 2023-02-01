@@ -1,9 +1,4 @@
-﻿using Microsoft.Maui;
-using Microsoft.Maui.Controls;
-using Microsoft.Maui.Converters;
-using Microsoft.Maui.Graphics;
-using Microsoft.Maui.Graphics.Converters;
-using QSF.ViewModels;
+﻿using QSF.ViewModels;
 using System.Collections.Generic;
 
 namespace QSF.Examples.EntryControl.ConfigurationExample
@@ -14,6 +9,7 @@ namespace QSF.Examples.EntryControl.ConfigurationExample
         private List<string> textColors;
         private List<string> fontSizes;
         private string selectedKeyboard;
+        private string textColor;
         private string selectedColor;
         private string selectedFontSize;
 
@@ -30,6 +26,7 @@ namespace QSF.Examples.EntryControl.ConfigurationExample
 
             this.textColors = new List<string>()
             {
+                "Default",
                 "Gray",
                 "Orange",
                 "Blue",
@@ -42,6 +39,10 @@ namespace QSF.Examples.EntryControl.ConfigurationExample
                 "Large",
                 "Small"
             };
+
+            this.SelectedKeyboard = this.keyboards[0];
+            this.SelectedTextColor = this.textColors[0];
+            this.SelectedFontSize = this.fontSizes[0];
         }
 
         public string SelectedKeyboard
@@ -56,6 +57,25 @@ namespace QSF.Examples.EntryControl.ConfigurationExample
             }
         }
 
+        public string TextColor
+        {
+            get
+            {
+                return this.textColor;
+            }
+            set
+            {
+                if (value == "Default")
+                {
+                    this.UpdateValue(ref this.textColor, null);
+                }
+                else
+                {
+                    this.UpdateValue(ref this.textColor, value);
+                }
+            }
+        }
+
         public string SelectedTextColor
         {
             get
@@ -65,6 +85,7 @@ namespace QSF.Examples.EntryControl.ConfigurationExample
             set
             {
                 this.UpdateValue(ref this.selectedColor, value);
+                this.TextColor = value;
             }
         }
 

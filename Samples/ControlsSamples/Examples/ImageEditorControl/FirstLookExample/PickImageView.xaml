@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        xmlns:converters="clr-namespace:QSF.Converters"
+                        xmlns:imageEditorExample="clr-namespace:QSF.Examples.ImageEditorControl"
+                        x:Class="QSF.Examples.ImageEditorControl.FirstLookExample.PickImageView"
+                        Margin="{OnIdiom Default=5, Phone=0}"
+                        NavigationPage.HasNavigationBar="False">
+
+    <ScrollView>
+        <Grid RowDefinitions="Auto, *"
+              BackgroundColor="#989898">
+        
+            <Label Margin="10,20,10,0"
+                   HorizontalOptions="Center"
+                   Style="{StaticResource HeaderLabelStyle}"
+                   Text="Pick an image to edit" />
+
+            <telerik:RadUniformGrid x:Name="imageLayout" 
+                                    Grid.Row="1"
+                                    VerticalOptions="Center"
+                                    BindableLayout.ItemsSource="{Binding Images}">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding ImageSource}"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"
+                                   Margin="10"
+                                   WidthRequest="150"
+                                   HeightRequest="150">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding BindingContext.OpenCommand, Source={x:Reference imageLayout}}"
+                                                          CommandParameter="{Binding ImagePath}" />
+                                </Image.GestureRecognizers>
+                            </Image>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </telerik:RadUniformGrid>
+        
+            <telerik:RadBusyIndicator Grid.Row="1"
+                                      IsBusy="{Binding IsBusy}"
+                                      IsVisible="{Binding IsBusy}" />
+
+        </Grid>
+    </ScrollView>
+</telerik:RadContentView>

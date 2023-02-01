@@ -1,0 +1,334 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        xmlns:expander="clr-namespace:Telerik.Maui.Controls.Expander;assembly=Telerik.Maui.Controls"
+                        xmlns:local="clr-namespace:QSF.Examples.AccordionControl.CustomizationExample"
+                        x:Class="QSF.Examples.AccordionControl.CustomizationExample.CustomizationView"
+                        Padding="16">
+
+    <telerik:RadContentView.Resources>
+        <ResourceDictionary>
+            <expander:ExpandCollapseIndicatorLocationToGridColumnConverter x:Key="ExpandCollapseIndicatorLocationToGridColumnConverter" />
+            <expander:InverseThicknessConverter x:Key="InverseThicknessConverter" />
+            <telerik:InvertedBooleanConverter x:Key="InvertedBooleanConverter" />
+
+            <ControlTemplate x:Key="AccordionItemHeaderTemplate">
+                <telerik:RadBorder BorderColor="{TemplateBinding BorderColor}"
+                                   Margin="{TemplateBinding Padding, Converter={StaticResource InverseThicknessConverter}}"
+                                   Padding="{TemplateBinding Padding}"
+                                   BorderThickness="{TemplateBinding BorderThickness}">
+                    <telerik:RadBorder.GestureRecognizers>
+                        <TapGestureRecognizer Command="{TemplateBinding ToggleExpandCommand}" />
+                    </telerik:RadBorder.GestureRecognizers>
+                    <Grid ColumnDefinitions="Auto, *, Auto" ColumnSpacing="0" RowSpacing="0">
+                        <telerik:RadBorder Grid.Column="{TemplateBinding IndicatorLocation, Converter={StaticResource ExpandCollapseIndicatorLocationToGridColumnConverter}}"
+                                           BackgroundColor="#151950"
+                                           WidthRequest="44"
+                                           HeightRequest="44">
+                            <telerik:RadBorder.Triggers>
+                                <DataTrigger TargetType="telerik:RadBorder"
+                                             Binding="{TemplateBinding IsExpanded}"
+                                             Value="True">
+                                    <Setter Property="Background" Value="{StaticResource AccentColor8}" />
+                                </DataTrigger>
+                            </telerik:RadBorder.Triggers>
+                        </telerik:RadBorder>
+                        <Label Text="-"
+                               TextColor="{StaticResource TextOnAccentColor}"
+                               FontSize="Large"
+                               IsVisible="{TemplateBinding IsExpanded}"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Center"
+                               Grid.Column="{TemplateBinding IndicatorLocation, Converter={StaticResource ExpandCollapseIndicatorLocationToGridColumnConverter}}"
+                               Margin="{OnPlatform Default='0, 0, 0, 4', WinUI='0, 0, 0, 8', MacCatalyst='0, 0, 0, 2'}" />
+                        <Label Text="+"
+                               TextColor="{StaticResource TextOnAccentColor}"
+                               FontSize="Large"
+                               IsVisible="{TemplateBinding IsExpanded, Converter={StaticResource InvertedBooleanConverter}}"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Center"
+                               Grid.Column="{TemplateBinding IndicatorLocation, Converter={StaticResource ExpandCollapseIndicatorLocationToGridColumnConverter}}"
+                               Margin="{OnPlatform Default='0, 0, 0, 4', WinUI='0, 0, 0, 8', MacCatalyst='0, 0, 0, 2'}" />
+                        <ContentPresenter Grid.Column="1"
+                                          Margin="16, 0, 0, 0" />
+                    </Grid>
+                </telerik:RadBorder>
+            </ControlTemplate>
+            <Style TargetType="telerik:AccordionItemHeader">
+                <Setter Property="ControlTemplate" Value="{StaticResource AccordionItemHeaderTemplate}" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="BorderThickness" Value="0, 0, 0, 1" />
+                <Setter Property="BorderColor"
+                        Value="{AppThemeBinding Light={OnPlatform Default={StaticResource DefaultBorderColor}, WinUI={StaticResource DefaultBorderColorWinUI}},
+                                                Dark={OnPlatform Default={StaticResource DefaultBorderColorDark}, WinUI={StaticResource DefaultBorderColorDarkWinUI}}}" />
+            </Style>
+
+            <Style TargetType="Label" BasedOn="{StaticResource BaseLabelStyle}">
+                <Setter Property="Margin" Value="0" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+            <Style x:Key="InfoTextLabelStyle" TargetType="Label">
+                <Setter Property="Opacity" Value="0.39" />
+                <Setter Property="FontSize" Value="13" />
+            </Style>
+            <Style x:Key="SeparatorStyle" TargetType="BoxView">
+                <Setter Property="HeightRequest" Value="1" />
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource SeparatorColor}, Dark={StaticResource SeparatorColorDark}}" />
+                <Setter Property="Margin" Value="0, 6" />
+            </Style>
+            <Style x:Key="AvatarLabelStyle" TargetType="Label">
+                <Setter Property="Text" Value="&#xE836;" />
+                <Setter Property="FontFamily" Value="TelerikFontExamples" />
+                <Setter Property="FontSize" Value="45" />
+                <Setter Property="Opacity" Value="0.13" />
+            </Style>
+            <Style x:Key="BulletPointBorderStyle" TargetType="telerik:RadBorder">
+                <Setter Property="CornerRadius" Value="6" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="WidthRequest" Value="12" />
+                <Setter Property="HeightRequest" Value="12" />
+            </Style>
+        </ResourceDictionary>
+    </telerik:RadContentView.Resources>
+
+    <ScrollView>
+        <telerik:RadAccordion CanExpandMultipleItems="True"
+                              CanCollapseAllItems="True"
+                              AutomationId="Accordion">
+            <telerik:AccordionItem IsExpanded="True">
+                <telerik:AccordionItem.Header>
+                    <telerik:AccordionItemHeader>
+                        <Label Text="Sales Channel" />
+                    </telerik:AccordionItemHeader>
+                </telerik:AccordionItem.Header>
+                <telerik:AccordionItem.Content>
+                    <Grid ColumnDefinitions="*, Auto, Auto, *"
+                          HorizontalOptions="Start"
+                          Margin="16">
+                        <telerik:RadPieChart x:Name="chart"
+                                             Grid.Column="1"
+                                             HeightRequest="150"
+                                             WidthRequest="150"
+                                             BackgroundColor="Transparent">
+                            <telerik:RadPieChart.ChartBehaviors>
+                                <telerik:ChartSelectionBehavior DataPointSelectionMode="Single"
+                                                                SeriesSelectionMode="None" />
+                            </telerik:RadPieChart.ChartBehaviors>
+                            <telerik:RadPieChart.Series>
+                                <telerik:PieSeries RadiusFactor="0.9"
+                                                   ItemsSource="{Binding SeriesData}"
+                                                   ShowLabels="False">
+                                    <telerik:PieSeries.ValueBinding>
+                                        <telerik:PropertyNameDataPointBinding PropertyName="Value" />
+                                    </telerik:PieSeries.ValueBinding>
+                                </telerik:PieSeries>
+                            </telerik:RadPieChart.Series>
+                            <telerik:RadPieChart.Palette>
+                                <telerik:ChartPalette>
+                                    <telerik:ChartPalette.Entries>
+                                        <telerik:PaletteEntry FillColor="{StaticResource AccentColor3}" StrokeColor="Transparent" />
+                                        <telerik:PaletteEntry FillColor="{StaticResource AccentColor8}" StrokeColor="Transparent" />
+                                        <telerik:PaletteEntry FillColor="{StaticResource AccentColor7}" StrokeColor="Transparent" />
+                                    </telerik:ChartPalette.Entries>
+                                </telerik:ChartPalette>
+                            </telerik:RadPieChart.Palette>
+                        </telerik:RadPieChart>
+
+                        <VerticalStackLayout Grid.Column="2"
+                                             Spacing="20"
+                                             VerticalOptions="Center"
+                                             Margin="20, 0, 0, 0">
+                            <HorizontalStackLayout Spacing="5">
+                                <telerik:RadBorder Style="{StaticResource BulletPointBorderStyle}"
+                                                   BackgroundColor="{StaticResource AccentColor8}" />
+                                <Label Text="Ecommerce" />
+                            </HorizontalStackLayout>
+                            <HorizontalStackLayout Spacing="5">
+                                <telerik:RadBorder Style="{StaticResource BulletPointBorderStyle}"
+                                                   BackgroundColor="{StaticResource AccentColor7}" />
+                                <Label Text="Personal Selling" />
+                            </HorizontalStackLayout>
+                            <HorizontalStackLayout Spacing="5">
+                                <telerik:RadBorder Style="{StaticResource BulletPointBorderStyle}"
+                                                   BackgroundColor="{StaticResource AccentColor3}" />
+                                <Label Text="Direct Marketing" />
+                            </HorizontalStackLayout>
+                        </VerticalStackLayout>
+                    </Grid>
+                </telerik:AccordionItem.Content>
+            </telerik:AccordionItem>
+
+            <telerik:AccordionItem>
+                <telerik:AccordionItem.Header>
+                    <telerik:AccordionItemHeader>
+                        <Label Text="Latest Orders" />
+                    </telerik:AccordionItemHeader>
+                </telerik:AccordionItem.Header>
+                <telerik:AccordionItem.Content>
+                    <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto"
+                          ColumnDefinitions="*, *, *"
+                          ColumnSpacing="20" 
+                          RowSpacing="5"
+                          Margin="16" >
+                        <Label Text="Order Id:"
+                               Style="{StaticResource InfoTextLabelStyle}" />
+                        <Label Grid.Column="1"
+                               Text="#123456" />
+                        <Label Grid.Row="1"
+                               Text="Due Date:"
+                               Style="{StaticResource InfoTextLabelStyle}" />
+                        <Label Grid.Row="1"
+                               Grid.Column="1"
+                               Text="12.08.2022" />
+                        <BoxView Grid.Row="2"
+                                 Grid.ColumnSpan="3"
+                                 Style="{StaticResource SeparatorStyle}" />
+                        <Label Grid.Row="3"
+                               Text="Order Id:"
+                               Style="{StaticResource InfoTextLabelStyle}" />
+                        <Label Grid.Row="3"
+                               Grid.Column="1"
+                               Text="#123456" />
+                        <Label Grid.Row="4"
+                               Text="Due Date:"
+                               Style="{StaticResource InfoTextLabelStyle}" />
+                        <Label Grid.Row="4"
+                               Grid.Column="1"
+                               Text="12.08.2022" />
+                        <BoxView Grid.Row="5"
+                                 Grid.ColumnSpan="3"
+                                 Style="{StaticResource SeparatorStyle}" />
+                    </Grid>
+                </telerik:AccordionItem.Content>
+            </telerik:AccordionItem>
+
+            <telerik:AccordionItem>
+                <telerik:AccordionItem.Header>
+                    <telerik:AccordionItemHeader>
+                        <Label Text="Recently Added Products" />
+                    </telerik:AccordionItemHeader>
+                </telerik:AccordionItem.Header>
+                <telerik:AccordionItem.Content>
+                    <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto"
+                          ColumnDefinitions="*, *, *"
+                          ColumnSpacing="20"
+                          RowSpacing="5"
+                          Margin="16">
+                        <Label Text="Product Id:"
+                               Style="{StaticResource InfoTextLabelStyle}" />
+                        <Label Grid.Column="1"
+                               Text="P123" />
+                        <Label Grid.Row="1"
+                               Text="Product Name:"
+                               Style="{StaticResource InfoTextLabelStyle}" />
+                        <Label Grid.Row="1"
+                               Grid.Column="1"
+                               Text="Head Tube" />
+                        <BoxView Grid.Row="2"
+                                 Grid.ColumnSpan="3"
+                                 Style="{StaticResource SeparatorStyle}" />
+                        <Label Grid.Row="3"
+                               Text="Product Id:"
+                               Style="{StaticResource InfoTextLabelStyle}" />
+                        <Label Grid.Row="3"
+                               Grid.Column="1"
+                               Text="P669" />
+                        <Label Grid.Row="4"
+                               Text="Product Name:"
+                               Style="{StaticResource InfoTextLabelStyle}" />
+                        <Label Grid.Row="4"
+                               Grid.Column="1"
+                               Text="Rear Brakes" />
+                        <BoxView Grid.Row="5"
+                                 Grid.ColumnSpan="3"
+                                 Style="{StaticResource SeparatorStyle}" />
+                    </Grid>
+                </telerik:AccordionItem.Content>
+            </telerik:AccordionItem>
+
+            <telerik:AccordionItem>
+                <telerik:AccordionItem.Header>
+                    <telerik:AccordionItemHeader>
+                        <Label Text="Best Vendors" />
+                    </telerik:AccordionItemHeader>
+                </telerik:AccordionItem.Header>
+                <telerik:AccordionItem.Content>
+                    <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto"
+                          ColumnDefinitions="*, *, *"
+                          ColumnSpacing="20"
+                          RowSpacing="5"
+                          Margin="16">
+                        <Label Text="Name:"
+                               Style="{StaticResource InfoTextLabelStyle}" />
+                        <Label Grid.Column="1"
+                               Text="Sales Amount:"
+                               Style="{StaticResource InfoTextLabelStyle}" />
+                        <BoxView Grid.Row="1"
+                                 Grid.ColumnSpan="3"
+                                 Style="{StaticResource SeparatorStyle}" />
+                        <Label Grid.Row="2"
+                               Text="Heller-Steuber" />
+                        <Label Grid.Row="2"
+                               Grid.Column="1"
+                               Text="$230 000" />
+                        <BoxView Grid.Row="3"
+                                 Grid.ColumnSpan="3"
+                                 Style="{StaticResource SeparatorStyle}" />
+                        <Label Grid.Row="4"
+                               Text="Roy Dijoux SAS" />
+                        <Label Grid.Row="4"
+                               Grid.Column="1"
+                               Text="$210 336" />
+                        <BoxView Grid.Row="5"
+                                 Grid.ColumnSpan="3"
+                                 Style="{StaticResource SeparatorStyle}" />
+                        <Label Grid.Row="6"
+                               Text="Vogel AG" />
+                        <Label Grid.Row="6"
+                               Grid.Column="1"
+                               Text="$190 000" />
+                        <BoxView Grid.Row="7"
+                                 Grid.ColumnSpan="3"
+                                 Style="{StaticResource SeparatorStyle}" />
+                    </Grid>
+                </telerik:AccordionItem.Content>
+            </telerik:AccordionItem>
+
+            <telerik:AccordionItem>
+                <telerik:AccordionItem.Header>
+                    <telerik:AccordionItemHeader>
+                        <Label Text="New Customers" />
+                    </telerik:AccordionItemHeader>
+                </telerik:AccordionItem.Header>
+                <telerik:AccordionItem.Content>
+                    <telerik:RadListView ItemsSource="{Binding People}"
+                                         Margin="16">
+                        <telerik:RadListView.ItemTemplate>
+                            <DataTemplate>
+                                <telerik:ListViewTemplateCell>
+                                    <telerik:ListViewTemplateCell.View>
+                                        <VerticalStackLayout MinimumHeightRequest="56"
+                                                             Padding="5, 5, 5, 0">
+                                            <HorizontalStackLayout Spacing="16">
+                                                <Label Style="{StaticResource AvatarLabelStyle}" />
+                                                <VerticalStackLayout VerticalOptions="Center">
+                                                    <Label Text="{Binding Name}" />
+                                                    <Label Text="{Binding Information}"
+                                                           Style="{StaticResource InfoTextLabelStyle}" />
+                                                </VerticalStackLayout>
+                                            </HorizontalStackLayout>
+                                            <BoxView Style="{StaticResource SeparatorStyle}"
+                                                     Margin="0, 5, 0, 0" />
+                                        </VerticalStackLayout>
+                                    </telerik:ListViewTemplateCell.View>
+                                </telerik:ListViewTemplateCell>
+                            </DataTemplate>
+                        </telerik:RadListView.ItemTemplate>
+                    </telerik:RadListView>
+                </telerik:AccordionItem.Content>
+            </telerik:AccordionItem>
+        </telerik:RadAccordion>
+    </ScrollView>
+</telerik:RadContentView>

@@ -44,7 +44,7 @@
                                                            HeightRequest="30"/>
                                                     <Label Grid.Column="1"
                                                            Text="{Binding Title}"
-                                                           TextColor="{StaticResource DefaultTextColor}"
+                                                           TextColor="{AppThemeBinding Light={StaticResource DefaultTextColor}, Dark={StaticResource DefaultTextColorDark}}"
                                                            VerticalOptions="Center" />
                                                 </Grid>
                                             </telerik:RadBorder>

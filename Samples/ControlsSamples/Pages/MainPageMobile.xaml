@@ -6,82 +6,83 @@
              ios:Page.UseSafeArea="True"
              NavigationPage.HasNavigationBar="False"
              x:Class="QSF.Pages.MainPageMobile">
-    
-    <Grid RowDefinitions="Auto, Auto, Auto, *"
-          BackgroundColor="{StaticResource DefaultBackgroundColor}">
+
+    <Grid RowDefinitions="Auto, *"
+          BackgroundColor="{AppThemeBinding Light={StaticResource DefaultBackgroundColor}, Dark={StaticResource DefaultBackgroundColorDark}}">
         <Grid ColumnDefinitions="Auto,*,Auto"
-              Style="{StaticResource HeaderStyle}">
+              Style="{StaticResource HeaderStyle}"
+              Padding="12,0">
             <Image Style="{StaticResource HeaderImageStyle}" />
             <Label Grid.Column="1"
-                   Style="{StaticResource HeaderLabelStyle}" />
+                   Style="{StaticResource HeaderLabelStyle}"
+                   FontSize="{OnIdiom Desktop=18, Phone=14}"/>
             <ImageButton Grid.Column="2"
                          Clicked="Search_Clicked"
                          Source="searchheader.png"
-                         WidthRequest="40"
+                         WidthRequest="35"
                          HeightRequest="35"
                          Aspect="Center"
-                         HorizontalOptions="EndAndExpand" 
+                         HorizontalOptions="EndAndExpand"
                          VerticalOptions="Center"
                          BackgroundColor="Transparent" />
         </Grid>
-        <!-- TODO: Remove MinimumHeightRequest once the following issue is fixed: https://github.com/dotnet/maui/issues/8645 -->
-        <views:HighlightsView Grid.Row="1"
-                              Margin="10"
-                              MinimumHeightRequest="{OnPlatform Default='0', iOS='220'}" />
-        <Grid Grid.Row="2"
-              ColumnDefinitions="Auto, *"
-              Margin="0, 0, 0, 7">
-            <Label Text="All Controls" 
-                   FontAttributes="Bold"
-                   TextColor="#121212"
-                   Margin="10, 10, 0, 10"
-                   VerticalOptions="Center"
-                   VerticalTextAlignment="Center"
-                   FontSize="Medium" />
-            <telerik:RadButton Command="{Binding NavigateToDownloadTrialCommand}"
-                               Grid.Column="1"
-                               HorizontalOptions="End"
-                               Margin="0, 0, 15, 0"
-                               Style="{StaticResource MoreInfoButtonStyle}" />
-        </Grid>
         <telerik:RadListView x:Name="controlsListView"
-                             Grid.Row="3"
+                             Grid.Row="1"
                              ItemsSource="{Binding Controls}"
                              ItemTapped="controlsListView_ItemTapped"
                              SelectionMode="None"
-                             Margin="10"
+                             Margin="16, 16, 16, 0"
                              PropertyChanged="OnPropertyChanged">
+            <telerik:RadListView.HeaderTemplate>
+                <DataTemplate>
+                    <Grid RowDefinitions="Auto,Auto">
+                        <!-- TODO: Remove MinimumHeightRequest once the following issue is fixed: https://github.com/dotnet/maui/issues/8645 -->
+                        <views:HighlightsView Margin="0, 0, 0, 10"
+                                              MinimumHeightRequest="{OnPlatform Default='0', iOS='220'}" />
+                        <Grid Grid.Row="1"
+                              ColumnDefinitions="Auto, *"
+                              Margin="0, 0, 0, 10">
+                            <Label Text="All Controls"
+                                   VerticalOptions="End"
+                                   FontSize="{OnPlatform Default=22, Android=24}" />
+                            <telerik:RadButton Command="{Binding NavigateToDownloadTrialCommand}"
+                                               Grid.Column="1"
+                                               HorizontalOptions="End"
+                                               Style="{StaticResource MoreInfoButtonStyle}" />
+                        </Grid>
+                    </Grid>
+                </DataTemplate>
+            </telerik:RadListView.HeaderTemplate>
             <telerik:RadListView.ItemTemplate>
                 <DataTemplate>
                     <telerik:ListViewTemplateCell>
                         <telerik:ListViewTemplateCell.View>
                             <telerik:RadBorder BorderThickness="0, 0, 0, 1"
-                                               Margin="10, 0"
-                                               HeightRequest="80"
-                                               BackgroundColor="White"
-                                               BorderColor="#b1b1b1">
-                                <Grid ColumnSpacing="10"
-                                      RowDefinitions="Auto,*"
+                                               HeightRequest="96"
+                                               BackgroundColor="{AppThemeBinding Light={StaticResource ItemBackgroundColor}, Dark={StaticResource ItemBackgroundColorDark}}"
+                                               BorderColor="{AppThemeBinding Light={StaticResource SeparatorColor}, Dark={StaticResource SeparatorColorDark}}">
+                                <Grid ColumnSpacing="14"
                                       ColumnDefinitions="Auto,*"
-                                      Padding="10">
-                                    <Image Grid.RowSpan="2"
-                                           Source="{Binding Icon}"
-                                           HorizontalOptions="Center"
-                                           VerticalOptions="Center"
-                                           WidthRequest="30"
-                                           HeightRequest="30"
-                                           Aspect="AspectFit" />
-                                    <Label Grid.Column="1"
-                                           Text="{Binding DisplayName}"
-                                           TextColor="{StaticResource DefaultTextColor}"
-                                           FontAttributes="Bold"
-                                           VerticalOptions="Center" />
-                                    <Label Grid.Row="1"
-                                           Grid.Column="1"
-                                           Text="{Binding ShortDescription}"
-                                           TextColor="{StaticResource DefaultTextColor}"
-                                           FontSize="Micro"
-                                           VerticalOptions="Center" />
+                                      Padding="14,8">
+                                    <telerik:RadBorder WidthRequest="44"
+                                                       CornerRadius="4"
+                                                       BackgroundColor="{AppThemeBinding Light={StaticResource DefaultBackgroundColor}, Dark=Transparent}">
+                                        <Image Source="{Binding Icon}"
+                                               HorizontalOptions="Center"
+                                               VerticalOptions="Center"
+                                               WidthRequest="24"
+                                               HeightRequest="24"
+                                               Aspect="AspectFit" />
+                                    </telerik:RadBorder>
+                                    <VerticalStackLayout Grid.Column="1"
+                                                         VerticalOptions="Center">
+                                        <Label Text="{Binding DisplayName}"
+                                               VerticalOptions="Center"
+                                               Style="{StaticResource ControlNameLabelStyle}"/>
+                                        <Label Text="{Binding ShortDescription}"
+                                               VerticalOptions="StartAndExpand"
+                                               Style="{StaticResource DescriptionLabelWithTruncationStyle}"/>
+                                    </VerticalStackLayout>
                                 </Grid>
                             </telerik:RadBorder>
                         </telerik:ListViewTemplateCell.View>

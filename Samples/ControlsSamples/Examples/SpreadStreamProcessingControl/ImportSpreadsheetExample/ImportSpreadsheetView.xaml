@@ -2,58 +2,76 @@
 <telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
                         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                         xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        xmlns:behaviors="clr-namespace:QSF.Behaviors"
                         x:Class="QSF.Examples.SpreadStreamProcessingControl.ImportSpreadsheetExample.ImportSpreadsheetView">
-    <Grid>
+    <telerik:RadContentView.Resources>
+        <telerik:InvertedNullOrEmptyToBoolConverter x:Key="InvertedNullToBoolConverter" />
+        <Style x:Key="TabViewStyle" TargetType="telerik:RadTabView">
+            <Setter Property="HeaderPosition" Value="Bottom" />
+            <Setter Property="IsHeaderOverlaid" Value="False" />
+        </Style>
+        <Style x:Key="TabViewHeaderStyle" TargetType="telerik:TabViewHeader">
+            <Setter Property="HorizontalOptions" Value="Fill" />
+        </Style>
+        <Style x:Key="TabViewHeaderItemStyle" TargetType="telerik:TabViewHeaderItem">
+            <Setter Property="HorizontalOptions" Value="Start" />
+        </Style>
+    </telerik:RadContentView.Resources>
+    <Grid Margin="10"
+          RowSpacing="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="40" />
             <RowDefinition Height="40" />
             <RowDefinition />
         </Grid.RowDefinitions>
         <HorizontalStackLayout Grid.Row="0"
-                               Grid.ColumnSpan="3"
-                               Margin="0,6"
-                               HorizontalOptions="Center">
-            <Label Text="File: "
+                               Spacing="5"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center">
+            <Label Text="File:"
                    FontAttributes="Bold" />
-            <Label Text="{Binding FileLabelText}"/>
+            <Label Text="{Binding Workbook.Name}"/>
         </HorizontalStackLayout>
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-
-            <VerticalStackLayout VerticalOptions="Center"
-                                 Margin="6,6,30,6"
-                                 HorizontalOptions="End">
-                <telerik:RadButton Text="Load Custom Document"
-                                   Padding="8,4"
-                                   Command="{Binding ImportFileCommand}"
-                                   HorizontalOptions="Center"
-                                   Style="{StaticResource SubmitButtonStyle}" />
-            </VerticalStackLayout>
-
+        <HorizontalStackLayout Grid.Row="1"
+                               Spacing="5"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center">
+            <telerik:RadButton Text="Load File"
+                               WidthRequest="150"
+                               VerticalOptions="Center"
+                               Command="{Binding ImportFileCommand}"
+                               Style="{StaticResource SubmitButtonStyle}" />
             <Label Text="- OR -"
-                   Grid.Column="1"
                    VerticalOptions="Center" />
-            <VerticalStackLayout Grid.Column="2"
-                                 VerticalOptions="Center"
-                                 Margin="30,6,6,6"
-                                 HorizontalOptions="Start">
-                <telerik:RadButton Text="Load Sample Document"
-                                   Padding="8,4"
-                                   Command="{Binding ImportSampleCommand}"
-                                   HorizontalOptions="Center"
-                                   Style="{StaticResource SubmitButtonStyle}" />
-            </VerticalStackLayout>
-        </Grid>
-        <ScrollView x:Name="Scroller"
-                    Margin="0"
-                    Padding="8,4"
-                    Background="LightGray"
-                    Grid.Row="2">
-            <Label x:Name="consoleLabel" Text="{Binding Console}" VerticalOptions="Start" />
-        </ScrollView>
+            <telerik:RadButton Text="Load Sample"
+                               WidthRequest="150"
+                               VerticalOptions="Center"
+                               Command="{Binding ImportSampleCommand}"
+                               Style="{StaticResource SubmitButtonStyle}" />
+        </HorizontalStackLayout>
+        <telerik:RadBusyIndicator Grid.Row="2"
+                                  IsBusy="{Binding IsBusy}"
+                                  Style="{StaticResource DefaultBusyIndicatorStyle}">
+            <Grid>
+                <Label HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       HorizontalTextAlignment="Center"
+                       IsVisible="{Binding Workbook, Converter={StaticResource InvertedNullToBoolConverter}}"
+                       Text="Import the sample or a custom file and see the data here." />
+                <telerik:RadTabView Style="{StaticResource TabViewStyle}"
+                                    HeaderStyle="{StaticResource TabViewHeaderStyle}"
+                                    HeaderItemStyle="{StaticResource TabViewHeaderItemStyle}"
+                                    IsVisible="{Binding Workbook, Converter={StaticResource NullOrEmptyToBoolConverter}}"
+                                    behaviors:BindableTabs.ItemsSource="{Binding Workbook.Worksheets}">
+                    <behaviors:BindableTabs.ItemTemplate>
+                        <DataTemplate>
+                            <telerik:RadDataGrid ItemsSource="{Binding Rows}"
+                                                 UserEditMode="None"
+                                                 UserGroupMode="Disabled" />
+                        </DataTemplate>
+                    </behaviors:BindableTabs.ItemTemplate>
+                </telerik:RadTabView>
+            </Grid>
+        </telerik:RadBusyIndicator>
     </Grid>
 </telerik:RadContentView>

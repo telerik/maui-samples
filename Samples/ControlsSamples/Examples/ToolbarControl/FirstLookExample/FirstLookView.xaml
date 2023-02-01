@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="QSF.Examples.ToolbarControl.FirstLookExample.FirstLookView">
+    <telerik:RadContentView.Resources>
+        <ResourceDictionary>
+            <VisualStateGroupList x:Key="ListPickerVisualStateGroupList">
+                <VisualStateGroup Name="CommonStates">
+                    <VisualState Name="Normal" />
+                    <VisualState Name="PointerOver" />
+                    <VisualState Name="Disabled">
+                        <VisualState.Setters>
+                            <Setter Property="telerik:ToolbarListItemView.TextColor" Value="#61000000" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState Name="Selected">
+                        <VisualState.Setters>
+                            <Setter Property="telerik:ToolbarListItemView.BackgroundColor" Value="{StaticResource ApplicationAccentColor}" />
+                            <Setter Property="telerik:ToolbarListItemView.TextColor" Value="{StaticResource TextOnAccentColor}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+
+            <Style x:Key="CommonLabelToolbarItemViewStyle" TargetType="telerik:LabelToolbarItemView">
+                <Setter Property="Padding" Value="{OnPlatform Default=8, WinUI=4, iOS=6, MacCatalyst=0}" />
+                <Setter Property="ContentPadding" Value="{OnIdiom Desktop='4, 0'}" />
+                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource DefaultTextColor}, Dark={StaticResource DefaultTextColorDark}}" />
+                <Setter Property="FontSize" Value="{OnPlatform Default=14, MacCatalyst=13, iOS=17}" />
+            </Style>
+
+            <Style TargetType="telerik:LabelToolbarItemView" x:Key="AvatarToolbarItemStyle">
+                <Setter Property="ImageAspect" Value="AspectFit" />
+                <Setter Property="ImageHeight" Value="{OnIdiom Desktop=40, Default=48}" />
+                <Setter Property="ImageWidth" Value="{OnIdiom Desktop=40, Default=48}" />
+                <Setter Property="ContentPadding" Value="0" />
+            </Style>
+
+            <Style TargetType="telerik:ButtonToolbarItemView" x:Key="ButtonToolbarItemViewStyle" BasedOn="{StaticResource CommonLabelToolbarItemViewStyle}">
+                <Setter Property="DisplayOptions" Value="{OnIdiom Desktop='Text, Image', Default=Image}" />
+            </Style>
+
+            <Style TargetType="telerik:ListPickerButtonToolbarItemView" x:Key="PriorityPickerToolbarItemViewStyle" BasedOn="{StaticResource CommonLabelToolbarItemViewStyle}">
+                <Setter Property="DisplayOptions" Value="Text" />
+                <Setter Property="WidthRequest" Value="{OnPlatform Default=120, MacCatalyst=90}" />
+                <Setter Property="ContentPadding" Value="4, 0" />
+                <Setter Property="VisualStateManager.VisualStateGroups" Value="{StaticResource ListPickerVisualStateGroupList}" />
+            </Style>
+
+            <Style TargetType="telerik:DropDownButtonToolbarItemViewIndicator" x:Key="PriorityPickerToolbarItemViewIndicatorStyle" BasedOn="{StaticResource CommonLabelToolbarItemViewStyle}">
+                <Setter Property="VisualStateManager.VisualStateGroups" Value="{StaticResource ListPickerVisualStateGroupList}" />
+            </Style>
+
+            <Style x:Key="PriorityPickerToolbarItemViewListItemViewStyle" TargetType="telerik:ToolbarListItemView">
+                <Setter Property="ContentPadding" Value="{OnPlatform Default='16, 12', MacCatalyst='6, 2'}" />
+                <Setter Property="CornerRadius" Value="{OnPlatform Default=0, MacCatalyst=4}" />
+                <Setter Property="MinimumWidthRequest" Value="{OnPlatform Android=48, iOS=44, WinUI=40, MacCatalyst=20}" />
+                <Setter Property="MinimumHeightRequest" Value="{OnPlatform Android=48, iOS=44, WinUI=40, MacCatalyst=20}" />
+                <Setter Property="VisualStateManager.VisualStateGroups" Value="{StaticResource ListPickerVisualStateGroupList}" />
+            </Style>
+        </ResourceDictionary>
+    </telerik:RadContentView.Resources>
+
+    <Grid RowDefinitions="Auto, Auto, *" Padding="10">
+        <telerik:RadToolbar OverflowMode="Scroll"
+                            ItemSpacing="{OnPlatform Default=8, Android=0}" 
+                            ScrollButtonsVisibility="{OnIdiom Desktop=Auto, Default=Hidden}">
+            <telerik:LabelToolbarItem ImageSource="{Binding AvatarImage}"
+                                      Style="{StaticResource AvatarToolbarItemStyle}" />
+
+            <telerik:ButtonToolbarItem Command="{Binding SendEmailCommand}"
+                                       Style="{StaticResource CommonLabelToolbarItemViewStyle}">
+                <telerik:ButtonToolbarItem.ImageSource>
+                    <FontImageSource FontFamily="TelerikFontExamples"
+                                     Glyph="&#xe82d;"
+                                     Size="{OnPlatform Android=16, Default=20}" />
+                </telerik:ButtonToolbarItem.ImageSource>
+            </telerik:ButtonToolbarItem>
+
+            <telerik:SeparatorToolbarItem/>
+
+            <telerik:ButtonToolbarItem Text="{OnIdiom Desktop='Save as Draft', Tablet='Save as Draft', Default=''}"
+                                       Style="{StaticResource ButtonToolbarItemViewStyle}"
+                                       Command="{Binding SaveDraftCommand}">
+                <telerik:ButtonToolbarItem.ImageSource>
+                    <FontImageSource FontFamily="TelerikFontExamples"
+                                     Glyph="&#xe87b;"
+                                     Size="{OnPlatform Android=20, Default=24}" />
+                </telerik:ButtonToolbarItem.ImageSource>
+            </telerik:ButtonToolbarItem>
+
+            <telerik:SeparatorToolbarItem/>
+
+            <telerik:ButtonToolbarItem Text="{OnIdiom Desktop='Archive Message', Tablet='Archive Message', Default=''}"
+                                       Style="{StaticResource ButtonToolbarItemViewStyle}"
+                                       Command="{Binding ArchiveEmailCommand}">
+                <telerik:ButtonToolbarItem.ImageSource>
+                    <FontImageSource FontFamily="TelerikFontExamples"
+                                     Glyph="&#xe826;"
+                                     Size="{OnPlatform Android=16, Default=20}" />
+                </telerik:ButtonToolbarItem.ImageSource>
+            </telerik:ButtonToolbarItem>
+
+            <telerik:SeparatorToolbarItem/>
+
+            <telerik:LabelToolbarItem Text="Priority:" />
+
+            <telerik:ListPickerButtonToolbarItem Text="{Binding SelectedPriority}"
+                                                 ItemsSource="{Binding Priorities}"
+                                                 SelectedItem="{Binding SelectedPriority}"
+                                                 Style="{StaticResource PriorityPickerToolbarItemViewStyle}"
+                                                 DropDownIndicatorStyle="{StaticResource PriorityPickerToolbarItemViewIndicatorStyle}"
+                                                 ItemStyle="{StaticResource PriorityPickerToolbarItemViewListItemViewStyle}" />
+
+            <telerik:ButtonToolbarItem Command="{Binding ClearEmailCommand}"
+                                       Style="{StaticResource CommonLabelToolbarItemViewStyle}">
+                <telerik:ButtonToolbarItem.ImageSource>
+                    <FontImageSource FontFamily="TelerikFontExamples"
+                                     Glyph="&#xe877;"
+                                     Size="20" />
+                </telerik:ButtonToolbarItem.ImageSource>
+            </telerik:ButtonToolbarItem>
+        </telerik:RadToolbar>
+
+        <Grid ColumnDefinitions="{OnIdiom Desktop='120, 320', Default='66, *'}"
+              RowDefinitions="Auto, Auto"
+              Grid.Row="1"
+              RowSpacing="28"
+              Margin="0, 24, 0, 0"
+              Padding="{OnIdiom Default='0', Desktop='10, 0'}">
+            <Label Text="To:"
+                   VerticalOptions="Center" />
+            <telerik:RadEntry Grid.Column="1"
+                              Placeholder="Enter Recipient"
+                              Text="{Binding Recepient}" />
+            <Label Text="Title:"
+                   Grid.Row="1"
+                   VerticalOptions="Center" />
+            <telerik:RadEntry Grid.Row="1"
+                              Grid.Column="1"
+                              Placeholder="Enter Title"
+                              Text="{Binding Title}" />
+        </Grid>
+        <Grid Grid.Row="2"
+              Margin="0, 28, 0, 0">
+            <telerik:RadBorder IsVisible="{OnPlatform Default=False, MacCatalyst=True}"
+                               BorderThickness="1"
+                               BorderColor="{AppThemeBinding Light={StaticResource DefaultBorderColor}, Dark={StaticResource DefaultBorderColorDark}}" />
+            <Editor BackgroundColor="Transparent"
+                    Text="{Binding EmailText}" />
+        </Grid>
+    </Grid>
+</telerik:RadContentView>

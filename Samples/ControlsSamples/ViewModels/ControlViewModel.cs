@@ -37,6 +37,14 @@ public class ControlViewModel : PageViewModel
         }
     }
 
+    public Control Control
+    {
+        get
+        {
+            return this.control;
+        }
+    }
+
     public ObservableCollection<Example> Examples { get; private set; }
 
     public Example SelectedExample

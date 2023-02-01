@@ -4,7 +4,7 @@
                           xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
                           xmlns:views="clr-namespace:QSF.Views"
                           x:Class="QSF.Views.SmoothItemView"
-                          BackgroundColor="{StaticResource BasicBackgroundColor3}">
+                          BackgroundColor="{AppThemeBinding Light={StaticResource ItemBackgroundColor}, Dark={StaticResource ItemBackgroundColorDark}}">
 
     <VisualElement.Resources>
         <Style x:Key="BorderStyle" TargetType="telerik:RadBorder">
@@ -13,35 +13,31 @@
         <Style x:Key="HeaderLabelStyle" TargetType="Label">
             <Setter Property="FontSize" Value="Subtitle" />
         </Style>
-        <Style x:Key="DescriptionLabelStyle" TargetType="Label">
-            <Setter Property="TextColor" Value="{StaticResource TextColor2}" />
-            <Setter Property="FontSize" Value="14" />
-        </Style>
     </VisualElement.Resources>
 
     <ContentView.ControlTemplate>
         <ControlTemplate>
-            <HorizontalStackLayout>
-                <telerik:RadBorder BackgroundColor="{StaticResource BasicBackgroundColor2}"
+            <Grid ColumnDefinitions="Auto, *">
+                <telerik:RadBorder BackgroundColor="{AppThemeBinding Light={StaticResource DefaultBackgroundColor}, Dark=Transparent}"
                                    Margin="6, 12, 12, 12"
                                    Style="{StaticResource BorderStyle}">
                     <Image Source="{TemplateBinding Icon}"
                            Aspect="Center"
                            Margin="12" />
                 </telerik:RadBorder>
-                <VerticalStackLayout>
+                <VerticalStackLayout Grid.Column="1">
                     <Label Text="{TemplateBinding Header}"
                            Margin="0, 12, 12, 3"
                            Style="{StaticResource HeaderLabelStyle}" />
-                    <Label Text="{TemplateBinding Description}"
+                    <Label x:Name="descriptionLabel"
+                           Text="{TemplateBinding Description}"
                            MinimumWidthRequest="100"
-                           MaximumWidthRequest="200"
                            MinimumHeightRequest="{OnPlatform MacCatalyst=45, Default=NaN}"
                            MaxLines="3"
                            Margin="0, 3, 12, 12"
                            Style="{StaticResource DescriptionLabelStyle}" />
                 </VerticalStackLayout>
-            </HorizontalStackLayout>
+            </Grid>
         </ControlTemplate>
     </ContentView.ControlTemplate>
 

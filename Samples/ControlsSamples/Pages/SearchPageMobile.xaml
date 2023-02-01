@@ -9,26 +9,26 @@
              x:Class="QSF.Pages.SearchPageMobile">
     
     <VisualElement.Resources>
-        <Style x:Key="EntryStyle_iOS" TargetType="telerik:RadEntry">
+        <Style x:Key="EntryStyle" TargetType="telerik:RadEntry">
+            <!--These setters are intentional - TextOnAccentColor and PlaceholderColorDark, as the underlying color is an accent one.-->
+            <Setter Property="TextColor" Value="{StaticResource TextOnAccentColor}" />
+            <Setter Property="PlaceholderColor" Value="{StaticResource PlaceholderColorDark}" />
+            <Setter Property="ClearButtonColor" Value="{StaticResource PlaceholderColorDark}" />
+            <Setter Property="BackgroundColor" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent" />
             <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="FocusedBorderBrush" Value="Transparent" />
             <Setter Property="FocusedBorderThickness" Value="0" />
-        </Style>
-        <Style x:Key="EntryStyle" TargetType="telerik:RadEntry" BasedOn="{OnPlatform iOS={StaticResource EntryStyle_iOS}}">
-            <Setter Property="TextColor" Value="{StaticResource PrimaryTextColor1}" />
-            <Setter Property="BorderBrush" Value="{StaticResource PrimaryTextColor1}" />
-            <Setter Property="FocusedBorderBrush" Value="{StaticResource PrimaryTextColor1}" />
-            <Setter Property="PlaceholderColor" Value="{StaticResource PlaceholderColor}" />
-            <Setter Property="ClearButtonColor" Value="{StaticResource PlaceholderColor}" />
         </Style>
         <Style x:Key="InnerSearchViewStyle_iOS" TargetType="views:InnerSearchView">
             <Setter Property="Margin" Value="10" />
         </Style>
-        <Style x:Key="BoxViewStyle_iOS" TargetType="BoxView">
-            <Setter Property="IsVisible" Value="{OnPlatform iOS=true, Default=false}" />
+        <Style x:Key="BoxViewStyle" TargetType="BoxView">
+            <Setter Property="IsVisible" Value="{OnPlatform Default=true, iOS=false}" />
             <Setter Property="HeightRequest" Value="1" />
-            <Setter Property="Margin" Value="0, 0, 0, 4" />
+            <Setter Property="Margin" Value="{OnPlatform Default='8, 0, 0, 4', iOS=0}" />
             <Setter Property="VerticalOptions" Value="End" />
-            <Setter Property="BackgroundColor" Value="{StaticResource PrimaryTextColor1}" />
+            <Setter Property="BackgroundColor" Value="White" />
         </Style>
     </VisualElement.Resources>
 
@@ -38,8 +38,11 @@
             <ImageButton Command="{Binding NavigateBackCommand}"
                          Style="{OnPlatform Default={StaticResource DefaultBackButtonStyle}, iOS={StaticResource IOSBackButtonStyle}}" />
             <telerik:RadBorder Grid.Column="1"
-                               CornerRadius="{StaticResource BorderCornerRadius}">
-                <Grid ColumnDefinitions="Auto, *">
+                               BackgroundColor="{OnPlatform Default='Transparent', iOS='#3DFFFFFF'}"
+                               CornerRadius="{OnPlatform Default=0, iOS=10}"
+                               VerticalOptions="Center">
+                <Grid ColumnDefinitions="Auto, *"
+                      Padding="{OnPlatform Default=0, iOS='8, 0'}">
                     <Image Source="searchentry.png"
                            Aspect="Center" />
                     <telerik:RadEntry x:Name="searchEntry"
@@ -47,7 +50,7 @@
                                       Grid.Column="1"
                                       Style="{StaticResource EntryStyle}" />
                     <BoxView Grid.Column="1"
-                             Style="{StaticResource BoxViewStyle_iOS}" />
+                             Style="{StaticResource BoxViewStyle}" />
                 </Grid>
             </telerik:RadBorder>
         </Grid>
