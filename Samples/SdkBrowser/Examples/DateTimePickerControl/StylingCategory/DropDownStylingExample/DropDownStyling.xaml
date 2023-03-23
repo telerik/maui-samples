@@ -21,7 +21,6 @@
             <!-- >> datetimepicker-style-accept-button-style -->
             <Style TargetType="Button" x:Key="acceptButtonStyle">
                 <Setter Property="BackgroundColor" Value="Transparent"/>
-                <Setter Property="Text" Value="OK"/>
                 <Setter Property="TextColor" Value="#00B5DC"/>
             </Style>
             <!-- << datetimepicker-style-accept-button-style -->
@@ -29,21 +28,31 @@
             <!-- >> datetimepicker-style-cancel-button-style -->
             <Style TargetType="Button" x:Key="cancelButtonStyle">
                 <Setter Property="BackgroundColor" Value="Transparent"/>
-                <Setter Property="Text" Value="X"/>
                 <Setter Property="TextColor" Value="#00B5DC"/>
             </Style>
             <!-- << datetimepicker-style-cancel-button-style -->
+
+            <!-- >> datetimepicker-string-accept-button-text -->
+            <x:String x:Key="acceptButtonText">OK</x:String>
+            <!-- << datetimepicker-string-accept-button-text -->
+
+            <!-- >> datetimepicker-string-cancel-button-text -->
+            <x:String x:Key="cancelButtonText">X</x:String>
+            <!-- << datetimepicker-string-cancel-button-text -->
         </ResourceDictionary>
     </telerik:RadContentView.Resources>
     <VerticalStackLayout WidthRequest="300" HorizontalOptions="Center">
         <!-- >> datetimepicker-dropdown-style -->
         <telerik:RadDateTimePicker PickerMode="DropDown"
-                                   DefaultHighlightedDate="2020,05,15">
+                                   DefaultHighlightedDate="2020,05,15"
+                                   AutomationId="dateTimePicker">
             <telerik:RadDateTimePicker.DropDownSettings>
                 <telerik:PickerDropDownSettings DropDownViewStyle="{StaticResource dropDownViewStyle}"
                                                 FooterStyle="{StaticResource footerStyle}"
                                                 AcceptButtonStyle="{StaticResource acceptButtonStyle}"
-                                                CancelButtonStyle="{StaticResource cancelButtonStyle}" />
+                                                CancelButtonStyle="{StaticResource cancelButtonStyle}"
+                                                AcceptButtonText="{StaticResource acceptButtonText}"
+                                                CancelButtonText="{StaticResource cancelButtonText}" />
             </telerik:RadDateTimePicker.DropDownSettings>
         </telerik:RadDateTimePicker>
         <!-- << datetimepicker-dropdown-style -->

@@ -12,4 +12,11 @@ public partial class CellEditTemplate : RadContentView
 
         this.BindingContext = new ViewModel();
     }
+
+    private void StadiumCapacityChanged(object sender, Microsoft.Maui.Controls.ValueChangedEventArgs e)
+    {
+#if WINDOWS
+        ((Microsoft.Maui.IView)this.dataGrid).InvalidateMeasure();
+#endif
+    }
 }

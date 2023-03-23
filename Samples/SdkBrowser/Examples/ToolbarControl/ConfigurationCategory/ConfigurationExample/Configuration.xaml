@@ -54,13 +54,10 @@
     </ContentView.Resources>
     
     <!-- >> toolbar-configuration -->
-    <VerticalStackLayout>
+    <HorizontalStackLayout>
         <telerik:RadToolbar x:Name="toolbar" 
-                            WidthRequest="90" 
-                            HeightRequest="260"
-                            HorizontalOptions="Start"
-                            Orientation="Vertical" 
-                            LineSpacing="5" 
+                            Orientation="Vertical"
+                            LineSpacing="5"
                             OverflowMode="DropDown"
                             BackNavigationButtonStyle="{StaticResource backNavigationButtonStyle}"
                             OverflowMenuButtonStyle="{StaticResource overfowButtonStyle}"
@@ -177,6 +174,6 @@
                 </telerik:RadioButtonToolbarItem>
             </telerik:GroupToolbarItem>
         </telerik:RadToolbar>
-    </VerticalStackLayout>
+    </HorizontalStackLayout>
     <!-- << toolbar-configuration -->
 </ContentView>

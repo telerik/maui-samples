@@ -7,7 +7,7 @@
     <Grid>
         <telerik:RadDataForm x:Name="dataForm" AutoGenerateItems="False">
             <telerik:RadDataForm.BindingContext>
-                <local:EditorsModel/>
+                <local:EditorsViewModel/>
             </telerik:RadDataForm.BindingContext>
             <telerik:DataFormRadEntryEditor PropertyName="FirstName" 
                                             HeaderText="Name"/>

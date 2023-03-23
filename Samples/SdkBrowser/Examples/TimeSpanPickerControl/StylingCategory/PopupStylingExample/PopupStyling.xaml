@@ -41,7 +41,6 @@
             <!-- >> timespanpicker-style-accept-button-style -->
             <Style TargetType="Button" x:Key="acceptButtonStyle">
                 <Setter Property="BackgroundColor" Value="Transparent"/>
-                <Setter Property="Text" Value="Accept"/>
                 <Setter Property="TextColor" Value="White"/>
             </Style>
             <!-- << timespanpicker-style-accept-button-style -->
@@ -49,15 +48,22 @@
             <!-- >> timespanpicker-style-cancel-button-style -->
             <Style TargetType="Button" x:Key="cancelButtonStyle">
                 <Setter Property="BackgroundColor" Value="Transparent"/>
-                <Setter Property="Text" Value="Reject"/>
                 <Setter Property="TextColor" Value="White"/>
             </Style>
             <!-- << timespanpicker-style-cancel-button-style -->
+
+            <!-- >> timespanpicker-string-accept-button-text -->
+            <x:String x:Key="acceptButtonText">Accept</x:String>
+            <!-- << timespanpicker-string-accept-button-text -->
+
+            <!-- >> timespanpicker-string-cancel-button-text -->
+            <x:String x:Key="cancelButtonText">Reject</x:String>
+            <!-- << timespanpicker-string-cancel-button-text -->
         </ResourceDictionary>
     </ContentView.Resources>
     <VerticalStackLayout WidthRequest="300" HorizontalOptions="Center">
         <!-- >> timespanpicker-popup-style -->
-        <telerik:RadTimeSpanPicker PickerMode="Popup">
+        <telerik:RadTimeSpanPicker PickerMode="Popup" AutomationId="timeSpanPicker">
             <telerik:RadTimeSpanPicker.PopupSettings>
                 <telerik:PickerPopupSettings PopupOutsideBackgroundColor="#D9D9D9CC"
                                              PopupViewStyle="{StaticResource popupViewStyle}"
@@ -66,7 +72,9 @@
                                              HeaderLabelStyle="{StaticResource headerLabelStyle}"
                                              FooterStyle="{StaticResource footerStyle}"
                                              AcceptButtonStyle="{StaticResource acceptButtonStyle}"
-                                             CancelButtonStyle="{StaticResource cancelButtonStyle}"/>
+                                             CancelButtonStyle="{StaticResource cancelButtonStyle}"
+                                             AcceptButtonText="{StaticResource acceptButtonText}"
+                                             CancelButtonText="{StaticResource cancelButtonText}"/>
             </telerik:RadTimeSpanPicker.PopupSettings>
         </telerik:RadTimeSpanPicker>
         <!-- << timespanpicker-popup-style -->

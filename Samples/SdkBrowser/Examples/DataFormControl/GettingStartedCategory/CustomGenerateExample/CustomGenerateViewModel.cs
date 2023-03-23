@@ -1,18 +1,19 @@
-﻿using Microsoft.Maui.Controls.Xaml;
-using Telerik.Maui.Controls;
-using System;
+﻿using System;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using Telerik.Maui.Controls;
 
-namespace SDKBrowserMaui.Examples.DataFormControl.EditorsCategory.EditorsExample
+namespace SDKBrowserMaui.Examples.DataFormControl.GettingStartedCategory.CustomGenerateExample
 {
-    // >> dataform-editors-model
-    public class EditorsModel : NotifyPropertyChangedBase
+    // >> dataform-custom-generate-viewmodel
+    public class CustomGenerateViewModel : NotifyPropertyChangedBase
     {
-        private string name;
+        private string firstName;
+        private string lastName;
         private DateTime? startDate;
-        private DateTime? endDate;
-        private double? people;
-        private bool? visited;
+        private TimeSpan? startTime;
+        private double? people = 1;
+        private bool visited;
         private TimeSpan? duration;
         private EnumValue accommodation = EnumValue.Apartment;
         public enum EnumValue
@@ -22,8 +23,6 @@ namespace SDKBrowserMaui.Examples.DataFormControl.EditorsCategory.EditorsExample
             House
         }
 
-        [Required]
-        [Display(Name = "Select accomodation")]
         public EnumValue Accommodation
         {
             get
@@ -41,51 +40,54 @@ namespace SDKBrowserMaui.Examples.DataFormControl.EditorsCategory.EditorsExample
         }
 
         [Required]
-        [Display(Name = "First Name")]
         public string FirstName
         {
-            get => this.name;
-            set => this.UpdateValue(ref this.name, value);
+            get => this.firstName;
+            set => this.UpdateValue(ref this.firstName, value);
         }
 
         [Required]
-        [Display(Name = "Start date")]
+        public string LastName
+        {
+            get => this.lastName;
+            set => this.UpdateValue(ref this.lastName, value);
+        }
+
         public DateTime? StartDate
         {
             get => this.startDate;
             set => this.UpdateValue(ref this.startDate, value);
         }
 
-        [Required]
-        [Display(Name = "End Date")]
-        public DateTime? EndDate
+        [Category("Details")]
+        public TimeSpan? EndDate
         {
-            get => this.endDate;
-            set => this.UpdateValue(ref this.endDate, value);
+            get => this.startTime;
+            set => this.UpdateValue(ref this.startTime, value);
         }
 
-        [Required]
-        [Display(Name = "Number of People")]
-        [Range(1, 10)]
+        [Category("Details")]
         public double? People
         {
             get => this.people;
             set => this.UpdateValue(ref this.people, value);
         }
 
-        [Display(Name = "Visited before")]
-        public bool? Visited
+        [Required]
+        [Category("Ignored")]
+        public bool Visited
         {
             get => this.visited;
             set => this.UpdateValue(ref this.visited, value);
         }
 
-        [Display(Name = "Duration")]
+        [Required]
+        [Category("Ignored")]
         public TimeSpan? Duration
         {
             get => this.duration;
             set => this.UpdateValue(ref this.duration, value);
         }
     }
-    // << dataform-editors-model
+    // << dataform-custom-generate-viewmodel
 }

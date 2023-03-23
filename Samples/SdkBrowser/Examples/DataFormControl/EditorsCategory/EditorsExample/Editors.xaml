@@ -8,7 +8,7 @@
         <!-- >> dataform-editors -->
         <telerik:RadDataForm x:Name="dataForm" AutoGenerateItems="False">
             <telerik:RadDataForm.BindingContext>
-                <local:EditorsModel/>
+                <local:EditorsViewModel/>
             </telerik:RadDataForm.BindingContext>
             <telerik:DataFormRadEntryEditor PropertyName="FirstName" HeaderText="Name"/>
             <telerik:DataFormRadNumericEditor PropertyName="People" HeaderText="People" Minimum="1"/>

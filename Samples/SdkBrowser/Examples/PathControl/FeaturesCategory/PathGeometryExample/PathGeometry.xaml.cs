@@ -1,7 +1,7 @@
-﻿using Microsoft.Maui.Controls.Xaml;
+﻿using System;
+using Microsoft.Maui.Controls.Xaml;
 using Microsoft.Maui.Graphics;
 using Telerik.Maui.Controls;
-using Telerik.Maui.Controls.Compatibility.Common;
 
 namespace SDKBrowserMaui.Examples.PathControl.FeaturesCategory.PathGeometryExample
 {
@@ -25,6 +25,20 @@ namespace SDKBrowserMaui.Examples.PathControl.FeaturesCategory.PathGeometryExamp
             geometry.Figures.Add(customLine);
             customLinePath.Geometry = geometry;
             // << path-geometry-customline-segment
+
+            this.rootGrid.SizeChanged += RootGridSizeChanged;
+        }
+
+        private void RootGridSizeChanged(object sender, EventArgs e)
+        {
+            double size = Math.Min(this.rootGrid.Width, this.rootGrid.Height / 3);
+
+            this.simpleArcPath.WidthRequest = size;
+            this.simpleArcPath.HeightRequest = size;
+            this.simpleLinePath.WidthRequest = size;
+            this.simpleLinePath.HeightRequest = size;
+            this.customLinePath.WidthRequest = size;
+            this.customLinePath.HeightRequest = size;
         }
     }
 }

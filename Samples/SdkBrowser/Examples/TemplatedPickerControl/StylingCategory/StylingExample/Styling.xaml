@@ -82,7 +82,8 @@
                                     IsClearButtonVisible="True"
                                     IsToggleButtonVisible="True"
                                     SelectedValue="{Binding FromCity, Mode=TwoWay}"
-                                    DisplayMemberPath="Name">
+                                    DisplayMemberPath="Name"
+                                    AutomationId="templatedPicker">
             <telerik:RadTemplatedPicker.SelectorTemplate>
                 <ControlTemplate>
                     <Grid ColumnDefinitions="*,*" HeightRequest="250">

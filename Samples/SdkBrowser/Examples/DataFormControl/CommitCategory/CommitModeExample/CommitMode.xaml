@@ -6,18 +6,24 @@
              x:Class="SDKBrowserMaui.Examples.DataFormControl.CommitCategory.CommitModeExample.CommitMode">
     
     <!-- >> dataform-commit-mode -->
-    <Grid RowDefinitions="Auto,*">
+    <Grid RowDefinitions="Auto,*,Auto">
         <Grid.BindingContext>
-            <local:EditorsModel/>
+            <local:EditorsViewModel/>
         </Grid.BindingContext>
-        <HorizontalStackLayout>
-            <Button Text="Commit Data"
-                    x:Name="commitNameButton"
-                    Clicked="commitNameButton_Clicked"/>
+        <HorizontalStackLayout Grid.Row="0" Spacing="10">
+            <CheckBox IsChecked="{Binding HasPendingChanges, Source={x:Reference dataForm}}" VerticalOptions="Center" />
+            <Label Text="Pending changes" VerticalOptions="Center" />
         </HorizontalStackLayout>
         <telerik:RadDataForm x:Name="dataForm" 
                              Grid.Row="1"
                              CommitMode="Explicit"/>
+        <HorizontalStackLayout Grid.Row="2">
+            <Button Text="Commit"
+                    x:Name="commitNameButton"
+                    Clicked="OnCommitClicked"/>
+            <Button Text="Cancel"
+                    Clicked="OnCancelClicked"/>
+        </HorizontalStackLayout>
     </Grid>
     <!-- << dataform-commit-mode -->
 </ContentView>

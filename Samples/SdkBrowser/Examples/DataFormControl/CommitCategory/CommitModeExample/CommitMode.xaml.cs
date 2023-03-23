@@ -10,10 +10,36 @@ public partial class CommitMode : ContentView
 		InitializeComponent();
 	}
 
-	// >> dataform-commit-changes
-	private void commitNameButton_Clicked(object sender, System.EventArgs e)
+	
+	private void OnCommitClicked(object sender, System.EventArgs e)
 	{
-		this.dataForm.CommitChanges();
-	}
-    // << dataform-commit-changes
+        var propertyName = "FisrtName";
+
+        if (string.IsNullOrEmpty(propertyName))
+        {
+            // >> dataform-commit-changes
+            this.dataForm.CommitChanges();
+            // << dataform-commit-changes
+        }
+        else
+        {
+            // >> dataform-commit-changes-on-property
+            this.dataForm.CommitChanges(propertyName);
+            // << dataform-commit-changes-on-property
+        }
+    }
+
+    private void OnCancelClicked(object sender, System.EventArgs e)
+    {
+        var propertyName = "FirstName";
+
+        if (string.IsNullOrEmpty(propertyName))
+        {
+            this.dataForm.CancelChanges();
+        }
+        else
+        {
+            this.dataForm.CancelChanges(propertyName);
+        }
+    }
 }

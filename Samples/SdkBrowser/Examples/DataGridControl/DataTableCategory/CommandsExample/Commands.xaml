@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        xmlns:local="clr-namespace:SDKBrowserMaui.Examples.DataGridControl.CommandsCategory.CommandsExample"
+                        x:Class="SDKBrowserMaui.Examples.DataGridControl.DataTableCategory.CommandsExample.Commands">
+
+    <!-- >> datagrid-datatable-commands -->
+    <telerik:RadDataGrid ItemsSource="{Binding Data}"
+                         x:Name="dataGrid">
+        <telerik:RadDataGrid.Commands>
+            <local:CellTapUserCommand/>
+        </telerik:RadDataGrid.Commands>
+    </telerik:RadDataGrid>
+    <!-- << datagrid-datatable-commands -->
+</telerik:RadContentView>

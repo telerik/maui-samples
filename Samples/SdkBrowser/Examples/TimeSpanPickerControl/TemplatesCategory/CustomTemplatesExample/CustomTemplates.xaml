@@ -65,7 +65,8 @@
     <VerticalStackLayout WidthRequest="300" HorizontalOptions="Center">
         <!-- >> timespanpicker-custom-templates -->
         <telerik:RadTimeSpanPicker PlaceholderTemplate="{StaticResource placeholderTemplate}"
-                                   DisplayTemplate="{StaticResource displayTemplate}">
+                                   DisplayTemplate="{StaticResource displayTemplate}"
+                                   AutomationId="timeSpanPicker">
             <telerik:RadTimeSpanPicker.PopupSettings>
                 <telerik:PickerPopupSettings HeaderTemplate="{StaticResource headerTemplate}"
                                              FooterTemplate="{StaticResource footerTemplate}"/>

@@ -61,7 +61,8 @@
         <telerik:RadTemplatedPicker x:Name="picker"
                                     SelectedValue="{Binding FromCity, Mode=TwoWay}"
                                     DisplayMemberPath="Name"
-                                    SelectorTemplate="{StaticResource SelectorTemplate}">
+                                    SelectorTemplate="{StaticResource SelectorTemplate}"
+                                    AutomationId="templatedPicker">
             <telerik:RadTemplatedPicker.PopupSettings>
                 <telerik:PickerPopupSettings HeaderTemplate="{StaticResource HeaderTemplate}"/>
             </telerik:RadTemplatedPicker.PopupSettings>

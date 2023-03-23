@@ -79,7 +79,8 @@
                                ItemSpacing="4"
                                ItemsSource="{Binding Items}" 
                                DisplayMemberPath="Name"
-                               x:Name="listPicker">
+                               x:Name="listPicker"
+                               AutomationId="listPicker">
             <telerik:RadListPicker.BindingContext>
                 <local:CitiesViewModel/>
             </telerik:RadListPicker.BindingContext>

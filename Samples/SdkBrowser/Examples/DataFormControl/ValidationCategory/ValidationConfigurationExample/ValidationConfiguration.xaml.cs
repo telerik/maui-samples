@@ -9,8 +9,4 @@ public partial class ValidationConfiguration : ContentView
 	{
 		InitializeComponent();
 	}
-    private void OnValidateChangesClicked(object sender, System.EventArgs e)
-    {
-        this.dataForm.ValidateChanges();
-    }
 }

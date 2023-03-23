@@ -4,8 +4,10 @@
                         xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
                         x:Class="SDKBrowserMaui.Examples.DataGridControl.StylingCategory.DataGridStylingExample.DataGridStyling">
     <telerik:RadDataGrid x:Name="DataGrid"
-                             IsVisible="True"
-                             UserEditMode="Cell">
+                         BorderBrush="#8660C5"
+                         BorderThickness="4"
+                         IsVisible="True"
+                         UserEditMode="Cell">
         <!-- >> datagrid-styling-alternaterowbackgroundstyle -->
         <telerik:RadDataGrid.AlternateRowBackgroundStyle>
             <telerik:DataGridBorderStyle BackgroundColor="LightBlue" 
