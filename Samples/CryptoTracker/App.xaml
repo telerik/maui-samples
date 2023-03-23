@@ -22,9 +22,7 @@
                 <Setter Property="FontFamily" Value="telerikFontExamples" />
             </Style>
             <Style x:Key="TrendingTitleStyle" TargetType="Label">
-                <Setter Property="Margin" Value="0, 10"/>
-                <Setter Property="FontSize" Value="Title"/>
-                <Setter Property="HeightRequest" Value="35"/>
+                <Setter Property="FontSize" Value="18"/>
                 <Setter Property="FontAttributes" Value="Bold"/>
                 <Setter Property="TextColor" Value="Black"/>
             </Style>
@@ -61,12 +59,14 @@
                 <Setter Property="FontAttributes" Value="Bold"/>
                 <Setter Property="FontSize" Value="16"/>
                 <Setter Property="TextColor" Value="{x:Static Application.AccentColor}"/>
-                <Setter Property="Margin" Value="20, 10, 5, 10"/>
+                <Setter Property="Margin" Value="20, 0, 5, 0"/>
+                <Setter Property="VerticalOptions" Value="Center" />
             </Style>
             <Style x:Key="ListViewCoinNameStyle" TargetType="Label">
-                <Setter Property="Margin" Value="0, 10, 10, 10"/>
-                <Setter Property="HeightRequest" Value="20"/>
+                <Setter Property="MinimumHeightRequest" Value="{OnPlatform Default=38, WinUI=-1}"/>
                 <Setter Property="FontSize" Value="14"/>
+                <Setter Property="LineBreakMode" Value="TailTruncation"/>
+                <Setter Property="VerticalOptions" Value="Center" />
             </Style>
             <Style x:Key="ListViewCoinPriceStyle" TargetType="Label">
                 <Setter Property="FontAttributes" Value="Bold"/>
@@ -86,8 +86,7 @@
             <Style x:Key="DownloadButtonStyle" TargetType="telerik:RadButton">
                 <Setter Property="Text" Value="Try Telerik UI for .NET MAUI" />
                 <Setter Property="CornerRadius" Value="8" />
-                <Setter Property="WidthRequest" Value="224" />
-                <Setter Property="HeightRequest" Value="36" />
+                <Setter Property="Padding" Value="12, 8" />
                 <Setter Property="ImageSource" Value="download.png" />
                 <Setter Property="BackgroundColor" Value="{StaticResource DownloadButtonColor}" />
                 <Setter Property="TextColor" Value="White" />
@@ -96,8 +95,8 @@
                 <Setter Property="IsVisible" Value="{OnPlatform WinUI=false, Default=true}" />
             </Style>
             <Style x:Key="DefaultBusyIndicatorStyle" TargetType="telerik:RadBusyIndicator">
-                <Setter Property="VerticalOptions" Value="Center" />
-                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Fill" />
+                <Setter Property="HorizontalOptions" Value="Fill" />
                 <Setter Property="ContentUnderOpacity" Value="0.7" />
                 <Setter Property="AnimationContentColor" Value="{StaticResource DownloadButtonColor}" />
                 <Setter Property="AnimationContentWidthRequest" Value="48" />

@@ -8,12 +8,10 @@
 
     <Grid RowDefinitions="Auto, *" BackgroundColor="AliceBlue">
         <telerik:RadButton Grid.Column="2"
-                           Padding="8, 0, 0, 0"
-                           ContentLayout="Left, -8"
                            Style="{StaticResource DownloadButtonStyle}"
                            FontSize="{OnPlatform iOS='Small'}"
                            HorizontalOptions="End"
-                           Margin="0, 12, 25, 0" 
+                           Margin="0, 25, 25, 0" 
                            Clicked="DownloadButtonClicked" />
         <view:CoinSelectionView Grid.Row="1" CoinSelected="OnCoinSelected" Padding="20, 25, 25, 15"/>
     </Grid>
