@@ -6,7 +6,7 @@
                         Margin="5">
     <telerik:RadContentView.Resources>
         <ResourceDictionary>
-            <Style TargetType="Label" x:Key="МainConditionLabelStyle" >
+            <Style TargetType="Label" x:Key="MainConditionLabelStyle" >
                 <Setter Property="HorizontalOptions" Value="Center" />
                 <Setter Property="TextColor" Value="#000000" />
                 <Setter Property="Margin" Value="0,25,0,0"/>
@@ -18,10 +18,8 @@
             </Style>
 
             <Style TargetType="Entry" x:Key="CommonEntryStyle">
-                <Setter Property="Keyboard" Value="Numeric"/>
                 <Setter Property="HorizontalTextAlignment" Value="Center"/>
             </Style>
-
         </ResourceDictionary>
     </telerik:RadContentView.Resources>
     <Grid RowDefinitions="*,Auto"
@@ -58,12 +56,12 @@
                            HorizontalOptions="Center" />
 
                     <Label Text="Comment:"
-                           Style="{StaticResource МainConditionLabelStyle}"/>
+                           Style="{StaticResource MainConditionLabelStyle}"/>
                     <Entry Style="{StaticResource CommonEntryStyle}" 
                            Text="{Binding Text, Mode=TwoWay}"
                            MaximumWidthRequest="{OnPlatform WinUI='300', MacCatalyst='300'}" />
                     <Label Text="Author's name:"
-                           Style="{StaticResource МainConditionLabelStyle}"/>
+                           Style="{StaticResource MainConditionLabelStyle}"/>
                     <Entry Style="{StaticResource CommonEntryStyle}" 
                            Text="{Binding Author, Mode=TwoWay}"
                            MaximumWidthRequest="{OnPlatform WinUI='300', MacCatalyst='300'}" />
@@ -72,7 +70,7 @@
                                      Padding="62,0"
                                      Spacing="10">
                     <Label Text="Related Cell:" 
-                           Style="{StaticResource МainConditionLabelStyle}"/>
+                           Style="{StaticResource MainConditionLabelStyle}"/>
                     <Entry Style="{StaticResource CommonEntryStyle}" 
                            Text="{Binding RelatedCell, Mode=TwoWay}"
                            MaximumWidthRequest="{OnPlatform WinUI='300', MacCatalyst='300'}" />

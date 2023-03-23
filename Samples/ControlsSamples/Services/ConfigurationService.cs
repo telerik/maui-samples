@@ -39,8 +39,24 @@ namespace QSF.Services
                 var configuration = (Configuration)serializer.Deserialize(stream);
 
                 UpdateConfiguration(configuration);
+                UpdateControlStatuses(configuration);
 
                 return configuration;
+            }
+        }
+
+        private static void UpdateControlStatuses(Configuration configuration)
+        {
+            var count = configuration.Controls.Count;
+            for (int index = 0; index < count; index++)
+            {
+                var control = configuration.Controls[index];
+                if (control.Status == StatusType.Normal 
+                    && control.Examples.Any(e => e.Status == StatusType.New || e.Status == StatusType.Updated))
+                {
+                    // If we have updated or new example we want to mark the control as updated as well.
+                    control.Status = StatusType.Updated;
+                }
             }
         }
 

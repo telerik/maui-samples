@@ -3,98 +3,260 @@
                         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                         xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
                         xmlns:converters="clr-namespace:QSF.Converters"
+                        xmlns:styles="clr-namespace:QSF.Styles"
                         xmlns:example="clr-namespace:QSF.Examples.ProgressBarControl.ConfigurationExample"
-                        x:Class="QSF.Examples.ProgressBarControl.ConfigurationExample.ConfigurationView">
+                        x:Class="QSF.Examples.ProgressBarControl.ConfigurationExample.ConfigurationView"
+                        Padding="{OnIdiom Default='16, 20', Phone=0}">
     <ContentView.Resources>
         <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <styles:ConfigurationViewResources />
+            </ResourceDictionary.MergedDictionaries>
             <converters:NameToEasingConverter x:Key="NameToEasingConverter" />
             <example:NameToColorConverter x:Key="NameToColorConverter" />
             <example:ColorToBrushConverter x:Key="ColorToBrushConverter" />
         </ResourceDictionary>
     </ContentView.Resources>
     <Grid RowDefinitions="80, *">
-        <Grid BackgroundColor="{AppThemeBinding Light='#F3F3F3', Dark='#202020'}">
+        <Grid BackgroundColor="{AppThemeBinding Light={StaticResource DefaultBackgroundColor}, Dark={StaticResource DefaultBackgroundColorDark}}"
+              Padding="16, 24">
             <telerik:RadLinearProgressBar x:Name="progressBar"
                                           Minimum="0"
                                           Maximum="100"
-                                          Value="40"
+                                          Value="75"
                                           VerticalOptions="Center"
                                           CustomText="Custom text"
                                           WidthRequest="240"
+                                          IsIndeterminate="{Binding IsIndeterminate}"
                                           ProgressAnimationEasing="{Binding AnimationEasing}"
                                           ProgressFill="{Binding ProgressColor, Converter={StaticResource ColorToBrushConverter}}"
                                           TrackFill="{Binding TrackColor, Converter={StaticResource ColorToBrushConverter}}"
                                           TextColor="{Binding TextColor, Converter={StaticResource NameToColorConverter}}"
                                           AlternateTextColor="{Binding AlternateTextColor, Converter={StaticResource NameToColorConverter}}"
+                                          ProgressCornerRadius="{Binding ProgressCornerRadius}"
+                                          TrackCornerRadius="{Binding TrackCornerRadius}"
+                                          TrackThickness="{Binding TrackThickness}"
                                           ValueDisplayMode="{Binding ValueDisplayMode}" />
         </Grid>
         <ScrollView Grid.Row="1">
-            <VerticalStackLayout Padding="16, 20">
-                <Grid ColumnDefinitions="*, *"
-                      RowDefinitions="Auto, Auto, Auto, Auto, Auto"
-                      ColumnSpacing="30"
-                      RowSpacing="{OnIdiom Desktop=40, Phone=24}">
-                    <VerticalStackLayout Spacing="12">
-                        <Label Text="Track Color:" />
+            <VerticalStackLayout Style="{StaticResource RootAtExampleAreaStyle}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="{OnIdiom Default=*, Phone=0}" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="{OnIdiom Default=0, Phone=*}" />
+                    </Grid.RowDefinitions>
+                    <VerticalStackLayout Style="{OnIdiom Default={StaticResource GroupAtExampleAreaWithColumnBreakStyle}, Phone={StaticResource GroupAtExampleAreaStyle}}">
+                        <Label Text="Track Color:"
+                               Style="{StaticResource VerticalGroupLabelStyle}" />
                         <telerik:RadComboBox ItemsSource="{Binding Colors}"
                                              SelectedItem="{Binding TrackColor, Mode=TwoWay}"
                                              IsClearButtonVisible="False" />
                     </VerticalStackLayout>
-                    <VerticalStackLayout Spacing="12"
-                                         Grid.Column="1">
-                        <Label Text="Progress Color:" />
+                    <VerticalStackLayout Grid.Column="{OnIdiom Default=1, Phone=0}"
+                                         Grid.Row="{OnIdiom Default=0, Phone=1}"
+                                         Style="{StaticResource GroupAtExampleAreaStyle}">
+                        <Label Text="Progress Color:"
+                               Style="{StaticResource VerticalGroupLabelStyle}"  />
                         <telerik:RadComboBox ItemsSource="{Binding Colors}"
                                              SelectedItem="{Binding ProgressColor, Mode=TwoWay}"
                                              IsClearButtonVisible="False" />
                     </VerticalStackLayout>
-                    <VerticalStackLayout Spacing="12"
-                                         Grid.Row="1">
-                        <Label Text="Text Color:" />
-                        <telerik:RadComboBox ItemsSource="{Binding Colors}"
-                                             SelectedItem="{Binding TextColor, Mode=TwoWay}"
-                                             IsClearButtonVisible="False" />
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="{OnIdiom Default=*, Phone=0}" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="{OnIdiom Default=0, Phone=*}" />
+                    </Grid.RowDefinitions>
+                    <VerticalStackLayout Style="{OnIdiom Default={StaticResource GroupAtExampleAreaWithColumnBreakStyle}, Phone={StaticResource GroupAtExampleAreaStyle}}">
+                        <Label Text="Track Corner Radius:"
+                               Style="{StaticResource VerticalGroupLabelStyle}" />
+                        <telerik:RadNumericInput x:Name="trackCornerRadiusNumeric"
+                                                 Minimum="0"
+                                                 Maximum="10"
+                                                 VerticalOptions="Center"
+                                                 Value="{Binding TrackCornerRadius}"
+                                                 Step="1" />
                     </VerticalStackLayout>
-                    <VerticalStackLayout Spacing="12"
-                                         Grid.Row="1"
-                                         Grid.Column="1">
-                        <Label Text="Alternate Text Color:" />
-                        <telerik:RadComboBox ItemsSource="{Binding Colors}"
-                                             SelectedItem="{Binding AlternateTextColor, Mode=TwoWay}"
-                                             IsClearButtonVisible="False" />
+                    <VerticalStackLayout Grid.Column="{OnIdiom Default=1, Phone=0}"
+                                         Grid.Row="{OnIdiom Default=0, Phone=1}"
+                                         Style="{StaticResource GroupAtExampleAreaStyle}">
+                        <Label Text="Progress Corner Radius:"
+                               Style="{StaticResource VerticalGroupLabelStyle}"  />
+                        <telerik:RadNumericInput x:Name="progressCornerRadiusNumeric"
+                                                 Minimum="0"
+                                                 Maximum="10"
+                                                 VerticalOptions="Center"
+                                                 Value="{Binding ProgressCornerRadius}"
+                                                 Step="1" />
                     </VerticalStackLayout>
-                    <VerticalStackLayout Spacing="12"
-                                         Grid.Row="2">
-                        <Label Text="Value Display Mode:" />
-                        <telerik:RadComboBox ItemsSource="{Binding ValueDisplayModes}"
-                                             SelectedItem="{Binding ValueDisplayMode, Mode=TwoWay}"
-                                             IsClearButtonVisible="False"
-                                             DropDownHeight="{OnPlatform WinUI='130'}" />
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="{OnIdiom Default=*, Phone=0}" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="{OnIdiom Default=0, Phone=*}" />
+                    </Grid.RowDefinitions>
+                    <VerticalStackLayout Style="{OnIdiom Default={StaticResource GroupAtExampleAreaWithColumnBreakStyle}, Phone={StaticResource GroupAtExampleAreaStyle}}">
+                        <Label Text="Track Thickness:"
+                               Style="{StaticResource VerticalGroupLabelStyle}" />
+                        <telerik:RadNumericInput x:Name="trackThicknessNumeric"
+                                                 Minimum="0"
+                                                 Maximum="16"
+                                                 VerticalOptions="Center"
+                                                 Value="{Binding TrackThickness}"
+                                                 Step="1" />
                     </VerticalStackLayout>
-                    <VerticalStackLayout Spacing="12"
-                                         Grid.Row="2"
-                                         Grid.Column="1">
-                        <Label Text="Value:" />
+                    <VerticalStackLayout Grid.Column="{OnIdiom Default=1, Phone=0}"
+                                         Grid.Row="{OnIdiom Default=0, Phone=1}"
+                                         Style="{StaticResource GroupAtExampleAreaStyle}">
+                        <Label Text="Minimum Height:"
+                               Style="{StaticResource VerticalGroupLabelStyle}"  />
+                        <telerik:RadNumericInput x:Name="progressHeightNumeric"
+                                                 Minimum="{OnPlatform Default=4, WinUI=3}"
+                                                 Maximum="16"
+                                                 VerticalOptions="Center"
+                                                 Value="{Binding MinimumHeightRequest, Source={x:Reference progressBar}}"
+                                                 Step="1" />
+                    </VerticalStackLayout>
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="{OnIdiom Default=*, Phone=0}" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="{OnIdiom Default=0, Phone=*}" />
+                    </Grid.RowDefinitions>
+                    <VerticalStackLayout Style="{OnIdiom Default={StaticResource GroupAtExampleAreaWithColumnBreakStyle}, Phone={StaticResource GroupAtExampleAreaStyle}}">
+                        <Label Text="Value:"
+                               Style="{StaticResource VerticalGroupLabelStyle}" />
                         <telerik:RadNumericInput x:Name="valueNumeric"
+                                                 IsEnabled="{Binding CanUpdateValue}"
                                                  Minimum="0"
                                                  Maximum="100"
                                                  VerticalOptions="Center"
                                                  Value="{Binding Value, Source={x:Reference progressBar}}"
-                                                 Step="20"/>
+                                                 Step="20" />
                     </VerticalStackLayout>
-                    <VerticalStackLayout Spacing="12"
-                                         Grid.Row="3">
-                        <Label Text="Animation Easing:" />
+                    <VerticalStackLayout Grid.Column="{OnIdiom Default=1, Phone=0}"
+                                         Grid.Row="{OnIdiom Default=0, Phone=1}"
+                                         Style="{StaticResource GroupAtExampleAreaStyle}">
+                        <Label Text="Value Display Mode:"
+                               Style="{StaticResource VerticalGroupLabelStyle}"  />
+                        <telerik:RadComboBox x:Name="valueDisplayModeCombo"
+                                             IsEnabled="{Binding CanUpdateValueDisplayMode}"
+                                             ItemsSource="{Binding ValueDisplayModes}"
+                                             SelectedItem="{Binding ValueDisplayMode, Mode=TwoWay}"
+                                             IsClearButtonVisible="False"
+                                             DropDownHeight="{OnPlatform WinUI='130'}" />
+                    </VerticalStackLayout>
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="{OnIdiom Default=*, Phone=0}" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="{OnIdiom Default=0, Phone=*}" />
+                    </Grid.RowDefinitions>
+                    <VerticalStackLayout Style="{OnIdiom Default={StaticResource GroupAtExampleAreaWithColumnBreakStyle}, Phone={StaticResource GroupAtExampleAreaStyle}}">
+                        <Label Text="Text Color:"
+                               Style="{StaticResource VerticalGroupLabelStyle}" />
+                        <telerik:RadComboBox x:Name="textColorCombo"
+                                             IsEnabled="{Binding CanUpdateTextColor}"
+                                             ItemsSource="{Binding Colors}"
+                                             SelectedItem="{Binding TextColor, Mode=TwoWay}"
+                                             IsClearButtonVisible="False" />
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Grid.Column="{OnIdiom Default=1, Phone=0}"
+                                         Grid.Row="{OnIdiom Default=0, Phone=1}"
+                                         Style="{StaticResource GroupAtExampleAreaStyle}">
+                        <Label Text="Alternate Text Color:"
+                               Style="{StaticResource VerticalGroupLabelStyle}"  />
+                        <telerik:RadComboBox x:Name="alternateTextColorCombo"
+                                             IsEnabled="{Binding CanUpdateAlternateTextColor}"
+                                             ItemsSource="{Binding Colors}"
+                                             SelectedItem="{Binding AlternateTextColor, Mode=TwoWay}"
+                                             IsClearButtonVisible="False" />
+                    </VerticalStackLayout>
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="{OnIdiom Default=*, Phone=0}" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="{OnIdiom Default=0, Phone=*}" />
+                    </Grid.RowDefinitions>
+                    <VerticalStackLayout Style="{OnIdiom Default={StaticResource GroupAtExampleAreaWithColumnBreakStyle}, Phone={StaticResource GroupAtExampleAreaStyle}}">
+                        <Label Text="Segments Count:"
+                               Style="{StaticResource VerticalGroupLabelStyle}" />
+                        <telerik:RadNumericInput x:Name="segmentCountNumeric"
+                                                 IsEnabled="{Binding CanUpdateSegmentCount}"
+                                                 Minimum="0"
+                                                 Maximum="10"
+                                                 VerticalOptions="Center"
+                                                 Value="{Binding SegmentCount, Source={x:Reference progressBar}}"
+                                                 Step="1" />
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Grid.Column="{OnIdiom Default=1, Phone=0}"
+                                         Grid.Row="{OnIdiom Default=0, Phone=1}"
+                                         Style="{StaticResource GroupAtExampleAreaStyle}">
+                        <Label Text="Separator Thickness:"
+                               Style="{StaticResource VerticalGroupLabelStyle}"  />
+                        <telerik:RadNumericInput x:Name="segmentSeparatorThicknessNumeric"
+                                                 IsEnabled="{Binding CanUpdateSegmentSeparatorThickness}"
+                                                 Minimum="0"
+                                                 Maximum="10"
+                                                 VerticalOptions="Center"
+                                                 Value="{Binding SegmentSeparatorThickness, Source={x:Reference progressBar}}"
+                                                 Step="1" />
+                    </VerticalStackLayout>
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="{OnIdiom Default=*, Phone=0}" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="{OnIdiom Default=0, Phone=*}" />
+                    </Grid.RowDefinitions>
+                    <VerticalStackLayout Style="{OnIdiom Default={StaticResource GroupAtExampleAreaWithColumnBreakStyle}, Phone={StaticResource GroupAtExampleAreaStyle}}">
+                        <Label Text="Animation Easing:"
+                               Style="{StaticResource VerticalGroupLabelStyle}" />
                         <telerik:RadComboBox ItemsSource="{Binding Easings}"
                                              SelectedItem="{Binding AnimationEasing, Mode=TwoWay, Converter={StaticResource NameToEasingConverter}}"
                                              IsClearButtonVisible="False" />
                     </VerticalStackLayout>
-                    <VerticalStackLayout Spacing="12"
-                                         Grid.Row="3"
-                                         Grid.Column="1">
-                        <Label Text="Is Indeterminate:" />
+                    <VerticalStackLayout Grid.Column="{OnIdiom Default=1, Phone=0}"
+                                         Grid.Row="{OnIdiom Default=0, Phone=1}"
+                                         Style="{StaticResource GroupAtExampleAreaStyle}">
+                        <Label Text="Is Indeterminate:"
+                               Style="{StaticResource VerticalGroupLabelStyle}"  />
                         <Switch VerticalOptions="Center"
                                 HorizontalOptions="Start"
-                                IsToggled="{Binding IsIndeterminate, Source={x:Reference progressBar}}"
+                                IsToggled="{Binding IsIndeterminate}"
                                 Margin="{OnPlatform Default=0, WinUI='0, -2, 0, 0'}" />
                     </VerticalStackLayout>
                 </Grid>

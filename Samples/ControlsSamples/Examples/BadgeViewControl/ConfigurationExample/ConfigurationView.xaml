@@ -2,46 +2,39 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
              xmlns:converters="clr-namespace:QSF.Converters"
+             xmlns:styles="clr-namespace:QSF.Styles"
              xmlns:local="clr-namespace:QSF.Examples.BadgeViewControl.ConfigurationExample"
              x:Class="QSF.Examples.BadgeViewControl.ConfigurationExample.ConfigurationView"
-             BackgroundColor="{AppThemeBinding Light=White, Dark=Black}">
-
+             Padding="{OnIdiom Default='16, 20', Phone=0}">
     <ContentView.Resources>
         <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+               <styles:ConfigurationViewResources />
+            </ResourceDictionary.MergedDictionaries>
             <converters:NameToEasingConverter x:Key="NameToEasingConverter" />
-            <Color x:Key="SliderColorLight">#0E88F2</Color>
-            <Color x:Key="SliderColorDark">#42A5F5</Color>
-            
-            <Style TargetType="telerik:RadListPicker">
-                <Setter Property="Margin" Value="0, 10, 0, 0" />
+            <Style x:Key="SliderMinMaxLabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="10" />
+                <Setter Property="Opacity" Value="0.6" />
+                <Setter Property="VerticalOptions" Value="Center" />
             </Style>
-            <Style x:Key="DefaultLabelStyle" TargetType="Label">
-                <Setter Property="Margin" Value="0, 10, 0, 0" />
+            <Style x:Key="BaseSliderStyle" TargetType="Slider">
+                <Setter Property="Minimum" Value="0" />
+                <Setter Property="Maximum" Value="30" />
+                <Setter Property="Margin" Value="8, 0" />
+                <Setter Property="HorizontalOptions" Value="Fill" />
+                <Setter Property="VerticalOptions" Value="Center" />
             </Style>
-            <Style x:Key="DefaultSliderStyle" TargetType="Slider">
-                <Setter Property="Margin" Value="0, 10, 0, 0" />
-                <Setter Property="Maximum" Value="20" />
-                <Setter Property="WidthRequest" Value="100"/>
-                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
-                <Setter Property="ThumbColor" Value="{AppThemeBinding Light={StaticResource SliderColorLight}, Dark={StaticResource SliderColorDark}}" />
-                <Setter Property="MinimumTrackColor" Value="{AppThemeBinding Light={StaticResource SliderColorLight}, Dark={StaticResource SliderColorDark}}" />
-                <Setter Property="MaximumTrackColor" Value="{AppThemeBinding Light=#F8F8F8, Dark=#373737}" />
-            </Style>
-            <Style x:Key="DefaultSliderLabelStyle" TargetType="Label">
-                <Setter Property="VerticalOptions" Value="End" />
-            </Style>
-        </ResourceDictionary>
+       </ResourceDictionary>
     </ContentView.Resources>
 
     <ContentView.BindingContext>
         <local:ConfigurationViewModel/>
     </ContentView.BindingContext>
-    
-    <Grid RowDefinitions="Auto, *" 
-          Padding="5">
-        <VerticalStackLayout BackgroundColor="{AppThemeBinding Light=#F8F8F8, Dark=#373737}">
-            <telerik:RadBadgeView Margin="0, 25"
-                                  HorizontalOptions="Center"
+
+    <Grid RowDefinitions="Auto, *">
+        <VerticalStackLayout BackgroundColor="{AppThemeBinding Light={StaticResource DefaultBackgroundColor}, Dark={StaticResource DefaultBackgroundColorDark}}"
+                             Padding="16, 24">
+            <telerik:RadBadgeView HorizontalOptions="Center"
                                   VerticalOptions="End"
                                   BadgeText="{Binding BadgeText}"
                                   BadgeTextColor="{Binding BadgeTextColor}"
@@ -69,161 +62,216 @@
             </telerik:RadBadgeView>
         </VerticalStackLayout>
         <ScrollView Grid.Row="1">
-            <Grid RowDefinitions="Auto,Auto,Auto,Auto" ColumnSpacing="10">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="{OnIdiom Default=*, Phone=Auto}" />
-                </Grid.ColumnDefinitions>
-                <VerticalStackLayout Grid.Row="0"
-                                     Grid.Column="0">
-                    <Label Text="Background Color:"
-                       Style="{StaticResource DefaultLabelStyle}" />
-                    <telerik:RadListPicker SelectedItem="{Binding BadgeBackgroundColorName, Mode=TwoWay}"
-                                           ItemsSource="{Binding BadgeBackgroundColors}"/>
-                    <Label Text="Badge Text Color:"
-                           Style="{StaticResource DefaultLabelStyle}" />
-                    <telerik:RadListPicker SelectedItem="{Binding BadgeTextColorName, Mode=TwoWay}"
-                                           ItemsSource="{Binding BadgeTextColors}"/>
+            <VerticalStackLayout Style="{StaticResource RootAtExampleAreaStyle}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="{OnIdiom Default=*, Phone=0}" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="{OnIdiom Default=0, Phone=*}" />
+                    </Grid.RowDefinitions>
 
-                    <Label Text="Badge Text:"
-                           Style="{StaticResource DefaultLabelStyle}" 
-                           Margin="0,10,0,10"/>
-                    <Entry Text="{Binding BadgeText}" 
-                           FontSize="14"/>
-                    
-                    <Label Text="Badge OffSet X:"
-                           Style="{StaticResource DefaultLabelStyle}" />
-                    <HorizontalStackLayout>
-                        <Label Text="{Binding Source={x:Reference offSetXSlider}, Path=Minimum, Mode=TwoWay}"
-                               Style="{StaticResource DefaultSliderLabelStyle}" />
-                        <Slider x:Name="offSetXSlider"
-                                Value="{Binding OffSetX, Mode=TwoWay}"
-                                Minimum="-20"
-                                Style="{StaticResource DefaultSliderStyle}" />
-                        <Label Text="{Binding Source={x:Reference offSetXSlider}, Path=Maximum, Mode=TwoWay}"
-                               Style="{StaticResource DefaultSliderLabelStyle}" />
-                    </HorizontalStackLayout>
-                    <Label Text="Badge OffSet Y:"
-                           Style="{StaticResource DefaultLabelStyle}" />
-                    <HorizontalStackLayout>
-                        <Label Text="{Binding Source={x:Reference offSetYSlider}, Path=Minimum, Mode=TwoWay}"
-                           Style="{StaticResource DefaultSliderLabelStyle}" />
-                        <Slider x:Name="offSetYSlider"
-                                Value="{Binding OffSetY, Mode=TwoWay}"
-                                Style="{StaticResource DefaultSliderStyle}" 
-                                Minimum="-20"
-                                Maximum="20" />
-                        <Label Text="{Binding Source={x:Reference offSetYSlider}, Path=Maximum, Mode=TwoWay}"
-                               Style="{StaticResource DefaultSliderLabelStyle}" />
-                    </HorizontalStackLayout>
-                </VerticalStackLayout>
+                    <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaWithColumnBreakStyle}">
+                        <Label Text="Text &amp; Colors"
+                               Style="{StaticResource SectionHeadingLabelStyle}" />
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Text:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <telerik:RadEntry Text="{Binding BadgeText}"
+                                              ReserveSpaceForErrorView="False" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Text Color:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <telerik:RadComboBox ItemsSource="{Binding BadgeTextColors}"
+                                                 SelectedItem="{Binding Path=BadgeTextColorName, Mode=TwoWay}"
+                                                 HorizontalOptions="Fill" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Background Color:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <telerik:RadComboBox ItemsSource="{Binding BadgeBackgroundColors}"
+                                                 SelectedItem="{Binding Path=BadgeBackgroundColorName, Mode=TwoWay}"
+                                                 HorizontalOptions="Fill" />
+                        </VerticalStackLayout>
 
-                <VerticalStackLayout Grid.Column="{OnIdiom Default=1, Phone=0}"
-                                     Grid.Row="{OnIdiom Default=0, Phone=1}">
-                    <Label Text="Badge Horizontal Position:"
-                           Style="{StaticResource DefaultLabelStyle}" />
-                    <telerik:RadListPicker SelectedItem="{Binding BadgeHorizontalPosition, Mode=TwoWay}"
-                                           ItemsSource="{Binding BadgePositions}"/>
+                        <Label Text="Position &amp; Alignment"
+                               Style="{StaticResource SectionHeadingLabelStyle}" />
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Style="{StaticResource VerticalGroupLabelStyle}"
+                                   Text="Horizontal Position:" />
+                            <telerik:RadComboBox ItemsSource="{Binding BadgePositions}"
+                                                 SelectedItem="{Binding Path=BadgeHorizontalPosition, Mode=TwoWay}"
+                                                 HorizontalOptions="Fill" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Style="{StaticResource VerticalGroupLabelStyle}"
+                                   Text="Vertical Position:" />
+                            <telerik:RadComboBox ItemsSource="{Binding BadgePositions}"
+                                                 SelectedItem="{Binding Path=BadgeVerticalPosition, Mode=TwoWay}"
+                                                 HorizontalOptions="Fill" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Style="{StaticResource VerticalGroupLabelStyle}"
+                                   Text="Horizontal Alignment:" />
+                            <telerik:RadComboBox ItemsSource="{Binding BadgeAlignments}"
+                                                 SelectedItem="{Binding Path=BadgeHorizontalAlignment, Mode=TwoWay}"
+                                                 HorizontalOptions="Fill" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Style="{StaticResource VerticalGroupLabelStyle}"
+                                   Text="Vertical Alignment:" />
+                            <telerik:RadComboBox ItemsSource="{Binding BadgeAlignments}"
+                                                 SelectedItem="{Binding Path=BadgeVerticalAlignment, Mode=TwoWay}"
+                                                 HorizontalOptions="Fill" />
+                        </VerticalStackLayout>
+                    </VerticalStackLayout>
 
-                    <Label Text="Badge Vertical Position:"
-                           Style="{StaticResource DefaultLabelStyle}" />
-                    <telerik:RadListPicker SelectedItem="{Binding BadgeVerticalPosition, Mode=TwoWay}"
-                                           ItemsSource="{Binding BadgePositions}"/>
+                    <VerticalStackLayout Grid.Column="{OnIdiom Default=1, Phone=0}"
+                                         Grid.Row="{OnIdiom Default=0, Phone=1}">
+                        <Label Text="Offsets"
+                               Style="{StaticResource SectionHeadingLabelStyle}" />
+                        <Grid ColumnDefinitions="*, *">
+                            <VerticalStackLayout>
+                                <Label Style="{StaticResource VerticalGroupLabelStyle}"
+                                       Text="Text Margin Left:" />
+                                <Grid ColumnDefinitions="Auto, *, Auto"
+                                      Style="{StaticResource GroupAtExampleAreaStyle}">
+                                    <Label Style="{StaticResource SliderMinMaxLabelStyle}"
+                                           Text="{Binding Source={x:Reference sliderMarginLeft}, Path=Minimum, Mode=TwoWay}" />
+                                    <Slider x:Name="sliderMarginLeft"
+                                            Grid.Column="1"
+                                            Style="{StaticResource BaseSliderStyle}"
+                                            Value="{Binding TextMarginLeft}"
+                                            AutomationId="SliderMarginLeft" />
+                                    <Label Grid.Column="2"
+                                           Style="{StaticResource SliderMinMaxLabelStyle}"
+                                           Text="{Binding Source={x:Reference sliderMarginLeft}, Path=Maximum, Mode=TwoWay}" />
+                                </Grid>
+                                <Label Style="{StaticResource VerticalGroupLabelStyle}"
+                                       Text="Text Margin Top:" />
+                                <Grid ColumnDefinitions="Auto, *, Auto"
+                                      Style="{StaticResource GroupAtExampleAreaStyle}">
+                                    <Label Style="{StaticResource SliderMinMaxLabelStyle}"
+                                           Text="{Binding Source={x:Reference sliderMarginTop}, Path=Minimum, Mode=TwoWay}" />
+                                    <Slider x:Name="sliderMarginTop"
+                                            Grid.Column="1"
+                                            Style="{StaticResource BaseSliderStyle}"
+                                            Value="{Binding TextMarginTop}"
+                                            AutomationId="SliderMarginTop" />
+                                    <Label Grid.Column="2"
+                                           Style="{StaticResource SliderMinMaxLabelStyle}"
+                                           Text="{Binding Source={x:Reference sliderMarginTop}, Path=Maximum, Mode=TwoWay}" />
+                                </Grid>
+                                <Label Style="{StaticResource VerticalGroupLabelStyle}"
+                                       Text="Badge OffsetX:" />
+                                <Grid ColumnDefinitions="Auto, *, Auto"
+                                      Style="{StaticResource GroupAtExampleAreaStyle}">
+                                    <Label Style="{StaticResource SliderMinMaxLabelStyle}"
+                                           Text="{Binding Source={x:Reference offsetXSlider}, Path=Minimum, Mode=TwoWay}" />
+                                    <Slider x:Name="offsetXSlider"
+                                            Grid.Column="1"
+                                            Style="{StaticResource BaseSliderStyle}"
+                                            Value="{Binding OffSetX}"
+                                            Minimum="-20"
+                                            Maximum="20"
+                                            AutomationId="OffsetXSlider" />
+                                    <Label Grid.Column="2"
+                                           Style="{StaticResource SliderMinMaxLabelStyle}"
+                                           Text="{Binding Source={x:Reference offsetXSlider}, Path=Maximum, Mode=TwoWay}" />
+                                </Grid>
+                            </VerticalStackLayout>
+                            <VerticalStackLayout Grid.Column="1"
+                                                 Margin="20, 0, 0, 0">
+                                <Label Style="{StaticResource VerticalGroupLabelStyle}"
+                                       Text="Text Margin Right:" />
+                                <Grid ColumnDefinitions="Auto, *, Auto"
+                                      Style="{StaticResource GroupAtExampleAreaStyle}">
+                                    <Label Style="{StaticResource SliderMinMaxLabelStyle}"
+                                           Text="{Binding Source={x:Reference sliderMarginRight}, Path=Minimum, Mode=TwoWay}" />
+                                    <Slider x:Name="sliderMarginRight"
+                                            Grid.Column="1"
+                                            Style="{StaticResource BaseSliderStyle}"
+                                            Value="{Binding TextMarginRight}"
+                                            AutomationId="SliderMarginRight" />
+                                    <Label Grid.Column="2"
+                                           Style="{StaticResource SliderMinMaxLabelStyle}"
+                                           Text="{Binding Source={x:Reference sliderMarginRight}, Path=Maximum, Mode=TwoWay}" />
+                                </Grid>
+                                <Label Style="{StaticResource VerticalGroupLabelStyle}"
+                                       Text="Text Margin Bottom:" />
+                                <Grid ColumnDefinitions="Auto, *, Auto"
+                                      Style="{StaticResource GroupAtExampleAreaStyle}">
+                                    <Label Style="{StaticResource SliderMinMaxLabelStyle}"
+                                           Text="{Binding Source={x:Reference sliderMarginBottom}, Path=Minimum, Mode=TwoWay}" />
+                                    <Slider x:Name="sliderMarginBottom"
+                                            Grid.Column="1"
+                                            Style="{StaticResource BaseSliderStyle}"
+                                            Value="{Binding TextMarginBottom}"
+                                            AutomationId="SliderMarginBottom" />
+                                    <Label Grid.Column="2"
+                                           Style="{StaticResource SliderMinMaxLabelStyle}"
+                                           Text="{Binding Source={x:Reference sliderMarginBottom}, Path=Maximum, Mode=TwoWay}" />
+                                </Grid>
+                                <Label Style="{StaticResource VerticalGroupLabelStyle}"
+                                       Text="Badge OffsetY:" />
+                                <Grid ColumnDefinitions="Auto, *, Auto"
+                                      Style="{StaticResource GroupAtExampleAreaStyle}">
+                                    <Label Style="{StaticResource SliderMinMaxLabelStyle}"
+                                           Text="{Binding Source={x:Reference offsetYSlider}, Path=Minimum, Mode=TwoWay}" />
+                                    <Slider x:Name="offsetYSlider"
+                                            Grid.Column="1"
+                                            Style="{StaticResource BaseSliderStyle}"
+                                            Value="{Binding OffSetY}"
+                                            Minimum="-20"
+                                            Maximum="20"
+                                            AutomationId="OffsetYSlider" />
+                                    <Label Grid.Column="2"
+                                           Style="{StaticResource SliderMinMaxLabelStyle}"
+                                           Text="{Binding Source={x:Reference offsetYSlider}, Path=Maximum, Mode=TwoWay}" />
+                                </Grid>
+                            </VerticalStackLayout>
+                            
+                        </Grid>
 
-                    <Label Text="Badge Horizontal Alignment:"
-                           Style="{StaticResource DefaultLabelStyle}" />
-                    <telerik:RadListPicker SelectedItem="{Binding BadgeHorizontalAlignment, Mode=TwoWay}"
-                                           ItemsSource="{Binding BadgeAlignments}"/>
-
-                    <Label Text="Badge Vertical Alignment:"
-                           Style="{StaticResource DefaultLabelStyle}" />
-                    <telerik:RadListPicker SelectedItem="{Binding BadgeVerticalAlignment, Mode=TwoWay}"
-                                           ItemsSource="{Binding BadgeAlignments}"/>
-                </VerticalStackLayout>
-
-                <VerticalStackLayout Grid.Column="0"
-                                     Grid.Row="{OnIdiom Default=1, Phone=2}">
-                    <Label Text="Badge Text Margin Left:"
-                           Style="{StaticResource DefaultLabelStyle}" />
-                    <HorizontalStackLayout>
-                        <Label Text="{Binding Source={x:Reference sliderMarginLeft}, Path=Minimum, Mode=TwoWay}"
-                               Style="{StaticResource DefaultSliderLabelStyle}" />
-                        <Slider x:Name="sliderMarginLeft"
-                                Minimum="0"
-                                Maximum="30"
-                                Value="{Binding TextMarginLeft, Mode=TwoWay}"
-                                Style="{StaticResource DefaultSliderStyle}" />
-                        <Label Text="{Binding Source={x:Reference sliderMarginLeft}, Path=Maximum, Mode=TwoWay}"
-                               Style="{StaticResource DefaultSliderLabelStyle}" />
-                    </HorizontalStackLayout>
-                    <Label Text="Badge Text Margin Top:"
-                           Style="{StaticResource DefaultLabelStyle}" />
-                    <HorizontalStackLayout>
-                        <Label Text="{Binding Source={x:Reference sliderMarginTop}, Path=Minimum, Mode=TwoWay}"
-                               Style="{StaticResource DefaultSliderLabelStyle}" />
-                        <Slider x:Name="sliderMarginTop"
-                                Minimum="0"
-                                Maximum="30"
-                                Value="{Binding TextMarginTop, Mode=TwoWay}"
-                                Style="{StaticResource DefaultSliderStyle}" />
-                        <Label Text="{Binding Source={x:Reference sliderMarginTop}, Path=Maximum, Mode=TwoWay}"
-                               Style="{StaticResource DefaultSliderLabelStyle}" />
-                    </HorizontalStackLayout>
-                    <Label Text="Badge Text Margin Right:"
-                           Style="{StaticResource DefaultLabelStyle}" />
-                    <HorizontalStackLayout>
-                        <Label Text="{Binding Source={x:Reference sliderMarginRight}, Path=Minimum, Mode=TwoWay}"
-                               Style="{StaticResource DefaultSliderLabelStyle}" />
-                        <Slider x:Name="sliderMarginRight"
-                                Minimum="0"
-                                Maximum="30"
-                                Value="{Binding TextMarginRight, Mode=TwoWay}"
-                                Style="{StaticResource DefaultSliderStyle}" />
-                        <Label Text="{Binding Source={x:Reference sliderMarginRight}, Path=Maximum, Mode=TwoWay}" 
-                               Style="{StaticResource DefaultSliderLabelStyle}" />
-                    </HorizontalStackLayout>
-                    <Label Text="Badge Text Margin Bottom:"
-                       Style="{StaticResource DefaultLabelStyle}" />
-                    <HorizontalStackLayout>
-                        <Label Text="{Binding Source={x:Reference sliderMarginBottom}, Path=Minimum, Mode=TwoWay}"
-                           Style="{StaticResource DefaultSliderLabelStyle}" />
-                        <Slider x:Name="sliderMarginBottom"
-                                Minimum="0"
-                                Maximum="30"
-                                Value="{Binding TextMarginBottom, Mode=TwoWay}"
-                                Style="{StaticResource DefaultSliderStyle}" />
-                        <Label Text="{Binding Source={x:Reference sliderMarginBottom}, Path=Maximum, Mode=TwoWay}"
-                               Style="{StaticResource DefaultSliderLabelStyle}" />
-                    </HorizontalStackLayout>
-                </VerticalStackLayout>
-
-                <VerticalStackLayout Grid.Column="{OnIdiom Default=1, Phone=0}"
-                                     Grid.Row="{OnIdiom Default=1, Phone=3}">
-                    <Label Text="Badge Animation Type:"
-                           Style="{StaticResource DefaultLabelStyle}" />
-                    <telerik:RadListPicker SelectedItem="{Binding BadgeAnimationType, Mode=TwoWay}"
-                                           ItemsSource="{Binding BadgeAnimationTypes}"/>
-
-                    <Label Text="Badge Animation Easing:"
-                       Style="{StaticResource DefaultLabelStyle}" />
-                    <telerik:RadListPicker SelectedItem="{Binding BadgeAnimationEasing, Mode=TwoWay, Converter={StaticResource NameToEasingConverter}}"
-                                           ItemsSource="{Binding BadgeAnimationEasings}"/>
-
-                    <Label Text="Badge Animation Duration:"
-                       Style="{StaticResource DefaultLabelStyle}" />
-                    <HorizontalStackLayout>
-                        <Label Text="{Binding Source={x:Reference sliderAnimationDuration}, Path=Minimum, Mode=TwoWay}"
-                           Style="{StaticResource DefaultSliderLabelStyle}" />
-                        <Slider x:Name="sliderAnimationDuration"
-                                Value="{Binding BadgeAnimationDuration, Mode=TwoWay}"
-                                Maximum="3000"
-                                Minimum="300"
-                                Style="{StaticResource DefaultSliderStyle}" />
-                        <Label Text="{Binding Source={x:Reference sliderAnimationDuration}, Path=Maximum, Mode=TwoWay}"
-                               Style="{StaticResource DefaultSliderLabelStyle}" />
-                    </HorizontalStackLayout>
-                </VerticalStackLayout>
-            </Grid>
+                        <Label Text="Animation"
+                               Style="{StaticResource SectionHeadingLabelStyle}" />
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Type:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <telerik:RadComboBox ItemsSource="{Binding BadgeAnimationTypes}"
+                                                 SelectedItem="{Binding Path=BadgeAnimationType, Mode=TwoWay}"
+                                                 HorizontalOptions="Fill" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Easing:"
+                                Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <telerik:RadComboBox ItemsSource="{Binding BadgeAnimationEasings}"
+                                                 SelectedItem="{Binding BadgeAnimationEasing, Mode=TwoWay, Converter={StaticResource NameToEasingConverter}}"
+                                                 HorizontalOptions="Fill" />
+                        </VerticalStackLayout>
+                        <Label Text="Duration:"
+                                Style="{StaticResource VerticalGroupLabelStyle}" />
+                        <Grid ColumnDefinitions="Auto, *, Auto"
+                              Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Style="{StaticResource HorizontalGroupLabelAtStartStyle}"
+                                   Text="{Binding Source={x:Reference sliderAnimationDuration}, Path=Minimum, Mode=TwoWay}" />
+                            <Slider x:Name="sliderAnimationDuration"
+                                    Grid.Column="1"
+                                    Style="{StaticResource BaseSliderStyle}"
+                                    Value="{Binding BadgeAnimationDuration, Mode=TwoWay}"
+                                    Minimum="300"
+                                    Maximum="3000"
+                                    AutomationId="SliderAnimationDuration" />
+                            <Label Grid.Column="2"
+                                   Style="{StaticResource HorizontalGroupLabelAtEndStyle}"
+                                   Text="{Binding Source={x:Reference sliderAnimationDuration}, Path=Maximum, Mode=TwoWay}" />
+                        </Grid>
+                    </VerticalStackLayout>
+                </Grid>
+            </VerticalStackLayout>
         </ScrollView>
     </Grid>
 </ContentView>

@@ -11,11 +11,11 @@
           BackgroundColor="{AppThemeBinding Light={StaticResource DefaultBackgroundColor}, Dark={StaticResource DefaultBackgroundColorDark}}">
         <Grid ColumnDefinitions="Auto,*,Auto"
               Style="{StaticResource HeaderStyle}"
-              Padding="12,0">
+              Padding="12, 0">
             <Image Style="{StaticResource HeaderImageStyle}" />
             <Label Grid.Column="1"
                    Style="{StaticResource HeaderLabelStyle}"
-                   FontSize="{OnIdiom Desktop=18, Phone=14}"/>
+                   FontSize="{OnIdiom Desktop=18, Phone=14}" />
             <ImageButton Grid.Column="2"
                          Clicked="Search_Clicked"
                          Source="searchheader.png"
@@ -62,8 +62,8 @@
                                                BackgroundColor="{AppThemeBinding Light={StaticResource ItemBackgroundColor}, Dark={StaticResource ItemBackgroundColorDark}}"
                                                BorderColor="{AppThemeBinding Light={StaticResource SeparatorColor}, Dark={StaticResource SeparatorColorDark}}">
                                 <Grid ColumnSpacing="14"
-                                      ColumnDefinitions="Auto,*"
-                                      Padding="14,8">
+                                      ColumnDefinitions="Auto, *"
+                                      Padding="14, 8">
                                     <telerik:RadBorder WidthRequest="44"
                                                        CornerRadius="4"
                                                        BackgroundColor="{AppThemeBinding Light={StaticResource DefaultBackgroundColor}, Dark=Transparent}">
@@ -78,11 +78,17 @@
                                                          VerticalOptions="Center">
                                         <Label Text="{Binding DisplayName}"
                                                VerticalOptions="Center"
-                                               Style="{StaticResource ControlNameLabelStyle}"/>
+                                               Style="{StaticResource ControlNameLabelStyle}" />
                                         <Label Text="{Binding ShortDescription}"
                                                VerticalOptions="StartAndExpand"
-                                               Style="{StaticResource DescriptionLabelWithTruncationStyle}"/>
+                                               Style="{StaticResource DescriptionLabelWithTruncationStyle}" />
                                     </VerticalStackLayout>
+
+                                    <ContentView Grid.ColumnSpan="2"
+                                                 Content="{Binding Status, Converter={StaticResource StatusTagToTemplateConverter}}"
+                                                 HorizontalOptions="End"
+                                                 VerticalOptions="Start"
+                                                 Margin="0, 0, -6, 0" />
                                 </Grid>
                             </telerik:RadBorder>
                         </telerik:ListViewTemplateCell.View>

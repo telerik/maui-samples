@@ -13,7 +13,16 @@ public class ConfigurationViewModel : ExampleViewModel
     private string alternateTextColor = "White";
     private Easing animationEasing = Easing.Linear;
     private ValueDisplayMode valueDisplayMode = ValueDisplayMode.None;
-    private bool isVisible;
+    private double progressCornerRadius;
+    private double trackCornerRadius;
+    private double trackThickness = 4;
+    private bool isIndeterminate;
+    private bool canUpdateValue = true;
+    private bool canUpdateValueDisplayMode = true;
+    private bool canUpdateTextColor = true;
+    private bool canUpdateAlternateTextColor = true;
+    private bool canUpdateSegmentCount = true;
+    private bool canUpdateSegmentSeparatorThickness = true;
 
     public ConfigurationViewModel()
     {
@@ -50,6 +59,15 @@ public class ConfigurationViewModel : ExampleViewModel
             ValueDisplayMode.Value,
             ValueDisplayMode.Text
         };
+
+#if MACCATALYST || __IOS__
+        this.ProgressCornerRadius = 2;
+        this.TrackCornerRadius =  2;
+#elif WINDOWS
+        this.ProgressCornerRadius = 1.5;
+        this.TrackCornerRadius =  0.5;
+        this.TrackThickness = 1;
+#endif
     }
 
     public List<string> Colors { get; }
@@ -79,7 +97,21 @@ public class ConfigurationViewModel : ExampleViewModel
     public ValueDisplayMode ValueDisplayMode
     {
         get { return this.valueDisplayMode; }
-        set { this.UpdateValue(ref this.valueDisplayMode, value); }
+        set
+        {
+            this.UpdateValue(ref this.valueDisplayMode, value);
+
+            if (value == ValueDisplayMode.None)
+            {
+                this.CanUpdateTextColor = false;
+                this.CanUpdateAlternateTextColor= false;
+            }
+            else if (!this.IsIndeterminate)
+            {
+                this.CanUpdateTextColor = true;
+                this.CanUpdateAlternateTextColor= true;
+            }
+        }
     }
 
     public string TextColor
@@ -94,9 +126,73 @@ public class ConfigurationViewModel : ExampleViewModel
         set { this.UpdateValue(ref this.alternateTextColor, value); }
     }
 
-    public bool IsVisible
+    public double ProgressCornerRadius
     {
-        get { return this.isVisible; }
-        set { this.UpdateValue(ref this.isVisible, value); }
+        get { return this.progressCornerRadius; }
+        set { this.UpdateValue(ref this.progressCornerRadius, value); }
+    }
+
+    public double TrackCornerRadius
+    {
+        get { return this.trackCornerRadius; }
+        set { this.UpdateValue(ref this.trackCornerRadius, value); }
+    }
+
+    public double TrackThickness
+    {
+        get { return this.trackThickness; }
+        set { this.UpdateValue(ref this.trackThickness, value); }
+    }
+
+    public bool IsIndeterminate
+    {
+        get { return this.isIndeterminate; }
+        set
+        {
+            this.UpdateValue(ref this.isIndeterminate, value);
+
+            this.CanUpdateValue = !value;
+            this.CanUpdateValueDisplayMode = !value;
+            this.CanUpdateTextColor = !value && this.ValueDisplayMode != ValueDisplayMode.None;
+            this.CanUpdateAlternateTextColor= !value && this.ValueDisplayMode != ValueDisplayMode.None;
+            this.CanUpdateSegmentCount = !value;
+            this.CanUpdateSegmentSeparatorThickness = !value;
+        }
+    }
+
+    public bool CanUpdateValue
+    {
+        get { return this.canUpdateValue; }
+        set { this.UpdateValue(ref this.canUpdateValue, value); }
+    }
+
+    public bool CanUpdateValueDisplayMode
+    {
+        get { return this.canUpdateValueDisplayMode; }
+        set { this.UpdateValue(ref this.canUpdateValueDisplayMode, value); }
+    }
+
+    public bool CanUpdateTextColor
+    {
+        get { return this.canUpdateTextColor; }
+        set { this.UpdateValue(ref this.canUpdateTextColor, value); }
+    }
+
+    public bool CanUpdateAlternateTextColor
+    {
+        get { return this.canUpdateAlternateTextColor; }
+        set { this.UpdateValue(ref this.canUpdateAlternateTextColor, value); }
+    }
+
+    public bool CanUpdateSegmentCount
+    {
+        get { return this.canUpdateSegmentCount; }
+        set { this.UpdateValue(ref this.canUpdateSegmentCount, value); }
+    }
+
+    public bool CanUpdateSegmentSeparatorThickness
+    {
+        get { return this.canUpdateSegmentSeparatorThickness; }
+        set { this.UpdateValue(ref this.canUpdateSegmentSeparatorThickness, value); }
     }
 }

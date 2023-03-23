@@ -18,7 +18,6 @@ namespace QSF.Examples.TemplatedPickerControl.FirstLookExample
         private Color defaultSelectedTextColor;
         private string highlightedValue;
         private string selectedValue;
-        private bool isSelectedValue;
 
         public FirstLookViewModel()
         {
@@ -28,7 +27,6 @@ namespace QSF.Examples.TemplatedPickerControl.FirstLookExample
             this.defaultSelectedTextColor = Colors.White;
             this.HighlightedValue = string.Empty;
             this.SelectedValue = string.Empty;
-            this.IsSelectedValue = false;
 
             this.XS = new SizeViewModel("XS");
             this.S = new SizeViewModel("S");
@@ -95,8 +93,6 @@ namespace QSF.Examples.TemplatedPickerControl.FirstLookExample
                 },
             };
 
-            this.SelectedColor = this.Blue;
-            this.SelectedSize = this.XS;
             this.Accept();
         }
         public IList<CardItem> Cards { get; }
@@ -141,21 +137,15 @@ namespace QSF.Examples.TemplatedPickerControl.FirstLookExample
         public string SelectedValue
         {
             get { return this.selectedValue; }
-            set { UpdateValue(ref this.selectedValue, value); }
-            
-        }
-        public bool IsSelectedValue
-        {
-            get { return this.isSelectedValue; }
-            set { UpdateValue(ref this.isSelectedValue, value); }
+            set
+            {
+                UpdateValue(ref this.selectedValue, value);
+                this.SendRequestCommand?.ChangeCanExecute();
+            }
         }
 
         private void Accept()
         {
-            if (!this.IsSelectedValue)
-            {
-                this.IsSelectedValue = true;
-            }
             this.SelectedValue = this.HighlightedValue;
             this.LastAcceptedSize = this.SelectedSize;
             this.LastAcceptedColor = this.SelectedColor;
@@ -164,11 +154,17 @@ namespace QSF.Examples.TemplatedPickerControl.FirstLookExample
 
         private void Cancel()
         {
-            if (this.SelectedValue != string.Empty)
+            if (!string.IsNullOrEmpty(this.SelectedValue))
             {
                 this.HighlightedValue = this.SelectedValue;
-                this.SelectSizeCommand.Execute(this.LastAcceptedSize);
-                this.SelectColorCommand.Execute(this.LastAcceptedColor);
+                if (this.LastAcceptedSize != null)
+                {
+                    this.SelectSizeCommand.Execute(this.LastAcceptedSize);
+                }
+                if (this.LastAcceptedColor != null)
+                {
+                    this.SelectColorCommand.Execute(this.LastAcceptedColor);
+                }
             }
             else
             {
@@ -181,14 +177,16 @@ namespace QSF.Examples.TemplatedPickerControl.FirstLookExample
         {
             var toastService = DependencyService.Get<IToastMessageService>();
             toastService.ShortAlert($"{this.SelectedValue} Women's Top Added to Basket");
-            this.SelectedColor = null;
-            this.SelectedSize = null;
+            this.SelectSizeCommand.Execute(this.XS);
+            this.SelectColorCommand.Execute(this.Blue);
+            this.LastAcceptedColor = null;
+            this.LastAcceptedSize = null;
             this.SelectedValue = null;
         }
 
         private bool CanSendRequest()
         {
-            return this.IsSelectedValue;
+            return !string.IsNullOrEmpty(this.SelectedValue);
         }
     }
 }

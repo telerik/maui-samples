@@ -7,7 +7,7 @@
                              xmlns:local="clr-namespace:QSF.Examples.TemplatedPickerControl.FirstLookExample"
                              x:Class="QSF.Examples.TemplatedPickerControl.FirstLookExample.FirstLookView"
                              ItemsSource="{Binding Cards}"
-                             CollectionTitle="Product Info:" 
+                             CollectionTitle="Product Info:"
                              ButtonCommand="{Binding SendRequestCommand}"
                              ButtonText="Add to Basket">
     <ContentView.Resources>
@@ -33,14 +33,14 @@
         <Style x:Key="ItemGridStyle" TargetType="Grid">
             <Setter Property="WidthRequest" Value="40" />
             <Setter Property="HeightRequest" Value="40" />
-            <Setter Property="Margin" Value="12, 16, 12, 16" />
+            <Setter Property="Margin" Value="12, 16" />
         </Style>
         <Style x:Key="DefaultHeaderLabelStyle" TargetType="Label">
-            <Setter Property="TextColor" Value="Black" />
-            <Setter Property="FontAttributes" Value="Bold" />
-            <Setter Property="FontSize" Value="{OnIdiom Phone=Large, Default=Medium}" />
-            <Setter Property="HorizontalOptions" Value="Center" />
-            <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource DefaultTextColor}, Dark={StaticResource DefaultTextColorDark}}" />
+            <Setter Property="HorizontalOptions" Value="{OnPlatform Default='Center', MacCatalyst='Start', WinUI='Start'}" />
+            <Setter Property="VerticalOptions" Value="Center" />
+            <Setter Property="Margin" Value="{OnPlatform Default='10, 0', WinUI='20, 0'}" />
+            <Setter Property="FontSize" Value="{OnPlatform Default='22', WinUI='20'}" />
         </Style>
         <DataTemplate x:Key="HorizontalItemTemplate">
             <Grid ColumnDefinitions="Auto, *">
@@ -62,7 +62,7 @@
         </DataTemplate>
         <DataTemplate x:Key="VerticalItemTemplate">
             <VerticalStackLayout>
-                <telerik:RadBorder VerticalOptions="Start" 
+                <telerik:RadBorder VerticalOptions="Start"
                                    HorizontalOptions="Start"
                                    Style="{StaticResource DefaultCardBorderStyle}"
                                    BackgroundColor="{Binding Color}">
@@ -87,7 +87,7 @@
             </VerticalStackLayout>
         </DataTemplate>
     </ContentView.Resources>
-    
+
     <VerticalStackLayout>
         <Label Text="Women's Short Sleeve Top"
                Style="{StaticResource DefaultSubtitleLabelStyle}"
@@ -101,20 +101,20 @@
                                     PlaceholderLabelStyle="{StaticResource PlaceholderLabelStyle}"
                                     SelectedValue="{Binding SelectedValue}">
             <telerik:RadTemplatedPicker.PopupSettings>
-                <telerik:PickerPopupSettings AcceptCommand="{Binding AcceptCommand}" 
+                <telerik:PickerPopupSettings AcceptCommand="{Binding AcceptCommand}"
                                              CancelCommand="{Binding CancelCommand}">
                     <telerik:PickerPopupSettings.HeaderTemplate>
                         <ControlTemplate>
-                            <StackLayout BackgroundColor="#F8F8F8">
+                            <Grid BackgroundColor="{TemplateBinding BackgroundColor}">
                                 <Label Text="Select Size &amp; Color"
-                                       Style="{StaticResource DefaultHeaderLabelStyle}">
-                                </Label>
-                            </StackLayout>
+                                       Style="{StaticResource DefaultHeaderLabelStyle}" />
+                            </Grid>
                         </ControlTemplate>
                     </telerik:PickerPopupSettings.HeaderTemplate>
                     <telerik:PickerPopupSettings.HeaderStyle>
                         <Style TargetType="telerik:PickerPopupHeaderView">
-                            <Setter Property="HeightRequest" Value="56" />
+                            <Setter Property="BackgroundColor" Value="#F8F8F8" />
+                            <Setter Property="HeightRequest" Value="64" />
                         </Style>
                     </telerik:PickerPopupSettings.HeaderStyle>
                 </telerik:PickerPopupSettings>
@@ -264,5 +264,4 @@
             </telerik:RadTemplatedPicker.SelectorTemplate>
         </telerik:RadTemplatedPicker>
     </VerticalStackLayout>
-    
 </views:PickerExampleViewBase>

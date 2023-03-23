@@ -10,82 +10,84 @@
             <Color x:Key="MainBackgroundColorDark">Black</Color>
 
             <Style TargetType="Label">
-                <Setter Property="VerticalTextAlignment" Value="Center"/>
-                <Setter Property="Margin" Value="5,0,5,0"/>
-                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="Margin" Value="5,0,5,0" />
+                <Setter Property="FontSize" Value="16" />
             </Style>
 
             <Style TargetType="Label" x:Key="InfoLabel">
-                <Setter Property="FontSize" Value="18"/>
-                <Setter Property="Margin" Value="0,20"/>
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="Margin" Value="0,20" />
             </Style>
         </ResourceDictionary>
     </telerik:RadContentView.Resources>
     <telerik:RadContentView.Content>
         <Grid BackgroundColor="{AppThemeBinding Light={StaticResource MainBackgroundColorLight}}"
               RowDefinitions="Auto,*">
-            <Label Text="Please complete our survey" 
-                   Margin="0" 
-                   FontSize="20"/>
+            <Label Text="Please complete our survey"
+                   Margin="0"
+                   FontSize="20" />
             <ScrollView Grid.Row="1">
-                <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,90"
+                <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,*"
                       RowSpacing="5">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="{OnPlatform Default='1*', WinUI='200', MacCatalyst='200'}"/>
-                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="{OnPlatform Default='1*', WinUI='200', MacCatalyst='200'}" />
+                        <ColumnDefinition Width="2*" />
                     </Grid.ColumnDefinitions>
-                    <Label Text="Contact Information" 
-                           Style="{StaticResource InfoLabel}" 
-                           Grid.ColumnSpan="2"/>
-                    <Label Text="Email Address:" 
+
+                    <Label Text="Contact Information"
+                           Style="{StaticResource InfoLabel}"
+                           Grid.ColumnSpan="2" />
+                    <Label Text="Email:"
                            Grid.Row="1" />
-                    <telerik:RadEmailMaskedEntry Grid.Row="1" 
-                                                 Grid.Column="1" 
+                    <telerik:RadEmailMaskedEntry Grid.Row="1"
+                                                 Grid.Column="1"
                                                  Value="{Binding Email, Mode=TwoWay}"
                                                  MaximumWidthRequest="{OnPlatform WinUI='300', MacCatalyst='300'}"
-                                                 Placeholder="your_email@mail.mail"/>
-                    <Label Text="Phone Number:" 
-                           Grid.Row="2"/>
+                                                 Placeholder="your_email@mail.mail" />
+                    <Label Text="Phone:"
+                           Grid.Row="2" />
                     <telerik:RadRegexMaskedEntry Mask="(\+0?1\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$"
                                                  MaximumWidthRequest="{OnPlatform WinUI='300', MacCatalyst='300'}"
-                                                 Placeholder="(415)-555-2671" 
+                                                 Placeholder="(415)-555-2671"
                                                  Value="{Binding Phone, Mode=TwoWay}"
                                                  Grid.Row="2"
-                                                 Grid.Column="1"/>
-                    <Label Text="Additional Information" 
-                           Grid.Row="3" 
+                                                 Grid.Column="1" />
+                    <Label Text="Additional Information"
+                           Grid.Row="3"
                            Grid.ColumnSpan="2"
-                           Style="{StaticResource InfoLabel}"/>
-                    <Label Text="IP Address:" 
-                           Grid.Row="4"/>
+                           Style="{StaticResource InfoLabel}" />
+                    <Label Text="IP Address:"
+                           Grid.Row="4" />
                     <telerik:RadIPMaskedEntry Grid.Row="4"
                                               Grid.Column="1"
                                               Value="{Binding IP, Mode=TwoWay}"
-                                              MaximumWidthRequest="{OnPlatform WinUI='300', MacCatalyst='300'}"/>
-                    <Label Text="Zip Code:" 
-                           Grid.Row="5"/>
-                    <telerik:RadTextMaskedEntry Placeholder="Zip Code" 
-                                                Grid.Row="5" 
+                                              MaximumWidthRequest="{OnPlatform WinUI='300', MacCatalyst='300'}" />
+                    <Label Text="Zip Code:"
+                           Grid.Row="5" />
+                    <telerik:RadTextMaskedEntry Placeholder="Zip Code"
+                                                Grid.Row="5"
                                                 Grid.Column="1"
                                                 AllowOnlyCompletedValues="False"
                                                 Value="{Binding ZipCode, Mode=TwoWay}"
                                                 MaximumWidthRequest="{OnPlatform WinUI='300', MacCatalyst='300'}"
-                                                Mask="0000-000"/>
-                    <Label Text="Total Cost:" 
-                           Grid.Row="6"/>
-                    <telerik:RadNumericMaskedEntry Mask="C"  
-                                                   Grid.Row="6" 
+                                                Mask="0000-000" />
+                    <Label Text="Total Cost:"
+                           Grid.Row="6" />
+                    <telerik:RadNumericMaskedEntry Mask="C"
+                                                   Grid.Row="6"
                                                    Grid.Column="1"
                                                    Value="{Binding Currency, Mode=TwoWay}"
-                                                   MaximumWidthRequest="{OnPlatform WinUI='300', MacCatalyst='300'}"/>
+                                                   MaximumWidthRequest="{OnPlatform WinUI='300', MacCatalyst='300'}" />
 
-                    <telerik:RadButton Text="Submit" 
-                                       Grid.Row="7" Grid.ColumnSpan="2"
-                                       Margin="0,40,0,0"
-                                       VerticalOptions="{OnIdiom Default=Center, Phone=Center}"
-                                       HorizontalOptions="{OnIdiom Default=Start, Phone=FillAndExpand}"
+                    <telerik:RadButton Text="Submit"
+                                       Grid.Row="7"
+                                       Grid.ColumnSpan="2"
+                                       Margin="0, 40, 0, 0"
+                                       VerticalOptions="{OnIdiom Default=Start, Phone=End}"
+                                       HorizontalOptions="{OnIdiom Default=Start, Phone=Fill}"
                                        Style="{StaticResource SubmitButtonStyle}"
-                                       Command="{Binding SubmitCommand}"/>
+                                       Command="{Binding SubmitCommand}" />
                 </Grid>
             </ScrollView>
         </Grid>

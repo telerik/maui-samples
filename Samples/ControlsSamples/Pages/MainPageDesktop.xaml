@@ -15,14 +15,22 @@
         <DataTemplate x:Key="ControlItemTemplate">
             <VerticalStackLayout>
                 <BoxView HeightRequest="6"
-                         BackgroundColor="{AppThemeBinding Light={StaticResource SecondaryBackgroundColor}, Dark={StaticResource SecondaryBackgroundColorDark}}"/>
+                         BackgroundColor="{AppThemeBinding Light={StaticResource SecondaryBackgroundColor}, Dark={StaticResource SecondaryBackgroundColorDark}}" />
                 <telerik:RadBorder HeightRequest="32">
-                    <views:NavigationItemView Header="{Binding DisplayName}"
-                                              Icon="{Binding Icon}"
-                                              Margin="4, 0, 0, 0"/>
+                    <Grid ColumnDefinitions="*, Auto"
+                          BackgroundColor="{AppThemeBinding Light={StaticResource ItemBackgroundColor}, Dark={StaticResource ItemBackgroundColorDark}}"
+                          Margin="4, 0, 0, 0">
+                        <views:NavigationItemView BackgroundColor="Transparent"
+                                                  Header="{Binding DisplayName}"
+                                                  Icon="{Binding Icon}" />
+                        <ContentView Grid.Column="1"
+                                     Content="{Binding Status, Converter={StaticResource StatusTagToTemplateConverter}}"
+                                     VerticalOptions="Center"
+                                     Margin="6, 0" />
+                    </Grid>
                 </telerik:RadBorder>
                 <BoxView HeightRequest="6"
-                         BackgroundColor="{AppThemeBinding Light={StaticResource SecondaryBackgroundColor}, Dark={StaticResource SecondaryBackgroundColorDark}}"/>
+                         BackgroundColor="{AppThemeBinding Light={StaticResource SecondaryBackgroundColor}, Dark={StaticResource SecondaryBackgroundColorDark}}" />
             </VerticalStackLayout>
         </DataTemplate>
     </VisualElement.Resources>
@@ -42,7 +50,7 @@
                 <ContentView Content="{Binding SelectedControl, Converter={StaticResource ModelToViewConverter}}" />
                 <views:HomeViewDesktop IsVisible="{Binding IsHomeSelected}" />
                 <views:SearchViewDesktop IsVisible="{Binding IsSearchSelected}"
-                                         SelectedSearchResult="{Binding SelectedSearchResult}"/>
+                                         SelectedSearchResult="{Binding SelectedSearchResult}" />
             </Grid>
         </Grid>
 
@@ -65,27 +73,27 @@
                         <Grid IsVisible="{Binding IsSearchSelected}"
                               BackgroundColor="{StaticResource ApplicationAccentColor}"
                               HeightRequest="32"
-                              VerticalOptions="Center"/>
+                              VerticalOptions="Center" />
                         <views:NavigationItemView Icon="search.png"
                                                   TapCommand="{Binding SelectSearchCommand}"
                                                   Grid.Column="1"
-                                                  Padding="0, 8"/>
+                                                  Padding="0, 8" />
                     </Grid>
                     <Grid ColumnDefinitions="4, *"
                           Margin="0, 24, 0, 0">
                         <Grid IsVisible="{Binding IsHomeSelected}"
                               BackgroundColor="{StaticResource ApplicationAccentColor}"
                               HeightRequest="32"
-                              VerticalOptions="Center"/>
+                              VerticalOptions="Center" />
                         <views:NavigationItemView Header="Home"
                                                   Icon="home.png"
                                                   TapCommand="{Binding SelectHomeCommand}"
                                                   Grid.Column="1"
-                                                  Padding="0, 8"/>
+                                                  Padding="0, 8" />
                     </Grid>
                 </VerticalStackLayout>
-                <telerik:NonVirtualizedItemsControl x:Name="controlsView" 
-                                                    MinimumWidthRequest="{OnPlatform Default='0', MacCatalyst='210'}"
+                <telerik:NonVirtualizedItemsControl x:Name="controlsView"
+                                                    MinimumWidthRequest="{OnIdiom Phone=0, Desktop=280}"
                                                     ItemTemplate="{StaticResource ControlItemTemplate}"
                                                     ItemsSource="{Binding Controls}"
                                                     SelectedItem="{Binding SelectedControl, Mode=TwoWay}"

@@ -2,22 +2,32 @@
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:styles="clr-namespace:QSF.Styles"
              x:Class="QSF.Examples.DataGridControl.FrozenColumnsExample.ConfigurationArea">
-    <Grid RowDefinitions="Auto, *">
-        <Label Text="Freeze/Unfreeze columns:" />
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <styles:ConfigurationViewResources />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+    <Grid RowDefinitions="Auto, *"
+          Style="{StaticResource RootAtSeparateAreaStyle}">
+        <Label Text="Freeze/Unfreeze columns:"
+               Style="{StaticResource SectionHeadingLabelStyle}" />
         <CollectionView Grid.Row="1"
                         ItemsSource="{Binding Columns, Mode=OneWay}"
-                        SelectionMode="None"
-                        Margin="0, 10, 0, 0">
+                        SelectionMode="None">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <HorizontalStackLayout Spacing="12"
-                                           Margin="0, 5">
+                    <HorizontalStackLayout Style="{StaticResource CheckBoxGroupStyle}">
                         <HorizontalStackLayout.GestureRecognizers>
                             <TapGestureRecognizer Tapped="OnItemTapped"/>
                         </HorizontalStackLayout.GestureRecognizers>
                         <telerik:RadCheckBox IsChecked="{Binding IsFrozen, Mode=TwoWay}" />
-                        <Label Text="{Binding HeaderText}" />
+                        <Label Text="{Binding HeaderText}"
+                               Style="{StaticResource HorizontalGroupLabelAtEndStyle}" />
                     </HorizontalStackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>

@@ -3,27 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
              xmlns:layouts="clr-namespace:QSF.Layouts"
-             x:Class="QSF.Examples.BorderControl.FirstLookExample.FirstLookView">
+             x:Class="QSF.Examples.BorderControl.FirstLookExample.FirstLookView"
+             Padding="{OnIdiom Default='16, 20', Phone=0}">
 
     <ContentView.Resources>
         <ResourceDictionary>
-            <Style x:Key="EditButtonBorderStyle" TargetType="telerik:RadBorder">
-                <Setter Property="BackgroundColor" Value="#9f392b" />
-                <Setter Property="CornerRadius" Value="25" />
-                <Setter Property="HorizontalOptions" Value="End" />
-            </Style>
-            <Style x:Key="EditButtonStyle" TargetType="Button">
-                <Setter Property="Margin" Value="25, 10, 25, 10" />
-                <Setter Property="FontSize" Value="13" />
-                <Setter Property="TextColor" Value="White" />
-            </Style>
-            <Style x:Key="ApprovalSentLabelStyle" TargetType="Label">
-                <Setter Property="Margin" Value="0, 10, 0, 0" />
-                <Setter Property="FontSize" Value="13" />
-                <Setter Property="TextColor" Value="#f1b3aa" />
-                <Setter Property="IsVisible" Value="false" />
-                <Setter Property="HorizontalOptions" Value="Center" />
-            </Style>
             <Style x:Key="AvatarBorderStyle" TargetType="telerik:RadBorder">
                 <Setter Property="CornerRadius" Value="104" />
                 <Setter Property="WidthRequest" Value="104" />
@@ -33,26 +17,26 @@
                 <Setter Property="HorizontalOptions" Value="Center" />
             </Style>
             <Style x:Key="UserNameLabelStyle" TargetType="Label">
-                <Setter Property="Margin" Value="0, 0, 0, 0" />
-                <Setter Property="FontSize" Value="20" />
-                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="Margin" Value="0, 4, 0, 0" />
+                <Setter Property="FontSize" Value="24" />
                 <Setter Property="HorizontalOptions" Value="Center" />
             </Style>
             <Style x:Key="UserJobTitleLabelStyle" TargetType="Label">
-                <Setter Property="FontSize" Value="14" />
-                <Setter Property="TextColor" Value="#919191" />
+                <Setter Property="FontSize" Value="{OnIdiom Default=14, Phone=16}" />
+                <Setter Property="Opacity" Value="0.4" />
+                <Setter Property="Margin" Value="0, 4, 0, 0" />
                 <Setter Property="HorizontalOptions" Value="Center" />
             </Style>
             <Style x:Key="UserStatisticsCountLabelStyle" TargetType="Label">
-                <Setter Property="FontSize" Value="32" />
-                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="FontSize" Value="24" />
+                <Setter Property="Margin" Value="0, 4, 0, 0" />
                 <Setter Property="HorizontalOptions" Value="Center" />
             </Style>
             <Style x:Key="UserStatisticsTitleLabelStyle" TargetType="Label">
                 <Setter Property="FontSize" Value="12" />
-                <Setter Property="TextColor" Value="#737b96" />
+                <Setter Property="Opacity" Value="0.6" />
+                <Setter Property="Margin" Value="0, 2, 0, 0" />
                 <Setter Property="HorizontalOptions" Value="Center" />
-                <Setter Property="Margin" Value="0, 0, 0, 0" />
             </Style>
             <Style x:Key="UserStatisticsIndicatorBorderStyle" TargetType="telerik:RadBorder">
                 <Setter Property="HorizontalOptions" Value="Center" />
@@ -61,23 +45,23 @@
                 <Setter Property="WidthRequest" Value="10" />
                 <Setter Property="HeightRequest" Value="10" />
             </Style>
-            <Style x:Key="UserStatisticsContainerStyle" TargetType="StackLayout">
+            <Style x:Key="UserStatisticsContainerStyle" TargetType="VerticalStackLayout">
                 <Setter Property="HorizontalOptions" Value="Center" />
                 <Setter Property="VerticalOptions" Value="Center" />
-                <Setter Property="Margin" Value="20" />
-                <Setter Property="Spacing" Value="{OnPlatform Default=0, WinUI=-4, Android=-4}" />
+                <Setter Property="MinimumWidthRequest" Value="96" />
+                <Setter Property="Margin" Value="0, 8" />
             </Style>
             <Style x:Key="UserStatisticsSeparatorStyle" TargetType="BoxView">
-                <Setter Property="Margin" Value="0, 15, 0, 15" />
-                <Setter Property="BackgroundColor" Value="#e6edf4" />
+                <Setter Property="Margin" Value="{OnIdiom Default='20, 0', Phone='12, 0'}" />
+                <Setter Property="BackgroundColor" Value="#DCE7F2" />
+                <Setter Property="WidthRequest" Value="1" />
             </Style>
-            <Style x:Key="CommentAvatarImageStyle" TargetType="Image">
-                <Setter Property="WidthRequest" Value="40" />
-                <Setter Property="HeightRequest" Value="40" />
+            <Style x:Key="CommentUserNameLabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="TextColor" Value="#FF9040" />
             </Style>
             <Style x:Key="CommentAvatarImageBorderStyle" TargetType="telerik:RadBorder">
                 <Setter Property="HorizontalOptions" Value="Start" />
-                <Setter Property="Margin" Value="0, 0, 6, 0" />
                 <Setter Property="WidthRequest" Value="40" />
                 <Setter Property="HeightRequest" Value="40" />
                 <Setter Property="CornerRadius" Value="40" />
@@ -85,35 +69,32 @@
                 <Setter Property="BorderColor" Value="#DFDFDF" />
                 <Setter Property="BorderThickness" Value="3" />
             </Style>
+            <Style x:Key="CommentAvatarImageStyle" TargetType="Image">
+                <Setter Property="WidthRequest" Value="40" />
+                <Setter Property="HeightRequest" Value="40" />
+            </Style>
             <Style x:Key="CommentTextBorderStyle" TargetType="telerik:RadBorder">
-                <Setter Property="Margin" Value="45, 0, 0, 0" />
-                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="VerticalOptions" Value="Start" />
                 <Setter Property="CornerRadius" Value="0, 16, 16, 16" />
                 <Setter Property="BackgroundColor" Value="#F8F8F8" />
-                <Setter Property="Padding" Value="5" />
+                <Setter Property="Padding" Value="12, 12, 30, 12" />
             </Style>
             <Style x:Key="CommentTextLabelStyle" TargetType="Label">
                 <Setter Property="HorizontalTextAlignment" Value="Start" />
-                <Setter Property="Margin" Value="10" />
+                <Setter Property="MaxLines" Value="{OnPlatform Default='-1', WinUI=4}" />
+                <Setter Property="LineHeight" Value="1.4" />
                 <Setter Property="LineBreakMode" Value="WordWrap" />
                 <Setter Property="FontSize" Value="12" />
-                <Setter Property="TextColor" Value="Black" />
-            </Style>
-             <Style x:Key="CommentUserNameLabelStyle" TargetType="Label">
-                <Setter Property="FontSize" Value="14" />
-                <Setter Property="Margin" Value="0, 0, 0, 5" />
-                <Setter Property="TextColor" Value="#FF9040" />
             </Style>
         </ResourceDictionary>
     </ContentView.Resources>
 
-        <Grid RowDefinitions="Auto, Auto, *, Auto">
-            <VerticalStackLayout BackgroundColor="#F8F8F8">
-                <Grid Margin="0, 15, 15, 0">
-                    <Label x:Name="awatingApprovalLabel" Text="Awaiting approval." Style="{StaticResource ApprovalSentLabelStyle}" />
-                </Grid>
-                
-                <VerticalStackLayout Margin="0, 5, 0, 20" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+    <ScrollView>
+        <Grid RowDefinitions="Auto, Auto, Auto, *">
+            <VerticalStackLayout BackgroundColor="#F8F8F8"
+                                 Padding="16">
+                <VerticalStackLayout VerticalOptions="Center"
+                                     HorizontalOptions="Center">
                     <telerik:RadBorder Style="{StaticResource AvatarBorderStyle}">
                         <Image Source="{Binding Avatar}" />
                     </telerik:RadBorder>
@@ -121,8 +102,13 @@
                     <Label Text="Developer" Style="{StaticResource UserJobTitleLabelStyle}" />
                 </VerticalStackLayout>
             </VerticalStackLayout>
-            <telerik:RadBorder Grid.Row="1" BorderThickness="0,0,0,1" BorderColor="#DFDFDF" >
-                <Grid  ColumnDefinitions="*, 1, Auto, 1, *" >
+            <telerik:RadBorder Grid.Row="1"
+                               BorderThickness="0, 0, 0, 1"
+                               BorderColor="#DCE7F2"
+                               Padding="{OnIdiom Default='0, 24', Phone=16}">
+                <Grid ColumnDefinitions="*, Auto, Auto, Auto, *"
+                      HorizontalOptions="Center"
+                      VerticalOptions="Center">
                     <VerticalStackLayout Style="{StaticResource UserStatisticsContainerStyle}" HorizontalOptions="End">
                         <telerik:RadBorder Style="{StaticResource UserStatisticsIndicatorBorderStyle}" BorderColor="#FF6F00" />
                         <Label Text="20" Style="{StaticResource UserStatisticsCountLabelStyle}" />
@@ -147,87 +133,107 @@
                     </VerticalStackLayout>
                 </Grid>
             </telerik:RadBorder>
-
             <ContentView x:Name="contentView"
-                         Grid.Row="2">
+                         Grid.Row="2"
+                         Padding="{OnIdiom Default=0, Phone=16}"
+                         Margin="{OnIdiom Default='0, 24, 0, 0', Phone=0}">
                 <ContentView.Resources>
                     <ControlTemplate x:Key="HorizontalControlTemplate">
-                        <Grid ColumnDefinitions="*, *" BindingContext="{Binding BindingContext, Source={x:Reference contentView}}">
-                            <Grid RowDefinitions="Auto, Auto" Padding="10" >
+                        <Grid ColumnDefinitions="*, *"
+                              ColumnSpacing="20"
+                              BindingContext="{Binding BindingContext, Source={x:Reference contentView}}"
+                              MinimumHeightRequest="{OnPlatform Default='-1', WinUI=125}">
+                            <Grid RowDefinitions="Auto, Auto"
+                                  RowSpacing="12">
                                 <Label Text="{Binding Person1Name}"
                                        Style="{StaticResource CommentUserNameLabelStyle}" />
-                                <telerik:RadBorder Grid.Row="1"
-                                                   Style="{StaticResource CommentAvatarImageBorderStyle}">
-                                    <Image Source="{Binding Person1Avatar}"
-                                           Style="{StaticResource CommentAvatarImageStyle}" />
-                                </telerik:RadBorder>
-                                <telerik:RadBorder Grid.Row="1"
-                                                   Style="{StaticResource CommentTextBorderStyle}">
-                                    <Label Text="{Binding Person1Description}"
-                                           Style="{StaticResource CommentTextLabelStyle}" />
-                                </telerik:RadBorder>
+                                <Grid Grid.Row="1"
+                                      ColumnDefinitions="Auto, *"
+                                      ColumnSpacing="8">
+                                    <telerik:RadBorder Style="{StaticResource CommentAvatarImageBorderStyle}">
+                                        <Image Source="{Binding Person1Avatar}"
+                                               Style="{StaticResource CommentAvatarImageStyle}" />
+                                    </telerik:RadBorder>
+                                    <telerik:RadBorder Grid.Column="1"
+                                                       Style="{StaticResource CommentTextBorderStyle}">
+                                        <Label Text="{Binding Person1Description}"
+                                               Style="{StaticResource CommentTextLabelStyle}" />
+                                    </telerik:RadBorder>
+                                </Grid>
                             </Grid>
 
-                            <Grid Grid.Column="1" RowDefinitions="Auto, Auto" Padding="10">
+                            <Grid Grid.Column="1"
+                                  RowDefinitions="Auto, Auto"
+                                  RowSpacing="12">
                                 <Label Text="{Binding Person2Name}"
                                        Style="{StaticResource CommentUserNameLabelStyle}" />
-                                <telerik:RadBorder Grid.Row="1" 
-                                          Style="{StaticResource CommentAvatarImageBorderStyle}">
-                                    <Image Source="{Binding Person2Avatar}"
-                                           Style="{StaticResource CommentAvatarImageStyle}" />
-                                </telerik:RadBorder>
-                                <telerik:RadBorder Grid.Row="1"
-                                                   Style="{StaticResource CommentTextBorderStyle}">
-                                    <Label Text="{Binding Person2Description}"
-                                           Style="{StaticResource CommentTextLabelStyle}" />
-                                </telerik:RadBorder>
+                                <Grid Grid.Row="1"
+                                      ColumnDefinitions="Auto, *"
+                                      ColumnSpacing="8">
+                                    <telerik:RadBorder Style="{StaticResource CommentAvatarImageBorderStyle}">
+                                        <Image Source="{Binding Person2Avatar}"
+                                               Style="{StaticResource CommentAvatarImageStyle}" />
+                                    </telerik:RadBorder>
+                                    <telerik:RadBorder Grid.Column="1"
+                                                       Style="{StaticResource CommentTextBorderStyle}">
+                                        <Label Text="{Binding Person2Description}"
+                                               Style="{StaticResource CommentTextLabelStyle}" />
+                                    </telerik:RadBorder>
+                                </Grid>
                             </Grid>
                         </Grid>
                     </ControlTemplate>
                     <ControlTemplate x:Key="VerticalControlTemplate">
-                        <VerticalStackLayout BindingContext="{Binding BindingContext, Source={x:Reference contentView}}">
-                            <Grid RowDefinitions="Auto, Auto" Padding="10">
-                                <Label Text="{Binding Person1Name}" 
+                        <VerticalStackLayout BindingContext="{Binding BindingContext, Source={x:Reference contentView}}"
+                                             Spacing="20">
+                            <Grid RowDefinitions="Auto, Auto"
+                                  RowSpacing="12">
+                                <Label Text="{Binding Person1Name}"
                                        Style="{StaticResource CommentUserNameLabelStyle}" />
-                                <telerik:RadBorder Grid.Row="1"
-                                                   Style="{StaticResource CommentAvatarImageBorderStyle}">
-                                    <Image Source="{Binding Person1Avatar}"
-                                           Style="{StaticResource CommentAvatarImageStyle}" />
-                                </telerik:RadBorder>
-                                <telerik:RadBorder Grid.Row="1"
-                                                   Style="{StaticResource CommentTextBorderStyle}">
-                                    <Label Text="{Binding Person1Description}"
-                                           Style="{StaticResource CommentTextLabelStyle}" />
-                                </telerik:RadBorder>
+                                <Grid Grid.Row="1"
+                                      ColumnDefinitions="Auto, *"
+                                      ColumnSpacing="8">
+                                    <telerik:RadBorder Style="{StaticResource CommentAvatarImageBorderStyle}">
+                                        <Image Source="{Binding Person1Avatar}"
+                                               Style="{StaticResource CommentAvatarImageStyle}" />
+                                    </telerik:RadBorder>
+                                    <telerik:RadBorder Grid.Column="1"
+                                                       Style="{StaticResource CommentTextBorderStyle}">
+                                        <Label Text="{Binding Person1Description}"
+                                               Style="{StaticResource CommentTextLabelStyle}" />
+                                    </telerik:RadBorder>
+                                </Grid>
                             </Grid>
 
-                            <Grid RowDefinitions="Auto, Auto" Padding="10">
+                            <Grid RowDefinitions="Auto, Auto"
+                                  RowSpacing="12">
                                 <Label Text="{Binding Person2Name}"
                                        Style="{StaticResource CommentUserNameLabelStyle}" />
-                                <telerik:RadBorder Grid.Row="1"
-                                                   Style="{StaticResource CommentAvatarImageBorderStyle}">
-                                    <Image Source="{Binding Person2Avatar}"
-                                           Style="{StaticResource CommentAvatarImageStyle}" />
-                                </telerik:RadBorder>
-                                <telerik:RadBorder Grid.Row="1"
-                                                   Style="{StaticResource CommentTextBorderStyle}">
-                                    <Label Text="{Binding Person2Description}"
-                                           Style="{StaticResource CommentTextLabelStyle}" />
-                                </telerik:RadBorder>
+                                <Grid Grid.Row="1"
+                                      ColumnDefinitions="Auto, *"
+                                      ColumnSpacing="8">
+                                    <telerik:RadBorder Style="{StaticResource CommentAvatarImageBorderStyle}">
+                                        <Image Source="{Binding Person2Avatar}"
+                                               Style="{StaticResource CommentAvatarImageStyle}" />
+                                    </telerik:RadBorder>
+                                    <telerik:RadBorder Grid.Column="1"
+                                                       Style="{StaticResource CommentTextBorderStyle}">
+                                        <Label Text="{Binding Person2Description}"
+                                               Style="{StaticResource CommentTextLabelStyle}" />
+                                    </telerik:RadBorder>
+                                </Grid>
                             </Grid>
                         </VerticalStackLayout>
                     </ControlTemplate>
                 </ContentView.Resources>
             </ContentView>
-
-        <telerik:RadButton Grid.Row="3"
-                           Text="Connect"
-                           Command="{Binding ConnectCommand}"
-                           Style="{StaticResource SubmitButtonStyle}"
-                           Margin="10"
-                           HorizontalOptions="{OnIdiom Default=Start, Phone=FillAndExpand}"/>
-    </Grid>
-    
+            <telerik:RadButton Grid.Row="3"
+                               Text="Connect"
+                               Command="{Binding ConnectCommand}"
+                               Style="{StaticResource SubmitButtonStyle}"
+                               Margin="{OnIdiom Default='0, 40, 0, 0', Phone=16}"
+                               HorizontalOptions="{OnIdiom Default=Start, Phone=Fill}"
+                               VerticalOptions="{OnIdiom Default=Start, Phone=End}" />
+        </Grid>
+    </ScrollView>
 </ContentView>
-
-

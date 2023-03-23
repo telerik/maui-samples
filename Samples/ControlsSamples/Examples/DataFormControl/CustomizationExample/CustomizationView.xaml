@@ -47,6 +47,7 @@
                            Text="Reserve"
                            Style="{StaticResource SubmitButtonStyle}"
                            HorizontalOptions="{OnIdiom Default=Start, Phone=Fill}"
-                           Command="{Binding CommitCommand, Source={x:Reference dataForm}}" />
+                           Command="{Binding CommitCommand, Source={x:Reference dataForm}}"
+                           Clicked="ReserveButton_Clicked" />
     </Grid>
 </ContentView>

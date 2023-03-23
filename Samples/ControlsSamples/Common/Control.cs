@@ -26,13 +26,7 @@ public class Control
 
     public string FeedbackPortalUrl { get; set; }
 
-    public bool IsNew { get; set; }
-
-    public bool IsCTP { get; set; }
-
-    public bool IsBeta { get; set; }
-
-    public bool IsUpdated { get; set; }
+    public StatusType Status { get; set; }
 
     public bool IsThemable { get; set; }
 

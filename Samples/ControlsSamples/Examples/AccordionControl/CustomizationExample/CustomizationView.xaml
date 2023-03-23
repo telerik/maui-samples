@@ -30,7 +30,7 @@
                                 <DataTrigger TargetType="telerik:RadBorder"
                                              Binding="{TemplateBinding IsExpanded}"
                                              Value="True">
-                                    <Setter Property="Background" Value="{StaticResource AccentColor8}" />
+                                    <Setter Property="BackgroundColor" Value="{StaticResource AccentColor8}" />
                                 </DataTrigger>
                             </telerik:RadBorder.Triggers>
                         </telerik:RadBorder>
@@ -94,8 +94,7 @@
     </telerik:RadContentView.Resources>
 
     <ScrollView>
-        <telerik:RadAccordion CanExpandMultipleItems="True"
-                              CanCollapseAllItems="True"
+        <telerik:RadAccordion CanCollapseAllItems="True"
                               AutomationId="Accordion">
             <telerik:AccordionItem IsExpanded="True">
                 <telerik:AccordionItem.Header>

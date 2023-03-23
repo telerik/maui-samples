@@ -18,5 +18,7 @@ public class Example
 
     public string ControlName { get; set; }
 
-    public bool IsConfigurable { get; set; } = false;
+    public bool IsConfigurable { get; set; }
+
+    public StatusType Status { get; set; }
 }

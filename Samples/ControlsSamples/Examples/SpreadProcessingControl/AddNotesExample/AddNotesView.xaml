@@ -6,7 +6,7 @@
                         Margin="5">
     <telerik:RadContentView.Resources>
         <ResourceDictionary>
-            <Style TargetType="Label" x:Key="МainConditionLabelStyle" >
+            <Style TargetType="Label" x:Key="MainConditionLabelStyle" >
                 <Setter Property="HorizontalOptions" Value="Center" />
                 <Setter Property="TextColor" Value="{AppThemeBinding Dark=#FFFFFF, Light=#000000}" />
                 <Setter Property="Margin" Value="0,25,0,0"/>
@@ -18,9 +18,7 @@
             </Style>
 
             <Style TargetType="Entry" x:Key="CommonEntryStyle">
-                <Setter Property="Keyboard" Value="Numeric"/>
                 <Setter Property="HorizontalTextAlignment" Value="Center"/>
-                <Setter Property="FontSize" Value="12"/>
             </Style>
         </ResourceDictionary>
     </telerik:RadContentView.Resources>
@@ -55,7 +53,7 @@
                            FontAttributes="Bold"
                            HorizontalOptions="Center" />
                     <Label Text="Author's name:"
-                           Style="{StaticResource МainConditionLabelStyle}" />
+                           Style="{StaticResource MainConditionLabelStyle}" />
                     <Entry Style="{StaticResource CommonEntryStyle}" 
                            Text="{Binding Author, Mode=TwoWay}"
                            MaximumWidthRequest="{OnPlatform WinUI='300', MacCatalyst='300'}" />
@@ -64,7 +62,7 @@
                                      Padding="62,0"
                                      Spacing="10">
                     <Label Text="Description:" 
-                           Style="{StaticResource МainConditionLabelStyle}" />
+                           Style="{StaticResource MainConditionLabelStyle}" />
                     <Entry Style="{StaticResource CommonEntryStyle}" 
                            Text="{Binding Description, Mode=TwoWay}" 
                            MaximumWidthRequest="{OnPlatform WinUI='300', MacCatalyst='300'}" />
@@ -73,7 +71,7 @@
                                      Spacing="8"
                                      Padding="62,0">
                     <Label Text="Related property:" 
-                           Style="{StaticResource МainConditionLabelStyle}"/>
+                           Style="{StaticResource MainConditionLabelStyle}"/>
                     <Picker ItemsSource="{Binding Items, Mode=TwoWay}" 
                             SelectedItem="{Binding SelectedItem, Mode=TwoWay}" 
                             Style="{StaticResource CommonPickerStyle}" 

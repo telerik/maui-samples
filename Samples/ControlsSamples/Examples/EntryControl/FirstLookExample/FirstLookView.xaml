@@ -8,16 +8,18 @@
             <Style x:Key="EntryStyle" TargetType="telerik:RadEntry">
                 <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource DefaultTextColor}, Dark={StaticResource DefaultTextColorDark}}"/>
                 <Setter Property="PlaceholderColor" Value="{AppThemeBinding Light={StaticResource PlaceholderColor}, Dark={StaticResource PlaceholderColorDark}}"/>
+                <Setter Property="Margin" Value="0, 12, 0, 0" />
             </Style>
         </ResourceDictionary>
     </ContentView.Resources>
     <ScrollView>
-        <Grid>
+        <Grid Padding="{OnIdiom Default=0, Desktop='16, 20'}"
+              ColumnSpacing="{OnIdiom Default=0, Desktop=20}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="192"/>
-                <RowDefinition Height="{OnIdiom Default=*, Desktop={OnPlatform Default=*, WinUI=180}}"/>
-                <RowDefinition Height="{OnIdiom Default=*, Desktop={OnPlatform Default=*, WinUI=180}}"/>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="{OnIdiom Default=Auto, Phone=*}"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -37,64 +39,53 @@
                        FontSize="14"
                        HorizontalOptions="Center"
                        TextColor="#191919"/>
-                <Image Source="entryfirstlook.png" MaximumHeightRequest="80" MaximumWidthRequest="110" Margin="0, 24, 0, 0"/>
+                <Image Source="entryfirstlook.png"
+                       MaximumHeightRequest="80"
+                       MaximumWidthRequest="110"
+                       Margin="0, 24, 0, 0"/>
             </VerticalStackLayout>
-            <VerticalStackLayout Grid.Row="1" 
-                                 Grid.Column="0" 
-                                 Margin="{OnIdiom Default='16, 40', Phone=16}">
-                <VerticalStackLayout>
-                    <Label Text="Username: (max 10 symbols)" 
-                       TextColor="{AppThemeBinding Light=Black, Dark=White}"/>
-                    <telerik:RadEntry AutomationId="UsernameEntry" 
-                                      Placeholder="Enter Username" 
-                                      Text="{Binding Username}"
-                                      MaxLength="10"
-                                      Style="{StaticResource EntryStyle}"/>
-                </VerticalStackLayout>
-                <VerticalStackLayout Margin="0, 40, 0, 20">
-                    <Label Text="Email address:" 
-                           TextColor="{AppThemeBinding Light=Black, Dark=White}"/>
-                    <telerik:RadEntry AutomationId="EmailAddressEntry"
-                                      Placeholder="Enter Email" 
-                                      Text="{Binding EmailAddress}"
-                                      Style="{StaticResource EntryStyle}"
-                                      Keyboard="Email"/>
-                </VerticalStackLayout>
+            <VerticalStackLayout Grid.Row="1"
+                                 Grid.Column="0"
+                                 Margin="{OnIdiom Default='0, 40, 0, 0', Phone='16, 16, 16, 0'}">
+                <Label Text="Username: (max 10 symbols)" />
+                <telerik:RadEntry AutomationId="UsernameEntry"
+                                  Placeholder="Enter Username"
+                                  Text="{Binding Username}"
+                                  MaxLength="10"
+                                  Style="{StaticResource EntryStyle}" />
+                <Label Text="Email address:"
+                       Margin="0, 40, 0, 0" />
+                <telerik:RadEntry AutomationId="EmailAddressEntry"
+                                  Placeholder="Enter Email"
+                                  Text="{Binding EmailAddress}"
+                                  Style="{StaticResource EntryStyle}"
+                                  Keyboard="Email" />
             </VerticalStackLayout>
-            <VerticalStackLayout Grid.Column="{OnIdiom Default=1, Phone=0}" 
+            <VerticalStackLayout Grid.Column="{OnIdiom Default=1, Phone=0}"
                                  Grid.Row="{OnIdiom Default=1, Phone=2}"
-                                 Margin="{OnIdiom Default='0, 40, 16, 40', Phone=16}">
-                <VerticalStackLayout Margin="0, 0, 0, 40">
-                    <Label Text="Password:" 
-                           TextColor="{AppThemeBinding Light=Black, Dark=White}"/>
-                    <telerik:RadEntry AutomationId="PasswordEntry"
-                                      Placeholder="Enter Password" 
-                                      Text="{Binding Password}"
-                                      Style="{StaticResource EntryStyle}"
-                                      IsPassword="True"/>
-                </VerticalStackLayout>
-                <VerticalStackLayout>
-                    <Label Text="Repeat Password:" 
-                           TextColor="{AppThemeBinding Light=Black, Dark=White}"/>
-                    <telerik:RadEntry AutomationId="RepeatPasswordEntry"
-                                      Margin="{OnIdiom Default=0, Phone='0, 0, 0, 15'}"
-                                      Placeholder="Repeat Password" 
-                                      Text="{Binding RepeatPassword}"
-                                      Style="{StaticResource EntryStyle}"
-                                      IsPassword="True"/>
-                </VerticalStackLayout>
+                                 Margin="{OnIdiom Default='0, 40, 0, 0', Phone='16, 16, 16, 20'}">
+                <Label Text="Password:" />
+                <telerik:RadEntry AutomationId="PasswordEntry"
+                                  Placeholder="Enter Password"
+                                  Text="{Binding Password}"
+                                  Style="{StaticResource EntryStyle}"
+                                  IsPassword="True" />
+                <Label Text="Repeat Password:"
+                       Margin="0, 40, 0, 0" />
+                <telerik:RadEntry AutomationId="RepeatPasswordEntry"
+                                  Placeholder="Repeat Password" 
+                                  Text="{Binding RepeatPassword}"
+                                  Style="{StaticResource EntryStyle}"
+                                  IsPassword="True" />
             </VerticalStackLayout>
             <telerik:RadButton Grid.ColumnSpan="{OnIdiom Default=1, Phone=2}"
-                               VerticalOptions="{OnIdiom Default=Center, Phone=End}"
                                Grid.Row="{OnIdiom Default=2, Phone=3}"
-                               Margin="16, 0, 16, 20"
+                               Margin="{OnIdiom Default='0, 40, 0, 0', Phone='16, 20'}"
                                Text="Subscribe"
-                               FontSize="14"
-                               TextColor="{StaticResource AccentColor8}"
-                               HeightRequest="40"
-                               HorizontalOptions="{OnIdiom Default=Start, Phone=FillAndExpand}"
+                               HorizontalOptions="{OnIdiom Default=Start, Phone=Fill}"
+                               VerticalOptions="{OnIdiom Default=Start, Phone=End}"
                                Style="{StaticResource SubmitButtonStyle}"
-                               Command="{Binding RegisterCommand}"/>
+                               Command="{Binding RegisterCommand}" />
         </Grid>
     </ScrollView>
 </ContentView>

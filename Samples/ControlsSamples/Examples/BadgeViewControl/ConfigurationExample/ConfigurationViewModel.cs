@@ -265,6 +265,7 @@ namespace QSF.Examples.BadgeViewControl.ConfigurationExample
                 if (this.textMarginLeft != value)
                 {
                     this.textMarginLeft = value;
+                    this.OnPropertyChanged();
                     this.OnPropertyChanged(nameof(BadgeTextMargin));
                 }
             }
@@ -281,6 +282,7 @@ namespace QSF.Examples.BadgeViewControl.ConfigurationExample
                 if (this.textMarginTop != value)
                 {
                     this.textMarginTop = value;
+                    this.OnPropertyChanged();
                     this.OnPropertyChanged(nameof(BadgeTextMargin));
                 }
             }
@@ -297,6 +299,7 @@ namespace QSF.Examples.BadgeViewControl.ConfigurationExample
                 if (this.textMarginRight != value)
                 {
                     this.textMarginRight = value;
+                    this.OnPropertyChanged();
                     this.OnPropertyChanged(nameof(BadgeTextMargin));
                 }
             }
@@ -313,6 +316,7 @@ namespace QSF.Examples.BadgeViewControl.ConfigurationExample
                 if (this.textMarginBottom != value)
                 {
                     this.textMarginBottom = value;
+                    this.OnPropertyChanged();
                     this.OnPropertyChanged(nameof(BadgeTextMargin));
                 }
             }
