@@ -9,18 +9,19 @@ namespace SDKBrowserMaui.Examples.PathControl.FeaturesCategory.MultiPathExample
     {
         public MultiPath()
         {
-            InitializeComponent(); 
-            this.root.SizeChanged += Root_SizeChanged;
+            InitializeComponent();
+
+            this.rootGrid.SizeChanged += RootGridSizeChanged;
         }
 
-        private void Root_SizeChanged(object sender, EventArgs e)
+        private void RootGridSizeChanged(object sender, EventArgs e)
         {
-            double size = Math.Min(this.root.Width, this.root.Height / 2);
+            double size = Math.Min(this.rootGrid.Width, this.rootGrid.Height / 2);
+
             this.multiPath.WidthRequest = size;
             this.multiPath.HeightRequest = size;
             this.path2.WidthRequest = size;
             this.path2.HeightRequest = size;
         }
-
     }
 }

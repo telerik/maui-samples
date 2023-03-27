@@ -1,12 +1,16 @@
 ﻿<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="SDKBrowserMaui.Views.HeaderView">
-    <Grid ColumnDefinitions="Auto, Auto, *, Auto" 
-          ColumnSpacing="10" 
-          BackgroundColor="{StaticResource ApplicationAccentColor}" 
+             x:Class="SDKBrowserMaui.Views.HeaderView"
+             xmlns:converters="clr-namespace:SDKBrowserMaui.Converters">
+    <ContentView.Resources>
+        <converters:InvertedBooleanConverter x:Key="InvertedBooleanConverter" />
+    </ContentView.Resources>
+    <Grid ColumnDefinitions="Auto, *, Auto"
+          ColumnSpacing="10"
+          BackgroundColor="{StaticResource ApplicationAccentColor}"
           HeightRequest="50"
           Padding="10, 0, 0, 0">
-        <ImageButton IsVisible="{Binding IsBackVisible}" 
+        <ImageButton IsVisible="{Binding IsBackVisible}"
                      Clicked="Back_Clicked">
             <ImageButton.Style>
                 <OnPlatform x:TypeArguments="Style" Default="{StaticResource DefaultBackButtonStyle}">
@@ -14,20 +18,31 @@
                 </OnPlatform>
             </ImageButton.Style>
         </ImageButton>
-        <Image Grid.Column="1"
-               Source="logo.png" 
-               HeightRequest="20" 
-               WidthRequest="20" 
-               VerticalOptions="Center" />
-        <Label Grid.Column="2"
-               Text="{Binding AppTitle}" 
-               TextColor="White" 
-               VerticalOptions="Center"
-               AutomationId="titleLabel">
-            <Label.GestureRecognizers>
-                <TapGestureRecognizer Tapped="OnTapGestureRecognizerTapped" />
-            </Label.GestureRecognizers>
-        </Label>
+        <Grid Grid.Column="1"
+              ColumnDefinitions="Auto, *">
+            <Image Source="logo.png"
+                   IsVisible="{Binding IsBackVisible, Converter={StaticResource InvertedBooleanConverter}}"
+                   HeightRequest="20"
+                   WidthRequest="20"
+                   VerticalOptions="Center" />
+            <Label Grid.Column="1"
+                   IsVisible="{Binding IsBackVisible, Converter={StaticResource InvertedBooleanConverter}}"
+                   Text="{Binding AppTitle}"
+                   TextColor="White"
+                   VerticalOptions="Center"
+                   AutomationId="titleLabel"
+                   Margin="10, 0, 0, 0">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnTapGestureRecognizerTapped" />
+                </Label.GestureRecognizers>
+            </Label>
+            <Label Grid.ColumnSpan="2"
+                   IsVisible="{Binding IsBackVisible}"
+                   Text="{Binding HeaderTitle}"
+                   TextColor="White"
+                   VerticalOptions="Center"
+                   AutomationId="pageTitleLabel" />
+        </Grid>
         <ImageButton Grid.Column="3"
                      WidthRequest="20"
                      Command="{Binding SearchCommand}"

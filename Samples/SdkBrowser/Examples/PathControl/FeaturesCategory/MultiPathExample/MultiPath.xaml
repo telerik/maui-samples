@@ -2,22 +2,17 @@
 <telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
                         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                         xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
-                         x:Name="page"
-                         BackgroundColor="{DynamicResource PageBackgroundColor}"
+                        x:Name="page"
+                        BackgroundColor="{DynamicResource PageBackgroundColor}"
                         x:Class="SDKBrowserMaui.Examples.PathControl.FeaturesCategory.MultiPathExample.MultiPath"
                         Margin="5">
     <telerik:RadContentView.Content>
-
-        <Grid x:Name="root">
-            <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition />
-            </Grid.RowDefinitions>
+        <Grid x:Name="rootGrid"
+              RowDefinitions="*, *">
             <!--  >> path-multipath-xaml  -->
-            <telerik:RadMultiPath x:Name="multiPath" WidthRequest="100" HeightRequest="100"
-                                      Grid.Row="0"
-                                      HorizontalOptions="Center"
-                                      VerticalOptions="Center">
+            <telerik:RadMultiPath x:Name="multiPath"
+                                  HorizontalOptions="Center"
+                                  VerticalOptions="Center">
                 <telerik:RadMultiPath.Definitions>
                     <telerik:RadPathDefinition Fill="#FF4285F4">
                         <telerik:RadPathGeometry>
@@ -42,10 +37,10 @@
                     </telerik:RadPathDefinition>
                 </telerik:RadMultiPath.Definitions>
             </telerik:RadMultiPath>
-            <telerik:RadMultiPath x:Name="path2" WidthRequest="100" HeightRequest="100"
-                                      Grid.Row="1"
-                                      HorizontalOptions="Center"
-                                      VerticalOptions="Center">
+            <telerik:RadMultiPath x:Name="path2"
+                                  Grid.Row="1"
+                                  HorizontalOptions="Center"
+                                  VerticalOptions="Center">
                 <telerik:RadMultiPath.Definitions>
                     <telerik:RadPathDefinition Stroke="#FF364781" StrokeThickness="30">
                         <telerik:RadPathGeometry>

@@ -9,12 +9,12 @@ public class Club : NotifyPropertyChangedBase
 {
     private string name;
     private DateTime established;
-    private DateTime time;
+    private TimeSpan time;
     private int stadiumCapacity;
     private bool isChampion;
     private string country;
 
-    public Club(string name, DateTime established, DateTime time, int stadiumCapacity, string country)
+    public Club(string name, DateTime established, TimeSpan time, int stadiumCapacity, string country)
     {
         Name = name;
         Established = established;
@@ -34,7 +34,7 @@ public class Club : NotifyPropertyChangedBase
         set { this.UpdateValue(ref this.established, value); }
     }
 
-    public DateTime Time
+    public TimeSpan Time
     {
         get { return this.time; }
         set { this.UpdateValue(ref this.time, value); }

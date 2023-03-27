@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.DataFormControl.EditorsCategory.CustomEditorExample"
+             x:Class="SDKBrowserMaui.Examples.DataFormControl.EditorsCategory.CustomEditorExample.CustomEditor">
+    
+    <Grid RowDefinitions="Auto, Auto" RowSpacing="10">
+        <!-- >> dataform-custom-editor -->
+        <telerik:RadDataForm x:Name="dataForm" CommitMode="Explicit">
+            <telerik:DataFormCustomEditor PropertyName="Accommodation">
+                <telerik:DataFormCustomEditor.EditorTemplate>
+                    <ControlTemplate>
+                        <VerticalStackLayout>
+                            <telerik:RadAutoComplete Text="{Binding Value, Mode=TwoWay, Source={RelativeSource Mode=TemplatedParent}}" 
+                                                     ItemsSource="{Binding AvailableAccommodations}"/>
+                        </VerticalStackLayout>
+                    </ControlTemplate>
+                </telerik:DataFormCustomEditor.EditorTemplate>
+            </telerik:DataFormCustomEditor>
+            <telerik:DataFormCustomEditor PropertyName="Rating">
+                <telerik:DataFormCustomEditor.EditorTemplate>
+                    <ControlTemplate>
+                        <VerticalStackLayout>
+                            <Label Text="Match your expectations"/>
+                            <telerik:RadShapeRating ItemsCount="5" 
+                                                    Value="{Binding Value, Mode=TwoWay, Source={RelativeSource Mode=TemplatedParent}}"/>
+                        </VerticalStackLayout>
+                    </ControlTemplate>
+                </telerik:DataFormCustomEditor.EditorTemplate>
+            </telerik:DataFormCustomEditor>
+            <telerik:RadDataForm.BindingContext>
+                <local:CustomEditorViewModel/>
+            </telerik:RadDataForm.BindingContext>
+        </telerik:RadDataForm>
+        <!-- << dataform-custom-editor -->
+        <HorizontalStackLayout Grid.Row="1" HorizontalOptions="End" Spacing="10">
+            <Button Text="Commit" Command="{Binding CommitCommand, Source={x:Reference dataForm}}" />
+            <Button Text="Cancel" Command="{Binding CancelCommand, Source={x:Reference dataForm}}" />
+        </HorizontalStackLayout>
+    </Grid>
+</ContentView>

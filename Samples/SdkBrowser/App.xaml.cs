@@ -19,6 +19,8 @@ namespace SDKBrowserMaui
     {
         public App()
         {
+            this.UserAppTheme = Microsoft.Maui.ApplicationModel.AppTheme.Light;
+
             InitializeComponent();
             this.InitializeDependencies();
 
@@ -138,6 +140,26 @@ namespace SDKBrowserMaui
 
             popup.IsOpen = true;
         }
+
+#if WINDOWS || MACCATALYST
+        protected override Window CreateWindow(IActivationState activationState)
+        {
+            var window = base.CreateWindow(activationState);
+            if (window != null)
+            {
+#if WINDOWS
+                window.Title = "Telerik SDKBrowser Maui";
+#endif
+
+#if NET7_0_OR_GREATER
+                window.MinimumWidth = 1024;
+                window.MinimumHeight = 768;
+#endif
+            }
+
+            return window;
+        }
+#endif
     }
 
 #if __ANDROID__

@@ -1,4 +1,5 @@
-﻿using Microsoft.Maui.Controls.Xaml;
+﻿using System;
+using Microsoft.Maui.Controls.Xaml;
 using Telerik.Maui.Controls;
 
 namespace SDKBrowserMaui.Examples.PathControl.GettingStartedCategory.GettingStartedExample
@@ -9,6 +10,18 @@ namespace SDKBrowserMaui.Examples.PathControl.GettingStartedCategory.GettingStar
         public PathGettingStartedXaml()
         {
             InitializeComponent();
+
+            this.rootGrid.SizeChanged += RootGridSizeChanged;
+        }
+
+        private void RootGridSizeChanged(object sender, EventArgs e)
+        {
+            double size = Math.Min(this.rootGrid.Width, this.rootGrid.Height / 2);
+
+            this.starPath.WidthRequest = size;
+            this.starPath.HeightRequest = size;
+            this.customPath.WidthRequest = size;
+            this.customPath.HeightRequest = size;
         }
     }
 }

@@ -44,7 +44,6 @@
             <!-- >> listpicker-style-accept-button-style -->
             <Style TargetType="Button" x:Key="acceptButtonStyle">
                 <Setter Property="BackgroundColor" Value="Transparent"/>
-                <Setter Property="Text" Value="OK"/>
                 <Setter Property="TextColor" Value="#1188FF"/>
             </Style>
             <!-- << listpicker-style-accept-button-style -->
@@ -52,10 +51,17 @@
             <!-- >> listpicker-style-cancel-button-style -->
             <Style TargetType="Button" x:Key="cancelButtonStyle">
                 <Setter Property="BackgroundColor" Value="Transparent"/>
-                <Setter Property="Text" Value="CANCEL"/>
                 <Setter Property="TextColor" Value="#1188FF"/>
             </Style>
             <!-- << listpicker-style-cancel-button-style -->
+
+            <!-- >> listpicker-string-accept-button-text -->
+            <x:String x:Key="acceptButtonText">OK</x:String>
+            <!-- << listpicker-string-accept-button-text -->
+
+            <!-- >> listpicker-string-cancel-button-text -->
+            <x:String x:Key="cancelButtonText">CANCEL</x:String>
+            <!-- << listpicker-string-cancel-button-text -->
         </ResourceDictionary>
     </telerik:RadContentView.Resources>
     <VerticalStackLayout WidthRequest="340" HorizontalOptions="Center">
@@ -65,7 +71,8 @@
                                ItemsSource="{Binding Items}" 
                                DisplayMemberPath="Name"
                                IsLooping="True"
-                               DisplayStringFormat="You have picked: {0}">
+                               DisplayStringFormat="You have picked: {0}"
+                               AutomationId="listPicker">
             <telerik:RadListPicker.BindingContext>
                 <local:CitiesViewModel/>
             </telerik:RadListPicker.BindingContext>
@@ -77,7 +84,9 @@
                                              HeaderLabelStyle="{StaticResource headerLabelStyle}"
                                              FooterStyle="{StaticResource footerStyle}"
                                              AcceptButtonStyle="{StaticResource acceptButtonStyle}"
-                                             CancelButtonStyle="{StaticResource cancelButtonStyle}"/>
+                                             CancelButtonStyle="{StaticResource cancelButtonStyle}"
+                                             AcceptButtonText="{StaticResource acceptButtonText}"
+                                             CancelButtonText="{StaticResource cancelButtonText}"/>
             </telerik:RadListPicker.PopupSettings>
         </telerik:RadListPicker>
         <!-- << listpicker-popup-style -->

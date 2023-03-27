@@ -18,24 +18,27 @@
             <Label Text="Time Picker with minimum time and maximum time properties" Style="{StaticResource labelStyle}"/>
             <!-- >> timepicker-keyfeatures-minmaxtime -->
             <telerik:RadTimePicker MinimumTime="8:00:00"
-                                   MaximumTime="19:00:00"/>
+                                   MaximumTime="19:00:00"
+                                   AutomationId="timePickerMinMaxTime"/>
             <!-- << timepicker-keyfeatures-minmaxtime -->
             <Label Text="Time Picker with selected time" Style="{StaticResource labelStyle}"/>
             <!-- >> timepicker-keyfeatures-time -->
-            <telerik:RadTimePicker Time="10:30:00"/>
+            <telerik:RadTimePicker Time="10:30:00" AutomationId="timePickerSelectedTime"/>
             <!-- << timepicker-keyfeatures-time -->
             <Label Text="Time Picker with default highlighted time, spinner format and hidden spinner headers" Style="{StaticResource labelStyle}"/>
             <!-- >> timepicker-keyfeatures-time-defaulthighlighted -->
             <telerik:RadTimePicker DefaultHighlightedTime="11:30:00"
                                    SpinnerFormat="t"
-                                   AreSpinnerHeadersVisible="False"/>
+                                   AreSpinnerHeadersVisible="False"
+                                   AutomationId="timePickerDefaultHighlight"/>
             <!-- << timepicker-keyfeatures-time-defaulthighlighted -->
             <Label Text="Time Picker with steps for hours, minutes and seconds" Style="{StaticResource labelStyle}"/>
             <!-- >> timepicker-keyfeatures-time-steps -->
             <telerik:RadTimePicker SpinnerFormat="H:mm:ss"
                                    HourStep="2" 
                                    MinuteStep="10" 
-                                   SecondStep="15"/>
+                                   SecondStep="15"
+                                   AutomationId="timePickerSteps"/>
             <!-- << timepicker-keyfeatures-time-steps -->
         </VerticalStackLayout>
     </telerik:RadContentView.Content>

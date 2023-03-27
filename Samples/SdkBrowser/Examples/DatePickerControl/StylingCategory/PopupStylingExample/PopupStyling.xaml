@@ -42,7 +42,6 @@
             <!-- >> datepicker-style-accept-button-style -->
             <Style TargetType="Button" x:Key="acceptButtonStyle">
                 <Setter Property="BackgroundColor" Value="Transparent"/>
-                <Setter Property="Text" Value="OK"/>
                 <Setter Property="TextColor" Value="#00B5DC"/>
             </Style>
             <!-- << datepicker-style-accept-button-style -->
@@ -50,10 +49,17 @@
             <!-- >> datepicker-style-cancel-button-style -->
             <Style TargetType="Button" x:Key="cancelButtonStyle">
                 <Setter Property="BackgroundColor" Value="Transparent"/>
-                <Setter Property="Text" Value="X"/>
                 <Setter Property="TextColor" Value="#00B5DC"/>
             </Style>
             <!-- << datepicker-style-cancel-button-style -->
+
+            <!-- >> datepicker-string-accept-button-text -->
+            <x:String x:Key="acceptButtonText">OK</x:String>
+            <!-- << datepicker-string-accept-button-text -->
+
+            <!-- >> datepicker-string-cancel-button-text -->
+            <x:String x:Key="cancelButtonText">X</x:String>
+            <!-- << datepicker-string-cancel-button-text -->
         </ResourceDictionary>
     </telerik:RadContentView.Resources>
 
@@ -61,7 +67,8 @@
         <!-- >> datepicker-popup-style -->
         <telerik:RadDatePicker PickerMode="Popup"
                                SpinnerFormat="yyy/MMM/dd"
-                               DisplayStringFormat="yyyy/MMM/dd">
+                               DisplayStringFormat="yyyy/MMM/dd"
+                               AutomationId="datePicker">
             <telerik:RadDatePicker.PopupSettings>
                 <telerik:PickerPopupSettings PopupOutsideBackgroundColor="#D9D9D9CC"
                                              PopupViewStyle="{StaticResource popupViewStyle}"
@@ -70,7 +77,9 @@
                                              HeaderLabelStyle="{StaticResource headerLabelStyle}"
                                              FooterStyle="{StaticResource footerStyle}"
                                              AcceptButtonStyle="{StaticResource acceptButtonStyle}"
-                                             CancelButtonStyle="{StaticResource cancelButtonStyle}"/>
+                                             CancelButtonStyle="{StaticResource cancelButtonStyle}"
+                                             AcceptButtonText="{StaticResource acceptButtonText}"
+                                             CancelButtonText="{StaticResource cancelButtonText}"/>
             </telerik:RadDatePicker.PopupSettings>
         </telerik:RadDatePicker>
         <!-- << datepicker-popup-style -->

@@ -5,19 +5,14 @@
              xmlns:local="clr-namespace:SDKBrowserMaui.Examples.DataFormControl.EditorsCategory.EditorsExample"
              x:Class="SDKBrowserMaui.Examples.DataFormControl.ValidationCategory.ValidationConfigurationExample.ValidationConfiguration">
     <!-- >> dataform-validation-configuration -->
-    <Grid RowDefinitions="Auto,*" 
-          Padding="10">
-        <HorizontalStackLayout Margin="0,0,0,10">
-            <Button Text="Validate Data" 
-                    Clicked="OnValidateChangesClicked"/>
-        </HorizontalStackLayout>
+    <Grid>
         <telerik:RadDataForm x:Name="dataForm"
                              Grid.Row="1"
                              IsValidationSummaryVisible="True"
                              ValidationSummaryImageSource="away.png"
                              ValidationMode="LostFocus">
             <telerik:RadDataForm.BindingContext>
-                <local:EditorsModel/>
+                <local:EditorsViewModel/>
             </telerik:RadDataForm.BindingContext>
         </telerik:RadDataForm>
     </Grid>

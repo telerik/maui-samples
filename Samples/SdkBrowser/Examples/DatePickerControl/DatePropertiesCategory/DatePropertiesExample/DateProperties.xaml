@@ -19,12 +19,14 @@
             <!-- >> datepicker-dateproperties-minmaxdate -->
             <telerik:RadDatePicker MinimumDate="2020,1,1"
                                    MaximumDate="2020,12,31"
-                                   DisplayStringFormat="yyy-ddd-MMM"/>
+                                   DisplayStringFormat="yyy-ddd-MMM"
+                                   AutomationId="datePickerMinMaxDate"/>
             <!-- << datepicker-dateproperties-minmaxdate -->
             <Label Text="Date Picker with selected date" Style="{StaticResource labelStyle}"/>
             <!-- >> datepicker-dateproperties-date-spinnerformat -->
             <telerik:RadDatePicker Date="2020,05,15"
-                                   SpinnerFormat="yyy-MMM"/>
+                                   SpinnerFormat="yyy-MMM"
+                                   AutomationId="datePickerSelectedDate"/>
             <!-- << datepicker-dateproperties-date-spinnerformat -->
             <Label Text="Date Picker with default highlighted date and hidden spinner headers" Style="{StaticResource labelStyle}"/>
             <!-- >> datepicker-dateproperties-date-defaulthighlighted -->
@@ -32,7 +34,8 @@
                                    DisplayStringFormat="yyyy/MMM/dd"
                                    Placeholder="Pick a date!"
                                    SpinnerFormat="dd/MMM/yyyy"
-                                   AreSpinnerHeadersVisible="False"/>
+                                   AreSpinnerHeadersVisible="False"
+                                   AutomationId="datePickerDefaultHighlighted"/>
             <!-- << datepicker-dateproperties-date-defaulthighlighted -->
         </VerticalStackLayout>
     </telerik:RadContentView.Content>

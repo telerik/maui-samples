@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.DataFormControl.GettingStartedCategory.CustomGenerateExample.CustomGenerate">
+    <!-- >> dataform-generate-groups-editors-example -->
+    <Grid RowDefinitions="Auto, Auto" RowSpacing="10">
+        <telerik:RadDataForm x:Name="dataForm" CommitMode="Explicit" />
+        <HorizontalStackLayout Grid.Row="1" HorizontalOptions="End" Spacing="10">
+            <Button Text="Commit" Command="{Binding CommitCommand, Source={x:Reference dataForm}}" />
+            <Button Text="Cancel" Command="{Binding CancelCommand, Source={x:Reference dataForm}}" />
+        </HorizontalStackLayout>
+    </Grid>
+    <!-- << dataform-generate-groups-editors-example -->
+</ContentView>

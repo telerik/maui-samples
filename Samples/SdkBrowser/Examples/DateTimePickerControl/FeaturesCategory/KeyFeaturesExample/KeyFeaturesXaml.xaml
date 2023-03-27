@@ -20,7 +20,8 @@
         <!-- >> datetimepicker-keyfeatures-date -->
         <telerik:RadDateTimePicker MinimumDate="2019,12,25" 
                                    MaximumDate="2020,02,14"
-                                   SpinnerFormat="d"/>
+                                   SpinnerFormat="d"
+                                   AutomationId="dateTimePickerDDate"/>
         <!-- << datetimepicker-keyfeatures-date -->
 
         <Label Text="DateTime Picker with T time string format, minimum date and maximum date defined" Style="{StaticResource labelStyle}"/>
@@ -30,7 +31,8 @@
                                    SpinnerFormat="T"
                                    DisplayStringFormat="HH:mm:ss"
                                    Placeholder="Pick a time!"
-                                   AreSpinnerHeadersVisible="True"/>
+                                   AreSpinnerHeadersVisible="True"
+                                   AutomationId="dateTimePickerTTime"/>
         <!-- << datetimepicker-keyfeatures-time -->
 
 
@@ -39,7 +41,8 @@
         <telerik:RadDateTimePicker MinimumDate="2019,12,25" 
                                    MaximumDate="2020,02,14"
                                    Placeholder="Pick date and time!"
-                                   AreSpinnerHeadersVisible="True"/>
+                                   AreSpinnerHeadersVisible="True"
+                                   AutomationId="dateTimePickerShortTime"/>
         <!-- << datetimepicker-keyfeatures-date-time -->
     </VerticalStackLayout>
 

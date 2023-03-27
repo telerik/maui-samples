@@ -12,7 +12,7 @@ namespace SDKBrowserMaui.ViewModels
         public CategoryViewModel(Category category)
         {
             this.IsBackVisible = true;
-            this.HeaderTitle = category.Title;
+            this.HeaderTitle = String.Concat(category.Title, " - ", category.Control.Name);
             this.Examples = new ObservableCollection<Example>();
 
             foreach (var example in category.Examples)

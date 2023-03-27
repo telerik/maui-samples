@@ -70,7 +70,15 @@
                 <Setter Property="BorderColor" Value="#D9D9D9" />
                 <Setter Property="BorderThickness" Value="0,1" />
             </Style>
-            <!-- << templatedpicker-borderstyle -->        
+            <!-- << templatedpicker-borderstyle -->
+
+            <!-- >> templatedpicker-string-accept-button-text -->
+            <x:String x:Key="acceptButtonText">OK</x:String>
+            <!-- << templatedpicker-string-accept-button-text -->
+
+            <!-- >> templatedpicker-string-cancel-button-text -->
+            <x:String x:Key="cancelButtonText">CANCEL</x:String>
+            <!-- << templatedpicker-string-cancel-button-text -->
         </ResourceDictionary>
     </telerik:RadContentView.Resources>
     <VerticalStackLayout WidthRequest="360" HorizontalOptions="Center">
@@ -80,13 +88,16 @@
                                     Placeholder="Pick a destination!" 
                                     DisplayStringFormat="Destination: {0}"
                                     SelectedValue="{Binding FromCity, Mode=TwoWay}"
-                                    DisplayMemberPath="Name">
+                                    DisplayMemberPath="Name"
+                                    AutomationId="templatedPicker">
             <telerik:RadTemplatedPicker.PopupSettings>
                 <telerik:PickerPopupSettings PopupOutsideBackgroundColor="#D9D9D9CC"
                                              HeaderStyle="{StaticResource pickerHeaderStyle}"
                                              HeaderTemplate="{StaticResource pickerHeaderTemplate}"
                                              AcceptButtonStyle="{StaticResource pickerAcceptButtonStyle}"
-                                             CancelButtonStyle="{StaticResource pickerCancelButtonStyle}" />
+                                             CancelButtonStyle="{StaticResource pickerCancelButtonStyle}"
+                                             AcceptButtonText="{StaticResource acceptButtonText}"
+                                             CancelButtonText="{StaticResource cancelButtonText}" />
             </telerik:RadTemplatedPicker.PopupSettings>
             <telerik:RadTemplatedPicker.SelectorTemplate>
                 <ControlTemplate>
