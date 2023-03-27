@@ -23,10 +23,8 @@
         <Grid RowDefinitions="Auto, *" ColumnDefinitions="500, *, Auto">
             <telerik:RadButton Grid.Column="2"
                                Style="{StaticResource DownloadButtonStyle}"
-                               ContentLayout="{OnPlatform MacCatalyst='Left, -20'}"
                                FontSize="{OnPlatform MacCatalyst='Small'}"
-                               Padding="{OnPlatform  MacCatalyst='5, 0, 0, 0'}"
-                               Margin="0, 12, 23, 0"
+                               Margin="0, 20, 25, 0"
                                Clicked="DownloadButtonClicked"/>
             <Views:CoinSelectionView Grid.Row="1" CoinSelected="OnCoinSelected" Padding="20, 20, 20, 10"/>
             <telerik:RadTabView Grid.Row="1"
