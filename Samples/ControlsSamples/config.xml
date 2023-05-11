@@ -13,6 +13,7 @@
 	<Controls>
 		<Control>
 			<Name>Accordion</Name>
+			<Status>New</Status>
 			<DisplayName>Accordion</DisplayName>
 			<Icon>accordion.png</Icon>
 			<ShortDescription>Helps you save screen space and at the same time present data.</ShortDescription>
@@ -31,6 +32,14 @@
 					<DisplayName>Customization</DisplayName>
 					<Icon>customization.png</Icon>
 					<Description>Demonstrates how you can customize the visual appearance of the Accordion control by changing the ControlTemplate of the AccordionItemHeader and having various controls in the content of the AccordionItem.</Description>
+				</Example>
+				<Example>
+					<Name>Configuration</Name>
+					<Page>ConfigurationView</Page>
+					<DisplayName>Configuration</DisplayName>
+					<Icon>configuration.png</Icon>
+					<IsConfigurable>true</IsConfigurable>
+					<Description>This example presents the various configuration options that the RadAccordion provides. Adjust the expanding/collapsing and the spacing of the items, and choose whether to play animation, applying easings or custom duration to it.</Description>
 				</Example>
 			</Examples>
 		</Control>
@@ -309,6 +318,14 @@
 					<Icon>customization.png</Icon>
 					<Description>Demonstrates the customization options DataForm provides. Easily style the editors, headers in a way you want using the flexible styling API.</Description>
 				</Example>
+				<Example>
+					<Name>CustomEditors</Name>
+					<Status>New</Status>
+					<Page>CustomEditorsView</Page>
+					<DisplayName>Custom Editors</DisplayName>
+					<Icon>dataform.png</Icon>
+					<Description>Demonstrates the custom editors feature of the DataForm control. The example contains custom editors like Rating, AutoComplete, CheckBox and Editor.</Description>
+				</Example>
 			</Examples>
 		</Control>
 
@@ -328,6 +345,7 @@
 				</Example>
 				<Example>
 					<Name>FrozenColumns</Name>
+					<Status>New</Status>
 					<Page>FrozenColumnsView</Page>
 					<DisplayName>Frozen Columns</DisplayName>
 					<IsConfigurable>true</IsConfigurable>
@@ -378,6 +396,15 @@
 					<DisplayName>Customization</DisplayName>
 					<Icon>customization.png</Icon>
 					<Description>Demonstrates how you could customize the visual appearance of the DataGrid control through various Style and StyleSelector properties such as CellContentStyle, CellDecorationStyle, SelectionStyle, GroupHeaderStyleSelector, etc.</Description>
+				</Example>
+				<Example>
+					<Name>VariousDataSources</Name>
+					<Status>New</Status>
+					<Page>VariousDataSourcesView</Page>
+					<DisplayName>Various Data Sources</DisplayName>
+					<Icon>datagrid.png</Icon>
+					<IsConfigurable>true</IsConfigurable>
+					<Description>Demonstrates how you can easily populate DataGrid from collection or from a DataTable.</Description>
 				</Example>
 			</Examples>
 		</Control>
@@ -448,8 +475,8 @@
 					<Description>Telerik UI for .NET MAUI Entry is a text input control, which accepts text input from the user and provides consistent look and feel with the rest of the Telerik UI for .NET MAUI. It also has a validation API and corresponding error UI.</Description>
 				</Example>
 				<Example>
-					<ExcludeFrom>Android,iOS,MacCatalyst,WinUI</ExcludeFrom>
 					<Name>Configuration</Name>
+					<Status>New</Status>
 					<Page>ConfigurationView</Page>
 					<DisplayName>Configuration</DisplayName>
 					<Icon>configuration.png</Icon>
@@ -494,6 +521,7 @@
 
 		<Control>
 			<Name>ImageEditor</Name>
+			<Status>New</Status>
 			<DisplayName>ImageEditor</DisplayName>
 			<Icon>imageeditor.png</Icon>
 			<ShortDescription>ImageEditor control is a powerful tool that allows you to easily visualize, edit and save images in your desktop or mobile application.</ShortDescription>
@@ -648,13 +676,16 @@
 					<DisplayName>Not Embedding Fonts</DisplayName>
 					<Icon>pdfprocessing.png</Icon>
 					<Description>Telerik PdfProcessing provides easy to use API which allows choosing whether the font files to be embedded when exporting PDF documents. This example shows the initial size of an imported document and the reduced one after removing the fonts and saving it. Disclaimer: Removing the fonts from the document makes it dependent on the operational system to provide the needed fonts. If they are not installed, the document won't be successfully opened.</Description>
+					<ExcludeFrom>WinUI</ExcludeFrom>
 				</Example>
 				<Example>
 					<Name>PermissionsAndEncryption</Name>
+					<Status>New</Status>
 					<Page>PermissionsAndEncryptionView</Page>
 					<DisplayName>Permissions and Encryption</DisplayName>
 					<Icon>pdfprocessing.png</Icon>
 					<Description>Telerik PdfProcessing provides easy to use API which allows setting different permissions and encryption when exporting encrypted PDF documents. This example demonstrates the different settings available that could be applied to the exported document. The password will be required when trying to change the already set document permissions. The currently supported encryption algorithms when exporting encrypted documents are RC4 and AES-256.</Description>
+					<ExcludeFrom>WinUI</ExcludeFrom>
 				</Example>
 			</Examples>
 		</Control>
@@ -678,6 +709,7 @@
 		
 		<Control>
 			<Name>ProgressBar</Name>
+			<Status>New</Status>
 			<DisplayName>ProgressBar</DisplayName>
 			<Icon>progressbar.png</Icon>
 			<ShortDescription>Displays progress information to the users during a long-running operation.</ShortDescription>
@@ -751,24 +783,25 @@
 			</Examples>
 		</Control>
 
-    <Control>
-      <Name>SignaturePad</Name>
-      <DisplayName>SignaturePad</DisplayName>
-      <Icon>signaturepad.png</Icon>
-      <ShortDescription>SignaturePad for .NET MAUI is designed to enable users to draw and save signatures.</ShortDescription>
-      <FullDescription>Telerik UI for .NET MAUI SignaturePad for .NET MAUI is designed to enable users to draw and save signatures.</FullDescription>
-      <Examples>
-        <Example>
-          <Name>FirstLook</Name>
-          <Page>FirstLookView</Page>
-          <DisplayName>First Look</DisplayName>
-          <Icon>signaturepad.png</Icon>
-          <Description>This example shows the ability to draw a signature in RadSignaturePad, save this signature as image and then visualize it.</Description>
-        </Example>
-      </Examples>
-    </Control>
+		<Control>
+			<Name>SignaturePad</Name>
+			<Status>New</Status>
+			<DisplayName>SignaturePad</DisplayName>
+			<Icon>signaturepad.png</Icon>
+			<ShortDescription>SignaturePad for .NET MAUI is designed to enable users to draw and save signatures.</ShortDescription>
+			<FullDescription>Telerik UI for .NET MAUI SignaturePad for .NET MAUI is designed to enable users to draw and save signatures.</FullDescription>
+			<Examples>
+				<Example>
+					<Name>FirstLook</Name>
+					<Page>FirstLookView</Page>
+					<DisplayName>First Look</DisplayName>
+					<Icon>signaturepad.png</Icon>
+					<Description>This example shows the ability to draw a signature in RadSignaturePad, save this signature as image and then visualize it.</Description>
+				</Example>
+			</Examples>
+		</Control>
 
-    <Control>
+		<Control>
 			<Name>SpreadProcessing</Name>
 			<DisplayName>SpreadProcessing</DisplayName>
 			<Icon>spreadstreamprocessing.png</Icon>
@@ -912,24 +945,25 @@
 				</Example>
 			</Examples>
 		</Control>
-    
-    <Control>
-      <Name>Toolbar</Name>
-      <DisplayName>Toolbar</DisplayName>
-      <Icon>toolbar.png</Icon>
-      <ShortDescription>RadToolbar is a flexible control for implementation of tool and button strips, needed in most desktop and mobile applications.</ShortDescription>
-      <FullDescription>Telerik UI for .NET MAUI Toolbar is a flexible control for implementation of tool and button strips, needed in most desktop and mobile applications. Its rich collection of ToolbarItems allows easy customization of every tool or button of the control independently according to the specific needs of the application.</FullDescription>
-      <Examples>
-        <Example>
-          <Name>FirstLook</Name>
-          <Page>FirstLookView</Page>
-          <DisplayName>First Look</DisplayName>
-          <Icon>toolbar.png</Icon>
-          <Description>Telerik UI for .NET MAUI Toolbar is a flexible control for implementation of tool and button strips, needed in most desktop and mobile applications. Its rich collection of ToolbarItems allows easy customization of every tool or button of the control independently according to the specific needs of the application.</Description>
-        </Example>
-      </Examples>
-    </Control>
-    
+
+		<Control>
+			<Name>Toolbar</Name>
+			<Status>New</Status>
+			<DisplayName>Toolbar</DisplayName>
+			<Icon>toolbar.png</Icon>
+			<ShortDescription>RadToolbar is a flexible control for implementation of tool and button strips, needed in most desktop and mobile applications.</ShortDescription>
+			<FullDescription>Telerik UI for .NET MAUI Toolbar is a flexible control for implementation of tool and button strips, needed in most desktop and mobile applications. Its rich collection of ToolbarItems allows easy customization of every tool or button of the control independently according to the specific needs of the application.</FullDescription>
+			<Examples>
+				<Example>
+					<Name>FirstLook</Name>
+					<Page>FirstLookView</Page>
+					<DisplayName>First Look</DisplayName>
+					<Icon>toolbar.png</Icon>
+					<Description>Telerik UI for .NET MAUI Toolbar is a flexible control for implementation of tool and button strips, needed in most desktop and mobile applications. Its rich collection of ToolbarItems allows easy customization of every tool or button of the control independently according to the specific needs of the application.</Description>
+				</Example>
+			</Examples>
+		</Control>
+
 		<Control>
 			<Name>WordsProcessing</Name>
 			<DisplayName>WordsProcessing</DisplayName>
@@ -967,6 +1001,7 @@
 				</Example>
 				<Example>
 					<Name>TableOfContents</Name>
+					<Status>New</Status>
 					<Page>TableOfContentsView</Page>
 					<DisplayName>Table Of Contents</DisplayName>
 					<Icon>wordsprocessing.png</Icon>

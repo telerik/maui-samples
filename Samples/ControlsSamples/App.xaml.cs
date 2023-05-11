@@ -131,13 +131,20 @@ public partial class App : Application
     }
 #endif
 
-#if WINDOWS
+#if WINDOWS || MACCATALYST
     protected override Window CreateWindow(IActivationState activationState)
     {
         var window = base.CreateWindow(activationState);
         if (window != null)
         {
+#if WINDOWS
             window.Title = "Telerik UI for .NET MAUI Controls Samples";
+#endif
+
+#if NET7_0_OR_GREATER
+            window.MinimumWidth = 1024;
+            window.MinimumHeight = 768;
+#endif
         }
 
         return window;

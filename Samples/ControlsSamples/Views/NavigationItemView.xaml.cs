@@ -1,5 +1,6 @@
 ﻿using Microsoft.Maui.Controls;
 using Microsoft.Maui.Controls.Xaml;
+using QSF.Common;
 using System.Windows.Input;
 
 namespace QSF.Views;
@@ -12,6 +13,9 @@ public partial class NavigationItemView : ContentView
 
     public static readonly BindableProperty IconProperty = BindableProperty.Create(
         nameof(Icon), typeof(string), typeof(NavigationItemView));
+
+    public static readonly BindableProperty StatusProperty = BindableProperty.Create(
+        nameof(Status), typeof(StatusType), typeof(NavigationItemView));
 
     public static readonly BindableProperty TapCommandProperty = BindableProperty.Create(
         nameof(TapCommand), typeof(ICommand), typeof(NavigationItemView), propertyChanged: (b, o, n) => ((NavigationItemView)b).OnTapCommandChanged());
@@ -33,6 +37,12 @@ public partial class NavigationItemView : ContentView
     {
         get { return (string)this.GetValue(IconProperty); }
         set { this.SetValue(IconProperty, value); }
+    }
+
+    public StatusType Status
+    {
+        get { return (StatusType)this.GetValue(StatusProperty); }
+        set { this.SetValue(StatusProperty, value); }
     }
 
     public ICommand TapCommand

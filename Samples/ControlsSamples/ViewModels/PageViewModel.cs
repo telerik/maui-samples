@@ -9,6 +9,8 @@ namespace QSF.ViewModels;
 
 public abstract class PageViewModel : ViewModelBase
 {
+    private static BrowserLaunchOptions browserLaunchOptions;
+
     private string appTitle;
     private string headerTitle;
     private string headerDescription;
@@ -17,6 +19,13 @@ public abstract class PageViewModel : ViewModelBase
 
     public PageViewModel()
     {
+        browserLaunchOptions = new BrowserLaunchOptions()
+        {
+            TitleMode = BrowserTitleMode.Show,
+            PreferredControlColor = Microsoft.Maui.Graphics.Colors.White,
+            PreferredToolbarColor = App.Current.Resources["ApplicationAccentColor"] as Microsoft.Maui.Graphics.Color
+        };
+
         this.configurationService = DependencyService.Get<IConfigurationService>();
 
         this.AppTitle = configurationService.Configuration.HeaderTitle;
@@ -94,7 +103,7 @@ public abstract class PageViewModel : ViewModelBase
             return;
         }
 
-        Launcher.TryOpenAsync(url);
+        Browser.Default.OpenAsync(new System.Uri(url), browserLaunchOptions);
     }
 
     public static void TryNavigateToUrl(string url, ICommand fallbackCommand)

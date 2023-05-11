@@ -25,6 +25,7 @@
                 <views:NavigationItemView BackgroundColor="{AppThemeBinding Light={StaticResource ItemBackgroundColor}, Dark={StaticResource ItemBackgroundColorDark}}"
                                           Header="{Binding DisplayName}"
                                           Icon="{Binding Icon}"
+                                          Status="{Binding Status}"
                                           Margin="6, 0, 0, 0">
                     <views:NavigationItemView.ControlTemplate>
                         <ControlTemplate>
@@ -37,10 +38,15 @@
                                            Margin="4" />
                                 </telerik:RadBorder>
                                 <Label Text="{TemplateBinding Header}"
-                                       Margin="12, 0"
+                                       Margin="8, 0, 6, 0"
                                        FontSize="16"
                                        VerticalOptions="Center"
-                                       VerticalTextAlignment="Center"/>
+                                       VerticalTextAlignment="Center"
+                                       WidthRequest="180"
+                                       LineBreakMode="TailTruncation" />
+                                <ContentView Content="{TemplateBinding Status, Converter={StaticResource StatusTagToTemplateConverter}}"
+                                             HorizontalOptions="End"
+                                             VerticalOptions="Center" />
                             </HorizontalStackLayout>
                         </ControlTemplate>
                     </views:NavigationItemView.ControlTemplate>
@@ -128,7 +134,7 @@
                                Background="{AppThemeBinding Light={StaticResource SecondaryBackgroundColor}, Dark={StaticResource SecondaryBackgroundColorDark}}"
                                Style="{StaticResource BorderStyle}">
                 <Grid RowDefinitions="Auto, *"
-                      ColumnDefinitions="3*, *"
+                      ColumnDefinitions="3*, 280"
                       RowSpacing="24"
                       ColumnSpacing="12">
                     <Label Text="{Binding SelectedExample.DisplayName}"
@@ -147,19 +153,28 @@
                                        Grid.Column="1"
                                        BackgroundColor="{AppThemeBinding Light={StaticResource DefaultBackgroundColor}, Dark={StaticResource DefaultBackgroundColorDark}}"
                                        Style="{StaticResource BorderStyle}">
-                        <VerticalStackLayout Padding="15">
+                        <Grid RowDefinitions="Auto, *" Padding="15">
                             <Label Text="{Binding SelectedExample.Description}"
                                    TextType="Html"
                                    Margin="0, 0, 0, 20" />
-                            <telerik:RadBorder>
-                                <telerik:RadBorder.Content>
-                                    <MultiBinding Converter="{StaticResource ModelToConfigurationAreaConverter}">
-                                        <Binding Path="SelectedExample" />
-                                        <Binding Path="Content.BindingContext" Source="{Reference exampleContainer}" />
-                                    </MultiBinding>
-                                </telerik:RadBorder.Content>
-                            </telerik:RadBorder>
-                        </VerticalStackLayout>
+                            <Grid Grid.Row="1"
+                                  RowDefinitions="Auto, *"
+                                  IsVisible="{Binding SelectedExample.IsConfigurable}">
+                                <Label Text="Configuration"
+                                       FontSize="24"
+                                       IsVisible="{OnIdiom Desktop=True, Phone=False}" />
+                                <ScrollView Grid.Row="1">
+                                    <telerik:RadBorder>
+                                        <telerik:RadBorder.Content>
+                                            <MultiBinding Converter="{StaticResource ModelToConfigurationAreaConverter}">
+                                                <Binding Path="SelectedExample" />
+                                                <Binding Path="Content.BindingContext" Source="{Reference exampleContainer}" />
+                                            </MultiBinding>
+                                        </telerik:RadBorder.Content>
+                                    </telerik:RadBorder>
+                                </ScrollView>
+                            </Grid>
+                        </Grid>
                     </telerik:RadBorder>
                 </Grid>
             </telerik:RadBorder>

@@ -4,13 +4,17 @@
              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
              xmlns:views="clr-namespace:QSF.Views"
              xmlns:layouts="clr-namespace:QSF.Layouts"
-             x:Class="QSF.Views.HomeViewDesktop">
+             xmlns:converters="clr-namespace:QSF.Converters"
+             x:Class="QSF.Views.HomeViewDesktop"
+             x:Name="HomeView">
 
     <VisualElement.Resources>
+        <converters:ScreenWidthToItemWidthConverter x:Key="ScreenWidthToItemWidthConverter" />
         <DataTemplate x:Key="ControlItemTemplate">
             <views:SmoothItemView Header="{Binding DisplayName}"
                                   Icon="{Binding Icon}"
                                   Description="{Binding ShortDescription}"
+                                  Status="{Binding Status}"
                                   TapCommand="{Binding BindingContext.SelectControlCommand, Source={RelativeSource AncestorType={Type views:HomeViewDesktop}}}"
                                   Margin="6"
                                   Padding="6" />
@@ -19,11 +23,11 @@
 
     <Grid RowDefinitions="Auto, Auto, Auto, *">
         <Grid ColumnDefinitions="*, *"
-              Margin="0, 20, 0, 20">
+              Margin="0, 20">
             <Label Text="Telerik UI for .NET MAUI"
                    Style="{StaticResource PageHeaderLabelStyle}"
                    HorizontalOptions="Center"
-                   Grid.ColumnSpan="2"/>
+                   Grid.ColumnSpan="2" />
             <telerik:RadButton Command="{Binding NavigateToDownloadTrialCommand}"
                                Grid.Column="1"
                                Margin="0, 0, 5, 0"
@@ -33,7 +37,7 @@
         <views:HighlightsView Grid.Row="1" />
         <Label Text="All Controls"
                FontSize="{OnPlatform Default=20, MacCatalyst=22}"
-               FontAttributes="Bold" 
+               FontAttributes="Bold"
                Grid.Row="2"
                Margin="7, 19, 0, 6"/>
         <telerik:NonVirtualizedItemsControl ItemTemplate="{StaticResource ControlItemTemplate}"
@@ -41,7 +45,8 @@
                                             Grid.Row="3">
             <telerik:NonVirtualizedItemsControl.ItemsLayoutTemplate>
                 <DataTemplate>
-                    <telerik:RadWrapLayout ItemWidth="430" />
+                    <telerik:RadWrapLayout ItemWidth="{Binding Source={x:Reference HomeView}, Path=Width, Converter={StaticResource ScreenWidthToItemWidthConverter}}"
+                                           ItemHeight="{OnPlatform Default=130, WinUI=137}" />
                 </DataTemplate>
             </telerik:NonVirtualizedItemsControl.ItemsLayoutTemplate>
         </telerik:NonVirtualizedItemsControl>

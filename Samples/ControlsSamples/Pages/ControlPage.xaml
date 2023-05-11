@@ -39,18 +39,24 @@
                     <TapGestureRecognizer Command="{Binding BindingContext.NavigateToExampleCommand, Source={RelativeSource AncestorType={Type pages:ControlPage}}}"
                                           CommandParameter="{Binding}" />
                 </View.GestureRecognizers>
-                <VerticalStackLayout Margin="12, 12, 12, 24">
-                    <layouts:QGrid>
-                        <telerik:RadBorder MinimumWidthRequest="130"
-                                           MinimumHeightRequest="130"
-                                           Style="{StaticResource ExampleBorderStyle}" />
-                        <Image Source="{Binding Icon}"
-                               Margin="35" />
-                    </layouts:QGrid>
-                    <Label Text="{Binding DisplayName}"
-                           LineBreakMode="WordWrap"
-                           Style="{StaticResource LabelStyle}" />
-                </VerticalStackLayout>
+                <Grid>
+                    <VerticalStackLayout Margin="12, 12, 12, 24">
+                        <layouts:QGrid>
+                            <telerik:RadBorder MinimumWidthRequest="130"
+                                               MinimumHeightRequest="130"
+                                               Style="{StaticResource ExampleBorderStyle}" />
+                            <Image Source="{Binding Icon}"
+                                   Margin="35" />
+                        </layouts:QGrid>
+                        <Label Text="{Binding DisplayName}"
+                               LineBreakMode="WordWrap"
+                               Style="{StaticResource LabelStyle}" />
+                    </VerticalStackLayout>
+                    <ContentView Content="{Binding Status, Converter={StaticResource StatusTagToTemplateConverter}}"
+                                 HorizontalOptions="End"
+                                 VerticalOptions="End"
+                                 Margin="0, 0, 12, 6"/>
+                </Grid>
             </telerik:RadBorder>
         </DataTemplate>
     </VisualElement.Resources>

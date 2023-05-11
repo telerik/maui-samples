@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:styles="clr-namespace:QSF.Styles"
+             xmlns:converters="clr-namespace:QSF.Converters"
+             x:Class="QSF.Examples.AccordionControl.ConfigurationExample.ConfigurationArea">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <styles:ConfigurationViewResources />
+            </ResourceDictionary.MergedDictionaries>
+            <converters:NameToEasingConverter x:Key="NameToEasingConverter" />
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+    <VerticalStackLayout Style="{StaticResource RootAtSeparateAreaStyle}">
+        <VerticalStackLayout Style="{StaticResource GroupAtSeparateAreaStyle}">
+            <HorizontalStackLayout telerik:RadCheckBox.ToggleOnTap="{Reference CanCollapseAllItemsCb}"
+                                   Style="{StaticResource CheckBoxGroupStyle}">
+                <telerik:RadCheckBox x:Name="CanCollapseAllItemsCb"
+                                     IsChecked="{Binding CanCollapseAllItems, Mode=TwoWay}" />
+                <Label Text="Can Collapse All Items"
+                    Style="{StaticResource HorizontalGroupLabelAtEndStyle}" />
+            </HorizontalStackLayout>
+            <HorizontalStackLayout telerik:RadCheckBox.ToggleOnTap="{Reference CanExpandMultipleItemsCb}"
+                                   Style="{StaticResource CheckBoxGroupStyle}">
+                <telerik:RadCheckBox x:Name="CanExpandMultipleItemsCb"
+                                     IsChecked="{Binding CanExpandMultipleItems, Mode=TwoWay}" />
+                <Label Text="Can Expand Multiple Items"
+                       Style="{StaticResource HorizontalGroupLabelAtEndStyle}" />
+            </HorizontalStackLayout>
+            <HorizontalStackLayout telerik:RadCheckBox.ToggleOnTap="{Reference IsAnimationEnabledCb}"
+                                   Style="{StaticResource CheckBoxGroupStyle}">
+                <telerik:RadCheckBox x:Name="IsAnimationEnabledCb"
+                                     IsChecked="{Binding IsAnimationEnabled}" />
+                <Label Text="Is Animation Enabled"
+                       Style="{StaticResource HorizontalGroupLabelAtEndStyle}" />
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+        <VerticalStackLayout Style="{StaticResource GroupAtSeparateAreaStyle}">
+            <Label Text="Animation Easing:"
+                   Style="{StaticResource VerticalGroupLabelStyle}" />
+            <telerik:RadListPicker SelectedItem="{Binding AnimationEasing, Mode=TwoWay, Converter={StaticResource NameToEasingConverter}}"
+                                   ItemsSource="{Binding AnimationEasings}"/>
+        </VerticalStackLayout>
+        <VerticalStackLayout Style="{StaticResource GroupAtSeparateAreaStyle}">
+            <Label Text="Animation Duration:"
+                   Style="{StaticResource VerticalGroupLabelStyle}" />
+            <Grid ColumnDefinitions="Auto, *, Auto">
+                <Label Text="{Binding Source={x:Reference animationDurationSlider}, Path=Minimum}"
+                       Style="{StaticResource HorizontalGroupLabelAtStartStyle}" />
+                <Slider x:Name="animationDurationSlider"
+                        Grid.Column="1"
+                        Minimum="300" Maximum="3000"
+                        Value="{Binding AnimationDuration,Mode=TwoWay}"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand"/>
+                <Label Grid.Column="2"
+                       Text="{Binding Source={x:Reference animationDurationSlider}, Path=Maximum}"
+                       Style="{StaticResource HorizontalGroupLabelAtEndStyle}" />
+            </Grid>
+        </VerticalStackLayout>
+        <VerticalStackLayout Style="{StaticResource GroupAtSeparateAreaStyle}">
+            <Label Text="Spacing:"
+                   Style="{StaticResource VerticalGroupLabelStyle}" />
+            <Grid ColumnDefinitions="Auto, *, Auto">
+                <Label Text="{Binding Source={x:Reference spacingSlider}, Path=Minimum, Mode=TwoWay}"
+                       Style="{StaticResource HorizontalGroupLabelAtStartStyle}" />
+                <Slider x:Name="spacingSlider"
+                        Grid.Column="1"
+                        Value="{Binding Spacing}"
+                        Minimum="0" Maximum="50"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand"/>
+                <Label Grid.Column="2"
+                       Text="{Binding Source={x:Reference spacingSlider}, Path=Maximum, Mode=TwoWay}"
+                       Style="{StaticResource HorizontalGroupLabelAtEndStyle}" />
+            </Grid>
+        </VerticalStackLayout>
+    </VerticalStackLayout>
+</ContentView>

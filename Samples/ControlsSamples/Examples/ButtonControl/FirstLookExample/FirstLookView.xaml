@@ -3,9 +3,7 @@
                         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                         xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
                         xmlns:local="clr-namespace:QSF.Examples.ButtonControl.FirstLookExample"
-                        x:Class="QSF.Examples.ButtonControl.FirstLookExample.FirstLookView"
-                        Margin="5">
-
+                        x:Class="QSF.Examples.ButtonControl.FirstLookExample.FirstLookView">
     <ContentView.BindingContext>
         <local:FirstLookViewModel/>
     </ContentView.BindingContext>
@@ -18,187 +16,158 @@
         <Style x:Key="InfoTextStyle" TargetType="Label">
             <Setter Property="FontSize" Value="12" />
             <Setter Property="TextColor" Value="#DA6729" />
-            <Setter Property="Margin" Value="0, 0, 0, 35" />
+            <Setter Property="Margin" Value="0, 0, 0, 10" />
         </Style>
         <Style x:Key="BaseButtonStyle" TargetType="telerik:RadButton">
-            <Setter Property="FontSize" Value="10" />
-            <Setter Property="FontAttributes" Value="Bold" />
-            <Setter Property="Padding" Value="12,0,0,0" />
-            <Setter Property="Margin" Value="0,5,10,5" />
-        </Style>
-        <Style x:Key="RoundButtonStyle" TargetType="telerik:RadButton" BasedOn="{StaticResource BaseButtonStyle}">
+            <Setter Property="HeightRequest" Value="32" />
             <Setter Property="TextColor" Value="White" />
-            <Setter Property="Padding" Value="10,0,15,0" />
+            <Setter Property="Margin" Value="0, 5, 10, 5" />
+        </Style>
+        <Style x:Key="ShortRoundButtonStyle" TargetType="telerik:RadButton" BasedOn="{StaticResource BaseButtonStyle}">
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="Padding" Value="{OnPlatform Default='12, 0', WinUI='12, 10'}" />
+            <Setter Property="WidthRequest" Value="100" />
             <Setter Property="CornerRadius" Value="16" />
         </Style>
-        <Style x:Key="ShortRoundButtonStyle" TargetType="telerik:RadButton" BasedOn="{StaticResource RoundButtonStyle}">
-            <Setter Property="Padding" Value="{OnPlatform Default='10,10,15,10', iOS='30,10,15,10', MacCatalyst='30,10,15,10'}"/>
-            <Setter Property="WidthRequest" Value="100" />
-        </Style>
-        <Style x:Key="TallRoundButtonStyle" TargetType="telerik:RadButton" BasedOn="{StaticResource RoundButtonStyle}">
-            <Setter Property="HeightRequest" Value="32" />
+        <Style x:Key="TallRoundButtonStyle" TargetType="telerik:RadButton" BasedOn="{StaticResource BaseButtonStyle}">
+            <Setter Property="WidthRequest" Value="60" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="CornerRadius" Value="8" />
         </Style>
         <Style x:Key="FlatButtonStyle" TargetType="telerik:RadButton" BasedOn="{StaticResource BaseButtonStyle}">
             <Setter Property="TextColor" Value="Black" />
-            <Setter Property="CornerRadius" Value="0" />
-            <Setter Property="HeightRequest" Value="32" />
-            <Setter Property="BorderThickness" Value="6,0,0,0" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="BorderThickness" Value="6, 0, 0, 0" />
             <Setter Property="BackgroundColor" Value="#EAEAEA" />
-            <Setter Property="HorizontalContentAlignment" Value="Start" />
+            <Setter Property="Padding" Value="12, 0" />
         </Style>
-        <Style x:Key="VerticalButtonStyle" TargetType="telerik:RadButton">
-            <Setter Property="TextColor" Value="White" />
-            <Setter Property="TextTransform" Value="Lowercase"/>
-            <Setter Property="LineBreakMode" Value="WordWrap" />
-            <Setter Property="ContentLayout" Value="Top,10" />
-            <Setter Property="VerticalContentAlignment" Value="Start" />
-            <Setter Property="HorizontalContentAlignment" Value="Center" />
-            <Setter Property="CornerRadius" Value="20" />
+        <Style x:Key="CircularButtonStyle" TargetType="telerik:RadButton" BasedOn="{StaticResource BaseButtonStyle}">
             <Setter Property="WidthRequest" Value="40" />
-            <Setter Property="HeightRequest" Value="140" />
-            <Setter Property="FontSize" Value="12" />
-            <Setter Property="Margin" Value="0,0,10,0" />
+            <Setter Property="HeightRequest" Value="40" />
+            <Setter Property="CornerRadius" Value="20" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="Margin" Value="0, 0, 10, 0" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
         </Style>
     </ContentView.Resources>
 
     <telerik:RadContentView.Content>
         <ScrollView>
-            <VerticalStackLayout Padding="20" Spacing="10" BackgroundColor="{AppThemeBinding Light=White, Dark=Black}">
+            <VerticalStackLayout Padding="20"
+                                 Spacing="10">
                 <Label Style="{StaticResource TitleTextStyle}"
                        Text="Choose one or more categories that represents what you want to see:" />
-
                 <telerik:RadWrapLayout>
-                    <telerik:RadButton WidthRequest="60"
-                                       Style="{StaticResource TallRoundButtonStyle}"
+                    <telerik:RadButton Style="{StaticResource TallRoundButtonStyle}"
                                        Text="Cakes"
                                        Command="{Binding SelectByCategoryCommand}"
-                                       CommandParameter="Cakes"  
-                                       BackgroundImage="button_recipes_cakes.png"
-                                       Padding="0"/>
+                                       CommandParameter="Cakes"
+                                       BackgroundImage="button_recipes_cakes.png" />
 
-                    <telerik:RadButton WidthRequest="60"
-                                       Style="{StaticResource TallRoundButtonStyle}" 
-                                       Text="Fruits" 
+                    <telerik:RadButton Style="{StaticResource TallRoundButtonStyle}"
+                                       Text="Fruits"
                                        Command="{Binding SelectByCategoryCommand}"
-                                       CommandParameter="Fruits" 
-                                       BackgroundImage="button_recipes_fruits.png"
-                                       Padding="0"/>
+                                       CommandParameter="Fruits"
+                                       BackgroundImage="button_recipes_fruits.png" />
 
-                    <telerik:RadButton WidthRequest="80" 
-                                       Style="{StaticResource TallRoundButtonStyle}" 
+                    <telerik:RadButton WidthRequest="80"
+                                       Style="{StaticResource TallRoundButtonStyle}"
                                        Text="Cocktails"
                                        Command="{Binding SelectByCategoryCommand}"
                                        CommandParameter="Cocktails"
-                                       BackgroundImage="button_recipes_cocktails.png"
-                                       Padding="0"/>
+                                       BackgroundImage="button_recipes_cocktails.png" />
 
-                    <telerik:RadButton WidthRequest="60"
-                                       Style="{StaticResource TallRoundButtonStyle}"
+                    <telerik:RadButton Style="{StaticResource TallRoundButtonStyle}"
                                        Text="Bread"
                                        Command="{Binding SelectByCategoryCommand}"
                                        CommandParameter="Bread"
-                                       BackgroundImage="button_recipes_bread.png"
-                                       Padding="0"/>
+                                       BackgroundImage="button_recipes_bread.png" />
 
                     <telerik:RadButton WidthRequest="80"
                                        Style="{StaticResource TallRoundButtonStyle}"
                                        Text="Brownies"
                                        Command="{Binding SelectByCategoryCommand}"
                                        CommandParameter="Brownies"
-                                       BackgroundImage="button_recipes_brownies.png"
-                                       Padding="0"/>
+                                       BackgroundImage="button_recipes_brownies.png" />
 
-                    <telerik:RadButton WidthRequest="60"
-                                       Style="{StaticResource TallRoundButtonStyle}"
+                    <telerik:RadButton Style="{StaticResource TallRoundButtonStyle}"
                                        Text="Pizza"
                                        Command="{Binding SelectByCategoryCommand}"
                                        CommandParameter="Pizza"
-                                       BackgroundImage="button_recipes_pizza.png"
-                                       Padding="0"/>
+                                       BackgroundImage="button_recipes_pizza.png" />
 
-                    <telerik:RadButton WidthRequest="100" 
+                    <telerik:RadButton WidthRequest="100"
                                        Style="{StaticResource TallRoundButtonStyle}"
                                        Text="Sandwiches"
                                        Command="{Binding SelectByCategoryCommand}"
                                        CommandParameter="Sandwiches"
-                                       BackgroundImage="button_recipes_sandwiches.png"
-                                       Padding="0"/>
+                                       BackgroundImage="button_recipes_sandwiches.png" />
 
-                    <telerik:RadButton WidthRequest="60"
-                                       Style="{StaticResource TallRoundButtonStyle}"
+                    <telerik:RadButton Style="{StaticResource TallRoundButtonStyle}"
                                        Text="Dips"
                                        Command="{Binding SelectByCategoryCommand}"
                                        CommandParameter="Dips"
-                                       BackgroundImage="button_recipes_dips.png"
-                                       Padding="0"/>
+                                       BackgroundImage="button_recipes_dips.png" />
 
                     <telerik:RadButton WidthRequest="80"
                                        Style="{StaticResource TallRoundButtonStyle}"
                                        Text="Desserts"
                                        Command="{Binding SelectByCategoryCommand}"
                                        CommandParameter="Desserts"
-                                       BackgroundImage="button_recipes_desserts.png"
-                                       Padding="0"/>
+                                       BackgroundImage="button_recipes_desserts.png" />
 
                     <telerik:RadButton WidthRequest="80"
                                        Style="{StaticResource TallRoundButtonStyle}"
                                        Text="Pancakes"
                                        Command="{Binding SelectByCategoryCommand}"
-                                       CommandParameter="Pancakes" 
-                                       BackgroundImage="button_recipes_pancakes.png"
-                                       Padding="0"/>
+                                       CommandParameter="Pancakes"
+                                       BackgroundImage="button_recipes_pancakes.png" />
 
-                    <telerik:RadButton WidthRequest="60" 
-                                       Style="{StaticResource TallRoundButtonStyle}"
-                                       Text="Soups" 
+                    <telerik:RadButton Style="{StaticResource TallRoundButtonStyle}"
+                                       Text="Soups"
                                        Command="{Binding SelectByCategoryCommand}"
                                        CommandParameter="Soups"
-                                       BackgroundImage="button_recipes_soups.png"
-                                       Padding="0"/>
+                                       BackgroundImage="button_recipes_soups.png" />
                 </telerik:RadWrapLayout>
-
                 <Label Style="{StaticResource InfoTextStyle}"
                        Text="{Binding Category, StringFormat='Selected category: {0}'}" />
+
                 <Label Style="{StaticResource TitleTextStyle}"
                        Text="Select recipes by popularity:" />
-
                 <telerik:RadWrapLayout>
                     <telerik:RadButton Style="{StaticResource FlatButtonStyle}"
                                        Text="Hottest Recipes"
                                        BorderColor="#C02C22"
                                        Command="{Binding SelectByPopularityCommand}"
-                                       CommandParameter="Hottest Recipes"
-                                       WidthRequest="160"/>
+                                       CommandParameter="Hottest Recipes" />
 
                     <telerik:RadButton Style="{StaticResource FlatButtonStyle}"
                                        Text="Fastest to Cook"
                                        BorderColor="#EC9E46"
                                        Command="{Binding SelectByPopularityCommand}"
-                                       CommandParameter="Fastest to Cook"
-                                       WidthRequest="140"/>
+                                       CommandParameter="Fastest to Cook" />
 
                     <telerik:RadButton Style="{StaticResource FlatButtonStyle}"
                                        Text="Chef's Best"
-                                       BorderColor="#AFCA5C" 
+                                       BorderColor="#AFCA5C"
                                        Command="{Binding SelectByPopularityCommand}"
-                                       CommandParameter="Chef's Best"
-                                       WidthRequest="120" />
+                                       CommandParameter="Chef's Best" />
 
                     <telerik:RadButton Style="{StaticResource FlatButtonStyle}"
                                        Text="Highest Rated by Users"
                                        BorderColor="#775088" 
                                        Command="{Binding SelectByPopularityCommand}"
-                                       CommandParameter="Highest Rated by Users"
-                                       WidthRequest="200"/>
+                                       CommandParameter="Highest Rated by Users" />
                 </telerik:RadWrapLayout>
-
-                <Label Style="{StaticResource InfoTextStyle}" 
+                <Label Style="{StaticResource InfoTextStyle}"
                        Text="{Binding Popularity, StringFormat='Selected recipes: {0}'}" />
+
                 <Label Style="{StaticResource TitleTextStyle}" 
                        Text="or select recipes by ingredient:" />
-
                 <Grid RowDefinitions="Auto, Auto" ColumnDefinitions="Auto, Auto, Auto">
-                    <telerik:RadButton Style="{StaticResource ShortRoundButtonStyle}" 
+                    <telerik:RadButton Style="{StaticResource ShortRoundButtonStyle}"
                                        Text="Chicken"
                                        BackgroundColor="#C02C22"
                                        Command="{Binding SelectByIngredientCommand}"
@@ -224,7 +193,7 @@
                     <telerik:RadButton Grid.Row="1"
                                        Style="{StaticResource ShortRoundButtonStyle}"
                                        Text="Pork"
-                                       BackgroundColor="#D73B43" 
+                                       BackgroundColor="#D73B43"
                                        Command="{Binding SelectByIngredientCommand}"
                                        CommandParameter="Pork"
                                        ImageSource="pork.png" />
@@ -238,56 +207,30 @@
                                        CommandParameter="Beef"
                                        ImageSource="beef.png" />
                 </Grid>
-
                 <Label Style="{StaticResource InfoTextStyle}"
                        Text="{Binding Ingredient, StringFormat='Selected ingredient: {0}'}" />
+
                 <Label Style="{StaticResource TitleTextStyle}"
                        Text="or select by time:" />
-
                 <telerik:RadWrapLayout>
-                    <telerik:RadButton Style="{StaticResource VerticalButtonStyle}"
-                                       Text="45 min"
+                    <telerik:RadButton Style="{StaticResource CircularButtonStyle}"
+                                       Text="45'"
                                        BackgroundColor="#849C31"
-                                       Padding="2,10,2,0"
-                                       Command="{Binding SelectByTimeCommand}" 
-                                       CommandParameter="45 min">
-                        <telerik:RadButton.ImageSource>
-                            <FontImageSource FontFamily="TelerikFontExamples"
-                                             Glyph="&#xE878;" 
-                                             Color="White"
-                                             Size="Medium" />
-                        </telerik:RadButton.ImageSource>
-                    </telerik:RadButton>
-
-                    <telerik:RadButton Style="{StaticResource VerticalButtonStyle}" 
-                                       Text="60 min"
-                                       BackgroundColor="#DA6729" 
-                                       Padding="2,30,2,0"
                                        Command="{Binding SelectByTimeCommand}"
-                                       CommandParameter="60 min">
-                        <telerik:RadButton.ImageSource>
-                            <FontImageSource FontFamily="TelerikFontExamples"
-                                             Glyph="&#xE878;" 
-                                             Color="White"
-                                             Size="Medium" />
-                        </telerik:RadButton.ImageSource>
-                    </telerik:RadButton>
+                                       CommandParameter="45 min" />
 
-                    <telerik:RadButton Style="{StaticResource VerticalButtonStyle}"
-                                       Text="90 min"
+                    <telerik:RadButton Style="{StaticResource CircularButtonStyle}"
+                                       Text="60'"
+                                       BackgroundColor="#DA6729"
+                                       Command="{Binding SelectByTimeCommand}"
+                                       CommandParameter="60 min" />
+
+                    <telerik:RadButton Style="{StaticResource CircularButtonStyle}"
+                                       Text="90'"
                                        BackgroundColor="#C02C22" 
-                                       Padding="2,50,2,10"
                                        Command="{Binding SelectByTimeCommand}"
-                                       CommandParameter="90 min">
-                        <telerik:RadButton.ImageSource>
-                            <FontImageSource FontFamily="TelerikFontExamples" 
-                                             Glyph="&#xE878;"
-                                             Color="White" 
-                                             Size="Medium" />
-                        </telerik:RadButton.ImageSource>
-                    </telerik:RadButton>
+                                       CommandParameter="90 min" />
                 </telerik:RadWrapLayout>
-
                 <Label Style="{StaticResource InfoTextStyle}"
                        Text="{Binding Time, StringFormat='Selected time: {0}'}" />
             </VerticalStackLayout>

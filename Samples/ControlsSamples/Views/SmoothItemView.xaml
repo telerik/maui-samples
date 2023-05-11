@@ -37,6 +37,11 @@
                            Margin="0, 3, 12, 12"
                            Style="{StaticResource DescriptionLabelStyle}" />
                 </VerticalStackLayout>
+
+                <ContentView Grid.ColumnSpan="2"
+                             Content="{TemplateBinding Status, Converter={StaticResource StatusTagToTemplateConverter}}"
+                             HorizontalOptions="End"
+                             VerticalOptions="Start" />
             </Grid>
         </ControlTemplate>
     </ContentView.ControlTemplate>

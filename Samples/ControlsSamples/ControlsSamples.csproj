@@ -80,7 +80,7 @@
 	</PropertyGroup>
 
 	<ItemGroup Condition="$(SolutionName) != 'Telerik.Maui'">
-		<PackageReference Include="Telerik.UI.for.Maui" Version="5.0.0" />
+		<PackageReference Include="Telerik.UI.for.Maui" Version="$(TelerikVersion)" />
 	</ItemGroup>
 
 	<Import Condition="'$(SolutionName)' == 'Telerik.Maui'" Project="..\AddSourceReferences.proj" />

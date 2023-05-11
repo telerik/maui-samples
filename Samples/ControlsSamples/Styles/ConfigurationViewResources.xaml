@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                    x:Class="QSF.Styles.ConfigurationViewResources">
+    <Style TargetType="telerik:RadCheckBox">
+        <Setter Property="VerticalOptions" Value="Center" />
+    </Style>
+    <Style x:Key="GroupLabelBaseStyle" TargetType="Label">
+        <Setter Property="HorizontalOptions" Value="Start" />
+        <Setter Property="VerticalOptions" Value="Center" />
+    </Style>
+    <Style x:Key="SectionHeadingLabelStyle" TargetType="Label" BasedOn="{StaticResource GroupLabelBaseStyle}">
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="Margin" Value="0, 12" />
+    </Style>
+    <Style x:Key="VerticalGroupLabelStyle" TargetType="Label" BasedOn="{StaticResource GroupLabelBaseStyle}">
+        <Setter Property="Margin" Value="0, 0, 0, 12" />
+    </Style>
+    <Style x:Key="HorizontalGroupLabelAtStartStyle" TargetType="Label" BasedOn="{StaticResource GroupLabelBaseStyle}">
+        <Setter Property="Margin" Value="0, 0, 8, 0" />
+    </Style>
+    <Style x:Key="HorizontalGroupLabelAtEndStyle" TargetType="Label" BasedOn="{StaticResource GroupLabelBaseStyle}">
+        <Setter Property="Margin" Value="8, 0, 0, 0" />
+    </Style>
+    <Style x:Key="RootAtExampleAreaStyle" TargetType="Layout">
+        <Setter Property="Margin" Value="{OnIdiom Default='16, 24, 16, 12', Desktop='0, 40, 0, 0'}" />
+    </Style>
+    <Style x:Key="RootAtSeparateAreaStyle" TargetType="Layout">
+        <Setter Property="Margin" Value="{OnIdiom Default='16, 12', Desktop='0, 12, 0, 0'}" />
+    </Style>
+    <Style x:Key="GroupAtExampleAreaStyle" TargetType="Layout">
+        <Setter Property="Margin" Value="{OnIdiom Default='0, 0, 0, 24', Desktop='0, 0, 0, 40'}" />
+    </Style>
+    <Style x:Key="GroupAtExampleAreaWithColumnBreakStyle" TargetType="Layout">
+        <Setter Property="Margin" Value="{OnIdiom Default=0, Desktop='0, 0, 20, 0'}" />
+    </Style>
+    <Style x:Key="GroupAtSeparateAreaStyle" TargetType="Layout">
+        <Setter Property="Margin" Value="0, 0, 0, 24" />
+    </Style>
+    <Style x:Key="CheckBoxGroupStyle" TargetType="Layout">
+        <Setter Property="MinimumHeightRequest" Value="{OnIdiom Default=44, Desktop=32}" />
+    </Style>
+</ResourceDictionary>

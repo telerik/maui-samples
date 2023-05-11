@@ -4,9 +4,14 @@
              xmlns:converters="clr-namespace:QSF.Converters"
              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
              xmlns:local="clr-namespace:QSF.Converters"
-             x:Class="QSF.Examples.BorderControl.ConfigurationExample.ConfigurationView">
+             xmlns:styles="clr-namespace:QSF.Styles"
+             x:Class="QSF.Examples.BorderControl.ConfigurationExample.ConfigurationView"
+             Padding="{OnIdiom Default='16, 20', Phone=0}">
     <ContentView.Resources>
         <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <styles:ConfigurationViewResources />
+            </ResourceDictionary.MergedDictionaries>
             <local:KeyValueConverter x:Key="ColorConverter">
                 <Color x:Key="LightGray">LightGray</Color>
                 <Color x:Key="DarkGray">DarkGray</Color>
@@ -17,162 +22,155 @@
                 <Setter Property="CornerRadius" Value="{Binding BorderCornerRadius}" />
                 <Setter Property="WidthRequest" Value="104" />
                 <Setter Property="HeightRequest" Value="104" />
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource DefaultBackgroundColor}, Dark={StaticResource DefaultBackgroundColorDark}}" />
                 <Setter Property="BorderColor" Value="{Binding SelectedBorderColor, Converter={StaticResource ColorConverter}}" />
                 <Setter Property="BorderThickness" Value="{Binding BorderThickness}" />
                 <Setter Property="HorizontalOptions" Value="Center" />
-                <Setter Property="Margin" Value="0, 22, 0, 35" />
-            </Style>
-            <Style x:Key="DefaultLabelStyle" TargetType="Label">
-                <Setter Property="FontSize" Value="14" />
-                <Setter Property="TextColor" Value="{AppThemeBinding Light=#4b4c4c, Dark=Black}" />
-            </Style>
-            <Style x:Key="SliderLabelStyle" TargetType="Label" BasedOn="{StaticResource DefaultLabelStyle}">
-                <Setter Property="VerticalOptions" Value="Center" />
             </Style>
             <Style x:Key="SliderMinMaxLabelStyle" TargetType="Label">
-                <Setter Property="TextColor" Value="#b4b4b5" />
                 <Setter Property="FontSize" Value="10" />
-            </Style>
-            <Style x:Key="SliderMinLabelStyle" TargetType="Label" BasedOn="{StaticResource SliderMinMaxLabelStyle}">
-                <Setter Property="VerticalOptions" Value="Center"/>
-                <Setter Property="Margin" Value="0, 0, 5, 0"/>
-            </Style>
-            <Style x:Key="SliderMaxLabelStyle" TargetType="Label" BasedOn="{StaticResource SliderMinMaxLabelStyle}">
-                <Setter Property="HorizontalOptions" Value="End"/>
-                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="Opacity" Value="0.6" />
+                <Setter Property="VerticalOptions" Value="Center" />
             </Style>
             <Style x:Key="DefaultSliderStyle" TargetType="Slider">
-                <Setter Property="Minimum" Value="0"/>
-                <Setter Property="Maximum" Value="60"/>
-                <Setter Property="Margin" Value="20, 0"/>
-                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
-                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="Minimum" Value="0" />
+                <Setter Property="Maximum" Value="60" />
+                <Setter Property="Margin" Value="8, 0" />
+                <Setter Property="HorizontalOptions" Value="Fill" />
+                <Setter Property="VerticalOptions" Value="Center" />
             </Style>
         </ResourceDictionary>
     </ContentView.Resources>
-    <ScrollView>
-        <Grid RowDefinitions="Auto, Auto, *">
-            <VerticalStackLayout BackgroundColor="#F8F8F8" Margin="16, 20, 30, 40">
-                <telerik:RadBorder Style="{StaticResource AvatarBorderStyle}"
-                                   BackgroundColor="#F8F8F8">
-                    <Image Aspect="AspectFill"
-                           Source="{Binding Avatar}" />
-                </telerik:RadBorder>
-            </VerticalStackLayout>
-            <Grid Grid.Row="1" Padding="20, 0, 25, 0" Margin="0, 20">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="{OnIdiom Default=*, Phone=0}"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="{OnIdiom Default=0, Phone=*}"/>
-                </Grid.RowDefinitions>
-                <Label Style="{StaticResource DefaultLabelStyle}"
-                       Text="Border Thickness:"/>
-                <Grid Margin="0, 25, 0, 7"
-                      Grid.Column="0"
-                      ColumnDefinitions="*, 3*">
-                    <Label Style="{StaticResource SliderLabelStyle}"
-                           Text="{Binding BorderThickness.Left, StringFormat='B: {0:N0}'}" />
-                    <Grid Grid.Column="1">
-                        <Label Style="{StaticResource SliderMinLabelStyle}"
-                               Text="0" />
-                        <Slider Style="{StaticResource DefaultSliderStyle}"
-                                Value="{Binding BorderThicknessValue}"
-                                Maximum="15"
-                                AutomationId="BorderThicknesSlider"/>
-                        <Label Style="{StaticResource SliderMaxLabelStyle}"
-                               Text="15" />
-                    </Grid>
-                </Grid>
-                <VerticalStackLayout Grid.Column="{OnIdiom Default=1, Phone=0}"
-                                     Grid.Row="{OnIdiom Default=0, Phone=1}"
-                                     Margin="{OnIdiom Default='20, 0', Phone='0, 12'}">
-                    <Label Style="{StaticResource DefaultLabelStyle}"
-                           Text="Border Color:" />
-                    <telerik:RadComboBox ItemsSource="{Binding BorderColors}"
-                                         SelectedItem="{Binding Path=SelectedBorderColor, Mode=TwoWay}"
-                                         HorizontalOptions="FillAndExpand"
-                                         FontSize="14"
-                                         DropDownHeight="120"
-                                         Margin="0, 12, 0, 20" />
-                </VerticalStackLayout>
-            </Grid>
-            <Grid Grid.Row="2" Padding="20, 0, 25, 0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="{OnIdiom Default=*, Phone=0}"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="{OnIdiom Default=0, Phone=*}"/>
-                </Grid.RowDefinitions>
-                <VerticalStackLayout>
-                    <Label Style="{StaticResource DefaultLabelStyle}"
-                           Text="Corner Radius:" />
-                    <Grid Margin="0, 7, 0, 7"
-                          ColumnDefinitions="*, 3*">
-                        <Label Style="{StaticResource SliderLabelStyle}"
-                               Text="{Binding LeftCornerRadius, StringFormat='L: {0:N0}'}" />
-                        <Grid Grid.Column="1">
-                            <Label Style="{StaticResource SliderMinLabelStyle}"
+
+    <Grid RowDefinitions="Auto, *">
+        <VerticalStackLayout BackgroundColor="{AppThemeBinding Light={StaticResource DefaultBackgroundColor}, Dark={StaticResource DefaultBackgroundColorDark}}"
+                             Padding="16, 24">
+            <telerik:RadBorder Style="{StaticResource AvatarBorderStyle}">
+                <Image Aspect="AspectFill"
+                       Source="{Binding Avatar}" />
+            </telerik:RadBorder>
+        </VerticalStackLayout>
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Style="{StaticResource RootAtExampleAreaStyle}">
+                <Grid Style="{StaticResource GroupAtExampleAreaStyle}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="{OnIdiom Default=*, Phone=0}" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="{OnIdiom Default=0, Phone=*}" />
+                    </Grid.RowDefinitions>
+                    <VerticalStackLayout Style="{OnIdiom Default={StaticResource GroupAtExampleAreaWithColumnBreakStyle}, Phone={StaticResource GroupAtExampleAreaStyle}}">
+                        <Label Style="{StaticResource VerticalGroupLabelStyle}"
+                               Text="Border Thickness:" />
+                        <Grid ColumnDefinitions="Auto, Auto, *, Auto">
+                            <Label Style="{StaticResource HorizontalGroupLabelAtStartStyle}"
+                                   Text="{Binding BorderThickness.Left, StringFormat='B: {0:N0}'}" />
+                            <Label Grid.Column="1"
+                                   Style="{StaticResource SliderMinMaxLabelStyle}"
                                    Text="0" />
-                            <Slider Style="{StaticResource DefaultSliderStyle}"
+                            <Slider Grid.Column="2"
+                                    Style="{StaticResource DefaultSliderStyle}"
+                                    Value="{Binding BorderThicknessValue}"
+                                    Maximum="15"
+                                    AutomationId="BorderThicknesSlider" />
+                            <Label Grid.Column="3"
+                                   Style="{StaticResource SliderMinMaxLabelStyle}"
+                                   Text="15" />
+                        </Grid>
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Grid.Column="{OnIdiom Default=1, Phone=0}"
+                                         Grid.Row="{OnIdiom Default=0, Phone=1}">
+                        <Label Style="{StaticResource VerticalGroupLabelStyle}"
+                               Text="Border Color:" />
+                        <telerik:RadComboBox ItemsSource="{Binding BorderColors}"
+                                             SelectedItem="{Binding Path=SelectedBorderColor, Mode=TwoWay}"
+                                             HorizontalOptions="Fill"
+                                             DropDownHeight="120" />
+                    </VerticalStackLayout>
+                </Grid>
+
+                <Label Style="{StaticResource VerticalGroupLabelStyle}"
+                       Text="Corner Radius:" />
+                <Grid Style="{StaticResource GroupAtExampleAreaStyle}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="{OnIdiom Default=*, Phone=0}" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="{OnIdiom Default=0, Phone=*}" />
+                    </Grid.RowDefinitions>
+                    <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaWithColumnBreakStyle}">
+                        <Grid ColumnDefinitions="Auto, Auto, *, Auto"
+                              Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Style="{StaticResource HorizontalGroupLabelAtStartStyle}"
+                                   Text="{Binding LeftCornerRadius, StringFormat='L: {0:N0}'}" />
+                            <Label Grid.Column="1"
+                                   Style="{StaticResource SliderMinMaxLabelStyle}"
+                                   Text="0" />
+                            <Slider Grid.Column="2"
+                                    Style="{StaticResource DefaultSliderStyle}"
                                     Value="{Binding LeftCornerRadius}"
-                                    AutomationId="LeftCornerRadiusSlider"/>
-                            <Label Style="{StaticResource SliderMaxLabelStyle}"
+                                    AutomationId="LeftCornerRadiusSlider" />
+                            <Label Grid.Column="3"
+                                   Style="{StaticResource SliderMinMaxLabelStyle}"
                                    Text="60" />
                         </Grid>
-                    </Grid>
-                    <Grid Margin="0, 7, 0, 7"
-                          ColumnDefinitions="*, 3*">
-                        <Label Style="{StaticResource SliderLabelStyle}"
-                               Text="{Binding TopCornerRadius, StringFormat='T: {0:N0}'}" />
-                        <Grid Grid.Column="1">
-                            <Label Style="{StaticResource SliderMinLabelStyle}"
+                        <Grid ColumnDefinitions="Auto, Auto, *, Auto"
+                              Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Style="{StaticResource HorizontalGroupLabelAtStartStyle}"
+                                   Text="{Binding TopCornerRadius, StringFormat='T: {0:N0}'}" />
+                            <Label Grid.Column="1"
+                                   Style="{StaticResource SliderMinMaxLabelStyle}"
                                    Text="0" />
-                            <Slider Style="{StaticResource DefaultSliderStyle}"
+                            <Slider Grid.Column="2"
+                                    Style="{StaticResource DefaultSliderStyle}"
                                     Value="{Binding TopCornerRadius}"
                                     AutomationId="TopCornerRadiusSlider" />
-                            <Label Style="{StaticResource SliderMaxLabelStyle}"
+                            <Label Grid.Column="3"
+                                   Style="{StaticResource SliderMinMaxLabelStyle}"
                                    Text="60" />
                         </Grid>
-                    </Grid>
-                </VerticalStackLayout>
-                <VerticalStackLayout Grid.Column="{OnIdiom Default=1, Phone=0}"
-                                     Grid.Row="{OnIdiom Default=0, Phone=1}"
-                                     Margin="{OnIdiom Default='20', Phone=0}">
-                    <Grid Margin="0, 7, 0, 7"
-                          ColumnDefinitions="*, 3*">
-                        <Label Style="{StaticResource SliderLabelStyle}"
-                               Text="{Binding RightCornerRadius, StringFormat='R: {0:N0}'}" />
-                        <Grid Grid.Column="1">
-                            <Label Style="{StaticResource SliderMinLabelStyle}"
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Grid.Column="{OnIdiom Default=1, Phone=0}"
+                                         Grid.Row="{OnIdiom Default=0, Phone=1}">
+                        <Grid ColumnDefinitions="Auto, Auto, *, Auto"
+                              Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Style="{StaticResource HorizontalGroupLabelAtStartStyle}"
+                                   Text="{Binding RightCornerRadius, StringFormat='R: {0:N0}'}" />
+                            <Label Grid.Column="1"
+                                   Style="{StaticResource SliderMinMaxLabelStyle}"
                                    Text="0" />
-                            <Slider Style="{StaticResource DefaultSliderStyle}"
+                            <Slider Grid.Column="2"
+                                    Style="{StaticResource DefaultSliderStyle}"
                                     Value="{Binding RightCornerRadius}"
                                     AutomationId="RightCornerRadiusSlider" />
-                            <Label Style="{StaticResource SliderMaxLabelStyle}"
+                            <Label Grid.Column="3"
+                                   Style="{StaticResource SliderMinMaxLabelStyle}"
                                    Text="60" />
                         </Grid>
-                    </Grid>
-                    <Grid Margin="0, 7, 0, 7"
-                          ColumnDefinitions="*, 3*">
-                        <Label Style="{StaticResource SliderLabelStyle}"
-                               Text="{Binding BottomCornerRadius, StringFormat='B: {0:N0}'}" />
-                        <Grid Grid.Column="1">
-                            <Label Style="{StaticResource SliderMinLabelStyle}"
+                        <Grid Grid.Column="{OnIdiom Default=1, Phone=0}"
+                              Grid.Row="{OnIdiom Default=0, Phone=1}"
+                              ColumnDefinitions="Auto, Auto, *, Auto"
+                              Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Style="{StaticResource HorizontalGroupLabelAtStartStyle}"
+                                   Text="{Binding BottomCornerRadius, StringFormat='B: {0:N0}'}" />
+                            <Label Grid.Column="1"
+                                   Style="{StaticResource SliderMinMaxLabelStyle}"
                                    Text="0" />
-                            <Slider Style="{StaticResource DefaultSliderStyle}"
+                            <Slider Grid.Column="2"
+                                    Style="{StaticResource DefaultSliderStyle}"
                                     Value="{Binding BottomCornerRadius}"
-                                    AutomationId="BottomCornerRadiusSlider"/>
-                            <Label Style="{StaticResource SliderMaxLabelStyle}"
+                                    AutomationId="BottomCornerRadiusSlider" />
+                            <Label Grid.Column="3"
+                                   Style="{StaticResource SliderMinMaxLabelStyle}"
                                    Text="60" />
                         </Grid>
-                    </Grid>
-                </VerticalStackLayout>
-            </Grid>
-        </Grid>
-    </ScrollView>
+                    </VerticalStackLayout>
+                </Grid>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
 </ContentView>
