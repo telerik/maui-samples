@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.TreeViewControl.EventsCategory"
+             x:Class="SDKBrowserMaui.Examples.TreeViewControl.SelectionCategory.MultipleSelectionExample.MultipleSelection">
+    <!-- >> treeview-multiple-selection -->
+    <telerik:RadTreeView x:Name="treeView"
+                         ItemsSource="{Binding Source}"
+                         SelectionMode="Multiple"
+                         SelectedItems="{Binding SelectedData}">
+        <telerik:TreeViewDescriptor DisplayMemberPath="Name"
+                                    ItemsSourcePath="Children"
+                                    TargetType="{x:Type local:Data}"/>
+        <telerik:RadTreeView.BindingContext>
+            <local:ViewModel/>
+        </telerik:RadTreeView.BindingContext>
+    </telerik:RadTreeView>
+    <!-- << treeview-multiple-selection -->
+</ContentView>

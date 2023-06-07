@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.CalendarControl.StyleSelectorsCategory"
+             x:Class="SDKBrowserMaui.Examples.CalendarControl.StyleSelectorsCategory.MonthStyleSelectorExample.MonthStyleSelector">
+    <!-- >> calendar-styleselectors-monthstyleselector-definition -->
+    <ContentView.Resources>
+        <local:CustomCalendarStyleSelector x:Key="MonthStyleSelector">
+            <local:CustomCalendarStyleSelector.CustomOutOfScopeLabelStyle>
+                <Style TargetType="telerik:CalendarLabel">
+                    <Setter Property="TextColor" Value="#558660C5" />
+                </Style>
+            </local:CustomCalendarStyleSelector.CustomOutOfScopeLabelStyle>
+            <local:CustomCalendarStyleSelector.CustomNormalLabelStyle>
+                <Style TargetType="telerik:CalendarLabel">
+                    <Setter Property="TextColor" Value="#8660C5" />
+                    <Setter Property="FontAttributes" Value="Bold" />
+                </Style>
+            </local:CustomCalendarStyleSelector.CustomNormalLabelStyle>
+        </local:CustomCalendarStyleSelector>
+    </ContentView.Resources>
+    <!-- << calendar-styleselectors-monthstyleselector-definition -->
+
+    <VerticalStackLayout>
+        <!-- >> calendar-styleselectors-monthstyleselector-usage -->
+        <telerik:RadCalendar DisplayMode="Year" MonthStyleSelector="{StaticResource MonthStyleSelector}" />
+        <!-- << calendar-styleselectors-monthstyleselector-usage -->
+    </VerticalStackLayout>
+</ContentView>

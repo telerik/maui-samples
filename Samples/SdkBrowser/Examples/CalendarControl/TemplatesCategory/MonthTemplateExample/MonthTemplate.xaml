@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.CalendarControl.TemplatesCategory.MonthTemplateExample.MonthTemplate">
+    <!-- >> calendar-templates-monthtemplate-definition -->
+    <ContentView.Resources>
+        <DataTemplate x:Key="MonthLabelTemplate">
+            <Grid>
+                <Border Stroke="#801188FF"
+                        StrokeThickness="2"
+                        StrokeShape="RoundRectangle 20,0,0,20"
+                        Background="#808660C5"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        Padding="16,8">
+                    <Label Text="{Binding Text}"
+                           TextColor="White"
+                           Padding="5" />
+                </Border>
+            </Grid>
+        </DataTemplate>
+    </ContentView.Resources>
+    <!-- << calendar-templates-monthtemplate-definition -->
+
+    <VerticalStackLayout>
+        <!-- >> calendar-templates-monthtemplate-usage -->
+        <telerik:RadCalendar DisplayMode="Year" MonthTemplate="{StaticResource MonthLabelTemplate}" />
+        <!-- << calendar-templates-monthtemplate-usage -->
+    </VerticalStackLayout>
+</ContentView>

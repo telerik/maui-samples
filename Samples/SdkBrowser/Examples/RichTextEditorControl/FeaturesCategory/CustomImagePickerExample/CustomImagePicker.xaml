@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.RichTextEditorControl.FeaturesCategory.CustomImagePickerExample"
+             x:Class="SDKBrowserMaui.Examples.RichTextEditorControl.FeaturesCategory.CustomImagePickerExample.CustomImagePicker">
+    <!-- >> richtexteditor-custom-image-picker -->
+    <Grid RowDefinitions="*,Auto">
+        <telerik:RadRichTextEditor x:Name="richTextEditor"
+                                   Source="{Binding RTSource}">
+        </telerik:RadRichTextEditor>
+
+        <telerik:RadRichTextEditorToolbar x:Name="richTextToolbar"
+                                          Grid.Row="1"
+                                          RichTextEditor="{x:Reference richTextEditor}"
+                                          AutoGenerateItems="False">
+            <telerik:RichTextEditorImagePickerToolbarItem ItemsSource="{Binding EmojiSource}"/>
+            <telerik:RichTextEditorUndoToolbarItem />
+            <telerik:RichTextEditorRedoToolbarItem />
+            <telerik:RichTextEditorBoldToolbarItem />
+            <telerik:RichTextEditorItalicToolbarItem />
+            <telerik:RichTextEditorUnderlineToolbarItem />
+            <telerik:RichTextEditorTextColorToolbarItem />
+        </telerik:RadRichTextEditorToolbar>
+    </Grid>
+    <!-- << richtexteditor-custom-image-picker -->
+</ContentView>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.CalendarControl.StylingCategory.HeaderLabelStylingExample.HeaderLabelStyling">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <!-- >> calendar-headerlabel-style -->
+            <Style TargetType="Label" x:Key="HeaderLabelStyle">
+                <Setter Property="TextColor" Value="#8660C5" />
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="FontAttributes" Value="Italic" />
+            </Style>
+            <!-- << calendar-headerlabel-style -->
+
+            <!-- >> calendar-headerborder-style -->
+            <Style TargetType="telerik:RadBorder" x:Key="HeaderBorderStyle">
+                <Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="BorderBrush" Value="#8660C5" />
+                <Setter Property="BorderThickness" Value="1" />
+            </Style>
+            <!-- << calendar-headerborder-style -->
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <VerticalStackLayout>
+        <!-- >> calendar-headerlabel-styling -->
+        <telerik:RadCalendar HeaderBorderStyle="{StaticResource HeaderBorderStyle}"
+                             HeaderLabelStyle="{StaticResource HeaderLabelStyle}"/>
+        <!-- << calendar-headerlabel-styling -->
+    </VerticalStackLayout>
+</ContentView>

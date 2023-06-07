@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.CalendarControl.CommandsCategory.NavigationCommandsExample.NavigationCommands">
+    <Grid RowDefinitions="Auto,*">
+        <VerticalStackLayout Spacing="5">
+            <HorizontalStackLayout Spacing="5">
+                <!-- >> calendar-navigating-in-current-view -->
+                <Button Text="Navigate to previous" Command="{Binding NavigateToPreviousViewCommand,Source={x:Reference calendar}}"/>
+                <Button Text="Navigate to next" Command="{Binding NavigateToNextViewCommand,Source={x:Reference calendar}}"/>
+                <!-- << calendar-navigating-in-current-view -->
+            </HorizontalStackLayout>
+            <HorizontalStackLayout Spacing="5">
+                <!-- >> calendar-navigating-detween-views -->
+                <Button Text="Navigate to lower view" Command="{Binding NavigateToLowerViewCommand, Source={x:Reference calendar}}"/>
+                <Button Text="Navigate to upper view" Command="{Binding NavigateToUpperViewCommand, Source={x:Reference calendar}}"/>
+                <!-- << calendar-navigating-detween-views -->
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+        <!-- >> calendar-navigation-commands -->
+        <telerik:RadCalendar Grid.Row="1" x:Name="calendar"/>
+        <!-- << calendar-navigation-commands -->
+    </Grid>
+</ContentView>

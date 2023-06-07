@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.ChatControl.FeaturesCategory.CommandsExample.Commands">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="150"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <telerik:RadListView x:Name="listView" ItemsSource="{Binding MessagesLog}"/>
+        <!-- >> chat-commands-xaml -->
+        <telerik:RadChat x:Name="chat"
+                        Grid.Row="1"
+                        ItemsSource="{Binding Items}"
+                         SendMessageCommand="{Binding NewMessageCommand}"/>
+        <!-- << chat-commands-xaml -->
+    </Grid>
+</telerik:RadContentView>

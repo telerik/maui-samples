@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.DataGridControl.EmptyTemplateCategory.EmptyTemplateExample.EmptyTemplate">
+    <ContentView.Resources>
+        <!-- >> datagrid-empty-template-resources -->
+        <ResourceDictionary>
+            <DataTemplate x:Key="EmptyContentTemplate">
+                <Label Margin="10" TextColor="Black" HorizontalOptions="Center" Text="No data to display"/>
+            </DataTemplate>
+        </ResourceDictionary>
+        <!-- << datagrid-empty-template-resources -->
+    </ContentView.Resources>
+    <Grid>
+        <!-- >> datagrid-empty-template-xaml -->
+        <telerik:RadDataGrid x:Name="dataGrid"
+                             EmptyContentTemplate="{StaticResource EmptyContentTemplate}"/>
+        <!-- << datagrid-empty-template-xaml -->
+    </Grid>
+</telerik:RadContentView>

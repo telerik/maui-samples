@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        xmlns:local="clr-namespace:SDKBrowserMaui.Examples.ChatControl.FeaturesCategory.MVVMSupportExample"
+                        x:Class="SDKBrowserMaui.Examples.ChatControl.FeaturesCategory.MVVMSupportExample.MVVMSupport"> 
+    <!-- >> chat-features-mvvm-xaml -->
+    <telerik:RadContentView.Resources>
+        <ResourceDictionary>
+            <local:SimpleChatItemConverter x:Key="SimpleChatItemConverter" />
+        </ResourceDictionary>
+    </telerik:RadContentView.Resources>
+    <telerik:RadChat x:Name="chat" 
+                     Author="{Binding Me}"
+                     ItemsSource="{Binding Items}" 
+                     ItemConverter="{StaticResource SimpleChatItemConverter}">
+        <telerik:RadChat.BindingContext>
+            <local:ViewModel />
+        </telerik:RadChat.BindingContext>
+    </telerik:RadChat>
+    <!-- << chat-features-mvvm-xaml -->
+</telerik:RadContentView>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.ChatControl.FeaturesCategory.CustomizationExample.Customization">
+    <telerik:RadContentView.Resources>
+        <ResourceDictionary>
+            <Color x:Key="TextColor">White</Color>
+            <Color x:Key="IncomingBackgroundColor">#FFC732CB</Color>
+            <Color x:Key="OutgoingBackgroundColor">#FF28B3AF</Color>
+            <Style x:Key="LabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource TextColor}" />
+            </Style>
+            <Style x:Key="IncomingBorderStyle" TargetType="telerik:RadBorder">
+                <Setter Property="BackgroundColor" Value="{StaticResource IncomingBackgroundColor}" />
+            </Style>
+            <Style x:Key="OutgoingBorderStyle" TargetType="telerik:RadBorder">
+                <Setter Property="BackgroundColor" Value="{StaticResource OutgoingBackgroundColor}" />
+            </Style>
+
+            <Style TargetType="telerik:ChatEntry">
+                <Setter Property="TextColor" Value="{StaticResource TextColor}" />
+            </Style>
+            <Style TargetType="telerik:IncomingTextMessageView" ApplyToDerivedTypes="True">
+                <Setter Property="LabelStyle" Value="{StaticResource LabelStyle}" />
+                <Setter Property="BorderStyle" Value="{StaticResource IncomingBorderStyle}" />
+            </Style>
+            <Style TargetType="telerik:OutgoingTextMessageView" ApplyToDerivedTypes="True">
+                <Setter Property="LabelStyle" Value="{StaticResource LabelStyle}" />
+                <Setter Property="BorderStyle" Value="{StaticResource OutgoingBorderStyle}" />
+            </Style>
+        </ResourceDictionary>
+    </telerik:RadContentView.Resources>
+    <Grid>
+        <Image Aspect="Fill" Source="chatbackground.jpg" />
+        <telerik:RadChat x:Name="chat1"
+                         BackgroundColor="Transparent"
+                         InputAreaBackgroundColor="{StaticResource OutgoingBackgroundColor}"
+                         SendMessageButtonImage="available.png">
+            <telerik:RadChat.Author>
+                <telerik:Author Name="You" 
+                                Avatar="sampleavatar.png" />
+            </telerik:RadChat.Author>
+        </telerik:RadChat>
+    </Grid>
+</telerik:RadContentView>
