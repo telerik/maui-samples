@@ -31,10 +31,17 @@
 		<EmbeddedResource Include="Examples\ImageEditorControl\imageavatar.png" />
 		<EmbeddedResource Include="Examples\MapControl\world.dbf" />
 		<EmbeddedResource Include="Examples\MapControl\world.shp" />
-	</ItemGroup>
-	<ItemGroup Condition="$(SolutionName) != 'Telerik.Maui'">
-	<PackageReference Include="Telerik.UI.for.Maui" Version="$(TelerikVersion)" />
+		<EmbeddedResource Include="Examples\PdfViewerControl\pdf-processing.pdf" />
+		<EmbeddedResource Include="Examples\PdfViewerControl\pdf-overview.pdf" />
+		<EmbeddedResource Include="Examples\RichTextEditorControl\*" />
+		<EmbeddedResource Include="Resources\Images\Emojis\*" />
 	</ItemGroup>
 
-	<Import Condition="'$(SolutionName)' == 'Telerik.Maui'" Project="..\AddSourceReferences.proj" />
+	<ItemGroup Condition="'$(SolutionName)' != 'Telerik.Maui' And '$(UseSourceProjects)' != 'True' And '$(UseSourceAssemblies)' != 'True'">
+		<PackageReference Include="Telerik.UI.for.Maui" Version="$(TelerikVersion)" />
+	</ItemGroup>
+
+	<Import Condition="'$(SolutionName)' == 'Telerik.Maui' Or '$(UseSourceProjects)' == 'True'" Project="..\AddSourceProjects.proj" />
+	<Import Condition="'$(SolutionName)' != 'Telerik.Maui' And '$(UseSourceProjects)' != 'True' And '$(UseSourceAssemblies)' == 'True'" Project="..\AddSourceAssemblies.proj" />
+	
 </Project>

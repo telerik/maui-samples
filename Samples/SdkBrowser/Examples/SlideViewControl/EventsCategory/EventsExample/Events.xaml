@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        x:Class="SDKBrowserMaui.Examples.SlideViewControl.EventsCategory.EventsExample.Events"
+                        Margin="5">
+    <Grid>
+        <!-- >> slideview-events -->
+        <telerik:RadSlideView x:Name="slideView"
+                              ItemsSource="{Binding Views}"
+                              CurrentItemChanged="OnCurrentItemChanged">
+            <telerik:RadSlideView.ItemTemplate>
+                <DataTemplate>
+                    <Label Text="{Binding Content}"
+                           TextColor="#007ACC"
+                           HorizontalTextAlignment="Center"
+                           VerticalOptions="CenterAndExpand"/>
+                </DataTemplate>
+            </telerik:RadSlideView.ItemTemplate>
+        </telerik:RadSlideView>
+        <!-- << slideview-events -->
+    </Grid>
+</telerik:RadContentView>

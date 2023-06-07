@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.CalendarControl.TemplatesCategory.YearTemplateExample.YearTemplate">
+    <!-- >> calendar-templates-yeartemplate-definition -->
+    <ContentView.Resources>
+        <DataTemplate x:Key="YearLabelTemplate">
+            <Grid>
+                <Button BackgroundColor="#8660C5"
+                        TextColor="White"
+                        Text="{Binding Text}"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center" />
+            </Grid>
+        </DataTemplate>
+    </ContentView.Resources>
+    <!-- << calendar-templates-yeartemplate-definition -->
+
+    <VerticalStackLayout>
+        <!-- >> calendar-templates-yeartemplate-usage -->
+        <telerik:RadCalendar DisplayMode="Decade" YearTemplate="{StaticResource YearLabelTemplate}" />
+        <!-- << calendar-templates-yeartemplate-usage -->
+    </VerticalStackLayout>
+</ContentView>

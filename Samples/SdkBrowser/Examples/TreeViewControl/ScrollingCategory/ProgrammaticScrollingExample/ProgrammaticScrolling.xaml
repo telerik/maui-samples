@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.TreeViewControl.ScrollingCategory"
+             x:Class="SDKBrowserMaui.Examples.TreeViewControl.ScrollingCategory.ProgrammaticScrollingExample.ProgrammaticScrolling">
+    <!-- >> treeview-programmatic-scrolling-xaml -->
+    <Grid RowDefinitions="Auto,*">
+        <VerticalStackLayout>
+            <Button Clicked="Button_Clicked" Text="Sctoll To"/>
+            <Label x:Name="label"/>
+        </VerticalStackLayout>
+        <telerik:RadTreeView x:Name="treeView"
+                             Grid.Row="1"
+                             ItemsSource="{Binding Countries}">
+            <telerik:TreeViewDescriptor TargetType="{x:Type local:Country}"
+                                        DisplayMemberPath="Name"
+                                        ItemsSourcePath="Cities" />
+            <telerik:TreeViewDescriptor TargetType="{x:Type local:City}"
+                                        DisplayMemberPath="Name"/>
+            <telerik:RadTreeView.BindingContext>
+                <local:LocationViewModel/>
+            </telerik:RadTreeView.BindingContext>
+        </telerik:RadTreeView>
+    </Grid>
+    <!-- << treeview-programmatic-scrolling-xaml -->
+</ContentView>

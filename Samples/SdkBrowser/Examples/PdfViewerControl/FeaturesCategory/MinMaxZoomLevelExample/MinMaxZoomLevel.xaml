@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.PdfViewerControl.FeaturesCategory.MinMaxZoomLevelExample.MinMaxZoomLevel">
+    <!-- >> pdfviewer-key-features-xaml -->
+    <Grid RowDefinitions="Auto,*">
+        <telerik:RadPdfViewerToolbar PdfViewer="{Binding Source={x:Reference pdfViewer}}">
+            <telerik:PdfViewerZoomInToolbarItem />
+            <telerik:PdfViewerZoomOutToolbarItem />
+        </telerik:RadPdfViewerToolbar>
+        <telerik:RadPdfViewer x:Name="pdfViewer"
+                              Grid.Row="1"
+                              PageSpacing="15"
+                              MinZoomLevel="0.2"
+                              MaxZoomLevel="5" />
+    </Grid>
+    <!-- << pdfviewer-key-features-xaml -->
+</ContentView>

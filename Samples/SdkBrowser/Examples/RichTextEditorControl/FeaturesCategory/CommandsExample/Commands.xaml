@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.RichTextEditorControl.FeaturesCategory.CommandsExample.Commands">
+    <!-- >> richtexteditor-commands-xaml -->
+    <Grid RowDefinitions="Auto,*">
+        <telerik:RadUniformGrid>
+            <Button Text="Bold"
+                    Command="{Binding ToggleBoldCommand, Source={x:Reference richTextEditor}}" />
+            <Button Text="Italic"
+                    Command="{Binding ToggleItalicCommand, Source={x:Reference richTextEditor}}" />
+            <Button Text="Underline"
+                    Command="{Binding ToggleUnderlineCommand, Source={x:Reference richTextEditor}}" />
+            <Button Text="Bullet List"
+                    Command="{Binding ToggleBulletingCommand, Source={x:Reference richTextEditor}}" />
+            <Button Text="Numbered List"
+                    Command="{Binding ToggleNumberingCommand, Source={x:Reference richTextEditor}}" />
+        </telerik:RadUniformGrid>
+        <telerik:RadRichTextEditor x:Name="richTextEditor" Grid.Row="1" />
+    </Grid>
+    <!-- << richtexteditor-commands-xaml -->
+</ContentView>

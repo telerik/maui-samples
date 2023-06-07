@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.ChatControl.FeaturesCategory.TypingIndicatorExample"
+             x:Class="SDKBrowserMaui.Examples.ChatControl.FeaturesCategory.TypingIndicatorExample.TypingIndicatorItemsSource">
+    <!-- >> chat-typingindicator-itemssource-xaml -->
+    <telerik:RadContentView.Resources>
+        <local:ChatParticipantConverter x:Key="ChatParticipantConverter" />
+    </telerik:RadContentView.Resources>
+    <telerik:RadChat x:Name="chat">
+        <telerik:RadChat.TypingIndicator>
+            <telerik:TypingIndicator x:Name="typingIndicator" 
+                                     ItemsSource="{Binding TypingParticipants}"
+                                     ItemConverter="{StaticResource ChatParticipantConverter}"/>
+        </telerik:RadChat.TypingIndicator>
+    </telerik:RadChat>
+    <!-- << chat-typingindicator-itemssource-xaml -->
+</telerik:RadContentView>

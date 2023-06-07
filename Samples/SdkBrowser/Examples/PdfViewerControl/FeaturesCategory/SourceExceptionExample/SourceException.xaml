@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.PdfViewerControl.FeaturesCategory.SourceExceptionExample.SourceException">
+    <!-- >> pdfviewer-source-exception-xaml -->
+    <telerik:RadPdfViewer x:Name="pdfViewer" SourceException="PdfViewerSourceException">
+        <telerik:RadPdfViewer.SourceExceptionTemplate>
+            <DataTemplate>
+                <Label Text="Sorry, something with loading the pdf document went wrong." 
+                       TextColor="#404040"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"
+                       LineBreakMode="WordWrap" />
+            </DataTemplate>
+        </telerik:RadPdfViewer.SourceExceptionTemplate>
+    </telerik:RadPdfViewer>
+    <!-- << pdfviewer-source-exception-xaml -->
+</ContentView>

@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.ChatControl.FeaturesCategory.DefaultTemplateSelectorExample.DefaultTemplateSelector">
+    <telerik:RadContentView.Resources>
+        <!-- >> chat-features-defaultitemtemplate-resources -->
+        <ResourceDictionary>
+            <Style x:Key="MessageImageStyle" TargetType="Image">
+                <Setter Property="WidthRequest" Value="24" />
+                <Setter Property="HeightRequest" Value="24" />
+                <Setter Property="VerticalOptions" Value="Start" />
+            </Style>
+            <Style x:Key="OutgoingMessageImageStyle" TargetType="Image" BasedOn="{StaticResource MessageImageStyle}">
+                <Setter Property="HorizontalOptions" Value="End" />
+                <Setter Property="Margin" Value="0, 4, 10, 4" />
+            </Style>
+            <Style x:Key="IncomingMessageImageStyle" TargetType="Image" BasedOn="{StaticResource MessageImageStyle}">
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="Margin" Value="10, 4, 0, 4" />
+            </Style>
+            <Style x:Key="IncomingBorderStyle" TargetType="telerik:RadBorder">
+                <Setter Property="BackgroundColor" Value="#FFFFFF" />
+                <Setter Property="Margin" Value="45, 0, 70, 0" />
+                <Setter Property="HorizontalOptions" Value="Start" />
+            </Style>
+            <Style x:Key="OutgoingBorderStyle" TargetType="telerik:RadBorder">
+                <Setter Property="BackgroundColor" Value="#E0E0E0" />
+                <Setter Property="Margin" Value="70, 0, 45, 0" />
+                <Setter Property="HorizontalOptions" Value="End" />
+            </Style>
+            <Style x:Key="DefaultLabelStyle" TargetType="Label">
+                <Setter Property="Margin" Value="20, 5, 20, 5" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="LineBreakMode" Value="WordWrap" />
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="HorizontalOptions" Value="Start" />
+            </Style>
+            <Style x:Key="OutgoingLabelStyle" TargetType="Label" BasedOn="{StaticResource DefaultLabelStyle}">
+                <Setter Property="HorizontalOptions" Value="End" />
+            </Style>
+            <DataTemplate x:Key="OutgoingSingleTemplate">
+                <Grid Padding="0, 2, 0, 10">
+                    <Image Source="{Binding Author.Avatar}" Style="{StaticResource OutgoingMessageImageStyle}" />
+                    <telerik:RadBorder Style="{StaticResource OutgoingBorderStyle}"
+                                       CornerRadius="7, 0, 7, 7" >
+                        <Label Text="{Binding Text}" Style="{StaticResource OutgoingLabelStyle}" />
+                    </telerik:RadBorder>
+                </Grid>
+            </DataTemplate>
+            <DataTemplate x:Key="OutgoingFirstTemplate">
+                <Grid Padding="0, 2, 0, 2">
+                    <Image Source="{Binding Author.Avatar}" 
+                           Style="{StaticResource OutgoingMessageImageStyle}" />
+                    <telerik:RadBorder Style="{StaticResource OutgoingBorderStyle}"
+                                                 CornerRadius="7, 0, 0, 7" >
+                        <Label Text="{Binding Text}" Style="{StaticResource OutgoingLabelStyle}" />
+                    </telerik:RadBorder>
+                </Grid>
+            </DataTemplate>
+            <DataTemplate x:Key="OutgoingMiddleTemplate">
+                <Grid Padding="0, 2, 0, 2">
+                    <telerik:RadBorder Style="{StaticResource OutgoingBorderStyle}"
+                                                 CornerRadius="7, 0, 0, 7" >
+                        <Label Text="{Binding Text}" Style="{StaticResource OutgoingLabelStyle}" />
+                    </telerik:RadBorder>
+                </Grid>
+            </DataTemplate>
+            <DataTemplate x:Key="OutgoingLastTemplate">
+                <Grid Padding="0, 2, 0, 10">
+                    <telerik:RadBorder Style="{StaticResource OutgoingBorderStyle}"
+                                                 CornerRadius="7, 0, 7, 7" >
+                        <Label Text="{Binding Text}" Style="{StaticResource OutgoingLabelStyle}" />
+                    </telerik:RadBorder>
+                </Grid>
+            </DataTemplate>
+            <DataTemplate x:Key="IncomingSingleTemplate">
+                <Grid Padding="0, 2, 0, 10">
+                    <Image Source="{Binding Author.Avatar}" 
+                           Style="{StaticResource IncomingMessageImageStyle}" />
+                    <telerik:RadBorder Style="{StaticResource IncomingBorderStyle}"
+                                                 CornerRadius="0, 7, 7, 7" >
+                        <Label Text="{Binding Text}" Style="{StaticResource DefaultLabelStyle}" />
+                    </telerik:RadBorder>
+                </Grid>
+            </DataTemplate>
+            <DataTemplate x:Key="IncomingFirstTemplate">
+                <Grid Padding="0, 2, 0, 2">
+                    <Image Source="{Binding Author.Avatar}" 
+                           Style="{StaticResource IncomingMessageImageStyle}" />
+                    <telerik:RadBorder Style="{StaticResource IncomingBorderStyle}"
+                                                 CornerRadius="0, 7, 7, 0" >
+                        <Label Text="{Binding Text}" Style="{StaticResource DefaultLabelStyle}" />
+                    </telerik:RadBorder>
+                </Grid>
+            </DataTemplate>
+            <DataTemplate x:Key="IncomingMiddleTemplate">
+                <Grid Padding="0, 2, 0, 2">
+                    <telerik:RadBorder Style="{StaticResource IncomingBorderStyle}"
+                                                 CornerRadius="0, 7, 7, 0" >
+                        <Label Text="{Binding Text}" Style="{StaticResource DefaultLabelStyle}" />
+                    </telerik:RadBorder>
+                </Grid>
+            </DataTemplate>
+            <DataTemplate x:Key="IncomingLastTemplate">
+                <Grid Padding="0, 2, 0, 10">
+                    <telerik:RadBorder Style="{StaticResource IncomingBorderStyle}"
+                                                 CornerRadius="0, 7, 7, 7" >
+                        <Label Text="{Binding Text}" Style="{StaticResource DefaultLabelStyle}" />
+                    </telerik:RadBorder>
+                </Grid>
+            </DataTemplate>
+            <ControlTemplate x:Key="TimeBreakView_ControlTemplate">
+                <Grid Padding="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <BoxView BackgroundColor="{TemplateBinding Stroke}"
+                     HeightRequest="{TemplateBinding StrokeThickness}"
+                     VerticalOptions="Center" />
+                    <Label Text="{TemplateBinding Text}" 
+                           TextColor="{TemplateBinding TextColor}" 
+                           FontSize="{TemplateBinding FontSize}" 
+                           FontFamily="{TemplateBinding FontFamily}" 
+                           FontAttributes="{TemplateBinding FontAttributes}" 
+                           Grid.Column="1"
+                           VerticalOptions="Center" />
+                    <BoxView BackgroundColor="{TemplateBinding Stroke}"
+                             HeightRequest="{TemplateBinding StrokeThickness}"
+                             Grid.Column="2"
+                             VerticalOptions="Center" />
+                </Grid>
+            </ControlTemplate>
+            <DataTemplate x:Key="TimeBreakTemplate">
+                <telerik:TimeBreakView Text="{Binding Text}" 
+                                       ControlTemplate="{StaticResource TimeBreakView_ControlTemplate}" />
+            </DataTemplate>
+            <telerik:ChatItemTemplateSelector x:Key="MyChatItemTemplateSelector"
+                                              IncomingFirstTextMessageTemplate="{StaticResource IncomingFirstTemplate}"
+                                              IncomingMiddleTextMessageTemplate="{StaticResource IncomingMiddleTemplate}"
+                                              IncomingSingleTextMessageTemplate="{StaticResource IncomingSingleTemplate}"
+                                              IncomingLastTextMessageTemplate="{StaticResource IncomingLastTemplate}"
+                                              OutgoingFirstTextMessageTemplate="{StaticResource OutgoingFirstTemplate}"
+                                              OutgoingMiddleTextMessageTemplate="{StaticResource OutgoingMiddleTemplate}"
+                                              OutgoingSingleTextMessageTemplate="{StaticResource OutgoingSingleTemplate}"
+                                              OutgoingLastTextMessageTemplate="{StaticResource OutgoingLastTemplate}"
+                                              TimeBreakTemplate="{StaticResource TimeBreakTemplate}" />
+        </ResourceDictionary>
+        <!-- << chat-features-defaultitemtemplate-resources -->
+    </telerik:RadContentView.Resources>
+    <!-- >> chat-features-defaultitemtemplate-xaml -->
+    <telerik:RadChat x:Name="chat"                                                  
+                     ItemTemplateSelector="{StaticResource MyChatItemTemplateSelector}" />
+    <!-- << chat-features-defaultitemtemplate-xaml -->
+</telerik:RadContentView>

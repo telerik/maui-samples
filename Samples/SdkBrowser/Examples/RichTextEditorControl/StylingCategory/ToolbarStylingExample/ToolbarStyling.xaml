@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.RichTextEditorControl.StylingCategory.ToolbarStylingExample.ToolbarStyling">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <!-- >> richtexteditor-toolbar-styling-resource -->
+            <Style TargetType="telerik:ButtonToolbarItemView" x:Key="commonStyle">
+                <Setter Property="MinimumWidthRequest" Value="40"/>
+                <Setter Property="BackgroundColor" Value="#804BDE74"/>
+            </Style>
+
+            <Style TargetType="telerik:GroupToolbarItemView" x:Key="groupToolbarStyle">
+                <Setter Property="BorderBrush" Value="black"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="CornerRadius" Value="5"/>
+                <Setter Property="Margin" Value="0,0,5,0"/>
+            </Style>
+            <!-- << richtexteditor-toolbar-styling-resource -->
+        </ResourceDictionary>
+    </ContentView.Resources>
+    
+    <!-- >> richtexteditor-toolbar-styling-xaml -->
+    <Grid RowDefinitions="Auto,*">
+        <telerik:RadRichTextEditorToolbar x:Name="richTextToolbar"
+                                          RichTextEditor="{x:Reference richTextEditor}"
+                                          AutoGenerateItems="False">
+            <telerik:RichTextEditorFontFamilyToolbarItem Style="{StaticResource commonStyle}"/>
+            <telerik:RichTextEditorFontSizeToolbarItem Style="{StaticResource commonStyle}"/>
+            <telerik:RichTextEditorAlignCenterToolbarItem/>
+            <telerik:RichTextEditorColorPickerToolbarItem/>
+            <telerik:RichTextEditorTextColorToolbarItem Style="{StaticResource commonStyle}"/>
+            <telerik:RichTextEditorHighlightTextColorToolbarItem Style="{StaticResource commonStyle}"/>
+            <telerik:GroupToolbarItem Style="{StaticResource groupToolbarStyle}">
+                <telerik:RichTextEditorIndentToolbarItem/>
+                <telerik:RichTextEditorOutdentToolbarItem/>
+            </telerik:GroupToolbarItem>
+            <telerik:GroupToolbarItem Style="{StaticResource groupToolbarStyle}">
+                <telerik:RichTextEditorBoldToolbarItem/>
+                <telerik:RichTextEditorItalicToolbarItem/>
+                <telerik:RichTextEditorUnderlineToolbarItem/>
+                <telerik:RichTextEditorSubscriptToolbarItem/>
+                <telerik:RichTextEditorSuperscriptToolbarItem/>
+                <telerik:RichTextEditorStrikethroughToolbarItem/>
+            </telerik:GroupToolbarItem>
+            <telerik:RichTextEditorAddHyperlinkToolbarItem/>
+        </telerik:RadRichTextEditorToolbar>
+        <telerik:RadRichTextEditor x:Name="richTextEditor" Grid.Row="1" />
+
+    </Grid>
+    <!-- << richtexteditor-toolbar-styling-xaml -->
+</ContentView>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.TreeViewControl.ScrollingCategory"
+             x:Class="SDKBrowserMaui.Examples.TreeViewControl.SelectionCategory.SelectedItemExample.SelectedItem">
+    <!-- >> treeview-selected-item -->
+    <telerik:RadTreeView x:Name="treeView"
+                         ItemsSource="{Binding Countries}"
+                         SelectionMode="Single"
+                         SelectedItem="{Binding SelectedLocation}">
+        <telerik:TreeViewDescriptor TargetType="{x:Type local:Country}"
+                                    DisplayMemberPath="Name"
+                                    ItemsSourcePath="Cities" />
+        <telerik:TreeViewDescriptor TargetType="{x:Type local:City}"
+                                    DisplayMemberPath="Name"/>
+        <telerik:RadTreeView.BindingContext>
+            <local:LocationViewModel/>
+        </telerik:RadTreeView.BindingContext>
+    </telerik:RadTreeView>
+    <!-- << treeview-selected-item -->
+</ContentView>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.CalendarControl.StylingCategory.HeaderButtonsStylingExample.HeaderButtonsStyling">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <!-- >> calendar-navigatetopreviousbutton-style -->
+            <Style TargetType="Button" x:Key="NavigateToPreviousViewButtonStyle">
+                <Setter Property="TextColor" Value="#8660C5" />
+                <Setter Property="BackgroundColor" Value="#80808080" />
+            </Style>
+            <!-- << calendar-navigatetopreviousbutton-style -->
+
+            <!-- >> calendar-navigatetonextbutton-style -->
+            <Style TargetType="Button" x:Key="NavigateToNextViewButtonStyle">
+                <Setter Property="TextColor" Value="#8660C5" />
+                <Setter Property="BackgroundColor" Value="#80808080" />
+            </Style>
+            <!-- << calendar-navigatetonextbutton-style -->
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <VerticalStackLayout>
+        <!-- >> calendar-headerbuttons-styling -->
+        <telerik:RadCalendar NavigateToPreviousViewButtonStyle="{StaticResource NavigateToPreviousViewButtonStyle}"
+                             NavigateToNextViewButtonStyle="{StaticResource NavigateToNextViewButtonStyle}" />
+        <!-- << calendar-headerbuttons-styling -->
+    </VerticalStackLayout>
+</ContentView>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.CalendarControl.TemplatesCategory.TemplateSelectorExample"
+             x:Class="SDKBrowserMaui.Examples.CalendarControl.TemplatesCategory.TemplateSelectorExample.TemplateSelector">
+    <!-- >> calendar-templates-templateselector-definition -->
+    <ContentView.Resources>
+        <local:SpecialDayTemplateSelector x:Key="SpecialDayTemplateSelector">
+            <local:SpecialDayTemplateSelector.SpecialDayTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Path Data="M11.5,0 L14.2,8.3 L23.0,8.3 L16,13.5 L18.6,22 L11.5,16.7 L4.4,22 L7.1,13.5 L0,8.3 L8.7,8.3 z"
+                              Stroke="#8660C5"
+                              Opacity="0.8" />
+                        <Label Text="{Binding Text}"
+                               TextColor="#8660C5"
+                               FontAttributes="Bold"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center" />
+                        <telerik:RadBorder IsVisible="{Binding IsSelected}"
+                                           BorderThickness="2"
+                                           BorderColor="#1188FF" />
+                    </Grid>
+                </DataTemplate>
+            </local:SpecialDayTemplateSelector.SpecialDayTemplate>
+            <local:SpecialDayTemplateSelector.NormalDayTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Label Text="{Binding Text}"
+                               TextColor="White"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center"
+                               BackgroundColor="#558660C5" />
+                        <telerik:RadBorder IsVisible="{Binding IsSelected}"
+                                           BorderThickness="2"
+                                           BorderColor="#8660C5" />
+                    </Grid>
+                </DataTemplate>
+            </local:SpecialDayTemplateSelector.NormalDayTemplate>
+        </local:SpecialDayTemplateSelector>
+    </ContentView.Resources>
+    <!-- << calendar-templates-templateselector-definition -->
+
+    <VerticalStackLayout>
+        <!-- >> calendar-templates-templateselector-usage -->
+        <telerik:RadCalendar DisplayMode="Month" DayTemplate="{StaticResource SpecialDayTemplateSelector}" />
+        <!-- << calendar-templates-templateselector-usage -->
+    </VerticalStackLayout>
+</ContentView>
