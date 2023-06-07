@@ -4,7 +4,9 @@ namespace QSF.ExampleUtilities
 {
     public class CardItem
     {
-        public Color Color { get; set; }
+        public Color BackgroundColor { get; set; }
+
+        public Color BorderColor { get; set; }
 
         public string ImageSource { get; set; }
     }

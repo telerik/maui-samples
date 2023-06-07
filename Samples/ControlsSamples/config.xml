@@ -13,7 +13,6 @@
 	<Controls>
 		<Control>
 			<Name>Accordion</Name>
-			<Status>New</Status>
 			<DisplayName>Accordion</DisplayName>
 			<Icon>accordion.png</Icon>
 			<ShortDescription>Helps you save screen space and at the same time present data.</ShortDescription>
@@ -196,6 +195,38 @@
 		</Control>
 
 		<Control>
+			<Name>Calendar</Name>
+			<Status>New</Status>
+			<Icon>calendar.png</Icon>
+			<DisplayName>Calendar</DisplayName>
+			<ShortDescription>Allows single, multiple and range date selection as well as displaying dates in different views.</ShortDescription>
+			<FullDescription>Telerik UI for .NET MAUI Calendar is an advanced date input control offering various display modes and enabling single, multiple and range date selection options.</FullDescription>
+			<Examples>
+				<Example>
+					<Name>FirstLook</Name>
+					<Page>FirstLookView</Page>
+					<DisplayName>First Look</DisplayName>
+					<Icon>calendar.png</Icon>
+					<Description>Telerik UI for .NET MAUI Calendar is an advanced date input control offering various display modes and enabling single, multiple and range date selection options.</Description>
+				</Example>
+				<Example>
+					<Name>Customization</Name>
+					<Page>CustomizationView</Page>
+					<DisplayName>Customization</DisplayName>
+					<Icon>customization.png</Icon>
+					<Description>This example presents a tiny bit of the customization capabilities of the RadCalendar component mostly in terms of styling (DayStyleSelector, DayTemplate, HeaderBorderStyle). Some dates of the Month view are marked with different symbols and colors to indicate that there is a reminder, which is displayed once the respective date is selected.</Description>
+				</Example>
+				<Example>
+					<Name>Configuration</Name>
+					<Page>ConfigurationView</Page>
+					<DisplayName>Configuration</DisplayName>
+					<Icon>configuration.png</Icon>
+					<Description>This example presents the various configuration options that the RadCalendar provides. Adjust the date settings, determine the first day of week, and explore the interaction, selection and navigation modes.</Description>
+				</Example>
+			</Examples>
+		</Control>
+
+		<Control>
 			<Name>Chart</Name>
 			<DisplayName>Chart</DisplayName>
 			<Icon>chartbar.png</Icon>
@@ -264,6 +295,31 @@
 		</Control>
 
 		<Control>
+			<Name>Chat</Name>
+			<Status>New</Status>
+			<DisplayName>Chat</DisplayName>
+			<Icon>chat.png</Icon>
+			<ShortDescription>Provides flexible API for achieving a variety of chat and chat-bot scenarios.</ShortDescription>
+			<FullDescription>RadChat enables easy implementation of conversational UI in MAUI applications, whether by utilizing certain chatbot frameworks, by following a predefined logical tree, or just for integrating P2P chat capabilities.</FullDescription>
+			<Examples>
+				<Example>
+					<Name>TravelAssistance</Name>
+					<Page>TravelAssistanceView</Page>
+					<DisplayName>Travel Assistance</DisplayName>
+					<Icon>chat.png</Icon>
+					<Description>This example demonstrates a possible implementation of the RadChat control for a travel agency by integrating it with the Microsoft Bot Framework via Azure Bot Service.</Description>
+				</Example>
+				<Example>
+					<Name>ChatRoom</Name>
+					<Page>ChatRoomView</Page>
+					<DisplayName>Chat Room</DisplayName>
+					<Icon>chat.png</Icon>
+					<Description>This example demonstrates one way to go about implementing a chat room with multiple participants. Some of the features that are demonstrated are: typing indicator, timebreaks, color customization, MVVM support.</Description>
+				</Example>
+			</Examples>
+		</Control>
+
+		<Control>
 			<Name>CheckBox</Name>
 			<DisplayName>CheckBox</DisplayName>
 			<Icon>checkbox.png</Icon>
@@ -293,6 +349,14 @@
 					<DisplayName>First Look</DisplayName>
 					<Icon>combobox.png</Icon>
 					<Description>Telerik UI for .NET MAUI ComboBox allows users to select item/items from a drop-down list of items. The control has a number of features such as editing, searching, single and multiple selection, flexible styling API, dropdown customizations, and more.</Description>
+				</Example>
+				<Example>
+					<Name>Configuration</Name>
+					<Page>ConfigurationView</Page>
+					<DisplayName>Configuration</DisplayName>
+					<Icon>configuration.png</Icon>
+					<Status>New</Status>
+					<Description>This example presents the various configuration options that the RadComboBox provides. You can change the control's editable state, selection mode, whether the clear button will be visible, etc.</Description>
 				</Example>
 			</Examples>
 		</Control>
@@ -345,7 +409,6 @@
 				</Example>
 				<Example>
 					<Name>FrozenColumns</Name>
-					<Status>New</Status>
 					<Page>FrozenColumnsView</Page>
 					<DisplayName>Frozen Columns</DisplayName>
 					<IsConfigurable>true</IsConfigurable>
@@ -405,6 +468,15 @@
 					<Icon>datagrid.png</Icon>
 					<IsConfigurable>true</IsConfigurable>
 					<Description>Demonstrates how you can easily populate DataGrid from collection or from a DataTable.</Description>
+				</Example>
+				<Example>
+					<Name>EmptyTemplate</Name>
+					<Page>EmptyTemplate</Page>
+					<DisplayName>Empty Template</DisplayName>
+					<Icon>datagrid.png</Icon>
+					<Status>New</Status>
+					<IsConfigurable>true</IsConfigurable>
+					<Description>Demonstrates the ability of the DataGrid to specify and show a custom template when the ItemsSource is null or an empty collection is provided.</Description>
 				</Example>
 			</Examples>
 		</Control>
@@ -521,7 +593,6 @@
 
 		<Control>
 			<Name>ImageEditor</Name>
-			<Status>New</Status>
 			<DisplayName>ImageEditor</DisplayName>
 			<Icon>imageeditor.png</Icon>
 			<ShortDescription>ImageEditor control is a powerful tool that allows you to easily visualize, edit and save images in your desktop or mobile application.</ShortDescription>
@@ -680,12 +751,29 @@
 				</Example>
 				<Example>
 					<Name>PermissionsAndEncryption</Name>
-					<Status>New</Status>
 					<Page>PermissionsAndEncryptionView</Page>
 					<DisplayName>Permissions and Encryption</DisplayName>
 					<Icon>pdfprocessing.png</Icon>
 					<Description>Telerik PdfProcessing provides easy to use API which allows setting different permissions and encryption when exporting encrypted PDF documents. This example demonstrates the different settings available that could be applied to the exported document. The password will be required when trying to change the already set document permissions. The currently supported encryption algorithms when exporting encrypted documents are RC4 and AES-256.</Description>
 					<ExcludeFrom>WinUI</ExcludeFrom>
+				</Example>
+			</Examples>
+		</Control>
+
+		<Control>
+			<Name>PdfViewer</Name>
+			<DisplayName>PdfViewer</DisplayName>
+			<Icon>pdfviewer.png</Icon>
+			<Status>New</Status>
+			<ShortDescription>Enables you to easily load and display PDF documents natively in your application.</ShortDescription>
+			<FullDescription>Telerik UI for .NET MAUI PdfViewer is a control that can visualize PDF documents straight into your application. It has been made more than simple with the exposed commands that can be easily bound to and the full integration with the RadPdfViewerToolbar.</FullDescription>
+			<Examples>
+				<Example>
+					<Name>FirstLook</Name>
+					<Page>FirstLookView</Page>
+					<DisplayName>First Look</DisplayName>
+					<Icon>pdfviewer.png</Icon>
+					<Description>Telerik UI for .NET MAUI PdfViewer is a control that can visualize PDF documents straight into your application. It has been made more than simple with the exposed commands that can be easily bound to and the full integration with the RadPdfViewerToolbar.</Description>
 				</Example>
 			</Examples>
 		</Control>
@@ -709,7 +797,6 @@
 		
 		<Control>
 			<Name>ProgressBar</Name>
-			<Status>New</Status>
 			<DisplayName>ProgressBar</DisplayName>
 			<Icon>progressbar.png</Icon>
 			<ShortDescription>Displays progress information to the users during a long-running operation.</ShortDescription>
@@ -750,6 +837,31 @@
 		</Control>
 
 		<Control>
+			<Name>RichTextEditor</Name>
+			<DisplayName>RichTextEditor</DisplayName>
+			<Status>New</Status>
+			<Icon>richtexteditor.png</Icon>
+			<ShortDescription>WYSIWYG control that can display and edit HTML content.</ShortDescription>
+			<FullDescription>Telerik UI for .NET MAUI RadRichTextEditor is a WYSIWYG control that can display and edit HTML content.</FullDescription>
+			<Examples>
+				<Example>
+					<Name>FirstLook</Name>
+					<Page>FirstLookView</Page>
+					<DisplayName>First Look</DisplayName>
+					<Icon>richtexteditor.png</Icon>
+					<Description>This example demonstrates how to setup RadRichTextEditor and RadRichTextEditorToolbar to visualize and edit HTML content.</Description>
+				</Example>
+				<Example>
+					<Name>ImportExport</Name>
+					<Page>ImportExportView</Page>
+					<DisplayName>Import and Export</DisplayName>
+					<Icon>richtexteditor.png</Icon>
+					<Description>This example demonstrates how to import and export the content of the RichTextEditor component to various formats, such as HTML, DOCX, RTF and TXT.</Description>
+				</Example>
+			</Examples>
+		</Control>
+
+		<Control>
 			<Name>SegmentedControl</Name>
 			<DisplayName>SegmentedControl</DisplayName>
 			<Icon>segmentedcontrol.png</Icon>
@@ -785,7 +897,6 @@
 
 		<Control>
 			<Name>SignaturePad</Name>
-			<Status>New</Status>
 			<DisplayName>SignaturePad</DisplayName>
 			<Icon>signaturepad.png</Icon>
 			<ShortDescription>SignaturePad for .NET MAUI is designed to enable users to draw and save signatures.</ShortDescription>
@@ -797,6 +908,31 @@
 					<DisplayName>First Look</DisplayName>
 					<Icon>signaturepad.png</Icon>
 					<Description>This example shows the ability to draw a signature in RadSignaturePad, save this signature as image and then visualize it.</Description>
+				</Example>
+			</Examples>
+		</Control>
+
+		<Control>
+			<Name>SlideView</Name>
+			<Status>New</Status>
+			<DisplayName>SlideView</DisplayName>
+			<Icon>slideview.png</Icon>
+			<ShortDescription>Represents items/views with only one active at a time and allows to easily slide (navigate) to the next/previous via panning.</ShortDescription>
+			<FullDescription>Telerik UI for .NET MAUI SlideView</FullDescription>
+			<Examples>
+				<Example>
+					<Name>FirstLook</Name>
+					<Page>FirstLookView</Page>
+					<DisplayName>First Look</DisplayName>
+					<Icon>slideview.png</Icon>
+					<Description>Telerik UI for .NET MAUI SlideView is a flexible navigation control that allows you to slide between different views, thus providing an interactive navigation. With it you can build a gallery display to show your images and content efficiently. </Description>
+				</Example>
+				<Example>
+					<Name>Configuration</Name>
+					<Page>ConfigurationView</Page>
+					<DisplayName>Configuration</DisplayName>
+					<Icon>configuration.png</Icon>
+					<Description>This example presents the various configuration options of the RadSlideView and its indicator. Switch the orientation, interaction and overscroll modes, toggle looping of and tune in the animation.</Description>
 				</Example>
 			</Examples>
 		</Control>
@@ -948,7 +1084,6 @@
 
 		<Control>
 			<Name>Toolbar</Name>
-			<Status>New</Status>
 			<DisplayName>Toolbar</DisplayName>
 			<Icon>toolbar.png</Icon>
 			<ShortDescription>RadToolbar is a flexible control for implementation of tool and button strips, needed in most desktop and mobile applications.</ShortDescription>
@@ -960,6 +1095,24 @@
 					<DisplayName>First Look</DisplayName>
 					<Icon>toolbar.png</Icon>
 					<Description>Telerik UI for .NET MAUI Toolbar is a flexible control for implementation of tool and button strips, needed in most desktop and mobile applications. Its rich collection of ToolbarItems allows easy customization of every tool or button of the control independently according to the specific needs of the application.</Description>
+				</Example>
+			</Examples>
+		</Control>
+
+		<Control>
+			<Name>TreeView</Name>
+			<Status>New</Status>
+			<DisplayName>TreeView</DisplayName>
+			<Icon>treeview.png</Icon>
+			<ShortDescription>Displays data in a hierarchical structure with the ability to collapse or expand data nodes.</ShortDescription>
+			<FullDescription>Telerik UI for .NET MAUI TreeView facilitates display, management, and navigation of hierarchical data structures. The component comes with many advanced features - data binding, checkbox support, etc.</FullDescription>
+			<Examples>
+				<Example>
+					<Name>FirstLook</Name>
+					<Page>FirstLookView</Page>
+					<DisplayName>First Look</DisplayName>
+					<Icon>treeview.png</Icon>
+					<Description>This example demonstrates how the RadTreeView component can be used within your application to organize your inbox messages in a tree-like folder structure.</Description>
 				</Example>
 			</Examples>
 		</Control>
@@ -1001,7 +1154,6 @@
 				</Example>
 				<Example>
 					<Name>TableOfContents</Name>
-					<Status>New</Status>
 					<Page>TableOfContentsView</Page>
 					<DisplayName>Table Of Contents</DisplayName>
 					<Icon>wordsprocessing.png</Icon>
@@ -1051,12 +1203,12 @@
 			<Icon>datagrid_white.png</Icon>
 		</HighlightedControl>
 		<HighlightedControl>
-			<DisplayName>ImageEditor</DisplayName>
-			<Icon>imageeditor_white.png</Icon>
+			<DisplayName>PdfViewer</DisplayName>
+			<Icon>pdfviewer_white.png</Icon>
 		</HighlightedControl>
 		<HighlightedControl>
-			<DisplayName>Toolbar</DisplayName>
-			<Icon>toolbar_white.png</Icon>
+			<DisplayName>Calendar</DisplayName>
+			<Icon>calendar_white.png</Icon>
 		</HighlightedControl>
 	</HighlightedControls>
 

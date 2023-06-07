@@ -11,15 +11,13 @@ namespace QSF.Examples.TemplatedPickerControl.FirstLookExample
         public FirstLookView()
         {
             InitializeComponent();
-            if (DeviceInfo.Idiom != DeviceIdiom.Phone)
+
+            if (DeviceInfo.Idiom == DeviceIdiom.Desktop)
             {
                 this.templatedPicker.MaximumWidthRequest = 300;
-                this.ItemTemplate = (DataTemplate)this.Resources["VerticalItemTemplate"];
             }
-            else
-            {
-                this.ItemTemplate = (DataTemplate)this.Resources["HorizontalItemTemplate"];
-            }
+
+            this.ItemTemplate = (DataTemplate)this.Resources["ProductItemTemplate"];
         }
     }
 }

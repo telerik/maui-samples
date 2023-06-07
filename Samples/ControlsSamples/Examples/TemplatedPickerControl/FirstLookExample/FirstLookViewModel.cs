@@ -88,7 +88,8 @@ namespace QSF.Examples.TemplatedPickerControl.FirstLookExample
             {
                 new CardItem()
                 {
-                    Color = Color.FromArgb("#ECF6FE"),
+                    BackgroundColor = Color.FromArgb("#ECF6FE"),
+                    BorderColor = Color.FromArgb("#D6EBFC"),
                     ImageSource = "top.png"
                 },
             };

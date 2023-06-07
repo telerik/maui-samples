@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:converters="clr-namespace:QSF.Converters"
+             xmlns:styles="clr-namespace:QSF.Styles"
+             xmlns:local="clr-namespace:QSF.Examples.CalendarControl.ConfigurationExample"
+             x:Class="QSF.Examples.CalendarControl.ConfigurationExample.ConfigurationView"
+             Padding="{OnIdiom Default='16, 20', Phone=0}">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <styles:ConfigurationViewResources />
+            </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="telerik:RadComboBox">
+                <Setter Property="HorizontalOptions" Value="Fill" />
+                <Setter Property="IsClearButtonVisible" Value="False" />
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+    <Grid RowDefinitions="Auto, *">
+        <Grid BackgroundColor="{AppThemeBinding Light={StaticResource DefaultBackgroundColor}, Dark={StaticResource DefaultBackgroundColorDark}}"
+              Padding="16">
+            <telerik:RadCalendar x:Name="calendar"
+                                 Culture="{Binding Culture}"
+                                 MinDate="{Binding MinDate, Mode=TwoWay}"
+                                 MaxDate="{Binding MaxDate, Mode=TwoWay}"
+                                 FirstDayOfWeek="{Binding FirstDayOfWeek}"
+                                 AreDayNamesVisible="{Binding AreDayNamesVisible}"
+                                 IsOutOfScopeVisible="{Binding IsOutOfScopeVisible}"
+                                 DisplayMode="{Binding Source={x:Reference displayModeCombo}, Path=SelectedItem, Mode=TwoWay}"
+                                 MinDisplayMode="{Binding Source={x:Reference minDisplayModeCombo}, Path=SelectedItem, Mode=TwoWay}"
+                                 MaxDisplayMode="{Binding Source={x:Reference maxDisplayModeCombo}, Path=SelectedItem, Mode=TwoWay}"
+                                 SelectionMode="{Binding SelectionMode}"
+                                 InteractionMode="{Binding InteractionMode}"
+                                 NavigationDirection="{Binding NavigationDirection}"
+                                 MaximumHeightRequest="{OnPlatform iOS=320, Android=320}"
+                                 BorderThickness="1"
+                                 HorizontalOptions="Center"
+                                 VerticalOptions="Center" />
+        </Grid>
+
+        <ScrollView Grid.Row="1" Padding="20">
+            <VerticalStackLayout Style="{StaticResource RootAtExampleAreaStyle}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="{OnIdiom Default=*, Phone=0}" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="{OnIdiom Default=0, Phone=*}" />
+                    </Grid.RowDefinitions>
+                    <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaWithColumnBreakStyle}">
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Culture:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <telerik:RadComboBox ItemsSource="{Binding Cultures}"
+                                                 DisplayMemberPath="DisplayName"
+                                                 SelectedItem="{Binding SelectedCulture}" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Min Date:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <telerik:RadDatePicker Date="{Binding MinDate}" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Max Date:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <telerik:RadDatePicker Date="{Binding MaxDate}" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">  
+                            <Label Text="First Day of Week:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <telerik:RadComboBox ItemsSource="{Binding DaysOfWeek}"
+                                                 SelectedItem="{Binding FirstDayOfWeek, Mode=TwoWay}" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">  
+                            <Label Text="Display Day Names:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <Switch VerticalOptions="Center"
+                                    HorizontalOptions="Start"
+                                    IsToggled="{Binding AreDayNamesVisible}"
+                                    Margin="{OnPlatform Default=0, WinUI='0, -2, 0, 0'}" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">  
+                            <Label Text="Display Out of Scope Dates:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <Switch VerticalOptions="Center"
+                                    HorizontalOptions="Start"
+                                    IsToggled="{Binding IsOutOfScopeVisible}"
+                                    Margin="{OnPlatform Default=0, WinUI='0, -2, 0, 0'}" />
+                        </VerticalStackLayout>
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Grid.Column="{OnIdiom Default=1, Phone=0}"
+                                         Grid.Row="{OnIdiom Default=0, Phone=1}">
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Display Mode:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <telerik:RadComboBox x:Name="displayModeCombo"
+                                                 ItemsSource="{Binding DisplayModes}"
+                                                 SelectedItem="{Binding DisplayMode, Mode=TwoWay}" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Min Display Mode:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <telerik:RadComboBox x:Name="minDisplayModeCombo"
+                                                 ItemsSource="{Binding DisplayModes}"
+                                                 SelectedItem="{Binding MinDisplayMode, Mode=TwoWay}" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Max Display Mode:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <telerik:RadComboBox x:Name="maxDisplayModeCombo"
+                                                 ItemsSource="{Binding DisplayModes}"
+                                                 SelectedItem="{Binding MaxDisplayMode, Mode=TwoWay}" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Selection Mode:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <telerik:RadComboBox ItemsSource="{Binding SelectionModes}"
+                                                 SelectedItem="{Binding SelectionMode, Mode=TwoWay}" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Interaction Mode:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <telerik:RadComboBox ItemsSource="{Binding InteractionModes}"
+                                                 SelectedItem="{Binding InteractionMode, Mode=TwoWay}" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Navigation Direction:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <telerik:RadComboBox ItemsSource="{Binding NavigationDirections}"
+                                                 SelectedItem="{Binding NavigationDirection, Mode=TwoWay}" />
+                        </VerticalStackLayout>
+                    </VerticalStackLayout>
+                </Grid>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentView>

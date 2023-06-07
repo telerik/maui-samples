@@ -164,5 +164,6 @@ public partial class App : Application
         DependencyService.Register<IToastMessageService, ToastMessageService>();
         DependencyService.Register<ISerializationService, SerializationService>();
         DependencyService.Register<IFilePickerService, FilePickerService>();
+        DependencyService.Register<IMediaPickerService, MediaPickerService>();
     }
 }

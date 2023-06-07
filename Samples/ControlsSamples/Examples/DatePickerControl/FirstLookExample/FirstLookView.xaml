@@ -1,47 +1,34 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <views:PickerExampleViewBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:sys="clr-namespace:System;assembly=mscorlib"
-             xmlns:views="clr-namespace:QSF.Views"
-             xmlns:local="clr-namespace:QSF.Examples.DatePickerControl.FirstLookExample"
-             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
-             x:Class="QSF.Examples.DatePickerControl.FirstLookExample.FirstLookView"
-             ItemsSource="{Binding Cards}"
-             CollectionTitle="Applications:" 
-             ButtonCommand="{Binding SendRequestCommand}"
-             ButtonText="Submit Request">
-    <views:PickerExampleViewBase.Resources>
-        <Style TargetType="telerik:RadDatePicker">
-            <Setter Property="Margin" Value="0, 0, 0, 15" />
-            <Setter Property="BorderThickness" Value="0, 0, 0, 1" />
-            <Setter Property="CornerRadius" Value="0" />
-            <Setter Property="Placeholder" Value="Select Date" />
-            <Setter Property="IsToggleButtonVisible" Value="False" />
-        </Style>
-    </views:PickerExampleViewBase.Resources>
-    
+                             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                             xmlns:views="clr-namespace:QSF.Views"
+                             xmlns:local="clr-namespace:QSF.Examples.DatePickerControl.FirstLookExample"
+                             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                             x:Class="QSF.Examples.DatePickerControl.FirstLookExample.FirstLookView"
+                             ItemsSource="{Binding Cards}"
+                             CollectionTitle="Applications:"
+                             ButtonCommand="{Binding SendRequestCommand}"
+                             ButtonText="Submit Request">
     <VerticalStackLayout x:Name="layout">
         <Label Text="Remote Work Request"
-               Style="{StaticResource DefaultSubtitleLabelStyle}"
                FontSize="24"
-               Margin="0, 0, 0, 24" />
+               Margin="{OnIdiom Default='0, 0, 0, 24', Desktop='0, 0, 0, 40'}" />
         <Label Text="Specify Start Date:"
-               Style="{StaticResource DefaultSubtitleLabelStyle}" />
+               Margin="0, 0, 0, 12" />
         <telerik:RadDatePicker x:Name="datePicker1"
                                Date="{Binding StartDate}"
                                DefaultHighlightedDate="{Static sys:DateTime.Now}"
-                               PlaceholderLabelStyle="{StaticResource PlaceholderLabelStyle}">
+                               Margin="0, 0, 0, 40">
             <telerik:RadDatePicker.PopupSettings>
                 <telerik:PickerPopupSettings HeaderLabelText="Select Date" />
             </telerik:RadDatePicker.PopupSettings>
         </telerik:RadDatePicker>
         <Label Text="Specify End Date:"
-               Style="{StaticResource DefaultSubtitleLabelStyle}"
-               Margin="0, 26, 0, 0" />
+               Margin="0, 0, 0, 12" />
         <telerik:RadDatePicker x:Name="datePicker2"
                                Date="{Binding EndDate}"
-                               DefaultHighlightedDate="{Static sys:DateTime.Now}"
-                               PlaceholderLabelStyle="{StaticResource PlaceholderLabelStyle}">
+                               DefaultHighlightedDate="{Static sys:DateTime.Now}">
             <telerik:RadDatePicker.PopupSettings>
                 <telerik:PickerPopupSettings HeaderLabelText="Select Date" />
             </telerik:RadDatePicker.PopupSettings>

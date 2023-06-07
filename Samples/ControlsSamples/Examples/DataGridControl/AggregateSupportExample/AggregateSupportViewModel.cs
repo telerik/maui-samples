@@ -1,6 +1,7 @@
 ﻿using QSF.ViewModels;
 using QSF.Examples.DataGridControl.Common;
 using System.Collections.ObjectModel;
+using QSF.ExampleUtilities;
 
 namespace QSF.Examples.DataGridControl.AggregateSupportExample;
 

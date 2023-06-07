@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:QSF.Examples.CalendarControl.CustomizationExample"
+             x:Class="QSF.Examples.CalendarControl.CustomizationExample.CustomizationView"
+             Padding="{OnIdiom Default='16, 20', Phone='16, 0'}">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <local:ColorWithAlphaConverter x:Key="ColorWithAlphaConverter" />
+
+            <local:ReminderStyleSelector x:Key="ReminderStyleSelector">
+                <local:ReminderStyleSelector.ReminderMouseOverBorderStyle>
+                    <Style TargetType="telerik:CalendarBorderLabel">
+                        <Setter Property="BorderBackgroundColor" Value="{Binding Source={RelativeSource Self}, Path=TextColor, Converter={StaticResource ColorWithAlphaConverter}, ConverterParameter=0.15}" />
+                    </Style>
+                </local:ReminderStyleSelector.ReminderMouseOverBorderStyle>
+                <local:ReminderStyleSelector.ReminderSelectedBorderStyle>
+                    <Style TargetType="telerik:CalendarBorderLabel">
+                        <Setter Property="BorderColor" Value="{Binding Source={RelativeSource Self}, Path=TextColor}" />
+                    </Style>
+                </local:ReminderStyleSelector.ReminderSelectedBorderStyle>
+                <local:ReminderStyleSelector.ReminderSelectedMouseOverBorderStyle>
+                    <Style TargetType="telerik:CalendarBorderLabel">
+                        <Setter Property="BorderBackgroundColor" Value="{Binding Source={RelativeSource Self}, Path=TextColor, Converter={StaticResource ColorWithAlphaConverter}, ConverterParameter=0.15}" />
+                    </Style>
+                </local:ReminderStyleSelector.ReminderSelectedMouseOverBorderStyle>
+            </local:ReminderStyleSelector>
+            <local:ReminderTemplateSelector x:Key="ReminderTemplateSelector">
+                <local:ReminderTemplateSelector.TaskTemplate>
+                    <DataTemplate>
+                        <telerik:CalendarBorderLabel Text="{Binding Text}"
+                                                     TextColor="{StaticResource AccentColor4}"
+                                                     HorizontalTextAlignment="Center"
+                                                     VerticalTextAlignment="Center"
+                                                     FontAttributes="Bold">
+                            <Label FontFamily="TelerikFontExamples"
+                                   Text="&#xe80b;"
+                                   TextColor="{StaticResource AccentColor4}"
+                                   HorizontalTextAlignment="Center"
+                                   VerticalTextAlignment="End"
+                                   Margin="{OnPlatform Default=0, WinUI='0, 0, 0, 4'}" />
+                        </telerik:CalendarBorderLabel>
+                    </DataTemplate>
+                </local:ReminderTemplateSelector.TaskTemplate>
+                <local:ReminderTemplateSelector.BirthdayTemplate>
+                    <DataTemplate>
+                        <telerik:CalendarBorderLabel Text="{Binding Text}"
+                                                     TextColor="{StaticResource AccentColor3}"
+                                                     HorizontalTextAlignment="Center"
+                                                     VerticalTextAlignment="Center"
+                                                     FontAttributes="Bold">
+                            <Label FontFamily="TelerikFontExamples"
+                                   FontSize="{OnPlatform Default=8, WinUI=8, iOS=6}"
+                                   Text="&#xe805;"
+                                   TextColor="{StaticResource AccentColor3}"
+                                   HorizontalTextAlignment="Center"
+                                   VerticalTextAlignment="End"
+                                   Margin="{OnPlatform Default='0, 0, 0, 4', WinUI='0, 0, 0, 6'}" />
+                        </telerik:CalendarBorderLabel>
+                    </DataTemplate>
+                </local:ReminderTemplateSelector.BirthdayTemplate>
+                <local:ReminderTemplateSelector.NonWorkingDayTemplate>
+                    <DataTemplate>
+                        <telerik:CalendarBorderLabel Text="{Binding Text}"
+                                                     TextColor="#aa8fd6"
+                                                     BackgroundColor="#f2eff9"
+                                                     HorizontalTextAlignment="Center"
+                                                     VerticalTextAlignment="Center" />
+                    </DataTemplate>
+                </local:ReminderTemplateSelector.NonWorkingDayTemplate>
+                <local:ReminderTemplateSelector.NonWorkingDayWithReminderTemplate>
+                    <DataTemplate>
+                        <telerik:CalendarBorderLabel Text="{Binding Text}"
+                                                     TextColor="#aa8fd6"
+                                                     BackgroundColor="#f2eff9"
+                                                     HorizontalTextAlignment="Center"
+                                                     VerticalTextAlignment="Center"
+                                                     FontAttributes="Bold">
+                            <Label FontFamily="TelerikFontExamples"
+                                   Text="&#xe80b;"
+                                   TextColor="#aa8fd6"
+                                   HorizontalTextAlignment="Center"
+                                   VerticalTextAlignment="End"
+                                   Margin="{OnPlatform Default=0, WinUI='0, 0, 0, 4'}" />
+                        </telerik:CalendarBorderLabel>
+                    </DataTemplate>
+                </local:ReminderTemplateSelector.NonWorkingDayWithReminderTemplate>
+            </local:ReminderTemplateSelector>
+
+            <DataTemplate x:Key="ReminderTemplate">
+                <telerik:RadBorder BackgroundColor="{AppThemeBinding Light=#F3F3F3, Dark=#202020}"
+                                   BorderColor="{AppThemeBinding Light={OnPlatform Default={StaticResource DefaultBorderColor}, WinUI={StaticResource DefaultBorderColorWinUI}},
+                                                                 Dark={OnPlatform Default={StaticResource DefaultBorderColorDark}, WinUI={StaticResource DefaultBorderColorDarkWinUI}}}"
+                                   BorderThickness="1"
+                                   CornerRadius="4"
+                                   Padding="16, 8"
+                                   Margin="0, 0, 0, 4">
+                    <Label Text="{Binding Title}"
+                           LineBreakMode="TailTruncation"
+                           MaxLines="1" />
+                </telerik:RadBorder>
+            </DataTemplate>
+
+            <Style x:Key="CalendarHeaderBorderStyle" TargetType="telerik:RadBorder">
+                <Setter Property="BackgroundColor" Value="#40DFDFDF" />
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="Padding" Value="{OnPlatform Default='16, 0', Android=0, WinUI='12, 4'}" />
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+    <Grid RowDefinitions="Auto, *"
+          ColumnDefinitions="Auto, *">
+        <telerik:RadCalendar x:Name="calendar"
+                             Grid.Column="{OnIdiom Default=1, Desktop=0}"
+                             MaxDisplayMode="Month"
+                             FirstDayOfWeek="Sunday"
+                             SelectedDate="{Binding SelectedDate, Mode=TwoWay}"
+                             DayStyleSelector="{StaticResource ReminderStyleSelector}"
+                             DayTemplate="{StaticResource ReminderTemplateSelector}"
+                             HeaderBorderStyle="{StaticResource CalendarHeaderBorderStyle}"
+                             MaximumHeightRequest="{OnPlatform iOS=350, Android=320}"
+                             BorderThickness="1"
+                             Margin="{OnIdiom Default=0, Phone='0, 24, 0, 0'}" />
+        <Grid Grid.Row="{OnIdiom Default=1, Desktop=0}"
+              Grid.RowSpan="{OnIdiom Default=1, Desktop=2}"
+              Grid.Column="1"
+              RowDefinitions="Auto, *"
+              Margin="{OnIdiom Default='0, 16, 0, 0', Desktop='16, 0, 0, 0'}">
+            <Label Text="{Binding SelectedDate, StringFormat='Reminders for {0:M}:'}"
+                   FontSize="16"
+                   FontAttributes="Bold" />
+            <Grid Grid.Row="1"
+                  Margin="0, 8, 0, 0">
+                <telerik:RadItemsView Grid.Row="1"
+                                      ItemsSource="{Binding FilteredRemindersList}"
+                                      ItemTemplate="{StaticResource ReminderTemplate}" />
+                <Label IsVisible="{Binding IsEmptyMessageVisible}"
+                       Text="No reminders for this day"
+                       TextColor="{StaticResource AccentColor4}" />
+            </Grid>
+        </Grid>
+    </Grid>
+</ContentView>

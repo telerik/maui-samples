@@ -43,10 +43,11 @@
 		<EmbeddedResource Include="Examples\MapControl\FirstLookExample\usa.shp" />
 		<EmbeddedResource Include="Examples\PdfProcessingControl\FirstLookExample\banner.jpg" />
 		<EmbeddedResource Include="Examples\PdfProcessingControl\FirstLookExample\teleriklogo.jpg" />
-		<EmbeddedResource Include="Examples\PdfProcessingControl\NotEmbeddingFontsExample\pdfviewer-firstlook.pdf" />
+		<EmbeddedResource Include="Examples\PdfViewerControl\pdfviewer-firstlook.pdf" />
 		<EmbeddedResource Include="Examples\SpreadProcessingControl\ConditionalFormattingExample\SpreadProcessingDocument2.xlsx" />
 		<EmbeddedResource Include="Examples\SpreadProcessingControl\ConvertExample\SpreadProcessingDocument1.xlsx" />
 		<EmbeddedResource Include="Examples\SpreadStreamProcessingControl\ImportSpreadsheetExample\sample.xlsx" />
+		<EmbeddedResource Include="Examples\TreeViewControl\FirstLookExample\AccountDataSource.xml" />
 		<EmbeddedResource Include="Examples\WordsProcessingControl\ExportExample\DocToBeProcessed.docx" />
 		<EmbeddedResource Include="Examples\WordsProcessingControl\FindAndReplaceExample\JohnGrisham.docx" />
 		<EmbeddedResource Include="Examples\WordsProcessingControl\NumberingFields\SampleDocument.docx" />
@@ -72,17 +73,23 @@
 		<EmbeddedResource Include="Resources\ImageEditor\FirstLookExample\SampleImage3.jpg" />
 		<EmbeddedResource Include="Resources\ImageEditor\FirstLookExample\SampleImage4.jpg" />
 		<EmbeddedResource Include="Resources\ImageEditor\FirstLookExample\SampleImage5.jpg" />
-		<EmbeddedResource Include="Resources\ImageEditor\FirstLookExample\SampleImage6.jpg" />
+        <EmbeddedResource Include="Resources\ImageEditor\FirstLookExample\SampleImage6.jpg" />
+    <EmbeddedResource Include="Resources\RichTextEditor\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 	</ItemGroup>
 
 	<PropertyGroup Condition="$(TargetFramework.Contains('-windows'))">
 		<DefineConstants>$(DefineConstants)TRACE;WINDOWS</DefineConstants>
 	</PropertyGroup>
 
-	<ItemGroup Condition="$(SolutionName) != 'Telerik.Maui'">
+	<ItemGroup Condition="'$(SolutionName)' != 'Telerik.Maui' And '$(UseSourceProjects)' != 'True' And '$(UseSourceAssemblies)' != 'True'">
 		<PackageReference Include="Telerik.UI.for.Maui" Version="$(TelerikVersion)" />
 	</ItemGroup>
 
-	<Import Condition="'$(SolutionName)' == 'Telerik.Maui'" Project="..\AddSourceReferences.proj" />
+	<Import Condition="'$(SolutionName)' == 'Telerik.Maui' Or '$(UseSourceProjects)' == 'True'" Project="..\AddSourceProjects.proj" />
+	<Import Condition="'$(SolutionName)' != 'Telerik.Maui' And '$(UseSourceProjects)' != 'True' And '$(UseSourceAssemblies)' == 'True'" Project="..\AddSourceAssemblies.proj" />
 
 </Project>

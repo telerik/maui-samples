@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:local="clr-namespace:QSF.Examples.TreeViewControl.FirstLookExample"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        x:Class="QSF.Examples.TreeViewControl.FirstLookExample.EmailsView">
+    <telerik:RadContentView.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="EmailTemplate">
+                <Grid RowDefinitions="Auto, Auto, Auto, Auto"
+                      ColumnDefinitions="*, Auto">
+                    <Label FontSize="16"
+                           Text="{Binding Sender}"
+                           TextColor="{AppThemeBinding Light={StaticResource DefaultTextColor}, Dark={StaticResource DefaultTextColorDark}}"
+                           HorizontalOptions="Start"
+                           VerticalOptions="Center" />
+                    <Label Grid.Column="1"
+                           Text="{Binding Received, StringFormat='{0:t}'}"
+                           Style="{StaticResource PlaceholderLabelStyle}"
+                           HorizontalOptions="End"
+                           VerticalOptions="Center"
+                           FontSize="12" />
+                    <Label Grid.Row="1"
+                           Grid.ColumnSpan="2"
+                           Text="{Binding Subject}"
+                           TextColor="{AppThemeBinding Light={StaticResource DefaultTextColor}, Dark={StaticResource DefaultTextColorDark}}"
+                           FontSize="14" />
+                    <Label Grid.Row="2"
+                           Grid.ColumnSpan="2"
+                           Text="{Binding Message}"
+                           FontSize="14"
+                           MaxLines="1"
+                           LineBreakMode="TailTruncation"
+                           Opacity="0.6" />
+                    <BoxView Grid.Row="3"
+                             Grid.ColumnSpan="2"
+                             HeightRequest="1"
+                             Margin="{OnIdiom Default='0, 8', Desktop='0, 4'}"
+                             BackgroundColor="{AppThemeBinding Light={StaticResource SeparatorColor}, Dark={StaticResource SeparatorColorDark}}" />
+                </Grid>
+            </DataTemplate>
+            <DataTemplate x:Key="NoEmailsTemplate">
+                <VerticalStackLayout Spacing="12"
+                                     Padding="0, 10, 0, 0">
+                    <Label FontFamily="TelerikFontExamples"
+                           Text="&#xe829;"
+                           FontSize="20"
+                           HorizontalTextAlignment="Center" />
+                    <Label Text="Folder is Empty"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           HorizontalTextAlignment="Center" />
+                    <Label Text="Organise your messages by moving them to a folder from any conversation"
+                           HorizontalTextAlignment="Center" />
+                </VerticalStackLayout>
+            </DataTemplate>
+        </ResourceDictionary>
+    </telerik:RadContentView.Resources>
+
+    <Grid>
+        <telerik:RadItemsView x:Name="emailsList"
+                              ItemsSource="{Binding Folder.Emails}"
+                              ItemTemplate="{StaticResource EmailTemplate}"
+                              EmptyTemplate="{StaticResource NoEmailsTemplate}" />
+        <VerticalStackLayout x:Name="infoPanel"
+                             Spacing="12"
+                             Padding="0, 10, 0, 0">
+            <Label FontFamily="TelerikFontExamples"
+                   Text="&#xe82a;"
+                   FontSize="20"
+                   HorizontalTextAlignment="Center" />
+            <Label Text="Select a Folder"
+                   FontSize="18"
+                   FontAttributes="Bold"
+                   HorizontalTextAlignment="Center" />
+            <Label Text="Select a folder from this group to preview its messages"
+                   HorizontalTextAlignment="Center" />
+        </VerticalStackLayout>
+    </Grid>
+</telerik:RadContentView>

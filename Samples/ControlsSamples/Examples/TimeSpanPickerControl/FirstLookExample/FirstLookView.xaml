@@ -1,35 +1,22 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <views:PickerExampleViewBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:views="clr-namespace:QSF.Views"
-             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
-             xmlns:local="clr-namespace:QSF.Examples.TimeSpanPickerControl.FirstLookExample"
-             x:Class="QSF.Examples.TimeSpanPickerControl.FirstLookExample.FirstLookView"
-             ItemsSource="{Binding Cards}"
-             CollectionTitle="Tickets starting from:" 
-             ButtonCommand="{Binding SendRequestCommand}"
-             ButtonText="Show Flights">
-    
-    <ContentView.Resources>
-        <Style TargetType="telerik:RadTimeSpanPicker">
-            <Setter Property="Margin" Value="0, 0, 0, 15" />
-            <Setter Property="BorderThickness" Value="0, 0, 0, 1" />
-            <Setter Property="CornerRadius" Value="0" />
-            <Setter Property="Placeholder" Value="Max Flight Duration:" />
-            <Setter Property="IsToggleButtonVisible" Value="False" />
-        </Style>
-    </ContentView.Resources>
-
+                             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                             xmlns:views="clr-namespace:QSF.Views"
+                             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                             xmlns:local="clr-namespace:QSF.Examples.TimeSpanPickerControl.FirstLookExample"
+                             x:Class="QSF.Examples.TimeSpanPickerControl.FirstLookExample.FirstLookView"
+                             ItemsSource="{Binding Cards}"
+                             CollectionTitle="Tickets starting from:" 
+                             ButtonCommand="{Binding SendRequestCommand}"
+                             ButtonText="Show Flights">
     <VerticalStackLayout x:Name="layout">
         <Label Text="Flight Search SOF - NYC"
-               Style="{StaticResource DefaultSubtitleLabelStyle}"
                FontSize="24"
-               Margin="0, 0, 0, 24" />
+               Margin="{OnIdiom Default='0, 0, 0, 24', Desktop='0, 0, 0, 40'}" />
         <Label Text="Specify Max Flight Duration:"
-               Style="{StaticResource DefaultSubtitleLabelStyle}" />
+               Margin="0, 0, 0, 12" />
         <telerik:RadTimeSpanPicker x:Name="timeSpanPicker"
-                                   Time="{Binding SelectedTime}"
-                                   PlaceholderLabelStyle="{StaticResource PlaceholderLabelStyle}">
+                                   Time="{Binding SelectedTime}">
             <telerik:RadTimeSpanPicker.PopupSettings>
                 <telerik:PickerPopupSettings HeaderLabelText="Select Flight Duration" />
             </telerik:RadTimeSpanPicker.PopupSettings>

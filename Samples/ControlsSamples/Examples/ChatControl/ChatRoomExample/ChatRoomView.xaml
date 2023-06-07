@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:QSF.Examples.ChatControl.ChatRoomExample"
+             x:Class="QSF.Examples.ChatControl.ChatRoomExample.ChatRoomView">
+    <telerik:RadContentView.Resources>
+        <ResourceDictionary>
+            <local:AuthorsMap x:Key="AuthorsMap" />
+            <local:ChatroomMessageConverter x:Key="ChatroomMessageConverter" AuthorsMap="{StaticResource AuthorsMap}" />
+            <local:ChatroomParticipantConverter x:Key="ChatroomParticipantConverter" AuthorsMap="{StaticResource AuthorsMap}" />
+            <local:BackgroundColorConverter x:Key="BackgroundColorConverter">
+                <local:BackgroundColorConverter.Colors>
+                    <Color>#FFCDCDC0</Color>
+                    <Color>#FFD9E3DA</Color>
+                    <Color>#FFF3DCD4</Color>
+                    <Color>#FFC8D5E1</Color>
+                    <Color>#FFF1F2CE</Color>
+                    <Color>#FFECC9C7</Color>
+                </local:BackgroundColorConverter.Colors>
+            </local:BackgroundColorConverter>
+            <Style x:Key="BorderStyle" TargetType="telerik:RadBorder">
+                <Setter Property="BackgroundColor" Value="{Binding Author, Converter={StaticResource BackgroundColorConverter}}" />
+            </Style>
+            <Style TargetType="telerik:IncomingTextMessageView" ApplyToDerivedTypes="True">
+                <Setter Property="BorderStyle" Value="{StaticResource BorderStyle}" />
+                <Setter Property="LabelStyle" Value="{StaticResource BaseLabelStyle}" />
+            </Style>
+            <Style TargetType="telerik:OutgoingTextMessageView" ApplyToDerivedTypes="True">
+                <Setter Property="BorderStyle" Value="{StaticResource BorderStyle}" />
+                <Setter Property="LabelStyle" Value="{StaticResource BaseLabelStyle}" />
+            </Style>
+        </ResourceDictionary>
+    </telerik:RadContentView.Resources>
+
+    <telerik:RadContentView.BindingContext>
+        <local:ChatroomViewModel />
+    </telerik:RadContentView.BindingContext>
+
+    <telerik:RadChat x:Name="chat"
+                     WidthRequest="{OnIdiom Default=-1, Desktop=450}"
+                     Loaded="chat_Loaded"
+                     Unloaded="chat_Unloaded"
+                     AutoScrollMode="Always"
+                     local:ChatroomUtils.AuthorsMap="{StaticResource AuthorsMap}"
+                     local:ChatroomUtils.Author="{Binding User}"
+                     ItemConverter="{StaticResource ChatroomMessageConverter}"
+                     ItemsSource="{Binding Items}"
+                     SendMessageCommand="{Binding SendMessageCommand}">
+        <telerik:RadChat.TypingIndicator>
+            <telerik:TypingIndicator ItemConverter="{StaticResource ChatroomParticipantConverter}"
+                                     ItemsSource="{Binding TypingParticipants}"
+                                     DotsColor="{StaticResource ApplicationAccentColor}" />
+        </telerik:RadChat.TypingIndicator>
+    </telerik:RadChat>
+</telerik:RadContentView>

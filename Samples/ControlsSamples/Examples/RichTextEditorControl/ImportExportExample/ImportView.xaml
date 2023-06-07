@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        x:Class="QSF.Examples.RichTextEditorControl.ImportExportExample.ImportView"
+                        Margin="{OnIdiom Default=5, Phone=0}"
+                        NavigationPage.HasNavigationBar="False">
+    <ScrollView>
+        <Grid RowDefinitions="Auto, *"
+              BackgroundColor="#989898">
+            <Label Margin="10, 20, 10, 0"
+                   FontSize="{OnPlatform Default=18, Android=20, iOS=17}"
+                   TextColor="{StaticResource TextOnAccentColor}"
+                   HorizontalOptions="Center"
+                   Text="Pick a sample file to import" />
+            <FlexLayout x:Name="fileLayout"
+                        Grid.Row="1"
+                        BindableLayout.ItemsSource="{Binding SampleResources}"
+                        JustifyContent="Center"
+                        AlignItems="Center"
+                        Wrap="Wrap"
+                        VerticalOptions="Center">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <VerticalStackLayout Spacing="12"
+                                             Margin="8">
+                            <telerik:RadBorder BackgroundColor="#d5d5d5"
+                                               BorderColor="#c1c1c1"
+                                               BorderThickness="1"
+                                               CornerRadius="4"
+                                               Padding="16"
+                                               WidthRequest="128"
+                                               HeightRequest="128">
+                                <ImageButton BackgroundColor="Transparent"
+                                             Source="{Binding ResourceIconPath}"
+                                             Aspect="{OnPlatform Default=AspectFit, WinUI=Center}"
+                                             Command="{Binding BindingContext.OpenCommand, Source={x:Reference fileLayout}}"
+                                             CommandParameter="{Binding ResourceFileName}" />
+                            </telerik:RadBorder>
+                            <Label Text="{Binding ResourceFileType}"
+                                   TextColor="{StaticResource TextOnAccentColor}"
+                                   HorizontalOptions="Center" />
+                        </VerticalStackLayout>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </FlexLayout>
+        </Grid>
+    </ScrollView>
+</telerik:RadContentView>

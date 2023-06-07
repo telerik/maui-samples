@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:styles="clr-namespace:QSF.Styles"
+             x:Class="QSF.Examples.ComboBoxControl.ConfigurationExample.ConfigurationView"
+             Padding="{OnIdiom Default='16, 20', Phone=0}">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <styles:ConfigurationViewResources />
+            </ResourceDictionary.MergedDictionaries>
+            <Style x:Key="SliderMinMaxLabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="10" />
+                <Setter Property="Opacity" Value="0.6" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+            <Style TargetType="Slider">
+                <Setter Property="Margin" Value="8, 0" />
+                <Setter Property="HorizontalOptions" Value="Fill" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="{OnIdiom Default=80, Phone=100}" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <telerik:RadBorder Padding="16, 24"
+                           BackgroundColor="{AppThemeBinding Light={StaticResource DefaultBackgroundColor}, Dark={StaticResource DefaultBackgroundColorDark}}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="{OnIdiom Default=*, Phone=0}" />
+                </Grid.ColumnDefinitions>
+                <telerik:RadComboBox ItemsSource="{Binding Cities}"
+                                     OpenOnFocus="{Binding OpenOnFocus}"
+                                     DropDownWidth="{Binding Value, Source={Reference dropDownWidthSlider}}"
+                                     DropDownHeight="{Binding Value, Source={x:Reference dropDownHeightSlider}}"
+                                     IsEditable="{Binding IsEditable}"
+                                     IsDropDownClosedOnSelection="{Binding IsDropDownClosedOnSelection}"
+                                     IsDropDownOpen="{Binding IsDropDownOpen, Mode=TwoWay}"
+                                     IsClearButtonVisible="{Binding IsClearButtonVisible}"
+                                     Placeholder="{Binding Placeholder}"
+                                     DisplayMemberPath="Name"
+                                     SearchTextPath="Name"
+                                     SearchMode="{Binding SearchMode}"
+                                     SelectionMode="{Binding SelectionMode}"
+                                     VerticalOptions="Center" />
+            </Grid>
+        </telerik:RadBorder>
+        <ScrollView Grid.Row="1" Padding="20">
+            <VerticalStackLayout Style="{StaticResource RootAtExampleAreaStyle}">
+                <Grid Style="{StaticResource GroupAtExampleAreaStyle}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="{OnIdiom Default=*, Phone=0}" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="{OnIdiom Default=0, Phone=*}" />
+                    </Grid.RowDefinitions>
+                    <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaWithColumnBreakStyle}">
+                        <Label Text="ComboBox Settings"
+                               Style="{StaticResource SectionHeadingLabelStyle}" />
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Is Editable:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <Switch VerticalOptions="Center"
+                                    HorizontalOptions="Start"
+                                    IsToggled="{Binding IsEditable}"
+                                    Margin="{OnPlatform Default=0, WinUI='0, -2, 0, 0'}" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Search Mode:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <telerik:RadComboBox SelectedItem="{Binding SearchMode}"
+                                                 IsEnabled="{Binding IsEditable}"
+                                                 DropDownHeight="160">
+                                <telerik:RadComboBox.ItemsSource>
+                                    <x:Array Type="{x:Type telerik:SearchMode}">
+                                        <telerik:SearchMode>StartsWith</telerik:SearchMode>
+                                        <telerik:SearchMode>StartsWithCaseSensitive</telerik:SearchMode>
+                                        <telerik:SearchMode>Contains</telerik:SearchMode>
+                                        <telerik:SearchMode>ContainsCaseSensitive</telerik:SearchMode>
+                                    </x:Array>
+                                </telerik:RadComboBox.ItemsSource>
+                            </telerik:RadComboBox>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Selection Mode:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <telerik:RadComboBox SelectedItem="{Binding SelectionMode}"
+                                                 DropDownHeight="85">
+                                <telerik:RadComboBox.ItemsSource>
+                                    <x:Array Type="{x:Type telerik:ComboBoxSelectionMode}">
+                                        <telerik:ComboBoxSelectionMode>Single</telerik:ComboBoxSelectionMode>
+                                        <telerik:ComboBoxSelectionMode>Multiple</telerik:ComboBoxSelectionMode>
+                                    </x:Array>
+                                </telerik:RadComboBox.ItemsSource>
+                            </telerik:RadComboBox>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Show Clear Button:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <Switch VerticalOptions="Center"
+                                    HorizontalOptions="Start"
+                                    IsToggled="{Binding IsClearButtonVisible}"
+                                    Margin="{OnPlatform Default=0, WinUI='0, -2, 0, 0'}" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Placeholder:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <telerik:RadEntry Text="{Binding Placeholder}"
+                                              ReserveSpaceForErrorView="False" />
+                        </VerticalStackLayout>
+                    </VerticalStackLayout>
+                   <VerticalStackLayout Grid.Column="{OnIdiom Default=1, Phone=0}"
+                                        Grid.Row="{OnIdiom Default=0, Phone=1}">
+                        <Label Text="DropDown Settings"
+                               Style="{StaticResource SectionHeadingLabelStyle}" />
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Open On Focus:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <Switch VerticalOptions="Center"
+                                    HorizontalOptions="Start"
+                                    IsToggled="{Binding OpenOnFocus}"
+                                    IsEnabled="{Binding IsEditable}"
+                                    Margin="{OnPlatform Default=0, WinUI='0, -2, 0, 0'}" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Close On Selection:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <Switch VerticalOptions="Center"
+                                    HorizontalOptions="Start"
+                                    IsToggled="{Binding IsDropDownClosedOnSelection}"
+                                    Margin="{OnPlatform Default=0, WinUI='0, -2, 0, 0'}" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Is Open:" 
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <Switch VerticalOptions="Center"
+                                    HorizontalOptions="Start"
+                                    IsToggled="{Binding IsDropDownOpen}"
+                                    Margin="{OnPlatform Default=0, WinUI='0, -2, 0, 0'}" />  
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Width:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <Grid ColumnDefinitions="Auto, *, Auto">
+                                <Label Style="{StaticResource SliderMinMaxLabelStyle}"
+                                       Text="{Binding Minimum, Source={x:Reference dropDownWidthSlider}}" />
+                                <Slider x:Name="dropDownWidthSlider"
+                                        Grid.Column="1"
+                                        Minimum="-1"
+                                        Maximum="{OnIdiom Phone=500, Default=800}"
+                                        Value="-1" />
+                                <Label Grid.Column="2"
+                                       Style="{StaticResource SliderMinMaxLabelStyle}"
+                                       Text="{Binding Maximum, Source={x:Reference dropDownWidthSlider}}" />
+                            </Grid>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Height:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <Grid ColumnDefinitions="Auto, *, Auto">
+                                <Label Style="{StaticResource SliderMinMaxLabelStyle}"
+                                       Text="{Binding Minimum, Source={x:Reference dropDownHeightSlider}}" />
+                                <Slider x:Name="dropDownHeightSlider"
+                                        Grid.Column="1"
+                                        Maximum="300"
+                                        Value="185" />
+                                <Label Grid.Column="2"
+                                       Style="{StaticResource SliderMinMaxLabelStyle}"
+                                       Text="{Binding Maximum, Source={x:Reference dropDownHeightSlider}}" />
+                            </Grid>
+                        </VerticalStackLayout>
+                    </VerticalStackLayout>
+                </Grid>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentView>

@@ -22,17 +22,20 @@ namespace QSF.Examples.TimePickerControl.FirstLookExample
             {
                 new CardItem()
                 {
-                    Color = Color.FromArgb("#ECF6FE"),
+                    BackgroundColor = Color.FromArgb("#ECF6FE"),
+                    BorderColor = Color.FromArgb("#D6EBFC"),
                     ImageSource = "cleaning.png"
                 },
                 new CardItem()
                 {
-                    Color = Color.FromArgb("#FEF2F1"),
+                    BackgroundColor = Color.FromArgb("#FEF2F1"),
+                    BorderColor = Color.FromArgb("#FEE5E3"),
                     ImageSource = "carpetcleaning.png"
                 },
                 new CardItem()
                 {
-                    Color = Color.FromArgb("#FFF4EB"),
+                    BackgroundColor = Color.FromArgb("#FFF4EB"),
+                    BorderColor = Color.FromArgb("#FFE9D8"),
                     ImageSource = "homepainting.png"
                 }
             };
