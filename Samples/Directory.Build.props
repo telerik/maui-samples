@@ -9,7 +9,11 @@
     <iOSOnly>false</iOSOnly>
     <MacCatalystOnly>false</MacCatalystOnly>
     <DotNetOnly>false</DotNetOnly>
-    <TelerikVersion>5.1.0</TelerikVersion>
+    <TelerikVersion>5.2.0</TelerikVersion>
+
+    <UseSourceProjects>false</UseSourceProjects>
+    <UseSourceAssemblies>false</UseSourceAssemblies>
+    <UsePlatformAssemblies>false</UsePlatformAssemblies>
 
     <DotNetVersion Condition=" $(DotNetVersion) == '' ">Net7</DotNetVersion>
     <IsNet6 Condition="$(DotNetVersion) == 'Net6' ">true</IsNet6>
