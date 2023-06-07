@@ -21,17 +21,20 @@ namespace QSF.Examples.DateTimePickerControl.FirstLookExample
             {
                 new CardItem()
                 {
-                    Color = Color.FromArgb("#ECF6FE"),
+                    BackgroundColor = Color.FromArgb("#ECF6FE"),
+                    BorderColor = Color.FromArgb("#D6EBFC"),
                     ImageSource = "train.png"
                 },
                 new CardItem()
                 {
-                    Color = Color.FromArgb("#FEF2F1"),
+                    BackgroundColor = Color.FromArgb("#FEF2F1"),
+                    BorderColor = Color.FromArgb("#FEE5E3"),
                     ImageSource = "car.png"
                 },
                 new CardItem()
                 {
-                    Color = Color.FromArgb("#FFF4EB"),
+                    BackgroundColor = Color.FromArgb("#FFF4EB"),
+                    BorderColor = Color.FromArgb("#FFE9D8"),
                     ImageSource = "flight.png"
                 }
             };

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:styles="clr-namespace:QSF.Styles"
+             x:Class="QSF.Examples.DataGridControl.EmptyTemplateExample.ConfigurationArea">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <styles:ConfigurationViewResources />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+    <VerticalStackLayout Style="{StaticResource RootAtSeparateAreaStyle}">
+        <VerticalStackLayout Style="{StaticResource GroupAtSeparateAreaStyle}">
+            <Label Text="Items Source:"
+                   Style="{StaticResource VerticalGroupLabelStyle}" />
+            <HorizontalStackLayout telerik:RadCheckBox.ToggleOnTap="{Reference useNullSourceCb}"
+                                   Style="{StaticResource CheckBoxGroupStyle}">
+                <telerik:RadCheckBox x:Name="useNullSourceCb"
+                                     IsChecked="{Binding UseNullSource}" />
+                <Label Text="Null"
+                       Style="{StaticResource HorizontalGroupLabelAtEndStyle}" />
+            </HorizontalStackLayout>
+            <HorizontalStackLayout telerik:RadCheckBox.ToggleOnTap="{Reference useEmptyCollectionSourceCb}"
+                                   Style="{StaticResource CheckBoxGroupStyle}">
+                <telerik:RadCheckBox x:Name="useEmptyCollectionSourceCb"
+                                     IsChecked="{Binding UseEmptyCollectionSource}" />
+                <Label Text="Empty collection"
+                       Style="{StaticResource HorizontalGroupLabelAtEndStyle}" />
+            </HorizontalStackLayout>
+            <HorizontalStackLayout telerik:RadCheckBox.ToggleOnTap="{Reference useNonEmptyCollectionSourceCb}"
+                                   Style="{StaticResource CheckBoxGroupStyle}">
+                <telerik:RadCheckBox x:Name="useNonEmptyCollectionSourceCb"
+                                     IsChecked="{Binding UseNonEmptyCollectionSource}" />
+                <Label Text="Non-empty collection"
+                       Style="{StaticResource HorizontalGroupLabelAtEndStyle}" />
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+        <VerticalStackLayout Style="{StaticResource GroupAtSeparateAreaStyle}">
+            <Label Text="Empty Content Display Mode:"
+                   Style="{StaticResource VerticalGroupLabelStyle}" />
+            <telerik:RadComboBox ItemsSource="{Binding EmptyContentDisplayModes}"
+                                 SelectedItem="{Binding EmptyContentDisplayMode, Mode=TwoWay}"
+                                 DropDownHeight="{OnPlatform Default=72, Android=64, MacCatalyst=44}" />
+        </VerticalStackLayout>
+    </VerticalStackLayout>
+</ContentView>

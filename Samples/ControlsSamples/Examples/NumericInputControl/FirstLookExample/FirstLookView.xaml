@@ -3,101 +3,85 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
              xmlns:local="clr-namespace:QSF.Examples.NumericInputControl.FirstLookExample"
-             x:Class="QSF.Examples.NumericInputControl.FirstLookExample.FirstLookView">
+             x:Class="QSF.Examples.NumericInputControl.FirstLookExample.FirstLookView"
+             Padding="16, 24">
     <ContentView.Resources>
         <ResourceDictionary>
             <local:GenderConverter x:Key="GenderConverter" />
         </ResourceDictionary>
     </ContentView.Resources>
     <ScrollView>
-        <Grid RowDefinitions="Auto, Auto, *, Auto" Padding="{OnIdiom Phone='16, 10'}">
+        <Grid RowDefinitions="Auto, Auto, Auto, Auto, *">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="{OnIdiom Default=*, Phone=Auto}"/>
+                <ColumnDefinition Width="{OnIdiom Default=*, Phone=0}"/>
             </Grid.ColumnDefinitions>
-            <VerticalStackLayout Grid.Row="0" Margin="10, 0, 20, 0">
-                <Label Margin="0"
-                       Text="Calorie Calculator:"
-                       FontSize="24"
-                       HorizontalOptions="Start"
-                       TextColor="Black" />
-            </VerticalStackLayout>
+            <Label Text="Calorie Calculator"
+                   FontSize="24"
+                   HorizontalOptions="Start" />
             <VerticalStackLayout Grid.Row="1"
-                                 Grid.Column="0">
-                <VerticalStackLayout Margin="10, 20, 10, 0">
-                    <Label Text="Age:" 
-                           TextColor="Black" />
-                    <telerik:RadNumericInput AutomationId="AgeNumeric" 
-                                             Margin="0, 10, 0, 0" 
+                                 Grid.Column="0"
+                                 Margin="{OnIdiom Default='0, 40, 0, 0', Phone='0, 24, 0, 0'}">
+                <VerticalStackLayout Spacing="12">
+                    <Label Text="Age:" />
+                    <telerik:RadNumericInput AutomationId="AgeNumeric"
                                              Minimum="0" 
                                              Value="{Binding Age, Mode=TwoWay}" />
                 </VerticalStackLayout>
-                <VerticalStackLayout Margin="{OnIdiom Default='10, 20, 10, 0', Phone='10, 20'}">
-                    <Label Text="Weight (pounds):"
-                           TextColor="Black" />
-
-                    <telerik:RadNumericInput AutomationId="WeightNumeric" 
-                                             Margin="0, 10, 0, 0" 
+                <VerticalStackLayout Spacing="12"
+                                     Margin="0, 40, 0, 0">
+                    <Label Text="Weight (pounds):" />
+                    <telerik:RadNumericInput AutomationId="WeightNumeric"
                                              Minimum="0" 
                                              Value="{Binding Weight, Mode=TwoWay}"/>
                 </VerticalStackLayout>
             </VerticalStackLayout>
-            <VerticalStackLayout Grid.Row="{OnIdiom Default=1, Phone=2}" 
-                                 Grid.Column="{OnIdiom Default=1, Phone=0 }">
-                <VerticalStackLayout Margin="{OnIdiom Default='10, 20, 10, 0', Phone='10, 20'}">
-                    <Label Text="Height (feet):"
-                           TextColor="Black" />
-                    <telerik:RadNumericInput AutomationId="HeightNumeric" 
-                                             Margin="0, 10, 0, 0" 
+            <VerticalStackLayout Grid.Row="{OnIdiom Default=1, Phone=2}"
+                                 Grid.Column="{OnIdiom Default=1, Phone=0}"
+                                 Margin="{OnIdiom Default='20, 40, 0, 0', Phone='0, 40, 0, 0'}">
+                <VerticalStackLayout Spacing="12">
+                    <Label Text="Height (feet):" />
+                    <telerik:RadNumericInput AutomationId="HeightNumeric"
                                              Minimum="0" 
                                              Value="{Binding Height, Mode=TwoWay}"/>
                 </VerticalStackLayout>
-                <VerticalStackLayout Margin="{OnIdiom Default='10, 20, 10, 0', Phone='10, 20'}">
-                    <Label Text="Activity (sports per week):" 
-                           TextColor="Black" />
-
-                    <telerik:RadNumericInput AutomationId="ActivityNumeric" 
-                                             Margin="0, 10, 0, 0" 
+                <VerticalStackLayout Spacing="12"
+                                     Margin="0, 40, 0, 0">
+                    <Label Text="Activity (sports per week):" />
+                    <telerik:RadNumericInput AutomationId="ActivityNumeric"
                                              Minimum="0" 
                                              Maximum="10" 
                                              Value="{Binding Activity, Mode=TwoWay}"/>
                 </VerticalStackLayout>
             </VerticalStackLayout>
-            <VerticalStackLayout Grid.Row="{OnIdiom Default=2, Phone=3}"
-                                 Grid.Column="0">
-                <HorizontalStackLayout Margin="10, 20, 10, 0">
-                    <Label VerticalOptions="Center" 
-                           Text="Gender:" 
-                           TextColor="Black" 
-                           Margin="{OnIdiom Default='0, 20, 10, 0', Phone='0, 20'}"/>
-                    <telerik:RadSegmentedControl Margin="{OnIdiom Default='10, 20, 10, 0', Phone='10, 20'}"
-                                                 HorizontalOptions="{OnIdiom Default=Start, Phone=End}"
-                                                 WidthRequest="252"
-                                                 HeightRequest="34"
-                                                 MinimumHeightRequest="0"
-                                                 SelectedSegmentTextColor="White"
-                                                 SelectedSegmentBackgroundColor="{StaticResource AccentColor8}"
-                                                 ItemsSource="{Binding Genders}"
-                                                 SelectedIndex="{Binding Gender, Mode=TwoWay, Converter={StaticResource GenderConverter}}" />
-                </HorizontalStackLayout>
-                <Grid RowDefinitions="*, *" 
-                      Margin="10, 20">
-                    <Label AutomationId="Calories" 
-                           Grid.Row="0"
-                           Margin="0, 0, 0, 10"
-                           VerticalOptions="{OnIdiom Default=Center, Phone=End}"
-                           Text="{Binding Calories, StringFormat='Calories: {0:0}'}"
-                           TextColor="Black" />
-                    <telerik:RadButton Text="Calculate"
-                                       Grid.Row="1"
-                                       Style="{StaticResource SubmitButtonStyle}"
-                                       VerticalOptions="{OnIdiom Default=Center, Phone=EndAndExpand}"
-                                       HorizontalOptions="{OnIdiom Default=Start, Phone=FillAndExpand}"
-                                       HeightRequest="40"
-                                       Padding="{OnIdiom Default='24, 12', Phone=0}"
-                                       Margin="{OnIdiom Default=0, Phone='0, 20, 0, 0'}"
-                                       Command="{Binding CalculateCommand}"/>
-                </Grid>
+            <Grid Grid.Row="{OnIdiom Default=2, Phone=3}"
+                  Grid.Column="0"
+                  Margin="0, 40, 0, 0"
+                  ColumnDefinitions="Auto, *">
+                <Label VerticalOptions="Center"
+                       Text="Gender:" />
+                <telerik:RadSegmentedControl Grid.Column="1"
+                                             Margin="24, 0, 0, 0"
+                                             HorizontalOptions="Fill"
+                                             HeightRequest="34"
+                                             MinimumHeightRequest="0"
+                                             SelectedSegmentTextColor="White"
+                                             SelectedSegmentBackgroundColor="{StaticResource AccentColor8}"
+                                             ItemsSource="{Binding Genders}"
+                                             SelectedIndex="{Binding Gender, Mode=TwoWay, Converter={StaticResource GenderConverter}}" />
+            </Grid>
+            <VerticalStackLayout Grid.Row="{OnIdiom Default=3, Phone=4}"
+                                 Margin="0, 40, 0, 0"
+                                 HorizontalOptions="{OnIdiom Default=Start, Phone=Fill}"
+                                 VerticalOptions="{OnIdiom Default=Start, Phone=End}"
+                                 Spacing="12">
+                <Label AutomationId="Calories"
+                       Text="{Binding Calories, StringFormat='Calories: {0:0}'}" />
+                <telerik:RadButton Text="Calculate"
+                                   Style="{StaticResource SubmitButtonStyle}"
+                                   VerticalOptions="{OnIdiom Default=Center, Phone=End}"
+                                   HorizontalOptions="{OnIdiom Default=Start, Phone=Fill}"
+                                   Command="{Binding CalculateCommand}"/>
             </VerticalStackLayout>
         </Grid>
     </ScrollView>

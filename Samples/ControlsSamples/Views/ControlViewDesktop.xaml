@@ -13,7 +13,7 @@
             <Setter Property="FontSize" Value="28" />
         </Style>
         <Style x:Key="BorderStyle" TargetType="telerik:RadBorder">
-            <Setter Property="CornerRadius" Value="{StaticResource BorderCornerRadius}" />
+            <Setter Property="CornerRadius" Value="4" />
         </Style>
         <Style x:Key="SelectedExampleItemStyle" TargetType="telerik:NonVirtualizedItemsControlItemContainer">
             <Setter Property="BackgroundColor" Value="{StaticResource ApplicationAccentColor}" />
@@ -32,7 +32,7 @@
                             <HorizontalStackLayout>
                                 <telerik:RadBorder BackgroundColor="{AppThemeBinding Light={StaticResource DefaultBackgroundColor}, Dark={StaticResource DefaultBackgroundColorDark}}"
                                                    Margin="6, 4, 4, 4"
-                                                   CornerRadius="{StaticResource BorderCornerRadius}">
+                                                   CornerRadius="4">
                                     <Image Source="{TemplateBinding Icon}"
                                            Aspect="Center"
                                            Margin="4" />
@@ -113,7 +113,7 @@
               Grid.Row="1"
               ColumnSpacing="10">
             <telerik:RadBorder BackgroundColor="{AppThemeBinding Light={StaticResource SecondaryBackgroundColor}, Dark={StaticResource SecondaryBackgroundColorDark}}"
-                               CornerRadius="{StaticResource BorderCornerRadius}"
+                               CornerRadius="4"
                                VerticalOptions="Start">
                 <telerik:NonVirtualizedItemsControl x:Name="examplesList"
                                                     ItemTemplate="{StaticResource ExampleItemTemplate}"

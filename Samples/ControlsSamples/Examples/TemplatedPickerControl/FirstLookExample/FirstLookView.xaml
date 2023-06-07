@@ -16,13 +16,6 @@
             <Setter Property="FontSize" Value="12" />
             <Setter Property="HorizontalTextAlignment" Value="Start" />
         </Style>
-        <Style TargetType="telerik:RadTemplatedPicker">
-            <Setter Property="Margin" Value="0, 0, 0, 15" />
-            <Setter Property="BorderThickness" Value="0, 0, 0, 1" />
-            <Setter Property="CornerRadius" Value="0" />
-            <Setter Property="Placeholder" Value="Select Size and Colour" />
-            <Setter Property="IsToggleButtonVisible" Value="False" />
-        </Style>
         <Style x:Key="DefaultUniformGridStyle" TargetType="telerik:RadUniformGrid">
             <Setter Property="Margin" Value="5, 0, 0, 0" />
         </Style>
@@ -42,15 +35,13 @@
             <Setter Property="Margin" Value="{OnPlatform Default='10, 0', WinUI='20, 0'}" />
             <Setter Property="FontSize" Value="{OnPlatform Default='22', WinUI='20'}" />
         </Style>
-        <DataTemplate x:Key="HorizontalItemTemplate">
-            <Grid ColumnDefinitions="Auto, *">
-                <telerik:RadBorder Style="{StaticResource DefaultCardBorderStyle}"
-                                   BackgroundColor="{Binding Color}">
-                    <Image Source="{Binding ImageSource}"/>
+        <DataTemplate x:Key="ProductItemTemplate">
+            <StackLayout Orientation="{OnIdiom Default=Horizontal, Desktop=Vertical}">
+                <telerik:RadBorder Style="{OnIdiom Default={StaticResource DefaultCardBorderStyle}, Desktop={StaticResource DesktopCardBorderStyle}}">
+                    <Image Source="{Binding ImageSource}" />
                 </telerik:RadBorder>
-                <VerticalStackLayout Grid.Column="1"
-                                     Spacing="5"
-                                     Padding="0, 10">
+                <VerticalStackLayout Spacing="5"
+                                     Margin="{OnIdiom Default='0, 12, 0, 0', Desktop=0}">
                     <Label Text="Raglan sleeve" />
                     <Label Text="60% Polyamide, 40% Polyester" />
                     <Label Text="Machine Wash - Cold (30° max)" />
@@ -58,47 +49,18 @@
                     <Label Text="Slim Fit" />
                     <Label Text="Short Sleeve" />
                 </VerticalStackLayout>
-            </Grid>
-        </DataTemplate>
-        <DataTemplate x:Key="VerticalItemTemplate">
-            <VerticalStackLayout>
-                <telerik:RadBorder VerticalOptions="Start"
-                                   HorizontalOptions="Start"
-                                   Style="{StaticResource DefaultCardBorderStyle}"
-                                   BackgroundColor="{Binding Color}">
-                    <Image Source="{Binding ImageSource}"/>
-                </telerik:RadBorder>
-                <VerticalStackLayout Spacing="5" Padding="10, 0">
-                    <VerticalStackLayout.Resources>
-                        <Style TargetType="Label">
-                            <!--Work-Around to implicit styles bug in WinUI-->
-                            <Setter Property="TextColor" Value="Black" />
-                            <Setter Property="FontSize" Value="12" />
-                            <Setter Property="HorizontalTextAlignment" Value="Start" />
-                        </Style>
-                    </VerticalStackLayout.Resources>
-                    <Label Text="Raglan sleeve" />
-                    <Label Text="60% Polyamide, 40% Polyester" />
-                    <Label Text="Machine Wash - Cold (30° max)" />
-                    <Label Text="Collar Style: Round neck" />
-                    <Label Text="Slim Fit" />
-                    <Label Text="Short Sleeve" />
-                </VerticalStackLayout>
-            </VerticalStackLayout>
+            </StackLayout>
         </DataTemplate>
     </ContentView.Resources>
 
     <VerticalStackLayout>
         <Label Text="Women's Short Sleeve Top"
-               Style="{StaticResource DefaultSubtitleLabelStyle}"
                FontSize="24"
-               Margin="0, 0, 0, 24" />
+               Margin="{OnIdiom Default='0, 0, 0, 24', Desktop='0, 0, 0, 40'}" />
         <Label Text="Select Size &amp; Colour:"
-               Style="{StaticResource DefaultSubtitleLabelStyle}"
-               FontSize="16"/>
+               Margin="0, 0, 0, 12" />
         <telerik:RadTemplatedPicker x:Name="templatedPicker"
                                     Placeholder="Choose Your Size and Color"
-                                    PlaceholderLabelStyle="{StaticResource PlaceholderLabelStyle}"
                                     SelectedValue="{Binding SelectedValue}">
             <telerik:RadTemplatedPicker.PopupSettings>
                 <telerik:PickerPopupSettings AcceptCommand="{Binding AcceptCommand}"

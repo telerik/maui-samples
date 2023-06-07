@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        xmlns:behaviors="clr-namespace:QSF.Behaviors"
+                        xmlns:local="clr-namespace:QSF.Examples.RichTextEditorControl.ImportExportExample"
+                        x:Class="QSF.Examples.RichTextEditorControl.ImportExportExample.ExportView">
+    <telerik:RadContentView.Resources>
+        <local:RichTextContext x:Key="richTextContext" RichTextEditor="{x:Reference richTextEditor}" />
+    </telerik:RadContentView.Resources>
+
+    <Grid RowDefinitions="{OnIdiom Default='Auto, *', Phone='*, Auto'}">
+        <telerik:RadRichTextEditorToolbar Grid.Row="{OnIdiom Default=0, Phone=1}"
+                                          RichTextEditor="{x:Reference richTextEditor}">
+            <telerik:SplitButtonToolbarItem Text="Export as..."
+                                            ImageSource="export_text.png">
+                <telerik:SplitButtonToolbarItem.Style>
+                    <Style TargetType="telerik:SplitButtonToolbarItemView">
+                        <Setter Property="DisplayOptions" Value="Image, Text" />
+                    </Style>
+                </telerik:SplitButtonToolbarItem.Style>
+                <telerik:ButtonToolbarItem Text="Export as TXT"
+                                           ImageSource="export_text.png"
+                                           Command="{Binding SaveAsTextCommand}"
+                                           CommandParameter="{StaticResource richTextContext}" />
+                <telerik:ButtonToolbarItem Text="Export as HTML"
+                                           ImageSource="export_html.png"
+                                           Command="{Binding SaveAsHtmlCommand}"
+                                           CommandParameter="{StaticResource richTextContext}" />
+                <telerik:ButtonToolbarItem Text="Export as DOCX"
+                                           ImageSource="export_word.png"
+                                           Command="{Binding SaveAsDocxCommand}"
+                                           CommandParameter="{StaticResource richTextContext}" />
+                <telerik:ButtonToolbarItem Text="Export as RTF"
+                                           ImageSource="export_text.png"
+                                           Command="{Binding SaveAsRtfCommand}"
+                                           CommandParameter="{StaticResource richTextContext}" />
+                <telerik:ButtonToolbarItem Text="Export as PDF"
+                                           ImageSource="export_pdf.png"
+                                           Command="{Binding SaveAsPdfCommand}"
+                                           CommandParameter="{StaticResource richTextContext}" />
+            </telerik:SplitButtonToolbarItem>
+            <telerik:SeparatorToolbarItem/>
+        </telerik:RadRichTextEditorToolbar>
+
+        <telerik:RadRichTextEditor x:Name="richTextEditor"
+                                   Grid.Row="{OnIdiom Default=1, Phone=0}"
+                                   Source="{Binding HtmlText}" >
+            <telerik:RadRichTextEditor.Behaviors>
+                <behaviors:PickImageBehavior />
+            </telerik:RadRichTextEditor.Behaviors>
+        </telerik:RadRichTextEditor>
+    </Grid>
+</telerik:RadContentView>

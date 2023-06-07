@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using QSF.Examples.DataGridControl.Common;
+using QSF.ExampleUtilities;
 using QSF.ViewModels;
 
 namespace QSF.Examples.ExpanderControl.FirstLookExample

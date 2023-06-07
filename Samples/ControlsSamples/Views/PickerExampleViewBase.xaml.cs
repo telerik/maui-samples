@@ -24,11 +24,6 @@ public partial class PickerExampleViewBase : ContentView
 
     private DataTemplate CreateDefaultTemplate()
     {
-        if (Device.Idiom == TargetIdiom.Desktop)
-        {
-            return (DataTemplate)this.Resources["DesktopItemTemplate"];
-        }
-
         return (DataTemplate)this.Resources["DefaultItemTemplate"];
     }
 

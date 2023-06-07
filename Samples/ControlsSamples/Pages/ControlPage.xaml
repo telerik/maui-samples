@@ -21,12 +21,12 @@
         </converters:RandomItemConverter>
         <Style x:Key="BorderStyle" TargetType="telerik:RadBorder">
             <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource SecondaryBackgroundColor}, Dark={StaticResource SecondaryBackgroundColorDark}}" />
-            <Setter Property="CornerRadius" Value="{StaticResource BorderCornerRadius}" />
+            <Setter Property="CornerRadius" Value="4" />
             <Setter Property="Margin" Value="4" />
         </Style>
         <Style x:Key="ExampleBorderStyle" TargetType="telerik:RadBorder">
             <Setter Property="Background" Value="{Binding Source={RelativeSource Mode=Self}, Converter={StaticResource RandomBackgroundConverter}}" />
-            <Setter Property="CornerRadius" Value="{StaticResource BorderCornerRadius}" />
+            <Setter Property="CornerRadius" Value="4" />
             <Setter Property="Opacity" Value="0.3" />
         </Style>
         <Style x:Key="LabelStyle" TargetType="Label">

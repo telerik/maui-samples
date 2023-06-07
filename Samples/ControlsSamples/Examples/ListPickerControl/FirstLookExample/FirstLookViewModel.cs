@@ -21,18 +21,21 @@ namespace QSF.Examples.ListPickerControl.FirstLookExample
             {
                 new CardItem()
                 {
-                    Color = Color.FromArgb("#ECF6FE"),
-                    ImageSource = "melodicchillout.png"
+                    BackgroundColor = Color.FromArgb("#ECF6FE"),
+                    BorderColor = Color.FromArgb("#D6EBFC"),
+                    ImageSource = "vocalchillout.png"
                 },
                 new CardItem()
                 {
-                    Color = Color.FromArgb("#FEF2F1"),
+                    BackgroundColor = Color.FromArgb("#FEF2F1"),
+                    BorderColor = Color.FromArgb("#FEE5E3"),
                     ImageSource = "melodicprogressive.png"
                 },
                 new CardItem()
                 {
-                    Color = Color.FromArgb("#FFF4EB"),
-                    ImageSource = "vocalchillout.png"
+                    BackgroundColor = Color.FromArgb("#FFF4EB"),
+                    BorderColor = Color.FromArgb("#FFE9D8"),
+                    ImageSource = "melodicchillout.png"
                 }
             };
             this.Genres = new ObservableItemCollection<string>()

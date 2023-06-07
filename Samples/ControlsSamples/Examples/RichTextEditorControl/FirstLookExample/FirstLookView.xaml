@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        xmlns:behaviors="clr-namespace:QSF.Behaviors"
+                        x:Class="QSF.Examples.RichTextEditorControl.FirstLookExample.FirstLookView"
+                        Padding="{OnIdiom Default='16, 20', Phone=16}">
+    <Grid RowDefinitions="{OnIdiom Default='Auto, Auto, *', Phone='Auto, *, Auto'}">
+        <Grid RowDefinitions="45, 45">
+            <telerik:RadBorder BorderColor="{AppThemeBinding Light={OnPlatform Default={StaticResource DefaultBorderColor}, WinUI={StaticResource DefaultBorderColorWinUI}},
+                                                             Dark={OnPlatform Default={StaticResource DefaultBorderColorDark}, WinUI={StaticResource DefaultBorderColorDarkWinUI}}}"
+                               BorderThickness="0, 0, 0, 1">
+                <Grid ColumnDefinitions="Auto, *, Auto"
+                      ColumnSpacing="4">
+                    <Label Text="To:"
+                           VerticalTextAlignment="Center" />
+                    <telerik:RadAutoComplete x:Name="recipientsAutoComplete"
+                                             Grid.Column="1"
+                                             ItemsSource="{Binding RecipientsItemSource}"
+                                             CompletionMode="Contains"
+                                             DisplayMode="Tokens"
+                                             BackgroundColor="Transparent"
+                                             BorderBrush="Transparent"
+                                             FocusedBorderBrush="Transparent"
+                                             BorderThickness="0"
+                                             IsClearButtonVisible="False"
+                                             VerticalOptions="Center">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="Focused" />
+                                <VisualState x:Name="Disabled" />
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </telerik:RadAutoComplete>
+                    <Button Grid.Column="2"
+                            Text="&#xE82D;"
+                            FontFamily="TelerikFontExamples"
+                            TextColor="White"
+                            BackgroundColor="#727272"
+                            HeightRequest="40"
+                            WidthRequest="40"
+                            CornerRadius="20"
+                            Padding="4, 0, 0, 0"
+                            Margin="0, 0, 0, 5"
+                            Command="{Binding SendEmailCommand}" />
+                </Grid>
+            </telerik:RadBorder>
+            <telerik:RadBorder Grid.Row="1"
+                               BorderColor="{AppThemeBinding Light={OnPlatform Default={StaticResource DefaultBorderColor}, WinUI={StaticResource DefaultBorderColorWinUI}},
+                                                             Dark={OnPlatform Default={StaticResource DefaultBorderColorDark}, WinUI={StaticResource DefaultBorderColorDarkWinUI}}}"
+                               BorderThickness="0, 0, 0, 1">
+                <Grid ColumnDefinitions="Auto, *"
+                      ColumnSpacing="4">
+                    <Label Text="Subject:"
+                           VerticalTextAlignment="Center" />
+                    <telerik:RadEntry Grid.Column="1"
+                                      Text="RE: Pick your holiday"
+                                      BackgroundColor="Transparent"
+                                      BorderBrush="Transparent"
+                                      FocusedBorderBrush="Transparent"
+                                      BorderThickness="0"
+                                      VerticalOptions="Center"
+                                      ReserveSpaceForErrorView="False" />
+                </Grid>
+            </telerik:RadBorder>
+        </Grid>
+        <telerik:RadRichTextEditor x:Name="richTextEditor"
+                                   Grid.Row="{OnIdiom Default=2, Phone=1}"
+                                   Source="{Binding Source}">
+            <telerik:RadRichTextEditor.Behaviors>
+                <behaviors:PickImageBehavior />
+            </telerik:RadRichTextEditor.Behaviors>
+        </telerik:RadRichTextEditor>
+        <telerik:RadRichTextEditorToolbar x:Name="richTextToolbar"
+                                          Grid.Row="{OnIdiom Default=1, Phone=2}"
+                                          RichTextEditor="{x:Reference richTextEditor}"
+                                          Margin="{OnIdiom Default='0, 12, 0, 0', Phone=0}" />
+    </Grid>
+</telerik:RadContentView>

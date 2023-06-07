@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:converters="clr-namespace:QSF.Examples.ChatControl.TravelAssistanceExample.Converters"
+             xmlns:local="clr-namespace:QSF.Examples.ChatControl.TravelAssistanceExample"
+             x:Class="QSF.Examples.ChatControl.TravelAssistanceExample.TravelAssistanceView">
+    <telerik:RadContentView.Resources>
+        <ResourceDictionary>
+            <converters:ChatItemConverter x:Key="ChatItemConverter" />
+            <DataTemplate x:Key="QSF.Examples.ChatControl.TravelAssistanceExample.Models.CardAction">
+                <Label Text="{Binding Title}" />
+            </DataTemplate>
+            <DataTemplate x:Key="QSF.Examples.ChatControl.TravelAssistanceExample.Models.AirlineCompany">
+                <HorizontalStackLayout HeightRequest="17"
+                                       IsClippedToBounds="True">
+                    <Image Source="{Binding CompanyLogo}"
+                           Aspect="AspectFit"
+                           WidthRequest="50" />
+                    <Label Text="{Binding Name}" />
+                </HorizontalStackLayout>
+            </DataTemplate>
+            <DataTemplate x:Key="QSF.Examples.ChatControl.TravelAssistanceExample.Models.TravelCardAction">
+                <Label Text="{Binding DestinationName}" />
+            </DataTemplate>
+            <Style x:Key="ChatCardBorderStyle" TargetType="telerik:RadBorder">
+                <Setter Property="WidthRequest" Value="280" />
+                <Setter Property="CornerRadius" Value="4" />
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource SecondaryBackgroundColor}, Dark={StaticResource SecondaryBackgroundColorDark}}" />
+                <Setter Property="BorderColor" Value="{AppThemeBinding Light={OnPlatform Default={StaticResource DefaultBorderColor}, WinUI={StaticResource DefaultBorderColorWinUI}},
+                                                                       Dark={OnPlatform Default={StaticResource DefaultBorderColorDark}, WinUI={StaticResource DefaultBorderColorDarkWinUI}}}" />
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="Margin" Value="0, 0, 0, 10" />
+            </Style>
+            <Style x:Key="CardPrimaryTitleLabelStyle" TargetType="Label">
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontSize" Value="{OnPlatform Android=20, iOS=22, MacCatalyst=22, WinUI=20}" />
+            </Style>
+            <Style x:Key="CardSecondaryTitleLabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="{OnPlatform Android=16, iOS=20, MacCatalyst=15, WinUI=16}" />
+            </Style>
+            <Style x:Key="CardSmallTitleLabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource PlaceholderColor}, Dark={StaticResource PlaceholderColorDark}}" />
+                <Setter Property="FontSize" Value="{OnPlatform Android=12, iOS=14, MacCatalyst=12, WinUI=12}" />
+                <Setter Property="Margin" Value="0, 0, 0, 2" />
+            </Style>
+            <Style x:Key="SeparatorStyle" TargetType="BoxView">
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource SeparatorColor}, Dark={StaticResource SeparatorColorDark}}" />
+                <Setter Property="HeightRequest" Value="1" />
+                <Setter Property="Margin" Value="0, 12" />
+            </Style>
+            <local:CustomChatItemTemplateSelector x:Key="CustomChatItemTemplateSelector">
+                <local:CustomChatItemTemplateSelector.FlightTemplate>
+                    <DataTemplate>
+                        <telerik:RadBorder Style="{StaticResource ChatCardBorderStyle}"
+                                           Padding="12">
+                            <Grid RowDefinitions="*, Auto">
+                                <telerik:RadListView ItemsSource="{Binding Data.Flights}"
+                                                     SelectionMode="None"
+                                                     HeightRequest="{OnPlatform Default=200, Android=220, WinUI=220}">
+                                    <telerik:RadListView.LayoutDefinition>
+                                        <telerik:ListViewLinearLayout VerticalItemSpacing="12" />
+                                    </telerik:RadListView.LayoutDefinition>
+                                    <telerik:RadListView.ItemStyle>
+                                        <telerik:ListViewItemStyle BorderLocation="None"
+                                                                   BorderWidth="0" />
+                                    </telerik:RadListView.ItemStyle>
+                                    <telerik:RadListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <telerik:ListViewTemplateCell>
+                                                <telerik:ListViewTemplateCell.View>
+                                                    <telerik:RadBorder BorderColor="{AppThemeBinding Light={StaticResource SeparatorColor}, Dark={StaticResource SeparatorColorDark}}"
+                                                                       BorderThickness="0, 0, 0, 1"
+                                                                       HorizontalOptions="Fill"
+                                                                       Padding="0, 0, 0, 12"
+                                                                       Margin="0, 0, 0, 10">
+                                                        <Grid ColumnDefinitions="*, *, *"
+                                                              RowDefinitions="Auto, *">
+                                                            <Label Text="{Binding DepartureDate, StringFormat='{0:yyyy MMM dd, ddd hh:mm}'}"
+                                                                   Grid.ColumnSpan="3" />
+                                                            <StackLayout Grid.Row="1">
+                                                                <Label Text="{Binding DepartureCity}"
+                                                                       Style="{StaticResource CardSmallTitleLabelStyle}" />
+                                                                <Label Text="{Binding DepartureAirport}"
+                                                                       Style="{StaticResource CardPrimaryTitleLabelStyle}" />
+                                                            </StackLayout>
+                                                            <Image Grid.Column="1"
+                                                                   Grid.Row="1"
+                                                                   Source="{Binding PlaneImageUrl}"
+                                                                   WidthRequest="42"
+                                                                   HeightRequest="26"
+                                                                   HorizontalOptions="Center" />
+                                                            <StackLayout Grid.Column="2"
+                                                                         Grid.Row="1"
+                                                                         HorizontalOptions="End">
+                                                                <Label Text="{Binding ArrivalCity}"
+                                                                       Style="{StaticResource CardSmallTitleLabelStyle}"
+                                                                       HorizontalTextAlignment="End" />
+                                                                <Label Text="{Binding ArrivalAirport}"
+                                                                       Style="{StaticResource CardPrimaryTitleLabelStyle}"
+                                                                       HorizontalTextAlignment="End" />
+                                                            </StackLayout>
+                                                        </Grid>
+                                                    </telerik:RadBorder>
+                                                </telerik:ListViewTemplateCell.View>
+                                            </telerik:ListViewTemplateCell>
+                                        </DataTemplate>
+                                    </telerik:RadListView.ItemTemplate>
+                                </telerik:RadListView>
+                                <Grid Grid.Row="1"
+                                      ColumnDefinitions="Auto, *">
+                                    <Label Text="Total:"
+                                           VerticalOptions="Center" />
+                                    <Label Grid.Column="1"
+                                           Text="{Binding Data.TotalTicketPrice}"
+                                           Style="{StaticResource CardSecondaryTitleLabelStyle}"
+                                           FontAttributes="Bold"
+                                           HorizontalTextAlignment="End" />
+                                </Grid>
+                            </Grid>
+                        </telerik:RadBorder>
+                    </DataTemplate>
+                </local:CustomChatItemTemplateSelector.FlightTemplate>
+                <local:CustomChatItemTemplateSelector.SummaryTemplate>
+                    <DataTemplate>
+                        <telerik:RadBorder Style="{StaticResource ChatCardBorderStyle}">
+                            <VerticalStackLayout>
+                                <Image Source="{Binding Data.Image}"
+                                       Aspect="Fill" />
+                                <VerticalStackLayout Padding="12">
+                                    <Label Text="{Binding Data.Title}"
+                                           Style="{StaticResource CardPrimaryTitleLabelStyle}" />
+                                    <Label Text="Hotel"
+                                           Style="{StaticResource CardSmallTitleLabelStyle}"
+                                           Margin="0, 12, 0, 0" />
+                                    <Label Text="{Binding Data.Hotel}"
+                                           Style="{StaticResource CardSecondaryTitleLabelStyle}" />
+                                    <BoxView Style="{StaticResource SeparatorStyle}" />
+                                    <Label Text="Flights"
+                                           Style="{StaticResource CardSmallTitleLabelStyle}" />
+                                    <telerik:NonVirtualizedItemsControl ItemsSource="{Binding Data.Flights}"
+                                                                        SelectionMode="None">
+                                        <telerik:NonVirtualizedItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <Label Text="{Binding}" LineHeight="1.4" />
+                                            </DataTemplate>
+                                        </telerik:NonVirtualizedItemsControl.ItemTemplate>
+                                    </telerik:NonVirtualizedItemsControl>
+                                    <BoxView Style="{StaticResource SeparatorStyle}" />
+                                    <Grid ColumnDefinitions="Auto, *">
+                                        <Label Text="Total:" />
+                                        <Label Grid.Column="1"
+                                               Text="{Binding Data.TotalPrice}"
+                                               Style="{StaticResource CardSecondaryTitleLabelStyle}"
+                                               FontAttributes="Bold"
+                                               HorizontalTextAlignment="End" />
+                                    </Grid>
+                                </VerticalStackLayout>
+                            </VerticalStackLayout>
+                        </telerik:RadBorder>
+                    </DataTemplate>
+                </local:CustomChatItemTemplateSelector.SummaryTemplate>
+                <local:CustomChatItemTemplateSelector.WaitingForBotTemplate>
+                    <DataTemplate>
+                        <telerik:RadBusyIndicator AnimationContentColor="{StaticResource ApplicationAccentColor}"
+                                                  AnimationContentHeightRequest="30"
+                                                  AnimationContentWidthRequest="30"
+                                                  AnimationType="Animation5"
+                                                  IsBusy="True"
+                                                  HorizontalOptions="Center" />
+                    </DataTemplate>
+                </local:CustomChatItemTemplateSelector.WaitingForBotTemplate>
+            </local:CustomChatItemTemplateSelector>
+        </ResourceDictionary>
+    </telerik:RadContentView.Resources>
+
+    <telerik:RadContentView.BindingContext>
+        <local:TravelBotViewModel/>
+    </telerik:RadContentView.BindingContext>
+
+    <Grid WidthRequest="{OnIdiom Default=-1, Desktop=450}" RowDefinitions="Auto, *">
+        <HorizontalStackLayout>
+            <Image Margin="10"
+                   WidthRequest="48"
+                   HeightRequest="48"
+                   Source="vacationbot.png" />
+            <Label Text="Telerik Travel Assistance"
+                   FontSize="18"
+                   VerticalTextAlignment="Center" />
+        </HorizontalStackLayout>
+        <telerik:RadChat Grid.Row="1"
+                         ItemsSource="{Binding Items}"
+                         Author="{Binding Me}"
+                         ItemConverter="{StaticResource ChatItemConverter}"
+                         ItemTemplateSelector="{StaticResource CustomChatItemTemplateSelector}">
+            <telerik:RadChat.Picker>
+                <telerik:RadChatPicker IsVisible="{Binding IsChatPickerVisible}"
+                                       OkCommand="{Binding OkPickerCommand}"
+                                       IsCancelButtonVisible="False"
+                                       Context="{Binding Context}"
+                                       HeaderText="{Binding PickerHeaderText}"
+                                       VerticalOptions="End" />
+            </telerik:RadChat.Picker>
+            <telerik:RadChat.Resources>
+                <ResourceDictionary>
+                    <Style TargetType="Image">
+                        <Setter Property="Aspect" Value="Fill" />
+                        <Setter Property="HeightRequest" Value="150" />
+                    </Style>
+                </ResourceDictionary>
+            </telerik:RadChat.Resources>
+        </telerik:RadChat>
+        <telerik:RadBusyIndicator AnimationContentHeightRequest="50"
+                                  AnimationContentWidthRequest="50"
+                                  AnimationContentColor="{StaticResource ApplicationAccentColor}"
+                                  IsBusy="{Binding IsBusy}"
+                                  IsVisible="{Binding IsBusy}"
+                                  Grid.RowSpan="2">
+            <telerik:RadBusyIndicator.BusyContent>
+                <Label Text="Connecting to Azure"
+                       FontAttributes="Italic"
+                       HorizontalOptions="Center"
+                       Margin="0, 12, 0, 0" />
+            </telerik:RadBusyIndicator.BusyContent>
+        </telerik:RadBusyIndicator>
+    </Grid>
+</telerik:RadContentView>

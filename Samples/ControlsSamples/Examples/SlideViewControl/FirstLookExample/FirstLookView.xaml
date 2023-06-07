@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        xmlns:local="clr-namespace:QSF.Examples.SlideViewControl.FirstLookExample"
+                        x:Class="QSF.Examples.SlideViewControl.FirstLookExample.FirstLookView"
+                        Padding="16">
+    <telerik:RadContentView.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="itemTemplate">
+                <Image Source="{Binding}"
+                       Aspect="AspectFill"
+                       HeightRequest="240"/>
+            </DataTemplate>
+        </ResourceDictionary>
+    </telerik:RadContentView.Resources>
+    
+    <Grid RowDefinitions="Auto, Auto, Auto">
+        <telerik:RadSlideView x:Name="slideView"
+                              ItemsSource="{Binding Images}"
+                              ItemTemplate="{StaticResource itemTemplate}"
+                              HorizontalOptions="{OnIdiom Default=Fill, Desktop=Start}"/>
+        <Label Grid.Row="1"
+               Text="Salad Recipes"
+               FontSize="20"
+               Margin="{OnIdiom Default='0, 24, 0, 0', Desktop='0, 8, 0, 0'}" />
+        <VerticalStackLayout Grid.Row="2"
+                             Spacing="20"
+                             HorizontalOptions="Start"
+                             Margin="{OnIdiom Default='0, 12, 0, 0', Desktop='0, 16, 0, 0'}"
+                             MaximumWidthRequest="{Binding MaximumWidthRequest, Source={Reference slideView}}">
+            <Label Text="Salad recipes are my favorite way to showcase vibrant, in-season produce - fruits and veggies that are so good on their own that you don't need to do much to make them into a delicious meal." />
+            <Label Text="On cold winter nights, I like to brighten up our dinner table with a big, colorful mix of root veggies and hearty greens." />
+            <Label Text="On beautiful, warm days when I'd rather be outside than in the kitchen, summer salads are the perfect solution: they're simple to toss together, but they're totally delicious nonetheless." />
+        </VerticalStackLayout>
+    </Grid>
+</telerik:RadContentView>
