@@ -39,9 +39,11 @@
 		<None Remove="Resources\Fonts\telerikfontexamples.ttf" />
 	</ItemGroup>
 
-	<ItemGroup Condition="$(SolutionName) != 'Telerik.Maui'">
+	<ItemGroup Condition="'$(SolutionName)' != 'Telerik.Maui' And '$(UseSourceProjects)' != 'True' And '$(UseSourceAssemblies)' != 'True'">
 		<PackageReference Include="Telerik.UI.for.Maui" Version="$(TelerikVersion)" />
 	</ItemGroup>
 
-	<Import Condition="'$(SolutionName)' == 'Telerik.Maui'" Project="..\AddSourceReferences.proj" />
+	<Import Condition="'$(SolutionName)' == 'Telerik.Maui' Or '$(UseSourceProjects)' == 'True'" Project="..\AddSourceProjects.proj" />
+	<Import Condition="'$(SolutionName)' != 'Telerik.Maui' And '$(UseSourceProjects)' != 'True' And '$(UseSourceAssemblies)' == 'True'" Project="..\AddSourceAssemblies.proj" />
+
 </Project>
