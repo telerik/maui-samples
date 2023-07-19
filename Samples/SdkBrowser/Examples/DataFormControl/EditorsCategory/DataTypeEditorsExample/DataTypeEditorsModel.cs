@@ -145,7 +145,7 @@ namespace SDKBrowserMaui.Examples.DataFormControl.EditorsCategory.DataTypeEditor
 
         [Display(Name = "Total cost")]
         [DataType(DataType.Currency)]
-        [DisplayFormat(DataFormatString = "{0:C}")]
+        [DisplayFormat(DataFormatString = "C")]
         public decimal? Cost
         {
             get => this.cost;

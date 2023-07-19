@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.DataGridControl.RowDetailsCategory.RowDetailsExample.RowDetails">
+
+    <!-- >> datagrid-rowdetails-template -->
+    <telerik:RadContentView.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="TemplateForRowDetails">
+                <Grid BackgroundColor="#F2EFF9"
+                      Padding="12">
+                    <Label Text="{Binding Details}" />
+                </Grid>
+            </DataTemplate>
+        </ResourceDictionary>
+    </telerik:RadContentView.Resources>
+    <!-- << datagrid-rowdetails-template -->
+    
+    <Grid>
+        <!-- >> datagrid-rowdetails -->
+        <telerik:RadDataGrid x:Name="dataGrid"
+                             AutoGenerateColumns="False"
+                             RowDetailsTemplate="{StaticResource TemplateForRowDetails}">
+            <telerik:RadDataGrid.Columns>
+                <telerik:DataGridToggleRowDetailsColumn />
+                <telerik:DataGridTextColumn PropertyName="Country" />
+                <telerik:DataGridTextColumn PropertyName="Capital" /> 
+            </telerik:RadDataGrid.Columns>
+        </telerik:RadDataGrid>
+        <!-- << datagrid-rowdetails -->
+    </Grid>
+</telerik:RadContentView>

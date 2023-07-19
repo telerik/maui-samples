@@ -3,14 +3,30 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
              x:Class="SDKBrowserMaui.Examples.CalendarControl.FeaturesCategory.InteractionModeExample.InteractionMode">
-    <ScrollView>
+    <ContentView.Resources>
+        <Style TargetType="telerik:RadCalendar">
+            <Setter Property="HorizontalOptions" Value="{OnPlatform Default=Fill, MacCatalyst=Start, WinUI=Start}" />
+            <Setter Property="VerticalOptions" Value="{OnPlatform Default=Fill, MacCatalyst=Start, WinUI=Start}" />
+        </Style>
+    </ContentView.Resources>
+
+    <Grid RowDefinitions="Auto, *">
         <VerticalStackLayout Spacing="10">
-            <Label Text="InteractionMode = 'Pan'&#10;Change the current view by using pan gesture and buttons"/>
-            <telerik:RadCalendar InteractionMode="Pan"/>
-            <Label Text="InteractionMode = 'None'&#10;Change the current view by using the navigation buttons"/>
-            <!-- >> calendar-interactionmode-none -->
-            <telerik:RadCalendar InteractionMode="None"/>
-            <!-- << calendar-interactionmode-none -->
+            <HorizontalStackLayout Spacing="5">
+                <Label Text="Interaction mode:"
+                       VerticalOptions="Center" />
+                <telerik:RadComboBox SelectedItem="{Binding InteractionMode, Mode=TwoWay}"
+                                     ItemsSource="{Binding InteractionModes}"
+                                     IsClearButtonVisible="False"
+                                     DropDownHeight="{OnPlatform Android=68, iOS=72, MacCatalyst=44, WinUI=80}"
+                                     WidthRequest="100" />
+            </HorizontalStackLayout>
+            <Label Text="{Binding InteractionModeInfo}" />
         </VerticalStackLayout>
-    </ScrollView>
+        <!-- >> calendar-interactionmode -->
+        <telerik:RadCalendar x:Name="calendar"
+                             Grid.Row="1"
+                             InteractionMode="{Binding InteractionMode}" />
+        <!-- << calendar-interactionmode -->
+    </Grid>
 </ContentView>

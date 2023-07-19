@@ -11,6 +11,7 @@ using Telerik.Maui;
 using Telerik.Maui.Controls.RichTextEditor;
 using Microsoft.Maui.Controls;
 using Microsoft.Maui.Devices;
+using SDKBrowserMaui.Behaviors;
 
 namespace SDKBrowserMaui.Examples.RichTextEditorControl.FeaturesCategory.ReadOnlyStateExample;
 
@@ -35,6 +36,7 @@ public partial class ReadOnlyState : ContentView
         this.richTextEditor.Source = RichTextSource.FromStream(streamFunc);
         // << richtexteditor-readonly-state-code-behind
 
+        this.richTextEditor.Behaviors.Add(new PickImageBehavior());
     }
 
     // >> android-specific-keyborad

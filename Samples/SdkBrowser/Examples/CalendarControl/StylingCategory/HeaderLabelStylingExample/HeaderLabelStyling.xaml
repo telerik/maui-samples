@@ -15,17 +15,23 @@
 
             <!-- >> calendar-headerborder-style -->
             <Style TargetType="telerik:RadBorder" x:Key="HeaderBorderStyle">
-                <Setter Property="BackgroundColor" Value="White" />
-                <Setter Property="BorderBrush" Value="#8660C5" />
-                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="BackgroundColor" Value="#198660C5" />
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="Padding" Value="{OnPlatform Default='16, 8', Android=0, WinUI='12, 4'}" />
             </Style>
             <!-- << calendar-headerborder-style -->
+
+            <Style TargetType="telerik:RadCalendar">
+                <Setter Property="HorizontalOptions" Value="{OnPlatform Default=Fill, MacCatalyst=Start, WinUI=Start}" />
+                <Setter Property="VerticalOptions" Value="{OnPlatform Default=Fill, MacCatalyst=Start, WinUI=Start}" />
+            </Style>
         </ResourceDictionary>
     </ContentView.Resources>
-    <VerticalStackLayout>
+
+    <Grid>
         <!-- >> calendar-headerlabel-styling -->
         <telerik:RadCalendar HeaderBorderStyle="{StaticResource HeaderBorderStyle}"
-                             HeaderLabelStyle="{StaticResource HeaderLabelStyle}"/>
+                             HeaderLabelStyle="{StaticResource HeaderLabelStyle}" />
         <!-- << calendar-headerlabel-styling -->
-    </VerticalStackLayout>
+    </Grid>
 </ContentView>

@@ -11,14 +11,15 @@
                              UserEditMode="Cell">
             <telerik:RadDataGrid.Columns>
                 <telerik:DataGridTextColumn PropertyName="Name" 
-                                            Width="100"
+                                            Width="130"
                                             SizeMode="Fixed"
                                             HeaderText="Name">
                     <telerik:DataGridColumn.CellContentTemplate>
                         <DataTemplate>
                             <Label Text="{Binding Name}" 
                                    LineBreakMode="TailTruncation"
-                                   VerticalOptions="Center"/>
+                                   VerticalOptions="Center"
+                                   Margin="5, 0" />
                         </DataTemplate>
                     </telerik:DataGridColumn.CellContentTemplate>
                 </telerik:DataGridTextColumn>
@@ -45,7 +46,7 @@
                     <telerik:DataGridColumn.CellContentTemplate>
                         <DataTemplate>
                             <Label Text="{Binding Country}" 
-                                   Margin="0, 5, 0, 5"
+                                   Margin="0, 5"
                                    HorizontalOptions="Center"
                                    VerticalTextAlignment="Center"/>
                         </DataTemplate>
