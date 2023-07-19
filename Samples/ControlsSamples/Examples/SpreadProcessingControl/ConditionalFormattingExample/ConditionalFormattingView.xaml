@@ -3,124 +3,147 @@
                         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                         xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
                         x:Class="QSF.Examples.SpreadProcessingControl.ConditionalFormattingExample.ConditionalFormattingView"
-                        Margin="5">
+                        Padding="{OnIdiom Default='16, 20', Phone=0}">
     <telerik:RadContentView.Resources>
         <ResourceDictionary>
-            <Style x:Key="mainConditionLabelStyle" TargetType="Label">
-                <Setter Property="FontAttributes" Value="Bold" />
-                <Setter Property="HorizontalOptions" Value="{OnIdiom Default=Start, Phone=Center}" />
-                <Setter Property="TextColor" Value="#000000" />
-                <Setter Property="Margin" Value="0,0,0,5"/>
+            <Style x:Key="FirstRowLabelStyle" TargetType="Label" BasedOn="{StaticResource BaseLabelStyle}">
+                <Setter Property="HorizontalOptions" Value="Center" />
             </Style>
-
-            <Style x:Key="additioLabelStyle" TargetType="Label">
-                <Setter Property="HorizontalOptions" Value="{OnIdiom Default=Start, Phone=Center}" />
-                <Setter Property="Margin" Value="0, 0, 0, 18" />
-                <Setter Property="TextColor" Value="#919191" />
+            <Style x:Key="SecondRowLabelStyle" TargetType="Label" BasedOn="{StaticResource PlaceholderLabelStyle}">
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="Margin" Value="0, 0, 0, 12" />
             </Style>
-
-            <Style TargetType="Picker" x:Key="CommonPickerStyle">
-                <Setter Property="TextColor" Value="#000000"/>
-                <Setter Property="HorizontalTextAlignment" Value="Center"/>
-                <Setter Property="Margin" Value="{OnIdiom Default='0, 0, 0, 5', Phone=0}" />
-
-            </Style>
-
-            <Style TargetType="Entry" x:Key="CommonEntryStyle">
-                <Setter Property="Keyboard" Value="Numeric"/>
-                <Setter Property="HorizontalTextAlignment" Value="Center"/>
-                <Setter Property="Margin" Value="{OnIdiom Default='0, 0, 0, 5', Phone=0}" />
+            <Style TargetType="telerik:RadEntry">
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="ReserveSpaceForErrorView" Value="False" />
+                <Setter Property="Margin" Value="0, 0, 0, 24" />
             </Style>
         </ResourceDictionary>
     </telerik:RadContentView.Resources>
-    <Grid RowDefinitions="*,Auto">
-        <ScrollView>
-            <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto" 
-                  ColumnSpacing="10"
-                  RowSpacing="24"
-                  Margin="0,24,0,0"
-                  Padding="16,10,16,0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="{OnIdiom Default=*, Phone=Auto}" />
-                </Grid.ColumnDefinitions>
-                <VerticalStackLayout>
-                    <Label Text="&#34;Client&#34; column rule:" 
-                           Style="{StaticResource mainConditionLabelStyle}"/>
-                    <Label Text="Highlight clients that are" 
-                           Style="{StaticResource additioLabelStyle}"/>
-                    <Picker ItemsSource="{Binding ClientsRules}"
-                            SelectedItem="{Binding SelectedClientsRule, Mode=TwoWay}"
-                            MaximumWidthRequest="{OnPlatform WinUI='300', MacCatalyst='300'}"
-                            Style="{StaticResource CommonPickerStyle}"/>
-                </VerticalStackLayout>
-                <VerticalStackLayout Grid.Row="{OnIdiom Default=0, Phone=1}" 
-                                     Grid.Column="{OnIdiom Default=1, Phone=0}">
-                    <Label Text="&#34;Shipping&#34; column rule:" 
-                           Style="{StaticResource mainConditionLabelStyle}"/>
-                    <Label Text="Highlight shipment type" 
-                           Style="{StaticResource additioLabelStyle}"/>
-                    <Picker ItemsSource="{Binding ShippingTerms}"
-                            MaximumWidthRequest="{OnPlatform WinUI='300', MacCatalyst='300'}"
-                            SelectedItem="{Binding SelectedShippingTerm, Mode=TwoWay}" 
-                            Style="{StaticResource CommonPickerStyle}"/>
-                </VerticalStackLayout>
-                <VerticalStackLayout Grid.Row="{OnIdiom Default=1, Phone=2}">
-                    <Grid RowDefinitions="Auto,Auto,Auto,Auto"
-                          ColumnDefinitions="*,*"
-                          ColumnSpacing="9">
-                        <Label Text="&#34;Discount&#34; column rule:" 
-                               Style="{StaticResource mainConditionLabelStyle}" 
-                               Grid.ColumnSpan="2"/>
-                        <Label Text="Highlight discount range" 
-                               Grid.Row="1" 
-                               Style="{StaticResource additioLabelStyle}" 
-                               Grid.ColumnSpan="2"/>
-                        <Picker Grid.Row="2" 
-                                Grid.Column="0" 
-                                Style="{StaticResource CommonPickerStyle}"
-                                ItemsSource="{Binding DiscountComparisonOperators}"
-                                MaximumWidthRequest="{OnPlatform WinUI='300', MacCatalyst='300'}"
-                                SelectedItem="{Binding SelectedDiscountComparison, Mode=TwoWay}"/>
-                        <Entry Grid.Row="{OnIdiom Default=3, Phone=2}" 
-                               Grid.Column="{OnIdiom Default=0, Phone=1}" 
-                               Text="{Binding DiscountThreshold}"
-                               MaximumWidthRequest="{OnPlatform WinUI='300', MacCatalyst='300'}"
-                               Style="{StaticResource CommonEntryStyle}"/>
+
+    <Grid RowDefinitions="Auto, *">
+        <VerticalStackLayout BackgroundColor="{AppThemeBinding Light={StaticResource DefaultBackgroundColor}, Dark={StaticResource DefaultBackgroundColorDark}}"
+                             Padding="16, 24">
+            <HorizontalStackLayout HorizontalOptions="Center"
+                                   VerticalOptions="End"
+                                   Spacing="10"
+                                   Margin="0, 0, 0, 12">
+                <Label Text="File:"
+                       Style="{StaticResource FirstRowLabelStyle}" />
+                <Label Text="SpreadProcessingDocument2.xlsx"
+                       Style="{StaticResource FirstRowLabelStyle}"
+                       FontAttributes="Bold" />
+            </HorizontalStackLayout>
+            <telerik:RadButton Grid.Row="1"
+                               Style="{StaticResource SubmitButtonStyle}"
+                               Text="View Document"
+                               VerticalOptions="{OnPlatform Default='End', WinUI='Center', MacCatalyst='Center'}"
+                               HorizontalOptions="Center"
+                               Command="{Binding ViewDocumentCommand}" />
+        </VerticalStackLayout>
+        <ScrollView Grid.Row="1"
+                    Margin="{OnIdiom Default='0, 24, 0, 0', Desktop='0, 40, 0, 0'}"
+                    Padding="{OnIdiom Default=0, Phone=16}">
+            <Grid RowDefinitions="{OnIdiom Default='Auto, *', Desktop='Auto, Auto'}"
+                  MaximumWidthRequest="300">
+                <VerticalStackLayout HorizontalOptions="{OnIdiom Default=Fill, Desktop=Center}">
+                    <Label Text="Formatting Settings"
+                           Style="{StaticResource FirstRowLabelStyle}"
+                           FontSize="20"
+                           FontAttributes="Bold"
+                           HorizontalOptions="Center"
+                           Margin="0, 0, 0, 24" />
+                    <Label Text="&#34;Client&#34; column rule:"
+                           Style="{StaticResource FirstRowLabelStyle}" />
+                    <Label Text="Highlight clients that are"
+                           Style="{StaticResource SecondRowLabelStyle}" />
+                    <telerik:RadComboBox IsEditable="False"
+                                         IsClearButtonVisible="False"
+                                         ItemsSource="{Binding ClientsRules}"
+                                         SelectedItem="{Binding SelectedClientsRule, Mode=TwoWay}"
+                                         DropDownHeight="{OnPlatform Android=68, iOS=72, MacCatalyst=44, WinUI=80}"
+                                         Margin="0, 0, 0, 24">
+                        <telerik:RadComboBox.Resources>
+                            <Style TargetType="telerik:RadEntry">
+                                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                            </Style>
+                        </telerik:RadComboBox.Resources>
+                    </telerik:RadComboBox>
+                    <Label Text="&#34;Shipping&#34; column rule:"
+                           Style="{StaticResource FirstRowLabelStyle}" />
+                    <Label Text="Highlight shipment type"
+                           Style="{StaticResource SecondRowLabelStyle}" />
+                    <telerik:RadComboBox IsEditable="False"
+                                         IsClearButtonVisible="False"
+                                         ItemsSource="{Binding ShippingTerms}"
+                                         SelectedItem="{Binding SelectedShippingTerm, Mode=TwoWay}"
+                                         DropDownHeight="{OnPlatform Android=136, iOS=144, MacCatalyst=88, WinUI=160}"
+                                         Margin="0, 0, 0, 24">
+                        <telerik:RadComboBox.Resources>
+                            <Style TargetType="telerik:RadEntry">
+                                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                            </Style>
+                        </telerik:RadComboBox.Resources>
+                    </telerik:RadComboBox>
+                    <Label Text="&#34;Discount&#34; column rule:"
+                           Style="{StaticResource FirstRowLabelStyle}" />
+                    <Label Text="Highlight discount range"
+                           Style="{StaticResource SecondRowLabelStyle}" />
+                    <Grid ColumnDefinitions="*, Auto"
+                          ColumnSpacing="10"
+                          Margin="0, 0, 0, 24">
+                        <telerik:RadComboBox IsEditable="False"
+                                             IsClearButtonVisible="False"
+                                             ItemsSource="{Binding DiscountComparisonOperators}"
+                                             SelectedItem="{Binding SelectedDiscountComparison, Mode=TwoWay}"
+                                             DropDownHeight="{OnPlatform Android=136, iOS=144, MacCatalyst=88, WinUI=160}">
+                            <telerik:RadComboBox.Resources>
+                                <Style TargetType="telerik:RadEntry">
+                                    <Setter Property="HorizontalTextAlignment" Value="Center" />
+                                </Style>
+                            </telerik:RadComboBox.Resources>
+                        </telerik:RadComboBox>
+                        <telerik:RadNumericInput Grid.Column="1"
+                                                 Value="{Binding DiscountThreshold, Mode=TwoWay}"
+                                                 Minimum="0"
+                                                 Maximum="0.15"
+                                                 Step="0.01"
+                                                 MinimumWidthRequest="{OnPlatform Default=100, iOS=142}" />
+                    </Grid>
+                    <Label Text="&#34;Total price&#34; column rule:"
+                           Style="{StaticResource FirstRowLabelStyle}" />
+                    <Label Text="Highlight prices that are in"
+                           Style="{StaticResource SecondRowLabelStyle}" />
+                    <Grid ColumnDefinitions="*, Auto"
+                          ColumnSpacing="10"
+                          Margin="0, 0, 0, 24">
+                        <telerik:RadComboBox IsEditable="False"
+                                             IsClearButtonVisible="False"
+                                             ItemsSource="{Binding DiscountComparisonOperators}"
+                                             SelectedItem="{Binding SelectedDiscountComparison, Mode=TwoWay}"
+                                             DropDownHeight="{OnPlatform Android=68, iOS=72, MacCatalyst=44, WinUI=80}">
+                            <telerik:RadComboBox.Resources>
+                                <Style TargetType="telerik:RadEntry">
+                                    <Setter Property="HorizontalTextAlignment" Value="Center" />
+                                </Style>
+                            </telerik:RadComboBox.Resources>
+                        </telerik:RadComboBox>
+                        <telerik:RadNumericInput Grid.Column="1"
+                                                 Value="{Binding PriceRank, Mode=TwoWay}"
+                                                 Minimum="0"
+                                                 Maximum="10"
+                                                 Step="1"
+                                                 MinimumWidthRequest="{OnPlatform Default=100, iOS=142}" />
                     </Grid>
                 </VerticalStackLayout>
-                <VerticalStackLayout Grid.Row="{OnIdiom Default=1, Phone=3}"
-                                     Grid.Column="{OnIdiom Default=1, Phone=0}">
-                    <Grid RowDefinitions="Auto,Auto,Auto,Auto"
-                          ColumnDefinitions="*,*" 
-                          ColumnSpacing="9">
-                        <Label Text="&#34;TOTAL PRICE&#34; column rule:" 
-                               Style="{StaticResource mainConditionLabelStyle}" 
-                               Grid.ColumnSpan="2"/>
-                        <Label Text="Highlight prices that are in" Grid.Row="1" 
-                               Style="{StaticResource additioLabelStyle}" 
-                               Grid.ColumnSpan="2"/>
-                        <Picker Grid.Row="2" 
-                                Grid.Column="0" 
-                                Style="{StaticResource CommonPickerStyle}"
-                                ItemsSource="{Binding PriceFilters}"
-                                MaximumWidthRequest="{OnPlatform WinUI='300', MacCatalyst='300'}"
-                                SelectedItem="{Binding SelectedPriceFilter, Mode=TwoWay}"/>
-                        <Entry Grid.Row="{OnIdiom Default=3, Phone=2}"  
-                               Grid.Column="{OnIdiom Default=0, Phone=1}"
-                               MaximumWidthRequest="{OnPlatform WinUI='300', MacCatalyst='300'}"
-                               Style="{StaticResource CommonEntryStyle}"
-                               Text="{Binding PriceRank}"/>
-                    </Grid>
-                </VerticalStackLayout>
+                <telerik:RadButton Grid.Row="1"
+                                   Text="Apply Formatting"
+                                   Margin="{OnIdiom Default='0, 16, 0, 0', Phone=16}"
+                                   Command="{Binding ViewFormattedDocumentCommand}"
+                                   VerticalOptions="{OnPlatform Default=End, WinUI=Center, MacCatalyst=Center}"
+                                   HorizontalOptions="{OnPlatform Default=Fill, WinUI=Center, MacCatalyst=Center}"
+                                   Style="{StaticResource SubmitButtonStyle}" />
             </Grid>
         </ScrollView>
-        <telerik:RadButton Grid.Row="1" 
-                           Text="View Document"
-                           Margin="16, 20"
-                           Style="{StaticResource SubmitButtonStyle}"
-                           VerticalOptions="{OnIdiom Default=Start, Phone=End}"
-                           HorizontalOptions="{OnIdiom Default=Start, Phone=FillAndExpand}"
-                           Command="{Binding ViewFormattedDocumentCommand}" />
     </Grid>
 </telerik:RadContentView>

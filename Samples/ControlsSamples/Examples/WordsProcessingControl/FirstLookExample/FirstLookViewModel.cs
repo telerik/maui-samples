@@ -1,7 +1,6 @@
 ﻿using Microsoft.Maui.Controls;
 using QSF.Services;
 using QSF.ViewModels;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -25,11 +24,11 @@ namespace QSF.Examples.WordsProcessingControl.FirstLookExample
     {
         private static readonly ThemableColor GreenColor = new ThemableColor(Telerik.Documents.Media.Color.FromArgb(255, 92, 230, 0));
         private readonly IResourceService resourceService;
-        private readonly IFileViewerService fileViewerService; 
+        private readonly IFileViewerService fileViewerService;
         private ICommand generateCommand = null;
         private bool includeFooter = true;
         private bool includeHeader = true;
-        
+
         private string selectedExportFormat;
         private IEnumerable<string> exportFormats;
 
@@ -161,7 +160,7 @@ namespace QSF.Examples.WordsProcessingControl.FirstLookExample
             editor.ParagraphFormatting.TextAlignment.LocalValue = TelerikDocumentsFlowModel.Alignment.Justified;
 
             editor.InsertLine("Dear Telerik User,");
-            editor.InsertText("We’re happy to introduce the new Telerik RadWordsProcessing component for Xamarin Forms. High performance library that enables you to read, write and manipulate documents in DOCX, RTF and plain text format. The document model is independent from UI and ");
+            editor.InsertText("We’re happy to introduce the Telerik RadWordsProcessing component for .NET MAUI. High performance library that enables you to read, write and manipulate documents in DOCX, RTF and plain text format. The document model is independent from UI and ");
             Run run = editor.InsertText("does not require");
             run.Underline.Pattern = TelerikDocumentsFlowModel.UnderlinePattern.Single;
             editor.InsertLine(" Microsoft Office.");
@@ -180,8 +179,8 @@ namespace QSF.Examples.WordsProcessingControl.FirstLookExample
             editor.InsertLine(" or support ticketing system.");
 
             editor.InsertLine("We hope you’ll enjoy RadWordsProcessing as much as we do. Happy coding!");
-            editor.InsertParagraph();
-            editor.InsertText("Kind regards,");
+            run = editor.InsertText("Kind regards,");
+            run.Paragraph.Properties.SpacingBefore.LocalValue = 30;
 
             this.CreateSignature(editor);
 
@@ -209,7 +208,7 @@ namespace QSF.Examples.WordsProcessingControl.FirstLookExample
 
             editor.MoveToParagraphStart(paragraphWithImage);
 
-            using (Stream stream = this.resourceService.GetResourceStream("teleriklogo.jpg"))
+            using (Stream stream = this.resourceService.GetResourceStream("progressLogo.png"))
             {
                 editor.InsertImageInline(stream, "png", new Telerik.Documents.Primitives.Size(93, 42));
             }
@@ -248,7 +247,7 @@ namespace QSF.Examples.WordsProcessingControl.FirstLookExample
 
                 editor.MoveToParagraphStart(header.Blocks.AddParagraph());
 
-                using (Stream stream = this.resourceService.GetResourceStream("teleriklogo.jpg"))
+                using (Stream stream = this.resourceService.GetResourceStream("progressLogo.png"))
                 {
                     editor.InsertImageInline(stream, "png", new Telerik.Documents.Primitives.Size(660, 265));
                 }

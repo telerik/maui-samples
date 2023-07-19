@@ -1,4 +1,4 @@
-namespace QSF.Examples.CalendarControl.ConfigurationExample;
+namespace QSF.Examples.CalendarControl.GlobalizationExample;
 
 public class CultureData
 {

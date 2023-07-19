@@ -1,4 +1,5 @@
 ﻿using Microsoft.Maui.Controls;
+using QSF.Examples.WordsProcessingControl.Converters;
 using QSF.Services;
 using QSF.ViewModels;
 using System;
@@ -7,12 +8,13 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Telerik.Documents.Core.Fonts;
 using Telerik.Documents.Primitives;
+using Telerik.Windows.Documents.Extensibility;
 using Telerik.Windows.Documents.Fixed.FormatProviders.Pdf;
 using Telerik.Windows.Documents.Fixed.Model;
 using Telerik.Windows.Documents.Fixed.Model.ColorSpaces;
 using Telerik.Windows.Documents.Fixed.Model.Editing;
 using Telerik.Windows.Documents.Fixed.Model.Editing.Flow;
-using Telerik.Windows.Documents.Fixed.Model.Graphics;
+using Telerik.Windows.Documents.Fixed.Model.Resources;
 
 namespace QSF.Examples.PdfProcessingControl.FirstLookExample
 {
@@ -20,10 +22,12 @@ namespace QSF.Examples.PdfProcessingControl.FirstLookExample
     {
         private readonly IResourceService resourceService;
         private readonly IFileViewerService fileViewerService;
-        private FixedContentEditor editor;
+        private FixedContentEditor pageEditor;
 
         public FirstLookViewModel()
         {
+            FixedExtensibilityManager.JpegImageConverter = new SkiaImageConverter();
+
             this.Save = new Command(async (p) => await this.Export(p));
             this.resourceService = DependencyService.Get<IResourceService>();
             this.fileViewerService = DependencyService.Get<IFileViewerService>();
@@ -49,32 +53,32 @@ namespace QSF.Examples.PdfProcessingControl.FirstLookExample
         {
             RadFixedDocument document = new RadFixedDocument();
             RadFixedPage page = document.Pages.AddPage();
-            page.Size = new Size(600, 800);
-            this.editor = new FixedContentEditor(page);
-            this.editor.Position.Translate(40, 50);
+            page.Size = new Size(ExampleDocumentSizes.PageWidth, ExampleDocumentSizes.PageHeight);
+            this.pageEditor = new FixedContentEditor(page);
+            this.pageEditor.Position.Translate(40, 55);
 
-            using (Stream stream = this.resourceService.GetResourceStream("banner.jpg"))
+            using (Stream stream = this.resourceService.GetResourceStream("banner.png"))
             {
-                this.editor.DrawImage(stream, new Size(530, 80));
+                this.pageEditor.DrawImage(stream, new Size(609, 92));
             }
 
-            this.editor.Position.Translate(ExampleDocumentSizes.DefaultLeftIndent, 160);
+            this.pageEditor.Position.Translate(ExampleDocumentSizes.DefaultLeftIndent, 180);
             double maxWidth = page.Size.Width - ExampleDocumentSizes.DefaultLeftIndent * 2;
 
             this.DrawDescription(maxWidth);
 
-            using (this.editor.SaveProperties())
+            using (this.pageEditor.SaveProperties())
             {
-                using (this.editor.SavePosition())
+                using (this.pageEditor.SavePosition())
                 {
-                    this.DrawFunnelFigure();
+                    this.DrawFigure();
                 }
             }
 
             return document;
         }
 
-        private void SetTextProperties(Block block, ColorBase color, double fontSize, FontFamily fontFamily, bool isBold = false, bool isUnderlined = false)
+        private void SetTextProperties(Block block, ColorBase color, double fontSize, FontFamily fontFamily, double lineSpacing = 1, bool isBold = false, bool isUnderlined = false)
         {
             block.GraphicProperties.FillColor = color;
             block.HorizontalAlignment = HorizontalAlignment.Left;
@@ -82,207 +86,79 @@ namespace QSF.Examples.PdfProcessingControl.FirstLookExample
             FontWeight fontWeight = isBold ? FontWeights.Bold : FontWeights.Normal;
             block.TextProperties.TrySetFont(fontFamily, FontStyles.Normal, fontWeight);
             block.TextProperties.UnderlinePattern = isUnderlined ? UnderlinePattern.Single : UnderlinePattern.None;
+            block.LineSpacing = lineSpacing;
         }
 
         private void DrawDescription(double maxWidth)
         {
             Block block = new Block();
 
-            this.SetTextProperties(block, new RgbColor(155, 199, 5), 18, new FontFamily("Helvetica"));
+            this.SetTextProperties(block, new RgbColor(36, 151, 56), 22, new FontFamily("Helvetica"));
             block.InsertText("Thank you for choosing Telerik RadPdfProcessing!");
-            this.editor.DrawBlock(block, new Size(maxWidth, double.PositiveInfinity));
+            this.pageEditor.DrawBlock(block, new Size(maxWidth, double.PositiveInfinity));
 
             block = new Block();
             this.SetTextProperties(block, RgbColors.Black, 25, new FontFamily("Helvetica"));
             block.InsertLineBreak();
-            this.SetTextProperties(block, RgbColors.Black, 11, new FontFamily("Helvetica"), true);
+            this.SetTextProperties(block, RgbColors.Black, 13, new FontFamily("Helvetica-Bold"));
             block.InsertText("RadPdfProcessing");
 
-            this.SetTextProperties(block, RgbColors.Black, 11, new FontFamily("Helvetica"));
+            this.SetTextProperties(block, RgbColors.Black, 13, new FontFamily("Helvetica"));
             block.InsertText(" is a document processing library that enables your application to import and export files to and from PDF format. The document model is entirely independent from UI and allows you to generate sleek documents with differently formatted text, images, shapes and more.");
-            this.editor.DrawBlock(block, new Size(maxWidth, double.PositiveInfinity));
+            this.pageEditor.DrawBlock(block, new Size(maxWidth, double.PositiveInfinity));
 
-            double currentTopOffset = 480;
-            this.editor.Position.Translate(ExampleDocumentSizes.DefaultLeftIndent, currentTopOffset);
+            double currentTopOffset = 560;
+            this.pageEditor.Position.Translate(ExampleDocumentSizes.DefaultLeftIndent, currentTopOffset);
             block = new Block();
-            this.SetTextProperties(block, RgbColors.Black, 25, new FontFamily("Helvetica"), true);
+            this.SetTextProperties(block, RgbColors.Black, 25, new FontFamily("Times-Roman"), 1.2, true);
             block.InsertLineBreak();
-            this.SetTextProperties(block, RgbColors.Black, 13, new FontFamily("Times-Roman"), true);
+            this.SetTextProperties(block, RgbColors.Black, 15, new FontFamily("Times-Bold"), 1.2);
             block.InsertText("RadPdfProcessing");
-            this.SetTextProperties(block, RgbColors.Black, 13, new FontFamily("Times-Roman"));
+            this.SetTextProperties(block, RgbColors.Black, 15, new FontFamily("Times-Roman"), 1.2);
             block.InsertText(" was built with performance and stability in mind. The document automation is fast and has a low memory footprint even with large amounts of data.");
-            this.editor.DrawBlock(block, new Size(maxWidth, double.PositiveInfinity));
+            this.pageEditor.DrawBlock(block, new Size(maxWidth, double.PositiveInfinity));
 
-            currentTopOffset += ExampleDocumentSizes.DefaultLineHeight * 3;
-            this.editor.Position.Translate(ExampleDocumentSizes.DefaultLeftIndent, currentTopOffset);
+            currentTopOffset += ExampleDocumentSizes.DefaultLineHeight * 4;
+            this.pageEditor.Position.Translate(ExampleDocumentSizes.DefaultLeftIndent, currentTopOffset);
 
             block = new Block();
-            this.SetTextProperties(block, RgbColors.Black, 25, new FontFamily("Helvetica"));
+            this.SetTextProperties(block, RgbColors.Black, 25, new FontFamily("Helvetica"), 1.2);
             block.InsertLineBreak();
-            this.SetTextProperties(block, RgbColors.Black, 11, new FontFamily("Helvetica"), false, true);
+            this.SetTextProperties(block, RgbColors.Black, 13, new FontFamily("Helvetica-Oblique"), 1.2, false, true);
             block.InsertText("The intuitive API allows you to swiftly generate documents from scratch. Designed with the user in mind, RadPdfProcessing is straightforward and easy to use.");
-            this.editor.DrawBlock(block, new Size(maxWidth, double.PositiveInfinity));
+            this.pageEditor.DrawBlock(block, new Size(maxWidth, double.PositiveInfinity));
 
             currentTopOffset += ExampleDocumentSizes.DefaultLineHeight * 2;
-            this.editor.Position.Translate(ExampleDocumentSizes.DefaultLeftIndent, currentTopOffset);
+            this.pageEditor.Position.Translate(ExampleDocumentSizes.DefaultLeftIndent, currentTopOffset);
 
             block = new Block();
-            this.SetTextProperties(block, new RgbColor(45, 178, 0), 35, new FontFamily("Courier"));
+            this.SetTextProperties(block, new RgbColor(36, 151, 56), 35, new FontFamily("Helvetica"), isBold: true);
             block.InsertLineBreak();
-
-            this.SetTextProperties(block, new RgbColor(45, 178, 0), 12, new FontFamily("Courier"));
-            DateTime date = DateTime.Now;
-            block.InsertText(string.Format("{0} {1}", date.ToLongDateString(), date.ToLongTimeString()));
-            block.InsertLineBreak();
-            block.InsertText("by XAMARIN Team");
 
             currentTopOffset += ExampleDocumentSizes.DefaultLineHeight * 2;
-
-            this.editor.DrawBlock(block, new Size(maxWidth, double.PositiveInfinity));
+            this.pageEditor.Position.Translate(ExampleDocumentSizes.DefaultLeftIndent, currentTopOffset);
+            this.pageEditor.DrawBlock(block, new Size(maxWidth, double.PositiveInfinity));
             this.DrawLogo();
         }
 
         private void DrawLogo()
         {
-            using (Stream stream = this.resourceService.GetResourceStream("teleriklogo.jpg"))
+            using (Stream stream = this.resourceService.GetResourceStream("progressLogo.png"))
             {
-                double imageWidth = 200;
-                double imageHeight = 63;
-                this.editor.Position.Translate(ExampleDocumentSizes.FunnelCenter.X - (imageWidth / 2), ExampleDocumentSizes.FunnelCenter.Y + ExampleDocumentSizes.FunnelHeight + ExampleDocumentSizes.ArrowLength + 220);
+                double imageWidth = 160;
+                double imageHeight = 37.84;
+                this.pageEditor.Position.Translate((ExampleDocumentSizes.PageWidth / 2) - (imageWidth / 2), ExampleDocumentSizes.PageHeight - imageHeight - 50);
 
-                this.editor.DrawImage(stream, new Size(imageWidth, imageHeight));
+                this.pageEditor.DrawImage(stream, new Size(imageWidth, imageHeight));
             }
         }
 
-        private void DrawFunnelFigure()
+        private void DrawFigure()
         {
-            this.editor.Position.Translate(0, 0);
-            this.editor.GraphicProperties.IsStroked = false;
-            this.editor.GraphicProperties.FillColor = new RgbColor(147, 208, 237);
+            FormSource formSource = FigureCreator.Create(new Size(600, 800));
 
-            this.editor.DrawEllipse(ExampleDocumentSizes.EllipseCenter, ExampleDocumentSizes.EllipseRadiuses.Width, ExampleDocumentSizes.EllipseRadiuses.Height);
-
-            double funelBlockGap = (ExampleDocumentSizes.FunnelHeight - 3 * ExampleDocumentSizes.FunnelBlockHeight) / 2;
-
-            double startPercent = 0;
-            double endPercent = ExampleDocumentSizes.GetPercentHeight(ExampleDocumentSizes.FunnelBlockHeight);
-            this.DrawFunnelBlock(startPercent, endPercent);
-
-            startPercent = ExampleDocumentSizes.GetPercentHeight(ExampleDocumentSizes.FunnelBlockHeight + funelBlockGap);
-            endPercent = ExampleDocumentSizes.GetPercentHeight(2 * ExampleDocumentSizes.FunnelBlockHeight + funelBlockGap);
-            this.DrawFunnelBlock(startPercent, endPercent);
-
-            startPercent = ExampleDocumentSizes.GetPercentHeight(2 * ExampleDocumentSizes.FunnelBlockHeight + 2 * funelBlockGap);
-            endPercent = ExampleDocumentSizes.GetPercentHeight(3 * ExampleDocumentSizes.FunnelBlockHeight + 2 * funelBlockGap);
-            this.DrawFunnelBlock(startPercent, endPercent);
-
-            this.editor.Position.Translate(ExampleDocumentSizes.ArrowStart.X - 18, ExampleDocumentSizes.ArrowStart.Y + ExampleDocumentSizes.ArrowLength + 5);
-            this.editor.TextProperties.FontSize = 18;
-            this.editor.GraphicProperties.FillColor = new RgbColor(41, 156, 206);
-            this.editor.TextProperties.TrySetFont(new FontFamily("Arial"), FontStyles.Normal, FontWeights.Bold);
-            this.editor.DrawText("PDF");
-            this.DrawArrow();
-        }
-
-        private void DrawArrow()
-        {
-            this.editor.Position.Translate(ExampleDocumentSizes.ArrowStart.X, ExampleDocumentSizes.ArrowStart.Y);
-
-            this.editor.GraphicProperties.IsStroked = true;
-            this.editor.GraphicProperties.StrokeThickness = 1;
-            this.editor.GraphicProperties.StrokeColor = new RgbColor(191, 191, 191);
-            this.editor.GraphicProperties.IsFilled = true;
-            this.editor.GraphicProperties.FillColor = this.editor.GraphicProperties.StrokeColor;
-
-            PathGeometry arrow = new PathGeometry();
-            PathFigure figure = arrow.Figures.AddPathFigure();
-
-            figure.StartPoint = new Point();
-            figure.Segments.AddLineSegment(new Point(2, 0));
-            figure.Segments.AddLineSegment(new Point(2, 13));
-            figure.Segments.AddLineSegment(new Point(7, 7));
-            figure.Segments.AddLineSegment(new Point(7, 13));
-            figure.Segments.AddLineSegment(new Point(0, ExampleDocumentSizes.ArrowLength));
-            figure.Segments.AddLineSegment(new Point(-7, 13));
-            figure.Segments.AddLineSegment(new Point(-7, 7));
-            figure.Segments.AddLineSegment(new Point(-2, 13));
-            figure.Segments.AddLineSegment(new Point(-2, 0));
-
-            figure.IsClosed = true;
-
-            this.editor.DrawPath(arrow);
-        }
-
-        private void DrawFunnelBlock(double startPercentHeight, double endPercentHeight)
-        {
-            Point[] contourPoints = ExampleDocumentSizes.GetSubFunnelBlockContourPoints(startPercentHeight, endPercentHeight);
-            this.editor.GraphicProperties.IsStroked = false;
-            PathGeometry path = new PathGeometry();
-            PathFigure figure = path.Figures.AddPathFigure();
-            figure.StartPoint = contourPoints[0];
-            figure.IsClosed = true;
-            string funnelBlockText;
-            double textYOffset = 0;
-
-            if (startPercentHeight == 0)
-            {
-                funnelBlockText = "IMAGES";
-                this.editor.GraphicProperties.FillColor = new RgbColor(37, 160, 219);
-                ArcSegment arc = figure.Segments.AddArcSegment();
-                arc.Point = contourPoints[1];
-                arc.IsLargeArc = false;
-                arc.SweepDirection = Telerik.Windows.Documents.Fixed.Model.Graphics.SweepDirection.Counterclockwise;
-                arc.RadiusX = ExampleDocumentSizes.EllipseRadiuses.Width;
-                arc.RadiusY = ExampleDocumentSizes.EllipseRadiuses.Height;
-                textYOffset = arc.RadiusY / 2;
-                figure.Segments.AddLineSegment(contourPoints[2]);
-                figure.Segments.AddLineSegment(contourPoints[3]);
-                textYOffset = ExampleDocumentSizes.EllipseRadiuses.Height;
-            }
-            else if (endPercentHeight == 1)
-            {
-                funnelBlockText = "FONTS";
-                this.editor.GraphicProperties.FillColor = new RgbColor(42, 180, 0);
-                figure.Segments.AddLineSegment(contourPoints[1]);
-                figure.Segments.AddLineSegment(contourPoints[2]);
-                ArcSegment arc = figure.Segments.AddArcSegment();
-                arc.Point = contourPoints[3];
-                arc.IsLargeArc = false;
-                arc.SweepDirection = Telerik.Windows.Documents.Fixed.Model.Graphics.SweepDirection.Clockwise;
-                arc.RadiusX = ExampleDocumentSizes.EllipseRadiuses.Width;
-                arc.RadiusY = ExampleDocumentSizes.EllipseRadiuses.Height + 100;
-            }
-            else
-            {
-                funnelBlockText = "SHAPES";
-                this.editor.GraphicProperties.FillColor = new RgbColor(255, 127, 0);
-                figure.Segments.AddLineSegment(contourPoints[1]);
-                figure.Segments.AddLineSegment(contourPoints[2]);
-                figure.Segments.AddLineSegment(contourPoints[3]);
-            }
-
-            this.editor.DrawPath(path);
-
-            using (this.editor.SavePosition())
-            {
-                Size textSize = new Size(contourPoints[1].X - contourPoints[0].X, ExampleDocumentSizes.FunnelBlockHeight - textYOffset);
-                this.editor.Position.Translate(contourPoints[0].X, contourPoints[0].Y + textYOffset);
-                DrawCenteredText(this.editor, funnelBlockText, textSize);
-            }
-        }
-
-        private static void DrawCenteredText(FixedContentEditor editor, string text, Size size)
-        {
-            Block block = new Block();
-
-            block.TextProperties.TrySetFont(new FontFamily("Arial"));
-            block.HorizontalAlignment = HorizontalAlignment.Center;
-            block.VerticalAlignment = VerticalAlignment.Center;
-            block.GraphicProperties.FillColor = RgbColors.White;
-            block.TextProperties.FontSize = 16;
-            block.InsertText(text);
-
-            editor.DrawBlock(block, size);
+            pageEditor.Position.Translate(40, 280);
+            pageEditor.DrawForm(formSource);
         }
     }
 }

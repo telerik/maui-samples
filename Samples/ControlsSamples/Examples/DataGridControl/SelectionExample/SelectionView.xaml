@@ -5,21 +5,14 @@
              x:Class="QSF.Examples.DataGridControl.SelectionExample.SelectionView">
     <ContentView.Resources>
         <ResourceDictionary>
-            <telerik:BoolToValueConverter x:Key="BoolToValueConverter" TrueValue="Yes" FalseValue="No" />
-            <DataTemplate x:Key="DataGridTemplateColumnDataTemplate">
-                <VerticalStackLayout Padding="10">
-                    <Label Text="{Binding DestinationFullName}" 
-                           FontSize="Micro" />
+            <DataTemplate x:Key="DestinationColumnTemplate">
+                <VerticalStackLayout VerticalOptions="Center"
+                                     Padding="{OnPlatform Default='10, 0, 0, 0', Android='5, 0, 0, 0'}">
+                    <Label Text="{Binding DestinationFullName}" />
                     <Label Text="{Binding DestinationShortName}"
                            FontSize="Caption"
-                           TextColor="#99000000" />
+                           TextColor="{StaticResource AccentColor8}" />
                 </VerticalStackLayout>
-            </DataTemplate>
-            <DataTemplate x:Key="DataGridBooleanColumnDataTemplate">
-                <Label Text="{Binding IsDirect, Converter={StaticResource BoolToValueConverter}}"
-                       VerticalOptions="Center"
-                       LineBreakMode="NoWrap"
-                       Padding="10" />
             </DataTemplate>
         </ResourceDictionary>
     </ContentView.Resources>
@@ -30,10 +23,7 @@
                          UserEditMode="None"
                          UserGroupMode="Disabled"
                          AutoGenerateColumns="False"
-                         CanUserReorderColumns="False"
-                         GridLinesThickness="1"
-                         GridLinesVisibility="Both"
-                         GridLinesColor="#DFDFDF">
+                         CanUserReorderColumns="False">
         <telerik:RadDataGrid.Columns>
             <telerik:DataGridDateColumn HeaderText="Date"
                                         PropertyName="DateTime" />
@@ -41,18 +31,17 @@
                                         PropertyName="DateTime" />
             <telerik:DataGridTextColumn HeaderText="Flight"
                                         PropertyName="Id" />
-        <telerik:DataGridTemplateColumn HeaderText="To"
-                                        CellContentTemplate="{StaticResource DataGridTemplateColumnDataTemplate}"
-                                        SizeMode="Fixed"
-                                        MinimumWidth="{OnPlatform Default='80', iOS='90'}"
-                                        Width="{OnPlatform Default='80', iOS='90'}"/>
-        <telerik:DataGridBooleanColumn HeaderText="Direct"
-                                       PropertyName="IsDirect" 
-                                       CellContentTemplate="{StaticResource DataGridBooleanColumnDataTemplate}" />
-        <telerik:DataGridTextColumn HeaderText="Airline"
+            <telerik:DataGridTemplateColumn HeaderText="To"
+                                            CellContentTemplate="{StaticResource DestinationColumnTemplate}"
+                                            SizeMode="Fixed"
+                                            Width="100"
+                                            MinimumWidth="100" />
+            <telerik:DataGridBooleanColumn HeaderText="Direct"
+                                           PropertyName="IsDirect" />
+            <telerik:DataGridTextColumn HeaderText="Airline"
                                         PropertyName="AirlineName" />
-            <telerik:DataGridTextColumn HeaderText="Status"
-                                        PropertyName="Status" />
-        </telerik:RadDataGrid.Columns>
+                <telerik:DataGridTextColumn HeaderText="Status"
+                                            PropertyName="Status" />
+            </telerik:RadDataGrid.Columns>
     </telerik:RadDataGrid>
 </ContentView>

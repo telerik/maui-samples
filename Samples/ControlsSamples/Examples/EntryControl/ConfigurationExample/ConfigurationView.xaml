@@ -32,7 +32,7 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="{OnIdiom Default=80, Phone=100}" />
+            <RowDefinition Height="{OnPlatform Default=100, MacCatalyst=80, WinUI=110}" />
             <RowDefinition />
         </Grid.RowDefinitions>
         <telerik:RadBorder Padding="16, 24"

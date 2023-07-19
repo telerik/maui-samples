@@ -16,14 +16,12 @@ namespace QSF.Examples.ZipLibraryControl.CreateArchiveExample
         private ObservableCollection<FileViewModel> files;
         private ICommand itemTapCommand;
         private ICommand createArchiveCommand;
-        private ICommand goBackCommand;
 
         public CreateArchiveViewModel()
         {
             this.Files = new ObservableCollection<FileViewModel>(this.GetSampleFiles());
             this.ItemTapCommand = new Command(this.ItemTap);
             this.CreateArchiveCommand = new Command(this.CreateArchive);
-            this.GoBackCommand = new Command(this.GoBack);
         }
 
         public ObservableCollection<FileViewModel> Files
@@ -69,22 +67,6 @@ namespace QSF.Examples.ZipLibraryControl.CreateArchiveExample
                 if (this.createArchiveCommand != value)
                 {
                     this.createArchiveCommand = value;
-                    this.OnPropertyChanged();
-                }
-            }
-        }
-
-        public ICommand GoBackCommand
-        {
-            get
-            {
-                return this.goBackCommand;
-            }
-            private set
-            {
-                if (this.goBackCommand != value)
-                {
-                    this.goBackCommand = value;
                     this.OnPropertyChanged();
                 }
             }
@@ -142,18 +124,8 @@ namespace QSF.Examples.ZipLibraryControl.CreateArchiveExample
                     }
                 }
 
-                bool success = await DependencyService.Get<IFileViewerService>().View(stream, "archive.zip");
-
-                if (!success)
-                {
-                    MessagingCenter.Send(this, Messages.CreatingFileFailed);
-                }
+                await DependencyService.Get<IFileViewerService>().View(stream, "archive.zip");
             }
-        }
-
-        private void GoBack(object obj)
-        {
-            MessagingCenter.Send(this, Messages.NavigateBack);
         }
     }
 }

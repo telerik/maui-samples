@@ -49,7 +49,7 @@
                                    BackgroundColor="Transparent"
                                    VerticalOptions="Center"
                                    HorizontalOptions="{OnIdiom Phone='FillAndExpand', Desktop='Center'}"
-                                   Text="LOAD DOCUMENT"
+                                   Text="Load Document"
                                    Command="{Binding LoadSampleCommand}" 
                                    Style="{StaticResource SubmitButtonStyle}"
                                    Margin="{OnIdiom Phone='0, 24, 0, 0', Desktop='0, 24'}" />
@@ -92,7 +92,7 @@
                             <Button Style="{StaticResource SubmitButtonStyle}" 
                                     HorizontalOptions="Start"
                                     Command="{Binding InsertAndUpdateTocFieldsCommand}" 
-                                    Text="INSERT TOC"
+                                    Text="Insert TOC"
                                     Margin="{OnIdiom Phone='0, 24, 0, 0', Desktop='0, 24'}" />
                         </VerticalStackLayout>
                     </ScrollView>
@@ -118,7 +118,7 @@
                             <Button Style="{StaticResource SubmitButtonStyle}"
                                     HorizontalOptions="Start"
                                     Command="{Binding InsertAndUpdateToaFieldsCommand}"
-                                    Text="INSERT TOA"
+                                    Text="Insert TOA"
                                     Margin="{OnIdiom Phone='0, 24, 0, 0', Desktop='0, 24'}" />
                         </VerticalStackLayout>
                     </ScrollView>
@@ -137,11 +137,12 @@
                                  SelectedItem="{Binding SelectedExportFormat, Mode=OneWayToSource}"
                                  WidthRequest="{OnIdiom Desktop=300, Phone='-1'}"
                                  HorizontalOptions="{OnIdiom Desktop=Start, Phone=Fill}"
+                                 DropDownHeight="{OnPlatform Android=102, iOS=108, MacCatalyst=66, WinUI=120}"
                                  Margin="20, 0, 0, 0" />
         </Grid>
 
         <telerik:RadButton Grid.Row="3"
-                           Text="EXPORT"
+                           Text="Export"
                            Style="{StaticResource SubmitButtonStyle}"
                            HorizontalOptions="{OnIdiom Phone='Fill', Desktop='Start'}"
                            VerticalOptions="{OnIdiom Phone='End', Desktop='Start'}"

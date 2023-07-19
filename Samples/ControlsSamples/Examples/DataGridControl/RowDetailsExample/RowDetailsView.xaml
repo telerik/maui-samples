@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:QSF.Examples.DataGridControl.RowDetailsExample"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="QSF.Examples.DataGridControl.RowDetailsExample.RowDetailsView">
+    <ContentView.Resources>
+        <local:RowDetailsResources />
+    </ContentView.Resources>
+
+    <Grid>
+        <telerik:RadDataGrid x:Name="dataGrid"
+                             ItemsSource="{Binding Orders}"
+                             AutoGenerateColumns="False"
+                             RowDetailsTemplate="{StaticResource OrderDetailsTemplate}"
+                             CanUserExpandMultipleRowDetails="{Binding CanUserExpandMultipleRowDetails}"
+                             AreRowDetailsFrozen="{Binding AreRowDetailsFrozen}">
+            <telerik:RadDataGrid.Columns>
+                <telerik:DataGridToggleRowDetailsColumn IsVisible="{Binding IsToggleRowDetailsColumnVisible}" />
+                <telerik:DataGridNumericalColumn PropertyName="OrderID" 
+                                                 HeaderText="Order ID" />
+                <telerik:DataGridDateColumn PropertyName="OrderDate"
+                                            HeaderText="Order Date" />
+                <telerik:DataGridDateColumn PropertyName="RequiredDate"
+                                            HeaderText="Est. Date" />
+                <telerik:DataGridDateColumn PropertyName="ShippedDate"
+                                            HeaderText="Shipped Date" />
+                <telerik:DataGridTextColumn PropertyName="ShipName"
+                                            HeaderText="Ship Name" />
+            </telerik:RadDataGrid.Columns>
+        </telerik:RadDataGrid>
+    </Grid>
+</ContentView>

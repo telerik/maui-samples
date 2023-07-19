@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    xmlns:local="clr-namespace:QSF.Examples.DataGridControl.RowDetailsExample"
+                    xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                    x:Class="QSF.Examples.DataGridControl.RowDetailsExample.RowDetailsResources">
+    <local:EmployeeIdToNameConverter x:Key="EmployeeIdToNameConverter" />
+    <Style TargetType="Label" BasedOn="{StaticResource BaseLabelStyle}" />
+    <Style x:Key="InfoLabelStyle" TargetType="Label">
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource DefaultTextColor}, Dark={StaticResource DefaultTextColorDark}}" />
+        <Setter Property="Opacity" Value="0.5" />
+        <Setter Property="Margin" Value="0, 0, 0, 8" />
+    </Style>
+    <DataTemplate x:Key="OrderDetailsTemplate">
+        <Grid BackgroundColor="{AppThemeBinding Light=White, Dark=Black}">
+            <telerik:RadBorder BorderColor="{AppThemeBinding Light={OnPlatform Default={StaticResource DefaultBorderColor}, WinUI={StaticResource DefaultBorderColorWinUI}},
+                                                             Dark={OnPlatform Default={StaticResource DefaultBorderColorDark}, WinUI={StaticResource DefaultBorderColorDarkWinUI}}}"
+                               BorderThickness="1"
+                               Margin="24, 12">
+                <Grid RowDefinitions="Auto, *">
+                    <Grid BackgroundColor="{AppThemeBinding Light={StaticResource DefaultBackgroundColor}, Dark={StaticResource DefaultBackgroundColorDark}}">
+                        <Label Text="Order details"
+                               Margin="24, 12" />
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Grid RowDefinitions="Auto, Auto"
+                              ColumnDefinitions="Auto, Auto"
+                              Padding="24">
+                            <Grid ColumnDefinitions="Auto, Auto"
+                                  ColumnSpacing="24">
+                                <VerticalStackLayout>
+                                    <Label Text="Assigned to"
+                                           Style="{StaticResource InfoLabelStyle}" />
+                                    <Image Source="{Binding EmployeeImage}"
+                                           WidthRequest="80"
+                                           HeightRequest="80"
+                                           Aspect="AspectFit" />
+                                </VerticalStackLayout>
+                                <Grid Grid.Column="1"
+                                      RowDefinitions="Auto, Auto">
+                                    <VerticalStackLayout Margin="0, 0, 0, 24">
+                                        <Label Text="Asssignee ID"
+                                               Style="{StaticResource InfoLabelStyle}" />
+                                        <Label Text="{Binding EmployeeID}" />
+                                    </VerticalStackLayout>
+                                    <VerticalStackLayout Grid.Row="1">
+                                        <Label Text="Assignee name"
+                                               Style="{StaticResource InfoLabelStyle}" />
+                                        <Label Text="{Binding EmployeeID, Converter={StaticResource EmployeeIdToNameConverter}}" />
+                                    </VerticalStackLayout>
+                                </Grid>
+                            </Grid>
+                            <Grid Grid.Column="1"
+                                  RowDefinitions="Auto, Auto"
+                                  ColumnDefinitions="Auto, Auto"
+                                  ColumnSpacing="24"
+                                  Margin="24, 0, 0, 0">
+                                <VerticalStackLayout Margin="0, 0, 0, 24">
+                                    <Label Text="Customer ID"
+                                           Style="{StaticResource InfoLabelStyle}" />
+                                    <Label Text="{Binding CustomerID}" />
+                                </VerticalStackLayout>
+                                <VerticalStackLayout Grid.Row="1">
+                                    <Label Text="Freight"
+                                           Style="{StaticResource InfoLabelStyle}" />
+                                    <Label Text="{Binding Freight, StringFormat='${0:N2}'}" />
+                                </VerticalStackLayout>
+                                <VerticalStackLayout Grid.Column="1"
+                                                     Margin="0, 0, 0, 24">
+                                    <Label Text="Ships to"
+                                           Style="{StaticResource InfoLabelStyle}" />
+                                    <HorizontalStackLayout>
+                                        <Label Text="{Binding ShipCountry}" />
+                                        <Label Text=", " />
+                                        <Label Text="{Binding ShipCity}" />
+                                    </HorizontalStackLayout>
+                                </VerticalStackLayout>
+                                <VerticalStackLayout Grid.Row="1"
+                                                     Grid.Column="1">
+                                    <Label Text="Shipping address"
+                                           Style="{StaticResource InfoLabelStyle}" />
+                                    <Label Text="{Binding ShipAddress}" />
+                                </VerticalStackLayout>
+                            </Grid>
+                        </Grid>    
+                    </Grid>
+                </Grid>
+            </telerik:RadBorder>
+            <BoxView BackgroundColor="{AppThemeBinding Light={OnPlatform Default={StaticResource DefaultBorderColor}, WinUI={StaticResource DefaultBorderColorWinUI}},
+                                                       Dark={OnPlatform Default={StaticResource DefaultBorderColorDark}, WinUI={StaticResource DefaultBorderColorDarkWinUI}}}"
+                     HeightRequest="1"
+                     VerticalOptions="Start" />
+            <BoxView BackgroundColor="{AppThemeBinding Light={OnPlatform Default={StaticResource DefaultBorderColor}, WinUI={StaticResource DefaultBorderColorWinUI}},
+                                                       Dark={OnPlatform Default={StaticResource DefaultBorderColorDark}, WinUI={StaticResource DefaultBorderColorDarkWinUI}}}"
+                     WidthRequest="1"
+                     HorizontalOptions="Start"
+                     IsVisible="{OnPlatform Default=true, WinUI=false}" />
+            <BoxView BackgroundColor="{AppThemeBinding Light={OnPlatform Default={StaticResource DefaultBorderColor}, WinUI={StaticResource DefaultBorderColorWinUI}},
+                                                       Dark={OnPlatform Default={StaticResource DefaultBorderColorDark}, WinUI={StaticResource DefaultBorderColorDarkWinUI}}}"
+                     WidthRequest="1"
+                     HorizontalOptions="End"
+                     IsVisible="{OnPlatform Default=true, WinUI=false}" />
+        </Grid>
+    </DataTemplate>
+    <DataTemplate x:Key="CompactOrderDetailsTemplate">
+        <Grid BackgroundColor="{AppThemeBinding Light=White, Dark=Black}">
+            <telerik:RadBorder BorderColor="{AppThemeBinding Light={OnPlatform Default={StaticResource DefaultBorderColor}, WinUI={StaticResource DefaultBorderColorWinUI}},
+                                                             Dark={OnPlatform Default={StaticResource DefaultBorderColorDark}, WinUI={StaticResource DefaultBorderColorDarkWinUI}}}"
+                               BorderThickness="1"
+                               Margin="24, 12">
+                <Grid RowDefinitions="Auto, *">
+                    <Grid BackgroundColor="{AppThemeBinding Light={StaticResource DefaultBackgroundColor}, Dark={StaticResource DefaultBackgroundColorDark}}">
+                        <Label Text="Order details"
+                               Margin="24, 12" />
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Grid RowDefinitions="Auto, Auto"
+                              ColumnDefinitions="Auto, Auto"
+                              Padding="24">
+                            <Grid ColumnDefinitions="Auto, Auto"
+                                  ColumnSpacing="24">
+                                <VerticalStackLayout>
+                                    <Label Text="Assigned to"
+                                           Style="{StaticResource InfoLabelStyle}" />
+                                    <Image Source="{Binding EmployeeImage}"
+                                           WidthRequest="80"
+                                           HeightRequest="80"
+                                           Aspect="AspectFit" />
+                                </VerticalStackLayout>
+                                <Grid Grid.Column="1"
+                                      RowDefinitions="Auto, Auto">
+                                    <VerticalStackLayout Margin="0, 0, 0, 24">
+                                        <Label Text="Asssignee ID"
+                                               Style="{StaticResource InfoLabelStyle}" />
+                                        <Label Text="{Binding EmployeeID}" />
+                                    </VerticalStackLayout>
+                                    <VerticalStackLayout Grid.Row="1">
+                                        <Label Text="Assignee name"
+                                               Style="{StaticResource InfoLabelStyle}" />
+                                        <Label Text="{Binding EmployeeID, Converter={StaticResource EmployeeIdToNameConverter}}" />
+                                    </VerticalStackLayout>
+                                </Grid>
+                            </Grid>
+                            <Grid Grid.Row="1"
+                                  RowDefinitions="Auto, Auto"
+                                  ColumnDefinitions="Auto, Auto"
+                                  ColumnSpacing="24"
+                                  Margin="0, 24, 0, 0">
+                                <VerticalStackLayout Margin="0, 0, 0, 24">
+                                    <Label Text="Customer ID"
+                                           Style="{StaticResource InfoLabelStyle}" />
+                                    <Label Text="{Binding CustomerID}" />
+                                </VerticalStackLayout>
+                                <VerticalStackLayout Grid.Column="1"
+                                                     Margin="0, 0, 0, 24">
+                                    <Label Text="Freight"
+                                           Style="{StaticResource InfoLabelStyle}" />
+                                    <Label Text="{Binding Freight, StringFormat='${0:N2}'}" />
+                                </VerticalStackLayout>
+                                <VerticalStackLayout Grid.Row="1">
+                                    <Label Text="Ships to"
+                                           Style="{StaticResource InfoLabelStyle}" />
+                                    <HorizontalStackLayout>
+                                        <Label Text="{Binding ShipCountry}" />
+                                        <Label Text=", " />
+                                        <Label Text="{Binding ShipCity}" />
+                                    </HorizontalStackLayout>
+                                </VerticalStackLayout>
+                                <VerticalStackLayout Grid.Row="1"
+                                                     Grid.Column="1">
+                                    <Label Text="Shipping address"
+                                           Style="{StaticResource InfoLabelStyle}" />
+                                    <Label Text="{Binding ShipAddress}" />
+                                </VerticalStackLayout>
+                            </Grid>
+                        </Grid>    
+                    </Grid>
+                </Grid>
+            </telerik:RadBorder>
+            <BoxView BackgroundColor="{AppThemeBinding Light={OnPlatform Default={StaticResource DefaultBorderColor}, WinUI={StaticResource DefaultBorderColorWinUI}},
+                                                       Dark={OnPlatform Default={StaticResource DefaultBorderColorDark}, WinUI={StaticResource DefaultBorderColorDarkWinUI}}}"
+                     HeightRequest="1"
+                     VerticalOptions="Start" />
+            <BoxView BackgroundColor="{AppThemeBinding Light={OnPlatform Default={StaticResource DefaultBorderColor}, WinUI={StaticResource DefaultBorderColorWinUI}},
+                                                       Dark={OnPlatform Default={StaticResource DefaultBorderColorDark}, WinUI={StaticResource DefaultBorderColorDarkWinUI}}}"
+                     WidthRequest="1"
+                     HorizontalOptions="Start"
+                     IsVisible="{OnPlatform Default=true, WinUI=false}" />
+            <BoxView BackgroundColor="{AppThemeBinding Light={OnPlatform Default={StaticResource DefaultBorderColor}, WinUI={StaticResource DefaultBorderColorWinUI}},
+                                                       Dark={OnPlatform Default={StaticResource DefaultBorderColorDark}, WinUI={StaticResource DefaultBorderColorDarkWinUI}}}"
+                     WidthRequest="1"
+                     HorizontalOptions="End"
+                     IsVisible="{OnPlatform Default=true, WinUI=false}" />
+        </Grid>
+    </DataTemplate>
+</ResourceDictionary>
