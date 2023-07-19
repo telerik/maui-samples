@@ -3,7 +3,7 @@ using System.Globalization;
 using Microsoft.Maui.Controls;
 using Microsoft.Maui.Graphics;
 
-namespace QSF.Examples.TreeViewControl.FirstLookExample;
+namespace QSF.Examples.TreeViewControl.Common;
 
 public class StringToFontImageSourceConverter : IValueConverter
 {

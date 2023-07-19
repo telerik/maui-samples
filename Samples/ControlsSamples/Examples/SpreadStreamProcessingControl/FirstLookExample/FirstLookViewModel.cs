@@ -24,13 +24,10 @@ namespace QSF.Examples.SpreadStreamProcessingControl.FirstLookExample
 
         private ObservableCollection<CourseViewModel> courses;
         private ICommand generateSpreadsheetCommand;
-        private ICommand goBackCommand;
 
         public FirstLookViewModel()
         {
             this.GenerateSpreadsheetCommand = new Command(this.GenerateSpreadsheet);
-            this.GoBackCommand = new Command(this.GoBack);
-
             this.Courses = new ObservableCollection<CourseViewModel>(this.GenerateCourses());
         }
 
@@ -61,22 +58,6 @@ namespace QSF.Examples.SpreadStreamProcessingControl.FirstLookExample
                 if (this.generateSpreadsheetCommand != value)
                 {
                     this.generateSpreadsheetCommand = value;
-                    this.OnPropertyChanged();
-                }
-            }
-        }
-
-        public ICommand GoBackCommand
-        {
-            get
-            {
-                return this.goBackCommand;
-            }
-            private set
-            {
-                if (this.goBackCommand != value)
-                {
-                    this.goBackCommand = value;
                     this.OnPropertyChanged();
                 }
             }
@@ -113,11 +94,7 @@ namespace QSF.Examples.SpreadStreamProcessingControl.FirstLookExample
                     }
                 }
 
-                bool success = await DependencyService.Get<IFileViewerService>().View(stream, "my_courses.xlsx");
-                if (!success)
-                {
-                    MessagingCenter.Send(this, Messages.CreatingFileFailed);
-                }
+                await DependencyService.Get<IFileViewerService>().View(stream, "my_courses.xlsx");
             }
         }
 
@@ -234,11 +211,6 @@ namespace QSF.Examples.SpreadStreamProcessingControl.FirstLookExample
                     }
                 }
             }
-        }
-
-        private void GoBack(object obj)
-        {
-            MessagingCenter.Send(this, Messages.NavigateBack);
         }
     }
 }

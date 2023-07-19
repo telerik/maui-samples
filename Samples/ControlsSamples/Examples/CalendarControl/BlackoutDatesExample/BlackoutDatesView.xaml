@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:converters="clr-namespace:QSF.Converters"
+             xmlns:styles="clr-namespace:QSF.Styles"
+             xmlns:local="clr-namespace:QSF.Examples.CalendarControl.BlackoutDatesExample"
+             x:Class="QSF.Examples.CalendarControl.BlackoutDatesExample.BlackoutDatesView"
+             Padding="{OnIdiom Default='16, 20', Phone=0}">
+    <Grid BackgroundColor="{AppThemeBinding Light={StaticResource DefaultBackgroundColor}, Dark={StaticResource DefaultBackgroundColorDark}}"
+          Padding="{OnIdiom Default=16, Phone=0}"
+          VerticalOptions="{OnIdiom Default=Start, Phone=Fill}">
+        <telerik:RadCalendar x:Name="calendar"
+                             SelectionMode="{Binding SelectionMode}"
+                             BorderThickness="{OnIdiom Default=1, Phone=0}"
+                             HorizontalOptions="{OnIdiom Default=Center, Phone=Fill}"
+                             VerticalOptions="{OnIdiom Default=Center, Phone=Fill}" />
+    </Grid>
+</ContentView>

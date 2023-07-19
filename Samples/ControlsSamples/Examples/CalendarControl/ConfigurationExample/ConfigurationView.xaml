@@ -23,19 +23,16 @@
         <Grid BackgroundColor="{AppThemeBinding Light={StaticResource DefaultBackgroundColor}, Dark={StaticResource DefaultBackgroundColorDark}}"
               Padding="16">
             <telerik:RadCalendar x:Name="calendar"
-                                 Culture="{Binding Culture}"
                                  MinDate="{Binding MinDate, Mode=TwoWay}"
                                  MaxDate="{Binding MaxDate, Mode=TwoWay}"
                                  FirstDayOfWeek="{Binding FirstDayOfWeek}"
                                  AreDayNamesVisible="{Binding AreDayNamesVisible}"
                                  IsOutOfScopeVisible="{Binding IsOutOfScopeVisible}"
                                  DisplayMode="{Binding Source={x:Reference displayModeCombo}, Path=SelectedItem, Mode=TwoWay}"
-                                 MinDisplayMode="{Binding Source={x:Reference minDisplayModeCombo}, Path=SelectedItem, Mode=TwoWay}"
-                                 MaxDisplayMode="{Binding Source={x:Reference maxDisplayModeCombo}, Path=SelectedItem, Mode=TwoWay}"
                                  SelectionMode="{Binding SelectionMode}"
                                  InteractionMode="{Binding InteractionMode}"
                                  NavigationDirection="{Binding NavigationDirection}"
-                                 MaximumHeightRequest="{OnPlatform iOS=320, Android=320}"
+                                 MaximumHeightRequest="{OnPlatform iOS=320, Android=320, WinUI=320}"
                                  BorderThickness="1"
                                  HorizontalOptions="Center"
                                  VerticalOptions="Center" />
@@ -54,13 +51,6 @@
                     </Grid.RowDefinitions>
                     <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaWithColumnBreakStyle}">
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
-                            <Label Text="Culture:"
-                                   Style="{StaticResource VerticalGroupLabelStyle}" />
-                            <telerik:RadComboBox ItemsSource="{Binding Cultures}"
-                                                 DisplayMemberPath="DisplayName"
-                                                 SelectedItem="{Binding SelectedCulture}" />
-                        </VerticalStackLayout>
-                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="Min Date:"
                                    Style="{StaticResource VerticalGroupLabelStyle}" />
                             <telerik:RadDatePicker Date="{Binding MinDate}" />
@@ -70,13 +60,13 @@
                                    Style="{StaticResource VerticalGroupLabelStyle}" />
                             <telerik:RadDatePicker Date="{Binding MaxDate}" />
                         </VerticalStackLayout>
-                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">  
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="First Day of Week:"
                                    Style="{StaticResource VerticalGroupLabelStyle}" />
                             <telerik:RadComboBox ItemsSource="{Binding DaysOfWeek}"
                                                  SelectedItem="{Binding FirstDayOfWeek, Mode=TwoWay}" />
                         </VerticalStackLayout>
-                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">  
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="Display Day Names:"
                                    Style="{StaticResource VerticalGroupLabelStyle}" />
                             <Switch VerticalOptions="Center"
@@ -84,7 +74,7 @@
                                     IsToggled="{Binding AreDayNamesVisible}"
                                     Margin="{OnPlatform Default=0, WinUI='0, -2, 0, 0'}" />
                         </VerticalStackLayout>
-                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">  
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="Display Out of Scope Dates:"
                                    Style="{StaticResource VerticalGroupLabelStyle}" />
                             <Switch VerticalOptions="Center"
@@ -101,20 +91,6 @@
                             <telerik:RadComboBox x:Name="displayModeCombo"
                                                  ItemsSource="{Binding DisplayModes}"
                                                  SelectedItem="{Binding DisplayMode, Mode=TwoWay}" />
-                        </VerticalStackLayout>
-                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
-                            <Label Text="Min Display Mode:"
-                                   Style="{StaticResource VerticalGroupLabelStyle}" />
-                            <telerik:RadComboBox x:Name="minDisplayModeCombo"
-                                                 ItemsSource="{Binding DisplayModes}"
-                                                 SelectedItem="{Binding MinDisplayMode, Mode=TwoWay}" />
-                        </VerticalStackLayout>
-                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
-                            <Label Text="Max Display Mode:"
-                                   Style="{StaticResource VerticalGroupLabelStyle}" />
-                            <telerik:RadComboBox x:Name="maxDisplayModeCombo"
-                                                 ItemsSource="{Binding DisplayModes}"
-                                                 SelectedItem="{Binding MaxDisplayMode, Mode=TwoWay}" />
                         </VerticalStackLayout>
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="Selection Mode:"

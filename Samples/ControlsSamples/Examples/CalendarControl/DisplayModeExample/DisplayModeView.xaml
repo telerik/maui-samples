@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:converters="clr-namespace:QSF.Converters"
+             xmlns:styles="clr-namespace:QSF.Styles"
+             xmlns:local="clr-namespace:QSF.Examples.CalendarControl.DisplayModeExample"
+             x:Class="QSF.Examples.CalendarControl.DisplayModeExample.DisplayModeView"
+             Padding="{OnIdiom Default='16, 20', Phone=0}">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <styles:ConfigurationViewResources />
+            </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="telerik:RadComboBox">
+                <Setter Property="IsClearButtonVisible" Value="False" />
+                <Setter Property="WidthRequest" Value="{OnIdiom Default=-1, Desktop=300}" />
+                <Setter Property="DropDownHeight" Value="{OnPlatform Android=136, iOS=144, MacCatalyst=88, WinUI=160}" />
+                <Setter Property="HorizontalOptions" Value="{OnIdiom Default=Fill, Desktop=Start}" />
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+    <Grid RowDefinitions="Auto, *">
+        <Grid BackgroundColor="{AppThemeBinding Light={StaticResource DefaultBackgroundColor}, Dark={StaticResource DefaultBackgroundColorDark}}"
+              Padding="16">
+            <telerik:RadCalendar x:Name="calendar"
+                                 DisplayMode="{Binding Source={x:Reference displayModeCombo}, Path=SelectedItem, Mode=TwoWay}"
+                                 MinDisplayMode="{Binding Source={x:Reference minDisplayModeCombo}, Path=SelectedItem, Mode=TwoWay}"
+                                 MaxDisplayMode="{Binding Source={x:Reference maxDisplayModeCombo}, Path=SelectedItem, Mode=TwoWay}"
+                                 MaximumHeightRequest="{OnPlatform iOS=320, Android=320, WinUI=320}"
+                                 BorderThickness="1"
+                                 HorizontalOptions="Center"
+                                 VerticalOptions="Center" />
+        </Grid>
+
+        <ScrollView Grid.Row="1"
+                    Padding="{OnPlatform Default='0, 0, 14, 0', Android='0, 0, 4, 0', iOS='0, 0, 8, 0', MacCatalyst='0, 0, 15, 0'}">
+            <VerticalStackLayout Style="{StaticResource RootAtExampleAreaStyle}">
+                <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                    <Label Text="Display Mode:"
+                           Style="{StaticResource VerticalGroupLabelStyle}" />
+                    <telerik:RadComboBox x:Name="displayModeCombo"
+                                         ItemsSource="{Binding DisplayModes}"
+                                         SelectedItem="{Binding DisplayMode, Mode=TwoWay}" />
+                </VerticalStackLayout>
+                <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                    <Label Text="Min Display Mode:"
+                           Style="{StaticResource VerticalGroupLabelStyle}" />
+                    <telerik:RadComboBox x:Name="minDisplayModeCombo"
+                                         ItemsSource="{Binding MinDisplayModes}"
+                                         SelectedItem="{Binding MinDisplayMode, Mode=TwoWay}" />
+                </VerticalStackLayout>
+                <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                    <Label Text="Max Display Mode:"
+                           Style="{StaticResource VerticalGroupLabelStyle}" />
+                    <telerik:RadComboBox x:Name="maxDisplayModeCombo"
+                                         ItemsSource="{Binding MaxDisplayModes}"
+                                         SelectedItem="{Binding MaxDisplayMode, Mode=TwoWay}" />
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentView>

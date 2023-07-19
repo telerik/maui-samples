@@ -210,6 +210,34 @@
 					<Description>Telerik UI for .NET MAUI Calendar is an advanced date input control offering various display modes and enabling single, multiple and range date selection options.</Description>
 				</Example>
 				<Example>
+					<Name>DisplayMode</Name>
+					<Page>DisplayModeView</Page>
+					<DisplayName>Display Mode</DisplayName>
+					<Icon>calendar.png</Icon>
+					<Description><![CDATA[This example presents the various display views that the RadCalendar supports - month, year, decade, century, as well as the ability to determine which should be the minimum and maximum display mode. For example, setting the <b>MinDisplayMode</b> to <b>Month</b> and the <b>MaxDisplayMode</b> to <b>Year</b>, you will be able to select only days and months from this year.]]></Description>
+				</Example>
+				<Example>
+					<Name>Selection</Name>
+					<Page>SelectionView</Page>
+					<DisplayName>Selection</DisplayName>
+					<Icon>calendar.png</Icon>
+					<Description><![CDATA[This example presents the selection modes that the RadCalendar supports - Single, Multiple and Range. The selection can also be disabled by setting the <b>SelectionMode</b> property to <b>None</b>. The default selection mode of the calendar is <b>Single</b>.]]></Description>
+				</Example>
+				<Example>
+					<Name>Globalization</Name>
+					<Page>GlobalizationView</Page>
+					<DisplayName>Globalization</DisplayName>
+					<Icon>calendar.png</Icon>
+					<Description><![CDATA[This example presents the support for the different .NET Framework calendar implementations which include <b>Gregorian</b>, <b>Hijri</b>, <b>Persian</b>, etc. The desired calendar implementation can be specified through the <b>Culture</b> property of the RadCalendar.]]></Description>
+				</Example>
+				<Example>
+					<Name>BlackoutDates</Name>
+					<Page>BlackoutDatesView</Page>
+					<DisplayName>Blackout Dates</DisplayName>
+					<Icon>calendar.png</Icon>
+					<Description><![CDATA[This example presents the ability of the RadCalendar to mark some of its dates as not selectable (e.g., all past dates, official holidays, code freeze periods, etc.). The feature is enabled through the <b>BlackoutDates</b> collection of the calendar.]]></Description>
+				</Example>
+				<Example>
 					<Name>Customization</Name>
 					<Page>CustomizationView</Page>
 					<DisplayName>Customization</DisplayName>
@@ -454,13 +482,6 @@
 					<Description>Demonstrates the Grouping feature of the DataGrid. You can drag the column headers onto a grouping panel, easily enable/disable the grouping, and programmatically group the DataGrid.</Description>
 				</Example>
 				<Example>
-					<Name>Customization</Name>
-					<Page>CustomizationView</Page>
-					<DisplayName>Customization</DisplayName>
-					<Icon>customization.png</Icon>
-					<Description>Demonstrates how you could customize the visual appearance of the DataGrid control through various Style and StyleSelector properties such as CellContentStyle, CellDecorationStyle, SelectionStyle, GroupHeaderStyleSelector, etc.</Description>
-				</Example>
-				<Example>
 					<Name>VariousDataSources</Name>
 					<Status>New</Status>
 					<Page>VariousDataSourcesView</Page>
@@ -477,6 +498,30 @@
 					<Status>New</Status>
 					<IsConfigurable>true</IsConfigurable>
 					<Description>Demonstrates the ability of the DataGrid to specify and show a custom template when the ItemsSource is null or an empty collection is provided.</Description>
+				</Example>
+				<Example>
+					<Name>HeaderContentTemplate</Name>
+					<Page>HeaderContentTemplateView</Page>
+					<DisplayName>Header Content Template</DisplayName>
+					<Icon>datagrid.png</Icon>
+					<Status>New</Status>
+					<Description><![CDATA[Demonstrates the ability of the DataGrid to specify and show custom appearance for the column headers by means of <b>Header Content Template</b>.]]></Description>
+				</Example>
+				<Example>
+					<Name>RowDetails</Name>
+					<Page>RowDetailsView</Page>
+					<DisplayName>Row Details</DisplayName>
+					<Icon>datagrid.png</Icon>
+					<Status>New</Status>
+					<IsConfigurable>true</IsConfigurable>
+					<Description><![CDATA[Demonstrates the ability of each row of the DataGrid to present additional information by means of <b>Row Details</b> without affecting the dimensions of the row and the cells.]]></Description>
+				</Example>
+				<Example>
+					<Name>Customization</Name>
+					<Page>CustomizationView</Page>
+					<DisplayName>Customization</DisplayName>
+					<Icon>customization.png</Icon>
+					<Description>Demonstrates how you could customize the visual appearance of the DataGrid control through various Style and StyleSelector properties such as CellContentStyle, CellDecorationStyle, SelectionStyle, GroupHeaderStyleSelector, HeaderStyle, etc.</Description>
 				</Example>
 			</Examples>
 		</Control>
@@ -1113,6 +1158,14 @@
 					<DisplayName>First Look</DisplayName>
 					<Icon>treeview.png</Icon>
 					<Description>This example demonstrates how the RadTreeView component can be used within your application to organize your inbox messages in a tree-like folder structure.</Description>
+				</Example>
+				<Example>
+					<Name>Configuration</Name>
+					<Page>ConfigurationView</Page>
+					<DisplayName>Configuration</DisplayName>
+					<Icon>configuration.png</Icon>
+					<IsConfigurable>true</IsConfigurable>
+					<Description>This example presents the various configuration options that the RadTreeView provides. Choose the selection and checkbox modes, adjust the indentations and determine whether to display the expand buttons and images of the items.</Description>
 				</Example>
 			</Examples>
 		</Control>

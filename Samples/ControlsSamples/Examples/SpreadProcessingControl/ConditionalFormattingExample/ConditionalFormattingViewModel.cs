@@ -19,6 +19,8 @@ namespace QSF.Examples.SpreadProcessingControl.ConditionalFormattingExample
 {
     public class ConditionalFormattingViewModel : ExampleViewModel
     {
+        private static Workbook workbookCache;
+
         private int priceRank;
         private double discountThreshold;
         private string shippingSearch;
@@ -30,6 +32,7 @@ namespace QSF.Examples.SpreadProcessingControl.ConditionalFormattingExample
         private IEnumerable<PriceFilter> priceFilters;
         private IEnumerable<ClientsRule> clientsRules;
         private IEnumerable<string> shippingTerms;
+        private Command viewDocumentCommand;
         private Command viewFormattedDocumentCommand;
 
         public ConditionalFormattingViewModel()
@@ -41,6 +44,7 @@ namespace QSF.Examples.SpreadProcessingControl.ConditionalFormattingExample
             this.SelectedPriceFilter = PriceFilter.Top;
             this.DiscountThreshold = 0.07;
 
+            this.viewDocumentCommand = new Command(this.ViewDocument);
             this.viewFormattedDocumentCommand = new Command(this.ViewFormattedDocument);
         }
 
@@ -181,6 +185,14 @@ namespace QSF.Examples.SpreadProcessingControl.ConditionalFormattingExample
             }
         }
 
+        public ICommand ViewDocumentCommand
+        {
+            get
+            {
+                return this.viewDocumentCommand;
+            }
+        }
+
         public ICommand ViewFormattedDocumentCommand
         {
             get
@@ -204,6 +216,61 @@ namespace QSF.Examples.SpreadProcessingControl.ConditionalFormattingExample
             MemoryStream stream = new MemoryStream();
             formatProvider.Export(workbook, stream);
             return stream;
+        }
+
+        private static Task<Workbook> ImportAndCacheWorkbookAsync()
+        {
+            return Task.Run(() =>
+            {
+                if (workbookCache == null)
+                {
+                    workbookCache = ImportWorkbook();
+                }
+
+                return workbookCache;
+            });
+        }
+
+        private static Workbook ImportWorkbook()
+        {
+            Assembly assembly = typeof(ConditionalFormattingViewModel).Assembly;
+            string fileName = assembly.GetManifestResourceNames().First(n => n.Contains("SpreadProcessingDocument2.xlsx"));
+
+            using (Stream stream = assembly.GetManifestResourceStream(fileName))
+            {
+                IWorkbookFormatProvider provider = new XlsxFormatProvider();
+                Workbook workbook = provider.Import(stream);
+                return workbook;
+            }
+        }
+
+        private static async Task ViewDocumentAsync(Workbook workbook, string fileName)
+        {
+            Stream stream = await OpenStreamAsync(workbook);
+
+            using (stream)
+            {
+                IFileViewerService fileViewerService = DependencyService.Get<IFileViewerService>();
+                await fileViewerService.View(stream, fileName);
+            }
+        }
+
+        private async void ViewDocument(object obj)
+        {
+            this.viewDocumentCommand.ChangeCanExecute();
+
+            try
+            {
+                Workbook workbook = await ImportAndCacheWorkbookAsync();
+                await ViewDocumentAsync(workbook, "SpreadProcessingDocument2.xlsx");
+            }
+            catch
+            {
+                IToastMessageService messageService = DependencyService.Get<IToastMessageService>();
+                messageService.ShortAlert("An error occured, please try again.");
+            }
+
+            this.viewDocumentCommand.ChangeCanExecute();
         }
 
         public async void ViewFormattedDocument(object parameter)
@@ -231,8 +298,8 @@ namespace QSF.Examples.SpreadProcessingControl.ConditionalFormattingExample
             }
             catch
             {
-                IMessageService messageService = DependencyService.Get<IMessageService>();
-                await messageService.ShowMessage("An error occured", "An error occured, please try again.");
+                IToastMessageService messageService = DependencyService.Get<IToastMessageService>();
+                messageService.ShortAlert("An error occured, please try again.");
             }
         }
 

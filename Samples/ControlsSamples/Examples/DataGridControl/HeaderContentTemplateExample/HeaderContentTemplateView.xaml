@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:common="clr-namespace:QSF.Examples.DataGridControl.Common"
+             xmlns:local="clr-namespace:QSF.Examples.DataGridControl.HeaderContentTemplateExample"
+             x:Class="QSF.Examples.DataGridControl.HeaderContentTemplateExample.HeaderContentTemplateView">
+    <ContentView.Resources>
+        <Color x:Key="TextColor">#FFFFFF</Color>
+        <Color x:Key="MainBackgroundColor">#0087A4</Color>
+        <Color x:Key="HoverBackgroundColor">#0099BC</Color>
+        <Color x:Key="SortedBackgroundColor">#00AACF</Color>
+        <Color x:Key="AccentFillColor">#C30052</Color>
+
+        <local:IsFrozenToTextConverter x:Key="IsFrozenToTextConverter" />
+        <local:SortDirectionToOpacityConverter x:Key="SortDirectionToOpacityConverter" />
+        <local:SortDirectionToTextConverter x:Key="SortDirectionToTextConverter" />
+        <local:SortDirectionToColorConverter x:Key="SortDirectionToColorConverter"
+                                             AscendingColor="{StaticResource SortedBackgroundColor}"
+                                             DescendingColor="{StaticResource SortedBackgroundColor}"
+                                             NoneColor="{StaticResource MainBackgroundColor}" />
+        <local:BoolToColorConverter x:Key="BoolToColorConverter"
+                                    TrueColor="{StaticResource AccentFillColor}"
+                                    FalseColor="{StaticResource TextColor}" />
+
+        <telerik:DataGridColumnHeaderStyle x:Key="EmptyHeaderStyle"
+                                           BackgroundColor="{StaticResource MainBackgroundColor}"
+                                           HoverBackgroundColor="{StaticResource HoverBackgroundColor}"
+                                           BorderThickness="0"
+                                           SortIndicatorAscendingText=""
+                                           SortIndicatorDescendingText=""
+                                           SortIndicatorMargin="0"
+                                           SortIndicatorHorizontalOptions="End"
+                                           TextHorizontalOptions="Fill"
+                                           FilterIndicatorText=""
+                                           FilterIndicatorTextColor="Transparent"
+                                           FilterIndicatorMargin="0" />
+
+        <DataTemplate x:Key="CustomHeaderTemplate">
+            <Grid BackgroundColor="{Binding SortDirection, Converter={StaticResource SortDirectionToColorConverter}, Mode=TwoWay}">
+                <Grid ColumnDefinitions="Auto, *, Auto"
+                      Padding="{OnPlatform Android='8, 13', iOS='18, 14', MacCatalyst=10, WinUI=12}"
+                      ColumnSpacing="4">
+                    <telerik:RadButton Text="{Binding IsFrozen, Converter={StaticResource IsFrozenToTextConverter}, Mode=TwoWay}"
+                                       FontFamily="TelerikFontExamples"
+                                       TextColor="{StaticResource TextColor}"
+                                       BackgroundColor="Transparent"
+                                       BorderThickness="0"
+                                       Padding="0"
+                                       Clicked="FreezeButtonClicked" />
+                    <Grid Grid.Column="1">
+                        <Label Text="{Binding SortDirection, Converter={StaticResource SortDirectionToTextConverter}}"
+                               FontFamily="TelerikFontExamples"
+                               TextColor="{StaticResource AccentFillColor}"
+                               VerticalTextAlignment="Start"
+                               HorizontalTextAlignment="Center"
+                               Margin="{OnPlatform Android='0, -13, 0, 0', iOS='0, -14, 0, 0', MacCatalyst='0, -10, 0, 0', WinUI='0, -12, 0, 0'}" />
+                        <Label Text="{Binding HeaderText}"
+                               TextColor="{StaticResource TextColor}"
+                               HorizontalTextAlignment="Start"
+                               VerticalTextAlignment="Center" />
+                    </Grid>
+                    <Label Grid.Column="2"
+                           Text="&#xe802;"
+                           TextColor="{Binding IsFiltered, Converter={StaticResource BoolToColorConverter}, FallbackValue={StaticResource TextColor}}"
+                           FontFamily="TelerikFontExamples"
+                           FontAttributes="Bold"
+                           VerticalTextAlignment="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnFilterIconTapped" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </Grid>
+                <BoxView HeightRequest="2"
+                         VerticalOptions="End"
+                         Opacity="{Binding SortDirection, Converter={StaticResource SortDirectionToOpacityConverter}}"
+                         Color="{StaticResource AccentFillColor}" />
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Disabled" />
+                        <VisualState x:Name="PointerOver">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="{StaticResource HoverBackgroundColor}" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+            </Grid>
+        </DataTemplate>
+    </ContentView.Resources>
+
+    <Grid>
+        <telerik:RadDataGrid x:Name="dataGrid"
+                             ItemsSource="{Binding Orders}"
+                             AutoGenerateColumns="False">
+            <telerik:RadDataGrid.SortDescriptors>
+                <telerik:PropertySortDescriptor PropertyName="OrderID"/>
+            </telerik:RadDataGrid.SortDescriptors>
+            <telerik:RadDataGrid.Columns>
+                <telerik:DataGridNumericalColumn PropertyName="OrderID"
+                                                 IsFrozen="True"
+                                                 HeaderText="Order ID"
+                                                 HeaderStyle="{StaticResource EmptyHeaderStyle}"
+                                                 HeaderContentTemplate="{StaticResource CustomHeaderTemplate}" />
+                <telerik:DataGridDateColumn PropertyName="OrderDate"
+                                            HeaderText="Order Date"
+                                            HeaderStyle="{StaticResource EmptyHeaderStyle}"
+                                            HeaderContentTemplate="{StaticResource CustomHeaderTemplate}" />
+                <telerik:DataGridDateColumn PropertyName="ShippedDate"
+                                            HeaderText="Shipped Date"
+                                            HeaderStyle="{StaticResource EmptyHeaderStyle}"
+                                            HeaderContentTemplate="{StaticResource CustomHeaderTemplate}" />
+                <telerik:DataGridNumericalColumn PropertyName="Freight"
+                                                 HeaderText="Freight"
+                                                 HeaderStyle="{StaticResource EmptyHeaderStyle}"
+                                                 HeaderContentTemplate="{StaticResource CustomHeaderTemplate}"
+                                                 CellContentFormat="${0:N2}" />
+                <telerik:DataGridTextColumn PropertyName="ShipCountry"
+                                            HeaderText="Ship Country"
+                                            HeaderStyle="{StaticResource EmptyHeaderStyle}"
+                                            HeaderContentTemplate="{StaticResource CustomHeaderTemplate}" />
+            </telerik:RadDataGrid.Columns>
+        </telerik:RadDataGrid>
+    </Grid>
+</ContentView>

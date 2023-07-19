@@ -4,34 +4,50 @@
                         xmlns:system="clr-namespace:System;assembly=netstandard"
                         xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
                         x:Class="QSF.Examples.SpreadProcessingControl.ConvertExample.ConvertView"
-                        Margin="16, 20">
-    <Grid RowDefinitions="*">
-        <VerticalStackLayout>
-            <HorizontalStackLayout HorizontalOptions="Center"
-                                   VerticalOptions="End" 
-                                   Spacing="10"
-                                   Margin="0, 0, 0, 21">
-                <Label Text="File:" />
-                <Label Text="SpreadProcessingDocument1.xlsx" />
-            </HorizontalStackLayout>
+                        Padding="{OnIdiom Default='16, 20', Phone=0}">
+    <telerik:RadContentView.Resources>
+        <Style TargetType="Label" BasedOn="{StaticResource BaseLabelStyle}">
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="VerticalOptions" Value="Center" />
+        </Style>
+    </telerik:RadContentView.Resources>
 
-            <Label Text="Select format:"
-                   TextColor="Black"
-                   HorizontalOptions="Center"
-                   Margin="0, 0, 0, 8" />
-
-            <Picker WidthRequest="{OnPlatform WinUI='300', MacCatalyst='300'}"
-                    TextColor="#919191"
-                    HorizontalTextAlignment="Center"
-                    ItemsSource="{Binding ExportFormats}"
-                    SelectedItem="{Binding SelectedExportFormat, Mode=TwoWay}" />
-
-            <telerik:RadButton Text="{Binding Text}"
-                               Margin="0,20,0,0"
-                               VerticalOptions="{OnPlatform WinUI='Center', MacCatalyst='Center'}"
-                               HorizontalOptions="{OnPlatform WinUI='Center', MacCatalyst='Center'}"
-                               Style="{StaticResource SubmitButtonStyle}"
-                               Command="{Binding GenerateCommand}" />
-        </VerticalStackLayout>
-    </Grid>
+    <VerticalStackLayout BackgroundColor="{AppThemeBinding Light={StaticResource DefaultBackgroundColor}, Dark={StaticResource DefaultBackgroundColorDark}}"
+                         Padding="16, 24"
+                         VerticalOptions="Start">
+        <HorizontalStackLayout HorizontalOptions="Center"
+                               VerticalOptions="Center"
+                               Spacing="10"
+                               Margin="0, 0, 0, 12">
+            <Label Text="File:" />
+            <Label Text="SpreadProcessingDocument1.xlsx"
+                    FontAttributes="Bold" />
+        </HorizontalStackLayout>
+        <HorizontalStackLayout Spacing="10"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"
+                               Margin="0, 0, 0, 24">
+            <Label Text="Format:" />
+            <telerik:RadComboBox IsEditable="False"
+                                 IsClearButtonVisible="False"
+                                 WidthRequest="100"
+                                 ItemsSource="{Binding ExportFormats}"
+                                 SelectedItem="{Binding SelectedExportFormat, Mode=TwoWay}"
+                                 DropDownHeight="{OnPlatform Android=136, iOS=144, MacCatalyst=88, WinUI=160}">
+                <telerik:RadComboBox.Resources>
+                    <Style TargetType="Label">
+                        <Setter Property="HorizontalOptions" Value="Start" />
+                    </Style>
+                    <Style TargetType="telerik:RadEntry">
+                        <Setter Property="HorizontalTextAlignment" Value="Center" />
+                    </Style>
+                </telerik:RadComboBox.Resources>
+            </telerik:RadComboBox>
+        </HorizontalStackLayout>
+        <telerik:RadButton Text="{Binding Text}"
+                           VerticalOptions="End"
+                           HorizontalOptions="Center"
+                           Style="{StaticResource SubmitButtonStyle}"
+                           Command="{Binding GenerateCommand}" />
+    </VerticalStackLayout>
 </telerik:RadContentView>

@@ -18,18 +18,14 @@
            <Label Text="Selection Unit:"
                   Style="{StaticResource VerticalGroupLabelStyle}" />
            <telerik:RadComboBox ItemsSource="{Binding SelectionUnits}"
-                                BackgroundColor="White"
-                                DropDownHeight="{OnPlatform Default='80', MacCatalyst='50', iOS='70'}"
-                                DropDownBackgroundColor="White"
+                                DropDownHeight="{OnPlatform Android=68, iOS=72, MacCatalyst=44, WinUI=80}"
                                 SelectedItem="{Binding SelectedUnit, Mode=TwoWay}" />
        </VerticalStackLayout>
        <VerticalStackLayout Style="{StaticResource GroupAtSeparateAreaStyle}">
            <Label Text="Selection Mode:"
                   Style="{StaticResource VerticalGroupLabelStyle}" />
            <telerik:RadComboBox ItemsSource="{Binding SelectionModes}"
-                                BackgroundColor="White"
-                                DropDownHeight="{OnPlatform Default='120', MacCatalyst='80', iOS='140'}"
-                                DropDownBackgroundColor="White"
+                                DropDownHeight="{OnPlatform Android=102, iOS=108, MacCatalyst=66, WinUI=120}"
                                 SelectedItem="{Binding SelectedMode, Mode=TwoWay}" />
        </VerticalStackLayout>
     </VerticalStackLayout>

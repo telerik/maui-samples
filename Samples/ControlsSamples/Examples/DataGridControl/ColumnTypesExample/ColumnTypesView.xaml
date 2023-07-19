@@ -6,24 +6,27 @@
              x:Class="QSF.Examples.DataGridControl.ColumnTypesExample.ColumnTypesView"
              Margin="{OnIdiom Phone='16,20', Desktop=0}">
     <ContentView.Resources>
-        <telerik:BoolToValueConverter x:Key="BoolToValueConverter" TrueValue="Yes" FalseValue="No"/>
         <local:StatusFlightToBooleanConverter x:Key="StatusFlightToBooleanConverter"/>
-        <Style x:Key="LabelStyle_iOS" TargetType="Label">
-            <Setter Property="FontSize" Value="17" />
-        </Style>
         <DataTemplate x:Key="StatusCellTemplate">
             <HorizontalStackLayout IsClippedToBounds="True"
                                    VerticalOptions="Center"
-                                   Margin="4, 0, 4, 0">
+                                   Margin="4, 0">
                 <Label Text="{Binding Status}"
-                       Margin="2, 0, 2, 0"
-                       Style="{OnPlatform iOS={StaticResource LabelStyle_iOS}, MacCatalyst={StaticResource LabelStyle_iOS}}" />
+                       Margin="2, 0" />
                 <Label Text="{Binding StatusTime}"
                        IsVisible="{Binding Status, Converter={StaticResource StatusFlightToBooleanConverter}}"
                        TextColor="{StaticResource AccentColor8}"
-                       Margin="2, 0, 2, 0"
-                       Style="{OnPlatform iOS={StaticResource LabelStyle_iOS}, MacCatalyst={StaticResource LabelStyle_iOS}}" />
+                       Margin="2, 0" />
             </HorizontalStackLayout>
+        </DataTemplate>
+        <DataTemplate x:Key="DestinationColumnTemplate">
+            <VerticalStackLayout VerticalOptions="Center"
+                                 Padding="{OnPlatform Default='10, 0, 0, 0', Android='5, 0, 0, 0'}">
+                <Label Text="{Binding DestinationFullName}" />
+                <Label Text="{Binding DestinationShortName}"
+                       FontSize="Caption"
+                       TextColor="{StaticResource AccentColor8}" />
+            </VerticalStackLayout>
         </DataTemplate>
     </ContentView.Resources>
     <Grid RowDefinitions="*">
@@ -33,10 +36,7 @@
                              UserSortMode="None"
                              UserFilterMode="Disabled"
                              UserGroupMode="Disabled"
-                             AutoGenerateColumns="False"
-                             GridLinesThickness="1"
-                             GridLinesVisibility="Both"
-                             GridLinesColor="#DFDFDF">
+                             AutoGenerateColumns="False">
             <telerik:RadDataGrid.Columns>
                 <telerik:DataGridDateColumn HeaderText="Date"
                                             PropertyName="Date" />
@@ -46,31 +46,11 @@
                                             PropertyName="Id" />
                 <telerik:DataGridTemplateColumn HeaderText="To" 
                                                 SizeMode="Fixed"
-                                                Width="80"
-                                                MinimumWidth="80">
-                    <telerik:DataGridTemplateColumn.CellContentTemplate>
-                        <DataTemplate>
-                            <VerticalStackLayout VerticalOptions="Center"
-                                                 Padding="{OnPlatform Default='10,0,0,0',Android='5,0,0,0'}">
-                                <Label Text="{Binding DestinationFullName}" />
-                                <Label Text="{Binding DestinationShortName}"
-                                       FontSize="Caption"
-                                       TextColor="{StaticResource AccentColor8}" />
-                            </VerticalStackLayout>
-                        </DataTemplate>
-                    </telerik:DataGridTemplateColumn.CellContentTemplate>
-                </telerik:DataGridTemplateColumn>
+                                                Width="100"
+                                                MinimumWidth="100"
+                                                CellContentTemplate="{StaticResource DestinationColumnTemplate}" />
                 <telerik:DataGridBooleanColumn HeaderText="Direct"
-                                               PropertyName="IsDirect">
-                    <telerik:DataGridColumn.CellContentTemplate>
-                        <DataTemplate>
-                            <Label VerticalOptions="Center"
-                                   Padding="10,0,0,0"
-                                   LineBreakMode="NoWrap"
-                                   Text="{Binding IsDirect, Converter={StaticResource BoolToValueConverter}}" />
-                        </DataTemplate>
-                    </telerik:DataGridColumn.CellContentTemplate>
-                </telerik:DataGridBooleanColumn>
+                                               PropertyName="IsDirect" />
                 <telerik:DataGridNumericalColumn HeaderText="Terminal"
                                                  PropertyName="Terminal"/>
                 <telerik:DataGridTemplateColumn HeaderText="Status"

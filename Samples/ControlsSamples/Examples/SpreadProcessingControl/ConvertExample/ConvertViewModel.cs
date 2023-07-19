@@ -109,8 +109,8 @@ namespace QSF.Examples.SpreadProcessingControl.ConvertExample
             }
             catch
             {
-                IMessageService messageService = DependencyService.Get<IMessageService>();
-                await messageService.ShowMessage("An error occured", "An error occured, please try again.");
+                IToastMessageService messageService = DependencyService.Get<IToastMessageService>();
+                messageService.ShortAlert("An error occured, please try again.");
             }
         }
 

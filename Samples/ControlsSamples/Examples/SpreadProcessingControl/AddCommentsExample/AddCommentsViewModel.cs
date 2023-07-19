@@ -227,7 +227,7 @@ namespace QSF.Examples.SpreadProcessingControl.AddCommentsExample
             return workbook;
         }
 
-        private async void InsertComment(object param)
+        private void InsertComment(object param)
         {
             int rowIndex;
             int columnIndex;
@@ -235,8 +235,8 @@ namespace QSF.Examples.SpreadProcessingControl.AddCommentsExample
 
             if (!isCellNameValid)
             {
-                IMessageService messageService = DependencyService.Get<IMessageService>();
-                await messageService.ShowMessage("Warning", "The cell name is not valid. Please, enter a valid cell name.");
+                IToastMessageService messageService = DependencyService.Get<IToastMessageService>();
+                messageService.ShortAlert("The cell name is not valid. Please, enter a valid cell name.");
                 this.RelatedCell = NameConverter.ConvertCellIndexToName(this.RelatedCellIndex);
             }
             else
@@ -333,8 +333,8 @@ namespace QSF.Examples.SpreadProcessingControl.AddCommentsExample
             }
             catch
             {
-                IMessageService messageService = DependencyService.Get<IMessageService>();
-                await messageService.ShowMessage("An error occured", "An error occured, please try again.");
+                IToastMessageService messageService = DependencyService.Get<IToastMessageService>();
+                messageService.ShortAlert("An error occured, please try again.");
             }
         }
 

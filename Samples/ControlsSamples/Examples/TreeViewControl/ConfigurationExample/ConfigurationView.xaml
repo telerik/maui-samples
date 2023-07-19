@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:QSF.Examples.TreeViewControl.ConfigurationExample"
+             xmlns:common="clr-namespace:QSF.Examples.TreeViewControl.Common"
+             x:Class="QSF.Examples.TreeViewControl.ConfigurationExample.ConfigurationView"
+             Padding="{OnIdiom Default='16, 20', Phone=0}">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <common:StringToFontImageSourceConverter x:Key="StringToFontImageSourceConverter" />
+            <Style x:Key="TreeViewItemStyle" TargetType="telerik:TreeViewItemView">
+                <Setter Property="IsExpandButtonVisible" Value="{Binding BindingContext.IsItemExpandButtonVisible, Source={x:Reference treeView}}" />
+                <Setter Property="IsImageVisible" Value="{Binding BindingContext.IsItemImageVisible, Source={x:Reference treeView}}" />
+                <Setter Property="Spacing" Value="{Binding BindingContext.ItemSpacing, Source={x:Reference treeView}}" />
+                <Setter Property="ImageSource" Value="{Binding Icon, Converter={StaticResource StringToFontImageSourceConverter}}" />
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+    <Grid>
+        <telerik:RadTreeView x:Name="treeView"
+                             ItemsSource="{Binding Folders}"
+                             ItemStyle="{StaticResource TreeViewItemStyle}"
+                             SelectionMode="{Binding SelectionMode, Mode=TwoWay}"
+                             CheckBoxMode="{Binding CheckBoxMode, Mode=TwoWay}"
+                             LevelIndentation="{Binding LevelIndentation, Mode=TwoWay}">
+            <telerik:TreeViewDescriptor TargetType="{x:Type local:FolderNode}"
+                                        DisplayMemberPath="Name"
+                                        ItemsSourcePath="Children" />
+            <telerik:TreeViewDescriptor TargetType="{x:Type local:FileNode}"
+                                        DisplayMemberPath="Name" />
+        </telerik:RadTreeView>
+    </Grid>
+</ContentView>

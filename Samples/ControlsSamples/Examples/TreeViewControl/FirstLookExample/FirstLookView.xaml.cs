@@ -8,8 +8,13 @@ public partial class FirstLookView : RadContentView
     public FirstLookView()
     {
         this.InitializeComponent();
+    }
 
-        this.Dispatcher.Dispatch(() => this.treeView.ExpandAll());
+    protected override void OnBindingContextChanged()
+    {
+        base.OnBindingContextChanged();
+
+       this.treeView.ExpandAll();
     }
 
     private void OnItemTapped(object sender, ItemViewTappedEventArgs eventArgs)

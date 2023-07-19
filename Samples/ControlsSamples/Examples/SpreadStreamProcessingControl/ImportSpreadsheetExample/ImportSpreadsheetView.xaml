@@ -17,41 +17,38 @@
             <Setter Property="HorizontalOptions" Value="Start" />
         </Style>
     </telerik:RadContentView.Resources>
-    <Grid Margin="10"
-          RowSpacing="10">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="40" />
-            <RowDefinition Height="40" />
-            <RowDefinition />
-        </Grid.RowDefinitions>
-        <HorizontalStackLayout Grid.Row="0"
-                               Spacing="5"
-                               HorizontalOptions="Center"
-                               VerticalOptions="Center">
-            <Label Text="File:"
-                   FontAttributes="Bold" />
-            <Label Text="{Binding Workbook.Name}"/>
-        </HorizontalStackLayout>
-        <HorizontalStackLayout Grid.Row="1"
-                               Spacing="5"
-                               HorizontalOptions="Center"
-                               VerticalOptions="Center">
-            <telerik:RadButton Text="Load File"
-                               WidthRequest="150"
-                               VerticalOptions="Center"
-                               Command="{Binding ImportFileCommand}"
-                               Style="{StaticResource SubmitButtonStyle}" />
-            <Label Text="- OR -"
-                   VerticalOptions="Center" />
-            <telerik:RadButton Text="Load Sample"
-                               WidthRequest="150"
-                               VerticalOptions="Center"
-                               Command="{Binding ImportSampleCommand}"
-                               Style="{StaticResource SubmitButtonStyle}" />
-        </HorizontalStackLayout>
-        <telerik:RadBusyIndicator Grid.Row="2"
+    <Grid RowDefinitions="Auto, *">
+        <VerticalStackLayout BackgroundColor="{AppThemeBinding Light={StaticResource DefaultBackgroundColor}, Dark={StaticResource DefaultBackgroundColorDark}}"
+                             Padding="16, 24">
+            <HorizontalStackLayout Spacing="10"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"
+                                   Margin="0, 0, 0, 12">
+                <Label Text="File:" />
+                <Label Text="{Binding Workbook.Name}"
+                       FontAttributes="Bold" />
+            </HorizontalStackLayout>
+            <HorizontalStackLayout Spacing="10"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center">
+                <telerik:RadButton Text="Load File"
+                                   WidthRequest="150"
+                                   VerticalOptions="Center"
+                                   Command="{Binding ImportFileCommand}"
+                                   Style="{StaticResource SubmitButtonStyle}" />
+                <Label Text="OR"
+                       VerticalOptions="Center" />
+                <telerik:RadButton Text="Load Sample"
+                                   WidthRequest="150"
+                                   VerticalOptions="Center"
+                                   Command="{Binding ImportSampleCommand}"
+                                   Style="{StaticResource SubmitButtonStyle}" />
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+        <telerik:RadBusyIndicator Grid.Row="1"
                                   IsBusy="{Binding IsBusy}"
-                                  Style="{StaticResource DefaultBusyIndicatorStyle}">
+                                  Style="{StaticResource DefaultBusyIndicatorStyle}"
+                                  Padding="16">
             <Grid>
                 <Label HorizontalOptions="Center"
                        VerticalOptions="Center"

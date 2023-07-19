@@ -37,7 +37,7 @@ namespace QSF.Examples.WordsProcessingControl.ExportExample
             {
                 if (this.exportFormats == null)
                 {
-                    this.exportFormats = new string[] { "PDF files(*.pdf)", "RTF files(*.rtf)", "HTML files(*.html)", "TXT files(*.txt)" };
+                    this.exportFormats = new string[] { "PDF (*.pdf)", "Rich Text Format (*.rtf)", "HTML (*.html)", "Plain Text (*.txt)" };
                 }
 
                 return this.exportFormats;
@@ -71,19 +71,19 @@ namespace QSF.Examples.WordsProcessingControl.ExportExample
 
             switch (this.selectedExportFormat)
             {
-                case "PDF files(*.pdf)":
+                case "PDF (*.pdf)":
                     formatProvider = new PdfFormatProvider();
                     exampleName = "example.pdf";
                     break;
-                case "RTF files(*.rtf)":
+                case "Rich Text Format (*.rtf)":
                     formatProvider = new RtfFormatProvider();
                     exampleName = "example.rtf";
                     break;
-                case "HTML files(*.html)":
+                case "HTML (*.html)":
                     formatProvider = new HtmlFormatProvider();
                     exampleName = "example.html";
                     break;
-                case "TXT files(*.txt)":
+                case "Plain Text (*.txt)":
                     formatProvider = new TxtFormatProvider();
                     exampleName = "example.txt";
                     break;

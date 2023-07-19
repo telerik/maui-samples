@@ -44,7 +44,8 @@
                 <telerik:DataFormCustomEditor.EditorTemplate>
                     <ControlTemplate>
                         <telerik:RadCheckBox IsThreeState="False" 
-                                             IsChecked="{Binding Value, Mode=TwoWay, Source={RelativeSource Mode=TemplatedParent}}"/>
+                                             IsChecked="{Binding Value, Mode=TwoWay, Source={RelativeSource Mode=TemplatedParent}}"
+                                             HorizontalOptions="Start" />
                     </ControlTemplate>
                 </telerik:DataFormCustomEditor.EditorTemplate>
             </telerik:DataFormCustomEditor>
