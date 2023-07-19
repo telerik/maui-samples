@@ -19,9 +19,15 @@
     </ContentView.Resources>
     <!-- << calendar-templates-daytemplate-definition -->
 
-    <VerticalStackLayout>
+    <Grid>
+        <Grid.Resources>
+            <Style TargetType="telerik:RadCalendar">
+                <Setter Property="HorizontalOptions" Value="{OnPlatform Default=Fill, MacCatalyst=Start, WinUI=Start}" />
+                <Setter Property="VerticalOptions" Value="{OnPlatform Default=Fill, MacCatalyst=Start, WinUI=Start}" />
+            </Style>
+        </Grid.Resources>
         <!-- >> calendar-templates-daytemplate-usage -->
         <telerik:RadCalendar DisplayMode="Month" DayTemplate="{StaticResource DayLabelTemplate}" />
         <!-- << calendar-templates-daytemplate-usage -->
-    </VerticalStackLayout>
+    </Grid>
 </ContentView>

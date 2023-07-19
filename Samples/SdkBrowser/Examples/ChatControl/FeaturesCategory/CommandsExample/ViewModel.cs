@@ -18,10 +18,10 @@ namespace SDKBrowserMaui.Examples.ChatControl.FeaturesCategory.CommandsExample
             this.Items = new ObservableCollection<ChatItem>();
             this.NewMessageCommand = new Command(NewMessageCommandExecute);
 
-            this.MessagesLog = new ObservableCollection<string>();
+            this.MessagesLog = new ObservableCollection<LogItem>();
         }
 
-        public ObservableCollection<string> MessagesLog { get; set; }
+        public ObservableCollection<LogItem> MessagesLog { get; set; }
         public ICommand NewMessageCommand { get; set; }
         public IList<ChatItem> Items { get; set; }
         // << chat-commands-viewmodel
@@ -31,8 +31,13 @@ namespace SDKBrowserMaui.Examples.ChatControl.FeaturesCategory.CommandsExample
         {
             var newMessage = (string)obj;
             //any additional logic you need to implement
-            this.MessagesLog.Add("You just added a new message with text " + newMessage);
+            this.MessagesLog.Add(new LogItem() { Message = "You just added a new message with text " + newMessage });
         }
         // << chat-commands-executemethod
+    }
+
+    public class LogItem
+    {
+        public string Message { get; set; }
     }
 }

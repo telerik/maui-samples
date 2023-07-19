@@ -9,35 +9,59 @@
         <local:CustomCalendarStyleSelector x:Key="DayStyleSelector">
             <local:CustomCalendarStyleSelector.CustomSelectedLabelStyle>
                 <Style TargetType="telerik:CalendarBorderLabel">
-                    <Setter Property="TextColor" Value="#1188FF" />
+                    <Setter Property="TextColor" Value="#04A2AA" />
                     <Setter Property="FontAttributes" Value="Italic" />
-                    <Setter Property="BorderThickness" Value="3" />
+                    <Setter Property="BorderThickness" Value="0" />
+                    <Setter Property="BorderBackgroundColor" Value="#9AD9DD" />
                 </Style>
             </local:CustomCalendarStyleSelector.CustomSelectedLabelStyle>
+            <local:CustomCalendarStyleSelector.CustomSelectedMouseOverLabelStyle>
+                <Style TargetType="telerik:CalendarBorderLabel">
+                    <Setter Property="BorderBackgroundColor" Value="#B3E3E5" />
+                </Style>
+            </local:CustomCalendarStyleSelector.CustomSelectedMouseOverLabelStyle>
             <local:CustomCalendarStyleSelector.CustomOutOfScopeLabelStyle>
                 <Style TargetType="telerik:CalendarLabel">
-                    <Setter Property="TextColor" Value="#558660C5" />
+                    <Setter Property="TextColor" Value="#6104A2AA" />
                 </Style>
             </local:CustomCalendarStyleSelector.CustomOutOfScopeLabelStyle>
             <local:CustomCalendarStyleSelector.CustomNormalLabelStyle>
                 <Style TargetType="telerik:CalendarLabel">
-                    <Setter Property="TextColor" Value="#8660C5" />
+                    <Setter Property="TextColor" Value="#04A2AA" />
                 </Style>
             </local:CustomCalendarStyleSelector.CustomNormalLabelStyle>
             <local:CustomCalendarStyleSelector.SundayLabelStyle>
                 <Style TargetType="telerik:CalendarBorderLabel">
-                    <Setter Property="TextColor" Value="White" />
-                    <Setter Property="FontSize" Value="16" />
-                    <Setter Property="SecondaryBorderBackgroundColor" Value="#8660C5" />
+                    <Setter Property="TextColor" Value="#FF9040" />
+                    <Setter Property="HorizontalTextAlignment" Value="Center" />
                 </Style>
             </local:CustomCalendarStyleSelector.SundayLabelStyle>
+            <local:CustomCalendarStyleSelector.SundayMouseOverLabelStyle>
+                <Style TargetType="telerik:CalendarBorderLabel">
+                    <Setter Property="BorderBackgroundColor" Value="#FFE8D8" />
+                </Style>
+            </local:CustomCalendarStyleSelector.SundayMouseOverLabelStyle>
+            <local:CustomCalendarStyleSelector.SundaySelectedLabelStyle>
+                <Style TargetType="telerik:CalendarBorderLabel">
+                    <Setter Property="BorderBackgroundColor" Value="#FFDDC5" />
+                </Style>
+            </local:CustomCalendarStyleSelector.SundaySelectedLabelStyle>
+            <local:CustomCalendarStyleSelector.SundaySelectedMouseOverLabelStyle>
+                <Style TargetType="telerik:CalendarBorderLabel" />
+            </local:CustomCalendarStyleSelector.SundaySelectedMouseOverLabelStyle>
         </local:CustomCalendarStyleSelector>
     </ContentView.Resources>
     <!-- << calendar-styleselectors-daystyleselector-definition -->
 
-    <VerticalStackLayout>
+    <Grid>
+        <Grid.Resources>
+            <Style TargetType="telerik:RadCalendar">
+                <Setter Property="HorizontalOptions" Value="{OnPlatform Default=Fill, MacCatalyst=Start, WinUI=Start}" />
+                <Setter Property="VerticalOptions" Value="{OnPlatform Default=Fill, MacCatalyst=Start, WinUI=Start}" />
+            </Style>
+        </Grid.Resources>
         <!-- >> calendar-styleselectors-daystyleselector-usage -->
         <telerik:RadCalendar DisplayMode="Month" DayStyleSelector="{StaticResource DayStyleSelector}" />
         <!-- << calendar-styleselectors-daystyleselector-usage -->
-    </VerticalStackLayout>
+    </Grid>
 </ContentView>

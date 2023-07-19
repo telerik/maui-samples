@@ -22,9 +22,15 @@
     </ContentView.Resources>
     <!-- << calendar-styleselectors-monthstyleselector-definition -->
 
-    <VerticalStackLayout>
+    <Grid>
+        <Grid.Resources>
+            <Style TargetType="telerik:RadCalendar">
+                <Setter Property="HorizontalOptions" Value="{OnPlatform Default=Fill, MacCatalyst=Start, WinUI=Start}" />
+                <Setter Property="VerticalOptions" Value="{OnPlatform Default=Fill, MacCatalyst=Start, WinUI=Start}" />
+            </Style>
+        </Grid.Resources>
         <!-- >> calendar-styleselectors-monthstyleselector-usage -->
         <telerik:RadCalendar DisplayMode="Year" MonthStyleSelector="{StaticResource MonthStyleSelector}" />
         <!-- << calendar-styleselectors-monthstyleselector-usage -->
-    </VerticalStackLayout>
+    </Grid>
 </ContentView>

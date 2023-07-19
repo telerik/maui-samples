@@ -3,12 +3,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
              x:Class="SDKBrowserMaui.Examples.CalendarControl.FeaturesCategory.HeaderTextFormattingExample.HeaderTextFormatting">
-    <VerticalStackLayout>
+    <ContentView.Resources>
+        <Style TargetType="telerik:RadCalendar">
+            <Setter Property="HorizontalOptions" Value="{OnPlatform Default=Fill, MacCatalyst=Start, WinUI=Start}" />
+            <Setter Property="VerticalOptions" Value="{OnPlatform Default=Fill, MacCatalyst=Start, WinUI=Start}" />
+        </Style>
+    </ContentView.Resources>
+
+    <Grid>
         <!-- >> calendar-headertext-formatting -->
         <telerik:RadCalendar MonthHeaderTextFormat="{}{0:yy MMMM}"
                              YearHeaderTextFormat="{}{0:yy} year"
                              DecadeHeaderTextFormat="{}from {0:yy} to {1:yy}"
-                             CenturyHeaderTextFormat="{}from {0:yy} to {1:yy}"/>
+                             CenturyHeaderTextFormat="{}from {0:yy} to {1:yy}" />
         <!-- << calendar-headertext-formatting -->
-    </VerticalStackLayout>
+    </Grid>
 </ContentView>

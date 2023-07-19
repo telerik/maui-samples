@@ -1,4 +1,5 @@
 using Microsoft.Maui.Controls;
+using SDKBrowserMaui.Behaviors;
 using System;
 using System.IO;
 using System.Linq;
@@ -24,5 +25,6 @@ public partial class Toolbar : ContentView
         });
 
         this.richTextEditor.Source = RichTextSource.FromStream(streamFunc);
+        this.richTextEditor.Behaviors.Add(new PickImageBehavior());
     }
 }

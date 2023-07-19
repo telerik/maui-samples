@@ -1,16 +1,15 @@
 using Microsoft.Maui.Controls;
+using Microsoft.Maui.Devices;
+using SDKBrowserMaui.Behaviors;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
+using Telerik.Maui.Controls;
 using Telerik.Maui.Controls.RichTextEditor;
-using Telerik.Maui.Controls;
-using System.Collections.ObjectModel;
-using System.Collections.Generic;
-using Telerik.Maui.Controls;
-using Microsoft.Maui.Devices;
 
 namespace SDKBrowserMaui.Examples.RichTextEditorControl.ToolbarCategory.AllToolbarItemsCSharpExample;
 
@@ -34,6 +33,7 @@ public partial class AllToolbarItemsCSharp : ContentView
         });
 
         this.richTextEditor.Source = RichTextSource.FromStream(streamFunc);
+        this.richTextEditor.Behaviors.Add(new PickImageBehavior());
     }
 
     // >> generate-richtexteditor-toolbaritems

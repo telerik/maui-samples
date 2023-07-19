@@ -8,12 +8,18 @@
             <RowDefinition Height="150"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <telerik:RadListView x:Name="listView" ItemsSource="{Binding MessagesLog}"/>
+        <telerik:RadListView x:Name="listView" ItemsSource="{Binding MessagesLog}">
+            <telerik:RadListView.ItemTemplate>
+                <DataTemplate>
+                    <telerik:ListViewTextCell Text="{Binding Message}" />
+                </DataTemplate>
+            </telerik:RadListView.ItemTemplate>
+        </telerik:RadListView>
         <!-- >> chat-commands-xaml -->
         <telerik:RadChat x:Name="chat"
                         Grid.Row="1"
                         ItemsSource="{Binding Items}"
-                         SendMessageCommand="{Binding NewMessageCommand}"/>
+                        SendMessageCommand="{Binding NewMessageCommand}"/>
         <!-- << chat-commands-xaml -->
     </Grid>
 </telerik:RadContentView>

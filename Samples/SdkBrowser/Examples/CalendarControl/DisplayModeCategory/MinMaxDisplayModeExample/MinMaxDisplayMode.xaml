@@ -3,11 +3,18 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
              x:Class="SDKBrowserMaui.Examples.CalendarControl.DisplayModeCategory.MinMaxDisplayModeExample.MinMaxDisplayMode">
-    <VerticalStackLayout>
+    <ContentView.Resources>
+        <Style TargetType="telerik:RadCalendar">
+            <Setter Property="HorizontalOptions" Value="{OnPlatform Default=Fill, MacCatalyst=Start, WinUI=Start}" />
+            <Setter Property="VerticalOptions" Value="{OnPlatform Default=Fill, MacCatalyst=Start, WinUI=Start}" />
+        </Style>
+    </ContentView.Resources>
+
+    <Grid>
         <!-- >> calendar-display-range -->
         <telerik:RadCalendar DisplayMode="Decade"
-                             MinDisplayMode="Year" 
-                             MaxDisplayMode="Decade"/>
+                             MinDisplayMode="Year"
+                             MaxDisplayMode="Decade" />
         <!-- << calendar-display-range -->
-    </VerticalStackLayout>
+    </Grid>
 </ContentView>

@@ -3,9 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
              x:Class="SDKBrowserMaui.Examples.CalendarControl.SelectionCategory.MultipleSelectionExample.MultipleSelection">
+    <ContentView.Resources>
+        <Style TargetType="telerik:RadCalendar">
+            <Setter Property="HorizontalOptions" Value="{OnPlatform Default=Fill, MacCatalyst=Start, WinUI=Start}" />
+            <Setter Property="VerticalOptions" Value="{OnPlatform Default=Fill, MacCatalyst=Start, WinUI=Start}" />
+        </Style>
+    </ContentView.Resources>
+
     <!-- >> calendar-multiple-selection -->
-    <VerticalStackLayout>
-        <telerik:RadCalendar SelectionMode="Multiple"/>
-    </VerticalStackLayout>
+    <Grid>
+        <telerik:RadCalendar SelectionMode="Multiple" />
+    </Grid>
     <!-- << calendar-multiple-selection -->
 </ContentView>
