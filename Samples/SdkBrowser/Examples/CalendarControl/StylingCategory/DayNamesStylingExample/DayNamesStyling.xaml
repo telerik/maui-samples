@@ -11,11 +11,17 @@
                 <Setter Property="FontSize" Value="16" />
             </Style>
             <!-- << calendar-daynamelabel-style -->
+
+            <Style TargetType="telerik:RadCalendar">
+                <Setter Property="HorizontalOptions" Value="{OnPlatform Default=Fill, MacCatalyst=Start, WinUI=Start}" />
+                <Setter Property="VerticalOptions" Value="{OnPlatform Default=Fill, MacCatalyst=Start, WinUI=Start}" />
+            </Style>
         </ResourceDictionary>
     </ContentView.Resources>
-    <VerticalStackLayout>
+
+    <Grid>
         <!-- >> calendar-daynames-styling -->
-        <telerik:RadCalendar DayNameLabelStyle="{StaticResource DayNameLabelStyle}"/>
+        <telerik:RadCalendar DayNameLabelStyle="{StaticResource DayNameLabelStyle}" />
         <!-- << calendar-daynames-styling -->
-    </VerticalStackLayout>
+    </Grid>
 </ContentView>

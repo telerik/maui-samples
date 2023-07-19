@@ -1,24 +1,43 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
              xmlns:local="clr-namespace:SDKBrowserMaui.Examples.TreeViewControl.ScrollingCategory"
              x:Class="SDKBrowserMaui.Examples.TreeViewControl.ScrollingCategory.ScrollbarsExample.Scrollbars">
     <!-- >> treeview-scrolling -->
-    <Grid RowDefinitions="Auto,*">
-        <VerticalStackLayout>
-            <HorizontalStackLayout Spacing="5">
-                <Label Text="HorizontalScrollBarVisibility" VerticalOptions="Center"/>
-                <Switch x:Name="switchHorizontal"/>
-            </HorizontalStackLayout>
-            <HorizontalStackLayout Spacing="5">
-                <Label Text="VerticalScrollBarVisibility" VerticalOptions="Center"/>
-                <Switch x:Name="switchVertical"/>
-            </HorizontalStackLayout>
+    <Grid RowDefinitions="Auto,*"
+          RowSpacing="5">
+        <VerticalStackLayout Spacing="5">
+            <Label Text="HorizontalScrollBarVisibility" />
+            <Picker x:Name="pickerHorizontal">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type ScrollBarVisibility}">
+                        <ScrollBarVisibility>Default</ScrollBarVisibility>
+                        <ScrollBarVisibility>Always</ScrollBarVisibility>
+                        <ScrollBarVisibility>Never</ScrollBarVisibility>
+                    </x:Array>
+                </Picker.ItemsSource>
+                <Picker.SelectedItem>
+                    <ScrollBarVisibility>Default</ScrollBarVisibility>
+                </Picker.SelectedItem>
+            </Picker>
+            <Label Text="VerticalScrollBarVisibility" />
+            <Picker x:Name="pickerVertical">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type ScrollBarVisibility}">
+                        <ScrollBarVisibility>Default</ScrollBarVisibility>
+                        <ScrollBarVisibility>Always</ScrollBarVisibility>
+                        <ScrollBarVisibility>Never</ScrollBarVisibility>
+                    </x:Array>
+                </Picker.ItemsSource>
+                <Picker.SelectedItem>
+                    <ScrollBarVisibility>Default</ScrollBarVisibility>
+                </Picker.SelectedItem>
+            </Picker>
         </VerticalStackLayout>
         <telerik:RadTreeView x:Name="treeView"
-                             HorizontalScrollBarVisibility="{Binding IsToggled, Source={x:Reference switchHorizontal}}"
-                             VerticalScrollBarVisibility="{Binding IsToggled, Source={x:Reference switchVertical}}"
+                             HorizontalScrollBarVisibility="{Binding SelectedItem, Source={x:Reference pickerHorizontal}}"
+                             VerticalScrollBarVisibility="{Binding SelectedItem, Source={x:Reference pickerVertical}}"
                              HorizontalScrollBarLayoutMode="Resize"
                              VerticalScrollBarLayoutMode="Resize"
                              Grid.Row="1"

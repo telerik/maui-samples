@@ -1,4 +1,5 @@
 using Microsoft.Maui.Controls;
+using SDKBrowserMaui.Behaviors;
 using Telerik.Maui.Controls.RichTextEditor;
 
 namespace SDKBrowserMaui.Examples.RichTextEditorControl.EventsCategory.HyperlinkErrorHandlingExample;
@@ -14,6 +15,7 @@ public partial class HyperlinkErrorHandling : ContentView
                         <p><a href='www.google.com'>Google - not absolute Url</a></p>
                         <p><a href='http:/www.wvtesting.com'>Wrong format of Url</a></p>";
         this.richTextEditor.Source = RichTextSource.FromString(htmlSource);
+        this.richTextEditor.Behaviors.Add(new PickImageBehavior());
     }
 
     // >> richtexteditor-hyperlinkerrorhandling-code

@@ -15,16 +15,21 @@
             <local:CustomCalendarStyleSelector.CustomNormalLabelStyle>
                 <Style TargetType="telerik:CalendarLabel">
                     <Setter Property="TextColor" Value="#8660C5" />
-                    <Setter Property="FontSize" Value="16" />
                 </Style>
             </local:CustomCalendarStyleSelector.CustomNormalLabelStyle>
         </local:CustomCalendarStyleSelector>
     </ContentView.Resources>
     <!-- << calendar-styleselectors-decadestyleselector-definition -->
 
-    <VerticalStackLayout>
+    <Grid>
+        <Grid.Resources>
+            <Style TargetType="telerik:RadCalendar">
+                <Setter Property="HorizontalOptions" Value="{OnPlatform Default=Fill, MacCatalyst=Start, WinUI=Start}" />
+                <Setter Property="VerticalOptions" Value="{OnPlatform Default=Fill, MacCatalyst=Start, WinUI=Start}" />
+            </Style>
+        </Grid.Resources>
         <!-- >> calendar-styleselectors-decadestyleselector-usage -->
         <telerik:RadCalendar DisplayMode="Century" DecadeStyleSelector="{StaticResource DecadeStyleSelector}" />
         <!-- << calendar-styleselectors-decadestyleselector-usage -->
-    </VerticalStackLayout>
+    </Grid>
 </ContentView>

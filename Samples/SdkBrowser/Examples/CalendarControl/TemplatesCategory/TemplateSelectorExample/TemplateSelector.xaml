@@ -10,9 +10,13 @@
             <local:SpecialDayTemplateSelector.SpecialDayTemplate>
                 <DataTemplate>
                     <Grid>
-                        <Path Data="M11.5,0 L14.2,8.3 L23.0,8.3 L16,13.5 L18.6,22 L11.5,16.7 L4.4,22 L7.1,13.5 L0,8.3 L8.7,8.3 z"
-                              Stroke="#8660C5"
-                              Opacity="0.8" />
+                        <Label FontFamily="TelerikFontExamples"
+                               Text="&#xe830;" 
+                               FontSize="12"
+                               TextColor="#8660C5"
+                               HorizontalOptions="End"
+                               VerticalOptions="Start"
+                               Margin="0, 2, 2, 0" />
                         <Label Text="{Binding Text}"
                                TextColor="#8660C5"
                                FontAttributes="Bold"
@@ -20,7 +24,7 @@
                                VerticalTextAlignment="Center" />
                         <telerik:RadBorder IsVisible="{Binding IsSelected}"
                                            BorderThickness="2"
-                                           BorderColor="#1188FF" />
+                                           BorderColor="#8660C5" />
                     </Grid>
                 </DataTemplate>
             </local:SpecialDayTemplateSelector.SpecialDayTemplate>
@@ -28,13 +32,13 @@
                 <DataTemplate>
                     <Grid>
                         <Label Text="{Binding Text}"
-                               TextColor="White"
+                               TextColor="#FFAC3E"
+                               BackgroundColor="#19FFAC3E"
                                HorizontalTextAlignment="Center"
-                               VerticalTextAlignment="Center"
-                               BackgroundColor="#558660C5" />
+                               VerticalTextAlignment="Center" />
                         <telerik:RadBorder IsVisible="{Binding IsSelected}"
                                            BorderThickness="2"
-                                           BorderColor="#8660C5" />
+                                           BorderColor="#FFAC3E" />
                     </Grid>
                 </DataTemplate>
             </local:SpecialDayTemplateSelector.NormalDayTemplate>
@@ -42,9 +46,15 @@
     </ContentView.Resources>
     <!-- << calendar-templates-templateselector-definition -->
 
-    <VerticalStackLayout>
+    <Grid>
+        <Grid.Resources>
+            <Style TargetType="telerik:RadCalendar">
+                <Setter Property="HorizontalOptions" Value="{OnPlatform Default=Fill, MacCatalyst=Start, WinUI=Start}" />
+                <Setter Property="VerticalOptions" Value="{OnPlatform Default=Fill, MacCatalyst=Start, WinUI=Start}" />
+            </Style>
+        </Grid.Resources>
         <!-- >> calendar-templates-templateselector-usage -->
         <telerik:RadCalendar DisplayMode="Month" DayTemplate="{StaticResource SpecialDayTemplateSelector}" />
         <!-- << calendar-templates-templateselector-usage -->
-    </VerticalStackLayout>
+    </Grid>
 </ContentView>

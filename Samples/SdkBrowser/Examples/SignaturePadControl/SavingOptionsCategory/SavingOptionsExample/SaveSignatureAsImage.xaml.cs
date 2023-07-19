@@ -2,6 +2,7 @@ using Microsoft.Maui.Controls;
 using Microsoft.Maui.Graphics;
 using System;
 using System.IO;
+using System.Threading.Tasks;
 using Telerik.Maui.Controls;
 using Telerik.Maui.Controls.SignaturePad;
 
@@ -34,7 +35,7 @@ public partial class SaveSignatureAsImage : ContentView
             await this.signaturePad.SaveImageAsync(stream, settings);
             array = stream.ToArray();
 
-            this.signatureImage.Source = ImageSource.FromStream(() => new MemoryStream(array));
+            this.signatureImage.Source = ImageSource.FromStream((token) => Task.FromResult((Stream)new MemoryStream(array)));
         }
         // << signaturepad-saving-jpeg
     }
@@ -57,7 +58,7 @@ public partial class SaveSignatureAsImage : ContentView
             await this.signaturePad.SaveImageAsync(stream, settings);
             array = stream.ToArray();
 
-            this.signatureImage.Source = ImageSource.FromStream(() => new MemoryStream(array));
+            this.signatureImage.Source = ImageSource.FromStream((token) => Task.FromResult((Stream)new MemoryStream(array)));
         }
         // << signaturepad-saving-png
     }

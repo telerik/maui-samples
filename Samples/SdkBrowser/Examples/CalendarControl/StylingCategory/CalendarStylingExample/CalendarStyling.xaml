@@ -3,12 +3,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
              x:Class="SDKBrowserMaui.Examples.CalendarControl.StylingCategory.CalendarStylingExample.CalendarStyling">
-    <VerticalStackLayout>
+    <ContentView.Resources>
+        <Style TargetType="telerik:RadCalendar">
+            <Setter Property="HorizontalOptions" Value="{OnPlatform Default=Fill, MacCatalyst=Start, WinUI=Start}" />
+            <Setter Property="VerticalOptions" Value="{OnPlatform Default=Fill, MacCatalyst=Start, WinUI=Start}" />
+        </Style>
+    </ContentView.Resources>
+
+    <Grid>
         <!-- >> calendar-styling -->
-        <telerik:RadCalendar BorderThickness="2" 
-                             CornerRadius="5" 
-                             BackgroundColor="#FFD3D3D3"
-                             BorderBrush="#8660C5"/>
+        <telerik:RadCalendar BackgroundColor="#198660C5"
+                             BorderBrush="#808660C5"
+                             BorderThickness="1"
+                             CornerRadius="10" />
         <!-- << calendar-styling -->
-    </VerticalStackLayout>
+    </Grid>
 </ContentView>

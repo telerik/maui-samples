@@ -7,23 +7,27 @@
     <ContentView.Resources>
         <DataTemplate x:Key="DecadeLabelTemplate">
             <Grid>
-                <telerik:RadPath StrokeThickness="0"
-                                 Fill="#8660C5"
+                <telerik:RadPath Fill="#4D8AAAFF"
                                  Geometry="{x:Static telerik:Geometries.Star}"
                                  WidthRequest="48"
                                  HeightRequest="48" />
                 <Label Text="{Binding Text}"
                        HorizontalTextAlignment="Center"
-                       VerticalTextAlignment="Center"
-                       FontSize="18" />
+                       VerticalTextAlignment="Center" />
             </Grid>
         </DataTemplate>
     </ContentView.Resources>
     <!-- << calendar-templates-decadetemplate-definition -->
 
-    <VerticalStackLayout>
+    <Grid>
+        <Grid.Resources>
+            <Style TargetType="telerik:RadCalendar">
+                <Setter Property="HorizontalOptions" Value="{OnPlatform Default=Fill, MacCatalyst=Start, WinUI=Start}" />
+                <Setter Property="VerticalOptions" Value="{OnPlatform Default=Fill, MacCatalyst=Start, WinUI=Start}" />
+            </Style>
+        </Grid.Resources>
         <!-- >> calendar-templates-decadetemplate-usage -->
         <telerik:RadCalendar DisplayMode="Century" DecadeTemplate="{StaticResource DecadeLabelTemplate}" />
         <!-- << calendar-templates-decadetemplate-usage -->
-    </VerticalStackLayout>
+    </Grid>
 </ContentView>

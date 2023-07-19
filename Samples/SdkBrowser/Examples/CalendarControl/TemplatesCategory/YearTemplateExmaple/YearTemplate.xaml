@@ -17,9 +17,15 @@
     </ContentView.Resources>
     <!-- << calendar-templates-yeartemplate-definition -->
 
-    <VerticalStackLayout>
+    <Grid>
+        <Grid.Resources>
+            <Style TargetType="telerik:RadCalendar">
+                <Setter Property="HorizontalOptions" Value="{OnPlatform Default=Fill, MacCatalyst=Start, WinUI=Start}" />
+                <Setter Property="VerticalOptions" Value="{OnPlatform Default=Fill, MacCatalyst=Start, WinUI=Start}" />
+            </Style>
+        </Grid.Resources>
         <!-- >> calendar-templates-yeartemplate-usage -->
         <telerik:RadCalendar DisplayMode="Decade" YearTemplate="{StaticResource YearLabelTemplate}" />
         <!-- << calendar-templates-yeartemplate-usage -->
-    </VerticalStackLayout>
+    </Grid>
 </ContentView>
