@@ -7,5 +7,7 @@ public partial class IndicatorStyling : RadContentView
 	public IndicatorStyling()
 	{
 		InitializeComponent();
+
+		this.slideView.BindingContext = new ViewModel();
 	}
 }

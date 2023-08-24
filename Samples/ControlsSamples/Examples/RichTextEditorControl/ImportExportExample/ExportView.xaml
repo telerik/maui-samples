@@ -10,7 +10,8 @@
     </telerik:RadContentView.Resources>
 
     <Grid RowDefinitions="{OnIdiom Default='Auto, *', Phone='*, Auto'}">
-        <telerik:RadRichTextEditorToolbar Grid.Row="{OnIdiom Default=0, Phone=1}"
+        <telerik:RadRichTextEditorToolbar Grid.Row="{OnIdiom Default=0, Phone=1}" 
+                                          ZIndex="10"
                                           RichTextEditor="{x:Reference richTextEditor}">
             <telerik:SplitButtonToolbarItem Text="Export as..."
                                             ImageSource="export_text.png">

@@ -10,12 +10,15 @@ using System.Threading;
 using System.Threading.Tasks;
 using Telerik.Maui.Controls;
 using Telerik.Maui.Controls.RichTextEditor;
+using AndroidSpecific = Microsoft.Maui.Controls.PlatformConfiguration.AndroidSpecific;
 
 namespace SDKBrowserMaui.Examples.RichTextEditorControl.ToolbarCategory.AllToolbarItemsCSharpExample;
 
 public partial class AllToolbarItemsCSharp : ContentView
 {
-	public AllToolbarItemsCSharp()
+    private AndroidSpecific.WindowSoftInputModeAdjust lastInputMode = AndroidSpecific.WindowSoftInputModeAdjust.Unspecified;
+
+    public AllToolbarItemsCSharp()
 	{
 		InitializeComponent();
 
@@ -36,25 +39,58 @@ public partial class AllToolbarItemsCSharp : ContentView
         this.richTextEditor.Behaviors.Add(new PickImageBehavior());
     }
 
+    protected override void OnParentSet()
+    {
+        base.OnParentSet();
+        if (DeviceInfo.Platform == DevicePlatform.Android)
+        {
+            if (this.Parent != null)
+            {
+                if (this.lastInputMode == AndroidSpecific.WindowSoftInputModeAdjust.Unspecified)
+                {
+                    this.lastInputMode = GetSoftInputMode();
+                }
+
+                SetSoftInputMode(AndroidSpecific.WindowSoftInputModeAdjust.Resize);
+            }
+            else
+            {
+                SetSoftInputMode(this.lastInputMode);
+            }
+        }
+    }
+
+    private static AndroidSpecific.WindowSoftInputModeAdjust GetSoftInputMode()
+    {
+        return AndroidSpecific.Application.GetWindowSoftInputModeAdjust(Application.Current);
+    }
+
+    private static void SetSoftInputMode(AndroidSpecific.WindowSoftInputModeAdjust inputMode)
+    {
+        AndroidSpecific.Application.SetWindowSoftInputModeAdjust(Application.Current, inputMode);
+    }
+
     // >> generate-richtexteditor-toolbaritems
     private IEnumerable<Telerik.Maui.Controls.ToolbarItem> CreateDefaultToolbarItems()
     {
-        var defaultToolbarItems = new List<Telerik.Maui.Controls.ToolbarItem>();
-
-        defaultToolbarItems.Add(new RichTextEditorFontFamilyToolbarItem());
-        defaultToolbarItems.Add(new RichTextEditorFontSizeToolbarItem());
-        defaultToolbarItems.Add(new SeparatorToolbarItem());
-        defaultToolbarItems.Add(new RichTextEditorItalicToolbarItem());
-        defaultToolbarItems.Add(new RichTextEditorUnderlineToolbarItem());
-        defaultToolbarItems.Add(new SeparatorToolbarItem());
-        defaultToolbarItems.Add(new RichTextEditorAlignLeftToolbarItem());
-        defaultToolbarItems.Add(new RichTextEditorAlignCenterToolbarItem());
-        defaultToolbarItems.Add(new RichTextEditorAlignRightToolbarItem());
-        defaultToolbarItems.Add(new RichTextEditorAlignJustifyToolbarItem());
-        defaultToolbarItems.Add(new SeparatorToolbarItem());
-        defaultToolbarItems.Add(new RichTextEditorTextColorToolbarItem());
-        defaultToolbarItems.Add(new RichTextEditorHighlightTextColorToolbarItem());
-        defaultToolbarItems.Add(new SeparatorToolbarItem());
+        var defaultToolbarItems = new List<Telerik.Maui.Controls.ToolbarItem>()
+        {
+            new RichTextEditorFontFamilyToolbarItem(),
+            new RichTextEditorFontSizeToolbarItem(),
+            new SeparatorToolbarItem(),
+            new RichTextEditorBoldToolbarItem(),
+            new RichTextEditorItalicToolbarItem(),
+            new RichTextEditorUnderlineToolbarItem(),
+            new SeparatorToolbarItem(),
+            new RichTextEditorAlignLeftToolbarItem(),
+            new RichTextEditorAlignCenterToolbarItem(),
+            new RichTextEditorAlignRightToolbarItem(),
+            new RichTextEditorAlignJustifyToolbarItem(),
+            new SeparatorToolbarItem(),
+            new RichTextEditorTextColorToolbarItem(),
+            new RichTextEditorHighlightTextColorToolbarItem(),
+            new SeparatorToolbarItem()
+        };
 
         if (DeviceInfo.Current.Idiom == DeviceIdiom.Desktop)
         {
@@ -72,7 +108,6 @@ public partial class AllToolbarItemsCSharp : ContentView
         defaultToolbarItems.Add(new SeparatorToolbarItem());
         defaultToolbarItems.Add(new RichTextEditorTextFormattingToolbarItem());
         defaultToolbarItems.Add(new SeparatorToolbarItem());
-
         defaultToolbarItems.Add(new RichTextEditorClearFormattingToolbarItem());
         defaultToolbarItems.Add(new SeparatorToolbarItem());
         defaultToolbarItems.Add(new RichTextEditorStrikethroughToolbarItem());
@@ -82,13 +117,7 @@ public partial class AllToolbarItemsCSharp : ContentView
         defaultToolbarItems.Add(new RichTextEditorUndoToolbarItem());
         defaultToolbarItems.Add(new RichTextEditorRedoToolbarItem());
 
-        if (DeviceInfo.Current.Idiom == DeviceIdiom.Phone)
-        {
-            defaultToolbarItems.Add(new RichTextEditorHyperlinkNavigationToolbarItem());
-            defaultToolbarItems.Add(new RichTextEditorImageNavigationToolbarItem());
-        }
-
-        if (DeviceInfo.Current.Idiom == DeviceIdiom.Tablet)
+        if (DeviceInfo.Current.Idiom == DeviceIdiom.Phone || DeviceInfo.Current.Idiom == DeviceIdiom.Tablet)
         {
             defaultToolbarItems.Add(new RichTextEditorHyperlinkNavigationToolbarItem());
             defaultToolbarItems.Add(new RichTextEditorImageNavigationToolbarItem());

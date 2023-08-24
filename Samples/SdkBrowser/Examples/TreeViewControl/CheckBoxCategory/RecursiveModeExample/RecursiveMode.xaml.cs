@@ -7,5 +7,7 @@ public partial class RecursiveMode : ContentView
 	public RecursiveMode()
 	{
 		InitializeComponent();
+
+		this.treeView.ExpandAll();
 	}
 }

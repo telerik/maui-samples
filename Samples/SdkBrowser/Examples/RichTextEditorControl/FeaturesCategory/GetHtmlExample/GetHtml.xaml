@@ -3,15 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
              x:Class="SDKBrowserMaui.Examples.RichTextEditorControl.FeaturesCategory.GetHtmlExample.GetHtml">
-    <Grid RowDefinitions="Auto,*">
+    <Grid RowDefinitions="Auto,*"
+          RowSpacing="10">
         <HorizontalStackLayout Spacing="10">
-            <Label Text="Source from a stream" FontSize="Medium" VerticalOptions="Center" />
+            <Label Text="Source from a stream" VerticalOptions="Center" />
             <Button Text="Get HTML" Clicked="GetHTML_Clicked" VerticalOptions="Center" />
         </HorizontalStackLayout>
         <telerik:RadRichTextEditor x:Name="richTextEditor" 
-                                   Margin="0,10,0,0"
                                    Grid.Row="1"
                                    BorderThickness="1"
-                                   BorderColor="#606060"/>
+                                   BorderColor="#DFDFDF"/>
     </Grid>
 </ContentView>

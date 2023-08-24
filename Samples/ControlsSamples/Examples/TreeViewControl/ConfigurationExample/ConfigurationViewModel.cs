@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Xml.Serialization;
 using Microsoft.Maui.Controls;
+using QSF.Examples.TreeViewControl.Common;
 using QSF.ExampleUtilities;
 using QSF.ViewModels;
 using Telerik.Maui.Controls.TreeView;
@@ -12,8 +13,6 @@ namespace QSF.Examples.TreeViewControl.ConfigurationExample;
 
 public class ConfigurationViewModel : ConfigurationExampleViewModel
 {
-    public static string DataSourcePath = "FoldersDataSource.xml";
-
     private ObservableCollection<FolderNode> folders;
 
     // TreeView Settings
@@ -44,7 +43,7 @@ public class ConfigurationViewModel : ConfigurationExampleViewModel
         this.LevelIndentation = 26;
 #endif
 
-        this.Folders = DataGenerator.GetItems<ObservableCollection<FolderNode>>(DataSourcePath);
+        this.Folders = DataGenerator.GetItems<ObservableCollection<FolderNode>>(DataSourcePaths.FileExplorerPath);
     }
 
     public IEnumerable<SelectionMode> SelectionModes { get; } = Enum.GetValues(typeof(SelectionMode)).Cast<SelectionMode>();

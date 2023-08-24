@@ -43,12 +43,14 @@
                     <telerik:RadEmailMaskedEntry Grid.Row="1"
                                                  Grid.Column="1"
                                                  Value="{Binding Email, Mode=TwoWay}"
-                                                 MaximumWidthRequest="{OnPlatform WinUI='300', MacCatalyst='300'}"
+                                                 WidthRequest="{OnPlatform WinUI='300', MacCatalyst='300'}"
+                                                 HorizontalOptions="{OnIdiom Default=Fill, Desktop=Start}"
                                                  Placeholder="your_email@mail.mail" />
                     <Label Text="Phone:"
                            Grid.Row="2" />
                     <telerik:RadRegexMaskedEntry Mask="(\+0?1\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$"
-                                                 MaximumWidthRequest="{OnPlatform WinUI='300', MacCatalyst='300'}"
+                                                 WidthRequest="{OnPlatform WinUI='300', MacCatalyst='300'}"
+                                                 HorizontalOptions="{OnIdiom Default=Fill, Desktop=Start}"
                                                  Placeholder="(415)-555-2671"
                                                  Value="{Binding Phone, Mode=TwoWay}"
                                                  Grid.Row="2"
@@ -62,7 +64,8 @@
                     <telerik:RadIPMaskedEntry Grid.Row="4"
                                               Grid.Column="1"
                                               Value="{Binding IP, Mode=TwoWay}"
-                                              MaximumWidthRequest="{OnPlatform WinUI='300', MacCatalyst='300'}" />
+                                              WidthRequest="{OnPlatform WinUI='300', MacCatalyst='300'}"
+                                              HorizontalOptions="{OnIdiom Default=Fill, Desktop=Start}" />
                     <Label Text="Zip Code:"
                            Grid.Row="5" />
                     <telerik:RadTextMaskedEntry Placeholder="Zip Code"
@@ -70,7 +73,8 @@
                                                 Grid.Column="1"
                                                 AllowOnlyCompletedValues="False"
                                                 Value="{Binding ZipCode, Mode=TwoWay}"
-                                                MaximumWidthRequest="{OnPlatform WinUI='300', MacCatalyst='300'}"
+                                                WidthRequest="{OnPlatform WinUI='300', MacCatalyst='300'}"
+                                                HorizontalOptions="{OnIdiom Default=Fill, Desktop=Start}"
                                                 Mask="0000-000" />
                     <Label Text="Total Cost:"
                            Grid.Row="6" />
@@ -78,7 +82,8 @@
                                                    Grid.Row="6"
                                                    Grid.Column="1"
                                                    Value="{Binding Currency, Mode=TwoWay}"
-                                                   MaximumWidthRequest="{OnPlatform WinUI='300', MacCatalyst='300'}" />
+                                                   WidthRequest="{OnPlatform WinUI='300', MacCatalyst='300'}"
+                                                   HorizontalOptions="{OnIdiom Default=Fill, Desktop=Start}" />
 
                     <telerik:RadButton Text="Submit"
                                        Grid.Row="7"

@@ -35,9 +35,6 @@
                                  SelectedItem="{Binding SelectedExportFormat, Mode=TwoWay}"
                                  DropDownHeight="{OnPlatform Android=136, iOS=144, MacCatalyst=88, WinUI=160}">
                 <telerik:RadComboBox.Resources>
-                    <Style TargetType="Label">
-                        <Setter Property="HorizontalOptions" Value="Start" />
-                    </Style>
                     <Style TargetType="telerik:RadEntry">
                         <Setter Property="HorizontalTextAlignment" Value="Center" />
                     </Style>

@@ -4,8 +4,9 @@
              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
              x:Class="SDKBrowserMaui.Examples.PdfViewerControl.ToolbarCategory.CustomToolbarExample.CustomToolbar">
     <!-- >> pdfviewer-toolbar-customcommand-xaml -->
-    <Grid RowDefinitions="Auto,*">
-        <telerik:RadPdfViewerToolbar PdfViewer="{Binding Source={x:Reference pdfViewer}}">
+    <Grid RowDefinitions="{OnIdiom Desktop='Auto, *', Phone='*, Auto'}">
+        <telerik:RadPdfViewerToolbar Grid.Row="{OnIdiom Desktop=0, Phone=1}"
+                                     PdfViewer="{Binding Source={x:Reference pdfViewer}}">
             <telerik:ButtonToolbarItem Command="{Binding DisplayFileSizeCommand}">
                 <telerik:ButtonToolbarItem.ImageSource>
                     <FontImageSource Glyph="{x:Static telerik:TelerikFont.IconFile}"
@@ -16,7 +17,8 @@
             <telerik:PdfViewerZoomInToolbarItem />
             <telerik:PdfViewerZoomOutToolbarItem />
         </telerik:RadPdfViewerToolbar>
-        <telerik:RadPdfViewer x:Name="pdfViewer" Grid.Row="1"
+        <telerik:RadPdfViewer x:Name="pdfViewer"
+                              Grid.Row="{OnIdiom Desktop=1, Phone=0}"
                               Document="{Binding Document, Mode=OneWayToSource}" />
     </Grid>
     <!-- << pdfviewer-toolbar-customcommand-xaml -->

@@ -1,4 +1,3 @@
-using System.Collections.ObjectModel;
 using Telerik.Maui.Controls;
 
 namespace SDKBrowserMaui.Examples.SlideViewControl.EventsCategory.EventsExample;
@@ -9,7 +8,7 @@ public partial class Events : RadContentView
     {
         InitializeComponent();
 
-        slideView.BindingContext = new ViewModel();
+        this.slideView.BindingContext = new ViewModel();
     }
 
     // >> slideview-events-current-item-changed-event

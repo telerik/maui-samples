@@ -6,13 +6,21 @@
     <Grid>
         <!-- >> slideview-item-template-xaml -->
         <telerik:RadSlideView x:Name="slideView"
-                              ItemsSource="{Binding Views}">
+                              ItemsSource="{Binding Items}">
             <telerik:RadSlideView.ItemTemplate>
                 <DataTemplate>
-                    <Label Text="{Binding Content}"
-                           TextColor="#007ACC"
-                           HorizontalTextAlignment="Center"
-                           VerticalOptions="CenterAndExpand"/>
+                    <Grid RowDefinitions="Auto, *"
+                          VerticalOptions="Center">
+                        <Label Text="{Binding IconUnicode}"
+                               TextColor="#3341A1"
+                               FontFamily="TelerikFontExamples"
+                               FontSize="64"
+                               HorizontalOptions="Center" />
+                        <Label Grid.Row="1"
+                               Text="{Binding DescriptionText}"
+                               HorizontalTextAlignment="Center"
+                               Margin="0, 10, 0, 0" />
+                    </Grid>
                 </DataTemplate>
             </telerik:RadSlideView.ItemTemplate>
         </telerik:RadSlideView>

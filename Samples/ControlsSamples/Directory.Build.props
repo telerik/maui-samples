@@ -1,0 +1,50 @@
+<Project>
+  <PropertyGroup>
+    <IncludeWindowsTargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">true</IncludeWindowsTargetFrameworks>
+    <IncludeOSXTargetFrameworks>true</IncludeOSXTargetFrameworks>
+    <IncludeAndroidTargetFrameworks>true</IncludeAndroidTargetFrameworks>
+    <IncludeDotNetTargetFramework>true</IncludeDotNetTargetFramework>
+    <AndroidOnly>false</AndroidOnly>
+    <WindowsOnly>false</WindowsOnly>
+    <iOSOnly>false</iOSOnly>
+    <MacCatalystOnly>false</MacCatalystOnly>
+    <DotNetOnly>false</DotNetOnly>
+    <TelerikVersion>*-main*</TelerikVersion>
+    <DplVersion>*</DplVersion>
+
+    <UseSourceProjects>false</UseSourceProjects>
+    <UseSourceAssemblies>false</UseSourceAssemblies>
+    <UsePlatformAssemblies>false</UsePlatformAssemblies>
+
+    <DotNetVersion Condition=" $(DotNetVersion) == '' ">Net7</DotNetVersion>
+    <NetPlatform Condition=" $(DotNetVersion) == 'Net6' ">net6.0</NetPlatform>
+    <NetPlatform Condition=" $(DotNetVersion) == 'Net7' ">net7.0</NetPlatform>
+    <NetPlatform Condition=" $(DotNetVersion) == 'Net8' ">net8.0</NetPlatform>
+    <AndroidPlatform>$(NetPlatform)-android</AndroidPlatform>
+    <iOSPlatform>$(NetPlatform)-ios</iOSPlatform>
+    <MacCatalystPlatform>$(NetPlatform)-maccatalyst</MacCatalystPlatform>
+    <WindowsPlatform>$(NetPlatform)-windows10.0.19041.0</WindowsPlatform>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <MauiAppPlatforms Condition="'$(IncludeAndroidTargetFrameworks)' == 'true'">$(MauiAppPlatforms);$(AndroidPlatform)</MauiAppPlatforms>
+    <MauiAppPlatforms Condition="'$(IncludeOSXTargetFrameworks)' == 'true'">$(MauiAppPlatforms);$(iOSPlatform);$(MacCatalystPlatform)</MauiAppPlatforms>
+    <MauiAppPlatforms Condition="'$(IncludeWindowsTargetFrameworks)' == 'true'">$(MauiAppPlatforms);$(WindowsPlatform)</MauiAppPlatforms>
+    <MauiAppPlatforms Condition="'$(AndroidOnly)' == 'true'">$(AndroidPlatform)</MauiAppPlatforms>
+    <MauiAppPlatforms Condition="'$(WindowsOnly)' == 'true'">$(WindowsPlatform)</MauiAppPlatforms>
+    <MauiAppPlatforms Condition="'$(iOSOnly)' == 'true'">$(iOSPlatform)</MauiAppPlatforms>
+    <MauiAppPlatforms Condition="'$(MacCatalystOnly)' == 'true'">$(MacCatalystPlatform)</MauiAppPlatforms>
+    <MauiAppPlatforms Condition="'$(DotNetOnly)' == 'true'"></MauiAppPlatforms>
+
+    <MauiPlatforms Condition="'$(IncludeAndroidTargetFrameworks)' == 'true'">$(MauiPlatforms);$(AndroidPlatform)</MauiPlatforms>
+    <MauiPlatforms Condition="'$(IncludeOSXTargetFrameworks)' == 'true'">$(MauiPlatforms);$(iOSPlatform);$(MacCatalystPlatform)</MauiPlatforms>
+    <MauiPlatforms Condition="'$(IncludeWindowsTargetFrameworks)' == 'true'">$(MauiPlatforms);$(WindowsPlatform)</MauiPlatforms>
+    <MauiPlatforms Condition="'$(IncludeDotNetTargetFramework)' == 'true'">$(MauiPlatforms);$(NetPlatform)</MauiPlatforms>
+    <MauiPlatforms Condition="'$(AndroidOnly)' == 'true'">$(AndroidPlatform)</MauiPlatforms>
+    <MauiPlatforms Condition="'$(WindowsOnly)' == 'true'">$(WindowsPlatform)</MauiPlatforms>
+    <MauiPlatforms Condition="'$(iOSOnly)' == 'true'">$(iOSPlatform)</MauiPlatforms>
+    <MauiPlatforms Condition="'$(MacCatalystOnly)' == 'true'">$(MacCatalystPlatform)</MauiPlatforms>
+    <MauiPlatforms Condition="'$(DotNetOnly)' == 'true'">$(NetPlatform)</MauiPlatforms>
+
+  </PropertyGroup>
+</Project>

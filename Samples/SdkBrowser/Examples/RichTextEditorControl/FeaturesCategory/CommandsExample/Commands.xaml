@@ -4,18 +4,23 @@
              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
              x:Class="SDKBrowserMaui.Examples.RichTextEditorControl.FeaturesCategory.CommandsExample.Commands">
     <!-- >> richtexteditor-commands-xaml -->
-    <Grid RowDefinitions="Auto,*">
+    <Grid RowDefinitions="Auto, *">
         <telerik:RadUniformGrid>
             <Button Text="Bold"
-                    Command="{Binding ToggleBoldCommand, Source={x:Reference richTextEditor}}" />
+                    Command="{Binding ToggleBoldCommand, Source={x:Reference richTextEditor}}"
+                    Margin="0, 0, 10, 10" />
             <Button Text="Italic"
-                    Command="{Binding ToggleItalicCommand, Source={x:Reference richTextEditor}}" />
+                    Command="{Binding ToggleItalicCommand, Source={x:Reference richTextEditor}}"
+                    Margin="0, 0, 10, 10" />
             <Button Text="Underline"
-                    Command="{Binding ToggleUnderlineCommand, Source={x:Reference richTextEditor}}" />
-            <Button Text="Bullet List"
-                    Command="{Binding ToggleBulletingCommand, Source={x:Reference richTextEditor}}" />
+                    Command="{Binding ToggleUnderlineCommand, Source={x:Reference richTextEditor}}"
+                    Margin="0, 0, 10, 10" />
+            <Button Text="Bulleted List"
+                    Command="{Binding ToggleBulletingCommand, Source={x:Reference richTextEditor}}"
+                    Margin="0, 0, 10, 10" />
             <Button Text="Numbered List"
-                    Command="{Binding ToggleNumberingCommand, Source={x:Reference richTextEditor}}" />
+                    Command="{Binding ToggleNumberingCommand, Source={x:Reference richTextEditor}}"
+                    Margin="0, 0, 10, 10" />
         </telerik:RadUniformGrid>
         <telerik:RadRichTextEditor x:Name="richTextEditor" Grid.Row="1" />
     </Grid>

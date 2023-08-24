@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.ComboBoxControl.FeaturesCategory.DropDownConfigurationExample.DropDownConfiguration">
+    <telerik:RadContentView.Resources>
+        <Style TargetType="Label" x:Key="LabelStyle">
+            <Setter Property="HorizontalOptions" Value="Start" />
+            <Setter Property="VerticalOptions" Value="Center" />
+            <Setter Property="Margin" Value="0, 0, 0, 12" />
+        </Style>
+        <Style TargetType="telerik:RadComboBox">
+            <Setter Property="Margin" Value="{OnIdiom Default='0, 0, 0, 24', Desktop='0, 0, 0, 40'}" />
+        </Style>
+    </telerik:RadContentView.Resources>
+
+    <telerik:RadContentView.Content>
+        <VerticalStackLayout  HorizontalOptions="{OnIdiom Default=Fill, Desktop=Start}"
+                              WidthRequest="{OnPlatform MacCatalyst=300, WinUI=300}">
+            <Label Text="OpenOnFocus='False':" 
+                   Style="{StaticResource LabelStyle}"/>
+            <!-- >> combobox-configuration-dropdownvisibility-openonfocus -->
+            <telerik:RadComboBox OpenOnFocus="False" 
+                                 ItemsSource="{Binding Items}"
+                                 IsEditable="True"
+                                 SearchTextPath="Name"
+                                 DisplayMemberPath="Name"
+                                 AutomationId="notOpeningOnFocusCombo"/>
+            <!-- << combobox-configuration-dropdownvisibility-openonfocus -->
+
+            <Label Text="IsDropDownClosedOnSelection='False':" 
+                   Style="{StaticResource LabelStyle}" />
+            <!-- >> combobox-configuration-dropdownvisibility-isdropdownclosed -->
+            <telerik:RadComboBox IsDropDownClosedOnSelection="False"
+                                 ItemsSource="{Binding Items}"
+                                 DisplayMemberPath="Name"
+                                 AutomationId="openedAfterSelectionCombo"/>
+            <!-- << combobox-configuration-dropdownvisibility-isdropdownclosed -->
+
+            <Label Text="DropDownWidth='70':" 
+                   Style="{StaticResource LabelStyle}" />
+            <!-- >> combobox-configuration-dropdownwidth -->
+            <telerik:RadComboBox DropDownWidth="70"
+                                 ItemsSource="{Binding Items}"
+                                 DisplayMemberPath="Name"
+                                 AutomationId="dropdownWidthCombo"/>
+            <!-- << combobox-configuration-dropdownwidth -->
+
+            <Label Text="DropDownHeight='30':" 
+                   Style="{StaticResource LabelStyle}" />
+            <!-- >> combobox-configuration-dropdownheight -->
+            <telerik:RadComboBox DropDownHeight="30"
+                                 ItemsSource="{Binding Items}"
+                                 DisplayMemberPath="Name"
+                                 AutomationId="dropdownHeightCombo"/>
+            <!-- << combobox-configuration-dropdownheight -->
+
+            <Label Text="DropDownVerticalOffset='16':" 
+                   Style="{StaticResource LabelStyle}" />
+            <!-- >> combobox-configuration-dropdownverticaloffset -->
+            <telerik:RadComboBox DropDownVerticalOffset="25"
+                                 ItemsSource="{Binding Items}"
+                                 DisplayMemberPath="Name"
+                                 AutomationId="dropdownVerticalOffsetCombo"/>
+            <!-- << combobox-configuration-dropdownverticaloffset -->
+        </VerticalStackLayout>
+    </telerik:RadContentView.Content>
+</telerik:RadContentView>

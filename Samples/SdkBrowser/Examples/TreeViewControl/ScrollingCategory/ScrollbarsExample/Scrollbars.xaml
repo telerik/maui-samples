@@ -36,6 +36,7 @@
             </Picker>
         </VerticalStackLayout>
         <telerik:RadTreeView x:Name="treeView"
+                             ScrollOrientation="Both"
                              HorizontalScrollBarVisibility="{Binding SelectedItem, Source={x:Reference pickerHorizontal}}"
                              VerticalScrollBarVisibility="{Binding SelectedItem, Source={x:Reference pickerVertical}}"
                              HorizontalScrollBarLayoutMode="Resize"

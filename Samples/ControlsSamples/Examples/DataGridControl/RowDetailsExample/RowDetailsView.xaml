@@ -10,23 +10,22 @@
 
     <Grid>
         <telerik:RadDataGrid x:Name="dataGrid"
-                             ItemsSource="{Binding Orders}"
+                             ItemsSource="{Binding Employees}"
                              AutoGenerateColumns="False"
-                             RowDetailsTemplate="{StaticResource OrderDetailsTemplate}"
+                             RowDetailsTemplate="{StaticResource DataGridRowDetailsTemplate}"
                              CanUserExpandMultipleRowDetails="{Binding CanUserExpandMultipleRowDetails}"
-                             AreRowDetailsFrozen="{Binding AreRowDetailsFrozen}">
+                             AreRowDetailsFrozen="{Binding AreRowDetailsFrozen}"
+                             PropertyChanged="DataGrid_PropertyChanged">
             <telerik:RadDataGrid.Columns>
                 <telerik:DataGridToggleRowDetailsColumn IsVisible="{Binding IsToggleRowDetailsColumnVisible}" />
-                <telerik:DataGridNumericalColumn PropertyName="OrderID" 
-                                                 HeaderText="Order ID" />
-                <telerik:DataGridDateColumn PropertyName="OrderDate"
-                                            HeaderText="Order Date" />
-                <telerik:DataGridDateColumn PropertyName="RequiredDate"
-                                            HeaderText="Est. Date" />
-                <telerik:DataGridDateColumn PropertyName="ShippedDate"
-                                            HeaderText="Shipped Date" />
-                <telerik:DataGridTextColumn PropertyName="ShipName"
-                                            HeaderText="Ship Name" />
+                <telerik:DataGridNumericalColumn PropertyName="Id" 
+                                                 HeaderText="ID" />
+                <telerik:DataGridTextColumn PropertyName="Name" 
+                                            HeaderText="Name" />
+                <telerik:DataGridTextColumn PropertyName="BusinessGroup" 
+                                            HeaderText="Business Group" />
+                <telerik:DataGridTextColumn PropertyName="Phone" 
+                                            HeaderText="Phone" />
             </telerik:RadDataGrid.Columns>
         </telerik:RadDataGrid>
     </Grid>

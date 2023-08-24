@@ -18,7 +18,8 @@ public partial class ProgrammaticScrolling : ContentView
     {
         var item = GetItemToScroll();
         this.treeView.ScrollTo(item);
-        this.label.Text = "Scrolled to: " + item.Name;
+        this.scrollBtn.Text="Scrolled to: " + item.Name;
+        this.scrollBtn.IsEnabled=false;
     }
 
     private Country GetItemToScroll()

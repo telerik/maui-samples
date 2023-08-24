@@ -6,12 +6,68 @@
                         Margin="5">
     <telerik:RadContentView.Resources>
         <ResourceDictionary>
+            <DataTemplate x:Key="ItemTemplate">
+                <Label Text="{Binding Content}"
+                       TextColor="#0087A4"
+                       HorizontalTextAlignment="Center"
+                       VerticalOptions="Center" />
+            </DataTemplate>
+
+            <!-- >> slideview-indicator-item-custom-template -->
+            <Style TargetType="telerik:SlideViewIndicatorItem">
+                <Setter Property="ControlTemplate">
+                    <ControlTemplate>
+                        <Grid WidthRequest="20"
+                              HeightRequest="10">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup Name="CommonStates">
+                                    <VisualState Name="Normal" />
+                                    <VisualState x:Name="MouseOver">
+                                        <VisualState.Setters>
+                                            <Setter TargetName="indicatorItem" Property="Shape.Fill" Value="#0099BC" />
+                                            <Setter TargetName="indicatorItem" Property="Shape.WidthRequest" Value="12" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState Name="Selected">
+                                        <VisualState.Setters>
+                                            <Setter TargetName="indicatorItem" Property="Shape.Fill" Value="#0087A4" />
+                                            <Setter TargetName="indicatorItem" Property="Shape.WidthRequest" Value="12" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState Name="SelectedMouseOver">
+                                        <VisualState.Setters> 
+                                            <Setter TargetName="indicatorItem" Property="Shape.Fill" Value="#0099BC" />
+                                            <Setter TargetName="indicatorItem" Property="Shape.WidthRequest" Value="12" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState Name="Disabled">
+                                        <VisualState.Setters>
+                                            <Setter TargetName="indicatorItem" Property="Shape.Fill" Value="#61CCCCCC" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Rectangle x:Name="indicatorItem"
+                                       WidthRequest="8"
+                                       HeightRequest="2"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"
+                                       Fill="#CCCCCC" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter>
+            </Style>
+            <!-- << slideview-indicator-item-custom-template -->
+
             <!-- >> slideview-indicator-styling-resource -->
             <Style x:Key="IndicatorStyle" TargetType="telerik:SlideViewIndicator">
-                <Setter Property="Grid.Row" Value="0"/>
-                <Setter Property="Margin" Value="0"/>
-                <Setter Property="Padding" Value="10"/>
-                <Setter Property="BackgroundColor" Value="#66DD3388"/>
+                <Setter Property="WidthRequest" Value="100" />
+                <Setter Property="HeightRequest" Value="30" />
+                <Setter Property="BackgroundColor" Value="#1AFFAC3E" />
+                <Setter Property="Clip">
+                    <RoundRectangleGeometry Rect="0,0,100,30"
+                                            CornerRadius="8" />
+                </Setter>
             </Style>
             <!-- << slideview-indicator-styling-resource -->
         </ResourceDictionary>
@@ -20,8 +76,9 @@
         <!-- >> slideview-indicator-styling -->
         <telerik:RadSlideView x:Name="slideView"
                               ItemsSource="{Binding Views}"
+                              ItemTemplate="{StaticResource ItemTemplate}"
                               InteractionMode="Pan"
-                              IndicatorStyle="{StaticResource IndicatorStyle}"/>
+                              IndicatorStyle="{StaticResource IndicatorStyle}" />
         <!-- << slideview-indicator-styling -->
     </Grid>
 </telerik:RadContentView>

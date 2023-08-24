@@ -4,8 +4,10 @@
              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
              x:Class="SDKBrowserMaui.Examples.RichTextEditorControl.ToolbarCategory.AllToolbarItemsExample.AllToolbarItems">
     <!-- >> richtexteditor-alltoolbar-items-xaml -->
-    <Grid RowDefinitions="Auto,*">
+    <Grid RowDefinitions="{OnIdiom Desktop='Auto, *', Phone='*, Auto'}">
         <telerik:RadRichTextEditorToolbar x:Name="richTextToolbar"
+                                          Grid.Row="{OnIdiom Desktop=0, Phone=1}"
+                                          ZIndex="10"
                                           RichTextEditor="{x:Reference richTextEditor}"
                                           AutoGenerateItems="False">
             <telerik:RichTextEditorFontFamilyToolbarItem/>
@@ -27,8 +29,8 @@
             <telerik:RichTextEditorRemoveHyperlinkToolbarItem IsVisible="{OnPlatform Default='true', iOS='false', Android='false'}"/>
             <telerik:RichTextEditorAddOrEditImageToolbarItem IsVisible="{OnPlatform Default='true', iOS='false', Android='false'}"/>
             <telerik:SeparatorToolbarItem IsVisible="{OnPlatform Default='true', iOS='false', Android='false'}"/>
-            <telerik:RichTextEditorBulletingToolbarItem />
-            <telerik:RichTextEditorNumberingToolbarItem />
+            <telerik:RichTextEditorBulletingToolbarItem/>
+            <telerik:RichTextEditorNumberingToolbarItem/>
             <telerik:SeparatorToolbarItem/>
             <telerik:RichTextEditorOutdentToolbarItem/>
             <telerik:RichTextEditorIndentToolbarItem/>
@@ -38,15 +40,15 @@
             <telerik:RichTextEditorClearFormattingToolbarItem/>
             <telerik:SeparatorToolbarItem/>
             <telerik:RichTextEditorStrikethroughToolbarItem/>
-            <telerik:RichTextEditorSuperscriptToolbarItem/>
             <telerik:RichTextEditorSubscriptToolbarItem/>
+            <telerik:RichTextEditorSuperscriptToolbarItem/>
             <telerik:SeparatorToolbarItem/>
             <telerik:RichTextEditorUndoToolbarItem/>
             <telerik:RichTextEditorRedoToolbarItem/>
             <telerik:RichTextEditorHyperlinkNavigationToolbarItem IsVisible="{OnPlatform Default='true', MacCatalyst='false', WinUI='false'}"/>
             <telerik:RichTextEditorImageNavigationToolbarItem IsVisible="{OnPlatform Default='true', MacCatalyst='false', WinUI='false'}"/>
         </telerik:RadRichTextEditorToolbar>
-        <telerik:RadRichTextEditor x:Name="richTextEditor" Grid.Row="1"/>
+        <telerik:RadRichTextEditor x:Name="richTextEditor" Grid.Row="{OnIdiom Desktop=1, Phone=0}" />
     </Grid>
     <!-- << richtexteditor-alltoolbar-items-xaml -->
 </ContentView>

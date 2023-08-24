@@ -1,12 +1,5 @@
 using Microsoft.Maui.Controls;
 using Microsoft.Maui.Devices;
-using System;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Threading;
-using System.Threading.Tasks;
-using Telerik.Maui.Controls.RichTextEditor;
 using AndroidSpecific = Microsoft.Maui.Controls.PlatformConfiguration.AndroidSpecific;
 
 namespace SDKBrowserMaui.Examples.RichTextEditorControl.FeaturesCategory.CustomImagePickerExample;
