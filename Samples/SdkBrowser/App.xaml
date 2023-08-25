@@ -5,7 +5,6 @@
              x:Class="SDKBrowserMaui.App">
     <Application.Resources>
         <ResourceDictionary>
-
             <Color x:Key="PrimaryColor">#1188FF</Color>
             <Color x:Key="SecondaryColor">White</Color>
             <Color x:Key="DefaultTextColor">#000000</Color>
@@ -30,6 +29,9 @@
                 <Setter Property="BorderColor" Value="{StaticResource PrimaryColor}" />
             </Style>
 
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource DefaultTextColor}, Dark={StaticResource DefaultTextColorDark}}" />
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

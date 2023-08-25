@@ -3,11 +3,23 @@
                         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                         xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
                         xmlns:local="clr-namespace:SDKBrowserMaui.Examples.ComboBoxControl"
-                        x:Class="SDKBrowserMaui.Examples.ComboBoxControl.FeaturesCategory.SelectionExample.Selection"
-                        Margin="5">
+                        x:Class="SDKBrowserMaui.Examples.ComboBoxControl.FeaturesCategory.SelectionExample.Selection">
+    <telerik:RadContentView.Resources>
+        <Style TargetType="Label" x:Key="LabelStyle">
+            <Setter Property="HorizontalOptions" Value="Start" />
+            <Setter Property="VerticalOptions" Value="Center" />
+            <Setter Property="Margin" Value="0, 0, 0, 12" />
+        </Style>
+        <Style TargetType="telerik:RadComboBox">
+            <Setter Property="Margin" Value="{OnIdiom Default='0, 0, 0, 24', Desktop='0, 0, 0, 40'}" />
+        </Style>
+    </telerik:RadContentView.Resources>
+    
     <telerik:RadContentView.Content>
-        <VerticalStackLayout WidthRequest="300" HorizontalOptions="Center">
-            <Label Text="ComboBox with Single Selection using SelectedIndex" Margin="0, 0, 0, 5"/>
+        <VerticalStackLayout HorizontalOptions="{OnIdiom Default=Fill, Desktop=Start}"
+                             WidthRequest="{OnPlatform MacCatalyst=300, WinUI=300}">
+            <Label Text="ComboBox with Single Selection using SelectedIndex" 
+                   Style="{StaticResource LabelStyle}" />
             <!-- >> combobox-single-selection-selectedindex -->
             <telerik:RadComboBox ItemsSource="{Binding Items}"
                                  DisplayMemberPath="Name"
@@ -20,7 +32,8 @@
             </telerik:RadComboBox>
             <!-- << combobox-single-selection-selectedindex -->
 
-            <Label Text="ComboBox with Single Selection using SelectedItem" Margin="0, 20, 0, 5"/>
+            <Label Text="ComboBox with Single Selection using SelectedItem" 
+                   Style="{StaticResource LabelStyle}" />
             <!-- >> combobox-single-selection-selecteditem -->
             <telerik:RadComboBox ItemsSource="{Binding Items}"
                                  DisplayMemberPath="Name"
@@ -33,7 +46,8 @@
             </telerik:RadComboBox>
             <!-- << combobox-single-selection-selecteditem -->
 
-            <Label Text="ComboBox with Multiple Selection" Margin="0, 20, 0, 5"/>
+            <Label Text="ComboBox with Multiple Selection" 
+                   Style="{StaticResource LabelStyle}" />
             <!-- >> combobox-multiple-selection -->
             <telerik:RadComboBox ItemsSource="{Binding Items}"
                                  SelectionMode="Multiple"
@@ -45,7 +59,7 @@
                     <local:ViewModel/>
                 </telerik:RadComboBox.BindingContext>
             </telerik:RadComboBox>
-            <!-- << combobox-multiple-selection -->        
+            <!-- << combobox-multiple-selection -->
         </VerticalStackLayout>
     </telerik:RadContentView.Content>
 </telerik:RadContentView>

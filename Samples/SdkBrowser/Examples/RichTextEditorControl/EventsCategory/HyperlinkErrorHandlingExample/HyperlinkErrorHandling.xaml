@@ -3,12 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
              x:Class="SDKBrowserMaui.Examples.RichTextEditorControl.EventsCategory.HyperlinkErrorHandlingExample.HyperlinkErrorHandling">
-    <Grid RowDefinitions="Auto,*">
-        <telerik:RadRichTextEditorToolbar x:Name="richTextToolbar" RichTextEditor="{x:Reference richTextEditor}" />
+    <Grid RowDefinitions="{OnIdiom Desktop='Auto, *', Phone='*, Auto'}">
+        <telerik:RadRichTextEditorToolbar x:Name="richTextToolbar"
+                                          Grid.Row="{OnIdiom Desktop=0, Phone=1}"
+                                          ZIndex="10"
+                                          RichTextEditor="{x:Reference richTextEditor}" />
         <!-- >> richtexteditor-hyperlinkerrorhandling-xaml -->
         <telerik:RadRichTextEditor x:Name="richTextEditor" 
                                    OpenHyperlinkError="RichTextEditor_OpenHyperlinkError"
-                                   Grid.Row="1" />
+                                   Grid.Row="{OnIdiom Desktop=1, Phone=0}" />
         <!-- << richtexteditor-hyperlinkerrorhandling-xaml -->
     </Grid>
 </ContentView>

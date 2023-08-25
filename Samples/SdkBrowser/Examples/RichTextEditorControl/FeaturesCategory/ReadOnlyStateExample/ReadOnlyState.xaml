@@ -6,25 +6,25 @@
     <ContentView.Resources>
         <ResourceDictionary>
             <!-- >> richtexteditor-readonly-converter -->
-            <telerik:InvertedBooleanConverter x:Key="invertedBooleanConverter" />
+            <telerik:InvertedBooleanConverter x:Key="InvertedBooleanConverter" />
             <!-- << richtexteditor-readonly-converter -->
         </ResourceDictionary>
     </ContentView.Resources>
     <!-- >> richtexteditor-readonly-state -->
-    <Grid RowDefinitions="Auto,*,Auto">
-        <HorizontalStackLayout Spacing="10">
-            <Label Text="IsReadOnly State:" TextColor="Black" FontSize="16" VerticalOptions="Center"/>
-            <Switch IsToggled="{Binding IsReadOnly, Source={x:Reference richTextEditor}}" VerticalOptions="Center"/>
+    <Grid RowDefinitions="{OnIdiom Desktop='Auto, Auto, *', Phone='Auto, *, Auto'}">
+        <HorizontalStackLayout Spacing="10" Margin="0, 0, 0, 10">
+            <Label Text="ReadOnly State:" VerticalOptions="Center" />
+            <Switch IsToggled="{Binding IsReadOnly, Source={x:Reference richTextEditor}}" VerticalOptions="Center" />
         </HorizontalStackLayout>
         <telerik:RadRichTextEditor x:Name="richTextEditor" 
-                                   BorderColor="LightGray"
-                                   BorderThickness="2"
+                                   BorderColor="#DFDFDF"
+                                   BorderThickness="1"
                                    IsReadOnly="True"
-                                   Grid.Row="1" />
+                                   Grid.Row="{OnIdiom Desktop=2, Phone=1}" />
         <telerik:RadRichTextEditorToolbar x:Name="richTextToolbar" 
-                                          IsVisible="{Binding IsReadOnly, Source={x:Reference richTextEditor}, Converter={StaticResource invertedBooleanConverter}}"
+                                          IsVisible="{Binding IsReadOnly, Source={x:Reference richTextEditor}, Converter={StaticResource InvertedBooleanConverter}}"
                                           RichTextEditor="{x:Reference richTextEditor}" 
-                                          Grid.Row="2" />
+                                          Grid.Row="{OnIdiom Desktop=1, Phone=2}" />
     </Grid>
     <!-- << richtexteditor-readonly-state -->
 </ContentView>

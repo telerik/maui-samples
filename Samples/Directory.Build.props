@@ -9,7 +9,7 @@
     <iOSOnly>false</iOSOnly>
     <MacCatalystOnly>false</MacCatalystOnly>
     <DotNetOnly>false</DotNetOnly>
-    <TelerikVersion>6.0.0</TelerikVersion>
+    <TelerikVersion>*</TelerikVersion>
     <DplVersion>*</DplVersion>
 
     <UseSourceProjects>false</UseSourceProjects>
@@ -17,19 +17,13 @@
     <UsePlatformAssemblies>false</UsePlatformAssemblies>
 
     <DotNetVersion Condition=" $(DotNetVersion) == '' ">Net7</DotNetVersion>
-    <IsNet6 Condition="$(DotNetVersion) == 'Net6' ">true</IsNet6>
-    <IsNet7 Condition="$(DotNetVersion) == 'Net7' ">true</IsNet7>
-    
-    <AndroidPlatform Condition=" $(IsNet6) == 'true' ">net6.0-android</AndroidPlatform>
-    <AndroidPlatform Condition=" $(IsNet7) == 'true' ">net7.0-android</AndroidPlatform>
-    <iOSPlatform Condition=" $(IsNet6) == 'true' ">net6.0-ios</iOSPlatform>
-    <iOSPlatform Condition=" $(IsNet7) == 'true' ">net7.0-ios</iOSPlatform>
-    <MacCatalystPlatform Condition=" $(IsNet6) == 'true' ">net6.0-maccatalyst</MacCatalystPlatform>
-    <MacCatalystPlatform Condition=" $(IsNet7) == 'true' ">net7.0-maccatalyst</MacCatalystPlatform>
-    <WindowsPlatform Condition=" $(IsNet6) == 'true' ">net6.0-windows10.0.19041.0</WindowsPlatform>
-    <WindowsPlatform Condition=" $(IsNet7) == 'true' ">net7.0-windows10.0.19041.0</WindowsPlatform>
-    <NetPlatform Condition=" $(IsNet6) == 'true' ">net6.0</NetPlatform>
-    <NetPlatform Condition=" $(IsNet7) == 'true' ">net7.0</NetPlatform>
+    <NetPlatform Condition=" $(DotNetVersion) == 'Net6' ">net6.0</NetPlatform>
+    <NetPlatform Condition=" $(DotNetVersion) == 'Net7' ">net7.0</NetPlatform>
+    <NetPlatform Condition=" $(DotNetVersion) == 'Net8' ">net8.0</NetPlatform>
+    <AndroidPlatform>$(NetPlatform)-android</AndroidPlatform>
+    <iOSPlatform>$(NetPlatform)-ios</iOSPlatform>
+    <MacCatalystPlatform>$(NetPlatform)-maccatalyst</MacCatalystPlatform>
+    <WindowsPlatform>$(NetPlatform)-windows10.0.19041.0</WindowsPlatform>
   </PropertyGroup>
 
   <PropertyGroup>

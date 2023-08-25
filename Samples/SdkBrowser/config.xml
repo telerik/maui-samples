@@ -346,16 +346,16 @@
 					</Examples>
 				</Category>
 				<!--<Category>
-					<Name>Integration</Name>
-					<Title>Integration</Title>
-					<Examples>
-						<Example>
-							<Page>ListViewIntegration</Page>
-							<Name>ListViewIntegration</Name>
-							<Title>ListViewIntegration</Title>
-						</Example>
-					</Examples>
-				</Category>-->
+          <Name>Integration</Name>
+          <Title>Integration</Title>
+          <Examples>
+            <Example>
+              <Page>ListViewIntegration</Page>
+              <Name>ListViewIntegration</Name>
+              <Title>ListViewIntegration</Title>
+            </Example>
+          </Examples>
+        </Category>-->
 			</Categories>
 		</Control>
 		<Control>
@@ -904,80 +904,90 @@
 			</Categories>
 		</Control>
 		<Control>
-		  <Name>ComboBox</Name>
-		  <Title>ComboBox</Title>
-		  <Icon>combobox.png</Icon>
-		  <Categories>
-			<Category>
-			  <Name>GettingStarted</Name>
-			  <Title>Getting Started</Title>
-			  <Examples>
-				<Example>
-				  <Page>ComboBoxGettingStartedXaml</Page>
-				  <Name>GettingStarted</Name>
-				  <Title>Getting Started - Xaml</Title>
-				</Example>
-			  </Examples>
-			</Category>
-			<Category>
-			  <Name>Features</Name>
-			  <Title>Features</Title>
-			  <Examples>
-				<Example>
-				  <Page>ConfigurationSettings</Page>
-				  <Name>Configuration</Name>
-				  <Title>Configuration</Title>
-				</Example>
-				<Example>
-					<Page>EditModeAndSearch</Page>
-					<Name>EditModeAndSearch</Name>
-					<Title>EditMode and Search</Title>
-				</Example>
-				<Example>
-					<Page>Selection</Page>
-					<Name>Selection</Name>
-					<Title>Single and Multiple Selection</Title>
-				</Example>
-			  </Examples>
-			</Category>
-			<Category>
-			  <Name>Templates</Name>
-			  <Title>Templates</Title>
-			  <Examples>
-				<Example>
-				  <Page>ItemSelectedItemTemplates</Page>
-				  <Name>ItemSelectedItemTemplates</Name>
-				  <Title>Item and SelectedItem Templates</Title>
-				</Example>         
-				<Example>
-				  <Page>TokenTemplate</Page>
-				  <Name>TokenTemplate</Name>
-				  <Title>Token and ShowMore Templates</Title>
-				</Example>
-				<Example>
-				  <Page>HeaderFooter</Page>
-				  <Name>HeaderFooter</Name>
-				  <Title>DropDown Header and Footer</Title>
-				</Example>
-			  </Examples>
-			</Category>
-			<Category>
-			  <Name>Styling</Name>
-			  <Title>Styling</Title>
-			  <Examples>
-				<Example>
-				  <Page>ComboBoxStyling</Page>
-				  <Name>ComboBoxStyling</Name>
-				  <Title>ComboBox Styling</Title>
-				</Example>
-				<Example>
-				  <Page>DropDownStyling</Page>
-				  <Name>DropDownStyling</Name>
-				  <Title>DropDown Styling</Title>
-				</Example>
-			  </Examples>
-			</Category>
-		  </Categories>
+			<Name>ComboBox</Name>
+			<Title>ComboBox</Title>
+			<Icon>combobox.png</Icon>
+			<Categories>
+				<Category>
+					<Name>GettingStarted</Name>
+					<Title>Getting Started</Title>
+					<Examples>
+						<Example>
+							<Page>ComboBoxGettingStartedXaml</Page>
+							<Name>GettingStarted</Name>
+							<Title>Getting Started - Xaml</Title>
+						</Example>
+					</Examples>
+				</Category>
+				<Category>
+					<Name>Features</Name>
+					<Title>Features</Title>
+					<Examples>
+						<Example>
+							<Page>ConfigurationSettings</Page>
+							<Name>Configuration</Name>
+							<Title>Configuration</Title>
+						</Example>
+						<Example>
+							<Page>DropDownConfiguration</Page>
+							<Name>DropDownConfiguration</Name>
+							<Title>DropDown Configuration</Title>
+						</Example>
+						<Example>
+							<Page>Search</Page>
+							<Name>Search</Name>
+							<Title>Search</Title>
+						</Example>
+						<Example>
+							<Page>Selection</Page>
+							<Name>Selection</Name>
+							<Title>Single and Multiple Selection</Title>
+						</Example>
+						<Example>
+							<Page>Commands</Page>
+							<Name>Commands</Name>
+							<Title>Commands</Title>
+						</Example>
+					</Examples>
+				</Category>
+				<Category>
+					<Name>Templates</Name>
+					<Title>Templates</Title>
+					<Examples>
+						<Example>
+							<Page>ItemSelectedItemTemplates</Page>
+							<Name>ItemSelectedItemTemplates</Name>
+							<Title>Item and SelectedItem Templates</Title>
+						</Example>
+						<Example>
+							<Page>TokenTemplate</Page>
+							<Name>TokenTemplate</Name>
+							<Title>Token and ShowMore Templates</Title>
+						</Example>
+						<Example>
+							<Page>HeaderFooter</Page>
+							<Name>HeaderFooter</Name>
+							<Title>DropDown Header and Footer</Title>
+						</Example>
+					</Examples>
+				</Category>
+				<Category>
+					<Name>Styling</Name>
+					<Title>Styling</Title>
+					<Examples>
+						<Example>
+							<Page>ComboBoxStyling</Page>
+							<Name>ComboBoxStyling</Name>
+							<Title>ComboBox Styling</Title>
+						</Example>
+						<Example>
+							<Page>DropDownStyling</Page>
+							<Name>DropDownStyling</Name>
+							<Title>DropDown Styling</Title>
+						</Example>
+					</Examples>
+				</Category>
+			</Categories>
 		</Control>
 		<Control>
 			<Name>DataForm</Name>
@@ -1150,27 +1160,27 @@
 						</Example>
 					</Examples>
 				</Category>
-                <Category>
-                    <Name>Aggregates</Name>
-                    <Title>Aggregates</Title>
-                    <Examples>
+				<Category>
+					<Name>Aggregates</Name>
+					<Title>Aggregates</Title>
+					<Examples>
 						<Example>
-                            <Page>GroupFooterAggregateStyle</Page>
-                            <Name>GroupFooterAggregateStyle</Name>
-                            <Title>Group Footer Aggregate Styling</Title>
-                        </Example>
-                        <Example>
-                            <Page>PropertyAggregateDescriptors</Page>
-                            <Name>PropertyAggregateDescriptors</Name>
-                            <Title>Property Aggregate Descriptors</Title>
-                        </Example>
-                        <Example>
-                            <Page>DelegateAggregateDescriptors</Page>
-                            <Name>DelegateAggregateDescriptors</Name>
-                            <Title>Delegate Aggregate Descriptors</Title>
-                        </Example>
-                    </Examples>
-                </Category>
+							<Page>GroupFooterAggregateStyle</Page>
+							<Name>GroupFooterAggregateStyle</Name>
+							<Title>Group Footer Aggregate Styling</Title>
+						</Example>
+						<Example>
+							<Page>PropertyAggregateDescriptors</Page>
+							<Name>PropertyAggregateDescriptors</Name>
+							<Title>Property Aggregate Descriptors</Title>
+						</Example>
+						<Example>
+							<Page>DelegateAggregateDescriptors</Page>
+							<Name>DelegateAggregateDescriptors</Name>
+							<Title>Delegate Aggregate Descriptors</Title>
+						</Example>
+					</Examples>
+				</Category>
 				<Category>
 					<Name>Columns</Name>
 					<Title>Columns</Title>
@@ -1190,7 +1200,7 @@
 							<Name>CellEditTemplate</Name>
 							<Title>CellEdit Template</Title>
 						</Example>
-                        <Example>
+						<Example>
 							<Page>HeaderFooterContentTemplate</Page>
 							<Name>HeaderFooterContentTemplate</Name>
 							<Title>Header and Footer ContentTemplate</Title>
@@ -1943,7 +1953,7 @@
 							<Page>PullToRefresh</Page>
 							<Name>PullToRefresh</Name>
 							<Title>Pull To Refresh</Title>
-              <ExcludeFrom>MacCatalyst,WinUI</ExcludeFrom>
+							<ExcludeFrom>MacCatalyst,WinUI</ExcludeFrom>
 						</Example>
 					</Examples>
 				</Category>
@@ -2374,10 +2384,10 @@
 					<Title>Features</Title>
 					<Examples>
 						<!--<Example>
-							<Page>ViewportSettings</Page>
-							<Name>ViewportSettings</Name>
-							<Title>Viewport Settings</Title>
-						</Example>-->
+              <Page>ViewportSettings</Page>
+              <Name>ViewportSettings</Name>
+              <Title>Viewport Settings</Title>
+            </Example>-->
 						<Example>
 							<Page>MinMaxZoomLevel</Page>
 							<Name>MinMaxZoomLevel</Name>
@@ -2490,7 +2500,6 @@
 				</Category>
 			</Categories>
 		</Control>
-
 		<Control>
 			<Name>ProgressBar</Name>
 			<Title>ProgressBar</Title>
@@ -2638,17 +2647,17 @@
 						<Example>
 							<Page>GetHtml</Page>
 							<Name>GetHtml</Name>
-							<Title>GetHtml</Title>
+							<Title>Get Html</Title>
 						</Example>
 						<Example>
 							<Page>ReadOnlyState</Page>
 							<Name>ReadOnlyState</Name>
-							<Title>ReadOnlyState</Title>
+							<Title>ReadOnly State</Title>
 						</Example>
 						<Example>
 							<Page>CustomImagePicker</Page>
 							<Name>CustomImagePicker</Name>
-							<Title>CustomImagePicker</Title>
+							<Title>Custom Image Picker</Title>
 						</Example>
 						<Example>
 							<Page>Commands</Page>
@@ -2669,12 +2678,12 @@
 						<Example>
 							<Page>AllToolbarItems</Page>
 							<Name>AllToolbarItems</Name>
-							<Title>AllToolbar Items</Title>
+							<Title>Supported Toolbar Items</Title>
 						</Example>
 						<Example>
 							<Page>AllToolbarItemsCSharp</Page>
 							<Name>AllToolbarItemsCSharp</Name>
-							<Title>All ToolbarItems - CSharp</Title>
+							<Title>Supported Toolbar Items - CSharp</Title>
 						</Example>
 						<Example>
 							<Page>CustomToolbar</Page>
@@ -2706,7 +2715,7 @@
 						<Example>
 							<Page>HyperlinkErrorHandling</Page>
 							<Name>HyperlinkErrorHandling</Name>
-							<Title>Hyperlink ErrorHandling</Title>
+							<Title>Hyperlink Error Handling</Title>
 						</Example>
 					</Examples>
 				</Category>
@@ -3252,7 +3261,7 @@
 				</Category>
 				<Category>
 					<Name>ExpandCollapse</Name>
-					<Title>ExpandCollapse</Title>
+					<Title>Expand &amp; Collapse</Title>
 					<Examples>
 						<Example>
 							<Page>ExpandCollapse</Page>
@@ -3358,7 +3367,7 @@
 						<Example>
 							<Page>ItemStyleSelector</Page>
 							<Name>ItemStyleSelector</Name>
-							<Title>ItemStyle Selector</Title>
+							<Title>ItemStyleSelector</Title>
 						</Example>
 					</Examples>
 				</Category>

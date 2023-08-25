@@ -35,18 +35,16 @@
                              PropertyChanged="OnPropertyChanged">
             <telerik:RadListView.HeaderTemplate>
                 <DataTemplate>
-                    <Grid RowDefinitions="Auto,Auto">
-                        <!-- TODO: Remove MinimumHeightRequest once the following issue is fixed: https://github.com/dotnet/maui/issues/8645 -->
-                        <views:HighlightsView Margin="0, 0, 0, 10"
-                                              MinimumHeightRequest="{OnPlatform Default='0', iOS='220'}" />
-                        <Grid Grid.Row="1"
-                              ColumnDefinitions="Auto, *"
-                              Margin="0, 0, 0, 10">
+                    <Grid RowDefinitions="Auto, Auto"
+                          RowSpacing="10"
+                          Margin="0, 0, 0, 10">
+                        <views:HighlightsView />
+                        <Grid Grid.Row="1">
                             <Label Text="All Controls"
+                                   HorizontalOptions="Start"
                                    VerticalOptions="End"
                                    FontSize="{OnPlatform Default=22, Android=24}" />
                             <telerik:RadButton Command="{Binding NavigateToDownloadTrialCommand}"
-                                               Grid.Column="1"
                                                HorizontalOptions="End"
                                                Style="{StaticResource MoreInfoButtonStyle}" />
                         </Grid>

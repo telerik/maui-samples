@@ -12,10 +12,10 @@ public class RowDetailsViewModel : ConfigurationExampleViewModel
 
     public RowDetailsViewModel()
     {
-        this.Orders = DataGenerator.GetItems<ObservableCollection<Order>>(ResourcePaths.OrdersPath);
+        this.Employees = DataGenerator.GetItems<ObservableCollection<Employee>>(ResourcePaths.EmployeesPath);
     }
 
-    public ObservableCollection<Order> Orders { get; private set; }
+    public ObservableCollection<Employee> Employees { get; private set; }
 
     public bool CanUserExpandMultipleRowDetails
     {

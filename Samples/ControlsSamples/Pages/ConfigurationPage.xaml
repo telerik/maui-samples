@@ -18,14 +18,16 @@
                    VerticalOptions="Center"
                    Style="{StaticResource HeaderLabelStyle}" />
         </Grid>
-        <ContentView Grid.Row="1" 
-                     Padding="10">
-            <ContentView.Content>
-                <MultiBinding Converter="{StaticResource ModelToConfigurationAreaConverter}">
-                    <Binding Path="Example" />
-                    <Binding Path="BindingContext" Source="{x:Reference configurationContainer}" />
-                </MultiBinding>
-            </ContentView.Content>
-        </ContentView>
+        <ScrollView Grid.Row="1"
+                    Padding="10">
+            <ContentView>
+                <ContentView.Content>
+                    <MultiBinding Converter="{StaticResource ModelToConfigurationAreaConverter}">
+                        <Binding Path="Example" />
+                        <Binding Path="BindingContext" Source="{x:Reference configurationContainer}" />
+                    </MultiBinding>
+                </ContentView.Content>
+            </ContentView>
+        </ScrollView>
     </Grid>
 </ContentPage>

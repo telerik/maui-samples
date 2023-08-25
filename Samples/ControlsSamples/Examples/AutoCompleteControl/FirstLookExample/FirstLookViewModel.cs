@@ -1,8 +1,7 @@
 ﻿using Microsoft.Maui.Controls;
+using QSF.Services;
 using QSF.ViewModels;
-using System;
 using System.Collections.Generic;
-using System.Threading;
 using System.Windows.Input;
 
 namespace QSF.Examples.AutoCompleteControl.FirstLookExample
@@ -11,13 +10,11 @@ namespace QSF.Examples.AutoCompleteControl.FirstLookExample
     {
         private string description;
         private List<string> people;
-        private bool isSendNotificationOpen;
-        private CancellationTokenSource sendCancellation;
         private int recepientCount = 0;
 
         public FirstLookViewModel()
         {
-            this.description = "Kickstart your cross-platform application development and modernize legacy projects with Telerik’s best-in-class UI suite for .NET MAUI! Code once and build native applications for Windows, macOS, Android and iOS.\n\nTelerik UI for .NET MAUI offers a wide range of 50+ controls to enable your cross-platform development of native Windows, macOS, Android and iOS applications. Plus, our regular releases ensure your .NET MAUI library will keep growing.";
+            this.description = "Kickstart your cross-platform application development and modernize legacy projects with Telerik's best-in-class UI suite for .NET MAUI! Code once and build native applications for Windows, macOS, Android and iOS.\n\nTelerik UI for .NET MAUI offers a wide range of 50+ controls to enable your cross-platform development of native Windows, macOS, Android and iOS applications. Plus, our regular releases ensure your .NET MAUI library will keep growing.";
             this.people = new List<string>()
             {
                 "Joshua Price",
@@ -55,7 +52,6 @@ namespace QSF.Examples.AutoCompleteControl.FirstLookExample
                 "Peter Bence",
                 "Quincy Sanchez",
             };
-            this.sendCancellation = new CancellationTokenSource();
             this.SendCommand = new Command(this.OnSendExecuted, this.OnSendCanExecute);
         }
 
@@ -96,27 +92,6 @@ namespace QSF.Examples.AutoCompleteControl.FirstLookExample
             get => this.people;
         }
 
-        public bool IsSendNotificationOpen
-        {
-            get
-            {
-                return this.isSendNotificationOpen;
-            }
-            set
-            {
-                if (this.isSendNotificationOpen != value)
-                {
-                    this.isSendNotificationOpen = value;
-                    if (!this.IsSendNotificationOpen)
-                    {
-                        Interlocked.Exchange(ref this.sendCancellation, new CancellationTokenSource()).Cancel();
-                    }
-
-                    OnPropertyChanged();
-                }
-            }
-        }
-
         private bool OnSendCanExecute(object arg)
         {
             return this.recepientCount > 0;
@@ -124,23 +99,8 @@ namespace QSF.Examples.AutoCompleteControl.FirstLookExample
 
         private void OnSendExecuted(object obj)
         {
-            if (this.isSendNotificationOpen)
-            {
-                return;
-            }
-
-            CancellationTokenSource cts = this.sendCancellation;
-            this.IsSendNotificationOpen = true;
-            Device.StartTimer(TimeSpan.FromSeconds(2), () =>
-            {
-                if (cts.IsCancellationRequested)
-                {
-                    return false;
-                }
-
-                this.IsSendNotificationOpen = false;
-                return false;
-            });
+            var toastService = DependencyService.Get<IToastMessageService>();
+            toastService.ShortAlert("Sending...");
         }
     }
 }

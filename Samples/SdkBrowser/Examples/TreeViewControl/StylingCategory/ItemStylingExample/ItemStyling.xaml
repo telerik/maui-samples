@@ -9,39 +9,102 @@
         <ResourceDictionary>
             <!-- >> treeview-item-styling -->
             <Style TargetType="telerik:TreeViewItemView" x:Key="TreeViewItemStyle">
-                <Setter Property="BackgroundColor" Value="#808660C5"/>
-                <Setter Property="TextColor" Value="Black"/>
-                <Setter Property="BorderBrush" Value="LightGray"/>
-                <Setter Property="BorderThickness" Value="1"/>
-                <Setter Property="IsExpanded" Value="True"/>
-                <Setter Property="Spacing" Value="5"/>
-                <Setter Property="IsImageVisible" Value="True"/>
-                <Setter Property="ImageSource" Value="map.png"/>
+                <Setter Property="BackgroundColor" Value="#0D8660C5" />
+                <Setter Property="Spacing" Value="5" />
+                <Setter Property="IsImageVisible" Value="True" />
+                <Setter Property="ImageSource">
+                    <FontImageSource Glyph="&#xe81c;"
+                                     FontFamily="TelerikFontExamples"
+                                     Color="{Binding TextColor, Source={x:RelativeSource AncestorType={x:Type telerik:TreeViewItemView}}}"
+                                     Size="16" />
+                </Setter>
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup Name="CommonStates">
+                            <VisualState Name="Normal" />
+                            <VisualState Name="PointerOver">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#268660C5" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="Disabled">
+                                <VisualState.Setters>
+                                    <Setter Property="TextColor" Value="#61000000" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="Selected">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#408660C5" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+                <Setter Property="CheckBoxStyle">
+                    <Style TargetType="telerik:RadCheckBox">
+                        <Setter Property="CheckedColor" Value="#8660C5" />
+                        <Setter Property="CheckedSymbolColor" Value="White" />
+                        <Setter Property="UncheckedColor" Value="Gray" />
+                    </Style>
+                </Setter>
             </Style>
             <!-- << treeview-item-styling -->
 
             <!-- >> treeview-expand-styling -->
             <Style TargetType="telerik:TreeViewItemExpandButton">
-                <Setter Property="TextColor" Value="Black"/>
-                <Setter Property="HeightRequest" Value="10"/>
+                <Setter Property="TextColor" Value="#8660C5" />
             </Style>
             <!-- << treeview-expand-styling -->
-            
+
             <!-- >> treeview-item-checkbox-styling -->
             <Style TargetType="telerik:TreeViewItemCheckBox">
-                <Setter Property="CheckedColor" Value="#8660C5"/>
-                <Setter Property="CheckedSymbolColor" Value="White"/>
-                <Setter Property="IndeterminateSymbolColor" Value="Black"/>
-                <Setter Property="IndeterminateColor" Value="LightGray"/>
-                <Setter Property="UncheckedColor" Value="Black"/>
+                <Setter Property="CheckedColor" Value="#8660C5" />
+                <Setter Property="IndeterminateColor" Value="#8660C5"/>
+                <Setter Property="CheckedSymbolColor" Value="White" />
             </Style>
             <!-- << treeview-item-checkbox-styling -->
-            
+
             <!-- >> treeview-image-styling -->
             <Style TargetType="telerik:TreeViewItemImage">
-                
+
             </Style>
             <!-- << treeview-image-styling -->
+
+            <!-- >> treeview-descriptor-checkbox-styling -->
+            <Style TargetType="telerik:RadCheckBox" x:Key="CheckBoxDescriptorStyle">
+                <Setter Property="CheckedColor" Value="#F18900" />
+                <Setter Property="CheckedSymbolColor" Value="White" />
+            </Style>
+            <!-- << treeview-descriptor-checkbox-styling -->
+
+            <!-- >> treeview-descriptor-styling -->
+            <Style TargetType="telerik:TreeViewItemView" x:Key="CityDescriptorStyle">
+                <Setter Property="BackgroundColor" Value="#0DFFAC3E" />
+                <Setter Property="CheckBoxStyle" Value="{StaticResource CheckBoxDescriptorStyle}" />
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup Name="CommonStates">
+                            <VisualState Name="Normal" />
+                            <VisualState Name="PointerOver">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#26FFAC3E" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="Disabled">
+                                <VisualState.Setters>
+                                    <Setter Property="TextColor" Value="#61000000" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="Selected">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#40FFAC3E" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+            <!-- << treeview-descriptor-styling -->
         </ResourceDictionary>
     </ContentView.Resources>
     <!-- >> treeview-styling -->
@@ -54,7 +117,8 @@
                                     DisplayMemberPath="Name"
                                     ItemsSourcePath="Cities" />
         <telerik:TreeViewDescriptor TargetType="{x:Type local:City}"
-                                    DisplayMemberPath="Name"/>
+                                    DisplayMemberPath="Name"
+                                    ItemStyle="{StaticResource CityDescriptorStyle}" />
         <telerik:RadTreeView.BindingContext>
             <local:LocationViewModel/>
         </telerik:RadTreeView.BindingContext>

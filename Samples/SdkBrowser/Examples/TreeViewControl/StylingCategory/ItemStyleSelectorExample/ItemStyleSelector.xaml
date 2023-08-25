@@ -9,84 +9,63 @@
     <ContentView.Resources>
         <!-- >> treeview-style-selector -->
         <ResourceDictionary>
-            <Style x:Key="itemStyle" TargetType="telerik:TreeViewItemView">
-                <Setter Property="TextColor" Value="Black" />
+            <Style x:Key="ItemStyle" TargetType="telerik:TreeViewItemView">
                 <Setter Property="IsImageVisible" Value="True" />
-            </Style>
-            <Style x:Key="cityItemStyle" TargetType="telerik:TreeViewItemView" BasedOn="{StaticResource itemStyle}">
-                <Setter Property="ImageSource" Value="checkbox.png" />
-                <Setter Property="BorderThickness" Value="1" />
                 <Setter Property="VisualStateManager.VisualStateGroups">
                     <VisualStateGroupList>
                         <VisualStateGroup Name="CommonStates">
                             <VisualState Name="Normal" />
                             <VisualState Name="PointerOver">
                                 <VisualState.Setters>
-                                    <Setter Property="BackgroundColor" Value="DarkGray" />
+                                    <Setter Property="BackgroundColor" Value="#268660C5" />
                                 </VisualState.Setters>
                             </VisualState>
                             <VisualState Name="Disabled">
                                 <VisualState.Setters>
-                                    <Setter Property="TextColor" Value="LightGray" />
+                                    <Setter Property="TextColor" Value="#61000000" />
                                 </VisualState.Setters>
                             </VisualState>
                             <VisualState Name="Selected">
                                 <VisualState.Setters>
-                                    <Setter Property="BackgroundColor" Value="#808660C5" />
-                                    <Setter Property="BorderColor" Value="White" />
-                                    <Setter Property="TextColor" Value="White" />
-                                    <Setter Property="BorderThickness" Value="2" />
+                                    <Setter Property="BackgroundColor" Value="#408660C5" />
                                 </VisualState.Setters>
                             </VisualState>
                         </VisualStateGroup>
                     </VisualStateGroupList>
                 </Setter>
             </Style>
-            <Style x:Key="countryItemStyle" TargetType="telerik:TreeViewItemView" BasedOn="{StaticResource itemStyle}">
-                <Setter Property="ImageSource" Value="map.png" />
-                <Setter Property="BorderThickness" Value="1" />
-                <Setter Property="VisualStateManager.VisualStateGroups">
-                    <VisualStateGroupList>
-                        <VisualStateGroup Name="CommonStates">
-                            <VisualState Name="Normal" />
-                            <VisualState Name="PointerOver">
-                                <VisualState.Setters>
-                                    <Setter Property="BackgroundColor" Value="DarkGray" />
-                                </VisualState.Setters>
-                            </VisualState>
-                            <VisualState Name="Disabled">
-                                <VisualState.Setters>
-                                    <Setter Property="TextColor" Value="LightGray" />
-                                </VisualState.Setters>
-                            </VisualState>
-                            <VisualState Name="Selected">
-                                <VisualState.Setters>
-                                    <Setter Property="BackgroundColor" Value="#808660C5" />
-                                    <Setter Property="BorderColor" Value="White" />
-                                    <Setter Property="TextColor" Value="White" />
-                                    <Setter Property="BorderThickness" Value="2" />
-                                </VisualState.Setters>
-                            </VisualState>
-                        </VisualStateGroup>
-                    </VisualStateGroupList>
+            <Style x:Key="CityItemStyle" TargetType="telerik:TreeViewItemView" BasedOn="{StaticResource ItemStyle}">
+                <Setter Property="ImageSource">
+                    <FontImageSource Glyph="&#xe83d;"
+                                     FontFamily="TelerikFontExamples"
+                                     Color="{Binding TextColor, Source={x:RelativeSource AncestorType={x:Type telerik:TreeViewItemView}}}"
+                                     Size="16" />
                 </Setter>
             </Style>
-            <selector:LocationsStyleSelector x:Key="locationsStyleSelector"
-                                             CityStyle="{StaticResource cityItemStyle}"
-                                             CountryStyle="{StaticResource countryItemStyle}" />
+            <Style x:Key="CountryItemStyle" TargetType="telerik:TreeViewItemView" BasedOn="{StaticResource ItemStyle}">
+                <Setter Property="ImageSource">
+                    <FontImageSource Glyph="&#xe81c;"
+                                     FontFamily="TelerikFontExamples"
+                                     Color="{Binding TextColor, Source={x:RelativeSource AncestorType={x:Type telerik:TreeViewItemView}}}"
+                                     Size="16" />
+                </Setter>
+            </Style>
+            <selector:LocationsStyleSelector x:Key="LocationsStyleSelector"
+                                             CityStyle="{StaticResource CityItemStyle}"
+                                             CountryStyle="{StaticResource CountryItemStyle}" />
         </ResourceDictionary>
         <!-- << treeview-style-selector -->
     </ContentView.Resources>
     <!-- >> treeview-item-styleselector -->
     <telerik:RadTreeView x:Name="treeView"
                          ItemsSource="{Binding Countries}"
-                         ItemStyleSelector="{StaticResource locationsStyleSelector}"
+                         ItemStyleSelector="{StaticResource LocationsStyleSelector}"
                          SelectedItem="{Binding SelectedLocation}">
         <telerik:TreeViewDescriptor TargetType="{x:Type local:Country}"
                                     DisplayMemberPath="Name"
                                     ItemsSourcePath="Cities" />
         <telerik:TreeViewDescriptor TargetType="{x:Type local:City}"
-                                    DisplayMemberPath="Name"/>
+                                    DisplayMemberPath="Name" />
         <telerik:RadTreeView.BindingContext>
             <local:LocationViewModel/>
         </telerik:RadTreeView.BindingContext>

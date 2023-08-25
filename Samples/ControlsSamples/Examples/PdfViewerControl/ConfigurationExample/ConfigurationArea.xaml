@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:styles="clr-namespace:QSF.Styles"
+             xmlns:converters="clr-namespace:QSF.Converters"
+             x:Class="QSF.Examples.PdfViewerControl.ConfigurationExample.ConfigurationArea">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <styles:ConfigurationViewResources />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+    <VerticalStackLayout Style="{StaticResource RootAtSeparateAreaStyle}">
+        <VerticalStackLayout Style="{StaticResource GroupAtSeparateAreaStyle}">
+            <Label Text="Page Spacing:"
+                   Style="{StaticResource VerticalGroupLabelStyle}" />
+            <telerik:RadNumericInput IsReadOnly="True"
+                                     Value="{Binding PageSpacing}"
+                                     Minimum="0"
+                                     Maximum="100"
+                                     Step="10"
+                                     HorizontalOptions="Fill" />
+        </VerticalStackLayout>
+        <VerticalStackLayout Style="{StaticResource GroupAtSeparateAreaStyle}">
+            <Label Text="Min Zoom Level:"
+                   Style="{StaticResource VerticalGroupLabelStyle}" />
+            <telerik:RadNumericInput IsReadOnly="True"
+                                     Value="{Binding MinZoomLevel}"
+                                     Minimum="0.2"
+                                     Maximum="1"
+                                     Step="0.1"
+                                     StringFormat="{}{0:N1}"
+                                     HorizontalOptions="Fill" />
+        </VerticalStackLayout>
+        <VerticalStackLayout Style="{StaticResource GroupAtSeparateAreaStyle}">
+            <Label Text="Max Zoom Level:"
+                   Style="{StaticResource VerticalGroupLabelStyle}" />
+            <telerik:RadNumericInput IsReadOnly="True"
+                                     Value="{Binding MaxZoomLevel}"
+                                     Minimum="3"
+                                     Maximum="10"
+                                     HorizontalOptions="Fill" />
+        </VerticalStackLayout>
+    </VerticalStackLayout>
+</ContentView>

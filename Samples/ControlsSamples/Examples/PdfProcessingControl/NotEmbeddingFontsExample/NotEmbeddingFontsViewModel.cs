@@ -86,7 +86,7 @@ namespace QSF.Examples.PdfProcessingControl.NotEmbeddingFontsExample
         private void OpenPdfDocument()
         {
             Assembly assembly = typeof(NotEmbeddingFontsView).Assembly;
-            string fileName = assembly.GetManifestResourceNames().FirstOrDefault(n => n.Contains("pdfviewer-firstlook.pdf"));
+            string fileName = assembly.GetManifestResourceNames().FirstOrDefault(n => n.Contains("pdf_file.pdf"));
 
             using (Stream stream = assembly.GetManifestResourceStream(fileName))
             {

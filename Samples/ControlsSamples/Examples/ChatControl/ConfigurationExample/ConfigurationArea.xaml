@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:styles="clr-namespace:QSF.Styles"
+             xmlns:local="clr-namespace:QSF.Examples.ChatControl.ConfigurationExample"
+             x:Class="QSF.Examples.ChatControl.ConfigurationExample.ConfigurationArea">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <styles:ConfigurationViewResources />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+    <VerticalStackLayout Style="{StaticResource RootAtSeparateAreaStyle}">
+        <Label Text="Messages"
+               Style="{StaticResource SectionHeadingLabelStyle}" />
+        <VerticalStackLayout Style="{StaticResource GroupAtSeparateAreaStyle}">
+            <Label Text="Current Author:"
+                   Style="{StaticResource VerticalGroupLabelStyle}" />
+            <telerik:RadSegmentedControl SelectedItem="{Binding CurrentAuthorName, Mode=TwoWay}"
+                                         MinimumHeightRequest="{Binding Source={x:Reference messageTypeCombo}, Path=Height}">
+                <telerik:RadSegmentedControl.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Me</x:String>
+                        <x:String>Bot</x:String>
+                    </x:Array>
+                </telerik:RadSegmentedControl.ItemsSource>
+            </telerik:RadSegmentedControl>
+        </VerticalStackLayout>
+        <VerticalStackLayout Style="{StaticResource GroupAtSeparateAreaStyle}">
+            <Label Text="Type:"
+                   Style="{StaticResource VerticalGroupLabelStyle}" />
+            <telerik:RadComboBox x:Name="messageTypeCombo"
+                                 ItemsSource="{Binding MessageTypes}"
+                                 SelectedItem="{Binding MessageType, Mode=TwoWay}"
+                                 IsClearButtonVisible="False"
+                                 DropDownHeight="{OnPlatform Android=204, iOS=216, MacCatalyst=132, WinUI=240}" />
+        </VerticalStackLayout>
+        <VerticalStackLayout Style="{StaticResource GroupAtSeparateAreaStyle}">
+            <Label Text="Render options:"
+                   Style="{StaticResource VerticalGroupLabelStyle}" />
+            <telerik:RadSegmentedControl SelectedItem="{Binding MessageRenderMode, Mode=TwoWay}"
+                                         IsEnabled="{Binding CanChangeMessageRenderMode}"
+                                         MinimumHeightRequest="{Binding Source={x:Reference messageTypeCombo}, Path=Height}">
+                <telerik:RadSegmentedControl.ItemsSource>
+                    <x:Array Type="{x:Type local:MessageRenderMode}">
+                        <local:MessageRenderMode>Inline</local:MessageRenderMode>
+                        <local:MessageRenderMode>Inside</local:MessageRenderMode>
+                    </x:Array>
+                </telerik:RadSegmentedControl.ItemsSource>
+            </telerik:RadSegmentedControl>
+        </VerticalStackLayout>
+        <telerik:RadButton Text="Add Message"
+                           Command="{Binding AddMessageCommand}"
+                           Style="{StaticResource SubmitButtonStyle}"
+                           Margin="0, 0, 0, 12" />
+
+        <Label Text="Suggested Replies"
+               Style="{StaticResource SectionHeadingLabelStyle}" />
+        <VerticalStackLayout Style="{StaticResource GroupAtSeparateAreaStyle}">
+            <Label Text="Suggestions:"
+                   Style="{StaticResource VerticalGroupLabelStyle}" />
+            <telerik:RadComboBox ItemsSource="{Binding SuggestedActions}"
+                                 SelectionMode="Multiple"
+                                 SelectedItems="{Binding SelectedSuggestions}"
+                                 IsClearButtonVisible="False"
+                                 DropDownHeight="{OnPlatform Android=170, iOS=180, MacCatalyst=110, WinUI=200}" />
+        </VerticalStackLayout>
+        <telerik:RadButton Text="Add Suggestions"
+                           Command="{Binding AddSuggestedActionsCommand}"
+                           Style="{StaticResource SubmitButtonStyle}"
+                           Margin="0, 0, 0, 12" />
+
+        <Label Text="Time Breaks"
+               Style="{StaticResource SectionHeadingLabelStyle}" />
+        <VerticalStackLayout Style="{StaticResource GroupAtSeparateAreaStyle}">
+            <Label Text="Text:"
+                   Style="{StaticResource VerticalGroupLabelStyle}" />
+            <telerik:RadEntry Text="{Binding TimeBreakText, Mode=TwoWay}"
+                              ReserveSpaceForErrorView="False" />
+        </VerticalStackLayout>
+        <telerik:RadButton Text="Add Time Break"
+                           Command="{Binding AddTimeBreakCommand}"
+                           Style="{StaticResource SubmitButtonStyle}"
+                           Margin="0, 0, 0, 12" />
+
+        <Label Text="Typing Indicator"
+               Style="{StaticResource SectionHeadingLabelStyle}" />
+        <VerticalStackLayout Style="{StaticResource GroupAtSeparateAreaStyle}">
+            <Label Text="Text:"
+                   Style="{StaticResource VerticalGroupLabelStyle}" />
+            <telerik:RadEntry Text="{Binding TypingIndicatorText, Mode=TwoWay}"
+                              ReserveSpaceForErrorView="False" />
+        </VerticalStackLayout>
+        <telerik:RadButton Text="{Binding ToggleTypingIndicatorText}"
+                           Command="{Binding ToggleTypingIndicatorCommand}"
+                           Style="{StaticResource SubmitButtonStyle}"
+                           Margin="0, 0, 0, 12" />
+    </VerticalStackLayout>
+</ContentView>

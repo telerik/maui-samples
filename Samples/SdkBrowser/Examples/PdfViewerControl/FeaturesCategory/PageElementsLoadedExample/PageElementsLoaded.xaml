@@ -5,15 +5,17 @@
              x:Class="SDKBrowserMaui.Examples.PdfViewerControl.FeaturesCategory.PageElementsLoadedExample.PageElementsLoaded">
     
     <!-- >> pdfviewer-page-elements-loaded -->
-    <Grid RowDefinitions="Auto, *">
-        <telerik:RadPdfViewerToolbar PdfViewer="{x:Reference pdfViewer }" x:Name="pdfViewerToolbar1" >
+    <Grid RowDefinitions="{OnIdiom Desktop='Auto, *', Phone='*, Auto'}">
+        <telerik:RadPdfViewerToolbar Grid.Row="{OnIdiom Desktop=0, Phone=1}"
+                                     PdfViewer="{x:Reference pdfViewer}">
             <telerik:PdfViewerFitToWidthToolbarItem />
             <telerik:PdfViewerZoomInToolbarItem />
             <telerik:PdfViewerZoomOutToolbarItem />
             <telerik:PdfViewerNavigateToPreviousPageToolbarItem />
             <telerik:PdfViewerNavigateToNextPageToolbarItem />
         </telerik:RadPdfViewerToolbar>
-        <telerik:RadPdfViewer x:Name="pdfViewer" Grid.Row="1" />
+        <telerik:RadPdfViewer x:Name="pdfViewer"
+                              Grid.Row="{OnIdiom Desktop=1, Phone=0}" />
     </Grid>
     <!-- << pdfviewer-page-elements-loaded -->
 </ContentView>

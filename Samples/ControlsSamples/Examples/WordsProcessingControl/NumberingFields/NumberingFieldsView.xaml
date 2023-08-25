@@ -108,13 +108,7 @@
                                          ItemsSource="{Binding ExportFormats, Mode=OneTime}"
                                          SelectedItem="{Binding SelectedExportFormat, Mode=OneWayToSource}"
                                          WidthRequest="{OnPlatform Default='160', MacCatalyst='220'}"
-                                         DropDownHeight="{OnPlatform Android=102, iOS=108, MacCatalyst=66, WinUI=120}">
-                        <telerik:RadComboBox.Resources>
-                            <Style TargetType="Label">
-                                <Setter Property="HorizontalOptions" Value="Start" />
-                            </Style>
-                        </telerik:RadComboBox.Resources>
-                    </telerik:RadComboBox>
+                                         DropDownHeight="{OnPlatform Android=102, iOS=108, MacCatalyst=66, WinUI=120}"/>
                     <telerik:RadButton Text="Export"
                                        Style="{StaticResource SubmitButtonStyle}"
                                        Command="{Binding ExportCommand}"

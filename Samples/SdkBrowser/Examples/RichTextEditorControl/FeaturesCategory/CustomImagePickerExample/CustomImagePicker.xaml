@@ -5,13 +5,12 @@
              xmlns:local="clr-namespace:SDKBrowserMaui.Examples.RichTextEditorControl.FeaturesCategory.CustomImagePickerExample"
              x:Class="SDKBrowserMaui.Examples.RichTextEditorControl.FeaturesCategory.CustomImagePickerExample.CustomImagePicker">
     <!-- >> richtexteditor-custom-image-picker -->
-    <Grid RowDefinitions="*,Auto">
+    <Grid RowDefinitions="{OnIdiom Desktop='Auto, *', Phone='*, Auto'}">
         <telerik:RadRichTextEditor x:Name="richTextEditor"
-                                   Source="{Binding RTSource}">
-        </telerik:RadRichTextEditor>
-
+                                   Grid.Row="{OnIdiom Desktop=1, Phone=0}"
+                                   Source="{Binding RTSource}" />
         <telerik:RadRichTextEditorToolbar x:Name="richTextToolbar"
-                                          Grid.Row="1"
+                                          Grid.Row="{OnIdiom Desktop=0, Phone=1}"
                                           RichTextEditor="{x:Reference richTextEditor}"
                                           AutoGenerateItems="False">
             <telerik:RichTextEditorImagePickerToolbarItem ItemsSource="{Binding EmojiSource}"/>

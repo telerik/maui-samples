@@ -39,6 +39,7 @@
                                      OpenOnFocus="{Binding OpenOnFocus}"
                                      DropDownWidth="{Binding Value, Source={Reference dropDownWidthSlider}}"
                                      DropDownHeight="{Binding Value, Source={x:Reference dropDownHeightSlider}}"
+                                     DropDownVerticalOffset="{Binding Value, Source={x:Reference dropDownVerticalOffsetSlider}}"
                                      IsEditable="{Binding IsEditable}"
                                      IsDropDownClosedOnSelection="{Binding IsDropDownClosedOnSelection}"
                                      IsDropDownOpen="{Binding IsDropDownOpen, Mode=TwoWay}"
@@ -175,6 +176,21 @@
                                 <Label Grid.Column="2"
                                        Style="{StaticResource SliderMinMaxLabelStyle}"
                                        Text="{Binding Maximum, Source={x:Reference dropDownHeightSlider}}" />
+                            </Grid>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Vertical Offset:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <Grid ColumnDefinitions="Auto, *, Auto">
+                                <Label Style="{StaticResource SliderMinMaxLabelStyle}"
+                                       Text="{Binding Minimum, Source={x:Reference dropDownVerticalOffsetSlider}}" />
+                                <Slider x:Name="dropDownVerticalOffsetSlider"
+                                        Grid.Column="1"
+                                        Maximum="24"
+                                        Value="{OnPlatform Default=6, Android=0, WinUI=8}" />
+                                <Label Grid.Column="2"
+                                       Style="{StaticResource SliderMinMaxLabelStyle}"
+                                       Text="{Binding Maximum, Source={x:Reference dropDownVerticalOffsetSlider}}" />
                             </Grid>
                         </VerticalStackLayout>
                     </VerticalStackLayout>

@@ -2,100 +2,67 @@
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
-             x:Class="QSF.Examples.ComboBoxControl.FirstLookExample.FirstLookView">
+             x:Class="QSF.Examples.ComboBoxControl.FirstLookExample.FirstLookView"
+             Padding="{OnIdiom Default='16, 20', Phone=0}">
     <ContentView.Resources>
         <ResourceDictionary>
-            <Style x:Key="ComboBoxTitleStyle" TargetType="Label">
-                <Setter Property="TextColor" Value="Black"/>
-                <Setter Property="FontSize" Value="16"/>
-            </Style>
-
-            <Style TargetType="VerticalStackLayout">
-                <Setter Property="Spacing" Value="10"/>
-            </Style>
-
-            <Style TargetType="telerik:RadComboBox">
-                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
-            </Style>
+            <Style TargetType="Label" BasedOn="{StaticResource BaseLabelStyle}" />
         </ResourceDictionary>
     </ContentView.Resources>
     <ScrollView>
-        <Grid RowDefinitions="80, Auto, Auto, Auto"
-              RowSpacing="10"
-              ColumnSpacing="20" >
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="{OnIdiom Default=*, Phone=Auto}" />
-            </Grid.ColumnDefinitions>
-            <VerticalStackLayout BackgroundColor="#F8F8F8"
-                                 Grid.Row="0"
-                                 Padding="16"
-                                 Grid.ColumnSpan="2">
+        <Grid RowDefinitions="{OnIdiom Default='80, Auto, Auto', Phone='80, Auto, *'}"
+              RowSpacing="10">
+            <VerticalStackLayout BackgroundColor="{AppThemeBinding Light={StaticResource DefaultBackgroundColor}, Dark={StaticResource DefaultBackgroundColorDark}}"
+                                 Padding="16, 24">
                 <Label Text="Job Search"
                        FontSize="24"
                        VerticalOptions="Center"
-                       VerticalTextAlignment="Center"
-                       TextColor="Black"/>
+                       VerticalTextAlignment="Center" />
             </VerticalStackLayout>
 
             <VerticalStackLayout Grid.Row="1"
-                                 Grid.Column="0"
-                                 Padding="16, 0">
+                                 Padding="{OnIdiom Default=0, Phone='16, 0'}"
+                                 Spacing="10">
                 <Label Text="Skills:"
-                       Style="{StaticResource ComboBoxTitleStyle}"/>
+                       FontSize="16" />
                 <telerik:RadComboBox ItemsSource="{Binding Skills}"
                                      SelectedIndex="{Binding SelectedSkillIndex, Mode=TwoWay}"
                                      Placeholder="Select Skills"
-                                     MaximumWidthRequest="{OnPlatform WinUI='300', MacCatalyst='300'}"
+                                     WidthRequest="{OnPlatform WinUI='300', MacCatalyst='300'}"
+                                     HorizontalOptions="{OnIdiom Default=Fill, Desktop=Start}"
                                      SelectionMode="Multiple"
-                                     IsDropDownClosedOnSelection="False"/>
+                                     IsDropDownClosedOnSelection="False"
+                                     Margin="0, 0, 0, 10" />
 
-                <Label Text="Job Types:" Margin="0,10,0,0"
-                       Style="{StaticResource ComboBoxTitleStyle}"/>
+                <Label Text="Job Types:"
+                       FontSize="16" />
                 <telerik:RadComboBox ItemsSource="{Binding JobTypes}"
                                      SelectedIndex="{Binding SelectedJobTypeIndex, Mode=TwoWay}"
                                      Placeholder="Select Type"
                                      SelectionMode="Multiple"
-                                     Margin="0,0,0,10"
-                                     MaximumWidthRequest="{OnPlatform WinUI='300', MacCatalyst='300'}"
+                                     Margin="0, 0, 0, 10"
+                                     WidthRequest="{OnPlatform WinUI='300', MacCatalyst='300'}"
+                                     HorizontalOptions="{OnIdiom Default=Fill, Desktop=Start}"
                                      IsDropDownClosedOnSelection="False"
-                                     DropDownHeight="130"/>
-            </VerticalStackLayout>
+                                     DropDownHeight="{OnPlatform Android=136, iOS=144, MacCatalyst=88, WinUI=160}" />
 
-            <VerticalStackLayout Grid.Column="{OnIdiom Default=1, Phone=0}"
-                                 Grid.Row="{OnIdiom Default=1, Phone=2}"
-                                 Padding="16, 0">
                 <Label Text="Time Posted:"
-                       Style="{StaticResource ComboBoxTitleStyle}"/>
+                       FontSize="16" />
                 <telerik:RadComboBox ItemsSource="{Binding Times}"
-                                     MaximumWidthRequest="{OnPlatform WinUI='300', MacCatalyst='300'}"
+                                     WidthRequest="{OnPlatform WinUI='300', MacCatalyst='300'}"
+                                     HorizontalOptions="{OnIdiom Default=Fill, Desktop=Start}"
                                      SelectedIndex="{Binding SelectedTimeIndex, Mode=TwoWay}"
                                      Placeholder="Select Time"
-                                     DropDownHeight="130"/>
+                                     DropDownHeight="{OnPlatform Android=170, iOS=180, MacCatalyst=110, WinUI=200}" />
             </VerticalStackLayout>
 
-            <telerik:RadBorder Grid.Row="3"
-                               Margin="16, 40, 16, 0"
+            <telerik:RadButton Grid.Row="2"
+                               Margin="{OnIdiom Default='0, 40, 0, 0', Phone='16, 40, 16, 16'}"
                                VerticalOptions="{OnIdiom Default=Center, Phone=End}"
-                               HorizontalOptions="{OnIdiom Default=Start, Phone=FillAndExpand}">
-                <telerik:RadButton Command="{Binding SearchJobButtonCommand}"
-                                   Text="Find Jobs"
-                                   Style="{StaticResource SubmitButtonStyle}"/>
-                <telerik:RadPopup.Popup>
-                    <telerik:RadPopup IsOpen="{Binding IsJobSearchNotificationOpen}"
-                                      Placement="Center"
-                                      VerticalOffset="-50">
-                        <telerik:RadBorder CornerRadius="4"
-                                           BackgroundColor="#E1DAEE">
-                            <Label Text="Job Search started"
-                                   TextColor="Black"
-                                   VerticalTextAlignment="Center"
-                                   Padding="33, 7"
-                                   FontSize="12"/>
-                        </telerik:RadBorder>
-                    </telerik:RadPopup>
-                </telerik:RadPopup.Popup>
-            </telerik:RadBorder>
+                               HorizontalOptions="{OnIdiom Default=Start, Phone=Fill}"
+                               Command="{Binding SearchJobButtonCommand}"
+                               Text="Find Jobs"
+                               Style="{StaticResource SubmitButtonStyle}" />
         </Grid>
     </ScrollView>
 </ContentView>
