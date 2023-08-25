@@ -18,14 +18,6 @@ public partial class App : Application
         this.InitializeComponent();
         this.InitializeDependencies();
 
-#if __IOS__
-        // TODO: When https://github.com/dotnet/maui/pull/11569 is merged and released
-        // with the upcoming versions, remove the next line and the respective method.
-        // Currently, setting TextType of a Label to Html results to the font properties being ignored.
-        Label.ControlsLabelMapper.AppendToMapping(nameof(ILabel.Font), UpdateFontProperties);
-        Label.ControlsLabelMapper.AppendToMapping(nameof(ILabel.Text), UpdateFontProperties);
-#endif
-
         if (DeviceInfo.Idiom == DeviceIdiom.Desktop)
         {
             this.MainPage = new NavigationPage(new MainPageDesktop());
@@ -110,23 +102,6 @@ public partial class App : Application
         if (label is Label controlsLabel && labelView.LineBreakMode == UIKit.UILineBreakMode.TailTruncation)
         {
             labelView.Lines = controlsLabel.MaxLines;
-        }
-    }
-
-    private static void UpdateFontProperties(Microsoft.Maui.Handlers.LabelHandler handler, ILabel label)
-    {
-        if (label is Label controlsLabel && controlsLabel.TextType == TextType.Html)
-        {
-            var hasSpans = controlsLabel.FormattedText != null && controlsLabel.FormattedText.Spans?.Count > 0;
-            if (hasSpans)
-            {
-                return;
-            }
-
-            if (!controlsLabel.IsSet(Label.FontAttributesProperty) || controlsLabel.IsSet(Label.FontFamilyProperty) || controlsLabel.IsSet(Label.FontSizeProperty))
-            {
-                Microsoft.Maui.Handlers.LabelHandler.MapFont(handler, label);
-            }
         }
     }
 #endif

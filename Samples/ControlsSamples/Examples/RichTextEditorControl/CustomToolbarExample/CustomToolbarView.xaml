@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        xmlns:local="clr-namespace:QSF.Examples.RichTextEditorControl.CustomToolbarExample"
+                        x:Class="QSF.Examples.RichTextEditorControl.CustomToolbarExample.CustomToolbarView"
+                        Padding="{OnIdiom Default='16, 20', Phone=16}">
+    <telerik:RadContentView.Resources>
+        <Color x:Key="ToolbarItemTextColor">White</Color>
+        <Color x:Key="ToolbarItemInvertedTextColor">Black</Color>
+        <Color x:Key="ToolbarItemPointerOverColor">#506976</Color>
+        <Color x:Key="ToolbarAccentColor">#057C9B</Color>
+        <Color x:Key="ToolbarDisabledColor">#61000000</Color>
+
+        <Color x:Key="CustomToolbarGroupItemPointerOverColor">#FABB5C</Color>
+        <Color x:Key="CustomToolbarGroupAccentColor">#F9AA34</Color>
+
+        <FontImageSource x:Key="EmojiPickerToolbarItemIcon"
+                         Glyph="&#xe900;"
+                         FontFamily="TelerikFontExamples"
+                         Color="{Binding TextColor, Source={RelativeSource AncestorType={x:Type telerik:RichTextEditorImagePickerToolbarItem}}}"
+                         Size="14" />
+
+        <Style x:Key="CommonButtonToolbarItemViewStyle" TargetType="telerik:ButtonToolbarItemView">
+            <Setter Property="TextColor" Value="{StaticResource ToolbarItemTextColor}" />
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup Name="CommonStates">
+                        <VisualState Name="Normal" />
+                        <VisualState Name="PointerOver">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="{StaticResource ToolbarItemPointerOverColor}" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="Opened">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="{StaticResource ToolbarAccentColor}" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="Disabled">
+                            <VisualState.Setters>
+                                <Setter Property="TextColor" Value="{StaticResource ToolbarDisabledColor}" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+
+        <Style x:Key="CustomGroupToolbarItemStyle" TargetType="telerik:ToggleButtonToolbarItemView">
+            <Setter Property="TextColor" Value="{StaticResource ToolbarItemTextColor}" />
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup Name="CommonStates">
+                        <VisualState Name="Normal" />
+                        <VisualState Name="PointerOver">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="{StaticResource CustomToolbarGroupItemPointerOverColor}" />
+                                <Setter Property="TextColor" Value="{StaticResource ToolbarItemInvertedTextColor}" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="{StaticResource CustomToolbarGroupAccentColor}" />
+                                <Setter Property="TextColor" Value="{StaticResource ToolbarItemInvertedTextColor}" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="Disabled">
+                            <VisualState.Setters>
+                                <Setter Property="TextColor" Value="{StaticResource ToolbarDisabledColor}" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+
+        <Style x:Key="CustomGroupToolbarItemViewStyle" TargetType="telerik:GroupToolbarItemView">
+            <Setter Property="BorderBrush" Value="{StaticResource CustomToolbarGroupAccentColor}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="4" />
+            <Setter Property="Margin" Value="0, 0, 4, 0" />
+        </Style>
+
+        <Style x:Key="RichTextEditorToolbarStyle" TargetType="telerik:RadRichTextEditorToolbar">
+            <Setter Property="BackgroundColor" Value="#344955" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="CornerRadius" Value="4" />
+        </Style>
+    </telerik:RadContentView.Resources>
+
+    <Grid RowDefinitions="{OnIdiom Desktop='Auto, *', Phone='*, Auto'}"
+          RowSpacing="8">
+        <telerik:RadRichTextEditorToolbar x:Name="richTextToolbar"
+                                          Grid.Row="{OnIdiom Desktop=0, Phone=1}"
+                                          ZIndex="10"
+                                          RichTextEditor="{x:Reference richTextEditor}"
+                                          AutoGenerateItems="False"
+                                          Style="{StaticResource RichTextEditorToolbarStyle}">
+            <telerik:RichTextEditorUndoToolbarItem Style="{StaticResource CommonButtonToolbarItemViewStyle}" />
+            <telerik:RichTextEditorRedoToolbarItem Style="{StaticResource CommonButtonToolbarItemViewStyle}" />
+            <telerik:SeparatorToolbarItem/>
+            <telerik:GroupToolbarItem Style="{StaticResource CustomGroupToolbarItemViewStyle}">
+                <telerik:RichTextEditorBoldToolbarItem Style="{StaticResource CustomGroupToolbarItemStyle}" />
+                <telerik:RichTextEditorItalicToolbarItem Style="{StaticResource CustomGroupToolbarItemStyle}" />
+                <telerik:RichTextEditorUnderlineToolbarItem Style="{StaticResource CustomGroupToolbarItemStyle}" />
+            </telerik:GroupToolbarItem>
+            <telerik:RichTextEditorTextColorToolbarItem Style="{StaticResource CommonButtonToolbarItemViewStyle}" />
+            <telerik:RichTextEditorColorPickerToolbarItem x:Name="colorPicker"
+                                                          IsVisible="{OnPlatform WinUI=False}"
+                                                          Style="{StaticResource CommonButtonToolbarItemViewStyle}" />
+            <telerik:RichTextEditorImagePickerToolbarItem ItemsSource="{Binding EmojiSource}"
+                                                          ImageSource="{StaticResource EmojiPickerToolbarItemIcon}"
+                                                          Style="{StaticResource CommonButtonToolbarItemViewStyle}" />
+        </telerik:RadRichTextEditorToolbar>
+        <telerik:RadRichTextEditor x:Name="richTextEditor"
+                                   Source="{Binding RTSource}"
+                                   Grid.Row="{OnIdiom Desktop=1, Phone=0}" />
+    </Grid>
+</telerik:RadContentView>

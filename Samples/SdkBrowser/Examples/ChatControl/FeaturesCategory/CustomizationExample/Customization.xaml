@@ -5,21 +5,38 @@
              x:Class="SDKBrowserMaui.Examples.ChatControl.FeaturesCategory.CustomizationExample.Customization">
     <telerik:RadContentView.Resources>
         <ResourceDictionary>
-            <Color x:Key="TextColor">White</Color>
-            <Color x:Key="IncomingBackgroundColor">#FFC732CB</Color>
-            <Color x:Key="OutgoingBackgroundColor">#FF28B3AF</Color>
+            <Color x:Key="TextColor">Black</Color>
+            <Color x:Key="ChatBackgroundColor">#F2EFF9</Color>
+            <Color x:Key="ChatMessageBackgroundColor">White</Color>
+            <Color x:Key="ChatInputAreaStrokeColor">#F4009E</Color>
+            <Color x:Key="IncomingBackgroundColor">#FF9040</Color>
+            <Color x:Key="OutgoingBackgroundColor">#04A2AA</Color>
+
+
+            <FontImageSource x:Key="SendIconSource"
+                             FontFamily="TelerikFontExamples"
+                             Glyph="&#xe82d;"
+                             Color="{StaticResource ChatInputAreaStrokeColor}"
+                             Size="{OnPlatform Default=24, WinUI=20}" />
+
             <Style x:Key="LabelStyle" TargetType="Label">
                 <Setter Property="TextColor" Value="{StaticResource TextColor}" />
             </Style>
+            <Style TargetType="telerik:ChatEntry">
+                <Setter Property="BorderBrush" Value="{StaticResource ChatInputAreaStrokeColor}" />
+                <Setter Property="FocusedBorderBrush" Value="{StaticResource ChatInputAreaStrokeColor}" />
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="CornerRadius" Value="8" />
+            </Style>
             <Style x:Key="IncomingBorderStyle" TargetType="telerik:RadBorder">
-                <Setter Property="BackgroundColor" Value="{StaticResource IncomingBackgroundColor}" />
+                <Setter Property="BackgroundColor" Value="{StaticResource ChatMessageBackgroundColor}" />
+                <Setter Property="BorderColor" Value="{StaticResource IncomingBackgroundColor}" />
+                <Setter Property="BorderThickness" Value="1" />
             </Style>
             <Style x:Key="OutgoingBorderStyle" TargetType="telerik:RadBorder">
-                <Setter Property="BackgroundColor" Value="{StaticResource OutgoingBackgroundColor}" />
-            </Style>
-
-            <Style TargetType="telerik:ChatEntry">
-                <Setter Property="TextColor" Value="{StaticResource TextColor}" />
+                <Setter Property="BackgroundColor" Value="{StaticResource ChatMessageBackgroundColor}" />
+                <Setter Property="BorderColor" Value="{StaticResource OutgoingBackgroundColor}" />
+                <Setter Property="BorderThickness" Value="1" />
             </Style>
             <Style TargetType="telerik:IncomingTextMessageView" ApplyToDerivedTypes="True">
                 <Setter Property="LabelStyle" Value="{StaticResource LabelStyle}" />
@@ -32,11 +49,10 @@
         </ResourceDictionary>
     </telerik:RadContentView.Resources>
     <Grid>
-        <Image Aspect="Fill" Source="chatbackground.jpg" />
-        <telerik:RadChat x:Name="chat1"
-                         BackgroundColor="Transparent"
-                         InputAreaBackgroundColor="{StaticResource OutgoingBackgroundColor}"
-                         SendMessageButtonImage="available.png">
+        <telerik:RadChat x:Name="chat"
+                         BackgroundColor="{StaticResource ChatBackgroundColor}"
+                         InputAreaBackgroundColor="{StaticResource ChatBackgroundColor}"
+                         SendMessageButtonImage="{StaticResource SendIconSource}">
             <telerik:RadChat.Author>
                 <telerik:Author Name="You" 
                                 Avatar="sampleavatar.png" />

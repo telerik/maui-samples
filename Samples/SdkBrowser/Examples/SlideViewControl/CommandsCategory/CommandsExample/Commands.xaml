@@ -11,15 +11,20 @@
             <telerik:RadSlideView.ItemTemplate>
                 <DataTemplate>
                     <Label Text="{Binding Content}"
-                           TextColor="#007ACC"
+                           TextColor="{x:Static Application.AccentColor}"
                            HorizontalTextAlignment="Center"
-                           VerticalOptions="CenterAndExpand"/>
+                           VerticalOptions="Center" />
                 </DataTemplate>
             </telerik:RadSlideView.ItemTemplate>
         </telerik:RadSlideView>
-        <VerticalStackLayout Grid.Row="1">
-            <Button x:Name="PrevItem" Text="Previous Item" Command="{Binding NavigateToPreviousItemCommand, Source={x:Reference slideView}}"/>
-            <Button x:Name="NextItem" Text="Next Item" Command="{Binding NavigateToNextItemCommand, Source={x:Reference slideView}}"/>
+        <VerticalStackLayout Grid.Row="1"
+                             Spacing="10">
+            <Button x:Name="PrevItem"
+                    Text="Previous Item"
+                    Command="{Binding NavigateToPreviousItemCommand, Source={x:Reference slideView}}" />
+            <Button x:Name="NextItem"
+                    Text="Next Item"
+                    Command="{Binding NavigateToNextItemCommand, Source={x:Reference slideView}}" />
         </VerticalStackLayout>
     </Grid>
     <!-- << slideview-commands -->

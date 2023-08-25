@@ -5,7 +5,7 @@
                         x:Class="QSF.Examples.SpreadStreamProcessingControl.FirstLookExample.FirstLookView"
                         Padding="{OnIdiom Default='16, 20', Phone=16}">
     <Grid RowDefinitions="*, Auto">
-        <telerik:RadListView x:Name="list" 
+        <telerik:RadListView x:Name="list"
                              ItemsSource="{Binding Courses}"
                              SelectionMode="None">
             <telerik:RadListView.LayoutDefinition>
@@ -15,30 +15,34 @@
                 <DataTemplate>
                     <telerik:ListViewTemplateCell>
                         <telerik:ListViewTemplateCell.View>
-                            <Grid HorizontalOptions="Start"
-                                  ColumnDefinitions="*, 200, Auto, *">
+                            <HorizontalStackLayout HorizontalOptions="Fill"
+                                                   Spacing="16"
+                                                   Padding="16, 0">
                                 <VerticalStackLayout HorizontalOptions="Start"
                                                      VerticalOptions="Center"
-                                                     Grid.Column="1"
-                                                     Margin="16, 0">
+                                                     WidthRequest="200">
                                     <Label Text="{Binding CourseName}"
                                            FontSize="16"
                                            HorizontalTextAlignment="Start" />
-                                    <Label Text="{Binding University}" 
+                                    <Label Text="{Binding University}"
                                            FontSize="13"
                                            HorizontalTextAlignment="Start" />
                                 </VerticalStackLayout>
-                                <Label Grid.Column="2"
-                                       Text="{Binding Path=Progress, StringFormat='{0} %'}" 
+                                <Label Text="{Binding Path=Progress, StringFormat='{0} %'}"
                                        FontSize="16"
-                                       HorizontalOptions="Start" 
-                                       VerticalOptions="Center" 
-                                       Margin="16, 0" />
-                            </Grid>
+                                       HorizontalOptions="Start"
+                                       VerticalOptions="Center" />
+                            </HorizontalStackLayout>
                         </telerik:ListViewTemplateCell.View>
                     </telerik:ListViewTemplateCell>
                 </DataTemplate>
             </telerik:RadListView.ItemTemplate>
+            <telerik:RadListView.SelectedItemStyle>
+                <telerik:ListViewItemStyle BackgroundColor="Transparent" />
+            </telerik:RadListView.SelectedItemStyle>
+            <telerik:RadListView.PressedItemStyle>
+                <telerik:ListViewItemStyle BackgroundColor="Transparent" />
+            </telerik:RadListView.PressedItemStyle>
         </telerik:RadListView>
         <telerik:RadButton Grid.Row="1"
                            Text="Generate Spreadsheet"

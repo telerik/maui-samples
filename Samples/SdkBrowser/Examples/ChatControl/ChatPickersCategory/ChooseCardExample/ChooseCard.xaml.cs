@@ -28,7 +28,7 @@ public partial class ChooseCard : RadContentView
                 new BasicCardContext() {
                     Title ="Rome",
                     Subtitle ="Italy",
-                    Description ="Italy’s capital is one of the world’s most romantic and inspiring cities",
+                    Description ="Italy's capital is one of the world's most romantic and inspiring cities",
                     Actions = GetCardActions(chatItem, "Rome")},
                 new BasicCardContext() {
                     Title ="Barcelona",

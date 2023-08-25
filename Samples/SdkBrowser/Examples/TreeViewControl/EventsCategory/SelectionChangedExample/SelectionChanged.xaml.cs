@@ -12,7 +12,13 @@ public partial class SelectionChanged : ContentView
 	// >> treeview-selectionchanged-event
     private void OnSelectionChanged(object sender, System.EventArgs e)
     {
-		App.Current.MainPage.DisplayAlert("Selection has changed ","","OK");
+		if (this.treeView.SelectedItem == null) 
+		{
+			return;
+		}
+
+		var selectedItem = this.treeView.SelectedItem.ToString();
+		App.Current.MainPage.DisplayAlert("Selection has changed ", "Selected item is: " + selectedItem, "OK");
     }
     // << treeview-selectionchanged-event
 }

@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        xmlns:converters="clr-namespace:QSF.Converters"
+                        x:Class="QSF.Examples.ChatControl.ConfigurationExample.ConfigurationView"
+                        Padding="16">
+    <telerik:RadBorder BorderThickness="{OnIdiom Default=0, Desktop=1}"
+                       BorderColor="{AppThemeBinding Light={OnPlatform Default={StaticResource DefaultBorderColor}, WinUI={StaticResource DefaultBorderColorWinUI}},
+                                                     Dark={OnPlatform Default={StaticResource DefaultBorderColorDark}, WinUI={StaticResource DefaultBorderColorDarkWinUI}}}"
+                       HorizontalOptions="{OnIdiom Default=Fill, Desktop=Center}">
+        <Grid WidthRequest="{OnIdiom Default=-1, Desktop=450}">
+            <telerik:RadChat x:Name="chat"
+                             Author="{Binding AuthorMe}"
+                             ItemsSource="{Binding Items}"
+                             Message="{Binding Message}"
+                             SendMessageCommand="{Binding SendMessageCommand}">
+                <telerik:RadChat.Picker>
+                    <telerik:RadChatPicker IsVisible="{Binding IsPickerVisible}"
+                                           Context="{Binding PickerContext}"
+                                           HeaderText="{Binding PickerHeaderText}"
+                                           IsOkButtonVisible="{Binding ArePickerButtonsVisible}"
+                                           IsCancelButtonVisible="{Binding ArePickerButtonsVisible}"
+                                           OkCommand="{Binding PickerOkCommand}"
+                                           CancelCommand="{Binding PickerCancelCommand}" />
+                </telerik:RadChat.Picker>
+                <telerik:RadChat.TypingIndicator>
+                    <telerik:TypingIndicator ItemsSource="{Binding TypingIndicatorAuthors}"
+                                             Text="{Binding TypingIndicatorText}"
+                                             IsVisible="{Binding IsTypingIndicatorVisible}" />
+                </telerik:RadChat.TypingIndicator>
+            </telerik:RadChat>
+        </Grid>
+    </telerik:RadBorder>
+</ContentView>

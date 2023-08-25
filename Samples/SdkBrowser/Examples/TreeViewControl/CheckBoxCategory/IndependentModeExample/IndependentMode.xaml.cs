@@ -7,5 +7,7 @@ public partial class IndependentMode : ContentView
 	public IndependentMode()
 	{
 		InitializeComponent();
+
+		this.treeView.ExpandAll();
 	}
 }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Maui.Controls;
+using QSF.Services;
 using QSF.ViewModels;
 using System;
 using System.Collections.ObjectModel;
@@ -12,8 +13,6 @@ namespace QSF.Examples.ComboBoxControl.FirstLookExample
         private int selectedSkillIndex = -1;
         private int selectedJobTypeIndex = -1;
         private int selectedTimeIndex = -1;
-        private bool isJobSearchNotificationOpen;
-        private CancellationTokenSource cancellation;
 
         public FirstLookViewModel()
         {
@@ -51,8 +50,6 @@ namespace QSF.Examples.ComboBoxControl.FirstLookExample
             };
 
             SearchJobButtonCommand = new Command(OnSearchJobButtonCommandExecuted, OnSearchJobButtonCommandCanExecute);
-
-            cancellation = new CancellationTokenSource();
         }
 
         public ObservableCollection<string> Skills { get; set; }
@@ -111,46 +108,10 @@ namespace QSF.Examples.ComboBoxControl.FirstLookExample
             }
         }
 
-        public bool IsJobSearchNotificationOpen
-        {
-            get
-            {
-                return isJobSearchNotificationOpen;
-            }
-            set
-            {
-                if (isJobSearchNotificationOpen != value)
-                {
-                    isJobSearchNotificationOpen = value;
-                    if (!isJobSearchNotificationOpen)
-                    {
-                        Interlocked.Exchange(ref cancellation, new CancellationTokenSource()).Cancel();
-                    }
-
-                    OnPropertyChanged();
-                }
-            }
-        }
-
         private void OnSearchJobButtonCommandExecuted(object obj)
         {
-            if (isJobSearchNotificationOpen)
-            {
-                return;
-            }
-
-            CancellationTokenSource cts = cancellation;
-            IsJobSearchNotificationOpen = true;
-            Device.StartTimer(TimeSpan.FromSeconds(2), () =>
-            {
-                if (cts.IsCancellationRequested)
-                {
-                    return false;
-                }
-
-                IsJobSearchNotificationOpen = false;
-                return false;
-            });
+            var toastService = DependencyService.Get<IToastMessageService>();
+            toastService.ShortAlert("Job Search started...");
         }
 
         private bool OnSearchJobButtonCommandCanExecute(object arg)

@@ -4,23 +4,28 @@
              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
              x:Class="SDKBrowserMaui.Examples.PdfViewerControl.CommandsCategory.CommandsExample.Commands">
     <!-- >> pdfviewer-commands-xaml -->
-    <Grid RowDefinitions="Auto,*">
+    <Grid RowDefinitions="Auto, *">
         <telerik:RadUniformGrid>
             <Button Text="Zoom In"
-                    Command="{Binding Source={x:Reference pdfViewer}, Path=ZoomInCommand}" />
+                    Command="{Binding Source={x:Reference pdfViewer}, Path=ZoomInCommand}"
+                    Margin="0, 0, 10, 10" />
             <Button Text="Zoom Out"
-                    Command="{Binding Source={x:Reference pdfViewer}, Path=ZoomOutCommand}" />
+                    Command="{Binding Source={x:Reference pdfViewer}, Path=ZoomOutCommand}"
+                    Margin="0, 0, 10, 10" />
             <Button Text="Fit To Width"
-                    Command="{Binding Source={x:Reference pdfViewer}, Path=FitToWidthCommand}" />
+                    Command="{Binding Source={x:Reference pdfViewer}, Path=FitToWidthCommand}"
+                    Margin="0, 0, 10, 10" />
             <Button Text="Previous Page"
-                    Command="{Binding Source={x:Reference pdfViewer}, Path=NavigateToPreviousPageCommand}" />
+                    Command="{Binding Source={x:Reference pdfViewer}, Path=NavigateToPreviousPageCommand}"
+                    Margin="0, 0, 10, 10" />
             <Button Text="Next Page"
-                    Command="{Binding Source={x:Reference pdfViewer}, Path=NavigateToNextPageCommand}" />
+                    Command="{Binding Source={x:Reference pdfViewer}, Path=NavigateToNextPageCommand}"
+                    Margin="0, 0, 10, 10" />
         </telerik:RadUniformGrid>
         <telerik:RadPdfViewer x:Name="pdfViewer"
                               Grid.Row="1"
                               MinZoomLevel="0.3"
-                              MaxZoomLevel="4"/>
+                              MaxZoomLevel="4" />
     </Grid>
     <!-- << pdfviewer-commands-xaml -->
 </ContentView>

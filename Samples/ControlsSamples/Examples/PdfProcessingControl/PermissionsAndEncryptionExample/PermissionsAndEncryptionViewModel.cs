@@ -19,7 +19,7 @@ public class PermissionsAndEncryptionViewModel : ExampleViewModel
     private RadFixedDocument document;
     private PdfFormatProvider provider = new PdfFormatProvider();
     private readonly IFileViewerService fileViewerService;
-    private string documentName = "pdfviewer-firstlook.pdf";
+    private string documentName = "pdf_file.pdf";
     private string password = string.Empty;
     private bool isEditingRestricted;
     private bool isCopyingRestricted;

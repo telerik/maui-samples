@@ -3,16 +3,16 @@
                         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                         xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
                         x:Class="QSF.Examples.PdfViewerControl.FirstLookExample.FirstLookView">
-    <telerik:RadContentView.Content>
-        <Grid RowDefinitions="Auto,*">
-            <telerik:RadPdfViewerToolbar PdfViewer="{x:Reference pdfViewer }" x:Name="pdfViewerToolbar" >
-                <telerik:PdfViewerFitToWidthToolbarItem />
-                <telerik:PdfViewerZoomInToolbarItem />
-                <telerik:PdfViewerZoomOutToolbarItem />
-                <telerik:PdfViewerNavigateToPreviousPageToolbarItem />
-                <telerik:PdfViewerNavigateToNextPageToolbarItem />
-            </telerik:RadPdfViewerToolbar>
-            <telerik:RadPdfViewer x:Name="pdfViewer" Grid.Row="1" />
-        </Grid>
-    </telerik:RadContentView.Content>
+    <Grid RowDefinitions="{OnIdiom Desktop='Auto, *', Phone='*, Auto'}">
+        <telerik:RadPdfViewerToolbar PdfViewer="{x:Reference pdfViewer}"
+                                     Grid.Row="{OnIdiom Desktop=0, Phone=1}">
+            <telerik:PdfViewerFitToWidthToolbarItem />
+            <telerik:PdfViewerZoomInToolbarItem />
+            <telerik:PdfViewerZoomOutToolbarItem />
+            <telerik:PdfViewerNavigateToPreviousPageToolbarItem />
+            <telerik:PdfViewerNavigateToNextPageToolbarItem />
+        </telerik:RadPdfViewerToolbar>
+        <telerik:RadPdfViewer x:Name="pdfViewer"
+                              Grid.Row="{OnIdiom Desktop=1, Phone=0}" />
+    </Grid>
 </telerik:RadContentView>

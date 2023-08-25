@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using Microsoft.Maui.Devices;
+using QSF.Examples.TreeViewControl.Common;
 using QSF.ExampleUtilities;
 using QSF.ViewModels;
 
@@ -7,8 +8,6 @@ namespace QSF.Examples.TreeViewControl.FirstLookExample;
 
 public class FirstLookViewModel : ExampleViewModel
 {
-    public static string DataSourcePath = "AccountDataSource.xml";
-
     private Account account;
     private Folder folder;
     private Folder selectedItem;
@@ -21,7 +20,7 @@ public class FirstLookViewModel : ExampleViewModel
             Name = "Kieran Wood",
             Icon = "person_2.png",
             Address = "kwood@progress.com",
-            Folders = DataGenerator.GetItems<ObservableCollection<Folder>>(DataSourcePath)
+            Folders = DataGenerator.GetItems<ObservableCollection<Folder>>(DataSourcePaths.AccountPath)
         };
 
         if (DeviceInfo.Idiom == DeviceIdiom.Desktop)

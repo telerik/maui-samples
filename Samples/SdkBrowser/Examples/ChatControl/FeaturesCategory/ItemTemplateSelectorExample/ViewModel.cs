@@ -23,8 +23,8 @@ namespace SDKBrowserMaui.Examples.ChatControl.FeaturesCategory.ItemTemplateSelec
             // Simulate async data loading
             Device.StartTimer(TimeSpan.FromMilliseconds(500), () =>
             {
-                this.Items.Add(new SimpleChatItem { Author = this.Bot, Text = "Hi.", Category = MessageCategory.Normal });
-                this.Items.Add(new SimpleChatItem { Author = this.Bot, Text = "Please check our new privacy policy here:...", Category = MessageCategory.Important });
+                this.Items.Add(new SimpleChatItem { Author = this.Bot, Text = "Hello.", Category = MessageCategory.Normal });
+                this.Items.Add(new SimpleChatItem { Author = this.Bot, Text = "Here is what you need to know about our updated privacy policy: ...", Category = MessageCategory.Important });
                 return false;
             });
         }

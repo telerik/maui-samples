@@ -5,7 +5,8 @@
              xmlns:local="clr-namespace:SDKBrowserMaui.Examples.TreeViewControl"
              x:Class="SDKBrowserMaui.Examples.TreeViewControl.ExpandCollapseCategory.ExpandCollapseExample.ExpandCollapse">
     <!-- >> treeview-expand-collapse -->
-    <Grid RowDefinitions="Auto,*">
+    <Grid RowDefinitions="Auto,*"
+          RowSpacing="10">
         <HorizontalStackLayout Spacing="10">
             <Button Text="ExpandAll" Clicked="OnExpandAllClicked"/>
             <Button Text="CollapseAll" Clicked="OnCollapseAllclicked"/>

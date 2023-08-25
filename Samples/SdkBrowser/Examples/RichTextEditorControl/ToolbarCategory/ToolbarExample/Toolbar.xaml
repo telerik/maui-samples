@@ -4,11 +4,13 @@
              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
              x:Class="SDKBrowserMaui.Examples.RichTextEditorControl.ToolbarCategory.ToolbarExample.Toolbar">
     <!-- >> richtexteditor-toolbar-xaml -->
-    <Grid RowDefinitions="Auto,*">
-        <telerik:RadRichTextEditorToolbar x:Name="richTextToolbar" 
+    <Grid RowDefinitions="{OnIdiom Desktop='Auto, *', Phone='*, Auto'}">
+        <telerik:RadRichTextEditorToolbar x:Name="richTextToolbar"
+                                          Grid.Row="{OnIdiom Desktop=0, Phone=1}"
+                                          ZIndex="10"
                                           RichTextEditor="{x:Reference richTextEditor}" />
         <telerik:RadRichTextEditor x:Name="richTextEditor"
-                                   Grid.Row="1" />
+                                   Grid.Row="{OnIdiom Desktop=1, Phone=0}" />
     </Grid>
     <!-- << richtexteditor-toolbar-xaml -->
 </ContentView>

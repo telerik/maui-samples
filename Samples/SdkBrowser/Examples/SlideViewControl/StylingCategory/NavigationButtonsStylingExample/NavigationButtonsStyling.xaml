@@ -7,12 +7,21 @@
     <telerik:RadContentView.Resources>
         <ResourceDictionary>
             <!-- >> slideview-navigation-styling-resources -->
-            <Style x:Key="NavigationButtonStyle" TargetType="telerik:RadButton">
-                <Setter Property="CornerRadius" Value="8"/>
-                <Setter Property="FontSize" Value="14"/>
-                <Setter Property="TextColor" Value="Red"/>
-                <Setter Property="BackgroundColor" Value="Yellow"/>
-                <Setter Property="BorderThickness" Value="1"/>
+            <Style x:Key="NavigateButtonBaseStyle" TargetType="telerik:RadButton">
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="TextColor" Value="#3341A1" />
+                <Setter Property="BackgroundColor" Value="#1A3341A1" />
+                <Setter Property="BorderColor" Value="#B33341A1" />
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="WidthRequest" Value="{OnPlatform Default=44, MacCatalyst=32}" />
+                <Setter Property="HeightRequest" Value="{OnPlatform Default=44, MacCatalyst=32}" />
+                <Setter Property="CornerRadius" Value="{OnPlatform Default=22, MacCatalyst=16}" />
+            </Style>
+            <Style x:Key="NavigateToNextButtonStyle" TargetType="telerik:RadButton" BasedOn="{StaticResource NavigateButtonBaseStyle}">
+                <Setter Property="Text" Value="&#xe805;" />
+            </Style>
+             <Style x:Key="NavigateToPreviousButtonStyle" TargetType="telerik:RadButton" BasedOn="{StaticResource NavigateButtonBaseStyle}">
+                <Setter Property="Text" Value="&#xe80e;" />
             </Style>
             <!-- << slideview-navigation-styling-resources -->
         </ResourceDictionary>
@@ -22,26 +31,30 @@
         <telerik:RadSlideView x:Name="slideView"
                               InteractionMode="Pan"
                               NavigationButtonsVisibility="Visible"
-                              NavigateToNextItemButtonStyle="{StaticResource NavigationButtonStyle}"
-                              NavigateToPreviousItemButtonStyle="{StaticResource NavigationButtonStyle}">
+                              NavigateToNextItemButtonStyle="{StaticResource NavigateToNextButtonStyle}"
+                              NavigateToPreviousItemButtonStyle="{StaticResource NavigateToPreviousButtonStyle}">
         <!-- << slideview-navigation-styling-xaml -->
-            <Grid>
-                <Button Text="Item 0" HorizontalOptions="Center" VerticalOptions="Center"/>
+            <telerik:RadSlideView.Resources>
+                <Style TargetType="Label">
+                    <Setter Property="TextColor" Value="#3341A1" />
+                    <Setter Property="HorizontalOptions" Value="Center" />
+                    <Setter Property="VerticalOptions" Value="Center" />
+                </Style>
+            </telerik:RadSlideView.Resources>
+            <Grid BackgroundColor="#EAECF5">
+                <Label Text="Item 1" />
             </Grid>
-            <Grid>
-                <Button Text="Item 1" HorizontalOptions="Center" VerticalOptions="Center"/>
+            <Grid BackgroundColor="#E5F5F6">
+                <Label Text="Item 2" />
             </Grid>
-            <Grid>
-                <Button Text="Item 2" HorizontalOptions="Center" VerticalOptions="Center"/>
+            <Grid BackgroundColor="#FFF3EB">
+                <Label Text="Item 3" />
             </Grid>
-            <Grid>
-                <Button Text="Item 3" HorizontalOptions="Center" VerticalOptions="Center"/>
+            <Grid BackgroundColor="#F3F6FF">
+                <Label Text="Item 4" />
             </Grid>
-            <Grid>
-                <Button Text="Item 4" HorizontalOptions="Center" VerticalOptions="Center"/>
-            </Grid>
-            <Grid>
-                <Button Text="Item 5" HorizontalOptions="Center" VerticalOptions="Center"/>
+            <Grid BackgroundColor="#EEFAFB">
+                <Label Text="Item 5" />
             </Grid>
         </telerik:RadSlideView>
     </Grid>

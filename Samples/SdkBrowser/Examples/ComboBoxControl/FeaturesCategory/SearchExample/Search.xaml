@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        x:Class="SDKBrowserMaui.Examples.ComboBoxControl.FeaturesCategory.SearchExample.Search">
+
+    <telerik:RadContentView.Resources>
+        <Style TargetType="Label" x:Key="LabelStyle">
+            <Setter Property="HorizontalOptions" Value="Start" />
+            <Setter Property="VerticalOptions" Value="Center" />
+            <Setter Property="Margin" Value="0, 0, 0, 12" />
+        </Style>
+        <Style TargetType="telerik:RadComboBox">
+            <Setter Property="Margin" Value="{OnIdiom Default='0, 0, 0, 24', Desktop='0, 0, 0, 40'}" />
+        </Style>
+    </telerik:RadContentView.Resources>
+
+    <telerik:RadContentView.Content>
+        <VerticalStackLayout HorizontalOptions="{OnIdiom Default=Fill, Desktop=Start}"
+                             WidthRequest="{OnPlatform MacCatalyst=300, WinUI=300}" >
+            <Label Text="SearchMode='Contains':" 
+                   Style="{StaticResource LabelStyle}" />
+            <!-- >> combobox-searchmode-contains -->
+            <telerik:RadComboBox ItemsSource="{Binding Items}"
+                                 SearchTextPath="Name"
+                                 DisplayMemberPath="Name"
+                                 SearchMode="Contains"
+                                 IsEditable="True"
+                                 HighlightTextColor="Red"
+                                 AutomationId="containsComboBox"/>
+            <!-- << combobox-searchmode-contains -->
+
+            <Label Text="SearchMode='StartsWith':" 
+                   Style="{StaticResource LabelStyle}" />
+            <!-- >> combobox-searchmode-startswith -->
+            <telerik:RadComboBox ItemsSource="{Binding Items}"
+                                 SearchTextPath="Name"
+                                 DisplayMemberPath="Name"
+                                 SearchMode="StartsWith"
+                                 IsEditable="True"
+                                 HighlightTextColor="Red"
+                                 AutomationId="startsWithComboBox"/>
+            <!-- << combobox-searchmode-startswith -->
+
+            <Label Text="SearchMode='ContainsCaseSensitive':" 
+                   Style="{StaticResource LabelStyle}" />
+            <!-- >> combobox-searchmode-containscasesensitive -->
+            <telerik:RadComboBox ItemsSource="{Binding Items}"
+                                 SearchTextPath="Name"
+                                 DisplayMemberPath="Name"
+                                 SearchMode="ContainsCaseSensitive"
+                                 IsEditable="True"
+                                 HighlightTextColor="Red"
+                                 AutomationId="containsCasesenSitiveComboBox"/>
+            <!-- << combobox-searchmode-containscasesensitive -->
+
+            <Label Text="SearchMode='StartWithCaseSensitive':" 
+                   Style="{StaticResource LabelStyle}" />
+            <!-- >> combobox-searchmode-startwith-casesensitive -->
+            <telerik:RadComboBox ItemsSource="{Binding Items}"
+                                 SearchTextPath="Name"
+                                 DisplayMemberPath="Name"
+                                 SearchMode="StartsWithCaseSensitive"
+                                 IsEditable="True"
+                                 HighlightTextColor="Red"
+                                 AutomationId="startWithCaseSensitiveComboBox"/>
+            <!-- << combobox-searchmode-startwith-casesensitive -->
+            
+        </VerticalStackLayout>
+    </telerik:RadContentView.Content>
+</telerik:RadContentView>

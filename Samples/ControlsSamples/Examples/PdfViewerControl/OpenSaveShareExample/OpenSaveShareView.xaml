@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        x:Class="QSF.Examples.PdfViewerControl.OpenSaveShareExample.OpenSaveShareView">
+    <Grid RowDefinitions="{OnIdiom Desktop='Auto, *', Phone='*, Auto'}">
+        <telerik:RadPdfViewerToolbar PdfViewer="{x:Reference pdfViewer}"
+                                     Grid.Row="{OnIdiom Desktop=0, Phone=1}">
+            <telerik:PdfViewerNavigateToPreviousPageToolbarItem />
+            <telerik:PdfViewerNavigateToNextPageToolbarItem />
+            <telerik:ButtonToolbarItem Command="{Binding OpenDocumentCommand}">
+                <telerik:ButtonToolbarItem.ImageSource>
+                    <FontImageSource FontFamily="TelerikFontExamples" 
+                                     Glyph="&#xe829;"
+                                     Size="12" />
+                </telerik:ButtonToolbarItem.ImageSource>
+            </telerik:ButtonToolbarItem>
+            <telerik:ButtonToolbarItem Command="{Binding SaveDocumentCommand}">
+                <telerik:ButtonToolbarItem.ImageSource>
+                    <FontImageSource FontFamily="TelerikFontExamples" 
+                                     Glyph="&#xe87b;"
+                                     Size="16" />
+                </telerik:ButtonToolbarItem.ImageSource>
+            </telerik:ButtonToolbarItem>
+            <telerik:ButtonToolbarItem Command="{Binding ShareDocumentCommand}">
+                <telerik:ButtonToolbarItem.ImageSource>
+                    <FontImageSource FontFamily="TelerikFontExamples" 
+                                     Glyph="&#xe87c;"
+                                     Size="16" />
+                </telerik:ButtonToolbarItem.ImageSource>
+            </telerik:ButtonToolbarItem>
+        </telerik:RadPdfViewerToolbar>
+        <telerik:RadPdfViewer x:Name="pdfViewer"
+                              Grid.Row="{OnIdiom Desktop=1, Phone=0}"
+                              Source="{Binding PdfDocumentSource, Mode=TwoWay}"
+                              Document="{Binding Document, Mode=TwoWay}" />
+    </Grid>
+</telerik:RadContentView>

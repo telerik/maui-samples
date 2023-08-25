@@ -4,13 +4,14 @@
              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
              x:Class="SDKBrowserMaui.Examples.PdfViewerControl.FeaturesCategory.MinMaxZoomLevelExample.MinMaxZoomLevel">
     <!-- >> pdfviewer-key-features-xaml -->
-    <Grid RowDefinitions="Auto,*">
-        <telerik:RadPdfViewerToolbar PdfViewer="{Binding Source={x:Reference pdfViewer}}">
+    <Grid RowDefinitions="{OnIdiom Desktop='Auto, *', Phone='*, Auto'}">
+        <telerik:RadPdfViewerToolbar Grid.Row="{OnIdiom Desktop=0, Phone=1}"
+                                     PdfViewer="{Binding Source={x:Reference pdfViewer}}">
             <telerik:PdfViewerZoomInToolbarItem />
             <telerik:PdfViewerZoomOutToolbarItem />
         </telerik:RadPdfViewerToolbar>
         <telerik:RadPdfViewer x:Name="pdfViewer"
-                              Grid.Row="1"
+                              Grid.Row="{OnIdiom Desktop=1, Phone=0}"
                               PageSpacing="15"
                               MinZoomLevel="0.2"
                               MaxZoomLevel="5" />

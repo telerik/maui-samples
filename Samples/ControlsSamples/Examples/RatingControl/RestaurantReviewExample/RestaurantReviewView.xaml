@@ -55,15 +55,15 @@
                                                                Dark={StaticResource MainTextColorDark}}" />
                             <StackLayout Orientation="Horizontal">
                                 <telerik:RadShapeRating Margin="0,3,0,0"
-                                                             HeightRequest="10"
-                                                             IsReadOnly="True"
-                                                             ItemFill="{AppThemeBinding Light=White, Dark=Black}"
-                                                             ItemStroke="#FF9500"
-                                                             ItemStrokeThickness="1"
-                                                             ItemsSpacing="0"
-                                                             SelectedItemFill="#FF9500"
-                                                             SelectedItemStrokeThickness="0"
-                                                             Value="3" />
+                                                        HeightRequest="10"
+                                                        IsReadOnly="True"
+                                                        ItemFill="{AppThemeBinding Light=White, Dark=Black}"
+                                                        ItemStroke="#FF9500"
+                                                        ItemStrokeThickness="1"
+                                                        ItemsSpacing="0"
+                                                        SelectedItemFill="#FF9500"
+                                                        SelectedItemStrokeThickness="0"
+                                                        Value="3" />
                                 <Label FontSize="12"
                                        Text="(362)"
                                        Margin="10, 0, 0, 0"/>
@@ -91,193 +91,193 @@
                                  Color="#D6D5D9" />
                         <Grid Grid.Column="2">
                             <StackLayout Margin="12, 40, 0, 0">
-                                <StackLayout HeightRequest="10"
-                                             Orientation="Horizontal">
+                                <Grid ColumnDefinitions="Auto, *"
+                                      HeightRequest="10">
                                     <telerik:RadShapeRating Margin="0,0,8,0"
-                                                                 IsReadOnly="True"
-                                                                 ItemFill="Orange"
-                                                                 ItemStrokeThickness="0"
-                                                                 ItemsSpacing="0"
-                                                                 SelectedItemFill="#EDEDED"
-                                                                 SelectedItemStrokeThickness="0" />
-                                    <telerik:RadHorizontalGauge HorizontalOptions="FillAndExpand"
-                                                                      VerticalOptions="Center">
+                                                            IsReadOnly="True"
+                                                            ItemFill="Orange"
+                                                            ItemStrokeThickness="0"
+                                                            ItemsSpacing="0"
+                                                            SelectedItemFill="#EDEDED"
+                                                            SelectedItemStrokeThickness="0" />
+                                    <telerik:RadHorizontalGauge Grid.Column="1"
+                                                                VerticalOptions="Center">
                                         <telerik:RadGaugeBase.Axis>
                                             <telerik:GaugeLinearAxis Maximum="100"
-                                                                           Minimum="0"
-                                                                           ShowLabels="False"
-                                                                           Step="100"
-                                                                           StrokeThickness="0" />
+                                                                     Minimum="0"
+                                                                     ShowLabels="False"
+                                                                     Step="100"
+                                                                     StrokeThickness="0" />
                                         </telerik:RadGaugeBase.Axis>
                                         <telerik:RadGaugeBase.Indicators>
                                             <telerik:GaugeBarIndicator EndCap="Oval"
-                                                                             EndThickness="3"
-                                                                             Fill="{AppThemeBinding Light={StaticResource SecondaryGaugeFillLight}, 
-                                                                                                    Dark={StaticResource SecondaryGaugeFillDark}}"
-                                                                             StartCap="Oval"
-                                                                             StartThickness="3"
-                                                                             Offset="0"
-                                                                             Value="100" />
+                                                                       EndThickness="3"
+                                                                       Fill="{AppThemeBinding Light={StaticResource SecondaryGaugeFillLight}, 
+                                                                                           Dark={StaticResource SecondaryGaugeFillDark}}"
+                                                                       StartCap="Oval"
+                                                                       StartThickness="3"
+                                                                       Offset="0"
+                                                                       Value="100" />
                                             <telerik:GaugeBarIndicator EndCap="Oval"
-                                                                             EndThickness="3"
-                                                                             Fill="{AppThemeBinding Light={StaticResource PrimaryGaugeFillLight}, 
-                                                                                                    Dark={StaticResource PrimaryGaugeFillDark}}"
-                                                                             StartCap="Oval"
-                                                                             StartThickness="3"
-                                                                             Offset="0"
-                                                                             Value="30" />
+                                                                       EndThickness="3"
+                                                                       Fill="{AppThemeBinding Light={StaticResource PrimaryGaugeFillLight}, 
+                                                                                           Dark={StaticResource PrimaryGaugeFillDark}}"
+                                                                       StartCap="Oval"
+                                                                       StartThickness="3"
+                                                                       Offset="0"
+                                                                       Value="30" />
                                         </telerik:RadGaugeBase.Indicators>
                                     </telerik:RadHorizontalGauge>
-                                </StackLayout>
-                                <StackLayout HeightRequest="10"
-                                             Orientation="Horizontal">
+                                </Grid>
+                                <Grid ColumnDefinitions="Auto, *"
+                                      HeightRequest="10">
                                     <telerik:RadShapeRating Margin="0,0,8,0"
-                                                                 IsReadOnly="True"
-                                                                 ItemFill="Orange"
-                                                                 ItemStrokeThickness="0"
-                                                                 ItemsSpacing="0"
-                                                                 SelectedItemFill="#EDEDED"
-                                                                 SelectedItemStrokeThickness="0"
-                                                                 Value="1" />
-                                    <telerik:RadHorizontalGauge HorizontalOptions="FillAndExpand"
-                                                                      VerticalOptions="Center">
+                                                            IsReadOnly="True"
+                                                            ItemFill="Orange"
+                                                            ItemStrokeThickness="0"
+                                                            ItemsSpacing="0"
+                                                            SelectedItemFill="#EDEDED"
+                                                            SelectedItemStrokeThickness="0"
+                                                            Value="1" />
+                                    <telerik:RadHorizontalGauge Grid.Column="1"
+                                                                VerticalOptions="Center">
                                         <telerik:RadGaugeBase.Axis>
                                             <telerik:GaugeLinearAxis Maximum="100"
-                                                                           Minimum="0"
-                                                                           ShowLabels="False"
-                                                                           Step="100"
-                                                                           StrokeThickness="0" />
+                                                                     Minimum="0"
+                                                                     ShowLabels="False"
+                                                                     Step="100"
+                                                                     StrokeThickness="0" />
                                         </telerik:RadGaugeBase.Axis>
                                         <telerik:RadGaugeBase.Indicators>
                                             <telerik:GaugeBarIndicator EndCap="Oval"
-                                                                             EndThickness="3"
-                                                                             Fill="{AppThemeBinding Light={StaticResource SecondaryGaugeFillLight}, 
-                                                                                                    Dark={StaticResource SecondaryGaugeFillDark}}"
-                                                                             StartCap="Oval"
-                                                                             StartThickness="3"
-                                                                             Offset="0"
-                                                                             Value="100" />
+                                                                       EndThickness="3"
+                                                                       Fill="{AppThemeBinding Light={StaticResource SecondaryGaugeFillLight}, 
+                                                                                           Dark={StaticResource SecondaryGaugeFillDark}}"
+                                                                       StartCap="Oval"
+                                                                       StartThickness="3"
+                                                                       Offset="0"
+                                                                       Value="100" />
                                             <telerik:GaugeBarIndicator EndCap="Oval"
-                                                                             EndThickness="3"
-                                                                             Fill="{AppThemeBinding Light={StaticResource PrimaryGaugeFillLight}, 
-                                                                                                    Dark={StaticResource PrimaryGaugeFillDark}}"
-                                                                             StartCap="Oval"
-                                                                             StartThickness="3"
-                                                                             Offset="0"
-                                                                             Value="55" />
+                                                                       EndThickness="3"
+                                                                       Fill="{AppThemeBinding Light={StaticResource PrimaryGaugeFillLight}, 
+                                                                                           Dark={StaticResource PrimaryGaugeFillDark}}"
+                                                                       StartCap="Oval"
+                                                                       StartThickness="3"
+                                                                       Offset="0"
+                                                                       Value="55" />
                                         </telerik:RadGaugeBase.Indicators>
                                     </telerik:RadHorizontalGauge>
-                                </StackLayout>
-                                <StackLayout HeightRequest="10"
-                                             Orientation="Horizontal">
+                                </Grid>
+                                <Grid ColumnDefinitions="Auto, *"
+                                      HeightRequest="10">
                                     <telerik:RadShapeRating Margin="0,0,8,0"
-                                                                 IsReadOnly="True"
-                                                                 ItemFill="Orange"
-                                                                 ItemStrokeThickness="0"
-                                                                 ItemsSpacing="0"
-                                                                 SelectedItemFill="#EDEDED"
-                                                                 SelectedItemStrokeThickness="0"
-                                                                 Value="2" />
-                                    <telerik:RadHorizontalGauge HorizontalOptions="FillAndExpand"
-                                                                      VerticalOptions="Center">
+                                                            IsReadOnly="True"
+                                                            ItemFill="Orange"
+                                                            ItemStrokeThickness="0"
+                                                            ItemsSpacing="0"
+                                                            SelectedItemFill="#EDEDED"
+                                                            SelectedItemStrokeThickness="0"
+                                                            Value="2" />
+                                    <telerik:RadHorizontalGauge Grid.Column="1"
+                                                                VerticalOptions="Center">
                                         <telerik:RadGaugeBase.Axis>
                                             <telerik:GaugeLinearAxis Maximum="100"
-                                                                           Minimum="0"
-                                                                           ShowLabels="False"
-                                                                           Step="100"
-                                                                           StrokeThickness="0" />
+                                                                     Minimum="0"
+                                                                     ShowLabels="False"
+                                                                     Step="100"
+                                                                     StrokeThickness="0" />
                                         </telerik:RadGaugeBase.Axis>
                                         <telerik:RadGaugeBase.Indicators>
                                             <telerik:GaugeBarIndicator EndCap="Oval"
-                                                                             EndThickness="3"
-                                                                             Fill="{AppThemeBinding Light={StaticResource SecondaryGaugeFillLight}, 
-                                                                                                    Dark={StaticResource SecondaryGaugeFillDark}}"
-                                                                             StartCap="Oval"
-                                                                             StartThickness="3"
-                                                                             Offset="0"
-                                                                             Value="100" />
+                                                                       EndThickness="3"
+                                                                       Fill="{AppThemeBinding Light={StaticResource SecondaryGaugeFillLight}, 
+                                                                                           Dark={StaticResource SecondaryGaugeFillDark}}"
+                                                                       StartCap="Oval"
+                                                                       StartThickness="3"
+                                                                       Offset="0"
+                                                                       Value="100" />
                                             <telerik:GaugeBarIndicator EndCap="Oval"
-                                                                             EndThickness="3"
-                                                                             Fill="{AppThemeBinding Light={StaticResource PrimaryGaugeFillLight}, 
-                                                                                                    Dark={StaticResource PrimaryGaugeFillDark}}"
-                                                                             StartCap="Oval"
-                                                                             StartThickness="3"
-                                                                             Offset="0"
-                                                                             Value="45" />
+                                                                       EndThickness="3"
+                                                                       Fill="{AppThemeBinding Light={StaticResource PrimaryGaugeFillLight}, 
+                                                                                           Dark={StaticResource PrimaryGaugeFillDark}}"
+                                                                       StartCap="Oval"
+                                                                       StartThickness="3"
+                                                                       Offset="0"
+                                                                       Value="45" />
                                         </telerik:RadGaugeBase.Indicators>
                                     </telerik:RadHorizontalGauge>
-                                </StackLayout>
-                                <StackLayout HeightRequest="10" 
-                                             Orientation="Horizontal">
+                                </Grid>
+                                <Grid ColumnDefinitions="Auto, *"
+                                      HeightRequest="10">
                                     <telerik:RadShapeRating Margin="0,0,8,0"
-                                                                 IsReadOnly="True"
-                                                                 ItemFill="Orange"
-                                                                 ItemStrokeThickness="0"
-                                                                 ItemsSpacing="0"
-                                                                 SelectedItemFill="#EDEDED"
-                                                                 SelectedItemStrokeThickness="0"
-                                                                 Value="3" />
-                                    <telerik:RadHorizontalGauge HorizontalOptions="FillAndExpand"
-                                                                      VerticalOptions="Center">
+                                                            IsReadOnly="True"
+                                                            ItemFill="Orange"
+                                                            ItemStrokeThickness="0"
+                                                            ItemsSpacing="0"
+                                                            SelectedItemFill="#EDEDED"
+                                                            SelectedItemStrokeThickness="0"
+                                                            Value="3" />
+                                    <telerik:RadHorizontalGauge Grid.Column="1"
+                                                                VerticalOptions="Center">
                                         <telerik:RadGaugeBase.Axis>
                                             <telerik:GaugeLinearAxis Maximum="100"
-                                                                           Minimum="0"
-                                                                           ShowLabels="False"
-                                                                           Step="100"
-                                                                           StrokeThickness="0" />
+                                                                     Minimum="0"
+                                                                     ShowLabels="False"
+                                                                     Step="100"
+                                                                     StrokeThickness="0" />
                                         </telerik:RadGaugeBase.Axis>
                                         <telerik:RadGaugeBase.Indicators>
                                             <telerik:GaugeBarIndicator EndCap="Oval"
-                                                                             EndThickness="3"
-                                                                             Fill="{AppThemeBinding Light={StaticResource SecondaryGaugeFillLight}, 
-                                                                                                    Dark={StaticResource SecondaryGaugeFillDark}}"
-                                                                             StartCap="Oval"
-                                                                             StartThickness="3"
-                                                                             Offset="0"
-                                                                             Value="100" />
+                                                                       EndThickness="3"
+                                                                       Fill="{AppThemeBinding Light={StaticResource SecondaryGaugeFillLight}, 
+                                                                                           Dark={StaticResource SecondaryGaugeFillDark}}"
+                                                                       StartCap="Oval"
+                                                                       StartThickness="3"
+                                                                       Offset="0"
+                                                                       Value="100" />
                                         </telerik:RadGaugeBase.Indicators>
                                     </telerik:RadHorizontalGauge>
 
-                                </StackLayout>
-                                <StackLayout HeightRequest="10"
-                                             Orientation="Horizontal">
+                                </Grid>
+                                <Grid ColumnDefinitions="Auto, *"
+                                      HeightRequest="10">
                                     <telerik:RadShapeRating Margin="0,0,8,0"
-                                                                 IsReadOnly="True"
-                                                                 ItemFill="Orange"
-                                                                 ItemStrokeThickness="0"
-                                                                 ItemsSpacing="0"
-                                                                 SelectedItemFill="#EDEDED"
-                                                                 SelectedItemStrokeThickness="0"
-                                                                 Value="4" />
-                                    <telerik:RadHorizontalGauge HorizontalOptions="FillAndExpand"
-                                                                      VerticalOptions="Center">
+                                                            IsReadOnly="True"
+                                                            ItemFill="Orange"
+                                                            ItemStrokeThickness="0"
+                                                            ItemsSpacing="0"
+                                                            SelectedItemFill="#EDEDED"
+                                                            SelectedItemStrokeThickness="0"
+                                                            Value="4" />
+                                    <telerik:RadHorizontalGauge Grid.Column="1"
+                                                                VerticalOptions="Center">
                                         <telerik:RadGaugeBase.Axis>
                                             <telerik:GaugeLinearAxis Maximum="100"
-                                                                           Minimum="0"
-                                                                           ShowLabels="False"
-                                                                           Step="100"
-                                                                           StrokeThickness="0" />
+                                                                     Minimum="0"
+                                                                     ShowLabels="False"
+                                                                     Step="100"
+                                                                     StrokeThickness="0" />
                                         </telerik:RadGaugeBase.Axis>
                                         <telerik:RadGaugeBase.Indicators>
                                             <telerik:GaugeBarIndicator EndCap="Oval"
-                                                                             EndThickness="3"
-                                                                             Fill="{AppThemeBinding Light={StaticResource SecondaryGaugeFillLight}, 
-                                                                                                    Dark={StaticResource SecondaryGaugeFillDark}}"
-                                                                             StartCap="Oval"
-                                                                             StartThickness="3"
-                                                                             Offset="0"
-                                                                             Value="100" />
+                                                                       EndThickness="3"
+                                                                       Fill="{AppThemeBinding Light={StaticResource SecondaryGaugeFillLight}, 
+                                                                                           Dark={StaticResource SecondaryGaugeFillDark}}"
+                                                                       StartCap="Oval"
+                                                                       StartThickness="3"
+                                                                       Offset="0"
+                                                                       Value="100" />
                                             <telerik:GaugeBarIndicator EndCap="Oval"
-                                                                             EndThickness="3"
-                                                                             Fill="{AppThemeBinding Light={StaticResource PrimaryGaugeFillLight}, 
-                                                                                                    Dark={StaticResource PrimaryGaugeFillDark}}"
-                                                                             StartCap="Oval"
-                                                                             StartThickness="3"
-                                                                             Offset="0"
-                                                                             Value="15" />
+                                                                       EndThickness="3"
+                                                                       Fill="{AppThemeBinding Light={StaticResource PrimaryGaugeFillLight}, 
+                                                                                           Dark={StaticResource PrimaryGaugeFillDark}}"
+                                                                       StartCap="Oval"
+                                                                       StartThickness="3"
+                                                                       Offset="0"
+                                                                       Value="15" />
                                         </telerik:RadGaugeBase.Indicators>
                                     </telerik:RadHorizontalGauge>
-                                </StackLayout>
+                                </Grid>
                             </StackLayout>
                         </Grid>
                     </Grid>
@@ -312,12 +312,12 @@
                                              Grid.Column="0"
                                              WidthRequest="100">
                                     <telerik:RadShapeRating Margin="0,8,0,5"
-                                                                 HeightRequest="10"
-                                                                 IsReadOnly="True"
-                                                                 ItemStroke="#FF9B0F"
-                                                                 ItemStrokeThickness="1"
-                                                                 ItemsSpacing="0"
-                                                                 Value="3" />
+                                                            HeightRequest="10"
+                                                            IsReadOnly="True"
+                                                            ItemStroke="#FF9B0F"
+                                                            ItemStrokeThickness="1"
+                                                            ItemsSpacing="0"
+                                                            Value="3" />
                                     <Label Text="Food 5"/>
                                     <Label Text="Ambience 4"/>
                                     <Label Text="Service 3"/>
@@ -347,12 +347,12 @@
                                              Grid.Column="0"
                                              WidthRequest="100">
                                     <telerik:RadShapeRating Margin="0,8,0,5"
-                                                                 HeightRequest="10"
-                                                                 IsReadOnly="True"
-                                                                 ItemStroke="#FF9B0F"
-                                                                 ItemStrokeThickness="1"
-                                                                 ItemsSpacing="0"
-                                                                 Value="3" />
+                                                            HeightRequest="10"
+                                                            IsReadOnly="True"
+                                                            ItemStroke="#FF9B0F"
+                                                            ItemStrokeThickness="1"
+                                                            ItemsSpacing="0"
+                                                            Value="3" />
                                     <Label Text="Food 5"/>
                                     <Label Text="Ambience 4"/>
                                     <Label Text="Service 3"/>

@@ -19,6 +19,8 @@
 		<!-- TODO: Remove it when Maui fixes Skia linker issue for net7. -->
 		<AndroidLinkResources Condition=" $(IsNet7) == 'true' ">false</AndroidLinkResources>
 
+		<!-- TODO: Remove this when moving to machines where Xcode 14.3 -->
+		<MtouchLink Condition="$(TargetFramework.Contains('net8'))">SdkOnly</MtouchLink>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -43,7 +45,13 @@
 		<PackageReference Include="Telerik.UI.for.Maui" Version="$(TelerikVersion)" />
 	</ItemGroup>
 
+	<ItemGroup Condition="$(TargetFramework.Contains('net8'))">
+		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
+		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
+	</ItemGroup>
+
 	<Import Condition="'$(SolutionName)' == 'Telerik.Maui' Or '$(UseSourceProjects)' == 'True'" Project="..\AddSourceProjects.proj" />
 	<Import Condition="'$(SolutionName)' != 'Telerik.Maui' And '$(UseSourceProjects)' != 'True' And '$(UseSourceAssemblies)' == 'True'" Project="..\AddSourceAssemblies.proj" />
+	<Import Condition="'$(UsePlatformAssemblies)' == 'True'" Project="..\..\Source\AddPlatformAssemblies.proj" />
 
 </Project>

@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text.Json;
+using System.Text.Json.Serialization.Metadata;
 
 namespace QSF.Examples.ChartControl.FinancialIndicatorsExample;
 
@@ -33,9 +34,10 @@ public class FinancialIndicatorsViewModel : ExampleViewModel
         using (var reader = new StreamReader(stream))
         {
             var json = reader.ReadToEnd();
-            var options = new JsonSerializerOptions(JsonSerializerDefaults.Web);
+            var options = new JsonSerializerOptions(JsonSerializerDefaults.Web) { TypeInfoResolver = new DefaultJsonTypeInfoResolver() };
             financialData = JsonSerializer.Deserialize<FinancialDataItem[]>(json, options);
         }
+
         return financialData;
     }
 }
