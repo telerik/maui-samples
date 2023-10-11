@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.NavigationViewControl.FeaturesCategory.PaneHeaderFooterExample.PaneHeaderFooter">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <!-- >> navigationview-navigationitem-controltemplate -->
+            <ControlTemplate x:Key="ItemTemplate">
+                <telerik:RadBorder BackgroundColor="{TemplateBinding BackgroundColor}"
+                                   BorderColor="{TemplateBinding BorderColor}"
+                                   BorderBrush="{TemplateBinding BorderBrush}"
+                                   BorderThickness="{TemplateBinding BorderThickness}"
+                                   CornerRadius="{TemplateBinding CornerRadius}"
+                                   Padding="{TemplateBinding ContentPadding}">
+                    <Grid ColumnDefinitions="Auto, *"
+                          ColumnSpacing="{TemplateBinding ImageSpacing}"
+                          HorizontalOptions="{TemplateBinding HorizontalContentOptions}"
+                          VerticalOptions="{TemplateBinding VerticalContentOptions}">
+                        <Image Grid.Column="0"
+                               Source="{TemplateBinding ImageSource}"
+                               Aspect="{TemplateBinding ImageAspect}"
+                               WidthRequest="{TemplateBinding ImageWidth}"
+                               HeightRequest="{TemplateBinding ImageHeight}" />
+                        <Entry Grid.Column="1"
+                               Text="{TemplateBinding Text}"
+                               Placeholder="Enter additional details"
+                               TextColor="{TemplateBinding TextColor}"
+                               FontFamily="{TemplateBinding FontFamily}"
+                               FontSize="{TemplateBinding FontSize}"
+                               FontAttributes="{TemplateBinding FontAttributes}"
+                               HorizontalTextAlignment="{TemplateBinding HorizontalTextAlignment}"
+                               VerticalTextAlignment="{TemplateBinding VerticalTextAlignment}" />
+                    </Grid>
+                </telerik:RadBorder>
+            </ControlTemplate>
+            <!-- << navigationview-navigationitem-controltemplate -->
+
+            <!-- >> navigationview-navigationitem-contenttemplate -->
+            <DataTemplate x:Key="SearchTemplate">
+                <HorizontalStackLayout>
+                    <Image>
+                        <Image.Source>
+                            <FontImageSource Glyph="{x:Static telerik:TelerikFont.IconSearch}"
+                                             Color="Gray"
+                                             FontFamily="{x:Static telerik:TelerikFont.Name}"
+                                             Size="16" />
+                        </Image.Source>
+                    </Image>
+                    <Entry Placeholder="Search Here..." />
+                </HorizontalStackLayout>
+            </DataTemplate>
+            <!-- << navigationview-navigationitem-contenttemplate -->
+        </ResourceDictionary>
+    </ContentView.Resources>
+    
+    <Grid>
+        <!-- >> navigationview-paneheaderfooter -->
+        <telerik:RadNavigationView x:Name="navigationView"
+                                   HeaderText="NavigationView Header">
+            <telerik:RadNavigationView.Items>
+                <telerik:NavigationViewItem Text="Search"
+                                            Position="Header"
+                                            ContentTemplate="{StaticResource SearchTemplate}"
+                                            IsSelectable="False">
+                </telerik:NavigationViewItem>
+                <telerik:NavigationViewItem Text="Item 1" />
+                <telerik:NavigationViewItem Text="Item 2" />
+                <telerik:NavigationViewItem Text="Item 3" />
+                <telerik:NavigationViewItem ControlTemplate="{StaticResource ItemTemplate}"/>
+                <telerik:NavigationViewItem Text="Item 5" />
+                <telerik:NavigationViewItem Text="Settings"
+                                            Position="Footer"
+                                            IsSelectable="False">
+                    <telerik:NavigationViewItem.ImageSource>
+                        <FontImageSource Glyph="{x:Static telerik:TelerikFont.IconMore}"
+                                         FontFamily="{x:Static telerik:TelerikFont.Name}"
+                                         Size="16" />
+                    </telerik:NavigationViewItem.ImageSource>
+                </telerik:NavigationViewItem>
+            </telerik:RadNavigationView.Items>
+            <Label HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   Text="{Binding SelectedItem.Text, Source={x:Reference navigationView}}" />
+        </telerik:RadNavigationView>
+        <!-- << navigationview-paneheaderfooter -->
+    </Grid>
+</ContentView>

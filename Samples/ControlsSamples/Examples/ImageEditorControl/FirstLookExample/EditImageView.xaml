@@ -7,14 +7,14 @@
              x:Class="QSF.Examples.ImageEditorControl.FirstLookExample.EditImageView"
              NavigationPage.HasNavigationBar="False">
     
-    <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto, *, Auto" BackgroundColor="#989898">
+    <Grid ColumnDefinitions="{OnIdiom Default='*, Auto', Phone='*'}"
+          RowDefinitions="{OnIdiom Default='Auto, *', Phone='Auto, *, Auto'}"
+          BackgroundColor="#989898">
 
         <!-- Toolbar with save and discard buttons -->
         <telerik:RadToolbar x:Name="toolbar"
                             Grid.Column="0"
-                            Grid.Row="0"
-                            Grid.ColumnSpan="1"
-                            HorizontalOptions="Fill">
+                            Grid.Row="0">
             
             <telerik:RadToolbar.Resources>
                 <ResourceDictionary>
@@ -52,16 +52,15 @@
 
         <!-- Image Editor Toolbar with default buttons -->
         <telerik:RadImageEditorToolbar x:Name="imageEditorToolbar"
-                                        Grid.Column="{OnIdiom Default=1, Phone=0}"
-                                        Grid.Row="{OnIdiom Default=0, Phone=2}"
-                                        HorizontalOptions="{OnIdiom Default=End, Phone=Fill}"
-                                        ImageEditor="{x:Reference imageEditor}"
-                                        OptionsPanel="{x:Reference optionsPanel}">
+                                       Grid.Column="{OnIdiom Default=1, Phone=0}"
+                                       Grid.Row="{OnIdiom Default=0, Phone=2}"
+                                       ImageEditor="{x:Reference imageEditor}"
+                                       OptionsPanel="{x:Reference optionsPanel}">
         </telerik:RadImageEditorToolbar>
 
         <Grid ColumnDefinitions="*, Auto"
               Grid.Column="0"
-              Grid.ColumnSpan="2"
+              Grid.ColumnSpan="{OnIdiom Default=2, Phone=1}"
               Grid.Row="1" >
              
             <!-- Image Editor -->

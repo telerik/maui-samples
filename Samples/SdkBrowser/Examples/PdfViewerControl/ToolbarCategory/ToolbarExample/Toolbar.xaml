@@ -5,13 +5,18 @@
              x:Class="SDKBrowserMaui.Examples.PdfViewerControl.ToolbarCategory.ToolbarExample.Toolbar">
     <!-- >> pdfviewer-toolbar-xaml -->
     <Grid RowDefinitions="{OnIdiom Desktop='Auto, *', Phone='*, Auto'}">
-        <telerik:RadPdfViewerToolbar Grid.Row="{OnIdiom Desktop=0, Phone=1}"
+        <telerik:RadPdfViewerToolbar Grid.Row="{OnIdiom Desktop=0, Phone=1}" 
+                                     OverflowMode="Scroll"
                                      PdfViewer="{Binding Source={x:Reference pdfViewer}}">
             <telerik:PdfViewerFitToWidthToolbarItem />
             <telerik:PdfViewerZoomInToolbarItem />
             <telerik:PdfViewerZoomOutToolbarItem />
+            <telerik:PdfViewerSearchToolbarItem IsVisible="{OnIdiom Phone=False, Desktop=True}"/>
+            <telerik:PdfViewerSearchNavigationToolbarItem IsVisible="{OnIdiom Phone=True, Desktop=False}"/>
+            <telerik:PdfViewerToggleLayoutModeToolbarItem />
             <telerik:PdfViewerNavigateToPreviousPageToolbarItem />
             <telerik:PdfViewerNavigateToNextPageToolbarItem />
+            <telerik:PdfViewerNavigateToPageToolbarItem />
         </telerik:RadPdfViewerToolbar>
         <telerik:RadPdfViewer x:Name="pdfViewer"
                               Grid.Row="{OnIdiom Desktop=1, Phone=0}" />

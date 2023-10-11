@@ -196,7 +196,6 @@
 
 		<Control>
 			<Name>Calendar</Name>
-			<Status>New</Status>
 			<Icon>calendar.png</Icon>
 			<DisplayName>Calendar</DisplayName>
 			<ShortDescription>Allows single, multiple and range date selection as well as displaying dates in different views.</ShortDescription>
@@ -324,7 +323,6 @@
 
 		<Control>
 			<Name>Chat</Name>
-			<Status>New</Status>
 			<DisplayName>Chat</DisplayName>
 			<Icon>chat.png</Icon>
 			<ShortDescription>Provides flexible API for achieving a variety of chat and chat-bot scenarios.</ShortDescription>
@@ -392,7 +390,7 @@
 					<Page>ConfigurationView</Page>
 					<DisplayName>Configuration</DisplayName>
 					<Icon>configuration.png</Icon>
-					<Status>New</Status>
+					<Status>Updated</Status>
 					<Description>This example presents the various configuration options that the RadComboBox provides. You can change the control's editable state, selection mode, whether the clear button will be visible, etc.</Description>
 				</Example>
 			</Examples>
@@ -421,7 +419,6 @@
 				</Example>
 				<Example>
 					<Name>CustomEditors</Name>
-					<Status>New</Status>
 					<Page>CustomEditorsView</Page>
 					<DisplayName>Custom Editors</DisplayName>
 					<Icon>dataform.png</Icon>
@@ -492,7 +489,6 @@
 				</Example>
 				<Example>
 					<Name>VariousDataSources</Name>
-					<Status>New</Status>
 					<Page>VariousDataSourcesView</Page>
 					<DisplayName>Various Data Sources</DisplayName>
 					<Icon>datagrid.png</Icon>
@@ -504,7 +500,6 @@
 					<Page>EmptyTemplate</Page>
 					<DisplayName>Empty Template</DisplayName>
 					<Icon>datagrid.png</Icon>
-					<Status>New</Status>
 					<IsConfigurable>true</IsConfigurable>
 					<Description>Demonstrates the ability of the DataGrid to specify and show a custom template when the ItemsSource is null or an empty collection is provided.</Description>
 				</Example>
@@ -601,8 +596,8 @@
 					<Description>Telerik UI for .NET MAUI Entry is a text input control, which accepts text input from the user and provides consistent look and feel with the rest of the Telerik UI for .NET MAUI. It also has a validation API and corresponding error UI.</Description>
 				</Example>
 				<Example>
+					<Status>Updated</Status>
 					<Name>Configuration</Name>
-					<Status>New</Status>
 					<Page>ConfigurationView</Page>
 					<DisplayName>Configuration</DisplayName>
 					<Icon>configuration.png</Icon>
@@ -748,6 +743,32 @@
 		</Control>
 
 		<Control>
+			<Name>NavigationView</Name>
+			<Status>New</Status>
+			<DisplayName>NavigationView</DisplayName>
+			<Icon>navigationview.png</Icon>
+			<ShortDescription>An adaptive control used to build consistent navigational experience that layouts its items in a vertical layout.</ShortDescription>
+			<FullDescription>The Telerik UI for .NET MAUI NavigationView is an adaptive control, used to build a consistent navigational experience. It features different options for displaying the navigation pane, adding header and footer to the pane and flexible customization API.</FullDescription>
+			<Examples>
+				<Example>
+					<Name>FirstLook</Name>
+					<Page>FirstLookView</Page>
+					<DisplayName>First Look</DisplayName>
+					<Icon>navigationview.png</Icon>
+					<Description>The Telerik UI for .NET MAUI NavigationView is an adaptive control, used to build a consistent navigational experience. It features different options for displaying the navigation pane, adding header and footer to the pane and flexible customization API.</Description>
+				</Example>
+				<Example>
+					<Name>Configuration</Name>
+					<Page>ConfigurationView</Page>
+					<DisplayName>Configuration</DisplayName>
+					<Icon>configuration.png</Icon>
+					<IsConfigurable>true</IsConfigurable>
+					<Description>This example shows the main properties that can be used to configure the RadNavigationView control such as CompactWidth, ExpandedWidth, Header content and others.</Description>
+				</Example>
+			</Examples>
+		</Control>
+
+		<Control>
 			<Name>NumericInput</Name>
 			<DisplayName>NumericInput</DisplayName>
 			<Icon>numericinput.png</Icon>
@@ -818,7 +839,6 @@
 			<Name>PdfViewer</Name>
 			<DisplayName>PdfViewer</DisplayName>
 			<Icon>pdfviewer.png</Icon>
-			<Status>New</Status>
 			<ShortDescription>Enables you to easily load and display PDF documents natively in your application.</ShortDescription>
 			<FullDescription>Telerik UI for .NET MAUI PdfViewer is a control that can visualize PDF documents straight into your application. It has been made more than simple with the exposed commands that can be easily bound to and the full integration with the RadPdfViewerToolbar.</FullDescription>
 			<Examples>
@@ -827,6 +847,7 @@
 					<Page>FirstLookView</Page>
 					<DisplayName>First Look</DisplayName>
 					<Icon>pdfviewer.png</Icon>
+					<Status>Updated</Status>
 					<Description>Telerik UI for .NET MAUI PdfViewer is a control that can visualize PDF documents straight into your application. It has been made more than simple with the exposed commands that can be easily bound to and the full integration with the RadPdfViewerToolbar.</Description>
 				</Example>
 				<Example>
@@ -889,6 +910,14 @@
 					<Description>Telerik UI for .NET MAUI ProgressBar control is primarily used to indicate the progress of a long-running operation on a desktop or mobile device. It can show multiple forms of progress, such as data loading or a multi-step user action, in which you can visualize how much has been completed and what remains.</Description>
 				</Example>
 				<Example>
+					<Name>Customization</Name>
+					<Page>CustomizationView</Page>
+					<DisplayName>Customization</DisplayName>
+					<Icon>customization.png</Icon>
+					<Status>New</Status>
+					<Description>This example demonstrates how to modify the look and feel of the ProgressBar to simulate a cloud upload process, the progress of which is displayed in the shape of a cloud and filled in a vertical direction.</Description>
+				</Example>
+				<Example>
 					<Name>Configuration</Name>
 					<Page>ConfigurationView</Page>
 					<DisplayName>Configuration</DisplayName>
@@ -897,7 +926,25 @@
 				</Example>
 			</Examples>
 		</Control>
-		
+
+		<Control>
+			<Name>RangeSlider</Name>
+			<Status>New</Status>
+			<DisplayName>RangeSlider</DisplayName>
+			<Icon>rangeslider.png</Icon>
+			<ShortDescription>Specifies a range between a minimum and a maximum value by moving the start and end thumbs along the track.</ShortDescription>
+			<FullDescription>Telerik UI for .NET MAUI RangeSlider allows specifying a range between a minimum and a maximum value by moving the start and end thumbs along the track.</FullDescription>
+			<Examples>
+				<Example>
+					<Name>FirstLook</Name>
+					<Page>FirstLookView</Page>
+					<DisplayName>First Look</DisplayName>
+					<Icon>rangeslider.png</Icon>
+					<Description>Telerik UI for .NET MAUI RangeSlider control allows selecting a range of values within the specified minimum and maximum limits. This example presents one of the most common scenarios enabling the end users to limit a list of available items (rental properties) falling into certain range in terms of price per night and number of guests.</Description>
+				</Example>
+			</Examples>
+		</Control>
+
 		<Control>
 			<Name>Rating</Name>
 			<DisplayName>Rating</DisplayName>
@@ -918,7 +965,6 @@
 		<Control>
 			<Name>RichTextEditor</Name>
 			<DisplayName>RichTextEditor</DisplayName>
-			<Status>New</Status>
 			<Icon>richtexteditor.png</Icon>
 			<ShortDescription>WYSIWYG control that can display and edit HTML content.</ShortDescription>
 			<FullDescription>Telerik UI for .NET MAUI RadRichTextEditor is a WYSIWYG control that can display and edit HTML content.</FullDescription>
@@ -944,6 +990,32 @@
 					<Icon>richtexteditor.png</Icon>
 					<Status>New</Status>
 					<Description>The RichTextEditor for .NET MAUI allows you to customize its toolbar both visually and by defining custom tools. This example demonstrates how to style the toolbar, as well as include Undo and Redo toolbar items, a group of custom styled items, items for modifying the colors of the document, and a custom emoji picker.</Description>
+				</Example>
+			</Examples>
+		</Control>
+
+		<Control>
+			<Name>Scheduler</Name>
+			<Status>New</Status>
+			<DisplayName>Scheduler</DisplayName>
+			<Icon>scheduler.png</Icon>
+			<ShortDescription>A scheduling component, designed to go beyond the standard Microsoft Outlook-style control and empower the end users with unprecedented control over precision and flexibility when handling appointments.</ShortDescription>
+			<FullDescription>Telerik UI for .NET MAUI Scheduler allows you to easily implement various scheduling scenarios in your apps. It offers highly customizable built-in view definitions for which you can adjust the current time, visible hours and dates, time ruler, special time slots, total control over the look of the appointments and more.</FullDescription>
+			<Examples>
+				<Example>
+					<Name>FirstLook</Name>
+					<Page>FirstLookView</Page>
+					<DisplayName>First Look</DisplayName>
+					<Icon>scheduler.png</Icon>
+					<Description>The Telerik UI for .NET MAUI Scheduler allows you to easily implement various scheduling scenarios in your apps. This example showcases the utilisation of the Scheduler's supported view definitions in a MVVM environment.</Description>
+				</Example>
+				<Example>
+					<Name>Configuration</Name>
+					<Page>ConfigurationView</Page>
+					<DisplayName>Configuration</DisplayName>
+					<Icon>configuration.png</Icon>
+					<IsConfigurable>true</IsConfigurable>
+					<Description>This example presents the various configuration options that the RadScheduler provides. Adjust the time ruler, determine the first day of week, whether to display time indicator, work week and explore the interaction modes.</Description>
 				</Example>
 			</Examples>
 		</Control>
@@ -1001,7 +1073,6 @@
 
 		<Control>
 			<Name>SlideView</Name>
-			<Status>New</Status>
 			<DisplayName>SlideView</DisplayName>
 			<Icon>slideview.png</Icon>
 			<ShortDescription>Represents items/views with only one active at a time and allows to easily slide (navigate) to the next/previous via panning.</ShortDescription>
@@ -1188,7 +1259,6 @@
 
 		<Control>
 			<Name>TreeView</Name>
-			<Status>New</Status>
 			<DisplayName>TreeView</DisplayName>
 			<Icon>treeview.png</Icon>
 			<ShortDescription>Displays data in a hierarchical structure with the ability to collapse or expand data nodes.</ShortDescription>
@@ -1216,6 +1286,14 @@
 					<Icon>configuration.png</Icon>
 					<IsConfigurable>true</IsConfigurable>
 					<Description>This example presents the various configuration options that the RadTreeView provides. Choose the selection and checkbox modes, adjust the indentations and determine whether to display the expand buttons and images of the items.</Description>
+				</Example>
+				<Example>
+					<Name>LoadOnDemand</Name>
+					<Page>LoadOnDemandView</Page>
+					<DisplayName>Load on Demand</DisplayName>
+					<Icon>treeview.png</Icon>
+					<Status>New</Status>
+					<Description>This example demonstrates how to utilize the Load On Demand feature in order to delay the population of RadTreeView and load subitems only when they are requested, thus improving the performance of your application.</Description>
 				</Example>
 			</Examples>
 		</Control>
@@ -1306,12 +1384,12 @@
 			<Icon>datagrid_white.png</Icon>
 		</HighlightedControl>
 		<HighlightedControl>
-			<DisplayName>PdfViewer</DisplayName>
-			<Icon>pdfviewer_white.png</Icon>
+			<DisplayName>NavigationView</DisplayName>
+			<Icon>navigationview_white.png</Icon>
 		</HighlightedControl>
 		<HighlightedControl>
-			<DisplayName>Calendar</DisplayName>
-			<Icon>calendar_white.png</Icon>
+			<DisplayName>Scheduler</DisplayName>
+			<Icon>scheduler_white.png</Icon>
 		</HighlightedControl>
 	</HighlightedControls>
 

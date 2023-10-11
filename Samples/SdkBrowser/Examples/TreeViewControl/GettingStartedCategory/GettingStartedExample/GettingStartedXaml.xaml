@@ -5,7 +5,8 @@
              xmlns:local="clr-namespace:SDKBrowserMaui.Examples.TreeViewControl"
              x:Class="SDKBrowserMaui.Examples.TreeViewControl.GettingStartedCategory.GettingStartedExample.GettingStartedXaml">
     <!-- >> treeview-getting-started-xaml -->
-    <telerik:RadTreeView x:Name="treeView" 
+    <telerik:RadTreeView x:Name="treeView"
+                         AutomationId="treeView"
                          ItemsSource="{Binding Items}">
         <telerik:TreeViewDescriptor DisplayMemberPath="Name"
                                     ItemsSourcePath="Children"

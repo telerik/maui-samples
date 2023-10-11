@@ -20,7 +20,7 @@
 		<AndroidLinkResources Condition=" $(IsNet7) == 'true' ">false</AndroidLinkResources>
 
 		<!-- TODO: Remove this when moving to machines where Xcode 14.3 -->
-		<MtouchLink Condition="$(TargetFramework.Contains('net8'))">SdkOnly</MtouchLink>
+		<MtouchLink>SdkOnly</MtouchLink>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -46,8 +46,10 @@
 	</ItemGroup>
 
 	<ItemGroup Condition="$(TargetFramework.Contains('net8'))">
-		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
-		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
+		<PackageReference Include="Microsoft.Maui.Controls" Condition=" $(CustomMauiVersion) == '' " Version="$(MauiVersion)" />
+		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Condition=" $(CustomMauiVersion) == '' " Version="$(MauiVersion)" />
+		<PackageReference Include="Microsoft.Maui.Controls" Condition=" $(CustomMauiVersion) != '' " Version="$(CustomMauiVersion)" />
+		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Condition=" $(CustomMauiVersion) != '' " Version="$(CustomMauiVersion)" />
 	</ItemGroup>
 
 	<Import Condition="'$(SolutionName)' == 'Telerik.Maui' Or '$(UseSourceProjects)' == 'True'" Project="..\AddSourceProjects.proj" />

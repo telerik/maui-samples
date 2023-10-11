@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.RangeSliderControl.LabelsCategory.LabelTemplateExample.LabelTemplate">
+    <ContentView.Resources>
+        <!-- >> rangeslider-labels-labeltemplate -->
+        <DataTemplate x:Key="CustomLabelTemplate">
+            <Label Text="{Binding}" 
+                   FontSize="16"
+                   TextColor="DarkMagenta" />
+        </DataTemplate>
+        <!-- << rangeslider-labels-labeltemplate -->
+    </ContentView.Resources>
+    <VerticalStackLayout>
+        <!-- >> rangeslider-labels-labeltemplate-xaml -->
+        <telerik:RadRangeSlider x:Name="rangeSlider"
+                                Minimum="0"
+                                Maximum="100"
+                                RangeStart="10"
+                                RangeEnd="60"                                
+                                TicksPlacement="End"
+                                TickStep="5"
+                                LabelsPlacement="End"
+                                LabelStep="10"
+                                LabelTemplate="{StaticResource CustomLabelTemplate}" />
+        <!-- << rangeslider-labels-labeltemplate-xaml -->
+    </VerticalStackLayout>
+</ContentView>

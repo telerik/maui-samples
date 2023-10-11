@@ -83,7 +83,7 @@
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition/>
-                        <RowDefinition Height="{OnIdiom Default=0, Phone=*}" />
+                        <RowDefinition Height="{OnIdiom Default=0, Phone=Auto}" />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
@@ -142,6 +142,22 @@
                                                  SelectedItem="{Binding SelectedFontSize, Mode=TwoWay}"
                                                  DropDownHeight="{OnPlatform MacCatalyst=70, Default=120}"
                                                  ItemsSource="{Binding FontSizes}" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="SelectionOnFocus Behavior:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <telerik:RadComboBox x:Name="selectionOnFocusComboBox"
+                                                 SelectedItem="{Binding Source={x:Reference entry}, Path=SelectionOnFocus, Mode=TwoWay}"
+                                                 DropDownHeight="{OnPlatform MacCatalyst=70, Default=120}">
+                                <telerik:RadComboBox.ItemsSource>
+                                    <x:Array Type="{x:Type telerik:SelectionOnFocus}">
+                                        <telerik:SelectionOnFocus>Unchanged</telerik:SelectionOnFocus>
+                                        <telerik:SelectionOnFocus>CursorAtStart</telerik:SelectionOnFocus>
+                                        <telerik:SelectionOnFocus>CursorAtEnd</telerik:SelectionOnFocus>
+                                        <telerik:SelectionOnFocus>SelectAll</telerik:SelectionOnFocus>
+                                    </x:Array>
+                                </telerik:RadComboBox.ItemsSource>
+                            </telerik:RadComboBox>
                         </VerticalStackLayout>
                     </VerticalStackLayout>
                 </Grid>

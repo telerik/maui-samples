@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:local="clr-namespace:QSF.Examples.NavigationViewControl.FirstLookExample"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        x:Class="QSF.Examples.NavigationViewControl.FirstLookExample.FirstLookView"
+                        Padding="{OnIdiom Default=0, Desktop='16, 20'}">
+
+    <telerik:RadContentView.Resources>
+        <DataTemplate x:Key="SettingsPopupContentTemplate">
+            <telerik:RadBorder BackgroundColor="{AppThemeBinding Light={OnPlatform Default=White, WinUI=#F9F9F9}, Dark={OnPlatform Default=#1C1C1E, WinUI=#282828}}"
+                               BorderColor="{AppThemeBinding Light={OnPlatform Default=#DFDFDF, WinUI=#0F000000}, Dark={OnPlatform Default=#373737, WinUI=#12FFFFFF}}"
+                               BorderThickness="1"
+                               CornerRadius="8">
+                <Grid RowDefinitions="Auto, Auto, Auto"
+                      RowSpacing="12"
+                      Padding="16, 12">
+                    <Label Text="Congratulations on experimenting with the&#x0a;Telerik UI for .NET Maui NavigationView!&#x0a;Learn more about it here:" />
+                    <Label Grid.Row="1"
+                           Text="Online help documentation"
+                           TextColor="#0078D4">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnHyperlinkTapped" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Button Grid.Row="2"
+                            Text="OK"
+                            Margin="0, 12, 0, 0"
+                            Clicked="OnClosePopupBtnClicked"
+                            HorizontalOptions="{OnIdiom Default=Center, Desktop=End}" />
+                </Grid>
+            </telerik:RadBorder>
+        </DataTemplate>
+    </telerik:RadContentView.Resources>
+
+    <Grid RowDefinitions="Auto, *">
+        <Grid Background="#070707"
+              Padding="12, 6">
+            <Label Text="EXPLORE TODAY"
+                   TextColor="White"
+                   FontSize="16"
+                   FontAttributes="Bold" />
+        </Grid>
+        <telerik:RadNavigationView x:Name="navigationView"
+                                   Grid.Row="1"
+                                   BorderThickness="{OnIdiom Default=0, Desktop=1}">
+            <telerik:RadNavigationView.Items>
+                <telerik:NavigationViewItem IsSelected="True"
+                                            Text="Discover">
+                    <telerik:NavigationViewItem.ImageSource>
+                        <FontImageSource Glyph="&#xe852;"
+                                         FontFamily="TelerikFontExamples"
+                                         Size="16" />
+                    </telerik:NavigationViewItem.ImageSource>
+                </telerik:NavigationViewItem>
+                <telerik:NavigationViewItem Text="I was there">
+                    <telerik:NavigationViewItem.ImageSource>
+                        <FontImageSource Glyph="&#xe83d;"
+                                         FontFamily="TelerikFontExamples"
+                                         Size="16" />
+                    </telerik:NavigationViewItem.ImageSource>
+                </telerik:NavigationViewItem>
+                <telerik:NavigationViewItem Text="Explore">
+                    <telerik:NavigationViewItem.ImageSource>
+                        <FontImageSource Glyph="&#xe86a;"
+                                         FontFamily="TelerikFontExamples"
+                                         Size="16" />
+                    </telerik:NavigationViewItem.ImageSource>
+                </telerik:NavigationViewItem>
+                <telerik:NavigationViewItem Text="Favorite photos">
+                    <telerik:NavigationViewItem.ImageSource>
+                        <FontImageSource Glyph="&#xe801;"
+                                         FontFamily="TelerikFontExamples"
+                                         Size="16" />
+                    </telerik:NavigationViewItem.ImageSource>
+                </telerik:NavigationViewItem>
+                <telerik:NavigationViewItem Text="Settings"
+                                            Position="Footer"
+                                            IsSelectable="False"
+                                            Clicked="SettingsItemClicked">
+                     <telerik:NavigationViewItem.ImageSource>
+                        <FontImageSource Glyph="&#xe822;"
+                                         FontFamily="TelerikFontExamples"
+                                         Size="16" />
+                    </telerik:NavigationViewItem.ImageSource>
+                </telerik:NavigationViewItem>
+            </telerik:RadNavigationView.Items>
+
+            <ScrollView>
+                <Grid RowDefinitions="Auto, *"
+                      RowSpacing="15"
+                      Margin="20">
+                    <Label Text="{Binding SelectedItem.Text, Source={x:Reference navigationView}}"
+                           Style="{StaticResource BaseLabelStyle}"
+                           FontSize="16"
+                           FontAttributes="Bold" />
+                    <Grid Grid.Row="1"
+                          RowDefinitions="*, *"
+                          RowSpacing="10"
+                          ColumnDefinitions="{OnIdiom Default='2*, *', Desktop='4*, *'}"
+                          ColumnSpacing="10"
+                          HorizontalOptions="Start"
+                          VerticalOptions="Start">
+                        <Image x:Name="itemImage1"
+                               Grid.RowSpan="2"
+                               HeightRequest="{OnIdiom Default=160, Desktop=460}"
+                               Aspect="AspectFill" />
+                        <Image x:Name="itemImage2"
+                               Grid.Column="1"
+                               HeightRequest="{OnIdiom Default=75, Desktop=225}"
+                               Aspect="AspectFill"
+                               VerticalOptions="End" />
+                        <Image x:Name="itemImage3"
+                               Grid.Column="1"
+                               Grid.Row="1"
+                               HeightRequest="{OnIdiom Default=75, Desktop=225}"
+                               Aspect="AspectFill"
+                               VerticalOptions="Start" />
+                    </Grid>
+                </Grid>
+            </ScrollView>
+        </telerik:RadNavigationView>
+    </Grid>
+</telerik:RadContentView>

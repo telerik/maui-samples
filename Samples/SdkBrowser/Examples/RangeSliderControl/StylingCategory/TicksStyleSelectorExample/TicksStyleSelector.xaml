@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.RangeSliderControl.StylingCategory.TicksStyleSelectorExample"
+             x:Class="SDKBrowserMaui.Examples.RangeSliderControl.StylingCategory.TicksStyleSelectorExample.TicksStyleSelector">
+    <ContentView.Resources>
+        <!-- >> rangeslider-ticksttyling-selector -->
+        <local:RangeTickStyleSelector x:Key="RangeTickStyleSelector">
+            <local:RangeTickStyleSelector.BeforeRangeStyle>
+                <Style TargetType="telerik:RadBorder">
+                    <Setter Property="Opacity" Value="0.5" />
+                    <Setter Property="BackgroundColor" Value="#865FC5" />
+                    <Setter Property="WidthRequest" Value="2" />
+                    <Setter Property="HeightRequest" Value="10" />
+                </Style>
+            </local:RangeTickStyleSelector.BeforeRangeStyle>
+            <local:RangeTickStyleSelector.InsideRangeStyle>
+                <Style TargetType="telerik:RadBorder">
+                    <Setter Property="BackgroundColor" Value="#674BB2" />
+                    <Setter Property="WidthRequest" Value="3" />
+                    <Setter Property="HeightRequest" Value="10" />
+                </Style>
+            </local:RangeTickStyleSelector.InsideRangeStyle>
+            <local:RangeTickStyleSelector.AfterRangeStyle>
+                <Style TargetType="telerik:RadBorder">
+                    <Setter Property="BackgroundColor" Value="#865FC5" />
+                    <Setter Property="WidthRequest" Value="2" />
+                    <Setter Property="HeightRequest" Value="10" />
+                </Style>
+            </local:RangeTickStyleSelector.AfterRangeStyle>
+        </local:RangeTickStyleSelector>
+        <!-- << rangeslider-ticksttyling-selector -->
+    </ContentView.Resources>
+    <VerticalStackLayout>
+        <!-- >> rangeslider-ticksttyling-style -->
+        <telerik:RadRangeSlider Minimum="0"
+                                Maximum="100"
+                                RangeStart="30"
+                                RangeEnd="60"                               
+                                TicksPlacement="Start"
+                                TickStep="10"
+                                TickStyleSelector="{StaticResource RangeTickStyleSelector}" />
+        <!-- << rangeslider-ticksttyling-style -->
+    </VerticalStackLayout>
+</ContentView>

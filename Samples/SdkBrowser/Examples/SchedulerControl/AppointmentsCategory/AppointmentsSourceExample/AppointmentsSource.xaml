@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.SchedulerControl.AppointmentsCategory.AppointmentsSourceExample.AppointmentsSource">
+    <Grid>
+        <!-- >> scheduler-appointments-example -->
+        <telerik:RadScheduler x:Name="scheduler" AppointmentsSource="{Binding Appointments}">
+            <telerik:RadScheduler.ViewDefinitions>
+                <telerik:WeekViewDefinition />
+                <telerik:WeekViewDefinition Title="Work Week" IsWeekendVisible="False" />
+                <telerik:MultidayViewDefinition VisibleDays="3" Title="3 Day" />
+                <telerik:MonthViewDefinition />
+                <telerik:DayViewDefinition />
+            </telerik:RadScheduler.ViewDefinitions>
+        </telerik:RadScheduler>
+        <!-- << scheduler-appointments-example -->
+    </Grid>
+</ContentView>

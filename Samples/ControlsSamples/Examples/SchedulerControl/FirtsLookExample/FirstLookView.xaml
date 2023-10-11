@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:local="clr-namespace:QSF.Examples.RangeSliderControl.FirstLookExample"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        x:Class="QSF.Examples.SchedulerControl.FirstLookExample.FirstLookView"
+                        Padding="{OnIdiom Default=0, Desktop='16, 20'}">
+    <Grid>
+        <telerik:RadScheduler x:Name="scheduler"
+                              AppointmentsSource="{Binding AppointmentsSource}">
+            <telerik:RadScheduler.ViewDefinitions>
+                <telerik:DayViewDefinition />
+                <telerik:MultidayViewDefinition VisibleDays="3" Title="3 Day" />
+                <telerik:WeekViewDefinition Title="Work Week" IsWeekendVisible="False" />
+                <telerik:WeekViewDefinition />
+                <telerik:MonthViewDefinition />
+            </telerik:RadScheduler.ViewDefinitions>
+        </telerik:RadScheduler>
+    </Grid>
+</telerik:RadContentView>

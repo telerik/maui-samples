@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.SchedulerControl.StylingCategory.AppointmentStylingExample"
+             x:Class="SDKBrowserMaui.Examples.SchedulerControl.StylingCategory.AppointmentStylingExample.AppointmentStyling">
+    <ContentView.Resources>
+        <ResourceDictionary>           
+            <!-- >> scheduler-appointments-styleselector -->
+            <local:CustomAppointmentStyleSelector x:Key="CustomAppointmentStyleSelector">
+                <local:CustomAppointmentStyleSelector.PastAppointmentStyle>
+                    <Style TargetType="telerik:AppointmentView">
+                        <Setter Property="BackgroundColor" Value="LightGray" />
+                    </Style>
+                </local:CustomAppointmentStyleSelector.PastAppointmentStyle>
+                <local:CustomAppointmentStyleSelector.FutureAppointmentStyle>
+                    <Style TargetType="telerik:AppointmentView">
+                        <Setter Property="BackgroundColor" Value="#8AAAFF" />
+                    </Style>
+                </local:CustomAppointmentStyleSelector.FutureAppointmentStyle>
+            </local:CustomAppointmentStyleSelector>
+            <!-- << scheduler-appointments-styleselector -->
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <Grid>
+        <!-- >> scheduler-appointments-styling -->
+        <telerik:RadScheduler x:Name="scheduler"
+                              AppointmentStyleSelector="{StaticResource CustomAppointmentStyleSelector}">
+            <telerik:RadScheduler.ViewDefinitions>
+                <telerik:WeekViewDefinition />
+                <telerik:MonthViewDefinition />
+            </telerik:RadScheduler.ViewDefinitions>
+        </telerik:RadScheduler>
+        <!-- << scheduler-appointments-styling -->
+    </Grid> 
+</ContentView>

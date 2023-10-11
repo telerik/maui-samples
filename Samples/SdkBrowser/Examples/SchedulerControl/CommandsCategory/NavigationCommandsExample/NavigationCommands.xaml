@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.SchedulerControl.CommandsCategory.NavigationCommandsExample.NavigationCommands">
+    <Grid RowDefinitions="Auto, *">
+        <telerik:RadWrapLayout>
+            <!-- >> scheduler-navigating-in-current-view -->
+            <Button Text="Decrease Visible Range" 
+                    Margin="5"
+                    Command="{Binding Source={x:Reference scheduler}, Path=DecreaseVisibleRangeCommand}" />
+            <Button Text="Today"
+                    Margin="5"
+                    Command="{Binding Source={x:Reference scheduler}, Path=TodayCommand}" />
+            <Button Text="Increase Visible Range"
+                    Margin="5"
+                    Command="{Binding Source={x:Reference scheduler}, Path=IncreaseVisibleRangeCommand}" />           
+            <!-- << scheduler-navigating-in-current-view -->
+        </telerik:RadWrapLayout>
+        <!-- >> scheduler-navigation-commands -->
+        <telerik:RadScheduler x:Name="scheduler"
+                              Grid.Row="1">
+            <telerik:RadScheduler.ViewDefinitions>
+                <telerik:WeekViewDefinition />              
+                <telerik:MultidayViewDefinition VisibleDays="3" Title="3 Day" />
+                <telerik:DayViewDefinition />
+                <telerik:MonthViewDefinition />
+            </telerik:RadScheduler.ViewDefinitions>
+        </telerik:RadScheduler>
+        <!-- << scheduler-navigation-commands -->
+    </Grid>
+</ContentView>

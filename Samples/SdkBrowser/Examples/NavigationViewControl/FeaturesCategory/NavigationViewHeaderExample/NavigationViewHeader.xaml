@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.NavigationViewControl.FeaturesCategory.NavigationViewHeaderExample.NavigationViewHeader">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <!-- >> navigationview-headertemplate -->
+            <DataTemplate x:Key="headerTemplate">
+                <telerik:RadBorder BackgroundColor="{TemplateBinding BackgroundColor}"
+                                   Background="{TemplateBinding Background}"
+                                   BorderColor="{TemplateBinding BorderColor}"
+                                   BorderBrush="{TemplateBinding BorderBrush}"
+                                   BorderThickness="{TemplateBinding BorderThickness}"
+                                   CornerRadius="{TemplateBinding CornerRadius}">
+                    <Grid ColumnDefinitions="Auto, *"
+                          ColumnSpacing="{OnPlatform WinUI=4}">
+                        <Grid WidthRequest="{TemplateBinding CompactWidth}"
+                              IsVisible="{TemplateBinding IsHeaderButtonVisible}">
+                            <Label Text="{TemplateBinding HeaderText}" 
+                                   Grid.Column="1" 
+                                   VerticalOptions="Center" 
+                                   HorizontalOptions="Center"/>
+                        </Grid>
+                    </Grid>
+                </telerik:RadBorder>
+            </DataTemplate>
+            <!-- << navigationview-headertemplate -->
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <Grid>
+        <!-- >> navigationview-header -->
+        <telerik:RadNavigationView x:Name="navigationView"
+                                   HeaderTemplate="{StaticResource headerTemplate}"
+                                   HeaderText="Personal details">
+            <telerik:RadNavigationView.Items>
+                <telerik:NavigationViewItem Position="Header">
+                    <telerik:NavigationViewItem.ImageSource>
+                        <FontImageSource Glyph="{x:Static telerik:TelerikFont.IconSearch}"
+                                         FontFamily="{x:Static telerik:TelerikFont.Name}"
+                                         Size="16" />
+                    </telerik:NavigationViewItem.ImageSource>
+                </telerik:NavigationViewItem>
+                <telerik:NavigationViewItem Text="About Author">
+                    <telerik:NavigationViewItem.ImageSource>
+                        <FontImageSource Glyph="{x:Static telerik:TelerikFont.IconAuthor}"
+                                         FontFamily="{x:Static telerik:TelerikFont.Name}"
+                                         Size="16" />
+                    </telerik:NavigationViewItem.ImageSource>
+                </telerik:NavigationViewItem>
+                <telerik:NavigationViewItem Text="Add data" 
+                                            IsSelectable="False">
+                    <telerik:NavigationViewItem.ImageSource>
+                        <FontImageSource Glyph="{x:Static telerik:TelerikFont.IconAdd}"
+                                         FontFamily="{x:Static telerik:TelerikFont.Name}"
+                                         Size="16" />
+                    </telerik:NavigationViewItem.ImageSource>
+                </telerik:NavigationViewItem>
+                <telerik:NavigationViewItem Text="Edit data">
+                    <telerik:NavigationViewItem.ImageSource>
+                        <FontImageSource Glyph="{x:Static telerik:TelerikFont.IconEdit}"
+                                         FontFamily="{x:Static telerik:TelerikFont.Name}"
+                                         Size="16" />
+                    </telerik:NavigationViewItem.ImageSource>
+                </telerik:NavigationViewItem>
+                <telerik:NavigationViewItem Text="Delete data">
+                    <telerik:NavigationViewItem.ImageSource>
+                        <FontImageSource Glyph="{x:Static telerik:TelerikFont.IconDelete}"
+                                         FontFamily="{x:Static telerik:TelerikFont.Name}"
+                                         Size="16" />
+                    </telerik:NavigationViewItem.ImageSource>
+                </telerik:NavigationViewItem>
+            </telerik:RadNavigationView.Items>
+            <telerik:RadNavigationView.Content>
+                <Label Text="This is the content of the NavigationView control"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center"/>
+            </telerik:RadNavigationView.Content>
+        </telerik:RadNavigationView>
+        <!-- << navigationview-header -->
+    </Grid>
+</ContentView>

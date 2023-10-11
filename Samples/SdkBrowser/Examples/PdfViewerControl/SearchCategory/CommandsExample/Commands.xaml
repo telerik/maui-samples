@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.PdfViewerControl.SearchCategory.CommandsExample.Commands">
+    <!-- >> pdfviewer-search-commands -->
+    <Grid RowDefinitions="Auto, *">
+        <HorizontalStackLayout Spacing="10">
+            <Button Text="Open Search View" Command="{Binding OpenSearchViewCommand, Source={x:Reference pdfViewer}}"/>
+            <Button Text="Close Search view" Command="{Binding CloseSearchViewCommand, Source={x:Reference pdfViewer}}"/>
+        </HorizontalStackLayout>
+        <telerik:RadPdfViewer x:Name="pdfViewer" Grid.Row="1" />
+    <!-- << pdfviewer-search-commands -->
+    </Grid>
+</ContentView>

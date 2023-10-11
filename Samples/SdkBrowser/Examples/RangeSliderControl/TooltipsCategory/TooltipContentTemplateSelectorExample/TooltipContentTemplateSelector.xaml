@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.RangeSliderControl.TooltipsCategory.TooltipContentTemplateSelectorExample"
+             x:Class="SDKBrowserMaui.Examples.RangeSliderControl.TooltipsCategory.TooltipContentTemplateSelectorExample.TooltipContentTemplateSelector">
+    <ContentView.Resources>
+        <!-- >> rangeslider-tooltiptemplateselector-resources -->
+        <local:DoubleSubtractConverter x:Key="DoubleSubtractConverter" />
+        <telerik:RangeSliderTooltipContentTemplateSelector x:Key="CustomTooltipTemplateSelector">
+            <telerik:RangeSliderTooltipContentTemplateSelector.StartThumbTooltipTemplate>
+                <DataTemplate>
+                    <Label Text="{Binding FormattedValue}"
+                           TextColor="{OnPlatform Default='#674BB2', Android='#EDEAF6', iOS='#EDEAF6'}"
+                           FontAttributes="Bold, Italic"
+                           Margin="5" />
+                </DataTemplate>
+            </telerik:RangeSliderTooltipContentTemplateSelector.StartThumbTooltipTemplate>
+            <telerik:RangeSliderTooltipContentTemplateSelector.RangeTrackTooltipTemplate>
+                <DataTemplate>
+                    <HorizontalStackLayout Margin="5">
+                        <Label Text="["
+                               TextColor="{OnPlatform Default='#674BB2', Android='#EDEAF6', iOS='#EDEAF6'}"
+                               FontAttributes="Bold, Italic" />
+                        <Label Text="{Binding Slider.RangeStart, StringFormat='{0:N0}'}"
+                               TextColor="{OnPlatform Default='#674BB2', Android='#EDEAF6', iOS='#EDEAF6'}"
+                               FontAttributes="Bold, Italic" />
+                        <Label Text=" - "
+                               TextColor="{OnPlatform Default='#674BB2', Android='#EDEAF6', iOS='#EDEAF6'}"
+                               FontAttributes="Bold, Italic" />
+                        <Label Text="{Binding Slider.RangeEnd, StringFormat='{0:N0}'}"
+                               TextColor="{OnPlatform Default='#674BB2', Android='#EDEAF6', iOS='#EDEAF6'}"
+                               FontAttributes="Bold, Italic" />
+                        <Label Text="] ("
+                               TextColor="{OnPlatform Default='#674BB2', Android='#EDEAF6', iOS='#EDEAF6'}"
+                               FontAttributes="Bold, Italic" />
+                        <Label TextColor="{OnPlatform Default='#674BB2', Android='#EDEAF6', iOS='#EDEAF6'}"
+                                FontAttributes="Bold, Italic">
+                            <Label.Text>
+                                <MultiBinding Converter="{StaticResource DoubleSubtractConverter}" ConverterParameter="{}{0:N0}">
+                                    <Binding Path="Slider.RangeEnd" />
+                                    <Binding Path="Slider.RangeStart" />
+                                </MultiBinding>
+                            </Label.Text>
+                        </Label>
+                        <Label Text=")"
+                               TextColor="{OnPlatform Default='#674BB2', Android='#EDEAF6', iOS='#EDEAF6'}"
+                               FontAttributes="Bold, Italic" />
+                    </HorizontalStackLayout>
+                </DataTemplate>
+            </telerik:RangeSliderTooltipContentTemplateSelector.RangeTrackTooltipTemplate>
+            <telerik:RangeSliderTooltipContentTemplateSelector.EndThumbTooltipTemplate>
+                <DataTemplate>
+                    <Label Text="{Binding FormattedValue}"
+                           TextColor="{OnPlatform Default='#674BB2', Android='#EDEAF6', iOS='#EDEAF6'}"
+                           FontAttributes="Bold, Italic"
+                           Margin="5" />
+                </DataTemplate>
+            </telerik:RangeSliderTooltipContentTemplateSelector.EndThumbTooltipTemplate>
+        </telerik:RangeSliderTooltipContentTemplateSelector>
+        <!-- << rangeslider-tooltiptemplateselector-resources -->
+    </ContentView.Resources>
+    <VerticalStackLayout>
+        <!-- >> rangeslider-tooltiptemplateselector-xaml -->
+        <telerik:RadRangeSlider Minimum="0"
+                           Maximum="100"
+                           RangeStart="25"
+                           RangeEnd="75"
+                           TooltipStringFormat="{}{0:N2}"
+                           TooltipContentTemplate="{StaticResource CustomTooltipTemplateSelector}" />
+        <!-- << rangeslider-tooltiptemplateselector-xaml -->
+    </VerticalStackLayout>
+</ContentView>

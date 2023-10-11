@@ -3,24 +3,48 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
              x:Class="SDKBrowserMaui.Examples.ToolbarControl.GettingStartedCategory.GettingStartedExample.GettingStartedXaml">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <!-- >> entrytoolbar-item-style -->
+            <Style TargetType="Entry" x:Key="entryStyle">
+                <Setter Property="Placeholder" Value="Enter text here"/>
+            </Style>
+            <Style TargetType="telerik:EntryToolbarItemView">
+                <Setter Property="EntryStyle" Value="{StaticResource entryStyle}" />
+                <Setter Property="WidthRequest" Value="240" />
+            </Style>
+            <!-- << entrytoolbar-item-style -->
+            <!-- >> busytoolbar-item-style -->
+            <Style TargetType="telerik:RadBusyIndicator" x:Key="busyIndicatorStyle" >
+                <Setter Property="AnimationContentColor" Value="#1188FF"/>
+            </Style>
+            <Style TargetType="telerik:BusyIndicatorToolbarItemView">
+                <Setter Property="BusyIndicatorStyle" Value="{StaticResource busyIndicatorStyle}"/>
+                <Setter Property="HorizontalOptions" Value="Start"/>
+            </Style>
+            <!-- << busytoolbar-item-style -->
+        </ResourceDictionary>
+    </ContentView.Resources>
     <!-- >> toolbar-getting-started -->
     <VerticalStackLayout>
-        <telerik:RadToolbar x:Name="toolbar">
+        <telerik:RadToolbar x:Name="toolbar" AutomationId="toolbar">
+            <!-- >> toolbar-navigationbutton-item -->
             <telerik:NavigationButtonToolbarItem Text="Search">
                 <telerik:NavigationButtonToolbarItem.ImageSource>
                     <FontImageSource Glyph="{x:Static telerik:TelerikFont.IconSearch}"
                                      FontFamily="{x:Static telerik:TelerikFont.Name}"
                                      Size="16" />
                 </telerik:NavigationButtonToolbarItem.ImageSource>
-                <telerik:LabelToolbarItem Text="Search" />
                 <telerik:ToolbarItem>
                     <telerik:ToolbarItem.ControlTemplate>
                         <ControlTemplate>
-                            <Entry Placeholder="Search" VerticalTextAlignment="Center"/>
+                            <Entry WidthRequest="240" VerticalTextAlignment="Center"/>
                         </ControlTemplate>
                     </telerik:ToolbarItem.ControlTemplate>
                 </telerik:ToolbarItem>
             </telerik:NavigationButtonToolbarItem>
+            <!-- << toolbar-navigationbutton-item -->
+            <!-- >> toolbar-button-item -->
             <telerik:ButtonToolbarItem Text="Undo">
                 <telerik:ButtonToolbarItem.ImageSource>
                     <FontImageSource Glyph="{x:Static telerik:TelerikFont.IconUndo}"
@@ -28,7 +52,11 @@
                                      Size="16" />
                 </telerik:ButtonToolbarItem.ImageSource>
             </telerik:ButtonToolbarItem>
+            <!-- << toolbar-button-item -->
+            <!-- >> toolbar-separator-item -->
             <telerik:SeparatorToolbarItem />
+            <!-- << toolbar-separator-item -->
+            <!-- >> toolbar-listpicker-item -->
             <telerik:ListPickerButtonToolbarItem Text="Font Family">
                 <telerik:ListPickerButtonToolbarItem.ImageSource>
                     <FontImageSource Glyph="{x:Static telerik:TelerikFont.IconFontFamily}"
@@ -49,7 +77,9 @@
                     </x:Array>
                 </telerik:ListPickerButtonToolbarItem.ItemsSource>
             </telerik:ListPickerButtonToolbarItem>
+            <!-- << toolbar-listpicker-item -->
             <telerik:SeparatorToolbarItem />
+            <!-- >> toolbar-togglebutton-item -->
             <telerik:ToggleButtonToolbarItem Text="Bold">
                 <telerik:ToggleButtonToolbarItem.ImageSource>
                     <FontImageSource Glyph="{x:Static telerik:TelerikFont.IconBold}"
@@ -57,6 +87,8 @@
                                      Size="16" />
                 </telerik:ToggleButtonToolbarItem.ImageSource>
             </telerik:ToggleButtonToolbarItem>
+            <!-- << toolbar-togglebutton-item -->
+            <!-- >> toolbar-group-radiobutton-item -->
             <telerik:GroupToolbarItem>
                 <telerik:RadioButtonToolbarItem Text="Left">
                     <telerik:RadioButtonToolbarItem.ImageSource>
@@ -80,7 +112,7 @@
                     </telerik:RadioButtonToolbarItem.ImageSource>
                 </telerik:RadioButtonToolbarItem>
             </telerik:GroupToolbarItem>
-            
+            <!-- << toolbar-group-radiobutton-item -->
             <!-- >> toolbar-splitbutton-item -->
             <telerik:SplitButtonToolbarItem Text="Save as ...">
                 <telerik:SplitButtonToolbarItem.Style>
@@ -157,6 +189,16 @@
             <!-- << toolbar-optionspanel-item -->
         </telerik:RadToolbar>
         <telerik:RadToolbarOptionsPanel x:Name="topPanel" />
+        <telerik:RadToolbar x:Name="secondToolbar">
+            <!-- >> toolbar-entry-item -->
+            <telerik:EntryToolbarItem />
+            <!-- << toolbar-entry-item -->
+            <telerik:SeparatorToolbarItem />
+            <telerik:LabelToolbarItem Text="Searhing" />
+            <!-- >> toolbar-busy-item -->
+            <telerik:BusyIndicatorToolbarItem IsBusy="True" />
+            <!-- << toolbar-busy-item -->
+        </telerik:RadToolbar>
     </VerticalStackLayout>
     <!-- << toolbar-getting-started -->
 </ContentView>

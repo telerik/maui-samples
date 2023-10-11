@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.NavigationViewControl.CommandsCategory.CommandsExample.Commands">
+    <Grid RowDefinitions="Auto,*" RowSpacing="10">
+        <HorizontalStackLayout Spacing="5">
+            <Button Text="Open Pane" Command="{Binding OpenPaneCommand, Source={x:Reference navigationView}}"/>
+            <Button Text="Close Pane" Command="{Binding ClosePaneCommand, Source={x:Reference navigationView}}"/>
+            <Button Text="Toggle Pane" Command="{Binding TogglePaneCommand, Source={x:Reference navigationView}}"/>
+        </HorizontalStackLayout>
+        <!-- >> navigationview-commands -->
+        <telerik:RadNavigationView x:Name="navigationView" Grid.Row="1">
+            <telerik:RadNavigationView.Items>
+                <telerik:NavigationViewItem Position="Header">
+                    <telerik:NavigationViewItem.ImageSource>
+                        <FontImageSource Glyph="{x:Static telerik:TelerikFont.IconSearch}"
+                                         FontFamily="{x:Static telerik:TelerikFont.Name}"
+                                         Size="16" />
+                    </telerik:NavigationViewItem.ImageSource>
+                </telerik:NavigationViewItem>
+                <telerik:NavigationViewItem Text="About Author">
+                    <telerik:NavigationViewItem.ImageSource>
+                        <FontImageSource Glyph="{x:Static telerik:TelerikFont.IconAuthor}"
+                                         FontFamily="{x:Static telerik:TelerikFont.Name}"
+                                         Size="16" />
+                    </telerik:NavigationViewItem.ImageSource>
+                </telerik:NavigationViewItem>
+                <telerik:NavigationViewItem Text="Add data" 
+                                            IsSelectable="False">
+                    <telerik:NavigationViewItem.ImageSource>
+                        <FontImageSource Glyph="{x:Static telerik:TelerikFont.IconAdd}"
+                                         FontFamily="{x:Static telerik:TelerikFont.Name}"
+                                         Size="16" />
+                    </telerik:NavigationViewItem.ImageSource>
+                </telerik:NavigationViewItem>
+                <telerik:NavigationViewItem Text="Edit data">
+                    <telerik:NavigationViewItem.ImageSource>
+                        <FontImageSource Glyph="{x:Static telerik:TelerikFont.IconEdit}"
+                                         FontFamily="{x:Static telerik:TelerikFont.Name}"
+                                         Size="16" />
+                    </telerik:NavigationViewItem.ImageSource>
+                </telerik:NavigationViewItem>
+                <telerik:NavigationViewItem Text="Delete data">
+                    <telerik:NavigationViewItem.ImageSource>
+                        <FontImageSource Glyph="{x:Static telerik:TelerikFont.IconDelete}"
+                                         FontFamily="{x:Static telerik:TelerikFont.Name}"
+                                         Size="16" />
+                    </telerik:NavigationViewItem.ImageSource>
+                </telerik:NavigationViewItem>
+            </telerik:RadNavigationView.Items>
+            <telerik:RadNavigationView.Content>
+                <Label x:Name="label"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center"/>
+            </telerik:RadNavigationView.Content>
+        </telerik:RadNavigationView>
+        <!-- << navigationview-commands -->
+    </Grid>
+</ContentView>

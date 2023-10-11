@@ -47,6 +47,17 @@ namespace QSF.Examples.ImageEditorControl.FirstLookExample
 
             foreach (var imagePath in imagePaths)
             {
+#if ANDROID || IOS
+                if (imagePath.EndsWith("jpg"))
+                {
+                    continue;
+                }
+#else
+                if (imagePath.EndsWith("png"))
+                {
+                    continue;
+                }
+#endif
                 this.Images.Add(new ImageModel()
                 {
                     ImagePath = imagePath,
