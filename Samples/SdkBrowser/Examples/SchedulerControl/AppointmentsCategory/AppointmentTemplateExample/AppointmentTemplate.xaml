@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.SchedulerControl.AppointmentsCategory.AppointmentTemplateExample"
+             x:Class="SDKBrowserMaui.Examples.SchedulerControl.AppointmentsCategory.AppointmentTemplateExample.AppointmentTemplate">
+    <ContentView.Resources>
+        <ResourceDictionary>        
+            <!-- >> scheduler-appointment-template-selector -->
+            <local:CustomAppointmentDataTemplate x:Key="CustomAppointmentDataTemplate">
+                <local:CustomAppointmentDataTemplate.AllDayAppointmentTemplate>
+                    <DataTemplate>
+                        <Grid BackgroundColor="Purple"
+                              IsClippedToBounds="True">
+                        <Label Text="{Binding Occurrence.Appointment.Subject}"
+                               TextColor="White" />
+                        </Grid>
+                    </DataTemplate>
+                </local:CustomAppointmentDataTemplate.AllDayAppointmentTemplate>
+                <local:CustomAppointmentDataTemplate.AppointmentTemplate>
+                    <DataTemplate>
+                        <Grid BackgroundColor="Orange"
+                              IsClippedToBounds="True">
+                        <Label Text="{Binding Occurrence.Appointment.Subject}"
+                               TextColor="White"/>
+                        </Grid>
+                    </DataTemplate>
+                </local:CustomAppointmentDataTemplate.AppointmentTemplate>
+            </local:CustomAppointmentDataTemplate>
+            <!-- << scheduler-appointment-template-selector -->
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+    <Grid>
+        <!-- >> scheduler-appointment-template -->
+        <telerik:RadScheduler x:Name="scheduler" 
+                              AppointmentsSource="{Binding Appointments}"
+                              AppointmentTemplate="{StaticResource CustomAppointmentDataTemplate}">
+            <telerik:RadScheduler.ViewDefinitions>
+                <telerik:WeekViewDefinition />
+                <telerik:WeekViewDefinition Title="Work Week" IsWeekendVisible="False" />
+                <telerik:MultidayViewDefinition VisibleDays="3" Title="3 Day" />
+                <telerik:MonthViewDefinition />
+                <telerik:DayViewDefinition />
+            </telerik:RadScheduler.ViewDefinitions>
+        </telerik:RadScheduler>
+        <!-- << scheduler-appointment-template -->
+    </Grid>
+</ContentView>

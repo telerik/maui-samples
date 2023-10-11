@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.NavigationViewControl.FeaturesCategory.MinimalDisplayModeExample.MinimalDisplayMode">
+    <Grid RowDefinitions="Auto, *" RowSpacing="10">
+        <Label Text="NavigationView with DisplayMode Minimal" />
+        <!-- >> navigationview-displaymide-minimal -->
+        <telerik:RadNavigationView x:Name="minimalNavigationView"
+                                   DisplayMode="Minimal"
+                                   AutoChangeDisplayMode="False"
+                                   Grid.Row="1">
+            <telerik:RadNavigationView.Items>
+                <telerik:NavigationViewItem Text="Item 1" />
+                <telerik:NavigationViewItem Text="Item 2" />
+            </telerik:RadNavigationView.Items>
+            <telerik:RadNavigationView.Content>
+                <Label HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       Text="{Binding SelectedItem.Text, Source={x:Reference minimalNavigationView}}" />
+            </telerik:RadNavigationView.Content>
+        </telerik:RadNavigationView>
+        <!-- << navigationview-displaymide-minimal -->
+    </Grid>
+</ContentView>

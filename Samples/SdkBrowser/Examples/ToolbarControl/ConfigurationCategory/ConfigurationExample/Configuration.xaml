@@ -5,6 +5,26 @@
              x:Class="SDKBrowserMaui.Examples.ToolbarControl.ConfigurationCategory.ConfigurationExample.Configuration">
     <ContentView.Resources>
         <ResourceDictionary>
+            <!-- >> toolbar-entry-styling -->
+            <Style TargetType="Entry" x:Key="entryStyle">
+                <Setter Property="Placeholder" Value="Enter text here"/>
+                <Setter Property="FontAttributes" Value="Italic"/>
+            </Style>
+            <Style TargetType="telerik:EntryToolbarItemView" x:Key="entryToolbarItemStyle">
+                <Setter Property="EntryStyle" Value="{StaticResource entryStyle}" />
+            </Style>
+            <!-- << toolbar-entry-styling -->
+
+            <!-- >> toolbar-busy-styling -->
+            <Style TargetType="telerik:RadBusyIndicator" x:Key="busyStyle">
+                <Setter Property="AnimationType" Value="Animation3"/>
+                <Setter Property="AnimationContentColor" Value="#1188FF"/>
+            </Style>
+            <Style TargetType="telerik:BusyIndicatorToolbarItemView" x:Key="busyToolbarItemStyle">
+                <Setter Property="BusyIndicatorStyle" Value="{StaticResource busyStyle}"/>
+            </Style>
+            <!-- << toolbar-busy-styling -->
+                
             <!-- >> toolbar-overflowmenubutton-styling -->
             <Style TargetType="telerik:OverflowMenuButtonToolbarItemView" x:Key="overfowButtonStyle">
                 <Setter Property="TextColor" Value="Black"/>
@@ -62,7 +82,13 @@
                             BackNavigationButtonStyle="{StaticResource backNavigationButtonStyle}"
                             OverflowMenuButtonStyle="{StaticResource overfowButtonStyle}"
                             ItemSpacing="10">
-            <!-- >> toolbar-navigationbutton-item -->
+            <!-- >> toolbar-entry-item-style -->
+            <telerik:EntryToolbarItem Style="{StaticResource entryToolbarItemStyle}"/>
+            <!-- << toolbar-entry-item-style -->
+            <!-- >> toolbar-busy-item-style -->
+            <telerik:BusyIndicatorToolbarItem IsBusy="True" Style="{StaticResource busyToolbarItemStyle}"/>
+            <!-- << toolbar-busy-item-style -->
+            <!-- >> toolbar-navigationbutton-item-style -->
             <telerik:NavigationButtonToolbarItem Text="Search">
                 <telerik:NavigationButtonToolbarItem.ImageSource>
                     <FontImageSource Glyph="{x:Static telerik:TelerikFont.IconSearch}"
@@ -77,8 +103,8 @@
                     </telerik:ToolbarItem.ControlTemplate>
                 </telerik:ToolbarItem>
             </telerik:NavigationButtonToolbarItem>
-            <!-- << toolbar-navigationbutton-item -->
-            <!-- >> toolbar-listpicker-item -->
+            <!-- << toolbar-navigationbutton-item-style -->
+            <!-- >> toolbar-listpicker-item-style -->
             <telerik:ListPickerButtonToolbarItem ItemStyle="{StaticResource listPickerItemStyle}" Text="Font Family">
                 <telerik:ListPickerButtonToolbarItem.ImageSource>
                     <FontImageSource Glyph="{x:Static telerik:TelerikFont.IconFontFamily}"
@@ -99,7 +125,7 @@
                     </x:Array>
                 </telerik:ListPickerButtonToolbarItem.ItemsSource>
             </telerik:ListPickerButtonToolbarItem>
-            <!-- << toolbar-listpicker-item -->
+            <!-- << toolbar-listpicker-item-style -->
             <telerik:SeparatorToolbarItem />
             <telerik:ListPickerButtonToolbarItem Text="Font Size">
                 <telerik:ListPickerButtonToolbarItem.ImageSource>
@@ -125,7 +151,7 @@
                     </x:Array>
                 </telerik:ListPickerButtonToolbarItem.ItemsSource>
             </telerik:ListPickerButtonToolbarItem>
-            <!-- >> toolbar-togglebutton-item -->
+            <!-- >> toolbar-togglebutton-item-style -->
             <telerik:ToggleButtonToolbarItem Text="Bold" Style="{StaticResource toggleButtonStyle}">
                 <telerik:ToggleButtonToolbarItem.ImageSource>
                     <FontImageSource Glyph="{x:Static telerik:TelerikFont.IconBold}"
@@ -133,7 +159,7 @@
                                      Size="16" />
                 </telerik:ToggleButtonToolbarItem.ImageSource>
             </telerik:ToggleButtonToolbarItem>
-            <!-- << toolbar-togglebutton-item -->
+            <!-- << toolbar-togglebutton-item-style -->
             <telerik:ToggleButtonToolbarItem Text="Italic" Style="{StaticResource toggleButtonItalicStyle}">
                 <telerik:ToggleButtonToolbarItem.ImageSource>
                     <FontImageSource Glyph="{x:Static telerik:TelerikFont.IconItalic}"
@@ -156,7 +182,7 @@
                                          Size="16" />
                     </telerik:RadioButtonToolbarItem.ImageSource>
                 </telerik:RadioButtonToolbarItem>
-                <!-- >> toolbar-radiobutton-item -->
+                <!-- >> toolbar-radiobutton-item-style -->
                 <telerik:RadioButtonToolbarItem Text="Center" IsSelected="True">
                     <telerik:RadioButtonToolbarItem.ImageSource>
                         <FontImageSource Glyph="{x:Static telerik:TelerikFont.IconAlignCenter}"
@@ -164,7 +190,7 @@
                                          Size="16" />
                     </telerik:RadioButtonToolbarItem.ImageSource>
                 </telerik:RadioButtonToolbarItem>
-                <!-- << toolbar-radiobutton-item -->
+                <!-- << toolbar-radiobutton-item-style -->
                 <telerik:RadioButtonToolbarItem Text="Right">
                     <telerik:RadioButtonToolbarItem.ImageSource>
                         <FontImageSource Glyph="{x:Static telerik:TelerikFont.IconAlignRight}"

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.RangeSliderControl.LabelsCategory.LabelStringConverterExample.LabelStringConverter">
+    <ContentView.Resources>
+        <!-- >> rangeslider-labels-stringconverter-dictionary -->
+        <telerik:DictionaryStringConverter x:Key="LowMidHighConverter">
+            <telerik:DictionaryStringConverterItem Key="{x:Double 1}" Value="Low" />
+            <telerik:DictionaryStringConverterItem Key="{x:Double 2}" Value="Mid-Low" />
+            <telerik:DictionaryStringConverterItem Key="{x:Double 3}" Value="Mid" />
+            <telerik:DictionaryStringConverterItem Key="{x:Double 4}" Value="Mid-High" />
+            <telerik:DictionaryStringConverterItem Key="{x:Double 5}" Value="High" />
+        </telerik:DictionaryStringConverter>
+        <!-- << rangeslider-labels-stringconverter-dictionary -->
+    </ContentView.Resources>
+    <VerticalStackLayout>
+        <!-- >> rangeslider-labels-stringconverter -->
+        <telerik:RadRangeSlider Minimum="1"
+                                Maximum="5"
+                                TickStep="1"
+                                LabelStep="2"
+                                RangeStart="2"
+                                RangeEnd="4"
+                                SnapMode="SnapToTicks"
+                                TicksPlacement="Start"
+                                LabelsPlacement="Start"
+                                StringConverter="{StaticResource LowMidHighConverter}" />
+    </VerticalStackLayout>
+    <!-- << rangeslider-labels-stringconverter -->
+</ContentView>

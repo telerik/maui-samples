@@ -39,7 +39,8 @@
                 <telerik:ButtonToolbarItem Text="Export as PDF"
                                            ImageSource="export_pdf.png"
                                            Command="{Binding SaveAsPdfCommand}"
-                                           CommandParameter="{StaticResource richTextContext}" />
+                                           CommandParameter="{StaticResource richTextContext}"
+                                           IsVisible="{OnPlatform Android=False, iOS=False, Default=True}"/>
             </telerik:SplitButtonToolbarItem>
             <telerik:SeparatorToolbarItem/>
         </telerik:RadRichTextEditorToolbar>

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:local="clr-namespace:QSF.Examples.RangeSliderControl.FirstLookExample"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        x:Class="QSF.Examples.RangeSliderControl.FirstLookExample.FirstLookView"
+                        x:Name="RangeSliderFirstLookView"
+                        Padding="{OnIdiom Default=0, Desktop='16, 20'}">
+
+    <telerik:RadContentView.Resources>
+        <Style TargetType="Label" BasedOn="{StaticResource BaseLabelStyle}" />
+
+        <local:ViewWidthToSpanCountConverter x:Key="ViewWidthToSpanCountConverter" />
+
+        <Style x:Key="CollapsedThumbStyle" TargetType="telerik:SliderThumb">
+            <Setter Property="IsVisible" Value="False" />
+        </Style>
+
+        <DataTemplate x:Key="PropertyItemTemplateMobile">
+            <telerik:ListViewTemplateCell>
+                <telerik:ListViewTemplateCell.View>
+                    <HorizontalStackLayout Padding="0, 8"
+                                           Spacing="8">
+                        <telerik:RadBorder CornerRadius="8"
+                                           VerticalOptions="Center">
+                            <Image Source="{Binding Image}"
+                                   WidthRequest="90"
+                                   HeightRequest="60" />
+                        </telerik:RadBorder>
+                        <VerticalStackLayout VerticalOptions="Center"
+                                             Spacing="4">
+                            <Label Text="{Binding Name}"
+                                   FontAttributes="Bold" />
+                            <Label Text="{Binding Type}"
+                                   Style="{StaticResource PlaceholderLabelStyle}"
+                                   FontSize="{OnPlatform iOS=13, Android=12}" />
+                            <Label Text="{Binding PricePerNight, StringFormat='${0} / night'}"
+                                   Style="{StaticResource PlaceholderLabelStyle}"
+                                   FontSize="{OnPlatform iOS=13, Android=12}"
+                                   FontAttributes="Bold" />
+                        </VerticalStackLayout>
+                    </HorizontalStackLayout>
+                </telerik:ListViewTemplateCell.View>
+            </telerik:ListViewTemplateCell>
+        </DataTemplate>
+
+        <DataTemplate x:Key="PropertyItemTemplateDesktop">
+            <telerik:ListViewTemplateCell>
+                <telerik:ListViewTemplateCell.View>
+                    <VerticalStackLayout Spacing="4">
+                        <Image Source="{Binding Image}"
+                               Aspect="AspectFill"
+                               HeightRequest="150" />
+                        <Label Text="{Binding Name}"
+                               FontSize="{OnPlatform WinUI=16}"
+                               FontAttributes="Bold"
+                               Margin="0, 4, 0, 0" />
+                        <Label Text="{Binding Type}"
+                               Style="{StaticResource PlaceholderLabelStyle}" />
+                        <Label Text="{Binding PricePerNight, StringFormat='${0} / night'}"
+                               Style="{StaticResource PlaceholderLabelStyle}"
+                               FontSize="{OnPlatform WinUI=12}"
+                               FontAttributes="Bold" />
+                    </VerticalStackLayout>
+                </telerik:ListViewTemplateCell.View>
+            </telerik:ListViewTemplateCell>
+        </DataTemplate>
+    </telerik:RadContentView.Resources>
+
+    <Grid RowDefinitions="Auto, *"
+          RowSpacing="{OnIdiom Default=8, Desktop=20}">
+        <Grid RowDefinitions="Auto, Auto"
+              RowSpacing="{OnIdiom Default=8, Desktop=0}"
+              ColumnDefinitions="{OnIdiom Default='*', Desktop='*, *'}"
+              ColumnSpacing="{OnIdiom Default=0, Desktop=50}"
+              BackgroundColor="{AppThemeBinding Light=#F3F3F3, Dark=#202020}"
+              Padding="{OnIdiom Default='16, 24, 16, 8', Desktop=12}">
+            <VerticalStackLayout>
+                <Label Text="Price per Night"
+                       FontAttributes="Bold"
+                       FontSize="{OnPlatform iOS=13}"
+                       Margin="{OnIdiom Default=0, Desktop='0, 0, 0, 8'}" />
+                <telerik:RadRangeSlider RangeStart="{Binding PriceRangeStart, Mode=TwoWay}"
+                                        RangeEnd="{Binding PriceRangeEnd, Mode=TwoWay}"
+                                        Minimum="80"
+                                        Maximum="500"
+                                        LabelsPlacement="End"
+                                        StringFormat="${0}"
+                                        TooltipStringFormat="{}{0:N0}" />
+            </VerticalStackLayout>
+            <VerticalStackLayout Grid.Row="{OnIdiom Default=1, Desktop=0}"
+                                 Grid.Column="{OnIdiom Default=0, Desktop=1}">
+                <Label Text="Number of Guests"
+                       FontAttributes="Bold"
+                       FontSize="{OnPlatform iOS=13}"
+                       Margin="{OnIdiom Default=0, Desktop='0, 0, 0, 8'}" />
+                <telerik:RadRangeSlider RangeEnd="{Binding GuestsNumberRangeEnd, Mode=TwoWay}"
+                                        Minimum="1"
+                                        Maximum="8"
+                                        TickStep="1"
+                                        SnapMode="SnapToTicks"
+                                        LabelsPlacement="End"
+                                        TooltipStringFormat="{}{0:N0}"
+                                        DragMode="EndThumb"
+                                        StartThumbStyle="{StaticResource CollapsedThumbStyle}" />
+            </VerticalStackLayout>
+        </Grid>
+        <telerik:RadListView Grid.Row="1"
+                             ItemsSource="{Binding Properties}"
+                             ItemTemplate="{OnIdiom Default={StaticResource PropertyItemTemplateMobile}, Desktop={StaticResource PropertyItemTemplateDesktop}}"
+                             SelectionMode="None"
+                             Margin="{OnIdiom Default='16, 8, 16, 0', Desktop=0}">
+            <telerik:RadListView.LayoutDefinition>
+                <telerik:ListViewGridLayout SpanCount="{Binding Source={x:Reference RangeSliderFirstLookView}, Path=Width, Converter={StaticResource ViewWidthToSpanCountConverter}}"
+                                            HorizontalItemSpacing="{OnIdiom Default=0, Desktop=8}"
+                                            VerticalItemSpacing="{OnIdiom Default=4, Desktop=16}"
+                                            ItemLength="{OnIdiom Default=80, Desktop=260}" />
+            </telerik:RadListView.LayoutDefinition>
+            <telerik:RadListView.ItemStyle>
+                <telerik:ListViewItemStyle BackgroundColor="Transparent"
+                                           BorderColor="{AppThemeBinding Light={StaticResource DefaultBorderColor}, Dark={StaticResource DefaultBorderColorDark}}"
+                                           BorderWidth="{OnIdiom Default=1, Desktop=0}"
+                                           BorderLocation="{OnIdiom Default=Bottom, Desktop=None}" />
+            </telerik:RadListView.ItemStyle>
+            <telerik:RadListView.SelectedItemStyle>
+                <telerik:ListViewItemStyle BackgroundColor="Transparent" />
+            </telerik:RadListView.SelectedItemStyle>
+            <telerik:RadListView.PressedItemStyle>
+                <telerik:ListViewItemStyle BackgroundColor="Transparent" />
+            </telerik:RadListView.PressedItemStyle>
+        </telerik:RadListView>
+    </Grid>
+</telerik:RadContentView>

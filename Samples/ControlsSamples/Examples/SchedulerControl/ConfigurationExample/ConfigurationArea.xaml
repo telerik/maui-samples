@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:example="clr-namespace:QSF.Examples.SchedulerControl.ConfigurationExample"
+             xmlns:styles="clr-namespace:QSF.Styles"
+             x:Class="QSF.Examples.SchedulerControl.ConfigurationExample.ConfigurationArea">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <styles:ConfigurationViewResources />
+            </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="telerik:RadComboBox">
+                <Setter Property="HorizontalOptions" Value="Fill" />
+                <Setter Property="IsClearButtonVisible" Value="False" />
+            </Style>
+            <Style TargetType="telerik:RadCheckBox">
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal" />
+                            <VisualState x:Name="Focused" />
+                            <VisualState x:Name="Disabled">
+                                <VisualState.Setters>
+                                    <Setter Property="CheckedColor" Value="#9E9E9E" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+            <example:ViewDefinitionToBoolConverter x:Key="ViewDefinitionToBoolConverter" />
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+    <VerticalStackLayout Style="{StaticResource RootAtSeparateAreaStyle}">
+        <VerticalStackLayout Style="{StaticResource GroupAtSeparateAreaStyle}">
+            <Label Text="Zoom:"
+                   Style="{StaticResource VerticalGroupLabelStyle}" />
+            <Slider Value="{Binding ZoomLevel}"
+                    Minimum="400"
+                    Maximum="5000"
+                    HorizontalOptions="Fill"
+                    VerticalOptions="Center"
+                    IsEnabled="{Binding ActiveViewDefinition, Converter={StaticResource ViewDefinitionToBoolConverter}, ConverterParameter='MonthViewDefinition'}" />
+        </VerticalStackLayout>
+        <VerticalStackLayout Style="{StaticResource GroupAtSeparateAreaStyle}">
+            <Label Text="Minor Tick Length:"
+                   Style="{StaticResource VerticalGroupLabelStyle}" />
+            <telerik:RadComboBox ItemsSource="{Binding MinorTicksSource}"
+                                 DropDownHeight="{OnPlatform Android=102, iOS=108, MacCatalyst=66, WinUI=120}"
+                                 SelectedItem="{Binding MinorTickLength, Mode=TwoWay}"
+                                 IsEnabled="{Binding ActiveViewDefinition, Converter={StaticResource ViewDefinitionToBoolConverter}, ConverterParameter='MonthViewDefinition'}" />
+        </VerticalStackLayout>
+        <VerticalStackLayout Style="{StaticResource GroupAtSeparateAreaStyle}">
+            <Label Text="Major Tick Length:"
+                   Style="{StaticResource VerticalGroupLabelStyle}" />
+            <telerik:RadComboBox ItemsSource="{Binding MajorTicksSource}"
+                                 DropDownHeight="{OnPlatform Android=102, iOS=108, MacCatalyst=66, WinUI=120}"
+                                 SelectedItem="{Binding MajorTickLength, Mode=TwoWay}"
+                                 IsEnabled="{Binding ActiveViewDefinition, Converter={StaticResource ViewDefinitionToBoolConverter}, ConverterParameter='MonthViewDefinition'}" />
+        </VerticalStackLayout>
+        <VerticalStackLayout Style="{StaticResource GroupAtSeparateAreaStyle}">
+            <Label Text="Day Start Time:"
+                   Style="{StaticResource VerticalGroupLabelStyle}" />
+            <telerik:RadTimePicker Time="{Binding DayStartTimeSpan, Mode=TwoWay}"
+                                   IsEnabled="{Binding ActiveViewDefinition, Converter={StaticResource ViewDefinitionToBoolConverter}, ConverterParameter='MonthViewDefinition'}" />
+        </VerticalStackLayout>
+        <VerticalStackLayout Style="{StaticResource GroupAtSeparateAreaStyle}">
+            <Label Text="Day End Time:"
+                   Style="{StaticResource VerticalGroupLabelStyle}" />
+            <telerik:RadTimePicker Time="{Binding DayEndTimeSpan, Mode=TwoWay}"
+                                   IsEnabled="{Binding ActiveViewDefinition, Converter={StaticResource ViewDefinitionToBoolConverter}, ConverterParameter='MonthViewDefinition'}" />
+        </VerticalStackLayout>
+        <VerticalStackLayout Style="{StaticResource GroupAtSeparateAreaStyle}">
+            <Label Text="Interaction Mode:"
+                   Style="{StaticResource VerticalGroupLabelStyle}" />
+            <telerik:RadComboBox ItemsSource="{Binding InteractionModes}"
+                                 DropDownHeight="{OnPlatform Android=68, iOS=72, MacCatalyst=44, WinUI=80}"
+                                 SelectedItem="{Binding InteractionMode, Mode=TwoWay}" />
+        </VerticalStackLayout>
+        <VerticalStackLayout Style="{StaticResource GroupAtSeparateAreaStyle}">
+            <Label Text="First Day of Week:"
+                   Style="{StaticResource VerticalGroupLabelStyle}" />
+            <telerik:RadComboBox ItemsSource="{Binding DaysOfWeek}"
+                                 SelectedItem="{Binding FirstDayOfWeek, Mode=TwoWay}"
+                                 IsEnabled="{Binding ActiveViewDefinition, Converter={StaticResource ViewDefinitionToBoolConverter}, ConverterParameter='DayViewDefinition, MultidayViewDefinition'}" />
+        </VerticalStackLayout>
+        <VerticalStackLayout Style="{StaticResource GroupAtSeparateAreaStyle}">
+            <Label Text="Visible Days:"
+                   Style="{StaticResource VerticalGroupLabelStyle}" />
+            <Slider Value="{Binding VisibleDays}"
+                    Minimum="1"
+                    Maximum="10"
+                    HorizontalOptions="Fill"
+                    VerticalOptions="Center"
+                    IsEnabled="{Binding ActiveViewDefinition, Converter={StaticResource ViewDefinitionToBoolConverter}, ConverterParameter='DayViewDefinition, WeekViewDefinition, MonthViewDefinition'}" />
+        </VerticalStackLayout>
+        <HorizontalStackLayout telerik:RadCheckBox.ToggleOnTap="{Reference todayButtonVisibleCb}"
+                               Style="{StaticResource CheckBoxGroupStyle}">
+            <telerik:RadCheckBox x:Name="todayButtonVisibleCb"
+                                 IsChecked="{Binding IsTodayButtonVisible, Mode=TwoWay}" />
+            <Label Text="Is Today Button Visible"
+                   Style="{StaticResource HorizontalGroupLabelAtEndStyle}" />
+        </HorizontalStackLayout>
+        <HorizontalStackLayout telerik:RadCheckBox.ToggleOnTap="{Reference currentTimeIndicatorVisibleCb}"
+                               Style="{StaticResource CheckBoxGroupStyle}">
+            <telerik:RadCheckBox x:Name="currentTimeIndicatorVisibleCb"
+                                 IsChecked="{Binding IsCurrentTimeIndicatorVisible, Mode=TwoWay}"
+                                 IsEnabled="{Binding ActiveViewDefinition, Converter={StaticResource ViewDefinitionToBoolConverter}, ConverterParameter='MonthViewDefinition'}" />
+            <Label Text="Is Current Time Indicator Visible"
+                   Style="{StaticResource HorizontalGroupLabelAtEndStyle}" />
+        </HorizontalStackLayout>
+        <HorizontalStackLayout telerik:RadCheckBox.ToggleOnTap="{Reference isWeekendVisibleCb}"
+                               Style="{StaticResource CheckBoxGroupStyle}">
+            <telerik:RadCheckBox x:Name="isWeekendVisibleCb"
+                                 IsChecked="{Binding IsWeekendVisible, Mode=TwoWay}"
+                                 IsEnabled="{Binding ActiveViewDefinition, Converter={StaticResource ViewDefinitionToBoolConverter}, ConverterParameter='DayViewDefinition, MultidayViewDefinition, MonthViewDefinition'}" />
+            <Label Text="Is Weekend Visible"
+                   Style="{StaticResource HorizontalGroupLabelAtEndStyle}" />
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
+</ContentView>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.NavigationViewControl.FeaturesCategory.CompactDisplayModeExample.CompactDisplayMode">
+    <Grid RowDefinitions="Auto, *" RowSpacing="10">
+        <Label Text="NavigationView with DisplayMode Compact" />
+        <!-- >> navigationview-displaymide-compact -->
+        <telerik:RadNavigationView x:Name="navigationView" 
+                                   DisplayMode="Compact"
+                                   AutoChangeDisplayMode="False"
+                                   CompactModeThresholdWidth="20"
+                                   Grid.Row="1">
+            <telerik:RadNavigationView.Items>
+                <telerik:NavigationViewItem Text="Item 1" />
+                <telerik:NavigationViewItem Text="Item 2" />
+            </telerik:RadNavigationView.Items>
+            <telerik:RadNavigationView.Content>
+                <Label HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       Text="{Binding SelectedItem.Text, Source={x:Reference navigationView}}" />
+            </telerik:RadNavigationView.Content>
+        </telerik:RadNavigationView>
+        <!-- << navigationview-displaymide-compact -->
+    </Grid>
+</ContentView>

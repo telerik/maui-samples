@@ -16,10 +16,10 @@ public partial class SaveImage : ContentView
     private async void OnSaveOriginalClicked(object sender, EventArgs e)
     {
         var folderPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-        var filePath = Path.Combine(folderPath, "image.jpg");
+        var filePath = Path.Combine(folderPath, "image.png");
         using (var fileStream = File.Create(filePath))
         {
-            await this.imageEditor.SaveAsync(fileStream, ImageFormat.Jpeg, 0.9);
+            await this.imageEditor.SaveAsync(fileStream, ImageFormat.Png, 0.9);
         }
 
         await Application.Current.MainPage.DisplayAlert("", "The Image is saved with original size", "OK");
@@ -30,11 +30,11 @@ public partial class SaveImage : ContentView
     private async void OnSaveMaxSizeClicked(object sender, EventArgs e)
     {
         var folderPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-        var filePath = Path.Combine(folderPath, "image.jpg");
+        var filePath = Path.Combine(folderPath, "image.png");
         var maxsize = new Size(400, 500);
         using (var fileStream = File.Create(filePath))
         {
-            await this.imageEditor.SaveAsync(fileStream, ImageFormat.Jpeg, 0.9, maxsize);
+            await this.imageEditor.SaveAsync(fileStream, ImageFormat.Png, 0.9, maxsize);
         }
 
         await Application.Current.MainPage.DisplayAlert("", "The Image is saved with Size 400:500", "OK");
@@ -46,10 +46,10 @@ public partial class SaveImage : ContentView
     private async void OnSaveDownscaledClicked(object sender, EventArgs e)
     {
         var folderPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-        var filePath = Path.Combine(folderPath, "image.jpg");
+        var filePath = Path.Combine(folderPath, "image.png");
         using (var fileStream = File.Create(filePath))
         {
-            await this.imageEditor.SaveAsync(fileStream, ImageFormat.Jpeg, 0.9, 0.5);
+            await this.imageEditor.SaveAsync(fileStream, ImageFormat.Png, 0.9, 0.5);
         }
 
         await Application.Current.MainPage.DisplayAlert("", "The Image is downscaled to 50%", "OK");

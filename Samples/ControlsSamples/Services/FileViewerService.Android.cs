@@ -11,7 +11,7 @@ namespace QSF.Services
         {
             try
             {
-                if ((int)Android.OS.Build.VERSION.SdkInt >= 23)
+                if ((int)Android.OS.Build.VERSION.SdkInt >= 23 && (int)Android.OS.Build.VERSION.SdkInt < 33)
                 {
                     bool result = await PermissionsHelper.RequestStorageRead();
                     if (!result)
@@ -19,7 +19,7 @@ namespace QSF.Services
                         return false;
                     }
                 }
-
+                
                 var context = Android.App.Application.Context;
                 Java.IO.File externalFilesDir = context.GetExternalFilesDir(null);
                 Java.IO.File myDir;

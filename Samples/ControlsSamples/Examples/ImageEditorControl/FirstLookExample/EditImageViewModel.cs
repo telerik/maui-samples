@@ -57,9 +57,11 @@ namespace QSF.Examples.ImageEditorControl.FirstLookExample
             Microsoft.Maui.Graphics.ImageFormat imageFormat;
             switch (Path.GetExtension(filePath))
             {
+#if ! (ANDROID || IOS)
                 case ".jpg":
                     imageFormat = Microsoft.Maui.Graphics.ImageFormat.Jpeg;
                     break;
+#endif
                 case ".png":
                     imageFormat = Microsoft.Maui.Graphics.ImageFormat.Png;
                     break;

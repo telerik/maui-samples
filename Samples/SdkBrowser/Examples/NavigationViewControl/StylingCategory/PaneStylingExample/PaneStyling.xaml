@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.NavigationViewControl.StylingCategory.PaneStylingExample.PaneStyling">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <!-- >> navigationview-pane-header-styling -->
+            <Style TargetType="telerik:NavigationViewPaneHeader" x:Key="PaneHeaderStyle">
+                <Setter Property="BorderBrush" Value="#8660C5" />
+                <Setter Property="BorderThickness" Value="2" />
+                <Setter Property="CornerRadius" Value="5" />
+                <Setter Property="ContentPadding" Value="5" />
+                <Setter Property="Padding" Value="2" />
+            </Style>
+            <!-- << navigationview-pane-header-styling -->
+
+            <!-- >> navigationview-pane-footer-styling -->
+            <Style TargetType="telerik:NavigationViewPaneFooter" x:Key="PaneFooterStyle">
+                <Setter Property="BorderBrush" Value="#F18900" />
+                <Setter Property="BorderThickness" Value="2" />
+                <Setter Property="CornerRadius" Value="5" />
+                <Setter Property="ContentPadding" Value="5" />
+                <Setter Property="Padding" Value="2" />
+            </Style>
+            <!-- << navigationview-pane-footer-styling -->
+            
+            <!-- >> navigationview-pane-area-styling -->
+            <Style TargetType="telerik:NavigationViewPane" x:Key="PaneStyling">
+                <Setter Property="BackgroundColor" Value="#33DD66EE" />
+                <Setter Property="BorderBrush" Value="DarkGray" />
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="ContentPadding" Value="2" />
+                <Setter Property="Padding" Value="4" />
+                <Setter Property="HeaderStyle" Value="{StaticResource PaneHeaderStyle}" />
+                <Setter Property="FooterStyle" Value="{StaticResource PaneFooterStyle}" />
+            </Style>
+            <!-- << navigationview-pane-area-styling -->
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <Grid>
+        <!-- >> navigationview-pane-styling -->
+        <telerik:RadNavigationView x:Name="navigationView" PaneStyle="{StaticResource PaneStyling}"
+                               HeaderText="NavigationView Header">
+            <telerik:RadNavigationView.Items>
+                <telerik:NavigationViewItem Text="Search"
+                                        Position="Header"
+                                        IsSelectable="False">
+                </telerik:NavigationViewItem>
+                <telerik:NavigationViewItem Text="Item 1" />
+                <telerik:NavigationViewItem Text="Item 2" />
+                <telerik:NavigationViewItem Text="Item 3" />
+                <telerik:NavigationViewItem Text="Item 4"/>
+                <telerik:NavigationViewItem Text="Item 5" />
+                <telerik:NavigationViewItem Text="Settings"
+                                        Position="Footer"
+                                        IsSelectable="False">
+                    <telerik:NavigationViewItem.ImageSource>
+                        <FontImageSource Glyph="{x:Static telerik:TelerikFont.IconMore}"
+                                         FontFamily="{x:Static telerik:TelerikFont.Name}"
+                                         Size="16" />
+                    </telerik:NavigationViewItem.ImageSource>
+                </telerik:NavigationViewItem>
+            </telerik:RadNavigationView.Items>
+            <Label HorizontalOptions="Center"
+               VerticalOptions="Center"
+               Text="{Binding SelectedItem.Text, Source={x:Reference navigationView}}" />
+        </telerik:RadNavigationView>
+        <!-- << navigationview-pane-styling -->
+    </Grid>
+</ContentView>

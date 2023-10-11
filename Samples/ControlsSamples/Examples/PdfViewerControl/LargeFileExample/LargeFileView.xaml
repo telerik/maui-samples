@@ -1,18 +1,19 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
                         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                         xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
                         x:Class="QSF.Examples.PdfViewerControl.LargeFileExample.LargeFileView">
-    <Grid RowDefinitions="{OnIdiom Desktop='Auto, *', Phone='*, Auto'}">
+    <Grid RowDefinitions="Auto, *">
         <telerik:RadPdfViewerToolbar PdfViewer="{Binding Source={x:Reference pdfViewer}}"
-                                     Grid.Row="{OnIdiom Desktop=0, Phone=1}">
-            <telerik:PdfViewerFitToWidthToolbarItem />
-            <telerik:PdfViewerZoomInToolbarItem />
-            <telerik:PdfViewerZoomOutToolbarItem />
+                                     Grid.Row="0">
+            <telerik:PdfViewerNavigateToPageToolbarItem />
             <telerik:PdfViewerNavigateToPreviousPageToolbarItem />
             <telerik:PdfViewerNavigateToNextPageToolbarItem />
+            <telerik:PdfViewerToggleLayoutModeToolbarItem />
+            <telerik:PdfViewerSearchToolbarItem IsVisible="{OnIdiom Desktop=True, Phone=False}" />
+            <telerik:PdfViewerSearchNavigationToolbarItem IsVisible="{OnIdiom Desktop=False, Phone=True}" />
         </telerik:RadPdfViewerToolbar>
         <telerik:RadPdfViewer x:Name="pdfViewer" 
-                              Grid.Row="{OnIdiom Desktop=1, Phone=0}" />
+                              Grid.Row="1" />
     </Grid>
 </telerik:RadContentView>

@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:local="clr-namespace:QSF.Examples.TreeViewControl.LoadOnDemandExample"
+                        xmlns:common="clr-namespace:QSF.Examples.TreeViewControl.Common"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        x:Class="QSF.Examples.TreeViewControl.LoadOnDemandExample.LoadOnDemandView"
+                        Padding="{OnIdiom Default='16, 20', Phone=0}">
+    <telerik:RadContentView.Resources>
+        <common:StringToFontImageSourceConverter x:Key="StringToFontImageSourceConverter"
+                                                 Size="16" />
+        <FontImageSource x:Key="ClosedFolderImageSource"
+                         Glyph="&#xe82a;"
+                         FontFamily="TelerikFontExamples"
+                         Color="#EFC75E"
+                         Size="16" />
+        <FontImageSource x:Key="OpenFolderImageSource"
+                         Glyph="&#xe829;"
+                         FontFamily="TelerikFontExamples"
+                         Color="#EFC75E"
+                         Size="16" />
+        <Style x:Key="FolderItemStyle" TargetType="telerik:TreeViewItemView">
+            <Setter Property="IsImageVisible" Value="True" />
+            <Setter Property="ImageSource" Value="{StaticResource ClosedFolderImageSource}" />
+            <Style.Triggers>
+                <DataTrigger TargetType="telerik:TreeViewItemView"
+                             Binding="{Binding IsExpanded, Source={RelativeSource Mode=Self}}"
+                             Value="True">
+                    <Setter Property="ImageSource" Value="{StaticResource OpenFolderImageSource}" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="FileItemStyle" TargetType="telerik:TreeViewItemView">
+            <Setter Property="IsImageVisible" Value="True" />
+            <Setter Property="ImageSource" Value="{Binding Icon, Converter={StaticResource StringToFontImageSourceConverter}}" />
+        </Style>
+    </telerik:RadContentView.Resources>
+    <Grid RowDefinitions="Auto, *">
+        <HorizontalStackLayout Margin="16, 30"
+                               Spacing="20">
+            <Image Source="drive.png"
+                   VerticalOptions="Center" />
+            <Label Text="My Drive"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   VerticalOptions="Center" />
+        </HorizontalStackLayout>
+        <telerik:RadBusyIndicator Grid.Row="1"
+                                  IsBusy="{Binding IsBusy}"
+                                  Style="{StaticResource DefaultBusyIndicatorStyle}">
+            <telerik:RadTreeView ItemsSource="{Binding RootItems}"
+                                 LoadChildrenOnDemandCommand="{Binding LoadFilesCommand}"
+                                 IsLoadChildrenOnDemandEnabled="True">
+                <telerik:RadTreeView.Descriptors>
+                    <telerik:TreeViewDescriptor TargetType="{x:Type local:FolderViewModel}"
+                                                ItemStyle="{StaticResource FolderItemStyle}"
+                                                ItemsSourcePath="Children"
+                                                DisplayMemberPath="Name" />
+                    <telerik:TreeViewDescriptor TargetType="{x:Type local:FileViewModel}"
+                                                ItemStyle="{StaticResource FileItemStyle}"
+                                                DisplayMemberPath="Name" />
+                </telerik:RadTreeView.Descriptors>
+            </telerik:RadTreeView>
+        </telerik:RadBusyIndicator>
+    </Grid>
+</telerik:RadContentView>

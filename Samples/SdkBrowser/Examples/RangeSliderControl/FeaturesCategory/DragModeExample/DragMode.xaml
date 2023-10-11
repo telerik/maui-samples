@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.RangeSliderControl.FeaturesCategory.DragModeExample.DragMode">
+    <VerticalStackLayout Spacing="10">
+        <Label Text="RangeSlider with drag disabled:" />
+        <!-- >> rangeslider-drag-disabled-xaml -->
+        <telerik:RadRangeSlider Minimum="0"
+                                Maximum="100"
+                                RangeStart="25"
+                                RangeEnd="75"
+                                DragMode="Disabled" />
+        <!-- << rangeslider-drag-disabled-xaml -->
+        <Label Text="RangeSlider with only StartThumb drag enabled:" />
+        <!-- >> rangeslider-drag-startthumb-xaml -->
+        <telerik:RadRangeSlider Minimum="0"
+                                Maximum="100"
+                                RangeStart="25"
+                                RangeEnd="90"
+                                DragMode="StartThumb" />
+        <!-- << rangeslider-drag-startthumb-xaml -->
+    </VerticalStackLayout>
+</ContentView>

@@ -2,6 +2,7 @@
 using Microsoft.Maui.Controls;
 using Microsoft.Maui.Devices;
 using Microsoft.Maui.Graphics;
+using Microsoft.Maui.Handlers;
 using QSF.Pages;
 using QSF.Services;
 using Telerik.Maui.Controls;
@@ -30,8 +31,8 @@ public partial class App : Application
             // TODO: When https://github.com/dotnet/maui/issues/5835 is really fixed, remove the following lines and the respective methods.
             // Currently, setting MaxLines of a Label to more than one for Android or iOS and LineBreakMode to TailTruncation
             // results to a single-line Label with truncation. The MaxLines is ignored.
-            Label.ControlsLabelMapper.AppendToMapping(nameof(Label.LineBreakMode), UpdateMaxLines);
-            Label.ControlsLabelMapper.AppendToMapping(nameof(Label.MaxLines), UpdateMaxLines);
+            LabelHandler.Mapper.AppendToMapping(nameof(Label.LineBreakMode), UpdateMaxLines);
+            LabelHandler.Mapper.AppendToMapping(nameof(Label.MaxLines), UpdateMaxLines);
 #endif
         }
     }
@@ -87,7 +88,7 @@ public partial class App : Application
     }
 
 #if __ANDROID__
-    private static void UpdateMaxLines(Microsoft.Maui.Handlers.LabelHandler handler, ILabel label)
+    private static void UpdateMaxLines(ILabelHandler handler, ILabel label)
     {
         var textView = handler.PlatformView;
         if (label is Label controlsLabel && textView.Ellipsize == Android.Text.TextUtils.TruncateAt.End)
@@ -96,7 +97,7 @@ public partial class App : Application
         }
     }
 #elif __IOS__
-    private static void UpdateMaxLines(Microsoft.Maui.Handlers.LabelHandler handler, ILabel label)
+    private static void UpdateMaxLines(ILabelHandler handler, ILabel label)
     {
         var labelView = handler.PlatformView;
         if (label is Label controlsLabel && labelView.LineBreakMode == UIKit.UILineBreakMode.TailTruncation)

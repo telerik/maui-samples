@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.SchedulerControl.StylingCategory.MoreIndicatorStylingExample.MoreIndicatorStyling">
+    <ContentView.Resources>
+        <ResourceDictionary>           
+            <!-- >> scheduler-moreindicator-style -->
+            <Style x:Key="DayMoreAppointmentsIndicatorStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="{x:Static telerik:TelerikFont.Name}" />
+                <Setter Property="TextColor" Value="#7C59B6" />
+                <Setter Property="Text" Value="{x:Static telerik:TelerikFont.IconOk}" />
+            </Style>
+            <!-- << scheduler-moreindicator-style -->
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <Grid>
+        <!-- >> scheduler-moreindicatorstyling-definition -->
+        <telerik:RadScheduler x:Name="scheduler">
+            <telerik:RadScheduler.ViewDefinitions>
+                <telerik:MonthViewDefinition DayMoreAppointmentsIndicatorStyle="{StaticResource DayMoreAppointmentsIndicatorStyle}" />
+                <telerik:DayViewDefinition />
+            </telerik:RadScheduler.ViewDefinitions>
+        </telerik:RadScheduler>
+        <!-- << scheduler-moreindicatorstyling-definition -->
+    </Grid>
+</ContentView>

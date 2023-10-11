@@ -20,7 +20,7 @@
 		<AndroidLinkResources Condition=" $(IsNet7) == 'true' ">false</AndroidLinkResources>
 
 		<!-- TODO: Remove this when moving to machines where Xcode 14.3 -->
-		<MtouchLink Condition="$(TargetFramework.Contains('net8'))">SdkOnly</MtouchLink>
+		<MtouchLink>SdkOnly</MtouchLink>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -55,6 +55,7 @@
 		<EmbeddedResource Include="Examples\TreeViewControl\FirstLookExample\AccountDataSource.xml" />
 		<EmbeddedResource Include="Examples\TreeViewControl\CustomizationExample\FavoriteFoldersDataSource.xml" />
 		<EmbeddedResource Include="Examples\TreeViewControl\ConfigurationExample\FileExplorerDataSource.xml" />
+		<EmbeddedResource Include="Examples\TreeViewControl\LoadOnDemandExample\LoadOnDemandDataSource.xml" />
 		<EmbeddedResource Include="Examples\WordsProcessingControl\ExportExample\DocToBeProcessed.docx" />
 		<EmbeddedResource Include="Examples\WordsProcessingControl\FindAndReplaceExample\JohnGrisham.docx" />
 		<EmbeddedResource Include="Examples\WordsProcessingControl\NumberingFields\SampleDocument.docx" />
@@ -75,16 +76,29 @@
 		<EmbeddedResource Include="Examples\ZipLibraryControl\CreateArchiveExample\Resources\ZipSampleDocuments\RepeatHeaderRows.docx" />
 		<EmbeddedResource Include="Examples\ZipLibraryControl\CreateArchiveExample\Resources\ZipSampleDocuments\Sample.pdf" />
 		<EmbeddedResource Include="Examples\ZipLibraryControl\CreateArchiveExample\Resources\ZipSampleDocuments\thumbnail.png" />
-		<EmbeddedResource Include="Resources\ImageEditor\FirstLookExample\SampleImage1.jpg" />
-		<EmbeddedResource Include="Resources\ImageEditor\FirstLookExample\SampleImage2.jpg" />
-		<EmbeddedResource Include="Resources\ImageEditor\FirstLookExample\SampleImage3.jpg" />
-		<EmbeddedResource Include="Resources\ImageEditor\FirstLookExample\SampleImage4.jpg" />
-		<EmbeddedResource Include="Resources\ImageEditor\FirstLookExample\SampleImage5.jpg" />
-        <EmbeddedResource Include="Resources\ImageEditor\FirstLookExample\SampleImage6.jpg" />
     <EmbeddedResource Include="Resources\RichTextEditor\**" />
 	</ItemGroup>
 
-	<ItemGroup>
+  <ItemGroup Condition="$(TargetFramework.Contains('-android')) != true AND $(TargetFramework.Contains('-ios')) != true">
+    <EmbeddedResource Include="Resources\ImageEditor\FirstLookExample\SampleImage1.jpg" />
+    <EmbeddedResource Include="Resources\ImageEditor\FirstLookExample\SampleImage2.jpg" />
+    <EmbeddedResource Include="Resources\ImageEditor\FirstLookExample\SampleImage3.jpg" />
+    <EmbeddedResource Include="Resources\ImageEditor\FirstLookExample\SampleImage4.jpg" />
+    <EmbeddedResource Include="Resources\ImageEditor\FirstLookExample\SampleImage5.jpg" />
+    <EmbeddedResource Include="Resources\ImageEditor\FirstLookExample\SampleImage6.jpg" />
+  </ItemGroup>
+
+  <ItemGroup Condition="$(TargetFramework.Contains('-android')) == true OR $(TargetFramework.Contains('-ios')) == true">
+    <EmbeddedResource Include="Resources\ImageEditor\FirstLookExample\SampleImage1.png" />
+    <EmbeddedResource Include="Resources\ImageEditor\FirstLookExample\SampleImage2.png" />
+    <EmbeddedResource Include="Resources\ImageEditor\FirstLookExample\SampleImage3.png" />
+    <EmbeddedResource Include="Resources\ImageEditor\FirstLookExample\SampleImage4.png" />
+    <EmbeddedResource Include="Resources\ImageEditor\FirstLookExample\SampleImage5.png" />
+    <EmbeddedResource Include="Resources\ImageEditor\FirstLookExample\SampleImage6.png" />
+  </ItemGroup>
+
+
+  <ItemGroup>
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 	</ItemGroup>
 
@@ -97,8 +111,10 @@
 	</ItemGroup>
 
 	<ItemGroup Condition="$(TargetFramework.Contains('net8'))">
-		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
-		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
+		<PackageReference Include="Microsoft.Maui.Controls" Condition=" $(CustomMauiVersion) == '' " Version="$(MauiVersion)" />
+		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Condition=" $(CustomMauiVersion) == '' " Version="$(MauiVersion)" />
+		<PackageReference Include="Microsoft.Maui.Controls" Condition=" $(CustomMauiVersion) != '' " Version="$(CustomMauiVersion)" />
+		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Condition=" $(CustomMauiVersion) != '' " Version="$(CustomMauiVersion)" />
 	</ItemGroup>
 
 	<Import Condition="'$(SolutionName)' == 'Telerik.Maui' Or '$(UseSourceProjects)' == 'True'" Project="..\AddSourceProjects.proj" />

@@ -21,6 +21,9 @@
             <Button Text="Next Page"
                     Command="{Binding Source={x:Reference pdfViewer}, Path=NavigateToNextPageCommand}"
                     Margin="0, 0, 10, 10" />
+            <Button Text="Toggle Layout Mode"
+                    Command="{Binding Source={x:Reference pdfViewer}, Path=ToggleLayoutModeCommand}"
+                    Margin="0, 0, 10, 10" />
         </telerik:RadUniformGrid>
         <telerik:RadPdfViewer x:Name="pdfViewer"
                               Grid.Row="1"

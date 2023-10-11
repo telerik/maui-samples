@@ -41,23 +41,25 @@
                 </telerik:RadBorder>
             </DataTemplate>
             <ControlTemplate x:Key="DefaultLayout">
-                <Grid RowDefinitions="Auto, Auto, *" Padding="16, 24">
-                    <ContentView Content="{TemplateBinding Content}" />
-                    <VerticalStackLayout Grid.Row="1">
-                        <Label Text="{TemplateBinding CollectionTitle}"
-                               Margin="0, 40, 0, 0" />
-                        <telerik:RadUniformGrid BindableLayout.ItemsSource="{TemplateBinding ItemsSource}"
-                                                BindableLayout.ItemTemplate="{TemplateBinding ItemTemplate}"
-                                                Margin="-12, 0" />
-                    </VerticalStackLayout>
-                    <telerik:RadButton Grid.Row="2"
-                                       Style="{StaticResource SubmitButtonStyle}"
-                                       Command="{TemplateBinding ButtonCommand}"
-                                       Text="{TemplateBinding ButtonText}"
-                                       HorizontalOptions="Fill"
-                                       VerticalOptions="End"
-                                       Margin="0, 40, 0, 0" />
-                </Grid>
+                <ScrollView>
+                    <Grid RowDefinitions="Auto, Auto, *" Padding="16, 24">
+                        <ContentView Content="{TemplateBinding Content}" />
+                        <VerticalStackLayout Grid.Row="1">
+                            <Label Text="{TemplateBinding CollectionTitle}"
+                                   Margin="0, 40, 0, 0" />
+                            <telerik:RadUniformGrid BindableLayout.ItemsSource="{TemplateBinding ItemsSource}"
+                                                    BindableLayout.ItemTemplate="{TemplateBinding ItemTemplate}"
+                                                    Margin="-12, 0" />
+                        </VerticalStackLayout>
+                        <telerik:RadButton Grid.Row="2"
+                                           Style="{StaticResource SubmitButtonStyle}"
+                                           Command="{TemplateBinding ButtonCommand}"
+                                           Text="{TemplateBinding ButtonText}"
+                                           HorizontalOptions="Fill"
+                                           VerticalOptions="End"
+                                           Margin="0, 40, 0, 0" />
+                    </Grid>
+                </ScrollView>
             </ControlTemplate>
             <ControlTemplate x:Key="DesktopLayout">
                 <Grid ColumnDefinitions="300, *, 210" Padding="16, 24">
