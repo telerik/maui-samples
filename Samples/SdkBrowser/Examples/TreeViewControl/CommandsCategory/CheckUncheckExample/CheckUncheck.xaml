@@ -3,18 +3,41 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
              xmlns:local="clr-namespace:SDKBrowserMaui.Examples.TreeViewControl"
+             xmlns:converters="clr-namespace:SDKBrowserMaui.Converters"
              x:Class="SDKBrowserMaui.Examples.TreeViewControl.CommandsCategory.CheckUncheckExample.CheckUncheck">
+    <!-- >> treeview-sting-path-converter -->
+    <ContentView.Resources>
+        <converters:StringPathConverter x:Key="StringPathConverter" />
+    </ContentView.Resources>
+    <!-- << treeview-sting-path-converter -->
+    
     <!-- >> treeview-check-uncheck-commands -->
-    <Grid RowDefinitions="Auto,*">
+    <Grid RowDefinitions="Auto,Auto,*"
+          RowSpacing="10">
         <HorizontalStackLayout Spacing="10">
             <Button Text="CheckAll" Command="{Binding CheckAllCommand, Source={x:Reference treeView}}"/>
             <Button Text="Uncheckall" Command="{Binding UncheckAllCommand, Source={x:Reference treeView}}"/>
         </HorizontalStackLayout>
+        <VerticalStackLayout Spacing="5" 
+                             Grid.Row="1">
+            <Entry x:Name="pathEntry"
+                   Grid.Column="1"
+                   Placeholder="Example: Shared Documents/Reports" />
+            <HorizontalStackLayout Spacing="10">
+                <Button Text="Check"
+                        Command="{Binding CheckCommand, Source={x:Reference treeView}}"
+                        CommandParameter="{Binding Text, Source={x:Reference pathEntry}, Converter={StaticResource StringPathConverter}}" />
+                <Button Text="Uncheck"
+                        Command="{Binding UncheckCommand, Source={x:Reference treeView}}"
+                        CommandParameter="{Binding Text, Source={x:Reference pathEntry}, Converter={StaticResource StringPathConverter}}" />
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
         <telerik:RadTreeView x:Name="treeView" 
-                             Grid.Row="1" 
+                             Grid.Row="2" 
                              ItemsSource="{Binding Items}" 
                              CheckBoxMode="Recursive">
             <telerik:TreeViewDescriptor DisplayMemberPath="Name"
+                                        IdentityMemberPath="Name"
                                         ItemsSourcePath="Children"
                                         TargetType="{x:Type local:Item}" />
             <telerik:RadTreeView.BindingContext>

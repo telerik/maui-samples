@@ -5,10 +5,10 @@
              x:Class="SDKBrowserMaui.Examples.SchedulerControl.FeaturesCategory.CurrentTimeIndicatorExample.CurrentTimeIndicator">
     <Grid>
         <!-- >> scheduler-current-time-indicator -->
-        <telerik:RadScheduler>
+        <telerik:RadScheduler x:Name="scheduler" ActiveViewDefinitionIndex="2">
             <telerik:RadScheduler.ViewDefinitions>
                 <telerik:WeekViewDefinition IsCurrentTimeIndicatorVisible="False" />
-                <telerik:MultidayViewDefinition IsCurrentTimeIndicatorVisible="False" VisibleDays="3" Title="3 Days" />
+                <telerik:MultidayViewDefinition IsCurrentTimeIndicatorVisible="False" VisibleDays="3" Title="3 Day" />
                 <telerik:DayViewDefinition IsCurrentTimeIndicatorVisible="True" />
             </telerik:RadScheduler.ViewDefinitions>
         </telerik:RadScheduler>

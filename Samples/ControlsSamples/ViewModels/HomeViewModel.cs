@@ -76,7 +76,7 @@ public class HomeViewModel : PageViewModel
         {
             return this.isHomeSelected;
         }
-        private set
+        set
         {
             if (this.UpdateValue(ref this.isHomeSelected, value))
             {
@@ -91,7 +91,7 @@ public class HomeViewModel : PageViewModel
         {
             return this.isSearchSelected;
         }
-        private set
+        set
         {
             if (this.UpdateValue(ref this.isSearchSelected, value))
             {

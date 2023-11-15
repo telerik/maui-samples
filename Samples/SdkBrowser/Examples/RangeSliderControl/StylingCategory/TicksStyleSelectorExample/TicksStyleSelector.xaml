@@ -9,22 +9,21 @@
         <local:RangeTickStyleSelector x:Key="RangeTickStyleSelector">
             <local:RangeTickStyleSelector.BeforeRangeStyle>
                 <Style TargetType="telerik:RadBorder">
-                    <Setter Property="Opacity" Value="0.5" />
-                    <Setter Property="BackgroundColor" Value="#865FC5" />
+                    <Setter Property="BackgroundColor" Value="#A55200" />
                     <Setter Property="WidthRequest" Value="2" />
                     <Setter Property="HeightRequest" Value="10" />
                 </Style>
             </local:RangeTickStyleSelector.BeforeRangeStyle>
             <local:RangeTickStyleSelector.InsideRangeStyle>
                 <Style TargetType="telerik:RadBorder">
-                    <Setter Property="BackgroundColor" Value="#674BB2" />
+                    <Setter Property="BackgroundColor" Value="#018383" />
                     <Setter Property="WidthRequest" Value="3" />
                     <Setter Property="HeightRequest" Value="10" />
                 </Style>
             </local:RangeTickStyleSelector.InsideRangeStyle>
             <local:RangeTickStyleSelector.AfterRangeStyle>
                 <Style TargetType="telerik:RadBorder">
-                    <Setter Property="BackgroundColor" Value="#865FC5" />
+                    <Setter Property="BackgroundColor" Value="#830183" />
                     <Setter Property="WidthRequest" Value="2" />
                     <Setter Property="HeightRequest" Value="10" />
                 </Style>
@@ -32,15 +31,29 @@
         </local:RangeTickStyleSelector>
         <!-- << rangeslider-ticksttyling-selector -->
     </ContentView.Resources>
-    <VerticalStackLayout>
+    <VerticalStackLayout Spacing="20">
         <!-- >> rangeslider-ticksttyling-style -->
         <telerik:RadRangeSlider Minimum="0"
                                 Maximum="100"
                                 RangeStart="30"
-                                RangeEnd="60"                               
+                                RangeEnd="60"
                                 TicksPlacement="Start"
                                 TickStep="10"
                                 TickStyleSelector="{StaticResource RangeTickStyleSelector}" />
         <!-- << rangeslider-ticksttyling-style -->
+        <VerticalStackLayout Spacing="10">
+            <HorizontalStackLayout Spacing="5">
+                <Rectangle WidthRequest="14" HeightRequest="14" Fill="#A55200" />
+                <Label Text="Before-range tick" FontSize="14" />
+            </HorizontalStackLayout>
+            <HorizontalStackLayout Spacing="5">
+                <Rectangle WidthRequest="14" HeightRequest="14" Fill="#018383" />
+                <Label Text="In-range tick" FontSize="14" />
+            </HorizontalStackLayout>
+            <HorizontalStackLayout Spacing="5">
+                <Rectangle WidthRequest="14" HeightRequest="14" Fill="#830183" />
+                <Label Text="After-range tick" FontSize="14" />
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
     </VerticalStackLayout>
 </ContentView>

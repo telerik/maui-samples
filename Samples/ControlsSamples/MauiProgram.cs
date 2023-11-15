@@ -27,6 +27,7 @@ namespace QSF
 				.ConfigureFonts(fonts =>
 				{
 					fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+					fonts.AddFont("telerikcontrolsicons.ttf", "TelerikControlsIcons");
 					fonts.AddFont("telerikfontexamples.ttf", "TelerikFontExamples");
 				});
 

@@ -12,7 +12,8 @@ public class Control
 
     public string Name { get; set; }
 
-    public string Icon { get; set; }
+    [XmlIgnore]
+    public string Icon => TelerikControlsIcons.GetIcon(this.Name);
 
     public string DisplayName { get; set; }
 

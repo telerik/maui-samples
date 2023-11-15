@@ -1,4 +1,7 @@
 ﻿using Microsoft.Maui.Controls;
+using Microsoft.Maui.Graphics;
+using QSF.Common;
+using QSF.Converters;
 using QSF.ViewModels;
 using System.Collections.ObjectModel;
 
@@ -15,20 +18,26 @@ namespace QSF.Examples.SegmentedControlControl.FirstLookExample
                 "Desserts"
             };
 
-            this.SmallImages = new ObservableCollection<ImageSource>
+            this.SmallImages = new ObservableCollection<FontImageSource>
             {
-                CreateImage("busyindicator.png"),
-                CreateImage("path.png"),
-                CreateImage("rating.png")
+                CreateFontImage(TelerikControlsIcons.GetIcon("BusyIndicator")),
+                CreateFontImage(TelerikControlsIcons.GetIcon("Path")),
+                CreateFontImage(TelerikControlsIcons.GetIcon("Rating"))
             };
         }
 
         public ObservableCollection<string> Categories { get; private set; }
-        public ObservableCollection<ImageSource> SmallImages { get; private set; }
+        public ObservableCollection<FontImageSource> SmallImages { get; private set; }
 
-        private static ImageSource CreateImage(string name)
+        private static FontImageSource CreateFontImage(string glyph)
         {
-            return ImageSource.FromFile(name);
+            return new FontImageSource
+            {
+                Glyph = glyph,
+                FontFamily = "TelerikControlsIcons",
+                Size = 16,
+                Color = App.Current.Resources["AccentColor8"] as Color
+            };
         }
     }
 }

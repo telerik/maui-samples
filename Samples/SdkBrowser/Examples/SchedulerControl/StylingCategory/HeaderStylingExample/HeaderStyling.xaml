@@ -7,39 +7,41 @@
         <ResourceDictionary>
             <!-- >> scheduler-header-styles -->
             <Style TargetType="telerik:RadBorder" x:Key="HeaderBorderStyle">
-                <Setter Property="BackgroundColor" Value="#EDEAF6" />
-                <Setter Property="BorderBrush" Value="#674BB2" />
+                <Setter Property="BackgroundColor" Value="#EEEAF6" />
+                <Setter Property="BorderBrush" Value="#C3B4DF" />
                 <Setter Property="BorderThickness" Value="0, 0, 0, 2" />
             </Style>
             <Style TargetType="Label" x:Key="HeaderLabelStyle">
                 <Setter Property="TextColor" Value="#674BB2" />
-                <Setter Property="FontSize" Value="18" />
-                <Setter Property="FontAttributes" Value="Italic" />
-            </Style>
-            <Style TargetType="Button" x:Key="IncreaseVisibleRangeButtonStyle">
-                <Setter Property="TextColor" Value="#8660C5" />
-                <Setter Property="FontSize" Value="10" />
-            </Style>
-            <Style TargetType="Button" x:Key="DecreaseVisibleRangeButtonStyle">
-                <Setter Property="TextColor" Value="#8660C5" />
-                <Setter Property="FontSize" Value="10" />
-            </Style>
-            <Style TargetType="Button" x:Key="TodayButtonStyle">
-                <Setter Property="TextColor" Value="#3341A1" />
-                <Setter Property="FontSize" Value="12" />
                 <Setter Property="FontAttributes" Value="Bold" />
             </Style>
+            <Style TargetType="Button" x:Key="IncreaseVisibleRangeButtonStyle">
+                <Setter Property="Text" Value="{x:Static telerik:TelerikFont.IconForward}" />
+                <Setter Property="TextColor" Value="#674BB2" />
+            </Style>
+            <Style TargetType="Button" x:Key="DecreaseVisibleRangeButtonStyle">
+                <Setter Property="Text" Value="{x:Static telerik:TelerikFont.IconBack}" />
+                <Setter Property="TextColor" Value="#674BB2" />
+            </Style>
+            <Style TargetType="Button" x:Key="TodayButtonStyle">
+                <Setter Property="TextColor" Value="#674BB2" />
+                <Setter Property="BackgroundColor" Value="{OnPlatform Default=#66C3B4DF, Android=Transparent, iOS=Transparent}" />
+                <Setter Property="BorderWidth" Value="0" />
+            </Style>
             <Style TargetType="Label" x:Key="HeaderIndicatorLabelStyle">
-                <Setter Property="TextColor" Value="#3341A1" />
-                <Setter Property="FontSize" Value="12" />
-                <Setter Property="BackgroundColor" Value="LightBlue" />
+                <Setter Property="TextColor" Value="#674BB2" />
+                <Setter Property="BackgroundColor" Value="#66C3B4DF" />
+                <Setter Property="Clip">
+                    <EllipseGeometry RadiusX="12"
+                                     RadiusY="12"
+                                     Center="{OnPlatform Default='20, 20', iOS='22, 22'}" />
+                </Setter>
             </Style>
             <Style TargetType="telerik:SchedulerDatePicker">
                 <Setter Property="ButtonStyle">
                     <Setter.Value>
                         <Style TargetType="Button">
-                            <Setter Property="TextColor" Value="#04A2AA" />
-                            <Setter Property="FontAttributes" Value="Bold" />
+                            <Setter Property="TextColor" Value="#674BB2" />
                         </Style>
                     </Setter.Value>
                 </Setter>
@@ -48,18 +50,56 @@
                 <Setter Property="ButtonStyle">
                     <Setter.Value>
                         <Style TargetType="Button">
-                            <Setter Property="TextColor" Value="#04A2AA" />
+                            <Setter Property="TextColor" Value="#674BB2" />
                             <Setter Property="FontAttributes" Value="Bold" />
                         </Style>
                     </Setter.Value>
                 </Setter>
             </Style>
             <Style TargetType="telerik:NonVirtualizedItemsControlItemContainer" x:Key="ViewDefinitionHeaderItemStyle">
-                <Setter Property="TextColor" Value="#4652AA" />
+                <Setter Property="TextColor" Value="#674BB2" />
+                <Setter Property="BackgroundColor" Value="{OnPlatform Default=#66C3B4DF, Android=Transparent, iOS=Transparent}" />
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup Name="CommonStates">
+                            <VisualState Name="Normal" />
+                            <VisualState Name="Focused" />
+                            <VisualState Name="PointerOver" />
+                            <VisualState Name="Disabled">
+                                <VisualState.Setters>
+                                    <Setter Property="telerik:NonVirtualizedItemsControlItemContainer.BackgroundColor" Value="Transparent" />
+                                    <Setter Property="telerik:NonVirtualizedItemsControlItemContainer.TextColor" Value="#61674BB2" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
             </Style>
             <Style TargetType="telerik:NonVirtualizedItemsControlItemContainer" x:Key="ActiveViewDefinitionHeaderItemStyle">
-                <Setter Property="TextColor" Value="White" />
-                <Setter Property="BackgroundColor" Value="#8660C5" />
+                <Setter Property="TextColor" Value="{AppThemeBinding Light={OnPlatform Default=White, Android=#674BB2}, Dark={OnPlatform Default=White, Android=#E6DDEE}}" />
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={OnPlatform Default=#674BB2, Android=#F8F8F8}, Dark={OnPlatform Default=#674BB2, Android=#474747}}" />
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup Name="CommonStates">
+                            <VisualState Name="Normal" />
+                            <VisualState Name="Focused" />
+                            <VisualState Name="PointerOver">
+                                <VisualState.Setters>
+                                    <Setter Property="telerik:NonVirtualizedItemsControlItemContainer.BackgroundColor" Value="#765CBA" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="Disabled">
+                                <VisualState.Setters>
+                                    <Setter Property="telerik:NonVirtualizedItemsControlItemContainer.TextColor"
+                                            Value="{AppThemeBinding Light={OnPlatform Default=#61FFFFFF, Android=#61674BB2},
+                                                                    Dark={OnPlatform Default=#61FFFFFF, Android=#61E6DDEE}}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
             </Style>
             <!-- << scheduler-header-styles -->
         </ResourceDictionary>
@@ -74,8 +114,10 @@
                               TodayButtonStyle="{StaticResource TodayButtonStyle}"
                               HeaderIndicatorLabelStyle="{StaticResource HeaderIndicatorLabelStyle}"
                               ViewDefinitionHeaderItemStyle="{StaticResource ViewDefinitionHeaderItemStyle}"
-                              ActiveViewDefinitionHeaderItemStyle="{StaticResource ActiveViewDefinitionHeaderItemStyle}">
+                              ActiveViewDefinitionHeaderItemStyle="{StaticResource ActiveViewDefinitionHeaderItemStyle}"
+                              ActiveViewDefinitionIndex="1">
             <telerik:RadScheduler.ViewDefinitions>
+                <telerik:DayViewDefinition />
                 <telerik:WeekViewDefinition />
                 <telerik:MonthViewDefinition />
             </telerik:RadScheduler.ViewDefinitions>

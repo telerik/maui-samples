@@ -7,6 +7,9 @@
     <Style TargetType="telerik:RadCheckBox">
         <Setter Property="VerticalOptions" Value="Center" />
     </Style>
+    <Style TargetType="ScrollView">
+        <Setter Property="Padding" Value="{OnPlatform Default=0, MacCatalyst='0, 0, 15, 0', WinUI='0, 0, 14, 0'}" />
+    </Style>
     <Style x:Key="GroupLabelBaseStyle" TargetType="Label">
         <Setter Property="HorizontalOptions" Value="Start" />
         <Setter Property="VerticalOptions" Value="Center" />

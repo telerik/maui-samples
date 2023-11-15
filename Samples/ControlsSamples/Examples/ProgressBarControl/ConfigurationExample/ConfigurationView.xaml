@@ -212,7 +212,7 @@
                                Style="{StaticResource VerticalGroupLabelStyle}" />
                         <telerik:RadNumericInput x:Name="segmentCountNumeric"
                                                  IsEnabled="{Binding CanUpdateSegmentCount}"
-                                                 Minimum="0"
+                                                 Minimum="1"
                                                  Maximum="10"
                                                  VerticalOptions="Center"
                                                  Value="{Binding SegmentCount, Source={x:Reference progressBar}}"

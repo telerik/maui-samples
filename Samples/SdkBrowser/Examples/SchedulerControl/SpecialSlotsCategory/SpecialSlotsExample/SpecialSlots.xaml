@@ -7,8 +7,8 @@
         <!-- >> scheduler-special-slots -->
         <telerik:RadScheduler x:Name="scheduler">
             <telerik:RadScheduler.ViewDefinitions>
-                <telerik:MultidayViewDefinition VisibleDays="3" Title="3 Day" SpecialSlotsSource="{Binding RestHours}" />
                 <telerik:DayViewDefinition SpecialSlotsSource="{Binding RestHours}" />
+                <telerik:MultidayViewDefinition VisibleDays="3" Title="3 Day" SpecialSlotsSource="{Binding RestHours}" />
             </telerik:RadScheduler.ViewDefinitions>
         </telerik:RadScheduler>
         <!-- << scheduler-special-slots -->

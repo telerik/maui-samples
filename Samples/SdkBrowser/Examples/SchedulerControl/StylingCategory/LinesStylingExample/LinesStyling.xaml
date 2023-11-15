@@ -7,43 +7,38 @@
         <ResourceDictionary>
             <!-- >> scheduler-lines-styles -->
             <Style TargetType="telerik:SchedulerBoxView" x:Key="MajorTickLineStyle">
-                <Setter Property="BackgroundColor" Value="#A695C4" />
+                <Setter Property="BackgroundColor" Value="#7C59B6" />
             </Style>
             <Style TargetType="telerik:SchedulerBoxView" x:Key="MinorTickLineStyle">
-                <Setter Property="BackgroundColor" Value="#EDEAF6" />
+                <Setter Property="BackgroundColor" Value="#D8CDEA" />
             </Style>
             <Style TargetType="telerik:SchedulerBoxView" x:Key="VerticalLineStyle">
-                <Setter Property="BackgroundColor" Value="#A695C4" />
+                <Setter Property="BackgroundColor" Value="#7C59B6" />
             </Style>
             <Style TargetType="telerik:SchedulerBoxView" x:Key="HorizontalLineStyle">
-                <Setter Property="BackgroundColor" Value="#EDEAF6" />
+                <Setter Property="BackgroundColor" Value="#D8CDEA" />
             </Style>
             <Style TargetType="telerik:SchedulerBoxView" x:Key="MonthVerticalLineStyle">
-                <Setter Property="BackgroundColor" Value="#A695C4" />
-                <Setter Property="IsVisible" Value="false" />
+                <Setter Property="BackgroundColor" Value="#7C59B6" />
             </Style>
             <Style TargetType="telerik:SchedulerBoxView" x:Key="MonthHorizontalLineStyle">
-                <Setter Property="BackgroundColor" Value="#EDEAF6" />
-            </Style>
-            <Style TargetType="telerik:SchedulerCurrentTimeIndicator">
-                <Setter Property="Color" Value="Black" />
-                <Setter Property="LineThickness" Value="4" />
+                <Setter Property="BackgroundColor" Value="#D8CDEA" />
             </Style>
             <!-- << scheduler-lines-styles -->
         </ResourceDictionary>
     </ContentView.Resources>
     <Grid>
         <!-- >> scheduler-lines-styling-definition -->
-        <telerik:RadScheduler x:Name="scheduler">
+        <telerik:RadScheduler x:Name="scheduler" ActiveViewDefinitionIndex="1">
             <telerik:RadScheduler.ViewDefinitions>
-                <telerik:WeekViewDefinition MajorTickLineStyle="{StaticResource MajorTickLineStyle}"
-                                            MinorTickLineStyle="{StaticResource MinorTickLineStyle}"
-                                            VerticalLineStyle="{StaticResource VerticalLineStyle}"
-                                            HorizontalLineStyle="{StaticResource HorizontalLineStyle}" />
                 <telerik:DayViewDefinition MajorTickLineStyle="{StaticResource MajorTickLineStyle}"
                                            MinorTickLineStyle="{StaticResource MinorTickLineStyle}"
                                            VerticalLineStyle="{StaticResource VerticalLineStyle}"
                                            HorizontalLineStyle="{StaticResource HorizontalLineStyle}" />
+                <telerik:WeekViewDefinition MajorTickLineStyle="{StaticResource MajorTickLineStyle}"
+                                            MinorTickLineStyle="{StaticResource MinorTickLineStyle}"
+                                            VerticalLineStyle="{StaticResource VerticalLineStyle}"
+                                            HorizontalLineStyle="{StaticResource HorizontalLineStyle}" />
                 <telerik:MonthViewDefinition VerticalLineStyle="{StaticResource MonthVerticalLineStyle}"
                                              HorizontalLineStyle="{StaticResource MonthHorizontalLineStyle}"/>
             </telerik:RadScheduler.ViewDefinitions>

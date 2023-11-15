@@ -9,7 +9,7 @@
           RowSpacing="10">
         <HorizontalStackLayout Spacing="10">
             <Button Text="ExpandAll" Clicked="OnExpandAllClicked"/>
-            <Button Text="CollapseAll" Clicked="OnCollapseAllclicked"/>
+            <Button Text="CollapseAll" Clicked="OnCollapseAllClicked"/>
         </HorizontalStackLayout>
         <telerik:RadTreeView x:Name="treeView" Grid.Row="1" ItemsSource="{Binding Items}">
             <telerik:TreeViewDescriptor DisplayMemberPath="Name"

@@ -18,8 +18,7 @@
     
     <VerticalStackLayout Style="{StaticResource RootAtSeparateAreaStyle}">
         <Label Text="NavigationView Settings:" Style="{StaticResource SectionHeadingLabelStyle}" />
-        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}"
-                             IsVisible="{OnPlatform Default=true, Android=false}">
+        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
             <Label Text="Header:" Style="{StaticResource VerticalGroupLabelStyle}" />
             <telerik:RadEntry HorizontalOptions="Fill"
                               Placeholder="Enter Header Text"

@@ -45,8 +45,12 @@
                             <telerik:RadBorder MinimumWidthRequest="130"
                                                MinimumHeightRequest="130"
                                                Style="{StaticResource ExampleBorderStyle}" />
-                            <Image Source="{Binding Icon}"
-                                   Margin="35" />
+                            <Label FontFamily="TelerikControlsIcons"
+                                   Text="{Binding Icon}"
+                                   TextColor="{StaticResource AccentColor8}"
+                                   FontSize="60"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center" />
                         </layouts:QGrid>
                         <Label Text="{Binding DisplayName}"
                                LineBreakMode="WordWrap"

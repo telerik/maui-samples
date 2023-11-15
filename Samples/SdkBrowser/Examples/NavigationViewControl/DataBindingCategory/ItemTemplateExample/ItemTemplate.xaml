@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:converters="clr-namespace:SDKBrowserMaui.Converters"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.NavigationViewControl.DataBindingCategory"
+             x:Class="SDKBrowserMaui.Examples.NavigationViewControl.DataBindingCategory.ItemTemplateExample.ItemTemplate">
+    <ContentView.Resources>
+        <converters:FontIconConverter x:Key="FontIconConverter"
+                                      FontFamily="TelerikFontExamples"
+                                      FontSize="16" />
+
+        <!-- >> navigationview-databinding-navigationitemtemplate -->
+        <DataTemplate x:Key="NavigationItemTemplate">
+            <Grid>
+                <telerik:RadBadgeView BadgeType="Dot"
+                                      BadgeHorizontalPosition="End"
+                                      BadgeVerticalPosition="Center"
+                                      BadgeHorizontalAlignment="Start"
+                                      BadgeVerticalAlignment="Center"
+                                      Margin="16, 0">
+                    <telerik:RadBadgeView.Content>
+                        <Label Text="{Binding Text}"
+                               TextColor="{Binding TextColor, Source={RelativeSource AncestorType={x:Type telerik:NavigationViewItemView}}}"
+                               VerticalOptions="Center" />
+                    </telerik:RadBadgeView.Content>
+                </telerik:RadBadgeView>
+            </Grid>
+        </DataTemplate>
+        <!-- << navigationview-databinding-navigationitemtemplate -->
+    </ContentView.Resources>
+
+    <!-- >> navigationview-databinding-itemtemplate-xaml -->
+    <telerik:RadNavigationView x:Name="navigationView"
+                               HeaderText="MyMail"
+                               ItemsSource="{Binding Items}"
+                               SelectedItem="{Binding SelectedItem}"
+                               DisplayMemberPath="Text"
+                               ItemTemplate="{StaticResource NavigationItemTemplate}"
+                               ImageSourcePath="Icon"
+                               ImageSourceConverter="{StaticResource FontIconConverter}">
+        <telerik:RadNavigationView.BindingContext>
+            <local:ViewModel/>
+        </telerik:RadNavigationView.BindingContext>
+        <Label Text="NavigationView Content"
+               HorizontalOptions="Center"
+               VerticalOptions="Center" />
+    </telerik:RadNavigationView>
+    <!-- << navigationview-databinding-itemtemplate-xaml -->
+</ContentView>

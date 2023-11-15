@@ -8,9 +8,13 @@
     <ContentView.ControlTemplate>
         <ControlTemplate>
             <HorizontalStackLayout Padding="0, 2">
-                <Image Source="{TemplateBinding Icon}"
-                       Aspect="Center"
-                       Margin="4, 0, 8, 0"/>
+                <Label FontFamily="TelerikControlsIcons"
+                       Text="{TemplateBinding Icon}"
+                       TextColor="{StaticResource AccentColor8}"
+                       FontSize="24"
+                       Margin="4, 0, 8, 0"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center" />
                 <Label Text="{TemplateBinding Header}"
                        VerticalOptions="Center"/>
             </HorizontalStackLayout>

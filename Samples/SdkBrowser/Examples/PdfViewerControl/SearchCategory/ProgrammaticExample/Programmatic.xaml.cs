@@ -27,9 +27,9 @@ public partial class Programmatic : ContentView
     }
 
     // >> pdfviewer-entry-textchanged
-    private void OnTextChanged(object sender, TextChangedEventArgs e)
+    private void OnSearchEntryTextChanged(object sender, TextChangedEventArgs e)
     {
-        this.pdfViewer.SearchSettings.SearchAsync(this.searchText.Text, this.pdfViewer.SearchSettings.SearchOptions);
+        this.pdfViewer.SearchSettings.SearchAsync(this.searchEntry.Text, this.pdfViewer.SearchSettings.SearchOptions);
     }
     // << pdfviewer-entry-textchanged
 }

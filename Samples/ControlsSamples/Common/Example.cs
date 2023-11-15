@@ -1,4 +1,6 @@
-﻿namespace QSF.Common;
+﻿using System.Xml.Serialization;
+
+namespace QSF.Common;
 
 public class Example
 {
@@ -6,7 +8,8 @@ public class Example
 
     public string DisplayName { get; set; }
 
-    public string Icon { get; set; }
+    [XmlIgnore]
+    public string Icon => TelerikControlsIcons.GetExampleIcon(this);
 
     public string CodeUrl { get; set; }
 

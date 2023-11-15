@@ -23,25 +23,27 @@
         </ResourceDictionary>
     </ContentView.Resources>
     <telerik:RadContentView.Content>
-        <VerticalStackLayout WidthRequest="300" HorizontalOptions="Center">
-            <!-- >> combobox-dropdown-styling -->
-            <telerik:RadComboBox ItemsSource="{Binding Items}"
-                                 IsEditable="True" 
-                                 SearchTextPath="Name"
-                                 DisplayMemberPath="Name"
-                                 SelectionMode="Multiple"
-                                 HighlightTextColor="Black"
-                                 DropDownBorderColor="Blue"
-                                 DropDownBorderThickness="2"
-                                 DropDownCornerRadius="5"
-                                 DropDownBackgroundColor="LightBlue"
-                                 DropDownButtonStyle="{StaticResource DropDownButtonStyle}"
-                                 AutomationId="comboBox">
-                <telerik:RadComboBox.BindingContext>
-                    <local:ViewModel/>
-                </telerik:RadComboBox.BindingContext>
-            </telerik:RadComboBox>
-            <!-- << combobox-dropdown-styling -->
-        </VerticalStackLayout>
+        <Grid WidthRequest="300" HorizontalOptions="Center">
+            <VerticalStackLayout>
+                <!-- >> combobox-dropdown-styling -->
+                <telerik:RadComboBox ItemsSource="{Binding Items}"
+                                     IsEditable="True" 
+                                     SearchTextPath="Name"
+                                     DisplayMemberPath="Name"
+                                     SelectionMode="Multiple"
+                                     HighlightTextColor="Black"
+                                     DropDownBorderColor="Blue"
+                                     DropDownBorderThickness="2"
+                                     DropDownCornerRadius="5"
+                                     DropDownBackgroundColor="LightBlue"
+                                     DropDownButtonStyle="{StaticResource DropDownButtonStyle}"
+                                     AutomationId="comboBox">
+                    <telerik:RadComboBox.BindingContext>
+                        <local:ViewModel/>
+                    </telerik:RadComboBox.BindingContext>
+                </telerik:RadComboBox>
+                <!-- << combobox-dropdown-styling -->
+            </VerticalStackLayout>
+        </Grid>
     </telerik:RadContentView.Content>
 </telerik:RadContentView>

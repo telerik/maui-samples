@@ -8,10 +8,10 @@
         <!-- >> dataform-events-example -->
         <telerik:RadDataForm x:Name="dataForm"
                              CommitMode="Explicit"
-                             PropertyChanged="OnPropertyChanged"
-                             ValidationCompleted="OnValidationCompleted"
-                             EditorValidationCompleted="OnEditorValidationCompleted"
-                             EditorValueChanged="OnEditorValueChanged" />
+                             PropertyChanged="OnDataFormPropertyChanged"
+                             ValidationCompleted="OnDataFormValidationCompleted"
+                             EditorValidationCompleted="OnDataFormEditorValidationCompleted"
+                             EditorValueChanged="OnDataFormEditorValueChanged" />
         <!-- << dataform-events-example -->
         <HorizontalStackLayout Grid.Row="1" HorizontalOptions="End" Spacing="10">
             <Button Text="Commit" Command="{Binding CommitCommand, Source={x:Reference dataForm}}" />

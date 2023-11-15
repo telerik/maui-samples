@@ -8,7 +8,7 @@ namespace SDKBrowserMaui.Examples.SchedulerControl.StylingCategory.SpecialSlotsS
 // >> scheduler-specialslots-styleselector
 public class CustomSpecialSlotStyleSelector : IStyleSelector
 {
-    public Style NonworkingStyle { get; set; }
+    public Style NonWorkingStyle { get; set; }
     public Style WeekendStyle { get; set; }
 
     public Style SelectStyle(object item, BindableObject bindable)
@@ -19,7 +19,7 @@ public class CustomSpecialSlotStyleSelector : IStyleSelector
             return this.WeekendStyle;
         }
 
-        return this.NonworkingStyle;
+        return this.NonWorkingStyle;
     }
 }
 // << scheduler-specialslots-styleselector

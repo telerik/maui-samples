@@ -1,6 +1,6 @@
-using System;
 using Microsoft.Maui;
 using Microsoft.Maui.Controls;
+using System;
 using System.Collections.ObjectModel;
 using Telerik.Maui.Controls.Scheduler;
 

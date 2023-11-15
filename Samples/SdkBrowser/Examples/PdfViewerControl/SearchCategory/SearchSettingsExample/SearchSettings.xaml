@@ -6,26 +6,29 @@
              x:Class="SDKBrowserMaui.Examples.PdfViewerControl.SearchCategory.SearchSettingsExample.SearchSettings">
     <ContentView.Resources>
         <ResourceDictionary>
-            <!-- >> prfviewer-search-toast -->
+            <Style TargetType="telerik:PdfViewerSearchContentView">
+                <Setter Property="MinimumWidthRequest" Value="{OnPlatform Default=-1, MacCatalyst=475, WinUI=505}" />
+            </Style>
+            <!-- >> pdfviewer-search-toast -->
             <Style x:Key="ToastStyle" TargetType="telerik:PdfViewerSearchToast">
                 <Setter Property="Fill" Value="#FF7F7F" />
                 <Setter Property="TextColor" Value="White" />
             </Style>
-            <!-- << prfviewer-search-toast -->
+            <!-- << pdfviewer-search-toast -->
         </ResourceDictionary>
     </ContentView.Resources>
-    
+
     <!-- >> pdfviewer-search-settings -->
     <Grid RowDefinitions="{OnIdiom Desktop='Auto, *', Phone='*, Auto'}">
         <telerik:RadPdfViewerToolbar Grid.Row="{OnIdiom Desktop=0, Phone=1}"
                                      PdfViewer="{x:Reference pdfViewer}">
-            <telerik:PdfViewerSearchToolbarItem IsVisible="{OnIdiom Phone=False, Desktop=True}"/>
+            <telerik:PdfViewerSearchToolbarItem IsVisible="{OnIdiom Phone=False, Desktop=True}" />
             <!-- >> pdfviewer-search-toast-style -->
-            <telerik:PdfViewerSearchNavigationToolbarItem ToastStyle="{StaticResource ToastStyle}" IsVisible="{OnIdiom Phone=True, Desktop=False}"/>
+            <telerik:PdfViewerSearchNavigationToolbarItem ToastStyle="{StaticResource ToastStyle}" IsVisible="{OnIdiom Phone=True, Desktop=False}" />
             <!-- << pdfviewer-search-toast-style -->
         </telerik:RadPdfViewerToolbar>
-        <telerik:RadPdfViewer x:Name="pdfViewer" 
-                              Grid.Row="{OnIdiom Desktop=1, Phone=0}" >
+        <telerik:RadPdfViewer x:Name="pdfViewer"
+                              Grid.Row="{OnIdiom Desktop=1, Phone=0}">
             <telerik:RadPdfViewer.SearchSettings>
                 <telerik:PdfViewerSearchSettings MainSearchResultFill="#99FF7F7F"
                                                  SearchResultsStringFormat="Result: {0}, Total: {2}"
@@ -40,7 +43,7 @@
                     </telerik:PdfViewerSearchSettings.SearchOptions>
                 </telerik:PdfViewerSearchSettings>
             </telerik:RadPdfViewer.SearchSettings>
-        </telerik:RadPdfViewer >
+        </telerik:RadPdfViewer>
         <!-- << pdfviewer-search-settings -->
     </Grid>
 </ContentView>
