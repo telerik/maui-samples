@@ -9,38 +9,51 @@
         <local:RangeLabelStyleSelector x:Key="RangeLabelStyleSelector">
             <local:RangeLabelStyleSelector.BeforeRangeStyle>
                 <Style TargetType="Label">
-                    <Setter Property="Opacity" Value="0.5" />
-                    <Setter Property="TextColor" Value="#865FC5" />
+                    <Setter Property="TextColor" Value="#A55200" />
                     <Setter Property="FontFamily" Value="Arial" />
-                    <Setter Property="FontSize" Value="22" />
+                    <Setter Property="FontSize" Value="24" />
                 </Style>
             </local:RangeLabelStyleSelector.BeforeRangeStyle>
             <local:RangeLabelStyleSelector.InsideRangeStyle>
                 <Style TargetType="Label">
-                    <Setter Property="TextColor" Value="#674BB2" />
+                    <Setter Property="TextColor" Value="#018383" />
                     <Setter Property="FontFamily" Value="Arial" />
                     <Setter Property="FontSize" Value="24" />
                 </Style>
             </local:RangeLabelStyleSelector.InsideRangeStyle>
             <local:RangeLabelStyleSelector.AfterRangeStyle>
                 <Style TargetType="Label">
-                    <Setter Property="TextColor" Value="#865FC5" />
+                    <Setter Property="TextColor" Value="#830183" />
                     <Setter Property="FontFamily" Value="Arial" />
-                    <Setter Property="FontSize" Value="22" />
+                    <Setter Property="FontSize" Value="24" />
                 </Style>
             </local:RangeLabelStyleSelector.AfterRangeStyle>
         </local:RangeLabelStyleSelector>
         <!-- << rangeslider-styling-labelsstyleselector -->
     </ContentView.Resources>
-    <VerticalStackLayout>
+    <VerticalStackLayout Spacing="40">
         <!-- >> rangeslider-styling-labelsstyleselector-xaml -->
         <telerik:RadRangeSlider Minimum="0"
                                 Maximum="100"
                                 RangeStart="30"
-                                RangeEnd="60"                               
+                                RangeEnd="70"
                                 LabelsPlacement="End"
-                                LabelStep="10"
+                                LabelStep="{OnIdiom Default=10, Phone=20}"
                                 LabelStyleSelector="{StaticResource RangeLabelStyleSelector}" />
         <!-- << rangeslider-styling-labelsstyleselector-xaml -->
+        <VerticalStackLayout Spacing="10">
+            <HorizontalStackLayout Spacing="5">
+                <Rectangle WidthRequest="14" HeightRequest="14" Fill="#A55200" />
+                <Label Text="Before-range value" FontSize="14" />
+            </HorizontalStackLayout>
+            <HorizontalStackLayout Spacing="5">
+                <Rectangle WidthRequest="14" HeightRequest="14" Fill="#018383" />
+                <Label Text="In-range value" FontSize="14" />
+            </HorizontalStackLayout>
+            <HorizontalStackLayout Spacing="5">
+                <Rectangle WidthRequest="14" HeightRequest="14" Fill="#830183" />
+                <Label Text="After-range value" FontSize="14" />
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
     </VerticalStackLayout>
 </ContentView>

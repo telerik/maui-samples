@@ -4,22 +4,26 @@
              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
              x:Class="SDKBrowserMaui.Examples.SchedulerControl.StylingCategory.MoreIndicatorStylingExample.MoreIndicatorStyling">
     <ContentView.Resources>
-        <ResourceDictionary>           
+        <ResourceDictionary>
             <!-- >> scheduler-moreindicator-style -->
             <Style x:Key="DayMoreAppointmentsIndicatorStyle" TargetType="Label">
-                <Setter Property="FontFamily" Value="{x:Static telerik:TelerikFont.Name}" />
-                <Setter Property="TextColor" Value="#7C59B6" />
-                <Setter Property="Text" Value="{x:Static telerik:TelerikFont.IconOk}" />
+                <Setter Property="FontFamily" Value="Segoe UI" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontSize" Value="{OnPlatform Default=10, iOS=9, MacCatalyst=12}" />
+                <Setter Property="TextColor" Value="#8660C5" />
+                <Setter Property="TextTransform" Value="Uppercase" />
+                <Setter Property="Text" Value="{OnIdiom Default='See more ...', Phone='More ...'}" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
             </Style>
             <!-- << scheduler-moreindicator-style -->
         </ResourceDictionary>
     </ContentView.Resources>
     <Grid>
         <!-- >> scheduler-moreindicatorstyling-definition -->
-        <telerik:RadScheduler x:Name="scheduler">
+        <telerik:RadScheduler x:Name="scheduler" ActiveViewDefinitionIndex="1">
             <telerik:RadScheduler.ViewDefinitions>
+                <telerik:DayViewDefinition x:Name="dayViewDefinition" />
                 <telerik:MonthViewDefinition DayMoreAppointmentsIndicatorStyle="{StaticResource DayMoreAppointmentsIndicatorStyle}" />
-                <telerik:DayViewDefinition />
             </telerik:RadScheduler.ViewDefinitions>
         </telerik:RadScheduler>
         <!-- << scheduler-moreindicatorstyling-definition -->

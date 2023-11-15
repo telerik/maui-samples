@@ -1,6 +1,6 @@
-using System;
 using Microsoft.Maui;
 using Microsoft.Maui.Controls;
+using System;
 using System.Collections.ObjectModel;
 using Telerik.Maui.Controls.Scheduler;
 
@@ -8,9 +8,9 @@ namespace SDKBrowserMaui.Examples.SchedulerControl.StylingCategory.MoreIndicator
 
 public partial class MoreIndicatorStyling : ContentView
 {
-	public MoreIndicatorStyling()
-	{
-		InitializeComponent();
+    public MoreIndicatorStyling()
+    {
+        InitializeComponent();
 
         var date = DateTime.Today;
         this.scheduler.AppointmentsSource = new ObservableCollection<Appointment>
@@ -58,5 +58,13 @@ public partial class MoreIndicatorStyling : ContentView
                 End = date.AddHours(20)
             }
         };
+
+        this.scheduler.MonthDayTapped += this.OnMonthDayTapped;
+    }
+
+    private void OnMonthDayTapped(object sender, TappedEventArgs<DateTime> e)
+    {
+        this.scheduler.CurrentDate = e.Data;
+        this.scheduler.ActiveViewDefinition = this.dayViewDefinition;
     }
 }

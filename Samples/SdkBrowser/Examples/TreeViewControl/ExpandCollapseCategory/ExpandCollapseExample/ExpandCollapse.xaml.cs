@@ -1,4 +1,5 @@
 using Microsoft.Maui.Controls;
+using SDKBrowserMaui.Converters;
 
 namespace SDKBrowserMaui.Examples.TreeViewControl.ExpandCollapseCategory.ExpandCollapseExample;
 
@@ -16,7 +17,7 @@ public partial class ExpandCollapse : ContentView
         // << treeview-expand-all-method
     }
 
-    private void OnCollapseAllclicked(object sender, System.EventArgs e)
+    private void OnCollapseAllClicked(object sender, System.EventArgs e)
     {
         // >> treeview-collapse-all-method
         this.treeView.CollapseAll();

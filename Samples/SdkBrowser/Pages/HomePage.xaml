@@ -12,8 +12,7 @@
         <telerik:RadListView x:Name="controlsListView" 
                                          Grid.Row="1"
                                          ItemsSource="{Binding Controls}"
-                                         SelectionMode="None"
-                                         PropertyChanged="OnPropertyChanged">
+                                         SelectionMode="None">
             <telerik:RadListView.Commands>
                 <telerik:ListViewUserCommand  Command="{Binding NextCommand}" />
             </telerik:RadListView.Commands>

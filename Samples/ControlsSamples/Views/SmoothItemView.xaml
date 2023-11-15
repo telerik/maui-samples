@@ -21,9 +21,13 @@
                 <telerik:RadBorder BackgroundColor="{AppThemeBinding Light={StaticResource DefaultBackgroundColor}, Dark=Transparent}"
                                    Margin="6, 12, 12, 12"
                                    Style="{StaticResource BorderStyle}">
-                    <Image Source="{TemplateBinding Icon}"
-                           Aspect="Center"
-                           Margin="12" />
+                    <Label FontFamily="TelerikControlsIcons"
+                           Text="{TemplateBinding Icon}"
+                           TextColor="{StaticResource AccentColor8}"
+                           FontSize="24"
+                           Margin="12"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center" />
                 </telerik:RadBorder>
                 <VerticalStackLayout Grid.Column="1">
                     <Label Text="{TemplateBinding Header}"

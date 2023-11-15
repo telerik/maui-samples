@@ -3,6 +3,7 @@ using Telerik.Maui.Controls.Scheduler;
 
 namespace SDKBrowserMaui.Examples.SchedulerControl.AppointmentsCategory.AppointmentTemplateExample;
 
+// >> scheduler-customappointmentdatatemplate
 public class CustomAppointmentDataTemplate : DataTemplateSelector
 {
     public DataTemplate AllDayAppointmentTemplate { get; set; }
@@ -19,3 +20,4 @@ public class CustomAppointmentDataTemplate : DataTemplateSelector
         return this.AppointmentTemplate;
     }
 }
+// << scheduler-customappointmentdatatemplate

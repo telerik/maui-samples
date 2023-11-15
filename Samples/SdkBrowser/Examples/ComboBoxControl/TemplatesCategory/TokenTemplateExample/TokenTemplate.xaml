@@ -6,7 +6,7 @@
                         x:Class="SDKBrowserMaui.Examples.ComboBoxControl.TemplatesCategory.TokenTemplateExample.TokenTemplate"
                         Margin="5">
     <telerik:RadContentView.Content>
-        <VerticalStackLayout WidthRequest="300" HorizontalOptions="Center">
+        <Grid RowDefinitions="Auto, *" WidthRequest="300" HorizontalOptions="Center">
             <!-- >> combobox-tokentemplate -->
             <telerik:RadComboBox ItemsSource="{Binding Items}"
                                  Placeholder="Select City!"
@@ -46,6 +46,6 @@
                 </telerik:RadComboBox.ShowMoreTemplate>
             </telerik:RadComboBox>
             <!-- << combobox-tokentemplate -->
-        </VerticalStackLayout>
+        </Grid>
     </telerik:RadContentView.Content>
 </telerik:RadContentView>

@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using Microsoft.Maui.Controls;
+using Microsoft.Maui.Dispatching;
 using QSF.ViewModels;
 
 namespace QSF.Examples.RangeSliderControl.FirstLookExample;
@@ -26,11 +29,12 @@ public class FirstLookViewModel : ExampleViewModel
     private static readonly List<double> propertyPrices = new() { 220, 130, 150, 160, 210, 250, 430, 120, 400, 680, 720, 430 };
 
     private readonly List<RentalProperty> source = new();
+    private readonly ObservableCollection<RentalProperty> properties;
 
     private double priceRangeStart = 80;
     private double priceRangeEnd = 250;
     private double guestsNumberRangeEnd = 3;
-    private readonly ObservableCollection<RentalProperty> properties;
+    private IDispatcherTimer dispatcherTimer;
 
     public FirstLookViewModel()
     {
@@ -63,7 +67,7 @@ public class FirstLookViewModel : ExampleViewModel
         {
             if (this.UpdateValue(ref this.priceRangeStart, value))
             {
-                this.FilterItems();
+                this.ScheduleFilterItems();
             }
         }
     }
@@ -75,7 +79,7 @@ public class FirstLookViewModel : ExampleViewModel
         {
             if (this.UpdateValue(ref this.priceRangeEnd, value))
             {
-                this.FilterItems();
+                this.ScheduleFilterItems();
             }
         }
     }
@@ -87,9 +91,23 @@ public class FirstLookViewModel : ExampleViewModel
         {
             if (this.UpdateValue(ref this.guestsNumberRangeEnd, value))
             {
-                this.FilterItems();
+                this.ScheduleFilterItems();
             }
         }
+    }
+
+    private void ScheduleFilterItems()
+    {
+        if (this.dispatcherTimer == null)
+        {
+            this.dispatcherTimer = Application.Current.Dispatcher.CreateTimer();
+            this.dispatcherTimer.IsRepeating = false;
+            this.dispatcherTimer.Interval = TimeSpan.FromSeconds(0.1);
+            this.dispatcherTimer.Tick += (s, e) => this.FilterItems();
+        }
+
+        this.dispatcherTimer.Stop();
+        this.dispatcherTimer.Start();
     }
 
     private void FilterItems()

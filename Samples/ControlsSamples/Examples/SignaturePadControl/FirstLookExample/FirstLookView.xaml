@@ -31,6 +31,9 @@
             <Setter Property="HorizontalTextAlignment" Value="Center" />
             <Setter Property="TextColor" Value="{StaticResource AccentColor8}" />
         </Style>
+        <Style TargetType="Label" x:Key="SelectedTipLabelStyle" BasedOn="{StaticResource TipLabelStyle}">
+            <Setter Property="TextColor" Value="{StaticResource TextOnAccentColor}" />
+        </Style>
         <Style TargetType="Label" x:Key="DetailsLabelStyle" BasedOn="{StaticResource ExampleBaseLabelStyle}">
             <Setter Property="FontSize" Value="16" />
         </Style>
@@ -148,7 +151,7 @@
                 <DataTemplate>
                     <telerik:RadBorder Style="{StaticResource SelectedBorderStyle}">
                         <Label Text="{Binding .}"
-                               Style="{StaticResource LabelOnAccentStyle}" />
+                               Style="{StaticResource SelectedTipLabelStyle}" />
                     </telerik:RadBorder>
                 </DataTemplate>
             </telerik:NonVirtualizedItemsControl.SelectedItemTemplate>
@@ -164,7 +167,7 @@
                                  StrokeStarted="SignaturePad_StrokeStarted"
                                  Cleared="SignaturePad_Cleared" />
         <Grid Grid.Row="3"
-              ColumnDefinitions="{OnIdiom Phone='*, *', Desktop='Auto, Auto'}"
+              ColumnDefinitions="{OnIdiom Default='*, *', Desktop='Auto, Auto'}"
               Margin="0, 24, 0, 0">
             <telerik:RadButton Text="Clear"
                                TextColor="{StaticResource ClearButtonColor}"

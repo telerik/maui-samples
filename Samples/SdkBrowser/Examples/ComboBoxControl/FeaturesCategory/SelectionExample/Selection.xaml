@@ -16,50 +16,51 @@
     </telerik:RadContentView.Resources>
     
     <telerik:RadContentView.Content>
-        <VerticalStackLayout HorizontalOptions="{OnIdiom Default=Fill, Desktop=Start}"
-                             WidthRequest="{OnPlatform MacCatalyst=300, WinUI=300}">
-            <Label Text="ComboBox with Single Selection using SelectedIndex" 
-                   Style="{StaticResource LabelStyle}" />
-            <!-- >> combobox-single-selection-selectedindex -->
-            <telerik:RadComboBox ItemsSource="{Binding Items}"
-                                 DisplayMemberPath="Name"
-                                 SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}"
-                                 SelectionMode="Single"
-                                 AutomationId="selectedIndexCombo">
-                <telerik:RadComboBox.BindingContext>
-                    <local:ViewModel/>
-                </telerik:RadComboBox.BindingContext>
-            </telerik:RadComboBox>
-            <!-- << combobox-single-selection-selectedindex -->
+        <Grid WidthRequest="{OnPlatform MacCatalyst=300, WinUI=300}" HorizontalOptions="{OnIdiom Default=Fill, Desktop=Start}">
+            <VerticalStackLayout>
+                <Label Text="ComboBox with Single Selection using SelectedIndex" 
+                       Style="{StaticResource LabelStyle}" />
+                <!-- >> combobox-single-selection-selectedindex -->
+                <telerik:RadComboBox ItemsSource="{Binding Items}"
+                                     DisplayMemberPath="Name"
+                                     SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}"
+                                     SelectionMode="Single"
+                                     AutomationId="selectedIndexCombo">
+                    <telerik:RadComboBox.BindingContext>
+                        <local:ViewModel/>
+                    </telerik:RadComboBox.BindingContext>
+                </telerik:RadComboBox>
+                <!-- << combobox-single-selection-selectedindex -->
 
-            <Label Text="ComboBox with Single Selection using SelectedItem" 
-                   Style="{StaticResource LabelStyle}" />
-            <!-- >> combobox-single-selection-selecteditem -->
-            <telerik:RadComboBox ItemsSource="{Binding Items}"
-                                 DisplayMemberPath="Name"
-                                 SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
-                                 SelectionMode="Single"
-                                 AutomationId="selectedItemCombo">
-                <telerik:RadComboBox.BindingContext>
-                    <local:ViewModel/>
-                </telerik:RadComboBox.BindingContext>
-            </telerik:RadComboBox>
-            <!-- << combobox-single-selection-selecteditem -->
+                <Label Text="ComboBox with Single Selection using SelectedItem" 
+                       Style="{StaticResource LabelStyle}" />
+                <!-- >> combobox-single-selection-selecteditem -->
+                <telerik:RadComboBox ItemsSource="{Binding Items}"
+                                     DisplayMemberPath="Name"
+                                     SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+                                     SelectionMode="Single"
+                                     AutomationId="selectedItemCombo">
+                    <telerik:RadComboBox.BindingContext>
+                        <local:ViewModel/>
+                    </telerik:RadComboBox.BindingContext>
+                </telerik:RadComboBox>
+                <!-- << combobox-single-selection-selecteditem -->
 
-            <Label Text="ComboBox with Multiple Selection" 
-                   Style="{StaticResource LabelStyle}" />
-            <!-- >> combobox-multiple-selection -->
-            <telerik:RadComboBox ItemsSource="{Binding Items}"
-                                 SelectionMode="Multiple"
-                                 DisplayMemberPath="Name"
-                                 SelectedItems="{Binding SelectedItems}"
-                                 SelectionChanged="RadComboBox_SelectionChanged"
-                                 AutomationId="selectedItemMultipleCombo">
-                <telerik:RadComboBox.BindingContext>
-                    <local:ViewModel/>
-                </telerik:RadComboBox.BindingContext>
-            </telerik:RadComboBox>
-            <!-- << combobox-multiple-selection -->
-        </VerticalStackLayout>
+                <Label Text="ComboBox with Multiple Selection" 
+                       Style="{StaticResource LabelStyle}" />
+                <!-- >> combobox-multiple-selection -->
+                <telerik:RadComboBox ItemsSource="{Binding Items}"
+                                     SelectionMode="Multiple"
+                                     DisplayMemberPath="Name"
+                                     SelectedItems="{Binding SelectedItems}"
+                                     SelectionChanged="RadComboBox_SelectionChanged"
+                                     AutomationId="selectedItemMultipleCombo">
+                    <telerik:RadComboBox.BindingContext>
+                        <local:ViewModel/>
+                    </telerik:RadComboBox.BindingContext>
+                </telerik:RadComboBox>
+                <!-- << combobox-multiple-selection -->
+            </VerticalStackLayout>
+        </Grid>
     </telerik:RadContentView.Content>
 </telerik:RadContentView>

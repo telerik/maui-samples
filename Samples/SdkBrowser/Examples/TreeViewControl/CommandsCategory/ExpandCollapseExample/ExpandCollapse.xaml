@@ -3,15 +3,39 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
              xmlns:local="clr-namespace:SDKBrowserMaui.Examples.TreeViewControl"
+             xmlns:converters="clr-namespace:SDKBrowserMaui.Converters"
              x:Class="SDKBrowserMaui.Examples.TreeViewControl.CommandsCategory.ExpandCollapseExample.ExpandCollapse">
+    <ContentView.Resources>
+        <converters:StringPathConverter x:Key="StringPathConverter" />
+    </ContentView.Resources>
     <!-- >> treeview-expand-collapse-commands -->
-    <Grid RowDefinitions="Auto,*">
+    <Grid RowDefinitions="Auto,Auto,*"
+          RowSpacing="10">
         <HorizontalStackLayout Spacing="10">
-            <Button Text="ExpandAll" Command="{Binding ExpandAllCommand, Source={x:Reference treeView}}"/>
-            <Button Text="CollapseAll" Command="{Binding CollapseAllCommand, Source={x:Reference treeView}}"/>
+            <Button Text="ExpandAll" 
+                    Command="{Binding ExpandAllCommand, Source={x:Reference treeView}}"/>
+            <Button Text="CollapseAll" 
+                    Command="{Binding CollapseAllCommand, Source={x:Reference treeView}}"/>
         </HorizontalStackLayout>
-        <telerik:RadTreeView x:Name="treeView" Grid.Row="1" ItemsSource="{Binding Items}">
+        <VerticalStackLayout Grid.Row="1" 
+                               Spacing="5">
+            <Entry x:Name="pathEntry"
+                   Grid.Column="1"
+                   Placeholder="Example: Shared Documents/Reports" />
+            <HorizontalStackLayout Spacing="10">
+                <Button Text="Expand"
+                        Command="{Binding ExpandCommand, Source={x:Reference treeView}}"
+                        CommandParameter="{Binding Text, Source={x:Reference pathEntry}, Converter={StaticResource StringPathConverter}}" />
+                <Button Text="Collapse"
+                        Command="{Binding CollapseCommand, Source={x:Reference treeView}}"
+                        CommandParameter="{Binding Text, Source={x:Reference pathEntry}, Converter={StaticResource StringPathConverter}}" />
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+        <telerik:RadTreeView x:Name="treeView" 
+                             Grid.Row="2" 
+                             ItemsSource="{Binding Items}">
             <telerik:TreeViewDescriptor DisplayMemberPath="Name"
+                                        IdentityMemberPath="Name"
                                         ItemsSourcePath="Children"
                                         TargetType="{x:Type local:Item}" />
             <telerik:RadTreeView.BindingContext>

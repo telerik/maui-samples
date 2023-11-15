@@ -21,7 +21,7 @@ public class ViewModel
 
         this.RestHours.Add(new Slot()
         {
-            Start = today.AddHours(12),
+            Start = today.AddHours(12).AddMinutes(30),
             End = today.AddHours(13),
             IsReadOnly = true,
             RecurrencePattern = dailyRecurrence

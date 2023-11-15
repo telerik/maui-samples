@@ -31,8 +31,7 @@
                              ItemsSource="{Binding Controls}"
                              ItemTapped="controlsListView_ItemTapped"
                              SelectionMode="None"
-                             Margin="16, 16, 16, 0"
-                             PropertyChanged="OnPropertyChanged">
+                             Margin="16, 16, 16, 0">
             <telerik:RadListView.HeaderTemplate>
                 <DataTemplate>
                     <Grid RowDefinitions="Auto, Auto"
@@ -46,7 +45,9 @@
                                    FontSize="{OnPlatform Default=22, Android=24}" />
                             <telerik:RadButton Command="{Binding NavigateToDownloadTrialCommand}"
                                                HorizontalOptions="End"
-                                               Style="{StaticResource MoreInfoButtonStyle}" />
+                                               Style="{StaticResource MoreInfoButtonStyle}"
+                                               MinimumWidthRequest="{OnPlatform iOS=120}"
+                                               MinimumHeightRequest="{OnPlatform iOS=44}" />
                         </Grid>
                     </Grid>
                 </DataTemplate>
@@ -59,34 +60,41 @@
                                                HeightRequest="96"
                                                BackgroundColor="{AppThemeBinding Light={StaticResource ItemBackgroundColor}, Dark={StaticResource ItemBackgroundColorDark}}"
                                                BorderColor="{AppThemeBinding Light={StaticResource SeparatorColor}, Dark={StaticResource SeparatorColorDark}}">
-                                <Grid ColumnSpacing="14"
-                                      ColumnDefinitions="Auto, *"
-                                      Padding="14, 8">
-                                    <telerik:RadBorder WidthRequest="44"
-                                                       CornerRadius="4"
-                                                       BackgroundColor="{AppThemeBinding Light={StaticResource DefaultBackgroundColor}, Dark=Transparent}">
-                                        <Image Source="{Binding Icon}"
-                                               HorizontalOptions="Center"
+                                <Grid>
+                                    <Grid ColumnSpacing="14"
+                                          ColumnDefinitions="Auto, *"
+                                          Padding="14, 8">
+                                        <telerik:RadBorder WidthRequest="44"
+                                                           CornerRadius="4"
+                                                           BackgroundColor="{AppThemeBinding Light={StaticResource DefaultBackgroundColor}, Dark=Transparent}">
+                                        <Image HorizontalOptions="Center"
                                                VerticalOptions="Center"
                                                WidthRequest="24"
                                                HeightRequest="24"
-                                               Aspect="AspectFit" />
-                                    </telerik:RadBorder>
-                                    <VerticalStackLayout Grid.Column="1"
-                                                         VerticalOptions="Center">
-                                        <Label Text="{Binding DisplayName}"
-                                               VerticalOptions="Center"
-                                               Style="{StaticResource ControlNameLabelStyle}" />
-                                        <Label Text="{Binding ShortDescription}"
-                                               VerticalOptions="StartAndExpand"
-                                               Style="{StaticResource DescriptionLabelWithTruncationStyle}" />
-                                    </VerticalStackLayout>
-
-                                    <ContentView Grid.ColumnSpan="2"
-                                                 Content="{Binding Status, Converter={StaticResource StatusTagToTemplateConverter}}"
+                                               Aspect="AspectFit">
+                                            <Image.Source>
+                                                <FontImageSource Glyph="{Binding Icon}"
+                                                                 FontFamily="TelerikControlsIcons"
+                                                                 Color="#7C59B6"
+                                                                 Size="24" />
+                                            </Image.Source>
+                                        </Image>
+                                        </telerik:RadBorder>
+                                        <VerticalStackLayout Grid.Column="1"
+                                                             VerticalOptions="Center">
+                                            <Label Text="{Binding DisplayName}"
+                                                   VerticalOptions="Center"
+                                                   Style="{StaticResource ControlNameLabelStyle}" />
+                                            <Label Grid.Row="1"
+                                                   Text="{Binding ShortDescription}"
+                                                   VerticalOptions="StartAndExpand"
+                                                   Style="{StaticResource DescriptionLabelWithTruncationStyle}" />
+                                        </VerticalStackLayout>
+                                    </Grid>
+                                    <ContentView Content="{Binding Status, Converter={StaticResource StatusTagToTemplateConverter}}"
                                                  HorizontalOptions="End"
                                                  VerticalOptions="Start"
-                                                 Margin="0, 0, -6, 0" />
+                                                 Margin="0, 8, 14, 0" />
                                 </Grid>
                             </telerik:RadBorder>
                         </telerik:ListViewTemplateCell.View>

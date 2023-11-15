@@ -33,9 +33,13 @@
                                 <telerik:RadBorder BackgroundColor="{AppThemeBinding Light={StaticResource DefaultBackgroundColor}, Dark={StaticResource DefaultBackgroundColorDark}}"
                                                    Margin="6, 4, 4, 4"
                                                    CornerRadius="4">
-                                    <Image Source="{TemplateBinding Icon}"
-                                           Aspect="Center"
-                                           Margin="4" />
+                                    <Label FontFamily="TelerikControlsIcons"
+                                           Text="{TemplateBinding Icon}"
+                                           TextColor="{StaticResource AccentColor8}"
+                                           FontSize="24"
+                                           Margin="4"
+                                           HorizontalOptions="Center"
+                                           VerticalOptions="Center" />
                                 </telerik:RadBorder>
                                 <Label Text="{TemplateBinding Header}"
                                        Margin="8, 0, 6, 0"
@@ -163,7 +167,8 @@
                                 <Label Text="Configuration"
                                        FontSize="24"
                                        IsVisible="{OnIdiom Desktop=True, Phone=False}" />
-                                <ScrollView Grid.Row="1">
+                                <ScrollView Grid.Row="1"
+                                            Padding="{OnPlatform Android='0, 0, 4, 0', iOS='0, 0, 8, 0', MacCatalyst='0, 0, 20, 0', WinUI='0, 0, 14, 0'}">
                                     <telerik:RadBorder>
                                         <telerik:RadBorder.Content>
                                             <MultiBinding Converter="{StaticResource ModelToConfigurationAreaConverter}">

@@ -11,13 +11,16 @@
                 <Grid RowDefinitions="Auto,*,Auto"
                       BackgroundColor="White">
                     <HorizontalStackLayout Spacing="10" Margin="0,0,0,20">
-                        <Image Source="sidedrawer.png"
-                               WidthRequest="40" 
-                               HeightRequest="40">
-                            <Image.GestureRecognizers>
+                        <Label FontFamily="TelerikControlsIcons"
+                               Text="&#xe039;"
+                               TextColor="{StaticResource AccentColor8}"
+                               FontSize="40"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center">
+                            <Label.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="OpenDrawer"/>
-                            </Image.GestureRecognizers>
-                        </Image>
+                            </Label.GestureRecognizers>
+                        </Label>
                         <Label Text="List of Controls" 
                                VerticalTextAlignment="Center"
                                FontSize="20" 
@@ -37,11 +40,12 @@
                                                       RowDefinitions="Auto"
                                                       ColumnDefinitions="Auto,*"
                                                       Padding="10">
-                                                    <Image Source="{Binding Icon}"
+                                                    <Label FontFamily="TelerikControlsIcons"
+                                                           Text="{Binding Icon}"
+                                                           TextColor="{StaticResource AccentColor8}"
+                                                           FontSize="30"
                                                            HorizontalOptions="Center"
-                                                           VerticalOptions="Center"
-                                                           WidthRequest="30"
-                                                           HeightRequest="30"/>
+                                                           VerticalOptions="Center" />
                                                     <Label Grid.Column="1"
                                                            Text="{Binding Title}"
                                                            TextColor="{AppThemeBinding Light={StaticResource DefaultTextColor}, Dark={StaticResource DefaultTextColorDark}}"

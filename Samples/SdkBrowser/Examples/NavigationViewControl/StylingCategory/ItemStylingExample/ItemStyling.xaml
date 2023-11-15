@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.NavigationViewControl.StylingCategory.ItemStylingExample.ItemStyling">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <!-- >> navigationview-item-element-styling -->
+            <Style TargetType="telerik:NavigationViewItemView">
+                <Setter Property="TextColor" Value="#00796B" />
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup Name="CommonStates">
+                            <VisualState Name="Normal" />
+                            <VisualState Name="PointerOver">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#B2DFDB" />
+                                    <Setter Property="TextColor" Value="#000000" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="Selected">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#80CBC4" />
+                                    <Setter Property="TextColor" Value="#000000" />
+                                    <Setter Property="FontAttributes" Value="Bold" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="Disabled">
+                                <VisualState.Setters>
+                                    <Setter Property="TextColor" Value="#6100796B" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+            <!-- << navigationview-item-element-styling -->
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+    <Grid>
+        <!-- >> navigationview-item-styling -->
+        <telerik:RadNavigationView x:Name="navigationView"
+                                   HeaderText="Header">
+            <telerik:RadNavigationView.Items>
+                <telerik:NavigationViewItem Text="Item 1" />
+                <telerik:NavigationViewItem Text="Item 2" />
+                <telerik:NavigationViewItem Text="Item 3 (not selectable)" IsSelectable="False" />
+                <telerik:NavigationViewItem Text="Item 4 (disabled)" IsEnabled="False" />
+                <telerik:NavigationViewItem Text="Item 5" />
+            </telerik:RadNavigationView.Items>
+            <Label HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   Text="{Binding SelectedItem.Text, Source={x:Reference navigationView}}" />
+        </telerik:RadNavigationView>
+        <!-- << navigationview-item-styling -->
+    </Grid>
+</ContentView>

@@ -3,22 +3,84 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
              x:Class="SDKBrowserMaui.Examples.RangeSliderControl.FeaturesCategory.DragModeExample.DragMode">
+    <ContentView.Resources>
+        <Style TargetType="telerik:RadRangeSlider">
+            <Setter Property="Grid.Row" Value="1" />
+            <Setter Property="Minimum" Value="0" />
+            <Setter Property="Maximum" Value="100" />
+            <Setter Property="RangeStart" Value="25" />
+            <Setter Property="RangeEnd" Value="75" />
+            <Setter Property="HorizontalOptions" Value="Fill" />
+        </Style>
+        <Style x:Key="HorizontalGridStyle" TargetType="Grid">
+            <Setter Property="ColumnDefinitions" Value="*, *" />
+            <Setter Property="ColumnSpacing" Value="10" />
+        </Style>
+        <Style x:Key="VerticalGridStyle" TargetType="Grid">
+            <Setter Property="RowDefinitions" Value="Auto, Auto" />
+            <Setter Property="RowSpacing" Value="10" />
+        </Style>
+    </ContentView.Resources>
     <VerticalStackLayout Spacing="10">
-        <Label Text="RangeSlider with drag disabled:" />
-        <!-- >> rangeslider-drag-disabled-xaml -->
-        <telerik:RadRangeSlider Minimum="0"
-                                Maximum="100"
-                                RangeStart="25"
-                                RangeEnd="75"
-                                DragMode="Disabled" />
-        <!-- << rangeslider-drag-disabled-xaml -->
-        <Label Text="RangeSlider with only StartThumb drag enabled:" />
-        <!-- >> rangeslider-drag-startthumb-xaml -->
-        <telerik:RadRangeSlider Minimum="0"
-                                Maximum="100"
-                                RangeStart="25"
-                                RangeEnd="90"
-                                DragMode="StartThumb" />
-        <!-- << rangeslider-drag-startthumb-xaml -->
+        <Grid Style="{StaticResource HorizontalGridStyle}">
+            <Grid Style="{StaticResource VerticalGridStyle}">
+                <Label Text="Default (All):" />
+                <!-- >> rangeslider-drag-all-range-elements-xaml -->
+                <telerik:RadRangeSlider DragMode="StartThumb, RangeTrack, EndThumb" />
+                <!-- << rangeslider-drag-all-range-elements-xaml -->
+            </Grid>
+            <Grid Grid.Column="1"
+                  Style="{StaticResource VerticalGridStyle}">
+                <Label Text="Disabled:" />
+                <!-- >> rangeslider-drag-disabled-xaml -->
+                <telerik:RadRangeSlider DragMode="Disabled" />
+                <!-- << rangeslider-drag-disabled-xaml -->
+            </Grid>
+        </Grid>
+        <Grid Style="{StaticResource HorizontalGridStyle}">
+            <Grid Style="{StaticResource VerticalGridStyle}" >
+                <Label Text="Only Range Track:" />
+                <!-- >> rangeslider-drag-rangetrack-xaml -->
+                <telerik:RadRangeSlider DragMode="RangeTrack" />
+                <!-- << rangeslider-drag-rangetrack-xaml -->
+            </Grid>
+            <Grid Grid.Column="1"
+                  Style="{StaticResource VerticalGridStyle}">
+                <Label Text="Only Range Thumbs:" />
+                <!-- >> rangeslider-drag-both-thumbs-xaml -->
+                <telerik:RadRangeSlider DragMode="StartThumb, EndThumb" />
+                <!-- << rangeslider-drag-both-thumbs-xaml -->
+            </Grid>
+        </Grid>
+        <Grid Style="{StaticResource HorizontalGridStyle}">
+            <Grid Style="{StaticResource VerticalGridStyle}" >
+                <Label Text="Only Start Thumb:" />
+                <!-- >> rangeslider-drag-startthumb-xaml -->
+                <telerik:RadRangeSlider DragMode="StartThumb" />
+                <!-- << rangeslider-drag-startthumb-xaml -->
+            </Grid>
+            <Grid Grid.Column="1"
+                  Style="{StaticResource VerticalGridStyle}">
+                <Label Text="Only End Thumb:" />
+                <!-- >> rangeslider-drag-endthumb-xaml -->
+                <telerik:RadRangeSlider DragMode="EndThumb" />
+                <!-- << rangeslider-drag-endthumb-xaml -->
+            </Grid>
+        </Grid>
+        <Grid Style="{StaticResource HorizontalGridStyle}">
+            <Grid Style="{StaticResource VerticalGridStyle}" >
+                <Label Text="Start Thumb &amp; Range Track:" />
+                <!-- >> rangeslider-drag-startthumb-and-rangetrack-xaml -->
+                <telerik:RadRangeSlider DragMode="StartThumb, RangeTrack" />
+                <!-- << rangeslider-drag-startthumb-and-rangetrack-xaml -->
+            </Grid>
+            <Grid Grid.Column="1"
+                  Style="{StaticResource VerticalGridStyle}">
+                <Label Text="End Thumb &amp; Range Track:" />
+                <!-- >> rangeslider-drag-endthumb-and-rangetrack-xaml -->
+                <telerik:RadRangeSlider DragMode="EndThumb, RangeTrack" />
+                <!-- << rangeslider-drag-endthumb-and-rangetrack-xaml -->
+            </Grid>
+        </Grid>
     </VerticalStackLayout>
 </ContentView>

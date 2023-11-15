@@ -3,13 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
              x:Class="SDKBrowserMaui.Examples.NavigationViewControl.CommandsCategory.CommandsExample.Commands">
+    <!-- >> navigationview-commands -->
     <Grid RowDefinitions="Auto,*" RowSpacing="10">
         <HorizontalStackLayout Spacing="5">
             <Button Text="Open Pane" Command="{Binding OpenPaneCommand, Source={x:Reference navigationView}}"/>
             <Button Text="Close Pane" Command="{Binding ClosePaneCommand, Source={x:Reference navigationView}}"/>
             <Button Text="Toggle Pane" Command="{Binding TogglePaneCommand, Source={x:Reference navigationView}}"/>
         </HorizontalStackLayout>
-        <!-- >> navigationview-commands -->
+
         <telerik:RadNavigationView x:Name="navigationView" Grid.Row="1">
             <telerik:RadNavigationView.Items>
                 <telerik:NavigationViewItem Position="Header">
@@ -55,6 +56,6 @@
                        HorizontalOptions="Center"/>
             </telerik:RadNavigationView.Content>
         </telerik:RadNavigationView>
-        <!-- << navigationview-commands -->
     </Grid>
+    <!-- << navigationview-commands -->
 </ContentView>

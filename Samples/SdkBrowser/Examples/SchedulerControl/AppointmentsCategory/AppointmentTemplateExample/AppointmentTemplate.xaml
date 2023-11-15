@@ -5,25 +5,46 @@
              xmlns:local="clr-namespace:SDKBrowserMaui.Examples.SchedulerControl.AppointmentsCategory.AppointmentTemplateExample"
              x:Class="SDKBrowserMaui.Examples.SchedulerControl.AppointmentsCategory.AppointmentTemplateExample.AppointmentTemplate">
     <ContentView.Resources>
-        <ResourceDictionary>        
+        <ResourceDictionary>
             <!-- >> scheduler-appointment-template-selector -->
             <local:CustomAppointmentDataTemplate x:Key="CustomAppointmentDataTemplate">
                 <local:CustomAppointmentDataTemplate.AllDayAppointmentTemplate>
                     <DataTemplate>
-                        <Grid BackgroundColor="Purple"
-                              IsClippedToBounds="True">
-                        <Label Text="{Binding Occurrence.Appointment.Subject}"
-                               TextColor="White" />
-                        </Grid>
+                        <telerik:RadBorder CornerRadius="4"
+                                           IsClippedToBounds="True"
+                                           BackgroundColor="#B2DFDB">
+                            <Grid>
+                                <BoxView WidthRequest="4"
+                                         BackgroundColor="#00897B"
+                                         HorizontalOptions="Start" />
+                                <HorizontalStackLayout Spacing="4"
+                                                       Margin="6, 0, 4, 0">
+                                    <Label Text="&#xe83a;"
+                                           FontFamily="TelerikFontExamples"
+                                           TextColor="#00796B"
+                                           VerticalTextAlignment="Center" />
+                                    <Label Text="{Binding Occurrence.Appointment.Subject}"
+                                           TextColor="Black"
+                                           VerticalTextAlignment="Center" />
+                                </HorizontalStackLayout>
+                            </Grid>
+                        </telerik:RadBorder>
                     </DataTemplate>
                 </local:CustomAppointmentDataTemplate.AllDayAppointmentTemplate>
                 <local:CustomAppointmentDataTemplate.AppointmentTemplate>
                     <DataTemplate>
-                        <Grid BackgroundColor="Orange"
-                              IsClippedToBounds="True">
-                        <Label Text="{Binding Occurrence.Appointment.Subject}"
-                               TextColor="White"/>
-                        </Grid>
+                        <telerik:RadBorder CornerRadius="4"
+                                           IsClippedToBounds="True"
+                                           BackgroundColor="#D2C6E6">
+                            <Grid>
+                                <BoxView WidthRequest="4"
+                                         BackgroundColor="#8660C5"
+                                         HorizontalOptions="Start" />
+                                <Label Text="{Binding Occurrence.Appointment.Subject}"
+                                       TextColor="Black"
+                                       Margin="6, 0, 4, 0" />
+                            </Grid>
+                        </telerik:RadBorder>
                     </DataTemplate>
                 </local:CustomAppointmentDataTemplate.AppointmentTemplate>
             </local:CustomAppointmentDataTemplate>
@@ -37,11 +58,9 @@
                               AppointmentsSource="{Binding Appointments}"
                               AppointmentTemplate="{StaticResource CustomAppointmentDataTemplate}">
             <telerik:RadScheduler.ViewDefinitions>
-                <telerik:WeekViewDefinition />
-                <telerik:WeekViewDefinition Title="Work Week" IsWeekendVisible="False" />
-                <telerik:MultidayViewDefinition VisibleDays="3" Title="3 Day" />
-                <telerik:MonthViewDefinition />
                 <telerik:DayViewDefinition />
+                <telerik:WeekViewDefinition Title="Work Week" IsWeekendVisible="False" />
+                <telerik:MonthViewDefinition />
             </telerik:RadScheduler.ViewDefinitions>
         </telerik:RadScheduler>
         <!-- << scheduler-appointment-template -->

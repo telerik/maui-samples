@@ -5,39 +5,42 @@
              xmlns:local="clr-namespace:SDKBrowserMaui.Examples.SchedulerControl.StylingCategory.DayStylingExample"
              x:Class="SDKBrowserMaui.Examples.SchedulerControl.StylingCategory.DayStylingExample.DayStyling">
     <ContentView.Resources>
-        <ResourceDictionary>        
-            <!-- >> scheduler-customdaystyleselector -->
+        <ResourceDictionary>
+            <!-- >> scheduler-customdaystyleselector-xaml -->
             <local:CustomDayStyleSelector x:Key="CustomDayStyleSelector">
                 <local:CustomDayStyleSelector.CustomNormalStyle>
                     <Style TargetType="Label">
-                        <Setter Property="TextColor" Value="#3341A1" />
-                        <Setter Property="FontAttributes" Value="Bold" />
+                        <Setter Property="TextColor" Value="#018383" />
+                        <Setter Property="HorizontalTextAlignment" Value="Center" />
+                        <Setter Property="VerticalTextAlignment" Value="Center" />
                     </Style>
                 </local:CustomDayStyleSelector.CustomNormalStyle>
                 <local:CustomDayStyleSelector.CustomTodayStyle>
                     <Style TargetType="Label">
-                        <Setter Property="TextColor" Value="#04A2AA" />
+                        <Setter Property="TextColor" Value="#830183" />
+                        <Setter Property="FontAttributes" Value="Bold" />
                         <Setter Property="HorizontalTextAlignment" Value="Center" />
+                        <Setter Property="VerticalTextAlignment" Value="Center" />
                     </Style>
                 </local:CustomDayStyleSelector.CustomTodayStyle>
                 <local:CustomDayStyleSelector.WeekendLabelStyle>
                     <Style TargetType="Label">
-                        <Setter Property="TextColor" Value="#7C59B6" />                 
-                        <Setter Property="FontAttributes" Value="Italic" />
+                        <Setter Property="TextColor" Value="#707070" />
+                        <Setter Property="HorizontalTextAlignment" Value="Center" />
+                        <Setter Property="VerticalTextAlignment" Value="Center" />
                     </Style>
                 </local:CustomDayStyleSelector.WeekendLabelStyle>
             </local:CustomDayStyleSelector>
-            <!-- << scheduler-customdaystyleselector -->
+            <!-- << scheduler-customdaystyleselector-xaml -->
         </ResourceDictionary>
     </ContentView.Resources>
     <Grid>
         <!-- >> scheduler-day-styling -->
-        <telerik:RadScheduler x:Name="scheduler">
+        <telerik:RadScheduler x:Name="scheduler" ActiveViewDefinitionIndex="1">
             <telerik:RadScheduler.ViewDefinitions>
-                <telerik:WeekViewDefinition DayStyleSelector="{StaticResource CustomDayStyleSelector}" />
                 <telerik:DayViewDefinition DayStyleSelector="{StaticResource CustomDayStyleSelector}" />
-                <telerik:MonthViewDefinition DayStyleSelector="{StaticResource CustomDayStyleSelector}"
-                                             DayNameStyleSelector="{StaticResource CustomDayStyleSelector}" />
+                <telerik:MultidayViewDefinition DayStyleSelector="{StaticResource CustomDayStyleSelector}" VisibleDays="3" Title="3 Day" />
+                <telerik:WeekViewDefinition DayStyleSelector="{StaticResource CustomDayStyleSelector}" />
             </telerik:RadScheduler.ViewDefinitions>
             <!-- << scheduler-day-styling -->
         </telerik:RadScheduler>

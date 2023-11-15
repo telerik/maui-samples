@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
              x:Class="SDKBrowserMaui.Examples.SchedulerControl.FeaturesCategory.ProgrammaticScrollingExample.ProgrammaticScrolling">
-    <Grid RowDefinitions="Auto, *">
+    <Grid RowDefinitions="Auto, *"
+          RowSpacing="20">
         <Button Text="Scroll to 10AM" Clicked="ScrollToTime" />
         <!-- >> scheduler-programmatic-scrolling -->
         <telerik:RadScheduler x:Name="scheduler" Grid.Row="1">

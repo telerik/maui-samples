@@ -3,12 +3,15 @@
                         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                         xmlns:local="clr-namespace:QSF.Examples.TreeViewControl.LoadOnDemandExample"
                         xmlns:common="clr-namespace:QSF.Examples.TreeViewControl.Common"
+                        xmlns:converters="clr-namespace:QSF.Converters"
                         xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
                         x:Class="QSF.Examples.TreeViewControl.LoadOnDemandExample.LoadOnDemandView"
                         Padding="{OnIdiom Default='16, 20', Phone=0}">
     <telerik:RadContentView.Resources>
-        <common:StringToFontImageSourceConverter x:Key="StringToFontImageSourceConverter"
-                                                 Size="16" />
+        <converters:StringToFontImageSourceConverter x:Key="StringToFontImageSourceConverter"
+                                                     FontFamily="TelerikFontExamples"
+                                                     Color="#99000000"
+                                                     Size="16" />
         <FontImageSource x:Key="ClosedFolderImageSource"
                          Glyph="&#xe82a;"
                          FontFamily="TelerikFontExamples"

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.NavigationViewControl.FeaturesCategory.NavigationViewItemTemplatesExample.NavigationViewItemTemplates">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <!-- >> navigationview-navigationitem-controltemplate -->
+            <ControlTemplate x:Key="ItemTemplate">
+                <Grid BackgroundColor="Transparent">
+                    <telerik:RadBorder BackgroundColor="{TemplateBinding BackgroundColor}"
+                                       Background="{TemplateBinding BackgroundColor}"
+                                       BorderColor="{TemplateBinding BorderColor}"
+                                       BorderBrush="{TemplateBinding BorderBrush}"
+                                       BorderThickness="{TemplateBinding BorderThickness}"
+                                       CornerRadius="{TemplateBinding CornerRadius}"
+                                       Margin="{TemplateBinding ContentPadding}" />
+                    <Grid ColumnDefinitions="Auto, *"
+                          ColumnSpacing="{TemplateBinding Spacing}">
+                        <Grid WidthRequest="{TemplateBinding LeadingWidth}">
+                            <Image Source="{TemplateBinding ActualImageSource}"
+                                   Aspect="{TemplateBinding ImageAspect}"
+                                   WidthRequest="{TemplateBinding ImageWidth}"
+                                   HeightRequest="{TemplateBinding ImageHeight}" />
+                        </Grid>
+                        <Grid Grid.Column="1"
+                              ColumnDefinitions="*, Auto">
+                            <Label Text="{TemplateBinding Text}"
+                                   TextColor="{TemplateBinding TextColor}"
+                                   FontFamily="{TemplateBinding FontFamily}"
+                                   FontSize="{TemplateBinding FontSize}"
+                                   FontAttributes="{TemplateBinding FontAttributes}"
+                                   HorizontalTextAlignment="{TemplateBinding HorizontalTextAlignment}"
+                                   VerticalTextAlignment="{TemplateBinding VerticalTextAlignment}"
+                                   LineBreakMode="TailTruncation" />
+                            <Label Grid.Column="1"
+                                   FontSize="16"
+                                   FontFamily="{x:Static telerik:TelerikFont.Name}"
+                                   Text="{x:Static telerik:TelerikFont.IconOpenHyperlink}"
+                                   TextColor="#0078D4"
+                                   Margin="{OnIdiom Default='0, 0, 12, 0', Phone='0, 0, 4, 0'}"
+                                   VerticalOptions="Center" />
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </ControlTemplate>
+            <!-- << navigationview-navigationitem-controltemplate -->
+
+            <!-- >> navigationview-navigationitem-contenttemplate -->
+            <DataTemplate x:Key="ItemContentTemplate">
+                <telerik:RadEntry Placeholder="Search..."
+                                  ReserveSpaceForErrorView="False"
+                                  Margin="{OnIdiom Default='0, 0, 12, 0', Phone='0, 0, 4, 0'}" />
+            </DataTemplate>
+            <!-- << navigationview-navigationitem-contenttemplate -->
+
+            <Style x:Key="NonSelectableItemStyle" TargetType="telerik:NavigationViewItemView">
+                <Setter Property="IsSelectable" Value="False" />
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup Name="CommonStates">
+                            <VisualState Name="Normal" />
+                            <VisualState Name="PointerOver" />
+                            <VisualState Name="Selected" />
+                            <VisualState Name="Disabled">
+                                <VisualState.Setters>
+                                    <Setter Property="telerik:NavigationViewItemView.TextColor"
+                                            Value="{AppThemeBinding Light=#61000000, Dark=#61FFFFFF}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    
+    <Grid>
+        <!-- >> navigationview-navigationitem-templates -->
+        <telerik:RadNavigationView x:Name="navigationView"
+                                   HeaderText="Header">
+            <telerik:RadNavigationView.Items>
+                <telerik:NavigationViewItem Text="Search"
+                                            Position="Header"
+                                            ContentTemplate="{StaticResource ItemContentTemplate}"
+                                            Style="{StaticResource NonSelectableItemStyle}">
+                    <telerik:NavigationViewItem.ImageSource>
+                        <FontImageSource Glyph="{x:Static telerik:TelerikFont.IconSearch}"
+                                         FontFamily="{x:Static telerik:TelerikFont.Name}"
+                                         Size="16" />
+                    </telerik:NavigationViewItem.ImageSource>
+                </telerik:NavigationViewItem>
+                <telerik:NavigationViewItem Text="Item 1" />
+                <telerik:NavigationViewItem Text="Item 2" />
+                <telerik:NavigationViewItem Text="Item 3" />
+                <telerik:NavigationViewItem Text="Item 4" />
+                <telerik:NavigationViewItem Text="Privacy Policy"
+                                            IsSelectable="False"
+                                            ControlTemplate="{StaticResource ItemTemplate}">
+                    <telerik:NavigationViewItem.ImageSource>
+                        <FontImageSource Glyph="&#xe830;"
+                                         FontFamily="TelerikFontExamples"
+                                         Size="16" />
+                    </telerik:NavigationViewItem.ImageSource>
+                </telerik:NavigationViewItem>
+                <telerik:NavigationViewItem Text="Settings"
+                                            Position="Footer"
+                                            Style="{StaticResource NonSelectableItemStyle}">
+                    <telerik:NavigationViewItem.ImageSource>
+                        <FontImageSource Glyph="&#xe822;"
+                                         FontFamily="TelerikFontExamples"
+                                         Size="16" />
+                    </telerik:NavigationViewItem.ImageSource>
+                </telerik:NavigationViewItem>
+            </telerik:RadNavigationView.Items>
+            <Label HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   Text="{Binding SelectedItem.Text, Source={x:Reference navigationView}}" />
+        </telerik:RadNavigationView>
+        <!-- << navigationview-navigationitem-templates -->
+    </Grid>
+</ContentView>

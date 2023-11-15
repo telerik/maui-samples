@@ -48,35 +48,38 @@
             <converters:ModelToConfigurationAreaConverter x:Key="ModelToConfigurationAreaConverter" />
 
             <!--Status tags for controls and examples-->
+            <Style x:Key="StatusTagBorderStyle" TargetType="telerik:RadBorder">
+                <Setter Property="WidthRequest" Value="{OnPlatform Default=34, WinUI=30}" />
+                <Setter Property="HeightRequest" Value="{OnPlatform Default=14, WinUI=12}" />
+                <Setter Property="CornerRadius" Value="{OnPlatform Default=8, WinUI=6}" />
+            </Style>
             <Style x:Key="StatusTagLabelStyle" TargetType="Label">
-                <Setter Property="FontSize" Value="11" />
-                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontSize" Value="{OnPlatform Default=9, WinUI=7.25}" />
+                <Setter Property="TextTransform" Value="Uppercase" />
                 <Setter Property="TextColor" Value="{StaticResource TextOnAccentColor}" />
+                <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="HorizontalOptions" Value="Center" />
                 <Setter Property="VerticalOptions" Value="Center" />
             </Style>
             <DataTemplate x:Key="NormalStatusTemplate" />
             <DataTemplate x:Key="NewStatusTemplate">
                 <telerik:RadBorder BackgroundColor="#FD5064"
-                                   WidthRequest="32"
-                                   HeightRequest="15">
-                    <Label Text="NEW"
+                                   Style="{StaticResource StatusTagBorderStyle}">
+                    <Label Text="New"
                            Style="{StaticResource StatusTagLabelStyle}" />
                 </telerik:RadBorder>
             </DataTemplate>
             <DataTemplate x:Key="UpdatedStatusTemplate">
                 <telerik:RadBorder BackgroundColor="#FF9040"
-                                   WidthRequest="32"
-                                   HeightRequest="15">
-                    <Label Text="UPD"
-                           Style="{StaticResource StatusTagLabelStyle}" />
+                                   Style="{StaticResource StatusTagBorderStyle}">
+                   <Label Text="Upd"
+                          Style="{StaticResource StatusTagLabelStyle}" />
                 </telerik:RadBorder>
             </DataTemplate>
             <DataTemplate x:Key="BetaStatusTemplate">
                 <telerik:RadBorder BackgroundColor="{StaticResource AccentColor8}"
-                                   WidthRequest="35"
-                                   HeightRequest="15">
-                    <Label Text="BETA"
+                                   Style="{StaticResource StatusTagBorderStyle}">
+                    <Label Text="Beta"
                            Style="{StaticResource StatusTagLabelStyle}" />
                 </telerik:RadBorder>
             </DataTemplate>

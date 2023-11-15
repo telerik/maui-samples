@@ -14,7 +14,7 @@ public partial class Events : ContentView
 	}
 
     // >> dataform-property-changed
-    private void OnPropertyChanged(object sender, PropertyChangedEventArgs eventArgs)
+    private void OnDataFormPropertyChanged(object sender, PropertyChangedEventArgs eventArgs)
     {
         switch (eventArgs.PropertyName)
         {
@@ -29,7 +29,7 @@ public partial class Events : ContentView
     // << dataform-property-changed
 
     // >> dataform-validation-completed
-    private void OnValidationCompleted(object sender, DataFormObjectValidationCompletedEventArgs eventArgs)
+    private void OnDataFormValidationCompleted(object sender, DataFormObjectValidationCompletedEventArgs eventArgs)
     {
         this.logOutput.Text += $"Form validation completed:\n" +
                                $"Errors: {eventArgs.HasValidationErrors}\n";
@@ -37,7 +37,7 @@ public partial class Events : ContentView
     // << dataform-validation-completed
 
     // >> dataform-editor-validation-completed
-    private void OnEditorValidationCompleted(object sender, DataFormEditorValidationCompletedEventArgs eventArgs)
+    private void OnDataFormEditorValidationCompleted(object sender, DataFormEditorValidationCompletedEventArgs eventArgs)
     {
         this.logOutput.Text += $"Editor validation completed:\n" +
                                $"Property: {eventArgs.PropertyName}\n" +
@@ -46,7 +46,7 @@ public partial class Events : ContentView
     // << dataform-editor-validation-completed
 
     // >> dataform-editor-value-changed
-    private void OnEditorValueChanged(object sender, DataFormEditorValueChangedEventArgs eventArgs)
+    private void OnDataFormEditorValueChanged(object sender, DataFormEditorValueChangedEventArgs eventArgs)
     {
         this.logOutput.Text += $"Editor value changed:\n" +
                                $"Property: {eventArgs.PropertyName}\n" +

@@ -1,10 +1,10 @@
 <Project>
   <!-- platform version number information -->
-  <PropertyGroup Condition="$(TargetFramework.Contains('net7-ios')) OR $(TargetFramework.Contains('net6-ios'))">
+  <PropertyGroup Condition="$(TargetFramework.Contains('net7.0-ios'))">
     <SupportedOSPlatformVersion>10.0</SupportedOSPlatformVersion>
     <TargetPlatformMinVersion>10.0</TargetPlatformMinVersion>
   </PropertyGroup>
-  <PropertyGroup Condition="$(TargetFramework.Contains('net8-ios'))">
+  <PropertyGroup Condition="$(TargetFramework.Contains('net8.0-ios'))">
     <SupportedOSPlatformVersion>11.0</SupportedOSPlatformVersion>
     <TargetPlatformMinVersion>11.0</TargetPlatformMinVersion>
   </PropertyGroup>
@@ -28,5 +28,16 @@
     <SupportedOSPlatformVersion>10.0.17763.0</SupportedOSPlatformVersion>
     <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
   </PropertyGroup>
+
+  <Target
+    Name="_RemoveDependencyPriFiles"
+    AfterTargets="_ComputeInputPriFiles"
+    Condition="
+      $([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows' and
+      '$(OutputType)' != 'WinExe' and '$(OutputType)' != 'Exe'">
+    <ItemGroup>
+      <_PriFile Remove="@(_PriFile)" />
+    </ItemGroup>
+  </Target>
 
 </Project>

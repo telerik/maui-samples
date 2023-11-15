@@ -3,11 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
              xmlns:common="clr-namespace:QSF.Examples.TreeViewControl.Common"
+             xmlns:converters="clr-namespace:QSF.Converters"
              x:Class="QSF.Examples.TreeViewControl.ConfigurationExample.ConfigurationView"
              Padding="{OnIdiom Default='16, 20', Phone=0}">
     <ContentView.Resources>
         <ResourceDictionary>
-            <common:StringToFontImageSourceConverter x:Key="StringToFontImageSourceConverter" />
+            <converters:StringToFontImageSourceConverter x:Key="StringToFontImageSourceConverter"
+                                                         FontFamily="TelerikFontExamples"
+                                                         Color="#99000000"
+                                                         Size="12" />
             <Style x:Key="TreeViewItemStyle" TargetType="telerik:TreeViewItemView">
                 <Setter Property="IsExpandButtonVisible" Value="{Binding BindingContext.IsItemExpandButtonVisible, Source={x:Reference treeView}}" />
                 <Setter Property="IsImageVisible" Value="{Binding BindingContext.IsItemImageVisible, Source={x:Reference treeView}}" />

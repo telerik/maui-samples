@@ -5,19 +5,27 @@
              xmlns:local="clr-namespace:SDKBrowserMaui.Examples.SchedulerControl.StylingCategory.AppointmentStylingExample"
              x:Class="SDKBrowserMaui.Examples.SchedulerControl.StylingCategory.AppointmentStylingExample.AppointmentStyling">
     <ContentView.Resources>
-        <ResourceDictionary>           
+        <ResourceDictionary>
             <!-- >> scheduler-appointments-styleselector -->
             <local:CustomAppointmentStyleSelector x:Key="CustomAppointmentStyleSelector">
-                <local:CustomAppointmentStyleSelector.PastAppointmentStyle>
+                <local:CustomAppointmentStyleSelector.AllDayAppointmentStyle>
                     <Style TargetType="telerik:AppointmentView">
-                        <Setter Property="BackgroundColor" Value="LightGray" />
+                        <Setter Property="BackgroundColor" Value="#B2DFDB" />
+                        <Setter Property="SubjectTextColor" Value="Black" />
                     </Style>
-                </local:CustomAppointmentStyleSelector.PastAppointmentStyle>
-                <local:CustomAppointmentStyleSelector.FutureAppointmentStyle>
+                </local:CustomAppointmentStyleSelector.AllDayAppointmentStyle>
+                <local:CustomAppointmentStyleSelector.ExpiredAppointmentStyle>
                     <Style TargetType="telerik:AppointmentView">
-                        <Setter Property="BackgroundColor" Value="#8AAAFF" />
+                        <Setter Property="BackgroundColor" Value="#EEEAF6" />
+                        <Setter Property="SubjectTextColor" Value="Black" />
                     </Style>
-                </local:CustomAppointmentStyleSelector.FutureAppointmentStyle>
+                </local:CustomAppointmentStyleSelector.ExpiredAppointmentStyle>
+                <local:CustomAppointmentStyleSelector.OngoingAppointmentStyle>
+                    <Style TargetType="telerik:AppointmentView">
+                        <Setter Property="BackgroundColor" Value="#D2C6E6" />
+                        <Setter Property="SubjectTextColor" Value="Black" />
+                    </Style>
+                </local:CustomAppointmentStyleSelector.OngoingAppointmentStyle>
             </local:CustomAppointmentStyleSelector>
             <!-- << scheduler-appointments-styleselector -->
         </ResourceDictionary>

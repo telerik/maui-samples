@@ -7,31 +7,27 @@
         <ResourceDictionary>
             <!-- >> navigationview-togglebutton-styling -->
             <Style TargetType="telerik:NavigationViewToggleButton" x:Key="NavigationViewToggleButtonStyle">
-                <Setter Property="ImageSource" Value="{x:Null}"/>
-                <Setter Property="Text" Value="{x:Static telerik:TelerikFont.IconDots3}"/>
-                <Setter Property="FontFamily" Value="{x:Static telerik:TelerikFont.Name}"/>
-                <Setter Property="BorderThickness" Value="1" />
-                <Setter Property="BorderColor" Value="LightGray" />
-                <Setter Property="BackgroundColor" Value="LightBlue" />
+                <Setter Property="Text" Value="&#xe848;" />
+                <Setter Property="FontFamily" Value="TelerikFontExamples" />
                 <Setter Property="FontSize" Value="16"/>
-                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="BorderColor" Value="#4DB6AC" />
+                <Setter Property="BorderThickness" Value="{OnIdiom Default=0, Desktop=1}" />
+                <Setter Property="CornerRadius" Value="{OnPlatform Android=24, iOS=22, MacCatalyst=12, WinUI=16}" />
                 <Setter Property="VisualStateManager.VisualStateGroups">
                     <VisualStateGroupList>
                         <VisualStateGroup x:Name="CommonStates">
                             <VisualState x:Name="Normal" />
                             <VisualState x:Name="Disabled">
                                 <VisualState.Setters>
-                                    <Setter Property="TextColor" Value="LightGray" />
+                                    <Setter Property="Opacity" Value="0.38" />
                                 </VisualState.Setters>
                             </VisualState>
-                            <VisualState x:Name="ToggledDisabled">
-                                <VisualState.Setters>
-                                    <Setter Property="TextColor" Value="LightGray"/>
-                                </VisualState.Setters>
-                            </VisualState>
+                            <VisualState x:Name="ToggledDisabled" />
                             <VisualState x:Name="Toggled">
                                 <VisualState.Setters>
-                                    <Setter Property="TextColor" Value="Black"/>
+                                    <Setter Property="BackgroundColor" Value="{OnIdiom Default=Transparent, Desktop=#00796B}" />
+                                    <Setter Property="FontAttributes" Value="Bold" />
                                 </VisualState.Setters>
                             </VisualState>
                         </VisualStateGroup>
@@ -42,44 +38,90 @@
 
             <!-- >> navigationview-header-styling -->
             <Style TargetType="telerik:NavigationViewHeader" x:Key="HeaderStyle">
-                <Setter Property="FontSize" Value="15"/>
-                <Setter Property="BorderColor" Value="#8660C5"/>
-                <Setter Property="BorderThickness" Value="2"/>
-                <Setter Property="CornerRadius" Value="5"/>
-                <Setter Property="HeaderButtonStyle" Value="{StaticResource NavigationViewToggleButtonStyle}"/>
-                <Setter Property="FontAttributes" Value="Italic"/>
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="BackgroundColor" Value="#00897B" />
+                <Setter Property="HeaderButtonStyle" Value="{StaticResource NavigationViewToggleButtonStyle}" />
+                <Setter Property="FontFamily" Value="Helvetica" />
+                <Setter Property="FontAttributes" Value="Bold"/>
             </Style>
             <!-- << navigationview-header-styling -->
+
+            <!-- >> navigationview-item-styling -->
+            <Style TargetType="telerik:NavigationViewItemView">
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup Name="CommonStates">
+                            <VisualState Name="Normal" />
+                            <VisualState Name="PointerOver">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#B2DFDB" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="Selected">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#80CBC4" />
+                                    <Setter Property="FontAttributes" Value="Bold" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="Disabled">
+                                <VisualState.Setters>
+                                    <Setter Property="TextColor" Value="#61000000" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+            <!-- << navigationview-item-styling -->
         </ResourceDictionary>
     </ContentView.Resources>
+
     <Grid>
         <!-- >> navigationview-styling -->
         <telerik:RadNavigationView x:Name="navigationView"
+                                   BorderColor="#00897B"
+                                   BorderThickness="1"
+                                   CornerRadius="{OnIdiom Default=0, Desktop=8}"
                                    HeaderStyle="{StaticResource HeaderStyle}"
-                                   HeaderText="Header Style">
+                                   HeaderText="DesignLab"
+                                   DismissOverlayColor="#4D004D40">
             <telerik:RadNavigationView.Items>
-                <telerik:NavigationViewItem Text="Search"
+                <telerik:NavigationViewItem Text="Assets"
                                             Position="Header"
                                             IsSelectable="False">
+                    <telerik:NavigationViewItem.ImageSource>
+                        <FontImageSource Glyph="&#xe846;"
+                                         FontFamily="TelerikFontExamples"
+                                         Size="16" />
+                    </telerik:NavigationViewItem.ImageSource>
                 </telerik:NavigationViewItem>
-                <telerik:NavigationViewItem Text="Item 1" />
-                <telerik:NavigationViewItem Text="Item 2" />
-                <telerik:NavigationViewItem Text="Item 3" />
-                <telerik:NavigationViewItem Text="Item 4"/>
-                <telerik:NavigationViewItem Text="Item 5" />
-                <telerik:NavigationViewItem Text="Settings"
+                <telerik:NavigationViewItem Text="Artboard 1" />
+                <telerik:NavigationViewItem Text="Artboard 2" />
+                <telerik:NavigationViewItem Text="Artboard 3" />
+                <telerik:NavigationViewItem Text="Artboard 4" />
+                <telerik:NavigationViewItem Text="Artboard 5" />
+                <telerik:NavigationViewItem Text="Drafts"
                                             Position="Footer"
                                             IsSelectable="False">
                     <telerik:NavigationViewItem.ImageSource>
-                        <FontImageSource Glyph="{x:Static telerik:TelerikFont.IconMore}"
-                                         FontFamily="{x:Static telerik:TelerikFont.Name}"
+                        <FontImageSource Glyph="&#xe828;"
+                                         FontFamily="TelerikFontExamples"
+                                         Size="16" />
+                    </telerik:NavigationViewItem.ImageSource>
+                </telerik:NavigationViewItem>
+                <telerik:NavigationViewItem Text="Recently Deleted"
+                                            Position="Footer"
+                                            IsSelectable="False">
+                    <telerik:NavigationViewItem.ImageSource>
+                        <FontImageSource Glyph="&#xe827;"
+                                         FontFamily="TelerikFontExamples"
                                          Size="16" />
                     </telerik:NavigationViewItem.ImageSource>
                 </telerik:NavigationViewItem>
             </telerik:RadNavigationView.Items>
             <Label HorizontalOptions="Center"
-               VerticalOptions="Center"
-               Text="{Binding SelectedItem.Text, Source={x:Reference navigationView}}" />
+                   VerticalOptions="Center"
+                   Text="{Binding SelectedItem.Text, Source={x:Reference navigationView}}" />
         </telerik:RadNavigationView>
         <!-- << navigationview-styling -->
     </Grid>

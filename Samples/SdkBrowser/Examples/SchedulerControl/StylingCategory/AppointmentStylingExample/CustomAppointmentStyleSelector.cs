@@ -8,18 +8,26 @@ namespace SDKBrowserMaui.Examples.SchedulerControl.StylingCategory.AppointmentSt
 // >> scheduler-customappointmentstyleselector
 public class CustomAppointmentStyleSelector : IStyleSelector
 {
-    public Style PastAppointmentStyle { get; set; }
-    public Style FutureAppointmentStyle { get; set; }
+    public Style AllDayAppointmentStyle { get; set; }
+    public Style ExpiredAppointmentStyle { get; set; }
+    public Style OngoingAppointmentStyle { get; set; }
 
     public Style SelectStyle(object item, BindableObject bindable)
     {
-        var appointment = (item as AppointmentNode).Occurrence;
-        if (appointment.Start < DateTime.Now)
-        {
-            return this.PastAppointmentStyle;
-        }
+        var appointment = (item as AppointmentNode).Occurrence.Appointment;
 
-        return this.FutureAppointmentStyle;
+        if (appointment.IsAllDay)
+        {
+            return this.AllDayAppointmentStyle;
+        }
+        else if (appointment.Start < DateTime.Now)
+        {
+            return this.ExpiredAppointmentStyle;
+        }
+        else
+        {
+            return this.OngoingAppointmentStyle;
+        }
     }
 }
 // << scheduler-customappointmentstyleselector
