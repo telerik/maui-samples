@@ -23,20 +23,8 @@ public class ConfigurationViewModel : ExampleViewModel
             new City("New York", "USA"),
             new City("Tokyo", "Japan"),
             new City("Sofia", "Bulgaria"),
-            new City("Budapest", "Hungary"),
-            new City("Madrid", "Spain"),
-            new City("Rome", "Italy"),
             new City("Paris", "France"),
-            new City("Bucharest", "Romania"),
-            new City("Ottawa", "Canada"),
-            new City("Manila", "Philippines"),
-            new City("Beijing", "China"),
-            new City("Jakarta", "Indonesia"),
             new City("London", "UK"),
-            new City("Vienna", "Austria"),
-            new City("Athens", "Greece"),
-            new City("Wellington", "New Zealand"),
-            new City("Canberra", "Australia")
         };
 
         this.Placeholder = "Find City";

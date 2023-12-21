@@ -5,28 +5,10 @@
              x:Class="QSF.Examples.ToolbarControl.FirstLookExample.FirstLookView">
     <telerik:RadContentView.Resources>
         <ResourceDictionary>
-            <VisualStateGroupList x:Key="ListPickerVisualStateGroupList">
-                <VisualStateGroup Name="CommonStates">
-                    <VisualState Name="Normal" />
-                    <VisualState Name="PointerOver" />
-                    <VisualState Name="Disabled">
-                        <VisualState.Setters>
-                            <Setter Property="telerik:ToolbarListItemView.TextColor" Value="#61000000" />
-                        </VisualState.Setters>
-                    </VisualState>
-                    <VisualState Name="Selected">
-                        <VisualState.Setters>
-                            <Setter Property="telerik:ToolbarListItemView.BackgroundColor" Value="{StaticResource ApplicationAccentColor}" />
-                            <Setter Property="telerik:ToolbarListItemView.TextColor" Value="{StaticResource TextOnAccentColor}" />
-                        </VisualState.Setters>
-                    </VisualState>
-                </VisualStateGroup>
-            </VisualStateGroupList>
-
+            
             <Style x:Key="CommonLabelToolbarItemViewStyle" TargetType="telerik:LabelToolbarItemView">
                 <Setter Property="Padding" Value="{OnPlatform Default=8, WinUI=4, iOS=6, MacCatalyst=0}" />
                 <Setter Property="ContentPadding" Value="{OnIdiom Desktop='4, 0'}" />
-                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource DefaultTextColor}, Dark={StaticResource DefaultTextColorDark}}" />
                 <Setter Property="FontSize" Value="{OnPlatform Default=14, MacCatalyst=13, iOS=17}" />
             </Style>
 
@@ -45,20 +27,8 @@
                 <Setter Property="DisplayOptions" Value="Text" />
                 <Setter Property="WidthRequest" Value="{OnPlatform Default=120, MacCatalyst=90}" />
                 <Setter Property="ContentPadding" Value="4, 0" />
-                <Setter Property="VisualStateManager.VisualStateGroups" Value="{StaticResource ListPickerVisualStateGroupList}" />
             </Style>
 
-            <Style TargetType="telerik:DropDownButtonToolbarItemViewIndicator" x:Key="PriorityPickerToolbarItemViewIndicatorStyle" BasedOn="{StaticResource CommonLabelToolbarItemViewStyle}">
-                <Setter Property="VisualStateManager.VisualStateGroups" Value="{StaticResource ListPickerVisualStateGroupList}" />
-            </Style>
-
-            <Style x:Key="PriorityPickerToolbarItemViewListItemViewStyle" TargetType="telerik:ToolbarListItemView">
-                <Setter Property="ContentPadding" Value="{OnPlatform Default='16, 12', MacCatalyst='6, 2'}" />
-                <Setter Property="CornerRadius" Value="{OnPlatform Default=0, MacCatalyst=4}" />
-                <Setter Property="MinimumWidthRequest" Value="{OnPlatform Android=48, iOS=44, WinUI=40, MacCatalyst=20}" />
-                <Setter Property="MinimumHeightRequest" Value="{OnPlatform Android=48, iOS=44, WinUI=40, MacCatalyst=20}" />
-                <Setter Property="VisualStateManager.VisualStateGroups" Value="{StaticResource ListPickerVisualStateGroupList}" />
-            </Style>
         </ResourceDictionary>
     </telerik:RadContentView.Resources>
 
@@ -109,9 +79,7 @@
             <telerik:ListPickerButtonToolbarItem Text="{Binding SelectedPriority}"
                                                  ItemsSource="{Binding Priorities}"
                                                  SelectedItem="{Binding SelectedPriority}"
-                                                 Style="{StaticResource PriorityPickerToolbarItemViewStyle}"
-                                                 DropDownIndicatorStyle="{StaticResource PriorityPickerToolbarItemViewIndicatorStyle}"
-                                                 ItemStyle="{StaticResource PriorityPickerToolbarItemViewListItemViewStyle}" />
+                                                 Style="{StaticResource PriorityPickerToolbarItemViewStyle}" />
 
             <telerik:ButtonToolbarItem Command="{Binding ClearEmailCommand}"
                                        Style="{StaticResource CommonLabelToolbarItemViewStyle}">

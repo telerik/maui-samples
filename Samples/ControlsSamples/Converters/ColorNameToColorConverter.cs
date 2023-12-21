@@ -1,23 +1,30 @@
-﻿using Microsoft.Maui.Controls;
+using Microsoft.Maui.Controls;
 using Microsoft.Maui.Graphics;
 using System;
 using System.Globalization;
 
-namespace QSF.Examples.RangeSliderControl.ConfigurationExample;
+namespace QSF.Converters;
 
-public class NameToColorConverter : IValueConverter
+public class ColorNameToColorConverter : IValueConverter
 {
+    public ResourceDictionary DefaultValuesResourceDictionary { get; set; }
+
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
         string colorString = (string)value;
-        string constantName = (string)parameter;
         Color color = Colors.Black;
 
         switch (colorString)
         {
             case "Default":
-                ResourceDictionary sliderConstants = new Telerik.Maui.Controls.RangeSlider.HorizontalSliderConstants();
-                color = !string.IsNullOrEmpty(constantName) ? sliderConstants[constantName] as Color : null;
+                if (parameter != null && this.DefaultValuesResourceDictionary != null 
+                    && this.DefaultValuesResourceDictionary.ContainsKey((string)parameter))
+                {
+                    color = this.DefaultValuesResourceDictionary[(string)parameter] as Color;
+                    break;
+                }
+
+                color = null;
                 break;
             case "Black":
                 color = Colors.Black;

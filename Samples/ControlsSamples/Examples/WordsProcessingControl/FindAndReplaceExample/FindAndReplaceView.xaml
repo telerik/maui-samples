@@ -54,10 +54,10 @@
                     <Label Text="Find what:" />
                     <telerik:RadEntry Placeholder="Enter Text to be found ex. fast"
                                       Text="{Binding FindWhat, Mode=OneWayToSource}"
-                                      MaximumWidthRequest="{OnPlatform WinUI=300, MacCatalyst=300}" />
+                                      WidthRequest="{OnPlatform WinUI=300, MacCatalyst=300}" />
                     <Label Text="Replace with:" />
                     <telerik:RadEntry Text="{Binding ReplaceWith, Mode=OneWayToSource}"
-                                      MaximumWidthRequest="{OnPlatform WinUI=300, MacCatalyst=300}" />
+                                      WidthRequest="{OnPlatform WinUI=300, MacCatalyst=300}" />
                     <VerticalStackLayout HorizontalOptions="Center">
                         <HorizontalStackLayout Margin="0, 0, 0, 24"
                                                Spacing="10">

@@ -33,7 +33,7 @@ public class ControlViewModel : PageViewModel
 
         if (DeviceInfo.Idiom == DeviceIdiom.Desktop)
         {
-            this.SelectedExample = this.Examples.FirstOrDefault();
+            this.SelectedExample = this.control.StartupExample ?? this.Examples.FirstOrDefault();
         }
     }
 

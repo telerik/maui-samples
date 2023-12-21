@@ -1,13 +1,14 @@
 using Microsoft.Maui.Controls;
-using System;
-using System.Collections;
+using QSF.ExampleUtilities;
+using System.Collections.Generic;
+using Telerik.Maui.Controls.DataControls;
 
 namespace QSF.Views;
 
 public partial class PickerExampleViewBase : ContentView
 {
     public static readonly BindableProperty ItemsSourceProperty =
-            BindableProperty.Create(nameof(ItemsSource), typeof(IEnumerable), typeof(PickerExampleViewBase));
+        BindableProperty.Create(nameof(ItemsSource), typeof(List<CardItem>), typeof(PickerExampleViewBase));
 
     public static readonly BindableProperty CollectionTitleProperty =
         BindableProperty.Create(nameof(CollectionTitle), typeof(string), typeof(PickerExampleViewBase));
@@ -20,21 +21,24 @@ public partial class PickerExampleViewBase : ContentView
 
     public static readonly BindableProperty ItemTemplateProperty =
         BindableProperty.Create(nameof(ItemTemplate), typeof(DataTemplate), 
-            typeof(PickerExampleViewBase), defaultValueCreator: b => ((PickerExampleViewBase)b).CreateDefaultTemplate());
-
-    private DataTemplate CreateDefaultTemplate()
-    {
-        return (DataTemplate)this.Resources["DefaultItemTemplate"];
-    }
+            typeof(PickerExampleViewBase), defaultValueCreator: b => ((PickerExampleViewBase)b).CreateDefaultItemTemplate());
 
     public PickerExampleViewBase()
     {
         this.InitializeComponent();
+
+        this.Loaded += (s, e) =>
+        {
+            if (this.GetTemplateChild("PART_CardsItemsControl") is NonVirtualizedItemsControl cardsItemsControl)
+            {
+                cardsItemsControl.SelectedItem = this.ItemsSource[0];
+            }
+        };
     }
 
-    public IEnumerable ItemsSource
+    public List<CardItem> ItemsSource
     {
-        get => (IEnumerable)this.GetValue(ItemsSourceProperty);
+        get => (List<CardItem>)this.GetValue(ItemsSourceProperty);
         set => this.SetValue(ItemsSourceProperty, value);
     }
 
@@ -60,5 +64,10 @@ public partial class PickerExampleViewBase : ContentView
     {
         get => (DataTemplate)this.GetValue(ItemTemplateProperty);
         set => this.SetValue(ItemTemplateProperty, value);
+    }
+
+    private DataTemplate CreateDefaultItemTemplate()
+    {
+        return (DataTemplate)this.Resources["DefaultItemTemplate"];
     }
 }

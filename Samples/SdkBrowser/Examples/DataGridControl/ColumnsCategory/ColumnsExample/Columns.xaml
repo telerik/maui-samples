@@ -5,6 +5,11 @@
                         xmlns:local="clr-namespace:SDKBrowserMaui.Examples.DataGridControl.ColumnsCategory"
                         x:Class="SDKBrowserMaui.Examples.DataGridControl.ColumnsCategory.ColumnsExample.Columns"
                         Margin="5">
+    <telerik:RadContentView.Resources>
+        <!-- >> datagrid-columns-converter -->
+        <telerik:BoolToValueConverter x:Key="BoolToValueConverter" FalseValue="No" TrueValue="Yes" />
+        <!-- << datagrid-columns-converter -->
+    </telerik:RadContentView.Resources>
     <telerik:RadContentView.Content>
         <Grid>
             <!-- >> datagrid-columns-example -->
@@ -18,42 +23,42 @@
                     <telerik:DataGridTextColumn PropertyName="Name" 
                                                 HeaderText="Name">
                         <telerik:DataGridTextColumn.CellContentStyle>
-                            <telerik:DataGridTextCellStyle TextColor="Green" 
+                            <telerik:DataGridTextCellStyle TextColor="#018383" 
                                                            FontSize="15" 
-                                                           SelectedTextColor="Orange"  />   
+                                                           SelectedTextColor="#A55200"/>   
                         </telerik:DataGridTextColumn.CellContentStyle>
                     </telerik:DataGridTextColumn>
-                    <telerik:DataGridNumericalColumn PropertyName="StadiumCapacity" 
+                    <telerik:DataGridNumericalColumn DataMemberBinding="{Binding StadiumCapacity, StringFormat='{0:N0}'}" 
                                                      HeaderText="Stadium Capacity"/>
-                    <telerik:DataGridBooleanColumn PropertyName="IsChampion" 
-                                                   HeaderText="Champion?"/>
+                    <telerik:DataGridBooleanColumn DataMemberBinding="{Binding IsChampion, Converter={StaticResource BoolToValueConverter}}" 
+                                                   HeaderText="Champion"/>
                     <telerik:DataGridDateColumn PropertyName="Established" 
                                                 HeaderText="Date Established"/>
-                    <telerik:DataGridComboBoxColumn PropertyName="Country"
-                                                    HeaderText="Country"
-                                                    ItemsSourcePath="Countries"/> 
-                    <telerik:DataGridTemplateColumn HeaderText="Template Column">
+                    <telerik:DataGridComboBoxColumn PropertyName="Championship"
+                                                    HeaderText="Championship"
+                                                    ItemsSourcePath="Championships"/> 
+                    <telerik:DataGridTemplateColumn HeaderText="Location">
                         <telerik:DataGridTemplateColumn.CellContentTemplate>
                             <DataTemplate>
                                 <Grid>
-                                    <VerticalStackLayout InputTransparent="True">
-                                        <Grid BackgroundColor="Orange"
-                                              Margin="0, 10, 0, 0">
+                                    <VerticalStackLayout InputTransparent="True">                                        
                                             <Label Text="{Binding Country}"
+                                                   TextColor="#009688"
                                                    Margin="0, 5, 0, 5"
                                                    HorizontalOptions="Center"
-                                                   VerticalTextAlignment="Center" /> 
-                                        </Grid>
-                                        <Label Text="Some Custom Text"
-                                               TextColor="DarkGreen"
-                                               FontSize="10" />  
+                                                   VerticalTextAlignment="Center"/>                                       
+                                        <Label Text="{Binding City}"
+                                               TextColor="#80CBC4"
+                                               HorizontalOptions="Center"
+                                               VerticalTextAlignment="Center"
+                                               FontSize="12"/>  
                                     </VerticalStackLayout>
                                 </Grid>
                             </DataTemplate>
                         </telerik:DataGridTemplateColumn.CellContentTemplate>
                     </telerik:DataGridTemplateColumn>
-                    <telerik:DataGridTimeColumn PropertyName="Time" 
-                                                HeaderText="Time Column"/>
+                    <telerik:DataGridNumericalColumn DataMemberBinding="{Binding Path=Revenue, StringFormat='{0:C}', TargetNullValue='N/A'}"
+                                                     HeaderText="Revenue (in millions)"/>
                 </telerik:RadDataGrid.Columns>
             </telerik:RadDataGrid>
             <!-- << datagrid-columns-example -->

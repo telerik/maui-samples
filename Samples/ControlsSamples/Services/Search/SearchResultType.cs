@@ -3,8 +3,6 @@
     public enum SearchResultType
     {
         Control,
-        ControlDescription,
-        Example,
-        ExampleDescription
+        Example
     }
 }

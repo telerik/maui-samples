@@ -6,14 +6,11 @@
                              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
                              x:Class="QSF.Examples.TimePickerControl.FirstLookExample.FirstLookView"
                              ItemsSource="{Binding Cards}"
-                             CollectionTitle="Applications:"
+                             CollectionTitle="Request Cleaning Service"
                              ButtonCommand="{Binding SendOrderCommand}"
                              ButtonText="Make an Order">
     <VerticalStackLayout x:Name="layout">
-        <Label Text="Cleaning Service"
-               FontSize="24"
-               Margin="{OnIdiom Default='0, 0, 0, 24', Desktop='0, 0, 0, 40'}" />
-        <Label Text="Specify Date:"
+        <Label Text="Desired Date:"
                Margin="0, 0, 0, 12" />
         <telerik:RadDatePicker x:Name="datePicker"
                                Date="{Binding SelectedDate}"
@@ -23,7 +20,7 @@
                 <telerik:PickerPopupSettings HeaderLabelText="Select Date" />
             </telerik:RadDatePicker.PopupSettings>
         </telerik:RadDatePicker>
-        <Label Text="Specify Time:"
+        <Label Text="Desired Time:"
                Margin="0, 0, 0, 12" />
         <telerik:RadTimePicker x:Name="timePicker"
                                Time="{Binding SelectedTime}"

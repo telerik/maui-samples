@@ -48,16 +48,16 @@
                     <Label Text="Related Property:" />
                     <telerik:RadSegmentedControl ItemsSource="{Binding Items, Mode=TwoWay}"
                                                  SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
-                                                 MaximumWidthRequest="{OnPlatform WinUI=300, MacCatalyst=300}"
+                                                 WidthRequest="{OnPlatform WinUI=300, MacCatalyst=300}"
                                                  MinimumHeightRequest="{Binding Source={x:Reference authorEntry}, Path=Height}"
                                                  Margin="0, 0, 0, 24" />
                     <Label Text="Author Name:" />
                     <telerik:RadEntry x:Name="authorEntry"
                                       Text="{Binding Author, Mode=TwoWay}"
-                                      MaximumWidthRequest="{OnPlatform WinUI=300, MacCatalyst=300}" />
+                                      WidthRequest="{OnPlatform WinUI=300, MacCatalyst=300}" />
                     <Label Text="Description Text:" />
                     <telerik:RadEntry Text="{Binding Description, Mode=TwoWay}"
-                                      MaximumWidthRequest="{OnPlatform WinUI=300, MacCatalyst=300}" />
+                                      WidthRequest="{OnPlatform WinUI=300, MacCatalyst=300}" />
                 </VerticalStackLayout>
                 <telerik:RadButton Grid.Row="1"
                                    Text="Add Note"

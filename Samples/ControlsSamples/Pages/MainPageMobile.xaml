@@ -16,15 +16,24 @@
             <Label Grid.Column="1"
                    Style="{StaticResource HeaderLabelStyle}"
                    FontSize="{OnIdiom Desktop=18, Phone=14}" />
-            <ImageButton Grid.Column="2"
-                         Clicked="Search_Clicked"
-                         Source="searchheader.png"
-                         WidthRequest="35"
-                         HeightRequest="35"
-                         Aspect="Center"
-                         HorizontalOptions="EndAndExpand"
-                         VerticalOptions="Center"
-                         BackgroundColor="Transparent" />
+            <HorizontalStackLayout Grid.Column="2">
+                <ImageButton Clicked="Settings_Clicked"
+                             Source="settings.png"
+                             WidthRequest="35"
+                             HeightRequest="35"
+                             Aspect="Center"
+                             HorizontalOptions="EndAndExpand"
+                             VerticalOptions="Center"
+                             BackgroundColor="Transparent" />
+                <ImageButton Clicked="Search_Clicked"
+                             Source="searchheader.png"
+                             WidthRequest="35"
+                             HeightRequest="35"
+                             Aspect="Center"
+                             HorizontalOptions="EndAndExpand"
+                             VerticalOptions="Center"
+                             BackgroundColor="Transparent" />
+            </HorizontalStackLayout>
         </Grid>
         <telerik:RadListView x:Name="controlsListView"
                              Grid.Row="1"

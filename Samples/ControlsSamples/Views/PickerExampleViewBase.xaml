@@ -3,84 +3,65 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
              x:Class="QSF.Views.PickerExampleViewBase"
-             ControlTemplate="{OnIdiom Default={StaticResource DefaultLayout},
-                                       Desktop={StaticResource DesktopLayout}}">
+             ControlTemplate="{StaticResource DefaultControlTemplate}">
     <ContentView.Resources>
         <ResourceDictionary>
-            <Style TargetType="telerik:NonVirtualizedItemsControl">
-                <Setter Property="SelectedItemStyle">
-                    <Setter.Value>
-                        <Style TargetType="telerik:NonVirtualizedItemsControlItemContainer">
-                            <Setter Property="BackgroundColor" Value="Transparent"/>
-                            <Setter Property="BorderColor" Value="Transparent"/>
-                        </Style>
-                    </Setter.Value>
-                </Setter>
-            </Style>
-            <Style x:Key="DefaultCardBorderStyle" TargetType="telerik:RadBorder">
+            <Style x:Key="CardItemStyle" TargetType="telerik:NonVirtualizedItemsControlItemContainer">
                 <Setter Property="BackgroundColor" Value="{Binding BackgroundColor}" />
                 <Setter Property="BorderColor" Value="{Binding BorderColor}" />
                 <Setter Property="BorderThickness" Value="1" />
                 <Setter Property="CornerRadius" Value="4" />
-                <Setter Property="Padding" Value="14, 16" />
-                <Setter Property="Margin" Value="12" />
+                <Setter Property="Padding" Value="24, 16" />
+                <Setter Property="Margin" Value="8, 0" />
             </Style>
-            <Style x:Key="DesktopCardBorderStyle" TargetType="telerik:RadBorder" BasedOn="{StaticResource DefaultCardBorderStyle}">
-                <Setter Property="WidthRequest" Value="210" />
-                <Setter Property="HeightRequest" Value="140" />
-                <Setter Property="Margin" Value="0, 0, 0, 12" />
-            </Style>
-            <Style x:Key="DefaultSubtitleLabelStyle" TargetType="Label">
-                <Setter Property="TextColor" Value="Black" />
-                <Setter Property="FontSize" Value="16" />
-                <Setter Property="HorizontalTextAlignment" Value="Start" />
+            <Style x:Key="SelectedCardItemStyle" TargetType="telerik:NonVirtualizedItemsControlItemContainer" BasedOn="{StaticResource CardItemStyle}">
+                <Setter Property="BorderThickness" Value="2" />
+                <Setter Property="BorderColor" Value="{Binding SelectedBorderColor}" />
             </Style>
             <DataTemplate x:Key="DefaultItemTemplate">
-                <telerik:RadBorder Style="{OnIdiom Default={StaticResource DefaultCardBorderStyle}, Desktop={StaticResource DesktopCardBorderStyle}}" >
-                    <Image Source="{Binding ImageSource}" />
-                </telerik:RadBorder>
+                <VerticalStackLayout Spacing="4">
+                    <Image Source="{Binding ImageSource}"
+                           WidthRequest="56"
+                           HeightRequest="56"
+                           Aspect="AspectFit" />
+                    <Label Text="{Binding Label}"
+                           IsVisible="{Binding Label, Converter={StaticResource NullOrEmptyToBoolConverter}}"
+                           TextColor="{Binding SelectedBorderColor}"
+                           MaximumWidthRequest="65"
+                           LineBreakMode="WordWrap"
+                           HorizontalTextAlignment="Center"
+                           FontAttributes="Bold"
+                           FontSize="12" />
+                </VerticalStackLayout>
             </DataTemplate>
-            <ControlTemplate x:Key="DefaultLayout">
-                <ScrollView>
-                    <Grid RowDefinitions="Auto, Auto, *" Padding="16, 24">
-                        <ContentView Content="{TemplateBinding Content}" />
-                        <VerticalStackLayout Grid.Row="1">
-                            <Label Text="{TemplateBinding CollectionTitle}"
-                                   Margin="0, 40, 0, 0" />
-                            <telerik:RadUniformGrid BindableLayout.ItemsSource="{TemplateBinding ItemsSource}"
-                                                    BindableLayout.ItemTemplate="{TemplateBinding ItemTemplate}"
-                                                    Margin="-12, 0" />
-                        </VerticalStackLayout>
-                        <telerik:RadButton Grid.Row="2"
-                                           Style="{StaticResource SubmitButtonStyle}"
-                                           Command="{TemplateBinding ButtonCommand}"
-                                           Text="{TemplateBinding ButtonText}"
-                                           HorizontalOptions="Fill"
-                                           VerticalOptions="End"
-                                           Margin="0, 40, 0, 0" />
-                    </Grid>
-                </ScrollView>
-            </ControlTemplate>
-            <ControlTemplate x:Key="DesktopLayout">
-                <Grid ColumnDefinitions="300, *, 210" Padding="16, 24">
-                    <VerticalStackLayout>
-                        <ContentView Content="{TemplateBinding Content}"/>
+            <ControlTemplate x:Key="DefaultControlTemplate">
+                <Grid RowDefinitions="Auto, Auto, *"
+                      RowSpacing="{OnIdiom Default=24, Desktop=40}"
+                      Padding="8, 24">
+                    <Label Text="{TemplateBinding CollectionTitle}"
+                           FontSize="24"
+                           Margin="8, 0" />
+                    <telerik:NonVirtualizedItemsControl x:Name="PART_CardsItemsControl"
+                                                        Grid.Row="1"
+                                                        Orientation="Horizontal"
+                                                        ItemsSource="{TemplateBinding ItemsSource}"
+                                                        ItemTemplate="{TemplateBinding ItemTemplate}"
+                                                        ItemStyle="{StaticResource CardItemStyle}"
+                                                        SelectedItemStyle="{StaticResource SelectedCardItemStyle}"
+                                                        SelectionMode="Single"
+                                                        CanUnselectSingleItem="False" />
+                    <VerticalStackLayout Grid.Row="2"
+                                         Padding="8, 0">
+                        <ContentView Content="{TemplateBinding Content}"
+                                     WidthRequest="{OnPlatform MacCatalyst=300, WinUI=300}"
+                                     HorizontalOptions="{OnPlatform Default=Fill, MacCatalyst=Start, WinUI=Start}" />
                         <telerik:RadButton Margin="0, 40, 0, 0"
                                            VerticalOptions="Start"
                                            HorizontalOptions="Start"
                                            Style="{StaticResource SubmitButtonStyle}"
                                            Command="{TemplateBinding ButtonCommand}"
-                                           Text="{TemplateBinding ButtonText}"/>
+                                           Text="{TemplateBinding ButtonText}" />
                     </VerticalStackLayout>
-                    <Grid RowDefinitions="Auto, *" Grid.Column="2">
-                        <Label Text="{TemplateBinding CollectionTitle}"
-                               FontSize="16"
-                               HorizontalOptions="Center"
-                               Margin="0, 0, 0, 16" />
-                            <telerik:NonVirtualizedItemsControl Grid.Row="1"
-                                                                ItemsSource="{TemplateBinding ItemsSource}"
-                                                                ItemTemplate="{TemplateBinding ItemTemplate}"/>
-                    </Grid>
                 </Grid>
             </ControlTemplate>
         </ResourceDictionary>

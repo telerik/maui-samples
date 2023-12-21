@@ -24,19 +24,25 @@ namespace QSF.Examples.DatePickerControl.FirstLookExample
                 {
                     BackgroundColor = Color.FromArgb("#ECF6FE"),
                     BorderColor = Color.FromArgb("#D6EBFC"),
-                    ImageSource = "remote_work.png"
+                    SelectedBorderColor = Color.FromArgb("#0E88F2"),
+                    ImageSource = "remote_work.png",
+                    Label = "WFH Request"
                 },
                 new CardItem()
                 {
                     BackgroundColor = Color.FromArgb("#FEF2F1"),
                     BorderColor = Color.FromArgb("#FEE5E3"),
-                    ImageSource = "expenses.png"
+                    SelectedBorderColor = Color.FromArgb("#F85446"),
+                    ImageSource = "sick_leave.png",
+                    Label = "Sick Leave"
                 },
                 new CardItem()
                 {
                     BackgroundColor = Color.FromArgb("#FFF4EB"),
                     BorderColor = Color.FromArgb("#FFE9D8"),
-                    ImageSource = "time_off.png"
+                    SelectedBorderColor = Color.FromArgb("#FFAC3E"),
+                    ImageSource = "time_off.png",
+                    Label = "PTO Request"
                 }
             };
         }

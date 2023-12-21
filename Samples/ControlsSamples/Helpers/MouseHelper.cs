@@ -88,7 +88,7 @@ internal partial class MouseHelper
 
     private void OnMouseCursorTypeChanged()
     {
-#if WINDOWS
+#if WINDOWS || MACCATALYST
         this.HandleMouseCursorTypeChanged();
 #endif
     }

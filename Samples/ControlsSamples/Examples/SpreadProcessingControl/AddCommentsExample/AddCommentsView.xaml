@@ -51,13 +51,13 @@
                            Margin="0, 0, 0, 24" />
                     <Label Text="Related Cell:" />
                     <telerik:RadEntry Text="{Binding RelatedCell, Mode=TwoWay}"
-                                      MaximumWidthRequest="{OnPlatform WinUI=300, MacCatalyst=300}" />
+                                      WidthRequest="{OnPlatform WinUI=300, MacCatalyst=300}" />
                     <Label Text="Author Name:" />
                     <telerik:RadEntry Text="{Binding Author, Mode=TwoWay}"
-                                      MaximumWidthRequest="{OnPlatform WinUI=300, MacCatalyst=300}" />
+                                      WidthRequest="{OnPlatform WinUI=300, MacCatalyst=300}" />
                     <Label Text="Comment Text:" />
                     <telerik:RadEntry Text="{Binding Text, Mode=TwoWay}"
-                                      MaximumWidthRequest="{OnPlatform WinUI=300, MacCatalyst=300}" />
+                                      WidthRequest="{OnPlatform WinUI=300, MacCatalyst=300}" />
                 </VerticalStackLayout>
                 <telerik:RadButton Grid.Row="1"
                                    Text="Insert Comment"

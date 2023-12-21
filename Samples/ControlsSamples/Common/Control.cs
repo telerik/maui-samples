@@ -37,4 +37,7 @@ public class Control
     public Configuration Configuration { get; set; }
 
     public string ExcludeFrom { get; set; }
+
+    [XmlIgnore]
+    public Example StartupExample { get; set; }
 }

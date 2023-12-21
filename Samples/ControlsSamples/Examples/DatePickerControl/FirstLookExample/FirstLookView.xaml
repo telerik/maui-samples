@@ -7,13 +7,10 @@
                              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
                              x:Class="QSF.Examples.DatePickerControl.FirstLookExample.FirstLookView"
                              ItemsSource="{Binding Cards}"
-                             CollectionTitle="Applications:"
+                             CollectionTitle="My Applications"
                              ButtonCommand="{Binding SendRequestCommand}"
                              ButtonText="Submit Request">
     <VerticalStackLayout x:Name="layout">
-        <Label Text="Remote Work Request"
-               FontSize="24"
-               Margin="{OnIdiom Default='0, 0, 0, 24', Desktop='0, 0, 0, 40'}" />
         <Label Text="Specify Start Date:"
                Margin="0, 0, 0, 12" />
         <telerik:RadDatePicker x:Name="datePicker1"

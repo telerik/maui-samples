@@ -1,5 +1,4 @@
 ﻿using Microsoft.Maui.Controls.Xaml;
-using Microsoft.Maui.Devices;
 using QSF.Views;
 
 namespace QSF.Examples.ListPickerControl.FirstLookExample
@@ -10,10 +9,6 @@ namespace QSF.Examples.ListPickerControl.FirstLookExample
         public FirstLookView()
         {
             this.InitializeComponent();
-            if (DeviceInfo.Idiom != DeviceIdiom.Phone)
-            {
-                this.listPicker.MaximumWidthRequest = 300;
-            }
         }
     }
 }

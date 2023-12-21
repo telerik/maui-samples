@@ -24,19 +24,25 @@ namespace QSF.Examples.TimePickerControl.FirstLookExample
                 {
                     BackgroundColor = Color.FromArgb("#ECF6FE"),
                     BorderColor = Color.FromArgb("#D6EBFC"),
-                    ImageSource = "cleaning.png"
+                    SelectedBorderColor = Color.FromArgb("#0E88F2"),
+                    ImageSource = "cleaning.png",
+                    Label = "Deep Cleaning"
                 },
                 new CardItem()
                 {
                     BackgroundColor = Color.FromArgb("#FEF2F1"),
                     BorderColor = Color.FromArgb("#FEE5E3"),
-                    ImageSource = "carpetcleaning.png"
+                    SelectedBorderColor = Color.FromArgb("#F85446"),
+                    ImageSource = "carpetcleaning.png",
+                    Label = "Carpet Cleaning"
                 },
                 new CardItem()
                 {
                     BackgroundColor = Color.FromArgb("#FFF4EB"),
                     BorderColor = Color.FromArgb("#FFE9D8"),
-                    ImageSource = "homepainting.png"
+                    SelectedBorderColor = Color.FromArgb("#FFAC3E"),
+                    ImageSource = "homepainting.png",
+                    Label = "Thorough Cleaning"
                 }
             };
         } 

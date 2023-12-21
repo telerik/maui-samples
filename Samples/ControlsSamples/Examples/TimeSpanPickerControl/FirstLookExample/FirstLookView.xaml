@@ -6,19 +6,16 @@
                              xmlns:local="clr-namespace:QSF.Examples.TimeSpanPickerControl.FirstLookExample"
                              x:Class="QSF.Examples.TimeSpanPickerControl.FirstLookExample.FirstLookView"
                              ItemsSource="{Binding Cards}"
-                             CollectionTitle="Tickets starting from:" 
+                             CollectionTitle="Search Movies"
                              ButtonCommand="{Binding SendRequestCommand}"
-                             ButtonText="Show Flights">
+                             ButtonText="Show Movies">
     <VerticalStackLayout x:Name="layout">
-        <Label Text="Flight Search SOF - NYC"
-               FontSize="24"
-               Margin="{OnIdiom Default='0, 0, 0, 24', Desktop='0, 0, 0, 40'}" />
-        <Label Text="Specify Max Flight Duration:"
+        <Label Text="Max Duration:"
                Margin="0, 0, 0, 12" />
         <telerik:RadTimeSpanPicker x:Name="timeSpanPicker"
                                    Time="{Binding SelectedTime}">
             <telerik:RadTimeSpanPicker.PopupSettings>
-                <telerik:PickerPopupSettings HeaderLabelText="Select Flight Duration" />
+                <telerik:PickerPopupSettings HeaderLabelText="Select Movie Duration" />
             </telerik:RadTimeSpanPicker.PopupSettings>
         </telerik:RadTimeSpanPicker>
     </VerticalStackLayout>

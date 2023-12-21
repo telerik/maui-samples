@@ -13,7 +13,7 @@
                 <styles:ConfigurationViewResources />
             </ResourceDictionary.MergedDictionaries>
             <converters:NameToEasingConverter x:Key="NameToEasingConverter" />
-            <example:NameToColorConverter x:Key="NameToColorConverter" />
+            <converters:ColorNameToColorConverter x:Key="ColorNameToColorConverter" />
             <example:ColorToBrushConverter x:Key="ColorToBrushConverter" />
         </ResourceDictionary>
     </ContentView.Resources>
@@ -31,8 +31,8 @@
                                           ProgressAnimationEasing="{Binding AnimationEasing}"
                                           ProgressFill="{Binding ProgressColor, Converter={StaticResource ColorToBrushConverter}}"
                                           TrackFill="{Binding TrackColor, Converter={StaticResource ColorToBrushConverter}}"
-                                          TextColor="{Binding TextColor, Converter={StaticResource NameToColorConverter}}"
-                                          AlternateTextColor="{Binding AlternateTextColor, Converter={StaticResource NameToColorConverter}}"
+                                          TextColor="{Binding TextColor, Converter={StaticResource ColorNameToColorConverter}}"
+                                          AlternateTextColor="{Binding AlternateTextColor, Converter={StaticResource ColorNameToColorConverter}}"
                                           ProgressCornerRadius="{Binding ProgressCornerRadius}"
                                           TrackCornerRadius="{Binding TrackCornerRadius}"
                                           TrackThickness="{Binding TrackThickness}"

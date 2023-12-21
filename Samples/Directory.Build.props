@@ -17,7 +17,7 @@
     <UseSourceAssemblies>false</UseSourceAssemblies>
     <UsePlatformAssemblies>false</UsePlatformAssemblies>
 
-    <DotNetVersion Condition=" $(DotNetVersion) == '' ">Net7</DotNetVersion>
+    <DotNetVersion Condition=" $(DotNetVersion) == '' ">Net8</DotNetVersion>
     <NetPlatform Condition=" $(DotNetVersion) == 'Net7' ">net7.0</NetPlatform>
     <NetPlatform Condition=" $(DotNetVersion) == 'Net8' ">net8.0</NetPlatform>
     <AndroidPlatform>$(NetPlatform)-android</AndroidPlatform>

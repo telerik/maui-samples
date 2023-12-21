@@ -6,7 +6,6 @@ using QSF.ExampleUtilities;
 using System;
 using System.Collections.Generic;
 
-
 namespace QSF.Examples.DateTimePickerControl.FirstLookExample
 {
     public class FirstLookViewModel : ExampleViewModel
@@ -23,19 +22,25 @@ namespace QSF.Examples.DateTimePickerControl.FirstLookExample
                 {
                     BackgroundColor = Color.FromArgb("#ECF6FE"),
                     BorderColor = Color.FromArgb("#D6EBFC"),
-                    ImageSource = "train.png"
+                    SelectedBorderColor = Color.FromArgb("#0E88F2"),
+                    ImageSource = "train.png",
+                    Label = "Train"
                 },
                 new CardItem()
                 {
                     BackgroundColor = Color.FromArgb("#FEF2F1"),
                     BorderColor = Color.FromArgb("#FEE5E3"),
-                    ImageSource = "car.png"
+                    SelectedBorderColor = Color.FromArgb("#F85446"),
+                    ImageSource = "car.png",
+                    Label = "Car (Taxi)"
                 },
                 new CardItem()
                 {
                     BackgroundColor = Color.FromArgb("#FFF4EB"),
                     BorderColor = Color.FromArgb("#FFE9D8"),
-                    ImageSource = "flight.png"
+                    SelectedBorderColor = Color.FromArgb("#FFAC3E"),
+                    ImageSource = "flight.png",
+                    Label = "Plane"
                 }
             };
         }
@@ -64,7 +69,7 @@ namespace QSF.Examples.DateTimePickerControl.FirstLookExample
         private void SendRequest()
         {
             var toastService = DependencyService.Get<IToastMessageService>();
-            toastService.ShortAlert("Vehicle requested");
+            toastService.ShortAlert("Transfer requested");
             this.Date = null;
         }
 
