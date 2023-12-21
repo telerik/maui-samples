@@ -62,6 +62,13 @@ public class NavigationService : INavigationService
         return this.navigation.PushAsync(descriptionPage);
     }
 
+    public Task NavigateToSettingsPageAsync(SettingsViewModel settingsViewModel)
+    {
+        SettingsPageMobile settingsPage = new SettingsPageMobile();
+        settingsPage.BindingContext = settingsViewModel;
+        return this.navigation.PushAsync(settingsPage);
+    }
+
     public Task NavigateToRootAsync()
     {
         return this.navigation.PopToRootAsync();

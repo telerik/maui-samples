@@ -7,14 +7,11 @@
                              xmlns:local="clr-namespace:QSF.Examples.DatePickerControl.FirstLookExample"
                              x:Class="QSF.Examples.DateTimePickerControl.FirstLookExample.FirstLookView"
                              ItemsSource="{Binding Cards}"
-                             CollectionTitle="Transport Type:"
+                             CollectionTitle="Book Your Transfer"
                              ButtonCommand="{Binding SendRequestCommand}"
-                             ButtonText="Request Transport">
+                             ButtonText="Request Transfer">
     <VerticalStackLayout x:Name="layout">
-        <Label Text="Good Afternoon, Joe"
-               FontSize="24"
-               Margin="{OnIdiom Default='0, 0, 0, 24', Desktop='0, 0, 0, 40'}" />
-        <Label Text="Schedule a Trip:"
+        <Label Text="Date &amp; Time of Arrival"
                Margin="0, 0, 0, 12" />
         <telerik:RadDateTimePicker x:Name="dateTimePicker"
                                    Date="{Binding Date}"

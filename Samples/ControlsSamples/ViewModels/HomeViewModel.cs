@@ -1,7 +1,9 @@
-﻿using Microsoft.Maui.Controls;
+﻿using Microsoft.Maui.ApplicationModel;
+using Microsoft.Maui.Controls;
 using Microsoft.Maui.Devices;
 using QSF.Common;
 using QSF.Services;
+using QSF.Views;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
@@ -13,6 +15,7 @@ public class HomeViewModel : PageViewModel
     private Control selectedControl;
     private bool isHomeSelected;
     private bool isSearchSelected;
+    private bool isSettingsSelected;
     private HighlightedSearchResult selectedSearchResult;
 
     public HomeViewModel()
@@ -31,6 +34,7 @@ public class HomeViewModel : PageViewModel
         this.SelectDemoAppCommand = new Command(this.SelectDemoApp);
         this.SelectMauiHighlightCommand = new Command(this.SelectMauiHighlight);
         this.SelectSearchCommand = new Command(this.SelectSearch);
+        this.SelectSettingsCommand = new Command(this.SelectSettings);
 
         this.isHomeSelected = true;
     }
@@ -54,6 +58,10 @@ public class HomeViewModel : PageViewModel
     public ICommand SelectMauiHighlightCommand { get; }
 
     public ICommand SelectSearchCommand { get; }
+
+    public ICommand SelectSettingsCommand { get; }
+
+    public ICommand LinkTapCommand => new Command<string>(async (url) => await Launcher.OpenAsync(url));
 
     public Control SelectedControl
     {
@@ -96,6 +104,21 @@ public class HomeViewModel : PageViewModel
             if (this.UpdateValue(ref this.isSearchSelected, value))
             {
                 this.OnIsSearchSelectedChanged();
+            }
+        }
+    }
+
+    public bool IsSettingsSelected
+    {
+        get
+        {
+            return this.isSettingsSelected;
+        }
+        set
+        {
+            if (this.UpdateValue(ref this.isSettingsSelected, value))
+            {
+                this.OnIsSettingsSelectedChanged();
             }
         }
     }
@@ -210,6 +233,11 @@ public class HomeViewModel : PageViewModel
         this.IsSearchSelected = true;
     }
 
+    private void SelectSettings()
+    {
+        this.IsSettingsSelected = true;
+    }
+
     private Control TryGetControl(object obj)
     {
         Control control = obj as Control;
@@ -244,6 +272,7 @@ public class HomeViewModel : PageViewModel
         {
             this.IsHomeSelected = false;
             this.IsSearchSelected = false;
+            this.IsSettingsSelected = false;
         }
     }
 
@@ -264,6 +293,11 @@ public class HomeViewModel : PageViewModel
         }
     }
 
+    public void NavigateToSettings()
+    {
+        this.NavigationService.NavigateToSettingsPageAsync(new SettingsViewModel());
+    }
+
     public void NavigateToSearch()
     {
         this.NavigationService.NavigateToAsync<SearchViewModelMobile>();
@@ -275,6 +309,7 @@ public class HomeViewModel : PageViewModel
         {
             this.SelectedControl = null;
             this.IsSearchSelected = false;
+            this.IsSettingsSelected = false;
         }
     }
 
@@ -284,6 +319,17 @@ public class HomeViewModel : PageViewModel
         {
             this.SelectedControl = null;
             this.IsHomeSelected = false;
+            this.IsSettingsSelected = false;
+        }
+    }
+
+    private void OnIsSettingsSelectedChanged()
+    {
+        if (this.IsSettingsSelected)
+        {
+            this.SelectedControl = null;
+            this.IsHomeSelected = false;
+            this.IsSearchSelected = false;
         }
     }
 
@@ -301,6 +347,7 @@ public class HomeViewModel : PageViewModel
             return;
         }
 
+        control.StartupExample = control.Examples.FirstOrDefault(e => e.Name == searchResult.ExampleName);
         this.SelectedControl = control;
     }
 }

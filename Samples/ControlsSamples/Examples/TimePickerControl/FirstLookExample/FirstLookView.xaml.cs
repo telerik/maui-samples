@@ -10,11 +10,6 @@ namespace QSF.Examples.TimePickerControl.FirstLookExample
         public FirstLookView()
         {
             InitializeComponent();
-            if (DeviceInfo.Idiom != DeviceIdiom.Phone)
-            {
-                this.datePicker.MaximumWidthRequest = 300;
-                this.timePicker.MaximumWidthRequest = 300;
-            }
         }
     }
 }

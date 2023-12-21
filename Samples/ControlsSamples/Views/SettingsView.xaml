@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:common="clr-namespace:QSF.Common"
+             x:Class="QSF.Views.SettingsView">
+    <ContentView.Resources>
+        <Style TargetType="Label" BasedOn="{StaticResource BaseLabelStyle}" />
+        <Style x:Key="HeadingLabelStyle" TargetType="Label" BasedOn="{StaticResource BaseLabelStyle}">
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="Margin" Value="0, 12" />
+            <Setter Property="HorizontalOptions" Value="Start" />
+            <Setter Property="VerticalOptions" Value="Center" />
+        </Style>
+    </ContentView.Resources>
+    <Grid RowDefinitions="Auto, *">
+        <Label Text="Settings"
+               Style="{StaticResource PageHeaderLabelStyle}"
+               HorizontalOptions="Center"
+               Margin="0, 20"
+               IsVisible="{OnPlatform Default=True, Android=False, iOS=False}" />
+        <ScrollView Grid.Row="1"
+                    HorizontalScrollBarVisibility="Never">
+            <telerik:RadBorder BackgroundColor="{AppThemeBinding Light={StaticResource SecondaryBackgroundColor}, Dark={StaticResource SecondaryBackgroundColorDark}}"
+                               CornerRadius="4"
+                               Padding="16, 20">
+                <Grid>
+                    <VerticalStackLayout Spacing="12">
+                        <VerticalStackLayout IsVisible="False">
+                            <Label Text="Appearance"
+                                   Style="{StaticResource HeadingLabelStyle}" />
+                            <telerik:RadComboBox x:Name="appearanceComboBox"
+                                                 ItemsSource="{Binding}"
+                                                 IsEditable="False"
+                                                 IsClearButtonVisible="False"
+                                                 DropDownHeight="{OnPlatform Android=102, iOS=108, MacCatalyst=66, WinUI=120}"
+                                                 WidthRequest="150"
+                                                 HorizontalOptions="Start">
+                                <telerik:RadComboBox.SelectionBoxTemplate>
+                                    <DataTemplate>
+                                        <Grid ColumnDefinitions="Auto, *"
+                                              ColumnSpacing="{OnPlatform Default=4, WinUI=8}"
+                                              MinimumHeightRequest="{OnPlatform Android=44, iOS=36, MacCatalyst=28, WinUI=32}"
+                                              Padding="{OnPlatform Default='8, 0, 0, 0', WinUI='4, 0, 0, 0'}">
+                                            <Label FontFamily="TelerikFontExamples"
+                                                   FontSize="16"
+                                                   Text="&#xe848;"
+                                                   HorizontalOptions="Start"
+                                                   VerticalOptions="Center" />
+                                            <Label Grid.Column="1"
+                                                   Text="{Binding}"
+                                                   HorizontalOptions="Start"
+                                                   VerticalOptions="Center" />
+                                        </Grid>
+                                    </DataTemplate>
+                                </telerik:RadComboBox.SelectionBoxTemplate>
+                            </telerik:RadComboBox>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout>
+                            <Label Text="Helpful Links"
+                                   Style="{StaticResource HeadingLabelStyle}" />
+                            <VerticalStackLayout Spacing="12">
+                                <common:HyperlinkLabel Text="Documentation"
+                                                       Url="https://docs.telerik.com/devtools/maui/"
+                                                       HorizontalOptions="Start" />
+                                <common:HyperlinkLabel Text="Feedback Portal"
+                                                       Url="https://feedback.telerik.com/maui"
+                                                       HorizontalOptions="Start" />
+                                <common:HyperlinkLabel Text="Forum"
+                                                       Url="https://www.telerik.com/forums/maui"
+                                                       HorizontalOptions="Start" />
+                                <common:HyperlinkLabel Text="Blogs"
+                                                       Url="https://www.telerik.com/blogs/mobile-net-maui"
+                                                       HorizontalOptions="Start" />
+                                <common:HyperlinkLabel Text=".NET MAUI Resources Hub"
+                                                       Url="https://www.telerik.com/maui-ui/resources"
+                                                       HorizontalOptions="Start" />
+                                <common:HyperlinkLabel Text="Video Tutorials"
+                                                       Url="https://www.telerik.com/videos/product/maui-ui"
+                                                       HorizontalOptions="Start" />
+                                <common:HyperlinkLabel Text="All Telerik Products"
+                                                       Url="https://www.telerik.com/support/demos"
+                                                       HorizontalOptions="Start" />
+                                <common:HyperlinkLabel Text="Privacy Policy"
+                                                       Url="https://www.progress.com/legal/privacy-policy"
+                                                       HorizontalOptions="Start" />
+                            </VerticalStackLayout>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout>
+                            <Label Text="About"
+                                   Style="{StaticResource HeadingLabelStyle}" />
+                            <HorizontalStackLayout Spacing="4">
+                                <Label Text="Controls version:" />
+                                <Label x:Name="controlsVersionLabel"
+                                       FontAttributes="Bold" />
+                            </HorizontalStackLayout>
+                        </VerticalStackLayout>
+                    </VerticalStackLayout>
+                    <Label Text="{Binding Source={x:Static sys:DateTime.Now}, StringFormat='Copyright © {0:yyyy} Progress Software Corporation'}"
+                           FontSize="10"
+                           VerticalOptions="End" />
+                </Grid>
+            </telerik:RadBorder>
+        </ScrollView>
+    </Grid>
+</ContentView>

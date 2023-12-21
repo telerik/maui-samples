@@ -9,18 +9,22 @@ public class Club : NotifyPropertyChangedBase
 {
     private string name;
     private DateTime established;
-    private TimeSpan time;
     private int stadiumCapacity;
     private bool isChampion;
     private string country;
+    private string city;
+    private string championship;
+    private double? revenue;
 
-    public Club(string name, DateTime established, TimeSpan time, int stadiumCapacity, string country)
+    public Club(string name, DateTime established, int stadiumCapacity, string country, string city, string championship, double? revenue)
     {
         Name = name;
-        Established = established;
-        Time = time;
+        Established = established;  
         StadiumCapacity = stadiumCapacity;
         Country = country;
+        City = city;
+        Championship = championship;
+        Revenue = revenue;
     }
 
     public string Name
@@ -34,22 +38,10 @@ public class Club : NotifyPropertyChangedBase
         set { this.UpdateValue(ref this.established, value); }
     }
 
-    public TimeSpan Time
-    {
-        get { return this.time; }
-        set { this.UpdateValue(ref this.time, value); }
-    }
-
     public int StadiumCapacity
     {
         get { return this.stadiumCapacity; }
         set { this.UpdateValue(ref this.stadiumCapacity, value); }
-    }
-
-    public string Country
-    {
-        get { return this.country; }
-        set { this.UpdateValue(ref this.country, value); }
     }
 
     public bool IsChampion
@@ -58,6 +50,30 @@ public class Club : NotifyPropertyChangedBase
         set { this.UpdateValue(ref this.isChampion, value); }
     }
 
-    public List<string> Countries => new List<string> { "England", "Spain", "France", "Bulgaria" };
+    public string Country
+    {
+        get { return this.country; }
+        set { this.UpdateValue(ref this.country, value); }
+    }
+
+    public string City
+    {
+        get { return this.city; }
+        set { this.UpdateValue(ref this.city, value); }
+    }
+
+    public string Championship       
+    {
+        get { return this.championship; }
+        set { this.UpdateValue(ref this.championship, value); }
+    }
+
+    public double? Revenue
+    {
+        get { return this.revenue; }
+        set { this.UpdateValue(ref this.revenue, value); }
+    }
+
+    public List<string> Championships => new List<string> { "UEFA Champions League", "Premier League", "La Liga" };
 }
 // << datagrid-club-model

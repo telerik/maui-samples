@@ -12,10 +12,6 @@
 
         <local:ViewWidthToSpanCountConverter x:Key="ViewWidthToSpanCountConverter" />
 
-        <Style x:Key="CollapsedThumbStyle" TargetType="telerik:SliderThumb">
-            <Setter Property="IsVisible" Value="False" />
-        </Style>
-
         <DataTemplate x:Key="PropertyItemTemplateMobile">
             <telerik:ListViewTemplateCell>
                 <telerik:ListViewTemplateCell.View>
@@ -94,15 +90,13 @@
                        FontAttributes="Bold"
                        FontSize="{OnPlatform iOS=13}"
                        Margin="{OnIdiom Default=0, Desktop='0, 0, 0, 8'}" />
-                <telerik:RadRangeSlider RangeEnd="{Binding GuestsNumberRangeEnd, Mode=TwoWay}"
-                                        Minimum="1"
-                                        Maximum="8"
-                                        TickStep="1"
-                                        SnapMode="SnapToTicks"
-                                        LabelsPlacement="End"
-                                        TooltipStringFormat="{}{0:N0}"
-                                        DragMode="EndThumb"
-                                        StartThumbStyle="{StaticResource CollapsedThumbStyle}" />
+                <telerik:RadSlider Value="{Binding GuestsNumber, Mode=TwoWay}"
+                                   Minimum="1"
+                                   Maximum="8"
+                                   TickStep="1"
+                                   SnapMode="SnapToTicks"
+                                   LabelsPlacement="End"
+                                   TooltipStringFormat="{}{0:N0}" />
             </VerticalStackLayout>
         </Grid>
         <telerik:RadListView Grid.Row="1"

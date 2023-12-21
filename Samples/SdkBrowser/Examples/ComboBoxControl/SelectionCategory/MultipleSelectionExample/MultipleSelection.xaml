@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.ComboBoxControl.SelectionCategory.MultipleSelectionExample.MultipleSelection">
+    <Grid WidthRequest="{OnPlatform MacCatalyst=300, WinUI=300}" HorizontalOptions="{OnIdiom Default=Fill, Desktop=Start}">
+        <VerticalStackLayout Spacing="20">
+            <!-- >> combobox-multiple-selection -->
+            <telerik:RadComboBox ItemsSource="{Binding Items}"
+                                 SelectionMode="Multiple"
+                                 DisplayMemberPath="Name"
+                                 Placeholder="Please select one or more cities"
+                                 SelectedItems="{Binding SelectedCities}"
+                                 SelectionChanged="RadComboBox_SelectionChanged"
+                                 AutomationId="selectedItemMultipleCombo" />
+            <!-- << combobox-multiple-selection -->
+            <Grid RowDefinitions="Auto, Auto" ColumnDefinitions="120, *" ColumnSpacing="10">
+                <Label FontAttributes="Bold" Text="Last action:" />
+                <Label Grid.Column="1" x:Name="lastActionLabel" />
+                <Label Grid.Row="1" FontAttributes="Bold" Text="Selected Cities:" />
+                <CollectionView Grid.Row="1" Grid.Column="1" ItemsSource="{Binding SelectedCities}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Label Text="{Binding Name}" />
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Grid>
+        </VerticalStackLayout>
+    </Grid>
+</ContentView>

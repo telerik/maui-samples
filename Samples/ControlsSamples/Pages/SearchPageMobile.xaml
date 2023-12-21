@@ -20,9 +20,6 @@
             <Setter Property="FocusedBorderBrush" Value="Transparent" />
             <Setter Property="FocusedBorderThickness" Value="0" />
         </Style>
-        <Style x:Key="InnerSearchViewStyle_iOS" TargetType="views:InnerSearchView">
-            <Setter Property="Margin" Value="10" />
-        </Style>
         <Style x:Key="BoxViewStyle" TargetType="BoxView">
             <Setter Property="IsVisible" Value="{OnPlatform Default=true, iOS=false}" />
             <Setter Property="HeightRequest" Value="1" />
@@ -57,7 +54,7 @@
         <views:InnerSearchView Grid.Row="1"
                                SearchText="{Binding Text, Source={Reference searchEntry}}"
                                SelectedSearchResult="{Binding SelectedSearchResult}"
-                               Style="{OnPlatform iOS={StaticResource InnerSearchViewStyle_iOS}}" />
+                               Margin="12" />
     </Grid>
     
 </ContentPage>

@@ -73,29 +73,16 @@ public class SearchViewModel : ViewModelBase
     {
         HighlightedText hText;
         HighlightedSearchResult hResult;
-        IControlsService service;
 
         switch (result.ResultType)
         {
             case SearchResultType.Control:
                 hText = new HighlightedText(result.ControlDisplayName, result.FirstCharIndex, result.LastCharIndex);
-                hResult = new HighlightedSearchResult(hText, HighlightedSearchResultType.Control, result.ControlName, result.ControlDisplayName);
-                break;
-            case SearchResultType.ControlDescription:
-                service = DependencyService.Get<IControlsService>();
-                Control control = service.GetControlByName(result.ControlName);
-                hText = new HighlightedText(control.FullDescription, result.FirstCharIndex, result.LastCharIndex);
-                hResult = new HighlightedSearchResult(hText, HighlightedSearchResultType.ControlDescription, control.Name, control.DisplayName, null, null, control.FullDescription);
+                hResult = new HighlightedSearchResult(hText, HighlightedSearchResultType.Control, result.ControlName, result.ControlDisplayName, result.Icon);
                 break;
             case SearchResultType.Example:
                 hText = new HighlightedText(result.ExampleDisplayName, result.FirstCharIndex, result.LastCharIndex);
-                hResult = new HighlightedSearchResult(hText, HighlightedSearchResultType.Example, result.ControlName, result.ControlDisplayName, result.ExampleName, result.ExampleDisplayName);
-                break;
-            case SearchResultType.ExampleDescription:
-                service = DependencyService.Get<IControlsService>();
-                Example example = service.GetControlExample(result.ControlName, result.ExampleName);
-                hText = new HighlightedText(example.Description, result.FirstCharIndex, result.LastCharIndex);
-                hResult = new HighlightedSearchResult(hText, HighlightedSearchResultType.ExampleDescription, result.ControlName, result.ControlDisplayName, result.ExampleName, example.DisplayName, example.Description);
+                hResult = new HighlightedSearchResult(hText, HighlightedSearchResultType.Example, result.ControlName, result.ControlDisplayName, result.Icon, result.ExampleName, result.ExampleDisplayName);
                 break;
             default:
                 throw new NotImplementedException();
@@ -144,7 +131,7 @@ public class SearchViewModel : ViewModelBase
         foreach (Control control in configuration.Controls)
         {
             HighlightedText highlightedText = new HighlightedText(control.DisplayName);
-            HighlightedSearchResult highlightedSearchResult = new HighlightedSearchResult(highlightedText, HighlightedSearchResultType.AllControls, control.Name, control.DisplayName);
+            HighlightedSearchResult highlightedSearchResult = new HighlightedSearchResult(highlightedText, HighlightedSearchResultType.AllControls, control.Name, control.DisplayName, control.Icon);
             newResults.Add(highlightedSearchResult);
         }
 
@@ -210,6 +197,6 @@ public class SearchViewModel : ViewModelBase
     private void SendNavRequest(Example example)
     {
         HighlightedText hText = new HighlightedText(example.Name);
-        this.SelectedSearchResult = new HighlightedSearchResult(hText, HighlightedSearchResultType.Example, example.ControlName, null);
+        this.SelectedSearchResult = new HighlightedSearchResult(hText, HighlightedSearchResultType.Example, example.ControlName, null, example.Icon);
     }
 }

@@ -33,7 +33,7 @@ public class FirstLookViewModel : ExampleViewModel
 
     private double priceRangeStart = 80;
     private double priceRangeEnd = 250;
-    private double guestsNumberRangeEnd = 3;
+    private double guestsNumber = 3;
     private IDispatcherTimer dispatcherTimer;
 
     public FirstLookViewModel()
@@ -84,12 +84,12 @@ public class FirstLookViewModel : ExampleViewModel
         }
     }
 
-    public double GuestsNumberRangeEnd
+    public double GuestsNumber
     {
-        get => this.guestsNumberRangeEnd;
+        get => this.guestsNumber;
         set
         {
-            if (this.UpdateValue(ref this.guestsNumberRangeEnd, value))
+            if (this.UpdateValue(ref this.guestsNumber, value))
             {
                 this.ScheduleFilterItems();
             }
@@ -140,7 +140,7 @@ public class FirstLookViewModel : ExampleViewModel
         double guests = rental.MaxGuests;
 
         bool passesFilter = this.priceRangeStart <= price && price <= this.priceRangeEnd &&
-            this.guestsNumberRangeEnd <= guests;
+            this.guestsNumber <= guests;
 
         return passesFilter;
     }

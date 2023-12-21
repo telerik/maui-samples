@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.ComboBoxControl.SelectionCategory.SingleSelectionExample"
+             x:Class="SDKBrowserMaui.Examples.ComboBoxControl.SelectionCategory.SingleSelectionExample.SingleSelection">
+    <Grid WidthRequest="{OnPlatform MacCatalyst=300, WinUI=300}" HorizontalOptions="{OnIdiom Default=Fill, Desktop=Start}">
+        <VerticalStackLayout Spacing="20" Margin="20">
+            <Grid RowDefinitions="Auto, Auto" ColumnDefinitions="120, *" ColumnSpacing="10">
+                <Label FontAttributes="Bold" Text="Selected Index:" />
+                <Label Grid.Column="1" Text="{Binding SelectedIndex}" AutomationId="selectedItemIndexLabel"/>
+                <Label Grid.Row="1" FontAttributes="Bold" Text="Selected Item:" />
+                <Label Grid.Row="1" Grid.Column="1" Text="{Binding SelectedCity.Name}" AutomationId="selectedItemLabel"/>
+            </Grid>
+            <!-- >> combobox-single-selection -->
+            <telerik:RadComboBox ItemsSource="{Binding Items}"
+                                 SelectionMode="Single"
+                                 DisplayMemberPath="Name"
+                                 SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}"
+                                 SelectedItem="{Binding SelectedCity, Mode=TwoWay}"
+                                 AutomationId="comboBox"/>
+            <!-- << combobox-single-selection -->
+        </VerticalStackLayout>
+    </Grid>
+</ContentView>

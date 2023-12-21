@@ -7,7 +7,7 @@
                              xmlns:local="clr-namespace:QSF.Examples.TemplatedPickerControl.FirstLookExample"
                              x:Class="QSF.Examples.TemplatedPickerControl.FirstLookExample.FirstLookView"
                              ItemsSource="{Binding Cards}"
-                             CollectionTitle="Product Info:"
+                             CollectionTitle="Selected Product"
                              ButtonCommand="{Binding SendRequestCommand}"
                              ButtonText="Add to Basket">
     <ContentView.Resources>
@@ -37,11 +37,9 @@
         </Style>
         <DataTemplate x:Key="ProductItemTemplate">
             <StackLayout Orientation="{OnIdiom Default=Horizontal, Desktop=Vertical}">
-                <telerik:RadBorder Style="{OnIdiom Default={StaticResource DefaultCardBorderStyle}, Desktop={StaticResource DesktopCardBorderStyle}}">
-                    <Image Source="{Binding ImageSource}" />
-                </telerik:RadBorder>
+                <Image Source="{Binding ImageSource}" />
                 <VerticalStackLayout Spacing="5"
-                                     Margin="{OnIdiom Default='0, 12, 0, 0', Desktop=0}">
+                                     Margin="{OnIdiom Default='12, 0, 0, 0', Desktop='0, 4, 0, 0'}">
                     <Label Text="Raglan sleeve" />
                     <Label Text="60% Polyamide, 40% Polyester" />
                     <Label Text="Machine Wash - Cold (30° max)" />
@@ -54,10 +52,7 @@
     </ContentView.Resources>
 
     <VerticalStackLayout>
-        <Label Text="Women's Short Sleeve Top"
-               FontSize="24"
-               Margin="{OnIdiom Default='0, 0, 0, 24', Desktop='0, 0, 0, 40'}" />
-        <Label Text="Select Size &amp; Colour:"
+        <Label Text="Size &amp; Colour:"
                Margin="0, 0, 0, 12" />
         <telerik:RadTemplatedPicker x:Name="templatedPicker"
                                     Placeholder="Choose Your Size and Color"

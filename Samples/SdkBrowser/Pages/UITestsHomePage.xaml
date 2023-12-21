@@ -9,5 +9,9 @@
         <telerik:RadEntry Placeholder="Search here"
                           Text="{Binding SearchText}"
                           AutomationId="searchEntry"/>
+        <telerik:RadButton x:Name="button" 
+                           Text="Back" 
+                           Clicked="button_Clicked"
+                           AutomationId="backButton"/>
     </VerticalStackLayout>
 </ContentPage>

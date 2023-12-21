@@ -26,12 +26,16 @@ public partial class SearchViewDesktop : ContentView
     {
         base.OnPropertyChanged(propertyName);
 
-        if (propertyName == nameof(this.IsVisible))
+        if (propertyName == nameof(this.IsVisible) && this.searchEntry != null)
         {
-            if (this.IsVisible && this.searchEntry != null)
+            if (this.IsVisible)
+            {
+                // The dispatcher is needed for Windows.
+                this.Dispatcher.Dispatch(()=> this.searchEntry.Focus());
+            }
+            else
             {
                 this.searchEntry.Text = null;
-                this.searchEntry.Focus();
             }
         }
     }

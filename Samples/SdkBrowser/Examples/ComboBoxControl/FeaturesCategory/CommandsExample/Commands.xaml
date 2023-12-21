@@ -11,9 +11,11 @@
         <HorizontalStackLayout Spacing="5"
                                Margin="0, 0, 0, 12">
             <Button Text="Default Clear Command"
-                    Command="{Binding Source={x:Reference comboBox}, Path=ClearSelectionCommand}" />
+                    Command="{Binding Source={x:Reference comboBox}, Path=ClearSelectionCommand}" 
+                    AutomationId="customClearButton"/>
             <Button Text="Custom Clear Command"
-                    Clicked="ExecuteCustomCommanClicked"/>
+                    Clicked="ExecuteCustomCommanClicked"
+                    AutomationId="defaultClearButton"/>
         </HorizontalStackLayout>
 
         <telerik:RadComboBox x:Name="comboBox"

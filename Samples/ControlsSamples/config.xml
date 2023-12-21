@@ -412,6 +412,13 @@
 					<Description>Demonstrates the different type of columns that DataGrid control provides. Column types such as Text, Boolean, Template, Date, Time, Numeric.</Description>
 				</Example>
 				<Example>
+					<Name>DataFormatting</Name>
+					<Page>DataFormattingView</Page>
+					<DisplayName>Data Formatting</DisplayName>
+					<Status>New</Status>
+					<Description>Demonstrates the custom data formatting supported by the .NET MAUI DataGrid. This allows displaying of the data as currency, percentage or any other format. You can also use a custom value converter to display data in a readable way. The data formatting is set through the DataGridColumn DataMemberBinding property.</Description>
+				</Example>
+				<Example>
 					<Name>Selection</Name>
 					<Page>SelectionView</Page>
 					<DisplayName>Selection</DisplayName>
@@ -961,16 +968,39 @@
 		</Control>
 
 		<Control>
-			<Name>SlideView</Name>
-			<DisplayName>SlideView</DisplayName>
-			<ShortDescription>Represents items/views with only one active at a time and allows to easily slide (navigate) to the next/previous via panning.</ShortDescription>
-			<FullDescription>Telerik UI for .NET MAUI SlideView</FullDescription>
+			<Name>Slider</Name>
+			<Status>New</Status>
+			<DisplayName>Slider</DisplayName>
+			<ShortDescription>A flexible UI component that allows users to select a value from a defined range using a smooth or step-based sliding.</ShortDescription>
+			<FullDescription>Telerik UI for .NET MAUI Slider is a flexible UI component that allows users to select a value from a defined range. It is completely customizable in terms of appearance and offers numerous configuration options.</FullDescription>
+			<ExcludeFrom>Android,iOS,MacCatalyst,WinUI</ExcludeFrom>
 			<Examples>
 				<Example>
 					<Name>FirstLook</Name>
 					<Page>FirstLookView</Page>
 					<DisplayName>First Look</DisplayName>
-					<Description>Telerik UI for .NET MAUI SlideView is a flexible navigation control that allows you to slide between different views, thus providing an interactive navigation. With it you can build a gallery display to show your images and content efficiently. </Description>
+					<Description>Telerik UI for .NET MAUI Slider is a flexible UI component that allows users to select a value from a defined range using a smooth or step-based sliding.</Description>
+				</Example>
+				<Example>
+					<Name>Configuration</Name>
+					<Page>ConfigurationView</Page>
+					<DisplayName>Configuration</DisplayName>
+					<Description>This example presents various configuration options that the Slider control provides. Adjust the ticks and labels placement, frequency, colors, size, customize the look of the track and thumb, and explore the snap and drag modes.</Description>
+				</Example>
+			</Examples>
+		</Control>
+
+		<Control>
+			<Name>SlideView</Name>
+			<DisplayName>SlideView</DisplayName>
+			<ShortDescription>Represents items/views with only one active at a time and allows to easily slide (navigate) to the next/previous via panning.</ShortDescription>
+			<FullDescription>Telerik UI for .NET MAUI SlideView represents items/views with only one active at a time and allows to easily slide (navigate) to the next/previous via panning.</FullDescription>
+			<Examples>
+				<Example>
+					<Name>FirstLook</Name>
+					<Page>FirstLookView</Page>
+					<DisplayName>First Look</DisplayName>
+					<Description>Telerik UI for .NET MAUI SlideView is a flexible navigation control that allows you to slide between different views, thus providing an interactive navigation. With it you can build a gallery display to show your images and content efficiently.</Description>
 				</Example>
 				<Example>
 					<Name>Configuration</Name>

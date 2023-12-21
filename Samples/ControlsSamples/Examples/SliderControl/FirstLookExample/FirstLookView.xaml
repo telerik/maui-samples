@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:local="clr-namespace:QSF.Examples.SliderControl.FirstLookExample"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        x:Class="QSF.Examples.SliderControl.FirstLookExample.FirstLookView"
+                        x:Name="sliderFirstLookContentView"
+                        Padding="16, 20">
+    <telerik:RadContentView.Resources>
+        <Style TargetType="telerik:RadSlider">
+            <Setter Property="Minimum" Value="0" />
+            <Setter Property="Maximum" Value="20000" />
+            <Setter Property="MinimumWidthRequest" Value="300" />
+            <Setter Property="TooltipStringFormat" Value="{}{0:N0}" />
+        </Style>
+        <Style x:Key="ExampleLabelStyle" TargetType="Label" BasedOn="{StaticResource BaseLabelStyle}">
+            <Setter Property="Margin" Value="{OnPlatform Default='0, 0, 0, 12', Android='3, 0, 0, 12', WinUI='4, 0, 0, 12'}" />
+        </Style>
+        <Style x:Key="RootGridStyle_Mobile" TargetType="Grid">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup>
+                        <VisualState x:Name="Portrait">
+                            <VisualState.StateTriggers>
+                                <OrientationStateTrigger Orientation="Portrait" />
+                            </VisualState.StateTriggers>
+                            <VisualState.Setters>
+                                <Setter Property="RowDefinitions" Value="Auto, *" />
+                                <Setter Property="RowSpacing" Value="24" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Landscape">
+                            <VisualState.StateTriggers>
+                                <OrientationStateTrigger Orientation="Landscape" />
+                            </VisualState.StateTriggers>
+                            <VisualState.Setters>
+                                <Setter Property="ColumnDefinitions" Value="*, *" />
+                                <Setter Property="ColumnSpacing" Value="24" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+        <Style x:Key="SlidersGridStyle_Mobile" TargetType="Grid">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup>
+                        <VisualState x:Name="Portrait">
+                            <VisualState.StateTriggers>
+                                <OrientationStateTrigger Orientation="Portrait" />
+                            </VisualState.StateTriggers>
+                            <VisualState.Setters>
+                                <Setter Property="Grid.Row" Value="1" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Landscape">
+                            <VisualState.StateTriggers>
+                                <OrientationStateTrigger Orientation="Landscape" />
+                            </VisualState.StateTriggers>
+                            <VisualState.Setters>
+                                <Setter Property="Grid.Column" Value="1" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </telerik:RadContentView.Resources>
+    <Grid x:Name="rootGrid"
+          HorizontalOptions="{OnPlatform MacCatalyst=Start, WinUI=Start}"
+          Style="{OnPlatform Android={StaticResource RootGridStyle_Mobile}, iOS={StaticResource RootGridStyle_Mobile}}">
+        <Grid RowDefinitions="Auto, *"
+              RowSpacing="{OnPlatform Default=12, MacCatalyst=24, WinUI=24}"
+              VerticalOptions="{OnPlatform Default=Start, Android=Center, iOS=Center}">
+            <Label Text="Card Limits Settings"
+                   Style="{StaticResource ExampleLabelStyle}"
+                   Margin="0" />
+            <Image Grid.Row="1"
+                   Source="bank_card.png"
+                   Aspect="AspectFit"
+                   MaximumWidthRequest="{OnPlatform MacCatalyst=320, WinUI=320}" />
+        </Grid>
+        <Grid x:Name="slidersGrid"
+              RowDefinitions="Auto, Auto, Auto"
+              RowSpacing="24"
+              Style="{OnPlatform Android={StaticResource SlidersGridStyle_Mobile}, iOS={StaticResource SlidersGridStyle_Mobile}}">
+            <VerticalStackLayout>
+                <Label Text="24h ATM Limit"
+                       Style="{StaticResource ExampleLabelStyle}" />
+                <telerik:RadSlider Value="{Binding ATMLimit}" />
+            </VerticalStackLayout>
+            <VerticalStackLayout Grid.Row="1">
+                <Label Text="24h POS Limit"
+                       Style="{StaticResource ExampleLabelStyle}" />
+                <telerik:RadSlider Value="{Binding POSLimit}" />
+            </VerticalStackLayout>
+            <VerticalStackLayout Grid.Row="2">
+                <Label Text="Total 24h Limit"
+                       Style="{StaticResource ExampleLabelStyle}" />
+                <telerik:RadSlider Value="{Binding TotalLimit}" />
+            </VerticalStackLayout>
+        </Grid>
+    </Grid>
+</telerik:RadContentView>

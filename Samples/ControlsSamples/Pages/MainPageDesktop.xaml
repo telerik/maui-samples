@@ -26,6 +26,11 @@
                          FontFamily="TelerikControlsIcons"
                          Color="{StaticResource AccentColor8}"
                          Size="24" />
+        <FontImageSource x:Key="SettingsIcon"
+                         Glyph="&#xe03c;"
+                         FontFamily="TelerikControlsIcons"
+                         Color="{StaticResource AccentColor8}"
+                         Size="24" />
         <DataTemplate x:Key="ControlItemTemplate">
             <Grid ColumnDefinitions="*, Auto"
                   Margin="{OnPlatform MacCatalyst='0, 0, 9, 0', WinUI='0, 0, 8, 0'}">
@@ -115,6 +120,11 @@
                                         ImageSource="{StaticResource SearchIcon}"
                                         IsSelected="{Binding IsSearchSelected, Mode=TwoWay}"
                                         Style="{OnPlatform MacCatalyst={StaticResource ItemStyle_MacCatalyst}}" />
+            <telerik:NavigationViewItem Position="Footer"
+                                        Text="Settings"
+                                        ImageSource="{StaticResource SettingsIcon}"
+                                        IsSelected="{Binding IsSettingsSelected, Mode=TwoWay}"
+                                        Style="{OnPlatform MacCatalyst={StaticResource ItemStyle_MacCatalyst}}" />
         </telerik:RadNavigationView.Items>
         <Grid BackgroundColor="{AppThemeBinding Light={StaticResource DefaultBackgroundColor}, Dark={StaticResource DefaultBackgroundColorDark}}">
             <HorizontalStackLayout VerticalOptions="Start">
@@ -130,6 +140,7 @@
                 <views:HomeViewDesktop IsVisible="{Binding IsHomeSelected}" />
                 <views:SearchViewDesktop IsVisible="{Binding IsSearchSelected}"
                                          SelectedSearchResult="{Binding SelectedSearchResult}" />
+                <views:SettingsView IsVisible="{Binding IsSettingsSelected}" />
             </Grid>
         </Grid>
     </telerik:RadNavigationView>

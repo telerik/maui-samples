@@ -14,6 +14,12 @@ public partial class MainPageMobile : ContentPage
         this.BindingContext = new HomeViewModel();
     }
 
+    private void Settings_Clicked(object sender, EventArgs e)
+    {
+        HomeViewModel vm = (HomeViewModel)this.BindingContext;
+        vm.NavigateToSettings();
+    }
+
     private void Search_Clicked(object sender, EventArgs e)
     {
         HomeViewModel vm = (HomeViewModel)this.BindingContext;

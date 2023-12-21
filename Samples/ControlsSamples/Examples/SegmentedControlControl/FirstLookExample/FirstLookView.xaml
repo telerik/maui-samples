@@ -38,14 +38,12 @@
             <telerik:RadSegmentedControl ItemsSource="{Binding SmallImages}"
                                          SelectedIndex="0"
                                          HorizontalOptions="Start"
-                                         MaximumWidthRequest="{OnPlatform WinUI='400', MacCatalyst='400'}"
                                          SelectedSegmentBackgroundColor="LightGray"/>
         </VerticalStackLayout>
         <VerticalStackLayout>
             <Label Text="Text" 
                    Style="{StaticResource descriptionLabel}"/>
             <telerik:RadSegmentedControl ItemsSource="{Binding Categories}"
-                                         MaximumWidthRequest="{OnPlatform WinUI='400', MacCatalyst='400'}"
                                          Style="{StaticResource segmentedStyle}"
                                          SelectedIndex="1" />
         </VerticalStackLayout>
@@ -53,7 +51,6 @@
             <Label Text="Disabled" 
                    Style="{StaticResource descriptionLabel}"/>
             <telerik:RadSegmentedControl x:Name="segmented"
-                                         MaximumWidthRequest="{OnPlatform WinUI='400', MacCatalyst='400'}"
                                          Style="{StaticResource segmentedStyle}"
                                          ItemsSource="{Binding Categories}"
                                          SelectedIndex="0"/>

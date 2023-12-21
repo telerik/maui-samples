@@ -46,6 +46,7 @@ internal static class TelerikControlsIcons
         { "SegmentedControl", char.ConvertFromUtf32(0xe02b) },
         { "SideDrawer", char.ConvertFromUtf32(0xe02c) },
         { "SignaturePad", char.ConvertFromUtf32(0xe02d) },
+        { "Slider", char.ConvertFromUtf32(0xe03e) },
         { "SlideView", char.ConvertFromUtf32(0xe02e) },
         { "SpreadProcessing", char.ConvertFromUtf32(0xe02f) },
         { "SpreadStreamProcessing", char.ConvertFromUtf32(0xe02f) },
@@ -97,7 +98,14 @@ internal static class TelerikControlsIcons
         }
         else
         {
-            return controlName.Equals("Chart") ? ChartExamplesIcons[exampleName] : ControlsIcons[controlName];
+            if (controlName.Equals("Chart"))
+            {
+                return ChartExamplesIcons[exampleName];
+            }
+            else
+            {
+                return ControlsIcons.ContainsKey(controlName) ? ControlsIcons[controlName] : string.Empty;
+            }
         }
     }
 }

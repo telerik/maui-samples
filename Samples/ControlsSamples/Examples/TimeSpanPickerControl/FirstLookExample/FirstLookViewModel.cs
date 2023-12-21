@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using QSF.ViewModels;
-using QSF.Views;
 using QSF.ExampleUtilities;
 using QSF.Services;
 using Microsoft.Maui.Controls;
@@ -17,26 +15,32 @@ namespace QSF.Examples.TimeSpanPickerControl.FirstLookExample
         public FirstLookViewModel()
         {
             this.SendRequestCommand = new Command(this.SendRequest, this.CanSendRequest);
-            this.SelectedTime = new TimeSpan(1, 6, 30, 15);
+            this.SelectedTime = new TimeSpan(0, 2, 30, 0);
             this.Cards = new List<CardItem>()
             {
                 new CardItem()
                 {
                     BackgroundColor = Color.FromArgb("#ECF6FE"),
                     BorderColor = Color.FromArgb("#D6EBFC"),
-                    ImageSource = "economyclass.png"
+                    SelectedBorderColor = Color.FromArgb("#0E88F2"),
+                    ImageSource = "comedy.png",
+                    Label = "Comedy"
                 },
                 new CardItem()
                 {
                     BackgroundColor = Color.FromArgb("#FEF2F1"),
                     BorderColor = Color.FromArgb("#FEE5E3"),
-                    ImageSource = "firstclass.png"
+                    SelectedBorderColor = Color.FromArgb("#F85446"),
+                    ImageSource = "drama.png",
+                    Label = "Drama"
                 },
                 new CardItem()
                 {
                     BackgroundColor = Color.FromArgb("#FFF4EB"),
                     BorderColor = Color.FromArgb("#FFE9D8"),
-                    ImageSource = "businessclass.png"
+                    SelectedBorderColor = Color.FromArgb("#FFAC3E"),
+                    ImageSource = "history.png",
+                    Label = "History"
                 }
             };
         }
@@ -60,7 +64,7 @@ namespace QSF.Examples.TimeSpanPickerControl.FirstLookExample
         public void SendRequest()
         {
             var toastMessage = DependencyService.Get<IToastMessageService>();
-            toastMessage.ShortAlert("Displaying flights...");
+            toastMessage.ShortAlert("Displaying movies...");
             this.SelectedTime = null;
         }
 

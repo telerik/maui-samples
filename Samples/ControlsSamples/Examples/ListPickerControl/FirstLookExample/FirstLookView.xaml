@@ -6,13 +6,10 @@
                              xmlns:views="clr-namespace:QSF.Views"
                              x:Class="QSF.Examples.ListPickerControl.FirstLookExample.FirstLookView"
                              ItemsSource="{Binding Cards}"
-                             CollectionTitle="Followed Channels:"
+                             CollectionTitle="Favorites List"
                              ButtonCommand="{Binding SendRequestCommand}"
                              ButtonText="Play Music">
     <VerticalStackLayout x:Name="layout">
-        <Label Text="Listen to Top Music Genres"
-               FontSize="24"
-               Margin="{OnIdiom Default='0, 0, 0, 24', Desktop='0, 0, 0, 40'}" />
         <Label Text="Music Genre:"
                Margin="0, 0, 0, 12" />
         <telerik:RadListPicker x:Name="listPicker"

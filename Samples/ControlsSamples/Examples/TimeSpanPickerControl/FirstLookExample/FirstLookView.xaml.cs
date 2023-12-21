@@ -10,10 +10,6 @@ namespace QSF.Examples.TimeSpanPickerControl.FirstLookExample
         public FirstLookView()
         {
             InitializeComponent();
-            if (DeviceInfo.Idiom != DeviceIdiom.Phone)
-            {
-                this.timeSpanPicker.MaximumWidthRequest = 300;
-            }
         }
     }
 }

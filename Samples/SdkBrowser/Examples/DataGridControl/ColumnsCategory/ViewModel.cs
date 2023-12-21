@@ -14,12 +14,11 @@ public class ViewModel
     {
         return new ObservableCollection<Club>
         {
-            new Club("UK Liverpool ", new DateTime(1892, 1, 1), new TimeSpan(3, 28, 33), 45362, "England"),
-            new Club("Manchester Utd.", new DateTime(1878, 1, 1), new TimeSpan(2, 56, 44), 76212, "England") { IsChampion = true },
-            new Club("Chelsea", new DateTime(1905, 1, 1), new TimeSpan(6, 19, 59), 42055, "England"),
-            new Club("Barcelona", new DateTime(1899, 1, 1), new TimeSpan(12, 25, 31), 99354, "Spain")
+            new Club("UK Liverpool ", new DateTime(1892, 1, 1), 54074, "England", "Liverpool", "Premier League", null),
+            new Club("Manchester Utd.", new DateTime(1878, 1, 1), 74310, "England", "Manchester", "Premier League", 594.3) { IsChampion = true },
+            new Club("Chelsea", new DateTime(1905, 1, 1), 42055, "England", "London","UEFA Champions League", 481.3),
+            new Club("Barcelona", new DateTime(1899, 1, 1), 99354, "Spain", "Barcelona", "La Liga", 540.5)
         };
     }
 }
-
 // << datagrid-column-view-model

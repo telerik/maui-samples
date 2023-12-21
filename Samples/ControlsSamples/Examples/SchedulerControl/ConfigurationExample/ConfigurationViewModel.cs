@@ -165,7 +165,15 @@ public class ConfigurationViewModel : ConfigurationExampleViewModel
     public object ActiveViewDefinition
     {
         get => this.activeViewDefinition;
-        set => this.UpdateValue(ref this.activeViewDefinition, value);
+        set
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this.UpdateValue(ref this.activeViewDefinition, value);
+        }
     }
 
     private ObservableCollection<Appointment> CreateAppointments()

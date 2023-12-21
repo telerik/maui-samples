@@ -93,14 +93,6 @@
                         </DataTemplate>
                     </telerik:DataGridColumn.CellEditTemplate>
                 </telerik:DataGridDateColumn>
-                <telerik:DataGridTimeColumn PropertyName="Time">
-                    <telerik:DataGridColumn.CellEditTemplate>
-                        <DataTemplate>
-                            <telerik:RadTimePicker Time="{Binding Item.Time, Mode=TwoWay}"
-                                                   Margin="2"/>
-                        </DataTemplate>
-                    </telerik:DataGridColumn.CellEditTemplate>
-                </telerik:DataGridTimeColumn>
             </telerik:RadDataGrid.Columns>
         </telerik:RadDataGrid>
         <!-- << datagrid-columns-celledittemplate-xaml -->

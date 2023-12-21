@@ -1,0 +1,23 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:views="clr-namespace:QSF.Views"
+             ios:Page.UseSafeArea="True"
+             NavigationPage.HasNavigationBar="False"
+             NavigationPage.HasBackButton="False"
+             x:Class="QSF.Pages.SettingsPageMobile">
+    <Grid RowDefinitions="Auto, *">
+        <Grid ColumnDefinitions="Auto, *"
+              Style="{StaticResource HeaderStyle}">
+            <ImageButton Clicked="Back_Clicked"
+                         HorizontalOptions="Start"
+                         Style="{OnPlatform Default={StaticResource DefaultBackButtonStyle}, iOS={StaticResource IOSBackButtonStyle}}" />
+            <Label Grid.Column="1"
+                   Text="{Binding HeaderLabel}"
+                   VerticalOptions="Center"
+                   Style="{StaticResource HeaderLabelStyle}"/>
+        </Grid>
+        <views:SettingsView Grid.Row="1" />
+    </Grid>
+</ContentPage>

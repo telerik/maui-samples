@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        xmlns:converters="clr-namespace:QSF.Converters"
+                        xmlns:styles="clr-namespace:QSF.Styles"
+                        xmlns:example="clr-namespace:QSF.Examples.SliderControl.ConfigurationExample"
+                        xmlns:slider="clr-namespace:Telerik.Maui.Controls.RangeSlider;assembly=Telerik.Maui.Controls"
+                        x:Class="QSF.Examples.SliderControl.ConfigurationExample.ConfigurationView"
+                        Padding="{OnIdiom Default='16, 20', Phone=0}">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <styles:ConfigurationViewResources />
+            </ResourceDictionary.MergedDictionaries>
+            <converters:ColorNameToColorConverter x:Key="ColorNameToColorConverter">
+                <converters:ColorNameToColorConverter.DefaultValuesResourceDictionary>
+                    <slider:HorizontalSliderConstants />
+                </converters:ColorNameToColorConverter.DefaultValuesResourceDictionary>
+            </converters:ColorNameToColorConverter>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <Grid RowDefinitions="{OnPlatform Default='80, *', WinUI='120, *'}">
+        <Grid BackgroundColor="{AppThemeBinding Light={StaticResource DefaultBackgroundColor}, Dark={StaticResource DefaultBackgroundColorDark}}"
+              Padding="48, 24">
+            <telerik:RadSlider x:Name="slider"
+                               Minimum="0"
+                               Maximum="100"
+                               Value="40"
+                               TickStep="{Binding TickStep}"
+                               TickThickness="{Binding TickThickness}"
+                               TickLength="{Binding TickLength}"
+                               LabelStep="{Binding LabelStep}"
+                               BackTrackThickness="{Binding BackTrackThickness}"
+                               BackTrackExtent="{Binding BackTrackExtent}"
+                               InRangeTickColor="{Binding InRangeTickColor, Converter={StaticResource ColorNameToColorConverter}, ConverterParameter='InRangeTickColor'}"
+                               OutOfRangeTickColor="{Binding OutOfRangeTickColor, Converter={StaticResource ColorNameToColorConverter}, ConverterParameter='OutOfRangeTickColor'}"
+                               TextColor="{Binding TextColor, Converter={StaticResource ColorNameToColorConverter}}"
+                               BackTrackColor="{Binding BackTrackColor, Converter={StaticResource ColorNameToColorConverter}, ConverterParameter='BackTrackColor'}"
+                               ThumbFill="{Binding ThumbFill, Converter={StaticResource ColorNameToColorConverter}, ConverterParameter='ThumbFill'}"
+                               RangeTrackFill="{Binding RangeTrackFill, Converter={StaticResource ColorNameToColorConverter}, ConverterParameter='RangeTrackFill'}"
+                               TicksPlacement="{Binding TicksPlacement}"
+                               LabelsPlacement="{Binding LabelsPlacement}"
+                               SnapMode="{Binding SnapMode}"
+                               DragMode="{Binding DragMode}"
+                               VerticalOptions="Center" />
+        </Grid>
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Style="{StaticResource RootAtExampleAreaStyle}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="{OnIdiom Default=*, Phone=0}" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="{OnIdiom Default=0, Phone=*}" />
+                    </Grid.RowDefinitions>
+                    <VerticalStackLayout Style="{OnIdiom Default={StaticResource GroupAtExampleAreaWithColumnBreakStyle}, Phone={StaticResource GroupAtExampleAreaStyle}}">
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Tick Step:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <telerik:RadNumericInput x:Name="tickStepNumeric"
+                                                     Minimum="0"
+                                                     Maximum="10"
+                                                     VerticalOptions="Center"
+                                                     Value="{Binding TickStep}"
+                                                     Step="1" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Ticks Placement:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}"  />
+                            <telerik:RadComboBox ItemsSource="{Binding TicksPlacements}"
+                                                 SelectedItem="{Binding TicksPlacement, Mode=TwoWay}"
+                                                 IsClearButtonVisible="False"
+                                                 DropDownHeight="{OnPlatform Android=136, iOS=144, MacCatalyst=88, WinUI=160}" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="In-range Tick Color:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}"  />
+                            <telerik:RadComboBox ItemsSource="{Binding Colors}"
+                                                 SelectedItem="{Binding InRangeTickColor, Mode=TwoWay}"
+                                                 IsClearButtonVisible="False" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Out of Range Tick Color:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}"  />
+                            <telerik:RadComboBox ItemsSource="{Binding Colors}"
+                                                 SelectedItem="{Binding OutOfRangeTickColor, Mode=TwoWay}"
+                                                 IsClearButtonVisible="False" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Tick Thickness:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <telerik:RadNumericInput x:Name="tickThicknessNumeric"
+                                                     Minimum="1"
+                                                     Maximum="5"
+                                                     VerticalOptions="Center"
+                                                     Value="{Binding TickThickness}"
+                                                     Step="1" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout>
+                            <Label Text="Tick Length:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <telerik:RadNumericInput x:Name="tickLengthNumeric"
+                                                     Minimum="0"
+                                                     Maximum="20"
+                                                     VerticalOptions="Center"
+                                                     Value="{Binding TickLength}"
+                                                     Step="5" />
+                        </VerticalStackLayout>
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Grid.Column="{OnIdiom Default=1, Phone=0}"
+                                         Grid.Row="{OnIdiom Default=0, Phone=1}"
+                                         Style="{StaticResource GroupAtExampleAreaStyle}">
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Label Step:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <telerik:RadNumericInput x:Name="labelStepNumeric"
+                                                     Minimum="0"
+                                                     Maximum="100"
+                                                     VerticalOptions="Center"
+                                                     Value="{Binding LabelStep}"
+                                                     Step="10" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Labels Placement:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}"  />
+                            <telerik:RadComboBox ItemsSource="{Binding LabelsPlacements}"
+                                                 SelectedItem="{Binding LabelsPlacement, Mode=TwoWay}"
+                                                 IsClearButtonVisible="False"
+                                                 DropDownHeight="{OnPlatform Android=102, iOS=108, MacCatalyst=66, WinUI=120}" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Text Color:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}"  />
+                            <telerik:RadComboBox ItemsSource="{Binding Colors}"
+                                                 SelectedItem="{Binding TextColor, Mode=TwoWay}"
+                                                 IsClearButtonVisible="False" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Backtrack Color:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}"  />
+                            <telerik:RadComboBox ItemsSource="{Binding Colors}"
+                                                 SelectedItem="{Binding BackTrackColor, Mode=TwoWay}"
+                                                 IsClearButtonVisible="False" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Backtrack Thickness:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <telerik:RadNumericInput x:Name="backTrackThicknessNumeric"
+                                                     Minimum="1"
+                                                     Maximum="10"
+                                                     VerticalOptions="Center"
+                                                     Value="{Binding BackTrackThickness}"
+                                                     Step="1" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout>
+                            <Label Text="Backtrack Extent:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <telerik:RadNumericInput x:Name="backTrackExtentNumeric"
+                                                     Minimum="0"
+                                                     Maximum="45"
+                                                     VerticalOptions="Center"
+                                                     Value="{Binding BackTrackExtent}"
+                                                     Step="5" />
+                        </VerticalStackLayout>
+                    </VerticalStackLayout>
+                </Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="{OnIdiom Default=*, Phone=0}" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="{OnIdiom Default=0, Phone=*}" />
+                    </Grid.RowDefinitions>
+                    <VerticalStackLayout Style="{OnIdiom Default={StaticResource GroupAtExampleAreaWithColumnBreakStyle}, Phone={StaticResource GroupAtExampleAreaStyle}}">
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Thumb Fill Color:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}"  />
+                            <telerik:RadComboBox ItemsSource="{Binding Colors}"
+                                                 SelectedItem="{Binding ThumbFill, Mode=TwoWay}"
+                                                 IsClearButtonVisible="False" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout>
+                            <Label Text="Range Track Fill Color:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}"  />
+                            <telerik:RadComboBox ItemsSource="{Binding Colors}"
+                                                 SelectedItem="{Binding RangeTrackFill, Mode=TwoWay}"
+                                                 IsClearButtonVisible="False" />
+                        </VerticalStackLayout>
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Grid.Column="{OnIdiom Default=1, Phone=0}"
+                                         Grid.Row="{OnIdiom Default=0, Phone=1}"
+                                         Style="{StaticResource GroupAtExampleAreaStyle}">
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Snap Mode:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}"  />
+                            <telerik:RadComboBox ItemsSource="{Binding SnapModes}"
+                                                 SelectedItem="{Binding SnapMode, Mode=TwoWay}"
+                                                 IsClearButtonVisible="False"
+                                                 DropDownHeight="{OnPlatform Android=68, iOS=72, MacCatalyst=44, WinUI=80}" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout>
+                            <Label Text="Drag Mode:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}"  />
+                            <telerik:RadComboBox ItemsSource="{Binding DragModes}"
+                                                 SelectedItem="{Binding DragMode, Mode=TwoWay}"
+                                                 IsClearButtonVisible="False"
+                                                 DropDownHeight="{OnPlatform Android=102, iOS=108, MacCatalyst=66, WinUI=120}" />
+                        </VerticalStackLayout>
+                    </VerticalStackLayout>
+                </Grid>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</telerik:RadContentView>

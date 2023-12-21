@@ -5,6 +5,7 @@
                         xmlns:converters="clr-namespace:QSF.Converters"
                         xmlns:styles="clr-namespace:QSF.Styles"
                         xmlns:example="clr-namespace:QSF.Examples.RangeSliderControl.ConfigurationExample"
+                        xmlns:slider="clr-namespace:Telerik.Maui.Controls.RangeSlider;assembly=Telerik.Maui.Controls"
                         x:Class="QSF.Examples.RangeSliderControl.ConfigurationExample.ConfigurationView"
                         Padding="{OnIdiom Default='16, 20', Phone=0}">
     <ContentView.Resources>
@@ -12,7 +13,11 @@
             <ResourceDictionary.MergedDictionaries>
                 <styles:ConfigurationViewResources />
             </ResourceDictionary.MergedDictionaries>
-            <example:NameToColorConverter x:Key="NameToColorConverter" />
+            <converters:ColorNameToColorConverter x:Key="ColorNameToColorConverter">
+                <converters:ColorNameToColorConverter.DefaultValuesResourceDictionary>
+                    <slider:HorizontalSliderConstants />
+                </converters:ColorNameToColorConverter.DefaultValuesResourceDictionary>
+            </converters:ColorNameToColorConverter>
             <Style TargetType="telerik:RadCheckBox">
                 <Setter Property="VisualStateManager.VisualStateGroups">
                     <VisualStateGroupList>
@@ -44,13 +49,13 @@
                                     LabelStep="{Binding LabelStep}"
                                     BackTrackThickness="{Binding BackTrackThickness}"
                                     BackTrackExtent="{Binding BackTrackExtent}"
-                                    InRangeTickColor="{Binding InRangeTickColor, Converter={StaticResource NameToColorConverter}, ConverterParameter='InRangeTickColor'}"
-                                    OutOfRangeTickColor="{Binding OutOfRangeTickColor, Converter={StaticResource NameToColorConverter}, ConverterParameter='OutOfRangeTickColor'}"
-                                    TextColor="{Binding TextColor, Converter={StaticResource NameToColorConverter}}"
-                                    BackTrackColor="{Binding BackTrackColor, Converter={StaticResource NameToColorConverter}, ConverterParameter='BackTrackColor'}"
-                                    StartThumbFill="{Binding StartThumbFill, Converter={StaticResource NameToColorConverter}, ConverterParameter='ThumbFill'}"
-                                    RangeTrackFill="{Binding RangeTrackFill, Converter={StaticResource NameToColorConverter}, ConverterParameter='RangeTrackFill'}"
-                                    EndThumbFill="{Binding EndThumbFill, Converter={StaticResource NameToColorConverter}, ConverterParameter='ThumbFill'}"
+                                    InRangeTickColor="{Binding InRangeTickColor, Converter={StaticResource ColorNameToColorConverter}, ConverterParameter='InRangeTickColor'}"
+                                    OutOfRangeTickColor="{Binding OutOfRangeTickColor, Converter={StaticResource ColorNameToColorConverter}, ConverterParameter='OutOfRangeTickColor'}"
+                                    TextColor="{Binding TextColor, Converter={StaticResource ColorNameToColorConverter}}"
+                                    BackTrackColor="{Binding BackTrackColor, Converter={StaticResource ColorNameToColorConverter}, ConverterParameter='BackTrackColor'}"
+                                    StartThumbFill="{Binding StartThumbFill, Converter={StaticResource ColorNameToColorConverter}, ConverterParameter='ThumbFill'}"
+                                    RangeTrackFill="{Binding RangeTrackFill, Converter={StaticResource ColorNameToColorConverter}, ConverterParameter='RangeTrackFill'}"
+                                    EndThumbFill="{Binding EndThumbFill, Converter={StaticResource ColorNameToColorConverter}, ConverterParameter='ThumbFill'}"
                                     TicksPlacement="{Binding TicksPlacement}"
                                     LabelsPlacement="{Binding LabelsPlacement}"
                                     SnapMode="{Binding SnapMode}"
@@ -214,7 +219,6 @@
                     <VerticalStackLayout Grid.Column="{OnIdiom Default=1, Phone=0}"
                                          Grid.Row="{OnIdiom Default=0, Phone=1}"
                                          Style="{StaticResource GroupAtExampleAreaStyle}">
-
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="Snap Mode:"
                                    Style="{StaticResource VerticalGroupLabelStyle}"  />
@@ -223,7 +227,7 @@
                                                  IsClearButtonVisible="False"
                                                  DropDownHeight="{OnPlatform Android=68, iOS=72, MacCatalyst=44, WinUI=80}" />
                         </VerticalStackLayout>
-                        <VerticalStackLayout Style="{StaticResource GroupAtSeparateAreaStyle}">
+                        <VerticalStackLayout>
                             <Label Text="Drag Mode:"
                                    Style="{StaticResource VerticalGroupLabelStyle}"  />
                             <HorizontalStackLayout telerik:RadCheckBox.ToggleOnTap="{Reference disabledDragModeCb}"

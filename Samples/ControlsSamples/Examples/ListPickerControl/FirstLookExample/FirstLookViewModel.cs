@@ -23,19 +23,25 @@ namespace QSF.Examples.ListPickerControl.FirstLookExample
                 {
                     BackgroundColor = Color.FromArgb("#ECF6FE"),
                     BorderColor = Color.FromArgb("#D6EBFC"),
-                    ImageSource = "vocalchillout.png"
+                    SelectedBorderColor = Color.FromArgb("#0E88F2"),
+                    ImageSource = "vocalchillout.png",
+                    Label = "Daily Mix"
                 },
                 new CardItem()
                 {
                     BackgroundColor = Color.FromArgb("#FEF2F1"),
                     BorderColor = Color.FromArgb("#FEE5E3"),
-                    ImageSource = "melodicprogressive.png"
+                    SelectedBorderColor = Color.FromArgb("#F85446"),
+                    ImageSource = "melodicprogressive.png",
+                    Label = "Viral Hits"
                 },
                 new CardItem()
                 {
                     BackgroundColor = Color.FromArgb("#FFF4EB"),
                     BorderColor = Color.FromArgb("#FFE9D8"),
-                    ImageSource = "melodicchillout.png"
+                    SelectedBorderColor = Color.FromArgb("#FFAC3E"),
+                    ImageSource = "melodicchillout.png",
+                    Label = "On Repeat"
                 }
             };
             this.Genres = new ObservableItemCollection<string>()

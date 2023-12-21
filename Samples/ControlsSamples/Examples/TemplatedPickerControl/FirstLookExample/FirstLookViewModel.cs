@@ -90,6 +90,7 @@ namespace QSF.Examples.TemplatedPickerControl.FirstLookExample
                 {
                     BackgroundColor = Color.FromArgb("#ECF6FE"),
                     BorderColor = Color.FromArgb("#D6EBFC"),
+                    SelectedBorderColor = Color.FromArgb("#0E88F2"),
                     ImageSource = "top.png"
                 },
             };
