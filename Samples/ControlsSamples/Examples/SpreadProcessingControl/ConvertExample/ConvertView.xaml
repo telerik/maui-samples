@@ -33,7 +33,8 @@
                                  WidthRequest="100"
                                  ItemsSource="{Binding ExportFormats}"
                                  SelectedItem="{Binding SelectedExportFormat, Mode=TwoWay}"
-                                 DropDownHeight="{OnPlatform Android=136, iOS=144, MacCatalyst=88, WinUI=160}">
+                                 DropDownHeight="{OnPlatform Android=136, iOS=144, MacCatalyst=88, WinUI=160}"
+                                 AutomationId="exportFormatComboBox">
                 <telerik:RadComboBox.Resources>
                     <Style TargetType="telerik:RadEntry">
                         <Setter Property="HorizontalTextAlignment" Value="Center" />
@@ -45,6 +46,7 @@
                            VerticalOptions="End"
                            HorizontalOptions="Center"
                            Style="{StaticResource SubmitButtonStyle}"
-                           Command="{Binding GenerateCommand}" />
+                           Command="{Binding GenerateCommand}" 
+                           AutomationId="convertButton"/>
     </VerticalStackLayout>
 </telerik:RadContentView>

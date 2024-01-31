@@ -39,7 +39,8 @@
                                            FontSize="24"
                                            Margin="4"
                                            HorizontalOptions="Center"
-                                           VerticalOptions="Center" />
+                                           VerticalOptions="Center" 
+                                           AutomationId="exampleIconInExampleList"/>
                                 </telerik:RadBorder>
                                 <Label Text="{TemplateBinding Header}"
                                        Margin="8, 0, 6, 0"
@@ -47,10 +48,12 @@
                                        VerticalOptions="Center"
                                        VerticalTextAlignment="Center"
                                        WidthRequest="180"
-                                       LineBreakMode="TailTruncation" />
+                                       LineBreakMode="TailTruncation" 
+                                       AutomationId="exampleNameInExamplesList"/>
                                 <ContentView Content="{TemplateBinding Status, Converter={StaticResource StatusTagToTemplateConverter}}"
                                              HorizontalOptions="End"
-                                             VerticalOptions="Center" />
+                                             VerticalOptions="Center" 
+                                             AutomationId="statusTagInExamplesList"/>
                             </HorizontalStackLayout>
                         </ControlTemplate>
                     </views:NavigationItemView.ControlTemplate>
@@ -91,7 +94,7 @@
 
     <Grid RowDefinitions="Auto, *">
         <Grid Margin="0, 20, 0, 20">
-            <Label HorizontalOptions="Center">
+            <Label HorizontalOptions="Center" AutomationId="controlNameInExamplesView">
                 <Label.FormattedText>
                     <FormattedString>
                         <Span Text="Examples" Style="{StaticResource PageHeaderLabelStyle}" />
@@ -106,11 +109,13 @@
                                    Command="{Binding NavigateToControlDocumentationCommand}"
                                    CommandParameter="{Binding Name}"
                                    ImageSource="icon_documentation_white.png"
-                                   Style="{StaticResource DocumentationButtonStyle}" />
+                                   Style="{StaticResource DocumentationButtonStyle}" 
+                                   AutomationId="documentationButton"/>
                 <telerik:RadButton Text="Feedback"
                                    Command="{Binding NavigateToControlFeedbackPortalCommand}"
                                    ImageSource="icon_feedback_white.png"
-                                   Style="{StaticResource FeedbackButtonStyle}" />
+                                   Style="{StaticResource FeedbackButtonStyle}" 
+                                   AutomationId="feedBackButton"/>
             </HorizontalStackLayout>
         </Grid>
         <Grid ColumnDefinitions="280, 3*"
@@ -124,12 +129,13 @@
                                                     SelectedItemStyle="{StaticResource SelectedExampleItemStyle}"
                                                     ItemsSource="{Binding Examples}"
                                                     SelectedItem="{Binding SelectedExample, Mode=TwoWay}"
-                                                    CanUnselectSingleItem="False">
-                    <telerik:NonVirtualizedItemsControl.ItemsLayoutTemplate>
-                        <DataTemplate>
-                            <VerticalStackLayout Padding="0, 14"/>
-                        </DataTemplate>
-                    </telerik:NonVirtualizedItemsControl.ItemsLayoutTemplate>
+                                                    CanUnselectSingleItem="False"
+                                                    AutomationId="examplesList">
+                <telerik:NonVirtualizedItemsControl.ItemsLayoutTemplate>
+                    <DataTemplate>
+                        <VerticalStackLayout Padding="0, 14"/>
+                    </DataTemplate>
+                </telerik:NonVirtualizedItemsControl.ItemsLayoutTemplate>
                 </telerik:NonVirtualizedItemsControl>
             </telerik:RadBorder>
 
@@ -152,7 +158,8 @@
                     <telerik:RadBorder x:Name="exampleContainer"
                                        Content="{Binding SelectedExample, Converter={StaticResource ModelToViewConverter}}"
                                        Grid.Row="1"
-                                       Style="{StaticResource ExampleBorderStyle}" />
+                                       Style="{StaticResource ExampleBorderStyle}" 
+                                       AutomationId="exampleContainer"/>
                     <telerik:RadBorder Grid.Row="1"
                                        Grid.Column="1"
                                        BackgroundColor="{AppThemeBinding Light={StaticResource DefaultBackgroundColor}, Dark={StaticResource DefaultBackgroundColorDark}}"
@@ -160,7 +167,8 @@
                         <Grid RowDefinitions="Auto, *" Padding="15">
                             <Label Text="{Binding SelectedExample.Description}"
                                    TextType="Html"
-                                   Margin="0, 0, 0, 20" />
+                                   Margin="0, 0, 0, 20" 
+                                   AutomationId="exampleDescription"/>
                             <Grid Grid.Row="1"
                                   RowDefinitions="Auto, *"
                                   IsVisible="{Binding SelectedExample.IsConfigurable}">
@@ -168,7 +176,8 @@
                                        FontSize="24"
                                        IsVisible="{OnIdiom Desktop=True, Phone=False}" />
                                 <ScrollView Grid.Row="1"
-                                            Padding="{OnPlatform Android='0, 0, 4, 0', iOS='0, 0, 8, 0', MacCatalyst='0, 0, 20, 0', WinUI='0, 0, 14, 0'}">
+                                            Padding="{OnPlatform Android='0, 0, 4, 0', iOS='0, 0, 8, 0', MacCatalyst='0, 0, 20, 0', WinUI='0, 0, 14, 0'}"
+                                            AutomationId="configurationArea">
                                     <telerik:RadBorder>
                                         <telerik:RadBorder.Content>
                                             <MultiBinding Converter="{StaticResource ModelToConfigurationAreaConverter}">

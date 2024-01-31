@@ -10,7 +10,8 @@
             <DataTemplate x:Key="itemTemplate">
                 <Image Source="{Binding}"
                        Aspect="AspectFill"
-                       HeightRequest="240"/>
+                       HeightRequest="240"
+                       AutomationId="slideViewImage"/>
             </DataTemplate>
         </ResourceDictionary>
     </telerik:RadContentView.Resources>
@@ -19,7 +20,8 @@
         <telerik:RadSlideView x:Name="slideView"
                               ItemsSource="{Binding Images}"
                               ItemTemplate="{StaticResource itemTemplate}"
-                              HorizontalOptions="{OnIdiom Default=Fill, Desktop=Start}"/>
+                              HorizontalOptions="{OnIdiom Default=Fill, Desktop=Start}"
+                              AutomationId="slideView"/>
         <Label Grid.Row="1"
                Text="Salad Recipes"
                FontSize="20"

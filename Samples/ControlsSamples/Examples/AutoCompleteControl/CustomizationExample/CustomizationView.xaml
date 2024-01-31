@@ -70,6 +70,7 @@
               Padding="20,23">
             <Label Text="IT Jobs" Style="{StaticResource titleLabelStyle}"/>
             <telerik:RadAutoComplete x:Name="autoComplete"
+                                     AutomationId="autoComplete"
                                      BackgroundColor="White"
                                      Grid.Row="1"
                                      ItemsSource="{Binding JobTitles}"

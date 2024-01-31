@@ -15,7 +15,8 @@
                                  MaximumHeightRequest="{OnPlatform iOS=320, Android=320, WinUI=320}"
                                  BorderThickness="1"
                                  HorizontalOptions="Center"
-                                 VerticalOptions="Center" />
+                                 VerticalOptions="Center" 
+                                 AutomationId="calendar"/>
         </Grid>
         <Grid Grid.Row="1"
               RowDefinitions="Auto, Auto"
@@ -24,7 +25,8 @@
                    Margin="0, 0, 0, 12" />
             <telerik:RadSegmentedControl Grid.Row="1"
                                          ItemsSource="{Binding SelectionModes}"
-                                         SelectedItem="{Binding SelectionMode, Mode=TwoWay}" />
+                                         SelectedItem="{Binding SelectionMode, Mode=TwoWay}" 
+                                         AutomationId="selectionSegmentedControl"/>
         </Grid>
     </Grid>
 </ContentView>

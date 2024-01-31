@@ -17,35 +17,39 @@
                              CommitMode="Explicit"
                              HeaderPosition="{OnIdiom Default=Above, Phone=Beside}"
                              LayoutDefinition="{OnIdiom Default={StaticResource gridLayout},
-                                                        Phone={StaticResource stackLayout}}">
+                                                        Phone={StaticResource stackLayout}}"
+                             AutomationId="dataForm">
             <telerik:RadDataForm.BindingContext>
                 <local:FeedBackFormViewModel/>
             </telerik:RadDataForm.BindingContext>
-            <telerik:DataFormRadEntryEditor PropertyName="FirstName"/>
-            <telerik:DataFormRadEntryEditor PropertyName="LastName"/>
-            <telerik:DataFormCustomEditor PropertyName="Location">
+            <telerik:DataFormRadEntryEditor PropertyName="FirstName" AutomationId="firstNameEntry"/>
+            <telerik:DataFormRadEntryEditor PropertyName="LastName" AutomationId="lastNameEntry"/>
+            <telerik:DataFormCustomEditor PropertyName="Location" >
                 <telerik:DataFormCustomEditor.EditorTemplate>
                     <ControlTemplate>
                         <telerik:RadAutoComplete Placeholder="Search for destinations..." 
                                                  Text="{Binding Value, Mode=TwoWay, Source={RelativeSource Mode=TemplatedParent}}" 
-                                                 ItemsSource="{Binding Locations}"/>
+                                                 ItemsSource="{Binding Locations}"
+                                                 AutomationId="locationAutoComplete"/>
                     </ControlTemplate>
                 </telerik:DataFormCustomEditor.EditorTemplate>
             </telerik:DataFormCustomEditor>
-            <telerik:DataFormCustomEditor PropertyName="Rating">
+            <telerik:DataFormCustomEditor PropertyName="Rating" >
                 <telerik:DataFormCustomEditor.EditorTemplate>
                     <ControlTemplate>
                         <telerik:RadShapeRating ItemsCount="5" 
-                                                Value="{Binding Value, Mode=TwoWay, Source={RelativeSource Mode=TemplatedParent}}"/>
+                                                Value="{Binding Value, Mode=TwoWay, Source={RelativeSource Mode=TemplatedParent}}"
+                                                AutomationId="rating"/>
                     </ControlTemplate>
                 </telerik:DataFormCustomEditor.EditorTemplate>
             </telerik:DataFormCustomEditor>
-            <telerik:DataFormCustomEditor PropertyName="WillJoinNextTrip">
+            <telerik:DataFormCustomEditor PropertyName="WillJoinNextTrip" >
                 <telerik:DataFormCustomEditor.EditorTemplate>
                     <ControlTemplate>
                         <telerik:RadCheckBox IsThreeState="False" 
                                              IsChecked="{Binding Value, Mode=TwoWay, Source={RelativeSource Mode=TemplatedParent}}"
-                                             HorizontalOptions="Start" />
+                                             HorizontalOptions="Start" 
+                                             AutomationId="attendNextTripCheckBox"/>
                     </ControlTemplate>
                 </telerik:DataFormCustomEditor.EditorTemplate>
             </telerik:DataFormCustomEditor>
@@ -59,7 +63,8 @@
                     <ControlTemplate>
                         <Editor Text="{Binding Value, Mode=TwoWay, Source={RelativeSource Mode=TemplatedParent}}"
                                 Placeholder="Leave your comments here"
-                                HeightRequest="120"/>
+                                HeightRequest="120"
+                                AutomationId="commentsEditor"/>
                     </ControlTemplate>
                 </telerik:DataFormCustomEditor.EditorTemplate>
             </telerik:DataFormCustomEditor>
@@ -69,6 +74,7 @@
                            Style="{StaticResource SubmitButtonStyle}"
                            HorizontalOptions="{OnIdiom Default=Start, Phone=Fill}"
                            Command="{Binding CommitCommand, Source={x:Reference dataForm}}"
-                           Clicked="OnSubmittedFeedbackButtonClicked"/>
+                           Clicked="OnSubmittedFeedbackButtonClicked"
+                           AutomationId="submitButton"/>
     </Grid>
 </ContentView>

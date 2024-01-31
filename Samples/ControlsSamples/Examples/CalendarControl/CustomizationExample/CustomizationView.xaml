@@ -122,7 +122,8 @@
                              HeaderBorderStyle="{StaticResource CalendarHeaderBorderStyle}"
                              MaximumHeightRequest="{OnPlatform iOS=350, Android=320}"
                              BorderThickness="1"
-                             Margin="{OnIdiom Default=0, Phone='0, 24, 0, 0'}" />
+                             Margin="{OnIdiom Default=0, Phone='0, 24, 0, 0'}" 
+                             AutomationId="calendar"/>
         <Grid Grid.Row="{OnIdiom Default=1, Desktop=0}"
               Grid.RowSpan="{OnIdiom Default=1, Desktop=2}"
               Grid.Column="1"
@@ -135,7 +136,8 @@
                   Margin="0, 8, 0, 0">
                 <telerik:RadItemsView Grid.Row="1"
                                       ItemsSource="{Binding FilteredRemindersList}"
-                                      ItemTemplate="{StaticResource ReminderTemplate}" />
+                                      ItemTemplate="{StaticResource ReminderTemplate}" 
+                                      AutomationId="remindersItemsView"/>
                 <Label IsVisible="{Binding IsEmptyMessageVisible}"
                        Text="No reminders for this day"
                        TextColor="{StaticResource AccentColor4}" />

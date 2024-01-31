@@ -19,6 +19,9 @@ public partial class PickerExampleViewBase : ContentView
     public static readonly BindableProperty ButtonTextProperty =
         BindableProperty.Create(nameof(ButtonText), typeof(string), typeof(PickerExampleViewBase));
 
+    public static readonly BindableProperty ButtonAutomationIdProperty =
+        BindableProperty.Create(nameof(ButtonAutomationId), typeof(string), typeof(PickerExampleViewBase));
+
     public static readonly BindableProperty ItemTemplateProperty =
         BindableProperty.Create(nameof(ItemTemplate), typeof(DataTemplate), 
             typeof(PickerExampleViewBase), defaultValueCreator: b => ((PickerExampleViewBase)b).CreateDefaultItemTemplate());
@@ -58,6 +61,12 @@ public partial class PickerExampleViewBase : ContentView
     {
         get => (string)this.GetValue(ButtonTextProperty);
         set => this.SetValue(ButtonTextProperty, value);
+    }
+
+    public string ButtonAutomationId
+    {
+        get => (string)this.GetValue(ButtonAutomationIdProperty);
+        set => this.SetValue(ButtonAutomationIdProperty, value);
     }
 
     public DataTemplate ItemTemplate

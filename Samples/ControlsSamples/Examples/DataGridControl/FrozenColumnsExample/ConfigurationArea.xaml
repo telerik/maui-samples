@@ -25,7 +25,7 @@
                         <HorizontalStackLayout.GestureRecognizers>
                             <TapGestureRecognizer Tapped="OnItemTapped"/>
                         </HorizontalStackLayout.GestureRecognizers>
-                        <telerik:RadCheckBox IsChecked="{Binding IsFrozen, Mode=TwoWay}" />
+                        <telerik:RadCheckBox IsChecked="{Binding IsFrozen, Mode=TwoWay}" AutomationId="freezeColumnCheckBox"/>
                         <Label Text="{Binding HeaderText}"
                                Style="{StaticResource HorizontalGroupLabelAtEndStyle}" />
                     </HorizontalStackLayout>

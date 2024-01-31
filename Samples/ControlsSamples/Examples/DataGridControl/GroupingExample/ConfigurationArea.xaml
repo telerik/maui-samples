@@ -16,7 +16,8 @@
         <HorizontalStackLayout telerik:RadCheckBox.ToggleOnTap="{Reference CheckBoxIsGroupingAllowed}"
                                Style="{StaticResource CheckBoxGroupStyle}">
             <telerik:RadCheckBox x:Name="CheckBoxIsGroupingAllowed"
-                                 IsChecked="{Binding IsGroupingAllowed}" />
+                                 IsChecked="{Binding IsGroupingAllowed}" 
+                                 AutomationId="isGroupingAllowedCheckBox"/>
             <Label Text="Is Grouping Allowed"
                    Style="{StaticResource HorizontalGroupLabelAtEndStyle}" />
         </HorizontalStackLayout>
@@ -26,7 +27,8 @@
                                Style="{StaticResource CheckBoxGroupStyle}">
             <telerik:RadCheckBox x:Name="CheckBoxAirline"
                                  IsChecked="{Binding IsGroupedByAirline}"
-                                 IsEnabled="{Binding IsGroupingAllowed}" />
+                                 IsEnabled="{Binding IsGroupingAllowed}" 
+                                 AutomationId="airlineCheckBox"/>
             <Label Text="Airline"
                    Style="{StaticResource HorizontalGroupLabelAtEndStyle}" />
         </HorizontalStackLayout>
@@ -34,7 +36,8 @@
                                Style="{StaticResource CheckBoxGroupStyle}">
             <telerik:RadCheckBox x:Name="CheckBoxDate"
                                  IsChecked="{Binding IsGroupedByDate}"
-                                 IsEnabled="{Binding IsGroupingAllowed}" />
+                                 IsEnabled="{Binding IsGroupingAllowed}" 
+                                 AutomationId="dateCheckBox"/>
             <Label Text="Date"
                    Style="{StaticResource HorizontalGroupLabelAtEndStyle}" />
         </HorizontalStackLayout>
@@ -42,7 +45,8 @@
                                Style="{StaticResource CheckBoxGroupStyle}">
             <telerik:RadCheckBox x:Name="CheckBoxDirect"
                                  IsChecked="{Binding IsGroupedByDirectFlight}"
-                                 IsEnabled="{Binding IsGroupingAllowed}" />
+                                 IsEnabled="{Binding IsGroupingAllowed}" 
+                                 AutomationId="directFlightCheckBox"/>
             <Label Text="Is Direct Flight"
                    Style="{StaticResource HorizontalGroupLabelAtEndStyle}" />
         </HorizontalStackLayout>
@@ -50,7 +54,8 @@
                                Style="{StaticResource CheckBoxGroupStyle}">
             <telerik:RadCheckBox x:Name="CheckBoxDestination"
                                  IsChecked="{Binding IsGroupedByDestination}"
-                                 IsEnabled="{Binding IsGroupingAllowed}" />
+                                 IsEnabled="{Binding IsGroupingAllowed}" 
+                                 AutomationId="destinationCheckBox"/>
             <Label Text="Destination"
                    Style="{StaticResource HorizontalGroupLabelAtEndStyle}" />
         </HorizontalStackLayout>

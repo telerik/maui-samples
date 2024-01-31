@@ -1,0 +1,148 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                    xmlns:local="clr-namespace:QSF.Examples.SchedulerControl.CustomizationExample"
+                    x:Class="QSF.Examples.SchedulerControl.CustomizationExample.CustomSchedulingResources_Mobile">
+    <ResourceDictionary.MergedDictionaries>
+        <telerik:SchedulerDialogResources_Mobile />
+    </ResourceDictionary.MergedDictionaries>
+
+    <ControlTemplate x:Key="CustomSchedulerEditAppointmentDialog_ControlTemplate">
+        <Grid RowDefinitions="{OnPlatform Default='40, *, 56', iOS='44, *, 52'}"
+              Padding="0, 8, 0, 0">
+            <Label Text="{Binding Header}"
+                   Style="{StaticResource SchedulerDialog_Header_Style}" />
+            <Grid Grid.Row="1"
+                  RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto, *"
+                  ColumnDefinitions="Auto, *"
+                  BindingContext="{TemplateBinding BindingContext}"
+                  Padding="16, 4, 16, 0">
+                <Label Text="{telerik:Localize Scheduler_EditAppointmentDialog_Subject}"
+                       Style="{StaticResource Scheduler_EditAppointmentDialog_Label_Style}" />
+                <telerik:RadEntry Grid.Column="1"
+                                  IsEnabled="{Binding IsReadOnly, Converter={StaticResource InvertedBooleanConverter}}"
+                                  Text="{Binding Occurrence.Appointment.Subject, Mode=TwoWay}"
+                                  BorderThickness="{OnPlatform Android=0}" />
+                <telerik:SchedulerBoxView Grid.Row="1" Style="{StaticResource SchedulerDialog_Separator_Style}" />
+                <Label Grid.Row="2"
+                       Text="{telerik:Localize Scheduler_EditAppointmentDialog_AllDay}"
+                       Style="{StaticResource Scheduler_EditAppointmentDialog_Label_Style}" />
+                <Switch Grid.Row="2"
+                        Grid.Column="1"
+                        HorizontalOptions="End"
+                        IsToggled="{Binding IsAllDayAppointment, Mode=TwoWay}" />
+                <telerik:SchedulerBoxView Grid.Row="3" Style="{StaticResource SchedulerDialog_Separator_Style}" />
+                <Label Grid.Row="4"
+                       Text="{telerik:Localize Scheduler_EditAppointmentDialog_StartTime}"
+                       Style="{StaticResource Scheduler_EditAppointmentDialog_Label_Style}" />
+                <HorizontalStackLayout Grid.Row="4"
+                                       Grid.Column="1"
+                                       Spacing="4"
+                                       HorizontalOptions="End"
+                                       IsEnabled="{Binding IsReadOnly, Converter={StaticResource InvertedBooleanConverter}}">
+                    <telerik:RadDatePicker Date="{Binding ActualStartDate, Mode=TwoWay}"
+                                           WidthRequest="102"
+                                           BorderThickness="{OnPlatform Android=0}" />
+                    <telerik:RadTimePicker Time="{Binding ActualStartTimeOfDay, Mode=TwoWay}"
+                                           WidthRequest="62"
+                                           IsVisible="{Binding IsAllDayAppointment, Converter={StaticResource InvertedBooleanConverter}}"
+                                           SpinnerFormat="H:mm"
+                                           MinuteStep="15"
+                                           BorderThickness="{OnPlatform Android=0}" />
+                </HorizontalStackLayout>
+                <telerik:SchedulerBoxView Grid.Row="5" Style="{StaticResource SchedulerDialog_Separator_Style}" />
+                <Label Grid.Row="6"
+                       Text="{telerik:Localize Scheduler_EditAppointmentDialog_EndTime}"
+                       Style="{StaticResource Scheduler_EditAppointmentDialog_Label_Style}" />
+                <HorizontalStackLayout Grid.Row="6"
+                                       Grid.Column="1"
+                                       Spacing="4"
+                                       HorizontalOptions="End"
+                                       IsEnabled="{Binding IsReadOnly, Converter={StaticResource InvertedBooleanConverter}}">
+                    <telerik:RadDatePicker MinimumDate="{Binding ActualStartDate}"
+                                           Date="{Binding ActualEndDate, Mode=TwoWay}"
+                                           WidthRequest="102"
+                                           BorderThickness="{OnPlatform Android=0}" />
+                    <telerik:RadTimePicker MinimumTime="{Binding MinimumEndTimeOfDay, Mode=TwoWay}"
+                                           Time="{Binding ActualEndTimeOfDay, Mode=TwoWay}"
+                                           WidthRequest="62"
+                                           IsVisible="{Binding IsAllDayAppointment, Converter={StaticResource InvertedBooleanConverter}}"
+                                           SpinnerFormat="H:mm"
+                                           MinuteStep="15"
+                                           BorderThickness="{OnPlatform Android=0}" />
+                </HorizontalStackLayout>
+                <telerik:SchedulerBoxView Grid.Row="7" Style="{StaticResource SchedulerDialog_Separator_Style}" />
+                <Label Grid.Row="8"
+                       Text="{telerik:Localize Scheduler_EditAppointmentDialog_Repeat}"
+                       IsVisible="{Binding IsExceptionOccurrence, Converter={StaticResource InvertedBooleanConverter}}"
+                       Style="{StaticResource Scheduler_EditAppointmentDialog_Label_Style}" />
+                <telerik:RadComboBox Grid.Row="8"
+                                     Grid.Column="1"
+                                     HorizontalOptions="End"
+                                     IsClearButtonVisible="False"
+                                     SelectedItem="{Binding RepeatOption, Mode=TwoWay}"
+                                     IsVisible="{Binding IsExceptionOccurrence, Converter={StaticResource InvertedBooleanConverter}}"
+                                     IsEnabled="{Binding IsReadOnly, Converter={StaticResource InvertedBooleanConverter}}"
+                                     ItemsSource="{Binding RepeatOptions}"
+                                     WidthRequest="168"
+                                     DropDownHeight="{Binding RepeatOptionsDropDownHeight}"
+                                     BorderThickness="{OnPlatform Android=0}" />
+                <!-- #region LOCATION option insertion point -->
+                <telerik:SchedulerBoxView Grid.Row="9"
+                                          Style="{StaticResource SchedulerDialog_Separator_Style}" />
+                <Label Grid.Row="10"
+                       Text="Location"
+                       Style="{StaticResource SchedulerDialog_Label_Style}" />
+                <telerik:RadComboBox Grid.Row="10"
+                                     Grid.Column="1"
+                                     ItemsSource="{x:Static local:CustomizationViewModel.DefaultLocations}"
+                                     SelectedItem="{Binding Occurrence.Appointment.Location, Mode=TwoWay}"
+                                     IsEnabled="{Binding IsReadOnly, Converter={StaticResource InvertedBooleanConverter}}"
+                                     IsClearButtonVisible="False"
+                                     BorderThickness="{OnPlatform Android=0}"
+                                     WidthRequest="168"
+                                     DropDownHeight="{OnPlatform Android=102, iOS=108}"
+                                     HorizontalOptions="End" />
+                <!-- #endregion -->
+                <Grid Grid.Row="11"
+                      Grid.ColumnSpan="2"
+                      IsVisible="{Binding IsExceptionOccurrence, Converter={StaticResource InvertedBooleanConverter}}">
+                    <Label IsVisible="{Binding Summary, Converter={StaticResource StringToBoolConverter}}"
+                           Text="{Binding Summary}"
+                           TextColor="{AppThemeBinding Light=#000000, Dark=#FFFFFF}"
+                           FontSize="12"
+                           Margin="0, 8, 0, 4" />
+                </Grid>
+                <telerik:SchedulerBoxView Grid.Row="12"
+                                          IsVisible="{Binding IsExceptionOccurrence, Converter={StaticResource InvertedBooleanConverter}}"
+                                          Style="{StaticResource SchedulerDialog_Separator_Style}" />
+                <Editor Grid.Row="13"
+                        Grid.ColumnSpan="2"
+                        FontSize="{OnPlatform iOS=17}"
+                        Text="{Binding Description, Mode=TwoWay}"
+                        VerticalTextAlignment="Start"
+                        Placeholder="{telerik:Localize Scheduler_EditAppointmentDialog_Description}" />
+            </Grid>
+            <Grid Grid.Row="2"
+                  ColumnDefinitions="*, *"
+                  BackgroundColor="{AppThemeBinding Light=#F8F8F8, Dark=#1E1E1E}"
+                  Margin="0, 8, 0, 0">
+                <telerik:SchedulerBoxView Grid.ColumnSpan="2"
+                                          HeightRequest="1"
+                                          VerticalOptions="Start" />
+                <telerik:RadButton Style="{StaticResource SchedulerDialog_CancelButton_Style}"
+                                   Text="{telerik:Localize Scheduler_EditAppointmentDialog_Cancel}"
+                                   Command="{Binding CancelCommand}" />
+                <telerik:RadButton Grid.Column="1"
+                                   Style="{StaticResource SchedulerDialog_ConfirmButton_Style}"
+                                   Text="{telerik:Localize Scheduler_EditAppointmentDialog_Save}"
+                                   IsEnabled="{Binding IsReadOnly, Converter={StaticResource InvertedBooleanConverter}}"
+                                   Command="{Binding SaveCommand}" />
+            </Grid>
+        </Grid>
+    </ControlTemplate>
+
+    <Style x:Key="CustomSchedulerEditAppointmentDialog_Style" TargetType="telerik:SchedulerDialog">
+        <Setter Property="ControlTemplate" Value="{StaticResource CustomSchedulerEditAppointmentDialog_ControlTemplate}" />
+    </Style>
+</ResourceDictionary>

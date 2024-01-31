@@ -12,7 +12,8 @@
             </ResourceDictionary.MergedDictionaries>
             <DataTemplate x:Key="line">
                 <telerik:RadCartesianChart BackgroundColor="{AppThemeBinding Light=White}" 
-                                                StyleClass="TelerikTheme">
+                                                StyleClass="TelerikTheme"
+                                                AutomationId="cartesianLineChart">
                     <telerik:RadCartesianChart.ChartBehaviors>
                         <telerik:ChartSelectionBehavior DataPointSelectionMode="None" 
                                                              SeriesSelectionMode="Single" />
@@ -44,7 +45,8 @@
             </DataTemplate>
             <DataTemplate x:Key="spline">
                 <telerik:RadCartesianChart BackgroundColor="{AppThemeBinding Light=White}" 
-                                                StyleClass="TelerikTheme">
+                                                StyleClass="TelerikTheme"
+                                                AutomationId="cartesianSplineChart">
                     <telerik:RadCartesianChart.ChartBehaviors>
                         <telerik:ChartSelectionBehavior DataPointSelectionMode="None" 
                                                              SeriesSelectionMode="Single" />
@@ -76,7 +78,8 @@
             </DataTemplate>
             <DataTemplate x:Key="stackedLine">
                 <telerik:RadCartesianChart BackgroundColor="{AppThemeBinding Light=White}" 
-                                                StyleClass="TelerikTheme">
+                                                StyleClass="TelerikTheme"
+                                                AutomationId="cartesianStackedLineChart">
                     <telerik:RadCartesianChart.ChartBehaviors>
                         <telerik:ChartSelectionBehavior DataPointSelectionMode="None" 
                                                              SeriesSelectionMode="Single" />
@@ -113,7 +116,8 @@
             </DataTemplate>
             <DataTemplate x:Key="stackedSpline">
                 <telerik:RadCartesianChart BackgroundColor="{AppThemeBinding Light=White}" 
-                                                StyleClass="TelerikTheme">
+                                                StyleClass="TelerikTheme"
+                                                AutomationId="cartesianStackedSplineChart">
                     <telerik:RadCartesianChart.ChartBehaviors>
                         <telerik:ChartSelectionBehavior DataPointSelectionMode="None" 
                                                              SeriesSelectionMode="Single" />

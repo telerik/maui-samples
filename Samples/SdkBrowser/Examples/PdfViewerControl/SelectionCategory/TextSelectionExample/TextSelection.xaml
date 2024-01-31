@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.PdfViewerControl.SelectionCategory.TextSelectionExample.TextSelection">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <!-- >> pdfviewer-selectionmenu-style -->
+            <Style TargetType="telerik:PdfViewerSelectionMenu">
+                <Setter Property="Fill" Value="WhiteSmoke" />
+                <Setter Property="TextColor" Value="Black" />
+            </Style>
+            <!-- << pdfviewer-selectionmenu-style -->
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+    <!-- >> pdfviewer-text-selection-xaml -->
+    <telerik:RadPdfViewer x:Name="pdfViewer" AutomationId="pdfViewer">
+        <telerik:RadPdfViewer.SelectionSettings>
+            <telerik:PdfViewerSelectionSettings SelectionFill="#3332CD32"
+                                                SelectionIndicatorColor="#32CD32">
+                <telerik:PdfViewerSelectionSettings.MenuItems>
+                    <telerik:PdfViewerSelectionMenuItemCollection>
+                        <telerik:PdfViewerSelectionMenuItem Text="Get Text" Command="{Binding GetSelectedTextCommand}" />
+                    </telerik:PdfViewerSelectionMenuItemCollection>
+                </telerik:PdfViewerSelectionSettings.MenuItems>
+            </telerik:PdfViewerSelectionSettings>
+        </telerik:RadPdfViewer.SelectionSettings>
+    </telerik:RadPdfViewer>
+    <!-- << pdfviewer-text-selection-xaml -->
+</ContentView>

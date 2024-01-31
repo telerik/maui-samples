@@ -66,7 +66,8 @@
                             HorizontalOptions="End"
                             VerticalOptions="Start"
                             FontSize="20"
-                            Clicked="ClearButton_Clicked" />
+                            Clicked="ClearButton_Clicked" 
+                            AutomationId="clearButton"/>
                     <VerticalStackLayout Grid.Row="1"
                                          Padding="24">
                         <Label Text="Amount Paid: $93.36"
@@ -138,7 +139,8 @@
                                             Margin="0, 24"
                                             Orientation="Horizontal"
                                             ItemsSource="{Binding Tips}"
-                                            SelectedItem="{Binding SelectedTip, Mode=TwoWay}">
+                                            SelectedItem="{Binding SelectedTip, Mode=TwoWay}"
+                                            AutomationId="selectedTipItemsControl">
             <telerik:NonVirtualizedItemsControl.ItemTemplate>
                 <DataTemplate>
                     <telerik:RadBorder Style="{StaticResource BorderStyle}">
@@ -165,7 +167,8 @@
                                  Grid.Row="2"
                                  Style="{StaticResource SignaturePadStyle}"
                                  StrokeStarted="SignaturePad_StrokeStarted"
-                                 Cleared="SignaturePad_Cleared" />
+                                 Cleared="SignaturePad_Cleared" 
+                                 AutomationId="signaturePad"/>
         <Grid Grid.Row="3"
               ColumnDefinitions="{OnIdiom Default='*, *', Desktop='Auto, Auto'}"
               Margin="0, 24, 0, 0">
@@ -174,13 +177,15 @@
                                BorderColor="{StaticResource ClearButtonColor}"
                                Style="{StaticResource SubmitButtonStyle}"
                                Command="{Binding Source={x:Reference signaturePad}, Path=ClearCommand}"
-                               Margin="0, 0, 4, 0" />
+                               Margin="0, 0, 4, 0" 
+                               AutomationId="clearButton"/>
             <telerik:RadButton Grid.Column="1"
                                Style="{StaticResource SubmitButtonStyle}"
                                IsEnabled="{Binding IsSigned}"
                                Text="Confirm"
                                Clicked="SaveButton_Clicked"
-                               Margin="4, 0, 0, 0" />
+                               Margin="4, 0, 0, 0" 
+                               AutomationId="confirmButton"/>
         </Grid>
     </Grid>
 </telerik:RadContentView>

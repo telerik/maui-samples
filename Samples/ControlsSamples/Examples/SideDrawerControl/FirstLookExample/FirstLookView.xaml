@@ -6,7 +6,8 @@
                         Margin="5">
     <telerik:RadContentView.Content>
         <telerik:RadSideDrawer x:Name="drawer"
-                               DrawerLength="300">
+                               DrawerLength="300"
+                               AutomationId="sideDrawer">
             <telerik:RadSideDrawer.MainContent>
                 <Grid RowDefinitions="Auto,*,Auto"
                       BackgroundColor="White">
@@ -16,7 +17,8 @@
                                TextColor="{StaticResource AccentColor8}"
                                FontSize="40"
                                HorizontalOptions="Center"
-                               VerticalOptions="Center">
+                               VerticalOptions="Center"
+                               AutomationId="drawerButton">
                             <Label.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="OpenDrawer"/>
                             </Label.GestureRecognizers>
@@ -29,7 +31,8 @@
                     <Grid Grid.Row="1">
                         <telerik:RadListView ItemsSource="{Binding Items}" 
                                              Margin="50,0,0,0"
-                                             SelectionMode="None">
+                                             SelectionMode="None"
+                                             AutomationId="controlsListView">
                             <telerik:RadListView.ItemTemplate>
                                 <DataTemplate>
                                     <telerik:ListViewTemplateCell>
@@ -70,7 +73,8 @@
                                        VerticalOptions="{OnIdiom Default=Center, Phone=End}"
                                        HorizontalOptions="{OnIdiom Default=Start, Phone=FillAndExpand}"
                                        Command="{Binding NavigateToProductPageCommand}"
-                                       Style="{StaticResource SubmitButtonStyle}"/>
+                                       Style="{StaticResource SubmitButtonStyle}"
+                                       AutomationId="productPageButton"/>
                 </Grid>
             </telerik:RadSideDrawer.MainContent>
             <telerik:RadSideDrawer.DrawerContent>
@@ -86,7 +90,8 @@
                     <VerticalStackLayout Grid.Row="1">
                         <telerik:RadListView ItemsSource="{Binding Categories}" 
                                              HeightRequest="500"
-                                             SelectedItem="{Binding SelectedCategory, Mode=TwoWay}">
+                                             SelectedItem="{Binding SelectedCategory, Mode=TwoWay}"
+                                             AutomationId="controlsCategoriesListView">
                             <telerik:RadListView.ItemStyle>
                                 <telerik:ListViewItemStyle BackgroundColor="#F8F8F8"
                                         BorderColor="Transparent"/>

@@ -70,21 +70,21 @@
                                  Margin="10,25,10,20" 
                                  Spacing="10">
                 <HorizontalStackLayout VerticalOptions="Start">
-                    <telerik:RadCheckBox IsChecked="{Binding ReceiveEmailsChecked}"/>
+                    <telerik:RadCheckBox IsChecked="{Binding ReceiveEmailsChecked}" AutomationId="emailsCheckBox"/>
                     <Label Text="Receive E-mails when:"
                            FontAttributes="Bold"/>
                 </HorizontalStackLayout>
 
                 <HorizontalStackLayout VerticalOptions="Start" 
                                        Margin="10,0,0,0">
-                    <telerik:RadCheckBox IsChecked="{Binding SomeoneFollowsChecked}"/>
+                    <telerik:RadCheckBox IsChecked="{Binding SomeoneFollowsChecked}" AutomationId="followsCheckBox"/>
                     <Label Text="Someone follows me" 
                            Style="{StaticResource checkBoxLabel}"/>
                 </HorizontalStackLayout>
 
                 <HorizontalStackLayout VerticalOptions="Start"
                                        Margin="10,0,0,0">
-                    <telerik:RadCheckBox IsChecked="{Binding SomeoneSendsMessagesChecked}"/>
+                    <telerik:RadCheckBox IsChecked="{Binding SomeoneSendsMessagesChecked}" AutomationId="sendMessageCheckBox"/>
                     <Label Text="Someone sends me a message"
                            Style="{StaticResource checkBoxLabel}"/>
                 </HorizontalStackLayout>
@@ -96,13 +96,13 @@
                                  Margin="10,25,10,20" 
                                  Spacing="10">
                 <HorizontalStackLayout VerticalOptions="Start">
-                    <telerik:RadCheckBox IsChecked="{Binding PrivateProfileChecked}"/>
+                    <telerik:RadCheckBox IsChecked="{Binding PrivateProfileChecked}" AutomationId="privateCheckBox"/>
                     <Label Text="Private Profile:" 
                            FontAttributes="Bold"/>
                 </HorizontalStackLayout>
                 <HorizontalStackLayout VerticalOptions="Start" 
                                        Margin="10,0,0,0">
-                    <telerik:RadCheckBox IsChecked="{Binding OnlyFriendsChecked}"/>
+                    <telerik:RadCheckBox IsChecked="{Binding OnlyFriendsChecked}" AutomationId="postsCheckBox"/>
                     <Label Grid.Column="1" 
                             Text="Only friends can see my posts"
                             Style="{StaticResource checkBoxLabel}"/>
@@ -110,8 +110,8 @@
 
                 <HorizontalStackLayout VerticalOptions="Start" 
                                        Margin="10,0,0,0">
-                    <telerik:RadCheckBox IsChecked="{Binding OnlyShowToFollowersChecked}"/>
-                    <Label Text="Only friends can see my photos"                                
+                    <telerik:RadCheckBox IsChecked="{Binding OnlyShowToFollowersChecked}" AutomationId="photosCheckBox"/>
+                    <Label Text="Only friends can see my photos" 
                            Style="{StaticResource checkBoxLabel}"/>
                 </HorizontalStackLayout>
             </VerticalStackLayout>
@@ -122,7 +122,8 @@
                                VerticalOptions="{OnIdiom Default=Center, Phone=End}"
                                HorizontalOptions="{OnIdiom Default=Start, Phone=FillAndExpand}"
                                Style="{StaticResource SubmitButtonStyle}"
-                               Command="{Binding SaveSettingsCommand}"/>
+                               Command="{Binding SaveSettingsCommand}"
+                               AutomationId="saveSettingsButton"/>
         </Grid>
     </ScrollView>
 </telerik:RadContentView>

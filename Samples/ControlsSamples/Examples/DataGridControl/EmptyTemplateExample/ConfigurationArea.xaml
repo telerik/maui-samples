@@ -19,21 +19,24 @@
             <HorizontalStackLayout telerik:RadCheckBox.ToggleOnTap="{Reference useNullSourceCb}"
                                    Style="{StaticResource CheckBoxGroupStyle}">
                 <telerik:RadCheckBox x:Name="useNullSourceCb"
-                                     IsChecked="{Binding UseNullSource}" />
+                                     IsChecked="{Binding UseNullSource}" 
+                                     AutomationId="nullSourceCheckBox"/>
                 <Label Text="Null"
                        Style="{StaticResource HorizontalGroupLabelAtEndStyle}" />
             </HorizontalStackLayout>
             <HorizontalStackLayout telerik:RadCheckBox.ToggleOnTap="{Reference useEmptyCollectionSourceCb}"
                                    Style="{StaticResource CheckBoxGroupStyle}">
                 <telerik:RadCheckBox x:Name="useEmptyCollectionSourceCb"
-                                     IsChecked="{Binding UseEmptyCollectionSource}" />
+                                     IsChecked="{Binding UseEmptyCollectionSource}" 
+                                     AutomationId="emptyCollectionCheckBox"/>
                 <Label Text="Empty collection"
                        Style="{StaticResource HorizontalGroupLabelAtEndStyle}" />
             </HorizontalStackLayout>
             <HorizontalStackLayout telerik:RadCheckBox.ToggleOnTap="{Reference useNonEmptyCollectionSourceCb}"
                                    Style="{StaticResource CheckBoxGroupStyle}">
                 <telerik:RadCheckBox x:Name="useNonEmptyCollectionSourceCb"
-                                     IsChecked="{Binding UseNonEmptyCollectionSource}" />
+                                     IsChecked="{Binding UseNonEmptyCollectionSource}" 
+                                     AutomationId="nonEmptryCollectionCheckBox"/>
                 <Label Text="Non-empty collection"
                        Style="{StaticResource HorizontalGroupLabelAtEndStyle}" />
             </HorizontalStackLayout>
@@ -43,7 +46,8 @@
                    Style="{StaticResource VerticalGroupLabelStyle}" />
             <telerik:RadComboBox ItemsSource="{Binding EmptyContentDisplayModes}"
                                  SelectedItem="{Binding EmptyContentDisplayMode, Mode=TwoWay}"
-                                 DropDownHeight="{OnPlatform Default=72, Android=64, MacCatalyst=44}" />
+                                 DropDownHeight="{OnPlatform Default=72, Android=64, MacCatalyst=44}" 
+                                 AutomationId="emptyContentDisplayModeCombo"/>
         </VerticalStackLayout>
     </VerticalStackLayout>
 </ContentView>

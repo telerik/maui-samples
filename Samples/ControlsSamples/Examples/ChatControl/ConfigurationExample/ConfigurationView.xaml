@@ -14,7 +14,8 @@
                              Author="{Binding AuthorMe}"
                              ItemsSource="{Binding Items}"
                              Message="{Binding Message}"
-                             SendMessageCommand="{Binding SendMessageCommand}">
+                             SendMessageCommand="{Binding SendMessageCommand}"
+                             AutomationId="chat">
                 <telerik:RadChat.Picker>
                     <telerik:RadChatPicker IsVisible="{Binding IsPickerVisible}"
                                            Context="{Binding PickerContext}"

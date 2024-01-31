@@ -5,6 +5,10 @@
              xmlns:local="clr-namespace:SDKBrowserMaui.Examples.RangeSliderControl.TooltipsCategory.TooltipContentTemplateSelectorExample"
              x:Class="SDKBrowserMaui.Examples.RangeSliderControl.TooltipsCategory.TooltipContentTemplateSelectorExample.TooltipContentTemplateSelector">
     <ContentView.Resources>
+        <Style TargetType="telerik:RadRangeSlider">
+            <Setter Property="WidthRequest" Value="{OnIdiom Default=-1, Desktop=800}" />
+            <Setter Property="HorizontalOptions" Value="{OnIdiom Default=Fill, Desktop=Center}" />
+        </Style>
         <!-- >> rangeslider-tooltiptemplateselector-resources -->
         <local:DoubleSubtractConverter x:Key="DoubleSubtractConverter" />
         <telerik:RangeSliderTooltipContentTemplateSelector x:Key="CustomTooltipTemplateSelector">
@@ -35,7 +39,7 @@
                                TextColor="{OnPlatform Default='#674BB2', Android='#EDEAF6', iOS='#EDEAF6'}"
                                FontAttributes="Bold, Italic" />
                         <Label TextColor="{OnPlatform Default='#674BB2', Android='#EDEAF6', iOS='#EDEAF6'}"
-                                FontAttributes="Bold, Italic">
+                               FontAttributes="Bold, Italic">
                             <Label.Text>
                                 <MultiBinding Converter="{StaticResource DoubleSubtractConverter}" ConverterParameter="{}{0:N0}">
                                     <Binding Path="Slider.RangeEnd" />
@@ -60,14 +64,14 @@
         </telerik:RangeSliderTooltipContentTemplateSelector>
         <!-- << rangeslider-tooltiptemplateselector-resources -->
     </ContentView.Resources>
-    <VerticalStackLayout>
+    <VerticalStackLayout Margin="{OnIdiom Default=0, Desktop='0, 40, 0, 0'}">
         <!-- >> rangeslider-tooltiptemplateselector-xaml -->
         <telerik:RadRangeSlider Minimum="0"
-                           Maximum="100"
-                           RangeStart="25"
-                           RangeEnd="75"
-                           TooltipStringFormat="{}{0:N2}"
-                           TooltipContentTemplate="{StaticResource CustomTooltipTemplateSelector}" />
+                                Maximum="100"
+                                RangeStart="25"
+                                RangeEnd="75"
+                                TooltipStringFormat="{}{0:N2}"
+                                TooltipContentTemplate="{StaticResource CustomTooltipTemplateSelector}" />
         <!-- << rangeslider-tooltiptemplateselector-xaml -->
     </VerticalStackLayout>
 </ContentView>

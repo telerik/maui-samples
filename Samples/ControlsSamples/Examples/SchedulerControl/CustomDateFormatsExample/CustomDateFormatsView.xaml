@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="QSF.Examples.SchedulerControl.CustomDateFormatsExample.CustomDateFormatsView"
+             Padding="{OnIdiom Default=0, Desktop='16, 20'}">
+    <Grid>
+        <telerik:RadScheduler x:Name="scheduler"
+                              AppointmentsSource="{Binding AppointmentsSource}">
+            <telerik:RadScheduler.ViewDefinitions>
+                <telerik:DayViewDefinition DayStringFormat="{OnIdiom '{0:dddd d}', Desktop='{0:dddd (MM/dd/yy)}'}"
+                                           TimeRulerMajorTickStringFormat="{}{0:h:mm tt}"
+                                           TimeRulerWidth="80" />
+                <telerik:MultidayViewDefinition VisibleDays="3" 
+                                                Title="3 Day"
+                                                DayStringFormat="{}{0:ddd (MM/dd)}"
+                                                TimeRulerMajorTickStringFormat="{}{0:h:mm tt}"
+                                                TimeRulerWidth="80"/>
+                <telerik:WeekViewDefinition DayStringFormat="{OnIdiom '{0:ddd &#10;d}', Desktop='{0:ddd (MM/dd)}'}"
+                                            TimeRulerMajorTickStringFormat="{}{0:h:mm tt}"
+                                            TimeRulerWidth="80" />
+                <telerik:MonthViewDefinition HeaderTextFormat="{}{0:ddd, MMM dd}"
+                                             DayStringFormat="{}{0:MM.dd}"
+                                             WeekDayStringFormat="{OnIdiom '{0:ddd}', Desktop='&lt; {0:dddd} &gt;'}" />
+            </telerik:RadScheduler.ViewDefinitions>
+        </telerik:RadScheduler>
+    </Grid>
+</ContentView>

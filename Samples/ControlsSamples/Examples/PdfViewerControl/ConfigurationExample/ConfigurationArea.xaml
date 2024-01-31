@@ -22,7 +22,8 @@
                                      Minimum="0"
                                      Maximum="100"
                                      Step="10"
-                                     HorizontalOptions="Fill" />
+                                     HorizontalOptions="Fill" 
+                                     AutomationId="pageSpacingNumeric"/>
         </VerticalStackLayout>
         <VerticalStackLayout Style="{StaticResource GroupAtSeparateAreaStyle}">
             <Label Text="Min Zoom Level:"
@@ -33,7 +34,8 @@
                                      Maximum="1"
                                      Step="0.1"
                                      StringFormat="{}{0:N1}"
-                                     HorizontalOptions="Fill" />
+                                     HorizontalOptions="Fill" 
+                                     AutomationId="minZoomLevelNumeric"/>
         </VerticalStackLayout>
         <VerticalStackLayout Style="{StaticResource GroupAtSeparateAreaStyle}">
             <Label Text="Max Zoom Level:"
@@ -42,7 +44,8 @@
                                      Value="{Binding MaxZoomLevel}"
                                      Minimum="3"
                                      Maximum="10"
-                                     HorizontalOptions="Fill" />
+                                     HorizontalOptions="Fill" 
+                                     AutomationId="maxZoomLevelNumeric"/>
         </VerticalStackLayout>
     </VerticalStackLayout>
 </ContentView>

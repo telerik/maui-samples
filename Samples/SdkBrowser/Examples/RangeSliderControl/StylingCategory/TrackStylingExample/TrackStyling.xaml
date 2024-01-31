@@ -4,6 +4,10 @@
              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
              x:Class="SDKBrowserMaui.Examples.RangeSliderControl.StylingCategory.TrackStylingExample.TrackStyling">
     <ContentView.Resources>
+        <Style TargetType="telerik:RadRangeSlider">
+            <Setter Property="WidthRequest" Value="{OnIdiom Default=-1, Desktop=800}" />
+            <Setter Property="HorizontalOptions" Value="{OnIdiom Default=Fill, Desktop=Center}" />
+        </Style>
         <!-- >> rangeslider-track-style -->
         <Style x:Key="CustomTrackStyle" TargetType="telerik:RadBorder">
             <Setter Property="BorderColor" Value="#B2DFDB" />
@@ -20,7 +24,7 @@
         </Style>
         <!-- << rangeslider-rangetrack-style -->
     </ContentView.Resources>
-    <VerticalStackLayout>
+    <VerticalStackLayout Margin="{OnIdiom Default=0, Desktop='0, 40, 0, 0'}">
         <!-- >> rangeslider-track-style-xaml -->
         <telerik:RadRangeSlider Minimum="0"
                                 Maximum="100"
@@ -32,7 +36,7 @@
                                 RangeTrackStyle="{StaticResource CustomRangeTrackStyle}" />
         <!-- << rangeslider-track-style-xaml -->
         <HorizontalStackLayout Spacing="5"
-                               Margin="0, 20, 0, 0">
+                               Margin="{OnIdiom Default='0, 20, 0, 0', Desktop='0, 40, 0, 0'}">
             <Rectangle WidthRequest="14" HeightRequest="14" Fill="#80CBC4" />
             <Label Text="Backtrack" FontSize="14" />
         </HorizontalStackLayout>

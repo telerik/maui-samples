@@ -34,7 +34,8 @@
     <Grid RowDefinitions="Auto, *">
         <VerticalStackLayout BackgroundColor="{AppThemeBinding Light={StaticResource DefaultBackgroundColor}, Dark={StaticResource DefaultBackgroundColorDark}}"
                              Padding="16, 24">
-            <telerik:RadBadgeView HorizontalOptions="Center"
+            <telerik:RadBadgeView AutomationId="badgeView"
+                                  HorizontalOptions="Center"
                                   VerticalOptions="End"
                                   BadgeText="{Binding BadgeText}"
                                   BadgeTextColor="{Binding BadgeTextColor}"
@@ -52,6 +53,7 @@
                                   BadgeStartAnimationCommand="{Binding BadgeStartAnimationCommand, Mode=OneWayToSource}">
                 <telerik:RadBadgeView.Content>
                     <telerik:RadButton Text="Button"
+                                       AutomationId="button"
                                        TextColor="White"
                                        WidthRequest="92"
                                        HeightRequest="40"
@@ -80,19 +82,22 @@
                             <Label Text="Text:"
                                    Style="{StaticResource VerticalGroupLabelStyle}" />
                             <telerik:RadEntry Text="{Binding BadgeText}"
+                                              AutomationId="textEntry"
                                               ReserveSpaceForErrorView="False" />
                         </VerticalStackLayout>
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="Text Color:"
                                    Style="{StaticResource VerticalGroupLabelStyle}" />
-                            <telerik:RadComboBox ItemsSource="{Binding BadgeTextColors}"
+                            <telerik:RadComboBox AutomationId="textColorComboBox"
+                                                 ItemsSource="{Binding BadgeTextColors}"
                                                  SelectedItem="{Binding Path=BadgeTextColorName, Mode=TwoWay}"
                                                  HorizontalOptions="Fill" />
                         </VerticalStackLayout>
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="Background Color:"
                                    Style="{StaticResource VerticalGroupLabelStyle}" />
-                            <telerik:RadComboBox ItemsSource="{Binding BadgeBackgroundColors}"
+                            <telerik:RadComboBox AutomationId="backgroundColorComboBox"
+                                                 ItemsSource="{Binding BadgeBackgroundColors}"
                                                  SelectedItem="{Binding Path=BadgeBackgroundColorName, Mode=TwoWay}"
                                                  HorizontalOptions="Fill" />
                         </VerticalStackLayout>
@@ -102,28 +107,32 @@
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Style="{StaticResource VerticalGroupLabelStyle}"
                                    Text="Horizontal Position:" />
-                            <telerik:RadComboBox ItemsSource="{Binding BadgePositions}"
+                            <telerik:RadComboBox AutomationId="horizontalPositionComboBox"
+                                                 ItemsSource="{Binding BadgePositions}"
                                                  SelectedItem="{Binding Path=BadgeHorizontalPosition, Mode=TwoWay}"
                                                  HorizontalOptions="Fill" />
                         </VerticalStackLayout>
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Style="{StaticResource VerticalGroupLabelStyle}"
                                    Text="Vertical Position:" />
-                            <telerik:RadComboBox ItemsSource="{Binding BadgePositions}"
+                            <telerik:RadComboBox AutomationId="verticalPositionComboBox"
+                                                 ItemsSource="{Binding BadgePositions}"
                                                  SelectedItem="{Binding Path=BadgeVerticalPosition, Mode=TwoWay}"
                                                  HorizontalOptions="Fill" />
                         </VerticalStackLayout>
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Style="{StaticResource VerticalGroupLabelStyle}"
                                    Text="Horizontal Alignment:" />
-                            <telerik:RadComboBox ItemsSource="{Binding BadgeAlignments}"
+                            <telerik:RadComboBox AutomationId="horizontalAlignmentComboBox"
+                                                 ItemsSource="{Binding BadgeAlignments}"
                                                  SelectedItem="{Binding Path=BadgeHorizontalAlignment, Mode=TwoWay}"
                                                  HorizontalOptions="Fill" />
                         </VerticalStackLayout>
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Style="{StaticResource VerticalGroupLabelStyle}"
                                    Text="Vertical Alignment:" />
-                            <telerik:RadComboBox ItemsSource="{Binding BadgeAlignments}"
+                            <telerik:RadComboBox AutomationId="verticalAlignmentComboBox"
+                                                 ItemsSource="{Binding BadgeAlignments}"
                                                  SelectedItem="{Binding Path=BadgeVerticalAlignment, Mode=TwoWay}"
                                                  HorizontalOptions="Fill" />
                         </VerticalStackLayout>
@@ -145,7 +154,7 @@
                                             Grid.Column="1"
                                             Style="{StaticResource BaseSliderStyle}"
                                             Value="{Binding TextMarginLeft}"
-                                            AutomationId="SliderMarginLeft" />
+                                            AutomationId="sliderMarginLeft" />
                                     <Label Grid.Column="2"
                                            Style="{StaticResource SliderMinMaxLabelStyle}"
                                            Text="{Binding Source={x:Reference sliderMarginLeft}, Path=Maximum, Mode=TwoWay}" />
@@ -160,7 +169,7 @@
                                             Grid.Column="1"
                                             Style="{StaticResource BaseSliderStyle}"
                                             Value="{Binding TextMarginTop}"
-                                            AutomationId="SliderMarginTop" />
+                                            AutomationId="sliderMarginTop" />
                                     <Label Grid.Column="2"
                                            Style="{StaticResource SliderMinMaxLabelStyle}"
                                            Text="{Binding Source={x:Reference sliderMarginTop}, Path=Maximum, Mode=TwoWay}" />
@@ -177,7 +186,7 @@
                                             Value="{Binding OffSetX}"
                                             Minimum="-20"
                                             Maximum="20"
-                                            AutomationId="OffsetXSlider" />
+                                            AutomationId="offsetXSlider" />
                                     <Label Grid.Column="2"
                                            Style="{StaticResource SliderMinMaxLabelStyle}"
                                            Text="{Binding Source={x:Reference offsetXSlider}, Path=Maximum, Mode=TwoWay}" />
@@ -195,7 +204,7 @@
                                             Grid.Column="1"
                                             Style="{StaticResource BaseSliderStyle}"
                                             Value="{Binding TextMarginRight}"
-                                            AutomationId="SliderMarginRight" />
+                                            AutomationId="sliderMarginRight" />
                                     <Label Grid.Column="2"
                                            Style="{StaticResource SliderMinMaxLabelStyle}"
                                            Text="{Binding Source={x:Reference sliderMarginRight}, Path=Maximum, Mode=TwoWay}" />
@@ -210,7 +219,7 @@
                                             Grid.Column="1"
                                             Style="{StaticResource BaseSliderStyle}"
                                             Value="{Binding TextMarginBottom}"
-                                            AutomationId="SliderMarginBottom" />
+                                            AutomationId="sliderMarginBottom" />
                                     <Label Grid.Column="2"
                                            Style="{StaticResource SliderMinMaxLabelStyle}"
                                            Text="{Binding Source={x:Reference sliderMarginBottom}, Path=Maximum, Mode=TwoWay}" />
@@ -227,7 +236,7 @@
                                             Value="{Binding OffSetY}"
                                             Minimum="-20"
                                             Maximum="20"
-                                            AutomationId="OffsetYSlider" />
+                                            AutomationId="offsetYSlider" />
                                     <Label Grid.Column="2"
                                            Style="{StaticResource SliderMinMaxLabelStyle}"
                                            Text="{Binding Source={x:Reference offsetYSlider}, Path=Maximum, Mode=TwoWay}" />
@@ -241,14 +250,16 @@
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="Type:"
                                    Style="{StaticResource VerticalGroupLabelStyle}" />
-                            <telerik:RadComboBox ItemsSource="{Binding BadgeAnimationTypes}"
+                            <telerik:RadComboBox AutomationId="animationTypeComboBox"
+                                                 ItemsSource="{Binding BadgeAnimationTypes}"
                                                  SelectedItem="{Binding Path=BadgeAnimationType, Mode=TwoWay}"
                                                  HorizontalOptions="Fill" />
                         </VerticalStackLayout>
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="Easing:"
                                 Style="{StaticResource VerticalGroupLabelStyle}" />
-                            <telerik:RadComboBox ItemsSource="{Binding BadgeAnimationEasings}"
+                            <telerik:RadComboBox AutomationId="easingComboBox"
+                                                 ItemsSource="{Binding BadgeAnimationEasings}"
                                                  SelectedItem="{Binding BadgeAnimationEasing, Mode=TwoWay, Converter={StaticResource NameToEasingConverter}}"
                                                  HorizontalOptions="Fill" />
                         </VerticalStackLayout>
@@ -264,7 +275,7 @@
                                     Value="{Binding BadgeAnimationDuration, Mode=TwoWay}"
                                     Minimum="300"
                                     Maximum="3000"
-                                    AutomationId="SliderAnimationDuration" />
+                                    AutomationId="sliderAnimationDuration" />
                             <Label Grid.Column="2"
                                    Style="{StaticResource HorizontalGroupLabelAtEndStyle}"
                                    Text="{Binding Source={x:Reference sliderAnimationDuration}, Path=Maximum, Mode=TwoWay}" />

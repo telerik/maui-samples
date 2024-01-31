@@ -15,7 +15,7 @@
             <Color x:Key="DisabledTextColorLight">#9D9CA1</Color>
             <Color x:Key="DisabledTextColorDark">#8E8E8E</Color>
             <Color x:Key="DisabledBadgeBackground">#FFBABA</Color>
-            
+
             <Style x:Key="DefaultTabItemStyle" TargetType="Label">
                 <Setter Property="HorizontalOptions" Value="Center" />
                 <Setter Property="VerticalOptions" Value="Center" />
@@ -39,7 +39,8 @@
     </ContentView.Resources>
     <Grid RowDefinitions="*, Auto">
         <telerik:RadItemsControl Grid.Row="0"
-                                 ItemsSource="{Binding Users}">
+                                 ItemsSource="{Binding Users}"
+                                 AutomationId="usersList">
             <telerik:RadItemsControl.ItemTemplate>
                 <DataTemplate>
                     <Grid ColumnDefinitions="Auto, *, *"
@@ -49,7 +50,8 @@
                                               BadgeVerticalPosition="End"
                                               BadgeHorizontalAlignment="End"
                                               BadgeVerticalAlignment="End"
-                                              Margin="0, 0, 16, 0">
+                                              Margin="0, 0, 16, 0" 
+                                              AutomationId="badgeView">
                             <telerik:RadBadgeView.Content>
                                 <Image Source="{Binding ImageSourcePath}" 
                                        WidthRequest="50"
@@ -90,7 +92,8 @@
               Padding="0, 7">
             <telerik:RadBadgeView BadgeText="12"
                                   BadgeBackgroundColor="{StaticResource DisabledBadgeBackground}"
-                                  Style="{StaticResource DefaultBadgeViewStyle}">
+                                  Style="{StaticResource DefaultBadgeViewStyle}"
+                                  AutomationId="callsBadgeView">
                 <telerik:RadBadgeView.Content>
                     <StackLayout>
                         <Label Text="&#xE904;" TextColor="{StaticResource DisabledTextColorLight}"
@@ -103,7 +106,8 @@
             <telerik:RadBadgeView Grid.Column="1"
                                   BadgeText="2"
                                   Style="{StaticResource DefaultBadgeViewStyle}"
-                                  BadgeOffsetX="{OnPlatform Android=-2, iOS=-3, Default=-6}">
+                                  BadgeOffsetX="{OnPlatform Android=-2, iOS=-3, Default=-6}"
+                                  AutomationId="chatsBadgeView">
                 <telerik:RadBadgeView.Content>
                     <StackLayout>
                         <Label Text="&#xE903;"
@@ -126,7 +130,8 @@
                                   BadgeBackgroundColor="{StaticResource DisabledBadgeBackground}"
                                   Style="{StaticResource DefaultBadgeViewStyle}"
                                   BadgeVerticalAlignment="Start"
-                                  BadgeOffsetX="{OnPlatform Android=-5, iOS=-7, Default=-12}">
+                                  BadgeOffsetX="{OnPlatform Android=-5, iOS=-7, Default=-12}"
+                                  AutomationId="activityBadgeView">
                 <telerik:RadBadgeView.Content>
                     <StackLayout>
                         <Label Text="&#xE901;" TextColor="{StaticResource DisabledTextColorLight}"

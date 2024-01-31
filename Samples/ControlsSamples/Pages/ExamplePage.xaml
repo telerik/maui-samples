@@ -22,10 +22,12 @@
         <Grid ColumnDefinitions="Auto, Auto, *"
               Style="{StaticResource HeaderStyle}">
             <ImageButton Clicked="Back_Clicked"
-                         Style="{OnPlatform Default={StaticResource DefaultBackButtonStyle}, iOS={StaticResource IOSBackButtonStyle}}" />
+                         Style="{OnPlatform Default={StaticResource DefaultBackButtonStyle}, iOS={StaticResource IOSBackButtonStyle}}" 
+                         AutomationId="backButton"/>
             <Label Grid.Column="1"
                    Style="{StaticResource HeaderLabelStyle}"
-                   Text="{Binding HeaderTitle}" />
+                   Text="{Binding HeaderTitle}" 
+                   AutomationId="exampleName"/>
             <HorizontalStackLayout Grid.Column="2"
                                    HorizontalOptions="End"
                                    Spacing="16">
@@ -33,18 +35,22 @@
                              CommandParameter="{Binding Example}"
                              Source="settings.png"
                              IsVisible="{Binding Example.IsConfigurable}"
-                             Style="{StaticResource ExamplePageImageButtonStyle}"/>
+                             Style="{StaticResource ExamplePageImageButtonStyle}"
+                             AutomationId="navigateToConfigurationPage"/>
                 <ImageButton Command="{Binding NavigateToDescriptionCommand}"
                              CommandParameter="{Binding Example}"
                              Source="info_mobile_white.png"
                              IsVisible="{Binding Example.Description, Converter={StaticResource NullOrEmptyToBoolConverter}}"
-                             Style="{StaticResource ExamplePageImageButtonStyle}"/>
+                             Style="{StaticResource ExamplePageImageButtonStyle}"
+                             AutomationId="navigateToDescriptionButton"/>
                 <ImageButton Command="{Binding NavigateToExampleCodeCommand}"
                              CommandParameter="{Binding Example}"
                              Source="viewcode_white.png"
-                             Style="{StaticResource ExamplePageImageButtonStyle}"/>
+                             Style="{StaticResource ExamplePageImageButtonStyle}"
+                             AutomationId="navigateToExampleContent"/>
             </HorizontalStackLayout>
         </Grid>
-        <ContentView Content="{Binding Converter={StaticResource ModelToViewConverter}}" Grid.Row="1" />
+        <ContentView Content="{Binding Converter={StaticResource ModelToViewConverter}}" Grid.Row="1" 
+                     AutomationId="exampleView"/>
     </Grid>
 </ContentPage>

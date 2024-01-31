@@ -5,34 +5,37 @@
              x:Class="SDKBrowserMaui.Examples.RangeSliderControl.StylingCategory.RangeElementsStylingExample.RangeElementsStyling">
     <ContentView.Resources>
         <ResourceDictionary>
+            <Style TargetType="telerik:RadRangeSlider">
+                <Setter Property="WidthRequest" Value="{OnIdiom Default=-1, Desktop=800}" />
+                <Setter Property="HorizontalOptions" Value="{OnIdiom Default=Fill, Desktop=Center}" />
+            </Style>
             <!-- >> rangeslider-rangethumb-styling -->
             <Style x:Key="CustomRangeTrackStyle" TargetType="telerik:SliderRangeTrack">
                 <Setter Property="TrackThickness" Value="8" />
+                <Setter Property="Fill" Value="#80CBC4" />
                 <Setter Property="Stroke" Value="#B2DFDB" />
                 <Setter Property="StrokeThickness" Value="1" />
             </Style>
             <Style x:Key="CustomStartEndThumbStyle" TargetType="telerik:SliderThumb">
+                <Setter Property="Fill" Value="#009688" />
                 <Setter Property="Stroke" Value="#00897B" />
                 <Setter Property="StrokeThickness" Value="2" />
             </Style>
             <!-- << rangeslider-rangethumb-styling -->
         </ResourceDictionary>
     </ContentView.Resources>
-    <VerticalStackLayout>
+    <VerticalStackLayout Margin="{OnIdiom Default=0, Desktop='0, 40, 0, 0'}">
         <!-- >> rangeslider-rangethumb-styling-xaml -->
         <telerik:RadRangeSlider Minimum="0"
                                 Maximum="100"
                                 RangeStart="25"
                                 RangeEnd="75"
-                                StartThumbFill="#009688"
-                                EndThumbFill="#009688"
-                                RangeTrackFill="#80CBC4"
                                 RangeTrackStyle="{StaticResource CustomRangeTrackStyle}"
                                 StartThumbStyle="{StaticResource CustomStartEndThumbStyle}"
                                 EndThumbStyle="{StaticResource CustomStartEndThumbStyle}" />
         <!-- << rangeslider-rangethumb-styling-xaml -->
         <HorizontalStackLayout Spacing="5"
-                               Margin="0, 20, 0, 0">
+                               Margin="{OnIdiom Default='0, 20, 0, 0', Desktop='0, 40, 0, 0'}">
             <Rectangle WidthRequest="14" HeightRequest="14" Fill="#009688" />
             <Label Text="Range thumbs (StartThumb &amp; EndThumb)" FontSize="14" />
         </HorizontalStackLayout>

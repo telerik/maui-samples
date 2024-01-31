@@ -5,12 +5,12 @@
              x:Class="SDKBrowserMaui.Examples.RangeSliderControl.GettingStartedCategory.GettingStartedExample.GettingStartedXaml">
     <ContentView.Resources>
         <Style TargetType="telerik:RadRangeSlider">
-            <Setter Property="HorizontalOptions" Value="{OnPlatform Default=Fill, MacCatalyst=Center, WinUI=Center}" />
+            <Setter Property="WidthRequest" Value="{OnIdiom Default=-1, Desktop=800}" />
+            <Setter Property="HorizontalOptions" Value="{OnIdiom Default=Fill, Desktop=Center}" />
             <Setter Property="VerticalOptions" Value="{OnPlatform Default=Fill, MacCatalyst=Start, WinUI=Start}" />
-            <Setter Property="MinimumWidthRequest" Value="500" />
         </Style>
     </ContentView.Resources>
-    <Grid>
+    <Grid Margin="{OnIdiom Default=0, Desktop='0, 40, 0, 0'}">
         <!-- >> rangeslider-getting-started-xaml -->
         <telerik:RadRangeSlider Minimum="0"
                                 Maximum="100"

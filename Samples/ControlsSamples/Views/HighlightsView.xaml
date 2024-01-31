@@ -60,7 +60,8 @@
                     <Label Text="{Binding DisplayName}"
                            Grid.Column="1"
                            Grid.RowSpan="{OnIdiom Desktop=1, Default=2}"
-                           Style="{StaticResource MainHighlightLabelStyle}" />
+                           Style="{StaticResource MainHighlightLabelStyle}" 
+                           AutomationId="highlightedControlName"/>
                     <Label Text="{Binding ShortDescription}"
                            Grid.Column="1"
                            Grid.Row="1"
@@ -95,7 +96,8 @@
             </OnPlatform>
         </views:LayoutView.Layout>
         <telerik:RadBorder BackgroundColor="{StaticResource AccentColor2}"
-                           Style="{StaticResource BorderStyle}">
+                           Style="{StaticResource BorderStyle}"
+                           AutomationId="highlightedControlsArea">
             <VerticalStackLayout>
                 <Label Text="Highlighted Controls:"
                        Style="{StaticResource TitleHighlightLabelStyle}"

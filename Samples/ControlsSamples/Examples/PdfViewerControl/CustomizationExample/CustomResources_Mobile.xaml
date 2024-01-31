@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                    x:Class="QSF.Examples.PdfViewerControl.CustomizationExample.CustomResources_Mobile">
+    <FontImageSource x:Key="PreviousIcon"
+                     Glyph="&#xe80e;"
+                     FontFamily="TelerikFontExamples"
+                     Size="16" />
+    <FontImageSource x:Key="NextIcon"
+                     Glyph="&#xe81b;"
+                     FontFamily="TelerikFontExamples"
+                     Size="16" />
+    <FontImageSource x:Key="FirstIcon"
+                     Glyph="&#xe839;"
+                     FontFamily="TelerikFontExamples"
+                     Size="16" />
+    <FontImageSource x:Key="LastIcon"
+                     Glyph="&#xe89a;"
+                     FontFamily="TelerikFontExamples"
+                     Size="16" />
+    <FontImageSource x:Key="FitToWidthIcon"
+                     Glyph="&#xe860;"
+                     FontFamily="TelerikFontExamples"
+                     Size="16" />
+    <Color x:Key="ToolbarCustomAccentColor">#674BB2</Color>
+    <Style x:Key="CommonToolbarItemStyle" TargetType="telerik:ButtonToolbarItemView">
+        <Setter Property="ContentPadding" Value="8" />
+        <Setter Property="DisplayOptions" Value="Image, Text" />
+        <Setter Property="ImagePosition" Value="Top" />
+        <Setter Property="ImageSpacing" Value="4" />
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup Name="CommonStates">
+                    <VisualState Name="Normal">
+                        <VisualState.Setters>
+                            <Setter Property="TextColor" Value="{StaticResource ToolbarCustomAccentColor}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState Name="Disabled">
+                        <VisualState.Setters>
+                            <Setter Property="TextColor" Value="#618660C5" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+    <Style TargetType="telerik:ButtonToolbarItemView" BasedOn="{StaticResource CommonToolbarItemStyle}" />
+    <Style TargetType="telerik:NavigationButtonToolbarItemView" BasedOn="{StaticResource CommonToolbarItemStyle}" />
+    <Style x:Key="SearchButtonToolbarItemCommonStyle" TargetType="telerik:ButtonToolbarItemView" BasedOn="{StaticResource CommonToolbarItemStyle}">
+        <Setter Property="ContentPadding" Value="{OnPlatform Default=8, WinUI='8, 6', MacCatalyst=2}" />
+        <Setter Property="DisplayOptions" Value="Image" />
+    </Style>
+    <Style TargetType="telerik:BackNavigationButtonToolbarItemView" BasedOn="{StaticResource SearchButtonToolbarItemCommonStyle}" />
+    <Style TargetType="telerik:PdfViewerSearchEntryToolbarItemView">
+        <Setter Property="EntryStyle">
+            <Style TargetType="telerik:RadEntry">
+                <Setter Property="Placeholder" Value="Search in document" />
+                <Setter Property="PlaceholderColor" Value="#99674BB2" />
+                <Setter Property="FocusedBorderBrush" Value="{OnPlatform Default={StaticResource ToolbarCustomAccentColor}, iOS=#80674BB2}" />
+            </Style>
+        </Setter>
+    </Style>
+    <Style TargetType="telerik:PdfViewerNavigateToPreviousSearchResultToolbarItemView" BasedOn="{StaticResource SearchButtonToolbarItemCommonStyle}" />
+    <Style TargetType="telerik:PdfViewerNavigateToNextSearchResultToolbarItemView" BasedOn="{StaticResource SearchButtonToolbarItemCommonStyle}" />
+    <Style TargetType="telerik:PdfViewerSearchBusyIndicatorToolbarItemView">
+        <Setter Property="BusyIndicatorStyle">
+            <Style TargetType="telerik:RadBusyIndicator">
+                <Setter Property="AnimationContentColor" Value="{StaticResource ToolbarCustomAccentColor}" />
+                <Setter Property="AnimationType" Value="Animation9" />
+            </Style>
+        </Setter>
+    </Style>
+    <Style x:Key="PdfViewerCustomSearchToastStyle" TargetType="telerik:PdfViewerSearchToast">
+        <Setter Property="Fill" Value="#04A2AA" />
+        <Setter Property="TextColor" Value="#FFFFFF" />
+    </Style>
+    <telerik:PdfViewerSearchSettings x:Key="PdfViewerCustomSearchSettings"
+                                     MainSearchResultFill="#668660C5"
+                                     SearchResultsFill="#6604A2AA" />
+</ResourceDictionary>

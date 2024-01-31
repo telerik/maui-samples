@@ -59,7 +59,8 @@
 
     <Grid>
         <telerik:RadExpander x:Name="expander"
-                             HeaderText="Sales Person">
+                             HeaderText="Sales Person"
+                             AutomationId="expander">
             <telerik:RadExpander.Content>
                 <telerik:RadListView x:Name="listView"
                                      ItemsSource="{Binding SalesReps}"

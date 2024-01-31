@@ -302,7 +302,6 @@
 					<Name>Configuration</Name>
 					<Page>ConfigurationView</Page>
 					<DisplayName>Configuration</DisplayName>
-					<Status>New</Status>
 					<IsConfigurable>true</IsConfigurable>
 					<Description>This example demonstrates the various message types that the RadChat provides as well as how they can be customized. You can add new messages by choosing the type from the dropdown and clicking the Add Message button. The message will then be added based on the current configuration.</Description>
 				</Example>
@@ -340,7 +339,6 @@
 					<Name>Configuration</Name>
 					<Page>ConfigurationView</Page>
 					<DisplayName>Configuration</DisplayName>
-					<Status>Updated</Status>
 					<Description>This example presents the various configuration options that the RadComboBox provides. You can change the control's editable state, selection mode, whether the clear button will be visible, etc.</Description>
 				</Example>
 			</Examples>
@@ -450,16 +448,22 @@
 					<Name>HeaderContentTemplate</Name>
 					<Page>HeaderContentTemplateView</Page>
 					<DisplayName>Header Content Template</DisplayName>
-					<Status>New</Status>
 					<Description><![CDATA[Demonstrates the ability of the DataGrid to specify and show custom appearance for the column headers by means of <b>Header Content Template</b>.]]></Description>
 				</Example>
 				<Example>
 					<Name>RowDetails</Name>
 					<Page>RowDetailsView</Page>
 					<DisplayName>Row Details</DisplayName>
-					<Status>New</Status>
 					<IsConfigurable>true</IsConfigurable>
 					<Description><![CDATA[Demonstrates the ability of each row of the DataGrid to present additional information by means of <b>Row Details</b> without affecting the dimensions of the row and the cells.]]></Description>
+				</Example>
+				<Example>
+					<Name>SearchAsYouType</Name>
+					<Page>SearchAsYouTypeView</Page>
+					<DisplayName>Search as You Type</DisplayName>
+					<Status>New</Status>
+					<IsConfigurable>true</IsConfigurable>
+					<Description>Demonstrates the ability to search for specific data within the DataGrid by using its built-in search funcionality. The default behavior is to search as you type, but it can also be performed when the end user finishes typing and presses Enter. The search panel exposes many search settings enabled by its options button (the three dots). For MacCatalyst / WinUI it can be shown by Command / Control + F keyboard combination. Additional search settings can be checked in the configuration area of this example.</Description>
 				</Example>
 				<Example>
 					<Name>Customization</Name>
@@ -528,7 +532,6 @@
 					<Description>Telerik UI for .NET MAUI Entry is a text input control, which accepts text input from the user and provides consistent look and feel with the rest of the Telerik UI for .NET MAUI. It also has a validation API and corresponding error UI.</Description>
 				</Example>
 				<Example>
-					<Status>Updated</Status>
 					<Name>Configuration</Name>
 					<Page>ConfigurationView</Page>
 					<DisplayName>Configuration</DisplayName>
@@ -659,7 +662,6 @@
 
 		<Control>
 			<Name>NavigationView</Name>
-			<Status>New</Status>
 			<DisplayName>NavigationView</DisplayName>
 			<ShortDescription>An adaptive control used to build consistent navigational experience that layouts its items in a vertical layout.</ShortDescription>
 			<FullDescription>The Telerik UI for .NET MAUI NavigationView is an adaptive control, used to build a consistent navigational experience. It features different options for displaying the navigation pane, adding header and footer to the pane and flexible customization API.</FullDescription>
@@ -756,21 +758,18 @@
 					<Name>FirstLook</Name>
 					<Page>FirstLookView</Page>
 					<DisplayName>First Look</DisplayName>
-					<Status>Updated</Status>
 					<Description>Telerik UI for .NET MAUI PdfViewer is a control that can visualize PDF documents straight into your application. It has been made more than simple with the exposed commands that can be easily bound to and the full integration with the RadPdfViewerToolbar.</Description>
 				</Example>
 				<Example>
 					<Name>LargeFile</Name>
 					<Page>LargeFileView</Page>
 					<DisplayName>Large File</DisplayName>
-					<Status>New</Status>
 					<Description>Demonstrates the read-on-demand feature that allows to quickly open large files. This is done by loading a page on demand when it enters the viewable area instead of loading the whole document initially.</Description>
 				</Example>
 				<Example>
 					<Name>OpenSaveShare</Name>
 					<Page>OpenSaveShareView</Page>
 					<DisplayName>Open, Save, Share File</DisplayName>
-					<Status>New</Status>
 					<Description>This example showcases how to utilize the PDFViewer Toolbar to perform actions such as opening, saving, or sharing PDF files. It provides a demonstration of the seamless integration of these functionalities within the toolbar, allowing users to conveniently manage their PDF documents.</Description>
 				</Example>
 				<Example>
@@ -785,7 +784,6 @@
 					<Page>ConfigurationView</Page>
 					<DisplayName>Configuration</DisplayName>
 					<IsConfigurable>true</IsConfigurable>
-					<Status>New</Status>
 					<Description>This example highlights the diverse range of configuration options available in the PDF Viewer. You have the ability to fine-tune the spacing between the pages, or set limitations on the zoom level, controlling the extent to which users can enlarge or reduce the content within the control.</Description>
 				</Example>
 			</Examples>
@@ -822,7 +820,6 @@
 					<Name>Customization</Name>
 					<Page>CustomizationView</Page>
 					<DisplayName>Customization</DisplayName>
-					<Status>New</Status>
 					<Description>This example demonstrates how to modify the look and feel of the ProgressBar to simulate a cloud upload process, the progress of which is displayed in the shape of a cloud and filled in a vertical direction.</Description>
 				</Example>
 				<Example>
@@ -836,7 +833,6 @@
 
 		<Control>
 			<Name>RangeSlider</Name>
-			<Status>New</Status>
 			<DisplayName>RangeSlider</DisplayName>
 			<ShortDescription>Specifies a range between a minimum and a maximum value by moving the start and end thumbs along the track.</ShortDescription>
 			<FullDescription>Telerik UI for .NET MAUI RangeSlider allows specifying a range between a minimum and a maximum value by moving the start and end thumbs along the track.</FullDescription>
@@ -893,15 +889,20 @@
 					<Name>CustomToolbar</Name>
 					<Page>CustomToolbarView</Page>
 					<DisplayName>Custom Toolbar</DisplayName>
-					<Status>New</Status>
 					<Description>The RichTextEditor for .NET MAUI allows you to customize its toolbar both visually and by defining custom tools. This example demonstrates how to style the toolbar, as well as include Undo and Redo toolbar items, a group of custom styled items, items for modifying the colors of the document, and a custom emoji picker.</Description>
+				</Example>
+				<Example>
+					<Name>CustomContextMenu</Name>
+					<Page>CustomContextMenuView</Page>
+					<Status>New</Status>
+					<DisplayName>Custom Context Menu</DisplayName>
+					<Description>The RichTextEditor for .NET MAUI allows you to customize its context menu by defining custom commands or adding different built-in context menu items. This example demonstrates how to change the default context menu by adding different built in and custom context menu items.</Description>
 				</Example>
 			</Examples>
 		</Control>
 
 		<Control>
 			<Name>Scheduler</Name>
-			<Status>New</Status>
 			<DisplayName>Scheduler</DisplayName>
 			<ShortDescription>A scheduling component, designed to go beyond the standard Microsoft Outlook-style control and empower the end users with unprecedented control over precision and flexibility when handling appointments.</ShortDescription>
 			<FullDescription>Telerik UI for .NET MAUI Scheduler allows you to easily implement various scheduling scenarios in your apps. It offers highly customizable built-in view definitions for which you can adjust the current time, visible hours and dates, time ruler, special time slots, total control over the look of the appointments and more.</FullDescription>
@@ -911,6 +912,20 @@
 					<Page>FirstLookView</Page>
 					<DisplayName>First Look</DisplayName>
 					<Description>The Telerik UI for .NET MAUI Scheduler allows you to easily implement various scheduling scenarios in your apps. This example showcases the utilisation of the Scheduler's supported view definitions in a MVVM environment.</Description>
+				</Example>
+				<Example>
+					<Name>CustomDateFormats</Name>
+					<Page>CustomDateFormatsView</Page>
+					<DisplayName>Custom Date Formats</DisplayName>
+					<Status>New</Status>
+					<Description>This example presents the various date formatting settings that the RadScheduler provides. Using the DayStringFormat, TimeRulerMajorTickStringFormat and WeekDayStringFormat properties, each Telerik Scheduler view can be customized to display the dates and times on the time ruler and across the view in custom formats .</Description>
+				 </Example>
+				<Example>
+					<Name>Customization</Name>
+					<Page>CustomizationView</Page>
+					<DisplayName>Dialogs Customization</DisplayName>
+					<Status>New</Status>
+					<Description>This example presents the ability to modify the built-in dialogs with which you can preview, create, update or delete a particular or series of events. By overriding the default dialog templates you can effectively tailor and enhance both the user experience and interface according to the needs of your scheduling scenarios. In this example, an additional option for specifying the Location of an appointment is added to the create/edit appointment dialog and the default look of the appointment is modified based on it.</Description>
 				</Example>
 				<Example>
 					<Name>Configuration</Name>
@@ -973,7 +988,6 @@
 			<DisplayName>Slider</DisplayName>
 			<ShortDescription>A flexible UI component that allows users to select a value from a defined range using a smooth or step-based sliding.</ShortDescription>
 			<FullDescription>Telerik UI for .NET MAUI Slider is a flexible UI component that allows users to select a value from a defined range. It is completely customizable in terms of appearance and offers numerous configuration options.</FullDescription>
-			<ExcludeFrom>Android,iOS,MacCatalyst,WinUI</ExcludeFrom>
 			<Examples>
 				<Example>
 					<Name>FirstLook</Name>
@@ -1169,7 +1183,6 @@
 					<Name>Customization</Name>
 					<Page>CustomizationView</Page>
 					<DisplayName>Customization</DisplayName>
-					<Status>New</Status>
 					<Description>This example demonstrates how to modify the look and feel of individual items based on their specific characteristics or roles within the tree. By defining separate ItemTemplates, you can effectively tailor the visual representation of different item types, enhancing the overall user experience and interface customization.</Description>
 				</Example>
 				<Example>
@@ -1183,7 +1196,6 @@
 					<Name>LoadOnDemand</Name>
 					<Page>LoadOnDemandView</Page>
 					<DisplayName>Load on Demand</DisplayName>
-					<Status>New</Status>
 					<Description>This example demonstrates how to utilize the Load On Demand feature in order to delay the population of RadTreeView and load subitems only when they are requested, thus improving the performance of your application.</Description>
 				</Example>
 			</Examples>
@@ -1265,8 +1277,8 @@
 			<Icon>datagrid_white.png</Icon>
 		</HighlightedControl>
 		<HighlightedControl>
-			<DisplayName>NavigationView</DisplayName>
-			<Icon>navigationview_white.png</Icon>
+			<DisplayName>Slider</DisplayName>
+			<Icon>slider_white.png</Icon>
 		</HighlightedControl>
 		<HighlightedControl>
 			<DisplayName>Scheduler</DisplayName>

@@ -47,7 +47,8 @@
                                        BackgroundColor="Transparent"
                                        BorderThickness="0"
                                        Padding="0"
-                                       Clicked="FreezeButtonClicked" />
+                                       Clicked="FreezeButtonClicked" 
+                                       AutomationId="freezeColumnButton"/>
                     <Grid Grid.Column="1">
                         <Label Text="{Binding SortDirection, Converter={StaticResource SortDirectionToTextConverter}}"
                                FontFamily="TelerikFontExamples"
@@ -65,7 +66,8 @@
                            TextColor="{Binding IsFiltered, Converter={StaticResource BoolToColorConverter}, FallbackValue={StaticResource TextColor}}"
                            FontFamily="TelerikFontExamples"
                            FontAttributes="Bold"
-                           VerticalTextAlignment="Center">
+                           VerticalTextAlignment="Center"
+                           AutomationId="filterIcon">
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Tapped="OnFilterIconTapped" />
                         </Label.GestureRecognizers>
@@ -94,7 +96,8 @@
     <Grid>
         <telerik:RadDataGrid x:Name="dataGrid"
                              ItemsSource="{Binding Orders}"
-                             AutoGenerateColumns="False">
+                             AutoGenerateColumns="False"
+                             AutomationId="dataGrid">
             <telerik:RadDataGrid.SortDescriptors>
                 <telerik:PropertySortDescriptor PropertyName="OrderID"/>
             </telerik:RadDataGrid.SortDescriptors>

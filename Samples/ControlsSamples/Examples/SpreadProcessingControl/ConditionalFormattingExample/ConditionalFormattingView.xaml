@@ -39,7 +39,8 @@
                                Text="View Document"
                                VerticalOptions="{OnPlatform Default='End', WinUI='Center', MacCatalyst='Center'}"
                                HorizontalOptions="Center"
-                               Command="{Binding ViewDocumentCommand}" />
+                               Command="{Binding ViewDocumentCommand}" 
+                               AutomationId="viewDocumentButton"/>
         </VerticalStackLayout>
         <ScrollView Grid.Row="1"
                     Margin="{OnIdiom Default='0, 24, 0, 0', Desktop='0, 40, 0, 0'}"
@@ -61,7 +62,8 @@
                                          ItemsSource="{Binding ClientsRules}"
                                          SelectedItem="{Binding SelectedClientsRule, Mode=TwoWay}"
                                          DropDownHeight="{OnPlatform Android=68, iOS=72, MacCatalyst=44, WinUI=80}"
-                                         Margin="0, 0, 0, 24">
+                                         Margin="0, 0, 0, 24"
+                                         AutomationId="clientsRulesComboBox">
                         <telerik:RadComboBox.Resources>
                             <Style TargetType="telerik:RadEntry">
                                 <Setter Property="HorizontalTextAlignment" Value="Center" />
@@ -77,7 +79,8 @@
                                          ItemsSource="{Binding ShippingTerms}"
                                          SelectedItem="{Binding SelectedShippingTerm, Mode=TwoWay}"
                                          DropDownHeight="{OnPlatform Android=136, iOS=144, MacCatalyst=88, WinUI=160}"
-                                         Margin="0, 0, 0, 24">
+                                         Margin="0, 0, 0, 24"
+                                         AutomationId="shippingRulesComboBox">
                         <telerik:RadComboBox.Resources>
                             <Style TargetType="telerik:RadEntry">
                                 <Setter Property="HorizontalTextAlignment" Value="Center" />
@@ -95,7 +98,8 @@
                                              IsClearButtonVisible="False"
                                              ItemsSource="{Binding DiscountComparisonOperators}"
                                              SelectedItem="{Binding SelectedDiscountComparison, Mode=TwoWay}"
-                                             DropDownHeight="{OnPlatform Android=136, iOS=144, MacCatalyst=88, WinUI=160}">
+                                             DropDownHeight="{OnPlatform Android=136, iOS=144, MacCatalyst=88, WinUI=160}"
+                                             AutomationId="discountRuleComboBox">
                             <telerik:RadComboBox.Resources>
                                 <Style TargetType="telerik:RadEntry">
                                     <Setter Property="HorizontalTextAlignment" Value="Center" />
@@ -107,7 +111,8 @@
                                                  Minimum="0"
                                                  Maximum="0.15"
                                                  Step="0.01"
-                                                 MinimumWidthRequest="{OnPlatform Default=100, iOS=142}" />
+                                                 MinimumWidthRequest="{OnPlatform Default=100, iOS=142}" 
+                                                 AutomationId="DiscountRuleNumeric"/>
                     </Grid>
                     <Label Text="&#34;Total price&#34; column rule:"
                            Style="{StaticResource FirstRowLabelStyle}" />
@@ -120,7 +125,8 @@
                                              IsClearButtonVisible="False"
                                              ItemsSource="{Binding DiscountComparisonOperators}"
                                              SelectedItem="{Binding SelectedDiscountComparison, Mode=TwoWay}"
-                                             DropDownHeight="{OnPlatform Android=68, iOS=72, MacCatalyst=44, WinUI=80}">
+                                             DropDownHeight="{OnPlatform Android=68, iOS=72, MacCatalyst=44, WinUI=80}"
+                                             AutomationId="totalPriceRuleComboBox">
                             <telerik:RadComboBox.Resources>
                                 <Style TargetType="telerik:RadEntry">
                                     <Setter Property="HorizontalTextAlignment" Value="Center" />
@@ -132,7 +138,8 @@
                                                  Minimum="0"
                                                  Maximum="10"
                                                  Step="1"
-                                                 MinimumWidthRequest="{OnPlatform Default=100, iOS=142}" />
+                                                 MinimumWidthRequest="{OnPlatform Default=100, iOS=142}" 
+                                                 AutomationId="totalPriceRuleNumeric"/>
                     </Grid>
                 </VerticalStackLayout>
                 <telerik:RadButton Grid.Row="1"
@@ -141,7 +148,8 @@
                                    Command="{Binding ViewFormattedDocumentCommand}"
                                    VerticalOptions="{OnPlatform Default=End, WinUI=Center, MacCatalyst=Center}"
                                    HorizontalOptions="{OnPlatform Default=Fill, WinUI=Center, MacCatalyst=Center}"
-                                   Style="{StaticResource SubmitButtonStyle}" />
+                                   Style="{StaticResource SubmitButtonStyle}" 
+                                   AutomationId="applyFormattingButton"/>
             </Grid>
         </ScrollView>
     </Grid>

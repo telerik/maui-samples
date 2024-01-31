@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.RichTextEditorControl.FeaturesCategory.CustomContextMenuExample.CustomContextMenu">
+    <!-- >> richtexteditor-contextmenu-xaml -->
+    <Grid RowDefinitions="{OnIdiom Desktop='Auto, *', Phone='*, Auto'}">
+        <telerik:RadRichTextEditorToolbar x:Name="richTextToolbar"
+                                          Grid.Row="{OnIdiom Desktop=0, Phone=1}"
+                                          ZIndex="10"
+                                          RichTextEditor="{x:Reference richTextEditor}" />
+        <telerik:RadRichTextEditor x:Name="richTextEditor"
+                                   AutoGenerateContextMenu="False"
+                                   Grid.Row="{OnIdiom Desktop=1, Phone=0}">
+            <telerik:RadRichTextEditor.ContextMenuItems>
+                <telerik:RichTextEditorBoldContextMenuItem />
+                <telerik:RichTextEditorItalicContextMenuItem />
+                <telerik:RichTextEditorOpenHyperlinkContextMenuItem />
+                <telerik:RichTextEditorCustomContextMenuItem Text="Underline"
+                                                             Command="{Binding Source={x:Reference richTextEditor}, Path=ToggleUnderlineCommand}" />
+                <telerik:RichTextEditorCustomContextMenuItem Text="Info"
+                                                             Command="{Binding Source={x:Reference richTextEditor}, Path=BindingContext.CustomInfoCommand}"
+                                                             CommandParameter="{Binding Source={x:Reference richTextEditor}, Path=SelectionRange}"/>
+            </telerik:RadRichTextEditor.ContextMenuItems>
+        </telerik:RadRichTextEditor>
+    </Grid>
+    <!-- << richtexteditor-contextmenu-xaml -->
+</ContentView>

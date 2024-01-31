@@ -17,12 +17,14 @@
                                 SelectedIndex="{Binding UIState.SelectedTabIndex, Mode=TwoWay}"
                                 Margin="12"
                                 BorderThickness="{OnPlatform Default=1, MacCatalyst=0, WinUI=0}"
-                                BorderColor="{AppThemeBinding Light={StaticResource DefaultBorderColor}, Dark={StaticResource DefaultBorderColorDark}}">
-                <telerik:TabViewItem HeaderText="Orders Info">
+                                BorderColor="{AppThemeBinding Light={StaticResource DefaultBorderColor}, Dark={StaticResource DefaultBorderColorDark}}"
+                                AutomationId="rowDetailsTabView">
+                <telerik:TabViewItem HeaderText="Orders Info" AutomationId="orderInfoTabViewItem">
                     <telerik:RadDataGrid x:Name="dataGrid"
                                          ItemsSource="{Binding Orders}"
                                          AutoGenerateColumns="False"
-                                         Margin="12">
+                                         Margin="12"
+                                         AutomationId="innerDataGrid">
                         <telerik:RadDataGrid.Columns>
                             <telerik:DataGridNumericalColumn PropertyName="OrderID" 
                                                              HeaderText="Order ID" />
@@ -37,7 +39,7 @@
                         </telerik:RadDataGrid.Columns>
                     </telerik:RadDataGrid>
                 </telerik:TabViewItem>
-                <telerik:TabViewItem HeaderText="Assignee Info">
+                <telerik:TabViewItem HeaderText="Assignee Info" AutomationId="assigneeInfoTabView">
                     <telerik:RadBorder CornerRadius="8"
                                        BorderThickness="1"
                                        BorderColor="{AppThemeBinding Light={OnPlatform Default={StaticResource DefaultBorderColor}, WinUI={StaticResource DefaultBorderColorWinUI}},
@@ -45,7 +47,8 @@
                                        HorizontalOptions="Center"
                                        VerticalOptions="Center"
                                        Margin="12"
-                                       Padding="24">
+                                       Padding="24"
+                                       AutomationId="assigneeCredentials">
                         <Grid RowDefinitions="Auto, Auto"
                               ColumnSpacing="24">
                             <HorizontalStackLayout Spacing="24"
@@ -78,13 +81,13 @@
                         </Grid>
                     </telerik:RadBorder>
                 </telerik:TabViewItem>
-                <telerik:TabViewItem HeaderText="Shipments Stats">
+                <telerik:TabViewItem HeaderText="Shipments Stats" AutomationId="shipmentsStatsTabViewItem">
                     <Grid RowDefinitions="Auto, *"
                           Margin="12"
                           RowSpacing="12">
                         <Label Text="Container freight rate index"
                                HorizontalTextAlignment="Center" />
-                        <telerik:RadCartesianChart Grid.Row="1">
+                        <telerik:RadCartesianChart Grid.Row="1" AutomationId="cartesianChart">
                             <telerik:RadCartesianChart.HorizontalAxis>
                                 <telerik:DateTimeContinuousAxis LabelFormat="d MMM"
                                                                 MajorStep="1"

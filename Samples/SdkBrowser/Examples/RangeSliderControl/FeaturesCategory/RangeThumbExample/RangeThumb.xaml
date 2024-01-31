@@ -3,14 +3,24 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
              x:Class="SDKBrowserMaui.Examples.RangeSliderControl.FeaturesCategory.RangeThumbExample.RangeThumb">
-    <Grid RowDefinitions="Auto,*">
+    <ContentView.Resources>
+        <Style TargetType="telerik:RadRangeSlider">
+            <Setter Property="WidthRequest" Value="{OnIdiom Default=-1, Desktop=800}" />
+            <Setter Property="HorizontalOptions" Value="{OnIdiom Default=Fill, Desktop=Center}" />
+        </Style>
+    </ContentView.Resources>
+    <Grid RowDefinitions="Auto, *"
+          RowSpacing="12"
+          Margin="{OnIdiom Default=0, Desktop='0, 40, 0, 0'}">
         <!-- >> rangeslider-range-thumb-xaml -->
         <telerik:RadRangeSlider Minimum="0"
                                 Maximum="100"
                                 RangeStart="{Binding Start, Mode=TwoWay}"
                                 RangeEnd="{Binding End, Mode=TwoWay}" />
         <!-- << rangeslider-range-thumb-xaml -->
-        <HorizontalStackLayout Spacing="5" Grid.Row="1">
+        <HorizontalStackLayout Grid.Row="1"
+                               Spacing="5"
+                               HorizontalOptions="{OnIdiom Default=Start, Desktop=Center}">
             <Label Text="Selected Range: " />
             <Label Text="{Binding Start, StringFormat='{0:N2}'}" />
             <Label Text="-" />

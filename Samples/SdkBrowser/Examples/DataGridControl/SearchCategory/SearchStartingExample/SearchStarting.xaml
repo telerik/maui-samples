@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.DataGridControl.SearchCategory.SearchStartingExample.SearchStarting">
+    <Grid RowDefinitions="*, Auto">
+        <!-- >> datagrid-search-searchstarting-xaml -->
+        <telerik:RadDataGrid x:Name="dataGrid"
+                             ItemsSource="{Binding People}">
+            <telerik:RadDataGrid.SearchSettings>
+                <telerik:DataGridSearchSettings SearchPanelVisibilityMode="AlwaysVisible"
+                                                SearchStarting="DataGridSearchSettings_SearchStarting" />
+            </telerik:RadDataGrid.SearchSettings>
+        </telerik:RadDataGrid>
+        <!-- << datagrid-search-searchstarting-xaml -->
+    </Grid>
+</ContentView>

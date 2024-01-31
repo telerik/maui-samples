@@ -14,7 +14,8 @@
         <!-- Toolbar with save and discard buttons -->
         <telerik:RadToolbar x:Name="toolbar"
                             Grid.Column="0"
-                            Grid.Row="0">
+                            Grid.Row="0"
+                            AutomationId="imageEditorToolbar">
             
             <telerik:RadToolbar.Resources>
                 <ResourceDictionary>
@@ -64,10 +65,10 @@
               Grid.Row="1" >
              
             <!-- Image Editor -->
-            <telerik:RadImageEditor x:Name="imageEditor" Grid.Column="0" Padding="32" Source="{Binding ImagePath}"/>
+            <telerik:RadImageEditor x:Name="imageEditor" Grid.Column="0" Padding="32" Source="{Binding ImagePath}" AutomationId="imageEditor"/>
 
             <!-- Toolbar Option Panel for displaying filter options, crop options and resize options -->
-            <telerik:RadToolbarOptionsPanel x:Name="optionsPanel" Grid.Column="1"/>
+            <telerik:RadToolbarOptionsPanel x:Name="optionsPanel" Grid.Column="1" AutomationId="toolbarOptionsPanel"/>
         </Grid>
 
     </Grid>

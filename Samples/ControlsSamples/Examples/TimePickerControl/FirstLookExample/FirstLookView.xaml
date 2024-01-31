@@ -8,14 +8,16 @@
                              ItemsSource="{Binding Cards}"
                              CollectionTitle="Request Cleaning Service"
                              ButtonCommand="{Binding SendOrderCommand}"
-                             ButtonText="Make an Order">
+                             ButtonText="Make an Order"
+                             ButtonAutomationId="sendButton">
     <VerticalStackLayout x:Name="layout">
         <Label Text="Desired Date:"
                Margin="0, 0, 0, 12" />
         <telerik:RadDatePicker x:Name="datePicker"
                                Date="{Binding SelectedDate}"
                                DefaultHighlightedDate="{Static sys:DateTime.Now}"
-                               Margin="0, 0, 0, 40">
+                               Margin="0, 0, 0, 40"
+                               AutomationId="datePicker">
             <telerik:RadDatePicker.PopupSettings>
                 <telerik:PickerPopupSettings HeaderLabelText="Select Date" />
             </telerik:RadDatePicker.PopupSettings>
@@ -24,7 +26,8 @@
                Margin="0, 0, 0, 12" />
         <telerik:RadTimePicker x:Name="timePicker"
                                Time="{Binding SelectedTime}"
-                               DefaultHighlightedTime="{Binding CurrentTime}">
+                               DefaultHighlightedTime="{Binding CurrentTime}"
+                               AutomationId="timePicker">
             <telerik:RadTimePicker.PopupSettings>
                 <telerik:PickerPopupSettings HeaderLabelText="Select Time" />
             </telerik:RadTimePicker.PopupSettings>

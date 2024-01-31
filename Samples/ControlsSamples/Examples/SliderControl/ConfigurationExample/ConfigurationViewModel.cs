@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Telerik.Maui.Controls.RangeSlider;
-using Telerik.Maui.Controls.Slider;
+using Telerik.Maui.Controls.Sliders;
 
 namespace QSF.Examples.SliderControl.ConfigurationExample;
 

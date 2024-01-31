@@ -9,14 +9,16 @@
                              ItemsSource="{Binding Cards}"
                              CollectionTitle="My Applications"
                              ButtonCommand="{Binding SendRequestCommand}"
-                             ButtonText="Submit Request">
+                             ButtonText="Submit Request"
+                             ButtonAutomationId="sendButton">
     <VerticalStackLayout x:Name="layout">
         <Label Text="Specify Start Date:"
                Margin="0, 0, 0, 12" />
         <telerik:RadDatePicker x:Name="datePicker1"
                                Date="{Binding StartDate}"
                                DefaultHighlightedDate="{Static sys:DateTime.Now}"
-                               Margin="0, 0, 0, 40">
+                               Margin="0, 0, 0, 40"
+                               AutomationId="startDatePicker">
             <telerik:RadDatePicker.PopupSettings>
                 <telerik:PickerPopupSettings HeaderLabelText="Select Date" />
             </telerik:RadDatePicker.PopupSettings>
@@ -25,7 +27,8 @@
                Margin="0, 0, 0, 12" />
         <telerik:RadDatePicker x:Name="datePicker2"
                                Date="{Binding EndDate}"
-                               DefaultHighlightedDate="{Static sys:DateTime.Now}">
+                               DefaultHighlightedDate="{Static sys:DateTime.Now}"
+                               AutomationId="endDatePicker">
             <telerik:RadDatePicker.PopupSettings>
                 <telerik:PickerPopupSettings HeaderLabelText="Select Date" />
             </telerik:RadDatePicker.PopupSettings>

@@ -201,7 +201,8 @@
                              ItemsSource="{Binding Items}"
                              Author="{Binding Me}"
                              ItemConverter="{StaticResource ChatItemConverter}"
-                             ItemTemplateSelector="{StaticResource CustomChatItemTemplateSelector}">
+                             ItemTemplateSelector="{StaticResource CustomChatItemTemplateSelector}"
+                             AutomationId="chat">
                 <telerik:RadChat.Picker>
                     <telerik:RadChatPicker IsVisible="{Binding IsChatPickerVisible}"
                                            OkCommand="{Binding OkPickerCommand}"

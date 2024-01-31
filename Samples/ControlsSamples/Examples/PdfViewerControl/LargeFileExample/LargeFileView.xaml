@@ -5,7 +5,8 @@
                         x:Class="QSF.Examples.PdfViewerControl.LargeFileExample.LargeFileView">
     <Grid RowDefinitions="Auto, *">
         <telerik:RadPdfViewerToolbar PdfViewer="{Binding Source={x:Reference pdfViewer}}"
-                                     Grid.Row="0">
+                                     Grid.Row="0"
+                                     AutomationId="pdfViewerToolbar">
             <telerik:PdfViewerNavigateToPageToolbarItem />
             <telerik:PdfViewerNavigateToPreviousPageToolbarItem />
             <telerik:PdfViewerNavigateToNextPageToolbarItem />
@@ -14,6 +15,7 @@
             <telerik:PdfViewerSearchNavigationToolbarItem IsVisible="{OnIdiom Desktop=False, Phone=True}" />
         </telerik:RadPdfViewerToolbar>
         <telerik:RadPdfViewer x:Name="pdfViewer" 
-                              Grid.Row="1" />
+                              Grid.Row="1" 
+                              AutomationId="pdfViewer"/>
     </Grid>
 </telerik:RadContentView>

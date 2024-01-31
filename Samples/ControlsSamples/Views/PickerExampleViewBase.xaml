@@ -9,10 +9,10 @@
             <Style x:Key="CardItemStyle" TargetType="telerik:NonVirtualizedItemsControlItemContainer">
                 <Setter Property="BackgroundColor" Value="{Binding BackgroundColor}" />
                 <Setter Property="BorderColor" Value="{Binding BorderColor}" />
-                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="BorderThickness" Value="{OnPlatform Default=1, WinUI=2}" />
                 <Setter Property="CornerRadius" Value="4" />
                 <Setter Property="Padding" Value="24, 16" />
-                <Setter Property="Margin" Value="8, 0" />
+                <Setter Property="Margin" Value="{OnPlatform Default='8, 0', Android='8, 2'}" />
             </Style>
             <Style x:Key="SelectedCardItemStyle" TargetType="telerik:NonVirtualizedItemsControlItemContainer" BasedOn="{StaticResource CardItemStyle}">
                 <Setter Property="BorderThickness" Value="2" />
@@ -60,7 +60,8 @@
                                            HorizontalOptions="Start"
                                            Style="{StaticResource SubmitButtonStyle}"
                                            Command="{TemplateBinding ButtonCommand}"
-                                           Text="{TemplateBinding ButtonText}" />
+                                           Text="{TemplateBinding ButtonText}" 
+                                           AutomationId="{TemplateBinding ButtonAutomationId}"/>
                     </VerticalStackLayout>
                 </Grid>
             </ControlTemplate>

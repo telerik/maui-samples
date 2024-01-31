@@ -17,7 +17,7 @@
                    HorizontalOptions="Center"
                    VerticalOptions="CenterAndExpand"/>
             <telerik:RadListPicker x:Name="trendlinePicker"
-                                   AutomationId="TrendlinePicker"
+                                   AutomationId="trendlinePicker"
                                    Grid.Column="1"
                                    ItemsSource="{Binding TrendlinesList}"
                                    SelectionChanged="OnTrendlinePickerSelectedIndexChanged"
@@ -26,7 +26,8 @@
         <telerik:RadCartesianChart x:Name="trendlinesChart"
                                         Grid.Row="1"
                                         BackgroundColor="{AppThemeBinding Light=White}" 
-                                        StyleClass="TelerikTheme">
+                                        StyleClass="TelerikTheme"
+                                        AutomationId="cartesianTrendlinesChart">
             <telerik:RadCartesianChart.ChartBehaviors>
                 <telerik:ChartPanAndZoomBehavior ZoomMode="Horizontal" 
                                                       PanMode="Horizontal" 
@@ -65,7 +66,7 @@
                    HorizontalOptions="Center"
                    VerticalOptions="CenterAndExpand"/>
             <telerik:RadListPicker x:Name="indicatorPicker"
-                                   AutomationId="IndicatorPicker" 
+                                   AutomationId="indicatorPicker" 
                                    Grid.Column="1"
                                    ItemsSource="{Binding IndicatorsList}"
                                    SelectionChanged="OnIndicatorPickerSelectedIndexChanged"
@@ -74,7 +75,8 @@
         <telerik:RadCartesianChart Grid.Row="3"
                                    x:Name="indicatorsChart"
                                    BackgroundColor="{AppThemeBinding Light=White}" 
-                                   StyleClass="TelerikTheme">
+                                   StyleClass="TelerikTheme"
+                                   AutomationId="cartesianIndicatorsChart">
             <telerik:RadCartesianChart.ChartBehaviors>
                 <telerik:ChartPanAndZoomBehavior ZoomMode="Horizontal" 
                                                  PanMode="Horizontal" 

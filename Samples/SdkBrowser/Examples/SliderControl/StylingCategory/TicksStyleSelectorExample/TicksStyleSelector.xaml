@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.SliderControl.StylingCategory.TicksStyleSelectorExample"
+             x:Class="SDKBrowserMaui.Examples.SliderControl.StylingCategory.TicksStyleSelectorExample.TicksStyleSelector">
+    <ContentView.Resources>
+        <Style TargetType="telerik:RadSlider">
+            <Setter Property="WidthRequest" Value="{OnIdiom Default=-1, Desktop=800}" />
+            <Setter Property="HorizontalOptions" Value="{OnIdiom Default=Fill, Desktop=Center}" />
+        </Style>
+        <!-- >> slider-tickstyleselector-selector -->
+        <local:CustomTickStyleSelector x:Key="CustomTickStyleSelector">
+            <local:CustomTickStyleSelector.MajorTickStyle>
+                <Style TargetType="telerik:RadBorder">
+                    <Setter Property="BackgroundColor" Value="#018383" />
+                    <Setter Property="WidthRequest" Value="3" />
+                    <Setter Property="HeightRequest" Value="10" />
+                </Style>
+            </local:CustomTickStyleSelector.MajorTickStyle>
+            <local:CustomTickStyleSelector.MinorTickStyle>
+                <Style TargetType="telerik:RadBorder">
+                    <Setter Property="BackgroundColor" Value="#830183" />
+                    <Setter Property="WidthRequest" Value="1" />
+                    <Setter Property="HeightRequest" Value="6" />
+                </Style>
+            </local:CustomTickStyleSelector.MinorTickStyle>
+        </local:CustomTickStyleSelector>
+        <!-- << slider-tickstyleselector-selector -->
+    </ContentView.Resources>
+    <VerticalStackLayout Spacing="40"
+                         Margin="{OnIdiom Default=0, Desktop='0, 40, 0, 0'}">
+        <!-- >> slider-tickstyleselector-xaml -->
+        <telerik:RadSlider Minimum="0"
+                           Maximum="100"
+                           Value="35"
+                           TicksPlacement="End"
+                           TickStep="2"
+                           TickStyleSelector="{StaticResource CustomTickStyleSelector}" />
+        <!-- << slider-tickstyleselector-xaml -->
+        <VerticalStackLayout Spacing="10">
+            <HorizontalStackLayout Spacing="5">
+                <Rectangle WidthRequest="14" HeightRequest="14" Fill="#018383" />
+                <Label Text="Major tick" FontSize="14" />
+            </HorizontalStackLayout>
+            <HorizontalStackLayout Spacing="5">
+                <Rectangle WidthRequest="14" HeightRequest="14" Fill="#830183" />
+                <Label Text="Minor tick" FontSize="14" />
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+    </VerticalStackLayout>
+</ContentView>

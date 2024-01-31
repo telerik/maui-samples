@@ -64,7 +64,8 @@
                     <VerticalStackLayout Spacing="15">
                         <Grid ColumnDefinitions="Auto, *"
                           ColumnSpacing="5">
-                            <telerik:RadCheckBox IsChecked="{Binding IsEditingRestricted, Mode=TwoWay}" />
+                            <telerik:RadCheckBox IsChecked="{Binding IsEditingRestricted, Mode=TwoWay}" 
+                                                 AutomationId="isEditingRestrictedCheckBox"/>
                             <Label Grid.Column="1"
                                Text="Restrict editing and printing of the document. A password will be required in order to change these permission settings." />
                         </Grid>
@@ -76,24 +77,28 @@
                                 <Label Text="Printing Allowed:" />
                                 <telerik:RadComboBox Grid.Column="1"
                                              ItemsSource="{Binding PrintingPermissionTypes}"
-                                             SelectedItem="{Binding PrintingPermissionTypeSelection, Mode=TwoWay}"/>
+                                             SelectedItem="{Binding PrintingPermissionTypeSelection, Mode=TwoWay}"
+                                             AutomationId="printingPermissionsTypeComboBox"/>
                                 <Label Grid.Row="1"
                                Text="Changes Allowed:" />
                                 <telerik:RadComboBox Grid.Row="1" 
                                              Grid.Column="1"
                                              ItemsSource="{Binding ChangingPermissionTypes}"
-                                             SelectedItem="{Binding ChangingPermissionTypeSelection, Mode=TwoWay}" />
+                                             SelectedItem="{Binding ChangingPermissionTypeSelection, Mode=TwoWay}" 
+                                             AutomationId="changePermissionTypeComboBox"/>
                             </Grid>
                             <Grid RowDefinitions="Auto, Auto"
                           ColumnDefinitions="Auto, *"
                           RowSpacing="5"
                           ColumnSpacing="5">
-                                <telerik:RadCheckBox IsChecked="{Binding IsCopyingRestricted, Mode=TwoWay}" />
+                                <telerik:RadCheckBox IsChecked="{Binding IsCopyingRestricted, Mode=TwoWay}" 
+                                                     AutomationId="isCopyingRestrictedCheckBox"/>
                                 <Label Grid.Column="1" 
                                Text="Enable copying of text, images, and other content" />
                                 <telerik:RadCheckBox Grid.Row="1" 
                                              IsEnabled="{Binding IsCopyingRestricted, Converter={StaticResource InvertedBooleanConverter}}"
-                                             IsChecked="{Binding IsAccessibilityCopyingRestricted, Mode=TwoWay}" />
+                                             IsChecked="{Binding IsAccessibilityCopyingRestricted, Mode=TwoWay}" 
+                                             AutomationId="isTextAccessRestrictedCheckBox"/>
                                 <Label Grid.Row="1" 
                                Grid.Column="1" 
                                Text="Enable text access for screen reading devices" />
@@ -110,7 +115,8 @@
                                           HorizontalOptions="{OnIdiom Phone=Fill, Desktop=Start}"
                                           FontAttributes="None"
                                           IsPassword="True"
-                                          Placeholder="Enter a password" />
+                                          Placeholder="Enter a password" 
+                                          AutomationId="passwordEntry"/>
                             </Grid>
                         </VerticalStackLayout>
                     </VerticalStackLayout>
@@ -127,7 +133,8 @@
                         <telerik:RadComboBox Grid.Column="1" 
                                          IsEnabled="True"
                                          ItemsSource="{Binding EncryptionTypes}"
-                                         SelectedItem="{Binding EncryptionTypeSelection}" />
+                                         SelectedItem="{Binding EncryptionTypeSelection}" 
+                                         AutomationId="encryptionTypesComboBox"/>
                     </Grid>
                 </VerticalStackLayout>
             </telerik:RadBorder>
@@ -137,7 +144,8 @@
                            VerticalOptions="{OnIdiom Desktop='Center', Default='Fill'}"
                            HorizontalOptions="{OnIdiom Desktop='Start', Default='Fill'}"
                            Style="{StaticResource SubmitButtonStyle}"
-                           Margin="10, 0"/>
+                           Margin="10, 0"
+                           AutomationId="exportButton"/>
         </Grid>
     </ScrollView>
 </ContentView>

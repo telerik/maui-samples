@@ -48,14 +48,14 @@
                                  Grid.Column="0"
                                  Margin="{OnIdiom Default='0, 40, 0, 0', Phone='16, 16, 16, 0'}">
                 <Label Text="Username: (max 10 symbols)" />
-                <telerik:RadEntry AutomationId="UsernameEntry"
+                <telerik:RadEntry AutomationId="usernameEntry"
                                   Placeholder="Enter Username"
                                   Text="{Binding Username}"
                                   MaxLength="10"
                                   Style="{StaticResource EntryStyle}" />
                 <Label Text="Email address:"
                        Margin="0, 40, 0, 0" />
-                <telerik:RadEntry AutomationId="EmailAddressEntry"
+                <telerik:RadEntry AutomationId="emailAddressEntry"
                                   Placeholder="Enter Email"
                                   Text="{Binding EmailAddress}"
                                   Style="{StaticResource EntryStyle}"
@@ -65,14 +65,14 @@
                                  Grid.Row="{OnIdiom Default=1, Phone=2}"
                                  Margin="{OnIdiom Default='0, 40, 0, 0', Phone='16, 16, 16, 20'}">
                 <Label Text="Password:" />
-                <telerik:RadEntry AutomationId="PasswordEntry"
+                <telerik:RadEntry AutomationId="passwordEntry"
                                   Placeholder="Enter Password"
                                   Text="{Binding Password}"
                                   Style="{StaticResource EntryStyle}"
                                   IsPassword="True" />
                 <Label Text="Repeat Password:"
                        Margin="0, 40, 0, 0" />
-                <telerik:RadEntry AutomationId="RepeatPasswordEntry"
+                <telerik:RadEntry AutomationId="repeatPasswordEntry"
                                   Placeholder="Repeat Password" 
                                   Text="{Binding RepeatPassword}"
                                   Style="{StaticResource EntryStyle}"
@@ -85,7 +85,8 @@
                                HorizontalOptions="{OnIdiom Default=Start, Phone=Fill}"
                                VerticalOptions="{OnIdiom Default=Start, Phone=End}"
                                Style="{StaticResource SubmitButtonStyle}"
-                               Command="{Binding RegisterCommand}" />
+                               Command="{Binding RegisterCommand}" 
+                               AutomationId="subscribeButton"/>
         </Grid>
     </ScrollView>
 </ContentView>

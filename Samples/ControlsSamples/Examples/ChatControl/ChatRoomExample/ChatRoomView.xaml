@@ -51,11 +51,13 @@
                          local:ChatroomUtils.Author="{Binding User}"
                          ItemConverter="{StaticResource ChatroomMessageConverter}"
                          ItemsSource="{Binding Items}"
-                         SendMessageCommand="{Binding SendMessageCommand}">
+                         SendMessageCommand="{Binding SendMessageCommand}"
+                         AutomationId="chat">
             <telerik:RadChat.TypingIndicator>
                 <telerik:TypingIndicator ItemConverter="{StaticResource ChatroomParticipantConverter}"
                                          ItemsSource="{Binding TypingParticipants}"
-                                         DotsColor="{StaticResource ApplicationAccentColor}" />
+                                         DotsColor="{StaticResource ApplicationAccentColor}" 
+                                         AutomationId="typingIndicator"/>
             </telerik:RadChat.TypingIndicator>
         </telerik:RadChat>
     </telerik:RadBorder>

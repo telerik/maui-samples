@@ -35,7 +35,8 @@
                                  MaximumHeightRequest="{OnPlatform iOS=320, Android=320, WinUI=320}"
                                  BorderThickness="1"
                                  HorizontalOptions="Center"
-                                 VerticalOptions="Center" />
+                                 VerticalOptions="Center" 
+                                 AutomationId="calendar"/>
         </Grid>
 
         <ScrollView Grid.Row="1">
@@ -53,18 +54,19 @@
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="Min Date:"
                                    Style="{StaticResource VerticalGroupLabelStyle}" />
-                            <telerik:RadDatePicker Date="{Binding MinDate}" />
+                            <telerik:RadDatePicker Date="{Binding MinDate}" AutomationId="minDatePicker"/>
                         </VerticalStackLayout>
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="Max Date:"
                                    Style="{StaticResource VerticalGroupLabelStyle}" />
-                            <telerik:RadDatePicker Date="{Binding MaxDate}" />
+                            <telerik:RadDatePicker Date="{Binding MaxDate}" AutomationId="maxDatePicker"/>
                         </VerticalStackLayout>
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="First Day of Week:"
                                    Style="{StaticResource VerticalGroupLabelStyle}" />
                             <telerik:RadComboBox ItemsSource="{Binding DaysOfWeek}"
-                                                 SelectedItem="{Binding FirstDayOfWeek, Mode=TwoWay}" />
+                                                 SelectedItem="{Binding FirstDayOfWeek, Mode=TwoWay}" 
+                                                 AutomationId="firstDayOfWeekComboBox"/>
                         </VerticalStackLayout>
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="Display Day Names:"
@@ -72,7 +74,8 @@
                             <Switch VerticalOptions="Center"
                                     HorizontalOptions="Start"
                                     IsToggled="{Binding AreDayNamesVisible}"
-                                    Margin="{OnPlatform Default=0, WinUI='0, -2, 0, 0'}" />
+                                    Margin="{OnPlatform Default=0, WinUI='0, -2, 0, 0'}" 
+                                    AutomationId="displayDayNamesSwitch"/>
                         </VerticalStackLayout>
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="Display Out of Scope Dates:"
@@ -80,7 +83,8 @@
                             <Switch VerticalOptions="Center"
                                     HorizontalOptions="Start"
                                     IsToggled="{Binding IsOutOfScopeVisible}"
-                                    Margin="{OnPlatform Default=0, WinUI='0, -2, 0, 0'}" />
+                                    Margin="{OnPlatform Default=0, WinUI='0, -2, 0, 0'}" 
+                                    AutomationId="displayOutOfScopeDaysSwitch"/>
                         </VerticalStackLayout>
                     </VerticalStackLayout>
                     <VerticalStackLayout Grid.Column="{OnIdiom Default=1, Phone=0}"
@@ -90,25 +94,29 @@
                                    Style="{StaticResource VerticalGroupLabelStyle}" />
                             <telerik:RadComboBox x:Name="displayModeCombo"
                                                  ItemsSource="{Binding DisplayModes}"
-                                                 SelectedItem="{Binding DisplayMode, Mode=TwoWay}" />
+                                                 SelectedItem="{Binding DisplayMode, Mode=TwoWay}" 
+                                                 AutomationId="displayModeComboBox"/>
                         </VerticalStackLayout>
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="Selection Mode:"
                                    Style="{StaticResource VerticalGroupLabelStyle}" />
                             <telerik:RadComboBox ItemsSource="{Binding SelectionModes}"
-                                                 SelectedItem="{Binding SelectionMode, Mode=TwoWay}" />
+                                                 SelectedItem="{Binding SelectionMode, Mode=TwoWay}" 
+                                                 AutomationId="selectionModeComboBox"/>
                         </VerticalStackLayout>
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="Interaction Mode:"
                                    Style="{StaticResource VerticalGroupLabelStyle}" />
                             <telerik:RadComboBox ItemsSource="{Binding InteractionModes}"
-                                                 SelectedItem="{Binding InteractionMode, Mode=TwoWay}" />
+                                                 SelectedItem="{Binding InteractionMode, Mode=TwoWay}" 
+                                                 AutomationId="interactionModeComboBox"/>
                         </VerticalStackLayout>
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="Navigation Direction:"
                                    Style="{StaticResource VerticalGroupLabelStyle}" />
                             <telerik:RadComboBox ItemsSource="{Binding NavigationDirections}"
-                                                 SelectedItem="{Binding NavigationDirection, Mode=TwoWay}" />
+                                                 SelectedItem="{Binding NavigationDirection, Mode=TwoWay}" 
+                                                 AutomationId="navigationComboBox"/>
                         </VerticalStackLayout>
                     </VerticalStackLayout>
                 </Grid>

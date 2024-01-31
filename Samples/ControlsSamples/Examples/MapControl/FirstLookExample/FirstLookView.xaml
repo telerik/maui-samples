@@ -50,7 +50,8 @@
                TextColor="{AppThemeBinding Light={StaticResource HeaderTitleTextColorLight}, 
                                            Dark={StaticResource HeaderTitleTextColorDark}}" />
         <telerik:RadMap x:Name="map"
-                        Grid.Row="1">
+                        Grid.Row="1"
+                        AutomationId="map">
             <telerik:RadMap.Layers>
                 <telerik:ShapefileLayer x:Name="shapeLayer"
                                         SelectionMode="Single"
@@ -125,10 +126,12 @@
                         <Grid>
                             <StackLayout Margin="17, 17, 0, 0">
                                 <Label Text="{Binding StateName}"
-                                       FontSize="16"/>
+                                       FontSize="16"
+                                       AutomationId="stateName"/>
                                 <Label Text="{Binding StateDensity}"
                                        FontSize="12"
-                                       Margin="0, 0, 0, 16"/>
+                                       Margin="0, 0, 0, 16"
+                                       AutomationId="stateDensity"/>
                             </StackLayout>
                             <Label HorizontalOptions="End"
                                    VerticalOptions="Start"
@@ -140,7 +143,8 @@
                                    HorizontalTextAlignment="Center"
                                    VerticalTextAlignment="Center"
                                    WidthRequest="35"
-                                   HeightRequest="35">
+                                   HeightRequest="35"
+                                   AutomationId="closePopup">
                                 <Label.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding ClosePopupCommand}"/>
                                 </Label.GestureRecognizers>

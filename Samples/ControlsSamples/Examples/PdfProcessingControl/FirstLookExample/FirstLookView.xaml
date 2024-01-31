@@ -5,12 +5,13 @@
                         x:Class="QSF.Examples.PdfProcessingControl.FirstLookExample.FirstLookView"
                         Margin="16, 20">
     <Grid RowDefinitions="Auto,Auto">
-        <Image Source="pdfprocessingfirstlookscreen.png" HeightRequest="400"/>
+        <Image Source="pdfprocessingfirstlookscreen.png" HeightRequest="400" AutomationId="pdfProcessingScreenImage"/>
         <telerik:RadButton Style="{StaticResource SubmitButtonStyle}"
                            Text="Generate PDF" 
                            VerticalOptions="{OnPlatform WinUI='Center', MacCatalyst='Center'}"
                            HorizontalOptions="{OnPlatform WinUI='Center', MacCatalyst='Center'}"
                            Command="{Binding Save}"
-                           Grid.Row="1"/>
+                           Grid.Row="1"
+                           AutomationId="generateButton"/>
     </Grid>
 </telerik:RadContentView>

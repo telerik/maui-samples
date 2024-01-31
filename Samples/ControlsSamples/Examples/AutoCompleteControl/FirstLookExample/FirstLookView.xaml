@@ -38,6 +38,7 @@
                 <Label Text="To:"
                        Style="{StaticResource DetailsLabelStyle}" />
                 <telerik:RadAutoComplete x:Name="autoComplete"
+                                         AutomationId="toAutoComplete"
                                          Style="{StaticResource AutoCompleteStyle}"
                                          ItemsSource="{Binding People}" />
             </StackLayout>
@@ -48,6 +49,7 @@
                 <Label Text="Cc/Bcc:"
                        Style="{StaticResource DetailsLabelStyle}" />
                 <telerik:RadAutoComplete x:Name="autoComplete2"
+                                         AutomationId="ccAutoComplete"
                                          Style="{StaticResource AutoCompleteStyle}"
                                          ItemsSource="{Binding People}" />
             </StackLayout>
@@ -58,6 +60,7 @@
             <Label Text="Subject:"
                    Style="{StaticResource DetailsLabelStyle}" />
             <telerik:RadEntry Text="Telerik UI for .NET MAUI"
+                              AutomationId="subjectEntry"
                               HorizontalOptions="FillAndExpand"
                               Margin="{OnIdiom Phone='20, 0, 0, 0', Default=0}"
                               ReserveSpaceForErrorView="False" />
@@ -69,6 +72,7 @@
 
         <telerik:RadButton Grid.Row="3"
                            Text="Send"
+                           AutomationId="sendButton"
                            Command="{Binding SendCommand}"
                            Style="{StaticResource SubmitButtonStyle}"
                            VerticalOptions="{OnIdiom Default=Center, Phone=End}"

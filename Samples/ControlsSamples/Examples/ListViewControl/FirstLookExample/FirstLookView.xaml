@@ -14,7 +14,8 @@
     <telerik:RadContentView.Content>
         <telerik:RadListView x:Name="listView" 
                              ItemsSource="{Binding People}"
-                             SelectionMode="None">
+                             SelectionMode="None"
+                             AutomationId="listView">
             <telerik:RadListView.ItemTemplate>
                 <DataTemplate>
                     <telerik:ListViewTemplateCell>

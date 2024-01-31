@@ -17,6 +17,7 @@ internal static class TelerikControlsIcons
         { "Chart", char.ConvertFromUtf32(0xe008) },
         { "Chat", char.ConvertFromUtf32(0xe00f) },
         { "CheckBox", char.ConvertFromUtf32(0xe010) },
+        { "CollectionView", char.ConvertFromUtf32(0xe03f) },
         { "ComboBox", char.ConvertFromUtf32(0xe011) },
         { "DataForm", char.ConvertFromUtf32(0xe012) },
         { "DataGrid", char.ConvertFromUtf32(0xe013) },
@@ -63,14 +64,14 @@ internal static class TelerikControlsIcons
 
     private static Dictionary<string, string> ChartExamplesIcons = new()
     {
-        { "AreaSeries", char.ConvertFromUtf32(0xe008) },
-        { "BarSeries", char.ConvertFromUtf32(0xe009) },
-        { "FinancialSeries", char.ConvertFromUtf32(0xe00a) },
-        { "FinancialIndicators", char.ConvertFromUtf32(0xe00b) },
-        { "LineSeries", char.ConvertFromUtf32(0xe00c) },
-        { "NullValues", char.ConvertFromUtf32(0xe00d) },
+        { "AreaSeries", char.ConvertFromUtf32(0xe040) },
+        { "BarSeries", char.ConvertFromUtf32(0xe008) },
+        { "FinancialSeries", char.ConvertFromUtf32(0xe009) },
+        { "FinancialIndicators", char.ConvertFromUtf32(0xe00a) },
+        { "LineSeries", char.ConvertFromUtf32(0xe00b) },
+        { "NullValues", char.ConvertFromUtf32(0xe00c) },
         { "ScatterSeries", char.ConvertFromUtf32(0xe00e) },
-        { "PieDonutSeries", char.ConvertFromUtf32(0xe00f) }
+        { "PieDonutSeries", char.ConvertFromUtf32(0xe00d) }
     };
 
     public static string GetIcon(string name)
