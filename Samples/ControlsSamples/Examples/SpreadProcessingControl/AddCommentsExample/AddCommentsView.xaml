@@ -37,7 +37,8 @@
                                    Text="View Document"
                                    VerticalOptions="{OnPlatform Default=End, WinUI=Center, MacCatalyst=Center}"
                                    HorizontalOptions="Center"
-                                   Command="{Binding ViewDocumentWithCommentsCommand}" />
+                                   Command="{Binding ViewDocumentWithCommentsCommand}" 
+                                   AutomationId="viewDocumentButton"/>
         </VerticalStackLayout>
         <ScrollView Grid.Row="1"
                     Margin="{OnIdiom Default='0, 24, 0, 0', Desktop='0, 40, 0, 0'}"
@@ -51,13 +52,16 @@
                            Margin="0, 0, 0, 24" />
                     <Label Text="Related Cell:" />
                     <telerik:RadEntry Text="{Binding RelatedCell, Mode=TwoWay}"
-                                      WidthRequest="{OnPlatform WinUI=300, MacCatalyst=300}" />
+                                      WidthRequest="{OnPlatform WinUI=300, MacCatalyst=300}" 
+                                      AutomationId="cellEntry"/>
                     <Label Text="Author Name:" />
                     <telerik:RadEntry Text="{Binding Author, Mode=TwoWay}"
-                                      WidthRequest="{OnPlatform WinUI=300, MacCatalyst=300}" />
+                                      WidthRequest="{OnPlatform WinUI=300, MacCatalyst=300}" 
+                                      AutomationId="authorNameEntry"/>
                     <Label Text="Comment Text:" />
                     <telerik:RadEntry Text="{Binding Text, Mode=TwoWay}"
-                                      WidthRequest="{OnPlatform WinUI=300, MacCatalyst=300}" />
+                                      WidthRequest="{OnPlatform WinUI=300, MacCatalyst=300}" 
+                                      AutomationId="commentTextentry"/>
                 </VerticalStackLayout>
                 <telerik:RadButton Grid.Row="1"
                                    Text="Insert Comment"
@@ -65,7 +69,8 @@
                                    Command="{Binding InsertCommentCommand}"
                                    VerticalOptions="{OnPlatform Default=End, WinUI=Center, MacCatalyst=Center}"
                                    HorizontalOptions="{OnPlatform Default=Fill, WinUI=Center, MacCatalyst=Center}"
-                                   Style="{StaticResource SubmitButtonStyle}" />
+                                   Style="{StaticResource SubmitButtonStyle}" 
+                                   AutomationId="insertCommentButton"/>
             </Grid>
         </ScrollView>
     </Grid>

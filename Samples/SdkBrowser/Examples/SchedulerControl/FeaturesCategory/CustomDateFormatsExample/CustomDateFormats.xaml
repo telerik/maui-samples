@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.SchedulerControl.FeaturesCategory.CustomDateFormatsExample.CustomDateFormats">
+    <Grid>
+        <!-- >> scheduler-custom-date-formats -->
+        <telerik:RadScheduler x:Name="scheduler">
+            <telerik:RadScheduler.ViewDefinitions>
+                <telerik:MultidayViewDefinition HeaderTextFormat="{}{0:ddd, MMM dd}"
+                                                DayStringFormat="{OnIdiom '{0:ddd}', Desktop='{0:ddd d}'}"
+                                                TimeRulerMajorTickStringFormat="{}{0:h:mm tt}"
+                                                TimeRulerWidth="80" />
+                <telerik:MonthViewDefinition HeaderTextFormat="{}{0:ddd, MMM dd}"
+                                             DayStringFormat="{}{0:dd}"
+                                             WeekDayStringFormat="{OnIdiom '{0:ddd}', Desktop='{0:MMM - dddd}'}"/>
+            </telerik:RadScheduler.ViewDefinitions>
+        </telerik:RadScheduler>
+        <!-- << scheduler-custom-date-formats -->
+    </Grid>
+</ContentView>

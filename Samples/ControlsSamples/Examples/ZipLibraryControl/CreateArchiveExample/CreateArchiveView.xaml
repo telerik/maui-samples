@@ -27,7 +27,8 @@
           Grid.RowSpacing="0">
         <telerik:RadListView x:Name="list" 
                              ItemsSource="{Binding Files, Converter={StaticResource DebugConverter}}" 
-                             SelectionMode="None">
+                             SelectionMode="None"
+                             AutomationId="listView">
             <telerik:RadListView.Behaviors>
                 <local:ListViewItemTappedBehavior Command="{Binding ItemTapCommand}" />
             </telerik:RadListView.Behaviors>
@@ -80,6 +81,7 @@
                            VerticalOptions="{OnIdiom Default=Center, Phone=End}"
                            HorizontalOptions="{OnIdiom Default=Start, Phone=FillAndExpand}"
                            Grid.Row="1"
-                           Command="{Binding CreateArchiveCommand}" />
+                           Command="{Binding CreateArchiveCommand}" 
+                           AutomationId="submitButton"/>
     </Grid>
 </telerik:RadContentView>

@@ -5,6 +5,10 @@
                         xmlns:behaviors="clr-namespace:QSF.Behaviors"
                         xmlns:local="clr-namespace:QSF.Examples.RichTextEditorControl.ImportExportExample"
                         x:Class="QSF.Examples.RichTextEditorControl.ImportExportExample.ExportView">
+    <telerik:RadContentView.Behaviors>
+        <behaviors:AndroidResizeSoftInputModeBehavior />
+    </telerik:RadContentView.Behaviors>
+    
     <telerik:RadContentView.Resources>
         <local:RichTextContext x:Key="richTextContext" RichTextEditor="{x:Reference richTextEditor}" />
     </telerik:RadContentView.Resources>
@@ -12,7 +16,8 @@
     <Grid RowDefinitions="{OnIdiom Default='Auto, *', Phone='*, Auto'}">
         <telerik:RadRichTextEditorToolbar Grid.Row="{OnIdiom Default=0, Phone=1}" 
                                           ZIndex="10"
-                                          RichTextEditor="{x:Reference richTextEditor}">
+                                          RichTextEditor="{x:Reference richTextEditor}"
+                                          AutomationId="richTextEditorToolbar">
             <telerik:SplitButtonToolbarItem Text="Export as..."
                                             ImageSource="export_text.png">
                 <telerik:SplitButtonToolbarItem.Style>
@@ -39,15 +44,15 @@
                 <telerik:ButtonToolbarItem Text="Export as PDF"
                                            ImageSource="export_pdf.png"
                                            Command="{Binding SaveAsPdfCommand}"
-                                           CommandParameter="{StaticResource richTextContext}"
-                                           IsVisible="{OnPlatform Android=False, iOS=False, Default=True}"/>
+                                           CommandParameter="{StaticResource richTextContext}" />
             </telerik:SplitButtonToolbarItem>
             <telerik:SeparatorToolbarItem/>
         </telerik:RadRichTextEditorToolbar>
 
         <telerik:RadRichTextEditor x:Name="richTextEditor"
                                    Grid.Row="{OnIdiom Default=1, Phone=0}"
-                                   Source="{Binding HtmlText}" >
+                                   Source="{Binding HtmlText}" 
+                                   AutomationId="richTextEditor">
             <telerik:RadRichTextEditor.Behaviors>
                 <behaviors:PickImageBehavior />
             </telerik:RadRichTextEditor.Behaviors>

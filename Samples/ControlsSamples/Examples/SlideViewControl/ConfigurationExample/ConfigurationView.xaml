@@ -39,7 +39,8 @@
                            TextColor="{StaticResource TextOnAccentColor}"
                            FontSize="36"
                            HorizontalOptions="Center"
-                           VerticalOptions="Center" />
+                           VerticalOptions="Center" 
+                           AutomationId="slideViewLabel"/>
                 </telerik:RadBorder>
             </DataTemplate>
         </ResourceDictionary>
@@ -61,7 +62,8 @@
                                   InteractionMode="{Binding InteractionMode}"
                                   OverscrollMode="{Binding OverscrollMode}"
                                   AnimationEasing="{Binding AnimationEasing}"
-                                  AnimationDuration="{Binding AnimationDuration}" />
+                                  AnimationDuration="{Binding AnimationDuration}" 
+                                  AutomationId="slideView"/>
         </Grid>
 
         <ScrollView Grid.Row="1">
@@ -86,37 +88,42 @@
                             <Switch VerticalOptions="Center"
                                     HorizontalOptions="Start"
                                     IsToggled="{Binding HasLooping}"
-                                    Margin="{OnPlatform Default=0, WinUI='0, -2, 0, 0'}" />
+                                    Margin="{OnPlatform Default=0, WinUI='0, -2, 0, 0'}" 
+                                    AutomationId="loopingSwitch"/>
                         </VerticalStackLayout>
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="Orientation:"
                                    Style="{StaticResource VerticalGroupLabelStyle}" />
                             <telerik:RadComboBox ItemsSource="{Binding Orientations}"
-                                                 SelectedItem="{Binding Orientation, Mode=TwoWay}" />
+                                                 SelectedItem="{Binding Orientation, Mode=TwoWay}" 
+                                                 AutomationId="orientationComboBox"/>
                         </VerticalStackLayout>
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="Navigation Buttons Visibility:"
                                    Style="{StaticResource VerticalGroupLabelStyle}" />
                             <telerik:RadComboBox ItemsSource="{Binding NavigationButtonVisibilities}"
-                                                 SelectedItem="{Binding NavigationButtonsVisibility, Mode=TwoWay}" />
+                                                 SelectedItem="{Binding NavigationButtonsVisibility, Mode=TwoWay}" 
+                                                 AutomationId="navigationButtonVisibilityCombo"/>
                         </VerticalStackLayout>
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="Interaction Mode:"
                                    Style="{StaticResource VerticalGroupLabelStyle}" />
                             <telerik:RadComboBox ItemsSource="{Binding InteractionModes}"
-                                                 SelectedItem="{Binding InteractionMode, Mode=TwoWay}" />
+                                                 SelectedItem="{Binding InteractionMode, Mode=TwoWay}" 
+                                                 AutomationId="interactionModesComboBox"/>
                         </VerticalStackLayout>
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="Overscroll Mode:"
                                    Style="{StaticResource VerticalGroupLabelStyle}" />
                             <telerik:RadComboBox ItemsSource="{Binding OverscrollModes}"
-                                                 SelectedItem="{Binding OverscrollMode, Mode=TwoWay}" />
+                                                 SelectedItem="{Binding OverscrollMode, Mode=TwoWay}" 
+                                                 AutomationId="overscrollModeComboBox"/>
                         </VerticalStackLayout>
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="Animation Easing:"
                                    Style="{StaticResource VerticalGroupLabelStyle}" />
                             <telerik:RadComboBox ItemsSource="{Binding AnimationEasings}"
-                                                 SelectedItem="{Binding AnimationEasing, Mode=TwoWay, Converter={StaticResource NameToEasingConverter}}" />
+                                                 SelectedItem="{Binding AnimationEasing, Mode=TwoWay, Converter={StaticResource NameToEasingConverter}}" AutomationId="animationEasingComboBox"/>
                         </VerticalStackLayout>
                         <Label Text="Animation Duration:"
                                Style="{StaticResource VerticalGroupLabelStyle}" />
@@ -127,7 +134,8 @@
                             <Slider x:Name="animationDurationSlider"
                                     Grid.Column="1"
                                     Style="{StaticResource SliderStyle}"
-                                    Value="{Binding AnimationDuration, Mode=TwoWay}" />
+                                    Value="{Binding AnimationDuration, Mode=TwoWay}" 
+                                    AutomationId="animationDurationSlider"/>
                             <Label Grid.Column="2"
                                    Style="{StaticResource HorizontalGroupLabelAtEndStyle}"
                                    Text="{Binding Source={x:Reference animationDurationSlider}, Path=Maximum, Mode=TwoWay}" />
@@ -147,19 +155,21 @@
                                                      VerticalOptions="Center"
                                                      Value="{Binding IndicatorMaxVisibleItems}"
                                                      Margin="{OnPlatform Default=0, WinUI='0, 6, 0, 0'}"
-                                                     Step="1" />
+                                                     Step="1" 
+                                                     AutomationId="indicatorMaxVisibleItemsNumeric"/>
                         </VerticalStackLayout>
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="Navigation Buttons Visibility:"
                                    Style="{StaticResource VerticalGroupLabelStyle}" />
                             <telerik:RadComboBox ItemsSource="{Binding NavigationButtonVisibilities}"
-                                                 SelectedItem="{Binding IndicatorNavigationButtonsVisibility, Mode=TwoWay}" />
+                                                 SelectedItem="{Binding IndicatorNavigationButtonsVisibility, Mode=TwoWay}" AutomationId="indicatorNavigationButtonsBisibilityCombo"/>
                         </VerticalStackLayout>
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="Animation Easing:"
                                    Style="{StaticResource VerticalGroupLabelStyle}" />
                             <telerik:RadComboBox ItemsSource="{Binding AnimationEasings}"
-                                                 SelectedItem="{Binding IndicatorAnimationEasing, Mode=TwoWay, Converter={StaticResource NameToEasingConverter}}" />
+                                                 SelectedItem="{Binding IndicatorAnimationEasing, Mode=TwoWay, Converter={StaticResource NameToEasingConverter}}" 
+                                                 AutomationId="indicatorAnimationEasingCombo"/>
                         </VerticalStackLayout>
                         <Label Text="Animation Duration:"
                                Style="{StaticResource VerticalGroupLabelStyle}" />
@@ -171,7 +181,7 @@
                                     Grid.Column="1"
                                     Style="{StaticResource SliderStyle}"
                                     Value="{Binding IndicatorAnimationDuration, Mode=TwoWay}"
-                                    AutomationId="SlideViewIndicatorAnimationDurationSlider" />
+                                    AutomationId="indicatorAnimationDurationSlider" />
                             <Label Grid.Column="2"
                                    Style="{StaticResource HorizontalGroupLabelAtEndStyle}"
                                    Text="{Binding Source={x:Reference indicatorAnimationDurationSlider}, Path=Maximum, Mode=TwoWay}" />

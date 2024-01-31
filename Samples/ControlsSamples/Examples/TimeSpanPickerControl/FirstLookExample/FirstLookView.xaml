@@ -8,12 +8,14 @@
                              ItemsSource="{Binding Cards}"
                              CollectionTitle="Search Movies"
                              ButtonCommand="{Binding SendRequestCommand}"
-                             ButtonText="Show Movies">
+                             ButtonText="Show Movies"
+                             AutomationId="sendButton">
     <VerticalStackLayout x:Name="layout">
         <Label Text="Max Duration:"
                Margin="0, 0, 0, 12" />
         <telerik:RadTimeSpanPicker x:Name="timeSpanPicker"
-                                   Time="{Binding SelectedTime}">
+                                   Time="{Binding SelectedTime}"
+                                   AutomationId="timeSpanPicker">
             <telerik:RadTimeSpanPicker.PopupSettings>
                 <telerik:PickerPopupSettings HeaderLabelText="Select Movie Duration" />
             </telerik:RadTimeSpanPicker.PopupSettings>

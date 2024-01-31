@@ -32,7 +32,8 @@
                              Aspect="Center"
                              HorizontalOptions="EndAndExpand"
                              VerticalOptions="Center"
-                             BackgroundColor="Transparent" />
+                             BackgroundColor="Transparent" 
+                             AutomationId="searchButton"/>
             </HorizontalStackLayout>
         </Grid>
         <telerik:RadListView x:Name="controlsListView"
@@ -40,7 +41,8 @@
                              ItemsSource="{Binding Controls}"
                              ItemTapped="controlsListView_ItemTapped"
                              SelectionMode="None"
-                             Margin="16, 16, 16, 0">
+                             Margin="16, 16, 16, 0"
+                             AutomationId="controlsListView">
             <telerik:RadListView.HeaderTemplate>
                 <DataTemplate>
                     <Grid RowDefinitions="Auto, Auto"
@@ -56,7 +58,8 @@
                                                HorizontalOptions="End"
                                                Style="{StaticResource MoreInfoButtonStyle}"
                                                MinimumWidthRequest="{OnPlatform iOS=120}"
-                                               MinimumHeightRequest="{OnPlatform iOS=44}" />
+                                               MinimumHeightRequest="{OnPlatform iOS=44}" 
+                                               AutomationId="moreInfoButton"/>
                         </Grid>
                     </Grid>
                 </DataTemplate>
@@ -93,17 +96,20 @@
                                                              VerticalOptions="Center">
                                             <Label Text="{Binding DisplayName}"
                                                    VerticalOptions="Center"
-                                                   Style="{StaticResource ControlNameLabelStyle}" />
+                                                   Style="{StaticResource ControlNameLabelStyle}" 
+                                                   AutomationId="controlName"/>
                                             <Label Grid.Row="1"
                                                    Text="{Binding ShortDescription}"
                                                    VerticalOptions="StartAndExpand"
-                                                   Style="{StaticResource DescriptionLabelWithTruncationStyle}" />
+                                                   Style="{StaticResource DescriptionLabelWithTruncationStyle}" 
+                                                   AutomationId="controlDescription"/>
                                         </VerticalStackLayout>
                                     </Grid>
                                     <ContentView Content="{Binding Status, Converter={StaticResource StatusTagToTemplateConverter}}"
                                                  HorizontalOptions="End"
                                                  VerticalOptions="Start"
-                                                 Margin="0, 8, 14, 0" />
+                                                 Margin="0, 8, 14, 0" 
+                                                 AutomationId="statusTag"/>
                                 </Grid>
                             </telerik:RadBorder>
                         </telerik:ListViewTemplateCell.View>

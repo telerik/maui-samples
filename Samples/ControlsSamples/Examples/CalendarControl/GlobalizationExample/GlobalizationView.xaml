@@ -15,7 +15,8 @@
                                  MaximumHeightRequest="{OnPlatform iOS=320, Android=320, WinUI=320}"
                                  BorderThickness="1"
                                  HorizontalOptions="Center"
-                                 VerticalOptions="Center" />
+                                 VerticalOptions="Center" 
+                                 AutomationId="calendar"/>
         </Grid>
         <Grid Grid.Row="1"
               RowDefinitions="Auto, Auto"
@@ -28,7 +29,8 @@
                                  SelectedItem="{Binding SelectedCulture}"
                                  IsClearButtonVisible="False"
                                  WidthRequest="{OnIdiom Default=-1, Desktop=300}"
-                                 HorizontalOptions="{OnIdiom Default=Fill, Desktop=Start}" />
+                                 HorizontalOptions="{OnIdiom Default=Fill, Desktop=Start}" 
+                                 AutomationId="cultureComboBox"/>
         </Grid>
     </Grid>
 </ContentView>

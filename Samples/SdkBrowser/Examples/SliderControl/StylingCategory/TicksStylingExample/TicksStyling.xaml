@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.SliderControl.StylingCategory.TicksStylingExample.TicksStyling">
+    <ContentView.Resources>
+        <Style TargetType="telerik:RadSlider">
+            <Setter Property="WidthRequest" Value="{OnIdiom Default=-1, Desktop=800}" />
+            <Setter Property="HorizontalOptions" Value="{OnIdiom Default=Fill, Desktop=Center}" />
+        </Style>
+        <!-- >> slider-ticksttyling-styles -->
+        <Style x:Key="CustomInRangeTickStyle" TargetType="telerik:RadBorder">
+            <Setter Property="BackgroundColor" Value="#018383" />
+            <Setter Property="WidthRequest" Value="3" />
+            <Setter Property="HeightRequest" Value="10" />
+        </Style>
+        <Style x:Key="CustomOutOfRangeTickStyle" TargetType="telerik:RadBorder">
+            <Setter Property="BackgroundColor" Value="#830183" />
+            <Setter Property="WidthRequest" Value="2" />
+            <Setter Property="HeightRequest" Value="10" />
+        </Style>
+        <!-- << slider-ticksttyling-styles -->
+    </ContentView.Resources>
+    <VerticalStackLayout Spacing="{OnIdiom Default=20, Desktop=40}"
+                         Margin="{OnIdiom Default=0, Desktop='0, 40, 0, 0'}">
+        <!-- >> slider-ticksttyling-xaml -->
+        <telerik:RadSlider Minimum="0"
+                           Maximum="100"
+                           Value="35"
+                           TicksPlacement="Start"
+                           TickStep="10"
+                           InRangeTickStyle="{StaticResource CustomInRangeTickStyle}"
+                           OutOfRangeTickStyle="{StaticResource CustomOutOfRangeTickStyle}" />
+        <!-- << slider-ticksttyling-xaml -->
+        <VerticalStackLayout Spacing="10">
+            <HorizontalStackLayout Spacing="5">
+                <Rectangle WidthRequest="14" HeightRequest="14" Fill="#018383" />
+                <Label Text="Inside-range tick" FontSize="14" />
+            </HorizontalStackLayout>
+            <HorizontalStackLayout Spacing="5">
+                <Rectangle WidthRequest="14" HeightRequest="14" Fill="#830183" />
+                <Label Text="Outside-range tick" FontSize="14" />
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+    </VerticalStackLayout>
+</ContentView>

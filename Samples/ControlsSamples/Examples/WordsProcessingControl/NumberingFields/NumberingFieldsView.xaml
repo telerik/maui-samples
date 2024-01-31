@@ -44,7 +44,8 @@
                                Text="Load Document"
                                VerticalOptions="{OnPlatform Default=End, WinUI=Center, MacCatalyst=Center}"
                                HorizontalOptions="Center"
-                               Command="{Binding LoadSampleCommand}" />
+                               Command="{Binding LoadSampleCommand}" 
+                               AutomationId="loadSampleButton"/>
         </VerticalStackLayout>
         <ScrollView Grid.Row="1"
                     Margin="{OnIdiom Default='0, 24, 0, 0', Desktop='0, 40, 0, 0'}"
@@ -77,22 +78,26 @@
                                            HorizontalOptions="Center">
                         <telerik:RadButton Text="Insert"
                                            Style="{StaticResource SubmitButtonStyle}"
-                                           Command="{Binding InsertNumberingFieldsCommand}" />
+                                           Command="{Binding InsertNumberingFieldsCommand}" 
+                                           AutomationId="insertNumberingFields"/>
                         <telerik:RadButton Text="Update"
                                            Style="{StaticResource SubmitButtonStyle}"
-                                           Command="{Binding UpdateNumberingFieldsCommand}" />
+                                           Command="{Binding UpdateNumberingFieldsCommand}" 
+                                           AutomationId="updateNumberingFields"/>
                     </HorizontalStackLayout>
                     <Label Text="First page footer content preview:"
                            FontAttributes="Bold" />
                     <telerik:RadBorder Style="{StaticResource ExampleBorderStyle}">
                         <Label Text="{Binding FooterPreview, Mode=TwoWay}"
-                               Style="{StaticResource ExampleLabelStyle}" />
+                               Style="{StaticResource ExampleLabelStyle}"
+                               AutomationId="firstPageContentPreview"/>
                     </telerik:RadBorder>
                     <Label Text="Bookmarks preview:"
                            FontAttributes="Bold" />
                     <telerik:RadBorder Style="{StaticResource ExampleBorderStyle}">
                         <Label Text="{Binding BookmarksPreview, Mode=TwoWay}"
-                               Style="{StaticResource ExampleLabelStyle}" />
+                               Style="{StaticResource ExampleLabelStyle}"
+                               AutomationId="bookmarksPreview"/>
                     </telerik:RadBorder>
                 </VerticalStackLayout>
                 <HorizontalStackLayout Grid.Row="1"
@@ -108,12 +113,14 @@
                                          ItemsSource="{Binding ExportFormats, Mode=OneTime}"
                                          SelectedItem="{Binding SelectedExportFormat, Mode=OneWayToSource}"
                                          WidthRequest="{OnPlatform Default='160', MacCatalyst='220'}"
-                                         DropDownHeight="{OnPlatform Android=102, iOS=108, MacCatalyst=66, WinUI=120}"/>
+                                         DropDownHeight="{OnPlatform Android=102, iOS=108, MacCatalyst=66, WinUI=120}"
+                                         AutomationId="exportFormatComboBox"/>
                     <telerik:RadButton Text="Export"
                                        Style="{StaticResource SubmitButtonStyle}"
                                        Command="{Binding ExportCommand}"
                                        IsEnabled="{Binding IsDocumentLoaded}"
-                                       WidthRequest="100" />
+                                       WidthRequest="100" 
+                                       AutomationId="exportButton"/>
                 </HorizontalStackLayout>
             </Grid>
         </ScrollView>

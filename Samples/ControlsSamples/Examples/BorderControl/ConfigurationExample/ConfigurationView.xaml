@@ -45,7 +45,8 @@
     <Grid RowDefinitions="Auto, *">
         <VerticalStackLayout BackgroundColor="{AppThemeBinding Light={StaticResource DefaultBackgroundColor}, Dark={StaticResource DefaultBackgroundColorDark}}"
                              Padding="16, 24">
-            <telerik:RadBorder Style="{StaticResource AvatarBorderStyle}">
+            <telerik:RadBorder Style="{StaticResource AvatarBorderStyle}" 
+                               AutomationId="avatarBorder">
                 <Image Aspect="AspectFill"
                        Source="{Binding Avatar}" />
             </telerik:RadBorder>
@@ -74,7 +75,7 @@
                                     Style="{StaticResource DefaultSliderStyle}"
                                     Value="{Binding BorderThicknessValue}"
                                     Maximum="15"
-                                    AutomationId="BorderThicknesSlider" />
+                                    AutomationId="borderThicknesSlider" />
                             <Label Grid.Column="3"
                                    Style="{StaticResource SliderMinMaxLabelStyle}"
                                    Text="15" />
@@ -84,7 +85,8 @@
                                          Grid.Row="{OnIdiom Default=0, Phone=1}">
                         <Label Style="{StaticResource VerticalGroupLabelStyle}"
                                Text="Border Color:" />
-                        <telerik:RadComboBox ItemsSource="{Binding BorderColors}"
+                        <telerik:RadComboBox AutomationId="borderColorComboBox"
+                                             ItemsSource="{Binding BorderColors}"
                                              SelectedItem="{Binding Path=SelectedBorderColor, Mode=TwoWay}"
                                              HorizontalOptions="Fill"
                                              DropDownHeight="120" />
@@ -113,7 +115,7 @@
                             <Slider Grid.Column="2"
                                     Style="{StaticResource DefaultSliderStyle}"
                                     Value="{Binding LeftCornerRadius}"
-                                    AutomationId="LeftCornerRadiusSlider" />
+                                    AutomationId="leftCornerRadiusSlider" />
                             <Label Grid.Column="3"
                                    Style="{StaticResource SliderMinMaxLabelStyle}"
                                    Text="60" />
@@ -128,7 +130,7 @@
                             <Slider Grid.Column="2"
                                     Style="{StaticResource DefaultSliderStyle}"
                                     Value="{Binding TopCornerRadius}"
-                                    AutomationId="TopCornerRadiusSlider" />
+                                    AutomationId="topCornerRadiusSlider" />
                             <Label Grid.Column="3"
                                    Style="{StaticResource SliderMinMaxLabelStyle}"
                                    Text="60" />
@@ -146,7 +148,7 @@
                             <Slider Grid.Column="2"
                                     Style="{StaticResource DefaultSliderStyle}"
                                     Value="{Binding RightCornerRadius}"
-                                    AutomationId="RightCornerRadiusSlider" />
+                                    AutomationId="rightCornerRadiusSlider" />
                             <Label Grid.Column="3"
                                    Style="{StaticResource SliderMinMaxLabelStyle}"
                                    Text="60" />
@@ -163,7 +165,7 @@
                             <Slider Grid.Column="2"
                                     Style="{StaticResource DefaultSliderStyle}"
                                     Value="{Binding BottomCornerRadius}"
-                                    AutomationId="BottomCornerRadiusSlider" />
+                                    AutomationId="bottomCornerRadiusSlider" />
                             <Label Grid.Column="3"
                                    Style="{StaticResource SliderMinMaxLabelStyle}"
                                    Text="60" />

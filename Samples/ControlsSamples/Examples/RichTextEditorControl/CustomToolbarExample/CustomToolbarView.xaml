@@ -2,9 +2,14 @@
 <telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
                         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                         xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        xmlns:behaviors="clr-namespace:QSF.Behaviors"
                         xmlns:local="clr-namespace:QSF.Examples.RichTextEditorControl.CustomToolbarExample"
                         x:Class="QSF.Examples.RichTextEditorControl.CustomToolbarExample.CustomToolbarView"
                         Padding="{OnIdiom Default='16, 20', Phone=16}">
+    <telerik:RadContentView.Behaviors>
+        <behaviors:AndroidResizeSoftInputModeBehavior />
+    </telerik:RadContentView.Behaviors>
+    
     <telerik:RadContentView.Resources>
         <Color x:Key="ToolbarItemTextColor">White</Color>
         <Color x:Key="ToolbarItemInvertedTextColor">Black</Color>
@@ -19,7 +24,8 @@
                          Glyph="&#xe900;"
                          FontFamily="TelerikFontExamples"
                          Color="{Binding TextColor, Source={RelativeSource AncestorType={x:Type telerik:RichTextEditorImagePickerToolbarItem}}}"
-                         Size="14" />
+                         Size="14" 
+                         AutomationId="imagePickerToolbarItem"/>
 
         <Style x:Key="CommonButtonToolbarItemViewStyle" TargetType="telerik:ButtonToolbarItemView">
             <Setter Property="TextColor" Value="{StaticResource ToolbarItemTextColor}" />
@@ -96,6 +102,7 @@
                                           ZIndex="10"
                                           RichTextEditor="{x:Reference richTextEditor}"
                                           AutoGenerateItems="False"
+                                          AutomationId="richTextEditorToolbar"
                                           Style="{StaticResource RichTextEditorToolbarStyle}">
             <telerik:RichTextEditorUndoToolbarItem Style="{StaticResource CommonButtonToolbarItemViewStyle}" />
             <telerik:RichTextEditorRedoToolbarItem Style="{StaticResource CommonButtonToolbarItemViewStyle}" />
@@ -115,6 +122,7 @@
         </telerik:RadRichTextEditorToolbar>
         <telerik:RadRichTextEditor x:Name="richTextEditor"
                                    Source="{Binding RTSource}"
-                                   Grid.Row="{OnIdiom Desktop=1, Phone=0}" />
+                                   Grid.Row="{OnIdiom Desktop=1, Phone=0}" 
+                                   AutomationId="richTextEditor"/>
     </Grid>
 </telerik:RadContentView>

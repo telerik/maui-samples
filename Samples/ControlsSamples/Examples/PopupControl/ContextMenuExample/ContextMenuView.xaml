@@ -28,7 +28,8 @@
                       Padding="{OnPlatform Default='15, 10, 15, 15', WinUI='10'}">
                     <telerik:RadButton Clicked="RadButton_ClosePopup" 
                                        HorizontalOptions="End"
-                                       Padding="0">
+                                       Padding="0"
+                                       AutomationId="closePopupButton">
                         <telerik:RadButton.ImageSource>
                             <FontImageSource FontFamily="TelerikFontExamples" 
                                              Glyph="{OnIdiom Default='&#xe877;', Phone=''}"
@@ -40,7 +41,8 @@
                     <telerik:RadButton Grid.Row="1"
                                        Command="{Binding Path=AddPeople}"
                                        CommandParameter="Sharing permissions updated"
-                                       Text="Add People">
+                                       Text="Add People"
+                                       AutomationId="addPeopleButton">
                         <telerik:RadButton.ImageSource>
                             <FontImageSource FontFamily="TelerikFontExamples"
                                              Glyph="&#xE813;"
@@ -52,7 +54,8 @@
                     <telerik:RadButton Grid.Row="2"
                                        Command="{Binding Path=LinkShare}"
                                        CommandParameter="Link shared"
-                                       Text="Link Sharing">
+                                       Text="Link Sharing"
+                                       AutomationId="linkSharingButton">
                         <telerik:RadButton.ImageSource>
                             <FontImageSource FontFamily="TelerikFontExamples"
                                              Glyph="&#xE83E;"
@@ -64,7 +67,8 @@
                     <telerik:RadButton Grid.Row="3" 
                                        Command="{Binding Path=CopyLink}"
                                        CommandParameter="Link copied"
-                                       Text="Copy Link">
+                                       Text="Copy Link"
+                                       AutomationId="copyLink">
                         <telerik:RadButton.ImageSource>
                             <FontImageSource FontFamily="TelerikFontExamples"
                                              Glyph="&#xE819;"
@@ -76,7 +80,8 @@
                     <telerik:RadButton Grid.Row="4"
                                        Command="{Binding Path=Rename}"
                                        CommandParameter="Shared resource renamed"
-                                       Text="Rename">
+                                       Text="Rename"
+                                       AutomationId="renameButton">
                         <telerik:RadButton.ImageSource>
                             <FontImageSource FontFamily="TelerikFontExamples"
                                              Glyph="&#xE818;"
@@ -88,7 +93,8 @@
                     <telerik:RadButton Grid.Row="5"
                                        Command="{Binding Path=Remove}"
                                        CommandParameter="Sharing permissions removed"
-                                       Text="Remove">
+                                       Text="Remove"
+                                       AutomationId="removeButton">
                         <telerik:RadButton.ImageSource>
                             <FontImageSource FontFamily="TelerikFontExamples"
                                              Glyph="&#xE817;"
@@ -123,7 +129,7 @@
                                                Padding="0"
                                                Grid.Column="3"
                                                WidthRequest="46"
-                                               AutomationId="HorizontalDotsBtn">
+                                               AutomationId="dotsButton">
                                 <telerik:RadButton.ImageSource>
                                     <FontImageSource FontFamily="TelerikFontExamples" 
                                                      Glyph="&#xE80C;"
@@ -154,6 +160,7 @@
         <telerik:RadListView x:Name="ListView"
                              Grid.Row="1"
                              ItemTemplate="{StaticResource ListViewTemplate}"
-                             ItemsSource="{Binding Items}"/>
+                             ItemsSource="{Binding Items}"
+                             AutomationId="listView"/>
     </Grid>
 </ContentView>

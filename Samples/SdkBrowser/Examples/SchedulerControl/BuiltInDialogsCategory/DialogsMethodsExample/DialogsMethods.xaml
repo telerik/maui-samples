@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.SchedulerControl.BuiltInDialogsCategory.DialogsMethodsExample.DialogsMethods">  
+    <!-- >> scheduler-dialogs-methods-xaml -->
+    <Grid RowDefinitions="Auto, *"
+          RowSpacing="10">
+        <StackLayout Orientation="{OnIdiom Vertical, Desktop=Horizontal}" 
+                     Spacing="5">
+            <Button Text="Add Appointment"
+                    Clicked="AddAppointmentClicked" />
+            <Button Text="Edit First Appointment"
+                    Clicked="EditAppointmentClicked" />
+            <Button Text="Delete First Appointment"
+                    Clicked="DeleteAppointmentClicked" />
+        </StackLayout>
+        <telerik:RadScheduler x:Name="scheduler"
+                              AppointmentsSource="{Binding Appointments}"
+                              Grid.Row="1">
+            <telerik:RadScheduler.ViewDefinitions>
+                <telerik:WeekViewDefinition />
+                <telerik:DayViewDefinition />
+                <telerik:MonthViewDefinition />
+            </telerik:RadScheduler.ViewDefinitions>
+        </telerik:RadScheduler>
+    </Grid>
+    <!-- << scheduler-dialogs-methods-xaml -->
+</ContentView>

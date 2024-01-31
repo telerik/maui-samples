@@ -77,8 +77,9 @@
     <ContentView.Content>
         <telerik:RadTabView BackgroundColor="White" 
                             HeaderStyle="{StaticResource TabViewHeaderStyle}"
-                            HeaderItemStyle="{StaticResource TabViewHeaderItemStyle}">
-            <telerik:TabViewItem HeaderText="Sofia">
+                            HeaderItemStyle="{StaticResource TabViewHeaderItemStyle}"
+                            AutomationId="tabView">
+            <telerik:TabViewItem HeaderText="Sofia" >
                     <telerik:TabViewItem.Content>
                         <VerticalStackLayout x:Name="sofia">
                             <Label Text="{Binding Date, StringFormat='{0:dd MMM yy}'}"
@@ -89,7 +90,8 @@
                             <Label Text="Sofia"
                                    Style="{StaticResource CityNameStyle}" />
                             <Label Text="{Binding ., StringFormat='{0:hh:mm}'}"
-                                   Style="{StaticResource CurrentTimeStyle}" />
+                                   Style="{StaticResource CurrentTimeStyle}" 
+                                   AutomationId="sofiaTimeLabel"/>
                         </VerticalStackLayout>
                     </telerik:TabViewItem.Content>
                 </telerik:TabViewItem>
@@ -104,7 +106,8 @@
                         <Label Text="Auckland"
                                    Style="{StaticResource CityNameStyle}" />
                         <Label Text="{Binding ., StringFormat='{0:hh:mm}'}"
-                                   Style="{StaticResource CurrentTimeStyle}" />
+                                   Style="{StaticResource CurrentTimeStyle}" 
+                               AutomationId="aucklandTimeLabel"/>
                     </VerticalStackLayout>
                 </telerik:TabViewItem.Content>
             </telerik:TabViewItem>
@@ -119,7 +122,8 @@
                             <Label Text="New York"
                                    Style="{StaticResource CityNameStyle}" />
                             <Label Text="{Binding ., StringFormat='{0:hh:mm}'}"
-                                   Style="{StaticResource CurrentTimeStyle}" />
+                                   Style="{StaticResource CurrentTimeStyle}" 
+                                   AutomationId="newYorkTimeLabel"/>
                         </VerticalStackLayout>
                     </telerik:TabViewItem.Content>
                 </telerik:TabViewItem>
@@ -134,7 +138,8 @@
                             <Label Text="Brussels"
                                    Style="{StaticResource CityNameStyle}" />
                             <Label Text="{Binding ., StringFormat='{0:hh:mm}'}"
-                                   Style="{StaticResource CurrentTimeStyle}" />
+                                   Style="{StaticResource CurrentTimeStyle}" 
+                                   AutomationId="brusselsTimeLabel"/>
                         </VerticalStackLayout>
                     </telerik:TabViewItem.Content>
                 </telerik:TabViewItem>
@@ -149,7 +154,8 @@
                             <Label Text="Moscow"
                                    Style="{StaticResource CityNameStyle}" />
                             <Label Text="{Binding ., StringFormat='{0:hh:mm}'}"
-                                   Style="{StaticResource CurrentTimeStyle}" />
+                                   Style="{StaticResource CurrentTimeStyle}" 
+                                   AutomationId="moscowTimeLabel"/>
                         </VerticalStackLayout>
                     </telerik:TabViewItem.Content>
                 </telerik:TabViewItem>

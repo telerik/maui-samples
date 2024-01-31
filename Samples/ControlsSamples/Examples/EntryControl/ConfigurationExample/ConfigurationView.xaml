@@ -49,7 +49,8 @@
                                   FontSize="{Binding SelectedFontSize, Converter={StaticResource FontSizeConverter}}"
                                   BackgroundColor="White"
                                   Placeholder="Enter Text"
-                                  VerticalOptions="Center" />
+                                  VerticalOptions="Center" 
+                                  AutomationId="mainEntry"/>
             </Grid>
         </telerik:RadBorder>
         <ScrollView Grid.Row="1">
@@ -68,7 +69,8 @@
                                Style="{StaticResource HorizontalGroupLabelAtStartStyle}" />
                         <Switch IsToggled="{Binding Source={x:Reference entry}, Path=IsPassword, Mode=TwoWay}"
                                 HorizontalOptions="Center" 
-                                VerticalOptions="Center" />
+                                VerticalOptions="Center" 
+                                AutomationId="passwordSwitch"/>
                     </HorizontalStackLayout>
                     <HorizontalStackLayout Grid.Column="{OnIdiom Default=1, Phone=0}" 
                                            Grid.Row="{OnIdiom Default=0, Phone=1}"
@@ -77,7 +79,8 @@
                                Style="{StaticResource HorizontalGroupLabelAtStartStyle}" />
                         <Switch IsToggled="{Binding Source={x:Reference entry}, Path=IsReadOnly, Mode=TwoWay}"
                                 HorizontalOptions="Center" 
-                                VerticalOptions="Center" />
+                                VerticalOptions="Center" 
+                                AutomationId="readOnlySwitch"/>
                     </HorizontalStackLayout>
                 </Grid>
                 <Grid>
@@ -96,7 +99,8 @@
                             <telerik:RadEntry HorizontalOptions="Fill"
                                               Placeholder="Enter Text"
                                               ReserveSpaceForErrorView="False"
-                                              Text="{Binding Source={x:Reference entry}, Path=Text, Mode=TwoWay}" />
+                                              Text="{Binding Source={x:Reference entry}, Path=Text, Mode=TwoWay}" 
+                                              AutomationId="textEntry"/>
                         </VerticalStackLayout>
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="Text Color:"
@@ -104,7 +108,8 @@
                             <telerik:RadComboBox x:Name="textColorComboBox"
                                                  SelectedItem="{Binding SelectedTextColor, Mode=TwoWay}" 
                                                  DropDownHeight="120"
-                                                 ItemsSource="{Binding TextColors}" />
+                                                 ItemsSource="{Binding TextColors}" 
+                                                 AutomationId="textColorComboBox"/>
                         </VerticalStackLayout>
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="Max Length (symbols):"
@@ -113,7 +118,8 @@
                                                      IsReadOnly="False"
                                                      Value="6"
                                                      Minimum="0"
-                                                     HorizontalOptions="FillAndExpand" />
+                                                     HorizontalOptions="FillAndExpand" 
+                                                     AutomationId="maxLengthNumeric"/>
                         </VerticalStackLayout>
                     </VerticalStackLayout>
                     <VerticalStackLayout Grid.Row="{OnIdiom Default=0, Phone=1}" 
@@ -125,7 +131,8 @@
                             <telerik:RadComboBox x:Name="keyboardComboBox"
                                                  DropDownHeight="120"
                                                  SelectedItem="{Binding SelectedKeyboard, Mode=TwoWay}" 
-                                                 ItemsSource="{Binding Keyboards}" />
+                                                 ItemsSource="{Binding Keyboards}" 
+                                                 AutomationId="keyboardComboBox"/>
                         </VerticalStackLayout>
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="Placeholder Text:" 
@@ -133,7 +140,8 @@
                             <telerik:RadEntry Placeholder="Placeholder text"
                                               Text="{Binding Source={x:Reference entry}, Path=Placeholder, Mode=TwoWay}"
                                               ReserveSpaceForErrorView="False"
-                                              HorizontalOptions="Fill" />
+                                              HorizontalOptions="Fill" 
+                                              AutomationId="placeholderEntry"/>
                         </VerticalStackLayout>
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="Font Size:"
@@ -141,14 +149,16 @@
                             <telerik:RadComboBox x:Name="fontSizeComboBox"
                                                  SelectedItem="{Binding SelectedFontSize, Mode=TwoWay}"
                                                  DropDownHeight="{OnPlatform MacCatalyst=70, Default=120}"
-                                                 ItemsSource="{Binding FontSizes}" />
+                                                 ItemsSource="{Binding FontSizes}" 
+                                                 AutomationId="fontSizeComboBox"/>
                         </VerticalStackLayout>
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="SelectionOnFocus Behavior:"
                                    Style="{StaticResource VerticalGroupLabelStyle}" />
                             <telerik:RadComboBox x:Name="selectionOnFocusComboBox"
                                                  SelectedItem="{Binding Source={x:Reference entry}, Path=SelectionOnFocus, Mode=TwoWay}"
-                                                 DropDownHeight="{OnPlatform MacCatalyst=70, Default=120}">
+                                                 DropDownHeight="{OnPlatform MacCatalyst=70, Default=120}"
+                                                 AutomationId="selectionOnFocusComboBox">
                                 <telerik:RadComboBox.ItemsSource>
                                     <x:Array Type="{x:Type telerik:SelectionOnFocus}">
                                         <telerik:SelectionOnFocus>Unchanged</telerik:SelectionOnFocus>

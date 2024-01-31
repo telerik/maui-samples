@@ -9,13 +9,15 @@
                              ItemsSource="{Binding Cards}"
                              CollectionTitle="Book Your Transfer"
                              ButtonCommand="{Binding SendRequestCommand}"
-                             ButtonText="Request Transfer">
+                             ButtonText="Request Transfer"
+                             AutomationId="sendButton">
     <VerticalStackLayout x:Name="layout">
         <Label Text="Date &amp; Time of Arrival"
                Margin="0, 0, 0, 12" />
         <telerik:RadDateTimePicker x:Name="dateTimePicker"
                                    Date="{Binding Date}"
-                                   DefaultHighlightedDate="{Static sys:DateTime.Now}">
+                                   DefaultHighlightedDate="{Static sys:DateTime.Now}"
+                                   AutomationId="dateTimePicker">
             <telerik:RadDateTimePicker.PopupSettings>
                 <telerik:PickerPopupSettings HeaderLabelText="Select Date &amp; Time" />
             </telerik:RadDateTimePicker.PopupSettings>

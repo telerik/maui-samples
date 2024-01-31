@@ -32,20 +32,23 @@
                 <VerticalStackLayout Grid.Column="1">
                     <Label Text="{TemplateBinding Header}"
                            Margin="0, 12, 12, 3"
-                           Style="{StaticResource HeaderLabelStyle}" />
+                           Style="{StaticResource HeaderLabelStyle}" 
+                           AutomationId="controlName"/>
                     <Label x:Name="descriptionLabel"
                            Text="{TemplateBinding Description}"
                            MinimumWidthRequest="100"
                            MinimumHeightRequest="{OnPlatform MacCatalyst=45, Default=NaN}"
                            MaxLines="3"
                            Margin="0, 3, 12, 12"
-                           Style="{StaticResource DescriptionLabelStyle}" />
+                           Style="{StaticResource DescriptionLabelStyle}" 
+                           AutomationId="controlDescription"/>
                 </VerticalStackLayout>
 
                 <ContentView Grid.ColumnSpan="2"
                              Content="{TemplateBinding Status, Converter={StaticResource StatusTagToTemplateConverter}}"
                              HorizontalOptions="End"
-                             VerticalOptions="Start" />
+                             VerticalOptions="Start" 
+                             AutomationId="statusTag"/>
             </Grid>
         </ControlTemplate>
     </ContentView.ControlTemplate>

@@ -9,7 +9,8 @@
                              ItemsSource="{Binding Cards}"
                              CollectionTitle="Selected Product"
                              ButtonCommand="{Binding SendRequestCommand}"
-                             ButtonText="Add to Basket">
+                             ButtonText="Add to Basket"
+                             ButtonAutomationId="sendButton">
     <ContentView.Resources>
         <Style TargetType="Label">
             <Setter Property="TextColor" Value="Black" />
@@ -56,7 +57,8 @@
                Margin="0, 0, 0, 12" />
         <telerik:RadTemplatedPicker x:Name="templatedPicker"
                                     Placeholder="Choose Your Size and Color"
-                                    SelectedValue="{Binding SelectedValue}">
+                                    SelectedValue="{Binding SelectedValue}"
+                                    AutomationId="templatedPicker">
             <telerik:RadTemplatedPicker.PopupSettings>
                 <telerik:PickerPopupSettings AcceptCommand="{Binding AcceptCommand}"
                                              CancelCommand="{Binding CancelCommand}">
@@ -95,7 +97,8 @@
                                     <Ellipse Fill="{Binding XS.BackgroundColor}" />
                                     <Label Text="{Binding XS.Name}"
                                            Style="{StaticResource DefaltSizeLabelStyle}"
-                                           TextColor="{Binding XS.TextColor}" />
+                                           TextColor="{Binding XS.TextColor}" 
+                                           AutomationId="sizeXS"/>
                                 </Grid>
                                 <Grid Style="{StaticResource ItemGridStyle}">
                                     <View.GestureRecognizers>
@@ -105,7 +108,8 @@
                                     <Ellipse Fill="{Binding S.BackgroundColor}" />
                                     <Label Text="{Binding S.Name}"
                                            Style="{StaticResource DefaltSizeLabelStyle}"
-                                           TextColor="{Binding S.TextColor}" />
+                                           TextColor="{Binding S.TextColor}" 
+                                           AutomationId="sizeS"/>
                                 </Grid>
                                 <Grid Style="{StaticResource ItemGridStyle}">
                                     <View.GestureRecognizers>
@@ -115,7 +119,8 @@
                                     <Ellipse Fill="{Binding M.BackgroundColor}" />
                                     <Label Text="{Binding M.Name}"
                                            Style="{StaticResource DefaltSizeLabelStyle}"
-                                           TextColor="{Binding M.TextColor}" />
+                                           TextColor="{Binding M.TextColor}" 
+                                           AutomationId="sizeM"/>
                                 </Grid>
                                 <Grid Style="{StaticResource ItemGridStyle}">
                                     <View.GestureRecognizers>
@@ -125,7 +130,8 @@
                                     <Ellipse Fill="{Binding L.BackgroundColor}" />
                                     <Label Text="{Binding L.Name}"
                                            Style="{StaticResource DefaltSizeLabelStyle}"
-                                           TextColor="{Binding L.TextColor}" />
+                                           TextColor="{Binding L.TextColor}" 
+                                           AutomationId="sizeL"/>
                                 </Grid>
                                 <Grid Style="{StaticResource ItemGridStyle}">
                                     <View.GestureRecognizers>
@@ -135,7 +141,8 @@
                                     <Ellipse Fill="{Binding XL.BackgroundColor}" />
                                     <Label Text="{Binding XL.Name}"
                                            Style="{StaticResource DefaltSizeLabelStyle}"
-                                           TextColor="{Binding XL.TextColor}" />
+                                           TextColor="{Binding XL.TextColor}" 
+                                           AutomationId="sizeXL"/>
                                 </Grid>
                                 <Grid Style="{StaticResource ItemGridStyle}">
                                     <View.GestureRecognizers>
@@ -145,7 +152,8 @@
                                     <Ellipse Fill="{Binding XXL.BackgroundColor}" />
                                     <Label Text="{Binding XXL.Name}"
                                            Style="{StaticResource DefaltSizeLabelStyle}"
-                                           TextColor="{Binding XXL.TextColor}" />
+                                           TextColor="{Binding XXL.TextColor}" 
+                                           AutomationId="sizeXXL"/>
                                 </Grid>
                             </telerik:RadUniformGrid>
                             <BoxView HeightRequest="1"
@@ -157,7 +165,8 @@
                                 <Grid Style="{StaticResource ItemGridStyle}">
                                     <Ellipse Stroke="{Binding Blue.BorderColor}" />
                                     <Ellipse Fill="{Binding Blue.Color}"
-                                             Margin="2">
+                                             Margin="2"
+                                             AutomationId="colorBlueEllipse">
                                         <View.GestureRecognizers>
                                             <TapGestureRecognizer Command="{Binding SelectColorCommand}"
                                                                   CommandParameter="{Binding Blue}" />
@@ -167,7 +176,8 @@
                                 <Grid Style="{StaticResource ItemGridStyle}">
                                     <Ellipse Stroke="{Binding Yellow.BorderColor}" />
                                     <Ellipse Fill="{Binding Yellow.Color}"
-                                             Margin="2">
+                                             Margin="2"
+                                             AutomationId="colorYellowEllipse">
                                         <View.GestureRecognizers>
                                             <TapGestureRecognizer Command="{Binding SelectColorCommand}"
                                                                   CommandParameter="{Binding Yellow}" />
@@ -177,7 +187,8 @@
                                 <Grid Style="{StaticResource ItemGridStyle}">
                                     <Ellipse Stroke="{Binding Purple.BorderColor}" />
                                     <Ellipse Fill="{Binding Purple.Color}"
-                                             Margin="2">
+                                             Margin="2"
+                                             AutomationId="colorPurpleEllipse">
                                         <View.GestureRecognizers>
                                             <TapGestureRecognizer Command="{Binding SelectColorCommand}"
                                                                   CommandParameter="{Binding Purple}" />
@@ -187,7 +198,8 @@
                                 <Grid Style="{StaticResource ItemGridStyle}">
                                     <Ellipse Stroke="{Binding Orange.BorderColor}" />
                                     <Ellipse Fill="{Binding Orange.Color}"
-                                             Margin="2">
+                                             Margin="2"
+                                             AutomationId="colorOrangeEllipse">
                                         <View.GestureRecognizers>
                                             <TapGestureRecognizer Command="{Binding SelectColorCommand}"
                                                                   CommandParameter="{Binding Orange}" />
@@ -197,7 +209,8 @@
                                 <Grid Style="{StaticResource ItemGridStyle}">
                                     <Ellipse Stroke="{Binding LightGray.BorderColor}" />
                                     <Ellipse Fill="{Binding LightGray.Color}"
-                                             Margin="2">
+                                             Margin="2"
+                                             AutomationId="colorLIghtGrayEllipse">
                                         <View.GestureRecognizers>
                                             <TapGestureRecognizer Command="{Binding SelectColorCommand}"
                                                                   CommandParameter="{Binding LightGray}" />
@@ -207,7 +220,8 @@
                                 <Grid Style="{StaticResource ItemGridStyle}">
                                     <Ellipse Stroke="{Binding DarkGray.BorderColor}" />
                                     <Ellipse Fill="{Binding DarkGray.Color}"
-                                             Margin="2">
+                                             Margin="2"
+                                             AutomationId="colorDarkGrayEllipse">
                                         <View.GestureRecognizers>
                                             <TapGestureRecognizer Command="{Binding SelectColorCommand}"
                                                                   CommandParameter="{Binding DarkGray}" />

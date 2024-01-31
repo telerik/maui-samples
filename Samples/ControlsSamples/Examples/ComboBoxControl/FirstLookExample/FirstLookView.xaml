@@ -32,7 +32,8 @@
                                      HorizontalOptions="{OnIdiom Default=Fill, Desktop=Start}"
                                      SelectionMode="Multiple"
                                      IsDropDownClosedOnSelection="False"
-                                     Margin="0, 0, 0, 10" />
+                                     Margin="0, 0, 0, 10" 
+                                     AutomationId="skillsComboBox"/>
 
                 <Label Text="Job Types:"
                        FontSize="16" />
@@ -44,7 +45,8 @@
                                      WidthRequest="{OnPlatform WinUI='300', MacCatalyst='300'}"
                                      HorizontalOptions="{OnIdiom Default=Fill, Desktop=Start}"
                                      IsDropDownClosedOnSelection="False"
-                                     DropDownHeight="{OnPlatform Android=136, iOS=144, MacCatalyst=88, WinUI=160}" />
+                                     DropDownHeight="{OnPlatform Android=136, iOS=144, MacCatalyst=88, WinUI=160}" 
+                                     AutomationId="jobTypesComboBox"/>
 
                 <Label Text="Time Posted:"
                        FontSize="16" />
@@ -53,7 +55,8 @@
                                      HorizontalOptions="{OnIdiom Default=Fill, Desktop=Start}"
                                      SelectedIndex="{Binding SelectedTimeIndex, Mode=TwoWay}"
                                      Placeholder="Select Time"
-                                     DropDownHeight="{OnPlatform Android=170, iOS=180, MacCatalyst=110, WinUI=200}" />
+                                     DropDownHeight="{OnPlatform Android=170, iOS=180, MacCatalyst=110, WinUI=200}" 
+                                     AutomationId="timePostedComboBox"/>
             </VerticalStackLayout>
 
             <telerik:RadButton Grid.Row="2"
@@ -62,7 +65,8 @@
                                HorizontalOptions="{OnIdiom Default=Start, Phone=Fill}"
                                Command="{Binding SearchJobButtonCommand}"
                                Text="Find Jobs"
-                               Style="{StaticResource SubmitButtonStyle}" />
+                               Style="{StaticResource SubmitButtonStyle}" 
+                               AutomationId="findJobsButton"/>
         </Grid>
     </ScrollView>
 </ContentView>

@@ -59,7 +59,8 @@
                                          SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
                                          ItemStyle="{StaticResource TreeViewItemStyle}"
                                          MinimumWidthRequest="{OnIdiom Default=-1, Desktop=200}"
-                                         ItemTapped="OnItemTapped">
+                                         ItemTapped="OnItemTapped"
+                                         AutomationId="treeView">
                         <telerik:TreeViewDescriptor TargetType="{x:Type local:Folder}"
                                                     DisplayMemberPath="Name"
                                                     ItemsSourcePath="Folders" />
@@ -69,7 +70,8 @@
                                   Grid.Column="1"
                                   Padding="10"
                                   AreEmailsVisible="{Binding AreEmailsVisible, Mode=TwoWay}"
-                                  IsVisible="{OnIdiom Default=False, Desktop=True}" />
+                                  IsVisible="{OnIdiom Default=False, Desktop=True}" 
+                                  AutomationId="emailsView"/>
             </Grid>
         </telerik:RadBorder>
     </Grid>

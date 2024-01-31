@@ -41,21 +41,24 @@
                            Style="{StaticResource VerticalGroupLabelStyle}" />
                     <telerik:RadComboBox x:Name="displayModeCombo"
                                          ItemsSource="{Binding DisplayModes}"
-                                         SelectedItem="{Binding DisplayMode, Mode=TwoWay}" />
+                                         SelectedItem="{Binding DisplayMode, Mode=TwoWay}" 
+                                         AutomationId="displayModeComboBox"/>
                 </VerticalStackLayout>
                 <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                     <Label Text="Min Display Mode:"
                            Style="{StaticResource VerticalGroupLabelStyle}" />
                     <telerik:RadComboBox x:Name="minDisplayModeCombo"
                                          ItemsSource="{Binding MinDisplayModes}"
-                                         SelectedItem="{Binding MinDisplayMode, Mode=TwoWay}" />
+                                         SelectedItem="{Binding MinDisplayMode, Mode=TwoWay}" 
+                                         AutomationId="minDisplayModeComboBox"/>
                 </VerticalStackLayout>
                 <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                     <Label Text="Max Display Mode:"
                            Style="{StaticResource VerticalGroupLabelStyle}" />
                     <telerik:RadComboBox x:Name="maxDisplayModeCombo"
                                          ItemsSource="{Binding MaxDisplayModes}"
-                                         SelectedItem="{Binding MaxDisplayMode, Mode=TwoWay}" />
+                                         SelectedItem="{Binding MaxDisplayMode, Mode=TwoWay}" 
+                                         AutomationId="maxDisplayModeComboBox"/>
                 </VerticalStackLayout>
             </VerticalStackLayout>
         </ScrollView>

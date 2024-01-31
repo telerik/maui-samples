@@ -33,7 +33,8 @@
         <Grid ColumnDefinitions="Auto, *" 
               Style="{StaticResource HeaderStyle}">
             <ImageButton Command="{Binding NavigateBackCommand}"
-                         Style="{OnPlatform Default={StaticResource DefaultBackButtonStyle}, iOS={StaticResource IOSBackButtonStyle}}" />
+                         Style="{OnPlatform Default={StaticResource DefaultBackButtonStyle}, iOS={StaticResource IOSBackButtonStyle}}" 
+                         AutomationId="backButton"/>
             <telerik:RadBorder Grid.Column="1"
                                BackgroundColor="{OnPlatform Default='Transparent', iOS='#3DFFFFFF'}"
                                CornerRadius="{OnPlatform Default=0, iOS=10}"
@@ -45,7 +46,8 @@
                     <telerik:RadEntry x:Name="searchEntry"
                                       Placeholder="Search"
                                       Grid.Column="1"
-                                      Style="{StaticResource EntryStyle}" />
+                                      Style="{StaticResource EntryStyle}"
+                                      AutomationId="searchEntry"/>
                     <BoxView Grid.Column="1"
                              Style="{StaticResource BoxViewStyle}" />
                 </Grid>
@@ -54,7 +56,8 @@
         <views:InnerSearchView Grid.Row="1"
                                SearchText="{Binding Text, Source={Reference searchEntry}}"
                                SelectedSearchResult="{Binding SelectedSearchResult}"
-                               Margin="12" />
+                               Margin="12" 
+                               AutomationId="searchResults"/>
     </Grid>
     
 </ContentPage>

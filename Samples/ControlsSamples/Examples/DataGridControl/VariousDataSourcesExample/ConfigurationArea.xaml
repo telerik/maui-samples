@@ -18,7 +18,8 @@
                    Style="{StaticResource VerticalGroupLabelStyle}" />
             <telerik:RadComboBox SelectedItem="{Binding DatasourceType, Mode=TwoWay}"
                                  IsClearButtonVisible="False"
-                                 DropDownHeight="{OnPlatform Android=68, iOS=72, MacCatalyst=44, WinUI=80}">
+                                 DropDownHeight="{OnPlatform Android=68, iOS=72, MacCatalyst=44, WinUI=80}"
+                                 AutomationId="dataSourceTypeComboBox">
                 <telerik:RadComboBox.ItemsSource>
                     <x:Array Type="{x:Type x:String}">
                         <x:String>Data Table</x:String>

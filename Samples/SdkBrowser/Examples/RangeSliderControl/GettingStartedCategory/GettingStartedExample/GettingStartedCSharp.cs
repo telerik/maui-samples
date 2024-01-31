@@ -22,6 +22,12 @@ namespace SDKBrowserMaui.Examples.RangeSliderControl.GettingStartedCategory.Gett
             rangeSlider.RangeEnd = 95;
             // << rangeslider-gettingstarted-csharp
 
+#if MACCATALYST || WINDOWS
+            rangeSlider.WidthRequest = 800;
+            rangeSlider.HorizontalOptions = LayoutOptions.Center;
+            rangeSlider.Margin = new Microsoft.Maui.Thickness() { Top = 40 };
+#endif
+
             content.Add(rangeSlider);
             this.Content = content;
         }

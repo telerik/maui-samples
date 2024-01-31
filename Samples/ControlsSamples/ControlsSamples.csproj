@@ -76,29 +76,16 @@
 		<EmbeddedResource Include="Examples\ZipLibraryControl\CreateArchiveExample\Resources\ZipSampleDocuments\RepeatHeaderRows.docx" />
 		<EmbeddedResource Include="Examples\ZipLibraryControl\CreateArchiveExample\Resources\ZipSampleDocuments\Sample.pdf" />
 		<EmbeddedResource Include="Examples\ZipLibraryControl\CreateArchiveExample\Resources\ZipSampleDocuments\thumbnail.png" />
+		<EmbeddedResource Include="Resources\ImageEditor\FirstLookExample\SampleImage1.jpg" />
+		<EmbeddedResource Include="Resources\ImageEditor\FirstLookExample\SampleImage2.jpg" />
+		<EmbeddedResource Include="Resources\ImageEditor\FirstLookExample\SampleImage3.jpg" />
+		<EmbeddedResource Include="Resources\ImageEditor\FirstLookExample\SampleImage4.jpg" />
+		<EmbeddedResource Include="Resources\ImageEditor\FirstLookExample\SampleImage5.jpg" />
+        <EmbeddedResource Include="Resources\ImageEditor\FirstLookExample\SampleImage6.jpg" />
     <EmbeddedResource Include="Resources\RichTextEditor\**" />
 	</ItemGroup>
 
-  <ItemGroup Condition="$(TargetFramework.Contains('-android')) != true AND $(TargetFramework.Contains('-ios')) != true">
-    <EmbeddedResource Include="Resources\ImageEditor\FirstLookExample\SampleImage1.jpg" />
-    <EmbeddedResource Include="Resources\ImageEditor\FirstLookExample\SampleImage2.jpg" />
-    <EmbeddedResource Include="Resources\ImageEditor\FirstLookExample\SampleImage3.jpg" />
-    <EmbeddedResource Include="Resources\ImageEditor\FirstLookExample\SampleImage4.jpg" />
-    <EmbeddedResource Include="Resources\ImageEditor\FirstLookExample\SampleImage5.jpg" />
-    <EmbeddedResource Include="Resources\ImageEditor\FirstLookExample\SampleImage6.jpg" />
-  </ItemGroup>
-
-  <ItemGroup Condition="$(TargetFramework.Contains('-android')) == true OR $(TargetFramework.Contains('-ios')) == true">
-    <EmbeddedResource Include="Resources\ImageEditor\FirstLookExample\SampleImage1.png" />
-    <EmbeddedResource Include="Resources\ImageEditor\FirstLookExample\SampleImage2.png" />
-    <EmbeddedResource Include="Resources\ImageEditor\FirstLookExample\SampleImage3.png" />
-    <EmbeddedResource Include="Resources\ImageEditor\FirstLookExample\SampleImage4.png" />
-    <EmbeddedResource Include="Resources\ImageEditor\FirstLookExample\SampleImage5.png" />
-    <EmbeddedResource Include="Resources\ImageEditor\FirstLookExample\SampleImage6.png" />
-  </ItemGroup>
-
-
-  <ItemGroup>
+	<ItemGroup>
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 	</ItemGroup>
 

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.DataGridControl.SearchCategory.SearchHighlightingExample.SearchHighlighting">
+	<ContentView.Resources>
+        <!-- >> datagrid-search-highlighting-styles -->
+        <telerik:DataGridTextCellStyle x:Key="MyCellContentStyle"
+                                       SearchMatchTextColor="#CC0066" />
+        <telerik:DataGridBorderStyle x:Key="MyCellDecorationStyle"
+                                     SearchMatchBackgroundColor="#E8F5F4" />
+        <!-- << datagrid-search-highlighting-styles -->
+    </ContentView.Resources>
+    <Grid>
+        <!-- >> datagrid-search-highlighting-xaml -->
+        <telerik:RadDataGrid x:Name="dataGrid"
+                             ItemsSource="{Binding People}"
+                             AutoGenerateColumns="False">
+            <telerik:RadDataGrid.SearchSettings>
+                <telerik:DataGridSearchSettings SearchPanelVisibilityMode="AlwaysVisible" />
+            </telerik:RadDataGrid.SearchSettings>
+            <telerik:RadDataGrid.Columns>
+                <telerik:DataGridTextColumn PropertyName="Name"
+                                            CellContentStyle="{StaticResource MyCellContentStyle}"
+                                            CellDecorationStyle="{StaticResource MyCellDecorationStyle}" />
+                <telerik:DataGridNumericalColumn PropertyName="Age"
+                                                 CellContentStyle="{StaticResource MyCellContentStyle}"
+                                                 CellDecorationStyle="{StaticResource MyCellDecorationStyle}" />
+                <telerik:DataGridTextColumn PropertyName="Department"
+                                            CellContentStyle="{StaticResource MyCellContentStyle}"
+                                            CellDecorationStyle="{StaticResource MyCellDecorationStyle}" />
+            </telerik:RadDataGrid.Columns>
+        </telerik:RadDataGrid>
+        <!-- << datagrid-search-highlighting-xaml -->
+    </Grid>
+</ContentView>

@@ -24,14 +24,14 @@
                                  Margin="{OnIdiom Default='0, 40, 0, 0', Phone='0, 24, 0, 0'}">
                 <VerticalStackLayout Spacing="12">
                     <Label Text="Age:" />
-                    <telerik:RadNumericInput AutomationId="AgeNumeric"
+                    <telerik:RadNumericInput AutomationId="ageNumeric"
                                              Minimum="0" 
                                              Value="{Binding Age, Mode=TwoWay}" />
                 </VerticalStackLayout>
                 <VerticalStackLayout Spacing="12"
                                      Margin="0, 40, 0, 0">
                     <Label Text="Weight (pounds):" />
-                    <telerik:RadNumericInput AutomationId="WeightNumeric"
+                    <telerik:RadNumericInput AutomationId="weightNumeric"
                                              Minimum="0" 
                                              Value="{Binding Weight, Mode=TwoWay}"/>
                 </VerticalStackLayout>
@@ -41,14 +41,14 @@
                                  Margin="{OnIdiom Default='20, 40, 0, 0', Phone='0, 40, 0, 0'}">
                 <VerticalStackLayout Spacing="12">
                     <Label Text="Height (feet):" />
-                    <telerik:RadNumericInput AutomationId="HeightNumeric"
+                    <telerik:RadNumericInput AutomationId="heightNumeric"
                                              Minimum="0" 
                                              Value="{Binding Height, Mode=TwoWay}"/>
                 </VerticalStackLayout>
                 <VerticalStackLayout Spacing="12"
                                      Margin="0, 40, 0, 0">
                     <Label Text="Activity (sports per week):" />
-                    <telerik:RadNumericInput AutomationId="ActivityNumeric"
+                    <telerik:RadNumericInput AutomationId="activityNumeric"
                                              Minimum="0" 
                                              Maximum="10" 
                                              Value="{Binding Activity, Mode=TwoWay}"/>
@@ -68,20 +68,22 @@
                                              SelectedSegmentTextColor="White"
                                              SelectedSegmentBackgroundColor="{StaticResource AccentColor8}"
                                              ItemsSource="{Binding Genders}"
-                                             SelectedIndex="{Binding Gender, Mode=TwoWay, Converter={StaticResource GenderConverter}}" />
+                                             SelectedIndex="{Binding Gender, Mode=TwoWay, Converter={StaticResource GenderConverter}}" 
+                                             AutomationId="genderSegmentedControl"/>
             </Grid>
             <VerticalStackLayout Grid.Row="{OnIdiom Default=3, Phone=4}"
                                  Margin="0, 40, 0, 0"
                                  HorizontalOptions="{OnIdiom Default=Start, Phone=Fill}"
                                  VerticalOptions="{OnIdiom Default=Start, Phone=End}"
                                  Spacing="12">
-                <Label AutomationId="Calories"
+                <Label AutomationId="calories"
                        Text="{Binding Calories, StringFormat='Calories: {0:0}'}" />
                 <telerik:RadButton Text="Calculate"
                                    Style="{StaticResource SubmitButtonStyle}"
                                    VerticalOptions="{OnIdiom Default=Center, Phone=End}"
                                    HorizontalOptions="{OnIdiom Default=Start, Phone=Fill}"
-                                   Command="{Binding CalculateCommand}"/>
+                                   Command="{Binding CalculateCommand}"
+                                   AutomationId="calculateButton"/>
             </VerticalStackLayout>
         </Grid>
     </ScrollView>

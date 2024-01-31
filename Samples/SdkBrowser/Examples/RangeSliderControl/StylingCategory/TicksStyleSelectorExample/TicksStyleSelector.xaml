@@ -5,6 +5,10 @@
              xmlns:local="clr-namespace:SDKBrowserMaui.Examples.RangeSliderControl.StylingCategory.TicksStyleSelectorExample"
              x:Class="SDKBrowserMaui.Examples.RangeSliderControl.StylingCategory.TicksStyleSelectorExample.TicksStyleSelector">
     <ContentView.Resources>
+        <Style TargetType="telerik:RadRangeSlider">
+            <Setter Property="WidthRequest" Value="{OnIdiom Default=-1, Desktop=800}" />
+            <Setter Property="HorizontalOptions" Value="{OnIdiom Default=Fill, Desktop=Center}" />
+        </Style>
         <!-- >> rangeslider-ticksttyling-selector -->
         <local:RangeTickStyleSelector x:Key="RangeTickStyleSelector">
             <local:RangeTickStyleSelector.BeforeRangeStyle>
@@ -31,7 +35,8 @@
         </local:RangeTickStyleSelector>
         <!-- << rangeslider-ticksttyling-selector -->
     </ContentView.Resources>
-    <VerticalStackLayout Spacing="20">
+    <VerticalStackLayout Spacing="{OnIdiom Default=20, Desktop=40}"
+                         Margin="{OnIdiom Default=0, Desktop='0, 40, 0, 0'}">
         <!-- >> rangeslider-ticksttyling-style -->
         <telerik:RadRangeSlider Minimum="0"
                                 Maximum="100"

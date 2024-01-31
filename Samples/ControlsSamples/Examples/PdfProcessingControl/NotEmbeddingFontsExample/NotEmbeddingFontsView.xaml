@@ -42,7 +42,8 @@
                                VerticalOptions="{OnPlatform WinUI='Center', MacCatalyst='Center'}"
                                HorizontalOptions="{OnPlatform WinUI='Center', MacCatalyst='Center'}"
                                Style="{StaticResource SubmitButtonStyle}"
-                               Command="{Binding ExportCommand}" />
+                               Command="{Binding ExportCommand}" 
+                               AutomationId="exportButton"/>
         </VerticalStackLayout>
     </Grid>
 </telerik:RadContentView>

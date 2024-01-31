@@ -42,13 +42,7 @@ namespace QSF.Examples.WordsProcessingControl.NumberingFieldsExample
         private readonly ICommand exportCommand;
         private readonly Command insertNumberingFieldsCommand;
         private readonly Command updateNumberingFieldsCommand;
-
-#if ANDROID || IOS
-        private readonly ObservableCollection<string> exportFormats = new ObservableCollection<string> { "DOCX files(*.docx)", "RTF files(*.rtf)" };
-#else
         private readonly ObservableCollection<string> exportFormats = new ObservableCollection<string> { "DOCX files(*.docx)", "PDF files(*.pdf)", "RTF files(*.rtf)" };
-#endif
-
 
         private string fileName;
         private string selectedExportFormat;

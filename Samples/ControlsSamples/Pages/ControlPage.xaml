@@ -70,10 +70,12 @@
         <Grid ColumnDefinitions="Auto, Auto, *"
               Style="{StaticResource HeaderStyle}">
             <ImageButton Command="{Binding NavigateBackCommand}"
-                         Style="{OnPlatform Default={StaticResource DefaultBackButtonStyle}, iOS={StaticResource IOSBackButtonStyle}}" />
+                         Style="{OnPlatform Default={StaticResource DefaultBackButtonStyle}, iOS={StaticResource IOSBackButtonStyle}}" 
+                         AutomationId="backButton"/>
             <Label Grid.Column="1"
                    Style="{StaticResource HeaderLabelStyle}"
-                   Text="{Binding HeaderTitle}" />
+                   Text="{Binding HeaderTitle}" 
+                   AutomationId="controlName"/>
             <ImageButton Grid.Column="2"
                          HorizontalOptions="End"
                          Command="{Binding NavigateToDescriptionCommand}"
@@ -82,13 +84,15 @@
                          IsVisible="{Binding Control.FullDescription, Converter={StaticResource NullOrEmptyToBoolConverter}}"
                          VerticalOptions="Center"
                          HeightRequest="24"
-                         WidthRequest="24" />
+                         WidthRequest="24" 
+                         AutomationId="navigateToDescriptionButton"/>
         </Grid>
         <telerik:NonVirtualizedItemsControl ItemTemplate="{StaticResource ExampleItemTemplate}"
                                             ItemsSource="{Binding Examples}"
                                             SelectionMode="None"
                                             Grid.Row="1"
-                                            Margin="4">
+                                            Margin="4"
+                                            AutomationId="controlExamplesView">
             <telerik:NonVirtualizedItemsControl.ItemsLayoutTemplate>
                 <DataTemplate>
                     <layouts:VerticalUniformLayout />

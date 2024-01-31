@@ -229,6 +229,7 @@
             </ContentView>
             <telerik:RadButton Grid.Row="3"
                                Text="Connect"
+                               AutomationId="connectButton"
                                Command="{Binding ConnectCommand}"
                                Style="{StaticResource SubmitButtonStyle}"
                                Margin="{OnIdiom Default='0, 40, 0, 0', Phone=16}"

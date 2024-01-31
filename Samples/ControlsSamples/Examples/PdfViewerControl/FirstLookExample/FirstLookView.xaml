@@ -5,7 +5,8 @@
                         x:Class="QSF.Examples.PdfViewerControl.FirstLookExample.FirstLookView">
     <Grid RowDefinitions="Auto, *">
         <telerik:RadPdfViewerToolbar PdfViewer="{x:Reference pdfViewer}"
-                                     Grid.Row="0">
+                                     Grid.Row="0"
+                                     AutomationId="pdfViewerToolbar">
             <telerik:PdfViewerNavigateToPageToolbarItem />
             <telerik:PdfViewerNavigateToPreviousPageToolbarItem />
             <telerik:PdfViewerNavigateToNextPageToolbarItem />
@@ -17,6 +18,7 @@
             <telerik:PdfViewerZoomOutToolbarItem IsVisible="{OnIdiom Desktop=True, Phone=False}" />
         </telerik:RadPdfViewerToolbar>
         <telerik:RadPdfViewer x:Name="pdfViewer"
-                              Grid.Row="1" />
+                              Grid.Row="1" 
+                              AutomationId="pdfViewer"/>
     </Grid>
 </telerik:RadContentView>

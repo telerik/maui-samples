@@ -12,7 +12,8 @@
             </ResourceDictionary.MergedDictionaries>
             <DataTemplate x:Key="CandlestickSeries">
                 <telerik:RadCartesianChart BackgroundColor="{AppThemeBinding Light=White}"
-                                           StyleClass="TelerikTheme">
+                                           StyleClass="TelerikTheme"
+                                           AutomationId="cartesianChartCandlestickSeries">
                     <telerik:RadCartesianChart.ChartBehaviors>
                         <telerik:ChartTrackBallBehavior ShowTrackInfo="True"/>
                         <telerik:ChartPanAndZoomBehavior ZoomMode="Horizontal" 
@@ -46,7 +47,8 @@
             </DataTemplate>
             <DataTemplate x:Key="OhlcSeries">
                 <telerik:RadCartesianChart BackgroundColor="{AppThemeBinding Light=White}"
-                                           StyleClass="TelerikTheme">
+                                           StyleClass="TelerikTheme"
+                                           AutomationId="cartesianChartOhlcSeries">
                     <telerik:RadCartesianChart.ChartBehaviors>
                         <telerik:ChartTrackBallBehavior ShowTrackInfo="True"/>
                         <telerik:ChartPanAndZoomBehavior ZoomMode="Horizontal" 
@@ -81,7 +83,8 @@
             <DataTemplate x:Key="FinancialIndicators">
                 <telerik:RadCartesianChart x:Name="financialChart"
                                            BackgroundColor="{AppThemeBinding Light=White}"
-                                           StyleClass="TelerikTheme">
+                                           StyleClass="TelerikTheme"
+                                           AutomationId="cartesianChartFinancialIndicators">
                     <telerik:RadCartesianChart.ChartBehaviors>
                         <telerik:ChartTrackBallBehavior ShowTrackInfo="True"/>
                         <telerik:ChartPanAndZoomBehavior ZoomMode="Horizontal" 

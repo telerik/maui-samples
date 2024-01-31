@@ -61,7 +61,8 @@
 
     <Grid>
         <telerik:RadTreeView x:Name="treeView"
-                             ItemsSource="{Binding Folders}">
+                             ItemsSource="{Binding Folders}"
+                             AutomationId="treeView">
             <telerik:TreeViewDescriptor TargetType="{x:Type common:FolderNode}"
                                         ItemsSourcePath="Children"
                                         ItemTemplate="{StaticResource FolderTemplate}" />

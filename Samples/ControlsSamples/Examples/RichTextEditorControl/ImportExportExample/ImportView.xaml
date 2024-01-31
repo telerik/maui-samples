@@ -35,7 +35,8 @@
                                              Source="{Binding ResourceIconPath}"
                                              Aspect="{OnPlatform Default=AspectFit, WinUI=Center}"
                                              Command="{Binding BindingContext.OpenCommand, Source={x:Reference fileLayout}}"
-                                             CommandParameter="{Binding ResourceFileName}" />
+                                             CommandParameter="{Binding ResourceFileName}" 
+                                             AutomationId="fileFormatButton"/>
                             </telerik:RadBorder>
                             <Label Text="{Binding ResourceFileType}"
                                    TextColor="{StaticResource TextOnAccentColor}"

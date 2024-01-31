@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.SliderControl.StylingCategory.ValueElementsStylingExample.ValueElementsStyling">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Style TargetType="telerik:RadSlider">
+                <Setter Property="WidthRequest" Value="{OnIdiom Default=-1, Desktop=800}" />
+                <Setter Property="HorizontalOptions" Value="{OnIdiom Default=Fill, Desktop=Center}" />
+            </Style>
+            <!-- >> slider-value-elements-styling -->
+            <Style x:Key="CustomRangeTrackStyle" TargetType="telerik:SliderRangeTrack">
+                <Setter Property="TrackThickness" Value="8" />
+                <Setter Property="Fill" Value="#80CBC4" />
+                <Setter Property="Stroke" Value="#B2DFDB" />
+                <Setter Property="StrokeThickness" Value="1" />
+            </Style>
+            <Style x:Key="CustomThumbStyle" TargetType="telerik:SliderThumb">
+                <Setter Property="Fill" Value="#009688" />
+                <Setter Property="Stroke" Value="#00897B" />
+                <Setter Property="StrokeThickness" Value="2" />
+            </Style>
+            <!-- << slider-value-elements-styling -->
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <VerticalStackLayout Margin="{OnIdiom Default=0, Desktop='0, 40, 0, 0'}">
+        <!-- >> slider-value-elements-styling-xaml -->
+        <telerik:RadSlider Minimum="0"
+                           Maximum="100"
+                           Value="35"
+                           RangeTrackStyle="{StaticResource CustomRangeTrackStyle}"
+                           ThumbStyle="{StaticResource CustomThumbStyle}" />
+        <!-- << slider-value-elements-styling-xaml -->
+        <HorizontalStackLayout Spacing="5"
+                               Margin="{OnIdiom Default='0, 20, 0, 0', Desktop='0, 40, 0, 0'}">
+            <Rectangle WidthRequest="14" HeightRequest="14" Fill="#009688" />
+            <Label Text="Thumb" FontSize="14" />
+        </HorizontalStackLayout>
+        <HorizontalStackLayout Spacing="5"
+                               Margin="0, 10, 0, 0">
+            <Rectangle WidthRequest="14" HeightRequest="14" Fill="#80CBC4" />
+            <Label Text="Range track" FontSize="14" />
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
+</ContentView>

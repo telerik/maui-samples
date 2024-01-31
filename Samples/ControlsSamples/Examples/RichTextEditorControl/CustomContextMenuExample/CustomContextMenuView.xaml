@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        xmlns:behaviors="clr-namespace:QSF.Behaviors"
+                        x:Class="QSF.Examples.RichTextEditorControl.CustomContextMenuExample.CustomContextMenuView"
+                        Padding="{OnIdiom Default='16, 20', Phone=16}">
+    <telerik:RadContentView.Behaviors>
+        <behaviors:AndroidResizeSoftInputModeBehavior />
+    </telerik:RadContentView.Behaviors>
+    
+    <Grid RowDefinitions="{OnIdiom Default='Auto, *', Phone='*, Auto'}">
+        <telerik:RadRichTextEditor x:Name="richTextEditor"
+                                   Source="{Binding Source}"
+                                   Grid.Row="{OnIdiom Default=1, Phone=0}"
+                                   AutoGenerateContextMenu="False"
+                                   AutomationId="richTextEditor">
+            <telerik:RadRichTextEditor.ContextMenuItems>
+                <telerik:RichTextEditorBoldContextMenuItem />
+                <telerik:RichTextEditorItalicContextMenuItem />
+                <telerik:RichTextEditorCustomContextMenuItem Text="Underline" 
+                                                             Command="{Binding Source={x:Reference richTextEditor}, Path=ToggleUnderlineCommand}" />
+                <telerik:RichTextEditorOpenHyperlinkContextMenuItem />
+            </telerik:RadRichTextEditor.ContextMenuItems>
+            <telerik:RadRichTextEditor.Behaviors>
+                <behaviors:PickImageBehavior />
+            </telerik:RadRichTextEditor.Behaviors>
+        </telerik:RadRichTextEditor>
+        <telerik:RadRichTextEditorToolbar x:Name="richTextToolbar"
+                                          Grid.Row="{OnIdiom Default=0, Phone=1}"
+                                          RichTextEditor="{x:Reference richTextEditor}"
+                                          Margin="{OnIdiom Default='0, 12, 0, 0', Phone=0}" 
+                                          AutomationId="richTextEditorTooblar" />
+    </Grid>
+</telerik:RadContentView>

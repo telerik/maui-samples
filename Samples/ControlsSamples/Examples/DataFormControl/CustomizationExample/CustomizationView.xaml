@@ -24,7 +24,8 @@
                              HeaderImageStyle="{StaticResource headerImageStyle}"
                              HeaderPosition="{OnIdiom Default=Above, Phone=Beside}"
                              LayoutDefinition="{OnIdiom Default={StaticResource gridLayout},
-                                                        Phone={StaticResource stackLayout}}">
+                                                        Phone={StaticResource stackLayout}}"
+                             AutomationId="dataForm">
             <telerik:RadDataForm.BindingContext>
                 <local:AccountViewModel />
             </telerik:RadDataForm.BindingContext>
@@ -48,6 +49,7 @@
                            Style="{StaticResource SubmitButtonStyle}"
                            HorizontalOptions="{OnIdiom Default=Start, Phone=Fill}"
                            Command="{Binding CommitCommand, Source={x:Reference dataForm}}"
-                           Clicked="ReserveButton_Clicked" />
+                           Clicked="ReserveButton_Clicked" 
+                           AutomationId="reserveButton"/>
     </Grid>
 </ContentView>

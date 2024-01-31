@@ -18,10 +18,12 @@
             <Grid RowDefinitions="Auto, *"
                   RowSpacing="4">
                 <telerik:RadEntry x:Name="searchEntry"
-                                  ReserveSpaceForErrorView="False" />
+                                  ReserveSpaceForErrorView="False" 
+                                  AutomationId="searchEntry"/>
                 <views:InnerSearchView Grid.Row="1"
                                        SearchText="{Binding Text, Source={Reference searchEntry}}"
-                                       SelectedSearchResult="{Binding SelectedSearchResult, Source={RelativeSource AncestorType={Type views:SearchViewDesktop}}}" />
+                                       SelectedSearchResult="{Binding SelectedSearchResult, Source={RelativeSource AncestorType={Type views:SearchViewDesktop}}}" 
+                                       AutomationId="searchResults"/>
             </Grid>
         </telerik:RadBorder>
     </Grid>

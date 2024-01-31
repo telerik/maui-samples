@@ -35,7 +35,8 @@
     <Grid RowDefinitions="Auto, Auto, *" Padding="10">
         <telerik:RadToolbar OverflowMode="Scroll"
                             ItemSpacing="{OnPlatform Default=8, Android=0}" 
-                            ScrollButtonsVisibility="{OnIdiom Desktop=Auto, Default=Hidden}">
+                            ScrollButtonsVisibility="{OnIdiom Desktop=Auto, Default=Hidden}"
+                            AutomationId="toolbar">
             <telerik:LabelToolbarItem ImageSource="{Binding AvatarImage}"
                                       Style="{StaticResource AvatarToolbarItemStyle}" />
 
@@ -101,14 +102,16 @@
                    VerticalOptions="Center" />
             <telerik:RadEntry Grid.Column="1"
                               Placeholder="Enter Recipient"
-                              Text="{Binding Recepient}" />
+                              Text="{Binding Recepient}" 
+                              AutomationId="toEntry"/>
             <Label Text="Title:"
                    Grid.Row="1"
                    VerticalOptions="Center" />
             <telerik:RadEntry Grid.Row="1"
                               Grid.Column="1"
                               Placeholder="Enter Title"
-                              Text="{Binding Title}" />
+                              Text="{Binding Title}" 
+                              AutomationId="titleEntry"/>
         </Grid>
         <Grid Grid.Row="2"
               Margin="0, 28, 0, 0">

@@ -38,14 +38,16 @@
             <telerik:RadSegmentedControl ItemsSource="{Binding SmallImages}"
                                          SelectedIndex="0"
                                          HorizontalOptions="Start"
-                                         SelectedSegmentBackgroundColor="LightGray"/>
+                                         SelectedSegmentBackgroundColor="LightGray"
+                                         AutomationId="imageSegmentedControl"/>
         </VerticalStackLayout>
         <VerticalStackLayout>
             <Label Text="Text" 
                    Style="{StaticResource descriptionLabel}"/>
             <telerik:RadSegmentedControl ItemsSource="{Binding Categories}"
                                          Style="{StaticResource segmentedStyle}"
-                                         SelectedIndex="1" />
+                                         SelectedIndex="1" 
+                                         AutomationId="textSegmentedControl"/>
         </VerticalStackLayout>
         <VerticalStackLayout>
             <Label Text="Disabled" 
@@ -53,7 +55,8 @@
             <telerik:RadSegmentedControl x:Name="segmented"
                                          Style="{StaticResource segmentedStyle}"
                                          ItemsSource="{Binding Categories}"
-                                         SelectedIndex="0"/>
+                                         SelectedIndex="0"
+                                         AutomationId="disabledSegmentedControl"/>
         </VerticalStackLayout>
     </VerticalStackLayout>
 </telerik:RadContentView>

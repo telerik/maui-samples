@@ -28,7 +28,8 @@
                                                   TrackFill="Transparent"
                                                   ProgressFill="{StaticResource ApplicationAccentColor}"
                                                   ProgressAnimationDuration="20"
-                                                  Value="{Binding UploadProgress, Mode=TwoWay}" />
+                                                  Value="{Binding UploadProgress, Mode=TwoWay}" 
+                                                  AutomationId="progressBar"/>
                     <Label x:Name="tick"
                            Scale="0"
                            FontFamily="{x:Static telerik:TelerikFont.Name}"
@@ -49,7 +50,8 @@
                                Margin="{OnIdiom Desktop='0, 20, 0, 0', Phone='0, 24, 0, 0'}"
                                MinimumWidthRequest="{OnPlatform Default=170, Android=160, iOS=130}"
                                VerticalOptions="Center"
-                               HorizontalOptions="Center" />
+                               HorizontalOptions="Center" 
+                               AutomationId="uploadButton"/>
         </VerticalStackLayout>
     </ScrollView>
 </telerik:RadContentView>

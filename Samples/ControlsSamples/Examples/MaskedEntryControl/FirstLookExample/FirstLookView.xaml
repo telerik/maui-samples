@@ -45,7 +45,8 @@
                                                  Value="{Binding Email, Mode=TwoWay}"
                                                  WidthRequest="{OnPlatform WinUI='300', MacCatalyst='300'}"
                                                  HorizontalOptions="{OnIdiom Default=Fill, Desktop=Start}"
-                                                 Placeholder="your_email@mail.mail" />
+                                                 Placeholder="your_email@mail.mail" 
+                                                 AutomationId="emailMask"/>
                     <Label Text="Phone:"
                            Grid.Row="2" />
                     <telerik:RadRegexMaskedEntry Mask="(\+0?1\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$"
@@ -54,7 +55,8 @@
                                                  Placeholder="(415)-555-2671"
                                                  Value="{Binding Phone, Mode=TwoWay}"
                                                  Grid.Row="2"
-                                                 Grid.Column="1" />
+                                                 Grid.Column="1" 
+                                                 AutomationId="regexMask"/>
                     <Label Text="Additional Information"
                            Grid.Row="3"
                            Grid.ColumnSpan="2"
@@ -65,7 +67,8 @@
                                               Grid.Column="1"
                                               Value="{Binding IP, Mode=TwoWay}"
                                               WidthRequest="{OnPlatform WinUI='300', MacCatalyst='300'}"
-                                              HorizontalOptions="{OnIdiom Default=Fill, Desktop=Start}" />
+                                              HorizontalOptions="{OnIdiom Default=Fill, Desktop=Start}" 
+                                              AutomationId="ipMask"/>
                     <Label Text="Zip Code:"
                            Grid.Row="5" />
                     <telerik:RadTextMaskedEntry Placeholder="Zip Code"
@@ -75,7 +78,8 @@
                                                 Value="{Binding ZipCode, Mode=TwoWay}"
                                                 WidthRequest="{OnPlatform WinUI='300', MacCatalyst='300'}"
                                                 HorizontalOptions="{OnIdiom Default=Fill, Desktop=Start}"
-                                                Mask="0000-000" />
+                                                Mask="0000-000" 
+                                                AutomationId="textMask"/>
                     <Label Text="Total Cost:"
                            Grid.Row="6" />
                     <telerik:RadNumericMaskedEntry Mask="C"
@@ -83,7 +87,8 @@
                                                    Grid.Column="1"
                                                    Value="{Binding Currency, Mode=TwoWay}"
                                                    WidthRequest="{OnPlatform WinUI='300', MacCatalyst='300'}"
-                                                   HorizontalOptions="{OnIdiom Default=Fill, Desktop=Start}" />
+                                                   HorizontalOptions="{OnIdiom Default=Fill, Desktop=Start}" 
+                                                   AutomationId="numericMask"/>
 
                     <telerik:RadButton Text="Submit"
                                        Grid.Row="7"
@@ -92,7 +97,8 @@
                                        VerticalOptions="{OnIdiom Default=Start, Phone=End}"
                                        HorizontalOptions="{OnIdiom Default=Start, Phone=Fill}"
                                        Style="{StaticResource SubmitButtonStyle}"
-                                       Command="{Binding SubmitCommand}" />
+                                       Command="{Binding SubmitCommand}" 
+                                       AutomationId="submitButton"/>
                 </Grid>
             </ScrollView>
         </Grid>

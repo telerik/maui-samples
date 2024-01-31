@@ -39,7 +39,8 @@
                                Text="{Binding ViewDocumentText}"
                                VerticalOptions="{OnPlatform Default=End, WinUI=Center, MacCatalyst=Center}"
                                HorizontalOptions="Center"
-                               Command="{Binding ViewDocumentCommand}" />
+                               Command="{Binding ViewDocumentCommand}" 
+                               AutomationId="viewDocumentButton"/>
         </VerticalStackLayout>
         <ScrollView Grid.Row="1"
                     Margin="{OnIdiom Default='0, 24, 0, 0', Desktop='0, 40, 0, 0'}"
@@ -54,21 +55,25 @@
                     <Label Text="Find what:" />
                     <telerik:RadEntry Placeholder="Enter Text to be found ex. fast"
                                       Text="{Binding FindWhat, Mode=OneWayToSource}"
-                                      WidthRequest="{OnPlatform WinUI=300, MacCatalyst=300}" />
+                                      WidthRequest="{OnPlatform WinUI=300, MacCatalyst=300}" 
+                                      AutomationId="findTextEntry"/>
                     <Label Text="Replace with:" />
                     <telerik:RadEntry Text="{Binding ReplaceWith, Mode=OneWayToSource}"
-                                      WidthRequest="{OnPlatform WinUI=300, MacCatalyst=300}" />
+                                      WidthRequest="{OnPlatform WinUI=300, MacCatalyst=300}" 
+                                      AutomationId="replaceWithEntry"/>
                     <VerticalStackLayout HorizontalOptions="Center">
                         <HorizontalStackLayout Margin="0, 0, 0, 24"
                                                Spacing="10">
-                            <telerik:RadCheckBox IsChecked="{Binding MatchCase}" />
+                            <telerik:RadCheckBox IsChecked="{Binding MatchCase}" 
+                                                 AutomationId="matchCaseCheckBox"/>
                             <Label Text="Match Case"
                                    HorizontalOptions="Start"
                                    Margin="0" />
                         </HorizontalStackLayout>
                         <HorizontalStackLayout Margin="0, 0, 0, 24"
                                                Spacing="10">
-                            <telerik:RadCheckBox IsChecked="{Binding MatchEntireCellContents}" />
+                            <telerik:RadCheckBox IsChecked="{Binding MatchEntireCellContents}" 
+                                                 AutomationId="matchEntireCellCheckBox"/>
                             <Label Text="Match Entire Cell Contents"
                                    HorizontalOptions="Start"
                                    Margin="0" />
@@ -81,7 +86,8 @@
                                    Command="{Binding ReplaceAndSaveCommand}"
                                    VerticalOptions="{OnPlatform Default=End, WinUI=Center, MacCatalyst=Center}"
                                    HorizontalOptions="{OnPlatform Default=Fill, WinUI=Center, MacCatalyst=Center}"
-                                   Style="{StaticResource SubmitButtonStyle}" />
+                                   Style="{StaticResource SubmitButtonStyle}" 
+                                   AutomationId="replaceAndSaveButton"/>
             </Grid>
         </ScrollView>
     </Grid>

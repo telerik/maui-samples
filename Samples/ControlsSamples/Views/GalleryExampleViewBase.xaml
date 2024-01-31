@@ -15,7 +15,7 @@
                              x:Name="listView"
                              SelectionChanged="RadListView_SelectionChanged"
                              BackgroundColor="#5D65B1"
-                             AutomationId="GalleryListView">
+                             AutomationId="galleryListView">
             <telerik:RadListView.LayoutDefinition>
                 <telerik:ListViewLinearLayout Orientation="Horizontal" ItemLength="60" />
             </telerik:RadListView.LayoutDefinition>
@@ -37,7 +37,8 @@
                                        WidthRequest="20" 
                                        HeightRequest="20"
                                        VerticalOptions="Center"
-                                       HorizontalOptions="Center" />
+                                       HorizontalOptions="Center" 
+                                       AutomationId="controlIconInGalery"/>
                                 <BoxView HeightRequest="4" 
                                          WidthRequest="40"
                                          HorizontalOptions="Center" 

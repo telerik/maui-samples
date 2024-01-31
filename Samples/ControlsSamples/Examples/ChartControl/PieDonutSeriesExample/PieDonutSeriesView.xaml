@@ -26,7 +26,8 @@
                 <telerik:RadPieChart x:Name="chart"
                                           Grid.Row="1"  
                                           BackgroundColor="{AppThemeBinding Light=White}" 
-                                          StyleClass="TelerikTheme">
+                                          StyleClass="TelerikTheme"
+                                          AutomationId="pieChart">
                     <telerik:RadPieChart.ChartBehaviors>
                         <telerik:ChartSelectionBehavior DataPointSelectionMode="Single" 
                                                              SeriesSelectionMode="None"/>
@@ -55,7 +56,8 @@
                 <telerik:RadPieChart x:Name="chart"
                                           Grid.Row="1" 
                                           BackgroundColor="{AppThemeBinding Light=White}"
-                                          StyleClass="TelerikTheme">
+                                          StyleClass="TelerikTheme"
+                                          AutomationId="pieChart2">
                     <telerik:RadPieChart.ChartBehaviors>
                         <telerik:ChartSelectionBehavior DataPointSelectionMode="Single" 
                                                              SeriesSelectionMode="None"/>
@@ -79,7 +81,8 @@
                                         LegendProvider="{x:Reference chart}" 
                                         HeightRequest="50" 
                                         Orientation="Horizontal" 
-                                        StyleClass="TelerikTheme">
+                                        StyleClass="TelerikTheme"
+                                        AutomationId="donutChart">
                 </telerik:RadLegend>
                 <telerik:RadPieChart x:Name="chart"
                                           Grid.Row="1" 

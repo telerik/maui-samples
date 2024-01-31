@@ -18,14 +18,16 @@
         <HorizontalStackLayout telerik:RadCheckBox.ToggleOnTap="{Reference canExpandMultipleCb}"
                                Style="{StaticResource CheckBoxGroupStyle}">
             <telerik:RadCheckBox x:Name="canExpandMultipleCb"
-                                 IsChecked="{Binding CanUserExpandMultipleRowDetails}" />
+                                 IsChecked="{Binding CanUserExpandMultipleRowDetails}" 
+                                 AutomationId="canExpandMultipleCheckBox"/>
             <Label Text="Can Expand Multiple"
                    Style="{StaticResource HorizontalGroupLabelAtEndStyle}" />
         </HorizontalStackLayout>
         <HorizontalStackLayout telerik:RadCheckBox.ToggleOnTap="{Reference areRowDetailsFrozenCb}"
                                Style="{StaticResource CheckBoxGroupStyle}">
             <telerik:RadCheckBox x:Name="areRowDetailsFrozenCb"
-                                 IsChecked="{Binding AreRowDetailsFrozen}" />
+                                 IsChecked="{Binding AreRowDetailsFrozen}" 
+                                 AutomationId="areFrozenCheckBox"/>
             <Label Text="Are Frozen"
                    Style="{StaticResource HorizontalGroupLabelAtEndStyle}" />
         </HorizontalStackLayout>

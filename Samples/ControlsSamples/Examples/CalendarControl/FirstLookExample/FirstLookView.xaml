@@ -47,7 +47,8 @@
                              Grid.Column="{OnIdiom Default=1, Desktop=0}"
                              FirstDayOfWeek="Monday"
                              SelectedDate="{Binding SelectedDate, Mode=TwoWay}"
-                             MaximumHeightRequest="{OnPlatform iOS=350, Android=320}" />
+                             MaximumHeightRequest="{OnPlatform iOS=350, Android=320}" 
+                             AutomationId="calendarButton"/>
         <Grid Grid.Row="{OnIdiom Default=1, Desktop=0}"
               Grid.RowSpan="{OnIdiom Default=1, Desktop=2}"
               Grid.Column="1"
@@ -60,7 +61,8 @@
                   Margin="{OnIdiom Default='0, 8, 0, 0', Phone='0, 8'}">
                 <telerik:RadItemsView Grid.Row="1"
                                       ItemsSource="{Binding FilteredRemindersList}"
-                                      ItemTemplate="{OnIdiom Default={StaticResource ReminderTemplate}, Phone={StaticResource ReminderTemplate_Phone}}" />
+                                      ItemTemplate="{OnIdiom Default={StaticResource ReminderTemplate}, Phone={StaticResource ReminderTemplate_Phone}}" 
+                                      AutomationId="reminderItemsView"/>
                 <Label IsVisible="{Binding IsEmptyMessageVisible}"
                        Text="No reminders for this day"
                        TextColor="{StaticResource AccentColor4}" />

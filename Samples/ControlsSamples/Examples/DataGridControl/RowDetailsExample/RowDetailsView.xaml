@@ -15,7 +15,8 @@
                              RowDetailsTemplate="{StaticResource DataGridRowDetailsTemplate}"
                              CanUserExpandMultipleRowDetails="{Binding CanUserExpandMultipleRowDetails}"
                              AreRowDetailsFrozen="{Binding AreRowDetailsFrozen}"
-                             PropertyChanged="DataGrid_PropertyChanged">
+                             PropertyChanged="DataGrid_PropertyChanged"
+                             AutomationId="dataGrid">
             <telerik:RadDataGrid.Columns>
                 <telerik:DataGridToggleRowDetailsColumn IsVisible="{Binding IsToggleRowDetailsColumnVisible}" />
                 <telerik:DataGridNumericalColumn PropertyName="Id" 

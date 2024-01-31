@@ -27,7 +27,8 @@
                              ItemStyle="{StaticResource TreeViewItemStyle}"
                              SelectionMode="{Binding SelectionMode, Mode=TwoWay}"
                              CheckBoxMode="{Binding CheckBoxMode, Mode=TwoWay}"
-                             LevelIndentation="{Binding LevelIndentation, Mode=TwoWay}">
+                             LevelIndentation="{Binding LevelIndentation, Mode=TwoWay}"
+                             AutomationId="treeView">
             <telerik:TreeViewDescriptor TargetType="{x:Type common:FolderNode}"
                                         DisplayMemberPath="Name"
                                         ItemsSourcePath="Children" />

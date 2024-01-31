@@ -28,7 +28,8 @@
                                    VerticalOptions="Center"
                                    Margin="10"
                                    WidthRequest="150"
-                                   HeightRequest="150">
+                                   HeightRequest="150"
+                                   AutomationId="image">
                                 <Image.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding BindingContext.OpenCommand, Source={x:Reference imageLayout}}"
                                                           CommandParameter="{Binding ImagePath}" />

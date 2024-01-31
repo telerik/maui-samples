@@ -27,15 +27,17 @@
             <Label Text="Telerik UI for .NET MAUI"
                    Style="{StaticResource PageHeaderLabelStyle}"
                    HorizontalOptions="Center"
-                   Grid.ColumnSpan="2" />
+                   Grid.ColumnSpan="2" 
+                   AutomationId="telerikTitle"/>
             <telerik:RadButton Command="{Binding NavigateToDownloadTrialCommand}"
                                Grid.Column="1"
                                Margin="0, 0, 5, 0"
                                HorizontalOptions="End"
                                Style="{StaticResource MoreInfoButtonStyle}"
-                               MinimumWidthRequest="{OnPlatform MacCatalyst=122}" />
+                               MinimumWidthRequest="{OnPlatform MacCatalyst=122}" 
+                               AutomationId="moreInfoButton"/>
         </Grid>
-        <views:HighlightsView Grid.Row="1" />
+        <views:HighlightsView Grid.Row="1" AutomationId="heighlightedAreas"/>
         <Label Text="All Controls"
                FontSize="{OnPlatform Default=20, MacCatalyst=22}"
                FontAttributes="Bold"

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:local="clr-namespace:QSF.Examples.SchedulerControl.CustomizationExample"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        xmlns:scheduler="clr-namespace:Telerik.Maui.Controls.Scheduler;assembly=Telerik.Maui.Controls"
+                        x:Class="QSF.Examples.SchedulerControl.CustomizationExample.CustomizationView"
+                        Padding="{OnIdiom Default=0, Desktop='16, 20'}">
+    <telerik:RadContentView.Resources>
+        <local:AppointmentLocationToColorConverter x:Key="AppointmentLocationToColorConverter" />
+
+        <Style x:Key="CreateAppointmentFABStyle" TargetType="telerik:RadButton">
+            <Setter Property="WidthRequest" Value="{OnPlatform Default=56, MacCatalyst=40, WinUI=40}" />
+            <Setter Property="HeightRequest" Value="{OnPlatform Default=56, MacCatalyst=40, WinUI=40}" />
+            <Setter Property="CornerRadius" Value="{OnPlatform Default=28, MacCatalyst=20, WinUI=20}" />
+            <Setter Property="FontFamily" Value="TelerikFont" />
+            <Setter Property="FontSize" Value="{OnPlatform Default=24, MacCatalyst=16, WinUI=16}" />
+            <Setter Property="Text" Value="{x:Static telerik:TelerikFont.IconPlus}" />
+            <Setter Property="TextColor" Value="#FFFFFF" />
+            <Setter Property="Background" Value="{StaticResource ApplicationAccentColor}" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="Shadow">
+                <Shadow Offset="{OnPlatform Default='0, 3', MacCatalyst='0, 2', WinUI='0, 4'}"
+                        Radius="{OnPlatform Default=8, Android=24}"
+                        Brush="{OnPlatform Default=#4D000000, Android=#66000000, WinUI=#24000000}" />
+            </Setter>
+        </Style>
+
+        <Style x:Key="RoomLabelStyle" TargetType="Label">
+            <Setter Property="VerticalOptions" Value="Center" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="FontSize" Value="12" />
+        </Style>
+
+        <Style x:Key="RoomAdornerStyle" TargetType="BoxView">
+            <Setter Property="HeightRequest" Value="4" />
+            <Setter Property="CornerRadius" Value="2" />
+        </Style>
+
+        <Style x:Key="CustomAppointmentCategoryBorderStyle" TargetType="telerik:RadBorder">
+            <Setter Property="BackgroundColor" Value="{Binding Occurrence.Appointment.Location, Converter={StaticResource AppointmentLocationToColorConverter}, ConverterParameter='Category'}" />
+            <Setter Property="CornerRadius" Value="{OnPlatform Default='4, 0, 0, 4', Android='5, 0, 0, 5'}" />
+            <Setter Property="WidthRequest" Value="3" />
+            <Setter Property="HorizontalOptions" Value="Start" />
+        </Style>
+
+        <DataTemplate x:Key="CustomAppointmentTemplate">
+            <Grid>
+                <local:CustomizedAppointmentView Subject="{Binding Occurrence.Appointment.Subject}"
+                                                 SubjectTextColor="{StaticResource DefaultTextColor}"
+                                                 Padding="8, 4, 4, 4"
+                                                 BackgroundColor="{Binding Occurrence.Appointment.Location, Converter={StaticResource AppointmentLocationToColorConverter}}" />
+                <telerik:RadBorder Style="{StaticResource CustomAppointmentCategoryBorderStyle}" />
+            </Grid>
+        </DataTemplate>
+    </telerik:RadContentView.Resources>
+
+    <Grid RowDefinitions="*, 44">
+        <Grid>
+            <telerik:RadScheduler x:Name="scheduler"
+                                  AppointmentsSource="{Binding FilteredAppointmentsSource}"
+                                  AppointmentTemplate="{StaticResource CustomAppointmentTemplate}"
+                                  EditAppointmentDialogStyle="{StaticResource CustomSchedulerEditAppointmentDialog_Style}">
+                <telerik:RadScheduler.ViewDefinitions>
+                    <telerik:DayViewDefinition />
+                    <telerik:MultidayViewDefinition VisibleDays="3" Title="3 Day" />
+                    <telerik:WeekViewDefinition Title="Work Week" IsWeekendVisible="False" />
+                    <telerik:WeekViewDefinition />
+                    <telerik:MonthViewDefinition />
+                </telerik:RadScheduler.ViewDefinitions>
+            </telerik:RadScheduler>
+            <telerik:RadButton x:Name="createAppointmentDialogBtn"
+                               Style="{StaticResource CreateAppointmentFABStyle}"
+                               Clicked="CreateAppointmentDialogBtnClicked"
+                               VerticalOptions="End"
+                               HorizontalOptions="End"
+                               Margin="0, 0, 16, 16" />
+        </Grid>
+
+        <Grid x:Name="officeRoomsGrid"
+              Grid.Row="1"
+              ColumnDefinitions="Auto, Auto, Auto"
+              ColumnSpacing="12"
+              Padding="{OnPlatform Default=0, MacCatalyst='16, 0', WinUI='16, 0'}"
+              HorizontalOptions="Center">
+            <HorizontalStackLayout Spacing="8"
+                                   telerik:RadCheckBox.ToggleOnTap="{x:Reference IsRoom501CheckedCb}">
+                <telerik:RadCheckBox x:Name="IsRoom501CheckedCb"
+                                     IsChecked="{Binding IsRoom501Checked}" />
+                <VerticalStackLayout VerticalOptions="Center">
+                    <Label Text="Sofia 501"
+                           Style="{StaticResource RoomLabelStyle}" />
+                    <BoxView Style="{StaticResource RoomAdornerStyle}"
+                             BackgroundColor="#0066FF" />
+                </VerticalStackLayout>
+            </HorizontalStackLayout>
+            <HorizontalStackLayout Grid.Column="1"
+                                   Spacing="8"
+                                   telerik:RadCheckBox.ToggleOnTap="{x:Reference IsRoom502CheckedCb}">
+                <telerik:RadCheckBox x:Name="IsRoom502CheckedCb"
+                                     IsChecked="{Binding IsRoom502Checked}" />
+                <VerticalStackLayout VerticalOptions="Center">
+                    <Label Text="Sofia 502"
+                           Style="{StaticResource RoomLabelStyle}" />
+                    <BoxView Style="{StaticResource RoomAdornerStyle}"
+                             BackgroundColor="#339999" />
+                </VerticalStackLayout>
+            </HorizontalStackLayout>
+            <HorizontalStackLayout Grid.Column="2"
+                                   Spacing="8"
+                                   telerik:RadCheckBox.ToggleOnTap="{x:Reference IsRoom503CheckedCb}">
+                <telerik:RadCheckBox x:Name="IsRoom503CheckedCb"
+                                     IsChecked="{Binding IsRoom503Checked}" />
+                <VerticalStackLayout VerticalOptions="Center">
+                    <Label Text="Sofia 503"
+                           Style="{StaticResource RoomLabelStyle}" />
+                    <BoxView Style="{StaticResource RoomAdornerStyle}"
+                             BackgroundColor="#6633CC" />
+                </VerticalStackLayout>
+            </HorizontalStackLayout>
+        </Grid>
+    </Grid>
+</telerik:RadContentView>

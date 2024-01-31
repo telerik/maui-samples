@@ -18,7 +18,8 @@
 			<Grid BackgroundColor="White"
                   Grid.Row="1">
 				<telerik:RadBarcode HeightRequest="180"
-									Value="{Binding Value}">
+									Value="{Binding Value}"
+                                    AutomationId="barcode">
 					<telerik:RadBarcode.Symbology>
 						<telerik:DataMatrix SymbolSize="SquareAuto" />
 					</telerik:RadBarcode.Symbology>

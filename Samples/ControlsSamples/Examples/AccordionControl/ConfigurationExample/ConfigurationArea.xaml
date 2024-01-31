@@ -19,21 +19,24 @@
             <HorizontalStackLayout telerik:RadCheckBox.ToggleOnTap="{Reference CanCollapseAllItemsCb}"
                                    Style="{StaticResource CheckBoxGroupStyle}">
                 <telerik:RadCheckBox x:Name="CanCollapseAllItemsCb"
-                                     IsChecked="{Binding CanCollapseAllItems, Mode=TwoWay}" />
+                                     IsChecked="{Binding CanCollapseAllItems, Mode=TwoWay}" 
+                                     AutomationId="collapseAllItemsCheckBox"/>
                 <Label Text="Can Collapse All Items"
                     Style="{StaticResource HorizontalGroupLabelAtEndStyle}" />
             </HorizontalStackLayout>
             <HorizontalStackLayout telerik:RadCheckBox.ToggleOnTap="{Reference CanExpandMultipleItemsCb}"
                                    Style="{StaticResource CheckBoxGroupStyle}">
                 <telerik:RadCheckBox x:Name="CanExpandMultipleItemsCb"
-                                     IsChecked="{Binding CanExpandMultipleItems, Mode=TwoWay}" />
+                                     IsChecked="{Binding CanExpandMultipleItems, Mode=TwoWay}" 
+                                     AutomationId="expandMultipleItemsCheckBox"/>
                 <Label Text="Can Expand Multiple Items"
                        Style="{StaticResource HorizontalGroupLabelAtEndStyle}" />
             </HorizontalStackLayout>
             <HorizontalStackLayout telerik:RadCheckBox.ToggleOnTap="{Reference IsAnimationEnabledCb}"
                                    Style="{StaticResource CheckBoxGroupStyle}">
                 <telerik:RadCheckBox x:Name="IsAnimationEnabledCb"
-                                     IsChecked="{Binding IsAnimationEnabled}" />
+                                     IsChecked="{Binding IsAnimationEnabled}" 
+                                     AutomationId="animationCheckBox"/>
                 <Label Text="Is Animation Enabled"
                        Style="{StaticResource HorizontalGroupLabelAtEndStyle}" />
             </HorizontalStackLayout>
@@ -42,7 +45,8 @@
             <Label Text="Animation Easing:"
                    Style="{StaticResource VerticalGroupLabelStyle}" />
             <telerik:RadListPicker SelectedItem="{Binding AnimationEasing, Mode=TwoWay, Converter={StaticResource NameToEasingConverter}}"
-                                   ItemsSource="{Binding AnimationEasings}"/>
+                                   ItemsSource="{Binding AnimationEasings}"
+                                   AutomationId="animationEasingPicker"/>
         </VerticalStackLayout>
         <VerticalStackLayout Style="{StaticResource GroupAtSeparateAreaStyle}">
             <Label Text="Animation Duration:"
@@ -55,7 +59,8 @@
                         Minimum="300" Maximum="3000"
                         Value="{Binding AnimationDuration,Mode=TwoWay}"
                         HorizontalOptions="FillAndExpand"
-                        VerticalOptions="FillAndExpand"/>
+                        VerticalOptions="FillAndExpand"
+                        AutomationId="animationDurationSlider"/>
                 <Label Grid.Column="2"
                        Text="{Binding Source={x:Reference animationDurationSlider}, Path=Maximum}"
                        Style="{StaticResource HorizontalGroupLabelAtEndStyle}" />
@@ -72,7 +77,8 @@
                         Value="{Binding Spacing}"
                         Minimum="0" Maximum="50"
                         HorizontalOptions="FillAndExpand"
-                        VerticalOptions="FillAndExpand"/>
+                        VerticalOptions="FillAndExpand"
+                        AutomationId="spacingSlider"/>
                 <Label Grid.Column="2"
                        Text="{Binding Source={x:Reference spacingSlider}, Path=Maximum, Mode=TwoWay}"
                        Style="{StaticResource HorizontalGroupLabelAtEndStyle}" />

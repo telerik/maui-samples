@@ -24,14 +24,16 @@
                    Style="{StaticResource VerticalGroupLabelStyle}" />
             <telerik:RadComboBox ItemsSource="{Binding SelectionModes}"
                                  DropDownHeight="{OnPlatform Android=102, iOS=108, MacCatalyst=66, WinUI=120}"
-                                 SelectedItem="{Binding SelectionMode, Mode=TwoWay}" />
+                                 SelectedItem="{Binding SelectionMode, Mode=TwoWay}" 
+                                 AutomationId="selectionModesComboBox"/>
         </VerticalStackLayout>
         <VerticalStackLayout Style="{StaticResource GroupAtSeparateAreaStyle}">
             <Label Text="CheckBox Mode:"
                    Style="{StaticResource VerticalGroupLabelStyle}" />
             <telerik:RadComboBox ItemsSource="{Binding CheckBoxModes}"
                                  DropDownHeight="{OnPlatform Android=102, iOS=108, MacCatalyst=66, WinUI=120}"
-                                 SelectedItem="{Binding CheckBoxMode, Mode=TwoWay}" />
+                                 SelectedItem="{Binding CheckBoxMode, Mode=TwoWay}" 
+                                 AutomationId="checkBoxModesComboBox"/>
         </VerticalStackLayout>
         <VerticalStackLayout Style="{StaticResource GroupAtSeparateAreaStyle}">
             <Label Text="Level Indentation:"
@@ -44,7 +46,8 @@
                         Value="{Binding LevelIndentation}"
                         Minimum="0" Maximum="60"
                         HorizontalOptions="Fill"
-                        VerticalOptions="Center" />
+                        VerticalOptions="Center" 
+                        AutomationId="levelIndentationSlider"/>
                 <Label Grid.Column="2"
                        Text="{Binding Source={x:Reference levelIndentationSlider}, Path=Maximum, Mode=TwoWay}"
                        Style="{StaticResource HorizontalGroupLabelAtEndStyle}" />
@@ -57,14 +60,16 @@
             <HorizontalStackLayout telerik:RadCheckBox.ToggleOnTap="{Reference isItemExpandButtonVisibleCb}"
                                    Style="{StaticResource CheckBoxGroupStyle}">
                 <telerik:RadCheckBox x:Name="isItemExpandButtonVisibleCb"
-                                     IsChecked="{Binding IsItemExpandButtonVisible, Mode=TwoWay}" />
+                                     IsChecked="{Binding IsItemExpandButtonVisible, Mode=TwoWay}" 
+                                     AutomationId="isItemExpandButtonVisibleCheckBox"/>
                 <Label Text="Is Expand Button Visible"
                     Style="{StaticResource HorizontalGroupLabelAtEndStyle}" />
             </HorizontalStackLayout>
             <HorizontalStackLayout telerik:RadCheckBox.ToggleOnTap="{Reference isItemImageVisibleCb}"
                                    Style="{StaticResource CheckBoxGroupStyle}">
                 <telerik:RadCheckBox x:Name="isItemImageVisibleCb"
-                                     IsChecked="{Binding IsItemImageVisible}" />
+                                     IsChecked="{Binding IsItemImageVisible}" 
+                                     AutomationId="isItemImageVisibleCheckBox"/>
                 <Label Text="Is Image Visible"
                        Style="{StaticResource HorizontalGroupLabelAtEndStyle}" />
             </HorizontalStackLayout>
@@ -80,7 +85,8 @@
                         Value="{Binding ItemSpacing}"
                         Minimum="0" Maximum="50"
                         HorizontalOptions="Fill"
-                        VerticalOptions="Center" />
+                        VerticalOptions="Center" 
+                        AutomationId="spacingSlider"/>
                 <Label Grid.Column="2"
                        Text="{Binding Source={x:Reference spacingSlider}, Path=Maximum, Mode=TwoWay}"
                        Style="{StaticResource HorizontalGroupLabelAtEndStyle}" />

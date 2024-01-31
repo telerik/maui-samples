@@ -35,14 +35,16 @@
                                    WidthRequest="150"
                                    VerticalOptions="Center"
                                    Command="{Binding ImportFileCommand}"
-                                   Style="{StaticResource SubmitButtonStyle}" />
+                                   Style="{StaticResource SubmitButtonStyle}" 
+                                   AutomationId="loadFileButton"/>
                 <Label Text="OR"
                        VerticalOptions="Center" />
                 <telerik:RadButton Text="Load Sample"
                                    WidthRequest="150"
                                    VerticalOptions="Center"
                                    Command="{Binding ImportSampleCommand}"
-                                   Style="{StaticResource SubmitButtonStyle}" />
+                                   Style="{StaticResource SubmitButtonStyle}" 
+                                   AutomationId="loadSampleButton"/>
             </HorizontalStackLayout>
         </VerticalStackLayout>
         <telerik:RadBusyIndicator Grid.Row="1"
@@ -64,7 +66,8 @@
                         <DataTemplate>
                             <telerik:RadDataGrid ItemsSource="{Binding Rows}"
                                                  UserEditMode="None"
-                                                 UserGroupMode="Disabled" />
+                                                 UserGroupMode="Disabled" 
+                                                 AutomationId="dataGrid"/>
                         </DataTemplate>
                     </behaviors:BindableTabs.ItemTemplate>
                 </telerik:RadTabView>

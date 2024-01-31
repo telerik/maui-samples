@@ -38,7 +38,7 @@ namespace QSF.Examples.DataFormControl.CustomEditorsExample
         }
 
         [Required]
-        [Display(Name = "First Name", Prompt = "Enter Fist Name")]
+        [Display(Name = "First Name", Prompt = "Enter First Name")]
         public string FirstName
         {
             get => this.firstName;

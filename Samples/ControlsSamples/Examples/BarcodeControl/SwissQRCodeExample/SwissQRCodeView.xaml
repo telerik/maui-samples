@@ -62,7 +62,8 @@
                                 VerticalOptions="Center"
                                 Value="{Binding Path=Value}"
                                 IsValid="{Binding Path=IsValid}"
-                                ErrorMessage="{Binding Path=ErrorMessage}">
+                                ErrorMessage="{Binding Path=ErrorMessage}"
+                                AutomationId="barcode">
                 <telerik:RadBarcode.Symbology>
                     <telerik:SwissQRCode />
                 </telerik:RadBarcode.Symbology>

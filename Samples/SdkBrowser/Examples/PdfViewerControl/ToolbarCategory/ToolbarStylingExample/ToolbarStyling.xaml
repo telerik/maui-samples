@@ -7,9 +7,13 @@
         <ResourceDictionary>
             <!-- >> pdfviewer-toolbar-styling-resources -->
             <Color x:Key="ToolbarItemTextColor">White</Color>
+            <Color x:Key="ToolbarItemPlaceholderTextColor">#99FFFFFF</Color>
+            <Color x:Key="ToolbarButtonTextColor">WhiteSmoke</Color>
             <Color x:Key="ToolbarItemInvertedTextColor">Black</Color>
+            <Color x:Key="ToolbarItemInvertedPlaceholderTextColor">#99000000</Color>
             <Color x:Key="ToolbarItemPointerOverColor">#FABB5C</Color>
             <Color x:Key="ToolbarAccentColor">#F9AA34</Color>
+            <Color x:Key="ToolbarAccentColorAlpha50">#80F9AA34</Color>
             <Color x:Key="ToolbarDisabledColor">#61FFFFFF</Color>
 
             <Style x:Key="CommonToolbarItemViewStyle" TargetType="telerik:ButtonToolbarItemView">
@@ -18,7 +22,11 @@
                 <Setter Property="VisualStateManager.VisualStateGroups">
                     <VisualStateGroupList>
                         <VisualStateGroup Name="CommonStates">
-                            <VisualState Name="Normal" />
+                            <VisualState Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="TextColor" Value="{StaticResource ToolbarItemTextColor}" />
+                                </VisualState.Setters>
+                            </VisualState>
                             <VisualState Name="PointerOver">
                                 <VisualState.Setters>
                                     <Setter Property="BackgroundColor" Value="{StaticResource ToolbarItemPointerOverColor}" />
@@ -37,24 +45,100 @@
             <Style x:Key="ZoomToolbarItemViewStyle" TargetType="telerik:ButtonToolbarItemView" BasedOn="{StaticResource CommonToolbarItemViewStyle}">
                 <Setter Property="TextColor" Value="{StaticResource ToolbarAccentColor}" />
             </Style>
-            <Style x:Key="PdfViewerToolbarStyle" TargetType="telerik:RadPdfViewerToolbar">
+            <Style TargetType="telerik:RadPdfViewerToolbar">
                 <Setter Property="BackgroundColor" Value="#344955" />
                 <Setter Property="BorderThickness" Value="0" />
             </Style>
+
+            <!-- Applicable for Desktop -->
+            <SolidColorBrush x:Key="EntryFocusedBorderBrush" Color="{StaticResource ToolbarAccentColorAlpha50}" />
+            <LinearGradientBrush x:Key="EntryFocusedBorderBrush_WinUI" StartPoint="0.5, 0" EndPoint="0.5, 1">
+                <LinearGradientBrush.GradientStops>
+                    <GradientStop Offset="0.9" Color="#0F000000" />
+                    <GradientStop Offset="1.0" Color="{StaticResource ToolbarAccentColor}" />
+                </LinearGradientBrush.GradientStops>
+            </LinearGradientBrush>
+            <Style x:Key="CommonSearchButtonStyle" TargetType="telerik:ButtonToolbarItemView" BasedOn="{StaticResource CommonToolbarItemViewStyle}">
+                <Setter Property="TextColor" Value="{StaticResource ToolbarItemTextColor}" />
+            </Style>
+            <Style x:Key="SearchEntryStyle" TargetType="telerik:PdfViewerSearchEntryToolbarItemView">
+                <Setter Property="EntryStyle">
+                    <Style TargetType="telerik:RadEntry">
+                        <Setter Property="TextColor" Value="{StaticResource ToolbarItemInvertedTextColor}" />
+                        <Setter Property="FocusedBorderBrush" Value="{OnPlatform Default={StaticResource EntryFocusedBorderBrush}, WinUI={StaticResource EntryFocusedBorderBrush_WinUI}}" />
+                    </Style>
+                </Setter>
+            </Style>
+            <Style x:Key="SearchResultsStyle" TargetType="telerik:LabelToolbarItemView">
+                <Setter Property="TextColor" Value="{StaticResource ToolbarItemTextColor}" />
+            </Style>
+            <Style x:Key="BusyIndicatorStyle" TargetType="telerik:PdfViewerSearchBusyIndicatorToolbarItemView">
+                <Setter Property="BusyIndicatorStyle">
+                    <Style TargetType="telerik:RadBusyIndicator">
+                        <Setter Property="AnimationContentColor" Value="{StaticResource ToolbarItemPointerOverColor}" />
+                    </Style>
+                </Setter>
+            </Style>
+            <Style x:Key="SearchPopupStyle" TargetType="telerik:PdfViewerSearchContentView">
+                <Setter Property="BackgroundColor" Value="#344955" />
+                <Setter Property="SearchEntryToolbarItemStyle" Value="{StaticResource SearchEntryStyle}" />
+                <Setter Property="SearchResultsLabelToolbarItemStyle" Value="{StaticResource SearchResultsStyle}" />
+                <Setter Property="CloseButtonToolbarItemStyle" Value="{StaticResource CommonSearchButtonStyle}" />
+                <Setter Property="PreviousSearchResultToolbarItemStyle" Value="{StaticResource CommonSearchButtonStyle}" />
+                <Setter Property="NextSearchResultToolbarItemStyle" Value="{StaticResource CommonSearchButtonStyle}" />
+                <Setter Property="BusyIndicatorToolbarItemStyle" Value="{StaticResource BusyIndicatorStyle}" />
+            </Style>
+
+            <!-- Applicable for mobile devices -->
+            <Style x:Key="ToastStyle" TargetType="telerik:PdfViewerSearchToast">
+                <Setter Property="Fill" Value="{StaticResource ToolbarItemPointerOverColor}" />
+                <Setter Property="TextColor" Value="#344955" />
+            </Style>
+            <Style TargetType="telerik:BackNavigationButtonToolbarItemView">
+                <Setter Property="TextColor" Value="{StaticResource ToolbarButtonTextColor}" />
+            </Style>
+            <Style TargetType="telerik:PdfViewerSearchBusyIndicatorToolbarItemView">
+                <Setter Property="BusyIndicatorStyle">
+                    <Style TargetType="telerik:RadBusyIndicator">
+                        <Setter Property="AnimationContentColor" Value="{StaticResource ToolbarItemPointerOverColor}" />
+                    </Style>
+                </Setter>
+            </Style>
+            <Style TargetType="telerik:PdfViewerSearchEntryToolbarItemView">
+                <Setter Property="EntryStyle">
+                    <Style TargetType="telerik:RadEntry">
+                        <Setter Property="Placeholder" Value="Search in document" />
+                        <Setter Property="PlaceholderColor" Value="{OnPlatform Default={StaticResource ToolbarItemPlaceholderTextColor}, iOS={StaticResource ToolbarItemInvertedPlaceholderTextColor}}" />
+                        <Setter Property="TextColor" Value="{OnPlatform Default={StaticResource ToolbarButtonTextColor}, iOS={StaticResource ToolbarItemInvertedTextColor}}" />
+                        <Setter Property="ClearButtonColor" Value="{OnPlatform Default={StaticResource ToolbarItemPlaceholderTextColor}, iOS={StaticResource ToolbarItemInvertedPlaceholderTextColor}}" />
+                        <Setter Property="FocusedBorderBrush" Value="{OnPlatform Default={StaticResource ToolbarAccentColor}, iOS={StaticResource ToolbarAccentColorAlpha50}}" />
+                    </Style>
+                </Setter>
+            </Style>
+            <Style x:Key="SearchNavigationButtonStyle" TargetType="telerik:ButtonToolbarItemView">
+                <Setter Property="TextColor" Value="{StaticResource ToolbarAccentColor}" />
+            </Style>
+            <Style TargetType="telerik:PdfViewerNavigateToPreviousSearchResultToolbarItemView" BasedOn="{StaticResource CommonSearchButtonStyle}" />
+            <Style TargetType="telerik:PdfViewerNavigateToNextSearchResultToolbarItemView" BasedOn="{StaticResource CommonSearchButtonStyle}" />
             <!-- << pdfviewer-toolbar-styling-resources -->
         </ResourceDictionary>
     </ContentView.Resources>
     
     <!-- >> pdfviewer-toolbar-styling-xaml -->
     <Grid RowDefinitions="{OnIdiom Desktop='Auto, *', Phone='*, Auto'}">
-        <telerik:RadPdfViewerToolbar Grid.Row="{OnIdiom Desktop=0, Phone=1}"
-                                     PdfViewer="{Binding Source={x:Reference pdfViewer}}"
-                                     Style="{StaticResource PdfViewerToolbarStyle}">
-            <telerik:PdfViewerFitToWidthToolbarItem Style="{StaticResource CommonToolbarItemViewStyle}"/>
-            <telerik:PdfViewerZoomInToolbarItem Style="{StaticResource ZoomToolbarItemViewStyle}"/>
-            <telerik:PdfViewerZoomOutToolbarItem Style="{StaticResource ZoomToolbarItemViewStyle}"/>
-            <telerik:PdfViewerNavigateToPreviousPageToolbarItem Style="{StaticResource CommonToolbarItemViewStyle}"/>
-            <telerik:PdfViewerNavigateToNextPageToolbarItem Style="{StaticResource CommonToolbarItemViewStyle}"/>
+        <telerik:RadPdfViewerToolbar Grid.Row="{OnIdiom Desktop=0, Phone=1}" OverflowMode="Scroll" ScrollButtonsVisibility="Hidden"
+                                     PdfViewer="{Binding Source={x:Reference pdfViewer}}">
+            <telerik:PdfViewerFitToWidthToolbarItem Style="{StaticResource CommonToolbarItemViewStyle}" />
+            <telerik:PdfViewerZoomInToolbarItem Style="{StaticResource ZoomToolbarItemViewStyle}" />
+            <telerik:PdfViewerZoomOutToolbarItem Style="{StaticResource ZoomToolbarItemViewStyle}" />
+            <telerik:PdfViewerNavigateToPreviousPageToolbarItem Style="{StaticResource CommonToolbarItemViewStyle}" />
+            <telerik:PdfViewerNavigateToNextPageToolbarItem Style="{StaticResource CommonToolbarItemViewStyle}" />
+            <telerik:PdfViewerSearchToolbarItem IsVisible="{OnIdiom Phone=False, Desktop=True}" 
+                                                Style="{StaticResource CommonToolbarItemViewStyle}"
+                                                SearchContentViewStyle="{StaticResource SearchPopupStyle}" />
+            <telerik:PdfViewerSearchNavigationToolbarItem IsVisible="{OnIdiom Phone=True, Desktop=False}"
+                                                          ToastStyle="{StaticResource ToastStyle}"
+                                                          Style="{StaticResource SearchNavigationButtonStyle}" />
         </telerik:RadPdfViewerToolbar>
         <telerik:RadPdfViewer x:Name="pdfViewer"
                               Grid.Row="{OnIdiom Desktop=1, Phone=0}" />

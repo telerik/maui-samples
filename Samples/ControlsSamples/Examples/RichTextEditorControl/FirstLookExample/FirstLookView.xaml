@@ -5,6 +5,10 @@
                         xmlns:behaviors="clr-namespace:QSF.Behaviors"
                         x:Class="QSF.Examples.RichTextEditorControl.FirstLookExample.FirstLookView"
                         Padding="{OnIdiom Default='16, 20', Phone=16}">
+    <telerik:RadContentView.Behaviors>
+        <behaviors:AndroidResizeSoftInputModeBehavior />
+    </telerik:RadContentView.Behaviors>
+    
     <Grid RowDefinitions="{OnIdiom Default='Auto, Auto, *', Phone='Auto, *, Auto'}">
         <Grid RowDefinitions="45, 45">
             <telerik:RadBorder BorderColor="{AppThemeBinding Light={OnPlatform Default={StaticResource DefaultBorderColor}, WinUI={StaticResource DefaultBorderColorWinUI}},
@@ -24,7 +28,8 @@
                                              FocusedBorderBrush="Transparent"
                                              BorderThickness="0"
                                              IsClearButtonVisible="False"
-                                             VerticalOptions="Center">
+                                             VerticalOptions="Center"
+                                             AutomationId="recipientAutoComplete">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
                                 <VisualState x:Name="Normal" />
@@ -43,7 +48,8 @@
                             CornerRadius="20"
                             Padding="4, 0, 0, 0"
                             Margin="0, 0, 0, 5"
-                            Command="{Binding SendEmailCommand}" />
+                            Command="{Binding SendEmailCommand}" 
+                            AutomationId="sendButton"/>
                 </Grid>
             </telerik:RadBorder>
             <telerik:RadBorder Grid.Row="1"
@@ -61,13 +67,15 @@
                                       FocusedBorderBrush="Transparent"
                                       BorderThickness="0"
                                       VerticalOptions="Center"
-                                      ReserveSpaceForErrorView="False" />
+                                      ReserveSpaceForErrorView="False" 
+                                      AutomationId="subjectEntry"/>
                 </Grid>
             </telerik:RadBorder>
         </Grid>
         <telerik:RadRichTextEditor x:Name="richTextEditor"
                                    Grid.Row="{OnIdiom Default=2, Phone=1}"
-                                   Source="{Binding Source}">
+                                   Source="{Binding Source}"
+                                   AutomationId="richTextEditor">
             <telerik:RadRichTextEditor.Behaviors>
                 <behaviors:PickImageBehavior />
             </telerik:RadRichTextEditor.Behaviors>
@@ -75,6 +83,7 @@
         <telerik:RadRichTextEditorToolbar x:Name="richTextToolbar"
                                           Grid.Row="{OnIdiom Default=1, Phone=2}"
                                           RichTextEditor="{x:Reference richTextEditor}"
-                                          Margin="{OnIdiom Default='0, 12, 0, 0', Phone=0}" />
+                                          Margin="{OnIdiom Default='0, 12, 0, 0', Phone=0}" 
+                                          AutomationId="richTextEditorTooblar"/>
     </Grid>
 </telerik:RadContentView>

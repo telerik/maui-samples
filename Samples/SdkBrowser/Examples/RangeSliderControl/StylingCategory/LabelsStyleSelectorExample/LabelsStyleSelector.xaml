@@ -5,6 +5,10 @@
              xmlns:local="clr-namespace:SDKBrowserMaui.Examples.RangeSliderControl.StylingCategory.LabelsStyleSelectorExample"
              x:Class="SDKBrowserMaui.Examples.RangeSliderControl.StylingCategory.LabelsStyleSelectorExample.LabelsStyleSelector">
     <ContentView.Resources>
+        <Style TargetType="telerik:RadRangeSlider">
+            <Setter Property="WidthRequest" Value="{OnIdiom Default=-1, Desktop=800}" />
+            <Setter Property="HorizontalOptions" Value="{OnIdiom Default=Fill, Desktop=Center}" />
+        </Style>
         <!-- >> rangeslider-styling-labelsstyleselector -->
         <local:RangeLabelStyleSelector x:Key="RangeLabelStyleSelector">
             <local:RangeLabelStyleSelector.BeforeRangeStyle>
@@ -31,7 +35,8 @@
         </local:RangeLabelStyleSelector>
         <!-- << rangeslider-styling-labelsstyleselector -->
     </ContentView.Resources>
-    <VerticalStackLayout Spacing="40">
+    <VerticalStackLayout Spacing="40"
+                         Margin="{OnIdiom Default=0, Desktop='0, 40, 0, 0'}">
         <!-- >> rangeslider-styling-labelsstyleselector-xaml -->
         <telerik:RadRangeSlider Minimum="0"
                                 Maximum="100"

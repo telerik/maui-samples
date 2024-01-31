@@ -12,7 +12,8 @@
               Style="{StaticResource HeaderStyle}">
             <ImageButton Clicked="Back_Clicked"
                          HorizontalOptions="Start"
-                         Style="{OnPlatform Default={StaticResource DefaultBackButtonStyle}, iOS={StaticResource IOSBackButtonStyle}}" />
+                         Style="{OnPlatform Default={StaticResource DefaultBackButtonStyle}, iOS={StaticResource IOSBackButtonStyle}}" 
+                         AutomationId="backButton"/>
             <Label Grid.Column="1"
                    Text="Configuration"
                    VerticalOptions="Center"

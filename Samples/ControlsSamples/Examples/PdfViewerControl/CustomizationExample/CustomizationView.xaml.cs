@@ -4,6 +4,7 @@ using System.ComponentModel;
 using Telerik.Maui.Controls;
 using Telerik.Windows.Documents.Fixed.Model;
 using QSF.Examples.PdfViewerControl.Common;
+using Microsoft.Maui.Devices;
 
 namespace QSF.Examples.PdfViewerControl.CustomizationExample;
 
@@ -12,7 +13,25 @@ public partial class CustomizationView : RadContentView
 {
     public CustomizationView()
     {
+        if (DeviceInfo.Platform == DevicePlatform.MacCatalyst || DeviceInfo.Platform == DevicePlatform.WinUI)
+        {
+            this.Resources.MergedDictionaries.Add(new CustomResources_Desktop());
+        }
+        else
+        {
+            this.Resources.MergedDictionaries.Add(new CustomResources_Mobile());
+        }
+
         InitializeComponent();
+
+        if (DeviceInfo.Platform == DevicePlatform.MacCatalyst || DeviceInfo.Platform == DevicePlatform.WinUI)
+        {
+            this.searchToolbarItem.SearchContentViewStyle = this.Resources["PdfViewerSearchContentViewStyle"] as Style;
+        }
+        else
+        {
+            this.searchNavigationToolbarItem.ToastStyle = this.Resources["PdfViewerCustomSearchToastStyle"] as Style;
+        }
 
         this.pdfViewer.Source = ResourceHelper.GetStreamFromEmbeddedResource("pdf_file.pdf");
         this.pdfViewer.PropertyChanged += this.PdfViewerPropertyChanged;

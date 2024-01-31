@@ -8,13 +8,15 @@
                              ItemsSource="{Binding Cards}"
                              CollectionTitle="Favorites List"
                              ButtonCommand="{Binding SendRequestCommand}"
-                             ButtonText="Play Music">
+                             ButtonText="Play Music"
+                             AutomationId="playMusicButton">
     <VerticalStackLayout x:Name="layout">
         <Label Text="Music Genre:"
                Margin="0, 0, 0, 12" />
         <telerik:RadListPicker x:Name="listPicker"
                                ItemsSource="{Binding Genres}"
-                               SelectedItem="{Binding SelectedGenre}">
+                               SelectedItem="{Binding SelectedGenre}"
+                               AutomationId="listPicker">
             <telerik:RadListPicker.PopupSettings>
                 <telerik:PickerPopupSettings HeaderLabelText="Select Music Genre" />
             </telerik:RadListPicker.PopupSettings>

@@ -7,7 +7,8 @@
     <Grid RowDefinitions="*, Auto">
         <telerik:RadListView x:Name="list"
                              ItemsSource="{Binding Courses}"
-                             SelectionMode="None">
+                             SelectionMode="None"
+                             AutomationId="listView">
             <telerik:RadListView.LayoutDefinition>
                 <telerik:ListViewLinearLayout ItemLength="80" />
             </telerik:RadListView.LayoutDefinition>
@@ -50,6 +51,7 @@
                            HorizontalOptions="{OnIdiom Default=Start, Phone=Fill}"
                            Command="{Binding GenerateSpreadsheetCommand}"
                            Style="{StaticResource SubmitButtonStyle}"
-                           Margin="{OnIdiom Default='0, 40, 0, 0', Phone='0, 16, 0, 0'}" />
+                           Margin="{OnIdiom Default='0, 40, 0, 0', Phone='0, 16, 0, 0'}" 
+                           AutomationId="generateButton"/>
     </Grid>
 </telerik:RadContentView>
