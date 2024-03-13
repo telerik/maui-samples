@@ -1,7 +1,8 @@
 ﻿using System.Collections.ObjectModel;
 
-namespace SDKBrowserMaui.Examples.DataGridControl.GroupingCategory.DelegateGroupDescriptorExample;
+namespace SDKBrowserMaui.Examples.DataGridControl.GroupingCategory;
 
+// >> datagrid-grouping-viewmodel
 public class ViewModel
 {      
     public ViewModel()
@@ -22,3 +23,4 @@ public class ViewModel
 
     public ObservableCollection<Person> People { get; set; }
 }
+// << datagrid-grouping-viewmodel

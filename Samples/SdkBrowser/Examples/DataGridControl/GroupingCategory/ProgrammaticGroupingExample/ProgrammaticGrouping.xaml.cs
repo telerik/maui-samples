@@ -1,5 +1,4 @@
 ﻿using Microsoft.Maui.Controls.Xaml;
-using SDKBrowser.Examples.DataGridControl;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -15,23 +14,14 @@ public partial class ProgrammaticGrouping : RadContentView
     {
         this.InitializeComponent();
 
-        var source = new ObservableCollection<Person>();
-        source.Add(new Person() { Name = "Kiko", Age = 23, Gender = Gender.Other });
-        source.Add(new Person() { Name = "Jerry", Age = 23, Gender = Gender.Male });
-        source.Add(new Person() { Name = "Ethan", Age = 51, Gender = Gender.Male });
-        source.Add(new Person() { Name = "Isabella", Age = 23, Gender = Gender.Female });
-        source.Add(new Person() { Name = "Joshua", Age = 51, Gender = Gender.Male });
-        source.Add(new Person() { Name = "Logan", Age = 51, Gender = Gender.Female });
-        source.Add(new Person() { Name = "Aaron", Age = 23, Gender = Gender.Other });
-
-        this.BindingContext = source;
-        this.columnPicker.ItemsSource = new List<string>() { "Name", "Age", "Gender" };
-        this.columnPicker.SelectedItem = "Gender";
+        this.BindingContext = new ViewModel();
+        this.columnChooser.ItemsSource = new List<string>() { "Name", "Age", "Department" };
+        this.columnChooser.SelectedItem = "Department";
     }
 
     private void GroupClicked(object sender, System.EventArgs e)
     {
-        var selectedColumnName = this.columnPicker.SelectedItem.ToString();
+        var selectedColumnName = this.columnChooser.SelectedItem.ToString();
 
         if (!this.grid.GroupDescriptors.Where(d => (d as PropertyGroupDescriptor).PropertyName.Equals(selectedColumnName)).Any())
         {
@@ -41,7 +31,7 @@ public partial class ProgrammaticGrouping : RadContentView
 
     private void UngroupClicked(object sender, System.EventArgs e)
     {
-        var selectedColumnName = this.columnPicker.SelectedItem.ToString();
+        var selectedColumnName = this.columnChooser.SelectedItem.ToString();
         var descriptor = this.grid.GroupDescriptors.Where(d => (d as PropertyGroupDescriptor).PropertyName.Equals(selectedColumnName)).FirstOrDefault();
         if (descriptor != null)
         {

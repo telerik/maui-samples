@@ -1,5 +1,4 @@
 ﻿using Microsoft.Maui.Controls.Xaml;
-using SDKBrowserMaui.Examples.DataGridControl.GroupingCategory.PropertyGroupDescriptorExample;
 using Telerik.Maui.Controls;
 using Telerik.Maui.Controls.Compatibility.DataGrid;
 

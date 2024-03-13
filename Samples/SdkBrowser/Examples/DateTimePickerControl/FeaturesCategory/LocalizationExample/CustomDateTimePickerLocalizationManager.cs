@@ -11,29 +11,35 @@ namespace SDKBrowserMaui.Examples.DateTimePickerControl.FeaturesCategory.Localiz
     {
         public override string GetString(string key)
         {
-
-            if (key == "DateTimePicker_Popup_HeaderLabelText")
-                return "Datum und Uhrzeit Picker";
-            if (key == "DateTimePicker_PlaceholderLabelText")
-                return "Datum und Uhrzeit auswählen";
-            if (key == "Picker_AmPmSpinnerHeaderLabelText")
-                return "am/pm";
-            if (key == "Picker_DaySpinnerHeaderLabelText")
-                return "Tag";
-            if (key == "Picker_HourSpinnerHeaderLabelText")
-                return "Zeit";
-            if (key == "Picker_MinuteSpinnerHeaderLabelText")
-                return "Minute";
-            if (key == "Picker_SecondSpinnerHeaderLabelText")
-                return "Sekunde";
-            if (key == "Picker_MonthSpinnerHeaderLabelText	")
-                return "Monat";
-            if (key == "Picker_YearSpinnerHeaderLabelText")
-                return "Jahr";
-            if (key == "Picker_Popup_AcceptButtonText")
-                return "Akzeptieren";
-            if (key == "Picker_Popup_CancelButtonText")
-                return "Stornieren";
+            switch (key)
+            {
+                case "DateTimePicker_Popup_HeaderLabelText":
+                    return "Datum und Uhrzeit Picker";
+                case "DateTimePicker_PlaceholderLabelText":
+                    return "Datum und Uhrzeit auswählen";
+                case "Picker_AmPmSpinnerHeaderLabelText":
+                    return "am/pm";
+                case "Picker_DaySpinnerHeaderLabelText":
+                    return "Tag";
+                case "Picker_HourSpinnerHeaderLabelText":
+                    return "Zeit";
+                case "Picker_MinuteSpinnerHeaderLabelText":
+                    return "Minute";
+                case "Picker_SecondSpinnerHeaderLabelText":
+                    return "Sekunde";
+                case "Picker_MonthSpinnerHeaderLabelText":
+                    return "Monat";
+                case "Picker_YearSpinnerHeaderLabelText":
+                    return "Jahr";
+                case "Picker_Popup_AcceptButtonText":
+                    return "Akzeptieren";
+                case "Picker_Popup_CancelButtonText":
+                    return "Stornieren";
+                case "Picker_DropDown_AcceptButtonText":
+                    return "Akzeptieren";
+                case "Picker_DropDown_CancelButtonText":
+                    return "Stornieren";
+            }
 
             return base.GetString(key);
         }

@@ -16,16 +16,11 @@
         <VerticalStackLayout Style="{StaticResource GroupAtSeparateAreaStyle}">
             <Label Text="DataSource type:"
                    Style="{StaticResource VerticalGroupLabelStyle}" />
-            <telerik:RadComboBox SelectedItem="{Binding DatasourceType, Mode=TwoWay}"
+            <telerik:RadComboBox ItemsSource="{Binding DataSources}"
+                                 SelectedItem="{Binding DataSourcesType, Mode=TwoWay}"
                                  IsClearButtonVisible="False"
-                                 DropDownHeight="{OnPlatform Android=68, iOS=72, MacCatalyst=44, WinUI=80}"
+                                 DropDownHeight="{OnPlatform Android=136, iOS=72, MacCatalyst=44, WinUI=160}"
                                  AutomationId="dataSourceTypeComboBox">
-                <telerik:RadComboBox.ItemsSource>
-                    <x:Array Type="{x:Type x:String}">
-                        <x:String>Data Table</x:String>
-                        <x:String>Collection</x:String>
-                    </x:Array>
-                </telerik:RadComboBox.ItemsSource>
             </telerik:RadComboBox>
         </VerticalStackLayout>
     </VerticalStackLayout>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.DataGridControl.GroupingCategory"
+             x:Class="SDKBrowserMaui.Examples.DataGridControl.GroupingCategory.GroupHeaderStylingExample.GroupHeaderStyling">
+    <ContentView.Resources>
+        <!-- >> datagrid-groupheader-styling-style -->
+        <telerik:DataGridGroupHeaderStyle x:Key="GroupHeaderStyle"
+                                          TextColor="#674BB2"
+                                          BackgroundColor="#F3F3F3"
+                                          TextFontFamily="Italic"
+                                          GroupLevelIndentation="20" />
+        <!-- << datagrid-groupheader-styling-style -->
+    </ContentView.Resources>
+    <Grid>
+        <!-- >> datagrid-groupheader-styling-xaml -->
+        <telerik:RadDataGrid x:Name="dataGrid"
+                             ItemsSource="{Binding People}"
+                             GroupHeaderStyle="{StaticResource GroupHeaderStyle}">
+            <telerik:RadDataGrid.GroupDescriptors>
+                <telerik:PropertyGroupDescriptor PropertyName="Department" />
+            </telerik:RadDataGrid.GroupDescriptors>
+        </telerik:RadDataGrid>
+        <!-- << datagrid-groupheader-styling-xaml -->
+    </Grid>
+</ContentView>

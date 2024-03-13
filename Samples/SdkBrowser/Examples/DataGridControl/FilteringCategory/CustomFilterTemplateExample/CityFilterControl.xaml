@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- >> datagrid-filter-template-filtercontrolbase -->
+<telerik:DataGridFilterControlBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                                   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                                   xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                                   xmlns:local="clr-namespace:SDKBrowserMaui.Examples.DataGridControl.FilteringCategory.CustomFilterTemplateExample"
+                                   x:Class="SDKBrowserMaui.Examples.DataGridControl.FilteringCategory.CustomFilterTemplateExample.CityFilterControl"
+                                   x:Name="dataGridFilterControl">
+    <telerik:RadBorder BackgroundColor="#F9F9F9"
+                       BorderBrush="#DFDFDF"
+                       BorderThickness="1">
+        <VerticalStackLayout Padding="12"
+                             Spacing="12">
+            <Label FontFamily="TelerikFontExamples"
+                   FontSize="16"
+                   Text="&#xe877;"
+                   TextColor="#666666"
+                   HorizontalOptions="End">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding CloseCommand, Source={x:Reference dataGridFilterControl}}" />
+                </Label.GestureRecognizers>
+            </Label>
+            <telerik:RadComboBox x:Name="descriptorOperatorSelector"
+                                 IsClearButtonVisible="False"
+                                 MinimumWidthRequest="200"
+                                 DropDownHeight="{OnPlatform Android=136, iOS=144, MacCatalyst=88, WinUI=160}" />
+            <telerik:RadEntry x:Name="filterTextEntry"
+                              Placeholder="Enter filter criteria"
+                              ReserveSpaceForErrorView="False" />
+            <HorizontalStackLayout Grid.Row="2"
+                                   HorizontalOptions="End"
+                                   VerticalOptions="Center"
+                                   Spacing="8">
+                <telerik:RadButton Text="Reset"
+                                   Command="{Binding ResetFilterCommand, Source={x:Reference dataGridFilterControl}}" />
+                <telerik:RadButton Text="Apply"
+                                   Command="{Binding ApplyFilterCommand, Source={x:Reference dataGridFilterControl}}" />
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+    </telerik:RadBorder>
+</telerik:DataGridFilterControlBase>
+<!-- << datagrid-filter-template-filtercontrolbase -->

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.DataGridControl.FilteringCategory.CustomFilterTemplateExample"
+             x:Class="SDKBrowserMaui.Examples.DataGridControl.FilteringCategory.CustomFilterTemplateExample.CustomFilterTemplate">
+    <Grid>
+        <!-- >> datagrid-filter-template-xaml -->
+        <telerik:RadDataGrid x:Name="dataGrid"
+                             ItemsSource="{Binding GridSource}"
+                             AutoGenerateColumns="False"
+                             UserEditMode="Cell">
+            <telerik:RadDataGrid.Columns>
+                <telerik:DataGridNumericalColumn PropertyName="Population" 
+                                                 CanUserFilter="False"/>
+                <telerik:DataGridTextColumn HeaderText="City" 
+                                            PropertyName="Name">
+                    <telerik:DataGridTextColumn.FilterControlTemplate>
+                        <DataTemplate>
+                            <local:CityFilterControl PropertyName="Name"/>
+                        </DataTemplate>
+                    </telerik:DataGridTextColumn.FilterControlTemplate>
+                </telerik:DataGridTextColumn>
+            </telerik:RadDataGrid.Columns>
+        </telerik:RadDataGrid>
+        <!-- << datagrid-filter-template-xaml -->
+    </Grid>
+</ContentView>

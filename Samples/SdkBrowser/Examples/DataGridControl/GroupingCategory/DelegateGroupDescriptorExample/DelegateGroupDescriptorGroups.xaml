@@ -3,5 +3,10 @@
                         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                         xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
                         x:Class="SDKBrowserMaui.Examples.DataGridControl.GroupingCategory.DelegateGroupDescriptorExample.DelegateGroupDescriptorGroups">
-    <telerik:RadDataGrid x:Name="dataGrid" ItemsSource="{Binding People}" />
+    <Grid>
+        <!-- >> datagrid-grouping-delegategroupdescriptor -->
+        <telerik:RadDataGrid x:Name="dataGrid"
+                             ItemsSource="{Binding People}" />
+        <!-- << datagrid-grouping-delegategroupdescriptor -->
+    </Grid>
 </telerik:RadContentView>

@@ -2,9 +2,8 @@
 using Telerik.Maui.Controls;
 using Telerik.Maui.Controls.Compatibility.DataGrid;
 
-namespace SDKBrowserMaui.Examples.DataGridControl.GroupingCategory.PropertyGroupDescriptorExample;
+namespace SDKBrowserMaui.Examples.DataGridControl.KeyboardNavigationCategory.KeyboardNavigationExample;
 
-// >> datagrid-grouping-propertygroupdescriptor-viewmodel
 public class ViewModel : NotifyPropertyChangedBase
 {
     private DataGridCellInfo cell;
@@ -37,6 +36,6 @@ public class ViewModel : NotifyPropertyChangedBase
             }
         }
     }
+
     public ObservableCollection<Person> People { get; set; }
 }
-// << datagrid-grouping-propertygroupdescriptor-viewmodel

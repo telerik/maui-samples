@@ -1,34 +1,48 @@
 ﻿using QSF.Examples.DataGridControl.Common;
 using QSF.ExampleUtilities;
 using QSF.ViewModels;
+using System;
+using System.Collections.ObjectModel;
 using System.Data;
-using System.Runtime.CompilerServices;
+using System.Dynamic;
+using System.Linq;
 using Telerik.Maui;
 
 namespace QSF.Examples.DataGridControl.VariousDataSourcesExample;
 
 public class VariousDataSourcesViewModel : ConfigurationExampleViewModel
 {
-    private string datasourceType = "Data Table";
+    private DataSourcesTypes dataSourcesType = DataSourcesTypes.DataTable;
+    private DataTable dataTableSource;
+    private ObservableCollection<ExpandoObject> expandoObjectsSource;
+    private ObservableCollection<DynamicObject> dynamicObjectsSource;
+    private ObservableItemCollection<SalesPerson> salesPeople;
     private object items;
 
     public VariousDataSourcesViewModel()
     {
-        UpdateDataSource();
+        this.salesPeople = DataGenerator.GetItems<ObservableItemCollection<SalesPerson>>(ResourcePaths.PeoplePath);
+        this.UpdateDataSource();
     }
 
-    public string DatasourceType
+    public Array DataSources
+    {
+        get => Enum.GetValues(typeof(DataSourcesTypes));
+    }
+
+    public DataSourcesTypes DataSourcesType
     {
         get
         {
-            return this.datasourceType;
+            return this.dataSourcesType;
         }
         set
         {
-            if (this.datasourceType != value)
+            if (this.dataSourcesType != value)
             {
-                this.datasourceType = value;
+                this.dataSourcesType = value;
                 this.OnPropertyChanged();
+                this.UpdateDataSource();
             }
         }
     }
@@ -49,55 +63,86 @@ public class VariousDataSourcesViewModel : ConfigurationExampleViewModel
         }
     }
 
-    protected override void OnPropertyChanged([CallerMemberName] string propertyName = null)
-    {
-        base.OnPropertyChanged(propertyName);
-        if (propertyName == nameof(DatasourceType))
-        {
-            UpdateDataSource();
-        }
-    }
-
     private void UpdateDataSource()
     {
-        if (this.DatasourceType == "Collection")
+        switch (this.DataSourcesType)
         {
-            this.Items = DataGenerator.GetItems<ObservableItemCollection<SalesPerson>>(ResourcePaths.PeoplePath);
-        }
-        else
-        {
-            this.Items = GetDataTable();
+            case DataSourcesTypes.Collection:
+                this.Items = this.salesPeople;
+                break;
+#if WINDOWS || ANDROID
+            case DataSourcesTypes.ExpandoObjects:
+                this.Items = this.GetExpandoObjectItems();
+                break;
+            case DataSourcesTypes.DynamicObjects:
+                this.Items = this.GetDynamicObjectItems();
+                break;
+#endif
+            default:
+                this.Items = this.GetDataTable();
+                break;
         }
     }
 
     private DataTable GetDataTable()
     {
-        DataTable salesData = new DataTable();
-        salesData.TableName = "Items";
-        salesData.Columns.Add("FullName", typeof(string));
-        salesData.Columns.Add("Sales", typeof(double));
+        if (this.dataTableSource != null)
+        {
+            return this.dataTableSource;
+        }
 
-        salesData.Rows.Add("Brian Albrecht", 23000);
-        salesData.Rows.Add("Greg Alderson", 2500);
-        salesData.Rows.Add("Dan Bacon", 3100);
-        salesData.Rows.Add("Natalie Bailey", 12200);
-        salesData.Rows.Add("Bryan Baker", 7880);
-        salesData.Rows.Add("Angela Barbariol", 4800);
-        salesData.Rows.Add("David Barber", 7200);
-        salesData.Rows.Add("Isabella Barnes", 6300);
-        salesData.Rows.Add("Paula Barreto de Mattos", 18000);
-        salesData.Rows.Add("Mark Bebbington", 8450);
-        salesData.Rows.Add("Bonnie Beck", 11100);
-        salesData.Rows.Add("Gregory Becker", 14600);
-        salesData.Rows.Add("Alexandra Bell", 17000);
-        salesData.Rows.Add("Albert Cabello", 2100);
-        salesData.Rows.Add("Crystal Cai", 10300);
-        salesData.Rows.Add("John Campbell", 9810);
-        salesData.Rows.Add("Gabrielle Cannata", 5700);
-        salesData.Rows.Add("Jun Cao", 5550);
-        salesData.Rows.Add("Francis Carlson", 9200);
-        salesData.Rows.Add("Jillian Carson", 16200);
+        this.dataTableSource = new DataTable();
+        this.dataTableSource.TableName = "Items";
+        this.dataTableSource.Columns.Add("FullName", typeof(string));
+        this.dataTableSource.Columns.Add("Sales", typeof(double));
 
-        return salesData;
+        foreach (var salesPerson in salesPeople.Skip(50).Take(40))
+        {
+            this.dataTableSource.Rows.Add(salesPerson.FullName, salesPerson.Sales);
+        }
+
+        return this.dataTableSource;
     }
+
+#if WINDOWS || ANDROID
+    private ObservableCollection<ExpandoObject> GetExpandoObjectItems()
+    {
+        if (this.expandoObjectsSource != null)
+        {
+            return this.expandoObjectsSource;
+        }
+
+        this.expandoObjectsSource = new ObservableCollection<ExpandoObject>();
+
+        foreach (var salesPerson in salesPeople.Skip(90).Take(30))
+        {
+            dynamic expandoPerson = new ExpandoObject();
+            expandoPerson.FullName = salesPerson.FullName;
+            expandoPerson.Sales = salesPerson.Sales;
+            this.expandoObjectsSource.Add(expandoPerson);
+        }
+
+        return this.expandoObjectsSource;
+    }
+
+    private ObservableCollection<DynamicObject> GetDynamicObjectItems()
+    {
+        if (this.dynamicObjectsSource != null)
+        {
+            return this.dynamicObjectsSource;
+        }
+
+        this.dynamicObjectsSource = new ObservableCollection<DynamicObject>();
+
+        foreach (var salesPerson in salesPeople.TakeLast(60))
+        {
+            SalesPersonDynamicObject dynamicPerson = new SalesPersonDynamicObject();
+            dynamicPerson["FullName"] = salesPerson.FullName;
+            dynamicPerson["Sales"] = salesPerson.Sales;
+            this.dynamicObjectsSource.Add(dynamicPerson);
+        }
+
+        return this.dynamicObjectsSource;
+    }
+#endif
 }
