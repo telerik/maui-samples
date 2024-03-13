@@ -69,22 +69,31 @@
                                  Grid.Column="0" 
                                  Margin="10,25,10,20" 
                                  Spacing="10">
-                <HorizontalStackLayout VerticalOptions="Start">
-                    <telerik:RadCheckBox IsChecked="{Binding ReceiveEmailsChecked}" AutomationId="emailsCheckBox"/>
+                <HorizontalStackLayout VerticalOptions="Start" 
+                                       telerik:RadCheckBox.ToggleOnTap="{x:Reference emailsCheckBox}">
+                    <telerik:RadCheckBox x:Name="emailsCheckBox"
+                                         IsChecked="{Binding ReceiveEmailsChecked}" 
+                                         AutomationId="emailsCheckBox"/>
                     <Label Text="Receive E-mails when:"
                            FontAttributes="Bold"/>
                 </HorizontalStackLayout>
 
                 <HorizontalStackLayout VerticalOptions="Start" 
-                                       Margin="10,0,0,0">
-                    <telerik:RadCheckBox IsChecked="{Binding SomeoneFollowsChecked}" AutomationId="followsCheckBox"/>
+                                       Margin="10,0,0,0"
+                    telerik:RadCheckBox.ToggleOnTap="{x:Reference someoneFollowsCheckBox}">
+                    <telerik:RadCheckBox x:Name="someoneFollowsCheckBox" 
+                                         IsChecked="{Binding SomeoneFollowsChecked}" 
+                                         AutomationId="followsCheckBox"/>
                     <Label Text="Someone follows me" 
                            Style="{StaticResource checkBoxLabel}"/>
                 </HorizontalStackLayout>
 
                 <HorizontalStackLayout VerticalOptions="Start"
-                                       Margin="10,0,0,0">
-                    <telerik:RadCheckBox IsChecked="{Binding SomeoneSendsMessagesChecked}" AutomationId="sendMessageCheckBox"/>
+                                       Margin="10,0,0,0"
+                                       telerik:RadCheckBox.ToggleOnTap="{x:Reference someoneSendsMessagesCheckBox}">
+                    <telerik:RadCheckBox x:Name="someoneSendsMessagesCheckBox"
+                                         IsChecked="{Binding SomeoneSendsMessagesChecked}"
+                                         AutomationId="sendMessageCheckBox"/>
                     <Label Text="Someone sends me a message"
                            Style="{StaticResource checkBoxLabel}"/>
                 </HorizontalStackLayout>
@@ -95,27 +104,36 @@
                                  Grid.Column="{OnIdiom Default=1, Phone=0}"
                                  Margin="10,25,10,20" 
                                  Spacing="10">
-                <HorizontalStackLayout VerticalOptions="Start">
-                    <telerik:RadCheckBox IsChecked="{Binding PrivateProfileChecked}" AutomationId="privateCheckBox"/>
+                <HorizontalStackLayout VerticalOptions="Start"
+                                       telerik:RadCheckBox.ToggleOnTap="{x:Reference privateProfileCheckBox}">
+                    <telerik:RadCheckBox x:Name="privateProfileCheckBox"
+                                         IsChecked="{Binding PrivateProfileChecked}" 
+                                         AutomationId="privateCheckBox"/>
                     <Label Text="Private Profile:" 
                            FontAttributes="Bold"/>
                 </HorizontalStackLayout>
                 <HorizontalStackLayout VerticalOptions="Start" 
-                                       Margin="10,0,0,0">
-                    <telerik:RadCheckBox IsChecked="{Binding OnlyFriendsChecked}" AutomationId="postsCheckBox"/>
+                                       Margin="10,0,0,0"
+                                       telerik:RadCheckBox.ToggleOnTap="{x:Reference onlyFriendsCheckBox}">
+                    <telerik:RadCheckBox x:Name="onlyFriendsCheckBox"
+                                         IsChecked="{Binding OnlyFriendsChecked}" 
+                                         AutomationId="postsCheckBox"/>
                     <Label Grid.Column="1" 
                             Text="Only friends can see my posts"
                             Style="{StaticResource checkBoxLabel}"/>
                 </HorizontalStackLayout>
 
                 <HorizontalStackLayout VerticalOptions="Start" 
-                                       Margin="10,0,0,0">
-                    <telerik:RadCheckBox IsChecked="{Binding OnlyShowToFollowersChecked}" AutomationId="photosCheckBox"/>
+                                       Margin="10,0,0,0"
+                                       telerik:RadCheckBox.ToggleOnTap="{x:Reference onlyShowToFollowersCheckBox}">
+                    <telerik:RadCheckBox x:Name="onlyShowToFollowersCheckBox"
+                                         IsChecked="{Binding OnlyShowToFollowersChecked}" 
+                                         AutomationId="photosCheckBox"/>
                     <Label Text="Only friends can see my photos" 
                            Style="{StaticResource checkBoxLabel}"/>
                 </HorizontalStackLayout>
             </VerticalStackLayout>
-            
+
             <telerik:RadButton Text="Save Settings" 
                                Grid.Row="{OnIdiom Default=2, Phone=3}"
                                Margin="10"

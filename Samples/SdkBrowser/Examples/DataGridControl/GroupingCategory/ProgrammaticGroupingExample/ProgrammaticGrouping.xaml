@@ -3,26 +3,27 @@
                         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                         xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
                         x:Class="SDKBrowserMaui.Examples.DataGridControl.GroupingCategory.ProgrammaticGroupingExample.ProgrammaticGrouping">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition />
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
-        <Picker x:Name="columnPicker" />
-        <Button Clicked="GroupClicked" 
-                Text="Group"
-                Grid.Column="1" />
-        <Button Clicked="UngroupClicked"
-                Text="Ungroup"
-                Grid.Column="2" />
-        <telerik:RadDataGrid Grid.Row="1"
-                             Grid.ColumnSpan="3" 
-                             x:Name="grid"
-                             ItemsSource="{Binding}"/>
+    <Grid RowDefinitions="Auto, *"
+          RowSpacing="16">
+        <Grid ColumnDefinitions="{OnIdiom Default='Auto, *, Auto, Auto', Desktop='Auto, Auto, Auto, Auto'}"
+              ColumnSpacing="4">
+            <Label Text="Column:"
+                   VerticalOptions="Center" />
+            <telerik:RadComboBox x:Name="columnChooser"
+                                 Grid.Column="1"
+                                 IsClearButtonVisible="False"
+                                 WidthRequest="{OnPlatform MacCatalyst=300, WinUI=300}"
+                                 HorizontalOptions="{OnIdiom Default=Fill, Desktop=Start}"
+                                 DropDownHeight="{OnPlatform Android=102, iOS=108, MacCatalyst=66, WinUI=120}" />
+            <telerik:RadButton Grid.Column="2"
+                               Text="Group"
+                               Clicked="GroupClicked" />
+            <telerik:RadButton Grid.Column="3"
+                               Text="Ungroup"
+                               Clicked="UngroupClicked" />
+        </Grid>
+        <telerik:RadDataGrid x:Name="grid"
+                             Grid.Row="1"
+                             ItemsSource="{Binding People}" />
     </Grid>
 </telerik:RadContentView>

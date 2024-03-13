@@ -2,6 +2,7 @@ using System.Collections.ObjectModel;
 
 namespace SDKBrowserMaui.Examples.SlideViewControl.TemplatesCategory.ItemTemplateExample;
 
+// >> slideview-itemtemplate-viewmodel
 public class ItemTemplateViewModel
 {
     public ObservableCollection<CustomItem> Items { get; set; }
@@ -16,10 +17,12 @@ public class ItemTemplateViewModel
         };
     }
 }
+// << slideview-itemtemplate-viewmodel
 
+// >> slideview-itemtemplate-datamodel
 public class CustomItem
 {
     public string IconUnicode { get; set;}
     public string DescriptionText { get; set;}
-    
 }
+// << slideview-itemtemplate-datamodel

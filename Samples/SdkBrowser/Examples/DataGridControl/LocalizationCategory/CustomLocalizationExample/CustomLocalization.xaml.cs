@@ -7,14 +7,22 @@ namespace SDKBrowserMaui.Examples.DataGridControl.LocalizationCategory.CustomLoc
 [XamlCompilation(XamlCompilationOptions.Compile)]
 public partial class CustomLocalization : RadContentView
 {
+    private ILocalizationManager manager;
+
     public CustomLocalization()
     {
+        this.manager = TelerikLocalizationManager.Manager;
         // >> datagrid-setting-the-custom-manager-csharp
         TelerikLocalizationManager.Manager = new CustomTelerikLocalizationManager();
-        
+
         this.InitializeComponent();
         // << datagrid-setting-the-custom-manager-csharp
         this.BindingContext = new LocalizationViewModel();
+    }
+
+    private void RadContentView_Unloaded(object sender, System.EventArgs e)
+    {
+        TelerikLocalizationManager.Manager = this.manager;
     }
 }
 

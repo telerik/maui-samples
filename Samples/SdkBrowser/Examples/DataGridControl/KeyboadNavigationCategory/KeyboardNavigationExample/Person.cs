@@ -1,4 +1,4 @@
-﻿namespace SDKBrowserMaui.Examples.DataGridControl.GroupingCategory.DelegateGroupDescriptorExample;
+﻿namespace SDKBrowserMaui.Examples.DataGridControl.KeyboardNavigationCategory.KeyboardNavigationExample;
 
 public class Person
 {
