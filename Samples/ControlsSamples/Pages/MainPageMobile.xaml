@@ -15,7 +15,12 @@
             <Image Style="{StaticResource HeaderImageStyle}" />
             <Label Grid.Column="1"
                    Style="{StaticResource HeaderLabelStyle}"
-                   FontSize="{OnIdiom Desktop=18, Phone=14}" />
+                   FontSize="{OnIdiom Desktop=18, Phone=14}"
+                   AutomationId="titleLabel">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnTitleLabelTapped" />
+                </Label.GestureRecognizers>
+            </Label>
             <HorizontalStackLayout Grid.Column="2">
                 <ImageButton Clicked="Settings_Clicked"
                              Source="settings.png"

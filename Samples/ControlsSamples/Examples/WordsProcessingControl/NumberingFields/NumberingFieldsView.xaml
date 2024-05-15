@@ -113,7 +113,6 @@
                                          ItemsSource="{Binding ExportFormats, Mode=OneTime}"
                                          SelectedItem="{Binding SelectedExportFormat, Mode=OneWayToSource}"
                                          WidthRequest="{OnPlatform Default='160', MacCatalyst='220'}"
-                                         DropDownHeight="{OnPlatform Android=102, iOS=108, MacCatalyst=66, WinUI=120}"
                                          AutomationId="exportFormatComboBox"/>
                     <telerik:RadButton Text="Export"
                                        Style="{StaticResource SubmitButtonStyle}"

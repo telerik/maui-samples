@@ -14,11 +14,12 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <views:HeaderView />
-        <telerik:RadListView x:Name="categories" 
-                                         Grid.Row="1"
-                                         ItemsSource="{Binding Categories}"
-                                         SelectionMode="None"
-                                         VerticalOptions="Start">
+        <telerik:RadListView x:Name="categories"
+                             Grid.Row="1"
+                             ItemsSource="{Binding Categories}"
+                             SelectionMode="None"
+                             Background="{AppThemeBinding Light=White, Dark=Black}"
+                             VerticalOptions="Start">
             <telerik:RadListView.PressedItemStyle>
                 <telerik:ListViewItemStyle BackgroundColor="Transparent" />
             </telerik:RadListView.PressedItemStyle>
@@ -40,7 +41,7 @@
                                        HeightRequest="8"/>
                                 <Label Grid.Column="1"
                                        Text="{Binding Title}"
-                                       TextColor="{AppThemeBinding Light={StaticResource DefaultTextColor}, Dark={StaticResource DefaultTextColorDark}}" 
+                                       TextColor="{AppThemeBinding Light={StaticResource DefaultTextColor}, Dark={StaticResource DefaultTextColorDark}}"
                                        VerticalOptions="Center" />
                             </Grid>
                         </telerik:ListViewTemplateCell.View>

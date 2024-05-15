@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.ObjectModel;
-using Telerik.Maui.Controls.Compatibility.Common.Data;
+using Telerik.Maui.Controls.Data;
 
 namespace SDKBrowserMaui.Examples.DataGridControl.FilteringCategory;
 

@@ -9,12 +9,13 @@
     x:Class="SDKBrowserMaui.Pages.HomePage">
     <Grid RowDefinitions="50, *">
         <views:HeaderView />
-        <telerik:RadListView x:Name="controlsListView" 
-                                         Grid.Row="1"
-                                         ItemsSource="{Binding Controls}"
-                                         SelectionMode="None">
+        <telerik:RadListView x:Name="controlsListView"
+                             Grid.Row="1"
+                             ItemsSource="{Binding Controls}"
+                             SelectionMode="None"
+                             Background="{AppThemeBinding Light=White, Dark=Black}">
             <telerik:RadListView.Commands>
-                <telerik:ListViewUserCommand  Command="{Binding NextCommand}" />
+                <telerik:ListViewUserCommand Command="{Binding NextCommand}" />
             </telerik:RadListView.Commands>
             <telerik:RadListView.PressedItemStyle>
                 <telerik:ListViewItemStyle BackgroundColor="Transparent" />

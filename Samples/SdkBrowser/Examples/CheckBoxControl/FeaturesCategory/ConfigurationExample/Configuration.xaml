@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.CheckBoxControl.FeaturesCategory.ConfigurationExample.Configuration">
+    <telerik:RadContentView.Resources>
+        <ResourceDictionary>
+            <Style TargetType="HorizontalStackLayout">
+                <Setter Property="VerticalOptions" Value="StartAndExpand" />
+                <Setter Property="Spacing" Value="5"/>
+            </Style>
+            <Style TargetType="Label">
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+            </Style>
+        </ResourceDictionary>
+    </telerik:RadContentView.Resources>
+    
+    <VerticalStackLayout Spacing="10">
+        <HorizontalStackLayout>
+            <Label Text="Setting StrokeWidth:" />
+            <!-- >> checkbox-strokewidth -->
+            <telerik:RadCheckBox x:Name="checkboxStrokeWidth" 
+                                 StrokeWidth="3"
+                                 Length="30" />
+            <!-- << checkbox-strokewidth -->
+        </HorizontalStackLayout>
+        <HorizontalStackLayout>
+            <Label Text="Setting Length:" />
+            <!-- >> checkbox-length -->
+            <telerik:RadCheckBox x:Name="checkboxLength" 
+                                 Length="30" />
+            <!-- << checkbox-length -->
+        </HorizontalStackLayout>
+        <HorizontalStackLayout>
+            <Label Text="Setting CornerRadius:" />
+            <!-- >> checkbox-corner-radius -->
+            <telerik:RadCheckBox x:Name="checkboxRadius" 
+                                 Length="30"
+                                 CornerRadius="15"/>
+            <!-- << checkbox-corner-radius -->
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
+</telerik:RadContentView>

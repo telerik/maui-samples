@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Telerik.Maui;
-using Telerik.Maui.Controls.Compatibility.DataGrid;
+using Telerik.Maui.Controls.DataGrid;
 
 namespace QSF.Examples.DataGridControl.SearchAsYouTypeExample;
 

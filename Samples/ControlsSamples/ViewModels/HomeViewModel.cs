@@ -15,6 +15,7 @@ public class HomeViewModel : PageViewModel
     private Control selectedControl;
     private bool isHomeSelected;
     private bool isSearchSelected;
+    private bool isTestSearchEntryVisible;
     private bool isSettingsSelected;
     private HighlightedSearchResult selectedSearchResult;
 
@@ -76,6 +77,12 @@ public class HomeViewModel : PageViewModel
                 this.OnSelectedControlChanged();
             }
         }
+    }
+
+    public bool IsTestSearchEntryVisible
+    {
+        get => this.isTestSearchEntryVisible;
+        set => this.UpdateValue(ref this.isTestSearchEntryVisible, value);
     }
 
     public bool IsHomeSelected

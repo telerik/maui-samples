@@ -10,6 +10,7 @@ namespace QSF.Examples.DataGridControl.Common
         private string firstName;
         private string lastName;
         private string fullName;
+        private string jobTitle;
         private int sales;
         private string city;
         private string countryName;
@@ -103,6 +104,12 @@ namespace QSF.Examples.DataGridControl.Common
         {
             get => this.fullName;
             set => UpdateValue(ref this.fullName, value);
+        }
+
+        public string JobTitle
+        {
+            get => this.jobTitle;
+            set => this.UpdateValue(ref this.jobTitle, value);
         }
 
         [XmlElement(ElementName = "BusinessEntityID")]

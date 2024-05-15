@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Telerik.Maui.Controls;
-using Telerik.Maui.Controls.Compatibility.DataGrid;
+using Telerik.Maui.Controls.DataGrid;
 
 namespace QSF.Examples.DataGridControl.EmptyTemplateExample;
 
@@ -137,12 +137,12 @@ public class EmptyTemplateViewModel : ConfigurationExampleViewModel
 
         this.columns.Clear();
         this.columns.Add(new DataGridNumericalColumn() { PropertyName = "OrderID", HeaderText="Order ID" });
-        this.columns.Add(new DataGridNumericalColumn() { PropertyName = "OrderDate", HeaderText="Order Date" });
-        this.columns.Add(new DataGridNumericalColumn() { PropertyName = "ShippedDate", HeaderText="Shipped Date" });
-        this.columns.Add(new DataGridNumericalColumn() { PropertyName = "ShipName", HeaderText="Ship Name" });
-        this.columns.Add(new DataGridNumericalColumn() { PropertyName = "ShipCity", HeaderText="Ship City" });
-        this.columns.Add(new DataGridNumericalColumn() { PropertyName = "ShipCountry", HeaderText="Ship Country" });
-        this.columns.Add(new DataGridNumericalColumn() { PropertyName = "ShipPostalCode", HeaderText="Ship Postal Code" });
+        this.columns.Add(new DataGridDateColumn() { PropertyName = "OrderDate", HeaderText="Order Date" });
+        this.columns.Add(new DataGridDateColumn() { PropertyName = "ShippedDate", HeaderText="Shipped Date" });
+        this.columns.Add(new DataGridTextColumn() { PropertyName = "ShipName", HeaderText="Ship Name" });
+        this.columns.Add(new DataGridTextColumn() { PropertyName = "ShipCity", HeaderText="Ship City" });
+        this.columns.Add(new DataGridTextColumn() { PropertyName = "ShipCountry", HeaderText="Ship Country" });
+        this.columns.Add(new DataGridTextColumn() { PropertyName = "ShipPostalCode", HeaderText="Ship Postal Code" });
     }
 
     private void SetOrdersItemsSource()

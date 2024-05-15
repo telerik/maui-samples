@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.TabViewControl.FeaturesCategory.DataBindingExample"
+             x:Class="SDKBrowserMaui.Examples.TabViewControl.FeaturesCategory.DataBindingExample.DataBinding">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <!--  >> tabview-data-binding -->
+    <telerik:RadTabView x:Name="tabView" ItemsSource="{Binding Data}">
+        <telerik:RadTabView.ItemTemplate>
+            <DataTemplate>
+                <telerik:TabViewItem HeaderText="{Binding Name}">
+                    <telerik:TabViewItem.ContentTemplate>
+                        <DataTemplate>
+                            <telerik:RadItemsControl ItemsSource="{Binding Customers}">
+                                <telerik:RadItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <telerik:RadBorder BorderColor="LightGray"
+                                                               Padding="10"
+                                                               Margin="10,5"
+                                                               BorderThickness="1" 
+                                                               CornerRadius="5">
+                                                <Grid RowDefinitions="Auto, Auto" 
+                                                      RowSpacing="5">
+                                                    <HorizontalStackLayout Spacing="10">
+                                                        <Label Text="&#xe836;"
+                                                               FontFamily="TelerikFontExamples" />
+                                                        <Label Text="{Binding Name}" />
+                                                    </HorizontalStackLayout>
+                                                    <HorizontalStackLayout Spacing="10" 
+                                                                           Grid.Row="1">
+                                                        <Label Text="&#xe85d;" 
+                                                               FontFamily="TelerikFontExamples" />
+                                                        <Label Text="{Binding Number}" />
+                                                    </HorizontalStackLayout>
+                                                </Grid>
+                                            </telerik:RadBorder>
+                                        </Grid>
+                                    </DataTemplate>
+                                </telerik:RadItemsControl.ItemTemplate>
+                            </telerik:RadItemsControl>
+                        </DataTemplate>
+                    </telerik:TabViewItem.ContentTemplate>
+                </telerik:TabViewItem>
+            </DataTemplate>
+        </telerik:RadTabView.ItemTemplate>
+        <telerik:RadTabView.BindingContext>
+            <local:ViewModel/>
+        </telerik:RadTabView.BindingContext>
+    </telerik:RadTabView>
+    <!--  << tabview-data-binding -->
+</ContentView>

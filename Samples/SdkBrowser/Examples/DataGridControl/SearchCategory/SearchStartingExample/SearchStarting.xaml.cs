@@ -2,7 +2,7 @@ using Microsoft.Maui.Controls;
 using System.Collections.Generic;
 using System.Linq;
 using Telerik.Maui;
-using Telerik.Maui.Controls.Compatibility.DataGrid;
+using Telerik.Maui.Controls.DataGrid;
 
 namespace SDKBrowserMaui.Examples.DataGridControl.SearchCategory.SearchStartingExample;
 

@@ -1,5 +1,5 @@
 using Microsoft.Maui.Controls;
-using Telerik.Maui.Controls.Compatibility.DataGrid;
+using Telerik.Maui.Controls.DataGrid;
 
 namespace QSF.Examples.DataGridControl.BillionCellsExample;
 

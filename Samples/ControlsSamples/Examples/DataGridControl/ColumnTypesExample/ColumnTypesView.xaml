@@ -32,7 +32,7 @@
     <Grid RowDefinitions="*">
         <telerik:RadDataGrid ItemsSource="{Binding Flights}"
                              SelectionMode="None"
-                             UserEditMode="None"
+                             UserEditMode="Cell"
                              UserSortMode="None"
                              UserFilterMode="Disabled"
                              UserGroupMode="Disabled"
@@ -54,7 +54,12 @@
                                                PropertyName="IsDirect" />
                 <telerik:DataGridNumericalColumn HeaderText="Terminal"
                                                  PropertyName="Terminal"/>
-                <telerik:DataGridTemplateColumn HeaderText="Status"
+                <telerik:DataGridComboBoxColumn HeaderText="Status"
+                                                PropertyName="Status"
+                                                SizeMode="Fixed"
+                                                Width="{OnPlatform MacCatalyst='150', iOS='170', Default='130'}"
+                                                MinimumWidth="{OnPlatform MacCatalyst='150', iOS='170', Default='130'}"
+                                                ItemsSource="{Binding Statuses}"
                                                 CellContentTemplate="{StaticResource StatusCellTemplate}" />
             </telerik:RadDataGrid.Columns>
         </telerik:RadDataGrid>

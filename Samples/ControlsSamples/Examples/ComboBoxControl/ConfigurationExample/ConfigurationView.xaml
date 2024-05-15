@@ -30,10 +30,10 @@
         </Grid.RowDefinitions>
         <telerik:RadBorder Padding="16, 24"
                            BackgroundColor="{AppThemeBinding Light={StaticResource DefaultBackgroundColor}, Dark={StaticResource DefaultBackgroundColorDark}}">
-            <telerik:RadComboBox ItemsSource="{Binding Cities}"
+            <telerik:RadComboBox x:Name="comboBox"
+                                 ItemsSource="{Binding Cities}"
                                  OpenOnFocus="{Binding OpenOnFocus}"
                                  DropDownWidth="{Binding Value, Source={Reference dropDownWidthSlider}}"
-                                 DropDownHeight="{Binding Value, Source={x:Reference dropDownHeightSlider}}"
                                  DropDownVerticalOffset="{Binding Value, Source={x:Reference dropDownVerticalOffsetSlider}}"
                                  IsEditable="{Binding IsEditable}"
                                  IsDropDownClosedOnSelection="{Binding IsDropDownClosedOnSelection}"
@@ -47,7 +47,7 @@
                                  WidthRequest="{OnPlatform MacCatalyst=300, WinUI=300}"
                                  HorizontalOptions="{OnPlatform Default=Fill, MacCatalyst=Start, WinUI=Start}"
                                  VerticalOptions="Center" 
-                                 AutomationId="cityComboBox"/>
+                                 AutomationId="cityComboBox" />
         </telerik:RadBorder>
         <ScrollView Grid.Row="1">
             <VerticalStackLayout Style="{StaticResource RootAtExampleAreaStyle}">
@@ -73,37 +73,6 @@
                                     AutomationId="isEditableSwitch"/>
                         </VerticalStackLayout>
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
-                            <Label Text="Search Mode:"
-                                   Style="{StaticResource VerticalGroupLabelStyle}" />
-                            <telerik:RadComboBox SelectedItem="{Binding SearchMode}"
-                                                 IsEnabled="{Binding IsEditable}"
-                                                 DropDownHeight="160"
-                                                 AutomationId="searchModeComboBox">
-                                <telerik:RadComboBox.ItemsSource>
-                                    <x:Array Type="{x:Type telerik:SearchMode}">
-                                        <telerik:SearchMode>StartsWith</telerik:SearchMode>
-                                        <telerik:SearchMode>StartsWithCaseSensitive</telerik:SearchMode>
-                                        <telerik:SearchMode>Contains</telerik:SearchMode>
-                                        <telerik:SearchMode>ContainsCaseSensitive</telerik:SearchMode>
-                                    </x:Array>
-                                </telerik:RadComboBox.ItemsSource>
-                            </telerik:RadComboBox>
-                        </VerticalStackLayout>
-                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
-                            <Label Text="Selection Mode:"
-                                   Style="{StaticResource VerticalGroupLabelStyle}" />
-                            <telerik:RadComboBox SelectedItem="{Binding SelectionMode}"
-                                                 DropDownHeight="85"
-                                                 AutomationId="selectionModeComboBox">
-                                <telerik:RadComboBox.ItemsSource>
-                                    <x:Array Type="{x:Type telerik:ComboBoxSelectionMode}">
-                                        <telerik:ComboBoxSelectionMode>Single</telerik:ComboBoxSelectionMode>
-                                        <telerik:ComboBoxSelectionMode>Multiple</telerik:ComboBoxSelectionMode>
-                                    </x:Array>
-                                </telerik:RadComboBox.ItemsSource>
-                            </telerik:RadComboBox>
-                        </VerticalStackLayout>
-                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="Show Clear Button:"
                                    Style="{StaticResource VerticalGroupLabelStyle}" />
                             <Switch VerticalOptions="Center"
@@ -119,11 +88,49 @@
                                               ReserveSpaceForErrorView="False" 
                                               AutomationId="placeholderEntry"/>
                         </VerticalStackLayout>
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Selection Mode:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <telerik:RadComboBox SelectedItem="{Binding SelectionMode}"
+                                                 AutomationId="selectionModeComboBox">
+                                <telerik:RadComboBox.ItemsSource>
+                                    <x:Array Type="{x:Type telerik:ComboBoxSelectionMode}">
+                                        <telerik:ComboBoxSelectionMode>Single</telerik:ComboBoxSelectionMode>
+                                        <telerik:ComboBoxSelectionMode>Multiple</telerik:ComboBoxSelectionMode>
+                                    </x:Array>
+                                </telerik:RadComboBox.ItemsSource>
+                            </telerik:RadComboBox>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Search Mode:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <telerik:RadComboBox SelectedItem="{Binding SearchMode}"
+                                                 IsEnabled="{Binding IsEditable}"
+                                                 AutomationId="searchModeComboBox">
+                                <telerik:RadComboBox.ItemsSource>
+                                    <x:Array Type="{x:Type telerik:SearchMode}">
+                                        <telerik:SearchMode>StartsWith</telerik:SearchMode>
+                                        <telerik:SearchMode>StartsWithCaseSensitive</telerik:SearchMode>
+                                        <telerik:SearchMode>Contains</telerik:SearchMode>
+                                        <telerik:SearchMode>ContainsCaseSensitive</telerik:SearchMode>
+                                    </x:Array>
+                                </telerik:RadComboBox.ItemsSource>
+                            </telerik:RadComboBox>
+                        </VerticalStackLayout>
                     </VerticalStackLayout>
-                   <VerticalStackLayout Grid.Column="{OnIdiom Default=1, Phone=0}"
+                    <VerticalStackLayout Grid.Column="{OnIdiom Default=1, Phone=0}"
                                         Grid.Row="{OnIdiom Default=0, Phone=1}">
                         <Label Text="DropDown Settings"
                                Style="{StaticResource SectionHeadingLabelStyle}" />
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Is Open:" 
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <Switch VerticalOptions="Center"
+                                    HorizontalOptions="Start"
+                                    IsToggled="{Binding IsDropDownOpen}"
+                                    Margin="{OnPlatform Default=0, WinUI='0, -2, 0, 0'}" 
+                                    AutomationId="isOpenSwitch"/>
+                        </VerticalStackLayout>
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="Open On Focus:"
                                    Style="{StaticResource VerticalGroupLabelStyle}" />
@@ -144,15 +151,6 @@
                                     AutomationId="closeOnSelectionSwitch"/>
                         </VerticalStackLayout>
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
-                            <Label Text="Is Open:" 
-                                   Style="{StaticResource VerticalGroupLabelStyle}" />
-                            <Switch VerticalOptions="Center"
-                                    HorizontalOptions="Start"
-                                    IsToggled="{Binding IsDropDownOpen}"
-                                    Margin="{OnPlatform Default=0, WinUI='0, -2, 0, 0'}" 
-                                    AutomationId="isOpenSwitch"/>  
-                        </VerticalStackLayout>
-                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="Width:"
                                    Style="{StaticResource VerticalGroupLabelStyle}" />
                             <Grid ColumnDefinitions="Auto, *, Auto">
@@ -170,19 +168,19 @@
                             </Grid>
                         </VerticalStackLayout>
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
-                            <Label Text="Height:"
+                            <Label Text="Max Height:"
                                    Style="{StaticResource VerticalGroupLabelStyle}" />
                             <Grid ColumnDefinitions="Auto, *, Auto">
                                 <Label Style="{StaticResource SliderMinMaxLabelStyle}"
-                                       Text="{Binding Minimum, Source={x:Reference dropDownHeightSlider}}" />
-                                <Slider x:Name="dropDownHeightSlider"
+                                       Text="{Binding Minimum, Source={x:Reference dropDownMaxHeightSlider}}" />
+                                <Slider x:Name="dropDownMaxHeightSlider"
                                         Grid.Column="1"
                                         Maximum="300"
-                                        Value="{OnPlatform Android=170, iOS=180, MacCatalyst=110, WinUI=200}" 
-                                        AutomationId="heightSlider"/>
+                                        Value="{Binding DropDownMaxHeight, Source={x:Reference comboBox}, Mode=TwoWay}"
+                                        AutomationId="maxHeightSlider" />
                                 <Label Grid.Column="2"
                                        Style="{StaticResource SliderMinMaxLabelStyle}"
-                                       Text="{Binding Maximum, Source={x:Reference dropDownHeightSlider}}" />
+                                       Text="{Binding Maximum, Source={x:Reference dropDownMaxHeightSlider}}" />
                             </Grid>
                         </VerticalStackLayout>
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">

@@ -3,7 +3,6 @@ using Microsoft.Maui.Controls.Xaml;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Telerik.Maui.Controls;
-using Telerik.Maui.Controls.Compatibility.DataGrid;
 
 namespace SDKBrowserMaui.Examples.DataGridControl.LoadOnDemandCategory.LoadOnDemandRowStyleExample;
 
@@ -18,7 +17,7 @@ public partial class LoadOnDemandRowStyle : RadContentView
     }
 
     // >> datagrid-loadondemandrowstyle-csharp
-    private async void dataGrid_LoadOnDemand(object sender, Telerik.Maui.Controls.Compatibility.DataGrid.LoadOnDemandEventArgs e)
+    private async void dataGrid_LoadOnDemand(object sender, Telerik.Maui.Controls.DataGrid.LoadOnDemandEventArgs e)
     {
         await Task.Delay(3000);
         for (int i = 0; i < 15; i++)

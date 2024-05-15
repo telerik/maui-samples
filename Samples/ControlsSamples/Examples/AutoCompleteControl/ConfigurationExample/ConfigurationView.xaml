@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:styles="clr-namespace:QSF.Styles"
+             x:Class="QSF.Examples.AutoCompleteControl.ConfigurationExample.ConfigurationView"
+             Padding="{OnIdiom Default='16, 20', Phone=0}">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <styles:ConfigurationViewResources />
+            </ResourceDictionary.MergedDictionaries>
+            <Style x:Key="SliderMinMaxLabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="10" />
+                <Setter Property="Opacity" Value="0.6" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+            <Style TargetType="Slider">
+                <Setter Property="Margin" Value="8, 0" />
+                <Setter Property="HorizontalOptions" Value="Fill" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="{OnPlatform Android=136, iOS=125, MacCatalyst=110, WinUI=112}" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <telerik:RadBorder Padding="16, 24"
+                           BackgroundColor="{AppThemeBinding Light={StaticResource DefaultBackgroundColor}, Dark={StaticResource DefaultBackgroundColorDark}}">
+            <telerik:RadAutoComplete x:Name="autoComplete"
+                                     ItemsSource="{Binding Cities}"
+                                     IsClearButtonVisible="{Binding IsClearButtonVisible}"
+                                     Placeholder="{Binding Placeholder}"
+                                     NoResultsMessage="{Binding NoResultsMessage}"
+                                     SearchThreshold="{Binding SearchThreshold}"
+                                     TextSearchPath="Name"
+                                     ShowSuggestionView="{Binding ShowSuggestionView}"
+                                     SuggestionViewPosition="{Binding PopupPosition}"
+                                     CompletionMode="{Binding CompletionMode}"
+                                     SuggestMode="{Binding SuggestMode}"
+                                     DisplayMode="{Binding DisplayMode}"
+                                     WidthRequest="{OnPlatform MacCatalyst=300, WinUI=300}"
+                                     HorizontalOptions="{OnPlatform Default=Fill, MacCatalyst=Start, WinUI=Start}"
+                                     VerticalOptions="Center"
+                                     AutomationId="cityAutoComplete" />
+        </telerik:RadBorder>
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Style="{StaticResource RootAtExampleAreaStyle}">
+                <Grid Style="{StaticResource GroupAtExampleAreaStyle}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="{OnIdiom Default=*, Phone=0}" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="{OnIdiom Default=0, Phone=*}" />
+                    </Grid.RowDefinitions>
+                    <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaWithColumnBreakStyle}">
+                        <Label Text="AutoComplete Settings"
+                               Style="{StaticResource SectionHeadingLabelStyle}" />
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Show Clear Button:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <Switch VerticalOptions="Center"
+                                    HorizontalOptions="Start"
+                                    IsToggled="{Binding IsClearButtonVisible}"
+                                    Margin="{OnPlatform Default=0, WinUI='0, -2, 0, 0'}" 
+                                    AutomationId="clearButtonVisibilitySwitch" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Placeholder:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <telerik:RadEntry Text="{Binding Placeholder}"
+                                              ReserveSpaceForErrorView="False"
+                                              AutomationId="placeholderEntry" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="No Results Message:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <telerik:RadEntry Text="{Binding NoResultsMessage}"
+                                              ReserveSpaceForErrorView="False"
+                                              AutomationId="noResultsMessageEntry" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Display Mode:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <telerik:RadComboBox SelectedItem="{Binding DisplayMode}"
+                                                 AutomationId="displayModeComboBox">
+                                <telerik:RadComboBox.ItemsSource>
+                                    <x:Array Type="{x:Type telerik:AutoCompleteDisplayMode}">
+                                        <telerik:AutoCompleteDisplayMode>Plain</telerik:AutoCompleteDisplayMode>
+                                        <telerik:AutoCompleteDisplayMode>Tokens</telerik:AutoCompleteDisplayMode>
+                                    </x:Array>
+                                </telerik:RadComboBox.ItemsSource>
+                            </telerik:RadComboBox>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Completion Mode:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <telerik:RadComboBox SelectedItem="{Binding CompletionMode}"
+                                                 AutomationId="completionModeComboBox">
+                                <telerik:RadComboBox.ItemsSource>
+                                    <x:Array Type="{x:Type telerik:AutoCompleteCompletionMode}">
+                                        <telerik:AutoCompleteCompletionMode>StartsWith</telerik:AutoCompleteCompletionMode>
+                                        <telerik:AutoCompleteCompletionMode>Contains</telerik:AutoCompleteCompletionMode>
+                                    </x:Array>
+                                </telerik:RadComboBox.ItemsSource>
+                            </telerik:RadComboBox>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Suggest Mode:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <telerik:RadComboBox SelectedItem="{Binding SuggestMode}"
+                                                 AutomationId="suggestModeComboBox">
+                                <telerik:RadComboBox.ItemsSource>
+                                    <x:Array Type="{x:Type telerik:AutoCompleteSuggestMode}">
+                                        <telerik:AutoCompleteSuggestMode>Append</telerik:AutoCompleteSuggestMode>
+                                        <telerik:AutoCompleteSuggestMode>Suggest</telerik:AutoCompleteSuggestMode>
+                                        <telerik:AutoCompleteSuggestMode>SuggestAppend</telerik:AutoCompleteSuggestMode>
+                                    </x:Array>
+                                </telerik:RadComboBox.ItemsSource>
+                            </telerik:RadComboBox>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Search Threshold:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <telerik:RadNumericInput Value="{Binding SearchThreshold}"
+                                                     Minimum="1"
+                                                     Maximum="10"
+                                                     AutomationId="searchThresholdNumericInput" />
+                        </VerticalStackLayout>
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Grid.Column="{OnIdiom Default=1, Phone=0}"
+                                         Grid.Row="{OnIdiom Default=0, Phone=1}">
+                        <Label Text="Suggestion View Settings"
+                               Style="{StaticResource SectionHeadingLabelStyle}" />
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Show Suggestion View:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <Switch VerticalOptions="Center"
+                                    HorizontalOptions="Start"
+                                    IsToggled="{Binding ShowSuggestionView}"
+                                    Margin="{OnPlatform Default=0, WinUI='0, -2, 0, 0'}"
+                                    AutomationId="showSuggestionViewSwitch" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Position:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <telerik:RadComboBox SelectedItem="{Binding PopupPosition}"
+                                                 AutomationId="suggestionViewPositionComboBox">
+                                <telerik:RadComboBox.ItemsSource>
+                                    <x:Array Type="{x:Type telerik:AutoCompletePopupPosition}">
+                                        <telerik:AutoCompletePopupPosition>Auto</telerik:AutoCompletePopupPosition>
+                                        <telerik:AutoCompletePopupPosition>Bottom</telerik:AutoCompletePopupPosition>
+                                        <telerik:AutoCompletePopupPosition>Top</telerik:AutoCompletePopupPosition>
+                                    </x:Array>
+                                </telerik:RadComboBox.ItemsSource>
+                            </telerik:RadComboBox>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Max Height:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <Grid ColumnDefinitions="Auto, *, Auto">
+                                <Label Text="{Binding Minimum, Source={x:Reference suggestionViewMaxHeightSlider}}"
+                                       Style="{StaticResource SliderMinMaxLabelStyle}" />
+                                <Slider x:Name="suggestionViewMaxHeightSlider"
+                                        Grid.Column="1"
+                                        Maximum="300"
+                                        Value="{Binding SuggestionViewMaxHeight, Source={x:Reference autoComplete}, Mode=TwoWay}"
+                                        AutomationId="maxHeightSlider" />
+                                <Label Grid.Column="2"
+                                       Style="{StaticResource SliderMinMaxLabelStyle}"
+                                       Text="{Binding Maximum, Source={x:Reference suggestionViewMaxHeightSlider}}" />
+                            </Grid>
+                        </VerticalStackLayout>
+                    </VerticalStackLayout>
+                </Grid>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentView>

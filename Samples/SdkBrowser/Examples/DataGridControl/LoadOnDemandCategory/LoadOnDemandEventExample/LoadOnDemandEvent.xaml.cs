@@ -2,7 +2,6 @@
 using Microsoft.Maui.Controls.Xaml;
 using System.Collections.ObjectModel;
 using Telerik.Maui.Controls;
-using Telerik.Maui.Controls.Compatibility.DataGrid;
 
 namespace SDKBrowserMaui.Examples.DataGridControl.LoadOnDemandCategory.LoadOnDemandEventExample;
 
@@ -17,7 +16,7 @@ public partial class LoadOnDemandEvent : RadContentView
     }
 
     // >> datagrid-loadondemand-event-csharp
-    private void dataGrid_LoadOnDemand(object sender, Telerik.Maui.Controls.Compatibility.DataGrid.LoadOnDemandEventArgs e)
+    private void dataGrid_LoadOnDemand(object sender, Telerik.Maui.Controls.DataGrid.LoadOnDemandEventArgs e)
     {
         for (int i = 0; i < 15; i++)
         {

@@ -88,14 +88,14 @@ namespace SDKBrowserMaui.Examples.ListViewControl.GroupingCategory.BindableGroup
                 this.GroupDescriptors.Add(new ListViewPropertyGroupDescriptor()
                 {
                     PropertyName = "Day",
-                    SortOrder = SortOrder.Ascending
+                    SortOrder = Telerik.Maui.Controls.Data.SortOrder.Ascending
                 });
             }
 
             if (propertyToUpdate.Equals(nameof(IsSortOrderGroupSwitchToggled)))
             {
                 var descriptor = (ListViewPropertyGroupDescriptor)this.GroupDescriptors.FirstOrDefault();
-                descriptor.SortOrder = isSortOrderGroupSwitchToggled ? SortOrder.Descending : SortOrder.Ascending;
+                descriptor.SortOrder = isSortOrderGroupSwitchToggled ? Telerik.Maui.Controls.Data.SortOrder.Descending : Telerik.Maui.Controls.Data.SortOrder.Ascending;
             }
             else if (propertyToUpdate.Equals(nameof(IsPropertyNameGroupSwitchToggled)))
             {

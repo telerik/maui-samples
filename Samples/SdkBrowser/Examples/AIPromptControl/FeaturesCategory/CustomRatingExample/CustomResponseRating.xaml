@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:input="Telerik.Maui.Controls.Compatibility.Input"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.AIPromptControl.ViewsCategory"
+             x:Class="SDKBrowserMaui.Examples.AIPromptControl.FeaturesCategory.CustomRatingExample.CustomResponseRating">
+    <VisualElement.Resources>
+        <!-- >> aiprompt-customrating-ratingstyle -->
+        <Style x:Key="MyRatingStyle" TargetType="telerik:AIPromptRatingView">
+            <Setter Property="ControlTemplate">
+                <ControlTemplate>
+                    <telerik:RadTemplatedRating ItemsSpacing="0" HeightRequest="16" Value="{Binding Rating, Source={RelativeSource Mode=TemplatedParent}, Mode=TwoWay}">
+                        <telerik:RadTemplatedRating.ItemTemplate>
+                            <DataTemplate>
+                                <Label FontFamily="TelerikFontExamples" Text="&#xe87f;" TextColor="Black" FontSize="16" VerticalTextAlignment="Center" />
+                            </DataTemplate>
+                        </telerik:RadTemplatedRating.ItemTemplate>
+                        <telerik:RadTemplatedRating.SelectedItemTemplate>
+                            <DataTemplate>
+                                <Label FontFamily="TelerikFontExamples" Text="&#xe87e;" TextColor="#FF9040" FontSize="16" VerticalTextAlignment="Center" />
+                            </DataTemplate>
+                        </telerik:RadTemplatedRating.SelectedItemTemplate>
+                    </telerik:RadTemplatedRating>
+                </ControlTemplate>
+            </Setter>
+        </Style>
+        <Style x:Key="MyOutputItemStyle" TargetType="telerik:AIPromptOutputItemView">
+            <Setter Property="RatingStyle" Value="{StaticResource MyRatingStyle}" />
+        </Style>
+        <!-- << aiprompt-customrating-ratingstyle -->
+    </VisualElement.Resources>
+
+    <Grid>
+        <!-- >> aiprompt-customrating-xaml -->
+        <telerik:RadAIPrompt x:Name="aiPrompt"
+                             InputText="{Binding InputText}"
+                             PromptRequestCommand="{Binding PromptRequestCommand}"
+                             OutputItems="{Binding OutputItems}"
+                             OutputItemStyle="{StaticResource MyOutputItemStyle}"
+                             OutputItemRatingChangedCommand="{Binding OutputItemRatingChangedCommand}" />
+        <!-- << aiprompt-customrating-xaml -->
+    </Grid>
+</ContentView>

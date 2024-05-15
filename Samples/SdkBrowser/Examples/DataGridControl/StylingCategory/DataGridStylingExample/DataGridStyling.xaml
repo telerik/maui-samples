@@ -4,37 +4,42 @@
                         xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
                         x:Class="SDKBrowserMaui.Examples.DataGridControl.StylingCategory.DataGridStylingExample.DataGridStyling">
     <telerik:RadDataGrid x:Name="DataGrid"
-                         BorderBrush="#8660C5"
-                         BorderThickness="4"
-                         IsVisible="True"
+                         AutoGenerateColumns="False"
                          UserEditMode="Cell">
+        <telerik:RadDataGrid.Resources>
+            <telerik:DataGridTextCellStyle x:Key="DataGridTextCellStyle"
+                                           TextColor="#000000"
+                                           SelectedTextColor="#198679" />
+        </telerik:RadDataGrid.Resources>
         <!-- >> datagrid-styling-alternaterowbackgroundstyle -->
         <telerik:RadDataGrid.AlternateRowBackgroundStyle>
-            <telerik:DataGridBorderStyle BackgroundColor="LightBlue" 
-                                         BorderThickness="1"
-                                         BorderColor="BlanchedAlmond"/>
+            <telerik:DataGridBorderStyle BackgroundColor="#F2FAF9" />
         </telerik:RadDataGrid.AlternateRowBackgroundStyle>
         <!-- << datagrid-styling-alternaterowbackgroundstyle -->
         <!-- >> datagrid-styling-groupheaderstyle -->
         <telerik:RadDataGrid.GroupHeaderStyle>
-            <telerik:DataGridGroupHeaderStyle BorderThickness="1"
-                                              TextColor="DarkTurquoise"
-                                              BorderColor="Brown"/>
+            <telerik:DataGridGroupHeaderStyle TextColor="#00796B"
+                                              ButtonTextColor="#00796B"
+                                              TextFontAttributes="Bold" />
         </telerik:RadDataGrid.GroupHeaderStyle>
         <!-- << datagrid-styling-groupheaderstyle -->
         <!-- >> datagrid-styling-rowbackgroundstyle -->
         <telerik:RadDataGrid.RowBackgroundStyle>
-            <telerik:DataGridBorderStyle BackgroundColor="CadetBlue" 
-                                         BorderColor="DarkOrchid" 
-                                         BorderThickness="1"/>
+            <telerik:DataGridBorderStyle BackgroundColor="#E0F2F1" />
         </telerik:RadDataGrid.RowBackgroundStyle>
         <!-- << datagrid-styling-rowbackgroundstyle -->
         <!-- >> datagrid-styling-selectionstyle -->
         <telerik:RadDataGrid.SelectionStyle>
-            <telerik:DataGridBorderStyle BackgroundColor="SeaGreen" 
-                                         BorderColor="Wheat" 
-                                         BorderThickness="2"/>
+            <telerik:DataGridBorderStyle BackgroundColor="#B2DFDB"
+                                         BorderColor="#198679"
+                                         BorderThickness="{OnIdiom Default=0, Phone=1}" />
         </telerik:RadDataGrid.SelectionStyle>
         <!-- << datagrid-styling-selectionstyle -->
+        <telerik:RadDataGrid.Columns>
+            <telerik:DataGridTextColumn PropertyName="Country"
+                                        CellContentStyle="{StaticResource DataGridTextCellStyle}" />
+            <telerik:DataGridTextColumn PropertyName="Capital"
+                                        CellContentStyle="{StaticResource DataGridTextCellStyle}" />
+        </telerik:RadDataGrid.Columns>
     </telerik:RadDataGrid>
 </telerik:RadContentView>

@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.Maui.Controls;
 using Microsoft.Maui.Graphics;
-using Telerik.Maui.Controls.Compatibility.DataGrid;
+using Telerik.Maui.Controls.DataGrid;
 
 namespace QSF.Examples.DataGridControl.HeaderContentTemplateExample;
 

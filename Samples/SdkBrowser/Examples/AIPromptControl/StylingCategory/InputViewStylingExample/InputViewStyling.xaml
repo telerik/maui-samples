@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.AIPromptControl.StylingCategory.InputViewStylingExample.InputViewStyling">
+    <VisualElement.Resources>
+        <!-- >> aiprompt-inputview-style -->
+        <Style x:Key="MyInputEditorStyle" TargetType="Editor">
+            <Setter Property="TextColor" Value="#00897B" />
+        </Style>
+        <Style x:Key="MyInputButtonStyle" TargetType="telerik:RadTemplatedButton">
+            <Setter Property="TextColor" Value="#00897B" />
+            <Setter Property="Background" Value="#D6EEEC" />
+            <Setter Property="ContentTemplate">
+                <DataTemplate>
+                    <HorizontalStackLayout Spacing="8">
+                        <Label FontFamily="{Binding Source={RelativeSource AncestorType={x:Type telerik:RadTemplatedButton}}, Path=FontFamily}"
+                               FontSize="{Binding Source={RelativeSource AncestorType={x:Type telerik:RadTemplatedButton}}, Path=FontSize}"
+                               FontAttributes="{Binding Source={RelativeSource AncestorType={x:Type telerik:RadTemplatedButton}}, Path=FontAttributes}"
+                               TextColor="{Binding Source={RelativeSource AncestorType={x:Type telerik:RadTemplatedButton}}, Path=TextColor}"
+                               Text="{Binding}"
+                               HorizontalTextAlignment="{Binding Source={RelativeSource AncestorType={x:Type telerik:RadTemplatedButton}}, Path=HorizontalTextAlignment}"
+                               VerticalTextAlignment="{Binding Source={RelativeSource AncestorType={x:Type telerik:RadTemplatedButton}}, Path=VerticalTextAlignment}" />
+                        <Label FontFamily="TelerikFont"
+                               FontSize="{OnPlatform Default=16, MacCatalyst=12}"
+                               Text="{x:Static telerik:TelerikFont.IconSendMessage}"
+                               TextColor="{Binding Source={RelativeSource AncestorType={x:Type telerik:RadTemplatedButton}}, Path=TextColor}"
+                               VerticalTextAlignment="{Binding Source={RelativeSource AncestorType={x:Type telerik:RadTemplatedButton}}, Path=VerticalTextAlignment}" />
+                    </HorizontalStackLayout>
+                </DataTemplate>
+            </Setter>
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup Name="CommonStates">
+                        <VisualState Name="Normal" />
+                        <VisualState Name="PointerOver">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadTemplatedButton.Background" Value="#E8F5F4" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="Pressed">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadTemplatedButton.TextColor" Value="#9900897B" />
+                                <Setter Property="telerik:RadTemplatedButton.Background" Value="#E8F5F4" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="Disabled">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadTemplatedButton.TextColor" Value="#6100897B" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+        <!-- << aiprompt-inputview-style -->
+    </VisualElement.Resources>
+
+    <Grid>
+        <!-- >> aiprompt-inputview-styling-xaml -->
+        <telerik:RadAIPrompt x:Name="aiPrompt"
+                             InputText="{Binding InputText}"
+                             InputEditorStyle="{StaticResource MyInputEditorStyle}"
+                             InputButtonText="Send request"
+                             InputButtonStyle="{StaticResource MyInputButtonStyle}"
+                             PromptRequestCommand="{Binding PromptRequestCommand}"
+                             OutputItems="{Binding OutputItems}" />
+        <!-- << aiprompt-inputview-styling-xaml -->
+    </Grid>
+</ContentView>

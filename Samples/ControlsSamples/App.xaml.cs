@@ -3,8 +3,10 @@ using Microsoft.Maui.Controls;
 using Microsoft.Maui.Devices;
 using Microsoft.Maui.Graphics;
 using Microsoft.Maui.Handlers;
+using QSF.Common;
 using QSF.Pages;
 using QSF.Services;
+using System;
 using Telerik.Maui.Controls;
 using Application = Microsoft.Maui.Controls.Application;
 
@@ -19,22 +21,30 @@ public partial class App : Application
         this.InitializeComponent();
         this.InitializeDependencies();
 
-        if (DeviceInfo.Idiom == DeviceIdiom.Desktop)
+        if (Environment.GetEnvironmentVariable("EnableTelerikUIAutomation") == "true")
         {
-            this.MainPage = new NavigationPage(new MainPageDesktop());
+            MainPage = new NavigationPage(new UITestsHomePage());
         }
         else
         {
-            this.MainPage = new NavigationPage(new MainPageMobile());
+            if (DeviceInfo.Idiom == DeviceIdiom.Desktop)
+            {
+                this.MainPage = new NavigationPage(new MainPageDesktop());
+            }
+            else
+            {
+                this.MainPage = new NavigationPage(new MainPageMobile());
 
 #if __ANDROID__ || __IOS__
-            // TODO: When https://github.com/dotnet/maui/issues/5835 is really fixed, remove the following lines and the respective methods.
-            // Currently, setting MaxLines of a Label to more than one for Android or iOS and LineBreakMode to TailTruncation
-            // results to a single-line Label with truncation. The MaxLines is ignored.
-            LabelHandler.Mapper.AppendToMapping(nameof(Label.LineBreakMode), UpdateMaxLines);
-            LabelHandler.Mapper.AppendToMapping(nameof(Label.MaxLines), UpdateMaxLines);
+                // TODO: When https://github.com/dotnet/maui/issues/5835 is really fixed, remove the following lines and the respective methods.
+                // Currently, setting MaxLines of a Label to more than one for Android or iOS and LineBreakMode to TailTruncation
+                // results to a single-line Label with truncation. The MaxLines is ignored.
+                LabelHandler.Mapper.AppendToMapping(nameof(Label.LineBreakMode), UpdateMaxLines);
+                LabelHandler.Mapper.AppendToMapping(nameof(Label.MaxLines), UpdateMaxLines);
 #endif
+            }
         }
+        
 #if __ANDROID__ || WINDOWS
         Microsoft.Maui.Handlers.ViewHandler.ViewMapper.AppendToMapping(nameof(IView.AutomationId), (h, v) => SetAutomationId(v));
         Microsoft.Maui.Handlers.ContentViewHandler.Mapper.AppendToMapping(nameof(IView.AutomationId), (h, v) => SetAutomationId(v));

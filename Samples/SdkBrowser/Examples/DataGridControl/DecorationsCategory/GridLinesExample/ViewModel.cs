@@ -3,7 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using Telerik.Maui.Controls.Compatibility.DataGrid;
+using Telerik.Maui.Controls.DataGrid;
 using Telerik.Maui.Controls;
 
 namespace SDKBrowserMaui.Examples.DataGridControl.DecorationsCategory.GridLinesExample;

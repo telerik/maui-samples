@@ -2,7 +2,7 @@
 using Microsoft.Maui.Controls.Xaml;
 using System;
 using Telerik.Maui.Controls;
-using Telerik.Maui.Controls.Compatibility.Common.Data;
+using Telerik.Maui.Controls.Data;
 
 namespace SDKBrowserMaui.Examples.DataGridControl.FilteringCategory.ProgrammaticFilteringExample;
 

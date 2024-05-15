@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.AIPromptControl.StylingCategory.SuggestionsStylingExample.SuggestionsStyling">
+    <VisualElement.Resources>
+        <!-- >> aiprompt-suggestion-style -->
+        <Style x:Key="MySuggestionStyle" TargetType="telerik:AIPromptInputSuggestionView">
+            <Setter Property="BackgroundColor" Value="#FAFAFA" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="LabelStyle">
+                <Style TargetType="Label">
+                    <Setter Property="TextColor" Value="#00897B" />
+                </Style>
+            </Setter>
+        </Style>
+        <!-- << aiprompt-suggestion-style -->
+    </VisualElement.Resources>
+    <Grid>
+        <!-- >> aiprompt-suggestion-style-xaml -->
+        <telerik:RadAIPrompt x:Name="aiPrompt"
+                             InputText="{Binding InputText}"
+                             PromptRequestCommand="{Binding PromptRequestCommand}"
+                             SuggestionsHeaderText="Things to ask the AI:"
+                             Suggestions="{Binding Suggestions}"
+                             OutputItems="{Binding OutputItems}"
+                             SuggestionStyle="{StaticResource MySuggestionStyle}" />
+        <!-- << aiprompt-suggestion-style-xaml -->
+    </Grid>
+</ContentView>

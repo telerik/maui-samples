@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.ToggleButtonControl.FeaturesCategory.VisualStatesExample.VisualStates">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <!-- >> togglebutton-visual-states-resources -->
+            <Style x:Key="ToggleButtonFlatStyle" TargetType="telerik:RadToggleButton">
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="HeightRequest" Value="32" />
+                <Setter Property="TextColor" Value="#000000" />
+                <Setter Property="Background" Value="#EAEAEA" />
+                <Setter Property="BorderBrush" Value="#00897B" />
+                <Setter Property="BorderThickness" Value="6, 0, 0, 0" />
+                <Setter Property="CornerRadius" Value="0" />
+                <Setter Property="Padding" Value="12, 0" />
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup Name="CommonStates">
+                            <VisualState Name="Normal" />
+                            <VisualState Name="MouseOver">
+                                <VisualState.Setters>
+                                    <Setter Property="Background" Value="#D2D2D2" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="Pressed">
+                                <VisualState.Setters>
+                                    <Setter Property="Background" Value="#D2D2D2" />
+                                    <Setter Property="TextColor" Value="#99000000" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="Disabled">
+                                <VisualState.Setters>
+                                    <Setter Property="TextColor" Value="#61000000" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="Toggled">
+                                <VisualState.Setters>
+                                    <Setter Property="TextColor" Value="#FFFFFF" />
+                                    <Setter Property="Background" Value="#00897B" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="ToggledMouseOver">
+                                <VisualState.Setters>
+                                    <Setter Property="TextColor" Value="#FFFFFF" />
+                                    <Setter Property="Background" Value="#32A095" />
+                                    <Setter Property="BorderBrush" Value="#32A095" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="ToggledPressed">
+                                <VisualState.Setters>
+                                    <Setter Property="TextColor" Value="#99000000" />
+                                    <Setter Property="Background" Value="#4CACA2" />
+                                    <Setter Property="BorderBrush" Value="#4CACA2" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="ToggledDisabled">
+                                <VisualState.Setters>
+                                    <Setter Property="TextColor" Value="#61FFFFFF" />
+                                    <Setter Property="Background" Value="#00897B" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="Indeterminate" />
+                            <VisualState Name="IndeterminateMouseOver" />
+                            <VisualState Name="IndeterminatePressed" />
+                            <VisualState Name="IndeterminateDisabled" />
+                        </VisualStateGroup>
+                        <VisualStateGroup Name="FocusStates">
+                            <VisualState Name="Unfocused" />
+                            <VisualState Name="Focused" />
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+            <!-- << togglebutton-visual-states-resources -->
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <!-- >> togglebutton-visual-states -->
+    <VerticalStackLayout HorizontalOptions="Center" Spacing="20">
+        <HorizontalStackLayout Spacing="5">
+            <telerik:RadCheckBox x:Name="checkBox"
+                                 IsChecked="True"
+                                 IsThreeState="False"
+                                 CheckedSymbolColor="White"
+                                 CheckedColor="#00897B" />
+            <Label Text="IsEnabled?"
+                   VerticalTextAlignment="Center"
+                   telerik:RadCheckBox.ToggleOnTap="{x:Reference checkBox}" />
+        </HorizontalStackLayout>
+        <telerik:RadToggleButton IsEnabled="{Binding IsChecked, Source={x:Reference checkBox}}"
+                                 IsThreeState="False"
+                                 Content="ToggleButton"
+                                 Style="{StaticResource ToggleButtonFlatStyle}" />
+    </VerticalStackLayout>
+    <!-- << togglebutton-visual-states -->
+</ContentView>

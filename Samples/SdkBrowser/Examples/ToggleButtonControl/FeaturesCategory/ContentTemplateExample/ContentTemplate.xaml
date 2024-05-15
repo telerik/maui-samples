@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.ToggleButtonControl.FeaturesCategory.ContentTemplateExample"
+             x:Class="SDKBrowserMaui.Examples.ToggleButtonControl.FeaturesCategory.ContentTemplateExample.ContentTemplate">
+    <!-- >> togglebutton-content-template -->
+    <Grid>
+        <telerik:RadCollectionView ItemsSource="{Binding Mails}">
+            <telerik:RadCollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid ColumnDefinitions="*, Auto"
+                          Padding="{OnPlatform Default='2, 0', WinUI='11, 0'}">
+                        <Grid.Resources>
+                            <telerik:BoolToValueConverter x:Key="BoolToGlyphConverter" TrueValue="&#xe805;" FalseValue="&#xe801;" />
+                            <telerik:BoolToValueConverter x:Key="BoolToStringConverter" TrueValue=" Starred" FalseValue="" />
+                        </Grid.Resources>
+                        <VerticalStackLayout VerticalOptions="Center">
+                            <Label Text="{Binding Sender}" />
+                            <Label Text="{Binding Subject}"
+                                   FontAttributes="Italic"
+                                   Opacity="0.75" />
+                        </VerticalStackLayout>
+                        <telerik:RadToggleButton Grid.Column="1"
+                                                 IsToggled="{Binding IsImportant}"
+                                                 Content="{Binding IsImportant}"
+                                                 VerticalOptions="Center">
+                            <telerik:RadToggleButton.ContentTemplate>
+                                <DataTemplate>
+                                    <Grid ColumnDefinitions="Auto, *">
+                                        <Label FontFamily="TelerikFontExamples"
+                                               FontSize="16"
+                                               Text="{Binding Converter={StaticResource BoolToGlyphConverter}}"
+                                               TextColor="{Binding Source={RelativeSource AncestorType={x:Type telerik:RadToggleButton}}, Path=TextColor}"
+                                               HorizontalTextAlignment="{Binding Source={RelativeSource AncestorType={x:Type telerik:RadToggleButton}}, Path=HorizontalTextAlignment}"
+                                               VerticalTextAlignment="{Binding Source={RelativeSource AncestorType={x:Type telerik:RadToggleButton}}, Path=VerticalTextAlignment}" />
+                                        <Label Grid.Column="1"
+                                               Text="{Binding Converter={StaticResource BoolToStringConverter}}"
+                                               TextColor="{Binding Source={RelativeSource AncestorType={x:Type telerik:RadToggleButton}}, Path=TextColor}"
+                                               HorizontalTextAlignment="{Binding Source={RelativeSource AncestorType={x:Type telerik:RadToggleButton}}, Path=HorizontalTextAlignment}"
+                                               VerticalTextAlignment="{Binding Source={RelativeSource AncestorType={x:Type telerik:RadToggleButton}}, Path=VerticalTextAlignment}" />
+                                    </Grid>
+                                </DataTemplate>
+                            </telerik:RadToggleButton.ContentTemplate>
+                        </telerik:RadToggleButton>
+                    </Grid>
+                </DataTemplate>
+            </telerik:RadCollectionView.ItemTemplate>
+        </telerik:RadCollectionView>
+    </Grid>
+    <!-- << togglebutton-content-template -->
+</ContentView>

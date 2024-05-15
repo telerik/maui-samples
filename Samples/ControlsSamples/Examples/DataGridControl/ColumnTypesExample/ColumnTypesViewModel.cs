@@ -10,7 +10,6 @@ namespace QSF.Examples.DataGridControl.ColumnTypesExample
     {
         private List<string> carriers;
         private List<(string, string)> countryNames;
-        private List<string> statuses;
 
         public ColumnTypesViewModel()
         {
@@ -38,8 +37,8 @@ namespace QSF.Examples.DataGridControl.ColumnTypesExample
                 ("Tokyo", "Tyo")
             };
 
-            this.statuses = new List<string> 
-            { 
+            this.Statuses = new ObservableCollection<string>
+            {
                 "Departed",
                 "Boarding",
                 "Check-in",
@@ -51,6 +50,7 @@ namespace QSF.Examples.DataGridControl.ColumnTypesExample
         }
 
         public ObservableCollection<Flight> Flights { get; set; }
+        public ObservableCollection<string> Statuses { get; private set; }
 
         private void CreateFlights()
         {
@@ -73,7 +73,7 @@ namespace QSF.Examples.DataGridControl.ColumnTypesExample
                 flight.Time = dateTime;
                 dateTime = dateTime.AddMinutes(12);
                 flight.StatusTime = dateTime.ToString("HH:mm");
-                flight.Status = this.statuses.OrderBy(x => Guid.NewGuid()).FirstOrDefault();
+                flight.Status = this.Statuses.OrderBy(x => Guid.NewGuid()).FirstOrDefault();
 
                 this.Flights.Add(flight);
             }

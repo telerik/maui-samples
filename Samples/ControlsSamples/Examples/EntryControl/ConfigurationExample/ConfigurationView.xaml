@@ -106,8 +106,7 @@
                             <Label Text="Text Color:"
                                    Style="{StaticResource VerticalGroupLabelStyle}" />
                             <telerik:RadComboBox x:Name="textColorComboBox"
-                                                 SelectedItem="{Binding SelectedTextColor, Mode=TwoWay}" 
-                                                 DropDownHeight="120"
+                                                 SelectedItem="{Binding SelectedTextColor, Mode=TwoWay}"
                                                  ItemsSource="{Binding TextColors}" 
                                                  AutomationId="textColorComboBox"/>
                         </VerticalStackLayout>
@@ -129,7 +128,6 @@
                             <Label Text="Keyboard:" 
                                    Style="{StaticResource VerticalGroupLabelStyle}" />
                             <telerik:RadComboBox x:Name="keyboardComboBox"
-                                                 DropDownHeight="120"
                                                  SelectedItem="{Binding SelectedKeyboard, Mode=TwoWay}" 
                                                  ItemsSource="{Binding Keyboards}" 
                                                  AutomationId="keyboardComboBox"/>
@@ -148,7 +146,6 @@
                                    Style="{StaticResource VerticalGroupLabelStyle}" />
                             <telerik:RadComboBox x:Name="fontSizeComboBox"
                                                  SelectedItem="{Binding SelectedFontSize, Mode=TwoWay}"
-                                                 DropDownHeight="{OnPlatform MacCatalyst=70, Default=120}"
                                                  ItemsSource="{Binding FontSizes}" 
                                                  AutomationId="fontSizeComboBox"/>
                         </VerticalStackLayout>
@@ -157,7 +154,6 @@
                                    Style="{StaticResource VerticalGroupLabelStyle}" />
                             <telerik:RadComboBox x:Name="selectionOnFocusComboBox"
                                                  SelectedItem="{Binding Source={x:Reference entry}, Path=SelectionOnFocus, Mode=TwoWay}"
-                                                 DropDownHeight="{OnPlatform MacCatalyst=70, Default=120}"
                                                  AutomationId="selectionOnFocusComboBox">
                                 <telerik:RadComboBox.ItemsSource>
                                     <x:Array Type="{x:Type telerik:SelectionOnFocus}">

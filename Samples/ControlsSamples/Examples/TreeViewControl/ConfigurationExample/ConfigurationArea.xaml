@@ -23,7 +23,6 @@
             <Label Text="Selection Mode:"
                    Style="{StaticResource VerticalGroupLabelStyle}" />
             <telerik:RadComboBox ItemsSource="{Binding SelectionModes}"
-                                 DropDownHeight="{OnPlatform Android=102, iOS=108, MacCatalyst=66, WinUI=120}"
                                  SelectedItem="{Binding SelectionMode, Mode=TwoWay}" 
                                  AutomationId="selectionModesComboBox"/>
         </VerticalStackLayout>
@@ -31,7 +30,6 @@
             <Label Text="CheckBox Mode:"
                    Style="{StaticResource VerticalGroupLabelStyle}" />
             <telerik:RadComboBox ItemsSource="{Binding CheckBoxModes}"
-                                 DropDownHeight="{OnPlatform Android=102, iOS=108, MacCatalyst=66, WinUI=120}"
                                  SelectedItem="{Binding CheckBoxMode, Mode=TwoWay}" 
                                  AutomationId="checkBoxModesComboBox"/>
         </VerticalStackLayout>

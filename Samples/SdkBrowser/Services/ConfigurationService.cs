@@ -113,6 +113,21 @@ namespace SDKBrowserMaui.Services
 
             var platforms = exclusions.Split(',');
 
+            string netVersion = string.Empty;
+
+#if NET7_0
+            netVersion = "net7";
+#elif NET8_0
+            netVersion = "net8";
+#elif NET9_0
+            netVersion = "net9";
+#endif
+
+            if (platforms.Contains(netVersion, StringComparer.OrdinalIgnoreCase))
+            {
+                return true;
+            }
+
             return platforms.Contains(DeviceInfo.Platform.ToString(),
                 StringComparer.OrdinalIgnoreCase);
         }

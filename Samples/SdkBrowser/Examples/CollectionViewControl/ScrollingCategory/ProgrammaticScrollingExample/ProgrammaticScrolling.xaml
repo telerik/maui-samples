@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.CollectionViewControl"
+             x:Class="SDKBrowserMaui.Examples.CollectionViewControl.ScrollingCategory.ProgrammaticScrollingExample.ProgrammaticScrolling">
+    <!-- >> collectionview-programmatic-scrolling-xaml -->
+    <Grid RowDefinitions="Auto, *"
+          RowSpacing="20">
+        <telerik:RadTemplatedButton x:Name="scrollToLastItemBtn"
+                                    Content="Scroll to last item"
+                                    Clicked="OnScrollToLastItemClicked" />
+        <telerik:RadCollectionView x:Name="collectionView"
+                                   Grid.Row="1"
+                                   ItemsSource="{Binding Locations}"
+                                   DisplayMemberPath="City">
+            <telerik:RadCollectionView.BindingContext>
+                <local:ViewModel />
+            </telerik:RadCollectionView.BindingContext>
+        </telerik:RadCollectionView>
+    </Grid>
+    <!-- << collectionview-programmatic-scrolling-xaml -->
+</ContentView>

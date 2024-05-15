@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.AIPromptControl.StylingCategory.PopupStylingExample.PopupStyling">
+    <VisualElement.Resources>
+        <!-- >> aiprompt-airpromtpopup-style -->
+        <Style x:Key="MyCloseButtonStyle" TargetType="telerik:RadTemplatedButton">
+            <Setter Property="TextColor" Value="#00897B" />
+            <Setter Property="Background" Value="#FAFAFA" />
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup Name="CommonStates">
+                        <VisualState Name="Normal" />
+                        <VisualState Name="PointerOver">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadTemplatedButton.Background" Value="#E8F5F4" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="Pressed">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadTemplatedButton.TextColor" Value="#9900897B" />
+                                <Setter Property="telerik:RadTemplatedButton.Background" Value="#E8F5F4" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="Disabled">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadTemplatedButton.TextColor" Value="#6100897B" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+        <Style x:Key="MyPopupContentStyle" TargetType="telerik:AIPromptPopupContentView">
+            <Setter Property="BorderBrush" Value="#00897B" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="ClosePopupButtonStyle" Value="{StaticResource MyCloseButtonStyle}" />
+        </Style>
+        <!-- << aiprompt-airpromtpopup-style -->
+    </VisualElement.Resources>
+    <Grid>
+        <!-- >> aiprompt-airpromtpopup-style-xaml -->
+        <telerik:RadAIPromptButton HorizontalOptions="End"
+                                   VerticalOptions="End"
+                                   PopupContentViewStyle="{StaticResource MyPopupContentStyle}">
+            <telerik:RadAIPromptButton.Popup>
+                <telerik:RadPopup IsModal="False"
+                                  OutsideBackgroundColor="#66000000" />
+            </telerik:RadAIPromptButton.Popup>
+            <telerik:RadAIPrompt InputText="{Binding InputText}"
+                                 PromptRequestCommand="{Binding PromptRequestCommand}"
+                                 OutputItems="{Binding OutputItems}" />
+        </telerik:RadAIPromptButton>
+        <!-- << aiprompt-airpromtpopup-style-xaml -->
+    </Grid>
+</ContentView>

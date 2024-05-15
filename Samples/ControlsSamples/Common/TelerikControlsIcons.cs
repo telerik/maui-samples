@@ -7,6 +7,7 @@ internal static class TelerikControlsIcons
     private static Dictionary<string, string> ControlsIcons = new()
     {
         { "Accordion", char.ConvertFromUtf32(0xe000) },
+        { "AIPrompt", char.ConvertFromUtf32(0xe041) },
         { "AutoComplete", char.ConvertFromUtf32(0xe001) },
         { "BadgeView", char.ConvertFromUtf32(0xe002) },
         { "Barcode", char.ConvertFromUtf32(0xe003) },

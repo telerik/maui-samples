@@ -20,12 +20,14 @@
                          Glyph="&#xe03a;"
                          FontFamily="TelerikControlsIcons"
                          Color="{StaticResource AccentColor8}"
-                         Size="24" />
+                         Size="24"
+                         AutomationId="homeButton" />
         <FontImageSource x:Key="SearchIcon"
                          Glyph="&#xe03b;"
                          FontFamily="TelerikControlsIcons"
                          Color="{StaticResource AccentColor8}"
-                         Size="24" />
+                         Size="24"
+                         AutomationId="searchButton" />
         <FontImageSource x:Key="SettingsIcon"
                          Glyph="&#xe03c;"
                          FontFamily="TelerikControlsIcons"
@@ -46,9 +48,11 @@
         <Style x:Key="DefaultItemStyle" TargetType="telerik:NavigationViewItemView">
             <Setter Property="MinimumHeightRequest" Value="40" />
             <Setter Property="Command" Value="{Binding SelectControlCommand}" />
+            <Setter Property="ToolTipProperties.Text" Value="{Binding DisplayName}" />
         </Style>
         <Style x:Key="ItemStyle_MacCatalyst" TargetType="telerik:NavigationViewItemView">
             <Setter Property="MinimumHeightRequest" Value="40" />
+            <Setter Property="ToolTipProperties.Text" Value="{Binding DisplayName}" />
             <Setter Property="VisualStateManager.VisualStateGroups">
                 <VisualStateGroupList>
                     <VisualStateGroup Name="CommonStates">
@@ -72,6 +76,15 @@
                     </VisualStateGroup>
                 </VisualStateGroupList>
             </Setter>
+        </Style>
+        <Style x:Key="HomeItemStyle" TargetType="telerik:NavigationViewItemView" BasedOn="{OnPlatform MacCatalyst={StaticResource ItemStyle_MacCatalyst}}">
+            <Setter Property="ToolTipProperties.Text" Value="Home" />
+        </Style>
+        <Style x:Key="SearchItemStyle" TargetType="telerik:NavigationViewItemView" BasedOn="{OnPlatform MacCatalyst={StaticResource ItemStyle_MacCatalyst}}">
+            <Setter Property="ToolTipProperties.Text" Value="Search" />
+        </Style>
+        <Style x:Key="SettingsItemStyle" TargetType="telerik:NavigationViewItemView" BasedOn="{OnPlatform MacCatalyst={StaticResource ItemStyle_MacCatalyst}}">
+            <Setter Property="ToolTipProperties.Text" Value="Settings" />
         </Style>
         <Style x:Key="NavigatableItemStyle_MacCatalyst" TargetType="telerik:NavigationViewItemView" BasedOn="{StaticResource ItemStyle_MacCatalyst}">
             <Setter Property="Command" Value="{Binding SelectControlCommand}" />
@@ -114,17 +127,17 @@
                                         Text="Home"
                                         ImageSource="{StaticResource HomeIcon}"
                                         IsSelected="{Binding IsHomeSelected, Mode=TwoWay}"
-                                        Style="{OnPlatform MacCatalyst={StaticResource ItemStyle_MacCatalyst}}" />
+                                        Style="{StaticResource HomeItemStyle}" />
             <telerik:NavigationViewItem Position="Header"
                                         Text="Search"
                                         ImageSource="{StaticResource SearchIcon}"
                                         IsSelected="{Binding IsSearchSelected, Mode=TwoWay}"
-                                        Style="{OnPlatform MacCatalyst={StaticResource ItemStyle_MacCatalyst}}" />
+                                        Style="{StaticResource SearchItemStyle}" />
             <telerik:NavigationViewItem Position="Footer"
                                         Text="Settings"
                                         ImageSource="{StaticResource SettingsIcon}"
                                         IsSelected="{Binding IsSettingsSelected, Mode=TwoWay}"
-                                        Style="{OnPlatform MacCatalyst={StaticResource ItemStyle_MacCatalyst}}" />
+                                        Style="{StaticResource SettingsItemStyle}" />
         </telerik:RadNavigationView.Items>
         <Grid BackgroundColor="{AppThemeBinding Light={StaticResource DefaultBackgroundColor}, Dark={StaticResource DefaultBackgroundColorDark}}">
             <HorizontalStackLayout VerticalOptions="Start">

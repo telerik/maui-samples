@@ -7,23 +7,23 @@
         <ResourceDictionary>
             <!-- >> datagrid-loadondemandrowstyle-xaml -->
             <telerik:DataGridLoadOnDemandRowStyle x:Key="CustomDataGridLoadOnDemandRowStyle" 
-                                                  BackgroundColor="LightYellow"
-                                                  BorderColor="LightBlue"
-                                                  IndicatorAnimationColor="Orange"
+                                                  BackgroundColor="#E0F2F1"
+                                                  IndicatorAnimationColor="#00796B"
                                                   IndicatorAnimationType="Animation5"
                                                   HorizontalTextAlignment="Center"
                                                   VerticalTextAlignment="Center"
                                                   OverlayOpacity="0.5"
-                                                  Text="Some Text"
-                                                  TextFontSize="16"
-                                                  TextColor="DarkGray"
-                                                  TextFontFamily="Times New Roman"/>
+                                                  Text="LOAD MORE"
+                                                  TextFontAttributes="Bold"
+                                                  TextFontSize="14"
+                                                  TextColor="#00796B" />
             <!-- << datagrid-loadondemandrowstyle-xaml -->
         </ResourceDictionary>
     </telerik:RadContentView.Resources>
     <Grid>
         <!-- >> datagrid-setting-loadondemandrowstyle-xaml -->
-        <telerik:RadDataGrid x:Name="dataGrid" ItemsSource="{Binding Items}"
+        <telerik:RadDataGrid x:Name="dataGrid"
+                             ItemsSource="{Binding Items}"
                              LoadOnDemand="dataGrid_LoadOnDemand"
                              LoadOnDemandMode="Manual"
                              LoadOnDemandRowStyle="{StaticResource CustomDataGridLoadOnDemandRowStyle}"/>

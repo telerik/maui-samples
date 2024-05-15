@@ -48,7 +48,6 @@
             <Label Text="Minor Tick Length:"
                    Style="{StaticResource VerticalGroupLabelStyle}" />
             <telerik:RadComboBox ItemsSource="{Binding MinorTicksSource}"
-                                 DropDownHeight="{OnPlatform Android=102, iOS=108, MacCatalyst=66, WinUI=120}"
                                  SelectedItem="{Binding MinorTickLength, Mode=TwoWay}"
                                  IsEnabled="{Binding ActiveViewDefinition, Converter={StaticResource ViewDefinitionToBoolConverter}, ConverterParameter='MonthViewDefinition'}" />
         </VerticalStackLayout>
@@ -56,7 +55,6 @@
             <Label Text="Major Tick Length:"
                    Style="{StaticResource VerticalGroupLabelStyle}" />
             <telerik:RadComboBox ItemsSource="{Binding MajorTicksSource}"
-                                 DropDownHeight="{OnPlatform Android=102, iOS=108, MacCatalyst=66, WinUI=120}"
                                  SelectedItem="{Binding MajorTickLength, Mode=TwoWay}"
                                  IsEnabled="{Binding ActiveViewDefinition, Converter={StaticResource ViewDefinitionToBoolConverter}, ConverterParameter='MonthViewDefinition'}" />
         </VerticalStackLayout>
@@ -76,7 +74,6 @@
             <Label Text="Interaction Mode:"
                    Style="{StaticResource VerticalGroupLabelStyle}" />
             <telerik:RadComboBox ItemsSource="{Binding InteractionModes}"
-                                 DropDownHeight="{OnPlatform Android=68, iOS=72, MacCatalyst=44, WinUI=80}"
                                  SelectedItem="{Binding InteractionMode, Mode=TwoWay}" />
         </VerticalStackLayout>
         <VerticalStackLayout Style="{StaticResource GroupAtSeparateAreaStyle}">

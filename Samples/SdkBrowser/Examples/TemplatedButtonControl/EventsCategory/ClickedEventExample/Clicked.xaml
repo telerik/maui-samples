@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.TemplatedButtonControl.EventsCategory.ClickedEventExample.Clicked">
+    <VerticalStackLayout Spacing="20" HorizontalOptions="Center">
+        <!-- >> templatedbutton-event-clicked -->
+        <telerik:RadTemplatedButton x:Name="templatedButton"
+                                    Content="My Button"
+                                    Clicked="OnRadTemplatedButtonClicked" />
+        <Label x:Name="label" Text="TemplatedButton is clicked 0 times" />
+        <!-- << templatedbutton-event-clicked -->
+    </VerticalStackLayout>
+</ContentView>

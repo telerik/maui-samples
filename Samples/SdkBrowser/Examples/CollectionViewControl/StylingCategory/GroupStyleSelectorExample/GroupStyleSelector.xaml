@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.CollectionViewControl"
+             xmlns:selector="clr-namespace:SDKBrowserMaui.Examples.CollectionViewControl.StylingCategory.GroupStyleSelectorExample"
+             x:Class="SDKBrowserMaui.Examples.CollectionViewControl.StylingCategory.GroupStyleSelectorExample.GroupStyleSelector">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <!-- >> collectionview-group-styleselector-resources -->
+            <selector:MyGroupStyleSelector x:Key="GroupHeaderStyleSelector">
+                <Style TargetType="telerik:RadCollectionViewGroupView" x:Key="1">
+                    <Setter Property="BackgroundColor" Value="#A0D7D2" />
+                    <Setter Property="BorderColor" Value="#80CBC4" />
+                    <Setter Property="VisualStateManager.VisualStateGroups">
+                        <VisualStateGroupList>
+                            <VisualStateGroup Name="CommonStates">
+                                <VisualState Name="Normal" />
+                                <VisualState Name="MouseOver">
+                                    <VisualState.Setters>
+                                        <Setter Property="BackgroundColor" Value="#B2DFDB" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateGroupList>
+                    </Setter>
+                </Style>
+                <Style TargetType="telerik:RadCollectionViewGroupView" x:Key="2">
+                    <Setter Property="BackgroundColor" Value="#C4E6E3" />
+                    <Setter Property="BorderColor" Value="#80CBC4" />
+                    <Setter Property="VisualStateManager.VisualStateGroups">
+                        <VisualStateGroupList>
+                            <VisualStateGroup Name="CommonStates">
+                                <VisualState Name="Normal" />
+                                <VisualState Name="MouseOver">
+                                    <VisualState.Setters>
+                                        <Setter Property="BackgroundColor" Value="#D6EEEC" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateGroupList>
+                    </Setter>
+                </Style>
+            </selector:MyGroupStyleSelector>
+            <!-- << collectionview-group-styleselector-resources -->
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+    <!-- >> collectionview-groupview-styleselector -->
+    <telerik:RadCollectionView ItemsSource="{Binding Locations}"
+                               GroupViewStyleSelector="{StaticResource GroupHeaderStyleSelector}"
+                               DisplayMemberPath="City">
+        <telerik:RadCollectionView.BindingContext>
+            <local:ViewModel />
+        </telerik:RadCollectionView.BindingContext>
+        <telerik:RadCollectionView.GroupDescriptors>
+            <telerik:PropertyGroupDescriptor PropertyName="Continent" />
+            <telerik:PropertyGroupDescriptor PropertyName="Country" />
+        </telerik:RadCollectionView.GroupDescriptors>
+    </telerik:RadCollectionView>
+    <!-- << collectionview-groupview-styleselector -->
+</ContentView>

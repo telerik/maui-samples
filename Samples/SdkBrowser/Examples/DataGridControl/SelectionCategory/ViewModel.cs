@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.ObjectModel;
 using Telerik.Maui.Controls;
-using Telerik.Maui.Controls.Compatibility.DataGrid;
+using Telerik.Maui.Controls.DataGrid;
 
 namespace SDKBrowserMaui.Examples.DataGridControl.SelectionCategory;
 public class ViewModel : NotifyPropertyChangedBase

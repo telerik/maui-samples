@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.TemplatedButtonControl.FeaturesCategory.ContentTemplateExample.ContentTemplate">
+    <!-- >> templatedbutton-content-template -->
+    <Grid>
+        <telerik:RadCollectionView ItemsSource="{Binding Contacts}">
+            <telerik:RadCollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid ColumnDefinitions="*, Auto"
+                          Padding="{OnPlatform Default='2, 0', WinUI='11, 0'}">
+                        <Grid.Resources>
+                            <telerik:BoolToValueConverter x:Key="BoolToGlyphConverter" TrueValue="&#xe805;" FalseValue="&#xe801;" />
+                        </Grid.Resources>
+                        <Label Text="{Binding Name}" VerticalTextAlignment="Center" />
+                        <telerik:RadTemplatedButton Grid.Column="1"
+                                                    Content="{Binding IsFavorite}"
+                                                    Command="{Binding UpdateIsFavoriteCommand}"
+                                                    CommandParameter="{Binding}"
+                                                    VerticalOptions="Center">
+                            <telerik:RadTemplatedButton.ContentTemplate>
+                                <DataTemplate>
+                                    <Label FontFamily="TelerikFontExamples"
+                                           FontSize="16"
+                                           Text="{Binding Converter={StaticResource BoolToGlyphConverter}}"
+                                           TextColor="{Binding Source={RelativeSource AncestorType={x:Type telerik:RadTemplatedButton}}, Path=TextColor}"
+                                           HorizontalTextAlignment="{Binding Source={RelativeSource AncestorType={x:Type telerik:RadTemplatedButton}}, Path=HorizontalTextAlignment}"
+                                           VerticalTextAlignment="{Binding Source={RelativeSource AncestorType={x:Type telerik:RadTemplatedButton}}, Path=VerticalTextAlignment}" />
+                                </DataTemplate>
+                            </telerik:RadTemplatedButton.ContentTemplate>
+                        </telerik:RadTemplatedButton>
+                    </Grid>
+                </DataTemplate>
+            </telerik:RadCollectionView.ItemTemplate>
+        </telerik:RadCollectionView>
+    </Grid>
+    <!-- << templatedbutton-content-template -->
+</ContentView>

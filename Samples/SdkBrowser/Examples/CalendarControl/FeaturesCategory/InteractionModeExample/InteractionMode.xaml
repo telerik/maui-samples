@@ -18,7 +18,6 @@
                 <telerik:RadComboBox SelectedItem="{Binding InteractionMode, Mode=TwoWay}"
                                      ItemsSource="{Binding InteractionModes}"
                                      IsClearButtonVisible="False"
-                                     DropDownHeight="{OnPlatform Android=68, iOS=72, MacCatalyst=44, WinUI=80}"
                                      WidthRequest="100" />
             </HorizontalStackLayout>
             <Label Text="{Binding InteractionModeInfo}" />

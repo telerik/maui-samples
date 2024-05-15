@@ -47,6 +47,16 @@
                                  AutomationId="placeholderColorCombo"/>
             <!-- << combobox-configuration-placeholder-color -->
 
+            <Label Text="Enable Spell Check" 
+                   Style="{StaticResource LabelStyle}" />
+            <!-- >> combobox-configuration-spellcheckenabled -->
+            <telerik:RadComboBox IsEditable="True"
+                                 IsSpellCheckEnabled="True"
+                                 ItemsSource="{Binding Items}"
+                                 DisplayMemberPath="Name"
+                                 AutomationId="spellCheckCombo"/>
+            <!-- << combobox-configuration-spellcheckenabled -->
+            
             <Label Text="No Clear Button:" 
                    Style="{StaticResource LabelStyle}" />
             <!-- >> combobox-configuration-clearbuttonvisible-false -->

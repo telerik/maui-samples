@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Telerik.Maui.Controls;
-using Telerik.Maui.Controls.Compatibility.Common.Data;
+using Telerik.Maui.Controls.Data;
 
 namespace SDKBrowserMaui.Examples.DataGridControl.GroupingCategory.ProgrammaticGroupingExample;
 
