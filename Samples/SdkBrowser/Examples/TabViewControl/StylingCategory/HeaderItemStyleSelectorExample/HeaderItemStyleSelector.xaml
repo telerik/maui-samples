@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.TabViewControl.StylingCategory.HeaderItemStyleSelectorExample"
+             x:Class="SDKBrowserMaui.Examples.TabViewControl.StylingCategory.HeaderItemStyleSelectorExample.HeaderItemStyleSelector">
+    <ContentView.Resources>
+        <!-- >> tabview-styling-styleselector-resources -->
+        <ResourceDictionary>
+            <Style x:Key="HomeStyle" TargetType="telerik:TabViewHeaderItem">
+                <Setter Property="FontAttributes" Value="None" />
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup Name="CommonStates">
+                            <VisualState Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#E0F2F1" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="Selected">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#80CBC4"/>
+                                    <Setter Property="FontAttributes" Value="Bold"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+            <Style x:Key="AccountStyle" TargetType="telerik:TabViewHeaderItem">
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup Name="CommonStates">
+                            <VisualState Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#E0F2F1" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="Selected">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#80CBC4"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+            <Style x:Key="FilesStyle" TargetType="telerik:TabViewHeaderItem">
+                <Setter Property="FontAttributes" Value="None" />
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup Name="CommonStates">
+                            <VisualState Name="Normal" />
+                            <VisualState Name="Selected">
+                                <VisualState.Setters>
+                                    <Setter Property="FontAttributes" Value="Italic" />
+                                    <Setter Property="BackgroundColor" Value="#80CBC4"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+            
+            <local:MyCustomHeaderItemStyleSelector x:Key="HeaderStyleSelector"
+                                                   HomeStyle="{StaticResource HomeStyle}"
+                                                   AccountStyle="{StaticResource AccountStyle}"
+                                                   FilesStyle="{StaticResource FilesStyle}"/>
+        </ResourceDictionary>
+        <!-- << tabview-styling-styleselector-resources -->
+    </ContentView.Resources>
+    
+    <!-- >> tabview-styling-headeritemstyleselector -->
+    <telerik:RadTabView x:Name="tabView"
+                        HeaderItemStyleSelector="{StaticResource HeaderStyleSelector}">
+        <telerik:TabViewItem HeaderText="Home">
+            <telerik:TabViewItem.ImageSource>
+                <FontImageSource Glyph="&#xe85b;"
+                                 Size="16"
+                                 Color="Black"
+                                 FontFamily="TelerikFontExamples" />
+            </telerik:TabViewItem.ImageSource>
+            <Label Margin="10" Text="This is the content of the Home tab" />
+        </telerik:TabViewItem>
+        <telerik:TabViewItem HeaderText="Account">
+            <telerik:TabViewItem.ImageSource>
+                <FontImageSource Glyph="&#xe836;"
+                                 Size="16"
+                                 Color="Black"
+                                 FontFamily="TelerikFontExamples" />
+            </telerik:TabViewItem.ImageSource>
+            <Label Margin="10" Text="This is the content of the Account tab" />
+        </telerik:TabViewItem>
+        <telerik:TabViewItem HeaderText="Files">
+            <telerik:TabViewItem.ImageSource>
+                <FontImageSource Glyph="&#xe847;"
+                                 Size="16"
+                                 Color="Black"
+                                 FontFamily="TelerikFontExamples"/>
+            </telerik:TabViewItem.ImageSource>
+            <Label Margin="10" Text="This is the content of the Files tab" />
+        </telerik:TabViewItem>
+    </telerik:RadTabView>
+    <!-- << tabview-styling-headeritemstyleselector -->
+</ContentView>

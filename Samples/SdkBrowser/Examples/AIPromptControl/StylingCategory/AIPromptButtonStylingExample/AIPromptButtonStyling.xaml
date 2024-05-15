@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.AIPromptControl.StylingCategory.AIPromptButtonStylingExample.AIPromptButtonStyling">
+    <VisualElement.Resources>
+        <!-- >> aiprompt-airpromtbutton-style -->
+        <Style x:Key="MyAIPromptButtonStyle" TargetType="telerik:RadTemplatedButton">
+            <Setter Property="TextColor" Value="#00897B" />
+            <Setter Property="Background" Value="White" />
+            <Setter Property="BorderBrush" Value="#00897B" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup Name="CommonStates">
+                        <VisualState Name="Normal" />
+                        <VisualState Name="PointerOver">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadTemplatedButton.Background" Value="#E8F5F4" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="Pressed">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadTemplatedButton.TextColor" Value="#9900897B" />
+                                <Setter Property="telerik:RadTemplatedButton.Background" Value="#E8F5F4" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="Disabled">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadTemplatedButton.TextColor" Value="#6100897B" />
+                                <Setter Property="telerik:RadTemplatedButton.BorderBrush" Value="#6100897B" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+        <!-- << aiprompt-airpromtbutton-style -->
+    </VisualElement.Resources>
+    <Grid Padding="10">
+        <!-- >> aiprompt-airpromtbutton-xaml -->
+        <telerik:RadAIPromptButton HorizontalOptions="End"
+                                   VerticalOptions="End"
+                                   Style="{StaticResource MyAIPromptButtonStyle}">
+            <telerik:RadAIPrompt InputText="{Binding InputText}"
+                                 PromptRequestCommand="{Binding PromptRequestCommand}"
+                                 OutputItems="{Binding OutputItems}" />
+        </telerik:RadAIPromptButton>
+        <!-- << aiprompt-airpromtbutton-xaml -->
+    </Grid>
+</ContentView>

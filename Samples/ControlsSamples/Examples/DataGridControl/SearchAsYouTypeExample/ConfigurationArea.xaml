@@ -18,7 +18,6 @@
                    Style="{StaticResource VerticalGroupLabelStyle}" />
             <telerik:RadComboBox ItemsSource="{Binding SearchPanelVisibilityModes}"
                                  SelectedItem="{Binding SearchPanelVisibilityMode, Mode=TwoWay}"
-                                 DropDownHeight="{OnPlatform Android=102, iOS=108, MacCatalyst=66, WinUI=120}"
                                  AutomationId="searchPanelVisibilityModeCombo" />
         </VerticalStackLayout>
         <VerticalStackLayout Style="{StaticResource GroupAtSeparateAreaStyle}">
@@ -26,7 +25,6 @@
                    Style="{StaticResource VerticalGroupLabelStyle}" />
             <telerik:RadComboBox ItemsSource="{Binding SearchTriggers}"
                                  SelectedItem="{Binding SearchTrigger, Mode=TwoWay}"
-                                 DropDownHeight="{OnPlatform Android=68, iOS=72, MacCatalyst=44, WinUI=80}"
                                  AutomationId="searchTriggerCombo" />
         </VerticalStackLayout>
     </VerticalStackLayout>

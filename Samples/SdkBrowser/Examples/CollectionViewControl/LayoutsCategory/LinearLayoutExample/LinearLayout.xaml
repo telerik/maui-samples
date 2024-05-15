@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.CollectionViewControl"
+             x:Class="SDKBrowserMaui.Examples.CollectionViewControl.LayoutsCategory.LinearLayoutExample.LinearLayout">
+    <!-- >> collectionview-linear-layout -->
+    <telerik:RadCollectionView ItemsSource="{Binding Locations}"
+                               DisplayMemberPath="City">
+        <telerik:RadCollectionView.ItemsLayout>
+            <telerik:CollectionViewLinearLayout Orientation="Horizontal" />
+        </telerik:RadCollectionView.ItemsLayout>
+        <telerik:RadCollectionView.BindingContext>
+            <local:ViewModel />
+        </telerik:RadCollectionView.BindingContext>
+    </telerik:RadCollectionView>
+    <!-- << collectionview-linear-layout -->
+</ContentView>

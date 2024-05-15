@@ -38,7 +38,23 @@
 				</Example>
 			</Examples>
 		</Control>
-		
+
+		<Control>
+			<Name>AIPrompt</Name>
+			<DisplayName>AIPrompt</DisplayName>
+			<Status>New</Status>
+			<ShortDescription>Helps integrating Large Language Model (LLM) technology into MAUI applications, adding artificial intelligence features.</ShortDescription>
+			<FullDescription>Telerik UI for .NET MAUI AIPrompt component helps integrating Large Language Model (LLM) technology into MAUI applications, adding artificial intelligence features.</FullDescription>
+			<Examples>
+				<Example>
+					<Name>FirstLook</Name>
+					<Page>FirstLookView</Page>
+					<DisplayName>First Look</DisplayName>
+					<Description>Telerik UI for .NET MAUI AIPrompt component helps integrating Large Language Model (LLM) technology into MAUI applications, adding artificial intelligence features.</Description>
+				</Example>
+			</Examples>
+		</Control>
+
 		<Control>
 			<Name>AutoComplete</Name>
 			<DisplayName>AutoComplete</DisplayName>
@@ -56,6 +72,13 @@
 					<Page>CustomizationView</Page>
 					<DisplayName>Customization</DisplayName>
 					<Description>Demonstrates how you could customize the visual appearance of the AutoComplete control through various templates such as TokenTemplate, SuggestionItemTemplate, etc.</Description>
+				</Example>
+				<Example>
+					<Name>Configuration</Name>
+					<Page>ConfigurationView</Page>
+					<DisplayName>Configuration</DisplayName>
+					<Description>This example presents the various configuration options that the RadAutoComplete provides. You can change the control's search threshold, suggestion mode, whether the clear button will be visible, etc.</Description>
+					<Status>New</Status>
 				</Example>
 			</Examples>
 		</Control>
@@ -158,15 +181,23 @@
 
 		<Control>
 			<Name>Button</Name>
-			<DisplayName>Button</DisplayName>
-			<ShortDescription>Enhances the .NET MAUI Button by providing additional features related to UI customizations.</ShortDescription>
-			<FullDescription>Telerik UI for .NET MAUI Button enhances the .NET MAUI Button by providing additional features such as the ability to set a background image, change the border thickness, and the alignment of the button's content.</FullDescription>
+			<DisplayName>Buttons</DisplayName>
+			<ShortDescription>A set of Buttons allowing the invocation of UI functionality on a click, while at the same time providing flexible customization capabilities, ease of use and integration with other components.</ShortDescription>
+			<FullDescription>Telerik UI for .NET MAUI Buttons represent an essential set of components allowing the invocation of UI functionality on a click, while at the same time providing flexible customization capabilities, ease of use and integration with other components.</FullDescription>
 			<Examples>
 				<Example>
 					<Name>FirstLook</Name>
+					<Status>Updated</Status>
 					<Page>FirstLookView</Page>
 					<DisplayName>First Look</DisplayName>
-					<Description>Telerik UI for .NET MAUI Button enhances the .NET MAUI Button by providing additional features such as the ability to set a background image, change the border thickness, and the alignment of the button's content.</Description>
+					<Description>This example showcases all supported types of buttons present in Telerik UI for .NET MAUI and some of their key features and capabilities.</Description>
+				</Example>
+				<Example>
+					<Name>Customization</Name>
+					<Status>New</Status>
+					<Page>CustomizationView</Page>
+					<DisplayName>Customization</DisplayName>
+					<Description>This example presents the customization capabilities of the supported types of buttons present in Telerik UI for .NET MAUI.</Description>
 				</Example>
 			</Examples>
 		</Control>
@@ -324,6 +355,35 @@
 		</Control>
 
 		<Control>
+			<Name>CollectionView</Name>
+			<Status>New</Status>
+			<DisplayName>CollectionView</DisplayName>
+			<ShortDescription>Enables users to display a scrollable list of selectable items with flexible customization options.</ShortDescription>
+			<FullDescription>The Telerik .NET MAUI CollectionView is a virtualizing view component for presenting a list of data. The control provides features like single and multiple selection, sorting, grouping, filtering, empty template, and more.</FullDescription>
+			<Examples>
+				<Example>
+					<Name>FirstLook</Name>
+					<Page>FirstLookView</Page>
+					<DisplayName>First Look</DisplayName>
+					<Description>The Telerik .NET MAUI CollectionView is a virtualizing view component for presenting a list of data. The control provides features like single and multiple selection, sorting, grouping, filtering, empty template, and more.</Description>
+				</Example>
+				<Example>
+					<Name>Grouping</Name>
+					<Page>GroupingView</Page>
+					<DisplayName>Grouping</DisplayName>
+					<Description>Demonstrates the Grouping feature of the CollectionView. In addition, the items are grouped by multiple properties which shows the multi-level grouping scenario.</Description>
+				</Example>
+				<Example>
+					<Name>Configuration</Name>
+					<Page>ConfigurationView</Page>
+					<DisplayName>Configuration</DisplayName>
+					<IsConfigurable>true</IsConfigurable>
+					<Description>This example presents the various configuration options that the RadCollectionView provides. You can change the control's layout orientation, item size and spacing, selection mode, etc.</Description>
+				</Example>
+			</Examples>
+		</Control>
+
+		<Control>
 			<Name>ComboBox</Name>
 			<DisplayName>ComboBox</DisplayName>
 			<ShortDescription>Allows users to select item/items from a drop-down list of items.</ShortDescription>
@@ -340,6 +400,7 @@
 					<Page>ConfigurationView</Page>
 					<DisplayName>Configuration</DisplayName>
 					<Description>This example presents the various configuration options that the RadComboBox provides. You can change the control's editable state, selection mode, whether the clear button will be visible, etc.</Description>
+					<Status>Updated</Status>
 				</Example>
 			</Examples>
 		</Control>
@@ -382,6 +443,7 @@
 					<Page>FirstLookView</Page>
 					<DisplayName>First Look</DisplayName>
 					<Description>Telerik UI for .NET MAUI DataGrid control provides the ability to easily perform operations like sorting, filtering, grouping and editing over the underlying data.</Description>
+					<Status>Updated</Status>
 				</Example>
 				<Example>
 					<Name>FrozenColumns</Name>
@@ -408,6 +470,7 @@
 					<Page>ColumnTypesView</Page>
 					<DisplayName>Column Types</DisplayName>
 					<Description>Demonstrates the different type of columns that DataGrid control provides. Column types such as Text, Boolean, Template, Date, Time, Numeric.</Description>
+					<Status>Updated</Status>
 				</Example>
 				<Example>
 					<Name>DataFormatting</Name>
@@ -804,7 +867,7 @@
 				</Example>
 			</Examples>
 		</Control>
-		
+
 		<Control>
 			<Name>ProgressBar</Name>
 			<DisplayName>ProgressBar</DisplayName>
@@ -920,7 +983,7 @@
 					<DisplayName>Custom Date Formats</DisplayName>
 					<Status>New</Status>
 					<Description>This example presents the various date formatting settings that the RadScheduler provides. Using the DayStringFormat, TimeRulerMajorTickStringFormat and WeekDayStringFormat properties, each Telerik Scheduler view can be customized to display the dates and times on the time ruler and across the view in custom formats .</Description>
-				 </Example>
+				</Example>
 				<Example>
 					<Name>Customization</Name>
 					<Page>CustomizationView</Page>
@@ -1278,12 +1341,12 @@
 			<Icon>datagrid_white.png</Icon>
 		</HighlightedControl>
 		<HighlightedControl>
-			<DisplayName>Slider</DisplayName>
-			<Icon>slider_white.png</Icon>
+			<DisplayName>CollectionView</DisplayName>
+			<Icon>collectionview_white.png</Icon>
 		</HighlightedControl>
 		<HighlightedControl>
-			<DisplayName>Scheduler</DisplayName>
-			<Icon>scheduler_white.png</Icon>
+			<DisplayName>AIPrompt</DisplayName>
+			<Icon>aiprompt_white.png</Icon>
 		</HighlightedControl>
 	</HighlightedControls>
 

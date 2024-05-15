@@ -2,17 +2,31 @@
 <telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
                         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                         xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        xmlns:expander="clr-namespace:Telerik.Maui.Controls.Expander;assembly=Telerik.Maui.Controls"
                         x:Class="SDKBrowserMaui.Examples.ExpanderControl.FeaturesCategory.StylingExample.Styling">
     <VerticalStackLayout Margin="10,20,10,0">
         <!-- >> expander-features-borderstyling -->
         <telerik:RadExpander x:Name="expander"
                              HeaderText="Read more"
-                             BorderColor="LightBlue"
-                             BorderThickness="2">
+                             BorderColor="#8660C5"
+                             BorderThickness="1">
+            <!-- >> expander-features-indicator-style -->
+            <telerik:RadExpander.Header>
+                <telerik:ExpanderHeader IndicatorColor="#8660C5"/>
+            </telerik:RadExpander.Header>
+            <!-- << expander-features-indicator-style -->
+            <!-- >> expander-features-header-style -->
+            <telerik:RadExpander.HeaderStyle>
+                <Style TargetType="telerik:ExpanderHeader">
+                    <Setter Property="BorderThickness" Value="0,0,0,1"/>
+                    <Setter Property="BorderColor" Value="LightGray"/>
+                </Style>
+            </telerik:RadExpander.HeaderStyle>
+            <!-- << expander-features-header-style -->
             <!-- >> expander-features-headertext-styling -->
             <telerik:RadExpander.HeaderTextStyle>
                 <Style TargetType="Label">
-                    <Setter Property="TextColor" Value="BlueViolet"/>
+                    <Setter Property="TextColor" Value="#8660C5"/>
                     <Setter Property="FontAttributes"  Value="Italic"/>
                 </Style>
             </telerik:RadExpander.HeaderTextStyle>

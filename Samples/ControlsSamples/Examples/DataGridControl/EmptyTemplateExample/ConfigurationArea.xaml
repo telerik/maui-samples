@@ -46,7 +46,6 @@
                    Style="{StaticResource VerticalGroupLabelStyle}" />
             <telerik:RadComboBox ItemsSource="{Binding EmptyContentDisplayModes}"
                                  SelectedItem="{Binding EmptyContentDisplayMode, Mode=TwoWay}"
-                                 DropDownHeight="{OnPlatform Default=72, Android=64, MacCatalyst=44}" 
                                  AutomationId="emptyContentDisplayModeCombo"/>
         </VerticalStackLayout>
     </VerticalStackLayout>

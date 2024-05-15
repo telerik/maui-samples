@@ -1,6 +1,6 @@
 using Microsoft.Maui.Controls;
 using System.Collections.Generic;
-using Telerik.Maui.Controls.Compatibility.Common.Data;
+using Telerik.Maui.Controls.Data;
 
 namespace SDKBrowserMaui.Examples.DataGridControl.AggregatesCategory.DelegateAggregateDescriptorsExample;
 

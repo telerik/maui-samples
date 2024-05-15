@@ -95,14 +95,14 @@ namespace SDKBrowserMaui.Examples.ListViewControl.SortingCategory.BindableProper
                 this.SortDescriptors.Add(new ListViewPropertySortDescriptor()
                 {
                     PropertyName = "Age",
-                    SortOrder = SortOrder.Ascending
+                    SortOrder = Telerik.Maui.Controls.Data.SortOrder.Ascending
                 });
             }
 
             if (propertyToUpdate.Equals(nameof(IsSortOrderSortSwitchToggled)))
             {
                 var descriptor = (ListViewPropertySortDescriptor)this.SortDescriptors.FirstOrDefault();
-                descriptor.SortOrder = isSortOrderSortSwitchToggled ? SortOrder.Descending : SortOrder.Ascending;
+                descriptor.SortOrder = isSortOrderSortSwitchToggled ? Telerik.Maui.Controls.Data.SortOrder.Descending : Telerik.Maui.Controls.Data.SortOrder.Ascending;
             }
             else if (propertyToUpdate.Equals(nameof(IsPropertyNameSortSwitchToggled)))
             {

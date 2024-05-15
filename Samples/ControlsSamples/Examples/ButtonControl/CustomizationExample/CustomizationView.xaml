@@ -1,0 +1,543 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        xmlns:local="clr-namespace:QSF.Examples.ButtonControl.CustomizationExample"
+                        x:Class="QSF.Examples.ButtonControl.CustomizationExample.CustomizationView">
+    <ContentView.Resources>
+        <FontImageSource x:Key="ButtonFontImageSource"
+                         FontFamily="TelerikFontExamples"
+                         Glyph="&#xe850;"
+                         Size="16"
+                         Color="{Binding Source={RelativeSource AncestorType={x:Type telerik:RadButton}}, Path=TextColor}" />
+        <FontImageSource x:Key="RoundedButtonFontImageSource"
+                         FontFamily="TelerikFontExamples"
+                         Glyph="&#xe878;"
+                         Size="16"
+                         Color="{Binding Source={RelativeSource AncestorType={x:Type telerik:RadButton}}, Path=TextColor}" />
+
+        <Style x:Key="TitleLabelStyle" TargetType="Label" BasedOn="{StaticResource BaseLabelStyle}">
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="HorizontalTextAlignment" Value="Center" />
+        </Style>
+
+        <Style x:Key="ButtonBaseStyle" TargetType="telerik:RadButton">
+            <Setter Property="WidthRequest" Value="80" />
+            <Setter Property="HeightRequest" Value="32" />
+            <Setter Property="TextColor" Value="#000000" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="Margin" Value="4" />
+        </Style>
+        <Style x:Key="Button_BackgroundImageStyle" TargetType="telerik:RadButton" BasedOn="{StaticResource ButtonBaseStyle}">
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="TextColor" Value="#FFFFFF" />
+            <Setter Property="CornerRadius" Value="8" />
+            <Setter Property="BackgroundImage" Value="button_customization_background_image.png" />
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup Name="CommonStates">
+                        <VisualState Name="Normal" />
+                        <VisualState Name="PointerOver" />
+                        <VisualState Name="Pressed">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadButton.TextColor" Value="{OnPlatform Default=#99FFFFFF, iOS=#FFFFFF, MacCatalyst=#FFFFFF}" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="Disabled" />
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+        <Style x:Key="Button_FlatStyle" TargetType="telerik:RadButton" BasedOn="{StaticResource ButtonBaseStyle}">
+            <Setter Property="WidthRequest" Value="100" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="Background" Value="#EAEAEA" />
+            <Setter Property="BorderColor" Value="#EC9E46" />
+            <Setter Property="BorderThickness" Value="6, 0, 0, 0" />
+            <Setter Property="CornerRadius" Value="0" />
+            <Setter Property="Padding" Value="12, 0" />
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup Name="CommonStates">
+                        <VisualState Name="Normal" />
+                        <VisualState Name="PointerOver">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadButton.Background" Value="#D2D2D2" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="Pressed">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadButton.TextColor" Value="{OnPlatform Default=#99000000, iOS=#000000, MacCatalyst=#000000}" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="Disabled" />
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+        <Style x:Key="Button_RoundedStyle" TargetType="telerik:RadButton" BasedOn="{StaticResource ButtonBaseStyle}">
+            <Setter Property="WidthRequest" Value="100" />
+            <Setter Property="TextColor" Value="#6B7C27" />
+            <Setter Property="Background" Value="#FFFFFF" />
+            <Setter Property="BorderColor" Value="#849C31" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="16" />
+            <Setter Property="Padding" Value="12, 0" />
+            <Setter Property="ImageSource" Value="{StaticResource RoundedButtonFontImageSource}" />
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup Name="CommonStates">
+                        <VisualState Name="Normal" />
+                        <VisualState Name="PointerOver">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadButton.Background" Value="#F8FAF4" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="Pressed">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadButton.TextColor" Value="{OnPlatform Default=#996B7C27, iOS=#6B7C27, MacCatalyst=#6B7C27}" />
+                                <Setter Property="telerik:RadButton.BorderColor" Value="#99849C31" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="Disabled" />
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+        <Style x:Key="Button_CircularStyle" TargetType="telerik:RadButton" BasedOn="{StaticResource ButtonBaseStyle}">
+            <Setter Property="WidthRequest" Value="32" />
+            <Setter Property="HeightRequest" Value="32" />
+            <Setter Property="FontFamily" Value="TelerikFontExamples" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Text" Value="&#xe801;" />
+            <Setter Property="TextColor" Value="#3D609B" />
+            <Setter Property="Background" Value="#FFFFFF" />
+            <Setter Property="BorderColor" Value="#3D609B" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="16" />
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup Name="CommonStates">
+                        <VisualState Name="Normal" />
+                        <VisualState Name="PointerOver">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadButton.Background" Value="#F5F7FA" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="Pressed">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadButton.TextColor" Value="{OnPlatform Default=#993D609B, iOS=#3D609B, MacCatalyst=#3D609B}" />
+                                <Setter Property="telerik:RadButton.BorderColor" Value="#993D609B" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="Disabled" />
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+
+        <DataTemplate x:Key="RadButtonBase_RoundedButtonContentTemplate">
+            <Grid ColumnDefinitions="Auto, *" ColumnSpacing="4">
+                <Label Text="&#xe878;"
+                       FontFamily="TelerikFontExamples"
+                       FontSize="16"
+                       TextColor="{Binding TextColor, Source={RelativeSource AncestorType={x:Type telerik:RadButtonBase}}}"
+                       HorizontalTextAlignment="End"
+                       VerticalTextAlignment="Center" />
+                <Label Grid.Column="1"
+                       Text="{Binding}"
+                       FontFamily="{Binding FontFamily, Source={RelativeSource AncestorType={x:Type telerik:RadButtonBase}}}"
+                       FontSize="{Binding FontSize, Source={RelativeSource AncestorType={x:Type telerik:RadButtonBase}}}"
+                       FontAttributes="{Binding FontAttributes, Source={RelativeSource AncestorType={x:Type telerik:RadButtonBase}}}"
+                       TextColor="{Binding TextColor, Source={RelativeSource AncestorType={x:Type telerik:RadButtonBase}}}"
+                       HorizontalTextAlignment="{Binding HorizontalTextAlignment, Source={RelativeSource AncestorType={x:Type telerik:RadButtonBase}}}"
+                       VerticalTextAlignment="{Binding VerticalTextAlignment, Source={RelativeSource AncestorType={x:Type telerik:RadButtonBase}}}" />
+            </Grid>
+        </DataTemplate>
+
+        <Style x:Key="RadButtonBase_FlatStyle" TargetType="telerik:RadButtonBase">
+            <Setter Property="MinimumWidthRequest" Value="100" />
+            <Setter Property="HeightRequest" Value="32" />
+            <Setter Property="Background" Value="#EAEAEA" />
+            <Setter Property="BorderBrush" Value="#EC9E46" />
+            <Setter Property="BorderThickness" Value="6, 0, 0, 0" />
+            <Setter Property="CornerRadius" Value="0" />
+            <Setter Property="Padding" Value="6, 0" />
+            <Setter Property="Margin" Value="4" />
+        </Style>
+        <Style x:Key="RadButtonBase_RoundedStyle" TargetType="telerik:RadButtonBase">
+            <Setter Property="MinimumWidthRequest" Value="100" />
+            <Setter Property="HeightRequest" Value="32" />
+            <Setter Property="Background" Value="#FFFFFF" />
+            <Setter Property="BorderBrush" Value="#849C31" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="16" />
+            <Setter Property="Padding" Value="12, 0" />
+            <Setter Property="Margin" Value="4" />
+        </Style>
+        <Style x:Key="RadButtonBase_CircularStyle" TargetType="telerik:RadButtonBase">
+            <Setter Property="WidthRequest" Value="32" />
+            <Setter Property="HeightRequest" Value="32" />
+            <Setter Property="Background" Value="#FFFFFF" />
+            <Setter Property="BorderBrush" Value="#3D609B" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="16" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="Margin" Value="4" />
+        </Style>
+
+        <Style x:Key="TemplatedButton_BackgroundImageStyle" TargetType="telerik:RadTemplatedButton">
+            <Setter Property="WidthRequest" Value="80" />
+            <Setter Property="HeightRequest" Value="32" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="TextColor" Value="#FFFFFF" />
+            <Setter Property="CornerRadius" Value="8" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="Margin" Value="4" />
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup Name="CommonStates">
+                        <VisualState Name="Normal" />
+                        <VisualState Name="PointerOver" />
+                        <VisualState Name="Pressed">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadTemplatedButton.TextColor" Value="#99FFFFFF" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="Disabled" />
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+        <Style x:Key="TemplatedButton_FlatStyle" TargetType="telerik:RadTemplatedButton" BasedOn="{StaticResource RadButtonBase_FlatStyle}">
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="TextColor" Value="#000000" />
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup Name="CommonStates">
+                        <VisualState Name="Normal" />
+                        <VisualState Name="PointerOver">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadTemplatedButton.Background" Value="#D2D2D2" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="Pressed">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadTemplatedButton.TextColor" Value="#99000000" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="Disabled" />
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+        <Style x:Key="TemplatedButton_RoundedStyle" TargetType="telerik:RadTemplatedButton" BasedOn="{StaticResource RadButtonBase_RoundedStyle}">
+            <Setter Property="ContentTemplate" Value="{StaticResource RadButtonBase_RoundedButtonContentTemplate}" />
+            <Setter Property="TextColor" Value="#6B7C27" />
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup Name="CommonStates">
+                        <VisualState Name="Normal" />
+                        <VisualState Name="PointerOver">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadTemplatedButton.Background" Value="#F8FAF4" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="Pressed">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadTemplatedButton.TextColor" Value="#996B7C27" />
+                                <Setter Property="telerik:RadTemplatedButton.BorderBrush" Value="#99849C31" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="Disabled" />
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+        <Style x:Key="TemplatedButton_CircularStyle" TargetType="telerik:RadTemplatedButton" BasedOn="{StaticResource RadButtonBase_CircularStyle}">
+            <Setter Property="FontFamily" Value="TelerikFontExamples" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Content" Value="&#xe801;" />
+            <Setter Property="TextColor" Value="#3D609B" />
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup Name="CommonStates">
+                        <VisualState Name="Normal" />
+                        <VisualState Name="PointerOver">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadTemplatedButton.Background" Value="#F5F7FA" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="Pressed">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadTemplatedButton.TextColor" Value="#993D609B" />
+                                <Setter Property="telerik:RadTemplatedButton.BorderBrush" Value="#993D609B" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="Disabled" />
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+        <Style x:Key="TemplatedButton_LoadingStyle" TargetType="telerik:RadTemplatedButton">
+            <Setter Property="HeightRequest" Value="32" />
+            <Setter Property="TextColor" Value="#8660C5" />
+            <Setter Property="Background" Value="#F2EFF9" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Padding" Value="12, 0" />
+            <Setter Property="Margin" Value="4" />
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup Name="CommonStates">
+                        <VisualState Name="Normal" />
+                        <VisualState Name="PointerOver">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadTemplatedButton.Background" Value="#E6DFF3" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="Pressed">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadTemplatedButton.TextColor" Value="#998660C5" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="Disabled">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadTemplatedButton.TextColor" Value="#618660C5" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+
+        <Style x:Key="ToggleButton_FlatStyle" TargetType="telerik:RadToggleButton" BasedOn="{StaticResource RadButtonBase_FlatStyle}">
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="TextColor" Value="#000000" />
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup Name="CommonStates">
+                        <VisualState Name="Normal" />
+                        <VisualState Name="MouseOver">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadToggleButton.Background" Value="#D2D2D2" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="Pressed">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadToggleButton.TextColor" Value="#99000000" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="Disabled" />
+                        <VisualState Name="Toggled">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadToggleButton.TextColor" Value="#FFFFFF" />
+                                <Setter Property="telerik:RadToggleButton.Background" Value="#EC9E46" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="ToggledMouseOver">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadToggleButton.TextColor" Value="#FFFFFF" />
+                                <Setter Property="telerik:RadToggleButton.Background" Value="#EA922F" />
+                                <Setter Property="telerik:RadToggleButton.BorderBrush" Value="#EA922F" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="ToggledPressed">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadToggleButton.TextColor" Value="#99000000" />
+                                <Setter Property="telerik:RadToggleButton.Background" Value="#EEAA5D" />
+                                <Setter Property="telerik:RadToggleButton.BorderBrush" Value="#EEAA5D" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="ToggledDisabled" />
+                        <VisualState Name="Indeterminate" />
+                        <VisualState Name="IndeterminateMouseOver" />
+                        <VisualState Name="IndeterminatePressed" />
+                        <VisualState Name="IndeterminateDisabled" />
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+        <Style x:Key="ToggleButton_RoundedStyle" TargetType="telerik:RadToggleButton" BasedOn="{StaticResource RadButtonBase_RoundedStyle}">
+            <Setter Property="ContentTemplate" Value="{StaticResource RadButtonBase_RoundedButtonContentTemplate}" />
+            <Setter Property="TextColor" Value="#6B7C27" />
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup Name="CommonStates">
+                        <VisualState Name="Normal" />
+                        <VisualState Name="MouseOver">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadToggleButton.Background" Value="#F8FAF4" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="Pressed">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadToggleButton.TextColor" Value="#996B7C27" />
+                                <Setter Property="telerik:RadToggleButton.BorderBrush" Value="#99849C31" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="Disabled" />
+                        <VisualState Name="Toggled">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadToggleButton.TextColor" Value="#FFFFFF" />
+                                <Setter Property="telerik:RadToggleButton.Background" Value="#849C31" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="ToggledMouseOver">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadToggleButton.TextColor" Value="#FFFFFF" />
+                                <Setter Property="telerik:RadToggleButton.Background" Value="#849C31" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="ToggledPressed">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadToggleButton.TextColor" Value="#99FFFFFF" />
+                                <Setter Property="telerik:RadToggleButton.Background" Value="#849C31" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="ToggledDisabled" />
+                        <VisualState Name="Indeterminate" />
+                        <VisualState Name="IndeterminateMouseOver" />
+                        <VisualState Name="IndeterminatePressed" />
+                        <VisualState Name="IndeterminateDisabled" />
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+        <Style x:Key="ToggleButton_CircularStyle" TargetType="telerik:RadToggleButton" BasedOn="{StaticResource RadButtonBase_CircularStyle}">
+            <Setter Property="FontFamily" Value="TelerikFontExamples" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Content" Value="&#xe801;" />
+            <Setter Property="TextColor" Value="#3D609B" />
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup Name="CommonStates">
+                        <VisualState Name="Normal" />
+                        <VisualState Name="MouseOver">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadToggleButton.Background" Value="#F5F7FA" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="Pressed">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadToggleButton.TextColor" Value="#993D609B" />
+                                <Setter Property="telerik:RadToggleButton.BorderBrush" Value="#993D609B" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="Disabled" />
+                        <VisualState Name="Toggled">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadToggleButton.Content" Value="&#xe805;" />
+                                <Setter Property="telerik:RadToggleButton.TextColor" Value="#FFFFFF" />
+                                <Setter Property="telerik:RadToggleButton.Background" Value="#3D609B" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="ToggledMouseOver">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadToggleButton.Content" Value="&#xe805;" />
+                                <Setter Property="telerik:RadToggleButton.TextColor" Value="#FFFFFF" />
+                                <Setter Property="telerik:RadToggleButton.Background" Value="#36568B" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="ToggledPressed">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadToggleButton.Content" Value="&#xe805;" />
+                                <Setter Property="telerik:RadToggleButton.TextColor" Value="#99FFFFFF" />
+                                <Setter Property="telerik:RadToggleButton.Background" Value="#506FA5" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="ToggledDisabled" />
+                        <VisualState Name="Indeterminate" />
+                        <VisualState Name="IndeterminateMouseOver" />
+                        <VisualState Name="IndeterminatePressed" />
+                        <VisualState Name="IndeterminateDisabled" />
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+
+        <Style TargetType="telerik:RadWrapLayout">
+            <Setter Property="Margin" Value="0, 0, 0, 16" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+        </Style>
+    </ContentView.Resources>
+
+    <telerik:RadContentView.Content>
+        <ScrollView>
+            <VerticalStackLayout Padding="12, 24"
+                                 Spacing="8">
+                <Label Text="Button" Style="{StaticResource TitleLabelStyle}" />
+                <telerik:RadWrapLayout>
+                    <telerik:RadButton Text="Cocktails"
+                                       Style="{StaticResource Button_BackgroundImageStyle}"
+                                       AutomationId="backgroundImageButton" />
+                    <telerik:RadButton Text="Top Rated"
+                                       Style="{StaticResource Button_FlatStyle}"
+                                       AutomationId="flatButton" />
+                    <telerik:RadButton Text="5 mins"
+                                       Style="{StaticResource Button_RoundedStyle}"
+                                       AutomationId="roundedButton" />
+                    <telerik:RadButton Style="{StaticResource Button_CircularStyle}"
+                                       AutomationId="circularButton" />
+                </telerik:RadWrapLayout>
+                <Label Text="Templated Button" Style="{StaticResource TitleLabelStyle}" />
+                <telerik:RadWrapLayout>
+                    <telerik:RadTemplatedButton Style="{StaticResource TemplatedButton_BackgroundImageStyle}"
+                                                AutomationId="backgroundImageTemplatedButton">
+                        <Grid>
+                            <Image Source="button_customization_background_image.png"
+                                   Aspect="AspectFill" />
+                            <Label Text="Cocktails"
+                                   FontFamily="{Binding FontFamily, Source={RelativeSource AncestorType={x:Type telerik:RadTemplatedButton}}}"
+                                   FontSize="{Binding FontSize, Source={RelativeSource AncestorType={x:Type telerik:RadTemplatedButton}}}"
+                                   FontAttributes="{Binding FontAttributes, Source={RelativeSource AncestorType={x:Type telerik:RadTemplatedButton}}}"
+                                   TextColor="{Binding TextColor, Source={RelativeSource AncestorType={x:Type telerik:RadTemplatedButton}}}"
+                                   HorizontalTextAlignment="{Binding HorizontalTextAlignment, Source={RelativeSource AncestorType={x:Type telerik:RadTemplatedButton}}}"
+                                   VerticalTextAlignment="{Binding VerticalTextAlignment, Source={RelativeSource AncestorType={x:Type telerik:RadTemplatedButton}}}" />
+                        </Grid>
+                    </telerik:RadTemplatedButton>
+                    <telerik:RadTemplatedButton Content="Top Rated"
+                                                Style="{StaticResource TemplatedButton_FlatStyle}"
+                                                AutomationId="flatTemplatedButton" />
+                    <telerik:RadTemplatedButton Content="5 mins"
+                                                Style="{StaticResource TemplatedButton_RoundedStyle}"
+                                                AutomationId="roundedTemplatedButton" />
+                    <telerik:RadTemplatedButton Style="{StaticResource TemplatedButton_CircularStyle}"
+                                                AutomationId="circularTemplatedButton" />
+                    <telerik:RadTemplatedButton Command="{Binding LoadingButtonCommand}"
+                                                Style="{StaticResource TemplatedButton_LoadingStyle}"
+                                                AutomationId="loadingTemplatedButton">
+                        <Grid ColumnDefinitions="Auto, *">
+                            <telerik:RadBusyIndicator AnimationContentHeightRequest="16"
+                                                      AnimationContentWidthRequest="16"
+                                                      AnimationContentColor="#8660C5"
+                                                      IsBusy="{Binding IsLoading}"
+                                                      IsVisible="{Binding IsLoading}"
+                                                      VerticalOptions="{Binding VerticalTextAlignment, Source={RelativeSource AncestorType={x:Type telerik:RadTemplatedButton}}}"
+                                                      Margin="0, 0, 4, 0" />
+                            <Label Grid.Column="1"
+                                   Text="{Binding LoadingButtonText}"
+                                   TextColor="{Binding Source={RelativeSource AncestorType={x:Type telerik:RadTemplatedButton}}, Path=TextColor}"
+                                   FontFamily="{Binding FontFamily, Source={RelativeSource AncestorType={x:Type telerik:RadTemplatedButton}}}"
+                                   FontSize="{Binding FontSize, Source={RelativeSource AncestorType={x:Type telerik:RadTemplatedButton}}}"
+                                   FontAttributes="{Binding FontAttributes, Source={RelativeSource AncestorType={x:Type telerik:RadTemplatedButton}}}"
+                                   HorizontalTextAlignment="{Binding HorizontalTextAlignment, Source={RelativeSource AncestorType={x:Type telerik:RadTemplatedButton}}}"
+                                   VerticalTextAlignment="{Binding VerticalTextAlignment, Source={RelativeSource AncestorType={x:Type telerik:RadTemplatedButton}}}" />
+                        </Grid>
+                    </telerik:RadTemplatedButton>
+                </telerik:RadWrapLayout>
+                <Label Text="Toggle Button" Style="{StaticResource TitleLabelStyle}" />
+                <telerik:RadWrapLayout>
+                    <telerik:RadToggleButton Content="Top Rated"
+                                             AutomationId="toggleButton"
+                                             Style="{StaticResource ToggleButton_FlatStyle}" />
+                    <telerik:RadToggleButton Content="5 mins"
+                                             Style="{StaticResource ToggleButton_RoundedStyle}"
+                                             AutomationId="roundedToggleButton" />
+                    <telerik:RadToggleButton IsToggled="True"
+                                             Style="{StaticResource ToggleButton_CircularStyle}"
+                                             AutomationId="circularToggleButton" />
+                </telerik:RadWrapLayout>
+            </VerticalStackLayout>
+        </ScrollView>
+    </telerik:RadContentView.Content>
+</telerik:RadContentView>

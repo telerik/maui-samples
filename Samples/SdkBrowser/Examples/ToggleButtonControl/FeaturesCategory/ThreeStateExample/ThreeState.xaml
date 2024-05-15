@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.ToggleButtonControl.FeaturesCategory.ThreeStateExample.ThreeState">
+    <VerticalStackLayout Spacing="20">
+        <HorizontalStackLayout Spacing="5"
+                               HorizontalOptions="Center">
+            <telerik:RadCheckBox x:Name="checkBox"
+                                 IsChecked="{Binding IsThreeState, Source={x:Reference toggleButton}}"
+                                 IsThreeState="False" />
+            <Label Text="IsThreeState?"
+                   VerticalTextAlignment="Center"
+                   telerik:RadCheckBox.ToggleOnTap="{x:Reference checkBox}" />
+        </HorizontalStackLayout>
+        <!-- >> togglebutton-three-state -->
+        <telerik:RadToggleButton x:Name="toggleButton"
+                                 IsThreeState="True"
+                                 Content="{Binding IsToggled, Source={RelativeSource Self}, StringFormat='IsToggled: {0}', TargetNullValue='IsToggled: null'}"
+                                 WidthRequest="150"
+                                 HorizontalOptions="Center" />
+        <!-- << togglebutton-three-state -->
+    </VerticalStackLayout>
+</ContentView>

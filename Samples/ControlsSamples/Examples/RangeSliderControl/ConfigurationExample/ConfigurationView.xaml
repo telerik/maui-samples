@@ -89,8 +89,7 @@
                                    Style="{StaticResource VerticalGroupLabelStyle}"  />
                             <telerik:RadComboBox ItemsSource="{Binding TicksPlacements}"
                                                  SelectedItem="{Binding TicksPlacement, Mode=TwoWay}"
-                                                 IsClearButtonVisible="False"
-                                                 DropDownHeight="{OnPlatform Android=136, iOS=144, MacCatalyst=88, WinUI=160}" />
+                                                 IsClearButtonVisible="False" />
                         </VerticalStackLayout>
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="In-range Tick Color:"
@@ -145,8 +144,7 @@
                                    Style="{StaticResource VerticalGroupLabelStyle}"  />
                             <telerik:RadComboBox ItemsSource="{Binding LabelsPlacements}"
                                                  SelectedItem="{Binding LabelsPlacement, Mode=TwoWay}"
-                                                 IsClearButtonVisible="False"
-                                                 DropDownHeight="{OnPlatform Android=102, iOS=108, MacCatalyst=66, WinUI=120}" />
+                                                 IsClearButtonVisible="False" />
                         </VerticalStackLayout>
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="Text Color:"
@@ -224,8 +222,7 @@
                                    Style="{StaticResource VerticalGroupLabelStyle}"  />
                             <telerik:RadComboBox ItemsSource="{Binding SnapModes}"
                                                  SelectedItem="{Binding SnapMode, Mode=TwoWay}"
-                                                 IsClearButtonVisible="False"
-                                                 DropDownHeight="{OnPlatform Android=68, iOS=72, MacCatalyst=44, WinUI=80}" />
+                                                 IsClearButtonVisible="False" />
                         </VerticalStackLayout>
                         <VerticalStackLayout>
                             <Label Text="Drag Mode:"

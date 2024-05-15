@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.AIPromptControl.StylingCategory.CommandsStylingExample.CommandsViewStyling">
+    <VisualElement.Resources>
+        <!-- >> aiprompt-commandsview-style -->
+        <Style x:Key="MyCommandLabelStyle" TargetType="Label">
+            <Setter Property="TextColor" Value="#00897B" />
+        </Style>
+        <Style x:Key="MyCommandStyle" TargetType="telerik:AIPromptCommandItemView">
+            <Setter Property="LabelStyle" Value="{StaticResource MyCommandLabelStyle}" />
+        </Style>
+        <Style x:Key="MyExpanderHeaderTextStyle" TargetType="Label">
+            <Setter Property="TextColor" Value="#00897B" />
+        </Style>
+        <Style x:Key="MyCommandExpanderStyle" TargetType="telerik:RadExpander">
+            <Setter Property="HeaderTextStyle" Value="{StaticResource MyExpanderHeaderTextStyle}" />
+        </Style>
+        <Style x:Key="MyCommandGroupStyle" TargetType="telerik:AIPromptCommandGroupView">
+            <Setter Property="ExpanderStyle" Value="{StaticResource MyCommandExpanderStyle}" />
+        </Style>
+        <!-- << aiprompt-commandsview-style -->
+    </VisualElement.Resources>
+    <Grid>
+        <!-- >> aiprompt-commandsview-styling-xaml -->
+        <telerik:RadAIPrompt x:Name="aiPrompt"
+                             InputText="{Binding InputText}"
+                             PromptRequestCommand="{Binding PromptRequestCommand}"
+                             OutputItems="{Binding OutputItems}"
+                             Commands="{Binding Commands}"
+                             CommandStyle="{StaticResource MyCommandStyle}"
+                             CommandGroupStyle="{StaticResource MyCommandGroupStyle}" />
+        <!-- << aiprompt-commandsview-styling-xaml -->
+    </Grid>
+</ContentView>

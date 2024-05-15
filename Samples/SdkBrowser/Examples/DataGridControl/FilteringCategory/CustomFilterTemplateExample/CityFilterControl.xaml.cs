@@ -1,6 +1,6 @@
 using System.Collections.Generic;
-using Telerik.Maui.Controls.Compatibility.Common.Data;
-using Telerik.Maui.Controls.Compatibility.DataGrid;
+using Telerik.Maui.Controls.DataGrid;
+using Telerik.Maui.Controls.Data;
 
 namespace SDKBrowserMaui.Examples.DataGridControl.FilteringCategory.CustomFilterTemplateExample;
 

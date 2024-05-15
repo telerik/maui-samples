@@ -23,6 +23,15 @@
 		<MtouchLink>SdkOnly</MtouchLink>
 	</PropertyGroup>
 
+	<PropertyGroup>
+		<EnableDefaultPageItems>false</EnableDefaultPageItems>
+	</PropertyGroup>
+
+	<PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+		<RunAnalyzers>false</RunAnalyzers>
+		<NoWarn>XC0022;CS1591;CS1574;CS1572</NoWarn>
+	</PropertyGroup>
+
 	<ItemGroup>
 		<MauiImage IsAppIcon="true" Include="Resources\appicon.svg" ForegroundFile="Resources\appicon.svg" />
 		<MauiImage Include="Resources\Images\*" />
@@ -102,6 +111,10 @@
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Condition=" $(CustomMauiVersion) == '' " Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Controls" Condition=" $(CustomMauiVersion) != '' " Version="$(CustomMauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Condition=" $(CustomMauiVersion) != '' " Version="$(CustomMauiVersion)" />
+	</ItemGroup>
+
+	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">
+		<BundleResource Include="Platforms\iOS\PrivacyInfo.xcprivacy" LogicalName="PrivacyInfo.xcprivacy" />
 	</ItemGroup>
 
 	<Import Condition="'$(SolutionName)' == 'Telerik.Maui' Or '$(UseSourceProjects)' == 'True'" Project="..\AddSourceProjects.proj" />

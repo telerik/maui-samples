@@ -1,6 +1,6 @@
-﻿using Telerik.Maui.Controls.Compatibility.Common.Data;
-using Microsoft.Maui.Controls.Xaml;
+﻿using Microsoft.Maui.Controls.Xaml;
 using Telerik.Maui.Controls;
+using Telerik.Maui.Controls.Data;
 
 namespace SDKBrowserMaui.Examples.DataGridControl.GroupingCategory.DelegateGroupDescriptorExample;
 
@@ -20,7 +20,7 @@ public partial class DelegateGroupDescriptorGroups : RadContentView
 }
 
 // >> datagrid-grouping-delegategroupdescriptor-lookup
-class CustomIKeyLookup : Telerik.Maui.Controls.Compatibility.Common.Data.IKeyLookup
+class CustomIKeyLookup : Telerik.Maui.Controls.Data.IKeyLookup
 {
     public object GetKey(object instance)
     {

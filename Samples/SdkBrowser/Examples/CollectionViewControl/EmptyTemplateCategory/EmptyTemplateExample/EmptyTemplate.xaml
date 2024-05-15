@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.CollectionViewControl"
+             x:Class="SDKBrowserMaui.Examples.CollectionViewControl.EmptyTemplateCategory.EmptyTemplateExample.EmptyTemplate">
+    <!-- >> collectionview-empty-template -->
+    <telerik:RadCollectionView x:Name="collectionView"
+                               EmptyContentDisplayMode="ItemsSourceNullOrEmpty"
+                               DisplayMemberPath="City">
+        <telerik:RadCollectionView.BindingContext>
+            <local:ViewModel />
+        </telerik:RadCollectionView.BindingContext>
+        <telerik:RadCollectionView.EmptyContentTemplate>
+            <DataTemplate>
+                <Image Source="nodata.png"
+                       Aspect="AspectFit"
+                       MaximumWidthRequest="560" />
+            </DataTemplate>
+        </telerik:RadCollectionView.EmptyContentTemplate>
+    </telerik:RadCollectionView>
+    <!-- << collectionview-empty-template -->
+</ContentView>

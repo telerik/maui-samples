@@ -37,7 +37,6 @@
                                  ItemsSource="{Binding MessageTypes}"
                                  SelectedItem="{Binding MessageType, Mode=TwoWay}"
                                  IsClearButtonVisible="False"
-                                 DropDownHeight="{OnPlatform Android=204, iOS=216, MacCatalyst=132, WinUI=240}" 
                                  AutomationId="messageTypeComboBox"/>
         </VerticalStackLayout>
         <VerticalStackLayout Style="{StaticResource GroupAtSeparateAreaStyle}">
@@ -70,7 +69,6 @@
                                  SelectionMode="Multiple"
                                  SelectedItems="{Binding SelectedSuggestions}"
                                  IsClearButtonVisible="False"
-                                 DropDownHeight="{OnPlatform Android=170, iOS=180, MacCatalyst=110, WinUI=200}" 
                                  AutomationId="suggestedActionsComboBox"/>
         </VerticalStackLayout>
         <telerik:RadButton Text="Add Suggestions"

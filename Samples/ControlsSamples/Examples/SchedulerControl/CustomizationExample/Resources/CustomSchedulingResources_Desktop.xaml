@@ -90,7 +90,6 @@
                                          IsEnabled="{Binding IsReadOnly, Converter={StaticResource InvertedBooleanConverter}}"
                                          ItemsSource="{Binding RepeatOptions}"
                                          MinimumWidthRequest="{OnPlatform Default=140, WinUI=145}"
-                                         DropDownHeight="{Binding RepeatOptionsDropDownHeight}"
                                          HorizontalOptions="Start" />
                     <Label Grid.Row="1"
                            Grid.Column="1"
@@ -109,7 +108,6 @@
                                      SelectedItem="{Binding Occurrence.Appointment.Location, Mode=TwoWay}"
                                      IsClearButtonVisible="False"
                                      MinimumWidthRequest="{OnPlatform Default=140, WinUI=145}"
-                                     DropDownHeight="{OnPlatform MacCatalyst=66, WinUI=120}"
                                      HorizontalOptions="Start" />
                 <!-- #endregion -->
                 <Label Grid.Row="6"

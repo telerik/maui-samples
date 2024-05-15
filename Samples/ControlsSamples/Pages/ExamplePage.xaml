@@ -28,6 +28,18 @@
                    Style="{StaticResource HeaderLabelStyle}"
                    Text="{Binding HeaderTitle}" 
                    AutomationId="exampleName"/>
+            <telerik:RadEntry x:Name="searchEntry"
+                              Grid.Column="1"
+                              Placeholder="Search for example"
+                              PlaceholderColor="Black"
+                              TextColor="Black"
+                              HeightRequest="{OnPlatform Android=44, iOS=32}"
+                              WidthRequest="{OnPlatform Android=250, iOS=200}"
+                              BackgroundColor="White"
+                              BindingContext="{Binding Source={RelativeSource AncestorType={x:Type NavigationPage}}, Path=RootPage.BindingContext}"
+                              IsVisible="{Binding IsTestSearchEntryVisible}"
+                              TextChanged="OnExampleSearchTextChanged"
+                              AutomationId="searchEntry"/>
             <HorizontalStackLayout Grid.Column="2"
                                    HorizontalOptions="End"
                                    Spacing="16">

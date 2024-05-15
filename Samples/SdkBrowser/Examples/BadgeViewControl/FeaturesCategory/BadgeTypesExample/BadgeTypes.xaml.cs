@@ -1,7 +1,7 @@
 ﻿using Microsoft.Maui.Controls.Xaml;
 using System;
 using Telerik.Maui.Controls;
-using Telerik.Maui.Controls.Compatibility.Primitives;
+using Telerik.Maui.Controls.BadgeView;
 
 namespace SDKBrowserMaui.Examples.BadgeViewControl.FeaturesCategory.BadgeTypesExample
 {

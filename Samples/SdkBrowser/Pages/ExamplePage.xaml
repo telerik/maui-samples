@@ -7,14 +7,14 @@
     NavigationPage.HasNavigationBar="False"
     NavigationPage.HasBackButton="False"
     x:Class="SDKBrowserMaui.Pages.ExamplePage">
-    <Grid>
+    <Grid Background="{AppThemeBinding Light=White, Dark=Black}">
         <Grid.RowDefinitions>
             <RowDefinition Height="50" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <views:HeaderView />
-        <ContentView Content="{Binding Content}" 
-                     Grid.Row="1" 
+        <ContentView Content="{Binding Content}"
+                     Grid.Row="1"
                      Padding="16, 20"
                      AutomationId="exampleContent"/>
     </Grid>

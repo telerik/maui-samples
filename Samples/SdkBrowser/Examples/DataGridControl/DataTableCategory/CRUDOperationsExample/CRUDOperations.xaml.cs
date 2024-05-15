@@ -2,7 +2,7 @@ using Telerik.Maui.Controls;
 using Microsoft.Maui.Controls.Xaml;
 using Microsoft.Maui.Controls;
 using System;
-using Telerik.Maui.Controls.Compatibility.DataGrid;
+using Telerik.Maui.Controls.DataGrid;
 using System.Linq;
 
 namespace SDKBrowserMaui.Examples.DataGridControl.DataTableCategory.CRUDOperationsExample;

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.DataGridControl.ColumnsCategory.CellRendererExample"
+             x:Class="SDKBrowserMaui.Examples.DataGridControl.ColumnsCategory.CellRendererExample.SkiaCellRenderer">
+    <VisualElement.Resources>
+        <!-- >> datagrid-columns-skiacellrenderer-resource -->
+        <local:CustomColumnRenderer x:Key="CustomColumnCellRenderer" />
+        <!-- << datagrid-columns-skiacellrenderer-resource -->
+    </VisualElement.Resources>
+    <Grid>
+        <!-- >> datagrid-columns-skiacellrenderer -->
+        <telerik:RadDataGrid x:Name="dataGrid"
+                             RenderMode="SkiaSharp"
+                             ItemsSource="{Binding Clubs}"
+                             GridLinesVisibility="Both"
+                             AutoGenerateColumns="False">
+            <telerik:RadDataGrid.Columns>
+                <telerik:DataGridTextColumn PropertyName="Name" 
+                                            HeaderText="Name" />
+                <telerik:DataGridTextColumn PropertyName="Revenue"
+                                            HeaderText="Revenue"
+                                            CellRenderer="{StaticResource CustomColumnCellRenderer}" />
+                <telerik:DataGridNumericalColumn PropertyName="StadiumCapacity" 
+                                                 HeaderText="Stadium Capacity" />
+                <telerik:DataGridBooleanColumn PropertyName="IsChampion" 
+                                               HeaderText="Champion?" />
+                <telerik:DataGridDateColumn PropertyName="Established" 
+                                            HeaderText="Date Established" />
+                <telerik:DataGridComboBoxColumn PropertyName="Championship"
+                                                HeaderText="Championship"
+                                                ItemsSourcePath="Championships" />
+            </telerik:RadDataGrid.Columns>
+        </telerik:RadDataGrid>
+        <!-- << datagrid-columns-skiacellrenderer -->
+    </Grid>
+</ContentView>

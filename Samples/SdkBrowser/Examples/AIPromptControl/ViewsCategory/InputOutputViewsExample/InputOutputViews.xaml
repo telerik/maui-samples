@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.AIPromptControl.ViewsCategory"
+             x:Class="SDKBrowserMaui.Examples.AIPromptControl.ViewsCategory.InputOutputViewsExample.InputOutputViews">
+    <Grid>
+        <!-- >> aiprompt-inputoutputview-xaml -->
+        <telerik:RadAIPrompt x:Name="aiPrompt"
+                             AutoGenerateViews="False">
+            <telerik:RadAIPrompt.BindingContext>
+                <local:ViewModel />
+            </telerik:RadAIPrompt.BindingContext>
+            <telerik:AIPromptInputView InputText="{Binding InputText}"
+                                       PromptRequestCommand="{Binding PromptRequestCommand}" />
+            <telerik:AIPromptOutputView OutputItems="{Binding OutputItems}"
+                                        OutputItemCopyCommand="{Binding CopyCommand}"
+                                        OutputItemRetryCommand="{Binding RetryCommand}"
+                                        OutputItemRatingChangedCommand="{Binding OutputItemRatingChangedCommand}" />
+        </telerik:RadAIPrompt>
+        <!-- << aiprompt-inputoutputview-xaml -->
+    </Grid>
+</ContentView>

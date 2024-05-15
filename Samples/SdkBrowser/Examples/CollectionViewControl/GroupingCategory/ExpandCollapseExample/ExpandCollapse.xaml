@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.CollectionViewControl"
+             x:Class="SDKBrowserMaui.Examples.CollectionViewControl.GroupingCategory.ExpandCollapseExample.ExpandCollapse">
+    <Grid RowDefinitions="Auto, *"
+          RowSpacing="20">
+        <Grid RowDefinitions="Auto, Auto, Auto"
+              RowSpacing="10"
+              ColumnDefinitions="Auto, Auto"
+              ColumnSpacing="5">
+            <telerik:RadTemplatedButton Content="Expand all groups" Clicked="OnExpandAllClicked" />
+            <telerik:RadTemplatedButton Grid.Row="1" Content="Expand first group" Clicked="OnExpandFirstClicked" />
+            <telerik:RadTemplatedButton Grid.Row="2" Content="Expand last item" Clicked="OnExpandLastItemClicked" />
+            <telerik:RadTemplatedButton Grid.Column="1" Content="Collapse all groups" Clicked="OnCollapseAllClicked" />
+            <telerik:RadTemplatedButton Grid.Row="1" Grid.Column="1" Content="Collapse first group" Clicked="OnCollapseFirstClicked" />
+            <telerik:RadTemplatedButton Grid.Row="2" Grid.Column="1" Content="Collapse last item" Clicked="OnCollapseLastItemClicked" />
+        </Grid>
+        <!-- >> collectionview-expand-collapse-group -->
+        <telerik:RadCollectionView x:Name="collectionView"
+                                   Grid.Row="1"
+                                   ItemsSource="{Binding Locations}"
+                                   DisplayMemberPath="City">
+            <telerik:RadCollectionView.BindingContext>
+                <local:ViewModel />
+            </telerik:RadCollectionView.BindingContext>
+            <telerik:RadCollectionView.GroupDescriptors>
+                <telerik:PropertyGroupDescriptor PropertyName="Country" />
+            </telerik:RadCollectionView.GroupDescriptors>
+        </telerik:RadCollectionView>
+        <!-- << collectionview-expand-collapse-group -->
+    </Grid>
+</ContentView>

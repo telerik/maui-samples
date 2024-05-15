@@ -10,7 +10,7 @@ public partial class PropertyGroupDescriptor : ContentView
         InitializeComponent();
 
         // >> datagrid-grouping-propertygroupdescriptor
-        this.dataGrid.GroupDescriptors.Add(new Telerik.Maui.Controls.Compatibility.Common.Data.PropertyGroupDescriptor()
+        this.dataGrid.GroupDescriptors.Add(new Telerik.Maui.Controls.Data.PropertyGroupDescriptor()
         {
             PropertyName="Department"
         });

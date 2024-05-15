@@ -55,6 +55,15 @@
                                  AutomationId="dropdownHeightCombo"/>
             <!-- << combobox-configuration-dropdownheight -->
 
+            <Label Text="DropDownMaxHeight='200':" 
+                   Style="{StaticResource LabelStyle}" />
+            <!-- >> combobox-configuration-dropdownmaxheight -->
+            <telerik:RadComboBox DropDownMaxHeight="200"
+                                 ItemsSource="{Binding Items}"
+                                 DisplayMemberPath="Name"
+                                 AutomationId="dropdownMaxHeightCombo"/>
+            <!-- << combobox-configuration-dropdownmaxheight -->
+
             <Label Text="DropDownVerticalOffset='16':" 
                    Style="{StaticResource LabelStyle}" />
             <!-- >> combobox-configuration-dropdownverticaloffset -->

@@ -2,8 +2,8 @@
 using SDKBrowser.Examples.DataGridControl;
 using System.Collections.Generic;
 using System.Windows.Input;
+using Telerik.Maui;
 using Telerik.Maui.Controls;
-using Telerik.Maui.Controls.Compatibility.Common;
 
 namespace SDKBrowserMaui.Examples.DataGridControl.LoadOnDemandCategory.LoadOnDemandExample;
 

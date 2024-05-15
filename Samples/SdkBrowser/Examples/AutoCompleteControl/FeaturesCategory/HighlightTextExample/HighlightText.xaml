@@ -12,7 +12,7 @@
                                  TextSearchPath="Name"
                                  Placeholder="Search Here..."
                                  SuggestionItemHighlightTextColor="BlueViolet"
-                                 SuggestionViewHeight="100" />
+                                 SuggestionViewMaxHeight="100" />
 		<!-- << autocomplete-highlight-text -->
 
 		<Label Text="Using a custom SuggestionItemTemplate" />
@@ -21,7 +21,7 @@
                                  ItemsSource="{Binding Source}"
                                  TextSearchPath="Name"
                                  Placeholder="Search Here..."
-                                 SuggestionViewHeight="100">
+                                 SuggestionViewMaxHeight="100">
 			<telerik:RadAutoComplete.SuggestionItemTemplate>
 				<DataTemplate>
 					<telerik:RadHighlightLabel TextColor="Black" Padding="10"

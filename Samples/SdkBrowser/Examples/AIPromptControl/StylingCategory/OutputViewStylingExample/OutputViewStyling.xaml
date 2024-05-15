@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.AIPromptControl.StylingCategory.OutputViewStylingExample.OutputViewStyling">
+    <VisualElement.Resources>
+        <!-- >> aiprompt-outputview-style -->
+        <Style x:Key="MyTitleStyle" TargetType="Label">
+            <Setter Property="TextColor" Value="#00897B" />
+        </Style>
+        <Style x:Key="MySubtitleStyle" TargetType="Label">
+            <Setter Property="TextColor" Value="#BF00897B" />
+        </Style>
+        <Style x:Key="MyResponseTextStyle" TargetType="Label">
+            <Setter Property="FontAttributes" Value="Italic" />
+        </Style>
+        <Style x:Key="MyActionButtonStyle" TargetType="telerik:RadTemplatedButton">
+            <Setter Property="TextColor" Value="#00897B" />
+        </Style>
+        <Style x:Key="MyOutputItemStyle" TargetType="telerik:AIPromptOutputItemView">
+            <Setter Property="TitleLabelStyle" Value="{StaticResource MyTitleStyle}" />
+            <Setter Property="InputTextLabelStyle" Value="{StaticResource MySubtitleStyle}" />
+            <Setter Property="ResponseTextLabelStyle" Value="{StaticResource MyResponseTextStyle}" />
+            <Setter Property="CopyButtonStyle" Value="{StaticResource MyActionButtonStyle}" />
+            <Setter Property="RetryButtonStyle" Value="{StaticResource MyActionButtonStyle}" />
+        </Style>
+        <!-- << aiprompt-outputview-style -->
+    </VisualElement.Resources>
+    <Grid>
+        <!-- >> aiprompt-outputview-styling-xaml -->
+        <telerik:RadAIPrompt x:Name="aiPrompt"
+                             InputText="{Binding InputText}"
+                             PromptRequestCommand="{Binding PromptRequestCommand}"
+                             OutputItems="{Binding OutputItems}"
+                             OutputItemStyle="{StaticResource MyOutputItemStyle}" />
+        <!-- << aiprompt-outputview-styling-xaml -->
+    </Grid>
+</ContentView>

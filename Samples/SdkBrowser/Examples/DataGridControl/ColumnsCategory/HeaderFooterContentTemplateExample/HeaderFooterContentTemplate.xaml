@@ -30,25 +30,33 @@
         <!-- << datagrid-headercontenttemplate-datatemplate -->
         <!-- >> datagrid-footercontenttemplate-datatemplate -->
         <DataTemplate x:Key="CapitalColumnFooterTemplate">
-            <telerik:RadBorder BackgroundColor="{StaticResource ApplicationAccentColor}"
-                               BorderThickness="2,2,1,2"
-                               BorderColor="#151950"
+            <telerik:RadBorder BackgroundColor="#E0F2F1"
+                               BorderBrush="{Binding BorderBrush, Source={x:Reference dataGrid}}"
+                               BorderThickness="1"
                                HeightRequest="30">
-                <Label Text="Capital Footer"
-                       TextColor="White"
-                       HorizontalOptions="Center"
-                       VerticalOptions="Center" />
+                <Label HorizontalOptions="Center" VerticalOptions="Center">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Capital" TextColor="#00796B" FontAttributes="Bold" />
+                            <Span Text=" column footer" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
             </telerik:RadBorder>
         </DataTemplate>
         <DataTemplate x:Key="CountryColumnFooterTemplate">
-            <telerik:RadBorder BackgroundColor="{StaticResource ApplicationAccentColor}" 
-                               BorderThickness="1, 2, 2, 2"
-                               BorderColor="#151950"
+            <telerik:RadBorder BackgroundColor="#E0F2F1"
+                               BorderBrush="{Binding BorderBrush, Source={x:Reference dataGrid}}"
+                               BorderThickness="1"
                                HeightRequest="30">
-                <Label Text="Country Footer" 
-                       TextColor="White"
-                       HorizontalOptions="Center"
-                       VerticalOptions="Center" />
+                <Label HorizontalOptions="Center" VerticalOptions="Center">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Country" TextColor="#00796B" FontAttributes="Bold" />
+                            <Span Text=" column footer" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
             </telerik:RadBorder>
         </DataTemplate>
         <!-- << datagrid-footercontenttemplate-datatemplate -->
@@ -56,9 +64,11 @@
     <telerik:RadContentView.Content>
         <Grid>
             <!-- >> datagrid-headerfootercontenttemplate -->
-            <telerik:RadDataGrid x:Name="dataGrid" 
+            <telerik:RadDataGrid x:Name="dataGrid"
                                  ShowColumnFooters="True"
-                                 AutoGenerateColumns="False">
+                                 AutoGenerateColumns="False"
+                                 BorderBrush="{OnPlatform WinUI=#F1F1F1}"
+                                 BorderThickness="{OnPlatform Default=1, Android=0}">
                 <telerik:RadDataGrid.Columns>
                     <telerik:DataGridTextColumn PropertyName="Capital"
                                                 HeaderStyle="{StaticResource CustomColumnHeaderStyle}"

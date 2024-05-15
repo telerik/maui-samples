@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="QSF.Examples.CollectionViewControl.GroupingExample.GroupingView"
+             Padding="{OnIdiom Default='16, 20', Phone=0}">
+    <ContentView.Resources>
+        <telerik:BoolToValueConverter x:Key="BoolToFlightTypeConverter" TrueValue="Direct" FalseValue="Non-Direct" />
+
+        <Color x:Key="PrimaryFlightDetailsTextColor">#000000</Color>
+        <Color x:Key="SecondaryFlightDetailsTextColor">#99000000</Color>
+        <Color x:Key="FlightDetailsSeparatorTextColor">#B2B2B2</Color>
+
+        <DataTemplate x:Key="FlightDetailsTemplate">
+            <Label VerticalTextAlignment="Center"
+                   Padding="{Binding Source={RelativeSource AncestorType={x:Type telerik:RadCollectionViewItemView}}, Path=ActualPadding}">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="{Binding Id}" TextColor="{StaticResource PrimaryFlightDetailsTextColor}" />
+                        <Span Text=" | " TextColor="{StaticResource FlightDetailsSeparatorTextColor}" />
+                        <Span Text="{Binding DestinationFullName}" TextColor="{StaticResource PrimaryFlightDetailsTextColor}" />
+                        <Span Text=" | " TextColor="{StaticResource FlightDetailsSeparatorTextColor}" />
+                        <Span Text="{Binding IsDirect, Converter={StaticResource BoolToFlightTypeConverter}}" TextColor="{StaticResource SecondaryFlightDetailsTextColor}" />
+                        <Span Text=" | " TextColor="{StaticResource FlightDetailsSeparatorTextColor}" />
+                        <Span Text="{Binding StatusTime}" TextColor="{StaticResource SecondaryFlightDetailsTextColor}" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+        </DataTemplate>
+    </ContentView.Resources>
+    <telerik:RadBorder BorderColor="{OnPlatform Default={StaticResource DefaultBorderColor}, MacCatalyst=#0D000000, WinUI={StaticResource DefaultBorderColorWinUI}}"
+                       BorderThickness="{OnPlatform Default=0, MacCatalyst=1, WinUI=1}">
+        <telerik:RadCollectionView x:Name="collectionView"
+                                   ItemsSource="{Binding Flights}"
+                                   ItemTemplate="{StaticResource FlightDetailsTemplate}">
+            <telerik:RadCollectionView.GroupDescriptors>
+                <telerik:PropertyGroupDescriptor PropertyName="AirlineName" />
+                <telerik:PropertyGroupDescriptor PropertyName="Status" />
+            </telerik:RadCollectionView.GroupDescriptors>
+        </telerik:RadCollectionView>
+    </telerik:RadBorder>
+</ContentView>

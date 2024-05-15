@@ -175,7 +175,7 @@ public class SearchViewModel : ViewModelBase
             {
                 foreach (Example controlExample in control.Examples)
                 {
-                    if (controlExample.ControlName == controlName && 
+                    if (controlExample.ControlName == controlName &&
                         controlExample.Name == exampleName)
                     {
                         example = controlExample;
@@ -190,7 +190,7 @@ public class SearchViewModel : ViewModelBase
                 return true;
             }
         }
-        
+
         return false;
     }
 

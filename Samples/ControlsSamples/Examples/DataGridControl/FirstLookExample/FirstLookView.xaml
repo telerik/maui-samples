@@ -15,7 +15,7 @@
                              UserGroupMode="Enabled"
                              AutomationId="dataGrid">
             <telerik:RadDataGrid.GroupDescriptors>
-              <telerik:PropertyGroupDescriptor PropertyName="CountryName" />
+                <telerik:PropertyGroupDescriptor PropertyName="CountryName" />
             </telerik:RadDataGrid.GroupDescriptors>
             <telerik:RadDataGrid.Columns>
                 <telerik:DataGridTextColumn PropertyName="CountryName"
@@ -23,6 +23,12 @@
                                             IsVisible="False" />
                 <telerik:DataGridTextColumn PropertyName="FullName"
                                             HeaderText="Name" />
+                <telerik:DataGridComboBoxColumn PropertyName="JobTitle"
+                                                HeaderText="Job Title"
+                                                SizeMode="Fixed"
+                                                Width="{OnPlatform WinUI='190', Android='180', MacCatalyst='230', iOS='250'}"
+                                                MinimumWidth="{OnPlatform WinUI='190', Android='180', MacCatalyst='230', iOS='250'}"
+                                                ItemsSource="{Binding JobTitles}" />
                 <telerik:DataGridTextColumn PropertyName="PhoneNumberWithCountryCode"
                                             HeaderText="Phone" />
                 <telerik:DataGridBooleanColumn HeaderText="Is Member"
@@ -37,6 +43,8 @@
                             <Grid>
                                 <Image Source="{Binding CountryFlag}"
                                        Aspect="Center"
+                                       WidthRequest="22"
+                                       HeightRequest="16"
                                        Margin="{OnPlatform Android='8, 13', iOS='18, 14', MacCatalyst=10, WinUI=12}" />
                             </Grid>
                         </DataTemplate>

@@ -7,6 +7,8 @@ namespace QSF.Pages;
 
 public partial class MainPageMobile : ContentPage
 {
+    private int tapCounter;
+
     public MainPageMobile()
     {
         this.InitializeComponent();
@@ -30,5 +32,14 @@ public partial class MainPageMobile : ContentPage
     {
         HomeViewModel vm = (HomeViewModel)this.BindingContext;
         vm?.SelectControlCommand?.Execute(e.Item);
+    }
+
+    private void OnTitleLabelTapped(object sender, EventArgs e)
+    {
+        this.tapCounter++;
+        if (this.tapCounter > 8)
+        {
+            ((HomeViewModel)this.BindingContext).IsTestSearchEntryVisible = true;
+        }
     }
 }

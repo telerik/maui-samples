@@ -3,61 +3,59 @@
                         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                         xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
                         x:Class="SDKBrowserMaui.Examples.DataGridControl.StylingCategory.ColumnsStylingExample.ColumnsStyling">
-    <telerik:RadDataGrid x:Name="DataGrid" 
-                         ItemsSource="{Binding}" 
+    <telerik:RadDataGrid x:Name="DataGrid"
+                         ItemsSource="{Binding}"
                          AutoGenerateColumns="False"
                          ShowColumnFooters="True"
-                         IsVisible="True"
                          UserEditMode="Cell">
         <telerik:RadDataGrid.Columns>
             <telerik:DataGridTextColumn PropertyName="Country"
-                                        FooterText="Country Column Footer"/>
+                                        FooterText="Country Column Footer" />
             <telerik:DataGridTextColumn PropertyName="Capital"
                                         FooterText="Capital Column Footer">
                 <!-- >> datagrid-columnstyle-headerstyle -->
                 <telerik:DataGridTextColumn.HeaderStyle>
-                    <telerik:DataGridColumnHeaderStyle BackgroundColor="LightSkyBlue"
-                                                       TextColor="Black"
-                                                       BorderColor="Black"
-                                                       BorderThickness="2"/>
+                    <telerik:DataGridColumnHeaderStyle TextColor="#FFFFFF"
+                                                       FilterIndicatorTextColor="#99FFFFFF"
+                                                       FilterIndicatorActiveTextColor="#80CBC4"
+                                                       SortIndicatorColor="#FFFFFF"
+                                                       BackgroundColor="#00796B"
+                                                       HoverBackgroundColor="#198679" />
                 </telerik:DataGridTextColumn.HeaderStyle>
                 <!-- << datagrid-columnstyle-headerstyle -->
 
                 <!-- >> datagrid-columnstyle-celleditor -->
                 <telerik:DataGridTextColumn.CellEditorStyle>
-                    <Style TargetType="Entry">
-                        <Setter Property="FontSize" Value="Large"/>
-                        <Setter Property="FontAttributes" Value="Bold"/>
+                    <Style TargetType="telerik:RadEntry">
+                        <Setter Property="FontAttributes" Value="Bold" />
+                        <Setter Property="ReserveSpaceForErrorView" Value="False" />
+                        <Setter Property="HorizontalTextAlignment" Value="Center" />
+                        <Setter Property="Margin" Value="2" />
                     </Style>
                 </telerik:DataGridTextColumn.CellEditorStyle>
                 <!-- << datagrid-columnstyle-celleditor -->
 
                 <!-- >> datagrid-columnstyle-celldecoration -->
                 <telerik:DataGridTextColumn.CellDecorationStyle>
-                    <telerik:DataGridBorderStyle BorderColor="DarkBlue"  
-                                                 BorderThickness="3" 
-                                                 BackgroundColor="LightBlue" />
+                    <telerik:DataGridBorderStyle BackgroundColor="#E0F2F1" />
                 </telerik:DataGridTextColumn.CellDecorationStyle>
                 <!-- << datagrid-columnstyle-celldecoration -->
 
                 <!-- >> datagrid-columnstyle-cellcontent -->
                 <telerik:DataGridTextColumn.CellContentStyle>
-                    <telerik:DataGridTextCellStyle TextColor="DarkOliveGreen"
-                                                   FontSize="12"
+                    <telerik:DataGridTextCellStyle FontSize="12"
                                                    TextMargin="2"
-                                                   VerticalTextAlignment="Center" 
-                                                   HorizontalTextAlignment="Center"
-                                                   SelectedTextColor="Brown">
-                    </telerik:DataGridTextCellStyle>
+                                                   TextColor="#000000"
+                                                   HoverTextColor="#198679"
+                                                   SelectedTextColor="#00796B"
+                                                   VerticalTextAlignment="Center"
+                                                   HorizontalTextAlignment="Center" />
                 </telerik:DataGridTextColumn.CellContentStyle>
                 <!-- << datagrid-columnstyle-cellcontent -->
                 <!-- >> datagrid-columnstyle-footerstyle -->
                 <telerik:DataGridTextColumn.FooterStyle>
-                    <telerik:DataGridColumnFooterStyle BackgroundColor="BlueViolet"
-                                                       TextColor="White"
-                                                       TextFontSize="16"
-                                                       BorderColor="Blue"
-                                                       BorderThickness="2"/>
+                    <telerik:DataGridColumnFooterStyle TextColor="#FFFFFF"
+                                                       BackgroundColor="#00796B" />
                 </telerik:DataGridTextColumn.FooterStyle>
                 <!-- << datagrid-columnstyle-footerstyle -->
             </telerik:DataGridTextColumn>

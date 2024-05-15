@@ -11,7 +11,7 @@ public partial class SuggestionViewTemplate : ContentView
 		InitializeComponent();
 	}
 
-    private void DataGrid_SelectionChanged(object sender, Telerik.Maui.Controls.Compatibility.DataGrid.DataGridSelectionChangedEventArgs e)
+    private void DataGrid_SelectionChanged(object sender, Telerik.Maui.Controls.DataGrid.DataGridSelectionChangedEventArgs e)
     {
         var item = e.AddedItems.FirstOrDefault() as Person;
         if (item == null)

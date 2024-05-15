@@ -47,6 +47,107 @@
       </Categories>
     </Control>
     <Control>
+      <Name>AIPrompt</Name>
+      <Title>AIPrompt</Title>
+      <Icon>aiprompt.png</Icon>
+      <Categories>
+        <Category>
+          <Name>GettingStarted</Name>
+          <Title>Getting Started</Title>
+          <Examples>
+            <Example>
+              <Page>AIPromptGettingStartedXaml</Page>
+              <Name>GettingStarted</Name>
+              <Title>Getting Started - Xaml</Title>
+            </Example>
+          </Examples>
+        </Category>
+        <Category>
+          <Name>Views</Name>
+          <Title>Views</Title>
+          <Examples>
+            <Example>
+              <Page>ManuallyDefinedViews</Page>
+              <Name>Views</Name>
+              <Title>Manually Defined Views</Title>
+            </Example>
+            <Example>
+              <Page>InputOutputViews</Page>
+              <Name>InputOutputViews</Name>
+              <Title>Input and Output View</Title>
+            </Example>
+            <Example>
+              <Page>CommandsView</Page>
+              <Name>CommandsView</Name>
+              <Title>Commands View</Title>
+            </Example>
+          </Examples>
+        </Category>
+        <Category>
+          <Name>Features</Name>
+          <Title>Features</Title>
+          <Examples>
+            <Example>
+              <Page>Suggestions</Page>
+              <Name>Suggestions</Name>
+              <Title>Suggestions</Title>
+            </Example>
+            <Example>
+              <Page>AIPromptButton</Page>
+              <Name>AIPromptButton</Name>
+              <Title>AIPrompt Button</Title>
+            </Example>
+            <Example>
+              <Page>CustomResponseRating</Page>
+              <Name>CustomRating</Name>
+              <Title>Custom Response Rating</Title>
+            </Example>
+          </Examples>
+        </Category>
+        <Category>
+          <Name>Styling</Name>
+          <Title>Styling</Title>
+          <Examples>
+            <Example>
+              <Page>TabViewStyling</Page>
+              <Name>TabViewStyling</Name>
+              <Title>TabView Styling</Title>
+            </Example> 
+            <Example>
+              <Page>InputViewStyling</Page>
+              <Name>InputViewStyling</Name>
+              <Title>InputView Styling</Title>
+            </Example>
+            <Example>
+              <Page>OutputViewStyling</Page>
+              <Name>OutputViewStyling</Name>
+              <Title>OutputView Styling</Title>
+            </Example>
+            <Example>
+              <Page>CommandsViewStyling</Page>
+              <Name>CommandsStyling</Name>
+              <Title>CommandsView Styling</Title>
+            </Example>
+            <Example>
+              <Page>SuggestionsStyling</Page>
+              <Name>SuggestionsStyling</Name>
+              <Title>Suggestions Styling</Title>
+            </Example>
+            <Example>
+              <Page>PopupStyling</Page>
+              <Name>PopupStyling</Name>
+              <Title>Popup Styling</Title>
+            </Example>
+            <Example>
+              <Page>AIPromptButtonStyling</Page>
+              <Name>AIPromptButtonStyling</Name>
+              <Title>AIPromptButton Styling</Title>
+            </Example>
+          </Examples>
+        </Category>
+      </Categories>
+    </Control>
+    <Control>
       <Name>AutoComplete</Name>
       <Title>AutoComplete</Title>
       <Icon>autocomplete.png</Icon>
@@ -901,6 +1002,231 @@
             </Example>
           </Examples>
         </Category>
+        <Category>
+          <Name>Features</Name>
+          <Title>Features</Title>
+          <Examples>
+            <Example>
+              <Page>Configuration</Page>
+              <Name>Configuration</Name>
+              <Title>Configuration</Title>
+            </Example>
+            <Example>
+              <Page>Animation</Page>
+              <Name>Animation</Name>
+              <Title>Animation</Title>
+            </Example>
+            <Example>
+              <Page>CheckBoxCommand</Page>
+              <Name>CheckBoxCommand</Name>
+              <Title>Command</Title>
+              <ExcludeFrom>net7</ExcludeFrom>
+            </Example>
+            <Example>
+              <Page>ToggleOnTap</Page>
+              <Name>ToggleOnTap</Name>
+              <Title>ToggleOnTap</Title>
+            </Example>
+            <Example>
+              <Page>Styling</Page>
+              <Name>Styling</Name>
+              <Title>Styling</Title>
+            </Example>
+          </Examples>
+        </Category>
+      </Categories>
+    </Control>
+    <Control>
+      <Name>CollectionView</Name>
+      <Title>CollectionView</Title>
+      <Icon>collectionview.png</Icon>
+      <Categories>
+        <Category>
+          <Name>GettingStarted</Name>
+          <Title>Getting Started</Title>
+          <Examples>
+            <Example>
+              <Page>CollectionViewGettingStartedXaml</Page>
+              <Name>GettingStarted</Name>
+              <Title>Getting Started - XAML</Title>
+            </Example>
+            <Example>
+              <Page>CollectionViewGettingStartedCSharp</Page>
+              <Name>GettingStarted</Name>
+              <Title>Getting Started - C#</Title>
+            </Example>
+          </Examples>
+        </Category>
+        <Category>
+          <Name>Selection</Name>
+          <Title>Selection</Title>
+          <Examples>
+            <Example>
+              <Page>SelectedItem</Page>
+              <Name>SelectedItem</Name>
+              <Title>SelectedItem</Title>
+            </Example>
+            <Example>
+              <Page>MultipleSelection</Page>
+              <Name>MultipleSelection</Name>
+              <Title>Multiple Selection</Title>
+            </Example>
+            <Example>
+              <Page>DisabledSelection</Page>
+              <Name>DisabledSelection</Name>
+              <Title>Disabled Selection</Title>
+            </Example>
+          </Examples>
+        </Category>
+        <Category>
+          <Name>Sorting</Name>
+          <Title>Sorting</Title>
+          <Examples>
+            <Example>
+              <Page>PropertySortDescriptor</Page>
+              <Name>PropertySortDescriptor</Name>
+              <Title>Property Sort Descriptor</Title>
+            </Example>
+          </Examples>
+        </Category>
+        <Category>
+          <Name>Grouping</Name>
+          <Title>Grouping</Title>
+          <Examples>
+            <Example>
+              <Page>PropertyGroup</Page>
+              <Name>PropertyGroup</Name>
+              <Title>Property Group Descriptor</Title>
+            </Example>
+            <Example>
+              <Page>DelegateGroup</Page>
+              <Name>DelegateGroup</Name>
+              <Title>Delegate Group Descriptor</Title>
+            </Example>
+            <Example>
+              <Page>MultiLevelGrouping</Page>
+              <Name>MultiLevelGrouping</Name>
+              <Title>Multi-Level Grouping</Title>
+            </Example>
+            <Example>
+              <Page>ExpandCollapse</Page>
+              <Name>ExpandCollapse</Name>
+              <Title>Expand Collapse Group and Item</Title>
+            </Example>
+            <Example>
+              <Page>GroupHeaderTemplate</Page>
+              <Name>GroupHeaderTemplate</Name>
+              <Title>Group Header Template</Title>
+            </Example>
+          </Examples>
+        </Category>
+        <Category>
+          <Name>Filtering</Name>
+          <Title>Filtering</Title>
+          <Examples>
+            <Example>
+              <Page>FilterDescriptor</Page>
+              <Name>FilterDescriptor</Name>
+              <Title>Delegate Filter Descriptor</Title>
+            </Example>
+          </Examples>
+        </Category>
+        <Category>
+          <Name>Scrolling</Name>
+          <Title>Scrolling</Title>
+          <Examples>
+            <Example>
+              <Page>ProgrammaticScrolling</Page>
+              <Name>ProgrammaticScrolling</Name>
+              <Title>Programmatic Scrolling</Title>
+            </Example>
+          </Examples>
+        </Category>
+        <Category>
+          <Name>EmptyTemplate</Name>
+          <Title>EmptyTemplate</Title>
+          <Examples>
+            <Example>
+              <Page>EmptyTemplate</Page>
+              <Name>EmptyTemplate</Name>
+              <Title>Empty Template</Title>
+            </Example>
+          </Examples>
+        </Category>
+        <Category>
+          <Name>Layouts</Name>
+          <Title>Layouts</Title>
+          <Examples>
+            <Example>
+              <Page>LinearLayout</Page>
+              <Name>LinearLayout</Name>
+              <Title>Linear Layout</Title>
+            </Example>
+          </Examples>
+        </Category>
+        <Category>
+          <Name>Events</Name>
+          <Title>Events</Title>
+          <Examples>
+            <Example>
+              <Page>ItemTapped</Page>
+              <Name>ItemTapped</Name>
+              <Title>ItemTapped</Title>
+            </Example>
+            <Example>
+              <Page>GroupTapped</Page>
+              <Name>GroupTapped</Name>
+              <Title>GroupTapped</Title>
+            </Example>
+            <Example>
+              <Page>Scrolled</Page>
+              <Name>Scrolled</Name>
+              <Title>Scrolled</Title>
+            </Example>
+          </Examples>
+        </Category>
+        <Category>
+          <Name>Commands</Name>
+          <Title>Commands</Title>
+          <Examples>
+            <Example>
+              <Page>ItemTappedCommand</Page>
+              <Name>ItemTappedCommand</Name>
+              <Title>ItemTapped</Title>
+            </Example>
+            <Example>
+              <Page>GroupTappedCommand</Page>
+              <Name>GroupTappedCommand</Name>
+              <Title>GroupTapped</Title>
+            </Example>
+          </Examples>
+        </Category>
+        <Category>
+          <Name>Styling</Name>
+          <Title>Styling</Title>
+          <Examples>
+            <Example>
+              <Page>ItemStyle</Page>
+              <Name>ItemStyle</Name>
+              <Title>ItemView Style</Title>
+            </Example>
+            <Example>
+              <Page>ItemStyleSelector</Page>
+              <Name>ItemStyleSelector</Name>
+              <Title>ItemView StyleSelector</Title>
+            </Example>
+            <Example>
+              <Page>GroupStyling</Page>
+              <Name>GroupStyling</Name>
+              <Title>GroupView Style</Title>
+            </Example>
+            <Example>
+              <Page>GroupStyleSelector</Page>
+              <Name>GroupStyleSelector</Name>
+              <Title>GroupView StyleSelector</Title>
+            </Example>
+          </Examples>
+        </Category>
       </Categories>
     </Control>
     <Control>
@@ -1193,6 +1519,17 @@
           </Examples>
         </Category>
         <Category>
+          <Name>RenderMode</Name>
+          <Title>Render Mode</Title>
+          <Examples>
+            <Example>
+              <Page>SkiaRendering</Page>
+              <Name>SkiaRendering</Name>
+              <Title>Skia Rendering</Title>
+            </Example>
+          </Examples>
+        </Category>
+        <Category>
           <Name>Columns</Name>
           <Title>Columns</Title>
           <Examples>
@@ -1215,6 +1552,11 @@
               <Page>HeaderFooterContentTemplate</Page>
               <Name>HeaderFooterContentTemplate</Name>
               <Title>Header and Footer ContentTemplate</Title>
+            </Example>
+            <Example>
+              <Page>SkiaCellRenderer</Page>
+              <Name>CellRenderer</Name>
+              <Title>SkiaSharp Cell Renderer</Title>
             </Example>
             <Example>
               <Page>Reordering</Page>
@@ -1362,7 +1704,6 @@
               <Page>LoadOnDemandRowTemplate</Page>
               <Name>LoadOnDemandRowTemplate</Name>
               <Title>Load on Demand Row Template</Title>
-              <ExcludeFrom>WinUI</ExcludeFrom>
             </Example>
             <Example>
               <Page>LoadOnDemandRowStyle</Page>
@@ -1453,7 +1794,7 @@
           </Examples>
         </Category>
         <Category>
-          <ExcludeFrom>MacCatalyst,Android,iOS</ExcludeFrom>
+          <ExcludeFrom>Android,iOS</ExcludeFrom>
           <Name>KeyboardNavigation</Name>
           <Title>Keyboard Navigation</Title>
           <Examples>
@@ -3638,6 +3979,11 @@
           <Title>Features</Title>
           <Examples>
             <Example>
+              <Page>DataBinding</Page>
+              <Name>DataBinding</Name>
+              <Title>Data Binding</Title>
+            </Example>
+            <Example>
               <Page>Selection</Page>
               <Name>Selection</Name>
               <Title>Selection</Title>
@@ -3659,9 +4005,95 @@
               <Title>HeaderItemStyle</Title>
             </Example>
             <Example>
+              <Page>HeaderItemStyleSelector</Page>
+              <Name>HeaderItemStyleSelector</Name>
+              <Title>HeaderItemStyle Selector</Title>
+            </Example>
+            <Example>
               <Page>TabViewContentStyle</Page>
               <Name>ContentStyle</Name>
               <Title>ContentStyle</Title>
+            </Example>
+          </Examples>
+        </Category>
+      </Categories>
+    </Control>
+    <Control>
+      <Name>TemplatedButton</Name>
+      <Title>TemplatedButton</Title>
+      <Icon>templatedbutton.png</Icon>
+      <Categories>
+        <Category>
+          <Name>GettingStarted</Name>
+          <Title>Getting Started</Title>
+          <Examples>
+            <Example>
+              <Page>GettingStartedXaml</Page>
+              <Name>GettingStarted</Name>
+              <Title>Getting Started - Xaml</Title>
+            </Example>
+            <Example>
+              <Page>GettingStartedCSharp</Page>
+              <Name>GettingStarted</Name>
+              <Title>Getting Started - Code</Title>
+            </Example>
+          </Examples>
+        </Category>
+        <Category>
+          <Name>Features</Name>
+          <Title>Features</Title>
+          <Examples>
+            <Example>
+              <Page>ContentTemplate</Page>
+              <Name>ContentTemplate</Name>
+              <Title>Content Template</Title>
+            </Example>
+            <Example>
+              <Page>VisualStates</Page>
+              <Name>VisualStates</Name>
+              <Title>Visual States</Title>
+            </Example>
+            <Example>
+              <Page>LoadingButton</Page>
+              <Name>LoadingButton</Name>
+              <Title>Loading Button</Title>
+            </Example>
+            <Example>
+              <Page>Command</Page>
+              <Name>Command</Name>
+              <Title>Command</Title>
+            </Example>
+          </Examples>
+        </Category>
+        <Category>
+          <Name>Events</Name>
+          <Title>Events</Title>
+          <Examples>
+            <Example>
+              <Page>Clicked</Page>
+              <Name>ClickedEvent</Name>
+              <Title>Clicked Event</Title>
+            </Example>
+            <Example>
+              <Page>Pressed</Page>
+              <Name>PressedEvent</Name>
+              <Title>Pressed Event</Title>
+            </Example>
+            <Example>
+              <Page>Released</Page>
+              <Name>ReleasedEvent</Name>
+              <Title>Released Event</Title>
+            </Example>
+          </Examples>
+        </Category>
+        <Category>
+          <Name>Styling</Name>
+          <Title>Styling</Title>
+          <Examples>
+            <Example>
+              <Page>Styling</Page>
+              <Name>Styling</Name>
+              <Title>Styling</Title>
             </Example>
           </Examples>
         </Category>
@@ -3849,6 +4281,92 @@
               <Page>DropDownStyling</Page>
               <Name>DropDownStyling</Name>
               <Title>DropDown Styling</Title>
+            </Example>
+          </Examples>
+        </Category>
+      </Categories>
+    </Control>
+    <Control>
+      <Name>ToggleButton</Name>
+      <Title>ToggleButton</Title>
+      <Icon>togglebutton.png</Icon>
+      <Categories>
+        <Category>
+          <Name>GettingStarted</Name>
+          <Title>Getting Started</Title>
+          <Examples>
+            <Example>
+              <Page>GettingStartedXaml</Page>
+              <Name>GettingStarted</Name>
+              <Title>Getting Started - Xaml</Title>
+            </Example>
+            <Example>
+              <Page>GettingStartedCSharp</Page>
+              <Name>GettingStarted</Name>
+              <Title>Getting Started - Code</Title>
+            </Example>
+          </Examples>
+        </Category>
+        <Category>
+          <Name>Features</Name>
+          <Title>Features</Title>
+          <Examples>
+            <Example>
+              <Page>ThreeState</Page>
+              <Name>ThreeState</Name>
+              <Title>Three State</Title>
+            </Example>
+            <Example>
+              <Page>ContentTemplate</Page>
+              <Name>ContentTemplate</Name>
+              <Title>Content Template</Title>
+            </Example>
+            <Example>
+              <Page>VisualStates</Page>
+              <Name>VisualStates</Name>
+              <Title>Visual States</Title>
+            </Example>
+            <Example>
+              <Page>Command</Page>
+              <Name>Command</Name>
+              <Title>Command</Title>
+            </Example>
+          </Examples>
+        </Category>
+        <Category>
+          <Name>Events</Name>
+          <Title>Events</Title>
+          <Examples>
+            <Example>
+              <Page>IsToggleChanged</Page>
+              <Name>IsToggleChangedEvent</Name>
+              <Title>IsToggleChanged Event</Title>
+            </Example>
+            <Example>
+              <Page>Clicked</Page>
+              <Name>ClickedEvent</Name>
+              <Title>Clicked Event</Title>
+            </Example>
+            <Example>
+              <Page>Pressed</Page>
+              <Name>PressedEvent</Name>
+              <Title>Pressed Event</Title>
+            </Example>
+            <Example>
+              <Page>Released</Page>
+              <Name>ReleasedEvent</Name>
+              <Title>Released Event</Title>
+            </Example>
+          </Examples>
+        </Category>
+        <Category>
+          <Name>Styling</Name>
+          <Title>Styling</Title>
+          <Examples>
+            <Example>
+              <Page>Styling</Page>
+              <Name>Styling</Name>
+              <Title>Styling</Title>
             </Example>
           </Examples>
         </Category>

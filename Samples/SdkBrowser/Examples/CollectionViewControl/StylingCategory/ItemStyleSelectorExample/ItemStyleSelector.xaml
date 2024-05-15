@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.CollectionViewControl"
+             xmlns:selector="clr-namespace:SDKBrowserMaui.Examples.CollectionViewControl.StylingCategory.ItemStyleSelectorExample"
+             x:Class="SDKBrowserMaui.Examples.CollectionViewControl.StylingCategory.ItemStyleSelectorExample.ItemStyleSelector">
+
+    <ContentView.Resources>
+        <!-- >> collectionview-itemview-styleselector-resources -->
+        <ResourceDictionary>
+            <Style x:Key="OddStyle" TargetType="telerik:RadCollectionViewItemView">
+                <Setter Property="BackgroundColor" Value="#C4E6E3" />
+                <Setter Property="BorderColor" Value="#80CBC4" />
+                <Setter Property="BorderThickness" Value="0, 0, 0, 1" />
+                <Setter Property="CornerRadius" Value="0" />
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup Name="CommonStates">
+                            <VisualState Name="Normal" />
+                            <VisualState Name="MouseOver">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#D6EEEC" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="Selected">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#A4DAD5" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+            <Style x:Key="EvenStyle" TargetType="telerik:RadCollectionViewItemView">
+                <Setter Property="BackgroundColor" Value="#F2FAF9" />
+                <Setter Property="BorderColor" Value="#80CBC4" />
+                <Setter Property="BorderThickness" Value="0, 0, 0, 1" />
+                <Setter Property="CornerRadius" Value="0" />
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup Name="CommonStates">
+                            <VisualState Name="Normal" />
+                            <VisualState Name="MouseOver">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#F7FCFB" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="Selected">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#A4DAD5" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+            <selector:CityStyleSelector x:Key="CityStyleSelector"
+                                        OddStyle="{StaticResource OddStyle}"
+                                        EvenStyle="{StaticResource EvenStyle}" />
+        </ResourceDictionary>
+        <!-- << collectionview-itemview-styleselector-resources -->
+    </ContentView.Resources>
+    <!-- >> collectionview-itemview-styleselector -->
+    <telerik:RadCollectionView ItemsSource="{Binding Locations}"
+                               ItemViewStyleSelector="{StaticResource CityStyleSelector}"
+                               DisplayMemberPath="City">
+        <telerik:RadCollectionView.BindingContext>
+            <local:ViewModel />
+        </telerik:RadCollectionView.BindingContext>
+    </telerik:RadCollectionView>
+    <!-- << collectionview-itemview-styleselector -->
+</ContentView>

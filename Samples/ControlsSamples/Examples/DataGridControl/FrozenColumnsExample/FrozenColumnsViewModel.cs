@@ -2,7 +2,7 @@
 using QSF.ExampleUtilities;
 using QSF.ViewModels;
 using System.Collections.ObjectModel;
-using Telerik.Maui.Controls.Compatibility.DataGrid;
+using Telerik.Maui.Controls.DataGrid;
 
 namespace QSF.Examples.DataGridControl.FrozenColumnsExample;
 

@@ -1,5 +1,5 @@
 ﻿using Microsoft.Maui.Graphics;
-using Telerik.Maui.Controls.Compatibility.Primitives;
+using Telerik.Maui.Controls.BadgeView;
 using Microsoft.Maui.Controls;
 using Microsoft.Maui.ApplicationModel;
 using Telerik.Maui.Controls;

@@ -85,7 +85,6 @@
                                      IsEnabled="{Binding IsReadOnly, Converter={StaticResource InvertedBooleanConverter}}"
                                      ItemsSource="{Binding RepeatOptions}"
                                      WidthRequest="168"
-                                     DropDownHeight="{Binding RepeatOptionsDropDownHeight}"
                                      BorderThickness="{OnPlatform Android=0}" />
                 <!-- #region LOCATION option insertion point -->
                 <telerik:SchedulerBoxView Grid.Row="9"
@@ -101,7 +100,6 @@
                                      IsClearButtonVisible="False"
                                      BorderThickness="{OnPlatform Android=0}"
                                      WidthRequest="168"
-                                     DropDownHeight="{OnPlatform Android=102, iOS=108}"
                                      HorizontalOptions="End" />
                 <!-- #endregion -->
                 <Grid Grid.Row="11"

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.CollectionViewControl"
+             x:Class="SDKBrowserMaui.Examples.CollectionViewControl.StylingCategory.GroupStylingExample.GroupStyling">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <!-- >> collectionview-group-expand-collapse-indicator-resources -->
+            <Style x:Key="ExpandCollapseIndicatorStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="Black" />
+            </Style>
+            <!-- << collectionview-group-expand-collapse-indicator-resources -->
+            <!-- >> contentview-groupview-style-resources -->
+            <Style x:Key="GroupHeaderStyle" TargetType="telerik:RadCollectionViewGroupView">
+                <Setter Property="ExpandCollapseIndicatorStyle" Value="{StaticResource ExpandCollapseIndicatorStyle}" />
+                <Setter Property="BackgroundColor" Value="#C4E6E3" />
+                <Setter Property="BorderColor" Value="#80CBC4" />
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup Name="CommonStates">
+                            <VisualState Name="Normal" />
+                            <VisualState Name="PointerOver">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#D6EEEC" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+            <!-- << contentview-groupview-style-resources -->
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <!-- >> collectionview-groupview-style -->
+    <telerik:RadCollectionView ItemsSource="{Binding Locations}"
+                               GroupViewStyle="{StaticResource GroupHeaderStyle}"
+                               DisplayMemberPath="City">
+        <telerik:RadCollectionView.BindingContext>
+            <local:ViewModel />
+        </telerik:RadCollectionView.BindingContext>
+        <telerik:RadCollectionView.GroupDescriptors>
+            <telerik:PropertyGroupDescriptor PropertyName="Country" />
+        </telerik:RadCollectionView.GroupDescriptors>
+    </telerik:RadCollectionView>
+    <!-- << collectionview-groupview-style -->
+</ContentView>

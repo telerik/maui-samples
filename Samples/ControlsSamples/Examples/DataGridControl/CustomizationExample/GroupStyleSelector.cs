@@ -1,6 +1,6 @@
 ﻿using Microsoft.Maui.Controls;
 using QSF.Examples.DataGridControl.Common;
-using Telerik.Maui.Controls.Compatibility.DataGrid;
+using Telerik.Maui.Controls.DataGrid;
 
 namespace QSF.Examples.DataGridControl.CustomizationExample;
 

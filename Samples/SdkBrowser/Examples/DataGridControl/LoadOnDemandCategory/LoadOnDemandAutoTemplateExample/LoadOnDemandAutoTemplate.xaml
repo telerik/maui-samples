@@ -7,30 +7,24 @@
         <ResourceDictionary>
             <!-- >> datagrid-loadondemandautotemplate-xaml -->
             <DataTemplate x:Key="CustomLoadOnDemandAutoTemplate">
-                <Label HorizontalOptions="FillAndExpand" 
-                       VerticalOptions="CenterAndExpand" 
-                       Text="Auto Loading" 
-                       FontSize="25"
-                       TextColor="Orange"
-                       BackgroundColor="PaleTurquoise"
-                       IsVisible="{Binding IsDataLoading}"/>
+                <Grid IsVisible="{Binding IsDataLoading}" BackgroundColor="#E0F2F1" Padding="8, 0" HeightRequest="32">
+                    <Label Text="Auto-loading items..." TextColor="#00796B" FontAttributes="Bold" VerticalTextAlignment="Center"/>
+                </Grid>
             </DataTemplate>
             <!-- << datagrid-loadondemandautotemplate-xaml -->
         </ResourceDictionary>
     </telerik:RadContentView.Resources>
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
+    <Grid RowDefinitions="*, Auto"
+          RowSpacing="24">
         <!-- >> datagrid-setting-loadondemandautotemplate-xaml -->
-        <telerik:RadDataGrid x:Name="dataGrid" ItemsSource="{Binding Items}"
+        <telerik:RadDataGrid x:Name="dataGrid"
+                             ItemsSource="{Binding Items}"
                              LoadOnDemand="dataGrid_LoadOnDemand"
                              LoadOnDemandMode="Automatic"
                              LoadOnDemandAutoTemplate="{StaticResource CustomLoadOnDemandAutoTemplate}"
                              LoadOnDemandBufferItemsCount="{Binding Source={x:Reference slider}, Path=Value}"/>
         <!-- << datagrid-setting-loadondemandautotemplate-xaml -->
-        <VerticalStackLayout Grid.Row="1">
+        <VerticalStackLayout Grid.Row="1" Spacing="12">
             <Label Text="LoadOnDemandBufferItemsCount"/>
             <Slider x:Name="slider" Minimum="0" Maximum="10"/>
         </VerticalStackLayout>

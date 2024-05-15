@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.CheckBoxControl.FeaturesCategory.ToggleOnTapExample.ToggleOnTap">
+
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Style TargetType="HorizontalStackLayout">
+                <Setter Property="VerticalOptions" Value="StartAndExpand" />
+                <Setter Property="Spacing" Value="5"/>
+            </Style>
+            <Style TargetType="Label">
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="LineBreakMode" Value="WordWrap" />
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+    <VerticalStackLayout Spacing="10">
+        <HorizontalStackLayout>
+            <Label Text="Tapping this text will not toggle the CheckBox:" />
+            <telerik:RadCheckBox />
+        </HorizontalStackLayout>
+        <!-- >> checkbox-toggle-on-tap -->
+        <HorizontalStackLayout>
+            <Label telerik:RadCheckBox.ToggleOnTap="{x:Reference checkBox}" 
+                   Text="Tap this text to toggle CheckBox:"  />
+            <telerik:RadCheckBox x:Name="checkBox"/>
+        </HorizontalStackLayout>
+        <!-- << checkbox-toggle-on-tap -->
+    </VerticalStackLayout>
+</ContentView>
