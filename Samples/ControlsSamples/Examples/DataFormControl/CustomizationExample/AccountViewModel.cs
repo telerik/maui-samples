@@ -1,6 +1,9 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.Maui.Controls;
 using Telerik.Maui.Controls;
+using Telerik.AppUtils.Services;
+using QSF.Services;
 
 namespace QSF.Examples.DataFormControl.CustomizationExample;
 
@@ -16,7 +19,10 @@ public class AccountViewModel : NotifyPropertyChangedBase
 
     public AccountViewModel()
     {
-        this.BirthDate = DateOnly.FromDateTime(DateTime.Now);
+        this.BirthDate = DateOnly.FromDateTime(
+            DependencyService
+                .Get<ITestingService>()
+                .DateTimeNow(new DateTime(2024, 06, 05, 12, 15, 30, DateTimeKind.Utc)));
     }
 
     [Required]

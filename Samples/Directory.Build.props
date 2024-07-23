@@ -11,16 +11,19 @@
     <DotNetOnly>false</DotNetOnly>
     <TelerikVersion>*</TelerikVersion>
     <DplVersion>*</DplVersion>
-    <CustomMauiVersion></CustomMauiVersion>
+    <CustomMauiNet8Version></CustomMauiNet8Version>
+    <CustomMauiNet9Version></CustomMauiNet9Version>
     <SkiaSharpVersion>2.88.7</SkiaSharpVersion>
 
     <UseSourceProjects>false</UseSourceProjects>
     <UseSourceAssemblies>false</UseSourceAssemblies>
+    <UsePlatformProjects>false</UsePlatformProjects>
     <UsePlatformAssemblies>false</UsePlatformAssemblies>
 
     <DotNetVersion Condition=" $(DotNetVersion) == '' ">Net8</DotNetVersion>
     <NetPlatform Condition=" $(DotNetVersion) == 'Net7' ">net7.0</NetPlatform>
     <NetPlatform Condition=" $(DotNetVersion) == 'Net8' ">net8.0</NetPlatform>
+    <NetPlatform Condition=" $(DotNetVersion) == 'Net9' ">net9.0</NetPlatform>
     <AndroidPlatform>$(NetPlatform)-android</AndroidPlatform>
     <iOSPlatform>$(NetPlatform)-ios</iOSPlatform>
     <MacCatalystPlatform>$(NetPlatform)-maccatalyst</MacCatalystPlatform>

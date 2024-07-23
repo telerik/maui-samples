@@ -5,7 +5,8 @@
              xmlns:local="clr-namespace:SDKBrowserMaui.Examples.CollectionViewControl"
              x:Class="SDKBrowserMaui.Examples.CollectionViewControl.GettingStartedCategory.GettingStartedExample.CollectionViewGettingStartedXaml">
     <!-- >> collectionview-gettingstarted-xaml -->
-    <telerik:RadCollectionView ItemsSource="{Binding Locations}"
+    <telerik:RadCollectionView x:Name="collectionView"
+                               ItemsSource="{Binding Locations}"
                                DisplayMemberPath="City">
         <telerik:RadCollectionView.BindingContext>
             <local:ViewModel />

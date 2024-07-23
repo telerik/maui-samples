@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.CollectionViewControl.ItemSwipeCategory"
+             x:Class="SDKBrowserMaui.Examples.CollectionViewControl.ItemSwipeCategory.ItemSwipeExample.ItemSwipe">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <!-- >> collectionview-itemswipe-templates -->
+            <telerik:BoolToValueConverter x:Key="VisitedToIconConverter" 
+                                          TrueValue="{x:Static telerik:TelerikFont.IconThumbsUp}"
+                                          FalseValue="{x:Static telerik:TelerikFont.IconThumbsDown}" />
+            <telerik:BoolToValueConverter x:Key="InvertedVisitedToIconConverter" 
+                                          TrueValue="{x:Static telerik:TelerikFont.IconThumbsDown}"
+                                          FalseValue="{x:Static telerik:TelerikFont.IconThumbsUp}" />
+            <DataTemplate x:Key="StartSwipeItemTemplate">
+                <Grid BackgroundColor="#00897B"
+                      HorizontalOptions="Fill"
+                      VerticalOptions="Fill">
+                    <Label FontFamily="{x:Static telerik:TelerikFont.Name}"
+                           FontSize="16"
+                           Text="{Binding Visited, Converter={StaticResource InvertedVisitedToIconConverter}}"
+                           TextColor="White"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"
+                           Padding="10, 0" />
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="VisitItemTapped" />
+                    </Grid.GestureRecognizers>
+                </Grid>
+            </DataTemplate>
+            <DataTemplate x:Key="EndSwipeItemTemplate">
+                <Grid BackgroundColor="#89000E"
+                      HorizontalOptions="Fill"
+                      VerticalOptions="Fill">
+                    <Label FontFamily="{x:Static telerik:TelerikFont.Name}"
+                           FontSize="16"
+                           Text="{x:Static telerik:TelerikFont.IconDelete}"
+                           TextColor="White"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"
+                           Padding="10, 0" />
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="DeleteItemTapped" />
+                    </Grid.GestureRecognizers>
+                </Grid>
+            </DataTemplate>
+            <!-- << collectionview-itemswipe-templates -->
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <!-- >> collectionview-item-swipe -->
+    <telerik:RadCollectionView x:Name="collectionView"
+                               ItemsSource="{Binding Locations}"
+                               IsItemSwipeEnabled="True"
+                               StartSwipeTemplate="{StaticResource StartSwipeItemTemplate}"
+                               EndSwipeTemplate="{StaticResource EndSwipeItemTemplate}"
+                               SwipeOffset="50"
+                               SwipeThreshold="20">
+        <telerik:RadCollectionView.ItemTemplate>
+            <DataTemplate>
+                <Grid RowDefinitions="Auto, Auto"
+                      RowSpacing="4"
+                      Padding="16, 8">
+                    <HorizontalStackLayout Spacing="4">
+                        <Label Text="{Binding City, StringFormat='{0},'}"
+                               FontSize="16"
+                               FontAttributes="Bold" />
+                        <Label Text="{Binding Country}"
+                               FontSize="16" />
+                    </HorizontalStackLayout>
+                    <HorizontalStackLayout Grid.Row="1"
+                                           Spacing="4">
+                        <Label Text="Visited:"
+                               TextColor="#99000000" />
+                        <Label FontFamily="{x:Static telerik:TelerikFont.Name}"
+                               Text="{Binding Visited, Converter={StaticResource VisitedToIconConverter}}"
+                               TextColor="#99000000"
+                               FontSize="12"
+                               VerticalTextAlignment="Center" />
+                    </HorizontalStackLayout>
+                </Grid>
+            </DataTemplate>
+        </telerik:RadCollectionView.ItemTemplate>
+        <telerik:RadCollectionView.BindingContext>
+            <local:ViewModel />
+        </telerik:RadCollectionView.BindingContext>
+    </telerik:RadCollectionView>
+    <!-- << collectionview-item-swipe -->
+</ContentView>

@@ -9,17 +9,10 @@
         <telerik:RadListPicker Placeholder="Pick a name!" 
                                AutomationId="listPicker"
                                ItemsSource="{Binding Items}" 
-                               DisplayMemberPath="FullName">
+                               DisplayMemberPath="Name">
             <telerik:RadListPicker.BindingContext>
                 <local:PeopleViewModel/>
             </telerik:RadListPicker.BindingContext>
-            <telerik:RadListPicker.ItemTemplate>
-                <DataTemplate>
-                    <Label Text="{Binding Name}" 
-                           HorizontalTextAlignment="Center" 
-                           VerticalTextAlignment="Center"/>
-                </DataTemplate>
-            </telerik:RadListPicker.ItemTemplate>
         </telerik:RadListPicker>
         <!-- << listpicker-getting-started-xaml -->
     </VerticalStackLayout>

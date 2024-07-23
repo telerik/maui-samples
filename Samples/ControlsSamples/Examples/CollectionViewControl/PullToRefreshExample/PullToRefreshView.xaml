@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="QSF.Examples.CollectionViewControl.PullToRefreshExample.PullToRefreshView"
+             Padding="{OnIdiom Default='16, 20', Phone='16, 24'}">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Style TargetType="telerik:RadCollectionViewItemView">
+                <Setter Property="BorderColor" Value="{OnPlatform Default={StaticResource DefaultBorderColor}, MacCatalyst=#0D000000, WinUI={StaticResource DefaultBorderColorWinUI}}" />
+                <Setter Property="BorderThickness" Value="0, 0, 0, 1" />
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <Grid RowDefinitions="Auto, *">
+        <telerik:RadTemplatedButton IsVisible="{OnPlatform Default=False, MacCatalyst=True, WinUI=True}"
+                                    IsEnabled="{Binding IsRefreshing, Converter={StaticResource InvertedBooleanConverter}}"
+                                    Content="Refresh Data"
+                                    Command="{Binding RefreshCommand}"
+                                    Margin="0, 0, 0, 20"
+                                    HorizontalOptions="Start" />
+        <RefreshView Grid.Row="1"
+                     IsRefreshing="{Binding IsRefreshing}"
+                     Command="{Binding RefreshCommand}">
+            <telerik:RadCollectionView ItemsSource="{Binding Recipes}">
+                <telerik:RadCollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid ColumnDefinitions="Auto, *"
+                              Padding="{OnPlatform Default=12, Android='0, 12', iOS='0, 12'}"
+                              ColumnSpacing="{OnPlatform Default=8, Android=16, iOS=16}">
+                            <telerik:RadBorder HeightRequest="48"
+                                               WidthRequest="48"
+                                               BackgroundColor="#1F7C59B6"
+                                               CornerRadius="8">
+                                <Label Text="{Binding Icon}"
+                                       TextColor="#7C59B6"
+                                       FontSize="16"
+                                       FontFamily="TelerikFontExamples"
+                                       VerticalTextAlignment="Center"
+                                       HorizontalTextAlignment="Center" />
+                            </telerik:RadBorder>
+                            <VerticalStackLayout Grid.Column="1"
+                                                 Spacing="{OnIdiom Default=8, Desktop=0}">
+                                <Label Text="{Binding Name}"
+                                       TextColor="{StaticResource DefaultTextColor}"
+                                       FontSize="16"
+                                       FontAttributes="Bold" />
+                                <Label Text="{Binding Description}"
+                                       TextColor="{StaticResource DefaultTextColor}" />
+                            </VerticalStackLayout>
+                        </Grid>
+                    </DataTemplate>
+                </telerik:RadCollectionView.ItemTemplate>
+            </telerik:RadCollectionView>
+        </RefreshView>
+    </Grid>
+</ContentView>

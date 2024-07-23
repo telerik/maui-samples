@@ -22,7 +22,9 @@ public class CustomColumnRenderer : DataGridCellRenderer
         double badRange = 300;
         double satisfactoryRange = 500;
         double goodRange = 700;
-        double x = bounds.X;
+        double horizontalPadding = 8;
+        double bulletGraphWidth = bounds.Width - 2 * horizontalPadding;
+        double x = bounds.X + horizontalPadding;
         double h = 20;
         double y = bounds.Y + (bounds.Height - h) / 2;
         double featuredHeight = 8;
@@ -32,7 +34,7 @@ public class CustomColumnRenderer : DataGridCellRenderer
         using (SKPaint paint = new SKPaint())
         {
             paint.Color = new SKColor(150, 150, 150);
-            Rect rect = new Rect(x, y, bounds.Width * (badRange / goodRange), h);
+            Rect rect = new Rect(x, y, bulletGraphWidth * (badRange / goodRange), h);
             skRenderContext.Canvas.DrawRect(SkiaUtils.ToSKRect(rect, displayScale), paint);
             x += rect.Width;
         }
@@ -42,7 +44,7 @@ public class CustomColumnRenderer : DataGridCellRenderer
         {
             paint.Color = new SKColor(180, 180, 180);
 
-            Rect rect = new Rect(x, y, bounds.Width * ((satisfactoryRange - badRange) / goodRange), h);
+            Rect rect = new Rect(x, y, bulletGraphWidth * ((satisfactoryRange - badRange) / goodRange), h);
             skRenderContext.Canvas.DrawRect(SkiaUtils.ToSKRect(rect, displayScale), paint);
             x += rect.Width;
         }
@@ -52,7 +54,7 @@ public class CustomColumnRenderer : DataGridCellRenderer
         {
 
             paint.Color = new SKColor(230, 230, 230);
-            Rect rect = new Rect(x, y, bounds.Width * ((goodRange - satisfactoryRange) / goodRange), h);
+            Rect rect = new Rect(x, y, bulletGraphWidth * ((goodRange - satisfactoryRange) / goodRange), h);
             skRenderContext.Canvas.DrawRect(SkiaUtils.ToSKRect(rect, displayScale), paint);
         }
 
@@ -62,7 +64,7 @@ public class CustomColumnRenderer : DataGridCellRenderer
             using (SKPaint paint = new SKPaint())
             {
                 paint.Color = new SKColor(48, 48, 48);
-                Rect rect = new Rect(bounds.X, y + ((h - featuredHeight) / 2), bounds.Width * (revenue.Value / goodRange), featuredHeight);
+                Rect rect = new Rect(bounds.X + horizontalPadding, y + ((h - featuredHeight) / 2), bulletGraphWidth * (revenue.Value / goodRange), featuredHeight);
                 skRenderContext.Canvas.DrawRect(SkiaUtils.ToSKRect(rect, displayScale), paint);
             }
         }

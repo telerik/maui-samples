@@ -13,18 +13,7 @@ namespace SDKBrowserMaui.Examples.ListPickerControl.GettingStartedCategory.Getti
             var listPicker = new RadListPicker()
             {
                 Placeholder = "Pick a name!",
-                ItemTemplate = new DataTemplate(() =>
-                {
-                    var label = new Label
-                    {
-                        VerticalTextAlignment = TextAlignment.Center,
-                        HorizontalTextAlignment = TextAlignment.Center
-                    };
-                    label.SetBinding(Label.TextProperty, new Binding(nameof(Person.Name)));
-
-                    return label;
-                }),
-                DisplayMemberPath = "FullName"
+                DisplayMemberPath = "Name"
             };
             listPicker.SetBinding(RadListPicker.ItemsSourceProperty, new Binding("Items"));
             // << listpicker-getting-started-csharp

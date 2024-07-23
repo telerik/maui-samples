@@ -3,6 +3,7 @@ using QSF.ViewModels;
 using System;
 using System.Collections.Specialized;
 using System.Linq;
+using Telerik.Maui.Controls;
 using Telerik.Maui.Controls.Compatibility.DataControls;
 
 namespace QSF.Views;
@@ -30,10 +31,10 @@ public partial class GalleryExampleViewBase : ContentView
         headerPresenter.Content = (View)newValue;
     }
 
-    internal void RadListView_SelectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+    internal void OnGallerySelectionChanged(object sender, Telerik.Maui.RadSelectionChangedEventArgs e)
     {
-        var listView = (RadListView)sender;
-        var viewModel = listView.SelectedItems.FirstOrDefault();
+        var collectionView = (RadCollectionView)sender;
+        var viewModel = collectionView.SelectedItem;
         if (viewModel != null)
         {
             this.presenter.Children.Clear();

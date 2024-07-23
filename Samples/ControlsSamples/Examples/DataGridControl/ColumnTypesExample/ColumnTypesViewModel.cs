@@ -1,8 +1,11 @@
-﻿using QSF.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Microsoft.Maui.Controls;
+using QSF.ViewModels;
+using QSF.Services;
+using Telerik.AppUtils.Services;
 
 namespace QSF.Examples.DataGridControl.ColumnTypesExample
 {
@@ -55,7 +58,11 @@ namespace QSF.Examples.DataGridControl.ColumnTypesExample
         private void CreateFlights()
         {
             DateTime dateTime = new DateTime(2022, 7, 7, 12, 0, 0);
-            Random randomTerminal = new Random();
+
+            var random = DependencyService
+                .Get<ITestingService>()
+                .Random(536334);
+
             for (int i = 0; i < this.carriers.Count; i++)
             {
                 Flight flight = new Flight
@@ -65,7 +72,7 @@ namespace QSF.Examples.DataGridControl.ColumnTypesExample
                     DestinationShortName = this.countryNames[i].Item2,
                     IsDirect = (i % 2) == 0,
                     AirlineName = this.carriers[i],
-                    Terminal = randomTerminal.Next(1,7),
+                    Terminal = random.Next(1,7),
                 };
                 dateTime = dateTime.AddDays(i);
                 flight.Date = dateTime;
@@ -73,7 +80,7 @@ namespace QSF.Examples.DataGridControl.ColumnTypesExample
                 flight.Time = dateTime;
                 dateTime = dateTime.AddMinutes(12);
                 flight.StatusTime = dateTime.ToString("HH:mm");
-                flight.Status = this.Statuses.OrderBy(x => Guid.NewGuid()).FirstOrDefault();
+                flight.Status = this.Statuses[random.Next(this.Statuses.Count)];
 
                 this.Flights.Add(flight);
             }

@@ -1,6 +1,6 @@
 ﻿using Microsoft.Maui.Controls;
 using System.Collections.ObjectModel;
-using Telerik.Maui.Controls.Compatibility.Common;
+using Telerik.Maui.Controls;
 using Telerik.Maui.Controls.Compatibility.DataControls.ListView.Commands;
 
 namespace SDKBrowserMaui.Examples.ListViewControl.GroupingCategory.ReorderInGroupedListViewExample

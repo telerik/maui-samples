@@ -1,5 +1,6 @@
 ﻿<Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:QSF"
              xmlns:converters="clr-namespace:QSF.Converters"
              xmlns:extensions="clr-namespace:QSF.MarkupExtensions"
              xmlns:windows="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.WindowsSpecific;assembly=Microsoft.Maui.Controls"
@@ -7,6 +8,10 @@
              x:Class="QSF.App">
     <Application.Resources>
         <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <local:TelerikTheming />
+            </ResourceDictionary.MergedDictionaries>
+
             <!--Accent colors-->
             <Color x:Key="ApplicationAccentColor">#8660C5</Color>
             <Color x:Key="AccentColor2">#3341A1</Color>
@@ -212,6 +217,15 @@
             <Style x:Key="ExampleCheckBoxStyle" TargetType="telerik:RadCheckBox">
                 <Setter Property="UncheckedColor" Value="#CCCCCC"/>
                 <Setter Property="CheckedColor" Value="{StaticResource ApplicationAccentColor}"/>
+            </Style>
+
+            <Style x:Key="PageStyle" TargetType="ContentPage">
+                <Setter Property="NavigationPage.HasNavigationBar" Value="False" />
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=White, Dark=Black}" />
+            </Style>
+
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="{DynamicResource RadOnAppSurfaceColor}" />
             </Style>
         </ResourceDictionary>
     </Application.Resources>

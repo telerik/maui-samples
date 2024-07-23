@@ -1,20 +1,29 @@
 ﻿using Microsoft.Maui.Controls;
 using System;
 using System.ComponentModel;
-using QSF.ViewModels;
-using QSF.Common;
 using System.Linq;
-using QSF.Services;
+using System.Collections.Generic;
 using System.Globalization;
-
+using QSF.Common;
+using QSF.ViewModels;
+using QSF.Services;
 
 namespace QSF.Pages
 {
-    public partial class ExamplePage : ContentPage
+    public partial class ExamplePage : QSFPage
     {
+        public override Grid SafeAreaGridWithHeader => this.root;
+
+#if IOS
+    public override View Acrylic => this.acrylic;
+#endif
+
+        public override Grid ContentGrid => this.content;
+
         public ExamplePage()
         {
-            InitializeComponent();
+            this.InitializeComponent();
+            this.BaseInitializeComponent();
         }
 
         private async void Back_Clicked(object sender, EventArgs e)
@@ -25,20 +34,7 @@ namespace QSF.Pages
 
         private async void OnExampleSearchTextChanged(object sender, TextChangedEventArgs e)
         {
-            string currentText = e.NewTextValue;
-            if (currentText.Length > 10 && currentText.FirstOrDefault() == '#' && currentText.LastOrDefault() == '#')
-            {
-                var examples = ((Application.Current.MainPage as NavigationPage).RootPage.BindingContext as HomeViewModel)?.Examples;
-
-                var splittedText = currentText.Replace("#", string.Empty).Split('.');
-                string controlText = splittedText.First();
-                string exampleText = splittedText.Last();
-
-                Example example = examples.FirstOrDefault(e => e.ControlName == controlText && e.Name == exampleText);
-
-                var service = DependencyService.Get<INavigationService>();
-                service.NavigateToExampleAsync(example);
-            }
+            await DependencyService.Get<INavigationService>().NavigateCommand(e.NewTextValue);
         }
     }
 }

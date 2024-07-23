@@ -1,0 +1,143 @@
+<qsf:QSFPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+             xmlns:views="clr-namespace:QSF.Views"
+             xmlns:qsf="clr-namespace:QSF.Pages"
+             xmlns:acrylic="clr-namespace:Xe.AcrylicView;assembly=Xe.AcrylicView"
+             x:Class="QSF.Pages.ThemeSettingsPage"
+             NavigationPage.HasNavigationBar="False"
+             ios:Page.UseSafeArea="False">
+
+    <Grid x:Name="root" RowDefinitions="0, Auto, *, 0" ColumnDefinitions="0, *, 0" IgnoreSafeArea="True">
+
+        <Grid x:Name="header"
+                ZIndex="2"
+                Style="{StaticResource HeaderStyle}"
+                BackgroundColor="Transparent"
+                Grid.Row="1"
+                Grid.Column="1"
+                Padding="12, 0">
+            <Grid ColumnDefinitions="Auto,*,Auto">
+                <ImageButton Clicked="Back_Clicked"
+                        HorizontalOptions="Start"
+                        Style="{OnPlatform Default={StaticResource DefaultBackButtonStyle}, iOS={StaticResource IOSBackButtonStyle}}" />
+                <Label Grid.Column="1"
+                        Text="{Binding HeaderLabel}"
+                        VerticalOptions="Center"
+                        Style="{StaticResource HeaderLabelStyle}"/>
+            </Grid>
+        </Grid>
+
+        <Grid x:Name="headerBackground" ZIndex="-1" Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="3" Background="{StaticResource ApplicationAccentColor}" IgnoreSafeArea="True" />
+        <OnPlatform x:TypeArguments="View">
+            <On Platform="iOS">
+                <Grid ZIndex="1" Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="3" IgnoreSafeArea="True">
+                    <Grid x:Name="acrylic" Background="{StaticResource ApplicationAccentColor}" IgnoreSafeArea="True" />
+                </Grid>
+            </On>
+            <On Platform="Android">
+                <Grid ZIndex="1" Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="3" Background="{StaticResource ApplicationAccentColor}" IgnoreSafeArea="True" />
+            </On>
+        </OnPlatform>
+        <Grid x:Name="pageBackground" ZIndex="-2" Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="3" Background="{AppThemeBinding Light=White, Dark=Black}" />
+
+        <Grid x:Name="content" ZIndex="0" Grid.Row="2" Grid.RowSpan="1" Grid.Column="1" Grid.ColumnSpan="1" IgnoreSafeArea="True">
+            <telerik:RadListView x:Name="listview"
+                    SelectionMode="Single"
+                    ItemsSource="{Binding ThemesCatalog}"
+                    SelectedItem="{Binding CurrentTheme, Mode=TwoWay}">
+                <telerik:RadListView.ItemStyle>
+                    <telerik:ListViewItemStyle
+                            BackgroundColor="{DynamicResource RadBaseColor}"
+                            BorderColor="Transparent"
+                            BorderWidth="0"
+                            BorderLocation="All" />
+                </telerik:RadListView.ItemStyle>
+                <telerik:RadListView.SelectedItemStyle>
+                    <telerik:ListViewItemStyle
+                            BackgroundColor="{DynamicResource RadBaseActiveColor}"
+                            BorderColor="Transparent"
+                            BorderWidth="0"
+                            BorderLocation="All" />
+                </telerik:RadListView.SelectedItemStyle>
+                <telerik:RadListView.HeaderTemplate>
+                    <DataTemplate>
+                        <VerticalStackLayout>
+                            <Label Grid.Row="0" Text="Dark Mode:" Margin="16,8,4,8" TextColor="{DynamicResource RadOnAppSurfaceColor}" />
+                            <telerik:RadSegmentedControl Grid.Row="1"
+                                    HorizontalOptions="Start"
+                                    ItemsSource="{Binding UserAppThemeOptions}"
+                                    SelectedItem="{Binding UserAppTheme, Mode=TwoWay}"
+                                    Margin="4,4,4,4" />
+                            <HorizontalStackLayout Grid.Row="2" Margin="16,8,4,8">
+                                <Label Text="User: " TextColor="{DynamicResource RadOnAppSurfaceColor}"/><Label Text="{Binding UserAppTheme}" TextColor="{DynamicResource RadOnAppSurfaceColor}" />
+                                <Label Text=", Platform:" TextColor="{DynamicResource RadOnAppSurfaceColor}"/><Label Text="{Binding PlatformAppTheme}" TextColor="{DynamicResource RadOnAppSurfaceColor}" />
+                                <Label Text=", Requested:" TextColor="{DynamicResource RadOnAppSurfaceColor}"/><Label Text="{Binding RequestedTheme}" TextColor="{DynamicResource RadOnAppSurfaceColor}" />
+                            </HorizontalStackLayout>
+
+                            <telerik:RadBorder Margin="10" Padding="8" CornerRadius="10" BackgroundColor="{DynamicResource RadPrimaryColor}" BorderColor="{DynamicResource RadPrimaryEmphasisColor}" BorderThickness="1">
+                                <Label Text="Dynamic Bindings Example" TextColor="{DynamicResource RadOnPrimaryColor}" />
+                            </telerik:RadBorder>
+
+                            <Grid ColumnDefinitions="40, *, Auto" Margin="8, 16">
+                                <Label Grid.Column="1" Text="Telerik UI for .NET MAUI" VerticalOptions="Center" TextColor="{DynamicResource RadOnAppSurfaceColor}" />
+                                <HorizontalStackLayout>
+                                    <telerik:RadBorder ZIndex="5" Margin="-5,0,0,0" CornerRadius="100" WidthRequest="45" HeightRequest="45" BackgroundColor="{Binding PreviewColors[0]}" BorderThickness="1" BorderColor="{DynamicResource RadSubtleColor}" />
+                                    <telerik:RadBorder ZIndex="4" Margin="-5,0,0,0" CornerRadius="100" WidthRequest="45" HeightRequest="45" BackgroundColor="{Binding PreviewColors[1]}" BorderThickness="1" BorderColor="{DynamicResource RadSubtleColor}" />
+                                    <telerik:RadBorder ZIndex="3" Margin="-5,0,0,0" CornerRadius="100" WidthRequest="45" HeightRequest="45" BackgroundColor="{Binding PreviewColors[2]}" BorderThickness="1" BorderColor="{DynamicResource RadSubtleColor}" />
+                                    <telerik:RadBorder ZIndex="2" Margin="-5,0,0,0" CornerRadius="100" WidthRequest="45" HeightRequest="45" BackgroundColor="{Binding PreviewColors[3]}" BorderThickness="1" BorderColor="{DynamicResource RadSubtleColor}" />
+                                    <telerik:RadBorder ZIndex="1" Margin="-5,0,0,0" CornerRadius="100" WidthRequest="45" HeightRequest="45" BackgroundColor="{Binding PreviewColors[4]}" BorderThickness="1" BorderColor="{DynamicResource RadSubtleColor}" />
+                                </HorizontalStackLayout>
+                            </Grid>
+
+                            <Grid ColumnDefinitions="40, *, Auto" Margin="8, 16">
+                                <Label Grid.Column="1" Text="Customize" VerticalOptions="Center" TextColor="{DynamicResource RadOnAppSurfaceColor}" />
+                                <HorizontalStackLayout Grid.Column="2">
+                                    <telerik:RadBorder ZIndex="5" Margin="-5,0,0,0" CornerRadius="100" WidthRequest="45" HeightRequest="45" BackgroundColor="{Binding PreviewColors[0]}" BorderThickness="1" BorderColor="{DynamicResource RadSubtleColor}" />
+                                    <telerik:RadBorder ZIndex="4" Margin="-5,0,0,0" CornerRadius="100" WidthRequest="45" HeightRequest="45" BackgroundColor="{Binding PreviewColors[1]}" BorderThickness="1" BorderColor="{DynamicResource RadSubtleColor}" />
+                                    <telerik:RadBorder ZIndex="3" Margin="-5,0,0,0" CornerRadius="100" WidthRequest="45" HeightRequest="45" BackgroundColor="{Binding PreviewColors[2]}" BorderThickness="1" BorderColor="{DynamicResource RadSubtleColor}" />
+                                    <telerik:RadBorder ZIndex="2" Margin="-5,0,0,0" CornerRadius="100" WidthRequest="45" HeightRequest="45" BackgroundColor="{Binding PreviewColors[3]}" BorderThickness="1" BorderColor="{DynamicResource RadSubtleColor}" />
+                                    <telerik:RadBorder ZIndex="1" Margin="-5,0,0,0" CornerRadius="100" WidthRequest="45" HeightRequest="45" BackgroundColor="{Binding PreviewColors[4]}" BorderThickness="1" BorderColor="{DynamicResource RadSubtleColor}" />
+                                </HorizontalStackLayout>
+                                <telerik:RadBorder Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center" Padding="8,4" BorderThickness="2" BorderColor="White" CornerRadius="100" BackgroundColor="#44444444">
+                                    <Label Text="edit" TextColor="{DynamicResource RadOnAppSurfaceColor}" />
+                                </telerik:RadBorder>
+                            </Grid>
+
+                            <Label Text="Predefined" TextColor="{DynamicResource RadOnAppSurfaceColor}" />
+
+                        </VerticalStackLayout>
+                    </DataTemplate>
+                </telerik:RadListView.HeaderTemplate>
+                <telerik:RadListView.ItemTemplate>
+                    <DataTemplate>
+                        <telerik:ListViewTemplateCell>
+                            <telerik:ListViewTemplateCell.View>
+                                <Grid HeightRequest="60">
+                                    <telerik:RadBorder BorderThickness="0, 0, 0, 1"
+                                                Margin="8, 0"
+                                                BorderColor="{DynamicResource RadBaseEmphasisColor}">
+                                        <Grid ColumnDefinitions="40, *, 30, 10, Auto, 8">
+                                            <Label Grid.Column="0" Text="x" VerticalOptions="Center" TextColor="{DynamicResource RadOnBaseColor}" />
+                                            <Label Grid.Column="1" Text="{Binding DisplayFullName}" VerticalOptions="Center" TextColor="{DynamicResource RadOnBaseColor}" />
+                                            <Label Grid.Column="2" Text="C" VerticalOptions="Center" TextColor="{DynamicResource RadOnBaseColor}" />
+                                            <HorizontalStackLayout Grid.Column="4">
+                                                <telerik:RadBorder ZIndex="5" Margin="-5,0,0,0" CornerRadius="100" WidthRequest="32" HeightRequest="32" BackgroundColor="{Binding PreviewColors[0]}" BorderThickness="1" BorderColor="{DynamicResource RadSubtleColor}" />
+                                                <telerik:RadBorder ZIndex="4" Margin="-5,0,0,0" CornerRadius="100" WidthRequest="32" HeightRequest="32" BackgroundColor="{Binding PreviewColors[1]}" BorderThickness="1" BorderColor="{DynamicResource RadSubtleColor}" />
+                                                <telerik:RadBorder ZIndex="3" Margin="-5,0,0,0" CornerRadius="100" WidthRequest="32" HeightRequest="32" BackgroundColor="{Binding PreviewColors[2]}" BorderThickness="1" BorderColor="{DynamicResource RadSubtleColor}" />
+                                                <telerik:RadBorder ZIndex="2" Margin="-5,0,0,0" CornerRadius="100" WidthRequest="32" HeightRequest="32" BackgroundColor="{Binding PreviewColors[3]}" BorderThickness="1" BorderColor="{DynamicResource RadSubtleColor}" />
+                                                <telerik:RadBorder ZIndex="1" Margin="-5,0,0,0" CornerRadius="100" WidthRequest="32" HeightRequest="32" BackgroundColor="{Binding PreviewColors[4]}" BorderThickness="1" BorderColor="{DynamicResource RadSubtleColor}" />
+                                            </HorizontalStackLayout>
+                                        </Grid>
+                                    </telerik:RadBorder>
+                                </Grid>
+                            </telerik:ListViewTemplateCell.View>
+                        </telerik:ListViewTemplateCell>
+                    </DataTemplate>
+                </telerik:RadListView.ItemTemplate>
+            </telerik:RadListView>
+        </Grid>
+    </Grid>
+
+</qsf:QSFPage>

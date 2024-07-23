@@ -14,17 +14,18 @@
                                  SelectionChanged="RadComboBox_SelectionChanged"
                                  AutomationId="selectedItemMultipleCombo" />
             <!-- << combobox-multiple-selection -->
-            <Grid RowDefinitions="Auto, Auto" ColumnDefinitions="120, *" ColumnSpacing="10">
+            <Grid RowDefinitions="Auto, *" ColumnDefinitions="120, *" ColumnSpacing="10">
                 <Label FontAttributes="Bold" Text="Last action:" />
                 <Label Grid.Column="1" x:Name="lastActionLabel" />
                 <Label Grid.Row="1" FontAttributes="Bold" Text="Selected Cities:" />
-                <CollectionView Grid.Row="1" Grid.Column="1" ItemsSource="{Binding SelectedCities}">
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <Label Text="{Binding Name}" />
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
+                <telerik:RadCollectionView Grid.Row="1" Grid.Column="1"
+                                           DisplayMemberPath="Name"
+                                           SelectionMode="None"
+                                           ItemsSource="{Binding SelectedCities}">
+                    <telerik:RadCollectionView.ItemsLayout>
+                        <telerik:CollectionViewLinearLayout ItemLength="{OnPlatform Default=25, iOS=30, WinUI=40}" />
+                    </telerik:RadCollectionView.ItemsLayout>
+                </telerik:RadCollectionView>
             </Grid>
         </VerticalStackLayout>
     </Grid>

@@ -2,8 +2,11 @@
 using Microsoft.Maui.Hosting;
 using Microsoft.Maui.Controls.Compatibility;
 using Microsoft.Maui.Controls.Hosting;
-using Telerik.Maui.Controls.Compatibility;
 using Microsoft.Maui.Controls;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using Telerik.Maui.Controls.Compatibility;
+using Telerik.AppUtils.Services;
+using QSF.Services;
 
 namespace QSF
 {
@@ -15,6 +18,12 @@ namespace QSF
 			builder
 				.UseMauiApp<App>()
 				.UseTelerik()
+				.UseTelerikInHouseTestingService(
+					// Set this to true, if you want to test the demos with pseudorandom data instead of random data
+					defaultIsAppUnderTest: false,
+					// Set to 6364 to open testing port, used to take appium-free screenshots of examples
+					testCommandTcpPort: null
+				)
 				.ConfigureMauiHandlers((handlers) =>
 				{
 #if WINDOWS

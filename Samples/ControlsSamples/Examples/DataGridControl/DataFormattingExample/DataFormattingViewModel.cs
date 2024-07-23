@@ -7,9 +7,6 @@ namespace QSF.Examples.DataGridControl.DataFormattingExample;
 
 public class DataFormattingViewModel : ExampleViewModel
 {
-    private List<string> products;
-    private List<DateTime> dates;
-
     public DataFormattingViewModel()
     {
         this.Products = new ObservableCollection<Product>()

@@ -34,49 +34,37 @@
             </Grid>
         </DataTemplate>
         <DataTemplate x:Key="ControlResultTemplate">
-            <telerik:ListViewTemplateCell>
-                <telerik:ListViewTemplateCell.View>
-                    <Grid>
-                        <Grid ColumnDefinitions="Auto, *"
+            <Grid ColumnDefinitions="Auto, *"
                               ColumnSpacing="12"
                               Margin="12">
-                            <telerik:RadBorder BackgroundColor="{AppThemeBinding Light={StaticResource DefaultBackgroundColor}, Dark=Transparent}"
+                <telerik:RadBorder BackgroundColor="{AppThemeBinding Light={StaticResource DefaultBackgroundColor}, Dark=Transparent}"
                                                CornerRadius="4">
-                                <Label Style="{StaticResource IconStyle}" />
-                            </telerik:RadBorder>
-                            <Label Grid.Column="1"
+                    <Label Style="{StaticResource IconStyle}" />
+                </telerik:RadBorder>
+                <Label Grid.Column="1"
                                    Text="{Binding ControlDisplayName}"
                                    FontAttributes="Bold"
                                    VerticalOptions="Center" />
-                        </Grid>
-                    </Grid>
-                </telerik:ListViewTemplateCell.View>
-            </telerik:ListViewTemplateCell>
+            </Grid>
         </DataTemplate>
         <DataTemplate x:Key="ExampleResultTemplate">
-            <telerik:ListViewTemplateCell>
-                <telerik:ListViewTemplateCell.View>
-                    <Grid>
-                        <Grid ColumnDefinitions="Auto, *"
+            <Grid ColumnDefinitions="Auto, *"
                               ColumnSpacing="12"
                               Margin="12">
-                            <telerik:RadBorder BackgroundColor="{AppThemeBinding Light={StaticResource DefaultBackgroundColor}, Dark=Transparent}"
+                <telerik:RadBorder BackgroundColor="{AppThemeBinding Light={StaticResource DefaultBackgroundColor}, Dark=Transparent}"
                                                CornerRadius="4">
-                                <Label Style="{StaticResource IconStyle}" />
-                            </telerik:RadBorder>
-                            <Grid Grid.Column="1"
+                    <Label Style="{StaticResource IconStyle}" />
+                </telerik:RadBorder>
+                <Grid Grid.Column="1"
                                   RowDefinitions="Auto, Auto"
                                   RowSpacing="2"
                                   VerticalOptions="Center">
-                                <Label Text="{Binding ControlDisplayName}"
+                    <Label Text="{Binding ControlDisplayName}"
                                        FontAttributes="Bold" />
-                                <Label Grid.Row="1"
+                    <Label Grid.Row="1"
                                        Text="{Binding ExampleDisplayName}" />
-                            </Grid>
-                        </Grid>
-                    </Grid>
-                </telerik:ListViewTemplateCell.View>
-            </telerik:ListViewTemplateCell>
+                </Grid>
+            </Grid>
         </DataTemplate>
         <selectors:SearchResultTemplateSelector x:Key="SearchResultTemplateSelector"
                                                 ControlTemplate="{StaticResource ControlResultTemplate}"
@@ -84,36 +72,40 @@
     </VisualElement.Resources>
 
     <Grid>
-        <telerik:RadListView x:Name="searchResultsListView"
-                             GroupHeaderTemplate="{StaticResource GroupHeaderTemplate}"
-                             ItemTemplateSelector="{StaticResource SearchResultTemplateSelector}"
-                             ItemsSource="{Binding SearchResults}"
-                             IsVisible="{Binding HasSearchResults}"
-                             SelectedItem="{Binding SelectedSearchResult, Mode=TwoWay}"
-                             PropertyChanged="searchResultsListView_PropertyChanged">
-            <telerik:RadListView.LayoutDefinition>
-                <telerik:ListViewLinearLayout ItemLength="80" />
-            </telerik:RadListView.LayoutDefinition>
-            <telerik:RadListView.GroupDescriptors>
-                <telerik:ListViewPropertyGroupDescriptor PropertyName="ResultTypeText"
-                                                         SortOrder="Ascending" />
-            </telerik:RadListView.GroupDescriptors>
-            <telerik:RadListView.GroupHeaderStyle>
-                <telerik:ListViewGroupStyle BorderWidth="0" />
-            </telerik:RadListView.GroupHeaderStyle>
-            <telerik:RadListView.ItemStyle>
-                <telerik:ListViewItemStyle BackgroundColor="Transparent"
-                                           BorderColor="{AppThemeBinding Light={StaticResource DefaultBorderColor}, Dark={StaticResource DefaultBorderColorDark}}"
-                                           BorderWidth="1"
-                                           BorderLocation="Bottom" />
-            </telerik:RadListView.ItemStyle>
-            <telerik:RadListView.SelectedItemStyle>
-                <telerik:ListViewItemStyle BackgroundColor="Transparent" />
-            </telerik:RadListView.SelectedItemStyle>
-            <telerik:RadListView.PressedItemStyle>
-                <telerik:ListViewItemStyle BackgroundColor="Transparent" />
-            </telerik:RadListView.PressedItemStyle>
-        </telerik:RadListView>
+        <telerik:RadCollectionView x:Name="searchResultsCollectionView"
+                                   GroupHeaderTemplate="{StaticResource GroupHeaderTemplate}"
+                                   ItemTemplate="{StaticResource SearchResultTemplateSelector}"
+                                   ItemsSource="{Binding SearchResults}"
+                                   IsVisible="{Binding HasSearchResults}"
+                                   SelectedItem="{Binding SelectedSearchResult, Mode=TwoWay}"
+                                   PropertyChanged="searchResultsCollectionView_PropertyChanged">
+            <telerik:RadCollectionView.ItemsLayout>
+                <telerik:CollectionViewLinearLayout ItemLength="80" />
+            </telerik:RadCollectionView.ItemsLayout>
+            <telerik:RadCollectionView.GroupDescriptors>
+                <telerik:PropertyGroupDescriptor PropertyName="ResultTypeText"
+                                                 SortOrder="Ascending" />
+            </telerik:RadCollectionView.GroupDescriptors>
+            <telerik:RadCollectionView.ItemViewStyle>
+                <Style TargetType="telerik:RadCollectionViewItemView">
+                    <Setter Property="BorderThickness" Value="0,0,0,1" />
+                    <Setter Property="BorderColor" Value="{AppThemeBinding Light={StaticResource DefaultBorderColor}, Dark={StaticResource DefaultBorderColorDark}}" />
+                    <Setter Property="Background" Value="Transparent" />
+                </Style>
+            </telerik:RadCollectionView.ItemViewStyle>
+            <telerik:RadCollectionView.GroupViewStyle>
+                <Style TargetType="telerik:RadCollectionViewGroupView">
+                    <Setter Property="BorderThickness" Value="0"/>
+                    <Setter Property="ExpandCollapseIndicatorStyle">
+                        <Setter.Value>
+                            <Style TargetType="Label">
+                                <Setter Property="IsVisible" Value="False" />
+                            </Style>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </telerik:RadCollectionView.GroupViewStyle>
+        </telerik:RadCollectionView>
         <VerticalStackLayout IsVisible="{Binding HasSearchResults, Converter={StaticResource InvertedBooleanConverter}}"
                              VerticalOptions="Center">
             <Image Source="nodata.png"

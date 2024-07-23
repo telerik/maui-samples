@@ -1,11 +1,11 @@
-﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+﻿<qsf:QSFPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:qsf="clr-namespace:QSF.Pages"
              xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
-             ios:Page.UseSafeArea="True"
-             NavigationPage.HasNavigationBar="False"
-             NavigationPage.HasBackButton="False"
              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
-             x:Class="QSF.Pages.ExamplePage">
+             x:Class="QSF.Pages.ExamplePage"
+             Style="{StaticResource PageStyle}">
+
     <VisualElement.Resources>
         <Style x:Key="ExamplePageImageButtonStyle" TargetType="ImageButton">
             <Setter Property="VerticalOptions" Value="Center" />
@@ -14,55 +14,83 @@
             <Setter Property="Margin" Value="8,0,0,0" />
         </Style>
     </VisualElement.Resources>
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="50" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <Grid ColumnDefinitions="Auto, Auto, *"
-              Style="{StaticResource HeaderStyle}">
-            <ImageButton Clicked="Back_Clicked"
-                         Style="{OnPlatform Default={StaticResource DefaultBackButtonStyle}, iOS={StaticResource IOSBackButtonStyle}}" 
-                         AutomationId="backButton"/>
-            <Label Grid.Column="1"
-                   Style="{StaticResource HeaderLabelStyle}"
-                   Text="{Binding HeaderTitle}" 
-                   AutomationId="exampleName"/>
-            <telerik:RadEntry x:Name="searchEntry"
-                              Grid.Column="1"
-                              Placeholder="Search for example"
-                              PlaceholderColor="Black"
-                              TextColor="Black"
-                              HeightRequest="{OnPlatform Android=44, iOS=32}"
-                              WidthRequest="{OnPlatform Android=250, iOS=200}"
-                              BackgroundColor="White"
-                              BindingContext="{Binding Source={RelativeSource AncestorType={x:Type NavigationPage}}, Path=RootPage.BindingContext}"
-                              IsVisible="{Binding IsTestSearchEntryVisible}"
-                              TextChanged="OnExampleSearchTextChanged"
-                              AutomationId="searchEntry"/>
-            <HorizontalStackLayout Grid.Column="2"
-                                   HorizontalOptions="End"
-                                   Spacing="16">
-                <ImageButton Command="{Binding NavigateToConfigurationPage}"
-                             CommandParameter="{Binding Example}"
-                             Source="settings.png"
-                             IsVisible="{Binding Example.IsConfigurable}"
-                             Style="{StaticResource ExamplePageImageButtonStyle}"
-                             AutomationId="navigateToConfigurationPage"/>
-                <ImageButton Command="{Binding NavigateToDescriptionCommand}"
-                             CommandParameter="{Binding Example}"
-                             Source="info_mobile_white.png"
-                             IsVisible="{Binding Example.Description, Converter={StaticResource NullOrEmptyToBoolConverter}}"
-                             Style="{StaticResource ExamplePageImageButtonStyle}"
-                             AutomationId="navigateToDescriptionButton"/>
-                <ImageButton Command="{Binding NavigateToExampleCodeCommand}"
-                             CommandParameter="{Binding Example}"
-                             Source="viewcode_white.png"
-                             Style="{StaticResource ExamplePageImageButtonStyle}"
-                             AutomationId="navigateToExampleContent"/>
-            </HorizontalStackLayout>
+
+    <Grid x:Name="root" RowDefinitions="0, Auto, *, 0" ColumnDefinitions="0, *, 0" IgnoreSafeArea="True">
+
+        <Grid x:Name="header" ZIndex="2"
+                Style="{StaticResource HeaderStyle}"                
+                BackgroundColor="Transparent"
+                Grid.Row="1"
+                Grid.Column="1"
+                Padding="12, 0">
+            <Grid ColumnDefinitions="Auto, Auto, *">
+                <ImageButton Clicked="Back_Clicked"
+                        Style="{OnPlatform Default={StaticResource DefaultBackButtonStyle}, iOS={StaticResource IOSBackButtonStyle}}" 
+                        AutomationId="backButton"/>
+                <Label Grid.Column="1"
+                        Style="{StaticResource HeaderLabelStyle}"
+                        Text="{Binding HeaderTitle}" 
+                        AutomationId="exampleName"/>
+                <telerik:RadEntry x:Name="searchEntry"
+                        Grid.Column="1"
+                        Placeholder="Search for example"
+                        PlaceholderColor="Black"
+                        TextColor="Black"
+                        HeightRequest="{OnPlatform Android=44, iOS=32}"
+                        WidthRequest="200"
+                        BackgroundColor="White"
+                        BindingContext="{Binding Source={RelativeSource AncestorType={x:Type NavigationPage}}, Path=RootPage.BindingContext}"
+                        IsVisible="{Binding IsTestSearchEntryVisible}"
+                        TextChanged="OnExampleSearchTextChanged"
+                        AutomationId="searchEntry" />
+                <HorizontalStackLayout Grid.Column="2"
+                                    HorizontalOptions="End"
+                                    Spacing="16">
+                    <ImageButton Command="{Binding NavigateToConfigurationPage}"
+                                CommandParameter="{Binding Example}"
+                                Source="settings.png"
+                                IsVisible="{Binding Example.IsConfigurable}"
+                                Style="{StaticResource ExamplePageImageButtonStyle}"
+                                AutomationId="navigateToConfigurationPage"/>
+                    <ImageButton Command="{Binding NavigateToThemeSettingsCommand}"
+                                CommandParameter="{Binding Example}"
+                                Source="palette.png"
+                                IsVisible="{Binding Source={RelativeSource AncestorType={x:Type NavigationPage}}, Path=RootPage.BindingContext.IsTestSearchEntryVisible}"
+                                Style="{StaticResource ExamplePageImageButtonStyle}"
+                                AutomationId="navigateToThemeSettings"/>
+                    <ImageButton Command="{Binding NavigateToDescriptionCommand}"
+                                CommandParameter="{Binding Example}"
+                                Source="info_mobile_white.png"
+                                IsVisible="{Binding Example.Description, Converter={StaticResource NullOrEmptyToBoolConverter}}"
+                                Style="{StaticResource ExamplePageImageButtonStyle}"
+                                AutomationId="navigateToDescriptionButton"/>
+                    <ImageButton Command="{Binding NavigateToExampleCodeCommand}"
+                                CommandParameter="{Binding Example}"
+                                Source="viewcode_white.png"
+                                Style="{StaticResource ExamplePageImageButtonStyle}"
+                                AutomationId="navigateToExampleContent"/>
+                </HorizontalStackLayout>
+            </Grid>
         </Grid>
-        <ContentView Content="{Binding Converter={StaticResource ModelToViewConverter}}" Grid.Row="1" 
-                     AutomationId="exampleView"/>
+
+        <Grid x:Name="headerBackground" ZIndex="-1" Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="3" Background="{StaticResource ApplicationAccentColor}" IgnoreSafeArea="True" />
+        <OnPlatform x:TypeArguments="View">
+            <On Platform="iOS">
+                <Grid ZIndex="1" Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="3" IgnoreSafeArea="True">
+                    <Grid x:Name="acrylic" Background="{StaticResource ApplicationAccentColor}" IgnoreSafeArea="True" />
+                </Grid>
+            </On>
+            <On Platform="Android">
+                <Grid ZIndex="1" Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="3" Background="{StaticResource ApplicationAccentColor}" IgnoreSafeArea="True" />
+            </On>
+        </OnPlatform>
+        <Grid x:Name="pageBackground" ZIndex="-2" Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="3" Background="{AppThemeBinding Light=White, Dark=Black}" />
+
+        <Grid x:Name="content" ZIndex="0" Grid.Row="2" Grid.RowSpan="1" Grid.Column="1" Grid.ColumnSpan="1" IgnoreSafeArea="True">
+            <ContentView
+                Content="{Binding Converter={StaticResource ModelToViewConverter}}"
+                AutomationId="exampleContent" />
+        </Grid>
     </Grid>
-</ContentPage>
+
+</qsf:QSFPage>

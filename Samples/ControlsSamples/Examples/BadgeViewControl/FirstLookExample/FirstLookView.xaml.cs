@@ -1,7 +1,10 @@
-﻿using Microsoft.Maui.Controls.Xaml;
+﻿using System;
+using Microsoft.Maui.Controls;
+using Microsoft.Maui.Controls.Xaml;
 using Microsoft.Maui.Dispatching;
-using System;
 using Telerik.Maui.Controls;
+using Telerik.AppUtils.Services;
+using QSF.Services;
 
 namespace QSF.Examples.BadgeViewControl.FirstLookExample;
 
@@ -21,12 +24,15 @@ public partial class FirstLookView : RadContentView
 
         FirstLookViewModel vm = this.BindingContext as FirstLookViewModel;
 
-        this.pollingTimer = this.Dispatcher.CreateTimer();
-        this.pollingTimer.Interval = TimeSpan.FromSeconds(2);
-        this.pollingTimer.Tick += (s, e) => vm.UpdateUnreadMessages();
-        this.pollingTimer.IsRepeating = true;
+        if (!DependencyService.Get<ITestingService>().IsAppUnderTest)
+        {
+            this.pollingTimer = this.Dispatcher.CreateTimer();
+            this.pollingTimer.Interval = TimeSpan.FromSeconds(2);
+            this.pollingTimer.Tick += (s, e) => vm.UpdateUnreadMessages();
+            this.pollingTimer.IsRepeating = true;
 
-        this.Loaded += (s, e) => this.pollingTimer.Start();
-        this.Unloaded += (s, e) => this.pollingTimer.Stop();
+            this.Loaded += (s, e) => this.pollingTimer.Start();
+            this.Unloaded += (s, e) => this.pollingTimer.Stop();
+        }
     }
 }

@@ -1,12 +1,13 @@
-﻿using Microsoft.Maui.ApplicationModel;
+﻿using System.Collections.ObjectModel;
+using System.Linq;
+using System.Windows.Input;
+using Microsoft.Maui.ApplicationModel;
 using Microsoft.Maui.Controls;
 using Microsoft.Maui.Devices;
+using Telerik.AppUtils.Services;
 using QSF.Common;
 using QSF.Services;
 using QSF.Views;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Windows.Input;
 
 namespace QSF.ViewModels;
 
@@ -15,12 +16,15 @@ public class HomeViewModel : PageViewModel
     private Control selectedControl;
     private bool isHomeSelected;
     private bool isSearchSelected;
-    private bool isTestSearchEntryVisible;
     private bool isSettingsSelected;
     private HighlightedSearchResult selectedSearchResult;
 
-    public HomeViewModel()
+    private readonly ITestingService testingService;
+
+    public HomeViewModel(ITestingService testingService)
     {
+        this.testingService = testingService;
+
         IConfigurationService configurationService = DependencyService.Get<IConfigurationService>();
         Configuration configuration = configurationService.Configuration;
 
@@ -79,11 +83,7 @@ public class HomeViewModel : PageViewModel
         }
     }
 
-    public bool IsTestSearchEntryVisible
-    {
-        get => this.isTestSearchEntryVisible;
-        set => this.UpdateValue(ref this.isTestSearchEntryVisible, value);
-    }
+    public bool IsTestSearchEntryVisible => this.testingService.IsAppUnderTest;
 
     public bool IsHomeSelected
     {

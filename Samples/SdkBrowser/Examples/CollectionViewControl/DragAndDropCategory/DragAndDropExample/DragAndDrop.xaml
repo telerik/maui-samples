@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.CollectionViewControl.DragAndDropCategory.DragAndDropExample.DragAndDrop">
+    <ContentView.Resources>
+        <Style TargetType="telerik:RadCollectionView">
+            <Setter Property="WidthRequest" Value="{OnIdiom Default=-1, Desktop=400}" />
+        </Style>
+        <Style x:Key="DragDropAreaBorderStyle" TargetType="Border">
+            <Setter Property="Stroke" Value="#DFDFDF" />
+            <Setter Property="StrokeDashOffset" Value="1" />
+            <Setter Property="StrokeDashArray" Value="4 4" />
+            <Setter Property="StrokeThickness" Value="1" />
+        </Style>
+    </ContentView.Resources>
+    <!-- >> collectionview-drag-and-drop -->
+    <Grid RowDefinitions="{OnIdiom Default='*, Auto, *', Desktop='*'}"
+          ColumnDefinitions="{OnIdiom Default='*', Desktop='*, Auto, *'}"
+          Padding="8">
+        <Border Style="{StaticResource DragDropAreaBorderStyle}"
+                WidthRequest="{OnPlatform MacCatalyst=424, WinUI=424}"
+                HorizontalOptions="{OnPlatform MacCatalyst=End, WinUI=End}" />
+        <telerik:RadCollectionView x:Name="firstCollectionView"
+                                   ItemsSource="{Binding LocationsLeft}"
+                                   IsItemsReorderEnabled="True"
+                                   DisplayMemberPath="City"
+                                   HorizontalOptions="{OnPlatform MacCatalyst=End, WinUI=End}"
+                                   Margin="12" />
+        <StackLayout Grid.Row="{OnIdiom Default=1, Desktop=0}"
+                     Grid.Column="{OnIdiom Default=0, Desktop=1}"
+                     Orientation="{OnIdiom Default=Vertical, Desktop=Horizontal}"
+                     HorizontalOptions="Center"
+                     VerticalOptions="Center"
+                     Margin="8">
+            <Label FontFamily="TelerikFont"
+                   FontSize="20"
+                   Text="{OnIdiom Default={x:Static telerik:TelerikFont.IconUpArrow}, Desktop={x:Static telerik:TelerikFont.IconLeftArrow}}" />
+            <Label FontFamily="TelerikFont"
+                   FontSize="20"
+                   Text="{OnIdiom Default={x:Static telerik:TelerikFont.IconDownArrow}, Desktop={x:Static telerik:TelerikFont.IconRightArrow}}" />
+        </StackLayout>
+        <Border Grid.Row="{OnIdiom Default=2, Desktop=0}"
+                Grid.Column="{OnIdiom Default=0, Desktop=2}"
+                Style="{StaticResource DragDropAreaBorderStyle}"
+                WidthRequest="{OnPlatform MacCatalyst=424, WinUI=424}"
+                HorizontalOptions="{OnPlatform MacCatalyst=Start, WinUI=Start}" />
+        <telerik:RadCollectionView x:Name="secondCollectionView"
+                                   Grid.Row="{OnIdiom Default=2, Desktop=0}"
+                                   Grid.Column="{OnIdiom Default=0, Desktop=2}"
+                                   IsItemsReorderEnabled="True"
+                                   ItemsSource="{Binding LocationsRight}"
+                                   DisplayMemberPath="City"
+                                   HorizontalOptions="{OnPlatform MacCatalyst=Start, WinUI=Start}"
+                                   Margin="12" />
+    </Grid>
+    <!-- << collectionview-drag-and-drop -->
+</ContentView>

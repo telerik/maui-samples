@@ -1,9 +1,12 @@
-﻿using QSF.Examples.DataGridControl.Common;
-using QSF.ExampleUtilities;
-using QSF.ViewModels;
-using System;
+﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Microsoft.Maui.Controls;
+using Telerik.AppUtils.Services;
+using QSF.Examples.DataGridControl.Common;
+using QSF.ExampleUtilities;
+using QSF.ViewModels;
+using QSF.Services;
 
 namespace QSF.Examples.DataGridControl.FirstLookExample;
 
@@ -12,7 +15,7 @@ public class FirstLookViewModel : ExampleViewModel
     public FirstLookViewModel()
     {
         this.OrderDetails = DataGenerator.GetItems<ObservableCollection<Order>>(ResourcePaths.OrdersPath);
-        this.People = DataGenerator.GetItems<ObservableCollection<SalesPerson>>(ResourcePaths.PeoplePath);
+        this.People = DataGenerator.GetSalesPersonCollection();
         this.JobTitles = new ObservableCollection<string>
         {
                 "Sales Representative",
@@ -30,9 +33,13 @@ public class FirstLookViewModel : ExampleViewModel
 
     private void AssignJobTitlesToPeople()
     {
+        var random = DependencyService
+            .Get<ITestingService>()
+            .Random(98723489);
+
         foreach (var person in this.People)
         {
-            person.JobTitle = this.JobTitles.OrderBy(x => Guid.NewGuid()).FirstOrDefault();
+            person.JobTitle = this.JobTitles[random.Next(this.JobTitles.Count)];
         }
     }
 }

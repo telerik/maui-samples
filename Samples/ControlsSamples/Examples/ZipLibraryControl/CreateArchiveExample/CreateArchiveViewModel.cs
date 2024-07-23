@@ -106,7 +106,7 @@ namespace QSF.Examples.ZipLibraryControl.CreateArchiveExample
 
             using (MemoryStream stream = new MemoryStream())
             {
-                using (ZipArchive archive = new ZipArchive(stream, ZipArchiveMode.Create, true, null))
+                using (ZipArchive archive = ZipArchive.Create(stream, null))
                 {
                     foreach (var selectedItem in selectedItems)
                     {

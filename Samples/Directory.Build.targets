@@ -8,13 +8,21 @@
     <SupportedOSPlatformVersion>11.0</SupportedOSPlatformVersion>
     <TargetPlatformMinVersion>11.0</TargetPlatformMinVersion>
   </PropertyGroup>
+  <PropertyGroup Condition="$(TargetFramework.Contains('net9.0-ios'))">
+    <SupportedOSPlatformVersion>13.0</SupportedOSPlatformVersion>
+    <TargetPlatformMinVersion>13.0</TargetPlatformMinVersion>
+  </PropertyGroup>
   <PropertyGroup Condition="$(TargetFramework.Contains('-tvos'))">
     <SupportedOSPlatformVersion>10.0</SupportedOSPlatformVersion>
     <TargetPlatformMinVersion>10.0</TargetPlatformMinVersion>
   </PropertyGroup>
-  <PropertyGroup Condition="$(TargetFramework.Contains('-maccatalyst'))">
-    <SupportedOSPlatformVersion>13.1</SupportedOSPlatformVersion>
-    <TargetPlatformMinVersion>13.1</TargetPlatformMinVersion>
+  <PropertyGroup Condition="$(TargetFramework.Contains('7.0-maccatalyst')) OR $(TargetFramework.Contains('8.0-maccatalyst'))">
+    <SupportedOSPlatformVersion>14.0</SupportedOSPlatformVersion>
+    <TargetPlatformMinVersion>14.0</TargetPlatformMinVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="$(TargetFramework.Contains('net9.0-maccatalyst'))">
+    <SupportedOSPlatformVersion>15.0</SupportedOSPlatformVersion>
+    <TargetPlatformMinVersion>15.0</TargetPlatformMinVersion>
   </PropertyGroup>
   <PropertyGroup Condition="$(TargetFramework.Contains('-macos'))">
     <SupportedOSPlatformVersion>10.14</SupportedOSPlatformVersion>

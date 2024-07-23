@@ -19,7 +19,7 @@
                 </StackLayout>
                 <Switch IsToggled="{Binding IsFilterSwitchToggled, Mode=OneWayToSource}"/>
             </HorizontalStackLayout>
-            <!-- >> listview-features-filtering-xaml -->
+            <!-- >> listview-features-filtering-bindable-xaml -->
             <telerik:RadListView x:Name="listView" 
                                              Grid.Row="1"
                                              ItemsSource="{Binding Items}"
@@ -39,7 +39,7 @@
                     </DataTemplate>
                 </telerik:RadListView.ItemTemplate>
             </telerik:RadListView>
-            <!-- << listview-features-filtering-xaml -->
+            <!-- << listview-features-filtering-bindable-xaml -->
         </Grid>
     </telerik:RadContentView.Content>
 </telerik:RadContentView>
