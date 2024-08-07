@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:converters="clr-namespace:QSF.Converters"
+             x:Class="QSF.Examples.CollectionViewControl.ItemSwipeExample.ItemSwipeView"
+             Padding="{OnIdiom Default='16, 20', Phone=0}">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Style x:Key="SwipeItemLabelStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="TelerikFontExamples" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+            </Style>
+            <DataTemplate x:Key="StartSwipeItemTemplate">
+                <Grid BackgroundColor="{StaticResource AccentColor2}"
+                      HorizontalOptions="Fill"
+                      VerticalOptions="Fill">
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="FavouriteItemTapped" />
+                    </Grid.GestureRecognizers>
+                    <Label Style="{StaticResource SwipeItemLabelStyle}"
+                           Text="&#xe801;" />
+                </Grid>
+            </DataTemplate>
+            <DataTemplate x:Key="EndSwipeItemTemplate">
+                <Grid BackgroundColor="#FD5064"
+                      HorizontalOptions="Fill"
+                      VerticalOptions="Fill">
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="DeleteItemTapped" />
+                    </Grid.GestureRecognizers>
+                    <Label Style="{StaticResource SwipeItemLabelStyle}"
+                           Text="&#xe827;" />
+                </Grid>
+            </DataTemplate>
+            <DataTemplate x:Key="MailItemTemplate">
+                <Grid ColumnDefinitions="Auto, *, Auto"
+                      ColumnSpacing="12" 
+                      Padding="16, 8">
+                    <Image Source="{Binding Image}"
+                           WidthRequest="48"
+                           HeightRequest="48"
+                           VerticalOptions="Center" />
+                    <VerticalStackLayout Grid.Column="1"
+                                         Spacing="2">
+                        <Label Text="{Binding Sender}"
+                               Style="{StaticResource BaseLabelStyle}"
+                               FontAttributes="Bold"
+                               FontSize="16"
+                               MaxLines="1"
+                               LineBreakMode="TailTruncation" />
+                        <Label Text="{Binding Title}"
+                               Style="{StaticResource BaseLabelStyle}"
+                               MaxLines="1"
+                               LineBreakMode="TailTruncation" />
+                        <Label Text="{Binding Description}"
+                               Style="{StaticResource PlaceholderLabelStyle}"
+                               FontSize="12"
+                               MaxLines="1"
+                               LineBreakMode="TailTruncation" />
+                    </VerticalStackLayout>
+                    <HorizontalStackLayout Grid.Column="2"
+                                           Spacing="4"
+                                           VerticalOptions="Start"
+                                           HorizontalOptions="End">
+                        <Label IsVisible="{Binding IsFavourite}"
+                               FontFamily="TelerikFontExamples"
+                               FontSize="12"
+                               Text="&#xe801;"
+                               TextColor="{StaticResource AccentColor4}"
+                               VerticalOptions="Center" />
+                        <Label Text="{Binding Date}"
+                               Style="{StaticResource PlaceholderLabelStyle}"
+                               FontSize="12"
+                               VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+                </Grid>
+            </DataTemplate>
+            <Style TargetType="telerik:RadCollectionViewItemView">
+                <Setter Property="BorderColor" Value="{OnPlatform Default={StaticResource DefaultBorderColor}, MacCatalyst=#0D000000, WinUI={StaticResource DefaultBorderColorWinUI}}" />
+                <Setter Property="BorderThickness" Value="0, 0, 0, 1" />
+                <Setter Property="CornerRadius" Value="0" />
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <telerik:RadBorder BorderColor="{OnPlatform Default={StaticResource DefaultBorderColor}, MacCatalyst=#0D000000, WinUI={StaticResource DefaultBorderColorWinUI}}"
+                       BorderThickness="{OnIdiom Default=0, Desktop=1}">
+        <telerik:RadCollectionView x:Name="collectionView"
+                                   ItemsSource="{Binding Mails}"
+                                   ItemTemplate="{StaticResource MailItemTemplate}"
+                                   IsItemSwipeEnabled="True"
+                                   StartSwipeTemplate="{StaticResource StartSwipeItemTemplate}"
+                                   EndSwipeTemplate="{StaticResource EndSwipeItemTemplate}"
+                                   StartSwipeLength="{OnPlatform Default=77, iOS=70, MacCatalyst=71, WinUI=79}"
+                                   EndSwipeLength="{OnPlatform Default=77, iOS=70, MacCatalyst=71, WinUI=79}"
+                                   SelectionMode="None" />
+    </telerik:RadBorder>
+</ContentView>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.CollectionViewControl"
+             x:Class="SDKBrowserMaui.Examples.CollectionViewControl.DragAndDropCategory.DropIndicatorExample.DropIndicatorStyling">
+    <ContentView.Resources>
+        <ResourceDictionary>
+             <!-- >> collectionview-drop-indicator-style -->
+            <Style TargetType="telerik:CollectionViewDropIndicator">
+                <Setter Property="StrokeThickness" Value="3" />
+                <Setter Property="StrokeColor" Value="#00897B" />
+            </Style>
+            <!-- << collectionview-drop-indicator-style -->
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <!-- >> collectionview-drop-indicator-styling -->
+    <telerik:RadCollectionView x:Name="collectionView"
+                               ItemsSource="{Binding Locations}"
+                               DisplayMemberPath="City"
+                               IsDragDropEnabled="True"
+                               SelectionMode="Single">
+        <telerik:RadCollectionView.BindingContext>
+            <local:ViewModel />
+        </telerik:RadCollectionView.BindingContext>
+    </telerik:RadCollectionView>
+    <!-- << collectionview-drop-indicator-styling -->
+</ContentView>

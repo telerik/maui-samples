@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="QSF.Examples.CollectionViewControl.DragDropExample.DragDropView"
+             Padding="{OnIdiom Default='16, 20', Phone='16, 24'}">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="WorkItemTagTemplate">
+                <Rectangle Fill="{Binding}"
+                           WidthRequest="20"
+                           HeightRequest="4"
+                           RadiusX="2"
+                           RadiusY="2" />
+            </DataTemplate>
+            <DataTemplate x:Key="WorkItemTemplate">
+                <Grid ColumnDefinitions="*, 32"
+                      ColumnSpacing="12"
+                      Padding="16, 8">
+                    <VerticalStackLayout HorizontalOptions="Start">
+                        <HorizontalStackLayout BindableLayout.ItemsSource="{Binding Tags}"
+                                               BindableLayout.ItemTemplate="{StaticResource WorkItemTagTemplate}"
+                                               Spacing="2"
+                                               Margin="0, 0, 0, 8" />
+                        <Label Text="{Binding Title}"
+                               TextColor="{StaticResource DefaultTextColor}"
+                               MaxLines="1"
+                               LineBreakMode="TailTruncation" />
+                        <Label Text="{Binding Description}"
+                               TextColor="{StaticResource PlaceholderColor}"
+                               MaxLines="1"
+                               LineBreakMode="TailTruncation"
+                               FontSize="12" />
+                    </VerticalStackLayout>
+                    <telerik:RadBorder Grid.Column="1"
+                                       BackgroundColor="{Binding AssigneeAvatarColor}"
+                                       HeightRequest="32"
+                                       CornerRadius="8"
+                                       VerticalOptions="Center">
+                        <Label Text="{Binding AssigneeAbbreviation}"
+                               TextColor="{StaticResource PlaceholderColor}"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center" />
+                    </telerik:RadBorder>
+                </Grid>
+            </DataTemplate>
+            <DataTemplate x:Key="WorkItemBoxEmptyTemplate">
+                <Grid Padding="16, 8">
+                    <Label Text="There are no work items in this box.&#x0a;Drag a work item from the other box to this one to change its status."
+                           TextColor="{StaticResource DefaultTextColor}"
+                           FontSize="16"
+                           LineBreakMode="WordWrap"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center" />
+                </Grid>
+            </DataTemplate>
+            <Style x:Key="DragDropAreaStyle" TargetType="Rectangle">
+                <Setter Property="InputTransparent" Value="True" />
+                <Setter Property="Stroke" Value="{StaticResource DefaultBorderColor}" />
+                <Setter Property="StrokeDashOffset" Value="1" />
+                <Setter Property="StrokeDashArray" Value="4 4" />
+                <Setter Property="StrokeThickness" Value="1" />
+                <Setter Property="RadiusX" Value="8" />
+                <Setter Property="RadiusY" Value="8" />
+            </Style>
+            <Style x:Key="WorkItemBoxHeaderBorderStyle" TargetType="telerik:RadBorder">
+                <Setter Property="BackgroundColor" Value="{StaticResource DefaultBackgroundColor}" />
+                <Setter Property="BorderColor" Value="{OnPlatform Default={StaticResource DefaultBorderColor}, MacCatalyst=#0D000000, WinUI={StaticResource DefaultBorderColorWinUI}}" />
+                <Setter Property="BorderThickness" Value="0, 0, 0, 1" />
+                <Setter Property="CornerRadius" Value="8, 8, 0, 0" />
+                <Setter Property="Padding" Value="16, 8" />
+            </Style>
+            <Style x:Key="WorkItemBoxHeaderLabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource DefaultTextColor}" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+            <Style TargetType="telerik:RadCollectionViewItemView">
+                <Setter Property="BorderColor" Value="{OnPlatform Default={StaticResource DefaultBorderColor}, MacCatalyst=#0D000000, WinUI={StaticResource DefaultBorderColorWinUI}}" />
+                <Setter Property="BorderThickness" Value="0, 0, 0, 1" />
+            </Style>
+            <Style TargetType="telerik:RadCollectionView">
+                <Setter Property="ItemTemplate" Value="{StaticResource WorkItemTemplate}" />
+                <Setter Property="EmptyContentTemplate" Value="{StaticResource WorkItemBoxEmptyTemplate}" />
+                <Setter Property="EmptyContentDisplayMode" Value="ItemsSourceNullOrEmpty" />
+                <Setter Property="IsDragDropEnabled" Value="True" />
+                <Setter Property="SelectionMode" Value="None" />
+                <Setter Property="Margin" Value="0, 0, 0, 6" />
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <Grid RowDefinitions="{OnPlatform Android='*, *', iOS='*, *'}"
+          RowSpacing="{OnPlatform Android=24, iOS=24}"
+          ColumnDefinitions="{OnPlatform MacCatalyst='360, 360', WinUI='360, 360'}"
+          ColumnSpacing="{OnPlatform MacCatalyst=16, WinUI=16}">
+        <Grid RowDefinitions="Auto, *">
+            <telerik:RadBorder Style="{StaticResource WorkItemBoxHeaderBorderStyle}">
+                <Label Text="In Progress"
+                       Style="{StaticResource WorkItemBoxHeaderLabelStyle}" />
+            </telerik:RadBorder>
+            <telerik:RadCollectionView Grid.Row="1"
+                                       ItemsSource="{Binding InProgressItems}" />
+            <telerik:RadBorder Grid.RowSpan="2"
+                               BorderColor="{OnPlatform Default={StaticResource DefaultBorderColor}, MacCatalyst=#0D000000, WinUI={StaticResource DefaultBorderColorWinUI}}"
+                               BorderThickness="1"
+                               CornerRadius="8"
+                               InputTransparent="True" />
+        </Grid>
+        <Grid Grid.Row="{OnPlatform Android=1, iOS=1}"
+              Grid.Column="{OnPlatform MacCatalyst=1, WinUI=1}"
+              RowDefinitions="Auto, *">
+            <telerik:RadBorder Style="{StaticResource WorkItemBoxHeaderBorderStyle}">
+                <Label Text="Done"
+                       Style="{StaticResource WorkItemBoxHeaderLabelStyle}" />
+            </telerik:RadBorder>
+            <telerik:RadCollectionView Grid.Row="1"
+                                       ItemsSource="{Binding DoneItems}" />
+            <Rectangle Grid.RowSpan="2"
+                       Style="{StaticResource DragDropAreaStyle}" />
+        </Grid>
+    </Grid>
+</ContentView>

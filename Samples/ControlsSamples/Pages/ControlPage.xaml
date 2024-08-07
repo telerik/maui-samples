@@ -5,11 +5,10 @@
              xmlns:converters="clr-namespace:QSF.Converters"
              xmlns:layouts="clr-namespace:QSF.Layouts"
              xmlns:pages="clr-namespace:QSF.Pages"
-             ios:Page.UseSafeArea="True"
-             NavigationPage.HasNavigationBar="False"
-             NavigationPage.HasBackButton="False"
-             x:Class="QSF.Pages.ControlPage">
-
+             xmlns:views="clr-namespace:QSF.Views"
+             xmlns:qsf="clr-namespace:QSF.Pages"
+             x:Class="QSF.Pages.ControlPage"
+             Style="{StaticResource PageStyle}">
     <VisualElement.Resources>
         <converters:RandomItemConverter x:Key="RandomBackgroundConverter">
             <SolidColorBrush Color="{StaticResource AccentColor2}" />
@@ -59,45 +58,51 @@
                     <ContentView Content="{Binding Status, Converter={StaticResource StatusTagToTemplateConverter}}"
                                  HorizontalOptions="End"
                                  VerticalOptions="End"
-                                 Margin="0, 0, 12, 6"/>
+                                 Margin="0, 0, 12, 6" />
                 </Grid>
             </telerik:RadBorder>
         </DataTemplate>
     </VisualElement.Resources>
 
-    <Grid BackgroundColor="{AppThemeBinding Light={StaticResource DefaultBackgroundColor}, Dark={StaticResource DefaultBackgroundColorDark}}"
-          RowDefinitions="Auto, *">
-        <Grid ColumnDefinitions="Auto, Auto, *"
-              Style="{StaticResource HeaderStyle}">
-            <ImageButton Command="{Binding NavigateBackCommand}"
-                         Style="{OnPlatform Default={StaticResource DefaultBackButtonStyle}, iOS={StaticResource IOSBackButtonStyle}}" 
-                         AutomationId="backButton"/>
-            <Label Grid.Column="1"
-                   Style="{StaticResource HeaderLabelStyle}"
-                   Text="{Binding HeaderTitle}" 
-                   AutomationId="controlName"/>
-            <ImageButton Grid.Column="2"
-                         HorizontalOptions="End"
-                         Command="{Binding NavigateToDescriptionCommand}"
-                         CommandParameter="{Binding Control}"
-                         Source="info_mobile_white.png"
-                         IsVisible="{Binding Control.FullDescription, Converter={StaticResource NullOrEmptyToBoolConverter}}"
-                         VerticalOptions="Center"
-                         HeightRequest="24"
-                         WidthRequest="24" 
-                         AutomationId="navigateToDescriptionButton"/>
-        </Grid>
-        <telerik:NonVirtualizedItemsControl ItemTemplate="{StaticResource ExampleItemTemplate}"
-                                            ItemsSource="{Binding Examples}"
-                                            SelectionMode="None"
-                                            Grid.Row="1"
-                                            Margin="4"
-                                            AutomationId="controlExamplesView">
-            <telerik:NonVirtualizedItemsControl.ItemsLayoutTemplate>
-                <DataTemplate>
-                    <layouts:VerticalUniformLayout />
-                </DataTemplate>
-            </telerik:NonVirtualizedItemsControl.ItemsLayoutTemplate>
-        </telerik:NonVirtualizedItemsControl>
-    </Grid>
+    <views:QSFPageContentView Background="{AppThemeBinding Light={StaticResource DefaultBackgroundColor}, Dark={StaticResource DefaultBackgroundColorDark}}">
+        <views:QSFPageContentView.HeaderControlTemplate>
+            <ControlTemplate>
+                <Grid ColumnDefinitions="Auto, Auto, *">
+                    <ImageButton Command="{Binding NavigateBackCommand}"
+                                 Style="{OnPlatform Default={StaticResource DefaultBackButtonStyle}, iOS={StaticResource IOSBackButtonStyle}}" 
+                                 AutomationId="backButton" />
+                    <Label Grid.Column="1"
+                           Style="{StaticResource HeaderLabelStyle}"
+                           Text="{Binding HeaderTitle}"
+                           Margin="10, 0"
+                           AutomationId="controlName" />
+                    <ImageButton Grid.Column="2"
+                                 HorizontalOptions="End"
+                                 Command="{Binding NavigateToDescriptionCommand}"
+                                 CommandParameter="{Binding Control}"
+                                 Source="info_mobile_white.png"
+                                 IsVisible="{Binding Control.FullDescription, Converter={StaticResource NullOrEmptyToBoolConverter}}"
+                                 VerticalOptions="Center"
+                                 HeightRequest="24"
+                                 WidthRequest="24"
+                                 AutomationId="navigateToDescriptionButton" />
+                </Grid>
+            </ControlTemplate>
+        </views:QSFPageContentView.HeaderControlTemplate>
+        <views:QSFPageContentView.BodyControlTemplate>
+            <ControlTemplate>
+                <telerik:NonVirtualizedItemsControl ItemTemplate="{StaticResource ExampleItemTemplate}"
+                                                    ItemsSource="{Binding Examples}"
+                                                    SelectionMode="None"
+                                                    Margin="4"
+                                                    AutomationId="controlExamplesView">
+                    <telerik:NonVirtualizedItemsControl.ItemsLayoutTemplate>
+                        <DataTemplate>
+                            <layouts:VerticalUniformLayout />
+                        </DataTemplate>
+                    </telerik:NonVirtualizedItemsControl.ItemsLayoutTemplate>
+                </telerik:NonVirtualizedItemsControl>
+            </ControlTemplate>
+        </views:QSFPageContentView.BodyControlTemplate>
+    </views:QSFPageContentView>
 </ContentPage>

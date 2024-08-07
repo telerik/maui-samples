@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 
 namespace SDKBrowser.Examples.ChartControl.LegendCategory
 {
+    // >> piechart-legend-viewmodel
     public class ViewModel
     {
         public ViewModel()
@@ -57,4 +58,5 @@ namespace SDKBrowser.Examples.ChartControl.LegendCategory
             return data;
         }
     }
+    // << piechart-legend-viewmodel
 }

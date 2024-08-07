@@ -1,4 +1,5 @@
 ﻿using Microsoft.Maui.Controls;
+using Microsoft.Maui.Dispatching;
 using QSF.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -74,7 +75,7 @@ public class FirstLookViewModel : ExampleViewModel
         this.ResetOrder();
 		this.AnimationDuration = 800;
 
-		Device.StartTimer(TimeSpan.FromMilliseconds(500), () =>
+        Application.Current.Dispatcher.StartTimer(TimeSpan.FromMilliseconds(500), () =>
         {
             this.OrderProgress += 5;
 

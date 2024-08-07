@@ -43,11 +43,11 @@ public partial class InnerSearchView : RadBorder
         }
     }
 
-    private void searchResultsListView_PropertyChanged(object sender, PropertyChangedEventArgs e)
+    private void searchResultsCollectionView_PropertyChanged(object sender, PropertyChangedEventArgs e)
     {
-        if (this.searchResultsListView != null && e.PropertyName == nameof(this.searchResultsListView.SelectedItem))
+        if (this.searchResultsCollectionView != null && e.PropertyName == nameof(this.searchResultsCollectionView.SelectedItem))
         {
-            this.SelectedSearchResult = (HighlightedSearchResult)this.searchResultsListView.SelectedItem;
+            this.SelectedSearchResult = (HighlightedSearchResult)this.searchResultsCollectionView.SelectedItem;
         }
     }
 }

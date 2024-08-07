@@ -1,7 +1,10 @@
-﻿using QSF.Examples.DataGridControl.ColumnTypesExample;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using Microsoft.Maui.Controls;
+using QSF.Examples.DataGridControl.ColumnTypesExample;
+using QSF.Services;
+using Telerik.AppUtils.Services;
 
 namespace QSF.Examples.DataGridControl.GroupingExample;
 
@@ -41,11 +44,15 @@ public class FlightDataService
             ("Tokyo", "Tyo"),
         };
 
+        var now = DependencyService
+            .Get<ITestingService>()
+            .DateTimeNow(new DateTime(2024, 6, 5, 10, 41, 30, DateTimeKind.Utc));
+
         List<DateTime> times = new List<DateTime>()
         {
-            DateTime.Now,
-            DateTime.Now.AddMinutes(15),
-            DateTime.Now.AddMinutes(44),
+            now,
+            now.AddMinutes(15),
+            now.AddMinutes(44),
         };
 
         return CreateFlights(carriers, statuses, destinationNames, times);
@@ -54,11 +61,14 @@ public class FlightDataService
     private static ObservableCollection<Flight> CreateFlights(List<string> carriers, List<string> statuses, List<(string, string)> destinationNames, List<DateTime> times)
     {
         ObservableCollection<Flight> flights = new ObservableCollection<Flight>();
-        Random r = new Random();
+        
+        var random = DependencyService
+            .Get<ITestingService>()
+            .Random(8379);
 
         for (int i = 0; i < 200; i++)
         {
-            var destination = destinationNames[r.Next(0, destinationNames.Count)];
+            var destination = destinationNames[random.Next(0, destinationNames.Count)];
 
             Flight flight = new Flight
             {
@@ -66,11 +76,11 @@ public class FlightDataService
                 DestinationFullName = destination.Item1,
                 DestinationShortName = destination.Item2,
                 IsDirect = (i % 2) == 0,
-                AirlineName = carriers[r.Next(0, carriers.Count)],
-                Terminal = r.Next(1, 7),
+                AirlineName = carriers[random.Next(0, carriers.Count)],
+                Terminal = random.Next(1, 7),
             };
 
-            DateTime dateTime = times[r.Next(0, times.Count)];
+            DateTime dateTime = times[random.Next(0, times.Count)];
             dateTime = dateTime.AddHours(i / 5);
             flight.Date = dateTime;            
             dateTime = dateTime.AddHours(i + 3);
@@ -78,7 +88,7 @@ public class FlightDataService
             dateTime = dateTime.AddMinutes(12);
             flight.StatusTime = dateTime.ToString("HH:mm");
 
-            flight.Status = statuses[r.Next(0, statuses.Count)];
+            flight.Status = statuses[random.Next(0, statuses.Count)];
 
             flights.Add(flight);
         }

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:converters="clr-namespace:QSF.Converters"
+             xmlns:local="clr-namespace:QSF.Examples.CollectionViewControl.LoadOnDemandExample"
+             x:Class="QSF.Examples.CollectionViewControl.LoadOnDemandExample.LoadOnDemandView"
+             Padding="{OnIdiom Default='16, 20', Phone=0}">
+    <ContentView.Resources>
+        <DataTemplate x:Key="MessageTemplate">
+            <Grid Padding="{OnPlatform Default='8, 8, 12, 8', MacCatalyst='8, 8, 20, 8'}"
+                  ColumnSpacing="8"
+                  ColumnDefinitions="Auto, *, Auto">
+                <Grid>
+                    <telerik:RadBorder CornerRadius="6"
+                                       WidthRequest="32"
+                                       HeightRequest="32"
+                                       BackgroundColor="{Binding BackgroundColor}"
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="Center">
+                        <Label Text="{Binding SenderAbbreviation}"
+                               TextColor="{Binding TextColor}"
+                               VerticalTextAlignment="Center"
+                               HorizontalTextAlignment="Center" />
+                    </telerik:RadBorder>
+                    <telerik:RadBorder CornerRadius="6"
+                                       WidthRequest="12"
+                                       HeightRequest="12"
+                                       BackgroundColor="{Binding StatusColor}"
+                                       BorderColor="{Binding BackgroundColor, Source={RelativeSource AncestorType={x:Type telerik:RadCollectionView}}}"
+                                       BorderThickness="1"
+                                       Margin="0, 0, -4, -3"
+                                       VerticalOptions="End"
+                                       HorizontalOptions="End" />
+                </Grid>
+                <Grid Grid.Column="1"
+                      RowDefinitions="Auto, *">
+                    <Label Text="{Binding Sender}"
+                           Style="{StaticResource BaseLabelStyle}"
+                           HorizontalOptions="Start" />
+                    <Label Grid.Row="1"
+                           Text="{Binding Message}"
+                           Style="{StaticResource PlaceholderLabelStyle}"
+                           HorizontalOptions="Start"
+                           VerticalOptions="End"
+                           FontSize="12" />
+                </Grid>
+                <telerik:RadBorder Grid.Column="2"
+                                   CornerRadius="8"
+                                   VerticalOptions="Center"
+                                   BackgroundColor="#12000000">
+                    <Label Text="{Binding MessageDelivered}"
+                           Style="{StaticResource PlaceholderLabelStyle}"
+                           FontSize="11"
+                           Padding="8, 2" />
+                </telerik:RadBorder>
+            </Grid>
+        </DataTemplate>
+    </ContentView.Resources>
+    <telerik:RadBorder BorderColor="{OnPlatform Default={StaticResource DefaultBorderColor}, MacCatalyst=#0D000000, WinUI={StaticResource DefaultBorderColorWinUI}}"
+                       BorderThickness="{OnPlatform Default=0, MacCatalyst=1, WinUI=1}">
+        <telerik:RadCollectionView x:Name="collectionView"
+                                   ItemsSource="{Binding Messages}"
+                                   ItemTemplate="{StaticResource MessageTemplate}"
+                                   IsLoadOnDemandEnabled="True"
+                                   LoadOnDemandMode="{Binding LoadOnDemandMode, Mode=TwoWay}"
+                                   LoadOnDemandBufferItemsCount="{Binding LoadOnDemandBufferItemsCount, Mode=TwoWay}" />
+    </telerik:RadBorder>
+</ContentView>

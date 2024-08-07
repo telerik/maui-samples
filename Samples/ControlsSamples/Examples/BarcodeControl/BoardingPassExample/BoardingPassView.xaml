@@ -2,8 +2,7 @@
 <telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
                         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                         xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
-                        x:Class="QSF.Examples.BarcodeControl.BoardingPassExample.BoardingPassView"
-                        Margin="5">
+                        x:Class="QSF.Examples.BarcodeControl.BoardingPassExample.BoardingPassView">
     <telerik:RadContentView.Resources>
         <ResourceDictionary>
             <Color x:Key="BoardingPassAccentColor">#3A6BC7</Color>
@@ -19,7 +18,7 @@
                 <Setter Property="FontSize" Value="14" />
                 <Setter Property="TextColor" Value="#4A4E52" />
             </Style>
-            <Style BasedOn="{StaticResource HeaderLabelStyle}" TargetType="Label" x:Key="DestinationsHeaderLabelStyle">
+            <Style x:Key="DestinationsHeaderLabelStyle" TargetType="Label">
                 <Setter Property="TextColor" Value="{StaticResource BoardingPassAccentColor}" />
                 <Setter Property="FontSize" Value="30" />
             </Style>

@@ -1,36 +1,46 @@
 ﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
-             ios:Page.UseSafeArea="True"
+             xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+             xmlns:views="clr-namespace:QSF.Views"
+             xmlns:qsf="clr-namespace:QSF.Pages"
+             x:Class="QSF.Pages.DescriptionPage"
              NavigationPage.HasNavigationBar="False"
-             NavigationPage.HasBackButton="False"
-             x:Class="QSF.Pages.DescriptionPage">
-    <Grid RowDefinitions="Auto, *">
-        <Grid ColumnDefinitions="Auto, *"
-              Style="{StaticResource HeaderStyle}">
-            <ImageButton Clicked="Back_Clicked"
-                         HorizontalOptions="Start"
-                         Style="{OnPlatform Default={StaticResource DefaultBackButtonStyle}, iOS={StaticResource IOSBackButtonStyle}}" 
-                         AutomationId="backButton"/>
-            <Label Grid.Column="1"
-                   Text="{Binding HeaderLabel}"
-                   VerticalOptions="Center"
-                   Style="{StaticResource HeaderLabelStyle}" 
-                   AutomationId="exampleInfo"/>
-        </Grid>
-        <Grid Grid.Row="1" RowDefinitions="Auto, *" Padding="16">
-            <Label Text="{Binding DescriptionLabel}"
-                   TextColor="{AppThemeBinding Light={StaticResource DefaultTextColor}, Dark={StaticResource DefaultTextColorDark}}"
-                   FontSize="{OnPlatform Default=24, iOS=22}"
-                   Margin="0,8,0,24"
-                   AutomationId="exampleName"/>
-            <Label Grid.Row="1"
-                   TextColor="{AppThemeBinding Light={StaticResource DefaultTextColor}, Dark={StaticResource DefaultTextColorDark}}"
-                   Text="{Binding Description}"
-                   TextType="Html"
-                   FontSize="{OnPlatform Default=14, iOS=17}"
-                   AutomationId="exampleDecription"/>
-        </Grid>
-    </Grid>
+             ios:Page.UseSafeArea="False">
+    <views:QSFPageContentView Background="{AppThemeBinding Light={StaticResource SecondaryBackgroundColor}, Dark={StaticResource SecondaryBackgroundColorDark}}">
+        <views:QSFPageContentView.HeaderControlTemplate>
+            <ControlTemplate>
+                  <Grid ColumnDefinitions="Auto, *">
+                      <ImageButton Clicked="Back_Clicked"
+                                   HorizontalOptions="Start"
+                                   Style="{OnPlatform Default={StaticResource DefaultBackButtonStyle}, iOS={StaticResource IOSBackButtonStyle}}" 
+                                   AutomationId="backButton" />
+                      <Label Grid.Column="1"
+                             Text="{Binding HeaderLabel}"
+                             Style="{StaticResource HeaderLabelStyle}"
+                             Margin="10, 0" 
+                             VerticalOptions="Center"
+                             AutomationId="exampleInfo" />
+                  </Grid>
+            </ControlTemplate>
+        </views:QSFPageContentView.HeaderControlTemplate>
+        <views:QSFPageContentView.BodyControlTemplate>
+            <ControlTemplate>
+                  <Grid RowDefinitions="Auto, *"
+                        Padding="16">
+                      <Label Text="{Binding DescriptionLabel}"
+                             TextColor="{AppThemeBinding Light={StaticResource DefaultTextColor}, Dark={StaticResource DefaultTextColorDark}}"
+                             FontSize="{OnPlatform Default=24, iOS=22}"
+                             Margin="0, 8, 0, 24"
+                             AutomationId="exampleName" />
+                      <Label Grid.Row="1"
+                             TextColor="{AppThemeBinding Light={StaticResource DefaultTextColor}, Dark={StaticResource DefaultTextColorDark}}"
+                             Text="{Binding Description}"
+                             TextType="Html"
+                             FontSize="{OnPlatform Default=14, iOS=17}"
+                             AutomationId="exampleDecription" />
+                  </Grid>
+            </ControlTemplate>
+        </views:QSFPageContentView.BodyControlTemplate>
+    </views:QSFPageContentView>
 </ContentPage>

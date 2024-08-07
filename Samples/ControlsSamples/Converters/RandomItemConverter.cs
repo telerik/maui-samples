@@ -8,7 +8,7 @@ namespace QSF.Converters;
 [ContentProperty(nameof(Items))]
 public class RandomItemConverter : IValueConverter
 {
-    private static readonly Random random = new Random();
+    private readonly Random random = new Random();
 
     private readonly IList<object> items = new List<object>();
     private int index = -1;

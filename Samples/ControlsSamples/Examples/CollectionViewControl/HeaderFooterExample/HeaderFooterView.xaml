@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="QSF.Examples.CollectionViewControl.HeaderFooterExample.HeaderFooterView"
+             Padding="{OnIdiom Default='16, 20', Phone=0}">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <telerik:ColorFilter x:Key="AccentColorAlpha12" Color="{StaticResource AccentColor8}" Alpha="0.12" />
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <telerik:RadBorder BorderColor="{OnPlatform Default={StaticResource DefaultBorderColor}, MacCatalyst=#0D000000, WinUI={StaticResource DefaultBorderColorWinUI}}"
+                       BorderThickness="{OnIdiom Default=0, Desktop=1}">
+        <telerik:RadCollectionView x:Name="collectionView"
+                                   ItemsSource="{Binding Items}"
+                                   SelectionMode="None">
+            <telerik:RadCollectionView.HeaderTemplate>
+                <DataTemplate>
+                    <Grid ColumnDefinitions="Auto, *"
+                          ColumnSpacing="8"
+                          BackgroundColor="{StaticResource DefaultBackgroundColor}"
+                          Padding="16, 24">
+                        <Image Source="person_2.png"
+                               WidthRequest="48"
+                               HeightRequest="48"
+                               VerticalOptions="Center" />
+                        <VerticalStackLayout Grid.Column="1"
+                                             VerticalOptions="Center">
+                            <Label Text="My Subscriptions"
+                                   TextColor="{StaticResource DefaultTextColor}"
+                                   FontSize="20"
+                                   VerticalOptions="Center" />
+                            <Label Text="{Binding Items.Count, StringFormat='Upcoming payments: {0}'}"
+                                   Style="{StaticResource PlaceholderLabelStyle}"
+                                   FontSize="12" />
+                        </VerticalStackLayout>
+                    </Grid>
+                </DataTemplate>
+            </telerik:RadCollectionView.HeaderTemplate>
+            <telerik:RadCollectionView.FooterTemplate>
+                <DataTemplate>
+                    <Grid BackgroundColor="{StaticResource DefaultBackgroundColor}"
+                          Padding="16, 24">
+                        <telerik:RadButton Style="{StaticResource AccentButtonStyle}"
+                                           Text="{Binding Label}"
+                                           Command="{Binding PayCommand}"
+                                           MaximumWidthRequest="{OnPlatform MacCatalyst=240, WinUI=240}"
+                                           HorizontalOptions="{OnPlatform MacCatalyst=Center, WinUI=Center}" />
+                    </Grid>
+                </DataTemplate>
+            </telerik:RadCollectionView.FooterTemplate>
+            <telerik:RadCollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid ColumnDefinitions="Auto, Auto, *, Auto"
+                          ColumnSpacing="12"
+                          Padding="16, 8">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding BindingContext.TapCommand, Source={Reference collectionView}}"
+                                                  CommandParameter="{Binding}" />
+                        </Grid.GestureRecognizers>
+                        <telerik:RadCheckBox VerticalOptions="Center"
+                                             IsChecked="{Binding IsSelected, Mode=TwoWay}"
+                                             CheckedColor="{StaticResource AccentColor8}" />
+                        <telerik:RadBorder Grid.Column="1"
+                                           WidthRequest="32"
+                                           HeightRequest="32"
+                                           CornerRadius="16"
+                                           Margin="12, 0"
+                                           BackgroundColor="{StaticResource AccentColorAlpha12}"
+                                           HorizontalOptions="Center"
+                                           VerticalOptions="Center">
+                            <Label Text="{Binding Icon}"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"
+                                   FontSize="20"
+                                   FontFamily="TelerikFontExamples"
+                                   TextColor="{StaticResource AccentColor8}" />
+                        </telerik:RadBorder>
+                        <StackLayout Grid.Column="2"
+                                     VerticalOptions="Center">
+                            <Label Text="{Binding Name}"
+                                   TextColor="{StaticResource DefaultTextColor}" />
+                            <Label Text="{Binding Company}"
+                                   TextColor="{StaticResource PlaceholderColor}"
+                                   FontSize="12" />
+                        </StackLayout>
+                        <Label Grid.Column="3"
+                               Text="{Binding Amount, StringFormat='${0}'}"
+                               TextColor="{StaticResource DefaultTextColor}"
+                               HorizontalOptions="End"
+                               VerticalOptions="Center" />
+                    </Grid>
+                </DataTemplate>
+            </telerik:RadCollectionView.ItemTemplate>
+        </telerik:RadCollectionView>
+    </telerik:RadBorder>
+</ContentView>

@@ -53,5 +53,30 @@
                                  IsClearButtonVisible="False"
                                  AutomationId="selectionModeComboBox" />
         </VerticalStackLayout>
+        <VerticalStackLayout Style="{StaticResource GroupAtSeparateAreaStyle}">
+            <Label Text="Empty Content Display Mode:"
+                   Style="{StaticResource VerticalGroupLabelStyle}" />
+            <telerik:RadComboBox ItemsSource="{Binding EmptyContentDisplayModes}"
+                                 SelectedItem="{Binding EmptyContentDisplayMode, Mode=TwoWay}"
+                                 HorizontalOptions="Fill"
+                                 IsClearButtonVisible="False"
+                                 AutomationId="emptyContentDisplayModeComboBox" />
+        </VerticalStackLayout>
+        <HorizontalStackLayout telerik:RadCheckBox.ToggleOnTap="{Reference checkBoxIsDragDropEnabled}"
+                               Style="{StaticResource CheckBoxGroupStyle}">
+            <telerik:RadCheckBox x:Name="checkBoxIsDragDropEnabled"
+                                 IsChecked="{Binding IsDragDropEnabled}" 
+                                 AutomationId="isDragDropEnabledCheckBox"/>
+            <Label Text="Is Items Reorder Enabled"
+                   Style="{StaticResource HorizontalGroupLabelAtEndStyle}" />
+        </HorizontalStackLayout>
+        <HorizontalStackLayout telerik:RadCheckBox.ToggleOnTap="{Reference checkBoxIsItemSwipeEnabled}"
+                               Style="{StaticResource CheckBoxGroupStyle}">
+            <telerik:RadCheckBox x:Name="checkBoxIsItemSwipeEnabled"
+                                 IsChecked="{Binding IsItemSwipeEnabled}" 
+                                 AutomationId="isItemSwipeEnabledCheckBox"/>
+            <Label Text="Is Item Swipe Enabled"
+                   Style="{StaticResource HorizontalGroupLabelAtEndStyle}" />
+        </HorizontalStackLayout>
     </VerticalStackLayout>
 </ContentView>

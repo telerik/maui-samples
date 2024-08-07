@@ -2,6 +2,7 @@
 using Microsoft.Maui.Controls.Hosting;
 using Microsoft.Maui.Hosting;
 using Telerik.Maui.Controls.Compatibility;
+using Telerik.AppUtils.Services;
 
 namespace SDKBrowserMaui
 {
@@ -13,6 +14,10 @@ namespace SDKBrowserMaui
 			builder
 				.UseMauiApp<App>()
 				.UseTelerik()
+				.UseTelerikInHouseTestingService(
+					// Set this to true, if you want to test the demos with pseudorandom data instead of random data
+					defaultIsAppUnderTest: true
+				)
 				.ConfigureMauiHandlers((handlers) =>
                 {
 #if WINDOWS

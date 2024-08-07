@@ -1,12 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Xml.Serialization;
+using QSF.ExampleUtilities;
 using QSF.ViewModels;
 
 namespace QSF.Examples.DataGridControl.Common
 {
     public class SalesPerson : ViewModelBase
     {
+#pragma warning disable CS0169, CS0649
+        private static readonly IDictionary<string, string> CountriesAndFlags = new Dictionary<string, string>
+        {
+            {"Australia", "flag_1.png" },
+            {"United Kingdom", "flag_2.png" },
+            {"Canada", "flag_3.png" },
+            {"United States", "flag_4.png" },
+            {"France", "flag_5.png" },
+            {"Germany", "flag_6.png" },
+        };
+
         private string firstName;
         private string lastName;
         private string fullName;
@@ -15,65 +27,16 @@ namespace QSF.Examples.DataGridControl.Common
         private string city;
         private string countryName;
         private string regionName;
-        private List<string> regions;
-        private List<string> images;
-        private List<string> flags;
-        private Dictionary<string, string> countriesAndFlags;
         private string image;
         private string phoneNumber;
         private string countryCode;
         private string phoneNumberWithCountryCode;
         private int id;
         private bool isMember;
-
-        private static Random random = new Random();
+#pragma warning restore CS0169, CS0649
 
         public SalesPerson()
         {
-            this.regions = new List<string>
-            {
-                "North",
-                "South",
-                "Central",
-                "East",
-                "West"
-            };
-
-            this.images = new List<string>
-            {
-                "person_1.png",
-                "person_2.png",
-                "person_3.png",
-                "person_4.png",
-                "person_5.png",
-                "person_6.png",
-                "person_7.png",
-                "person_8.png",
-            };
-
-            this.flags = new List<string>
-            {
-                "flag_1.png",
-                "flag_2.png",
-                "flag_3.png",
-                "flag_4.png",
-                "flag_5.png",
-                "flag_6.png",
-            };
-
-            this.countriesAndFlags = new Dictionary<string, string>
-            {
-                {"Australia", this.flags[0]},
-                {"United Kingdom", this.flags[1]},
-                {"Canada", this.flags[2]},
-                {"United States", this.flags[3]},
-                {"France", this.flags[4]},
-                {"Germany", this.flags[5]},
-            };
-
-            this.RegionName = this.regions[random.Next(0, this.regions.Count)];
-            this.Sales = random.Next(2, 100) * random.Next(100, 999);
-            this.Image = this.images[random.Next(0, this.images.Count)];
         }
 
         public string FirstName
@@ -137,10 +100,7 @@ namespace QSF.Examples.DataGridControl.Common
             set => UpdateValue(ref this.countryName, value);
         }
 
-        public string CountryFlag
-        {
-            get => this.countriesAndFlags[this.CountryName];
-        }
+        public string CountryFlag => CountriesAndFlags[this.CountryName];
 
         public string CountryCode
         {

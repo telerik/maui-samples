@@ -18,6 +18,7 @@ namespace SDKBrowserMaui.Examples.ListViewControl.FilteringCategory.BindableFilt
     }
     // << listview-features-filtering-data-class
 
+    // >> listview-features-filtering-bindable-viewmodel
     public class ViewModel : NotifyPropertyChangedBase
     {
         private ObservableCollection<FilterDescriptorBase> filterDescriptors;
@@ -88,6 +89,6 @@ namespace SDKBrowserMaui.Examples.ListViewControl.FilteringCategory.BindableFilt
                                 new Func<object, bool>((item) => ((Person)item).Name.StartsWith("A"));
             }
         }
-        // << listview-features-filtering-viewmodel
+        // << listview-features-filtering-bindable-viewmodel
     }
 }

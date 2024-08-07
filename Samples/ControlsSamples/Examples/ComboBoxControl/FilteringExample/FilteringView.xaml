@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:converters="clr-namespace:QSF.Converters"
+             xmlns:styles="clr-namespace:QSF.Styles"
+             xmlns:example="clr-namespace:QSF.Examples.ComboBoxControl.FilteringExample"
+             x:Class="QSF.Examples.ComboBoxControl.FilteringExample.FilteringView"
+             Padding="{OnIdiom Default='16, 20', Phone=0}">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <styles:ConfigurationViewResources />
+            </ResourceDictionary.MergedDictionaries>
+
+            <converters:ColorNameToColorConverter x:Key="ColorNameToColorConverter">
+                <converters:ColorNameToColorConverter.DefaultValuesResourceDictionary>
+                    <example:ComboBoxConstants />
+                </converters:ColorNameToColorConverter.DefaultValuesResourceDictionary>
+            </converters:ColorNameToColorConverter>
+
+            <Style TargetType="telerik:RadComboBox">
+                <Setter Property="IsClearButtonVisible" Value="False" />
+                <Setter Property="WidthRequest" Value="{OnIdiom Default=-1, Desktop=300}" />
+                <Setter Property="HorizontalOptions" Value="{OnIdiom Default=Fill, Desktop=Start}" />
+            </Style>
+
+            <DataTemplate x:Key="NoResultsTemplate">
+                <VerticalStackLayout Padding="{OnPlatform Default='0, 0, 0, 8', iOS=0}">
+                    <Image Source="nodata.png"
+                           MaximumHeightRequest="64"
+                           HorizontalOptions="Center" />
+                    <Label Text="{Binding Source={x:Reference comboBox}, Path=NoResultsMessage}"
+                           TextColor="{StaticResource PlaceholderColor}"
+                           LineBreakMode="WordWrap"
+                           HorizontalTextAlignment="Center" />
+                </VerticalStackLayout>
+            </DataTemplate>
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="{OnPlatform Android=136, iOS=125, MacCatalyst=110, WinUI=112}" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <telerik:RadBorder BackgroundColor="{StaticResource DefaultBackgroundColor}"
+                           Padding="16, 24">
+            <telerik:RadComboBox x:Name="comboBox"
+                                 IsEditable="True"
+                                 IsFilteringEnabled="True"
+                                 IsClearButtonVisible="True"
+                                 ItemsSource="{Binding People}"
+                                 SearchMode="{Binding SearchMode}"
+                                 Placeholder="Filter People"
+                                 DisplayMemberPath="FullName"
+                                 SearchTextPath="{Binding SearchTextPath}"
+                                 HighlightTextColor="{Binding HighlightTextColor, Converter={StaticResource ColorNameToColorConverter}, ConverterParameter='HighlightTextColor'}"
+                                 NoResultsTemplate="{StaticResource NoResultsTemplate}"
+                                 NoResultsMessage="{Binding NoResultsMessage}"
+                                 VerticalOptions="Center"
+                                 AutomationId="peopleComboBox" />
+        </telerik:RadBorder>
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Style="{StaticResource RootAtExampleAreaStyle}">
+                <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                    <Label Text="Search Mode:"
+                           Style="{StaticResource VerticalGroupLabelStyle}" />
+                    <telerik:RadComboBox SelectedItem="{Binding SearchMode}"
+                                         AutomationId="searchModeComboBox">
+                        <telerik:RadComboBox.ItemsSource>
+                            <x:Array Type="{x:Type telerik:SearchMode}">
+                                <telerik:SearchMode>StartsWith</telerik:SearchMode>
+                                <telerik:SearchMode>StartsWithCaseSensitive</telerik:SearchMode>
+                                <telerik:SearchMode>Contains</telerik:SearchMode>
+                                <telerik:SearchMode>ContainsCaseSensitive</telerik:SearchMode>
+                            </x:Array>
+                        </telerik:RadComboBox.ItemsSource>
+                    </telerik:RadComboBox>
+                </VerticalStackLayout>
+                <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                    <Label Text="Search Text Path:"
+                           Style="{StaticResource VerticalGroupLabelStyle}" />
+                    <telerik:RadComboBox SelectedItem="{Binding SearchTextPath}"
+                                         AutomationId="searchTextPathComboBox">
+                        <telerik:RadComboBox.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>FirstName</x:String>
+                                <x:String>LastName</x:String>
+                                <x:String>FullName</x:String>
+                                <x:String>CountryName</x:String>
+                            </x:Array>
+                        </telerik:RadComboBox.ItemsSource>
+                    </telerik:RadComboBox>
+                </VerticalStackLayout>
+                <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                    <Label Text="Highlight Text Color:"
+                           Style="{StaticResource VerticalGroupLabelStyle}" />
+                    <telerik:RadComboBox ItemsSource="{Binding HighlightTextColors}"
+                                         SelectedItem="{Binding HighlightTextColor, Mode=TwoWay}"
+                                         AutomationId="textColorComboBox" />
+                </VerticalStackLayout>
+                <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                    <Label Text="No Results Message:"
+                           Style="{StaticResource VerticalGroupLabelStyle}" />
+                    <telerik:RadEntry Text="{Binding NoResultsMessage}"
+                                      ReserveSpaceForErrorView="False"
+                                      WidthRequest="{OnIdiom Default=-1, Desktop=300}"
+                                      HorizontalOptions="{OnIdiom Default=Fill, Desktop=Start}"
+                                      AutomationId="noResultsMessageEntry" />
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentView>

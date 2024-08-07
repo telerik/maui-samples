@@ -45,7 +45,7 @@ public class FirstLookViewModel : ExampleViewModel
 
             this.source.Add(new RentalProperty()
             {
-                Image = $"property_item_{i}.jpg",
+                Image = $"property_item_{i}.png",
                 MaxGuests = maxGuestsCount,
                 Name = propertyNames[i-1],
                 Type = bedroomsCount + (bedroomsCount > 1 ? " bedrooms" : " bedroom"),

@@ -6,7 +6,7 @@ namespace SDKBrowserMaui.Examples.DataGridControl.ColumnsCategory.ReorderingExam
 // >> datagrid-reordering-viewmodel
 public class ViewModel : NotifyPropertyChangedBase
 {
-    private bool isReorderingEnabled;
+    private bool isReorderingEnabled = true;
 
     public ViewModel()
     {

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.CollectionViewControl.ItemSwipeCategory"
+             x:Class="SDKBrowserMaui.Examples.CollectionViewControl.ItemSwipeCategory.SwipeEventsExample.SwipeEvents">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Style x:Key="LogLabelStyle" TargetType="Label">
+                <Setter Property="FontAttributes" Value="Italic" />
+                <Setter Property="TextColor" Value="#99000000" />
+                <Setter Property="LineBreakMode" Value="WordWrap" />
+            </Style>
+            <!-- >> collectionview-item-swipe-events-resources -->
+            <telerik:BoolToValueConverter x:Key="VisitedToIconConverter" TrueValue="&#xe801;" FalseValue="" />
+            <DataTemplate x:Key="StartSwipeItemTemplate">
+                <Grid BackgroundColor="#00897B"
+                      Padding="12, 0"
+                      HorizontalOptions="Fill"
+                      VerticalOptions="Fill">
+                    <telerik:RadPath Geometry="{x:Static telerik:Geometries.Star}"
+                                     Fill="White"
+                                     StrokeThickness="0"
+                                     WidthRequest="16"
+                                     HeightRequest="16"
+                                     HorizontalOptions="Center"
+                                     VerticalOptions="Center" />
+                </Grid>
+            </DataTemplate>
+            <DataTemplate x:Key="EndSwipeItemTemplate">
+                <Grid BackgroundColor="#89000E"
+                      Padding="12, 0"
+                      HorizontalOptions="Fill"
+                      VerticalOptions="Fill">
+                    <Label FontFamily="{x:Static telerik:TelerikFont.Name}"
+                           FontSize="16"
+                           Text="{x:Static telerik:TelerikFont.IconDelete}"
+                           TextColor="White"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center" />
+                </Grid>
+            </DataTemplate>
+            <!-- << collectionview-item-swipe-events-resources -->
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <!-- >> collectionview-item-swipe-events -->
+    <Grid RowDefinitions="Auto, *"
+          RowSpacing="16">
+        <Grid ColumnDefinitions="Auto, *"
+              ColumnSpacing="4"
+              Padding="16, 0">
+            <Label Text="Log: "
+                   Style="{StaticResource LogLabelStyle}" />
+            <Label x:Name="swipeActionLog"
+                   Grid.Column="1"
+                   Style="{StaticResource LogLabelStyle}" />
+        </Grid>
+        <telerik:RadCollectionView x:Name="collectionView"
+                                   Grid.Row="1"
+                                   ItemsSource="{Binding Locations}"
+                                   IsItemSwipeEnabled="True"
+                                   StartSwipeTemplate="{StaticResource StartSwipeItemTemplate}"
+                                   EndSwipeTemplate="{StaticResource EndSwipeItemTemplate}"
+                                   SwipeStarting="OnSwipeStarting"
+                                   Swiping="OnSwiping"
+                                   SwipeCompleted="OnSwipeCompleted"
+                                   StartSwipeLength="50"
+                                   EndSwipeLength="50"
+                                   SwipeThreshold="25">
+            <telerik:RadCollectionView.ItemTemplate>
+                <DataTemplate>
+                    <HorizontalStackLayout Spacing="4"
+                                           Padding="16, 8">
+                        <Label Text="{Binding City}"
+                               VerticalTextAlignment="Center" />
+                        <Label FontFamily="TelerikFontExamples"
+                               FontSize="12"
+                               Text="{Binding Visited, Converter={StaticResource VisitedToIconConverter}}"
+                               TextColor="#D67F3C"
+                               VerticalTextAlignment="Center" />
+                    </HorizontalStackLayout>
+                </DataTemplate>
+            </telerik:RadCollectionView.ItemTemplate>
+            <telerik:RadCollectionView.BindingContext>
+                <local:ViewModel />
+            </telerik:RadCollectionView.BindingContext>
+        </telerik:RadCollectionView>
+    </Grid>
+    <!-- << collectionview-item-swipe-events -->
+</ContentView>

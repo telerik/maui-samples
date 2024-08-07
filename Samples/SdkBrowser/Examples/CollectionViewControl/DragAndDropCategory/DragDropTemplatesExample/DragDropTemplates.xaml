@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.CollectionViewControl"
+             x:Class="SDKBrowserMaui.Examples.CollectionViewControl.DragAndDropCategory.DragDropTemplatesExample.DragDropTemplates">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <!-- >> collectionview-dragdrop-templates-indicatortemplate -->
+            <DataTemplate x:Key="CustomDropIndicatorTemplate">
+                <Grid ColumnDefinitions="Auto, *">
+                    <Label FontFamily="TelerikFontExamples"
+                           FontSize="20"
+                           Text="&#xe806;"
+                           TextColor="#00897B" />
+                    <Line Grid.Column="1"
+                          X2="100"
+                          Aspect="UniformToFill"
+                          Stroke="#00897B"
+                          StrokeThickness="2"
+                          StrokeDashArray="4, 2"
+                          StrokeDashOffset="1"
+                          VerticalOptions="Center" />
+                </Grid>
+            </DataTemplate>
+            <!-- << collectionview-dragdrop-templates-indicatortemplate -->
+            <!-- >> collectionview-dragdrop-templates-dragvisual -->
+            <DataTemplate x:Key="CustomDragVisualTemplate">
+                <telerik:RadBorder BackgroundColor="#FAFAFA"
+                                   BorderColor="#00897B"
+                                   BorderThickness="1">
+                    <Grid ColumnDefinitions="Auto, Auto, *"
+                          ColumnSpacing="2"
+                          Padding="4">
+                        <Label Text="{Binding City, StringFormat='{0},'}"
+                               TextColor="#00897B"
+                               TextTransform="Uppercase"
+                               FontAttributes="Bold"
+                               VerticalTextAlignment="Center" />
+                        <Label Grid.Column="1"
+                               Text="{Binding Country}"
+                               TextColor="#00897B"
+                               VerticalTextAlignment="Center" />
+                    </Grid>
+                </telerik:RadBorder>
+            </DataTemplate>
+            <!-- << collectionview-dragdrop-templates-dragvisual -->
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <!-- >> collectionview-dragdrop-templates -->
+    <telerik:RadCollectionView x:Name="collectionView"
+                               ItemsSource="{Binding Locations}"
+                               DisplayMemberPath="City"
+                               IsDragDropEnabled="True"
+                               SelectionMode="Single"
+                               DropIndicatorTemplate="{StaticResource CustomDropIndicatorTemplate}"
+                               DragVisualTemplate="{StaticResource CustomDragVisualTemplate}">
+        <telerik:RadCollectionView.BindingContext>
+            <local:ViewModel />
+        </telerik:RadCollectionView.BindingContext>
+    </telerik:RadCollectionView>
+    <!-- << collectionview-dragdrop-templates -->
+</ContentView>

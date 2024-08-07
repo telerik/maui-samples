@@ -3,8 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
              x:Class="SDKBrowserMaui.Examples.DataGridControl.ColumnsCategory.ReorderingExample.Reordering">
+    <!-- >> datagrid-reordering-example -->
     <Grid RowDefinitions="Auto, *">
-        <!-- >> datagrid-reordering-example -->
         <Grid ColumnDefinitions="Auto, Auto" Margin="0, 0, 0, 10">
             <Label Text="Enable Column Reordering: " VerticalOptions="Center"/>
             <Switch Grid.Column="1"
@@ -14,8 +14,20 @@
         </Grid>
         <telerik:RadDataGrid x:Name="dataGrid"
                              Grid.Row="1"
+                             AutoGenerateColumns="False"
+                             ItemsSource="{Binding Data}"
                              CanUserReorderColumns="{Binding IsReorderingEnabled}"
-                             ItemsSource="{Binding Data}"/>       
-        <!-- << datagrid-reordering-example -->
+                             ColumnReorderStarting="OnColumnReorderStarting"
+                             ColumnReordering="OnColumnReordering"
+                             ColumnReorderCompleting="OnColumnReorderCompleting"
+                             ColumnReordered="OnColumnReordered">
+            <telerik:RadDataGrid.Columns>
+                <telerik:DataGridTextColumn PropertyName="Name" IsFrozen="True" />
+                <telerik:DataGridNumericalColumn PropertyName="Age" />
+                <telerik:DataGridComboBoxColumn PropertyName="Gender" />
+                <telerik:DataGridNumericalColumn PropertyName="Weight" />
+            </telerik:RadDataGrid.Columns>
+        </telerik:RadDataGrid>
     </Grid>
+    <!-- << datagrid-reordering-example -->
 </ContentView>

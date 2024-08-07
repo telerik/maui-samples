@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.CollectionViewControl.LoadOnDemandCategory.LoadOnDemandCollectionExample"
+             x:Class="SDKBrowserMaui.Examples.CollectionViewControl.LoadOnDemandCategory.ManualLoadOnDemandCustomTemplateExample.ManualLoadOnDemandCustomTemplate">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <!-- >> collectionview-loadondemand-manual-template-resource -->
+            <telerik:InvertedBooleanConverter x:Key="InvertedBooleanConverter" />
+            
+            <DataTemplate x:Key="CustomManualLoadOnDemandTemplate">
+                <telerik:RadBorder BorderColor="#8660C5"
+                                   BorderThickness="2"
+                                   CornerRadius="4"
+                                   MinimumWidthRequest="{OnPlatform MacCatalyst=160, WinUI=160}"
+                                   HeightRequest="36"
+                                   Padding="24, 0"
+                                   Margin="16"
+                                   HorizontalOptions="{OnPlatform MacCatalyst=Center, WinUI=Center}">
+                    <Grid>
+                        <telerik:RadBusyIndicator AnimationType="Animation4"
+                                                  AnimationContentColor="#8660C5"
+                                                  IsBusy="True"
+                                                  IsVisible="{Binding Source={RelativeSource AncestorType={x:Type telerik:RadCollectionView}}, Path=IsLoadOnDemandActive}" />
+                        <Label Text="Load more data"
+                               TextColor="#8660C5"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center"
+                               IsVisible="{Binding Source={RelativeSource AncestorType={x:Type telerik:RadCollectionView}}, Path=IsLoadOnDemandActive, Converter={StaticResource InvertedBooleanConverter}}" />
+                    </Grid>
+                </telerik:RadBorder>
+            </DataTemplate>
+            <!-- << collectionview-loadondemand-manual-template-resource -->
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <!-- >> collectionview-loadondemand-manual-template -->
+    <telerik:RadCollectionView x:Name="listView"
+                               ItemsSource="{Binding Items}"
+                               DisplayMemberPath="Name"
+                               LoadOnDemandMode="Manual"
+                               IsLoadOnDemandEnabled="True"
+                               ManualLoadOnDemandTemplate="{StaticResource CustomManualLoadOnDemandTemplate}">
+        <telerik:RadCollectionView.BindingContext>
+            <local:LoadOnDemandCollectionViewModel />
+        </telerik:RadCollectionView.BindingContext>
+    </telerik:RadCollectionView>
+    <!--  << collectionview-loadondemand-manual-template -->
+</ContentView>
