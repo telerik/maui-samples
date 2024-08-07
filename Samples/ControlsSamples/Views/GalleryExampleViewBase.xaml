@@ -2,7 +2,8 @@
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
-             x:Class="QSF.Views.GalleryExampleViewBase">
+             x:Class="QSF.Views.GalleryExampleViewBase"
+             Background="{DynamicResource RadAppSurfaceColor}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50" />
@@ -10,48 +11,61 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <telerik:RadListView ItemsSource="{Binding Path=GalleryItems}"
-                             SelectedItems="{Binding Path=SelectedItems}"
-                             x:Name="listView"
-                             SelectionChanged="RadListView_SelectionChanged"
-                             BackgroundColor="#5D65B1"
-                             AutomationId="galleryListView">
-            <telerik:RadListView.LayoutDefinition>
-                <telerik:ListViewLinearLayout Orientation="Horizontal" ItemLength="60" />
-            </telerik:RadListView.LayoutDefinition>
-            <telerik:RadListView.ItemStyle>
-                <telerik:ListViewItemStyle BackgroundColor="#5D65B1" BorderWidth="0" />
-            </telerik:RadListView.ItemStyle>
-            <telerik:RadListView.PressedItemStyle>
-                <telerik:ListViewItemStyle BackgroundColor="#5D65B1" BorderWidth="0" />
-            </telerik:RadListView.PressedItemStyle>
-            <telerik:RadListView.SelectedItemStyle>
-                <telerik:ListViewItemStyle BackgroundColor="#5D65B1" BorderWidth="0" />
-            </telerik:RadListView.SelectedItemStyle>
-            <telerik:RadListView.ItemTemplate>
+        <telerik:RadCollectionView x:Name="collectionView"
+                                   ItemsSource="{Binding Path=GalleryItems}"
+                                   SelectedItems="{Binding Path=SelectedItems}"
+                                   SelectionChanged="OnGallerySelectionChanged"
+                                   BackgroundColor="#5D65B1"
+                                   AutomationId="galleryCollectionView">
+            <telerik:RadCollectionView.ItemsLayout>
+                <telerik:CollectionViewLinearLayout Orientation="Horizontal"
+                                                    ItemLength="60" />
+            </telerik:RadCollectionView.ItemsLayout>
+            <telerik:RadCollectionView.ItemTemplate>
                 <DataTemplate>
-                    <telerik:ListViewTemplateCell>
-                        <telerik:ListViewTemplateCell.View>
-                            <VerticalStackLayout Spacing="0" Padding="13">
-                                <Image Source="{Binding Path=Icon}"
-                                       WidthRequest="20" 
-                                       HeightRequest="20"
-                                       VerticalOptions="Center"
-                                       HorizontalOptions="Center" 
-                                       AutomationId="controlIconInGalery"/>
-                                <BoxView HeightRequest="4" 
-                                         WidthRequest="40"
-                                         HorizontalOptions="Center" 
-                                         VerticalOptions="End"
-                                         IsVisible="{Binding Path=IsSelected}" 
-                                         Color="{AppThemeBinding Light='#E0E9FC', Dark='#FFFFFF'}" 
-                                         Margin="0, 2, 0, -1" />
-                            </VerticalStackLayout>
-                        </telerik:ListViewTemplateCell.View>
-                    </telerik:ListViewTemplateCell>
+                    <VerticalStackLayout Spacing="0"
+                                         Padding="10,13">
+                        <Image Source="{Binding Path=Icon}"
+                               WidthRequest="20"
+                               HeightRequest="20"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Center"
+                               AutomationId="{Binding Path=DataTemplateResourceKey}"/>
+                        <BoxView HeightRequest="4"
+                                 WidthRequest="40"
+                                 HorizontalOptions="Center"
+                                 VerticalOptions="End"
+                                 IsVisible="{Binding Path=IsSelected}"
+                                 Color="{AppThemeBinding Light='#E0E9FC', Dark='#FFFFFF'}"
+                                 Margin="0, 2, 0, -1" />
+                    </VerticalStackLayout>
                 </DataTemplate>
-            </telerik:RadListView.ItemTemplate>
-        </telerik:RadListView>
+            </telerik:RadCollectionView.ItemTemplate>
+            <telerik:RadCollectionView.ItemViewStyle>
+                <Style TargetType="telerik:RadCollectionViewItemView">
+                    <Setter Property="BackgroundColor" Value="#5D65B1"/>
+                    <Setter Property="BorderThickness" Value="0"/>
+                    <Setter Property="ControlTemplate">
+                        <Setter.Value>
+                            <ControlTemplate>
+                                <ContentPresenter />
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="VisualStateManager.VisualStateGroups">
+                        <Setter.Value>
+                            <VisualStateGroup Name="CommonStates">
+                                <VisualState Name="Selected">
+                                    <VisualState.Setters>
+                                        <Setter Property="telerik:RadCollectionViewItemView.BackgroundColor" Value="#5D65B1" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </telerik:RadCollectionView.ItemViewStyle>
+        </telerik:RadCollectionView>
 
         <ContentView Grid.Row="1" x:Name="HeaderPresenter" />
 

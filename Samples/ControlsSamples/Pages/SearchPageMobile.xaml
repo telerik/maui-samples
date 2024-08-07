@@ -1,13 +1,13 @@
 ﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
              xmlns:views="clr-namespace:QSF.Views"
-             ios:Page.UseSafeArea="True"
+             xmlns:qsf="clr-namespace:QSF.Pages"
+             x:Class="QSF.Pages.SearchPageMobile"
              NavigationPage.HasNavigationBar="False"
-             NavigationPage.HasBackButton="False"
-             x:Class="QSF.Pages.SearchPageMobile">
-    
+             ios:Page.UseSafeArea="False">
+
     <VisualElement.Resources>
         <Style x:Key="EntryStyle" TargetType="telerik:RadEntry">
             <!--These setters are intentional - TextOnAccentColor and PlaceholderColorDark, as the underlying color is an accent one.-->
@@ -29,35 +29,42 @@
         </Style>
     </VisualElement.Resources>
 
-    <Grid RowDefinitions="Auto, *">
-        <Grid ColumnDefinitions="Auto, *" 
-              Style="{StaticResource HeaderStyle}">
-            <ImageButton Command="{Binding NavigateBackCommand}"
-                         Style="{OnPlatform Default={StaticResource DefaultBackButtonStyle}, iOS={StaticResource IOSBackButtonStyle}}" 
-                         AutomationId="backButton"/>
-            <telerik:RadBorder Grid.Column="1"
-                               BackgroundColor="{OnPlatform Default='Transparent', iOS='#3DFFFFFF'}"
-                               CornerRadius="{OnPlatform Default=0, iOS=10}"
-                               VerticalOptions="Center">
-                <Grid ColumnDefinitions="Auto, *"
-                      Padding="{OnPlatform Default=0, iOS='8, 0'}">
-                    <Image Source="searchentry.png"
-                           Aspect="Center" />
-                    <telerik:RadEntry x:Name="searchEntry"
-                                      Placeholder="Search"
-                                      Grid.Column="1"
-                                      Style="{StaticResource EntryStyle}"
-                                      AutomationId="searchEntry"/>
-                    <BoxView Grid.Column="1"
-                             Style="{StaticResource BoxViewStyle}" />
+    <views:QSFPageContentView Background="{AppThemeBinding Light={StaticResource SecondaryBackgroundColor}, Dark={StaticResource SecondaryBackgroundColorDark}}">
+        <views:QSFPageContentView.HeaderControlTemplate>
+            <ControlTemplate>
+                <Grid ColumnDefinitions="Auto, *">
+                    <ImageButton Command="{Binding NavigateBackCommand}"
+                                 Style="{OnPlatform Default={StaticResource DefaultBackButtonStyle}, iOS={StaticResource IOSBackButtonStyle}}" 
+                                 AutomationId="backButton"/>
+                    <telerik:RadBorder Grid.Column="1"
+                                       BackgroundColor="{OnPlatform Default='Transparent', iOS='#3DFFFFFF'}"
+                                       CornerRadius="{OnPlatform Default=0, iOS=10}"
+                                       Margin="10, 0"
+                                       VerticalOptions="Center">
+                        <Grid ColumnDefinitions="Auto, *"
+                              Padding="{OnPlatform Default=0, iOS='8, 0'}">
+                            <Image Source="searchentry.png"
+                                   Aspect="Center" />
+                            <telerik:RadEntry x:Name="searchEntry"
+                                              Grid.Column="1"
+                                              Placeholder="Search"
+                                              Text="{Binding SearchText, Mode=TwoWay}"
+                                              Style="{StaticResource EntryStyle}"
+                                              AutomationId="searchEntry" />
+                            <BoxView Grid.Column="1"
+                                     Style="{StaticResource BoxViewStyle}" />
+                        </Grid>
+                    </telerik:RadBorder>
                 </Grid>
-            </telerik:RadBorder>
-        </Grid>
-        <views:InnerSearchView Grid.Row="1"
-                               SearchText="{Binding Text, Source={Reference searchEntry}}"
-                               SelectedSearchResult="{Binding SelectedSearchResult}"
-                               Margin="12" 
-                               AutomationId="searchResults"/>
-    </Grid>
-    
+            </ControlTemplate>
+        </views:QSFPageContentView.HeaderControlTemplate>
+        <views:QSFPageContentView.BodyControlTemplate>
+            <ControlTemplate>
+                <views:InnerSearchView SearchText="{Binding SearchText}"
+                                       SelectedSearchResult="{Binding SelectedSearchResult}"
+                                       Margin="12" 
+                                       AutomationId="searchResults" />
+            </ControlTemplate>
+        </views:QSFPageContentView.BodyControlTemplate>
+    </views:QSFPageContentView>
 </ContentPage>

@@ -149,12 +149,19 @@
                       ColumnSpacing="12">
                     <Label Text="{Binding SelectedExample.DisplayName}"
                            Style="{StaticResource ExampleHeaderStyle}" />
-                    <telerik:RadButton Grid.Column="1"
-                                       Text="View Code"
-                                       Command="{Binding NavigateToExampleCodeCommand}"
-                                       CommandParameter="{Binding SelectedExample}"
-                                       ImageSource="viewcode.png"
-                                       Style="{StaticResource ViewCodeButtonStyle}"/>
+                    <HorizontalStackLayout Grid.Column="1" Spacing="8">
+                        <telerik:RadButton Text="Theme Settings"
+                                           Command="{Binding NavigateToThemeSettingsCommand}"
+                                           CommandParameter="{Binding SelectedExample}"
+                                           ImageSource="palette.png"
+                                           Style="{StaticResource ViewCodeButtonStyle}"
+                                           IsVisible="{Binding IsThemeSettingsVisible}" />
+                        <telerik:RadButton Text="View Code"
+                                           Command="{Binding NavigateToExampleCodeCommand}"
+                                           CommandParameter="{Binding SelectedExample}"
+                                           ImageSource="viewcode.png"
+                                           Style="{StaticResource ViewCodeButtonStyle}"/>
+                    </HorizontalStackLayout>
                     <telerik:RadBorder x:Name="exampleContainer"
                                        Content="{Binding SelectedExample, Converter={StaticResource ModelToViewConverter}}"
                                        Grid.Row="1"

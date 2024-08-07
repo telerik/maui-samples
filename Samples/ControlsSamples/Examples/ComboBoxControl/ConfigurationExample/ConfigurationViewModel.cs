@@ -8,6 +8,7 @@ namespace QSF.Examples.ComboBoxControl.ConfigurationExample;
 public class ConfigurationViewModel : ExampleViewModel
 {
     private bool isEditable;
+    private bool isFilteringEnabled;
     private bool openOnFocus = true;
     private bool isDropDownClosedOnSelection = true;
     private bool isDropDownOpen;
@@ -36,6 +37,12 @@ public class ConfigurationViewModel : ExampleViewModel
     {
         get => this.isEditable;
         set => this.UpdateValue(ref this.isEditable, value);
+    }
+
+    public bool IsFilteringEnabled
+    {
+        get => this.isFilteringEnabled;
+        set => this.UpdateValue(ref this.isFilteringEnabled, value);
     }
 
     public bool OpenOnFocus

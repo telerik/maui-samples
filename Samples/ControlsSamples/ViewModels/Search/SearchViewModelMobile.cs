@@ -7,14 +7,18 @@ namespace QSF.ViewModels;
 
 public class SearchViewModelMobile : PageViewModel
 {
+    private string searchText;
     private HighlightedSearchResult selectedSearchResult;
+
+    public string SearchText
+    {
+        get => this.searchText;
+        set => this.UpdateValue(ref this.searchText, value);
+    }
 
     public HighlightedSearchResult SelectedSearchResult
     {
-        get
-        {
-            return this.selectedSearchResult;
-        }
+        get => this.selectedSearchResult;
         set
         {
             if (this.UpdateValue(ref this.selectedSearchResult, value))

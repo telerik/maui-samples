@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:styles="clr-namespace:QSF.Styles"
+             xmlns:local="clr-namespace:QSF.Examples.CollectionViewControl.GridLayoutExample"
+             x:Class="QSF.Examples.CollectionViewControl.GridLayoutExample.ConfigurationArea">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <styles:ConfigurationViewResources />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+    <VerticalStackLayout Style="{StaticResource RootAtSeparateAreaStyle}">
+       <VerticalStackLayout Style="{StaticResource GroupAtSeparateAreaStyle}">
+            <Label Text="Span Count:"
+                   Style="{StaticResource VerticalGroupLabelStyle}" />
+            <telerik:RadNumericInput x:Name="spanCountNumeric"
+                                     Value="{Binding SpanCount}"
+                                     Minimum="2"
+                                     Maximum="5"
+                                     Step="1"
+                                     HorizontalOptions="Fill"
+                                     AutomationId="spanCountNumeric" />
+       </VerticalStackLayout>
+       <VerticalStackLayout Style="{StaticResource GroupAtSeparateAreaStyle}">
+            <Label Text="Vertical Item Spacing:"
+                   Style="{StaticResource VerticalGroupLabelStyle}" />
+            <telerik:RadNumericInput x:Name="verticalItemSpacingNumeric"
+                                     Value="{Binding VerticalItemSpacing}"
+                                     Minimum="0"
+                                     Maximum="48"
+                                     Step="4"
+                                     HorizontalOptions="Fill"
+                                     AutomationId="verticalItemSpacingNumeric" />
+       </VerticalStackLayout>
+       <VerticalStackLayout Style="{StaticResource GroupAtSeparateAreaStyle}">
+            <Label Text="Horizontal Item Spacing:"
+                   Style="{StaticResource VerticalGroupLabelStyle}" />
+            <telerik:RadNumericInput x:Name="horizontalItemSpacingNumeric"
+                                     Value="{Binding HorizontalItemSpacing}"
+                                     Minimum="0"
+                                     Maximum="48"
+                                     Step="4"
+                                     HorizontalOptions="Fill"
+                                     AutomationId="horizontalItemSpacingNumeric" />
+       </VerticalStackLayout>
+    </VerticalStackLayout>
+</ContentView>

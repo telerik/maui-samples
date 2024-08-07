@@ -11,9 +11,14 @@
                                                      FontFamily="TelerikFontExamples"
                                                      Size="16" />
 
-        <Style TargetType="telerik:NavigationViewHeader" x:Key="MyMailTextStyle">
+        <Style TargetType="telerik:RadCollectionViewItemView">
+            <Setter Property="BorderColor" Value="{OnPlatform Default={StaticResource DefaultBorderColor}, MacCatalyst=#0D000000, WinUI={StaticResource DefaultBorderColorWinUI}}" />
+            <Setter Property="BorderThickness" Value="0, 0, 0, 1" />
+        </Style>
+
+        <Style x:Key="MyMailTextStyle" TargetType="telerik:NavigationViewHeader">
             <Setter Property="FontAttributes" Value="Bold" />
-            <Setter Property="BorderColor" Value="{AppThemeBinding Light={StaticResource DefaultBorderColor}, Dark={StaticResource DefaultBorderColorDark}}" />
+            <Setter Property="BorderColor" Value="{OnPlatform Default={StaticResource DefaultBorderColor}, MacCatalyst=#0D000000, WinUI={StaticResource DefaultBorderColorWinUI}}" />
             <Setter Property="BorderThickness" Value="0, 0, 1, 1" />
         </Style>
 
@@ -57,36 +62,38 @@
         </DataTemplate>
 
         <DataTemplate x:Key="MailTemplate">
-            <telerik:ListViewTemplateCell>
-                <telerik:ListViewTemplateCell.View>
-                    <Grid RowDefinitions="Auto">
-                        <Grid RowDefinitions="Auto, Auto, Auto"
-                              RowSpacing="4"
-                              Padding="8">
-                            <Label Text="{Binding Sender}"
-                                   Style="{StaticResource BaseLabelStyle}"
-                                   FontAttributes="Bold"
-                                   Margin="0, 0, 60, 0" />
-                            <Label Grid.Row="1"
-                                   Text="{Binding Title}"
-                                   Style="{StaticResource BaseLabelStyle}" />
-                            <Label Grid.Row="2"
-                                   Text="{Binding Description}"
-                                   Style="{StaticResource PlaceholderLabelStyle}" />
-                        </Grid>
-                        <Label Text="{Binding Date}"
-                               Style="{StaticResource PlaceholderLabelStyle}"
-                               VerticalOptions="Start" 
-                               HorizontalOptions="End"
-                               Margin="0, 8, 8, 0" />
-                    </Grid>
-                </telerik:ListViewTemplateCell.View>
-            </telerik:ListViewTemplateCell>
+            <Grid RowDefinitions="Auto, Auto, Auto"
+                  ColumnDefinitions="*, Auto"
+                  ColumnSpacing="8"
+                  RowSpacing="4"
+                  Padding="16, 8">
+                <Label Text="{Binding Sender}"
+                       Style="{StaticResource BaseLabelStyle}"
+                       FontAttributes="Bold"
+                       FontSize="16"
+                       MaxLines="1"
+                       LineBreakMode="TailTruncation" />
+                <Label Grid.Row="1"
+                       Grid.ColumnSpan="2"
+                       Text="{Binding Title}"
+                       Style="{StaticResource BaseLabelStyle}"
+                       MaxLines="1"
+                       LineBreakMode="TailTruncation" />
+                <Label Grid.Row="2"
+                       Grid.ColumnSpan="2"
+                       Text="{Binding Description}"
+                       Style="{StaticResource PlaceholderLabelStyle}"
+                       FontSize="12"
+                       MaxLines="1"
+                       LineBreakMode="TailTruncation" />
+                <Label Grid.Column="1"
+                       Text="{Binding Date}"
+                       Style="{StaticResource PlaceholderLabelStyle}"
+                       FontSize="12"
+                       VerticalOptions="Start"
+                       HorizontalOptions="End" />
+            </Grid>
         </DataTemplate>
-
-        <telerik:ListViewItemStyle x:Key="NonSelectableItemStyle"
-                                   BackgroundColor="Transparent"
-                                   BorderColor="Transparent" />
 
         <example:NavigationItemTemplateSelector x:Key="ItemTemplateSelector"
                                                 CountTemplate="{StaticResource CountTemplate}"
@@ -105,21 +112,10 @@
                                BorderThickness="1"
                                BorderColor="{AppThemeBinding Light={StaticResource DefaultBorderColor}, Dark={StaticResource DefaultBorderColorDark}}">
         <telerik:RadNavigationView.Content>
-            <telerik:RadListView ItemsSource="{Binding Mails}"
-                                 ItemTemplate="{StaticResource MailTemplate}"
-                                 SelectedItemStyle="{StaticResource NonSelectableItemStyle}"
-                                 PressedItemStyle="{StaticResource NonSelectableItemStyle}"
-                                 SelectionMode="None">
-                <telerik:RadListView.ItemStyle>
-                    <telerik:ListViewItemStyle BackgroundColor="Transparent"
-                                               BorderColor="{AppThemeBinding Light={StaticResource DefaultBorderColor}, Dark={StaticResource DefaultBorderColorDark}}"
-                                               BorderWidth="1"
-                                               BorderLocation="Bottom" />
-                </telerik:RadListView.ItemStyle>
-                <telerik:RadListView.FilterDescriptors>
-                    <telerik:ListViewDelegateFilterDescriptor Filter="{Binding ItemFilter}" />
-                </telerik:RadListView.FilterDescriptors>
-            </telerik:RadListView>
+            <telerik:RadCollectionView ItemsSource="{Binding Mails}"
+                                       ItemTemplate="{StaticResource MailTemplate}"
+                                       SelectionMode="None"
+                                       FilterDescriptors="{Binding FilterDescriptors}" />
         </telerik:RadNavigationView.Content>
     </telerik:RadNavigationView>
 </telerik:RadContentView>

@@ -1,19 +1,39 @@
-﻿using Microsoft.Maui.Controls;
+using Microsoft.Maui.Controls;
+using Telerik.AppUtils.Services;
 using QSF.ViewModels;
-using System;
-using System.ComponentModel;
+#if IOS
+using UIKit;
+#endif
 
 namespace QSF.Pages;
 
 public partial class MainPageMobile : ContentPage
 {
-    private int tapCounter;
+    private ITestingService testingService;
 
-    public MainPageMobile()
+    public MainPageMobile(ITestingService testingService)
     {
+        this.testingService = testingService;
+        this.BindingContext = new HomeViewModel(testingService);
         this.InitializeComponent();
 
-        this.BindingContext = new HomeViewModel();
+        this.Loaded += this.OnLoaded;
+    }
+
+    private void OnLoaded(object sender, EventArgs args)
+    {
+        this.Loaded -= OnLoaded;
+
+        if (DependencyService.Get<ITestingService>().IsAppUnderTest)
+        {
+            HomeViewModel vm = (HomeViewModel)this.BindingContext;
+#if IOS
+            // TRICKY: Pushing a non-animated page on startup will screw up the page navigation in iOS.
+            vm.NavigationService.NavigateToExampleAsync(vm.Examples[0], animated: true);
+#else
+            vm.NavigationService.NavigateToExampleAsync(vm.Examples[0], animated: false);
+#endif
+        }
     }
 
     private void Settings_Clicked(object sender, EventArgs e)
@@ -28,18 +48,9 @@ public partial class MainPageMobile : ContentPage
         vm.NavigateToSearch();
     }
 
-    private void controlsListView_ItemTapped(object sender, Telerik.Maui.Controls.Compatibility.DataControls.ListView.ItemTapEventArgs e)
+    private void controlsCollectionView_ItemTapped(object sender, Telerik.Maui.RadTappedEventArgs<object> e)
     {
         HomeViewModel vm = (HomeViewModel)this.BindingContext;
-        vm?.SelectControlCommand?.Execute(e.Item);
-    }
-
-    private void OnTitleLabelTapped(object sender, EventArgs e)
-    {
-        this.tapCounter++;
-        if (this.tapCounter > 8)
-        {
-            ((HomeViewModel)this.BindingContext).IsTestSearchEntryVisible = true;
-        }
+        vm?.SelectControlCommand?.Execute(e.Data);
     }
 }

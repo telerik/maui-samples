@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.CollectionViewControl"
+             x:Class="SDKBrowserMaui.Examples.CollectionViewControl.HeaderAndFooterCategory.HeaderAndFooterExample.HeaderAndFooter">
+    <!-- >> collectionview-header-footer -->
+    <telerik:RadCollectionView x:Name="collectionView"
+                               ItemsSource="{Binding Locations}"
+                               DisplayMemberPath="City"
+                               SelectionMode="Single">
+        <telerik:RadCollectionView.HeaderTemplate>
+            <DataTemplate>
+                <telerik:RadBorder BorderColor="BlueViolet"
+                                   BorderThickness="0, 1"
+                                   BackgroundColor="#F3F3F3">
+                    <Grid ColumnDefinitions="Auto, *">
+                        <Label Text="Selected city: "
+                               TextColor="BlueViolet"
+                               Margin="10" />
+                        <Label Text="{Binding SelectedItem.City, Source={x:Reference collectionView}}"
+                               TextColor="BlueViolet"
+                               Grid.Column="1"
+                               Margin="10"/>
+                    </Grid>
+                </telerik:RadBorder>
+            </DataTemplate>
+        </telerik:RadCollectionView.HeaderTemplate>
+        <telerik:RadCollectionView.FooterTemplate>
+            <DataTemplate>
+                <telerik:RadBorder BorderColor="PaleVioletRed"
+                                   BorderThickness="0, 1"
+                                   BackgroundColor="#F3F3F3">
+                    <Grid ColumnDefinitions="Auto, *">
+                        <Label Text="Total cities: "
+                               Margin="10"
+                               TextColor="PaleVioletRed"/>
+                        <Label Text="{Binding ItemsSource.Count, Source={x:Reference collectionView}}"
+                               Grid.Column="1"
+                               Margin="10"
+                               TextColor="PaleVioletRed"/>
+                    </Grid>
+                </telerik:RadBorder>
+            </DataTemplate>
+        </telerik:RadCollectionView.FooterTemplate>
+        <telerik:RadCollectionView.BindingContext>
+            <local:ViewModel />
+        </telerik:RadCollectionView.BindingContext>
+    </telerik:RadCollectionView>
+    <!-- << collectionview-header-footer -->
+</ContentView>

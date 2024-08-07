@@ -14,14 +14,16 @@ public class VariousDataSourcesViewModel : ConfigurationExampleViewModel
 {
     private DataSourcesTypes dataSourcesType = DataSourcesTypes.DataTable;
     private DataTable dataTableSource;
+#if WINDOWS || ANDROID
     private ObservableCollection<ExpandoObject> expandoObjectsSource;
     private ObservableCollection<DynamicObject> dynamicObjectsSource;
+#endif
     private ObservableItemCollection<SalesPerson> salesPeople;
     private object items;
 
     public VariousDataSourcesViewModel()
     {
-        this.salesPeople = DataGenerator.GetItems<ObservableItemCollection<SalesPerson>>(ResourcePaths.PeoplePath);
+        this.salesPeople = DataGenerator.GetSalesPersonItemCollection();
         this.UpdateDataSource();
     }
 

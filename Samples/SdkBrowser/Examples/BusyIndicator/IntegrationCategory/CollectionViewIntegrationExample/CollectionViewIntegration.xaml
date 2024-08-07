@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.BusyIndicatorControl.IntegrationCategory.CollectionViewIntegrationExample.CollectionViewIntegration">
+    <!-- >> busyindicator-withcollectionview-xaml -->
+    <Grid RowDefinitions="40, *"
+          RowSpacing="10">
+        <telerik:RadButton Text="Load Data" 
+                           Command="{Binding LoadDataCommand}" />
+        <telerik:RadBusyIndicator x:Name="busyIndicator"
+                                  ContentUnderOpacity="0.4"
+                                  AnimationContentHeightRequest="100"
+                                  AnimationContentWidthRequest="100"
+                                  IsBusy="{Binding IsLoading}"
+                                  Grid.Row="1">
+            <telerik:RadCollectionView ItemsSource="{Binding Source}"
+                                       DisplayMemberPath="Title" />
+        </telerik:RadBusyIndicator>
+    </Grid>
+    <!-- << busyindicator-withcollectionview-xaml -->
+</ContentView>

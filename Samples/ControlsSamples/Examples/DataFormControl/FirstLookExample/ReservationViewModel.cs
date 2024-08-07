@@ -1,6 +1,9 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.Maui.Controls;
+using QSF.Services;
 using Telerik.Maui.Controls;
+using Telerik.AppUtils.Services;
 
 namespace QSF.Examples.DataFormControl.FirstLookExample;
 
@@ -16,7 +19,7 @@ public class ReservationViewModel : NotifyPropertyChangedBase
 
     public ReservationViewModel()
     {
-        var currentTime = DateTime.Now;
+        var currentTime = DependencyService.Get<ITestingService>().DateTimeNow(new DateTime(2024, 6, 5, 20, 3, 15, DateTimeKind.Utc));
 
         this.Date = DateOnly.FromDateTime(currentTime);
         this.Time = TimeOnly.FromDateTime(currentTime);

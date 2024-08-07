@@ -16,13 +16,6 @@
             <telerik:RadListPicker.BindingContext>
                 <local:CitiesViewModel/>
             </telerik:RadListPicker.BindingContext>
-            <telerik:RadListPicker.ItemTemplate>
-                <DataTemplate>
-                    <Label Text="{Binding Name}" 
-                           HorizontalTextAlignment="Center" 
-                           VerticalTextAlignment="Center"/>
-                </DataTemplate>
-            </telerik:RadListPicker.ItemTemplate>
         </telerik:RadListPicker>
         <!-- << listpicker-features-looping -->
     </VerticalStackLayout>

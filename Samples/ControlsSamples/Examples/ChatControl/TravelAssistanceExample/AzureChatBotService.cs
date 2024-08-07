@@ -1,9 +1,10 @@
-﻿using Newtonsoft.Json;
-using QSF.Examples.ChatControl.TravelAssistanceExample.Models;
+﻿using QSF.Examples.ChatControl.TravelAssistanceExample.Models;
 using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -37,7 +38,7 @@ public class AzureChatBotService
     private async void SetupConversation()
     {
         Conversation conversation = new Conversation();
-        HttpContent contentPost = new StringContent(JsonConvert.SerializeObject(conversation), Encoding.UTF8, "application/json");
+        HttpContent contentPost = new StringContent(JsonSerializer.Serialize(conversation), Encoding.UTF8, "application/json");
 
         try
         {
@@ -45,7 +46,8 @@ public class AzureChatBotService
             if (response.IsSuccessStatusCode)
             {
                 string conversationInfo = await response.Content.ReadAsStringAsync();
-                this.lastConversation = JsonConvert.DeserializeObject<Conversation>(conversationInfo);
+                var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+                this.lastConversation = JsonSerializer.Deserialize<Conversation>(conversationInfo, options);
                 await Task.Delay(2000);
                 await this.ReadBotMessagesAsync();
             }
@@ -67,7 +69,7 @@ public class AzureChatBotService
             Type = "message"
         };
 
-        StringContent contentPost = new StringContent(JsonConvert.SerializeObject(messageToSend), Encoding.UTF8, "application/json");
+        StringContent contentPost = new StringContent(JsonSerializer.Serialize(messageToSend), Encoding.UTF8, "application/json");
         string conversationUrl = AzureChatBotService.BotBaseAddress + this.lastConversation.ConversationId + "/activities";
 
         try
@@ -86,7 +88,8 @@ public class AzureChatBotService
         using (HttpResponseMessage messagesReceived = await this.httpClient.GetAsync(conversationUrl, HttpCompletionOption.ResponseContentRead))
         {
             string messagesReceivedData = await messagesReceived.Content.ReadAsStringAsync();
-            ActivityRoot messagesRoot = JsonConvert.DeserializeObject<ActivityRoot>(messagesReceivedData);
+            var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+            ActivityRoot messagesRoot = JsonSerializer.Deserialize<ActivityRoot>(messagesReceivedData, options);
 
             if (messagesRoot != null)
             {

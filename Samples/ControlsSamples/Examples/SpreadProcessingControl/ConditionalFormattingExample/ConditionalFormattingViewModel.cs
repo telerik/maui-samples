@@ -315,8 +315,7 @@ namespace QSF.Examples.SpreadProcessingControl.ConditionalFormattingExample
         private void AddShippingRule(Worksheet sheet)
         {
             ConditionalFormattingDxfRule shippingRule = null;
-            shippingRule = new ContainsRule(this.SelectedShippingTerm);
-            shippingRule.Formatting = new DifferentialFormatting();
+            shippingRule = new ContainsRule(this.SelectedShippingTerm, new DifferentialFormatting());
             ThemableColor color = new ThemableColor(Colors.Green);
             shippingRule.Formatting.ForeColor = color;
             shippingRule.Formatting.IsBold = true;
@@ -330,10 +329,10 @@ namespace QSF.Examples.SpreadProcessingControl.ConditionalFormattingExample
             switch (this.SelectedPriceFilter)
             {
                 case PriceFilter.Bottom:
-                    totalPriceRule = new BottomRule(ConditionalFormattingUnit.Items, this.PriceRank);
+                    totalPriceRule = new BottomRule(ConditionalFormattingUnit.Items, this.PriceRank, new DifferentialFormatting());
                     break;
                 case PriceFilter.Top:
-                    totalPriceRule = new TopRule(ConditionalFormattingUnit.Items, this.PriceRank);
+                    totalPriceRule = new TopRule(ConditionalFormattingUnit.Items, this.PriceRank, new DifferentialFormatting());
                     break;
             }
 
@@ -353,16 +352,16 @@ namespace QSF.Examples.SpreadProcessingControl.ConditionalFormattingExample
             switch (this.SelectedDiscountComparison)
             {
                 case DiscountComparison.GreaterThan:
-                    discountRule = new GreaterThanRule(this.discountThreshold.ToString());
+                    discountRule = new GreaterThanRule(this.discountThreshold.ToString(), new DifferentialFormatting());
                     break;
                 case DiscountComparison.GreaterThanOrEqual:
-                    discountRule = new GreaterThanOrEqualToRule(this.discountThreshold.ToString());
+                    discountRule = new GreaterThanOrEqualToRule(this.discountThreshold.ToString(), new DifferentialFormatting());
                     break;
                 case DiscountComparison.LessThan:
-                    discountRule = new LessThanRule(this.discountThreshold.ToString());
+                    discountRule = new LessThanRule(this.discountThreshold.ToString(), new DifferentialFormatting());
                     break;
                 case DiscountComparison.LessThanOrEqual:
-                    discountRule = new LessThanOrEqualToRule(this.discountThreshold.ToString());
+                    discountRule = new LessThanOrEqualToRule(this.discountThreshold.ToString(), new DifferentialFormatting());
                     break;
             }
 
@@ -380,11 +379,11 @@ namespace QSF.Examples.SpreadProcessingControl.ConditionalFormattingExample
             ConditionalFormattingDxfRule clientsFormatting;
             if (this.SelectedClientsRule == ClientsRule.Duplicate)
             {
-                clientsFormatting = new DuplicateValuesRule();
+                clientsFormatting = new DuplicateValuesRule(new DifferentialFormatting());
             }
             else
             {
-                clientsFormatting = new UniqueValuesRule();
+                clientsFormatting = new UniqueValuesRule(new DifferentialFormatting());
             }
 
             clientsFormatting.Formatting = new DifferentialFormatting();

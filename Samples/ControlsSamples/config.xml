@@ -42,7 +42,6 @@
 		<Control>
 			<Name>AIPrompt</Name>
 			<DisplayName>AIPrompt</DisplayName>
-			<Status>New</Status>
 			<ShortDescription>Helps integrating Large Language Model (LLM) technology into MAUI applications, adding artificial intelligence features.</ShortDescription>
 			<FullDescription>Telerik UI for .NET MAUI AIPrompt component helps integrating Large Language Model (LLM) technology into MAUI applications, adding artificial intelligence features.</FullDescription>
 			<Examples>
@@ -78,7 +77,6 @@
 					<Page>ConfigurationView</Page>
 					<DisplayName>Configuration</DisplayName>
 					<Description>This example presents the various configuration options that the RadAutoComplete provides. You can change the control's search threshold, suggestion mode, whether the clear button will be visible, etc.</Description>
-					<Status>New</Status>
 				</Example>
 			</Examples>
 		</Control>
@@ -194,7 +192,7 @@
 				</Example>
 				<Example>
 					<Name>Customization</Name>
-					<Status>New</Status>
+					<Status>Updated</Status>
 					<Page>CustomizationView</Page>
 					<DisplayName>Customization</DisplayName>
 					<Description>This example presents the customization capabilities of the supported types of buttons present in Telerik UI for .NET MAUI.</Description>
@@ -356,7 +354,6 @@
 
 		<Control>
 			<Name>CollectionView</Name>
-			<Status>New</Status>
 			<DisplayName>CollectionView</DisplayName>
 			<ShortDescription>Enables users to display a scrollable list of selectable items with flexible customization options.</ShortDescription>
 			<FullDescription>The Telerik .NET MAUI CollectionView is a virtualizing view component for presenting a list of data. The control provides features like single and multiple selection, sorting, grouping, filtering, empty template, and more.</FullDescription>
@@ -371,7 +368,58 @@
 					<Name>Grouping</Name>
 					<Page>GroupingView</Page>
 					<DisplayName>Grouping</DisplayName>
-					<Description>Demonstrates the Grouping feature of the CollectionView. In addition, the items are grouped by multiple properties which shows the multi-level grouping scenario.</Description>
+					<Description>Demonstrates the ability to group the data by a single or multiple properties using GroupDescriptors. In this example, a multi-level grouping scenario is showcased.</Description>
+				</Example>
+				<Example>
+					<Name>GridLayout</Name>
+					<Page>GridLayoutView</Page>
+					<DisplayName>Grid Layout</DisplayName>
+					<Description>Demonstrates the ability to display the items in a horizontal or vertical grid layout. In this example, a vertical grid layout is showcased.</Description>
+					<Status>New</Status>
+					<IsConfigurable>true</IsConfigurable>
+				</Example>
+				<Example>
+					<Name>HeaderFooter</Name>
+					<Page>HeaderFooterView</Page>
+					<DisplayName>Header &amp; Footer</DisplayName>
+					<Description>Demonstrates the ability to define custom HeaderTemplate &amp; FooterTemplate. Both the header and footer are part of the scrollable area of the RadCollectionView - might need to scroll it to reveal them.</Description>
+					<Status>New</Status>
+				</Example>
+				<Example>
+					<Name>DragDrop</Name>
+					<Page>DragDropView</Page>
+					<DisplayName>Drag &amp; Drop</DisplayName>
+					<Description>Demonstrates the ability to drag and drop between multiple CollectionView instances.</Description>
+					<Status>New</Status>
+				</Example>
+				<Example>
+					<Name>DragVisualTemplate</Name>
+					<Page>DragVisualTemplateView</Page>
+					<DisplayName>Drag Visual Template</DisplayName>
+					<Description>Demonstrates the ability to define a custom DragVisualTemplate which is displayed when an item is dragged.</Description>
+					<Status>New</Status>
+				</Example>
+				<Example>
+					<Name>LoadOnDemand</Name>
+					<Page>LoadOnDemandView</Page>
+					<DisplayName>Load On Demand</DisplayName>
+					<Description>Demonstrates the support for incremental data loading at the time when the user requires the items to be visualized.</Description>
+					<Status>New</Status>
+					<IsConfigurable>true</IsConfigurable>
+				</Example>
+				<Example>
+					<Name>PullToRefresh</Name>
+					<Page>PullToRefreshView</Page>
+					<DisplayName>Pull to Refresh</DisplayName>
+					<Description>Demonstrates the ability to refresh the data by using the pull to refresh functionality.</Description>
+					<Status>New</Status>
+				</Example>
+				<Example>
+					<Name>ItemSwipe</Name>
+					<Page>ItemSwipeView</Page>
+					<DisplayName>Item Swipe</DisplayName>
+					<Description>Demonstrates the ability to swipe an item to reveal its actionable content.</Description>
+					<Status>New</Status>
 				</Example>
 				<Example>
 					<Name>Configuration</Name>
@@ -379,6 +427,7 @@
 					<DisplayName>Configuration</DisplayName>
 					<IsConfigurable>true</IsConfigurable>
 					<Description>This example presents the various configuration options that the RadCollectionView provides. You can change the control's layout orientation, item size and spacing, selection mode, etc.</Description>
+					<Status>Updated</Status>
 				</Example>
 			</Examples>
 		</Control>
@@ -394,6 +443,13 @@
 					<Page>FirstLookView</Page>
 					<DisplayName>First Look</DisplayName>
 					<Description>Telerik UI for .NET MAUI ComboBox allows users to select item/items from a drop-down list of items. The control has a number of features such as editing, searching, single and multiple selection, flexible styling API, dropdown customizations, and more.</Description>
+				</Example>
+				<Example>
+					<Name>Filtering</Name>
+					<Page>FilteringView</Page>
+					<DisplayName>Filtering</DisplayName>
+					<Description>Demonstrates the ability to perform advanced filtering by highlighting the first filtered item or the full match. Provides configuration options as well - e.g. case-sensitivity, customization of colors and templates (NoResultsTemplate).</Description>
+					<Status>New</Status>
 				</Example>
 				<Example>
 					<Name>Configuration</Name>
@@ -443,7 +499,6 @@
 					<Page>FirstLookView</Page>
 					<DisplayName>First Look</DisplayName>
 					<Description>Telerik UI for .NET MAUI DataGrid control provides the ability to easily perform operations like sorting, filtering, grouping and editing over the underlying data.</Description>
-					<Status>Updated</Status>
 				</Example>
 				<Example>
 					<Name>FrozenColumns</Name>
@@ -470,13 +525,11 @@
 					<Page>ColumnTypesView</Page>
 					<DisplayName>Column Types</DisplayName>
 					<Description>Demonstrates the different type of columns that DataGrid control provides. Column types such as Text, Boolean, Template, Date, Time, Numeric.</Description>
-					<Status>Updated</Status>
 				</Example>
 				<Example>
 					<Name>DataFormatting</Name>
 					<Page>DataFormattingView</Page>
 					<DisplayName>Data Formatting</DisplayName>
-					<Status>New</Status>
 					<Description>Demonstrates the custom data formatting supported by the .NET MAUI DataGrid. This allows displaying of the data as currency, percentage or any other format. You can also use a custom value converter to display data in a readable way. The data formatting is set through the DataGridColumn DataMemberBinding property.</Description>
 				</Example>
 				<Example>
@@ -499,7 +552,6 @@
 					<DisplayName>Various Data Sources</DisplayName>
 					<IsConfigurable>true</IsConfigurable>
 					<Description>Demonstrates how you can easily populate DataGrid from an ObservableCollection, a DataTable or from a collection of expando or dynamic objects.</Description>
-					<Status>Updated</Status>
 				</Example>
 				<Example>
 					<Name>EmptyTemplate</Name>
@@ -525,7 +577,6 @@
 					<Name>SearchAsYouType</Name>
 					<Page>SearchAsYouTypeView</Page>
 					<DisplayName>Search as You Type</DisplayName>
-					<Status>New</Status>
 					<IsConfigurable>true</IsConfigurable>
 					<Description>Demonstrates the ability to search for specific data within the DataGrid by using its built-in search funcionality. The default behavior is to search as you type, but it can also be performed when the end user finishes typing and presses Enter. The search panel exposes many search settings enabled by its options button (the three dots). For MacCatalyst / WinUI it can be shown by Command / Control + F keyboard combination. Additional search settings can be checked in the configuration area of this example.</Description>
 				</Example>
@@ -737,7 +788,6 @@
 					<Description>The Telerik UI for .NET MAUI NavigationView is an adaptive control, used to build a consistent navigational experience. It features different options for displaying the navigation pane, adding header and footer to the pane and flexible customization API.</Description>
 				</Example>
 				<Example>
-					<Status>New</Status>
 					<Name>DataBinding</Name>
 					<Page>DataBindingView</Page>
 					<DisplayName>Data Binding</DisplayName>
@@ -840,7 +890,6 @@
 					<Name>Customization</Name>
 					<Page>CustomizationView</Page>
 					<DisplayName>Customization</DisplayName>
-					<Status>New</Status>
 					<Description>This example showcases the ease with which the visual appearance of the PDFViewer toolbar and search settings can be customized. By simply adjusting the color, alignment, and positioning of items, you can personalize the look and feel of the PDFViewer according to your preferences.</Description>
 				</Example>
 				<Example>
@@ -958,7 +1007,6 @@
 				<Example>
 					<Name>CustomContextMenu</Name>
 					<Page>CustomContextMenuView</Page>
-					<Status>New</Status>
 					<DisplayName>Custom Context Menu</DisplayName>
 					<Description>The RichTextEditor for .NET MAUI allows you to customize its context menu by defining custom commands or adding different built-in context menu items. This example demonstrates how to change the default context menu by adding different built in and custom context menu items.</Description>
 				</Example>
@@ -981,14 +1029,12 @@
 					<Name>CustomDateFormats</Name>
 					<Page>CustomDateFormatsView</Page>
 					<DisplayName>Custom Date Formats</DisplayName>
-					<Status>New</Status>
 					<Description>This example presents the various date formatting settings that the RadScheduler provides. Using the DayStringFormat, TimeRulerMajorTickStringFormat and WeekDayStringFormat properties, each Telerik Scheduler view can be customized to display the dates and times on the time ruler and across the view in custom formats .</Description>
 				</Example>
 				<Example>
 					<Name>Customization</Name>
 					<Page>CustomizationView</Page>
 					<DisplayName>Dialogs Customization</DisplayName>
-					<Status>New</Status>
 					<Description>This example presents the ability to modify the built-in dialogs with which you can preview, create, update or delete a particular or series of events. By overriding the default dialog templates you can effectively tailor and enhance both the user experience and interface according to the needs of your scheduling scenarios. In this example, an additional option for specifying the Location of an appointment is added to the create/edit appointment dialog and the default look of the appointment is modified based on it.</Description>
 				</Example>
 				<Example>
@@ -1048,7 +1094,6 @@
 
 		<Control>
 			<Name>Slider</Name>
-			<Status>New</Status>
 			<DisplayName>Slider</DisplayName>
 			<ShortDescription>A flexible UI component that allows users to select a value from a defined range using a smooth or step-based sliding.</ShortDescription>
 			<FullDescription>Telerik UI for .NET MAUI Slider is a flexible UI component that allows users to select a value from a defined range. It is completely customizable in terms of appearance and offers numerous configuration options.</FullDescription>
@@ -1244,6 +1289,12 @@
 					<Description>This example demonstrates how the RadTreeView component can be used within your application to organize your inbox messages in a tree-like folder structure.</Description>
 				</Example>
 				<Example>
+					<Name>LoadOnDemand</Name>
+					<Page>LoadOnDemandView</Page>
+					<DisplayName>Load on Demand</DisplayName>
+					<Description>This example demonstrates how to utilize the Load On Demand feature in order to delay the population of RadTreeView and load subitems only when they are requested, thus improving the performance of your application.</Description>
+				</Example>
+				<Example>
 					<Name>Customization</Name>
 					<Page>CustomizationView</Page>
 					<DisplayName>Customization</DisplayName>
@@ -1255,12 +1306,6 @@
 					<DisplayName>Configuration</DisplayName>
 					<IsConfigurable>true</IsConfigurable>
 					<Description>This example presents the various configuration options that the RadTreeView provides. Choose the selection and checkbox modes, adjust the indentations and determine whether to display the expand buttons and images of the items.</Description>
-				</Example>
-				<Example>
-					<Name>LoadOnDemand</Name>
-					<Page>LoadOnDemandView</Page>
-					<DisplayName>Load on Demand</DisplayName>
-					<Description>This example demonstrates how to utilize the Load On Demand feature in order to delay the population of RadTreeView and load subitems only when they are requested, thus improving the performance of your application.</Description>
 				</Example>
 			</Examples>
 		</Control>

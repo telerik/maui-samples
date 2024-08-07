@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.CollectionViewControl.PullToRefreshCategory.PullToRefreshExample"
+             x:Class="SDKBrowserMaui.Examples.CollectionViewControl.PullToRefreshCategory.PullToRefreshExample.PullToRefresh">
+    
+    <!-- >> collectionview-pull-to-refresh-xaml -->
+    <RefreshView IsRefreshing="{Binding IsRefreshing}"
+                 Command="{Binding RefreshCommand}">
+        <telerik:RadCollectionView ItemsSource="{Binding People}">
+            <telerik:RadCollectionView.ItemTemplate>
+                <DataTemplate>
+                    <VerticalStackLayout Spacing="2" Margin="5"
+                                         Padding="{Binding Source={RelativeSource AncestorType={x:Type telerik:RadCollectionViewItemView}}, Path=ActualPadding}">
+                        <Label Text="{Binding Name, StringFormat='Name: {0}, '}" 
+                               VerticalTextAlignment="Center" />
+                        <Label Text="{Binding Age, StringFormat='Age: {0}'}" 
+                               VerticalTextAlignment="Center" />
+                    </VerticalStackLayout>
+                </DataTemplate>
+            </telerik:RadCollectionView.ItemTemplate>
+        </telerik:RadCollectionView>
+        <RefreshView.BindingContext>
+            <local:ViewModel />
+        </RefreshView.BindingContext>
+    </RefreshView>
+    <!-- << collectionview-pull-to-refresh-xaml -->
+</ContentView>

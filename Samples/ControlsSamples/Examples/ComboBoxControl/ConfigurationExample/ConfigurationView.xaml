@@ -36,6 +36,7 @@
                                  DropDownWidth="{Binding Value, Source={Reference dropDownWidthSlider}}"
                                  DropDownVerticalOffset="{Binding Value, Source={x:Reference dropDownVerticalOffsetSlider}}"
                                  IsEditable="{Binding IsEditable}"
+                                 IsFilteringEnabled="{Binding IsFilteringEnabled}"
                                  IsDropDownClosedOnSelection="{Binding IsDropDownClosedOnSelection}"
                                  IsDropDownOpen="{Binding IsDropDownOpen, Mode=TwoWay}"
                                  IsClearButtonVisible="{Binding IsClearButtonVisible}"
@@ -71,6 +72,16 @@
                                     IsToggled="{Binding IsEditable}"
                                     Margin="{OnPlatform Default=0, WinUI='0, -2, 0, 0'}" 
                                     AutomationId="isEditableSwitch"/>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Is Filtering Enabled:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <Switch VerticalOptions="Center"
+                                    HorizontalOptions="Start"
+                                    IsEnabled="{Binding IsEditable}"
+                                    IsToggled="{Binding IsFilteringEnabled}"
+                                    Margin="{OnPlatform Default=0, WinUI='0, -2, 0, 0'}" 
+                                    AutomationId="isFilteringEnabledSwitch" />
                         </VerticalStackLayout>
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="Show Clear Button:"

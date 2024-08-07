@@ -4,17 +4,99 @@
              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
              x:Class="QSF.Examples.CollectionViewControl.ConfigurationExample.ConfigurationView"
              Padding="{OnIdiom Default='16, 20', Phone=0}">
-    <telerik:RadBorder BorderColor="{OnPlatform Default={StaticResource DefaultBorderColor}, MacCatalyst=#0D000000, WinUI={StaticResource DefaultBorderColorWinUI}}"
-                       BorderThickness="{OnPlatform Default=0, MacCatalyst=1, WinUI=1}">
-        <telerik:RadCollectionView x:Name="collectionView"
-                                   ItemsSource="{Binding Contacts}"
-                                   SelectionMode="{Binding SelectionMode, Mode=TwoWay}"
-                                   AutomationId="collectionView">
-            <telerik:RadCollectionView.ItemsLayout>
-                <telerik:CollectionViewLinearLayout ItemLength="{Binding ItemLength, Mode=TwoWay}"
-                                                    ItemSpacing="{Binding ItemSpacing, Mode=TwoWay}"
-                                                    Orientation="{Binding LayoutOrientation, Mode=TwoWay}" />
-            </telerik:RadCollectionView.ItemsLayout>
-        </telerik:RadCollectionView>
-    </telerik:RadBorder>
+    <ContentView.Resources>
+        <telerik:BoolToValueConverter x:Key="BoolToIconConverter" TrueValue="&#xe805;" FalseValue="" />
+        <telerik:BoolToValueConverter x:Key="InvertedBoolToIconConverter" TrueValue="&#xe801;" FalseValue="&#xe805;" />
+        <DataTemplate x:Key="StartSwipeItemTemplate">
+            <Grid Background="#3341A1"
+                  HorizontalOptions="Fill"
+                  VerticalOptions="Fill">
+                <Label FontFamily="TelerikFontExamples"
+                       FontSize="16"
+                       Text="{Binding IsFavorite, Converter={StaticResource InvertedBoolToIconConverter}}"
+                       TextColor="White"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"
+                       Padding="8, 0" />
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="UpdateIsFavoriteContact" />
+                </Grid.GestureRecognizers>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="EndSwipeItemTemplate">
+            <Grid Background="#FD5064"
+                  HorizontalOptions="Fill"
+                  VerticalOptions="Fill">
+                <Label FontFamily="TelerikFontExamples"
+                       FontSize="16"
+                       Text="&#xe827;"
+                       TextColor="White"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"
+                       Padding="8, 0" />
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="DeleteContact" />
+                </Grid.GestureRecognizers>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="ContactTemplate">
+            <Grid ColumnDefinitions="Auto, *"
+                  Padding="{Binding Source={RelativeSource AncestorType={x:Type telerik:RadCollectionViewItemView}}, Path=ActualPadding}">
+                <Label FontFamily="TelerikFontExamples"
+                       FontSize="12"
+                       TextColor="#FFA726"
+                       Text="{Binding IsFavorite, Converter={StaticResource BoolToIconConverter}}"
+                       VerticalTextAlignment="Center"
+                       Margin="0, 0, 4, 0" />
+                <Label Grid.Column="1"
+                       Text="{Binding Name}"
+                       VerticalTextAlignment="Center" />
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="NoContactsTemplate">
+            <Label Text="You don't have any contacts yet.&#10;Select 'Contacts' from the ComboBox at the top to add some."
+                   LineBreakMode="WordWrap"
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Center"
+                   Margin="20" />
+        </DataTemplate>
+        <Style TargetType="Label" BasedOn="{StaticResource BaseLabelStyle}" />
+    </ContentView.Resources>
+    <Grid RowDefinitions="Auto, *"
+          RowSpacing="20">
+        <Grid ColumnDefinitions="{OnPlatform Default='Auto, 300', Android='Auto, *', iOS='Auto, *'}"
+              ColumnSpacing="4"
+              Padding="{OnPlatform Android='16, 0', iOS='16, 0'}"
+              Margin="{OnPlatform Android='0, 24, 0, 0', iOS='0, 24, 0, 0'}"
+              HorizontalOptions="{OnPlatform MacCatalyst=Start, WinUI=Start}">
+            <Label Text="ItemsSource:"
+                   VerticalTextAlignment="Center" />
+            <telerik:RadComboBox Grid.Column="1"
+                                 ItemsSource="{Binding SourceTypes}"
+                                 SelectedItem="{Binding SelectedSourceType}"
+                                 IsClearButtonVisible="False"
+                                 AutomationId="itemsSourceCombo" />
+        </Grid>
+        <telerik:RadBorder Grid.Row="1"
+                           BorderColor="{OnPlatform Default={StaticResource DefaultBorderColor}, MacCatalyst=#0D000000, WinUI={StaticResource DefaultBorderColorWinUI}}"
+                           BorderThickness="{OnPlatform Default=0, MacCatalyst=1, WinUI=1}">
+            <telerik:RadCollectionView x:Name="collectionView"
+                                       ItemsSource="{Binding ItemsSource}"
+                                       ItemTemplate="{StaticResource ContactTemplate}"
+                                       SelectionMode="{Binding SelectionMode, Mode=TwoWay}"
+                                       EmptyContentTemplate="{StaticResource NoContactsTemplate}"
+                                       EmptyContentDisplayMode="{Binding EmptyContentDisplayMode, Mode=TwoWay}"
+                                       IsDragDropEnabled="{Binding IsDragDropEnabled, Mode=TwoWay}"
+                                       IsItemSwipeEnabled="{Binding IsItemSwipeEnabled, Mode=TwoWay}"
+                                       StartSwipeTemplate="{StaticResource StartSwipeItemTemplate}"
+                                       EndSwipeTemplate="{StaticResource EndSwipeItemTemplate}"
+                                       AutomationId="collectionView">
+                <telerik:RadCollectionView.ItemsLayout>
+                    <telerik:CollectionViewLinearLayout ItemLength="{Binding ItemLength, Mode=TwoWay}"
+                                                        ItemSpacing="{Binding ItemSpacing, Mode=TwoWay}"
+                                                        Orientation="{Binding LayoutOrientation, Mode=TwoWay}" />
+                </telerik:RadCollectionView.ItemsLayout>
+            </telerik:RadCollectionView>
+        </telerik:RadBorder>
+    </Grid>
 </ContentView>

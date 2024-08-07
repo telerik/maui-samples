@@ -11,6 +11,6 @@ public class CustomizationViewModel : ExampleViewModel
 
     public CustomizationViewModel()
     {
-        this.People = DataGenerator.GetItems<ObservableCollection<SalesPerson>>(ResourcePaths.PeoplePath);
+        this.People = DataGenerator.GetSalesPersonCollection();
     }
 }

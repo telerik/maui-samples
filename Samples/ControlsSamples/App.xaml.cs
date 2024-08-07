@@ -1,39 +1,93 @@
-﻿using Microsoft.Maui;
+﻿using System;
+using Microsoft.Maui;
 using Microsoft.Maui.Controls;
 using Microsoft.Maui.Devices;
 using Microsoft.Maui.Graphics;
 using Microsoft.Maui.Handlers;
+using Telerik.Maui.Controls;
+using Telerik.AppUtils.Services;
 using QSF.Common;
 using QSF.Pages;
 using QSF.Services;
-using System;
-using Telerik.Maui.Controls;
 using Application = Microsoft.Maui.Controls.Application;
+using System.Threading.Tasks;
+using QSF.ViewModels;
+using System.Linq;
+using System.Collections.Generic;
+using System.Text.Json;
 
 namespace QSF;
 
 public partial class App : Application
 {
-    public App()
+    public App(ITestingService testingService)
     {
+#if ANDROID
+        // Setting the AccentColor from the Maui world here is needed
+        // since the moment we try to access it from native Android is too early.
+        Application.AccentColor = Color.FromArgb("#2B0B98");
+#endif
+
         this.UserAppTheme = Microsoft.Maui.ApplicationModel.AppTheme.Light;
 
         this.InitializeComponent();
         this.InitializeDependencies();
 
-        if (Environment.GetEnvironmentVariable("EnableTelerikUIAutomation") == "true")
+        testingService.OnCommand += (service, command) =>
         {
-            MainPage = new NavigationPage(new UITestsHomePage());
+            if (command.Command.StartsWith("NAVIGATE:"))
+            {
+                var tcs = new TaskCompletionSource<string>();
+                command.Result = tcs.Task;
+                Dispatcher.Dispatch(async () =>
+                {
+                    try
+                    {
+                        var location = command.Command.Substring("NAVIGATE:".Length).Trim();
+                        await DependencyService
+                            .Get<INavigationService>()
+                            .NavigateCommand(location);
+                        
+                        tcs.SetResult("OK");
+                    }
+                    catch(Exception e)
+                    {
+                        tcs.SetException(e);
+                    }
+                });
+            }
+            else if (command.Command.StartsWith("GET EXAMPLES:"))
+            {
+                var examples = ((Application.Current.MainPage as NavigationPage).RootPage.BindingContext as HomeViewModel)?.Examples;
+                command.Result =
+                    Task.FromResult<string>("OK: " +
+                        JsonSerializer.Serialize(
+                            examples
+                                .Select(e => new Dictionary<string, string>()
+                                {
+                                    { "Control", e.ControlName },
+                                    { "Example", e.Name }
+                                })
+                                .ToList()));
+            }
+        };
+
+        if (testingService.IsAppUnderTest && DeviceInfo.Idiom == DeviceIdiom.Desktop)
+        {
+            MainPage = new NavigationPage(new UITestsHomePage(testingService));
         }
         else
         {
             if (DeviceInfo.Idiom == DeviceIdiom.Desktop)
             {
-                this.MainPage = new NavigationPage(new MainPageDesktop());
+                this.MainPage = new NavigationPage(new MainPageDesktop(testingService));
             }
             else
             {
-                this.MainPage = new NavigationPage(new MainPageMobile());
+                this.MainPage = new NavigationPage(new MainPageMobile(testingService))
+                {
+                    BarTextColor = Colors.White
+                };
 
 #if __ANDROID__ || __IOS__
                 // TODO: When https://github.com/dotnet/maui/issues/5835 is really fixed, remove the following lines and the respective methods.
@@ -136,7 +190,7 @@ public partial class App : Application
     private static void UpdateMaxLines(ILabelHandler handler, ILabel label)
     {
         var textView = handler.PlatformView;
-        if (label is Label controlsLabel && textView.Ellipsize == Android.Text.TextUtils.TruncateAt.End)
+        if (label is Label controlsLabel && controlsLabel.MaxLines > -1 && textView.Ellipsize == Android.Text.TextUtils.TruncateAt.End)
         {
             textView.SetMaxLines(controlsLabel.MaxLines);
         }
@@ -187,4 +241,30 @@ public partial class App : Application
         DependencyService.Register<IFilePickerService, FilePickerService>();
         DependencyService.Register<IMediaPickerService, MediaPickerService>();
     }
+
+#if IOS
+    protected override void OnStart()
+    {
+        base.OnStart();
+
+        UIKit.UINavigationController vc = (UIKit.UINavigationController)Microsoft.Maui.ApplicationModel.Platform.GetCurrentUIViewController();
+        vc.InteractivePopGestureRecognizer.Delegate = new BackSwipeWithoutNavigationBar(vc);
+        vc.InteractivePopGestureRecognizer.Enabled = true;
+    }
+
+    public class BackSwipeWithoutNavigationBar : UIKit.UIGestureRecognizerDelegate
+    {
+        private UIKit.UINavigationController vc;
+
+        public BackSwipeWithoutNavigationBar(UIKit.UINavigationController vc)
+        {
+            this.vc = vc;
+        }
+
+        public override bool ShouldBegin(UIKit.UIGestureRecognizer recognizer)
+        {
+            return this.vc.ViewControllers.Length > 1;
+        }
+    }
+#endif
 }

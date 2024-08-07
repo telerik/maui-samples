@@ -11,5 +11,7 @@ public partial class AIPromptGettingStartedXaml : ContentView
         // >> aiprompt-getting-started-setvm
         this.BindingContext = new ViewModel();
         // << aiprompt-getting-started-setvm
+
+        this.aiPrompt.AutomationId = "aiPrompt";
     }
 }

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.ToggleButtonControl.FeaturesCategory.RippleEffectExample.RippleCustomization">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <!-- >> togglebutton-ripple-visual-states-resources -->
+            <Style TargetType="telerik:RadToggleButton">
+                <Setter Property="Background" Value="#EAEAEA" />
+                <Setter Property="TextColor" Value="#000000" />
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="CornerRadius" Value="0" />
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup Name="CommonStates">
+                            <VisualState Name="Normal" />
+                            <VisualState Name="Pressed">
+                                <VisualState.Setters>
+                                    <Setter Property="TextColor" Value="#99000000" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="Disabled" />
+                            <VisualState Name="Toggled">
+                                <VisualState.Setters>
+                                    <Setter Property="TextColor" Value="#FFFFFF" />
+                                    <Setter Property="Background" Value="#00897B" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="ToggledPressed">
+                                <VisualState.Setters>
+                                    <Setter Property="TextColor" Value="#99FFFFFF" />
+                                    <Setter Property="telerik:RadEffects.RippleColor" Value="#B2DFDB" />
+                                    <Setter Property="Background" Value="#4CACA2" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="ToggledDisabled" />
+                            <VisualState Name="Indeterminate" />
+                            <VisualState Name="IndeterminatePressed" />
+                            <VisualState Name="IndeterminateDisabled" />
+                        </VisualStateGroup>
+                        <VisualStateGroup Name="FocusStates">
+                            <VisualState Name="Unfocused" />
+                            <VisualState Name="Focused" />
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+            <!-- << togglebutton-ripple-visual-states-resources -->
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <!-- >> togglebutton-ripple-effect -->
+    <VerticalStackLayout Spacing="20">
+        <telerik:RadToggleButton Content="Ripple Pulse"
+                                 telerik:RadEffects.RippleMode="Pulse"
+                                 telerik:RadEffects.RippleColor="#80CBC4" />
+        <telerik:RadToggleButton Content="Ripple Hold"
+                                 telerik:RadEffects.RippleMode="Hold"
+                                 telerik:RadEffects.RippleColor="#80CBC4" />
+        <telerik:RadToggleButton Content="Ripple None"
+                                 telerik:RadEffects.RippleMode="None" />
+    </VerticalStackLayout>
+    <!-- << togglebutton-ripple-effect -->
+</ContentView>

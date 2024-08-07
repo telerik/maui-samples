@@ -1,14 +1,13 @@
 ﻿using QSF.ViewModels;
 using System;
 using Telerik.Maui;
+using Telerik.Maui.Controls.Data;
 
 namespace QSF.Examples.NavigationViewControl.DataBindingExample;
 
-public class DataBindingViewModel : ExampleViewModel
+public class DataBindingViewModel : ExampleViewModel, IFilter
 {
     private MailBox selectedItem;
-
-    private Func<object, bool> itemFilter;
 
     public DataBindingViewModel()
     {
@@ -19,7 +18,7 @@ public class DataBindingViewModel : ExampleViewModel
             new MailBox{ Text = "Starred", Icon = "\ue801" },
             new MailBox{ Text = "Snoozed", Icon = "\ue878" },
             new MailBox{ Text = "Important", Icon = "\ue83c" },
-            new MailBox{ Text = "Sent", Icon = "\ue82d"  },
+            new MailBox{ Text = "Sent", Icon = "\ue82d" },
             new MailBox{ Text = "Scheduled", Icon = "\ue8a0" },
             new MailBox{ Text = "Drafts", Icon = "\ue828" },
             new MailBox{ Text = "Spam", Icon = "\ue82e", HasMail = true, Number = 5 },
@@ -36,26 +35,26 @@ public class DataBindingViewModel : ExampleViewModel
 
         this.Mails = new ObservableItemCollection<MailItem>
         {
-            new MailItem { Sender = "Post Master", Title = "You have new held messages", Description = "You can release all of your held messages and permit or block future emails from the senders, or manage messages individually.", Date = "12 Oct", IsSpam = true },
-            new MailItem { Sender = "Jordan L. Jarrett", Title = "[Action required] Team Building event - Sofia Comedy Club", Description = "Sending a reminder for the Team Building event for Innovation & UX teams.", Date ="12 Oct", IsPromotion = true },
-            new MailItem { Sender = "Workplace Operations", Title = "Workplace Operations Newsletter October", Description = "The new server room and R&D lab rebuild was completed on August 25th. It was a great cross-team effort to have this project completed.", Date ="12 Oct" },
-            new MailItem { Sender = "Ralph Anderson", Title = "Updates from All Company and other communities", Description = "Our Madison teams enjoyed some friendly pinball competition at an arcade establishment.", Date ="12 Oct", IsSpam = true },
-            new MailItem { Sender = "[Aha!] ", Title = "[Aha!] Your weekly summary", Description = "Your work at a glance", Date ="12 Oct", IsSpam = true },
-            new MailItem { Sender = "Azure DevOps", Title = "Design for NavigationViewExample", Description = "Michel Roots created Task 72152 ControlsSamples: Design for NavigationView DataBinding example", Date ="12 Oct", IsSpam = true, IsPromotion = true },
-            new MailItem { Sender = "Workplace Operations", Title = "INFORMATIONAL: Fire Evacuation Drill", Description = "We would like to inform you that on Friday, the Landlord will perform planned fire evacuation of the building.", Date ="10 Oct", IsPromotion = true },
-            new MailItem { Sender = "Tableau", Title = "Tableau Server Upgrade", Description = "On Saturday, October 21, we will upgrade our Tableau server to the latest version as we prepare for year-end processing. ", Date ="12 Oct", IsPromotion = true },
-            new MailItem { Sender = "Claudette Potter", Title = "Updates from All Company and other communities", Description = "My name is James Johnes. I am a Customer Success Manager", Date ="12 Oct" },
-            new MailItem { Sender = "Leadership Team", Title = "Leadership talks - Demystifying M&A", Description = "We are happy to invite you to a “Demystifying M&A” session with really cool guests", Date ="12 Oct", IsSpam = true },
-            new MailItem { Sender = "Information Security", Title = "Security Reminder: Reporting Suspicious Emails with Mimecast", Description = "We’ve had a great start to Cybersecurity Awareness Month and thank you all for your participation!", Date ="12 Oct" },
-            new MailItem { Sender = "Praise", Title = "Your Praise Excel Award", Description = "Thank you  for your great contribution to the new release success. Your efforts, devotion, experience…", Date ="12 Oct", IsPromotion = true },
-            new MailItem { Sender = "Gene Houlihan", Title = "October 16th OKRs Status Report", Description = "Proceed with enhancing the performance of Our Extensions. Additionally, continue the development of functional tests.", Date ="12 Oct", },
-            new MailItem { Sender = "Ronnie J. Edwards", Title = "DX Weekly Update ", Description = "We showed innovation, covered interactive customer case studies, and highlighted our wins against competitors. ", Date ="09 Oct"},
-            new MailItem { Sender = "Workplace Operations", Title = "New group activities", Description = "We are thrilled to announce new group activities at the gym (Playground), where you can enjoy the magic of the folk dances!", Date ="12 Oct" },
-            new MailItem { Sender = "IT HelpDesk", Title = "VPN Maintenance ", Description = "We would like to inform you of an upcoming software upgrade of the VPN gateways servicing our VPN.", Date ="11 Oct" },
-            new MailItem { Sender = "Sharon Murray", Title = "Quest for the best monthly e-mail", Description = "We have plenty of job openings available and we’re trying to spread the word! See our current postings below. If someone you know could be a great fit, please submit a referral.", Date ="12 Oct" },
-            new MailItem { Sender = "People Team", Title = "Q4 Charitable Giving Submissions Are Open", Description = "Thank you to those that participated in the Q3 Charitable Giving Program. It was great to see the many organizations that you support!", Date ="10 Oct" },
-            new MailItem { Sender = "Karen West", Title = "Learning Hour - Emotional Intelligence Follow Up", Description = "Thank you so much for expressing interest in our Learning Hour on the topic of Emotional Intelligence! ", Date ="12 Oct" },
-            new MailItem { Sender = "Workplace Operations", Title = "NFORMATIONAL: Planned maintenance", Description = "We would like to inform you that on Friday, the landlord will perform a planned maintenance of the building’s electrical substation.", Date ="11 Oct", IsPromotion = true },
+            new MailItem { Sender = "Phillip Anthropy", Title = "New components and features documentation", Description = "Could you please update me on the status of the .NET MAUI Chat documentation?", Date = "26 Jul" },
+            new MailItem { Sender = "Spruce Springclean", Title = "Monthly OKRs Status Report", Description = "Proceed with enhancing the performance of Our Extensions. Additionally, continue the development of functional tests.", Date ="26 Jul", },
+            new MailItem { Sender = "Norman Gordon", Title = "ComboBox Filtering API Proposal", Description = "Hi guys, I am sending over the API Proposal of ComboBox's new filtering feature. Feel free to share your thoughts and comments direcly in the document.", Date = "25 Jul" },
+            new MailItem { Sender = "Spruce Springclean", Title = "Monthly OKRs Status Report", Description = "Proceed with enhancing the performance of Our Extensions. Additionally, continue the development of functional tests.", Date ="24 Jul", IsSpam = true },
+            new MailItem { Sender = "Jane Poe", Title = "Weekly Update", Description = "We showed innovation, covered interactive customer case studies, and highlighted our wins against competitors.", Date ="24 Jul", IsSpam = true },
+            new MailItem { Sender = "Karren Koe", Title = "[Design] MAUI - Control Samples - CollectionView", Description = "Hello, I am sending over some proposals for CollectionView's new features demos designs. I'll be more than happy to discuss them with you and make a decision.", Date = "24 Jul" },
+            new MailItem { Sender = "Jane Poe", Title = "Social Hour", Description = "Hi all, if you are in the office, please join us for a social hour after the All Hands in the cafeteria. Food and drinks will be provided.", Date ="24 Jul", IsPromotion = true },
+            new MailItem { Sender = "Phillip Anthropy", Title = "New Components Customisation Examples", Description = "Showcase customisation capabilities of new features - e.g., defining custom CollectionView drag visual template.", Date = "23 Jul" },
+            new MailItem { Sender = "Jane Poe", Title = "Quest for the best monthly e-mail", Description = "We have plenty of job openings available and we're trying to spread the word! See our current postings below. If someone you know could be a great fit, please submit a referral.", Date ="23 Jul", IsPromotion = true },
+            new MailItem { Sender = "Karren Koe", Title = "[Design] Desktop Controls Samples main navigation icons sizes", Description = "Please find attached the updates regarding the icons used in the main navigation component for Desktop.", Date = "22 Jul" },
+            new MailItem { Sender = "Hilary Ouse", Title = "Learning Hour - Emotional Intelligence Follow Up", Description = "Thank you so much for expressing interest in our Learning Hour on the topic of Emotional Intelligence! ", Date ="22 Jul", IsSpam = true },
+            new MailItem { Sender = "Karren Koe", Title = "Controls Samples App Redesign", Description = "Hi guys, I am happy to announce the new Controls Samples App design! If you have any questions or concerns, please don't hesitate to contact me.", Date = "22 Jul" },
+            new MailItem { Sender = "Phillip Anthropy", Title = "[Action required] Team Building event - Sofia Comedy Club", Description = "Sending a reminder for the Team Building event for Innovation & UX teams.", Date ="18 Jul", IsPromotion = true },
+            new MailItem { Sender = "Hilary Ouse", Title = "Sign Up for the Next Learning Hour", Description = "For our second Learning Hour, we're doing something that could be considered counter-intuitive: inviting you to a meeting to talk about meetings - how to plan and execute them effectively.", Date = "12 Jul", IsPromotion = true },
+            new MailItem { Sender = "Spruce Springclean", Title = "Bi-Weekly OKR Status Report", Description = "I am sending the bi-Weekly OKR Status Report.", Date ="12 Jul", },
+            new MailItem { Sender = "Norman Gordon", Title = "Proposal for a new property in AutoComplete", Description = "In the last few days I've been working on a bug regarding the AutoComplete control and came up with a proposal for a new property. Let me know what you think.", Date = "11 Jul" },
+            new MailItem { Sender = "Spruce Springclean", Title = "Product OKRs Recap and Goals", Description = "Last week we had a mid-year strategic sync where we reviewed H1 progress on OKRs and H2 priorities and goals. Below you can find the details.", Date ="10 Jul" },
+            new MailItem { Sender = "Jane Poe", Title = "Weekly Update - Marketing", Description = "Hello All, a lot happening on the Marketing front. A few highlights below:", Date ="9 Jul", IsSpam = true },
+            new MailItem { Sender = "Karren Koe", Title = "Modernize Visual Studio Extensions", Description = "Hello, as we continue to update our Visual Studio Extensions, I'm presenting the updated screens with the new design.", Date = "9 Jul" },
+            new MailItem { Sender = "Jane Poe", Title = "Weekly Update - Sales", Description = "This update will be a bit longer one with lots of interesting/important announcements so please read on!", Date ="9 Jul", IsSpam = true },
         };
 
         this.SelectedItem = this.MailBoxes[0];
@@ -79,37 +78,38 @@ public class DataBindingViewModel : ExampleViewModel
 
     public ObservableItemCollection<MailItem> Mails { get; set; }
 
-    public Func<object, bool> ItemFilter
+    public FilterDescriptorCollection FilterDescriptors { get; set; }
+
+    public bool PassesFilter(object item)
     {
-        get
+        var mailItem = ((MailItem)item);
+        var text = this.SelectedItem.Text;
+
+        if (text == "Spam")
         {
-            return this.itemFilter;
+            return mailItem.IsSpam;
         }
-        private set
+
+        if (text == "Promotions")
         {
-            if (this.itemFilter != value)
-            {
-                this.itemFilter = value;
-                this.OnPropertyChanged();
-            }
+            return mailItem.IsPromotion;
         }
+
+        return true;
     }
 
     private void OnFilterChanged()
     {
-        var item = this.SelectedItem.Text;
+        var descriptors = this.FilterDescriptors;
+        if (descriptors == null)
+        {
+            return;
+        }
 
-        if (item == "Spam")
-        {
-            this.ItemFilter = item => ((MailItem)item).IsSpam == true;
-        }
-        else if (item == "Promotions")
-        {
-            this.ItemFilter = item => ((MailItem)item).IsPromotion == true;
-        }
-        else
-        {
-            this.ItemFilter = item => true;
-        }
+        descriptors.Clear();
+
+        var descriptor = new DelegateFilterDescriptor();
+        descriptor.Filter = this;
+        descriptors.Add(descriptor);
     }
 }

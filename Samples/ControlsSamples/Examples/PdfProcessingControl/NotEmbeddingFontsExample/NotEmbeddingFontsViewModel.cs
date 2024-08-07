@@ -7,6 +7,7 @@ using Microsoft.Maui.Controls;
 using QSF.Services;
 using QSF.ViewModels;
 using Telerik.Windows.Documents.Fixed.FormatProviders.Pdf;
+using Telerik.Windows.Documents.Fixed.FormatProviders.Pdf.Export;
 using Telerik.Windows.Documents.Fixed.Model;
 
 namespace QSF.Examples.PdfProcessingControl.NotEmbeddingFontsExample
@@ -24,7 +25,7 @@ namespace QSF.Examples.PdfProcessingControl.NotEmbeddingFontsExample
             this.ExportCommand = new Command(this.ExportDocument);
 
             this.provider = new PdfFormatProvider();
-            this.provider.ExportSettings.ShouldEmbedFonts = false;
+            this.provider.ExportSettings.FontEmbeddingType = FontEmbeddingType.None;
 
             this.ExportedFileSize = 0;
             this.fileViewerService = DependencyService.Get<IFileViewerService>();

@@ -1,3 +1,4 @@
+using Microsoft.Maui;
 using Microsoft.Maui.Controls;
 using Telerik.Maui.Controls;
 
@@ -5,15 +6,17 @@ namespace SDKBrowserMaui.Examples.TemplatedButtonControl.GettingStartedCategory.
 
 public class GettingStartedCSharp : ContentView
 {
-	public GettingStartedCSharp()
-	{
-		var stack = new VerticalStackLayout();
-		stack.HorizontalOptions = LayoutOptions.Center;
-		// >> templatedbutton-gettingstarted-csharp
-		var templatedButton = new RadTemplatedButton();
-		templatedButton.Content = "My TemplatedButton Content";
+    public GettingStartedCSharp()
+    {
+        var grid = new Grid();
+        grid.RowDefinitions.Add(new RowDefinition(GridLength.Auto));
+        grid.RowDefinitions.Add(new RowDefinition(GridLength.Star));
+        grid.HorizontalOptions = LayoutOptions.Center;
+        // >> templatedbutton-gettingstarted-csharp
+        var templatedButton = new RadTemplatedButton();
+        templatedButton.Content = "My TemplatedButton Content";
         // << templatedbutton-gettingstarted-csharp
-        stack.Children.Add(templatedButton);
-		this.Content = stack;
-	}
+        grid.Children.Add(templatedButton);
+        this.Content = grid;
+    }
 }

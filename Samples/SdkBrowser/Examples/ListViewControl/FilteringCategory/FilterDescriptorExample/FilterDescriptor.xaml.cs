@@ -10,14 +10,17 @@ namespace SDKBrowserMaui.Examples.ListViewControl.FilteringCategory.FilterDescri
         public FilterDescriptor()
         {
             InitializeComponent();
-
+            // >> listview-add-filter
             this.listView.FilterDescriptors.Add(new Telerik.Maui.Controls.Compatibility.DataControls.ListView.ListViewDelegateFilterDescriptor { Filter = this.AgeFilter });
+            // << listview-add-filter
         }
 
+        // >> listview-age-filter
         private bool AgeFilter(object arg)
         {
             var age = ((Person)arg).Age;
             return age >= 25 && age <= 35;
         }
+        // << listview-age-filter
     }
 }

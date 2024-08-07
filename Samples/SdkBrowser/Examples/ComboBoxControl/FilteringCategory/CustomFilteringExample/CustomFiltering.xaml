@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.ComboBoxControl.FilteringCategory.CustomFilteringExample"
+             x:Class="SDKBrowserMaui.Examples.ComboBoxControl.FilteringCategory.CustomFilteringExample.CustomFiltering">
+    <ContentView.Resources>
+        <Style TargetType="Label" x:Key="LabelStyle">
+            <Setter Property="HorizontalOptions" Value="Start" />
+            <Setter Property="VerticalOptions" Value="Center" />
+            <Setter Property="Margin" Value="0, 0, 0, 12" />
+        </Style>
+        <Style TargetType="telerik:RadComboBox">
+            <Setter Property="Margin" Value="{OnIdiom Default='0, 0, 0, 24', Desktop='0, 0, 0, 40'}" />
+        </Style>
+    </ContentView.Resources>
+    <VerticalStackLayout  HorizontalOptions="{OnIdiom Default=Fill, Desktop=Start}"
+                          WidthRequest="{OnPlatform MacCatalyst=400, WinUI=400}">
+        <Label Text="Custom filtering behavior which filters cities with > 5 million population" 
+           Style="{StaticResource LabelStyle}" />
+        <!-- >> combobox-custom-filtering -->
+        <telerik:RadComboBox ItemsSource="{Binding Items}"
+                             DisplayMemberPath="Name"
+                             IsEditable="True"
+                             IsFilteringEnabled="True"
+                             Placeholder="cities with > 5 million population">
+            <telerik:RadComboBox.FilteringBehavior>
+                <local:CustomFilteringBehavior />
+            </telerik:RadComboBox.FilteringBehavior>
+        </telerik:RadComboBox>
+        <!-- << combobox-custom-filtering -->
+    </VerticalStackLayout>
+</ContentView>

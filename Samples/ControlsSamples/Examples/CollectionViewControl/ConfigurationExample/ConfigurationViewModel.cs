@@ -1,8 +1,11 @@
-﻿using QSF.ViewModels;
+﻿using Microsoft.Maui.Controls;
+using QSF.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using Telerik.Maui;
+using Telerik.Maui.Controls;
 using Telerik.Maui.Controls.CollectionView;
 
 namespace QSF.Examples.CollectionViewControl.ConfigurationExample;
@@ -18,40 +21,15 @@ public class ConfigurationViewModel : ConfigurationExampleViewModel
     private double minimumItemLength;
     private double itemSpacing;
     private CollectionViewSelectionMode selectionMode = CollectionViewSelectionMode.Single;
+    private EmptyContentDisplayMode emptyContentDisplayMode;
+    private bool isDragDropEnabled;
+    private bool isItemSwipeEnabled;
+    private string selectedSourceType;
+    public ObservableCollection<Contact> itemsSource;
 
     public ConfigurationViewModel()
     {
-        this.Contacts = new List<string>
-        {
-            "Eva Lawson",
-            "Layton Buck",
-            "Chester Harvey",
-            "Jenny Fuller",
-            "Ashley Robertson",
-            "Niki Samaniego",
-            "Armstrong Robbie",
-            "Coby Ryan",
-            "Davis Anderson",
-            "Quincy Sanchez",
-            "Konny Mills",
-            "Casper Fletcher",
-            "Barnes Ashton",
-            "Bob Carty",
-            "Angus Barnes",
-            "Vada Davies",
-            "David Webb",
-            "Nida Carty",
-            "Jeffery Francis",
-            "Terrell Norris",
-            "Greg Nikolas",
-            "Barnaby Hunter",
-            "Peter Bence",
-            "Peter Bence",
-            "Howard Pittman",
-            "Joel Walsh",
-            "Matias Santos",
-            "Xavi Vasquez",
-        };
+        this.SelectedSourceType = this.SourceTypes[0];
 
         this.horizontalItemLength = this.defaultHorizontalItemLength;
 
@@ -71,11 +49,44 @@ public class ConfigurationViewModel : ConfigurationExampleViewModel
         this.RefreshItemLength();
     }
 
-    public List<string> Contacts { get; private set; }
-
     public IEnumerable<Orientation> LayoutOrientations { get; } = new List<Orientation> { Orientation.Vertical, Orientation.Horizontal };
 
     public IEnumerable<CollectionViewSelectionMode> SelectionModes { get; } = Enum.GetValues(typeof(CollectionViewSelectionMode)).Cast<CollectionViewSelectionMode>();
+
+    public IEnumerable<EmptyContentDisplayMode> EmptyContentDisplayModes { get; } = Enum.GetValues(typeof(EmptyContentDisplayMode)).Cast<EmptyContentDisplayMode>();
+
+    public List<string> SourceTypes { get; } = new List<string>() { "Contacts", "Null", "Empty" };
+
+    public ObservableCollection<Contact> ItemsSource
+    {
+        get => this.itemsSource;
+        set => this.UpdateValue(ref this.itemsSource, value);
+    }
+
+    public string SelectedSourceType
+    {
+        get => this.selectedSourceType;
+        set
+        {
+            if (this.UpdateValue(ref this.selectedSourceType, value))
+            {
+                switch (this.selectedSourceType)
+                {
+                    case "Contacts":
+                        this.ItemsSource = new ObservableCollection<Contact>(ContactsProvider.GetContacts());
+                        break;
+                    case "Null":
+                        this.ItemsSource = null;
+                        break;
+                    case "Empty":
+                        this.ItemsSource = new ObservableCollection<Contact>();
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+    }
 
     public Orientation LayoutOrientation
     {
@@ -123,6 +134,24 @@ public class ConfigurationViewModel : ConfigurationExampleViewModel
     {
         get => this.selectionMode;
         set => this.UpdateValue(ref this.selectionMode, value);
+    }
+
+    public EmptyContentDisplayMode EmptyContentDisplayMode
+    {
+        get => this.emptyContentDisplayMode;
+        set => this.UpdateValue(ref this.emptyContentDisplayMode, value);
+    }
+
+    public bool IsDragDropEnabled
+    {
+        get => this.isDragDropEnabled;
+        set => this.UpdateValue(ref this.isDragDropEnabled, value);
+    }
+
+    public bool IsItemSwipeEnabled
+    {
+        get => this.isItemSwipeEnabled;
+        set => this.UpdateValue(ref this.isItemSwipeEnabled, value);
     }
 
     private void RefreshItemLength()

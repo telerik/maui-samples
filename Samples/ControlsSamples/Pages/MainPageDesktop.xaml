@@ -7,32 +7,31 @@
              xmlns:viewModels="clr-namespace:QSF.ViewModels"
              NavigationPage.HasNavigationBar="False"
              NavigationPage.HasBackButton="False"
-             x:Class="QSF.Pages.MainPageDesktop">
-    <ContentPage.BindingContext>
-        <viewModels:HomeViewModel />
-    </ContentPage.BindingContext>
+             x:Class="QSF.Pages.MainPageDesktop"
+             Style="{StaticResource PageStyle}">
+
     <VisualElement.Resources>
         <converters:StringToFontImageSourceConverter x:Key="StringToFontImageSourceConverter"
                                                      FontFamily="TelerikControlsIcons"
                                                      Color="{StaticResource AccentColor8}"
-                                                     Size="24" />
+                                                     Size="{OnPlatform Default=16, MacCatalyst=20}" />
         <FontImageSource x:Key="HomeIcon"
                          Glyph="&#xe03a;"
                          FontFamily="TelerikControlsIcons"
                          Color="{StaticResource AccentColor8}"
-                         Size="24"
+                         Size="{OnPlatform Default=16, MacCatalyst=20}"
                          AutomationId="homeButton" />
         <FontImageSource x:Key="SearchIcon"
                          Glyph="&#xe03b;"
                          FontFamily="TelerikControlsIcons"
                          Color="{StaticResource AccentColor8}"
-                         Size="24"
+                         Size="{OnPlatform Default=16, MacCatalyst=20}"
                          AutomationId="searchButton" />
         <FontImageSource x:Key="SettingsIcon"
                          Glyph="&#xe03c;"
                          FontFamily="TelerikControlsIcons"
                          Color="{StaticResource AccentColor8}"
-                         Size="24" />
+                         Size="{OnPlatform Default=16, MacCatalyst=20}" />
         <DataTemplate x:Key="ControlItemTemplate">
             <Grid ColumnDefinitions="*, Auto"
                   Margin="{OnPlatform MacCatalyst='0, 0, 9, 0', WinUI='0, 0, 8, 0'}">
@@ -98,7 +97,7 @@
         </Style>
         <Style x:Key="AccentHeaderButtonStyle" TargetType="telerik:NavigationViewToggleButton">
             <Setter Property="FontFamily" Value="TelerikControlsIcons" />
-            <Setter Property="FontSize" Value="24" />
+            <Setter Property="FontSize" Value="{OnPlatform Default=16, MacCatalyst=20}" />
             <Setter Property="Text" Value="&#xe039;" />
             <Setter Property="TextColor" Value="{StaticResource AccentColor8}" />
         </Style>

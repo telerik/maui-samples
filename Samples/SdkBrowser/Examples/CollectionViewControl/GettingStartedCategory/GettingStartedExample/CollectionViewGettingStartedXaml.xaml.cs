@@ -7,5 +7,7 @@ public partial class CollectionViewGettingStartedXaml : ContentView
 	public CollectionViewGettingStartedXaml()
 	{
 		InitializeComponent();
-	}
+
+        this.collectionView.AutomationId = "collectionView";
+    }
 }

@@ -18,9 +18,6 @@
 
 		<!-- TODO: Remove it when Maui fixes Skia linker issue for net7. -->
 		<AndroidLinkResources Condition=" $(IsNet7) == 'true' ">false</AndroidLinkResources>
-
-		<!-- TODO: Remove this when moving to machines where Xcode 14.3 -->
-		<MtouchLink>SdkOnly</MtouchLink>
 	</PropertyGroup>
 
 	<PropertyGroup>
@@ -29,7 +26,8 @@
 
 	<PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
 		<RunAnalyzers>false</RunAnalyzers>
-		<NoWarn>XC0022;CS1591;CS1574;CS1572</NoWarn>
+		<NoWarn>XC0022;CS1591;CS1574;CS1572;CS8002;MT0182</NoWarn>
+		<SkipValidateMauiImplicitPackageReferences>true</SkipValidateMauiImplicitPackageReferences>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -90,12 +88,9 @@
 		<EmbeddedResource Include="Resources\ImageEditor\FirstLookExample\SampleImage3.jpg" />
 		<EmbeddedResource Include="Resources\ImageEditor\FirstLookExample\SampleImage4.jpg" />
 		<EmbeddedResource Include="Resources\ImageEditor\FirstLookExample\SampleImage5.jpg" />
-        <EmbeddedResource Include="Resources\ImageEditor\FirstLookExample\SampleImage6.jpg" />
-    <EmbeddedResource Include="Resources\RichTextEditor\**" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+		<EmbeddedResource Include="Resources\ImageEditor\FirstLookExample\SampleImage6.jpg" />
+		<EmbeddedResource Include="Resources\RichTextEditor\**" />
+		<EmbeddedResource Include="ViewModels\Themes\Catalog.json" />
 	</ItemGroup>
 
 	<PropertyGroup Condition="$(TargetFramework.Contains('-windows'))">
@@ -106,19 +101,41 @@
 		<PackageReference Include="Telerik.UI.for.Maui" Version="$(TelerikVersion)" />
 	</ItemGroup>
 
+	<ItemGroup Condition="$(TargetFramework.Contains('net7'))">
+		<PackageReference Include="System.Text.Json" Version="8.0.4" />
+	</ItemGroup>
+
 	<ItemGroup Condition="$(TargetFramework.Contains('net8'))">
-		<PackageReference Include="Microsoft.Maui.Controls" Condition=" $(CustomMauiVersion) == '' " Version="$(MauiVersion)" />
-		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Condition=" $(CustomMauiVersion) == '' " Version="$(MauiVersion)" />
-		<PackageReference Include="Microsoft.Maui.Controls" Condition=" $(CustomMauiVersion) != '' " Version="$(CustomMauiVersion)" />
-		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Condition=" $(CustomMauiVersion) != '' " Version="$(CustomMauiVersion)" />
+		<PackageReference Include="Microsoft.Maui.Controls" Condition=" $(CustomMauiNet8Version) == '' " Version="$(MauiVersion)" />
+		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Condition=" $(CustomMauiNet8Version) == '' " Version="$(MauiVersion)" />
+		<PackageReference Include="Microsoft.Maui.Controls" Condition=" $(CustomMauiNet8Version) != '' " Version="$(CustomMauiNet8Version)" />
+		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Condition=" $(CustomMauiNet8Version) != '' " Version="$(CustomMauiNet8Version)" />
+		<PackageReference Include="System.Text.Json" Version="8.0.4" />
+	</ItemGroup>
+
+	<ItemGroup Condition="$(TargetFramework.Contains('net9'))">
+		<PackageReference Include="Microsoft.Maui.Controls" Condition=" $(CustomMauiNet9Version) == '' " Version="$(MauiVersion)" />
+		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Condition=" $(CustomMauiNet9Version) == '' " Version="$(MauiVersion)" />
+		<PackageReference Include="Microsoft.Maui.Controls" Condition=" $(CustomMauiNet9Version) != '' " Version="$(CustomMauiNet9Version)" />
+		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Condition=" $(CustomMauiNet9Version) != '' " Version="$(CustomMauiNet9Version)" />
+		<PackageReference Include="System.Text.Json" Version="9.0.0-preview.6.24327.7" />
 	</ItemGroup>
 
 	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">
 		<BundleResource Include="Platforms\iOS\PrivacyInfo.xcprivacy" LogicalName="PrivacyInfo.xcprivacy" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\AppUtils\AppUtils.csproj" />
+	</ItemGroup>
+
 	<Import Condition="'$(SolutionName)' == 'Telerik.Maui' Or '$(UseSourceProjects)' == 'True'" Project="..\AddSourceProjects.proj" />
 	<Import Condition="'$(SolutionName)' != 'Telerik.Maui' And '$(UseSourceProjects)' != 'True' And '$(UseSourceAssemblies)' == 'True'" Project="..\AddSourceAssemblies.proj" />
-	<Import Condition="'$(UsePlatformAssemblies)' == 'True'" Project="..\..\Source\AddPlatformAssemblies.proj" />
+	<Import Condition="'$(UsePlatformAssemblies)' == 'True' AND '$(UsePlatformProjects)' != 'True'" Project="..\..\Source\AddPlatformAssemblies.proj" />
+	<Import Condition="'$(UsePlatformProjects)' == 'True'" Project="..\..\Source\AddPlatformProjects.proj" />
+
+	<PropertyGroup>
+		<UseTelerikTheming>true</UseTelerikTheming>
+	</PropertyGroup>
 
 </Project>

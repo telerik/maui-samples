@@ -1,4 +1,5 @@
-﻿using Microsoft.Maui.Controls;
+﻿using Microsoft.Maui.ApplicationModel;
+using Microsoft.Maui.Controls;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Telerik.Maui.Controls;
@@ -83,7 +84,7 @@ public class ChatroomViewModel : NotifyPropertyChangedBase
 
     private void ChatroomService_Signal(object sender, ChatroomSignalEventArgs e)
     {
-        Device.BeginInvokeOnMainThread(() => this.OnSignalReceived(e));
+        MainThread.BeginInvokeOnMainThread(() => this.OnSignalReceived(e));
     }
 
     private void OnSignalReceived(ChatroomSignalEventArgs e)

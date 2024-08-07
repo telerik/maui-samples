@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        x:Class="QSF.Views.QSFPageContentView">
+    <telerik:RadContentView.ControlTemplate>
+        <ControlTemplate>
+            <Grid x:Name="PART_Root"
+                  RowDefinitions="0, Auto, *, 0"
+                  ColumnDefinitions="0, *, 0"
+                  IgnoreSafeArea="True">
+                <Grid Grid.Row="1"
+                      Grid.Column="1"
+                      ZIndex="2"
+                      Style="{StaticResource HeaderStyle}"
+                      BackgroundColor="Transparent"
+                      Padding="12, 0">
+                    <telerik:RadContentView ControlTemplate="{TemplateBinding HeaderControlTemplate}" />
+                </Grid>
+                <Grid Grid.RowSpan="2"
+                      Grid.ColumnSpan="3"
+                      ZIndex="-1"
+                      Background="{StaticResource ApplicationAccentColor}"
+                      IgnoreSafeArea="True" />
+                <OnPlatform x:TypeArguments="View">
+                    <On Platform="iOS">
+                        <Grid Grid.RowSpan="2"
+                              Grid.ColumnSpan="3"
+                              ZIndex="1"
+                              IgnoreSafeArea="True">
+                            <Grid x:Name="PART_Acrylic"
+                                  Background="{StaticResource ApplicationAccentColor}"
+                                  IgnoreSafeArea="True" />
+                        </Grid>
+                    </On>
+                    <On Platform="Android">
+                        <Grid Grid.RowSpan="2"
+                              Grid.ColumnSpan="3"
+                              ZIndex="1"
+                              Background="{StaticResource ApplicationAccentColor}"
+                              IgnoreSafeArea="True" />
+                    </On>
+                </OnPlatform>
+                <Grid Grid.Row="2"
+                      Grid.RowSpan="2"
+                      Grid.ColumnSpan="3"
+                      ZIndex="-2" 
+                      Background="{TemplateBinding Background}" />
+                <Grid x:Name="PART_Body"
+                      Grid.Row="2"
+                      Grid.Column="1"
+                      ZIndex="0"
+                      IgnoreSafeArea="True">
+                    <telerik:RadContentView ControlTemplate="{TemplateBinding BodyControlTemplate}" />
+                </Grid>
+            </Grid>
+        </ControlTemplate>
+    </telerik:RadContentView.ControlTemplate>
+</telerik:RadContentView>

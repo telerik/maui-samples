@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.CollectionViewControl.LoadOnDemandCategory.LoadOnDemandCollectionExample"
+             x:Class="SDKBrowserMaui.Examples.CollectionViewControl.LoadOnDemandCategory.AutomaticLoadOnDemandCustomTemplateExample.AutomaticLoadOnDemandCustomTemplate">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <!-- >> collectionview-loadondemand-automatic-template-resource -->
+            <DataTemplate x:Key="CustomAutomaticLoadOnDemandTemplate">
+                <HorizontalStackLayout Spacing="8"
+                                       Padding="0, 5"
+                                       HorizontalOptions="Center">
+                    <telerik:RadBusyIndicator AnimationType="Animation4"
+                                              AnimationContentColor="#8660C5"
+                                              IsBusy="True"
+                                              IsVisible="{Binding Source={RelativeSource AncestorType={x:Type telerik:RadCollectionView}}, Path=IsLoadOnDemandActive}" />
+                    <Label Text="Loading more items"
+                           TextColor="#8660C5"
+                           VerticalTextAlignment="Center" />
+                </HorizontalStackLayout>
+            </DataTemplate>
+            <!-- << collectionview-loadondemand-automatic-template-resource -->
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <!-- >> collectionview-loadondemand-automatic-template -->
+    <telerik:RadCollectionView ItemsSource="{Binding Items}"
+                               DisplayMemberPath="Name"
+                               IsLoadOnDemandEnabled="True"
+                               AutomaticLoadOnDemandTemplate="{StaticResource CustomAutomaticLoadOnDemandTemplate}">
+        <telerik:RadCollectionView.BindingContext>
+            <local:LoadOnDemandCollectionViewModel />
+        </telerik:RadCollectionView.BindingContext>
+    </telerik:RadCollectionView>
+    <!--  << collectionview-loadondemand-automatic-template -->
+</ContentView>

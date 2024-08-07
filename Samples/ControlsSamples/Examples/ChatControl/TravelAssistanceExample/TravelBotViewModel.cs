@@ -1,5 +1,4 @@
 ﻿using Microsoft.Maui.Controls;
-using Newtonsoft.Json;
 using QSF.Examples.ChatControl.TravelAssistanceExample.Converters;
 using QSF.Examples.ChatControl.TravelAssistanceExample.Models;
 using System;
@@ -8,6 +7,8 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Globalization;
 using System.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Windows.Input;
 using Telerik.Maui.Controls;
 using Telerik.Maui.Controls.Chat;
@@ -302,7 +303,8 @@ public class TravelBotViewModel : NotifyPropertyChangedBase
 
     private ImageCardContext CreateImageContext(PickerItem cardPickerItem, Attachment attachment)
     {
-        HeroCard card = JsonConvert.DeserializeObject<HeroCard>(attachment.Content.ToString());
+        var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+        HeroCard card = JsonSerializer.Deserialize<HeroCard>(attachment.Content.ToString(), options);
         ImageCardContext imageContext = new ImageCardContext();
 
         if (card.Images != null && card.Images.Count > 0)
@@ -350,10 +352,8 @@ public class TravelBotViewModel : NotifyPropertyChangedBase
 
     private void RenderAdaptiveCard(Attachment attachment)
     {
-        JsonSerializerSettings settings = new JsonSerializerSettings();
-        settings.Converters.Add(new JsonAdaptiveElementToObjectConverter());
-
-        AdaptiveCard adaptiveCard = JsonConvert.DeserializeObject<AdaptiveCard>(attachment.Content.ToString(), settings);
+        var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+        AdaptiveCard adaptiveCard = JsonSerializer.Deserialize<AdaptiveCard>(attachment.Content.ToString(), options);
         if (adaptiveCard.TType == "Flight")
         {
             string passengerName = ((AdaptiveTextBlock)adaptiveCard.Body[1]).Text;
@@ -440,7 +440,8 @@ public class TravelBotViewModel : NotifyPropertyChangedBase
 
     private void RenderHeroCard(Attachment attachment)
     {
-        HeroCard heroCard = JsonConvert.DeserializeObject<HeroCard>(attachment.Content.ToString());
+        var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+        HeroCard heroCard = JsonSerializer.Deserialize<HeroCard>(attachment.Content.ToString(), options);
 
         if (heroCard.Buttons == null || heroCard.Buttons.Count == 0)
         {

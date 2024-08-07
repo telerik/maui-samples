@@ -27,7 +27,7 @@ namespace QSF.Examples.ImageEditorControl.FirstLookExample
         public EditImageViewModel()
         {
             this.SaveCommand = new Command<IImageCommandContext>(SaveImageAsync);
-            this.DiscardCommand = new Command<IImageCommandContext>(DiscardImageAsync);
+            this.DiscardCommand = new Command<IImageCommandContext>(DiscardImage);
         }
 
         public EditImageViewModel(string path) : this()
@@ -87,7 +87,7 @@ namespace QSF.Examples.ImageEditorControl.FirstLookExample
             NavigationHelper.Instance.NavigateToPickImageView();
         }
 
-        private async void DiscardImageAsync(IImageCommandContext imageCommandContext)
+        private void DiscardImage(IImageCommandContext imageCommandContext)
         {
             imageCommandContext.Reset();
             NavigationHelper.Instance.NavigateToPickImageView();

@@ -3,9 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
              x:Class="SDKBrowserMaui.Examples.TemplatedButtonControl.GettingStartedCategory.GettingStartedExample.GettingStartedXaml">
-    <VerticalStackLayout HorizontalOptions="Center">
+    <Grid RowDefinitions="Auto, *" HorizontalOptions="Center">
         <!-- >> templatedbutton-gettingstarted-xaml -->
-        <telerik:RadTemplatedButton Content="My TemplatedButton Content" />
+        <telerik:RadTemplatedButton x:Name="templatedButton"
+                                    Content="My TemplatedButton Content" />
         <!-- << templatedbutton-gettingstarted-xaml -->
-    </VerticalStackLayout>
+    </Grid>
 </ContentView>

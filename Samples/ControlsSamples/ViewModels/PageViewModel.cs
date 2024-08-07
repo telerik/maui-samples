@@ -4,6 +4,7 @@ using QSF.Common;
 using QSF.Helpers;
 using QSF.Services;
 using System.Windows.Input;
+using Telerik.AppUtils.Services;
 
 namespace QSF.ViewModels;
 
@@ -34,6 +35,7 @@ public abstract class PageViewModel : ViewModelBase
         this.NavigateToDownloadTrialCommand = new Command(this.NavigateToDownloadTrial);
         this.NavigateToExampleCodeCommand = new Command(this.NavigateToExampleCode);
         this.NavigateToDescriptionCommand = new Command(this.NavigateToDescription);
+        this.NavigateToThemeSettingsCommand = new Command(this.NavigateToThemeSettings);
     }
 
     public string AppTitle
@@ -96,6 +98,10 @@ public abstract class PageViewModel : ViewModelBase
 
     public ICommand NavigateToDescriptionCommand { get; private set; }
 
+    public ICommand NavigateToThemeSettingsCommand { get; private set; }
+
+    public bool IsThemeSettingsVisible => DependencyService.Get<ITestingService>().IsAppUnderTest;
+
     public static void TryNavigateToUrl(string url)
     {
         if (url == null)
@@ -157,5 +163,11 @@ public abstract class PageViewModel : ViewModelBase
         }
 
         this.NavigationService.NavigateToDescriptionPageAsync(descriptionViewModel);
+    }
+
+    private void NavigateToThemeSettings(object obj)
+    {
+        ThemeSettingsViewModel viewmodel = new ThemeSettingsViewModel();
+        this.NavigationService.NavigateToThemeSettingsPageAsync(viewmodel);
     }
 }

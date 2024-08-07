@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:local="clr-namespace:QSF.Examples.CollectionViewControl.GridLayoutExample"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        x:Class="QSF.Examples.CollectionViewControl.GridLayoutExample.GridLayoutView"
+                        Padding="{OnIdiom Default='16, 24', Desktop='16, 20'}">
+    <telerik:RadContentView.Resources>
+        <Style TargetType="Label" BasedOn="{StaticResource BaseLabelStyle}" />
+
+        <Style TargetType="telerik:RadCollectionViewItemView">
+            <Setter Property="BorderThickness" Value="{OnPlatform Default='0, 0, 0, 1', MacCatalyst=0, WinUI=0}" />
+            <Setter Property="CornerRadius" Value="0" />
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup Name="CommonStates">
+                        <VisualState Name="Normal" />
+                        <VisualState Name="MouseOver" />
+                        <VisualState Name="Selected" />
+                        <VisualState Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup Name="OrientationStates">
+                        <VisualState Name="Vertical" />
+                        <VisualState Name="Horizontal">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadCollectionViewItemView.BorderThickness" Value="{OnPlatform Default='0, 0, 1, 0', MacCatalyst=0, WinUI=0}" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+
+        <DataTemplate x:Key="PropertyItemTemplateMobile">
+            <VerticalStackLayout Padding="0, 8"
+                                 Spacing="8">
+                <telerik:RadBorder CornerRadius="8"
+                                   VerticalOptions="Center">
+                    <Image Source="{Binding Image}"
+                           Aspect="AspectFill"
+                           MaximumHeightRequest="60" />
+                </telerik:RadBorder>
+                <VerticalStackLayout VerticalOptions="Center"
+                                     Spacing="4">
+                    <Label Text="{Binding Name}"
+                           FontAttributes="Bold"
+                           MaxLines="2"
+                           LineBreakMode="TailTruncation" />
+                    <Label Text="{Binding Type}"
+                           Style="{StaticResource PlaceholderLabelStyle}"
+                           FontSize="{OnPlatform iOS=13, Android=12}"
+                           MaxLines="1"
+                           LineBreakMode="TailTruncation" />
+                    <Label Text="{Binding PricePerNight, StringFormat='${0} / night'}"
+                           Style="{StaticResource PlaceholderLabelStyle}"
+                           FontSize="{OnPlatform iOS=13, Android=12}"
+                           FontAttributes="Bold"
+                           MaxLines="1"
+                           LineBreakMode="TailTruncation" />
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </DataTemplate>
+
+        <DataTemplate x:Key="PropertyItemTemplateDesktop">
+            <VerticalStackLayout Spacing="4">
+                <Image Source="{Binding Image}"
+                       Aspect="AspectFill"
+                       MaximumHeightRequest="200" />
+                <Label Text="{Binding Name}"
+                       FontSize="16"
+                       FontAttributes="Bold"
+                       Margin="0, 4, 0, 0" />
+                <Label Text="{Binding Type}"
+                       Style="{StaticResource PlaceholderLabelStyle}" />
+                <Label Text="{Binding PricePerNight, StringFormat='${0} / night'}"
+                       Style="{StaticResource PlaceholderLabelStyle}"
+                       FontSize="12"
+                       FontAttributes="Bold" />
+            </VerticalStackLayout>
+        </DataTemplate>
+    </telerik:RadContentView.Resources>
+
+    <telerik:RadCollectionView x:Name="collectionView"
+                               ItemsSource="{Binding Properties}"
+                               ItemTemplate="{OnPlatform Default={StaticResource PropertyItemTemplateMobile}, MacCatalyst={StaticResource PropertyItemTemplateDesktop}, WinUI={StaticResource PropertyItemTemplateDesktop}}"
+                               SelectionMode="None"
+                               MaximumWidthRequest="{OnPlatform MacCatalyst=650, WinUI=650}"
+                               HorizontalOptions="{OnPlatform MacCatalyst=Start, WinUI=Start}"
+                               AutomationId="collectionView">
+        <telerik:RadCollectionView.ItemsLayout>
+            <telerik:CollectionViewGridLayout SpanCount="{Binding SpanCount, Mode=TwoWay}"
+                                              HorizontalItemSpacing="{Binding HorizontalItemSpacing, Mode=TwoWay}"
+                                              VerticalItemSpacing="{Binding VerticalItemSpacing, Mode=TwoWay}" />
+        </telerik:RadCollectionView.ItemsLayout>
+    </telerik:RadCollectionView>
+</telerik:RadContentView>
