@@ -2,8 +2,7 @@
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
-             x:Class="QSF.Views.GalleryExampleViewBase"
-             Background="{DynamicResource RadAppSurfaceColor}">
+             x:Class="QSF.Views.GalleryExampleViewBase">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50" />
@@ -36,7 +35,7 @@
                                  HorizontalOptions="Center"
                                  VerticalOptions="End"
                                  IsVisible="{Binding Path=IsSelected}"
-                                 Color="{AppThemeBinding Light='#E0E9FC', Dark='#FFFFFF'}"
+                                 Color="#E0E9FC"
                                  Margin="0, 2, 0, -1" />
                     </VerticalStackLayout>
                 </DataTemplate>

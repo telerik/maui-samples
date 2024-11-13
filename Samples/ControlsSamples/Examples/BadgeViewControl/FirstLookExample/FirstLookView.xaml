@@ -6,14 +6,10 @@
                         Margin="5">
     <ContentView.Resources>
         <ResourceDictionary>
-            <Color x:Key="SecondaryTextColorLight">#99000000</Color>
-            <Color x:Key="SecondaryTextColorDark">#99FFFFFF</Color>
-            <Color x:Key="HighLightedColorLight">#0E88F2</Color>
-            <Color x:Key="HighLightedColorDark">#42A5F5</Color>
-            <Color x:Key="MenuItemBackgroundColorLight">#F8F8F8</Color>
-            <Color x:Key="MenuItemBackgroundColorDark">#373737</Color>
-            <Color x:Key="DisabledTextColorLight">#9D9CA1</Color>
-            <Color x:Key="DisabledTextColorDark">#8E8E8E</Color>
+            <Color x:Key="SecondaryTextColor">#99000000</Color>
+            <Color x:Key="HighLightedColor">#0E88F2</Color>
+            <Color x:Key="MenuItemBackgroundColor">#F8F8F8</Color>
+            <Color x:Key="DisabledTextColor">#9D9CA1</Color>
             <Color x:Key="DisabledBadgeBackground">#FFBABA</Color>
 
             <Style x:Key="DefaultTabItemStyle" TargetType="Label">
@@ -65,7 +61,7 @@
                                    FontAttributes="{Binding MessageFontAttributes}"
                                    VerticalTextAlignment="End" />
                             <Label Text="{Binding LastMessageReceived}"
-                                   TextColor="{StaticResource SecondaryTextColorLight}"
+                                   TextColor="{StaticResource SecondaryTextColor}"
                                    FontSize="Micro"
                                    FontAttributes="{Binding MessageFontAttributes}" />
                         </VerticalStackLayout>
@@ -76,7 +72,7 @@
                                    TextColor="{Binding LastMessageReceivedDateColor}"
                                    FontSize="Small"
                                    VerticalOptions="CenterAndExpand" />
-                            <telerik:Badge BackgroundColor="{StaticResource HighLightedColorLight}"
+                            <telerik:Badge BackgroundColor="{StaticResource HighLightedColor}"
                                            Text="{Binding UnreadMessagesText}"
                                            HorizontalOptions="End"
                                            IsVisible="{Binding IsVisibleUnreadMessages}" />
@@ -88,7 +84,7 @@
         <Grid Grid.Row="1"
               ColumnDefinitions="*, *, *, *"
               VerticalOptions="EndAndExpand"
-              BackgroundColor="{StaticResource MenuItemBackgroundColorLight}"
+              BackgroundColor="{StaticResource MenuItemBackgroundColor}"
               Padding="0, 7">
             <telerik:RadBadgeView BadgeText="12"
                                   BadgeBackgroundColor="{StaticResource DisabledBadgeBackground}"
@@ -96,9 +92,9 @@
                                   AutomationId="callsBadgeView">
                 <telerik:RadBadgeView.Content>
                     <StackLayout>
-                        <Label Text="&#xE904;" TextColor="{StaticResource DisabledTextColorLight}"
+                        <Label Text="&#xE904;" TextColor="{StaticResource DisabledTextColor}"
                                Style="{StaticResource DefaultTabItemIconStyle}" />
-                        <Label Text="Calls" TextColor="{StaticResource DisabledTextColorLight}"
+                        <Label Text="Calls" TextColor="{StaticResource DisabledTextColor}"
                                Style="{StaticResource DefaultTabItemLabelStyle}" />
                     </StackLayout>
                 </telerik:RadBadgeView.Content>
@@ -111,19 +107,19 @@
                 <telerik:RadBadgeView.Content>
                     <StackLayout>
                         <Label Text="&#xE903;"
-                               TextColor="{StaticResource HighLightedColorLight}"
+                               TextColor="{StaticResource HighLightedColor}"
                                Style="{StaticResource DefaultTabItemIconStyle}" />
                         <Label Text="Chats"
-                               TextColor="{StaticResource HighLightedColorLight}"
+                               TextColor="{StaticResource HighLightedColor}"
                                Style="{StaticResource DefaultTabItemLabelStyle}" />
                     </StackLayout>
                 </telerik:RadBadgeView.Content>
             </telerik:RadBadgeView>
 
             <StackLayout Grid.Column="2">
-                <Label Text="&#xE864;" TextColor="{StaticResource DisabledTextColorLight}"
+                <Label Text="&#xE864;" TextColor="{StaticResource DisabledTextColor}"
                        Style="{StaticResource DefaultTabItemIconStyle}" />
-                <Label Text="Calendar" TextColor="{StaticResource DisabledTextColorLight}"
+                <Label Text="Calendar" TextColor="{StaticResource DisabledTextColor}"
                        Style="{StaticResource DefaultTabItemLabelStyle}" />
             </StackLayout>
             <telerik:RadBadgeView BadgeType="Dot" Grid.Column="3"
@@ -134,9 +130,9 @@
                                   AutomationId="activityBadgeView">
                 <telerik:RadBadgeView.Content>
                     <StackLayout>
-                        <Label Text="&#xE901;" TextColor="{StaticResource DisabledTextColorLight}"
+                        <Label Text="&#xE901;" TextColor="{StaticResource DisabledTextColor}"
                                Style="{StaticResource DefaultTabItemIconStyle}" />
-                        <Label Text="Activity" TextColor="{StaticResource DisabledTextColorLight}"
+                        <Label Text="Activity" TextColor="{StaticResource DisabledTextColor}"
                                Style="{StaticResource DefaultTabItemLabelStyle}" />
                     </StackLayout>
                 </telerik:RadBadgeView.Content>

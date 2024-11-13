@@ -1,18 +1,24 @@
-using System;
+using Microsoft.Maui.ApplicationModel;
+using Microsoft.Maui.Controls;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using Microsoft.Maui.ApplicationModel;
-using Microsoft.Maui.Controls;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using System.Threading.Tasks;
 
 namespace QSF.ViewModels;
 
 public class ThemeSettingsViewModel : ViewModelBase
 {
+    private ICollection<ResourceDictionary> mergedDictionaries;
+
+    private static bool prefetchStarted = false;
+    private static bool prefetched = false;
+    private static double progress = 0;
+
     public ThemeSettingsViewModel()
     {
         string result = null;
@@ -26,17 +32,15 @@ public class ThemeSettingsViewModel : ViewModelBase
             }
         }
 
-        Console.WriteLine(result);
-
         var themeStrings = TelerikTheming.Themes.Select(t => t.FullName).ToHashSet();
 
         var themeDefinitions = JsonSerializer.Deserialize<ThemeDefinition[]>(result);
 
         this.ThemesCatalog = themeDefinitions
             .SelectMany(theme => theme.Swatches)
-            .Where(theme => themeStrings.Contains(theme.Theme + "-" + theme.Swatch))
+            .Where(theme => themeStrings.Contains(theme.Theme + " " + theme.Swatch))
             .ToArray();
-        
+
         this.HeaderLabel = "Theme Settings";
 
         this.UserAppThemeOptions = new ReadOnlyCollection<string>(new List<string> {
@@ -48,11 +52,56 @@ public class ThemeSettingsViewModel : ViewModelBase
         Application.Current.RequestedThemeChanged += this.OnRequestedThemeChanged;
     }
 
+    public bool PrefetchStarted = prefetchStarted;
+    public bool Prefetched => prefetched;
+    public bool Loading => prefetchStarted && !prefetched;
+
+    public double Progress => progress;
+
+    public async Task PrefetchAsync()
+    {
+        if (!prefetchStarted)
+        {
+            prefetchStarted = true;
+            this.OnPropertyChanged("PrefetchStarted");
+            this.OnPropertyChanged("Loading");
+
+            // NOTE: This is instance, while the progress is static...
+            // may have minor issues going back and forth too quick between pages
+            await TelerikTheming.PrefetchAsync((p, t) =>
+            {
+                progress = 100.0 * (double)p / ((double)t);
+                this.OnPropertyChanged("Progress");
+            });
+
+            prefetched = true;
+            this.OnPropertyChanged("Prefetched");
+            this.OnPropertyChanged("Loading");
+        }
+    }
+
+    // TODO: Delete the field mergedDictionaries once we apply the theme on an App level.
+    public ICollection<ResourceDictionary> MergedDictionaries
+    {
+        get => this.mergedDictionaries;
+        set
+        {
+            if (this.UpdateValue(ref this.mergedDictionaries, value) && this.mergedDictionaries != null)
+            {
+                var theming = this.mergedDictionaries.OfType<TelerikTheming>().SingleOrDefault();
+                if (theming == null)
+                {
+                    this.mergedDictionaries.Add(new TelerikTheming());
+                }
+            }
+        }
+    }
+
     public SwatchDefinition CurrentTheme
     {
         get
         {
-            var telerikTheming = App.Current.Resources.MergedDictionaries.OfType<TelerikTheming>().Single();
+            var telerikTheming = this.MergedDictionaries.OfType<TelerikTheming>().Single();
 
             var swatchDefinition = this.ThemesCatalog.Single(catalogTheme =>
                 catalogTheme.Theme == telerikTheming.Theme.Theme &&
@@ -68,20 +117,28 @@ public class ThemeSettingsViewModel : ViewModelBase
                 return;
             }
 
-            // Console.WriteLine("  Will try to find the theme RD...");
-            var telerikTheming = App.Current.Resources.MergedDictionaries.OfType<TelerikTheming>().Single();
+            var telerikTheming = this.MergedDictionaries.OfType<TelerikTheming>().Single();
 
-            // Console.WriteLine("  Find ThemeKey from SwatchDefinition " + value.Theme + " " + value.Swatch);
-            
+            // TODO: Delete this logic once theming is applied on app level.
+            // Now it is needed for desktop because there are controls that require the swatches to be merged on app level.
+#if MACCATALYST || WINDOWS
+            var appDictionaries = App.Current.Resources.MergedDictionaries;
+            appDictionaries.Remove(telerikTheming.MergedDictionaries.ElementAt(0));
+            appDictionaries.Remove(telerikTheming.MergedDictionaries.ElementAt(1));
+#endif
+
             var themeKey = TelerikTheming.Themes.Single(themeKey =>
                 themeKey.Theme == value.Theme &&
                 themeKey.Swatch == value.Swatch);
-            // Console.WriteLine("Found: " + themeKey.FullName);
 
-            // Console.WriteLine("  Switch the theme...");
             telerikTheming.Theme = themeKey;
 
-            Console.WriteLine($"Set theme to {(value == null ? "null" : themeKey.Theme + "-" + themeKey.Swatch)}.");
+#if MACCATALYST || WINDOWS
+            appDictionaries.Add(telerikTheming.MergedDictionaries.ElementAt(0));
+            appDictionaries.Add(telerikTheming.MergedDictionaries.ElementAt(1));
+            this.ResetExampleIfNeeded();
+#endif
+            this.OnPropertyChanged();
         }
     }
 
@@ -95,7 +152,7 @@ public class ThemeSettingsViewModel : ViewModelBase
     {
         get
         {
-            switch(Application.Current.UserAppTheme)
+            switch (Application.Current.UserAppTheme)
             {
                 case AppTheme.Light: return "Light";
                 case AppTheme.Dark: return "Dark";
@@ -105,7 +162,7 @@ public class ThemeSettingsViewModel : ViewModelBase
 
         set
         {
-            switch(value)
+            switch (value)
             {
                 case "Light":
                     Application.Current.UserAppTheme = Microsoft.Maui.ApplicationModel.AppTheme.Light;
@@ -130,9 +187,11 @@ public class ThemeSettingsViewModel : ViewModelBase
 
     public string PlatformAppTheme => AppThemeToString(Application.Current.PlatformAppTheme);
 
+    public PageViewModel ParentViewModel { get; internal set; }
+
     public static string AppThemeToString(AppTheme theme)
     {
-        switch(theme)
+        switch (theme)
         {
             case Microsoft.Maui.ApplicationModel.AppTheme.Light:
                 return "Light";
@@ -149,6 +208,25 @@ public class ThemeSettingsViewModel : ViewModelBase
         this.OnPropertyChanged("UserAppTheme");
         this.OnPropertyChanged("RequestedTheme");
         this.OnPropertyChanged("PlatformAppTheme");
+    }
+
+    internal void ResetExampleIfNeeded()
+    {
+        if (this.CurrentTheme.DisplayFullName != "Platform Main")
+        {
+            return;
+        }
+
+        // This triggers recreation of the Example view when the user switches back to Platform.
+        // Should be removed once we implement actual Platform theme.
+        if (this.ParentViewModel is ExampleViewModel)
+        {
+            this.ParentViewModel.RaisePropertyChanged("Example");
+        }
+        else if (this.ParentViewModel is ControlViewModel)
+        {
+            this.ParentViewModel.RaisePropertyChanged("SelectedExample");
+        }
     }
 
     public class ThemeDefinition

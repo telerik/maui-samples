@@ -110,7 +110,7 @@
                                ItemTemplate="{StaticResource ItemTemplateSelector}"
                                SelectedItem="{Binding SelectedItem}"
                                BorderThickness="1"
-                               BorderColor="{AppThemeBinding Light={StaticResource DefaultBorderColor}, Dark={StaticResource DefaultBorderColorDark}}">
+                               BorderColor="{StaticResource DefaultBorderColor}">
         <telerik:RadNavigationView.Content>
             <telerik:RadCollectionView ItemsSource="{Binding Mails}"
                                        ItemTemplate="{StaticResource MailTemplate}"

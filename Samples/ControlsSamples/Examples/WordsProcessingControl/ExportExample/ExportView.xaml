@@ -10,42 +10,41 @@
             <Setter Property="HorizontalOptions" Value="Center" />
             <Setter Property="VerticalOptions" Value="Center" />
         </Style>
+        <Style x:Key="ComboBoxTextInputStyle" TargetType="telerik:RadTextInput">
+            <Setter Property="HorizontalTextAlignment" Value="Center" />
+        </Style>
     </telerik:RadContentView.Resources>
 
-    <VerticalStackLayout BackgroundColor="{AppThemeBinding Light={StaticResource DefaultBackgroundColor}, Dark={StaticResource DefaultBackgroundColorDark}}"
-                         Padding="16, 24"
-                         VerticalOptions="Start">
-        <HorizontalStackLayout HorizontalOptions="Center"
-                               VerticalOptions="Center"
-                               Spacing="10"
-                               Margin="0, 0, 0, 12">
-            <Label Text="File:" />
-            <Label Text="DocToBeProcessed.docx"
-                    FontAttributes="Bold" />
-        </HorizontalStackLayout>
-        <HorizontalStackLayout Spacing="10"
+    <telerik:RadBorder Style="{StaticResource ControlWrapperBorderStyle}"
+                       VerticalOptions="Start">
+        <VerticalStackLayout>
+            <HorizontalStackLayout HorizontalOptions="Center"
+                                   VerticalOptions="Center"
+                                   Spacing="10"
+                                   Margin="0, 0, 0, 12">
+                <Label Text="File:" />
+                <Label Text="DocToBeProcessed.docx"
+                        FontAttributes="Bold" />
+            </HorizontalStackLayout>
+            <HorizontalStackLayout Spacing="10"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"
+                                   Margin="0, 0, 0, 24">
+                <Label Text="Export to:" />
+                <telerik:RadComboBox IsEditable="False"
+                                     IsClearButtonVisible="False"
+                                     TextInputStyle="{StaticResource ComboBoxTextInputStyle}"
+                                     WidthRequest="200"
+                                     ItemsSource="{Binding ExportFormats}"
+                                     SelectedItem="{Binding SelectedExportFormat, Mode=TwoWay}"
+                                     AutomationId="exportComboBox" />
+            </HorizontalStackLayout>
+            <telerik:RadButton Text="Export"
+                               VerticalOptions="End"
                                HorizontalOptions="Center"
-                               VerticalOptions="Center"
-                               Margin="0, 0, 0, 24">
-            <Label Text="Export to:" />
-            <telerik:RadComboBox IsEditable="False"
-                                 IsClearButtonVisible="False"
-                                 WidthRequest="200"
-                                 ItemsSource="{Binding ExportFormats}"
-                                 SelectedItem="{Binding SelectedExportFormat, Mode=TwoWay}"
-                                 AutomationId="exportComboBox">
-                <telerik:RadComboBox.Resources>
-                    <Style TargetType="telerik:RadEntry">
-                        <Setter Property="HorizontalTextAlignment" Value="Center" />
-                    </Style>
-                </telerik:RadComboBox.Resources>
-            </telerik:RadComboBox>
-        </HorizontalStackLayout>
-        <telerik:RadButton Text="Export"
-                           VerticalOptions="End"
-                           HorizontalOptions="Center"
-                           Style="{StaticResource SubmitButtonStyle}"
-                           Command="{Binding ExportCommand}" 
-                           AutomationId="exportButton"/>
-    </VerticalStackLayout>
+                               Style="{StaticResource SubmitButtonStyle}"
+                               Command="{Binding ExportCommand}" 
+                               AutomationId="exportButton" />
+        </VerticalStackLayout>
+    </telerik:RadBorder>
 </telerik:RadContentView>

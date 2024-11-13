@@ -1,17 +1,21 @@
-﻿using System;
+﻿using Microsoft.Maui.Controls;
+using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using Telerik.AppUtils.Services;
 
 namespace QSF.Examples.ChatControl.ChatRoomExample;
 
 public static class ParticipantLines
 {
     private static readonly List<string> lines;
-    private static readonly Random random;
+    private static Random random;
 
     static ParticipantLines()
     {
-        random = new Random();
-
+        random = DependencyService
+              .Get<ITestingService>()
+              .Random(10);
         lines = new List<string>
         {
             "Did you know that if you boil an egg in a microwave it is going to explode?",

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.DataPagerControl.FeaturesCategory"
+             x:Class="SDKBrowserMaui.Examples.DataPagerControl.FeaturesCategory.PageConfigurationExample.PageConfiguration">
+    <VerticalStackLayout Spacing="8">
+        <!-- >> datapager-page-configuration -->
+        <telerik:RadDataPager Source="{Binding Data}"
+                              PageSize="5"
+                              PageIndex="3"
+                              ItemSpacing="4">
+            <telerik:RadDataPager.PageSizes>
+                <x:Array Type="{x:Type x:Int32}">
+                    <x:Int32>1</x:Int32>
+                    <x:Int32>2</x:Int32>
+                    <x:Int32>3</x:Int32>
+                </x:Array>
+            </telerik:RadDataPager.PageSizes>
+            <telerik:RadDataPager.BindingContext>
+                <local:ViewModel />
+            </telerik:RadDataPager.BindingContext>
+        </telerik:RadDataPager>
+        <!-- << datapager-page-configuration -->
+    </VerticalStackLayout>
+</ContentView>

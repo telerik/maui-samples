@@ -15,12 +15,14 @@
                                         FooterText="Capital Column Footer">
                 <!-- >> datagrid-columnstyle-headerstyle -->
                 <telerik:DataGridTextColumn.HeaderStyle>
-                    <telerik:DataGridColumnHeaderStyle TextColor="#FFFFFF"
-                                                       FilterIndicatorTextColor="#99FFFFFF"
-                                                       FilterIndicatorActiveTextColor="#80CBC4"
-                                                       SortIndicatorColor="#FFFFFF"
-                                                       BackgroundColor="#00796B"
-                                                       HoverBackgroundColor="#198679" />
+                    <Style TargetType="telerik:DataGridColumnHeaderAppearance">
+                        <Setter Property="TextColor" Value="#FFFFFF" />
+                        <Setter Property="BackgroundColor" Value="#00796B" />
+                        <Setter Property="HoverBackgroundColor" Value="#198679" />
+                        <Setter Property="SortIndicatorColor" Value="#FFFFFF" />
+                        <Setter Property="FilterIndicatorTextColor" Value="#99FFFFFF" />
+                        <Setter Property="FilterIndicatorActiveTextColor" Value="#80CBC4" />
+                    </Style>
                 </telerik:DataGridTextColumn.HeaderStyle>
                 <!-- << datagrid-columnstyle-headerstyle -->
 
@@ -37,25 +39,30 @@
 
                 <!-- >> datagrid-columnstyle-celldecoration -->
                 <telerik:DataGridTextColumn.CellDecorationStyle>
-                    <telerik:DataGridBorderStyle BackgroundColor="#E0F2F1" />
+                    <Style TargetType="telerik:DataGridCellDecorationAppearance">
+                        <Setter Property="BackgroundColor" Value="#E0F2F1" />
+                    </Style>
                 </telerik:DataGridTextColumn.CellDecorationStyle>
                 <!-- << datagrid-columnstyle-celldecoration -->
 
                 <!-- >> datagrid-columnstyle-cellcontent -->
                 <telerik:DataGridTextColumn.CellContentStyle>
-                    <telerik:DataGridTextCellStyle FontSize="12"
-                                                   TextMargin="2"
-                                                   TextColor="#000000"
-                                                   HoverTextColor="#198679"
-                                                   SelectedTextColor="#00796B"
-                                                   VerticalTextAlignment="Center"
-                                                   HorizontalTextAlignment="Center" />
+                    <Style TargetType="telerik:DataGridTextCellAppearance">
+                        <Setter Property="FontSize" Value="12" />
+                        <Setter Property="TextMargin" Value="2" />
+                        <Setter Property="TextColor" Value="#000000" />
+                        <Setter Property="HoverTextColor" Value="#198679" />
+                        <Setter Property="SelectedTextColor" Value="#00796B" />
+                        <Setter Property="HorizontalTextAlignment" Value="Center" />
+                    </Style>
                 </telerik:DataGridTextColumn.CellContentStyle>
                 <!-- << datagrid-columnstyle-cellcontent -->
                 <!-- >> datagrid-columnstyle-footerstyle -->
                 <telerik:DataGridTextColumn.FooterStyle>
-                    <telerik:DataGridColumnFooterStyle TextColor="#FFFFFF"
-                                                       BackgroundColor="#00796B" />
+                    <Style TargetType="telerik:DataGridColumnFooterAppearance">
+                        <Setter Property="TextColor" Value="#FFFFFF" />
+                        <Setter Property="BackgroundColor" Value="#00796B" />
+                    </Style>
                 </telerik:DataGridTextColumn.FooterStyle>
                 <!-- << datagrid-columnstyle-footerstyle -->
             </telerik:DataGridTextColumn>

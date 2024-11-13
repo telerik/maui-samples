@@ -6,15 +6,15 @@
     <!-- >> map-styling-shapeslstyle -->
     <telerik:RadMap x:Name="map">
         <telerik:RadMap.Layers>
-            <telerik:ShapefileLayer>
-                <telerik:ShapefileLayer.Reader>
+            <telerik:MapShapefileLayer>
+                <telerik:MapShapefileLayer.Reader>
                     <telerik:MapShapeReader x:Name="reader"/>
-                </telerik:ShapefileLayer.Reader>
-                <telerik:ShapefileLayer.ShapeStyle>
+                </telerik:MapShapefileLayer.Reader>
+                <telerik:MapShapefileLayer.ShapeStyle>
                     <telerik:MapShapeStyle FillColor="White"
                                               StrokeColor="#7BD5FB"/>
-                </telerik:ShapefileLayer.ShapeStyle>
-            </telerik:ShapefileLayer>
+                </telerik:MapShapefileLayer.ShapeStyle>
+            </telerik:MapShapefileLayer>
         </telerik:RadMap.Layers>
     </telerik:RadMap>
     <!-- << map-styling-shapeslstyle -->

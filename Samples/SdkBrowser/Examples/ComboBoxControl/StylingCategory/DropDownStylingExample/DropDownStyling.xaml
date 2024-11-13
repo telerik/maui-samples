@@ -8,16 +8,9 @@
     <ContentView.Resources>
         <ResourceDictionary>
             <!-- >> combobox-dropdownbutton-style -->
-            <Style TargetType="telerik:RadButton" x:Key="DropDownButtonStyle">
-                <Setter Property="FontSize" Value="14"/>
-                <Setter Property="HorizontalOptions" Value="Center"/>
-                <Setter Property="VerticalOptions" Value="Center"/>
-                <Setter Property="WidthRequest" Value="24"/>
-                <Setter Property="HeightRequest" Value="24"/>
-                <Setter Property="Padding" Value="0"/>
-                <Setter Property="BackgroundColor" Value="Transparent"/>             
-                <Setter Property="TextColor" Value="Blue"/>
-                <Setter Property="Padding" Value="{OnPlatform Android='8, 2, 4, 2', iOS='4, 2, 12, 2', MacCatalyst='4, 0, 8, 0', WinUI='6, 0, 10, 0'}"/>
+            <Style TargetType="telerik:RadTemplatedButton" x:Key="DropDownButtonStyle">
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="TextColor" Value="#00897B"/>
             </Style>
             <!-- << combobox-dropdownbutton-style -->
         </ResourceDictionary>
@@ -31,11 +24,12 @@
                                      SearchTextPath="Name"
                                      DisplayMemberPath="Name"
                                      SelectionMode="Multiple"
-                                     HighlightTextColor="Black"
-                                     DropDownBorderColor="Blue"
-                                     DropDownBorderThickness="2"
-                                     DropDownCornerRadius="5"
-                                     DropDownBackgroundColor="LightBlue"
+                                     HighlightTextColor="#00897B"
+                                     DropDownBorderColor="#00897B"
+                                     DropDownBorderThickness="1"
+                                     DropDownCornerRadius="12"
+                                     DropDownBackgroundColor="#E2F6F3"
+                                     DropDownVerticalOffset="2"
                                      DropDownButtonStyle="{StaticResource DropDownButtonStyle}"
                                      AutomationId="comboBox">
                     <telerik:RadComboBox.BindingContext>

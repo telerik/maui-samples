@@ -2,36 +2,28 @@
 <telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
                         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                         xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
-                        x:Class="SDKBrowserMaui.Examples.PopupControl.PlacementCategory.PlacementExample.PopupPlacement"
-                        Margin="5">
-    <telerik:RadContentView.Content>
-        <Grid Margin="10">
-            <!-- >> popup-features-placement -->
-            <Button HorizontalOptions="Center"
-                    VerticalOptions="Start"
-                    BackgroundColor="#7A9BFF"
-                    TextColor="White"
-                    Text="Show popup"
-                    Clicked="ShowPopup"
-                    x:Name="button">
-                <telerik:RadPopup.Popup>
-                    <telerik:RadPopup x:Name="popup"
-                                      Placement="Bottom"
-                                      HorizontalOffset="20"
-                                      VerticalOffset="20">
-                        <telerik:RadBorder WidthRequest="200"
-                                           HeightRequest="210"
-                                           CornerRadius="6" 
-                                           BackgroundColor="#93D7FF"
-                                           BorderColor="#7A9BFF"
-                                           BorderThickness="1"
-                                           Padding="10">
-                            <Label Text="With Telerik Popup for .NET MAUI you could easily add modal popups to your application in order to draw attention to important information or receive user input." />
-                        </telerik:RadBorder>
-                    </telerik:RadPopup>
-                </telerik:RadPopup.Popup>
-            </Button>
-            <!-- << popup-features-placement -->
-        </Grid>
-    </telerik:RadContentView.Content>
+                        x:Class="SDKBrowserMaui.Examples.PopupControl.PlacementCategory.PlacementExample.PopupPlacement">
+    <!-- >> popup-features-placement -->
+    <telerik:RadTemplatedButton HorizontalOptions="Center"
+                                VerticalOptions="Start"
+                                Content="Show popup"
+                                Clicked="ShowPopup">
+        <telerik:RadPopup.Popup>
+            <telerik:RadPopup x:Name="popup"
+                              Placement="Bottom"
+                              HorizontalOffset="-50"
+                              VerticalOffset="8">
+                <telerik:RadBorder WidthRequest="200"
+                                   CornerRadius="8"
+                                   BackgroundColor="#F9F9F9"
+                                   BorderColor="#DFDFDF"
+                                   BorderThickness="1"
+                                   Padding="12">
+                    <Label TextColor="Black"
+                           Text="The .NET MAUI Popup supports useful properties, which enable you to position it depending on your requirements." />
+                </telerik:RadBorder>
+            </telerik:RadPopup>
+        </telerik:RadPopup.Popup>
+    </telerik:RadTemplatedButton>
+    <!-- << popup-features-placement -->
 </telerik:RadContentView>

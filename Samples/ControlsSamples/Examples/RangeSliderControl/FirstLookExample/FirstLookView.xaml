@@ -65,40 +65,41 @@
 
     <Grid RowDefinitions="Auto, *"
           RowSpacing="{OnIdiom Default=8, Desktop=20}">
-        <Grid RowDefinitions="Auto, Auto"
-              RowSpacing="{OnIdiom Default=8, Desktop=0}"
-              ColumnDefinitions="{OnIdiom Default='*', Desktop='*, *'}"
-              ColumnSpacing="{OnIdiom Default=0, Desktop=50}"
-              BackgroundColor="{AppThemeBinding Light=#F3F3F3, Dark=#202020}"
-              Padding="{OnIdiom Default='16, 24, 16, 8', Desktop=12}">
-            <VerticalStackLayout>
-                <Label Text="Price per Night"
-                       FontAttributes="Bold"
-                       FontSize="{OnPlatform iOS=13}"
-                       Margin="{OnIdiom Default=0, Desktop='0, 0, 0, 8'}" />
-                <telerik:RadRangeSlider RangeStart="{Binding PriceRangeStart, Mode=TwoWay}"
-                                        RangeEnd="{Binding PriceRangeEnd, Mode=TwoWay}"
-                                        Minimum="80"
-                                        Maximum="500"
-                                        LabelsPlacement="End"
-                                        StringFormat="${0}"
-                                        TooltipStringFormat="{}{0:N0}" />
-            </VerticalStackLayout>
-            <VerticalStackLayout Grid.Row="{OnIdiom Default=1, Desktop=0}"
-                                 Grid.Column="{OnIdiom Default=0, Desktop=1}">
-                <Label Text="Number of Guests"
-                       FontAttributes="Bold"
-                       FontSize="{OnPlatform iOS=13}"
-                       Margin="{OnIdiom Default=0, Desktop='0, 0, 0, 8'}" />
-                <telerik:RadSlider Value="{Binding GuestsNumber, Mode=TwoWay}"
-                                   Minimum="1"
-                                   Maximum="8"
-                                   TickStep="1"
-                                   SnapMode="SnapToTicks"
-                                   LabelsPlacement="End"
-                                   TooltipStringFormat="{}{0:N0}" />
-            </VerticalStackLayout>
-        </Grid>
+        <telerik:RadBorder Style="{StaticResource ControlWrapperBorderStyle}"
+                           Padding="{OnIdiom Default='16, 24, 16, 8', Desktop=12}" >
+            <Grid RowDefinitions="Auto, Auto"
+                  RowSpacing="{OnIdiom Default=8, Desktop=0}"
+                  ColumnDefinitions="{OnIdiom Default='*', Desktop='*, *'}"
+                  ColumnSpacing="{OnIdiom Default=0, Desktop=50}">
+                <VerticalStackLayout>
+                    <Label Text="Price per Night"
+                           FontAttributes="Bold"
+                           FontSize="{OnPlatform iOS=13}"
+                           Margin="{OnIdiom Default=0, Desktop='0, 0, 0, 8'}" />
+                    <telerik:RadRangeSlider RangeStart="{Binding PriceRangeStart, Mode=TwoWay}"
+                                            RangeEnd="{Binding PriceRangeEnd, Mode=TwoWay}"
+                                            Minimum="80"
+                                            Maximum="500"
+                                            LabelsPlacement="End"
+                                            StringFormat="${0}"
+                                            TooltipStringFormat="{}{0:N0}" />
+                </VerticalStackLayout>
+                <VerticalStackLayout Grid.Row="{OnIdiom Default=1, Desktop=0}"
+                                     Grid.Column="{OnIdiom Default=0, Desktop=1}">
+                    <Label Text="Number of Guests"
+                           FontAttributes="Bold"
+                           FontSize="{OnPlatform iOS=13}"
+                           Margin="{OnIdiom Default=0, Desktop='0, 0, 0, 8'}" />
+                    <telerik:RadSlider Value="{Binding GuestsNumber, Mode=TwoWay}"
+                                       Minimum="1"
+                                       Maximum="8"
+                                       TickStep="1"
+                                       SnapMode="SnapToTicks"
+                                       LabelsPlacement="End"
+                                       TooltipStringFormat="{}{0:N0}" />
+                </VerticalStackLayout>
+            </Grid>
+        </telerik:RadBorder>
         <telerik:RadListView Grid.Row="1"
                              ItemsSource="{Binding Properties}"
                              ItemTemplate="{OnIdiom Default={StaticResource PropertyItemTemplateMobile}, Desktop={StaticResource PropertyItemTemplateDesktop}}"
@@ -112,7 +113,7 @@
             </telerik:RadListView.LayoutDefinition>
             <telerik:RadListView.ItemStyle>
                 <telerik:ListViewItemStyle BackgroundColor="Transparent"
-                                           BorderColor="{AppThemeBinding Light={StaticResource DefaultBorderColor}, Dark={StaticResource DefaultBorderColorDark}}"
+                                           BorderColor="{StaticResource DefaultBorderColor}"
                                            BorderWidth="{OnIdiom Default=1, Desktop=0}"
                                            BorderLocation="{OnIdiom Default=Bottom, Desktop=None}" />
             </telerik:RadListView.ItemStyle>

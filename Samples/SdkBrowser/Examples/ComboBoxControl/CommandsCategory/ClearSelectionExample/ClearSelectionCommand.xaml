@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.ComboBoxControl.CommandsCategory.ClearSelectionExample.ClearSelectionCommand">
+    <VerticalStackLayout HorizontalOptions="{OnIdiom Default=Fill, Desktop=Start}">
+        <Label Text="Choose the command to execute for clearing the selection:" 
+               Margin="0, 0, 0, 12"/>
+        <!-- >> combobox-commands -->
+        <HorizontalStackLayout Spacing="5"
+                               Margin="0, 0, 0, 12">
+            <Button Text="Default Clear Command"
+                    Command="{Binding Source={x:Reference comboBox}, Path=ClearSelectionCommand}" 
+                    AutomationId="customClearButton"/>
+            <Button Text="Custom Clear Command"
+                    Clicked="ExecuteCustomCommanClicked"
+                    AutomationId="defaultClearButton"/>
+        </HorizontalStackLayout>
+
+        <telerik:RadComboBox x:Name="comboBox"
+                             Placeholder="Select City!"
+                             SelectionMode="Multiple"
+                             IsDropDownClosedOnSelection="False"
+                             WidthRequest="{OnPlatform MacCatalyst=300, WinUI=300}"
+                             HorizontalOptions="{OnIdiom Default=Fill, Desktop=Start}"
+                             ItemsSource="{Binding Items}"
+                             DisplayMemberPath="Name"
+                             AutomationId="comboBox"/>
+        <!-- << combobox-commands -->
+    </VerticalStackLayout>
+</ContentView>

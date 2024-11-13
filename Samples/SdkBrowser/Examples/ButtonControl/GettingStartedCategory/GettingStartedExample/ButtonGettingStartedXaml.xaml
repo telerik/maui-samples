@@ -5,16 +5,11 @@
                         x:Class="SDKBrowserMaui.Examples.ButtonControl.GettingStartedCategory.GettingStartedExample.ButtonGettingStartedXaml"
                         Margin="5">
     <telerik:RadContentView.Content>
-        <VerticalStackLayout>
+        <VerticalStackLayout HorizontalOptions="{OnPlatform Default=Start, Android=Center, iOS=Center}">
             <!-- >> button-getting-started-xaml -->
-            <telerik:RadButton x:Name="button" 
-                               Text="Click me!"  
-                               BorderThickness="2" 
-                               BorderColor="#4488F6" 
-                               AutomationId="button"
-                               Clicked="button_Clicked"/>
+            <telerik:RadButton x:Name="button"
+                               Text="Click me!" />
             <!-- << button-getting-started-xaml -->
-            <Label x:Name="label1" AutomationId="countLabel"/>
         </VerticalStackLayout>
     </telerik:RadContentView.Content>
 </telerik:RadContentView>

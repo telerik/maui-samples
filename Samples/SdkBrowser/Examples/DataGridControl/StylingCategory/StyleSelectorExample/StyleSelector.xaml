@@ -9,26 +9,38 @@
             <!-- >> datagrid-styleselectors -->
             <local:MyGroupSelector x:Key="MyGroupSelector">
                 <local:MyGroupSelector.CountryTemplate1>
-                    <telerik:DataGridGroupHeaderStyle BackgroundColor="#DACFED" />
+                    <Style TargetType="telerik:DataGridGroupHeaderAppearance">
+                        <Setter Property="BackgroundColor" Value="#DACFED" />
+                    </Style>
                 </local:MyGroupSelector.CountryTemplate1>
                 <local:MyGroupSelector.CountryTemplate2>
-                    <telerik:DataGridGroupHeaderStyle BackgroundColor="#B2D6D2" />
+                    <Style TargetType="telerik:DataGridGroupHeaderAppearance">
+                        <Setter Property="BackgroundColor" Value="#B2D6D2" />
+                    </Style>
                 </local:MyGroupSelector.CountryTemplate2>
             </local:MyGroupSelector>
             <local:MyCellContentSelector x:Key="MyCellContentStyleSelector">
                 <local:MyCellContentSelector.CellTemplate1>
-                    <telerik:DataGridTextCellStyle TextColor="#00796B" />
+                    <Style TargetType="telerik:DataGridTextCellAppearance">
+                        <Setter Property="TextColor" Value="#00796B" />
+                    </Style>
                 </local:MyCellContentSelector.CellTemplate1>
                 <local:MyCellContentSelector.CellTemplate2>
-                    <telerik:DataGridTextCellStyle TextColor="#6B41B1" />
+                    <Style TargetType="telerik:DataGridTextCellAppearance">
+                        <Setter Property="TextColor" Value="#6B41B1" />
+                    </Style>
                 </local:MyCellContentSelector.CellTemplate2>
             </local:MyCellContentSelector>
             <local:MyCellDecorationSelector x:Key="MyCellDecorationSelector">
                 <local:MyCellDecorationSelector.CellTemplate1>
-                    <telerik:DataGridBorderStyle BackgroundColor="#1A00796B" />
+                    <Style TargetType="telerik:DataGridCellDecorationAppearance">
+                        <Setter Property="BackgroundColor" Value="#1A00796B" />
+                    </Style>
                 </local:MyCellDecorationSelector.CellTemplate1>
                 <local:MyCellDecorationSelector.CellTemplate2>
-                    <telerik:DataGridBorderStyle BackgroundColor="#1A8660C5" />
+                    <Style TargetType="telerik:DataGridCellDecorationAppearance">
+                        <Setter Property="BackgroundColor" Value="#1A8660C5" />
+                    </Style>
                 </local:MyCellDecorationSelector.CellTemplate2>
             </local:MyCellDecorationSelector>
             <!-- << datagrid-styleselectors -->

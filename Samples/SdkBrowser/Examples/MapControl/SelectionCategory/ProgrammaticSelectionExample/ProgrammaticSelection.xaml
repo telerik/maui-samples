@@ -37,11 +37,11 @@
             <!-- >> map-selection-mode-xaml -->
             <telerik:RadMap x:Name="map">
                 <telerik:RadMap.Layers>
-                    <telerik:ShapefileLayer x:Name="mapShapeLayer" SelectionMode="Multiple">
-                        <telerik:ShapefileLayer.Reader>
+                    <telerik:MapShapefileLayer x:Name="mapShapeLayer" SelectionMode="Multiple">
+                        <telerik:MapShapefileLayer.Reader>
                             <telerik:MapShapeReader x:Name="reader"/>
-                        </telerik:ShapefileLayer.Reader>
-                    </telerik:ShapefileLayer>
+                        </telerik:MapShapefileLayer.Reader>
+                    </telerik:MapShapefileLayer>
                 </telerik:RadMap.Layers>
             </telerik:RadMap>
             <!-- << map-selection-mode-xaml -->

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        x:Class="QSF.Examples.CalendarControl.ThemingExample.ThemingView"
+                        Padding="16">
+    <Grid>
+        <telerik:RadCalendar x:Name="calendar"
+                             BorderThickness="1"
+                             MaximumHeightRequest="{OnPlatform iOS=320, Android=320, WinUI=320}"
+                             HorizontalOptions="Start"
+                             VerticalOptions="Start"
+                             AutomationId="calendar" />
+    </Grid>
+</telerik:RadContentView>

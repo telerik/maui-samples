@@ -19,7 +19,7 @@
             <SolidColorBrush Color="{StaticResource AccentColor7}" />
         </converters:RandomItemConverter>
         <Style x:Key="BorderStyle" TargetType="telerik:RadBorder">
-            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource SecondaryBackgroundColor}, Dark={StaticResource SecondaryBackgroundColorDark}}" />
+            <Setter Property="BackgroundColor" Value="{StaticResource SecondaryBackgroundColor}" />
             <Setter Property="CornerRadius" Value="4" />
             <Setter Property="Margin" Value="4" />
         </Style>
@@ -29,7 +29,7 @@
             <Setter Property="Opacity" Value="0.3" />
         </Style>
         <Style x:Key="LabelStyle" TargetType="Label">
-            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource DefaultTextColor}, Dark={StaticResource DefaultTextColorDark}}" />
+            <Setter Property="TextColor" Value="{StaticResource DefaultTextColor}" />
             <Setter Property="Margin" Value="0, 8, 0, 0" />
         </Style>
         <DataTemplate x:Key="ExampleItemTemplate">
@@ -64,7 +64,7 @@
         </DataTemplate>
     </VisualElement.Resources>
 
-    <views:QSFPageContentView Background="{AppThemeBinding Light={StaticResource DefaultBackgroundColor}, Dark={StaticResource DefaultBackgroundColorDark}}">
+    <views:QSFPageContentView Background="{StaticResource DefaultBackgroundColor}">
         <views:QSFPageContentView.HeaderControlTemplate>
             <ControlTemplate>
                 <Grid ColumnDefinitions="Auto, Auto, *">
@@ -76,16 +76,21 @@
                            Text="{Binding HeaderTitle}"
                            Margin="10, 0"
                            AutomationId="controlName" />
-                    <ImageButton Grid.Column="2"
-                                 HorizontalOptions="End"
-                                 Command="{Binding NavigateToDescriptionCommand}"
-                                 CommandParameter="{Binding Control}"
-                                 Source="info_mobile_white.png"
-                                 IsVisible="{Binding Control.FullDescription, Converter={StaticResource NullOrEmptyToBoolConverter}}"
-                                 VerticalOptions="Center"
-                                 HeightRequest="24"
-                                 WidthRequest="24"
-                                 AutomationId="navigateToDescriptionButton" />
+                    <HorizontalStackLayout Grid.Column="2"
+                                           HorizontalOptions="End"
+                                           Spacing="16">
+                        <ImageButton Command="{Binding NavigateToControlExamplesCodeCommand}"
+                                     CommandParameter="{Binding Control}"
+                                     Source="viewcode_white.png"
+                                     Style="{StaticResource PageAppBarImageButtonStyle}"
+                                     AutomationId="navigateToExampleContent" />
+                        <ImageButton Command="{Binding NavigateToDescriptionCommand}"
+                                     CommandParameter="{Binding Control}"
+                                     Source="info_mobile_white.png"
+                                     IsVisible="{Binding Control.FullDescription, Converter={StaticResource NullOrEmptyToBoolConverter}}"
+                                     Style="{StaticResource PageAppBarImageButtonStyle}"
+                                     AutomationId="navigateToDescriptionButton" />
+                    </HorizontalStackLayout>
                 </Grid>
             </ControlTemplate>
         </views:QSFPageContentView.HeaderControlTemplate>

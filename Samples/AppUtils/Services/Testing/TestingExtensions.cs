@@ -16,7 +16,7 @@ public static class TestingExtensions
             IsAppUnderTest = defaultIsAppUnderTest,
             TestCommandTcpPort = testCommandTcpPort
         };
-        
+
         @this.Services.TryAddSingleton<ITestingService>(instance);
         DependencyService.RegisterSingleton<ITestingService>(instance);
 
@@ -26,6 +26,12 @@ public static class TestingExtensions
             IsCommandLineArg("TK_TEST"))
         {
             instance.IsAppUnderTest = true;
+        }
+
+        if (instance.IsAppUnderTest)
+        {
+            SetAutomationIds();
+            StopScrollBarsHiding();
         }
 
         @this.ConfigureLifecycleEvents(events =>
@@ -42,6 +48,9 @@ public static class TestingExtensions
 
                     if (instance.IsAppUnderTest)
                     {
+                        SetAutomationIds();
+                        StopScrollBarsHiding();
+                        
                         BootUpCommandServer(instance);
                     }
                 });
@@ -69,7 +78,17 @@ public static class TestingExtensions
                         BootUpCommandServer(instance);
                     }
 
-                    app.Windows.Single().OverrideUserInterfaceStyle = UIKit.UIUserInterfaceStyle.Light;
+                    if (app.Windows.Count() > 0)
+                    {
+                        app.Windows.Single().OverrideUserInterfaceStyle = UIKit.UIUserInterfaceStyle.Light;
+                    }
+
+                    var window = app.ConnectedScenes.OfType<UIKit.UIWindowScene>().SelectMany(s => s.Windows).FirstOrDefault(w => w.IsKeyWindow);
+
+                    if (window != null)
+                    {
+                        window.OverrideUserInterfaceStyle = UIKit.UIUserInterfaceStyle.Light;
+                    }
 
                     return false;
                 });
@@ -79,6 +98,95 @@ public static class TestingExtensions
 
         return @this;
     }
+
+    private static void StopScrollBarsHiding()
+    {
+#if WINDOWS
+        Microsoft.Maui.Handlers.ScrollViewHandler.Mapper.ModifyMapping(nameof(ScrollView.VerticalScrollBarVisibility), (h, v, r) =>
+        {
+            Microsoft.UI.Xaml.Setter settter = new Microsoft.UI.Xaml.Setter()
+            {
+                Property = Microsoft.UI.Xaml.Controls.Primitives.ScrollBar.IndicatorModeProperty,
+                Value = Microsoft.UI.Xaml.Controls.Primitives.ScrollingIndicatorMode.MouseIndicator
+            };
+
+            var scroolBarType = typeof(Microsoft.UI.Xaml.Controls.Primitives.ScrollBar);
+
+            Microsoft.UI.Xaml.Style style = new Microsoft.UI.Xaml.Style() { TargetType = scroolBarType };
+            style.Setters.Add(settter);
+
+            var scrollView = h.PlatformView;
+            scrollView.Resources.Add(scroolBarType, style);
+        });
+#endif
+    }
+
+    private static void SetAutomationIds()
+    {
+#if __ANDROID__ || WINDOWS
+        Microsoft.Maui.Handlers.ViewHandler.ViewMapper.AppendToMapping(nameof(IView.AutomationId), (h, v) => SetAutomationId(v));
+        Microsoft.Maui.Handlers.ContentViewHandler.Mapper.AppendToMapping(nameof(IView.AutomationId), (h, v) => SetAutomationId(v));
+        Microsoft.Maui.Handlers.ImageButtonHandler.Mapper.AppendToMapping(nameof(IView.AutomationId), (h, v) => SetAutomationId(v));
+        Microsoft.Maui.Handlers.LabelHandler.Mapper.AppendToMapping(nameof(IView.AutomationId), (h, v) => SetAutomationId(v));
+        Microsoft.Maui.Handlers.LayoutHandler.Mapper.AppendToMapping(nameof(IView.AutomationId), (h, v) => SetAutomationId(v));
+        Microsoft.Maui.Handlers.PickerHandler.Mapper.AppendToMapping(nameof(IView.AutomationId), (h, v) => SetAutomationId(v));
+        Microsoft.Maui.Handlers.RadioButtonHandler.Mapper.AppendToMapping(nameof(IView.AutomationId), (h, v) => SetAutomationId(v));
+        Microsoft.Maui.Handlers.ScrollViewHandler.Mapper.AppendToMapping(nameof(IView.AutomationId), (h, v) => SetAutomationId(v));
+        Microsoft.Maui.Handlers.SearchBarHandler.Mapper.AppendToMapping(nameof(IView.AutomationId), (h, v) => SetAutomationId(v));
+        Microsoft.Maui.Handlers.SliderHandler.Mapper.AppendToMapping(nameof(IView.AutomationId), (h, v) => SetAutomationId(v));
+        Microsoft.Maui.Handlers.SwitchHandler.Mapper.AppendToMapping(nameof(IView.AutomationId), (h, v) => SetAutomationId(v));
+        Microsoft.Maui.Handlers.TimePickerHandler.Mapper.AppendToMapping(nameof(IView.AutomationId), (h, v) => SetAutomationId(v));
+        Microsoft.Maui.Handlers.DatePickerHandler.Mapper.AppendToMapping(nameof(IView.AutomationId), (h, v) => SetAutomationId(v));
+        Microsoft.Maui.Handlers.ButtonHandler.Mapper.AppendToMapping(nameof(IView.AutomationId), (h, v) => SetAutomationId(v));
+        Maui.Handlers.RadButtonHandler.RadButtonMapper.AppendToMapping(nameof(IView.AutomationId), (h, v) => SetAutomationId(v));
+        Maui.Handlers.RadBorderHandler.BorderMapper.AppendToMapping(nameof(IView.AutomationId), (h, v) => SetAutomationId(v));
+        Maui.Handlers.RadItemsControlHandler.ItemsControlMapper.AppendToMapping(nameof(IView.AutomationId), (h, v) => SetAutomationId(v));
+        Maui.Handlers.RadCheckBoxHandler.RadCheckBoxMapper.AppendToMapping(nameof(IView.AutomationId), (h, v) => SetAutomationId(v));
+#if __ANDROID__
+        // NOTE: The Semantics mapper sets MauiAccessibilityDelegateCompat that prevents ContentDescription from being set for EditText.
+        // Because of that Semantics mapper is modified and does not do anything.
+        // For reference see: https://github.com/dotnet/maui/blob/main/src/Core/src/Platform/Android/SemanticExtensions.cs#L26
+        Microsoft.Maui.Handlers.EntryHandler.Mapper.ModifyMapping(nameof(IView.Semantics), (h, v, m) => { });
+        Microsoft.Maui.Handlers.EntryHandler.Mapper.ModifyMapping(nameof(IView.AutomationId), (h, v, m) => SetEditTextContentDescription(h, v));
+#endif
+#endif
+    }
+
+#if __ANDROID__ || WINDOWS
+    private static void SetAutomationId(IView v)
+    {
+        var automationId = v.AutomationId;
+        if (!string.IsNullOrEmpty(automationId))
+        {
+            if (v is BindableObject element)
+            {
+#if WINDOWS
+                // NOTE: If TextInput has placeholder don't set description. The default description of the platform control is the placeholder.
+                if (element is Telerik.Maui.IRadTextInput textInput && !string.IsNullOrEmpty(textInput.Placeholder))
+                {
+                    return;
+                }
+#endif
+                SemanticProperties.SetDescription(element, automationId);
+            }
+        }
+    }
+#endif
+
+#if __ANDROID__
+    private static void SetEditTextContentDescription(Microsoft.Maui.Handlers.IEntryHandler handler, IView view)
+    {
+        var automationId = view.AutomationId;
+        if (!string.IsNullOrEmpty(automationId))
+        {
+            var platformView = handler.PlatformView;
+            if (platformView != null)
+            {
+                platformView.ContentDescription = automationId;
+            }
+        }
+    }
+#endif
 
     private static void BootUpCommandServer(TestingService testingService)
     {
@@ -107,7 +215,7 @@ public static class TestingExtensions
                 tcpCommandServer.BeginAcceptTcpClient(BeginAcceptTcpClientAsync, testingService);
                 Console.WriteLine("TEST COMMAND! Listening on " + port.Value);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Console.WriteLine("TEST COMMAND! Failed to start server.");
                 Console.WriteLine(e);
@@ -125,7 +233,7 @@ public static class TestingExtensions
             using var reader = new StreamReader(stream);
             using var writer = new StreamWriter(stream);
             string? line = null;
-            while((line = await reader.ReadLineAsync()) != null)
+            while ((line = await reader.ReadLineAsync()) != null)
             {
                 Console.WriteLine($"TEST COMMAND> {line}");
                 try
@@ -137,7 +245,7 @@ public static class TestingExtensions
                         await writer.FlushAsync();
                     }
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
                     await writer.WriteLineAsync($"ERROR: {e.Message}");
                     await writer.FlushAsync();

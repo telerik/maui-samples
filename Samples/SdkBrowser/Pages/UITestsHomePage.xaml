@@ -6,12 +6,15 @@
              x:Class="SDKBrowserMaui.Pages.UITestsHomePage">
 
     <VerticalStackLayout>
-        <telerik:RadEntry Placeholder="Search here"
-                          Text="{Binding SearchText}"
+        <telerik:RadTextInput Placeholder="Search here"
+                          Text="{Binding SearchText, Mode=TwoWay}"
                           AutomationId="searchEntry"/>
         <telerik:RadButton x:Name="button" 
                            Text="Back" 
                            Clicked="button_Clicked"
                            AutomationId="backButton"/>
+        <Label x:Name="log"
+               AutomationId="log"
+               Text="{Binding Log}"/>
     </VerticalStackLayout>
 </ContentPage>

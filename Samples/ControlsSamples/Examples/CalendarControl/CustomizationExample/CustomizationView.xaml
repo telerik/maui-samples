@@ -89,9 +89,8 @@
             </local:ReminderTemplateSelector>
 
             <DataTemplate x:Key="ReminderTemplate">
-                <telerik:RadBorder BackgroundColor="{AppThemeBinding Light=#F3F3F3, Dark=#202020}"
-                                   BorderColor="{AppThemeBinding Light={OnPlatform Default={StaticResource DefaultBorderColor}, WinUI={StaticResource DefaultBorderColorWinUI}},
-                                                                 Dark={OnPlatform Default={StaticResource DefaultBorderColorDark}, WinUI={StaticResource DefaultBorderColorDarkWinUI}}}"
+                <telerik:RadBorder BackgroundColor="#F3F3F3"
+                                   BorderColor="{OnPlatform Default={StaticResource DefaultBorderColor}, WinUI={StaticResource DefaultBorderColorWinUI}}"
                                    BorderThickness="1"
                                    CornerRadius="4"
                                    Padding="16, 8"

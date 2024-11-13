@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.DataGridControl.ColumnsCategory.ReorderingExample"
+             x:Class="SDKBrowserMaui.Examples.DataGridControl.ColumnsCategory.DragTemplatesExample.DragTemplates">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <!-- >> datagrid-header-drag-template -->
+            <DataTemplate x:Key="HeaderDragTemplate">
+                <telerik:RadBorder BackgroundColor="#80CBC4"
+                                   CornerRadius="2"
+                                   MinimumWidthRequest="{Binding ActualWidth}">
+                    <Label Text="{Binding HeaderText, FallbackValue='dragging...'}"
+                           TextColor="#000000"
+                           Margin="10, 8" />
+                </telerik:RadBorder>
+            </DataTemplate>
+            <!-- << datagrid-header-drag-template -->
+
+            <!-- >> datagrid-grouping-panel-item-template -->
+            <Style x:Key="ButtonStyle_XClose" TargetType="telerik:RadButton">
+                <Setter Property="Text" Value="&#x2715;" />
+                <Setter Property="FontFamily" Value="Arial" />
+                <Setter Property="FontSize" Value="{OnPlatform MacCatalyst=18, WinUI=14, iOS=12, Android=10}" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="WidthRequest" Value="{OnPlatform Default=36, Android=26, iOS=26}" />
+                <Setter Property="HeightRequest" Value="{OnPlatform Default=16, Android=30, iOS=30}" />
+                <Setter Property="BorderWidth" Value="0" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="TextColor" Value="#000000" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="VerticalContentAlignment" Value="Center" />
+                <Setter Property="Margin" Value="2, 0" />
+            </Style>
+            
+            <DataTemplate x:Key="GroupingPanelItemTemplate">
+                <telerik:RadBorder BorderColor="#80CBC4"
+                                   BorderThickness="{OnPlatform Default=0, iOS=1, Android=1}"
+                                   Margin="{OnPlatform Default='0, 2', Android='0, 4, 4, 4'}"
+                                   CornerRadius="2">
+                    <Grid>
+                        <telerik:RadBorder BackgroundColor="#80CBC4"
+                                           Opacity="{OnIdiom Desktop=1, Phone=0.7}" />
+                        <HorizontalStackLayout>
+                            <Label Text="{Binding DisplayContent}"
+                                   TextColor="#000000"
+                                   FontSize="{OnPlatform Android=14, iOS=17, MacCatalyst=Default, WinUI=14}"
+                                   VerticalOptions="Center"
+                                   Margin="10, 0, 2, 0" />
+                            <telerik:RadButton Command="{Binding RemoveCommand, Source={RelativeSource AncestorType={Type telerik:DataGridGroupingPanel}}}"
+                                               CommandParameter="{Binding}"
+                                               Style="{StaticResource ButtonStyle_XClose}" />
+                        </HorizontalStackLayout>
+                    </Grid>
+                </telerik:RadBorder>
+            </DataTemplate>
+            <!-- << datagrid-grouping-panel-item-template -->
+
+            <!-- >> datagrid-reorder-indicator-template -->
+            <DataTemplate x:Key="ReorderIndicatorTemplate">
+                <telerik:RadBorder BackgroundColor="#80CBC4"
+                                   WidthRequest="4"
+                                   HorizontalOptions="Start"
+                                   InputTransparent="True" />
+            </DataTemplate>
+            <!-- << datagrid-reorder-indicator-template -->
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <!-- >> datagrid-drag-templates -->
+    <telerik:RadDataGrid x:Name="dataGrid"
+                         UserGroupMode="Enabled"
+                         ItemsSource="{Binding Data}"
+                         CanUserReorderColumns="True"
+                         ColumnHeaderDragVisualTemplate="{StaticResource HeaderDragTemplate}"
+                         GroupingPanelItemTemplate="{StaticResource GroupingPanelItemTemplate}"
+                         ColumnReorderIndicatorTemplate="{StaticResource ReorderIndicatorTemplate}">
+        <telerik:RadDataGrid.BindingContext>
+            <local:ViewModel />
+        </telerik:RadDataGrid.BindingContext>
+    </telerik:RadDataGrid>
+    <!-- << datagrid-drag-templates -->
+</ContentView>

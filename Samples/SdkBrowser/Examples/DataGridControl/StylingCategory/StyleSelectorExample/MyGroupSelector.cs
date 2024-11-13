@@ -1,14 +1,16 @@
 ﻿using Microsoft.Maui.Controls;
+using Telerik.Maui.Controls;
 using Telerik.Maui.Controls.DataGrid;
 
 namespace SDKBrowserMaui.Examples.DataGridControl.StylingCategory.StyleSelectorExample;
 
 // >> datagrid-styleselector-group
-class MyGroupSelector : DataGridStyleSelector
+class MyGroupSelector : IStyleSelector
 {
-    public DataGridStyle CountryTemplate1 { get; set; }
-    public DataGridStyle CountryTemplate2 { get; set; }
-    public override DataGridStyle SelectStyle(object item, BindableObject container)
+    public Style CountryTemplate1 { get; set; }
+    public Style CountryTemplate2 { get; set; }
+
+    public Style SelectStyle(object item, BindableObject container)
     {
         GroupHeaderContext header = item as GroupHeaderContext;
         if (header != null)

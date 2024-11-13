@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        x:Class="QSF.Examples.ExpanderControl.ThemingExample.ThemingView"
+                        Padding="{OnIdiom Default='16, 20', Phone='16, 12'}">
+
+    <Grid>
+        <telerik:RadExpander x:Name="expander"
+                             HeaderText="Sales Team Members"
+                             AutomationId="expander">
+            <telerik:RadExpander.Content>
+                <telerik:RadCollectionView x:Name="collectionView"
+                                           ItemsSource="{Binding SalesReps}"
+                                           DisplayMemberPath="FullName"
+                                           SelectionMode="None"
+                                           Margin="0, 10, 0, 0" />
+            </telerik:RadExpander.Content>
+        </telerik:RadExpander>
+    </Grid>
+</telerik:RadContentView>

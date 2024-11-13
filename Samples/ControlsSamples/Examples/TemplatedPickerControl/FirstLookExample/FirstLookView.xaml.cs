@@ -1,5 +1,6 @@
 ﻿using Microsoft.Maui.Controls;
 using Microsoft.Maui.Controls.Xaml;
+using QSF.Examples.TemplatedPickerControl.Common;
 using QSF.Views;
 
 namespace QSF.Examples.TemplatedPickerControl.FirstLookExample
@@ -11,6 +12,7 @@ namespace QSF.Examples.TemplatedPickerControl.FirstLookExample
         {
             InitializeComponent();
 
+            this.BindingContext = new ColorAndSizeViewModel();
             this.ItemTemplate = (DataTemplate)this.Resources["ProductItemTemplate"];
         }
     }

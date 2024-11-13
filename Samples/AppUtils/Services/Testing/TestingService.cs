@@ -9,7 +9,7 @@ public class TestingService : ITestingService
     public Random Random(int seed) => this.IsAppUnderTest ? new Random(seed) : new Random();
 
     public DateTime DateTimeNow(DateTime staticTime) => this.IsAppUnderTest ? staticTime : DateTime.Now;
-
+    
     internal Task<string?> HandleCommandAsync(string line)
     {
         var args = new TestCommandEventArgs(line);

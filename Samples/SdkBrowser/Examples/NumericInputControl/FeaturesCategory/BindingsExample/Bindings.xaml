@@ -29,15 +29,14 @@
                 <Label Text="IsReadOnly Toggle: " VerticalOptions="Center"/>
                 <Switch x:Name="toggle" IsToggled="False" VerticalOptions="Start"/>
             </StackLayout>
-            <telerik:RadNumericInput Minimum="{Binding Minimum, Mode=TwoWay}"
+            <telerik:RadNumericInput x:Name="input"
+                                     Minimum="{Binding Minimum, Mode=TwoWay}"
                                      Maximum="{Binding Maximum, Mode=TwoWay}"
                                      Step="{Binding Step, Mode=TwoWay}"
                                      Value="{Binding Value, Mode=TwoWay}"
                                      IncreaseButtonText="{Binding Source={x:Reference inc}, Path=Text}"
                                      DecreaseButtonText="{Binding Source={x:Reference dec}, Path=Text}"
-                                     IsReadOnly="{Binding Source={x:Reference toggle}, Path=IsToggled}"                                      
-                                     StyleClass="TelerikTheme"
-                                     x:Name="input"/>
+                                     IsReadOnly="{Binding Source={x:Reference toggle}, Path=IsToggled}" />
             <StackLayout Orientation="Horizontal">
                 <Label Text="Value: "/>
                 <Label Text="{Binding Value}"/>

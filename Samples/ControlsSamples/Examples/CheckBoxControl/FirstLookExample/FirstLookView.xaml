@@ -7,63 +7,64 @@
     <telerik:RadContentView.Resources>
         <ResourceDictionary>
             <Style TargetType="Label">
-                <Setter Property="TextColor" Value="Black"/>
-                <Setter Property="Margin" Value="0,12"/>
-                <Setter Property="LineBreakMode" Value="WordWrap"/>
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="Margin" Value="0,12" />
+                <Setter Property="LineBreakMode" Value="WordWrap" />
             </Style>
 
             <Style TargetType="telerik:RadCheckBox">
                 <Setter Property="HorizontalOptions" Value="Start" />
                 <Setter Property="VerticalOptions" Value="Center" />
                 <Setter Property="Margin" Value="0,7,10,5" />
-                <Setter Property="UncheckedColor" Value="#CCCCCC"/>
-                <Setter Property="CheckedColor" Value="{StaticResource AccentColor8}"/>
-                <Setter Property="IndeterminateColor" Value="{StaticResource AccentColor8}"/>
+                <Setter Property="UncheckedColor" Value="#CCCCCC" />
+                <Setter Property="CheckedColor" Value="{StaticResource AccentColor8}" />
+                <Setter Property="IndeterminateColor" Value="{StaticResource AccentColor8}" />
             </Style>
 
             <Style x:Key="checkBoxLabel" TargetType="Label">
                 <Setter Property="HorizontalOptions" Value="Start" />
                 <Setter Property="VerticalOptions" Value="Center" />
-                <Setter Property="TextColor" Value="Black"/>
-                <Setter Property="LineBreakMode" Value="WordWrap"/>
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="LineBreakMode" Value="WordWrap" />
             </Style>
         </ResourceDictionary>
     </telerik:RadContentView.Resources>
     <ScrollView>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="90"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="90"/>
+                <RowDefinition Height="90" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="90" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="{OnIdiom Default=*, Phone=Auto}"/>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="{OnIdiom Default=*, Phone=Auto}" />
             </Grid.ColumnDefinitions>
-            <HorizontalStackLayout BackgroundColor="#F8F8F8" 
-                                   Grid.ColumnSpan="2"
-                                   Spacing="10">
-                <telerik:RadBorder BackgroundColor="Transparent"
-                                   BorderColor="#686869"
-                                   Margin="20,0"
-                                   BorderThickness="1"
-                                   HeightRequest="50"
-                                   WidthRequest="50"
-                                   VerticalOptions="Center"
-                                   CornerRadius="25" >
-                    <Image Source="lock.png" 
-                           Aspect="Fill"
-                           WidthRequest="40"
-                           HeightRequest="40"/>
-                </telerik:RadBorder>
-                <Label Text="Privacy Settings" 
-                       FontSize="Large"
-                       FontAttributes="None"
-                       Grid.Column="1" 
-                       TextColor="Black"
-                       VerticalOptions="Center"/>
-            </HorizontalStackLayout>
+            <telerik:RadBorder Grid.ColumnSpan="2"
+                               Style="{StaticResource ControlWrapperBorderStyle}"
+                               Padding="0">
+                <HorizontalStackLayout Spacing="10">
+                    <telerik:RadBorder BackgroundColor="Transparent"
+                                       BorderColor="#686869"
+                                       Margin="20,0"
+                                       BorderThickness="1"
+                                       HeightRequest="50"
+                                       WidthRequest="50"
+                                       VerticalOptions="Center"
+                                       CornerRadius="25" >
+                        <Image Source="lock.png" 
+                               Aspect="Fill"
+                               WidthRequest="40"
+                               HeightRequest="40" />
+                    </telerik:RadBorder>
+                    <Label Text="Privacy Settings" 
+                           FontSize="Large"
+                           FontAttributes="None"
+                           TextColor="Black"
+                           VerticalOptions="Center" />
+                </HorizontalStackLayout>
+            </telerik:RadBorder>
 
             <VerticalStackLayout Grid.Row="1"
                                  Grid.Column="0" 
@@ -73,9 +74,9 @@
                                        telerik:RadCheckBox.ToggleOnTap="{x:Reference emailsCheckBox}">
                     <telerik:RadCheckBox x:Name="emailsCheckBox"
                                          IsChecked="{Binding ReceiveEmailsChecked}" 
-                                         AutomationId="emailsCheckBox"/>
+                                         AutomationId="emailsCheckBox" />
                     <Label Text="Receive E-mails when:"
-                           FontAttributes="Bold"/>
+                           FontAttributes="Bold" />
                 </HorizontalStackLayout>
 
                 <HorizontalStackLayout VerticalOptions="Start" 
@@ -83,9 +84,9 @@
                     telerik:RadCheckBox.ToggleOnTap="{x:Reference someoneFollowsCheckBox}">
                     <telerik:RadCheckBox x:Name="someoneFollowsCheckBox" 
                                          IsChecked="{Binding SomeoneFollowsChecked}" 
-                                         AutomationId="followsCheckBox"/>
+                                         AutomationId="followsCheckBox" />
                     <Label Text="Someone follows me" 
-                           Style="{StaticResource checkBoxLabel}"/>
+                           Style="{StaticResource checkBoxLabel}" />
                 </HorizontalStackLayout>
 
                 <HorizontalStackLayout VerticalOptions="Start"
@@ -93,9 +94,9 @@
                                        telerik:RadCheckBox.ToggleOnTap="{x:Reference someoneSendsMessagesCheckBox}">
                     <telerik:RadCheckBox x:Name="someoneSendsMessagesCheckBox"
                                          IsChecked="{Binding SomeoneSendsMessagesChecked}"
-                                         AutomationId="sendMessageCheckBox"/>
+                                         AutomationId="sendMessageCheckBox" />
                     <Label Text="Someone sends me a message"
-                           Style="{StaticResource checkBoxLabel}"/>
+                           Style="{StaticResource checkBoxLabel}" />
                 </HorizontalStackLayout>
             </VerticalStackLayout>
 
@@ -108,19 +109,19 @@
                                        telerik:RadCheckBox.ToggleOnTap="{x:Reference privateProfileCheckBox}">
                     <telerik:RadCheckBox x:Name="privateProfileCheckBox"
                                          IsChecked="{Binding PrivateProfileChecked}" 
-                                         AutomationId="privateCheckBox"/>
+                                         AutomationId="privateCheckBox" />
                     <Label Text="Private Profile:" 
-                           FontAttributes="Bold"/>
+                           FontAttributes="Bold" />
                 </HorizontalStackLayout>
                 <HorizontalStackLayout VerticalOptions="Start" 
                                        Margin="10,0,0,0"
                                        telerik:RadCheckBox.ToggleOnTap="{x:Reference onlyFriendsCheckBox}">
                     <telerik:RadCheckBox x:Name="onlyFriendsCheckBox"
                                          IsChecked="{Binding OnlyFriendsChecked}" 
-                                         AutomationId="postsCheckBox"/>
+                                         AutomationId="postsCheckBox" />
                     <Label Grid.Column="1" 
                             Text="Only friends can see my posts"
-                            Style="{StaticResource checkBoxLabel}"/>
+                            Style="{StaticResource checkBoxLabel}" />
                 </HorizontalStackLayout>
 
                 <HorizontalStackLayout VerticalOptions="Start" 
@@ -128,9 +129,9 @@
                                        telerik:RadCheckBox.ToggleOnTap="{x:Reference onlyShowToFollowersCheckBox}">
                     <telerik:RadCheckBox x:Name="onlyShowToFollowersCheckBox"
                                          IsChecked="{Binding OnlyShowToFollowersChecked}" 
-                                         AutomationId="photosCheckBox"/>
+                                         AutomationId="photosCheckBox" />
                     <Label Text="Only friends can see my photos" 
-                           Style="{StaticResource checkBoxLabel}"/>
+                           Style="{StaticResource checkBoxLabel}" />
                 </HorizontalStackLayout>
             </VerticalStackLayout>
 
@@ -141,7 +142,7 @@
                                HorizontalOptions="{OnIdiom Default=Start, Phone=FillAndExpand}"
                                Style="{StaticResource SubmitButtonStyle}"
                                Command="{Binding SaveSettingsCommand}"
-                               AutomationId="saveSettingsButton"/>
+                               AutomationId="saveSettingsButton" />
         </Grid>
     </ScrollView>
 </telerik:RadContentView>

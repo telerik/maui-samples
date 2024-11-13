@@ -1,30 +1,27 @@
 ﻿using Microsoft.Maui;
 using Microsoft.Maui.Controls;
-using Microsoft.Maui.Controls.PlatformConfiguration.WindowsSpecific;
 using Microsoft.Maui.Graphics;
 using SDKBrowserMaui.Common;
 using SDKBrowserMaui.Pages;
 using SDKBrowserMaui.Services;
-using System.Threading;
-using Application = Microsoft.Maui.Controls.Application;
-using Telerik.Maui.Controls.Compatibility.Primitives;
-using Telerik.Maui.Controls.Compatibility.Input;
-using Telerik.Maui.Controls;
-using Microsoft.Maui.Devices;
+using SDKBrowserMaui.ViewModels;
 using System;
+using Telerik.AppUtils.Services;
+using Telerik.Maui.Controls;
+using Application = Microsoft.Maui.Controls.Application;
 
 namespace SDKBrowserMaui
 {
     public partial class App : Application
     {
-        public App()
+        public App(ITestingService testingService)
         {
             this.UserAppTheme = Microsoft.Maui.ApplicationModel.AppTheme.Light;
 
-            InitializeComponent();
+            this.InitializeComponent();
             this.InitializeDependencies();
 
-            if (Environment.GetEnvironmentVariable("EnableTelerikUIAutomation") == "true")
+            if (testingService.IsAppUnderTest)
             {
                 MainPage = new NavigationPage(new UITestsHomePage());
                 UIAutomation.IsEnabled = true;
@@ -32,43 +29,6 @@ namespace SDKBrowserMaui
             else
             {
                 MainPage = new NavigationPage(new HomePage());
-            }
-
-
-#if __ANDROID__ || WINDOWS
-            Microsoft.Maui.Handlers.ViewHandler.ViewMapper.AppendToMapping(nameof(IView.AutomationId), (h, v) => SetAutomationId(v));
-            Microsoft.Maui.Handlers.ContentViewHandler.Mapper.AppendToMapping(nameof(IView.AutomationId), (h, v) => SetAutomationId(v));
-            Microsoft.Maui.Handlers.ImageButtonHandler.Mapper.AppendToMapping(nameof(IView.AutomationId), (h, v) => SetAutomationId(v));
-            Microsoft.Maui.Handlers.LabelHandler.Mapper.AppendToMapping(nameof(IView.AutomationId), (h, v) => SetAutomationId(v));
-            Microsoft.Maui.Handlers.LayoutHandler.Mapper.AppendToMapping(nameof(IView.AutomationId), (h, v) => SetAutomationId(v));
-            Microsoft.Maui.Handlers.PickerHandler.Mapper.AppendToMapping(nameof(IView.AutomationId), (h, v) => SetAutomationId(v));
-            Microsoft.Maui.Handlers.RadioButtonHandler.Mapper.AppendToMapping(nameof(IView.AutomationId), (h, v) => SetAutomationId(v));
-            Microsoft.Maui.Handlers.ScrollViewHandler.Mapper.AppendToMapping(nameof(IView.AutomationId), (h, v) => SetAutomationId(v));
-            Microsoft.Maui.Handlers.SearchBarHandler.Mapper.AppendToMapping(nameof(IView.AutomationId), (h, v) => SetAutomationId(v));
-            Microsoft.Maui.Handlers.SliderHandler.Mapper.AppendToMapping(nameof(IView.AutomationId), (h, v) => SetAutomationId(v));
-            Microsoft.Maui.Handlers.SwitchHandler.Mapper.AppendToMapping(nameof(IView.AutomationId), (h, v) => SetAutomationId(v));
-            Microsoft.Maui.Handlers.TimePickerHandler.Mapper.AppendToMapping(nameof(IView.AutomationId), (h, v) => SetAutomationId(v));
-            Microsoft.Maui.Handlers.DatePickerHandler.Mapper.AppendToMapping(nameof(IView.AutomationId), (h, v) => SetAutomationId(v));
-            Microsoft.Maui.Handlers.ButtonHandler.Mapper.AppendToMapping(nameof(IView.AutomationId), (h, v) => SetAutomationId(v));
-            Telerik.Maui.Handlers.RadEntryHandler.EntryViewMapper.AppendToMapping(nameof(IView.AutomationId), (h, v) => SetAutomationId(v));
-            Telerik.Maui.Handlers.RadButtonHandler.RadButtonMapper.AppendToMapping(nameof(IView.AutomationId), (h, v) => SetAutomationId(v));
-            Telerik.Maui.Handlers.RadBorderHandler.BorderMapper.AppendToMapping(nameof(IView.AutomationId), (h, v) => SetAutomationId(v));
-            Telerik.Maui.Handlers.RadItemsControlHandler.ItemsControlMapper.AppendToMapping(nameof(IView.AutomationId), (h, v) => SetAutomationId(v));
-            Telerik.Maui.Handlers.RadCheckBoxHandler.RadCheckBoxMapper.AppendToMapping(nameof(IView.AutomationId), (h, v) => SetAutomationId(v));
-#endif
-
-        }
-
-        private static void SetAutomationId(IView v)
-        {
-            var automationId = v.AutomationId;
-            if (!string.IsNullOrEmpty(automationId))
-            {
-                BindableObject element = v as BindableObject;
-                if (element != null)
-                {
-                    SemanticProperties.SetDescription(element, automationId);
-                }
             }
         }
 
@@ -78,6 +38,7 @@ namespace SDKBrowserMaui
             DependencyService.Register<INavigationService, NavigationService>();
             DependencyService.Register<IExampleService, ExampleService>();
             DependencyService.Register<IBackdoorService, BackdoorService>();
+            DependencyService.RegisterSingleton<ThemeSettingsViewModel>(new ThemeSettingsViewModel());
         }
 
         // TODO: Remove this method once Application.Current.MainPage.DisplayAlert is fixed in Android
@@ -151,10 +112,8 @@ namespace SDKBrowserMaui
                 window.Title = "Telerik SDKBrowser Maui";
 #endif
 
-#if NET7_0_OR_GREATER
                 window.MinimumWidth = 1024;
                 window.MinimumHeight = 768;
-#endif
             }
 
             return window;

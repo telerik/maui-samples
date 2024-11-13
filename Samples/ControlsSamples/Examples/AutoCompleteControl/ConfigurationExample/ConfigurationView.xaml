@@ -28,8 +28,7 @@
             <RowDefinition Height="{OnPlatform Android=136, iOS=125, MacCatalyst=110, WinUI=112}" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <telerik:RadBorder Padding="16, 24"
-                           BackgroundColor="{AppThemeBinding Light={StaticResource DefaultBackgroundColor}, Dark={StaticResource DefaultBackgroundColorDark}}">
+        <telerik:RadBorder Style="{StaticResource ControlWrapperBorderStyle}">
             <telerik:RadAutoComplete x:Name="autoComplete"
                                      ItemsSource="{Binding Cities}"
                                      IsClearButtonVisible="{Binding IsClearButtonVisible}"

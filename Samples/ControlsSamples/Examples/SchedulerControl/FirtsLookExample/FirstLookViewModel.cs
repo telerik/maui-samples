@@ -31,6 +31,7 @@ public class FirstLookViewModel : ExampleViewModel
             MaxOccurrences = 90,
             DaysOfWeekMask = RecurrenceDays.WeekDays
         };
+
         var dailySyncRule = new RecurrenceRule(dailySyncPattern);
         appointments.Add(new Appointment { Start = now.AddMonths(-1).AddHours(10), End = now.AddMonths(-1).AddHours(10).AddMinutes(30), Subject = "Maui Team Sync", RecurrenceRule = dailySyncRule });
 
@@ -40,6 +41,7 @@ public class FirstLookViewModel : ExampleViewModel
             MaxOccurrences = 36,
             DaysOfWeekMask = RecurrenceDays.Tuesday | RecurrenceDays.Wednesday
         };
+
         var officeDaysRule = new RecurrenceRule(officeDaysPattern);
         appointments.Add(new Appointment { Start = now.AddMonths(-1), End = now.AddMonths(-1).AddMilliseconds(1), IsAllDay = true, Subject = "[Reminder] Weekly Team Day at the Office", RecurrenceRule = officeDaysRule });
 

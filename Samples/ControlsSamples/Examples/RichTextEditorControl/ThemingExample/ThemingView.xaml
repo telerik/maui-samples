@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        xmlns:behaviors="clr-namespace:QSF.Behaviors"
+                        x:Class="QSF.Examples.RichTextEditorControl.ThemingExample.ThemingView"
+                        Padding="{OnIdiom Default='16, 20', Phone=16}">
+    <telerik:RadContentView.Behaviors>
+        <behaviors:AndroidResizeSoftInputModeBehavior />
+    </telerik:RadContentView.Behaviors>
+
+    <Grid RowDefinitions="{OnIdiom Default='Auto, *', Phone='*, Auto'}">
+        <telerik:RadRichTextEditor x:Name="richTextEditor"
+                                   Grid.Row="{OnIdiom Default=1, Phone=0}"
+                                   Source="{Binding Source}"
+                                   AutomationId="richTextEditor">
+            <telerik:RadRichTextEditor.Behaviors>
+                <behaviors:PickImageBehavior />
+            </telerik:RadRichTextEditor.Behaviors>
+        </telerik:RadRichTextEditor>
+        <telerik:RadRichTextEditorToolbar x:Name="richTextToolbar"
+                                          Grid.Row="{OnIdiom Default=0, Phone=1}"
+                                          RichTextEditor="{x:Reference richTextEditor}"
+                                          Margin="{OnIdiom Default='0, 12, 0, 0', Phone=0}"
+                                          AutoGenerateItems="False">
+            <telerik:RichTextEditorBoldToolbarItem />
+            <telerik:RichTextEditorItalicToolbarItem />
+            <telerik:RichTextEditorUnderlineToolbarItem />
+            <telerik:SeparatorToolbarItem />
+            <telerik:RichTextEditorAlignLeftToolbarItem />
+            <telerik:RichTextEditorAlignCenterToolbarItem />
+            <telerik:RichTextEditorAlignRightToolbarItem />
+            <telerik:RichTextEditorAlignJustifyToolbarItem />
+            <telerik:SeparatorToolbarItem />
+            <telerik:RichTextEditorTextColorToolbarItem />
+            <telerik:RichTextEditorHighlightTextColorToolbarItem />
+            <telerik:SeparatorToolbarItem />
+            <telerik:RichTextEditorBulletingToolbarItem />
+            <telerik:RichTextEditorNumberingToolbarItem />
+            <telerik:SeparatorToolbarItem />
+            <telerik:RichTextEditorOutdentToolbarItem />
+            <telerik:RichTextEditorIndentToolbarItem />
+            <telerik:SeparatorToolbarItem />
+            <telerik:RichTextEditorTextFormattingToolbarItem />
+            <telerik:SeparatorToolbarItem />
+            <telerik:RichTextEditorClearFormattingToolbarItem />
+            <telerik:SeparatorToolbarItem />
+            <telerik:RichTextEditorStrikethroughToolbarItem />
+            <telerik:RichTextEditorSubscriptToolbarItem />
+            <telerik:RichTextEditorSuperscriptToolbarItem />
+            <telerik:SeparatorToolbarItem />
+            <telerik:RichTextEditorUndoToolbarItem />
+            <telerik:RichTextEditorRedoToolbarItem />
+        </telerik:RadRichTextEditorToolbar>
+    </Grid>
+</telerik:RadContentView>

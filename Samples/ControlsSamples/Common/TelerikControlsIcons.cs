@@ -22,12 +22,14 @@ internal static class TelerikControlsIcons
         { "ComboBox", char.ConvertFromUtf32(0xe011) },
         { "DataForm", char.ConvertFromUtf32(0xe012) },
         { "DataGrid", char.ConvertFromUtf32(0xe013) },
+        { "DataPager", char.ConvertFromUtf32(0xe042) },
         { "DatePicker", char.ConvertFromUtf32(0xe014) },
         { "DateTimePicker", char.ConvertFromUtf32(0xe015) },
         { "DockLayout", char.ConvertFromUtf32(0xe016) },
         { "Entry", char.ConvertFromUtf32(0xe017) },
         { "Expander", char.ConvertFromUtf32(0xe018) },
         { "Gauge", char.ConvertFromUtf32(0xe019) },
+        { "GridSplitter", char.ConvertFromUtf32(0xe043) },
         { "ImageEditor", char.ConvertFromUtf32(0xe01a) },
         { "ItemsControl", char.ConvertFromUtf32(0xe01b) },
         { "ListPicker", char.ConvertFromUtf32(0xe01c) },
@@ -97,6 +99,10 @@ internal static class TelerikControlsIcons
         else if (exampleName.Equals("Customization"))
         {
             return char.ConvertFromUtf32(0xe03d);
+        }
+        else if (example.Name.Equals("Theming"))
+        {
+            return char.ConvertFromUtf32(0xe044);
         }
         else
         {

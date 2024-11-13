@@ -14,8 +14,8 @@
             </Style>
 
             <DataTemplate x:Key="SettingsPopupContentTemplate">
-                <telerik:RadBorder BackgroundColor="{AppThemeBinding Light={OnPlatform Default=White, WinUI=#F9F9F9}, Dark={OnPlatform Default=#1C1C1E, WinUI=#282828}}"
-                                   BorderColor="{AppThemeBinding Light={OnPlatform Default=#DFDFDF, WinUI=#0F000000}, Dark={OnPlatform Default=#373737, WinUI=#12FFFFFF}}"
+                <telerik:RadBorder BackgroundColor="{OnPlatform Default=White, WinUI=#F9F9F9}"
+                                   BorderColor="{OnPlatform Default=#DFDFDF, WinUI=#0F000000}"
                                    BorderThickness="1"
                                    CornerRadius="8">
                     <Grid RowDefinitions="Auto, Auto, Auto"

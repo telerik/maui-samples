@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.TabViewControl.FeaturesCategory.ContentSwipingExample.ContentSwiping">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <Grid RowDefinitions="Auto, *"
+          RowSpacing="10">
+        <HorizontalStackLayout Spacing="8">
+            <Label Text="Is Content Swipe Enabled: " />
+            <Switch IsToggled="{Binding IsContentSwipeEnabled, Source={x:Reference tabView}}" />
+        </HorizontalStackLayout>
+        <!-- >> tabview-content-swiping -->
+        <telerik:RadTabView x:Name="tabView"
+                            Grid.Row="1"
+                            IsContentSwipeEnabled="False">
+            <telerik:TabViewItem HeaderText="Sofia">
+                <Label Margin="10" Text="The capital and largest city of Bulgaria." />
+            </telerik:TabViewItem>
+            <telerik:TabViewItem HeaderText="Tokyo">
+                <Label Margin="10" Text="The capital of Japan and one of the most populous cities in the world, with a population of over 14 million residents as of 2023." />
+            </telerik:TabViewItem>
+            <telerik:TabViewItem HeaderText="London">
+                <Label Margin="10" Text="The capital and largest city of both England and the United Kingdom, with a population of 8,866,180 in 2022." />
+            </telerik:TabViewItem>
+            <telerik:TabViewItem HeaderText="New York">
+                <Label Margin="10" Text="One of the most popular cities in the world." />
+            </telerik:TabViewItem>
+            <telerik:TabViewItem HeaderText="Madrid">
+                <Label Margin="10" Text="The capital and most populous city of Spain. " />
+            </telerik:TabViewItem>
+            <telerik:TabViewItem HeaderText="Sao Paulo Brazil">
+                <Label Margin="10" Text="The most populous city in Brazil." />
+            </telerik:TabViewItem>
+        </telerik:RadTabView>
+        <!-- << tabview-content-swiping -->
+    </Grid>
+</ContentView>

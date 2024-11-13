@@ -8,9 +8,8 @@
     <ContentView.Resources>
         <ResourceDictionary>
             <DataTemplate x:Key="ReminderTemplate">
-                <telerik:RadBorder BackgroundColor="{AppThemeBinding Light=#F3F3F3, Dark=#202020}"
-                                   BorderColor="{AppThemeBinding Light={OnPlatform Default={StaticResource DefaultBorderColor}, WinUI={StaticResource DefaultBorderColorWinUI}},
-                                                                 Dark={OnPlatform Default={StaticResource DefaultBorderColorDark}, WinUI={StaticResource DefaultBorderColorDarkWinUI}}}"
+                <telerik:RadBorder BackgroundColor="#F3F3F3"
+                                   BorderColor="{OnPlatform Default={StaticResource DefaultBorderColor}, WinUI={StaticResource DefaultBorderColorWinUI}}"
                                    CornerRadius="4"
                                    BorderThickness="1"
                                    Padding="16, 8"
@@ -22,7 +21,7 @@
             </DataTemplate>
             <DataTemplate x:Key="ReminderTemplate_Phone">
                 <Grid Margin="0, 0, 0, 4">
-                    <telerik:RadBorder BackgroundColor="{AppThemeBinding Light={StaticResource ItemBackgroundColor}, Dark={StaticResource ItemBackgroundColorDark}}"
+                    <telerik:RadBorder BackgroundColor="{StaticResource ItemBackgroundColor}"
                                        CornerRadius="4"
                                        Padding="16, 8">
                         <Label Text="{Binding Title}"
@@ -40,8 +39,7 @@
 
     <Grid RowDefinitions="Auto, *"
           ColumnDefinitions="Auto, *"
-          BackgroundColor="{AppThemeBinding Light={OnPlatform Default=Transparent, iOS=#F3F3F3, Android=#F3F3F3},
-                                            Dark={OnPlatform Default=Transparent, iOS=#202020, Android=#202020}}"
+          BackgroundColor="{OnPlatform Default=Transparent, iOS=#F3F3F3, Android=#F3F3F3}"
           Padding="{OnIdiom Default=0, Phone=16}">
         <telerik:RadCalendar x:Name="calendar"
                              Grid.Column="{OnIdiom Default=1, Desktop=0}"

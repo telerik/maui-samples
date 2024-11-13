@@ -6,12 +6,14 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Windows.Input;
+using Telerik.AppUtils.Services;
 using Telerik.Documents.SpreadsheetStreaming;
 
 namespace QSF.Examples.SpreadStreamProcessingControl.FirstLookExample
 {
     public class FirstLookViewModel : ExampleViewModel
     {
+        private Random random;
         private const string DocumentTitle = "MY COURSES";
         private const string TitleColumnHeader = "TITLE";
         private const string UniversityColumnHeader = "UNIVERSITY";
@@ -27,6 +29,9 @@ namespace QSF.Examples.SpreadStreamProcessingControl.FirstLookExample
 
         public FirstLookViewModel()
         {
+            this.random = DependencyService
+                .Get<ITestingService>()
+                .Random(30);
             this.GenerateSpreadsheetCommand = new Command(this.GenerateSpreadsheet);
             this.Courses = new ObservableCollection<CourseViewModel>(this.GenerateCourses());
         }
@@ -65,13 +70,11 @@ namespace QSF.Examples.SpreadStreamProcessingControl.FirstLookExample
 
         private IEnumerable<CourseViewModel> GenerateCourses()
         {
-            Random rnd = new Random();
-
             for (int i = 0; i < CoursesCount; i++)
             {
-                int courseIndex = rnd.Next(0, CourseNames.Length);
-                int universityIndex = rnd.Next(0, Universities.Length);
-                int progress = rnd.Next(0, 101);
+                int courseIndex = this.random.Next(0, CourseNames.Length);
+                int universityIndex = this.random.Next(0, Universities.Length);
+                int progress = this.random.Next(0, 101);
 
                 yield return new CourseViewModel(CourseNames[courseIndex], Universities[universityIndex], progress);
             }

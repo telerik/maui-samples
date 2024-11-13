@@ -1,14 +1,16 @@
 ﻿using Microsoft.Maui.Controls;
+using Telerik.Maui.Controls;
 using Telerik.Maui.Controls.DataGrid;
 
 namespace SDKBrowserMaui.Examples.DataGridControl.StylingCategory.StyleSelectorExample;
 
 // >> datagrid-styleselector-celldecoration
-class MyCellDecorationSelector : DataGridStyleSelector
+class MyCellDecorationSelector : IStyleSelector
 {
-    public DataGridStyle CellTemplate1 { get; set; }
-    public DataGridStyle CellTemplate2 { get; set; }
-    public override DataGridStyle SelectStyle(object item, BindableObject container)
+    public Style CellTemplate1 { get; set; }
+    public Style CellTemplate2 { get; set; }
+
+    public Style SelectStyle(object item, BindableObject container)
     {
         DataGridCellInfo cellInfo = item as DataGridCellInfo;
         if (cellInfo != null)
@@ -22,7 +24,8 @@ class MyCellDecorationSelector : DataGridStyleSelector
                 return CellTemplate2;
             }
         }
-        return base.SelectStyle(item, container);
+
+        return null;
     }
 }
 // << datagrid-styleselector-celldecoration

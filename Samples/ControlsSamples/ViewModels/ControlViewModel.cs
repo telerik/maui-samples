@@ -1,7 +1,6 @@
 ﻿using Microsoft.Maui.Controls;
 using Microsoft.Maui.Devices;
 using QSF.Common;
-using QSF.Helpers;
 using QSF.Services;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -23,7 +22,13 @@ public class ControlViewModel : PageViewModel
 
         foreach (var example in control.Examples)
         {
-            example.ControlName = control.Name;
+            // The ControlName could be specified in the config.xml when we want
+            // to show example from different control in the current control section.
+            if (string.IsNullOrEmpty(example.ControlName))
+            {
+                example.ControlName = control.Name;
+            }
+
             this.Examples.Add(example);
         }
 

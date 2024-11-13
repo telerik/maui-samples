@@ -5,6 +5,7 @@
                              xmlns:qsf="clr-namespace:QSF"
                              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
                              xmlns:local="clr-namespace:QSF.Examples.TemplatedPickerControl.FirstLookExample"
+                             xmlns:localCommon="clr-namespace:QSF.Examples.TemplatedPickerControl.Common"
                              x:Class="QSF.Examples.TemplatedPickerControl.FirstLookExample.FirstLookView"
                              ItemsSource="{Binding Cards}"
                              CollectionTitle="Selected Product"
@@ -12,44 +13,11 @@
                              ButtonText="Add to Basket"
                              ButtonAutomationId="sendButton">
     <ContentView.Resources>
-        <Style TargetType="Label">
-            <Setter Property="TextColor" Value="Black" />
-            <Setter Property="FontSize" Value="12" />
-            <Setter Property="HorizontalTextAlignment" Value="Start" />
-        </Style>
-        <Style x:Key="DefaultUniformGridStyle" TargetType="telerik:RadUniformGrid">
-            <Setter Property="Margin" Value="5, 0, 0, 0" />
-        </Style>
-        <Style x:Key="DefaltSizeLabelStyle" TargetType="Label">
-            <Setter Property="HorizontalOptions" Value="Center" />
-            <Setter Property="VerticalOptions" Value="Center" />
-        </Style>
-        <Style x:Key="ItemGridStyle" TargetType="Grid">
-            <Setter Property="WidthRequest" Value="40" />
-            <Setter Property="HeightRequest" Value="40" />
-            <Setter Property="Margin" Value="12, 16" />
-        </Style>
-        <Style x:Key="DefaultHeaderLabelStyle" TargetType="Label">
-            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource DefaultTextColor}, Dark={StaticResource DefaultTextColorDark}}" />
-            <Setter Property="HorizontalOptions" Value="{OnPlatform Default='Center', MacCatalyst='Start', WinUI='Start'}" />
-            <Setter Property="VerticalOptions" Value="Center" />
-            <Setter Property="Margin" Value="{OnPlatform Default='10, 0', WinUI='20, 0'}" />
-            <Setter Property="FontSize" Value="{OnPlatform Default='22', WinUI='20'}" />
-        </Style>
-        <DataTemplate x:Key="ProductItemTemplate">
-            <StackLayout Orientation="{OnIdiom Default=Horizontal, Desktop=Vertical}">
-                <Image Source="{Binding ImageSource}" />
-                <VerticalStackLayout Spacing="5"
-                                     Margin="{OnIdiom Default='12, 0, 0, 0', Desktop='0, 4, 0, 0'}">
-                    <Label Text="Raglan sleeve" />
-                    <Label Text="60% Polyamide, 40% Polyester" />
-                    <Label Text="Machine Wash - Cold (30° max)" />
-                    <Label Text="Collar Style: Round neck" />
-                    <Label Text="Slim Fit" />
-                    <Label Text="Short Sleeve" />
-                </VerticalStackLayout>
-            </StackLayout>
-        </DataTemplate>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <localCommon:StylesAndTemplates />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </ContentView.Resources>
 
     <VerticalStackLayout>
@@ -57,6 +25,7 @@
                Margin="0, 0, 0, 12" />
         <telerik:RadTemplatedPicker x:Name="templatedPicker"
                                     Placeholder="Choose Your Size and Color"
+                                    SelectorTemplate="{StaticResource ColorAndSizePickerSelectorTemplate}"
                                     SelectedValue="{Binding SelectedValue}"
                                     AutomationId="templatedPicker">
             <telerik:RadTemplatedPicker.PopupSettings>
@@ -82,157 +51,6 @@
                 <telerik:PickerDropDownSettings AcceptCommand="{Binding AcceptCommand}"
                                                 CancelCommand="{Binding CancelCommand}" />
             </telerik:RadTemplatedPicker.DropDownSettings>
-            <telerik:RadTemplatedPicker.SelectorTemplate>
-                <ControlTemplate>
-                    <ScrollView HeightRequest="{OnPlatform MacCatalyst=301, iOS=301}">
-                        <VerticalStackLayout>
-                            <telerik:RadUniformGrid Style="{StaticResource DefaultUniformGridStyle}"
-                                                    HeightRequest="{OnPlatform MacCatalyst=150, iOS=150}"
-                                                    HorizontalOptions="Start">
-                                <Grid Style="{StaticResource ItemGridStyle}">
-                                    <View.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding SelectSizeCommand}"
-                                                              CommandParameter="{Binding XS}" />
-                                    </View.GestureRecognizers>
-                                    <Ellipse Fill="{Binding XS.BackgroundColor}" />
-                                    <Label Text="{Binding XS.Name}"
-                                           Style="{StaticResource DefaltSizeLabelStyle}"
-                                           TextColor="{Binding XS.TextColor}" 
-                                           AutomationId="sizeXS"/>
-                                </Grid>
-                                <Grid Style="{StaticResource ItemGridStyle}">
-                                    <View.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding SelectSizeCommand}"
-                                                              CommandParameter="{Binding S}" />
-                                    </View.GestureRecognizers>
-                                    <Ellipse Fill="{Binding S.BackgroundColor}" />
-                                    <Label Text="{Binding S.Name}"
-                                           Style="{StaticResource DefaltSizeLabelStyle}"
-                                           TextColor="{Binding S.TextColor}" 
-                                           AutomationId="sizeS"/>
-                                </Grid>
-                                <Grid Style="{StaticResource ItemGridStyle}">
-                                    <View.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding SelectSizeCommand}"
-                                                              CommandParameter="{Binding M}" />
-                                    </View.GestureRecognizers>
-                                    <Ellipse Fill="{Binding M.BackgroundColor}" />
-                                    <Label Text="{Binding M.Name}"
-                                           Style="{StaticResource DefaltSizeLabelStyle}"
-                                           TextColor="{Binding M.TextColor}" 
-                                           AutomationId="sizeM"/>
-                                </Grid>
-                                <Grid Style="{StaticResource ItemGridStyle}">
-                                    <View.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding SelectSizeCommand}"
-                                                              CommandParameter="{Binding L}" />
-                                    </View.GestureRecognizers>
-                                    <Ellipse Fill="{Binding L.BackgroundColor}" />
-                                    <Label Text="{Binding L.Name}"
-                                           Style="{StaticResource DefaltSizeLabelStyle}"
-                                           TextColor="{Binding L.TextColor}" 
-                                           AutomationId="sizeL"/>
-                                </Grid>
-                                <Grid Style="{StaticResource ItemGridStyle}">
-                                    <View.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding SelectSizeCommand}"
-                                                              CommandParameter="{Binding XL}" />
-                                    </View.GestureRecognizers>
-                                    <Ellipse Fill="{Binding XL.BackgroundColor}" />
-                                    <Label Text="{Binding XL.Name}"
-                                           Style="{StaticResource DefaltSizeLabelStyle}"
-                                           TextColor="{Binding XL.TextColor}" 
-                                           AutomationId="sizeXL"/>
-                                </Grid>
-                                <Grid Style="{StaticResource ItemGridStyle}">
-                                    <View.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding SelectSizeCommand}"
-                                                              CommandParameter="{Binding XXL}" />
-                                    </View.GestureRecognizers>
-                                    <Ellipse Fill="{Binding XXL.BackgroundColor}" />
-                                    <Label Text="{Binding XXL.Name}"
-                                           Style="{StaticResource DefaltSizeLabelStyle}"
-                                           TextColor="{Binding XXL.TextColor}" 
-                                           AutomationId="sizeXXL"/>
-                                </Grid>
-                            </telerik:RadUniformGrid>
-                            <BoxView HeightRequest="1"
-                                     HorizontalOptions="Fill"
-                                     Margin="20, 0, 20, 0"
-                                     BackgroundColor="#EAEAEA" />
-                            <telerik:RadUniformGrid Style="{StaticResource DefaultUniformGridStyle}"
-                                                    HeightRequest="{OnPlatform MacCatalyst=150, iOS=150}">
-                                <Grid Style="{StaticResource ItemGridStyle}">
-                                    <Ellipse Stroke="{Binding Blue.BorderColor}" />
-                                    <Ellipse Fill="{Binding Blue.Color}"
-                                             Margin="2"
-                                             AutomationId="colorBlueEllipse">
-                                        <View.GestureRecognizers>
-                                            <TapGestureRecognizer Command="{Binding SelectColorCommand}"
-                                                                  CommandParameter="{Binding Blue}" />
-                                        </View.GestureRecognizers>
-                                    </Ellipse>
-                                </Grid>
-                                <Grid Style="{StaticResource ItemGridStyle}">
-                                    <Ellipse Stroke="{Binding Yellow.BorderColor}" />
-                                    <Ellipse Fill="{Binding Yellow.Color}"
-                                             Margin="2"
-                                             AutomationId="colorYellowEllipse">
-                                        <View.GestureRecognizers>
-                                            <TapGestureRecognizer Command="{Binding SelectColorCommand}"
-                                                                  CommandParameter="{Binding Yellow}" />
-                                        </View.GestureRecognizers>
-                                    </Ellipse>
-                                </Grid>
-                                <Grid Style="{StaticResource ItemGridStyle}">
-                                    <Ellipse Stroke="{Binding Purple.BorderColor}" />
-                                    <Ellipse Fill="{Binding Purple.Color}"
-                                             Margin="2"
-                                             AutomationId="colorPurpleEllipse">
-                                        <View.GestureRecognizers>
-                                            <TapGestureRecognizer Command="{Binding SelectColorCommand}"
-                                                                  CommandParameter="{Binding Purple}" />
-                                        </View.GestureRecognizers>
-                                    </Ellipse>
-                                </Grid>
-                                <Grid Style="{StaticResource ItemGridStyle}">
-                                    <Ellipse Stroke="{Binding Orange.BorderColor}" />
-                                    <Ellipse Fill="{Binding Orange.Color}"
-                                             Margin="2"
-                                             AutomationId="colorOrangeEllipse">
-                                        <View.GestureRecognizers>
-                                            <TapGestureRecognizer Command="{Binding SelectColorCommand}"
-                                                                  CommandParameter="{Binding Orange}" />
-                                        </View.GestureRecognizers>
-                                    </Ellipse>
-                                </Grid>
-                                <Grid Style="{StaticResource ItemGridStyle}">
-                                    <Ellipse Stroke="{Binding LightGray.BorderColor}" />
-                                    <Ellipse Fill="{Binding LightGray.Color}"
-                                             Margin="2"
-                                             AutomationId="colorLIghtGrayEllipse">
-                                        <View.GestureRecognizers>
-                                            <TapGestureRecognizer Command="{Binding SelectColorCommand}"
-                                                                  CommandParameter="{Binding LightGray}" />
-                                        </View.GestureRecognizers>
-                                    </Ellipse>
-                                </Grid>
-                                <Grid Style="{StaticResource ItemGridStyle}">
-                                    <Ellipse Stroke="{Binding DarkGray.BorderColor}" />
-                                    <Ellipse Fill="{Binding DarkGray.Color}"
-                                             Margin="2"
-                                             AutomationId="colorDarkGrayEllipse">
-                                        <View.GestureRecognizers>
-                                            <TapGestureRecognizer Command="{Binding SelectColorCommand}"
-                                                                  CommandParameter="{Binding DarkGray}" />
-                                        </View.GestureRecognizers>
-                                    </Ellipse>
-                                </Grid>
-                            </telerik:RadUniformGrid>
-                        </VerticalStackLayout>
-                    </ScrollView>
-                </ControlTemplate>
-            </telerik:RadTemplatedPicker.SelectorTemplate>
         </telerik:RadTemplatedPicker>
     </VerticalStackLayout>
 </views:PickerExampleViewBase>

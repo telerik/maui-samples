@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        xmlns:common="clr-namespace:QSF.Examples.TreeViewControl.Common"
+                        x:Class="QSF.Examples.TreeViewControl.ThemingExample.ThemingView">
+    <Grid Padding="{OnIdiom Default='16, 20', Phone=0}">
+        <telerik:RadTreeView x:Name="treeView"
+                             ItemsSource="{Binding Folders}"
+                             CheckBoxMode="Recursive"
+                             AutomationId="treeView">
+            <telerik:TreeViewDescriptor TargetType="{x:Type common:FolderNode}"
+                                        DisplayMemberPath="Name"
+                                        ItemsSourcePath="Children" />
+            <telerik:TreeViewDescriptor TargetType="{x:Type common:FileNode}"
+                                        DisplayMemberPath="Name" />
+        </telerik:RadTreeView>
+    </Grid>
+</telerik:RadContentView>

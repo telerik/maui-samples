@@ -30,15 +30,12 @@
                     <telerik:MapShapeStyle StrokeColor="White" FillColor="#95D3E8"/>
                 </local:DensityShapeStyleSelector.LowestDensityStyle>
             </local:DensityShapeStyleSelector>
-            <Color x:Key="HeaderTitleTextColorLight">#4B4C4C</Color>
-            <Color x:Key="HeaderTitleTextColorDark">#FFFFFF</Color>
-            <Color x:Key="FooterTitleTextColorLight">#4B4C4C</Color>
-            <Color x:Key="FooterTitleTextColorDark">#FFFFFF</Color>
-            <Color x:Key="FooterDetailTextColorLight">#8E8E93</Color>
-            <Color x:Key="FooterDetailTextColorDark">#99FFFFFF</Color>
+            <Color x:Key="HeaderTitleTextColor">#4B4C4C</Color>
+            <Color x:Key="FooterTitleTextColor">#4B4C4C</Color>
+            <Color x:Key="FooterDetailTextColor">#8E8E93</Color>
         </ResourceDictionary>
     </ContentView.Resources>
-    <Grid BackgroundColor="{AppThemeBinding Dark=#121212}">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -47,24 +44,23 @@
         <Label Text="Population density (2019)"
                FontSize="19"
                Margin="24, 26, 0, 26"
-               TextColor="{AppThemeBinding Light={StaticResource HeaderTitleTextColorLight}, 
-                                           Dark={StaticResource HeaderTitleTextColorDark}}" />
+               TextColor="{StaticResource HeaderTitleTextColor}" />
         <telerik:RadMap x:Name="map"
                         Grid.Row="1"
                         AutomationId="map">
             <telerik:RadMap.Layers>
-                <telerik:ShapefileLayer x:Name="shapeLayer"
+                <telerik:MapShapefileLayer x:Name="shapeLayer"
                                         SelectionMode="Single"
                                         SelectedShape="{Binding SelectedShape, Mode=TwoWay}"
                                         ShapeStyleSelector="{StaticResource DensityShapeStyleSelector}">
-                    <telerik:ShapefileLayer.SelectedShapeStyle>
+                    <telerik:MapShapefileLayer.SelectedShapeStyle>
                         <telerik:MapShapeStyle FillColor="#FE6078" StrokeColor="White"/>
-                    </telerik:ShapefileLayer.SelectedShapeStyle>
-                    <telerik:ShapefileLayer.Reader>
+                    </telerik:MapShapefileLayer.SelectedShapeStyle>
+                    <telerik:MapShapefileLayer.Reader>
                         <telerik:MapShapeReader x:Name="shapeReader"
                                                 ReadCompleted="OnReadCompleted"/>
-                    </telerik:ShapefileLayer.Reader>
-                </telerik:ShapefileLayer>
+                    </telerik:MapShapefileLayer.Reader>
+                </telerik:MapShapefileLayer>
             </telerik:RadMap.Layers>
         </telerik:RadMap>
         <StackLayout Grid.Row="2"
@@ -72,7 +68,7 @@
             <Label Text="Population per square mile by state. 2019 census figures."
                    FontSize="14"
                    Margin="0, 0, 26, 0"
-                   TextColor="{AppThemeBinding Light={StaticResource HeaderTitleTextColorLight}, Dark={StaticResource HeaderTitleTextColorDark}}" />
+                   TextColor="{StaticResource HeaderTitleTextColor}" />
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -92,8 +88,7 @@
                                                            VerticalOptions="CenterAndExpand"
                                                            Margin="0, 0, 8, 0"/>
                                         <Label Text="{Binding Density}" 
-                                               TextColor="{AppThemeBinding Light={StaticResource FooterDetailTextColorLight}, 
-                                                                           Dark={StaticResource FooterDetailTextColorDark}}"
+                                               TextColor="{StaticResource FooterDetailTextColor}"
                                                VerticalTextAlignment="Center"
                                                FontSize="12"/>
                                     </StackLayout>

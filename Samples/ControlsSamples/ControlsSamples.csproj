@@ -15,9 +15,11 @@
 
 		<!-- Versions -->
 		<ApplicationVersion>1</ApplicationVersion>
+    
+    <!-- Work-around for Skia issue with latest MAUI -->
+		<WindowsSdkPackageVersion>10.0.19041.54</WindowsSdkPackageVersion>
 
-		<!-- TODO: Remove it when Maui fixes Skia linker issue for net7. -->
-		<AndroidLinkResources Condition=" $(IsNet7) == 'true' ">false</AndroidLinkResources>
+		<RuntimeIdentifier Condition="$(TargetFramework.Contains('android')) AND $(IsCI) == 'true'">android-arm64</RuntimeIdentifier>
 	</PropertyGroup>
 
 	<PropertyGroup>
@@ -101,16 +103,12 @@
 		<PackageReference Include="Telerik.UI.for.Maui" Version="$(TelerikVersion)" />
 	</ItemGroup>
 
-	<ItemGroup Condition="$(TargetFramework.Contains('net7'))">
-		<PackageReference Include="System.Text.Json" Version="8.0.4" />
-	</ItemGroup>
-
 	<ItemGroup Condition="$(TargetFramework.Contains('net8'))">
 		<PackageReference Include="Microsoft.Maui.Controls" Condition=" $(CustomMauiNet8Version) == '' " Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Condition=" $(CustomMauiNet8Version) == '' " Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Controls" Condition=" $(CustomMauiNet8Version) != '' " Version="$(CustomMauiNet8Version)" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Condition=" $(CustomMauiNet8Version) != '' " Version="$(CustomMauiNet8Version)" />
-		<PackageReference Include="System.Text.Json" Version="8.0.4" />
+		<PackageReference Include="System.Text.Json" Version="8.0.5" />
 	</ItemGroup>
 
 	<ItemGroup Condition="$(TargetFramework.Contains('net9'))">

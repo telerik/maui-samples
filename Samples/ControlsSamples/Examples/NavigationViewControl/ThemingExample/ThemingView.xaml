@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        x:Class="QSF.Examples.NavigationViewControl.ThemingExample.ThemingView"
+                        Padding="{OnIdiom Default=0, Desktop='16, 20'}">
+    <telerik:RadNavigationView x:Name="navigationView"
+                               DisplayMode="Expanded"
+                               AutoChangeDisplayMode="False">
+        <telerik:RadNavigationView.Items>
+            <telerik:NavigationViewItem Text="Account Center"
+                                        Position="Header">
+                <telerik:NavigationViewItem.ImageSource>
+                    <FontImageSource Glyph="&#xe8a8;"
+                                     FontFamily="TelerikFontExamples"
+                                     Size="16" />
+                </telerik:NavigationViewItem.ImageSource>
+            </telerik:NavigationViewItem>
+            <telerik:NavigationViewItem Text="Your activity">
+                <telerik:NavigationViewItem.ImageSource>
+                    <FontImageSource Glyph="&#xe858;"
+                                     FontFamily="TelerikFontExamples"
+                                     Size="16" />
+                </telerik:NavigationViewItem.ImageSource>
+            </telerik:NavigationViewItem>
+            <telerik:NavigationViewItem Text="Saved Videos">
+                <telerik:NavigationViewItem.ImageSource>
+                    <FontImageSource Glyph="&#xe87f;"
+                                     FontFamily="TelerikFontExamples"
+                                     Size="16" />
+                </telerik:NavigationViewItem.ImageSource>
+            </telerik:NavigationViewItem>
+            <telerik:NavigationViewItem Text="All Videos">
+                <telerik:NavigationViewItem.ImageSource>
+                    <FontImageSource Glyph="&#xe874;"
+                                     FontFamily="TelerikFontExamples"
+                                     Size="16" />
+                </telerik:NavigationViewItem.ImageSource>
+            </telerik:NavigationViewItem>
+            <telerik:NavigationViewItem Text="Events">
+                <telerik:NavigationViewItem.ImageSource>
+                    <FontImageSource Glyph="&#xe8a0;"
+                                     FontFamily="TelerikFontExamples"
+                                     Size="16" />
+                </telerik:NavigationViewItem.ImageSource>
+            </telerik:NavigationViewItem>
+            <telerik:NavigationViewItem Text="Settings" Position="Footer">
+                <telerik:NavigationViewItem.ImageSource>
+                    <FontImageSource Glyph="&#xe822;"
+                                     FontFamily="TelerikFontExamples"
+                                     Size="16" />
+                </telerik:NavigationViewItem.ImageSource>
+            </telerik:NavigationViewItem>
+        </telerik:RadNavigationView.Items>
+        <telerik:RadNavigationView.Content>
+            <Label HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   Text="{Binding SelectedItem.Text, Source={x:Reference navigationView}}" />
+        </telerik:RadNavigationView.Content>
+    </telerik:RadNavigationView>
+</telerik:RadContentView>

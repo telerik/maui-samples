@@ -12,13 +12,12 @@
     <ScrollView>
         <Grid RowDefinitions="{OnIdiom Default='80, Auto, Auto', Phone='80, Auto, *'}"
               RowSpacing="10">
-            <VerticalStackLayout BackgroundColor="{AppThemeBinding Light={StaticResource DefaultBackgroundColor}, Dark={StaticResource DefaultBackgroundColorDark}}"
-                                 Padding="16, 24">
+            <telerik:RadBorder Style="{StaticResource ControlWrapperBorderStyle}">
                 <Label Text="Job Search"
                        FontSize="24"
                        VerticalOptions="Center"
                        VerticalTextAlignment="Center" />
-            </VerticalStackLayout>
+            </telerik:RadBorder>
 
             <VerticalStackLayout Grid.Row="1"
                                  Padding="{OnIdiom Default=0, Phone='16, 0'}"
@@ -33,7 +32,7 @@
                                      SelectionMode="Multiple"
                                      IsDropDownClosedOnSelection="False"
                                      Margin="0, 0, 0, 10" 
-                                     AutomationId="skillsComboBox"/>
+                                     AutomationId="skillsComboBox" />
 
                 <Label Text="Job Types:"
                        FontSize="16" />
@@ -45,7 +44,7 @@
                                      WidthRequest="{OnPlatform WinUI='300', MacCatalyst='300'}"
                                      HorizontalOptions="{OnIdiom Default=Fill, Desktop=Start}"
                                      IsDropDownClosedOnSelection="False"
-                                     AutomationId="jobTypesComboBox"/>
+                                     AutomationId="jobTypesComboBox" />
 
                 <Label Text="Time Posted:"
                        FontSize="16" />
@@ -54,7 +53,7 @@
                                      HorizontalOptions="{OnIdiom Default=Fill, Desktop=Start}"
                                      SelectedIndex="{Binding SelectedTimeIndex, Mode=TwoWay}"
                                      Placeholder="Select Time"
-                                     AutomationId="timePostedComboBox"/>
+                                     AutomationId="timePostedComboBox" />
             </VerticalStackLayout>
 
             <telerik:RadButton Grid.Row="2"
@@ -64,7 +63,7 @@
                                Command="{Binding SearchJobButtonCommand}"
                                Text="Find Jobs"
                                Style="{StaticResource SubmitButtonStyle}" 
-                               AutomationId="findJobsButton"/>
+                               AutomationId="findJobsButton" />
         </Grid>
     </ScrollView>
 </ContentView>

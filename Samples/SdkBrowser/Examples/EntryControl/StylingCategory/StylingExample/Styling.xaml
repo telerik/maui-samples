@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.EntryControl.StylingCategory.StylingExample.Styling">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <!-- >> entry-styling-clear-button -->
+            <Style x:Key="CustomClearButtonStyle" TargetType="telerik:RadTemplatedButton">
+                <Setter Property="TextColor" Value="#A30111" />
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup Name="CommonStates">
+                            <VisualState Name="Normal" />
+                            <!-- Applicable for Desktop only -->
+                            <VisualState Name="PointerOver">
+                                <VisualState.Setters>
+                                    <Setter Property="telerik:RadTemplatedButton.TextColor" Value="#B53340" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="Pressed">
+                                <VisualState.Setters>
+                                    <Setter Property="telerik:RadTemplatedButton.TextColor" Value="#C76670" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="Disabled" />
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+            <!-- << entry-styling-clear-button -->
+            
+            <!-- >> entry-styling-validation-error-label -->
+            <Style x:Key="CustomValidationLabelStyle" TargetType="Label">
+                <Setter Property="FontAttributes" Value="Italic" />
+                <Setter Property="TextColor" Value="#A30111" />
+            </Style>
+            <!-- << entry-styling-validation-error-label -->
+
+            <!-- >> entry-styling-validation-error-image -->
+            <Style x:Key="CustomValidationErrorImageStyle" TargetType="Image">
+                <Setter Property="Source">
+                    <FontImageSource Glyph="&#xe82f;"
+                                     Color="#A30111"
+                                     Size="{OnPlatform Default=16, iOS=20, MacCatalyst=20}"
+                                     FontFamily="TelerikFontExamples" />
+                </Setter>
+            </Style>
+            <!-- << entry-styling-validation-error-image -->
+            
+            <!-- >> entry-styling -->
+            <Style x:Key="CustomEntryStyle" TargetType="telerik:RadEntry">
+                <Setter Property="BackgroundColor" Value="#F4FAF9" />
+                <Setter Property="BorderBrush" Value="#00897B" />
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="CornerRadius" Value="10" />
+                <Setter Property="ClearButtonStyle" Value="{StaticResource CustomClearButtonStyle}" />
+                <Setter Property="ValidationErrorImageStyle" Value="{StaticResource CustomValidationErrorImageStyle}" />
+                <Setter Property="ValidationErrorLabelStyle" Value="{StaticResource CustomValidationLabelStyle}" />
+                <Setter Property="ValidationErrorMessage" Value="Entered text is not valid" />
+                <Setter Property="Placeholder" Value="Enter text here" />
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup Name="CommonStates">
+                            <VisualState Name="Normal" />
+                            <!-- Applicable for Desktop only -->
+                            <VisualState Name="MouseOver">
+                                <VisualState.Setters>
+                                    <Setter Property="BorderBrush" Value="#00BCA9" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="Focused">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#FFFFFF" />
+                                    <Setter Property="BorderBrush" Value="#00BCA9" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="Invalid">
+                                <VisualState.Setters>
+                                    <Setter Property="BorderBrush" Value="#A30111" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <!-- Applicable for Desktop only -->
+                            <VisualState Name="InvalidMouseOver">
+                                <VisualState.Setters>
+                                    <Setter Property="BorderBrush" Value="#B53340" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="InvalidFocused">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#FFFFFF" />
+                                    <Setter Property="BorderBrush" Value="#C76670" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="ReadOnly">
+                                <VisualState.Setters>
+                                    <Setter Property="telerik:RadEntry.BackgroundColor" Value="#E5F6F6F6" />
+                                    <Setter Property="telerik:RadEntry.BorderBrush" Value="#EBEBEB" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <!-- Applicable for Desktop only -->
+                            <VisualState Name="ReadOnlyMouseOver">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#B2F9F9F9" />
+                                    <Setter Property="BorderBrush" Value="#EBEBEB" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="ReadOnlyFocused">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#FFFFFF" />
+                                    <Setter Property="BorderBrush" Value="#00BCA9" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="ReadOnlyInvalid">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#E5F6F6F6" />
+                                    <Setter Property="telerik:RadEntry.BorderBrush" Value="#A30111" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <!-- Applicable for Desktop only -->
+                            <VisualState Name="ReadOnlyInvalidMouseOver">
+                                <VisualState.Setters>
+                                    <Setter Property="telerik:RadEntry.BackgroundColor" Value="#B2F9F9F9" />
+                                    <Setter Property="telerik:RadEntry.BorderBrush" Value="#A30111" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="ReadOnlyInvalidFocused">
+                                <VisualState.Setters>
+                                    <Setter Property="telerik:RadEntry.BackgroundColor" Value="#E5F6F6F6" />
+                                    <Setter Property="telerik:RadEntry.BorderBrush" Value="#C76670" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="Disabled">
+                                <VisualState.Setters>
+                                    <Setter Property="Opacity" Value="0.6" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+            <!-- << entry-styling -->
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <VerticalStackLayout Spacing="10"
+                         HorizontalOptions="{OnPlatform Default=Fill, MacCatalyst=Start, WinUI=Start}"
+                         WidthRequest="{OnPlatform MacCatalyst=300, WinUI=300}">
+        <HorizontalStackLayout Spacing="8" HorizontalOptions="Start">
+            <telerik:RadCheckBox x:Name="validationCb"
+                                 IsChecked="{Binding IsValueValid, Source={x:Reference entry}}" />
+            <Label Text="Valid"
+                   telerik:RadCheckBox.ToggleOnTap="{x:Reference validationCb}"
+                   VerticalOptions="Center" />
+        </HorizontalStackLayout>
+        <HorizontalStackLayout Spacing="8">
+            <telerik:RadCheckBox x:Name="readonlyCb" 
+                                 IsChecked="{Binding IsReadOnly, Source={x:Reference entry}}" />
+            <Label Text="Read-Only"
+                   telerik:RadCheckBox.ToggleOnTap="{x:Reference readonlyCb}"
+                   VerticalOptions="Center" />
+        </HorizontalStackLayout>
+        <!-- >> entry-style -->
+        <telerik:RadEntry x:Name="entry"
+                          Style="{StaticResource CustomEntryStyle}" />
+        <!-- << entry-style -->
+    </VerticalStackLayout>
+</ContentView>

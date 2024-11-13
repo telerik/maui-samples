@@ -67,7 +67,7 @@ public class NavigationService : INavigationService
 
             if (!animated.HasValue)
             {
-                animated = !DependencyService.Get<ITestingService>().IsAppUnderTest;    
+                animated = !DependencyService.Get<ITestingService>().IsAppUnderTest;
             }
 
             await this.navigation.PushAsync(view, animated.Value);
@@ -107,7 +107,7 @@ public class NavigationService : INavigationService
     public Task NavigateToThemeSettingsPageAsync(ThemeSettingsViewModel themeSettingsViewModel)
     {
         ThemeSettingsPage themeSettingsPage = new ThemeSettingsPage();
-        themeSettingsPage.BindingContext = new ThemeSettingsViewModel();
+        themeSettingsPage.BindingContext = themeSettingsViewModel;
         return this.navigation.PushAsync(themeSettingsPage);
     }
 
@@ -157,7 +157,16 @@ public class NavigationService : INavigationService
                         { "Border", "Brd" },
                         { "ComboBox", "Cmb" },
                         { "Customization", "Cu" },
-                        { "Configuration", "Co" }
+                        { "Configuration", "Co" },
+                        { "Chart", "Crt"},
+                        { "Chat", "Ch"},
+                        { "Expander", "Ex"},
+                        { "Path", "Ph"},
+                        { "PdfViewer", "PdV"},
+                        { "PdfProcessing", "PdP"},
+                        { "SpreadProcessing", "SpP"},
+                        { "Slider", "Sl"},
+                        { "TreeView", "Trv" }
                     }.TryGetValue(text, out var lookup))
                 {
                     return lookup;

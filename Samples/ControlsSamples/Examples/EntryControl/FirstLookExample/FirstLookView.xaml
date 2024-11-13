@@ -6,8 +6,8 @@
     <ContentView.Resources>
         <ResourceDictionary>
             <Style x:Key="EntryStyle" TargetType="telerik:RadEntry">
-                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource DefaultTextColor}, Dark={StaticResource DefaultTextColorDark}}"/>
-                <Setter Property="PlaceholderColor" Value="{AppThemeBinding Light={StaticResource PlaceholderColor}, Dark={StaticResource PlaceholderColorDark}}"/>
+                <Setter Property="TextColor" Value="{StaticResource DefaultTextColor}" />
+                <Setter Property="PlaceholderColor" Value="{StaticResource PlaceholderColor}" />
                 <Setter Property="Margin" Value="0, 12, 0, 0" />
             </Style>
         </ResourceDictionary>
@@ -16,34 +16,34 @@
         <Grid Padding="{OnIdiom Default=0, Desktop='16, 20'}"
               ColumnSpacing="{OnIdiom Default=0, Desktop=20}">
             <Grid.RowDefinitions>
-                <RowDefinition Height="192"/>
+                <RowDefinition Height="192" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="{OnIdiom Default=Auto, Phone=*}"/>
+                <RowDefinition Height="{OnIdiom Default=Auto, Phone=*}" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="{OnIdiom Default=*, Phone=Auto}" />
             </Grid.ColumnDefinitions>
-            <VerticalStackLayout Grid.Row="0"
-                                 Grid.ColumnSpan="2"
-                                 BackgroundColor="{AppThemeBinding Light={StaticResource DefaultBackgroundColor}, Dark={StaticResource DefaultBackgroundColorDark}}"
-                                 Margin="0, 0, 0, 25"
-                                 Padding="0, 25, 0, 0"
-                                 HorizontalOptions="FillAndExpand">
-                <Label Text="Subscribe To Our Newsletter"
-                       FontSize="22"
-                       HorizontalOptions="Center"
-                       TextColor="#0E88F2"/>
-                <Label Text="Sign up to receive our monthly newsletter."
-                       FontSize="14"
-                       HorizontalOptions="Center"
-                       TextColor="#191919"/>
-                <Image Source="entryfirstlook.png"
-                       MaximumHeightRequest="80"
-                       MaximumWidthRequest="110"
-                       Margin="0, 24, 0, 0"/>
-            </VerticalStackLayout>
+            <telerik:RadBorder Grid.ColumnSpan="2"
+                               Style="{StaticResource ControlWrapperBorderStyle}"
+                               Padding="0, 25, 0, 0"
+                               Margin="0, 0, 0, 25">
+                <VerticalStackLayout HorizontalOptions="FillAndExpand">
+                    <Label Text="Subscribe To Our Newsletter"
+                           FontSize="22"
+                           HorizontalOptions="Center"
+                           TextColor="#0E88F2" />
+                    <Label Text="Sign up to receive our monthly newsletter."
+                           FontSize="14"
+                           HorizontalOptions="Center"
+                           TextColor="#191919" />
+                    <Image Source="entryfirstlook.png"
+                           MaximumHeightRequest="80"
+                           MaximumWidthRequest="110"
+                           Margin="0, 24, 0, 0" />
+                </VerticalStackLayout>
+            </telerik:RadBorder>
             <VerticalStackLayout Grid.Row="1"
                                  Grid.Column="0"
                                  Margin="{OnIdiom Default='0, 40, 0, 0', Phone='16, 16, 16, 0'}">
@@ -86,7 +86,7 @@
                                VerticalOptions="{OnIdiom Default=Start, Phone=End}"
                                Style="{StaticResource SubmitButtonStyle}"
                                Command="{Binding RegisterCommand}" 
-                               AutomationId="subscribeButton"/>
+                               AutomationId="subscribeButton" />
         </Grid>
     </ScrollView>
 </ContentView>

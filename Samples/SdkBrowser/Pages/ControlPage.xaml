@@ -8,17 +8,13 @@
     NavigationPage.HasNavigationBar="False"
     NavigationPage.HasBackButton="False"
     x:Class="SDKBrowserMaui.Pages.ControlPage">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+    <Grid RowDefinitions="50, *">
         <views:HeaderView />
         <telerik:RadListView x:Name="categories"
                              Grid.Row="1"
                              ItemsSource="{Binding Categories}"
                              SelectionMode="None"
-                             Background="{AppThemeBinding Light=White, Dark=Black}"
+                             Background="White"
                              VerticalOptions="Start">
             <telerik:RadListView.PressedItemStyle>
                 <telerik:ListViewItemStyle BackgroundColor="Transparent" />
@@ -41,7 +37,7 @@
                                        HeightRequest="8"/>
                                 <Label Grid.Column="1"
                                        Text="{Binding Title}"
-                                       TextColor="{AppThemeBinding Light={StaticResource DefaultTextColor}, Dark={StaticResource DefaultTextColorDark}}"
+                                       TextColor="{StaticResource DefaultTextColor}"
                                        VerticalOptions="Center" />
                             </Grid>
                         </telerik:ListViewTemplateCell.View>

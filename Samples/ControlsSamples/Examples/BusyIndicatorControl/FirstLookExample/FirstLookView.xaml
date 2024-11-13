@@ -4,17 +4,17 @@
                               xmlns:views="clr-namespace:QSF.Views"
                               xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
                               x:Class="QSF.Examples.BusyIndicatorControl.FirstLookExample.FirstLookView">
-  <views:GalleryExampleViewBase.Resources>
-    <ResourceDictionary>
-      <DataTemplate x:Key="busyIndicator">
+    <views:GalleryExampleViewBase.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="busyIndicator">
                 <telerik:RadBusyIndicator AnimationContentHeightRequest="200"
-                                            AnimationContentWidthRequest="200"
-                                            AnimationType="{Binding AnimationType}"
-                                            AnimationContentColor="{Static Application.AccentColor}"
-                                            InputTransparent="True"
-                                            IsBusy="True" 
-                                            AutomationId="busyIndicator"/>
-      </DataTemplate>
-    </ResourceDictionary>
-  </views:GalleryExampleViewBase.Resources>
+                                          AnimationContentWidthRequest="200"
+                                          AnimationType="{Binding AnimationType}"
+                                          AnimationContentColor="{Static Application.AccentColor}"
+                                          InputTransparent="True"
+                                          IsBusy="True" 
+                                          AutomationId="busyIndicator"/>
+            </DataTemplate>
+        </ResourceDictionary>
+    </views:GalleryExampleViewBase.Resources>
 </views:GalleryExampleViewBase>

@@ -2,6 +2,7 @@ using Microsoft.Maui.Controls;
 using Microsoft.Maui.Devices;
 using Microsoft.Maui.Graphics;
 using System;
+using Telerik.Maui.Controls;
 using Telerik.Maui.Controls.Compatibility.Chart;
 
 namespace QSF.Examples.ChartControl.FinancialIndicatorsExample;
@@ -14,15 +15,15 @@ public partial class FinancialIndicatorsView : ContentView
         var viewModel = new FinancialIndicatorsViewModel();
         this.BindingContext = viewModel;
 
-        this.trendlinePicker.SelectedItem = viewModel.TrendlinesList[0];
-        this.indicatorPicker.SelectedItem = viewModel.IndicatorsList[0];
+        this.trendlineCombo.SelectedItem = viewModel.TrendlinesList[0];
+        this.indicatorCombo.SelectedItem = viewModel.IndicatorsList[0];
     }
 
-    private void OnIndicatorPickerSelectedIndexChanged(object sender, EventArgs e)
+    private void OnIndicatorChanged(object sender, ComboBoxSelectionChangedEventArgs e)
     {
         this.indicatorsChart.Series.Clear();
 
-        IndicatorBase indicatorLineToAdd = this.CreateIndicator((Indicators)this.indicatorPicker.SelectedItem);
+        IndicatorBase indicatorLineToAdd = this.CreateIndicator((Indicators)this.indicatorCombo.SelectedItem);
         this.indicatorsChart.Series.Add(indicatorLineToAdd);
 
         if (DeviceInfo.Platform == DevicePlatform.iOS)
@@ -31,7 +32,7 @@ public partial class FinancialIndicatorsView : ContentView
         }
     }
 
-    private void OnTrendlinePickerSelectedIndexChanged(object sender, EventArgs e)
+    private void OnTrendlineChanged(object sender, ComboBoxSelectionChangedEventArgs e)
     {
         var series = this.trendlinesChart.Series;
         if (series.Count > 1)
@@ -39,7 +40,7 @@ public partial class FinancialIndicatorsView : ContentView
             series.RemoveAt(series.Count - 1);
         }
 
-        IndicatorBase trendlineToAdd = this.CreateTrendline((Trendlines)this.trendlinePicker.SelectedItem);
+        IndicatorBase trendlineToAdd = this.CreateTrendline((Trendlines)this.trendlineCombo.SelectedItem);
         this.trendlinesChart.Series.Add(trendlineToAdd);
     }
 

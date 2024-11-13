@@ -4,6 +4,7 @@ using Telerik.Maui.Controls.DataGrid;
 
 namespace SDKBrowserMaui.Examples.DataGridControl.KeyboardNavigationCategory.KeyboardNavigationExample;
 
+// >> datagrid-currentcell-viewmodel
 public class ViewModel : NotifyPropertyChangedBase
 {
     private DataGridCellInfo cell;
@@ -39,3 +40,4 @@ public class ViewModel : NotifyPropertyChangedBase
 
     public ObservableCollection<Person> People { get; set; }
 }
+// << datagrid-currentcell-viewmodel

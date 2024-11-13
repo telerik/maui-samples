@@ -6,11 +6,11 @@
     <!-- >> map-getting-started-xaml -->
     <telerik:RadMap x:Name="map" AutomationId="map">
         <telerik:RadMap.Layers>
-            <telerik:ShapefileLayer>
-                <telerik:ShapefileLayer.Reader>
+            <telerik:MapShapefileLayer>
+                <telerik:MapShapefileLayer.Reader>
                     <telerik:MapShapeReader x:Name="reader"/>
-                </telerik:ShapefileLayer.Reader>
-            </telerik:ShapefileLayer>
+                </telerik:MapShapefileLayer.Reader>
+            </telerik:MapShapefileLayer>
         </telerik:RadMap.Layers>
     </telerik:RadMap>
     <!-- << map-getting-started-xaml -->

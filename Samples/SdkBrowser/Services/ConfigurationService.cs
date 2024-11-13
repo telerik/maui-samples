@@ -115,9 +115,7 @@ namespace SDKBrowserMaui.Services
 
             string netVersion = string.Empty;
 
-#if NET7_0
-            netVersion = "net7";
-#elif NET8_0
+#if NET8_0
             netVersion = "net8";
 #elif NET9_0
             netVersion = "net9";

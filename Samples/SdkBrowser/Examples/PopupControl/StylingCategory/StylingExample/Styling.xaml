@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.PopupControl.StylingCategory.StylingExample.Styling">
+    <!-- >> popup-styling -->
+    <telerik:RadTemplatedButton HorizontalOptions="{OnPlatform Default=Center, MacCatalyst=Start, WinUI=Start}"
+                                VerticalOptions="{OnPlatform Default=Center, MacCatalyst=Start, WinUI=Start}"
+                                Content="Show customized popup"
+                                Clicked="ShowPopup">
+        <telerik:RadPopup.Popup>
+            <telerik:RadPopup x:Name="popup"
+                              VerticalOffset="8"
+                              Placement="{OnPlatform Android=Center, iOS=Center}"
+                              OutsideBackgroundColor="#267A7BBA">
+                <telerik:RadBorder BackgroundColor="#F9F9F9"
+                                   BorderColor="#7A7BBA"
+                                   BorderThickness="1"
+                                   CornerRadius="8"
+                                   WidthRequest="300"
+                                   Padding="12">
+                    <Label TextColor="Black"
+                           Text="Telerik offers a wide range of .NET MAUI controls to enable your cross-platform development of native Windows, macOS, Android and iOS applications." 
+                           LineBreakMode="WordWrap" />
+                </telerik:RadBorder>
+            </telerik:RadPopup>
+        </telerik:RadPopup.Popup>
+    </telerik:RadTemplatedButton>
+    <!-- << popup-styling  -->
+</ContentView>

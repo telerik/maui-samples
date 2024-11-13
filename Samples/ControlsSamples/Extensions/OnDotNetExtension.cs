@@ -16,13 +16,17 @@ public class OnDotNetExtension : IMarkupExtension
 
     public object Net7 { get; set; }
 
+    public object Net8 { get; set; }
+
+    public object Net9 { get; set; }
+
     public IValueConverter Converter { get; set; }
 
     public object ConverterParameter { get; set; }
 
     public object ProvideValue(IServiceProvider serviceProvider)
     {
-        if (this.Default == null && this.Net6 == null && this.Net7 == null)
+        if (this.Default == null && this.Net6 == null && this.Net7 == null && this.Net8 == null && this.Net9 == null)
         {
             throw new XamlParseException("OnDotNetExtension requires a non-null value to be specified for at least one dotnet version or Default.");
         }
@@ -110,6 +114,10 @@ public class OnDotNetExtension : IMarkupExtension
         return this.Net6 ?? this.Default;
 #elif NET7_0
         return this.Net7 ?? this.Default;
+#elif NET8_0
+        return this.Net8 ?? this.Default;
+#elif NET9_0
+        return this.Net9 ?? this.Default;
 #else
         return this.Default;
 #endif

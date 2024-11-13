@@ -1,20 +1,18 @@
-﻿using System;
-using Microsoft.Maui;
+﻿using Microsoft.Maui;
 using Microsoft.Maui.Controls;
 using Microsoft.Maui.Devices;
 using Microsoft.Maui.Graphics;
 using Microsoft.Maui.Handlers;
-using Telerik.Maui.Controls;
-using Telerik.AppUtils.Services;
-using QSF.Common;
 using QSF.Pages;
 using QSF.Services;
-using Application = Microsoft.Maui.Controls.Application;
-using System.Threading.Tasks;
 using QSF.ViewModels;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.Json;
+using System.Threading.Tasks;
+using Telerik.AppUtils.Services;
+using Telerik.Maui.Controls;
+using Application = Microsoft.Maui.Controls.Application;
 
 namespace QSF;
 
@@ -47,10 +45,10 @@ public partial class App : Application
                         await DependencyService
                             .Get<INavigationService>()
                             .NavigateCommand(location);
-                        
+
                         tcs.SetResult("OK");
                     }
-                    catch(Exception e)
+                    catch (Exception e)
                     {
                         tcs.SetException(e);
                     }
@@ -98,43 +96,9 @@ public partial class App : Application
 #endif
             }
         }
-        
-#if __ANDROID__ || WINDOWS
-        Microsoft.Maui.Handlers.ViewHandler.ViewMapper.AppendToMapping(nameof(IView.AutomationId), (h, v) => SetAutomationId(v));
-        Microsoft.Maui.Handlers.ContentViewHandler.Mapper.AppendToMapping(nameof(IView.AutomationId), (h, v) => SetAutomationId(v));
-        Microsoft.Maui.Handlers.ImageButtonHandler.Mapper.AppendToMapping(nameof(IView.AutomationId), (h, v) => SetAutomationId(v));
-        Microsoft.Maui.Handlers.LabelHandler.Mapper.AppendToMapping(nameof(IView.AutomationId), (h, v) => SetAutomationId(v));
-        Microsoft.Maui.Handlers.LayoutHandler.Mapper.AppendToMapping(nameof(IView.AutomationId), (h, v) => SetAutomationId(v));
-        Microsoft.Maui.Handlers.PickerHandler.Mapper.AppendToMapping(nameof(IView.AutomationId), (h, v) => SetAutomationId(v));
-        Microsoft.Maui.Handlers.RadioButtonHandler.Mapper.AppendToMapping(nameof(IView.AutomationId), (h, v) => SetAutomationId(v));
-        Microsoft.Maui.Handlers.ScrollViewHandler.Mapper.AppendToMapping(nameof(IView.AutomationId), (h, v) => SetAutomationId(v));
-        Microsoft.Maui.Handlers.SearchBarHandler.Mapper.AppendToMapping(nameof(IView.AutomationId), (h, v) => SetAutomationId(v));
-        Microsoft.Maui.Handlers.SliderHandler.Mapper.AppendToMapping(nameof(IView.AutomationId), (h, v) => SetAutomationId(v));
-        Microsoft.Maui.Handlers.SwitchHandler.Mapper.AppendToMapping(nameof(IView.AutomationId), (h, v) => SetAutomationId(v));
-        Microsoft.Maui.Handlers.TimePickerHandler.Mapper.AppendToMapping(nameof(IView.AutomationId), (h, v) => SetAutomationId(v));
-        Microsoft.Maui.Handlers.DatePickerHandler.Mapper.AppendToMapping(nameof(IView.AutomationId), (h, v) => SetAutomationId(v));
-        Microsoft.Maui.Handlers.ButtonHandler.Mapper.AppendToMapping(nameof(IView.AutomationId), (h, v) => SetAutomationId(v));
-        Telerik.Maui.Handlers.RadEntryHandler.EntryViewMapper.AppendToMapping(nameof(IView.AutomationId), (h, v) => SetAutomationId(v));
-        Telerik.Maui.Handlers.RadButtonHandler.RadButtonMapper.AppendToMapping(nameof(IView.AutomationId), (h, v) => SetAutomationId(v));
-        Telerik.Maui.Handlers.RadBorderHandler.BorderMapper.AppendToMapping(nameof(IView.AutomationId), (h, v) => SetAutomationId(v));
-        Telerik.Maui.Handlers.RadItemsControlHandler.ItemsControlMapper.AppendToMapping(nameof(IView.AutomationId), (h, v) => SetAutomationId(v));
-        Telerik.Maui.Handlers.RadCheckBoxHandler.RadCheckBoxMapper.AppendToMapping(nameof(IView.AutomationId), (h, v) => SetAutomationId(v));
-#endif
     }
 
-    private static void SetAutomationId(IView v)
-    {
-        var automationId = v.AutomationId;
-        if (!string.IsNullOrEmpty(automationId))
-        {
-            BindableObject element = v as BindableObject;
-            if (element != null)
-            {
-                SemanticProperties.SetDescription(element, automationId);
-            }
-        }
-    }
-
+    public static Color ApplicationAccentColor => (Color)App.Current.Resources["ApplicationAccentColor"];
 
     public static void DisplayAlert(string text)
     {
@@ -216,10 +180,8 @@ public partial class App : Application
             window.Title = "Telerik UI for .NET MAUI Controls Samples";
 #endif
 
-#if NET7_0_OR_GREATER
             window.MinimumWidth = 1024;
             window.MinimumHeight = 768;
-#endif
         }
 
         return window;

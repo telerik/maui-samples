@@ -2,25 +2,33 @@
 using System;
 using Telerik.Maui.Controls;
 
-namespace SDKBrowserMaui.Examples.PopupControl.ContentTemplateCategory.ContentTemplateExample
+namespace SDKBrowserMaui.Examples.PopupControl.ContentTemplateCategory.ContentTemplateExample;
+
+[XamlCompilation(XamlCompilationOptions.Compile)]
+public partial class ContentTemplate : RadContentView
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ContentTemplate : RadContentView
+    public ContentTemplate()
     {
-        public ContentTemplate()
-        {
-            InitializeComponent(); 
-        }
-        // >> popup-features-contenttemplate-events
-        private void ClosePopup(object sender, EventArgs e)
-        {
-            popup.IsOpen = false;
-        }
-        private void Checkbox_IsCheckedChanged(object sender, IsCheckedChangedEventArgs e)
-        {
-            if (e.NewValue == true)
-                popup.IsOpen = true;
-        }
-        // << popup-features-contenttemplate-events
+        InitializeComponent();
+
+        this.popup.PropertyChanged += PopupPropertyChanged;
     }
+
+    private void PopupPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+    {
+        if (e.PropertyName == "IsOpen" && (sender as RadPopup).IsOpen == false)
+        {
+            this.checkbox.IsChecked = false;
+        }
+    }
+
+    // >> popup-features-contenttemplate-events
+    private void CheckBoxIsCheckedChanged(object sender, IsCheckedChangedEventArgs e)
+    {
+        if (e.NewValue == true)
+        {
+            this.popup.IsOpen = true;
+        }
+    }
+    // << popup-features-contenttemplate-events
 }

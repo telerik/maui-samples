@@ -7,7 +7,7 @@
              x:Class="QSF.Pages.SettingsPageMobile"
              NavigationPage.HasNavigationBar="False"
              ios:Page.UseSafeArea="False">
-    <views:QSFPageContentView Background="{AppThemeBinding Light={StaticResource SecondaryBackgroundColor}, Dark={StaticResource SecondaryBackgroundColorDark}}">
+    <views:QSFPageContentView Background="{StaticResource SecondaryBackgroundColor}">
         <views:QSFPageContentView.HeaderControlTemplate>
             <ControlTemplate>
                 <Grid ColumnDefinitions="Auto, *">

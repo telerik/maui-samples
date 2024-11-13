@@ -11,11 +11,11 @@
         <!-- >> map-labels-xaml -->
         <telerik:RadMap x:Name="map">
             <telerik:RadMap.Layers>
-                <telerik:ShapefileLayer x:Name="mapShapeLayer" LabelAttributeName="CNTRY_NAME">
-                    <telerik:ShapefileLayer.Reader>
+                <telerik:MapShapefileLayer x:Name="mapShapeLayer" LabelAttributeName="CNTRY_NAME">
+                    <telerik:MapShapefileLayer.Reader>
                         <telerik:MapShapeReader x:Name="reader"/>
-                    </telerik:ShapefileLayer.Reader>
-                </telerik:ShapefileLayer>
+                    </telerik:MapShapefileLayer.Reader>
+                </telerik:MapShapefileLayer>
             </telerik:RadMap.Layers>
         </telerik:RadMap>
         <!-- << map-labels-xaml -->

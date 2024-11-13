@@ -20,22 +20,23 @@
     </telerik:RadContentView.Resources>
 
     <Grid RowDefinitions="Auto, *">
-        <VerticalStackLayout BackgroundColor="{AppThemeBinding Light={StaticResource DefaultBackgroundColor}, Dark={StaticResource DefaultBackgroundColorDark}}"
-                             Padding="16, 24">
-            <Label Text="Note Preview:" />
-            <telerik:RadBorder HeightRequest="90"
-                               BackgroundColor="#FAFFEA"
-                               BorderColor="#D7E3B2"
-                               BorderThickness="1"
-                               Padding="8"
-                               HorizontalOptions="Center">
-                <Label Text="{Binding Text, Mode=TwoWay}"
-                       TextColor="Black"
-                       VerticalOptions="Start"
-                       Margin="0"
-                       AutomationId="previewNote"/>
-            </telerik:RadBorder>
-        </VerticalStackLayout>
+        <telerik:RadBorder Style="{StaticResource ControlWrapperBorderStyle}">
+            <VerticalStackLayout>
+                <Label Text="Note Preview:" />
+                <telerik:RadBorder HeightRequest="90"
+                                   BackgroundColor="#FAFFEA"
+                                   BorderColor="#D7E3B2"
+                                   BorderThickness="1"
+                                   Padding="8"
+                                   HorizontalOptions="Center">
+                    <Label Text="{Binding Text, Mode=TwoWay}"
+                           TextColor="Black"
+                           VerticalOptions="Start"
+                           Margin="0"
+                           AutomationId="previewNote" />
+                </telerik:RadBorder>
+            </VerticalStackLayout>
+        </telerik:RadBorder>
         <ScrollView Grid.Row="1"
                     Margin="{OnIdiom Default='0, 24, 0, 0', Desktop='0, 40, 0, 0'}"
                     Padding="{OnIdiom Default=0, Phone=16}">
@@ -52,16 +53,16 @@
                                                  WidthRequest="{OnPlatform WinUI=300, MacCatalyst=300}"
                                                  MinimumHeightRequest="{Binding Source={x:Reference authorEntry}, Path=Height}"
                                                  Margin="0, 0, 0, 24" 
-                                                 AutomationId="settingsSegmented"/>
+                                                 AutomationId="settingsSegmented" />
                     <Label Text="Author Name:" />
                     <telerik:RadEntry x:Name="authorEntry"
                                       Text="{Binding Author, Mode=TwoWay}"
                                       WidthRequest="{OnPlatform WinUI=300, MacCatalyst=300}" 
-                                      AutomationId="authorNameEntry"/>
+                                      AutomationId="authorNameEntry" />
                     <Label Text="Description Text:" />
                     <telerik:RadEntry Text="{Binding Description, Mode=TwoWay}"
                                       WidthRequest="{OnPlatform WinUI=300, MacCatalyst=300}" 
-                                      AutomationId="descriptionEntry"/>
+                                      AutomationId="descriptionEntry" />
                 </VerticalStackLayout>
                 <telerik:RadButton Grid.Row="1"
                                    Text="Add Note"
@@ -70,7 +71,7 @@
                                    VerticalOptions="{OnPlatform Default=End, WinUI=Center, MacCatalyst=Center}"
                                    HorizontalOptions="{OnPlatform Default=Fill, WinUI=Center, MacCatalyst=Center}"
                                    Style="{StaticResource SubmitButtonStyle}" 
-                                   AutomationId="addNoteButton"/>
+                                   AutomationId="addNoteButton" />
             </Grid>
         </ScrollView>
     </Grid>

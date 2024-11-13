@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.BorderControl.CornerRadiusCategory.CornerRadiusExample.BorderCornerRadius">
+    <HorizontalStackLayout VerticalOptions="Start" 
+                           Spacing="4">
+        <!-- >> border-corner-radius-clipped -->
+        <telerik:RadBorder BorderColor="#04A2AA"
+                           CornerRadius="16"
+                           WidthRequest="32"
+                           HeightRequest="32"
+                           BorderThickness="2"
+                           VerticalOptions="Start">
+            <Image Source="person_01.png"
+                   WidthRequest="32"
+                   HeightRequest="32" />
+        </telerik:RadBorder>
+        <!-- << border-corner-radius-clipped -->
+        <VerticalStackLayout Spacing="4">
+            <!-- >> border-corner-radius -->
+            <telerik:RadBorder BorderColor="#04A2AA"
+                               CornerRadius="0, 8, 0, 0"
+                               BorderThickness="1">
+                <Label Text="Hello!" Margin="8" />
+            </telerik:RadBorder>
+            <telerik:RadBorder BorderColor="#04A2AA"
+                               CornerRadius="0, 0, 8, 8"
+                               BorderThickness="1">
+                <Label Text="How can I help you today?" Margin="8" />
+            </telerik:RadBorder>
+            <!-- << border-corner-radius -->
+        </VerticalStackLayout>
+    </HorizontalStackLayout>
+</ContentView>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        x:Class="QSF.Examples.RatingControl.ThemingExample.ThemingView">
+    <VerticalStackLayout Padding="12, 24"
+                         Spacing="8"
+                         WidthRequest="{OnPlatform MacCatalyst=350, WinUI=350}"
+                         HorizontalOptions="{OnPlatform MacCatalyst=Start, WinUI=Start}">
+        <Label Text="Rating - Default" />
+        <telerik:RadShapeRating x:Name="defaultRating"
+                                Value="3"
+                                AutomationId="defaultRating"
+                                Margin="0, 0, 0, 16" />
+        <Label Text="Rating - Custom Geometry" />
+        <telerik:RadShapeRating x:Name="triangularRating"
+                                Value="4"
+                                AutomationId="triangularRating">
+            <telerik:RadShapeRating.ItemShape>
+                <telerik:RadPathGeometry>
+                    <telerik:RadPathFigure StartPoint="0, 1">
+                        <telerik:RadLineSegment Point="1, 1" />
+                        <telerik:RadLineSegment Point="0.5, 0" />
+                        <telerik:RadLineSegment Point="0, 1" />
+                    </telerik:RadPathFigure>
+                </telerik:RadPathGeometry>
+            </telerik:RadShapeRating.ItemShape>
+        </telerik:RadShapeRating>
+    </VerticalStackLayout>
+</telerik:RadContentView>

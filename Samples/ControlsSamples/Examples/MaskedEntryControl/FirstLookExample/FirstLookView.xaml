@@ -6,8 +6,7 @@
                         Margin="16, 20">
     <telerik:RadContentView.Resources>
         <ResourceDictionary>
-            <Color x:Key="MainBackgroundColorLight">White</Color>
-            <Color x:Key="MainBackgroundColorDark">Black</Color>
+            <Color x:Key="MainBackgroundColor">White</Color>
 
             <Style TargetType="Label">
                 <Setter Property="VerticalTextAlignment" Value="Center" />
@@ -22,7 +21,7 @@
         </ResourceDictionary>
     </telerik:RadContentView.Resources>
     <telerik:RadContentView.Content>
-        <Grid BackgroundColor="{AppThemeBinding Light={StaticResource MainBackgroundColorLight}}"
+        <Grid BackgroundColor="{StaticResource MainBackgroundColor}"
               RowDefinitions="Auto,*">
             <Label Text="Please complete our survey"
                    Margin="0"

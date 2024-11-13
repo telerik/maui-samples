@@ -1,14 +1,13 @@
 ﻿using QSF.Views;
 using Microsoft.Maui.Controls.Xaml;
 
-namespace QSF.Examples.BusyIndicatorControl.FirstLookExample
+namespace QSF.Examples.BusyIndicatorControl.FirstLookExample;
+
+[XamlCompilation(XamlCompilationOptions.Compile)]
+public partial class FirstLookView : GalleryExampleViewBase
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class FirstLookView : GalleryExampleViewBase
+    public FirstLookView()
     {
-        public FirstLookView()
-        {
-            this.InitializeComponent();
-        }
+        this.InitializeComponent();
     }
 }

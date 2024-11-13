@@ -6,11 +6,12 @@
              x:Class="SDKBrowserMaui.Examples.DataGridControl.GroupingCategory.GroupHeaderStylingExample.GroupHeaderStyling">
     <ContentView.Resources>
         <!-- >> datagrid-groupheader-styling-style -->
-        <telerik:DataGridGroupHeaderStyle x:Key="GroupHeaderStyle"
-                                          TextColor="#674BB2"
-                                          BackgroundColor="#F3F3F3"
-                                          TextFontFamily="Italic"
-                                          GroupLevelIndentation="20" />
+        <Style TargetType="telerik:DataGridGroupHeaderAppearance" x:Key="GroupHeaderStyle">
+            <Setter Property="TextColor" Value="#674BB2" />
+            <Setter Property="BackgroundColor" Value="#F3F3F3" />
+            <Setter Property="TextFontAttributes" Value="Italic" />
+            <Setter Property="GroupLevelIndentation" Value="20" />
+        </Style>
         <!-- << datagrid-groupheader-styling-style -->
     </ContentView.Resources>
     <Grid>

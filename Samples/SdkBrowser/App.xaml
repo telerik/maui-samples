@@ -2,13 +2,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:windows="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.WindowsSpecific;assembly=Microsoft.Maui.Controls"
              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui"
              x:Class="SDKBrowserMaui.App">
     <Application.Resources>
         <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <local:TelerikTheming />
+            </ResourceDictionary.MergedDictionaries>
             <Color x:Key="PrimaryColor">#1188FF</Color>
             <Color x:Key="SecondaryColor">White</Color>
             <Color x:Key="DefaultTextColor">#000000</Color>
-            <Color x:Key="DefaultTextColorDark">#B8B8B8</Color>
             <Color x:Key="ApplicationAccentColor">#8660C5</Color>
 
             <Style TargetType="ImageButton" x:Key="DefaultBackButtonStyle">
@@ -30,7 +33,7 @@
             </Style>
 
             <Style TargetType="Label">
-                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource DefaultTextColor}, Dark={StaticResource DefaultTextColorDark}}" />
+                <Setter Property="TextColor" Value="{StaticResource DefaultTextColor}" />
             </Style>
         </ResourceDictionary>
     </Application.Resources>

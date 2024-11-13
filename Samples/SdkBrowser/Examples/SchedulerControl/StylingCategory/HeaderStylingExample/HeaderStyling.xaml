@@ -77,8 +77,8 @@
                 </Setter>
             </Style>
             <Style TargetType="telerik:NonVirtualizedItemsControlItemContainer" x:Key="ActiveViewDefinitionHeaderItemStyle">
-                <Setter Property="TextColor" Value="{AppThemeBinding Light={OnPlatform Default=White, Android=#674BB2}, Dark={OnPlatform Default=White, Android=#E6DDEE}}" />
-                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={OnPlatform Default=#674BB2, Android=#F8F8F8}, Dark={OnPlatform Default=#674BB2, Android=#474747}}" />
+                <Setter Property="TextColor" Value="{OnPlatform Default=White, Android=#674BB2}" />
+                <Setter Property="BackgroundColor" Value="{OnPlatform Default=#674BB2, Android=#F8F8F8}" />
                 <Setter Property="BorderThickness" Value="0" />
                 <Setter Property="VisualStateManager.VisualStateGroups">
                     <VisualStateGroupList>
@@ -92,9 +92,7 @@
                             </VisualState>
                             <VisualState Name="Disabled">
                                 <VisualState.Setters>
-                                    <Setter Property="telerik:NonVirtualizedItemsControlItemContainer.TextColor"
-                                            Value="{AppThemeBinding Light={OnPlatform Default=#61FFFFFF, Android=#61674BB2},
-                                                                    Dark={OnPlatform Default=#61FFFFFF, Android=#61E6DDEE}}" />
+                                    <Setter Property="telerik:NonVirtualizedItemsControlItemContainer.TextColor" Value="{OnPlatform Default=#61FFFFFF, Android=#61674BB2}" />
                                 </VisualState.Setters>
                             </VisualState>
                         </VisualStateGroup>

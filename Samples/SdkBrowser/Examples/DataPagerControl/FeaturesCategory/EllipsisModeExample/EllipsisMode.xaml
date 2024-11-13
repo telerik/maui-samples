@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.DataPagerControl.FeaturesCategory"
+             x:Class="SDKBrowserMaui.Examples.DataPagerControl.FeaturesCategory.EllipsisModeExample.EllipsisMode">
+    <VerticalStackLayout Spacing="10">
+        <HorizontalStackLayout Spacing="8">
+            <Label Text="Ellipsis Mode: "
+                   VerticalTextAlignment="Center" />
+            <telerik:RadComboBox SelectedItem="{Binding EllipsisMode, Source={x:Reference pager}}">
+                <telerik:RadComboBox.ItemsSource>
+                    <x:Array Type="{x:Type telerik:DataPagerEllipsisMode}">
+                        <telerik:DataPagerEllipsisMode>None</telerik:DataPagerEllipsisMode>
+                        <telerik:DataPagerEllipsisMode>Before</telerik:DataPagerEllipsisMode>
+                        <telerik:DataPagerEllipsisMode>After</telerik:DataPagerEllipsisMode>
+                        <telerik:DataPagerEllipsisMode>Both</telerik:DataPagerEllipsisMode>
+                    </x:Array>
+                </telerik:RadComboBox.ItemsSource>
+            </telerik:RadComboBox>
+        </HorizontalStackLayout>
+        <!-- >> datapager-ellipsis-mode -->
+        <telerik:RadDataPager x:Name="pager" 
+                              EllipsisMode="Both" 
+                              Source="{Binding Data}">
+            <telerik:RadDataPager.BindingContext>
+                <local:ViewModel />
+            </telerik:RadDataPager.BindingContext>
+        </telerik:RadDataPager>
+        <!-- << datapager-ellipsis-mode -->
+    </VerticalStackLayout>
+</ContentView>

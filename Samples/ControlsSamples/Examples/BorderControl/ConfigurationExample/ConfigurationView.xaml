@@ -22,7 +22,7 @@
                 <Setter Property="CornerRadius" Value="{Binding BorderCornerRadius}" />
                 <Setter Property="WidthRequest" Value="104" />
                 <Setter Property="HeightRequest" Value="104" />
-                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource DefaultBackgroundColor}, Dark={StaticResource DefaultBackgroundColorDark}}" />
+                <Setter Property="BackgroundColor" Value="{StaticResource DefaultBackgroundColor}" />
                 <Setter Property="BorderColor" Value="{Binding SelectedBorderColor, Converter={StaticResource ColorConverter}}" />
                 <Setter Property="BorderThickness" Value="{Binding BorderThickness}" />
                 <Setter Property="HorizontalOptions" Value="Center" />
@@ -43,14 +43,13 @@
     </ContentView.Resources>
 
     <Grid RowDefinitions="Auto, *">
-        <VerticalStackLayout BackgroundColor="{AppThemeBinding Light={StaticResource DefaultBackgroundColor}, Dark={StaticResource DefaultBackgroundColorDark}}"
-                             Padding="16, 24">
+        <telerik:RadBorder Style="{StaticResource ControlWrapperBorderStyle}">
             <telerik:RadBorder Style="{StaticResource AvatarBorderStyle}" 
                                AutomationId="avatarBorder">
                 <Image Aspect="AspectFill"
                        Source="{Binding Avatar}" />
             </telerik:RadBorder>
-        </VerticalStackLayout>
+        </telerik:RadBorder>
         <ScrollView Grid.Row="1">
             <VerticalStackLayout Style="{StaticResource RootAtExampleAreaStyle}">
                 <Grid Style="{StaticResource GroupAtExampleAreaStyle}">

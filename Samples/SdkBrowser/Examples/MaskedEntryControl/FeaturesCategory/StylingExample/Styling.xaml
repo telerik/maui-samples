@@ -2,21 +2,135 @@
 <telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
                         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                         xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
-             x:Class="SDKBrowserMaui.Examples.MaskedEntryControl.FeaturesCategory.StylingExample.Styling">
+                        x:Class="SDKBrowserMaui.Examples.MaskedEntryControl.FeaturesCategory.StylingExample.Styling"
+                        Margin="5">
+
+    <telerik:RadContentView.Resources>
+        <ResourceDictionary>
+            <!-- >> maskedentry-styling-clearbutton -->
+            <Style x:Key="CustomClearButtonStyle" TargetType="telerik:RadTemplatedButton">
+                <Setter Property="TextColor" Value="#A30111" />
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup Name="CommonStates">
+                            <VisualState Name="Normal" />
+                            <!-- Applicable for Desktop only -->
+                            <VisualState Name="PointerOver">
+                                <VisualState.Setters>
+                                    <Setter Property="telerik:RadTemplatedButton.TextColor" Value="#B53340" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="Pressed">
+                                <VisualState.Setters>
+                                    <Setter Property="telerik:RadTemplatedButton.TextColor" Value="#C76670" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="Disabled" />
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+            <!-- << maskedentry-styling-clearbutton -->
+        </ResourceDictionary>
+    </telerik:RadContentView.Resources>
+
     <telerik:RadContentView.Content>
-        <VerticalStackLayout>
+        <VerticalStackLayout HorizontalOptions="{OnPlatform Default=Fill, MacCatalyst=Start, WinUI=Start}"
+                             WidthRequest="{OnPlatform MacCatalyst=300, WinUI=300}">
             <!-- >> maskedentry-styling-xaml -->
-            <telerik:RadEmailMaskedEntry x:Name="styleEmailMaskedEntry" 
+            <telerik:RadEmailMaskedEntry x:Name="emailMaskedEntry"
                                          Placeholder="your_email@gmail.com"
-                                         EntryCornerRadius="25" 
-                                         FontSize="20"
-                                         TextColor="Black"
-                                         BackgroundColor="Transparent"
-                                         ClearButtonColor="Red"
-                                         HoveredClearButtonColor="Blue"
-                                         PressedClearButtonColor="Black"
-                                         EntryBackgroundColor="LightGray"
-                                         AutomationId="emailMask"/>
+                                         TextColor="#00897B"
+                                         EntryBackgroundColor="#F4FAF9"
+                                         EntryCornerRadius="10"
+                                         ClearButtonStyle="{StaticResource CustomClearButtonStyle}"
+                                         AutomationId="emailMask">
+                <telerik:RadEmailMaskedEntry.Resources>
+                    <Style TargetType="telerik:RadEntry">
+                        <Setter Property="BorderBrush" Value="#00897B" />
+                        <Setter Property="BorderThickness" Value="1" />
+                        <Setter Property="VisualStateManager.VisualStateGroups">
+                            <VisualStateGroupList>
+                                <VisualStateGroup Name="CommonStates">
+                                    <VisualState Name="Normal" />
+                                    <!-- Applicable for Desktop only -->
+                                    <VisualState Name="MouseOver">
+                                        <VisualState.Setters>
+                                            <Setter Property="telerik:RadEntry.BorderBrush" Value="#00BCA9" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState Name="Focused">
+                                        <VisualState.Setters>
+                                            <Setter Property="telerik:RadEntry.BackgroundColor" Value="#FFFFFF" />
+                                            <Setter Property="telerik:RadEntry.BorderBrush" Value="#00BCA9" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState Name="Invalid">
+                                        <VisualState.Setters>
+                                            <Setter Property="telerik:RadEntry.BorderBrush" Value="#A30111" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <!-- Applicable for Desktop only -->
+                                    <VisualState Name="InvalidMouseOver">
+                                        <VisualState.Setters>
+                                            <Setter Property="telerik:RadEntry.BorderBrush" Value="#B53340" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState Name="InvalidFocused">
+                                        <VisualState.Setters>
+                                            <Setter Property="telerik:RadEntry.BackgroundColor" Value="#FFFFFF" />
+                                            <Setter Property="telerik:RadEntry.BorderBrush" Value="#C76670" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState Name="ReadOnly">
+                                        <VisualState.Setters>
+                                            <Setter Property="telerik:RadEntry.BackgroundColor" Value="#E5F6F6F6" />
+                                            <Setter Property="telerik:RadEntry.BorderBrush" Value="#EBEBEB" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <!-- Applicable for Desktop only -->
+                                    <VisualState Name="ReadOnlyMouseOver">
+                                        <VisualState.Setters>
+                                            <Setter Property="telerik:RadEntry.BackgroundColor" Value="#B2F9F9F9" />
+                                            <Setter Property="telerik:RadEntry.BorderBrush" Value="#EBEBEB" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState Name="ReadOnlyFocused">
+                                        <VisualState.Setters>
+                                            <Setter Property="telerik:RadEntry.BackgroundColor" Value="#FFFFFF" />
+                                            <Setter Property="telerik:RadEntry.BorderBrush" Value="#00BCA9" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState Name="ReadOnlyInvalid">
+                                        <VisualState.Setters>
+                                            <Setter Property="telerik:RadEntry.BackgroundColor" Value="#E5F6F6F6" />
+                                            <Setter Property="telerik:RadEntry.BorderBrush" Value="#A30111" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <!-- Applicable for Desktop only -->
+                                    <VisualState Name="ReadOnlyInvalidMouseOver">
+                                        <VisualState.Setters>
+                                            <Setter Property="telerik:RadEntry.BackgroundColor" Value="#B2F9F9F9" />
+                                            <Setter Property="telerik:RadEntry.BorderBrush" Value="#A30111" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState Name="ReadOnlyInvalidFocused">
+                                        <VisualState.Setters>
+                                            <Setter Property="telerik:RadEntry.BackgroundColor" Value="#E5F6F6F6" />
+                                            <Setter Property="telerik:RadEntry.BorderBrush" Value="#C76670" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState Name="Disabled">
+                                        <VisualState.Setters>
+                                            <Setter Property="Opacity" Value="0.6" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateGroupList>
+                        </Setter>
+                    </Style>
+                </telerik:RadEmailMaskedEntry.Resources>
+            </telerik:RadEmailMaskedEntry>
             <!-- << maskedentry-styling-xaml -->
         </VerticalStackLayout>
     </telerik:RadContentView.Content>

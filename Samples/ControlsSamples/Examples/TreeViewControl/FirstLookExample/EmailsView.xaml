@@ -11,7 +11,7 @@
                       ColumnDefinitions="*, Auto">
                     <Label FontSize="16"
                            Text="{Binding Sender}"
-                           TextColor="{AppThemeBinding Light={StaticResource DefaultTextColor}, Dark={StaticResource DefaultTextColorDark}}"
+                           TextColor="{StaticResource DefaultTextColor}"
                            HorizontalOptions="Start"
                            VerticalOptions="Center" />
                     <Label Grid.Column="1"
@@ -23,7 +23,7 @@
                     <Label Grid.Row="1"
                            Grid.ColumnSpan="2"
                            Text="{Binding Subject}"
-                           TextColor="{AppThemeBinding Light={StaticResource DefaultTextColor}, Dark={StaticResource DefaultTextColorDark}}"
+                           TextColor="{StaticResource DefaultTextColor}"
                            FontSize="14" />
                     <Label Grid.Row="2"
                            Grid.ColumnSpan="2"
@@ -36,7 +36,7 @@
                              Grid.ColumnSpan="2"
                              HeightRequest="1"
                              Margin="{OnIdiom Default='0, 8', Desktop='0, 4'}"
-                             BackgroundColor="{AppThemeBinding Light={StaticResource SeparatorColor}, Dark={StaticResource SeparatorColorDark}}" />
+                             BackgroundColor="{StaticResource SeparatorColor}" />
                 </Grid>
             </DataTemplate>
             <DataTemplate x:Key="NoEmailsTemplate">

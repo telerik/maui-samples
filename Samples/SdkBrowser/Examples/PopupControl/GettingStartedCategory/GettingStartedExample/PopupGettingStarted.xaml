@@ -2,43 +2,45 @@
 <telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
                         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                         xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
-                        x:Class="SDKBrowserMaui.Examples.PopupControl.GettingStartedCategory.GettingStartedExample.PopupGettingStarted"
-                        Margin="5">
-    <telerik:RadContentView.Content>
-        <Grid Margin="10">
-            <!-- >> popup-getting-started-xaml -->
-            <Button x:Name="button"
-                    HorizontalOptions="Center" 
-                    VerticalOptions="Start" 
-                    Text="Show more info" 
-                    Clicked="ShowPopup">
-                <telerik:RadPopup.Popup>
-                    <telerik:RadPopup x:Name="popup"
-                                      IsModal="True"
-                                      OutsideBackgroundColor="#6F000000">
-                        <telerik:RadBorder CornerRadius="8" 
-                                           BackgroundColor="Wheat">
-                            <Grid Padding="10"
-                                  WidthRequest="200"
-                                  HeightRequest="150">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="*" />
-                                    <RowDefinition Height="Auto" />
-                                </Grid.RowDefinitions>
-                                <Label Text="Thank you for choosing Telerik UI for .NET MAUI." 
-                                       LineBreakMode="WordWrap" />
-                                <telerik:RadButton Grid.Row="1"
-                                                   Padding="2"
-                                                   HorizontalOptions="End"
-                                                   Text="Close"
-                                                   Clicked="ClosePopup"
-                                                   AutomationId="CloseButton"/>
-                            </Grid>
-                        </telerik:RadBorder>
-                    </telerik:RadPopup>
-                </telerik:RadPopup.Popup>
-            </Button>
-            <!-- << popup-getting-started-xaml -->
-        </Grid>
-    </telerik:RadContentView.Content>
+                        x:Class="SDKBrowserMaui.Examples.PopupControl.GettingStartedCategory.GettingStartedExample.PopupGettingStarted">
+    <!-- >> popup-getting-started-xaml -->
+    <telerik:RadTemplatedButton HorizontalOptions="{OnPlatform Default=Center, MacCatalyst=Start, WinUI=Start}"
+                                VerticalOptions="{OnPlatform Default=Center, MacCatalyst=Start, WinUI=Start}"
+                                Content="Show more info"
+                                Clicked="ShowPopup">
+        <telerik:RadPopup.Popup>
+            <telerik:RadPopup x:Name="popup"
+                              OutsideBackgroundColor="#66000000"
+                              Placement="{OnPlatform Android=Center, iOS=Center}"
+                              VerticalOffset="8">
+                <telerik:RadBorder BackgroundColor="#F9F9F9"
+                                   CornerRadius="8"
+                                   WidthRequest="300">
+                    <VerticalStackLayout>
+                        <Grid BackgroundColor="#E0E0E0"
+                              Padding="12">
+                            <Label Text="Info Popup"
+                                   TextColor="#666666"
+                                   HorizontalOptions="Center" />
+                            <Label FontFamily="TelerikFontExamples"
+                                   FontSize="16"
+                                   Text="&#xe877;"
+                                   TextColor="#666666"
+                                   HorizontalOptions="End"
+                                   x:Name="closeButton">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="ClosePopup" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </Grid>
+                        <Label Padding="12"
+                               TextColor="Black"
+                               Text="Telerik offers a wide range of .NET MAUI controls to enable your cross-platform development of native Windows, macOS, Android and iOS applications."
+                               LineBreakMode="WordWrap" />
+                    </VerticalStackLayout>
+                </telerik:RadBorder>
+            </telerik:RadPopup>
+        </telerik:RadPopup.Popup>
+    </telerik:RadTemplatedButton>
+    <!-- << popup-getting-started-xaml -->
 </telerik:RadContentView>

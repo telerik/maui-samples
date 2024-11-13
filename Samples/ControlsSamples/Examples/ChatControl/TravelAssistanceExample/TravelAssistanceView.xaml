@@ -28,9 +28,8 @@
                 <Setter Property="HorizontalOptions" Value="{OnIdiom Desktop=Start, Default=Center}" />
                 <Setter Property="WidthRequest" Value="280" />
                 <Setter Property="CornerRadius" Value="4" />
-                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource SecondaryBackgroundColor}, Dark={StaticResource SecondaryBackgroundColorDark}}" />
-                <Setter Property="BorderColor" Value="{AppThemeBinding Light={OnPlatform Default={StaticResource DefaultBorderColor}, WinUI={StaticResource DefaultBorderColorWinUI}},
-                                                                       Dark={OnPlatform Default={StaticResource DefaultBorderColorDark}, WinUI={StaticResource DefaultBorderColorDarkWinUI}}}" />
+                <Setter Property="BackgroundColor" Value="{StaticResource SecondaryBackgroundColor}" />
+                <Setter Property="BorderColor" Value="{OnPlatform Default={StaticResource DefaultBorderColor}, WinUI={StaticResource DefaultBorderColorWinUI}}" />
                 <Setter Property="BorderThickness" Value="1" />
                 <Setter Property="Margin" Value="{OnIdiom Desktop='45,0,0,10', Default='0,0,0,10'}" />
             </Style>
@@ -42,12 +41,12 @@
                 <Setter Property="FontSize" Value="{OnPlatform Android=16, iOS=20, MacCatalyst=15, WinUI=16}" />
             </Style>
             <Style x:Key="CardSmallTitleLabelStyle" TargetType="Label">
-                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource PlaceholderColor}, Dark={StaticResource PlaceholderColorDark}}" />
+                <Setter Property="TextColor" Value="{StaticResource PlaceholderColor}}" />
                 <Setter Property="FontSize" Value="{OnPlatform Android=12, iOS=14, MacCatalyst=12, WinUI=12}" />
                 <Setter Property="Margin" Value="0, 0, 0, 2" />
             </Style>
             <Style x:Key="SeparatorStyle" TargetType="BoxView">
-                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource SeparatorColor}, Dark={StaticResource SeparatorColorDark}}" />
+                <Setter Property="BackgroundColor" Value="{StaticResource SeparatorColor}" />
                 <Setter Property="HeightRequest" Value="1" />
                 <Setter Property="Margin" Value="0, 12" />
             </Style>
@@ -71,7 +70,7 @@
                                             <DataTemplate>
                                                 <telerik:ListViewTemplateCell>
                                                     <telerik:ListViewTemplateCell.View>
-                                                        <telerik:RadBorder BorderColor="{AppThemeBinding Light={StaticResource SeparatorColor}, Dark={StaticResource SeparatorColorDark}}"
+                                                        <telerik:RadBorder BorderColor="{StaticResource SeparatorColor}"
                                                                        BorderThickness="0, 0, 0, 1"
                                                                        HorizontalOptions="Fill"
                                                                        Padding="0, 0, 0, 12"
@@ -184,8 +183,7 @@
     </telerik:RadContentView.BindingContext>
 
     <telerik:RadBorder BorderThickness="{OnIdiom Default=0, Desktop=1}"
-                       BorderColor="{AppThemeBinding Light={OnPlatform Default={StaticResource DefaultBorderColor}, WinUI={StaticResource DefaultBorderColorWinUI}},
-                                                     Dark={OnPlatform Default={StaticResource DefaultBorderColorDark}, WinUI={StaticResource DefaultBorderColorDarkWinUI}}}"
+                       BorderColor="{OnPlatform Default={StaticResource DefaultBorderColor}, WinUI={StaticResource DefaultBorderColorWinUI}}"
                        HorizontalOptions="{OnIdiom Default=Fill, Desktop=Center}">
         <Grid WidthRequest="{OnIdiom Default=-1, Desktop=450}" RowDefinitions="Auto, *">
             <HorizontalStackLayout>

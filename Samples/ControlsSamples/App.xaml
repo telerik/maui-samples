@@ -8,10 +8,6 @@
              x:Class="QSF.App">
     <Application.Resources>
         <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <local:TelerikTheming />
-            </ResourceDictionary.MergedDictionaries>
-
             <!--Accent colors-->
             <Color x:Key="ApplicationAccentColor">#8660C5</Color>
             <Color x:Key="AccentColor2">#3341A1</Color>
@@ -25,26 +21,18 @@
 
             <!--Text colors-->
             <Color x:Key="DefaultTextColor">#000000</Color>
-            <Color x:Key="DefaultTextColorDark">#FFFFFF</Color>
             <Color x:Key="TextOnAccentColor">#FFFFFF</Color>
             <Color x:Key="PlaceholderColor">#99000000</Color>
-            <Color x:Key="PlaceholderColorDark">#CCFFFFFF</Color>
 
             <!--Background colors-->
             <Color x:Key="DefaultBackgroundColor">#F8F8F8</Color>
-            <Color x:Key="DefaultBackgroundColorDark">#121212</Color>
             <Color x:Key="SecondaryBackgroundColor">#FFFFFF</Color>
-            <Color x:Key="SecondaryBackgroundColorDark">#000000</Color>
             <Color x:Key="ItemBackgroundColor">#FFFFFF</Color>
-            <Color x:Key="ItemBackgroundColorDark">#1E1E1E</Color>
 
             <!--Border/stroke colors-->
             <Color x:Key="DefaultBorderColor">#DFDFDF</Color>
             <Color x:Key="DefaultBorderColorWinUI">#0F000000</Color>
-            <Color x:Key="DefaultBorderColorDark">#373737</Color>
-            <Color x:Key="DefaultBorderColorDarkWinUI">#12FFFFFF</Color>
             <Color x:Key="SeparatorColor">#E3E4E5</Color>
-            <Color x:Key="SeparatorColorDark">#373737</Color>
             <Color x:Key="SeparatorOnAccentColor">#36FFFFFF</Color>
 
             <telerik:InvertedBooleanConverter x:Key="InvertedBooleanConverter" />
@@ -95,7 +83,7 @@
                                                      BetaTemplate="{StaticResource BetaStatusTemplate}" />
 
             <Style x:Key="BaseLabelStyle" TargetType="Label">
-                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource DefaultTextColor}, Dark={StaticResource DefaultTextColorDark}}" />
+                <Setter Property="TextColor" Value="{StaticResource DefaultTextColor}" />
             </Style>
 
             <Style x:Key="LabelOnAccentStyle" TargetType="Label">
@@ -220,11 +208,20 @@
 
             <Style x:Key="PageStyle" TargetType="ContentPage">
                 <Setter Property="NavigationPage.HasNavigationBar" Value="False" />
-                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=White, Dark=Black}" />
+                <Setter Property="BackgroundColor" Value="White" />
             </Style>
 
-            <Style TargetType="Label">
-                <Setter Property="TextColor" Value="{DynamicResource RadOnAppSurfaceColor}" />
+            <Style x:Key="PageAppBarImageButtonStyle" TargetType="ImageButton">
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="HeightRequest" Value="24" />
+                <Setter Property="WidthRequest" Value="24" />
+                <Setter Property="Margin" Value="8, 0, 0, 0" />
+            </Style>
+
+            <Style x:Key="ControlWrapperBorderStyle" TargetType="telerik:RadBorder">
+                <Setter Property="BackgroundColor" Value="{StaticResource DefaultBackgroundColor}" />
+                <Setter Property="Padding" Value="16, 24" />
+                <Setter Property="CornerRadius" Value="{OnPlatform Default=0, MacCatalyst=2, WinUI=2}" />
             </Style>
         </ResourceDictionary>
     </Application.Resources>

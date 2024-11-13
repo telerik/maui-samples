@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        x:Class="QSF.Examples.RangeSliderControl.ThemingExample.ThemingView">
+    <VerticalStackLayout Padding="12, 24"
+                         Spacing="8"
+                         WidthRequest="{OnPlatform MacCatalyst=350, WinUI=350}"
+                         HorizontalOptions="{OnPlatform MacCatalyst=Start, WinUI=Start}">
+        <Label Text="RangeSlider - Default" />
+        <telerik:RadRangeSlider x:Name="rangeSliderDefault"
+                                Minimum="0"
+                                Maximum="100"
+                                RangeStart="25"
+                                RangeEnd="95" 
+                                AutomationId="rangeSliderDefault"
+                                Margin="0, 0, 0, 12" />
+        <Label Text="RangeSlider - With Ticks and Labels" />
+        <telerik:RadRangeSlider x:Name="rangeSliderTicksAndLabels"
+                                Minimum="0"
+                                Maximum="100"
+                                RangeStart="30"
+                                RangeEnd="70"
+                                TicksPlacement="End"
+                                TickStep="5"
+                                LabelsPlacement="End"
+                                LabelStep="10"
+                                AutomationId="rangeSliderTicksAndLabels" />
+    </VerticalStackLayout>
+</telerik:RadContentView>

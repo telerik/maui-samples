@@ -23,18 +23,19 @@
                                     TrueColor="{StaticResource AccentFillColor}"
                                     FalseColor="{StaticResource TextColor}" />
 
-        <telerik:DataGridColumnHeaderStyle x:Key="EmptyHeaderStyle"
-                                           BackgroundColor="{StaticResource MainBackgroundColor}"
-                                           HoverBackgroundColor="{StaticResource HoverBackgroundColor}"
-                                           BorderThickness="0"
-                                           SortIndicatorAscendingText=""
-                                           SortIndicatorDescendingText=""
-                                           SortIndicatorMargin="0"
-                                           SortIndicatorHorizontalOptions="End"
-                                           TextHorizontalOptions="Fill"
-                                           FilterIndicatorText=""
-                                           FilterIndicatorTextColor="Transparent"
-                                           FilterIndicatorMargin="0" />
+        <Style TargetType="telerik:DataGridColumnHeaderAppearance" x:Key="EmptyHeaderStyle">
+            <Setter Property="BackgroundColor" Value="{StaticResource MainBackgroundColor}" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="HoverBackgroundColor" Value="{StaticResource HoverBackgroundColor}" />
+            <Setter Property="SortIndicatorAscendingText" Value="" />
+            <Setter Property="SortIndicatorDescendingText" Value="" />
+            <Setter Property="SortIndicatorMargin" Value="0" />
+            <Setter Property="SortIndicatorHorizontalOptions" Value="End" />
+            <Setter Property="TextHorizontalOptions" Value="Fill" />
+            <Setter Property="FilterIndicatorText" Value="" />
+            <Setter Property="FilterIndicatorTextColor" Value="Transparent" />
+            <Setter Property="FilterIndicatorMargin" Value="0" />
+        </Style>
 
         <DataTemplate x:Key="CustomHeaderTemplate">
             <Grid BackgroundColor="{Binding SortDirection, Converter={StaticResource SortDirectionToColorConverter}, Mode=TwoWay}">
@@ -91,6 +92,11 @@
                 </VisualStateManager.VisualStateGroups>
             </Grid>
         </DataTemplate>
+
+        <Style TargetType="telerik:DataGridTypedColumn" ApplyToDerivedTypes="True">
+            <Setter Property="HeaderStyle" Value="{StaticResource EmptyHeaderStyle}" />
+            <Setter Property="HeaderContentTemplate" Value="{StaticResource CustomHeaderTemplate}" />
+        </Style>
     </ContentView.Resources>
 
     <Grid>
@@ -104,26 +110,16 @@
             <telerik:RadDataGrid.Columns>
                 <telerik:DataGridNumericalColumn PropertyName="OrderID"
                                                  IsFrozen="True"
-                                                 HeaderText="Order ID"
-                                                 HeaderStyle="{StaticResource EmptyHeaderStyle}"
-                                                 HeaderContentTemplate="{StaticResource CustomHeaderTemplate}" />
+                                                 HeaderText="Order ID" />
                 <telerik:DataGridDateColumn PropertyName="OrderDate"
-                                            HeaderText="Order Date"
-                                            HeaderStyle="{StaticResource EmptyHeaderStyle}"
-                                            HeaderContentTemplate="{StaticResource CustomHeaderTemplate}" />
+                                            HeaderText="Order Date" />
                 <telerik:DataGridDateColumn PropertyName="ShippedDate"
-                                            HeaderText="Shipped Date"
-                                            HeaderStyle="{StaticResource EmptyHeaderStyle}"
-                                            HeaderContentTemplate="{StaticResource CustomHeaderTemplate}" />
+                                            HeaderText="Shipped Date" />
                 <telerik:DataGridNumericalColumn PropertyName="Freight"
                                                  HeaderText="Freight"
-                                                 HeaderStyle="{StaticResource EmptyHeaderStyle}"
-                                                 HeaderContentTemplate="{StaticResource CustomHeaderTemplate}"
                                                  CellContentFormat="${0:N2}" />
                 <telerik:DataGridTextColumn PropertyName="ShipCountry"
-                                            HeaderText="Ship Country"
-                                            HeaderStyle="{StaticResource EmptyHeaderStyle}"
-                                            HeaderContentTemplate="{StaticResource CustomHeaderTemplate}" />
+                                            HeaderText="Ship Country" />
             </telerik:RadDataGrid.Columns>
         </telerik:RadDataGrid>
     </Grid>

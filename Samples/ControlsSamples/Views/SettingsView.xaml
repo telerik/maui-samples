@@ -22,7 +22,7 @@
                IsVisible="{OnPlatform Default=True, Android=False, iOS=False}" />
         <ScrollView Grid.Row="1"
                     HorizontalScrollBarVisibility="Never">
-            <telerik:RadBorder BackgroundColor="{AppThemeBinding Light={StaticResource SecondaryBackgroundColor}, Dark={StaticResource SecondaryBackgroundColorDark}}"
+            <telerik:RadBorder BackgroundColor="{StaticResource SecondaryBackgroundColor}"
                                CornerRadius="4"
                                Padding="16, 20">
                 <Grid>
@@ -83,6 +83,9 @@
                                                        HorizontalOptions="Start" />
                                 <common:HyperlinkLabel Text="Privacy Policy"
                                                        Url="https://www.progress.com/legal/privacy-policy"
+                                                       HorizontalOptions="Start" />
+                                <common:HyperlinkLabel Text="Source Code"
+                                                       Url="https://github.com/telerik/maui-samples/tree/main/Samples/ControlsSamples"
                                                        HorizontalOptions="Start" />
                             </VerticalStackLayout>
                         </VerticalStackLayout>

@@ -32,8 +32,7 @@
     </ContentView.BindingContext>
 
     <Grid RowDefinitions="Auto, *">
-        <VerticalStackLayout BackgroundColor="{AppThemeBinding Light={StaticResource DefaultBackgroundColor}, Dark={StaticResource DefaultBackgroundColorDark}}"
-                             Padding="16, 24">
+        <telerik:RadBorder Style="{StaticResource ControlWrapperBorderStyle}">
             <telerik:RadBadgeView AutomationId="badgeView"
                                   HorizontalOptions="Center"
                                   VerticalOptions="End"
@@ -59,10 +58,10 @@
                                        HeightRequest="40"
                                        CornerRadius="20"
                                        HorizontalOptions="Center"
-                                       BackgroundColor="{AppThemeBinding Light=#0E88F2, Dark=#42A5F5}" />
+                                       BackgroundColor="#0E88F2" />
                 </telerik:RadBadgeView.Content>
             </telerik:RadBadgeView>
-        </VerticalStackLayout>
+        </telerik:RadBorder>
         <ScrollView Grid.Row="1">
             <VerticalStackLayout Style="{StaticResource RootAtExampleAreaStyle}">
                 <Grid>

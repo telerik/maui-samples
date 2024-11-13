@@ -8,16 +8,18 @@
              x:Class="QSF.Examples.CalendarControl.SelectionExample.SelectionView"
              Padding="{OnIdiom Default='16, 20', Phone=0}">
     <Grid RowDefinitions="Auto, *">
-        <Grid BackgroundColor="{AppThemeBinding Light={StaticResource DefaultBackgroundColor}, Dark={StaticResource DefaultBackgroundColorDark}}"
-              Padding="16">
-            <telerik:RadCalendar x:Name="calendar"
-                                 SelectionMode="{Binding SelectionMode}"
-                                 MaximumHeightRequest="{OnPlatform iOS=320, Android=320, WinUI=320}"
-                                 BorderThickness="1"
-                                 HorizontalOptions="Center"
-                                 VerticalOptions="Center" 
-                                 AutomationId="calendar"/>
-        </Grid>
+        <telerik:RadBorder Style="{StaticResource ControlWrapperBorderStyle}"
+                           Padding="16">
+            <Grid>
+                <telerik:RadCalendar x:Name="calendar"
+                                     SelectionMode="{Binding SelectionMode}"
+                                     MaximumHeightRequest="{OnPlatform iOS=320, Android=320, WinUI=320}"
+                                     BorderThickness="1"
+                                     HorizontalOptions="Center"
+                                     VerticalOptions="Center" 
+                                     AutomationId="calendar" />
+            </Grid>
+        </telerik:RadBorder>
         <Grid Grid.Row="1"
               RowDefinitions="Auto, Auto"
               Margin="{OnIdiom Default='16, 24, 16, 12', Desktop='0, 40, 0, 0'}">
@@ -26,7 +28,7 @@
             <telerik:RadSegmentedControl Grid.Row="1"
                                          ItemsSource="{Binding SelectionModes}"
                                          SelectedItem="{Binding SelectionMode, Mode=TwoWay}" 
-                                         AutomationId="selectionSegmentedControl"/>
+                                         AutomationId="selectionSegmentedControl" />
         </Grid>
     </Grid>
 </ContentView>

@@ -4,16 +4,14 @@
                         xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
                         x:Class="SDKBrowserMaui.Examples.EntryControl.GettingStartedCategory.GettingStartedExample.EntryGettingStarted"
                         Margin="5">
-    <telerik:RadContentView.Content>
-        <Grid RowDefinitions="Auto">
-            <!-- >> entry-getting-started-xaml -->
-            <telerik:RadEntry x:Name="EntryShareName"
-                              FontSize="14"
-                              Placeholder="Enter text here"
-                              PlaceholderColor="#99000000"
-                              AutomationId="radEntry">
-            </telerik:RadEntry>
-            <!-- << entry-getting-started-xaml -->
-        </Grid>
-    </telerik:RadContentView.Content>
+    <VerticalStackLayout HorizontalOptions="{OnPlatform Default=Fill, MacCatalyst=Start, WinUI=Start}"
+                         WidthRequest="{OnPlatform MacCatalyst=300, WinUI=300}">
+        <!-- >> entry-getting-started-xaml -->
+        <telerik:RadEntry x:Name="EntryShareName"
+                          FontSize="14"
+                          Placeholder="Enter text here"
+                          PlaceholderColor="#99000000"
+                          AutomationId="radEntry" />
+        <!-- << entry-getting-started-xaml -->
+    </VerticalStackLayout>
 </telerik:RadContentView>

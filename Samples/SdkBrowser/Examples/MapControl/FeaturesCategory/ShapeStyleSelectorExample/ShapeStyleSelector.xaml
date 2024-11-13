@@ -24,11 +24,11 @@
     <!-- >> map-styling-shapeslstyleselector-xaml -->
     <telerik:RadMap x:Name="map">
         <telerik:RadMap.Layers>
-            <telerik:ShapefileLayer ShapeStyleSelector="{StaticResource PopulationShapeStyleSelector}">
-                <telerik:ShapefileLayer.Reader>
+            <telerik:MapShapefileLayer ShapeStyleSelector="{StaticResource PopulationShapeStyleSelector}">
+                <telerik:MapShapefileLayer.Reader>
                     <telerik:MapShapeReader x:Name="reader"/>
-                </telerik:ShapefileLayer.Reader>
-            </telerik:ShapefileLayer>
+                </telerik:MapShapefileLayer.Reader>
+            </telerik:MapShapefileLayer>
         </telerik:RadMap.Layers>
     </telerik:RadMap>
     <!-- << map-styling-shapeslstyleselector-xaml -->

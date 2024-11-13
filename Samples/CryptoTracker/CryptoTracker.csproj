@@ -15,9 +15,10 @@
 
 		<!-- Versions -->
 		<ApplicationVersion>1</ApplicationVersion>
+		<RuntimeIdentifier Condition="$(TargetFramework.Contains('android')) AND $(IsCI) == 'true'">android-arm64</RuntimeIdentifier>
 
-		<!-- TODO: Remove it when Maui fixes Skia linker issue for net7. -->
-		<AndroidLinkResources Condition=" $(IsNet7) == 'true' ">false</AndroidLinkResources>
+		<!-- Work-around for Skia issue with latest MAUI -->
+		<WindowsSdkPackageVersion>10.0.19041.54</WindowsSdkPackageVersion>
 	</PropertyGroup>
 
 	<ItemGroup>

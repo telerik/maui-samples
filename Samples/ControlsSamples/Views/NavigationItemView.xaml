@@ -3,8 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
              x:Class="QSF.Views.NavigationItemView"
-             BackgroundColor="{AppThemeBinding Light={StaticResource ItemBackgroundColor}, Dark={StaticResource ItemBackgroundColorDark}}">
-
+             BackgroundColor="{StaticResource ItemBackgroundColor}">
     <ContentView.ControlTemplate>
         <ControlTemplate>
             <HorizontalStackLayout Padding="0, 2">
@@ -16,7 +15,7 @@
                        HorizontalOptions="Center"
                        VerticalOptions="Center" />
                 <Label Text="{TemplateBinding Header}"
-                       VerticalOptions="Center"/>
+                       VerticalOptions="Center" />
             </HorizontalStackLayout>
         </ControlTemplate>
     </ContentView.ControlTemplate>

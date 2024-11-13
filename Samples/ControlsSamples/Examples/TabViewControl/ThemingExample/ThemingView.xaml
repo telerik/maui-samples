@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        x:Class="QSF.Examples.TabViewControl.ThemingExample.ThemingView"
+                        Padding="16">
+
+    <telerik:RadContentView.Resources>
+        <DataTemplate x:Key="TabViewItemContentTemplate">
+            <telerik:RadCollectionView ItemsSource="{Binding Customers}"
+                                       DisplayMemberPath="Name"
+                                       Margin="12" />
+        </DataTemplate>
+        <DataTemplate x:Key="TabViewItemTemplate">
+            <telerik:TabViewItem HeaderText="{Binding Name}"
+                                 ContentTemplate="{StaticResource TabViewItemContentTemplate}" />
+        </DataTemplate>
+    </telerik:RadContentView.Resources>
+
+    <telerik:RadTabView x:Name="tabView"
+                        ItemsSource="{Binding Data}"
+                        ItemTemplate="{StaticResource TabViewItemTemplate}" />
+</telerik:RadContentView>

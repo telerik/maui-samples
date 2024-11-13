@@ -5,17 +5,20 @@
              xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
              x:Class="QSF.Pages.ExamplePage"
-             Style="{StaticResource PageStyle}">
+             Style="{StaticResource PageStyle}"
+             x:Name="page">
     <VisualElement.Resources>
-        <Style x:Key="ExamplePageImageButtonStyle" TargetType="ImageButton">
-            <Setter Property="VerticalOptions" Value="Center" />
-            <Setter Property="HeightRequest" Value="24" />
-            <Setter Property="WidthRequest" Value="24" />
-            <Setter Property="Margin" Value="8, 0, 0, 0" />
+        <FontImageSource x:Key="ThemesButtonFontImageSource"
+                         FontFamily="TelerikFontExamples"
+                         Glyph="&#xe8b2;"
+                         Size="24"
+                         Color="#FFFFFF" />
+        <Style TargetType="Label">
+            <Setter Property="TextColor" Value="{DynamicResource RadOnAppSurfaceColor}" />
         </Style>
     </VisualElement.Resources>
 
-    <views:QSFPageContentView Background="{AppThemeBinding Light={StaticResource SecondaryBackgroundColor}, Dark={StaticResource SecondaryBackgroundColorDark}}">
+    <views:QSFPageContentView Background="{DynamicResource RadAppSurfaceColor}">
         <views:QSFPageContentView.HeaderControlTemplate>
             <ControlTemplate>
                 <Grid ColumnDefinitions="Auto, Auto, *">
@@ -46,32 +49,27 @@
                                      CommandParameter="{Binding Example}"
                                      Source="settings.png"
                                      IsVisible="{Binding Example.IsConfigurable}"
-                                     Style="{StaticResource ExamplePageImageButtonStyle}"
+                                     Style="{StaticResource PageAppBarImageButtonStyle}"
                                      AutomationId="navigateToConfigurationPage" />
                         <ImageButton Command="{Binding NavigateToThemeSettingsCommand}"
-                                     CommandParameter="{Binding Example}"
-                                     Source="palette.png"
-                                     IsVisible="{Binding Source={RelativeSource AncestorType={x:Type NavigationPage}}, Path=RootPage.BindingContext.IsTestSearchEntryVisible}"
-                                     Style="{StaticResource ExamplePageImageButtonStyle}"
+                                     CommandParameter="{Binding Source={x:Reference page}}"
+                                     Source="{StaticResource ThemesButtonFontImageSource}"
+                                     IsVisible="{Binding Example.IsThemable}"
+                                     Style="{StaticResource PageAppBarImageButtonStyle}"
                                      AutomationId="navigateToThemeSettings" />
                         <ImageButton Command="{Binding NavigateToDescriptionCommand}"
                                      CommandParameter="{Binding Example}"
                                      Source="info_mobile_white.png"
                                      IsVisible="{Binding Example.Description, Converter={StaticResource NullOrEmptyToBoolConverter}}"
-                                     Style="{StaticResource ExamplePageImageButtonStyle}"
+                                     Style="{StaticResource PageAppBarImageButtonStyle}"
                                      AutomationId="navigateToDescriptionButton" />
-                        <ImageButton Command="{Binding NavigateToExampleCodeCommand}"
-                                     CommandParameter="{Binding Example}"
-                                     Source="viewcode_white.png"
-                                     Style="{StaticResource ExamplePageImageButtonStyle}"
-                                     AutomationId="navigateToExampleContent" />
                     </HorizontalStackLayout>
                 </Grid>
             </ControlTemplate>
         </views:QSFPageContentView.HeaderControlTemplate>
         <views:QSFPageContentView.BodyControlTemplate>
             <ControlTemplate>
-                <ContentView Content="{Binding Converter={StaticResource ModelToViewConverter}}"
+                <ContentView Content="{Binding Example, Converter={StaticResource ModelToViewConverter}, ConverterParameter={x:Boolean False}}"
                              AutomationId="exampleContent" />
             </ControlTemplate>
         </views:QSFPageContentView.BodyControlTemplate>

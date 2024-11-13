@@ -44,8 +44,7 @@
             <RowDefinition Height="{OnPlatform Android=136, iOS=125, MacCatalyst=110, WinUI=112}" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <telerik:RadBorder BackgroundColor="{StaticResource DefaultBackgroundColor}"
-                           Padding="16, 24">
+        <telerik:RadBorder Style="{StaticResource ControlWrapperBorderStyle}">
             <telerik:RadComboBox x:Name="comboBox"
                                  IsEditable="True"
                                  IsFilteringEnabled="True"

@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFrameworks>$(MauiAppPlatforms)</TargetFrameworks>
@@ -8,10 +8,13 @@
 		<SingleProject>true</SingleProject>
 		<ApplicationTitle>Telerik SDKBrowser Maui</ApplicationTitle>
 		<ApplicationId>com.telerik.SDKBrowserMaui</ApplicationId>
+		<UseTelerikTheming>true</UseTelerikTheming>
 		<ApplicationVersion>1</ApplicationVersion>
-
-		<!-- TODO: Remove it when Maui fixes Skia linker issue for net7. -->
-		<AndroidLinkResources Condition=" $(IsNet7) == 'true' ">false</AndroidLinkResources>
+    
+    <!-- Work-around for Skia issue with latest MAUI -->
+    <WindowsSdkPackageVersion>10.0.19041.54</WindowsSdkPackageVersion>
+    
+		<RuntimeIdentifier Condition="$(TargetFramework.Contains('android')) AND $(IsCI) == 'true'">android-arm64</RuntimeIdentifier>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="$(TargetFramework.Contains('maccatalyst'))">
@@ -32,6 +35,7 @@
 
 	<ItemGroup>
 		<EmbeddedResource Include="config.xml" />
+		<EmbeddedResource Include="Common\Catalog.json" />
 		<EmbeddedResource Include="Examples\ImageEditorControl\imageavatar.png" />
 		<EmbeddedResource Include="Examples\MapControl\world.dbf" />
 		<EmbeddedResource Include="Examples\MapControl\world.shp" />
@@ -43,11 +47,6 @@
 
 	<ItemGroup Condition="'$(SolutionName)' != 'Telerik.Maui' And '$(UseSourceProjects)' != 'True' And '$(UseSourceAssemblies)' != 'True'">
 		<PackageReference Include="Telerik.UI.for.Maui" Version="$(TelerikVersion)" />
-	</ItemGroup>
-  
-	<ItemGroup Condition="$(TargetFramework.ToLower().Contains('net7'))">
-	  <MauiXaml Remove="Examples\CheckBoxControl\FeaturesCategory\CheckBoxCommandExample\CheckBoxCommand.xaml" />
-	  <Compile Remove="Examples\CheckBoxControl\FeaturesCategory\CheckBoxCommandExample\CheckBoxCommand.xaml.cs" />
 	</ItemGroup>
   
 	<ItemGroup Condition="$(TargetFramework.Contains('net8'))">

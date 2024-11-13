@@ -6,7 +6,8 @@
                         Margin="5">
     <telerik:RadContentView.Content>
         <ScrollView>
-            <VerticalStackLayout>
+            <VerticalStackLayout HorizontalOptions="{OnPlatform Default=Fill, MacCatalyst=Start, WinUI=Start}"
+                                 WidthRequest="{OnPlatform MacCatalyst=300, WinUI=300}">
 
                 <Label Text="Email mask:" Margin="0, 10, 0, 0" />
                 <telerik:RadEmailMaskedEntry x:Name="emailMaskedEntry" ValueChanged="EmailMaskedEntry_ValueChanged" ValueChanging="EmailMaskedEntry_ValueChanging" />

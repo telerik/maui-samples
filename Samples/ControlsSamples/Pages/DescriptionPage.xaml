@@ -7,21 +7,28 @@
              x:Class="QSF.Pages.DescriptionPage"
              NavigationPage.HasNavigationBar="False"
              ios:Page.UseSafeArea="False">
-    <views:QSFPageContentView Background="{AppThemeBinding Light={StaticResource SecondaryBackgroundColor}, Dark={StaticResource SecondaryBackgroundColorDark}}">
+    <views:QSFPageContentView Background="{StaticResource SecondaryBackgroundColor}">
         <views:QSFPageContentView.HeaderControlTemplate>
             <ControlTemplate>
-                  <Grid ColumnDefinitions="Auto, *">
-                      <ImageButton Clicked="Back_Clicked"
-                                   HorizontalOptions="Start"
-                                   Style="{OnPlatform Default={StaticResource DefaultBackButtonStyle}, iOS={StaticResource IOSBackButtonStyle}}" 
-                                   AutomationId="backButton" />
-                      <Label Grid.Column="1"
-                             Text="{Binding HeaderLabel}"
-                             Style="{StaticResource HeaderLabelStyle}"
-                             Margin="10, 0" 
-                             VerticalOptions="Center"
-                             AutomationId="exampleInfo" />
-                  </Grid>
+                <Grid ColumnDefinitions="Auto, *, Auto">
+                    <ImageButton Clicked="Back_Clicked"
+                                 HorizontalOptions="Start"
+                                 Style="{OnPlatform Default={StaticResource DefaultBackButtonStyle}, iOS={StaticResource IOSBackButtonStyle}}" 
+                                 AutomationId="backButton" />
+                    <Label Grid.Column="1"
+                           Text="{Binding HeaderLabel}"
+                           Style="{StaticResource HeaderLabelStyle}"
+                           Margin="10, 0" 
+                           VerticalOptions="Center"
+                           AutomationId="exampleInfo" />
+                    <ImageButton Grid.Column="2"
+                                 Command="{Binding NavigateToGitHubCodeCommand}"
+                                 CommandParameter="{Binding NavigateCommandParameter}"
+                                 Source="viewcode_white.png"
+                                 Style="{StaticResource PageAppBarImageButtonStyle}"
+                                 HorizontalOptions="End"
+                                 AutomationId="navigateToExampleContent" />
+                </Grid>
             </ControlTemplate>
         </views:QSFPageContentView.HeaderControlTemplate>
         <views:QSFPageContentView.BodyControlTemplate>
@@ -29,12 +36,12 @@
                   <Grid RowDefinitions="Auto, *"
                         Padding="16">
                       <Label Text="{Binding DescriptionLabel}"
-                             TextColor="{AppThemeBinding Light={StaticResource DefaultTextColor}, Dark={StaticResource DefaultTextColorDark}}"
+                             TextColor="{StaticResource DefaultTextColor}"
                              FontSize="{OnPlatform Default=24, iOS=22}"
                              Margin="0, 8, 0, 24"
                              AutomationId="exampleName" />
                       <Label Grid.Row="1"
-                             TextColor="{AppThemeBinding Light={StaticResource DefaultTextColor}, Dark={StaticResource DefaultTextColorDark}}"
+                             TextColor="{StaticResource DefaultTextColor}"
                              Text="{Binding Description}"
                              TextType="Html"
                              FontSize="{OnPlatform Default=14, iOS=17}"

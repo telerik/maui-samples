@@ -1,8 +1,8 @@
 using Microsoft.Maui.Controls;
 using System.Collections.Generic;
-using Microsoft.Maui.Graphics;
-using Telerik.Maui.Controls.DataGrid;
+using Telerik.Maui.Controls;
 using Telerik.Maui.Controls.Data;
+using Telerik.Maui.Controls.DataGrid;
 
 namespace SDKBrowserMaui.Examples.DataGridControl.AggregatesCategory.GroupFooterAggregateStyleExample;
 
@@ -30,11 +30,11 @@ public partial class GroupFooterAggregateStyle : ContentView
 }
 
 // >> datagrid-group-aggregate-style-selector
-class CustomGroupFooterStyleSelector : DataGridStyleSelector
+class CustomGroupFooterStyleSelector : IStyleSelector
 {
-    public DataGridGroupFooterStyle CustomStyle { get; set; }
+    public Style CustomStyle { get; set; }
 
-    public override DataGridStyle SelectStyle(object item, BindableObject container)
+    public Style SelectStyle(object item, BindableObject container)
     {
         if (item is GroupFooterContext footerContext
            && footerContext.Group.Key.ToString() == "Video Card"

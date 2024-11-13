@@ -7,8 +7,9 @@
              Margin="{OnIdiom Phone='16,20', Desktop=0}">
 
     <ContentView.Resources>
-        <telerik:DataGridBorderStyle x:Key="TextCellDecorationsStyle"
-                                     BackgroundColor="#1A7C59B6" />
+        <Style TargetType="telerik:DataGridCellDecorationAppearance" x:Key="TextCellDecorationsStyle">
+            <Setter Property="BackgroundColor" Value="#1A7C59B6" />
+        </Style>
         <columnTypesExample:StatusFlightToBooleanConverter x:Key="StatusFlightToBooleanConverter" />
         <telerik:BoolToValueConverter x:Key="BoolToUserGroupModeConverter">
             <telerik:BoolToValueConverter.TrueValue>

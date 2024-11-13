@@ -119,9 +119,8 @@ public partial class QSFPageContentView : RadContentView
                 var insets = Microsoft.Maui.ApplicationModel.Platform.CurrentActivity?.Window?.DecorView?.RootView?.RootWindowInsets;
                 if (insets != null) {
                     var density = Microsoft.Maui.Devices.DeviceDisplay.MainDisplayInfo.Density;
-                    // TODO: Rollback this post-release so we can safely draw across the full app screen.
-                    // this.SafeAreaGridWithHeader.RowDefinitions[0].Height = insets.StableInsetTop / density;
-                    // this.SafeAreaGridWithHeader.RowDefinitions[3].Height = insets.StableInsetBottom / density;
+                    this.SafeAreaGridWithHeader.RowDefinitions[0].Height = 0;
+                    this.SafeAreaGridWithHeader.RowDefinitions[3].Height = 0;
                     this.SafeAreaGridWithHeader.ColumnDefinitions[0].Width = insets.StableInsetLeft / density;
                     this.SafeAreaGridWithHeader.ColumnDefinitions[2].Width = insets.StableInsetRight / density;
 
