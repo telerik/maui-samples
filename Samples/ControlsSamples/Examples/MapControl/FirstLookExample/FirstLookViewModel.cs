@@ -7,7 +7,7 @@ namespace QSF.Examples.MapControl.FirstLookExample
 {
     public class FirstLookViewModel : ExampleViewModel
     {
-        private Telerik.Maui.Controls.Compatibility.ShapefileReader.IShape selectedShape;
+        private Telerik.Maui.Controls.ShapefileReader.IShape selectedShape;
         private bool isOpen;
         private string stateName;
         private string stateDensity;
@@ -31,7 +31,7 @@ namespace QSF.Examples.MapControl.FirstLookExample
 
         public Command ClosePopupCommand { get; set; }
 
-        public Telerik.Maui.Controls.Compatibility.ShapefileReader.IShape SelectedShape
+        public Telerik.Maui.Controls.ShapefileReader.IShape SelectedShape
         {
             get
             {

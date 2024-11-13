@@ -1,21 +1,25 @@
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using Microsoft.Maui.Controls;
 using QSF.Examples.CalendarControl.Common;
 using QSF.ViewModels;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using Telerik.AppUtils.Services;
 
 namespace QSF.Examples.CalendarControl.FirstLookExample;
 
 public class FirstLookViewModel : ExampleViewModel
 {
+    private Random random;
     private DateTime selectedDate;
     private List<string> titles;
     private ObservableCollection<Reminder> filteredRemindersList;
     private bool isEmptyMessageVisible;
-    private Random rnd;
 
     public FirstLookViewModel()
     {
+        this.random = DependencyService
+            .Get<ITestingService>()
+            .Random(10);
         this.titles = new List<string>()
         {
             "MAUI Dev Team Sync",
@@ -31,8 +35,6 @@ public class FirstLookViewModel : ExampleViewModel
         };
 
         this.filteredRemindersList = new ObservableCollection<Reminder>();
-
-        this.rnd = new Random();
 
         this.SelectedDate = DateTime.Today;
     }
@@ -74,13 +76,13 @@ public class FirstLookViewModel : ExampleViewModel
             return;
         }
 
-        var count = this.rnd.Next(1, this.titles.Count - 1);
+        var count = this.random.Next(1, this.titles.Count - 1);
 
         var copyTitles = new List<string>(this.titles);
         var reminders = new List<Reminder>();
         for (int i = 0; i < count; i++)
         {
-            var index = this.rnd.Next(0, copyTitles.Count - 1);
+            var index = this.random.Next(0, copyTitles.Count - 1);
             var title = copyTitles[index];
 
             var reminder = new Reminder() { Date = this.selectedDate, Title = title };

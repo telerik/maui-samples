@@ -8,17 +8,17 @@
         <VerticalStackLayout>
             <HorizontalStackLayout  Margin="0, 0, 0, 20">
                 <telerik:RadCheckBox x:Name="checkbox"
-                                               Margin="0, 0, 10, 0"
-                                               AutomationId="checkBox"/>
+                                     Margin="0, 0, 10, 0"
+                                     AutomationId="checkBox" />
                 <Label Text="Agree to the Terms &amp; Conditions"
-                       TextColor="{AppThemeBinding Light={StaticResource DefaultTextColor}, Dark={StaticResource DefaultTextColorDark}}"/>
+                       TextColor="{StaticResource DefaultTextColor}" />
             </HorizontalStackLayout>
             <!-- << checkbox-getting-started-xaml -->
             <HorizontalStackLayout>
                 <Label Text="IsChecked value: "
-                       TextColor="{AppThemeBinding Light={StaticResource DefaultTextColor}, Dark={StaticResource DefaultTextColorDark}}"/>
-                <Label Text="{Binding Source={x:Reference checkbox}, Path=IsChecked}" 
-                       TextColor="{AppThemeBinding Light={StaticResource DefaultTextColor}, Dark={StaticResource DefaultTextColorDark}}"/>
+                       TextColor="{StaticResource DefaultTextColor}" />
+                <Label Text="{Binding Source={x:Reference checkbox}, Path=IsChecked}"
+                       TextColor="{StaticResource DefaultTextColor}" />
             </HorizontalStackLayout>
         </VerticalStackLayout>
     </telerik:RadContentView.Content>

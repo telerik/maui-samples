@@ -1,13 +1,12 @@
-﻿using System.Collections.ObjectModel;
-using System.Linq;
-using System.Windows.Input;
-using Microsoft.Maui.ApplicationModel;
+﻿using Microsoft.Maui.ApplicationModel;
 using Microsoft.Maui.Controls;
 using Microsoft.Maui.Devices;
-using Telerik.AppUtils.Services;
 using QSF.Common;
 using QSF.Services;
-using QSF.Views;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Windows.Input;
+using Telerik.AppUtils.Services;
 
 namespace QSF.ViewModels;
 
@@ -59,7 +58,7 @@ public class HomeViewModel : PageViewModel
     public ICommand SelectControlCommand { get; }
 
     public ICommand SelectDemoAppCommand { get; }
-    
+
     public ICommand SelectMauiHighlightCommand { get; }
 
     public ICommand SelectSearchCommand { get; }
@@ -187,7 +186,13 @@ public class HomeViewModel : PageViewModel
         {
             foreach (Example example in control.Examples)
             {
-                example.ControlName = control.Name;
+                // The ControlName could be specified in the config.xml when we want
+                // to show example from different control in the current control section.
+                if (string.IsNullOrEmpty(example.ControlName))
+                {
+                    example.ControlName = control.Name;
+                }
+
                 result.Add(example);
             }
         }

@@ -1,7 +1,7 @@
 ﻿using Microsoft.Maui.Controls.Xaml;
 using Telerik.Maui.Controls;
-using Telerik.Maui.Controls.Compatibility.Map;
-using Telerik.Maui.Controls.Compatibility.ShapefileReader;
+using Telerik.Maui.Controls.Map;
+using Telerik.Maui.Controls.ShapefileReader;
 
 namespace SDKBrowserMaui.Examples.MapControl.FeaturesCategory.SetBestViewExample
 {

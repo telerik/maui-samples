@@ -6,7 +6,8 @@
                         Margin="5">
     <telerik:RadContentView.Content>
         <ScrollView>
-            <VerticalStackLayout>
+            <VerticalStackLayout HorizontalOptions="{OnPlatform Default=Fill, MacCatalyst=Start, WinUI=Start}"
+                                 WidthRequest="{OnPlatform MacCatalyst=300, WinUI=300}">
 
                 <Label Text="ValueFormat = ExcludePromptAndLiterals" Margin="0, 30, 0, 0" />
                 <!-- >> textmaskedentry-excludepromptandliterals-xaml -->

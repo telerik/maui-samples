@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.NumericInputControl.StylingCategory.StylingExample.Styling">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <!-- >> numericinput-custom-styles -->
+            <Style TargetType="telerik:RadTextInput" x:Key="TextInputStyle">
+                <Setter Property="TextColor" Value="#00897B" />
+            </Style>
+
+            <Style x:Key="NumericButtonStyle" TargetType="telerik:RadTemplatedButton">
+                <Setter Property="TextColor" Value="#00897B" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup Name="CommonStates">
+                            <VisualState Name="Normal" />
+                            <VisualState Name="PointerOver">
+                                <VisualState.Setters>
+                                    <Setter Property="telerik:RadTemplatedButton.TextColor" Value="#00BCA9" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="Pressed">
+                                <VisualState.Setters>
+                                    <Setter Property="telerik:RadTemplatedButton.TextColor" Value="#00BCA9" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="Disabled" />
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+
+            <Style x:Key="NumericInputStyle" TargetType="telerik:RadNumericInput">
+                <Setter Property="BorderBrush" Value="#00897B" />
+                <Setter Property="BackgroundColor" Value="#FFFFFF" />
+                <Setter Property="TextInputStyle" Value="{StaticResource TextInputStyle}" />
+                <Setter Property="IncreaseButtonStyle" Value="{StaticResource NumericButtonStyle}" />
+                <Setter Property="DecreaseButtonStyle" Value="{StaticResource NumericButtonStyle}" />
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup Name="CommonStates">
+                            <VisualState Name="Normal" />
+                            <VisualState Name="Focused">
+                                <VisualState.Setters>
+                                    <Setter Property="telerik:RadNumericInput.BorderBrush" Value="#00BCA9" />
+                                    <Setter Property="telerik:RadNumericInput.BorderThickness" Value="1" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="MouseOver">
+                                <VisualState.Setters>
+                                    <Setter Property="telerik:RadNumericInput.BackgroundColor" Value="#F9F9F9" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="ReadOnly" />
+                            <VisualState Name="ReadOnlyMouseOver" />
+                            <VisualState Name="ReadOnlyFocused">
+                                <VisualState.Setters>
+                                    <Setter Property="telerik:RadNumericInput.BorderBrush" Value="#B200BCA9" />
+                                    <Setter Property="telerik:RadNumericInput.BorderThickness" Value="1" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="Disabled">
+                                <VisualState.Setters>
+                                    <Setter Property="Opacity" Value="0.6" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+            <!-- << numericinput-custom-styles -->
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <VerticalStackLayout HorizontalOptions="{OnPlatform Default=Fill, MacCatalyst=Start, WinUI=Start}"
+                         WidthRequest="{OnPlatform MacCatalyst=300, WinUI=300}"
+                         Spacing="16">
+        <!-- >> numericinput-styling-xaml -->
+        <telerik:RadNumericInput x:Name="numericInput"
+                                 Style="{StaticResource NumericInputStyle}" />
+        <!-- << numericinput-styling-xaml -->
+        <HorizontalStackLayout Spacing="10">
+            <telerik:RadCheckBox x:Name="readOnlyCb" IsChecked="{Binding IsReadOnly, Source={x:Reference numericInput}}" />
+            <Label Text="Is ReadOnly" telerik:RadCheckBox.ToggleOnTap="{x:Reference readOnlyCb}"  />
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
+</ContentView>

@@ -6,18 +6,18 @@
                     x:Class="QSF.Examples.DataGridControl.RowDetailsExample.RowDetailsResources">
     <Style TargetType="Label" BasedOn="{StaticResource BaseLabelStyle}" />
     <Style x:Key="InfoLabelStyle" TargetType="Label">
-        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource DefaultTextColor}, Dark={StaticResource DefaultTextColorDark}}" />
+        <Setter Property="TextColor" Value="{StaticResource DefaultTextColor}" />
         <Setter Property="Opacity" Value="0.5" />
         <Setter Property="Margin" Value="0, 0, 0, 8" />
     </Style>
     <DataTemplate x:Key="DataGridRowDetailsTemplate">
-        <Grid BackgroundColor="{AppThemeBinding Light=White, Dark=Black}">
+        <Grid BackgroundColor="White">
             <telerik:RadTabView HeightRequest="400"
                                 IsContentSwipeEnabled="False"
                                 SelectedIndex="{Binding UIState.SelectedTabIndex, Mode=TwoWay}"
                                 Margin="12"
                                 BorderThickness="{OnPlatform Default=1, MacCatalyst=0, WinUI=0}"
-                                BorderColor="{AppThemeBinding Light={StaticResource DefaultBorderColor}, Dark={StaticResource DefaultBorderColorDark}}"
+                                BorderColor="{StaticResource DefaultBorderColor}"
                                 AutomationId="rowDetailsTabView">
                 <telerik:TabViewItem HeaderText="Orders Info" AutomationId="orderInfoTabViewItem">
                     <telerik:RadDataGrid x:Name="dataGrid"
@@ -42,8 +42,7 @@
                 <telerik:TabViewItem HeaderText="Assignee Info" AutomationId="assigneeInfoTabView">
                     <telerik:RadBorder CornerRadius="8"
                                        BorderThickness="1"
-                                       BorderColor="{AppThemeBinding Light={OnPlatform Default={StaticResource DefaultBorderColor}, WinUI={StaticResource DefaultBorderColorWinUI}},
-                                                                     Dark={OnPlatform Default={StaticResource DefaultBorderColorDark}, WinUI={StaticResource DefaultBorderColorDarkWinUI}}}"
+                                       BorderColor="{OnPlatform Default={StaticResource DefaultBorderColor}, WinUI={StaticResource DefaultBorderColorWinUI}}"
                                        HorizontalOptions="Center"
                                        VerticalOptions="Center"
                                        Margin="12"
@@ -108,17 +107,14 @@
                     </Grid>
                 </telerik:TabViewItem>
             </telerik:RadTabView>
-            <BoxView BackgroundColor="{AppThemeBinding Light={OnPlatform Default={StaticResource DefaultBorderColor}, WinUI={StaticResource DefaultBorderColorWinUI}},
-                                                       Dark={OnPlatform Default={StaticResource DefaultBorderColorDark}, WinUI={StaticResource DefaultBorderColorDarkWinUI}}}"
+            <BoxView BackgroundColor="{OnPlatform Default={StaticResource DefaultBorderColor}, WinUI={StaticResource DefaultBorderColorWinUI}}"
                      HeightRequest="1"
                      VerticalOptions="Start" />
-            <BoxView BackgroundColor="{AppThemeBinding Light={OnPlatform Default={StaticResource DefaultBorderColor}, WinUI={StaticResource DefaultBorderColorWinUI}},
-                                                       Dark={OnPlatform Default={StaticResource DefaultBorderColorDark}, WinUI={StaticResource DefaultBorderColorDarkWinUI}}}"
+            <BoxView BackgroundColor="{OnPlatform Default={StaticResource DefaultBorderColor}, WinUI={StaticResource DefaultBorderColorWinUI}}"
                      WidthRequest="1"
                      HorizontalOptions="Start"
                      IsVisible="{OnPlatform Default=true, WinUI=false}" />
-            <BoxView BackgroundColor="{AppThemeBinding Light={OnPlatform Default={StaticResource DefaultBorderColor}, WinUI={StaticResource DefaultBorderColorWinUI}},
-                                                       Dark={OnPlatform Default={StaticResource DefaultBorderColorDark}, WinUI={StaticResource DefaultBorderColorDarkWinUI}}}"
+            <BoxView BackgroundColor="{OnPlatform Default={StaticResource DefaultBorderColor}, WinUI={StaticResource DefaultBorderColorWinUI}}"
                      WidthRequest="1"
                      HorizontalOptions="End"
                      IsVisible="{OnPlatform Default=true, WinUI=false}" />

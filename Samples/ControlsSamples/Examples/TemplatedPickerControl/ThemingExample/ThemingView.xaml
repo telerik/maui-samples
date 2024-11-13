@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        xmlns:local="clr-namespace:QSF.Examples.TemplatedPickerControl.ThemingExample"
+                        xmlns:localCommon="clr-namespace:QSF.Examples.TemplatedPickerControl.Common"
+                        x:Class="QSF.Examples.TemplatedPickerControl.ThemingExample.ThemingView">
+    <telerik:RadContentView.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <localCommon:StylesAndTemplates />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </telerik:RadContentView.Resources>
+
+    <VerticalStackLayout Padding="12, 24"
+                         Spacing="8"
+                         WidthRequest="{OnPlatform MacCatalyst=350, WinUI=350}"
+                         HorizontalOptions="{OnPlatform MacCatalyst=Start, WinUI=Start}">
+        <Label Text="PickerMode - DropDown" />
+        <telerik:RadTemplatedPicker x:Name="templatedPickerDropDown"
+                                    Placeholder="Choose size &amp; color"
+                                    SelectorTemplate="{StaticResource ColorAndSizePickerSelectorTemplate}"
+                                    SelectedValue="{Binding SelectedValue}"
+                                    PickerMode="DropDown"
+                                    AutomationId="templatedPickerDropDown"
+                                    Margin="0, 0, 0, 12" />
+        <Label Text="PickerMode - Popup" />
+        <telerik:RadTemplatedPicker x:Name="templatedPickerPopup"
+                                    Placeholder="Choose size &amp; color"
+                                    SelectorTemplate="{StaticResource ColorAndSizePickerSelectorTemplate}"
+                                    SelectedValue="{Binding SelectedValue}"
+                                    PickerMode="Popup"
+                                    AutomationId="templatedPickerPopup" />
+    </VerticalStackLayout>
+</telerik:RadContentView>

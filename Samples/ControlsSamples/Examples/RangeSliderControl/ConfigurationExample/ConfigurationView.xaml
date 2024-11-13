@@ -36,8 +36,7 @@
         </ResourceDictionary>
     </ContentView.Resources>
     <Grid RowDefinitions="{OnPlatform Default='80, *', WinUI='120, *'}">
-        <Grid BackgroundColor="{AppThemeBinding Light={StaticResource DefaultBackgroundColor}, Dark={StaticResource DefaultBackgroundColorDark}}"
-              Padding="48, 24">
+        <telerik:RadBorder Style="{StaticResource ControlWrapperBorderStyle}">
             <telerik:RadRangeSlider x:Name="rangeSlider"
                                     Minimum="0"
                                     Maximum="100"
@@ -61,7 +60,7 @@
                                     SnapMode="{Binding SnapMode}"
                                     DragMode="{Binding DragMode}"
                                     VerticalOptions="Center" />
-        </Grid>
+        </telerik:RadBorder>
         <ScrollView Grid.Row="1">
             <VerticalStackLayout Style="{StaticResource RootAtExampleAreaStyle}">
                 <Grid>

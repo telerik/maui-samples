@@ -9,16 +9,42 @@
              ios:Page.UseSafeArea="False">
 
     <VisualElement.Resources>
+        <Style x:Key="EntryClearButtonStyle" TargetType="telerik:RadTemplatedButton">
+            <Setter Property="TextColor" Value="#99FFFFFF" />
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup Name="CommonStates">
+                        <VisualState Name="Normal" />
+                        <VisualState Name="PointerOver" />
+                        <VisualState Name="Pressed">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadTemplatedButton.TextColor" Value="#80FFFFFF" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="Disabled" />
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
         <Style x:Key="EntryStyle" TargetType="telerik:RadEntry">
-            <!--These setters are intentional - TextOnAccentColor and PlaceholderColorDark, as the underlying color is an accent one.-->
+            <!--These setters are intentional - TextOnAccentColor and PlaceholderColor, as the underlying color is an accent one.-->
             <Setter Property="TextColor" Value="{StaticResource TextOnAccentColor}" />
-            <Setter Property="PlaceholderColor" Value="{StaticResource PlaceholderColorDark}" />
-            <Setter Property="ClearButtonColor" Value="{StaticResource PlaceholderColorDark}" />
+            <Setter Property="PlaceholderColor" Value="#99FFFFFF" />
             <Setter Property="BackgroundColor" Value="Transparent"/>
             <Setter Property="BorderBrush" Value="Transparent" />
             <Setter Property="BorderThickness" Value="0" />
-            <Setter Property="FocusedBorderBrush" Value="Transparent" />
-            <Setter Property="FocusedBorderThickness" Value="0" />
+            <Setter Property="ClearButtonStyle" Value="{StaticResource EntryClearButtonStyle}" />
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <Setter.Value>
+                    <VisualStateGroupList>
+                        <VisualStateGroup Name="CommonStates">
+                            <VisualState Name="Normal" />
+                            <VisualState Name="Focused" />
+                            <VisualState Name="Disabled" />
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter.Value>
+            </Setter>
         </Style>
         <Style x:Key="BoxViewStyle" TargetType="BoxView">
             <Setter Property="IsVisible" Value="{OnPlatform Default=true, iOS=false}" />
@@ -29,7 +55,7 @@
         </Style>
     </VisualElement.Resources>
 
-    <views:QSFPageContentView Background="{AppThemeBinding Light={StaticResource SecondaryBackgroundColor}, Dark={StaticResource SecondaryBackgroundColorDark}}">
+    <views:QSFPageContentView Background="{StaticResource SecondaryBackgroundColor}">
         <views:QSFPageContentView.HeaderControlTemplate>
             <ControlTemplate>
                 <Grid ColumnDefinitions="Auto, *">

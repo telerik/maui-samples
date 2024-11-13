@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        x:Class="QSF.Examples.SlideViewControl.ThemingExample.ThemingView"
+                        Padding="16">
+    <telerik:RadContentView.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="ItemTemplate">
+                <Image Source="{Binding}"
+                       Aspect="AspectFit"
+                       HeightRequest="240"
+                       AutomationId="slideViewImage" />
+            </DataTemplate>
+        </ResourceDictionary>
+    </telerik:RadContentView.Resources>
+
+    <Grid RowDefinitions="Auto">
+        <telerik:RadSlideView x:Name="slideView"
+                              ItemsSource="{Binding Images}"
+                              ItemTemplate="{StaticResource ItemTemplate}"
+                              HorizontalOptions="{OnIdiom Default=Fill, Desktop=Start}"
+                              AutomationId="slideView" />
+    </Grid>
+</telerik:RadContentView>

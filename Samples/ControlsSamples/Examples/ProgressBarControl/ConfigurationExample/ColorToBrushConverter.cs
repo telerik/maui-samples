@@ -2,6 +2,7 @@
 using Microsoft.Maui.Graphics;
 using System;
 using System.Globalization;
+using Telerik.Maui.Controls;
 
 namespace QSF.Examples.ProgressBarControl.ConfigurationExample;
 
@@ -15,6 +16,20 @@ public class ColorToBrushConverter : IValueConverter
         switch (colorString)
         {
             case "Default":
+                if (parameter != null)
+                {
+                    if (parameter.ToString().Equals("ProgressFill"))
+                    {
+                        color = (RadLinearProgressBar.ProgressFillProperty.DefaultValue as SolidColorBrush).Color;
+                        break;
+                    }
+                    else if (parameter.ToString().Equals("TrackFill"))
+                    {
+                        color = (RadLinearProgressBar.TrackFillProperty.DefaultValue as SolidColorBrush).Color;
+                        break;
+                    }
+                }
+
                 color = null;
                 break;
             case "Black":

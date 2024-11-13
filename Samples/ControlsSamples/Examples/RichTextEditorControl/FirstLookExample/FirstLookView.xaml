@@ -11,8 +11,7 @@
     
     <Grid RowDefinitions="{OnIdiom Default='Auto, Auto, *', Phone='Auto, *, Auto'}">
         <Grid RowDefinitions="45, 45">
-            <telerik:RadBorder BorderColor="{AppThemeBinding Light={OnPlatform Default={StaticResource DefaultBorderColor}, WinUI={StaticResource DefaultBorderColorWinUI}},
-                                                             Dark={OnPlatform Default={StaticResource DefaultBorderColorDark}, WinUI={StaticResource DefaultBorderColorDarkWinUI}}}"
+            <telerik:RadBorder BorderColor="{OnPlatform Default={StaticResource DefaultBorderColor}, WinUI={StaticResource DefaultBorderColorWinUI}}"
                                BorderThickness="0, 0, 0, 1">
                 <Grid ColumnDefinitions="Auto, *, Auto"
                       ColumnSpacing="4">
@@ -25,17 +24,18 @@
                                              DisplayMode="Tokens"
                                              BackgroundColor="Transparent"
                                              BorderBrush="Transparent"
-                                             FocusedBorderBrush="Transparent"
                                              BorderThickness="0"
                                              IsClearButtonVisible="False"
                                              VerticalOptions="Center"
                                              AutomationId="recipientAutoComplete">
                         <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup x:Name="CommonStates">
-                                <VisualState x:Name="Normal" />
-                                <VisualState x:Name="Focused" />
-                                <VisualState x:Name="Disabled" />
-                            </VisualStateGroup>
+                            <VisualStateGroupList>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal" />
+                                    <VisualState x:Name="Focused" />
+                                    <VisualState x:Name="Disabled" />
+                                </VisualStateGroup>
+                            </VisualStateGroupList>
                         </VisualStateManager.VisualStateGroups>
                     </telerik:RadAutoComplete>
                     <Button Grid.Column="2"
@@ -53,8 +53,7 @@
                 </Grid>
             </telerik:RadBorder>
             <telerik:RadBorder Grid.Row="1"
-                               BorderColor="{AppThemeBinding Light={OnPlatform Default={StaticResource DefaultBorderColor}, WinUI={StaticResource DefaultBorderColorWinUI}},
-                                                             Dark={OnPlatform Default={StaticResource DefaultBorderColorDark}, WinUI={StaticResource DefaultBorderColorDarkWinUI}}}"
+                               BorderColor="{OnPlatform Default={StaticResource DefaultBorderColor}, WinUI={StaticResource DefaultBorderColorWinUI}}"
                                BorderThickness="0, 0, 0, 1">
                 <Grid ColumnDefinitions="Auto, *"
                       ColumnSpacing="4">
@@ -64,7 +63,6 @@
                                       Text="RE: Pick your holiday"
                                       BackgroundColor="Transparent"
                                       BorderBrush="Transparent"
-                                      FocusedBorderBrush="Transparent"
                                       BorderThickness="0"
                                       VerticalOptions="Center"
                                       ReserveSpaceForErrorView="False" 

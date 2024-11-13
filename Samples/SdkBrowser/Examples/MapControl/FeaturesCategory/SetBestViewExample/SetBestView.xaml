@@ -10,11 +10,11 @@
         </Grid.RowDefinitions>
         <telerik:RadMap x:Name="map">
             <telerik:RadMap.Layers>
-                <telerik:ShapefileLayer x:Name="mapShapeLayer">
-                    <telerik:ShapefileLayer.Reader>
+                <telerik:MapShapefileLayer x:Name="mapShapeLayer">
+                    <telerik:MapShapefileLayer.Reader>
                         <telerik:MapShapeReader x:Name="reader"/>
-                    </telerik:ShapefileLayer.Reader>
-                </telerik:ShapefileLayer>
+                    </telerik:MapShapefileLayer.Reader>
+                </telerik:MapShapefileLayer>
             </telerik:RadMap.Layers>
         </telerik:RadMap>
         <HorizontalStackLayout Grid.Row="1">

@@ -28,7 +28,14 @@ public class ScreenWidthToItemWidthConverter : IValueConverter
             itemsCount = 4;
         }
 
-        return screenWidth / itemsCount - 0.1;
+#if WINDOWS
+        double layoutEpsilon = 2;
+#else
+        double layoutEpsilon = 0.1;
+#endif
+
+        double itemWidth = (screenWidth / itemsCount) - layoutEpsilon;
+        return itemWidth;
     }
 
     public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

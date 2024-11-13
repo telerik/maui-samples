@@ -91,8 +91,8 @@
 
     <ScrollView>
         <Grid RowDefinitions="Auto, Auto, Auto, *">
-            <VerticalStackLayout BackgroundColor="#F8F8F8"
-                                 Padding="16">
+            <telerik:RadBorder Style="{StaticResource ControlWrapperBorderStyle}"
+                               Padding="16">
                 <VerticalStackLayout VerticalOptions="Center"
                                      HorizontalOptions="Center">
                     <telerik:RadBorder Style="{StaticResource AvatarBorderStyle}">
@@ -101,7 +101,7 @@
                     <Label Text="Francis Green" Style="{StaticResource UserNameLabelStyle}" />
                     <Label Text="Developer" Style="{StaticResource UserJobTitleLabelStyle}" />
                 </VerticalStackLayout>
-            </VerticalStackLayout>
+            </telerik:RadBorder>
             <telerik:RadBorder Grid.Row="1"
                                BorderThickness="0, 0, 0, 1"
                                BorderColor="#DCE7F2"

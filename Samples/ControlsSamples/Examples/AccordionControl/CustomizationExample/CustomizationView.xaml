@@ -59,9 +59,7 @@
                 <Setter Property="ControlTemplate" Value="{StaticResource AccordionItemHeaderTemplate}" />
                 <Setter Property="Padding" Value="0" />
                 <Setter Property="BorderThickness" Value="0, 0, 0, 1" />
-                <Setter Property="BorderColor"
-                        Value="{AppThemeBinding Light={OnPlatform Default={StaticResource DefaultBorderColor}, WinUI={StaticResource DefaultBorderColorWinUI}},
-                                                Dark={OnPlatform Default={StaticResource DefaultBorderColorDark}, WinUI={StaticResource DefaultBorderColorDarkWinUI}}}" />
+                <Setter Property="BorderColor" Value="{OnPlatform Default={StaticResource DefaultBorderColor}, WinUI={StaticResource DefaultBorderColorWinUI}}" />
             </Style>
 
             <Style TargetType="Label" BasedOn="{StaticResource BaseLabelStyle}">
@@ -74,7 +72,7 @@
             </Style>
             <Style x:Key="SeparatorStyle" TargetType="BoxView">
                 <Setter Property="HeightRequest" Value="1" />
-                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource SeparatorColor}, Dark={StaticResource SeparatorColorDark}}" />
+                <Setter Property="BackgroundColor" Value="{StaticResource SeparatorColor}" />
                 <Setter Property="Margin" Value="0, 6" />
             </Style>
             <Style x:Key="AvatarLabelStyle" TargetType="Label">

@@ -1,5 +1,4 @@
 ﻿using Microsoft.Maui.Controls;
-using Telerik.Maui.Controls.Compatibility.Input;
 using Telerik.Maui.Controls;
 
 namespace SDKBrowserMaui.Examples.AccordionControl.GettingStartedCategory.GettingStartedExample;

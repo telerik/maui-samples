@@ -13,35 +13,34 @@
                 <Setter Property="HorizontalOptions" Value="Center" />
                 <Setter Property="Margin" Value="0, 0, 0, 12" />
             </Style>
-            <Style TargetType="telerik:RadEntry">
+            <Style x:Key="ComboBoxTextInputStyle" TargetType="telerik:RadTextInput">
                 <Setter Property="HorizontalTextAlignment" Value="Center" />
-                <Setter Property="ReserveSpaceForErrorView" Value="False" />
-                <Setter Property="Margin" Value="0, 0, 0, 24" />
             </Style>
         </ResourceDictionary>
     </telerik:RadContentView.Resources>
 
     <Grid RowDefinitions="Auto, *">
-        <VerticalStackLayout BackgroundColor="{AppThemeBinding Light={StaticResource DefaultBackgroundColor}, Dark={StaticResource DefaultBackgroundColorDark}}"
-                             Padding="16, 24">
-            <HorizontalStackLayout HorizontalOptions="Center"
-                                   VerticalOptions="End"
-                                   Spacing="10"
-                                   Margin="0, 0, 0, 12">
-                <Label Text="File:"
-                       Style="{StaticResource FirstRowLabelStyle}" />
-                <Label Text="SpreadProcessingDocument2.xlsx"
-                       Style="{StaticResource FirstRowLabelStyle}"
-                       FontAttributes="Bold" />
-            </HorizontalStackLayout>
-            <telerik:RadButton Grid.Row="1"
-                               Style="{StaticResource SubmitButtonStyle}"
-                               Text="View Document"
-                               VerticalOptions="{OnPlatform Default='End', WinUI='Center', MacCatalyst='Center'}"
-                               HorizontalOptions="Center"
-                               Command="{Binding ViewDocumentCommand}" 
-                               AutomationId="viewDocumentButton"/>
-        </VerticalStackLayout>
+        <telerik:RadBorder Style="{StaticResource ControlWrapperBorderStyle}">
+            <VerticalStackLayout>
+                <HorizontalStackLayout HorizontalOptions="Center"
+                                       VerticalOptions="End"
+                                       Spacing="10"
+                                       Margin="0, 0, 0, 12">
+                    <Label Text="File:"
+                           Style="{StaticResource FirstRowLabelStyle}" />
+                    <Label Text="SpreadProcessingDocument2.xlsx"
+                           Style="{StaticResource FirstRowLabelStyle}"
+                           FontAttributes="Bold" />
+                </HorizontalStackLayout>
+                <telerik:RadButton Grid.Row="1"
+                                   Style="{StaticResource SubmitButtonStyle}"
+                                   Text="View Document"
+                                   VerticalOptions="{OnPlatform Default='End', WinUI='Center', MacCatalyst='Center'}"
+                                   HorizontalOptions="Center"
+                                   Command="{Binding ViewDocumentCommand}" 
+                                   AutomationId="viewDocumentButton" />
+            </VerticalStackLayout>
+        </telerik:RadBorder>
         <ScrollView Grid.Row="1"
                     Margin="{OnIdiom Default='0, 24, 0, 0', Desktop='0, 40, 0, 0'}"
                     Padding="{OnIdiom Default=0, Phone=16}">
@@ -59,32 +58,22 @@
                            Style="{StaticResource SecondRowLabelStyle}" />
                     <telerik:RadComboBox IsEditable="False"
                                          IsClearButtonVisible="False"
+                                         TextInputStyle="{StaticResource ComboBoxTextInputStyle}"
                                          ItemsSource="{Binding ClientsRules}"
                                          SelectedItem="{Binding SelectedClientsRule, Mode=TwoWay}"
                                          Margin="0, 0, 0, 24"
-                                         AutomationId="clientsRulesComboBox">
-                        <telerik:RadComboBox.Resources>
-                            <Style TargetType="telerik:RadEntry">
-                                <Setter Property="HorizontalTextAlignment" Value="Center" />
-                            </Style>
-                        </telerik:RadComboBox.Resources>
-                    </telerik:RadComboBox>
+                                         AutomationId="clientsRulesComboBox" />
                     <Label Text="&#34;Shipping&#34; column rule:"
                            Style="{StaticResource FirstRowLabelStyle}" />
                     <Label Text="Highlight shipment type"
                            Style="{StaticResource SecondRowLabelStyle}" />
                     <telerik:RadComboBox IsEditable="False"
                                          IsClearButtonVisible="False"
+                                         TextInputStyle="{StaticResource ComboBoxTextInputStyle}"
                                          ItemsSource="{Binding ShippingTerms}"
                                          SelectedItem="{Binding SelectedShippingTerm, Mode=TwoWay}"
                                          Margin="0, 0, 0, 24"
-                                         AutomationId="shippingRulesComboBox">
-                        <telerik:RadComboBox.Resources>
-                            <Style TargetType="telerik:RadEntry">
-                                <Setter Property="HorizontalTextAlignment" Value="Center" />
-                            </Style>
-                        </telerik:RadComboBox.Resources>
-                    </telerik:RadComboBox>
+                                         AutomationId="shippingRulesComboBox" />
                     <Label Text="&#34;Discount&#34; column rule:"
                            Style="{StaticResource FirstRowLabelStyle}" />
                     <Label Text="Highlight discount range"
@@ -94,22 +83,17 @@
                           Margin="0, 0, 0, 24">
                         <telerik:RadComboBox IsEditable="False"
                                              IsClearButtonVisible="False"
+                                             TextInputStyle="{StaticResource ComboBoxTextInputStyle}"
                                              ItemsSource="{Binding DiscountComparisonOperators}"
                                              SelectedItem="{Binding SelectedDiscountComparison, Mode=TwoWay}"
-                                             AutomationId="discountRuleComboBox">
-                            <telerik:RadComboBox.Resources>
-                                <Style TargetType="telerik:RadEntry">
-                                    <Setter Property="HorizontalTextAlignment" Value="Center" />
-                                </Style>
-                            </telerik:RadComboBox.Resources>
-                        </telerik:RadComboBox>
+                                             AutomationId="discountRuleComboBox" />
                         <telerik:RadNumericInput Grid.Column="1"
                                                  Value="{Binding DiscountThreshold, Mode=TwoWay}"
                                                  Minimum="0"
                                                  Maximum="0.15"
                                                  Step="0.01"
                                                  MinimumWidthRequest="{OnPlatform Default=100, iOS=142}" 
-                                                 AutomationId="DiscountRuleNumeric"/>
+                                                 AutomationId="DiscountRuleNumeric" />
                     </Grid>
                     <Label Text="&#34;Total price&#34; column rule:"
                            Style="{StaticResource FirstRowLabelStyle}" />
@@ -120,22 +104,17 @@
                           Margin="0, 0, 0, 24">
                         <telerik:RadComboBox IsEditable="False"
                                              IsClearButtonVisible="False"
+                                             TextInputStyle="{StaticResource ComboBoxTextInputStyle}"
                                              ItemsSource="{Binding DiscountComparisonOperators}"
                                              SelectedItem="{Binding SelectedDiscountComparison, Mode=TwoWay}"
-                                             AutomationId="totalPriceRuleComboBox">
-                            <telerik:RadComboBox.Resources>
-                                <Style TargetType="telerik:RadEntry">
-                                    <Setter Property="HorizontalTextAlignment" Value="Center" />
-                                </Style>
-                            </telerik:RadComboBox.Resources>
-                        </telerik:RadComboBox>
+                                             AutomationId="totalPriceRuleComboBox" />
                         <telerik:RadNumericInput Grid.Column="1"
                                                  Value="{Binding PriceRank, Mode=TwoWay}"
                                                  Minimum="0"
                                                  Maximum="10"
                                                  Step="1"
                                                  MinimumWidthRequest="{OnPlatform Default=100, iOS=142}" 
-                                                 AutomationId="totalPriceRuleNumeric"/>
+                                                 AutomationId="totalPriceRuleNumeric" />
                     </Grid>
                 </VerticalStackLayout>
                 <telerik:RadButton Grid.Row="1"
@@ -145,7 +124,7 @@
                                    VerticalOptions="{OnPlatform Default=End, WinUI=Center, MacCatalyst=Center}"
                                    HorizontalOptions="{OnPlatform Default=Fill, WinUI=Center, MacCatalyst=Center}"
                                    Style="{StaticResource SubmitButtonStyle}" 
-                                   AutomationId="applyFormattingButton"/>
+                                   AutomationId="applyFormattingButton" />
             </Grid>
         </ScrollView>
     </Grid>

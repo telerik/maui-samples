@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Microsoft.Maui.Controls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Telerik.AppUtils.Services;
 
 namespace QSF.Examples.ChatControl.ChatRoomExample;
 
@@ -37,7 +39,9 @@ public class ChatroomService
 
     public ChatroomService()
     {
-        this.random = new Random();
+        this.random = DependencyService
+              .Get<ITestingService>()
+              .Random(10);
         this.InitParticipants();
         this.currentlyTyping = new List<ChatroomParticipant>();
     }

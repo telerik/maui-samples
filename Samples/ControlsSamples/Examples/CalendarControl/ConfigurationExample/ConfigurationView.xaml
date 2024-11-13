@@ -20,8 +20,8 @@
     </ContentView.Resources>
 
     <Grid RowDefinitions="Auto, *">
-        <Grid BackgroundColor="{AppThemeBinding Light={StaticResource DefaultBackgroundColor}, Dark={StaticResource DefaultBackgroundColorDark}}"
-              Padding="16">
+        <telerik:RadBorder Style="{StaticResource ControlWrapperBorderStyle}"
+                           Padding="16">
             <telerik:RadCalendar x:Name="calendar"
                                  MinDate="{Binding MinDate, Mode=TwoWay}"
                                  MaxDate="{Binding MaxDate, Mode=TwoWay}"
@@ -35,9 +35,9 @@
                                  MaximumHeightRequest="{OnPlatform iOS=320, Android=320, WinUI=320}"
                                  BorderThickness="1"
                                  HorizontalOptions="Center"
-                                 VerticalOptions="Center" 
-                                 AutomationId="calendar"/>
-        </Grid>
+                                 VerticalOptions="Center"
+                                 AutomationId="calendar" />
+        </telerik:RadBorder>
 
         <ScrollView Grid.Row="1">
             <VerticalStackLayout Style="{StaticResource RootAtExampleAreaStyle}">
@@ -54,19 +54,19 @@
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="Min Date:"
                                    Style="{StaticResource VerticalGroupLabelStyle}" />
-                            <telerik:RadDatePicker Date="{Binding MinDate}" AutomationId="minDatePicker"/>
+                            <telerik:RadDatePicker Date="{Binding MinDate}" AutomationId="minDatePicker" />
                         </VerticalStackLayout>
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="Max Date:"
                                    Style="{StaticResource VerticalGroupLabelStyle}" />
-                            <telerik:RadDatePicker Date="{Binding MaxDate}" AutomationId="maxDatePicker"/>
+                            <telerik:RadDatePicker Date="{Binding MaxDate}" AutomationId="maxDatePicker" />
                         </VerticalStackLayout>
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="First Day of Week:"
                                    Style="{StaticResource VerticalGroupLabelStyle}" />
                             <telerik:RadComboBox ItemsSource="{Binding DaysOfWeek}"
                                                  SelectedItem="{Binding FirstDayOfWeek, Mode=TwoWay}" 
-                                                 AutomationId="firstDayOfWeekComboBox"/>
+                                                 AutomationId="firstDayOfWeekComboBox" />
                         </VerticalStackLayout>
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="Display Day Names:"
@@ -75,7 +75,7 @@
                                     HorizontalOptions="Start"
                                     IsToggled="{Binding AreDayNamesVisible}"
                                     Margin="{OnPlatform Default=0, WinUI='0, -2, 0, 0'}" 
-                                    AutomationId="displayDayNamesSwitch"/>
+                                    AutomationId="displayDayNamesSwitch" />
                         </VerticalStackLayout>
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="Display Out of Scope Dates:"
@@ -84,7 +84,7 @@
                                     HorizontalOptions="Start"
                                     IsToggled="{Binding IsOutOfScopeVisible}"
                                     Margin="{OnPlatform Default=0, WinUI='0, -2, 0, 0'}" 
-                                    AutomationId="displayOutOfScopeDaysSwitch"/>
+                                    AutomationId="displayOutOfScopeDaysSwitch" />
                         </VerticalStackLayout>
                     </VerticalStackLayout>
                     <VerticalStackLayout Grid.Column="{OnIdiom Default=1, Phone=0}"
@@ -95,28 +95,28 @@
                             <telerik:RadComboBox x:Name="displayModeCombo"
                                                  ItemsSource="{Binding DisplayModes}"
                                                  SelectedItem="{Binding DisplayMode, Mode=TwoWay}" 
-                                                 AutomationId="displayModeComboBox"/>
+                                                 AutomationId="displayModeComboBox" />
                         </VerticalStackLayout>
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="Selection Mode:"
                                    Style="{StaticResource VerticalGroupLabelStyle}" />
                             <telerik:RadComboBox ItemsSource="{Binding SelectionModes}"
                                                  SelectedItem="{Binding SelectionMode, Mode=TwoWay}" 
-                                                 AutomationId="selectionModeComboBox"/>
+                                                 AutomationId="selectionModeComboBox" />
                         </VerticalStackLayout>
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="Interaction Mode:"
                                    Style="{StaticResource VerticalGroupLabelStyle}" />
                             <telerik:RadComboBox ItemsSource="{Binding InteractionModes}"
                                                  SelectedItem="{Binding InteractionMode, Mode=TwoWay}" 
-                                                 AutomationId="interactionModeComboBox"/>
+                                                 AutomationId="interactionModeComboBox" />
                         </VerticalStackLayout>
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="Navigation Direction:"
                                    Style="{StaticResource VerticalGroupLabelStyle}" />
                             <telerik:RadComboBox ItemsSource="{Binding NavigationDirections}"
                                                  SelectedItem="{Binding NavigationDirection, Mode=TwoWay}" 
-                                                 AutomationId="navigationComboBox"/>
+                                                 AutomationId="navigationComboBox" />
                         </VerticalStackLayout>
                     </VerticalStackLayout>
                 </Grid>

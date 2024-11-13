@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        x:Class="QSF.Examples.CheckBoxControl.ThemingExample.ThemingView"
+                        Padding="16">
+    <Grid RowDefinitions="Auto, Auto"
+          RowSpacing="20"
+          HorizontalOptions="{OnPlatform MacCatalyst=Start, WinUI=Start}">
+        <VerticalStackLayout Spacing="8">
+            <HorizontalStackLayout VerticalOptions="Start"
+                                   Spacing="8"
+                                   telerik:RadCheckBox.ToggleOnTap="{x:Reference checkedCheckBox}">
+                <telerik:RadCheckBox x:Name="checkedCheckBox"
+                                     IsChecked="True"
+                                     AutomationId="scheckedCheckBox" />
+                <Label Text="Checked" />
+            </HorizontalStackLayout>
+            <HorizontalStackLayout VerticalOptions="Start"
+                                   Spacing="8"
+                                   telerik:RadCheckBox.ToggleOnTap="{x:Reference indeterminateCheckBox}">
+                <telerik:RadCheckBox x:Name="indeterminateCheckBox"
+                                     IsThreeState="True"
+                                     IsChecked="{x:Null}"
+                                     AutomationId="indeterminateCheckBox" />
+                <Label Text="ThreeState / Indeterminate" />
+            </HorizontalStackLayout>
+            <HorizontalStackLayout VerticalOptions="Start"
+                                   Spacing="8"
+                                   telerik:RadCheckBox.ToggleOnTap="{x:Reference uncheckedCheckBox}">
+                <telerik:RadCheckBox x:Name="uncheckedCheckBox"
+                                     AutomationId="uncheckedCheckBox" />
+                <Label Text="Unchecked" />
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+    </Grid>
+</telerik:RadContentView>

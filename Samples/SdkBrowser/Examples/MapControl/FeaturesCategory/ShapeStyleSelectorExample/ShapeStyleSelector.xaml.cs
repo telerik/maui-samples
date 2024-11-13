@@ -1,6 +1,6 @@
 ﻿using Microsoft.Maui.Controls.Xaml;
 using Telerik.Maui.Controls;
-using Telerik.Maui.Controls.Compatibility.Map;
+using Telerik.Maui.Controls.Map;
 
 namespace SDKBrowserMaui.Examples.MapControl.FeaturesCategory.ShapeStyleSelectorExample
 {

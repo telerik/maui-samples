@@ -53,9 +53,9 @@
                                                      Grid.Column="1">
                                     <Label Text="{Binding FileName}" 
                                            FontSize="16" 
-                                           TextColor="{AppThemeBinding Dark=#666666, Light=Black}" />
+                                           TextColor="Black" />
                                     <Label Text="{Binding FileSize, Converter={StaticResource FileSizeConverter}}"
-                                           FontSize="13" TextColor="{AppThemeBinding Dark=#666666, Light=Black}" />
+                                           FontSize="13" TextColor="Black" />
                                 </VerticalStackLayout>
                                 <Image IsVisible="{Binding IsSelected}" 
                                        Grid.Column="2"

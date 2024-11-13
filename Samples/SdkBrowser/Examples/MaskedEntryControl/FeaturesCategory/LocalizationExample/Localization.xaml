@@ -5,7 +5,8 @@
                         x:Class="SDKBrowserMaui.Examples.MaskedEntryControl.FeaturesCategory.LocalizationExample.Localization"
                         Margin="5">
     <telerik:RadContentView.Content>
-        <VerticalStackLayout>
+        <VerticalStackLayout HorizontalOptions="{OnPlatform Default=Fill, MacCatalyst=Start, WinUI=Start}"
+                             WidthRequest="{OnPlatform MacCatalyst=300, WinUI=300}">
             <Label Text="Please, change your device language to german and restart the application." FontSize="Body"/>
             
             <Label Text="Email mask:" Margin="0, 25, 0, 0" />

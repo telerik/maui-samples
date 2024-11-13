@@ -5,27 +5,28 @@
                         x:Class="SDKBrowserMaui.Examples.DataGridControl.KeyboardNavigationCategory.KeyboardNavigationExample.KeyboardNavigation">
     <telerik:RadContentView.Resources>
         <ResourceDictionary>
-            <!-- >> datagrid-keyboard-navigation-style -->
-            <telerik:DataGridBorderStyle x:Key="CurrentCellStyle"
-                                         BorderColor="Black"
-                                         BackgroundColor="LightGray"
-                                         BorderThickness="2"/>
-            <!-- << datagrid-keyboard-navigation-style -->
+            <!-- >> datagrid-current-cell-style -->
+            <Style TargetType="telerik:DataGridCurrentCellAppearance" x:Key="CurrentCellStyle">
+                <Setter Property="BackgroundColor" Value="LightGray" />
+                <Setter Property="BorderColor" Value="Black" />
+                <Setter Property="BorderThickness" Value="2" />
+            </Style>
+            <!-- << datagrid-current-cell-style -->
         </ResourceDictionary>
     </telerik:RadContentView.Resources>
+    <!-- >> datagrid-currentcell-xaml -->
     <Grid RowDefinitions="Auto,*">
         <HorizontalStackLayout Spacing="10" 
                                Margin="5">
             <Label Text="Current cell info:"/>
             <Label x:Name="cellInfo"/>
         </HorizontalStackLayout>
-        <!-- >> datagrid-keyboard-navigation-xaml -->
         <telerik:RadDataGrid x:Name="dataGrid" 
                              Grid.Row="1"
                              ItemsSource="{Binding People}"
                              CurrentCellChanged="dataGrid_CurrentCellChanged"
                              CurrentCell="{Binding Cell, Mode=TwoWay}"
                              CurrentCellStyle="{StaticResource CurrentCellStyle}"/>
-        <!-- << datagrid-keyboard-navigation-xaml -->
     </Grid>
+    <!-- << datagrid-currentcell-xaml -->
 </telerik:RadContentView>

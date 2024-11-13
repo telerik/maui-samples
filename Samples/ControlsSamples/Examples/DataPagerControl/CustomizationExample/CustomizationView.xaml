@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="QSF.Examples.DataPagerControl.CustomizationExample.CustomizationView"
+             Padding="{OnIdiom Default='16, 20', Phone=16}">
+    <ContentView.Resources>
+        <telerik:ColorFilter x:Key="DataPagerButtonAccentColorAlpha38" Color="{StaticResource ApplicationAccentColor}" Alpha="0.38" />
+        <telerik:ColorFilter x:Key="DataPagerButtonAccentColorAlpha60" Color="{StaticResource ApplicationAccentColor}" Alpha="0.60" />
+        <telerik:ColorFilter x:Key="DataPagerButtonNonAccentColorAlpha16" Color="{StaticResource DefaultTextColor}" Alpha="0.16" />
+        <telerik:ColorFilter x:Key="DataPagerButtonNonAccentColorAlpha28" Color="{StaticResource DefaultTextColor}" Alpha="0.28" />
+        <telerik:ColorFilter x:Key="DataPagerButtonNonAccentColorAlpha60" Color="{StaticResource DefaultTextColor}" Alpha="0.60" />
+        <Style x:Key="DataPagerButtonStyle" TargetType="telerik:DataPagerButton">
+            <Setter Property="MinimumWidthRequest" Value="36" />
+            <Setter Property="MinimumHeightRequest" Value="36" />
+            <Setter Property="CornerRadius" Value="18" />
+            <Setter Property="TextColor" Value="{StaticResource DefaultTextColor}" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="VerticalOptions" Value="Center" />
+            <Setter Property="ControlTemplate">
+                <ControlTemplate>
+                    <telerik:RadEffectsView x:Name="PART_EffectsView"
+                                            BackgroundColor="{TemplateBinding BackgroundColor}"
+                                            Background="{TemplateBinding Background}"
+                                            BorderColor="{TemplateBinding BorderColor}"
+                                            BorderBrush="{TemplateBinding BorderBrush}"
+                                            BorderThickness="{TemplateBinding BorderThickness}"
+                                            CornerRadius="{TemplateBinding CornerRadius, Converter={x:Static telerik:CornerRadiusToThicknessConverter.Instance}}"
+                                            Padding="{TemplateBinding Padding}">
+                        <ContentPresenter telerik:ContentPresenterUtils.Content="{TemplateBinding ActualContent}" />
+                    </telerik:RadEffectsView>
+                </ControlTemplate>
+            </Setter>
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <Setter.Value>
+                    <VisualStateGroupList>
+                        <VisualStateGroup Name="CommonStates">
+                            <VisualState Name="Normal" />
+                            <VisualState Name="PointerOver">
+                                <VisualState.Setters>
+                                    <Setter Property="telerik:DataPagerButton.Background" Value="{StaticResource DataPagerButtonNonAccentColorAlpha16}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="Pressed">
+                                <VisualState.Setters>
+                                    <Setter Property="telerik:DataPagerButton.TextColor" Value="{StaticResource DataPagerButtonNonAccentColorAlpha60}" />
+                                    <Setter Property="telerik:DataPagerButton.Background" Value="{StaticResource DataPagerButtonNonAccentColorAlpha28}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="Disabled">
+                                <VisualState.Setters>
+                                    <Setter Property="Opacity" Value="0.6" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="DataPagerNumericButtonStyle" TargetType="telerik:DataPagerButton" BasedOn="{StaticResource DataPagerButtonStyle}">
+            <Setter Property="TextColor" Value="{StaticResource ApplicationAccentColor}" />
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup Name="CommonStates">
+                        <VisualState Name="Normal" />
+                        <VisualState Name="PointerOver">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:DataPagerButton.Background" Value="{StaticResource DataPagerButtonAccentColorAlpha38}" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="Pressed">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:DataPagerButton.TextColor" Value="{StaticResource DataPagerButtonAccentColorAlpha60}" />
+                                <Setter Property="telerik:DataPagerButton.Background" Value="{StaticResource DataPagerButtonAccentColorAlpha38}" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:DataPagerButton.TextColor" Value="{StaticResource TextOnAccentColor}" />
+                                <Setter Property="telerik:DataPagerButton.Background" Value="{StaticResource ApplicationAccentColor}" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="SelectedDisabled">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:DataPagerButton.TextColor" Value="{StaticResource TextOnAccentColor}" />
+                                <Setter Property="telerik:DataPagerButton.Background" Value="{StaticResource ApplicationAccentColor}" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="Disabled">
+                            <VisualState.Setters>
+                                <Setter Property="Opacity" Value="0.6" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentView.Resources>
+    <VerticalStackLayout>
+        <telerik:RadDataPager x:Name="dataPager"
+                              ContentPadding="16, 4"
+                              HeightRequest="48"
+                              NavigateToFirstPageButtonStyle="{StaticResource DataPagerButtonStyle}"
+                              NavigateToPreviousPageButtonStyle="{StaticResource DataPagerButtonStyle}"
+                              NavigateToNextPageButtonStyle="{StaticResource DataPagerButtonStyle}"
+                              NavigateToLastPageButtonStyle="{StaticResource DataPagerButtonStyle}"
+                              NumericButtonStyle="{StaticResource DataPagerNumericButtonStyle}" />
+    </VerticalStackLayout>
+</ContentView>

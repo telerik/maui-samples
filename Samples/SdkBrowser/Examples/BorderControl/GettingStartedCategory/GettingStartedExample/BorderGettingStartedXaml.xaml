@@ -5,15 +5,19 @@
                         x:Class="SDKBrowserMaui.Examples.BorderControl.GettingStartedCategory.GettingStartedExample.BorderGettingStartedXaml"
                         Margin="5">
     <telerik:RadContentView.Content>
-        <VerticalStackLayout>
+        <HorizontalStackLayout VerticalOptions="Start"
+                               Spacing="4">
+            <Image Source="samplebot.png"
+                   WidthRequest="32"
+                   HeightRequest="32" />
             <!-- >> border-getting-started-xaml -->
-            <telerik:RadBorder BorderColor="#4488F6" 
-                               CornerRadius="5"
+            <telerik:RadBorder BorderColor="#04A2AA"
+                               CornerRadius="0, 8, 8, 0"
                                AutomationId="border"
                                BorderThickness="1">
-                <Label Text="Hello there" Margin="20" />
+                <Label Text="Hello! How can I help you today?" Margin="8" />
             </telerik:RadBorder>
             <!-- << border-getting-started-xaml -->
-        </VerticalStackLayout>
+        </HorizontalStackLayout>
     </telerik:RadContentView.Content>
 </telerik:RadContentView>

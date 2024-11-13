@@ -8,7 +8,7 @@
              NavigationPage.HasNavigationBar="False"
              ios:Page.UseSafeArea="False">
     <views:QSFPageContentView x:Name="content"
-                              Background="{AppThemeBinding Light={StaticResource SecondaryBackgroundColor}, Dark={StaticResource SecondaryBackgroundColorDark}}">
+                              Background="{StaticResource SecondaryBackgroundColor}">
         <views:QSFPageContentView.HeaderControlTemplate>
             <ControlTemplate>
                 <Grid ColumnDefinitions="Auto, *"
@@ -30,14 +30,7 @@
                 <ScrollView x:Name="scrollView"
                             Grid.Row="1"
                             Padding="10">
-                    <ContentView>
-                        <ContentView.Content>
-                            <MultiBinding Converter="{StaticResource ModelToConfigurationAreaConverter}">
-                                <Binding Path="Example" />
-                                <Binding Path="BindingContext" Source="{x:Reference content}" />
-                            </MultiBinding>
-                        </ContentView.Content>
-                    </ContentView>
+                    <ContentView Content="{Binding Converter={StaticResource ModelToConfigurationAreaConverter}}" />
                 </ScrollView>
             </ControlTemplate>
         </views:QSFPageContentView.BodyControlTemplate>

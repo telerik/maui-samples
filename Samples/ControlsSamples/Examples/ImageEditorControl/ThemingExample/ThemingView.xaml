@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        x:Class="QSF.Examples.ImageEditorControl.ThemingExample.ThemingView"
+                        Margin="{OnIdiom Default=5, Phone=0}">
+
+    <Grid ColumnDefinitions="*"
+          RowDefinitions="{OnIdiom Default='Auto,*', Phone='*, Auto'}"
+          BackgroundColor="#989898">
+        <telerik:RadImageEditorToolbar x:Name="imageEditorToolbar"
+                                       Grid.Column="{OnIdiom Default=0, Phone=0}"
+                                       Grid.Row="{OnIdiom Default=0, Phone=1}"
+                                       ImageEditor="{x:Reference imageEditor}"
+                                       OptionsPanel="{x:Reference optionsPanel}" />
+        <Grid ColumnDefinitions="*, Auto"
+              Grid.Column="0"
+              Grid.Row="{OnIdiom Default=1, Phone=0}">
+            <telerik:RadImageEditor x:Name="imageEditor"
+                                    Grid.Column="0" 
+                                    Source="navigationview_firstlook_image_7.png" 
+                                    Padding="32" />
+            <telerik:RadToolbarOptionsPanel x:Name="optionsPanel"
+                                            Grid.Column="1" />
+        </Grid>
+    </Grid>
+</telerik:RadContentView>

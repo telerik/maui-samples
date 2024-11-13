@@ -12,7 +12,7 @@
                    HorizontalOptions="Center" />
         </Grid>
         <telerik:RadBorder Grid.Row="1"
-                           BackgroundColor="{AppThemeBinding Light={StaticResource SecondaryBackgroundColor}, Dark={StaticResource SecondaryBackgroundColorDark}}"
+                           BackgroundColor="{StaticResource SecondaryBackgroundColor}"
                            CornerRadius="4"
                            Padding="{OnPlatform Default=0, MacCatalyst='16, 20', WinUI='16, 20'}">
             <Grid RowDefinitions="Auto, *"

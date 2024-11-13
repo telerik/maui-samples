@@ -58,18 +58,18 @@
                         <VisualState Name="Normal" />
                         <VisualState Name="PointerOver">
                             <VisualState.Setters>
-                                <Setter Property="telerik:NavigationViewItemView.BackgroundColor" Value="{AppThemeBinding Light=#EBECEC, Dark=#757676}" />
+                                <Setter Property="telerik:NavigationViewItemView.BackgroundColor" Value="#EBECEC" />
                             </VisualState.Setters>
                         </VisualState>
                         <VisualState Name="Selected">
                             <VisualState.Setters>
-                                <Setter Property="telerik:NavigationViewItemView.BackgroundColor" Value="{AppThemeBinding Light=#DBDCDC, Dark=#686969}" />
-                                <Setter Property="telerik:NavigationViewItemView.TextColor" Value="{AppThemeBinding Light=#000000, Dark=#FFFFFF}" />
+                                <Setter Property="telerik:NavigationViewItemView.BackgroundColor" Value="#DBDCDC" />
+                                <Setter Property="telerik:NavigationViewItemView.TextColor" Value="#000000" />
                             </VisualState.Setters>
                         </VisualState>
                         <VisualState Name="Disabled">
                             <VisualState.Setters>
-                                <Setter Property="telerik:NavigationViewItemView.TextColor" Value="{AppThemeBinding Light=#61000000, Dark=#61FFFFFF}" />
+                                <Setter Property="telerik:NavigationViewItemView.TextColor" Value="#61000000" />
                             </VisualState.Setters>
                         </VisualState>
                     </VisualStateGroup>
@@ -91,9 +91,7 @@
         <Style x:Key="ControlsMenuPaneStyle" TargetType="telerik:NavigationViewPane">
             <Setter Property="VerticalScrollBarVisibility" Value="Never" />
             <Setter Property="BorderThickness" Value="0, 0, 1, 0" />
-            <Setter Property="BorderColor"
-                    Value="{AppThemeBinding Light={OnPlatform Default=#DFDFDF, WinUI=#D9D9D9},
-                                            Dark={OnPlatform Default=#A2A2A7, WinUI=#404040}}" />
+            <Setter Property="BorderColor" Value="{OnPlatform Default=#DFDFDF, WinUI=#D9D9D9}" />
         </Style>
         <Style x:Key="AccentHeaderButtonStyle" TargetType="telerik:NavigationViewToggleButton">
             <Setter Property="FontFamily" Value="TelerikControlsIcons" />
@@ -103,9 +101,7 @@
         </Style>
         <Style x:Key="ControlsMenuHeaderStyle" TargetType="telerik:NavigationViewHeader">
             <Setter Property="BorderThickness" Value="0, 0, 1, 0" />
-            <Setter Property="BorderColor"
-                    Value="{AppThemeBinding Light={OnPlatform Default=#DFDFDF, WinUI=#D9D9D9},
-                                            Dark={OnPlatform Default=#A2A2A7, WinUI=#404040}}" />
+            <Setter Property="BorderColor" Value="{OnPlatform Default=#DFDFDF, WinUI=#D9D9D9}" />
             <Setter Property="HeaderButtonStyle" Value="{StaticResource AccentHeaderButtonStyle}" />
         </Style>
     </VisualElement.Resources>
@@ -138,7 +134,7 @@
                                         IsSelected="{Binding IsSettingsSelected, Mode=TwoWay}"
                                         Style="{StaticResource SettingsItemStyle}" />
         </telerik:RadNavigationView.Items>
-        <Grid BackgroundColor="{AppThemeBinding Light={StaticResource DefaultBackgroundColor}, Dark={StaticResource DefaultBackgroundColorDark}}">
+        <Grid BackgroundColor="{StaticResource DefaultBackgroundColor}">
             <HorizontalStackLayout VerticalOptions="Start">
                 <Image Source="homepagebackground.png"
                        Aspect="Center" />

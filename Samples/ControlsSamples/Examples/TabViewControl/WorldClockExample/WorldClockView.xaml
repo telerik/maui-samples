@@ -11,7 +11,7 @@
             <Color x:Key="SecondaryColorLight">#DE000000</Color>
             
             <Style TargetType="telerik:TabViewHeader" x:Key="TabViewHeaderStyle">
-                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=#F8F8F8}"/>
+                <Setter Property="BackgroundColor" Value="#F8F8F8" />
             </Style>
 
             <Style TargetType="telerik:TabViewHeaderItem" x:Key="TabViewHeaderItemStyle">
@@ -38,7 +38,7 @@
             </Style>
             
             <Style x:Key="CurrentDateStyle" TargetType="Label">
-                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource PrimaryColorLight}}" />
+                <Setter Property="TextColor" Value="{StaticResource PrimaryColorLight}" />
                 <Setter Property="FontSize" Value="Medium" />
                 <Setter Property="HorizontalOptions" Value="Center" />
                 <Setter Property="Margin" Value="0, 24, 0, 24" />
@@ -53,21 +53,21 @@
             </Style>
             
             <Style x:Key="GmtStyle" TargetType="Label">
-                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource PrimaryColorLight}}" />
+                <Setter Property="TextColor" Value="{StaticResource PrimaryColorLight}" />
                 <Setter Property="FontSize" Value="Medium" />
                 <Setter Property="HorizontalOptions" Value="Center" />
                 <Setter Property="Margin" Value="0, 0, 0, 3" />
             </Style>
             
             <Style x:Key="CityNameStyle" TargetType="Label">
-                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource SecondaryColorLight}}" />
+                <Setter Property="TextColor" Value="{StaticResource SecondaryColorLight}" />
                 <Setter Property="FontSize" Value="Title" />
                 <Setter Property="HorizontalOptions" Value="Center" />
                 <Setter Property="Margin" Value="0, 0, 0, 20" />
             </Style>
             
             <Style x:Key="CurrentTimeStyle" TargetType="Label">
-                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource SecondaryColorLight}}" />
+                <Setter Property="TextColor" Value="{StaticResource SecondaryColorLight}" />
                 <Setter Property="FontSize" Value="100" />
                 <Setter Property="HorizontalOptions" Value="Center" />
                 <Setter Property="FontAttributes" Value="Bold" />

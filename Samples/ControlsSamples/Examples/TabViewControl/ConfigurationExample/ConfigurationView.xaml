@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="QSF.Examples.TabViewControl.ConfigurationExample.ConfigurationView"
+             Padding="16">
+    <ContentView.Resources>
+        <Style TargetType="telerik:RadCollectionViewItemView">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderColor" Value="{StaticResource DefaultBorderColor}" />
+            <Setter Property="BorderThickness" Value="0, 0, 0, 1" />
+        </Style>
+        <DataTemplate x:Key="CollectionViewItemTemplate">
+            <Grid RowDefinitions="Auto, Auto"
+                  RowSpacing="8"
+                  Padding="12">
+                <HorizontalStackLayout Spacing="8">
+                    <Label Text="&#xe836;"
+                           FontFamily="TelerikFontExamples" />
+                    <Label Text="{Binding Name}" />
+                </HorizontalStackLayout>
+                <HorizontalStackLayout Grid.Row="1"
+                                       Spacing="8">
+                    <Label FontFamily="TelerikFontExamples"
+                           Text="&#xe85d;" />
+                    <Label Text="{Binding Number}" />
+                </HorizontalStackLayout>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="TabViewItemContentTemplate">
+            <telerik:RadCollectionView ItemsSource="{Binding Customers}"
+                                       ItemTemplate="{StaticResource CollectionViewItemTemplate}"
+                                       Margin="12" />
+        </DataTemplate>
+        <DataTemplate x:Key="TabViewItemTemplate">
+            <telerik:TabViewItem HeaderText="{Binding Name}"
+                                 ContentTemplate="{StaticResource TabViewItemContentTemplate}" />
+        </DataTemplate>
+    </ContentView.Resources>
+    <telerik:RadTabView x:Name="tabView"
+                        ItemsSource="{Binding Data}"
+                        ItemTemplate="{StaticResource TabViewItemTemplate}"
+                        HeaderPosition="{Binding HeaderPosition}"
+                        HeaderSpacing="{Binding HeaderSpacing}"
+                        IsHeaderScrollable="{Binding IsHeaderScrollable}"
+                        IsHeaderOverlaid="{Binding IsHeaderOverlaid}"
+                        IsContentSwipeEnabled="{Binding IsContentSwipeEnabled}" />
+</ContentView>

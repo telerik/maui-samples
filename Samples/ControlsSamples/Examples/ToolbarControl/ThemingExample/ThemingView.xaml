@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        x:Class="QSF.Examples.ToolbarControl.ThemingExample.ThemingView"
+                        Padding="10">
+
+    <telerik:RadContentView.Resources>
+        <ResourceDictionary>
+            <Style TargetType="telerik:RadEntry" x:Key="entryStyle">
+                <Setter Property="Placeholder" Value="Search here or type a URL" />
+                <Setter Property="ReserveSpaceForErrorView" Value="False" />
+            </Style>
+            <Style TargetType="telerik:EntryToolbarItemView">
+                <Setter Property="EntryStyle" Value="{StaticResource entryStyle}" />
+                <Setter Property="WidthRequest" Value="240" />
+            </Style>
+            <Style TargetType="telerik:RadBusyIndicator" x:Key="busyIndicatorStyle">
+                <Setter Property="AnimationType" Value="Animation9" />
+            </Style>
+            <Style TargetType="telerik:BusyIndicatorToolbarItemView">
+                <Setter Property="BusyIndicatorStyle" Value="{StaticResource busyIndicatorStyle}" />
+                <Setter Property="HorizontalOptions" Value="Start" />
+            </Style>
+        </ResourceDictionary>
+    </telerik:RadContentView.Resources>
+
+    <VerticalStackLayout>
+        <Label Text="Button items (without drop-down menus):"
+               FontAttributes="Bold"
+               Margin="0, 10" />
+
+        <telerik:RadToolbar x:Name="toolbarButtons"
+                            AutomationId="toolbarButtons">
+            <telerik:ButtonToolbarItem Text="Button">
+                <telerik:ButtonToolbarItem.ImageSource>
+                    <FontImageSource Glyph="{x:Static telerik:TelerikFont.IconUndo}"
+                                     FontFamily="{x:Static telerik:TelerikFont.Name}"
+                                     Size="16" />
+                </telerik:ButtonToolbarItem.ImageSource>
+            </telerik:ButtonToolbarItem>
+            <telerik:SeparatorToolbarItem />
+            <telerik:ToggleButtonToolbarItem Text="ToggleButton">
+                <telerik:ToggleButtonToolbarItem.ImageSource>
+                    <FontImageSource Glyph="{x:Static telerik:TelerikFont.IconBold}"
+                                     FontFamily="{x:Static telerik:TelerikFont.Name}"
+                                     Size="16" />
+                </telerik:ToggleButtonToolbarItem.ImageSource>
+            </telerik:ToggleButtonToolbarItem>
+            <telerik:SeparatorToolbarItem />
+            <telerik:GroupToolbarItem>
+                <telerik:RadioButtonToolbarItem Text="RadioButton">
+                    <telerik:RadioButtonToolbarItem.ImageSource>
+                        <FontImageSource Glyph="{x:Static telerik:TelerikFont.IconAlignLeft}"
+                                         FontFamily="{x:Static telerik:TelerikFont.Name}"
+                                         Size="16" />
+                    </telerik:RadioButtonToolbarItem.ImageSource>
+                </telerik:RadioButtonToolbarItem>
+                <telerik:RadioButtonToolbarItem Text="RadioButton">
+                    <telerik:RadioButtonToolbarItem.ImageSource>
+                        <FontImageSource Glyph="{x:Static telerik:TelerikFont.IconAlignCenter}"
+                                         FontFamily="{x:Static telerik:TelerikFont.Name}"
+                                         Size="16" />
+                    </telerik:RadioButtonToolbarItem.ImageSource>
+                </telerik:RadioButtonToolbarItem>
+                <telerik:RadioButtonToolbarItem Text="RadioButton">
+                    <telerik:RadioButtonToolbarItem.ImageSource>
+                        <FontImageSource Glyph="{x:Static telerik:TelerikFont.IconAlignRight}"
+                                         FontFamily="{x:Static telerik:TelerikFont.Name}"
+                                         Size="16" />
+                    </telerik:RadioButtonToolbarItem.ImageSource>
+                </telerik:RadioButtonToolbarItem>
+                <telerik:RadioButtonToolbarItem Text="RadioButton">
+                    <telerik:RadioButtonToolbarItem.ImageSource>
+                        <FontImageSource Glyph="{x:Static telerik:TelerikFont.IconAlignJustify}"
+                                         FontFamily="{x:Static telerik:TelerikFont.Name}"
+                                         Size="16" />
+                    </telerik:RadioButtonToolbarItem.ImageSource>
+                </telerik:RadioButtonToolbarItem>
+            </telerik:GroupToolbarItem>
+        </telerik:RadToolbar>
+
+        <Label Text="Button items with drop-down menus:"
+               FontAttributes="Bold"
+               Margin="0, 10" />
+        <telerik:RadToolbar x:Name="toolbarButtonsWithDropDowns"
+                            AutomationId="toolbarButtonsWithDropDowns">
+            <telerik:DropDownButtonToolbarItem Text="DropDownButton">
+                <telerik:DropDownButtonToolbarItem.ImageSource>
+                    <FontImageSource Glyph="{x:Static telerik:TelerikFont.IconBulleting}"
+                                     FontFamily="{x:Static telerik:TelerikFont.Name}"
+                                     Size="16" />
+                </telerik:DropDownButtonToolbarItem.ImageSource>
+                <telerik:DropDownButtonToolbarItem.DropDownContentTemplate>
+                    <ControlTemplate>
+                        <telerik:DropDownButtonToolbarItemViewContent>
+                            <VerticalStackLayout Padding="10">
+                                <Label Text="Bulleted" />
+                                <Label Text="Numbered" />
+                                <Label Text="Multilevel" />
+                            </VerticalStackLayout>
+                        </telerik:DropDownButtonToolbarItemViewContent>
+                    </ControlTemplate>
+                </telerik:DropDownButtonToolbarItem.DropDownContentTemplate>
+            </telerik:DropDownButtonToolbarItem>
+            <telerik:SeparatorToolbarItem />
+            <telerik:SplitButtonToolbarItem Text="Save As...">
+                <telerik:SplitButtonToolbarItem.Style>
+                    <Style TargetType="telerik:SplitButtonToolbarItemView">
+                        <Setter Property="DisplayOptions" Value="Text" />
+                        <Setter Property="MinimumWidthRequest" Value="{OnIdiom Default=110, Phone=125}" />
+                    </Style>
+                </telerik:SplitButtonToolbarItem.Style>
+                <telerik:ButtonToolbarItem Text="Save as TXT">
+                    <telerik:ButtonToolbarItem.ImageSource>
+                        <FontImageSource Glyph="{x:Static telerik:TelerikFont.IconFile}"
+                                         FontFamily="{x:Static telerik:TelerikFont.Name}"
+                                         Size="16" />
+                    </telerik:ButtonToolbarItem.ImageSource>
+                </telerik:ButtonToolbarItem>
+                <telerik:ButtonToolbarItem Text="Save as DOCX">
+                    <telerik:ButtonToolbarItem.ImageSource>
+                        <FontImageSource Glyph="{x:Static telerik:TelerikFont.IconFile}"
+                                         FontFamily="{x:Static telerik:TelerikFont.Name}"
+                                         Size="16" />
+                    </telerik:ButtonToolbarItem.ImageSource>
+                </telerik:ButtonToolbarItem>
+                <telerik:ButtonToolbarItem Text="Save as PDF">
+                    <telerik:ButtonToolbarItem.ImageSource>
+                        <FontImageSource Glyph="{x:Static telerik:TelerikFont.IconFile}"
+                                         FontFamily="{x:Static telerik:TelerikFont.Name}"
+                                         Size="16" />
+                    </telerik:ButtonToolbarItem.ImageSource>
+                </telerik:ButtonToolbarItem>
+            </telerik:SplitButtonToolbarItem>
+            <telerik:SeparatorToolbarItem />
+            <telerik:ListPickerButtonToolbarItem Text="ListPickerButton">
+                <telerik:ListPickerButtonToolbarItem.ImageSource>
+                    <FontImageSource Glyph="{x:Static telerik:TelerikFont.IconFontSize}"
+                                     FontFamily="{x:Static telerik:TelerikFont.Name}"
+                                     Size="16" />
+                </telerik:ListPickerButtonToolbarItem.ImageSource>
+                <telerik:ListPickerButtonToolbarItem.ItemsSource>
+                    <x:Array Type="{x:Type x:Int32}">
+                        <x:Int32>8</x:Int32>
+                        <x:Int32>10</x:Int32>
+                        <x:Int32>12</x:Int32>
+                        <x:Int32>14</x:Int32>
+                        <x:Int32>16</x:Int32>
+                        <x:Int32>18</x:Int32>
+                    </x:Array>
+                </telerik:ListPickerButtonToolbarItem.ItemsSource>
+            </telerik:ListPickerButtonToolbarItem>
+            <telerik:SeparatorToolbarItem />
+            <telerik:OptionsButtonToolbarItem Text="Filters">
+                <telerik:OptionsButtonToolbarItem.ImageSource>
+                    <FontImageSource Glyph="{x:Static telerik:TelerikFont.IconFilters}"
+                                     FontFamily="{x:Static telerik:TelerikFont.Name}"
+                                     Size="16" />
+                </telerik:OptionsButtonToolbarItem.ImageSource>
+                <telerik:OptionsButtonToolbarItem.OptionsContentTemplate>
+                    <ControlTemplate>
+                        <VerticalStackLayout Spacing="10"
+                                             WidthRequest="200"
+                                             Padding="20">
+                            <Label Text="Brightness" />
+                            <Slider />
+                            <Label Text="Contrast" />
+                            <Slider />
+                            <HorizontalStackLayout Spacing="10"
+                                                   HorizontalOptions="End">
+                                <Button Text="OK" />
+                                <Button Text="Cancel" />
+                            </HorizontalStackLayout>
+                        </VerticalStackLayout>
+                    </ControlTemplate>
+                </telerik:OptionsButtonToolbarItem.OptionsContentTemplate>
+            </telerik:OptionsButtonToolbarItem>
+        </telerik:RadToolbar>
+
+        <Label Text="NavigationButton item containing Slider item:"
+               FontAttributes="Bold"
+               Margin="0, 10" />
+        <telerik:RadToolbar x:Name="toolbarNavigationButton"
+                            AutomationId="toolbarNavigationButton">
+            <telerik:RadToolbar.Resources>
+                <Style TargetType="telerik:NavigationButtonToolbarItemView">
+                    <Setter Property="VerticalOptions" Value="Center" />
+                </Style>
+                <Style TargetType="telerik:BackNavigationButtonToolbarItemView">
+                    <Setter Property="VerticalOptions" Value="Center" />
+                </Style>
+                <Style TargetType="telerik:LabelToolbarItemView">
+                    <Setter Property="DisplayOptions" Value="Text" />
+                </Style>
+                <Style TargetType="telerik:SliderToolbarItemView">
+                    <Setter Property="Padding" Value="{OnPlatform Default=0, WinUI=2}" />
+                </Style>
+            </telerik:RadToolbar.Resources>
+            <telerik:LabelToolbarItem Text="Brightness Level:" />
+            <telerik:NavigationButtonToolbarItem Text="NavigationButton">
+                <telerik:NavigationButtonToolbarItem.ImageSource>
+                    <FontImageSource Glyph="{x:Static telerik:TelerikFont.IconBrightness}"
+                                     FontFamily="{x:Static telerik:TelerikFont.Name}"
+                                     Size="16" />
+                </telerik:NavigationButtonToolbarItem.ImageSource>
+                <telerik:SliderToolbarItem Minimum="0"
+                                           Maximum="100"
+                                           Value="50" />
+            </telerik:NavigationButtonToolbarItem>
+        </telerik:RadToolbar>
+
+        <Label Text="Entry and BusyIndicator items:"
+               FontAttributes="Bold"
+               Margin="0, 10" />
+
+        <telerik:RadToolbar x:Name="toolbarEntryAndBusyIndicator"
+                            AutomationId="toolbarEntryAndBusyIndicator">
+            <telerik:RadToolbar.Resources>
+                <Style TargetType="telerik:ButtonToolbarItemView">
+                    <Setter Property="VerticalOptions" Value="Center" />
+                </Style>
+            </telerik:RadToolbar.Resources>
+            <telerik:ButtonToolbarItem Text="Previous"
+                                       IsVisible="{OnIdiom Default=True, Phone=False}">
+                <telerik:ButtonToolbarItem.ImageSource>
+                    <FontImageSource Glyph="&#xe831;"
+                                     FontFamily="{x:Static telerik:TelerikFont.Name}"
+                                     Size="16" />
+                </telerik:ButtonToolbarItem.ImageSource>
+            </telerik:ButtonToolbarItem>
+            <telerik:ButtonToolbarItem Text="Next"
+                                       IsVisible="{OnIdiom Default=True, Phone=False}">
+                <telerik:ButtonToolbarItem.ImageSource>
+                    <FontImageSource Glyph="&#xe820;"
+                                     FontFamily="{x:Static telerik:TelerikFont.Name}"
+                                     Size="16" />
+                </telerik:ButtonToolbarItem.ImageSource>
+            </telerik:ButtonToolbarItem>
+            <telerik:ButtonToolbarItem Text="Reload"
+                                       IsVisible="{OnIdiom Default=True, Phone=False}">
+                <telerik:ButtonToolbarItem.ImageSource>
+                    <FontImageSource Glyph="&#xe86e;"
+                                     FontFamily="{x:Static telerik:TelerikFont.Name}"
+                                     Size="16" />
+                </telerik:ButtonToolbarItem.ImageSource>
+            </telerik:ButtonToolbarItem>
+            <telerik:EntryToolbarItem Text="https://www.telerik.com" />
+            <telerik:LabelToolbarItem Text="Loading page..."
+                                      IsVisible="{OnIdiom Default=True, Phone=False}" />
+            <telerik:BusyIndicatorToolbarItem IsBusy="True" />
+        </telerik:RadToolbar>
+    </VerticalStackLayout>
+</telerik:RadContentView>

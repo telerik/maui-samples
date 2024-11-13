@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.GridSplitterControl.FeaturesCategory.GripperStylingExample.GripperStyling">
+    <!-- >> gridsplitter-gripper-styling -->
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.Resources>
+            <Style TargetType="telerik:RadGridSplitter">
+                <Setter Property="BackgroundColor" Value="#D6EEEC"/>
+                <Setter Property="BorderColor" Value="#00897B"/>
+                <Setter Property="BorderThickness" Value="1, 0" />
+                <Setter Property="GripperColor" Value="#00897B" />
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup Name="CommonStates">
+                            <VisualState Name="Normal" />
+                            <!-- Applicable for Desktop only -->
+                            <VisualState Name="MouseOver">
+                                <VisualState.Setters>
+                                    <Setter Property="telerik:RadGridSplitter.BackgroundColor" Value="#C4E6E3" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="Disabled">
+                                <VisualState.Setters>
+                                    <Setter Property="telerik:RadGridSplitter.GripperColor" Value="#6100897B" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+        </Grid.Resources>
+        <telerik:RadBorder Background="#60CCD15C" />
+        <telerik:RadGridSplitter Grid.Column="1"
+                                 ResizeDirection="Columns" />
+        <telerik:RadBorder Background="#6081BCD1" 
+                           Grid.Column="2" />
+        <telerik:RadGridSplitter Grid.Column="3"
+                                 ResizeDirection="Columns" />
+        <Border Background="#6000897B"
+                Grid.Column="4" />
+    </Grid>
+    <!-- << gridsplitter-gripper-styling -->
+</ContentView>

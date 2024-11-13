@@ -5,9 +5,10 @@
                         x:Class="SDKBrowserMaui.Examples.DataGridControl.ColumnsCategory.HeaderFooterContentTemplateExample.HeaderFooterContentTemplate"
                         Margin="5">
     <telerik:RadContentView.Resources>
-        <telerik:DataGridColumnHeaderStyle x:Key="CustomColumnHeaderStyle"
-                                           SortIndicatorHorizontalOptions="End"
-                                           SortIndicatorMargin="{OnPlatform Default=0, Android='0, 5, 32, 0', iOS='0, 0, 32, 0'}" />
+        <Style TargetType="telerik:DataGridColumnHeaderAppearance" x:Key="CustomColumnHeaderStyle">
+            <Setter Property="SortIndicatorHorizontalOptions" Value="End" />
+            <Setter Property="SortIndicatorMargin" Value="{OnPlatform Default=0, Android='0, 5, 32, 0', iOS='0, 0, 32, 0'}" />
+        </Style>
         <!-- >> datagrid-headercontenttemplate-datatemplate -->
         <DataTemplate x:Key="CapitalColumnHeaderTemplate">
             <HorizontalStackLayout Margin="4, 0" HeightRequest="30">

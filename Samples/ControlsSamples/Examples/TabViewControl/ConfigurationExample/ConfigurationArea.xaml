@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:styles="clr-namespace:QSF.Styles"
+             xmlns:local="clr-namespace:QSF.Examples.TabViewControl.ConfigurationExample"
+             x:Class="QSF.Examples.TabViewControl.ConfigurationExample.ConfigurationArea">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <styles:ConfigurationViewResources />
+            </ResourceDictionary.MergedDictionaries>
+
+            <telerik:InvertedBooleanConverter x:Key="InvertedBooleanConverter" />
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+    <VerticalStackLayout Style="{StaticResource RootAtSeparateAreaStyle}">
+        <VerticalStackLayout Style="{StaticResource GroupAtSeparateAreaStyle}">
+            <Label Text="Header position:"
+                   Style="{StaticResource VerticalGroupLabelStyle}" />
+            <telerik:RadComboBox x:Name="headerPositionCombo"
+                                 ItemsSource="{Binding HeaderPositions}"
+                                 SelectedItem="{Binding HeaderPosition, Mode=TwoWay}"
+                                 IsClearButtonVisible="False"
+                                 AutomationId="headerPositionComboBox" />
+        </VerticalStackLayout>
+        <VerticalStackLayout Style="{StaticResource GroupAtSeparateAreaStyle}"
+                             IsEnabled="{Binding IsChecked, Source={x:Reference isHeaderOverlaidCb}, Converter={StaticResource InvertedBooleanConverter}}">
+            <Label Text="Header spacing:"
+                   Style="{StaticResource VerticalGroupLabelStyle}" />
+            <telerik:RadNumericInput x:Name="headerSpacingNumeric"
+                                     Minimum="0"
+                                     Maximum="40"
+                                     VerticalOptions="Center"
+                                     Value="{Binding HeaderSpacing}"
+                                     Step="5" />
+        </VerticalStackLayout>
+        <HorizontalStackLayout telerik:RadCheckBox.ToggleOnTap="{x:Reference isHeaderScrollableCb}"
+                               Style="{StaticResource CheckBoxGroupStyle}">
+            <telerik:RadCheckBox x:Name="isHeaderScrollableCb"
+                                 IsChecked="{Binding IsHeaderScrollable}" 
+                                 AutomationId="isHeaderScrollableCheckBox" />
+            <Label Text="Is header scrollable"
+                   Style="{StaticResource HorizontalGroupLabelAtEndStyle}" />
+        </HorizontalStackLayout>
+        <HorizontalStackLayout telerik:RadCheckBox.ToggleOnTap="{x:Reference isHeaderOverlaidCb}"
+                               Style="{StaticResource CheckBoxGroupStyle}">
+            <telerik:RadCheckBox x:Name="isHeaderOverlaidCb"
+                                 IsChecked="{Binding IsHeaderOverlaid}" 
+                                 AutomationId="isHeaderOverlaidCheckBox" />
+            <Label Text="Is header overlaid"
+                   Style="{StaticResource HorizontalGroupLabelAtEndStyle}" />
+        </HorizontalStackLayout>
+        <HorizontalStackLayout telerik:RadCheckBox.ToggleOnTap="{x:Reference isContentSwipeEnabledCb}"
+                               Style="{StaticResource CheckBoxGroupStyle}">
+            <telerik:RadCheckBox x:Name="isContentSwipeEnabledCb"
+                                 IsChecked="{Binding IsContentSwipeEnabled}" 
+                                 AutomationId="isContentSwipeEnabledCheckBox" />
+            <Label Text="Is content swipe enabled"
+                   Style="{StaticResource HorizontalGroupLabelAtEndStyle}" />
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
+</ContentView>

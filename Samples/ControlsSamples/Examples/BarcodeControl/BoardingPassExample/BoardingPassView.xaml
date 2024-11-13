@@ -6,8 +6,8 @@
     <telerik:RadContentView.Resources>
         <ResourceDictionary>
             <Color x:Key="BoardingPassAccentColor">#3A6BC7</Color>
-            <Color x:Key="DarkBackgroundColorLight">#F5F6F7</Color>
-            <Color x:Key="TextColorLight">#4A4E52</Color>
+            <Color x:Key="BackgroundColor">#F5F6F7</Color>
+            <Color x:Key="TextColor">#4A4E52</Color>
 
             <Style TargetType="Label" x:Key="PassBoxHeaderLabelStyle">
                 <Setter Property="TextColor" Value="White" />
@@ -45,7 +45,7 @@
 
     <ScrollView>
         <Grid Padding="20"
-              BackgroundColor="{AppThemeBinding Light={StaticResource DarkBackgroundColorLight}}">
+              BackgroundColor="{StaticResource BackgroundColor}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
@@ -59,7 +59,7 @@
                 </HorizontalStackLayout>
             </telerik:RadBorder>
 
-            <telerik:RadBorder BackgroundColor="{AppThemeBinding Light=White}" 
+            <telerik:RadBorder BackgroundColor="White"
                                Grid.Row="1" 
                                CornerRadius="0, 0, 6, 6">
                 <Grid Padding="20, 0" 
@@ -82,7 +82,7 @@
                         <Label Text="Portugal" HorizontalOptions="Center" Style="{StaticResource DestinationsBodyLabelStyle}" />
                     </VerticalStackLayout>
 
-                    <BoxView BackgroundColor="{StaticResource DarkBackgroundColorLight}" Grid.Row="1" Grid.ColumnSpan="3" HeightRequest="2" Margin="0, 10" />
+                    <BoxView BackgroundColor="{StaticResource BackgroundColor}" Grid.Row="1" Grid.ColumnSpan="3" HeightRequest="2" Margin="0, 10" />
 
                     <Label Text="Passenger" Style="{StaticResource PassBoxPropertyNameLabelStyle}" Grid.Row="2" Grid.ColumnSpan="2" />
                     <Label Text="Mrs. Lara Howard" Grid.Row="3" Grid.ColumnSpan="2" Style="{StaticResource PassBoxPropertyValueLabelStyle}" />
@@ -99,7 +99,7 @@
                     <Label Text="Hour" Style="{StaticResource PassBoxPropertyNameLabelStyle}" Grid.Row="4" Grid.Column="2" />
                     <Label Text="6.30 pm" Grid.Row="5" Grid.Column="2" Style="{StaticResource PassBoxPropertyValueLabelStyle}" />
 
-                    <BoxView BackgroundColor="{StaticResource DarkBackgroundColorLight}" Grid.Row="6" Grid.ColumnSpan="3" HeightRequest="2" Margin="0, 30, 0, 0" />
+                    <BoxView BackgroundColor="{StaticResource BackgroundColor}" Grid.Row="6" Grid.ColumnSpan="3" HeightRequest="2" Margin="0, 30, 0, 0" />
 
                     <Label Text="Terminal" Style="{StaticResource PassBoxPropertyNameLabelStyle}" Grid.Row="7" />
                     <Label Text="12" Grid.Row="8" Grid.ColumnSpan="2" Style="{StaticResource PassBoxPropertyValueLabelStyle}" />

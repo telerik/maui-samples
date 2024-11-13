@@ -20,17 +20,17 @@
     </telerik:RadContentView.Resources>
 
     <Grid RowDefinitions="Auto, *">
-        <VerticalStackLayout BackgroundColor="{AppThemeBinding Light={StaticResource DefaultBackgroundColor}, Dark={StaticResource DefaultBackgroundColorDark}}"
-                             Padding="16, 24">
-            <HorizontalStackLayout HorizontalOptions="Center"
-                                   VerticalOptions="End"
-                                   Spacing="10"
-                                   Margin="0, 0, 0, 12">
-                    <Label Text="File:"
-                           Margin="0" />
-                    <Label Text="RadSpreadProcessingFile1.xlsx"
-                           FontAttributes="Bold"
-                           Margin="0" />
+        <telerik:RadBorder Style="{StaticResource ControlWrapperBorderStyle}">
+            <VerticalStackLayout>
+                <HorizontalStackLayout HorizontalOptions="Center"
+                                       VerticalOptions="End"
+                                       Spacing="10"
+                                       Margin="0, 0, 0, 12">
+                        <Label Text="File:"
+                               Margin="0" />
+                        <Label Text="RadSpreadProcessingFile1.xlsx"
+                               FontAttributes="Bold"
+                               Margin="0" />
                 </HorizontalStackLayout>
                 <telerik:RadButton Grid.Row="1"
                                    Style="{StaticResource SubmitButtonStyle}"
@@ -38,8 +38,9 @@
                                    VerticalOptions="{OnPlatform Default=End, WinUI=Center, MacCatalyst=Center}"
                                    HorizontalOptions="Center"
                                    Command="{Binding ViewDocumentWithCommentsCommand}" 
-                                   AutomationId="viewDocumentButton"/>
-        </VerticalStackLayout>
+                                   AutomationId="viewDocumentButton" />
+            </VerticalStackLayout>
+        </telerik:RadBorder>
         <ScrollView Grid.Row="1"
                     Margin="{OnIdiom Default='0, 24, 0, 0', Desktop='0, 40, 0, 0'}"
                     Padding="{OnIdiom Default=0, Phone=16}">
@@ -53,15 +54,15 @@
                     <Label Text="Related Cell:" />
                     <telerik:RadEntry Text="{Binding RelatedCell, Mode=TwoWay}"
                                       WidthRequest="{OnPlatform WinUI=300, MacCatalyst=300}" 
-                                      AutomationId="cellEntry"/>
+                                      AutomationId="cellEntry" />
                     <Label Text="Author Name:" />
                     <telerik:RadEntry Text="{Binding Author, Mode=TwoWay}"
                                       WidthRequest="{OnPlatform WinUI=300, MacCatalyst=300}" 
-                                      AutomationId="authorNameEntry"/>
+                                      AutomationId="authorNameEntry" />
                     <Label Text="Comment Text:" />
                     <telerik:RadEntry Text="{Binding Text, Mode=TwoWay}"
                                       WidthRequest="{OnPlatform WinUI=300, MacCatalyst=300}" 
-                                      AutomationId="commentTextentry"/>
+                                      AutomationId="commentTextentry" />
                 </VerticalStackLayout>
                 <telerik:RadButton Grid.Row="1"
                                    Text="Insert Comment"
@@ -70,7 +71,7 @@
                                    VerticalOptions="{OnPlatform Default=End, WinUI=Center, MacCatalyst=Center}"
                                    HorizontalOptions="{OnPlatform Default=Fill, WinUI=Center, MacCatalyst=Center}"
                                    Style="{StaticResource SubmitButtonStyle}" 
-                                   AutomationId="insertCommentButton"/>
+                                   AutomationId="insertCommentButton" />
             </Grid>
         </ScrollView>
     </Grid>

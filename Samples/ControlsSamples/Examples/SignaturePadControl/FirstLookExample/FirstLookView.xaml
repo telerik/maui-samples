@@ -5,8 +5,7 @@
              x:Class="QSF.Examples.SignaturePadControl.FirstLookExample.FirstLookView">
     <telerik:RadContentView.Resources>
         <Color x:Key="ClearButtonColor">#919191</Color>
-        <Color x:Key="InfoLabelTextColorLight">#5F5F5F</Color>
-        <Color x:Key="InfoLabelTextColorDark">#FFFFFF</Color>
+        <Color x:Key="InfoLabelTextColor">#5F5F5F</Color>
         <Style TargetType="telerik:RadBorder" x:Key="BorderStyle">
             <Setter Property="CornerRadius" Value="4" />
             <Setter Property="BorderThickness" Value="2" />
@@ -47,13 +46,13 @@
             <Setter Property="HeightRequest" Value="{OnIdiom Desktop=240, Default=200}" />
         </Style>
         <Style TargetType="telerik:RadBorder" x:Key="PopupBorderStyle">
-            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=#666666, Dark=#A0A0A0}" />
+            <Setter Property="BackgroundColor" Value="#666666" />
             <Setter Property="HeightRequest" Value="16" />
             <Setter Property="WidthRequest" Value="42" />
         </Style>
         <ControlTemplate x:Key="PopupControlTemplate">
             <telerik:RadBorder CornerRadius="{OnPlatform Default=8, Android=4}"
-                               BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#121212}"
+                               BackgroundColor="#FFFFFF"
                                Margin="{OnIdiom Phone='24, 0', Desktop=0}">
                 <Grid RowDefinitions="Auto, *">
                     <Button Text="&#xe877;"
@@ -74,7 +73,7 @@
                                FontSize="21"
                                VerticalOptions="Center"
                                HorizontalOptions="Center"
-                               TextColor="{AppThemeBinding Light=#000000, Dark=#FFFFFF}" />
+                               TextColor="#000000" />
                         <Label Text="Tip included" 
                                Style="{StaticResource InfoLabelStyle}"
                                HorizontalOptions="Center"
@@ -111,15 +110,15 @@
                         </Grid>
                         <Grid RowDefinitions="58, 1"
                               Margin="0, 48, 0, 0"
-                              BackgroundColor="{AppThemeBinding Light=Transparent, Dark=#A0A0A0}">
+                              BackgroundColor="Transparent">
                             <Image x:Name="signatureImage"
                                    Opacity="0.5" />
                             <BoxView Grid.Row="1"
-                                     BackgroundColor="{AppThemeBinding Light={StaticResource InfoLabelTextColorLight}, Dark={StaticResource InfoLabelTextColorDark}}" />
+                                     BackgroundColor="{StaticResource InfoLabelTextColor}" />
                         </Grid>
 
                         <Label Text="Signature (Neta J. Flynn)"
-                               TextColor="{AppThemeBinding Light={StaticResource InfoLabelTextColorLight}, Dark={StaticResource InfoLabelTextColorDark}}"
+                               TextColor="{StaticResource InfoLabelTextColor}"
                                FontSize="12"
                                FontAttributes="Italic"
                                HorizontalOptions="End"

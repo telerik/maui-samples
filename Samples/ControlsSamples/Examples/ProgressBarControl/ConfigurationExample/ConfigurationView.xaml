@@ -18,8 +18,7 @@
         </ResourceDictionary>
     </ContentView.Resources>
     <Grid RowDefinitions="80, *">
-        <Grid BackgroundColor="{AppThemeBinding Light={StaticResource DefaultBackgroundColor}, Dark={StaticResource DefaultBackgroundColorDark}}"
-              Padding="16, 24">
+        <telerik:RadBorder Style="{StaticResource ControlWrapperBorderStyle}">
             <telerik:RadLinearProgressBar x:Name="progressBar"
                                           Minimum="0"
                                           Maximum="100"
@@ -29,16 +28,16 @@
                                           WidthRequest="240"
                                           IsIndeterminate="{Binding IsIndeterminate}"
                                           ProgressAnimationEasing="{Binding AnimationEasing}"
-                                          ProgressFill="{Binding ProgressColor, Converter={StaticResource ColorToBrushConverter}}"
-                                          TrackFill="{Binding TrackColor, Converter={StaticResource ColorToBrushConverter}}"
+                                          ProgressFill="{Binding ProgressColor, Converter={StaticResource ColorToBrushConverter}, ConverterParameter='ProgressFill'}"
+                                          TrackFill="{Binding TrackColor, Converter={StaticResource ColorToBrushConverter}, ConverterParameter='TrackFill'}"
                                           TextColor="{Binding TextColor, Converter={StaticResource ColorNameToColorConverter}}"
                                           AlternateTextColor="{Binding AlternateTextColor, Converter={StaticResource ColorNameToColorConverter}}"
                                           ProgressCornerRadius="{Binding ProgressCornerRadius}"
                                           TrackCornerRadius="{Binding TrackCornerRadius}"
                                           TrackThickness="{Binding TrackThickness}"
                                           ValueDisplayMode="{Binding ValueDisplayMode}" 
-                                          AutomationId="progressBar"/>
-        </Grid>
+                                          AutomationId="progressBar" />
+        </telerik:RadBorder>
         <ScrollView Grid.Row="1">
             <VerticalStackLayout Style="{StaticResource RootAtExampleAreaStyle}">
                 <Grid>
@@ -56,7 +55,7 @@
                         <telerik:RadComboBox ItemsSource="{Binding Colors}"
                                              SelectedItem="{Binding TrackColor, Mode=TwoWay}"
                                              IsClearButtonVisible="False" 
-                                             AutomationId="trackColorsComboBox"/>
+                                             AutomationId="trackColorsComboBox" />
                     </VerticalStackLayout>
                     <VerticalStackLayout Grid.Column="{OnIdiom Default=1, Phone=0}"
                                          Grid.Row="{OnIdiom Default=0, Phone=1}"
@@ -66,7 +65,7 @@
                         <telerik:RadComboBox ItemsSource="{Binding Colors}"
                                              SelectedItem="{Binding ProgressColor, Mode=TwoWay}"
                                              IsClearButtonVisible="False" 
-                                             AutomationId="progressColorComboBox"/>
+                                             AutomationId="progressColorComboBox" />
                     </VerticalStackLayout>
                 </Grid>
 
@@ -88,7 +87,7 @@
                                                  VerticalOptions="Center"
                                                  Value="{Binding TrackCornerRadius}"
                                                  Step="1" 
-                                                 AutomationId="trackCornerRadiusNumeric"/>
+                                                 AutomationId="trackCornerRadiusNumeric" />
                     </VerticalStackLayout>
                     <VerticalStackLayout Grid.Column="{OnIdiom Default=1, Phone=0}"
                                          Grid.Row="{OnIdiom Default=0, Phone=1}"
@@ -101,7 +100,7 @@
                                                  VerticalOptions="Center"
                                                  Value="{Binding ProgressCornerRadius}"
                                                  Step="1" 
-                                                 AutomationId="progressCornerRadiusNumeric"/>
+                                                 AutomationId="progressCornerRadiusNumeric" />
                     </VerticalStackLayout>
                 </Grid>
 
@@ -123,7 +122,7 @@
                                                  VerticalOptions="Center"
                                                  Value="{Binding TrackThickness}"
                                                  Step="1" 
-                                                 AutomationId="trackThicknessNumeric"/>
+                                                 AutomationId="trackThicknessNumeric" />
                     </VerticalStackLayout>
                     <VerticalStackLayout Grid.Column="{OnIdiom Default=1, Phone=0}"
                                          Grid.Row="{OnIdiom Default=0, Phone=1}"
@@ -136,7 +135,7 @@
                                                  VerticalOptions="Center"
                                                  Value="{Binding MinimumHeightRequest, Source={x:Reference progressBar}}"
                                                  Step="1" 
-                                                 AutomationId="progressHeigthNumeric"/>
+                                                 AutomationId="progressHeigthNumeric" />
                     </VerticalStackLayout>
                 </Grid>
 
@@ -159,7 +158,7 @@
                                                  VerticalOptions="Center"
                                                  Value="{Binding Value, Source={x:Reference progressBar}}"
                                                  Step="20" 
-                                                 AutomationId="valueNumeric"/>
+                                                 AutomationId="valueNumeric" />
                     </VerticalStackLayout>
                     <VerticalStackLayout Grid.Column="{OnIdiom Default=1, Phone=0}"
                                          Grid.Row="{OnIdiom Default=0, Phone=1}"
@@ -171,7 +170,7 @@
                                              ItemsSource="{Binding ValueDisplayModes}"
                                              SelectedItem="{Binding ValueDisplayMode, Mode=TwoWay}"
                                              IsClearButtonVisible="False"
-                                             AutomationId="valueDisplayModeComboBox"/>
+                                             AutomationId="valueDisplayModeComboBox" />
                     </VerticalStackLayout>
                 </Grid>
 
@@ -192,7 +191,7 @@
                                              ItemsSource="{Binding Colors}"
                                              SelectedItem="{Binding TextColor, Mode=TwoWay}"
                                              IsClearButtonVisible="False" 
-                                             AutomationId="textColorComboBox"/>
+                                             AutomationId="textColorComboBox" />
                     </VerticalStackLayout>
                     <VerticalStackLayout Grid.Column="{OnIdiom Default=1, Phone=0}"
                                          Grid.Row="{OnIdiom Default=0, Phone=1}"
@@ -204,7 +203,7 @@
                                              ItemsSource="{Binding Colors}"
                                              SelectedItem="{Binding AlternateTextColor, Mode=TwoWay}"
                                              IsClearButtonVisible="False" 
-                                             AutomationId="alternateTextColorComboBox"/>
+                                             AutomationId="alternateTextColorComboBox" />
                     </VerticalStackLayout>
                 </Grid>
 
@@ -227,7 +226,7 @@
                                                  VerticalOptions="Center"
                                                  Value="{Binding SegmentCount, Source={x:Reference progressBar}}"
                                                  Step="1" 
-                                                 AutomationId="segmentCountNumeric"/>
+                                                 AutomationId="segmentCountNumeric" />
                     </VerticalStackLayout>
                     <VerticalStackLayout Grid.Column="{OnIdiom Default=1, Phone=0}"
                                          Grid.Row="{OnIdiom Default=0, Phone=1}"
@@ -241,7 +240,7 @@
                                                  VerticalOptions="Center"
                                                  Value="{Binding SegmentSeparatorThickness, Source={x:Reference progressBar}}"
                                                  Step="1" 
-                                                 AutomationId="segmentSeparatorThicknessNumeric"/>
+                                                 AutomationId="segmentSeparatorThicknessNumeric" />
                     </VerticalStackLayout>
                 </Grid>
 
@@ -260,7 +259,7 @@
                         <telerik:RadComboBox ItemsSource="{Binding Easings}"
                                              SelectedItem="{Binding AnimationEasing, Mode=TwoWay, Converter={StaticResource NameToEasingConverter}}"
                                              IsClearButtonVisible="False" 
-                                             AutomationId="easingComboBox"/>
+                                             AutomationId="easingComboBox" />
                     </VerticalStackLayout>
                     <VerticalStackLayout Grid.Column="{OnIdiom Default=1, Phone=0}"
                                          Grid.Row="{OnIdiom Default=0, Phone=1}"
@@ -271,7 +270,7 @@
                                 HorizontalOptions="Start"
                                 IsToggled="{Binding IsIndeterminate}"
                                 Margin="{OnPlatform Default=0, WinUI='0, -2, 0, 0'}" 
-                                AutomationId="isIndeterminedSwitch"/>
+                                AutomationId="isIndeterminedSwitch" />
                     </VerticalStackLayout>
                 </Grid>
             </VerticalStackLayout>

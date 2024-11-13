@@ -6,33 +6,87 @@
              x:Class="SDKBrowserMaui.Examples.AutoCompleteControl.StylingCategory.StylingExample.Styling">
     <ContentView.Resources>
         <ResourceDictionary>
-            <Style TargetType="telerik:RadButton" x:Key="ClearButtonStyle">
-                <Setter Property="TextColor" Value="#8660C5"/>
-                <Setter Property="FontSize" Value="12"/>
-                <Setter Property="FontAttributes" Value="Bold"/>
+            <!-- >> autocomplete-custom-styles -->
+            <Style TargetType="telerik:RadTextInput" x:Key="TextInputStyle">
+                <Setter Property="CharacterSpacing" Value="4" />
+                <Setter Property="HorizontalTextAlignment" Value="Start" />
             </Style>
+
+            <Style TargetType="telerik:RadTemplatedButton" x:Key="ClearButtonStyle">
+                <Setter Property="FontFamily" Value="{x:Static telerik:TelerikFont.Name}" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="Content" Value="&#xe851;" />
+                <Setter Property="TextColor" Value="#A30111"/>
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup Name="CommonStates">
+                            <VisualState Name="Normal" />
+                            <VisualState Name="PointerOver">
+                                <VisualState.Setters>
+                                    <Setter Property="telerik:RadTemplatedButton.TextColor" Value="#B53340" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="Pressed">
+                                <VisualState.Setters>
+                                    <Setter Property="telerik:RadTemplatedButton.TextColor" Value="#C76670" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="Disabled" />
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+
+            <Style TargetType="telerik:RadAutoComplete" x:Key="AutoCompleteStyle">
+                <Setter Property="TextColor" Value="#00897B" />
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="BorderBrush" Value="#00897B" />
+                <Setter Property="PlaceholderColor" Value="#00A392" />
+                <Setter Property="BackgroundColor" Value="#FFFFFF" />
+                <Setter Property="SuggestionItemHighlightTextColor" Value="#00897B" />
+                <Setter Property="SuggestionViewBorderColor" Value="#00897B" />
+                <Setter Property="SuggestionViewBackgroundColor" Value="#F4FAF9" />
+                <Setter Property="SuggestionViewCornerRadius" Value="8" />
+                <Setter Property="ClearButtonStyle" Value="{StaticResource ClearButtonStyle}" />
+                <Setter Property="TextInputStyle" Value="{StaticResource TextInputStyle}" />
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup Name="CommonStates">
+                            <VisualState Name="Normal" />
+                            <VisualState Name="Focused">
+                                <VisualState.Setters>
+                                    <Setter Property="telerik:RadAutoComplete.BorderBrush" Value="#00BCA9" />
+                                    <Setter Property="telerik:RadAutoComplete.BorderThickness" Value="1" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="MouseOver">
+                                <VisualState.Setters>
+                                    <Setter Property="telerik:RadAutoComplete.BackgroundColor" Value="#F9F9F9" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="Disabled">
+                                <VisualState.Setters>
+                                    <Setter Property="Opacity" Value="0.6" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+            <!-- << autocomplete-custom-styles -->
         </ResourceDictionary>
     </ContentView.Resources>
-    <VerticalStackLayout>
+    <VerticalStackLayout HorizontalOptions="{OnPlatform Default=Fill, MacCatalyst=Start, WinUI=Start}"
+                         WidthRequest="{OnPlatform MacCatalyst=300, WinUI=300}">
+        <!-- >> autocomplete-styling-xaml -->
         <telerik:RadAutoComplete ItemsSource="{Binding Source}" 
                                  TextSearchPath="Name"
-                                 BackgroundColor="White"
-                                 TextColor="Black"
-                                 FontAttributes="Italic"
-                                 FontSize="16"
-                                 BorderThickness="2"
-                                 BorderBrush="#B8B8B8"
-                                 FocusedBorderBrush="#8660C5"
-                                 SuggestionItemHighlightTextColor="#8660C5"
-                                 SuggestionViewBackgroundColor="White"
-                                 SuggestionViewBorderColor="#8660C5"
-                                 CornerRadius="5"
-                                 PlaceholderColor="#8660C5"
                                  Placeholder="Search here"
-                                 ClearButtonStyle="{StaticResource ClearButtonStyle}">
+                                 Style="{StaticResource AutoCompleteStyle}">
             <telerik:RadAutoComplete.BindingContext>
                 <local:ExtendedClientsViewModel/>
             </telerik:RadAutoComplete.BindingContext>
         </telerik:RadAutoComplete>
+        <!-- << autocomplete-styling-xaml -->
     </VerticalStackLayout>
 </ContentView>

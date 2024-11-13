@@ -6,31 +6,34 @@
              x:Class="SDKBrowserMaui.Examples.DataGridControl.AggregatesCategory.GroupFooterAggregateStyleExample.GroupFooterAggregateStyle">
     <ContentView.Resources>
         <!-- >> datagrid-group-aggregate-styling-example -->
-        <telerik:DataGridGroupFooterStyle x:Key="GroupFooterStyle"
-                                          BorderThickness="0, 1"
-                                          BorderColor="BlueViolet"
-                                          TextColor="BlueViolet"
-                                          TextFontFamily="Italic" />
+        <Style TargetType="telerik:DataGridGroupFooterAppearance" x:Key="GroupFooterStyle">
+            <Setter Property="BorderThickness" Value="0, 1" />
+            <Setter Property="BorderColor" Value="BlueViolet" />
+            <Setter Property="TextColor" Value="BlueViolet" />
+            <Setter Property="TextFontAttributes" Value="Italic" />
+        </Style>
         <!-- << datagrid-group-aggregate-styling-example -->
-        
+
         <!-- >> datagrid-group-aggregate-style-selector-xaml -->
         <local:CustomGroupFooterStyleSelector x:Key="GroupFooterStyleSelectorResource">
             <local:CustomGroupFooterStyleSelector.CustomStyle>
-                <telerik:DataGridGroupFooterStyle TextFontAttributes="Bold"
-                                                  BorderColor="BlueViolet"
-                                                  HorizontalTextAlignment="Start"
-                                                  VerticalTextAlignment="End"
-                                                  BorderThickness="0, 1"/>
+                <Style TargetType="telerik:DataGridGroupFooterAppearance">
+                    <Setter Property="BorderThickness" Value="0, 1" />
+                    <Setter Property="BorderColor" Value="BlueViolet" />
+                    <Setter Property="TextFontAttributes" Value="Bold" />
+                    <Setter Property="VerticalTextAlignment" Value="End" />
+                </Style>
             </local:CustomGroupFooterStyleSelector.CustomStyle>
         </local:CustomGroupFooterStyleSelector>
         <!-- << datagrid-group-aggregate-style-selector-xaml -->
 
         <!-- >> datagrid-column-aggregate-styling-example -->
-        <telerik:DataGridColumnFooterStyle x:Key="FooterStyle"
-                                           BorderThickness="0, 1"
-                                           BorderColor="PaleVioletRed"
-                                           TextColor="PaleVioletRed"
-                                           TextFontFamily="Italic" />
+        <Style TargetType="telerik:DataGridColumnFooterAppearance" x:Key="FooterStyle">
+            <Setter Property="BorderThickness" Value="0, 1" />
+            <Setter Property="BorderColor" Value="PaleVioletRed" />
+            <Setter Property="TextColor" Value="PaleVioletRed" />
+            <Setter Property="TextFontAttributes" Value="Italic" />
+        </Style>
         <!-- << datagrid-column-aggregate-styling-example -->
     </ContentView.Resources>
     <!-- >> datagrid-aggregate-styling-example -->

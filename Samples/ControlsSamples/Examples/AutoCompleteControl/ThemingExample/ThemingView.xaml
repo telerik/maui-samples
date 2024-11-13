@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        xmlns:local="clr-namespace:QSF.Examples.AutoCompleteControl.ThemingExample"
+                        x:Class="QSF.Examples.AutoCompleteControl.ThemingExample.ThemingView">
+    <telerik:RadContentView.Resources>
+        <x:Array x:Key="ItemsSource" Type="{x:Type x:String}">
+            <x:String>Joshua Price</x:String>
+            <x:String>Reuben Holmes</x:String>
+            <x:String>Eva Lawson</x:String>
+            <x:String>Rory Baxter</x:String>
+            <x:String>David Webb</x:String>
+            <x:String>Howard Pittman</x:String>
+            <x:String>Davis Anderson</x:String>
+            <x:String>Cannon Puckett</x:String>
+            <x:String>Xavi Vasquez</x:String>
+            <x:String>Ronald Hatfield</x:String>
+            <x:String>Freda Curtis</x:String>
+            <x:String>Jeffery Francis</x:String>
+            <x:String>Emmett Santos</x:String>
+            <x:String>Vada Davies</x:String>
+            <x:String>Jenny Fuller</x:String>
+            <x:String>Terrell Norris</x:String>
+            <x:String>Vadim Saunders</x:String>
+            <x:String>Nida Carty</x:String>
+            <x:String>Niki Samaniego</x:String>
+            <x:String>Valdex Mills</x:String>
+            <x:String>Layton Buck</x:String>
+            <x:String>Alex Ramos</x:String>
+            <x:String>Alena Cline</x:String>
+            <x:String>Joel Walsh</x:String>
+            <x:String>Vadik Pearson</x:String>
+            <x:String>Bob Carty</x:String>
+            <x:String>Carol Samaniego</x:String>
+            <x:String>Greg Nikolas</x:String>
+            <x:String>Konny Mills</x:String>
+            <x:String>Matias Santos</x:String>
+        </x:Array>
+    </telerik:RadContentView.Resources>
+
+    <Grid RowDefinitions="Auto, Auto"
+          RowSpacing="20"
+          Padding="12, 24"
+          WidthRequest="{OnPlatform MacCatalyst=350, WinUI=350}"
+          HorizontalOptions="{OnPlatform MacCatalyst=Start, WinUI=Start}">
+        <VerticalStackLayout>
+            <Label Text="DisplayMode - Plain"
+                   Margin="0, 0, 0, 8" />
+            <telerik:RadAutoComplete AutomationId="autoCompletePlain"
+                                     Placeholder="Select a name"
+                                     ItemsSource="{StaticResource ItemsSource}" />
+        </VerticalStackLayout>
+        <VerticalStackLayout Grid.Row="1">
+            <Label Text="DisplayMode - Tokens"
+                   Margin="0, 0, 0, 8" />
+            <telerik:RadAutoComplete Grid.Row="3"
+                                     AutomationId="autoCompleteTokens"
+                                     Placeholder="Select a name"
+                                     ItemsSource="{StaticResource ItemsSource}"
+                                     DisplayMode="Tokens" />
+        </VerticalStackLayout>
+    </Grid>
+</telerik:RadContentView>

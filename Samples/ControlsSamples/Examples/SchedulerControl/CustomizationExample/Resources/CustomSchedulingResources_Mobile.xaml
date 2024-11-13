@@ -107,7 +107,7 @@
                       IsVisible="{Binding IsExceptionOccurrence, Converter={StaticResource InvertedBooleanConverter}}">
                     <Label IsVisible="{Binding Summary, Converter={StaticResource StringToBoolConverter}}"
                            Text="{Binding Summary}"
-                           TextColor="{AppThemeBinding Light=#000000, Dark=#FFFFFF}"
+                           TextColor="#000000"
                            FontSize="12"
                            Margin="0, 8, 0, 4" />
                 </Grid>
@@ -123,7 +123,7 @@
             </Grid>
             <Grid Grid.Row="2"
                   ColumnDefinitions="*, *"
-                  BackgroundColor="{AppThemeBinding Light=#F8F8F8, Dark=#1E1E1E}"
+                  BackgroundColor="#F8F8F8"
                   Margin="0, 8, 0, 0">
                 <telerik:SchedulerBoxView Grid.ColumnSpan="2"
                                           HeightRequest="1"

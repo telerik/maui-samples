@@ -28,8 +28,7 @@
             <RowDefinition Height="{OnPlatform Android=136, iOS=125, MacCatalyst=110, WinUI=112}" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <telerik:RadBorder Padding="16, 24"
-                           BackgroundColor="{AppThemeBinding Light={StaticResource DefaultBackgroundColor}, Dark={StaticResource DefaultBackgroundColorDark}}">
+        <telerik:RadBorder Style="{StaticResource ControlWrapperBorderStyle}">
             <telerik:RadComboBox x:Name="comboBox"
                                  ItemsSource="{Binding Cities}"
                                  OpenOnFocus="{Binding OpenOnFocus}"
@@ -71,7 +70,7 @@
                                     HorizontalOptions="Start"
                                     IsToggled="{Binding IsEditable}"
                                     Margin="{OnPlatform Default=0, WinUI='0, -2, 0, 0'}" 
-                                    AutomationId="isEditableSwitch"/>
+                                    AutomationId="isEditableSwitch" />
                         </VerticalStackLayout>
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="Is Filtering Enabled:"
@@ -90,14 +89,14 @@
                                     HorizontalOptions="Start"
                                     IsToggled="{Binding IsClearButtonVisible}"
                                     Margin="{OnPlatform Default=0, WinUI='0, -2, 0, 0'}" 
-                                    AutomationId="clearButtonVisibilitySwitch"/>
+                                    AutomationId="clearButtonVisibilitySwitch" />
                         </VerticalStackLayout>
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="Placeholder:"
                                    Style="{StaticResource VerticalGroupLabelStyle}" />
                             <telerik:RadEntry Text="{Binding Placeholder}"
                                               ReserveSpaceForErrorView="False" 
-                                              AutomationId="placeholderEntry"/>
+                                              AutomationId="placeholderEntry" />
                         </VerticalStackLayout>
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="Selection Mode:"
@@ -140,7 +139,7 @@
                                     HorizontalOptions="Start"
                                     IsToggled="{Binding IsDropDownOpen}"
                                     Margin="{OnPlatform Default=0, WinUI='0, -2, 0, 0'}" 
-                                    AutomationId="isOpenSwitch"/>
+                                    AutomationId="isOpenSwitch" />
                         </VerticalStackLayout>
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="Open On Focus:"
@@ -150,7 +149,7 @@
                                     IsToggled="{Binding OpenOnFocus}"
                                     IsEnabled="{Binding IsEditable}"
                                     Margin="{OnPlatform Default=0, WinUI='0, -2, 0, 0'}" 
-                                    AutomationId="openOnFocusSwitch"/>
+                                    AutomationId="openOnFocusSwitch" />
                         </VerticalStackLayout>
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="Close On Selection:"
@@ -159,7 +158,7 @@
                                     HorizontalOptions="Start"
                                     IsToggled="{Binding IsDropDownClosedOnSelection}"
                                     Margin="{OnPlatform Default=0, WinUI='0, -2, 0, 0'}" 
-                                    AutomationId="closeOnSelectionSwitch"/>
+                                    AutomationId="closeOnSelectionSwitch" />
                         </VerticalStackLayout>
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="Width:"
@@ -172,7 +171,7 @@
                                         Minimum="-1"
                                         Maximum="{OnIdiom Phone=500, Default=800}"
                                         Value="-1" 
-                                        AutomationId="widthSlider"/>
+                                        AutomationId="widthSlider" />
                                 <Label Grid.Column="2"
                                        Style="{StaticResource SliderMinMaxLabelStyle}"
                                        Text="{Binding Maximum, Source={x:Reference dropDownWidthSlider}}" />
@@ -204,7 +203,7 @@
                                         Grid.Column="1"
                                         Maximum="24"
                                         Value="{OnPlatform Default=6, Android=0, WinUI=8}" 
-                                        AutomationId="verticalOffsetSlider"/>
+                                        AutomationId="verticalOffsetSlider" />
                                 <Label Grid.Column="2"
                                        Style="{StaticResource SliderMinMaxLabelStyle}"
                                        Text="{Binding Maximum, Source={x:Reference dropDownVerticalOffsetSlider}}" />

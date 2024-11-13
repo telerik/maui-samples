@@ -23,5 +23,7 @@ public class Example
 
     public bool IsConfigurable { get; set; }
 
+    public bool IsThemable { get; set; }
+
     public StatusType Status { get; set; }
 }

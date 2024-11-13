@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.GridSplitterControl.FeaturesCategory.ResizeConfigurationExample.ResizeConfiguration">
+    <!-- >> gridsplitter-resize-configuration -->
+    <Grid RowSpacing="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid ColumnDefinitions="Auto, *"
+              ColumnSpacing="8">
+            <Label Text="Resize Behavior: "
+                   VerticalTextAlignment="Center" />
+            <telerik:RadComboBox x:Name="comboRB"
+                                 Grid.Column="1"
+                                 SelectedItem="{Binding ResizeBehavior, Source={x:Reference gridSplitter}}"
+                                 WidthRequest="{OnPlatform MacCatalyst=300, WinUI=300}"
+                                 HorizontalOptions="{OnPlatform MacCatalyst=Start, WinUI=Start}" />
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Label Background="Azure"
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Center" />
+            <Label Grid.Column="2"
+                   Background="Moccasin"
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Center" />
+            <Label Grid.Column="3"
+                   Background="LightGray"
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Center" />
+            <telerik:RadGridSplitter x:Name="gridSplitter"
+                                     Grid.Column="1"
+                                     VerticalOptions="Fill"
+                                     HorizontalOptions="Start"
+                                     ResizeBehavior="PreviousAndNext" />
+        </Grid>
+    </Grid>
+    <!-- << gridsplitter-resize-configuration -->
+</ContentView>

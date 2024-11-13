@@ -13,7 +13,7 @@
                              Grid.Row="1"
                              ItemsSource="{Binding Controls}"
                              SelectionMode="None"
-                             Background="{AppThemeBinding Light=White, Dark=Black}">
+                             Background="White">
             <telerik:RadListView.Commands>
                 <telerik:ListViewUserCommand Command="{Binding NextCommand}" />
             </telerik:RadListView.Commands>
@@ -35,7 +35,7 @@
                                        HeightRequest="16" />
                                 <Label Grid.Column="1"
                                        Text="{Binding Title}"
-                                       TextColor="{AppThemeBinding Light={StaticResource DefaultTextColor}, Dark={StaticResource DefaultTextColorDark}}"
+                                       TextColor="{StaticResource DefaultTextColor}"
                                        VerticalOptions="Center" />
                             </Grid>
                         </telerik:ListViewTemplateCell.View>

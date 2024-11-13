@@ -4,14 +4,8 @@
              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
              x:Class="QSF.Examples.PathControl.FiguresExample.FiguresView">
     <ContentView.Resources>
-        <ResourceDictionary>
-            <Color x:Key="MainBackgroundColorLight">White</Color>
-            <Color x:Key="MainBackgroundColorDark">Black</Color>
-            <Color x:Key="PathBackgroundColorLight">WhiteSmoke</Color>
-            <Color x:Key="PathBackgroundColorDark">#121212</Color>
-        </ResourceDictionary>
         <Style TargetType="telerik:RadPath">
-            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource PathBackgroundColorLight}, Dark={StaticResource PathBackgroundColorDark}}" />
+            <Setter Property="BackgroundColor" Value="WhiteSmoke" />
             <Setter Property="Margin" Value="10" />
             <Setter Property="HeightRequest" Value="160" />
             <Setter Property="WidthRequest" Value="160" />
@@ -44,7 +38,7 @@
                 <telerik:RadPath Fill="#FFAC3E"
                                  StrokeThickness="1"
                                  Stroke="Orange"
-                                 Geometry="{x:Static telerik:Geometries.Star}" />
+                                 Geometry="{x:Static telerik:RadGeometry.Star}" />
                 <Label Text="Star" HorizontalOptions="Center"/>
             </VerticalStackLayout>
             <VerticalStackLayout>
@@ -91,7 +85,7 @@
                 <telerik:RadPath StrokeThickness="1"
                                  Stroke="White"
                                  Fill="#71559B"
-                                 Geometry="{x:Static telerik:Geometries.Heart}" />
+                                 Geometry="{x:Static telerik:RadGeometry.Heart}" />
                 <Label Text="Heart" HorizontalOptions="Center"/>
             </VerticalStackLayout>
             <VerticalStackLayout>

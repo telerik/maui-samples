@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.ButtonControl.FeaturesCategory.StylingExample.Styling">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <!-- >> button-styling-implicit -->
+            <Style TargetType="telerik:RadButton">
+                <Setter Property="Padding" Value="12, 8" />
+                <Setter Property="CornerRadius" Value="12" />
+                <Setter Property="FontAttributes" Value="Italic" />
+                <Setter Property="VerticalContentAlignment" Value="Center" />
+                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                <Setter Property="TextColor" Value="#00897B" />
+                <Setter Property="BorderColor" Value="#DFDFDF" />
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="Background" Value="White" />
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <Setter.Value>
+                        <VisualStateGroupList>
+                            <VisualStateGroup Name="CommonStates">
+                                <VisualState Name="Normal" />
+                                <VisualState Name="PointerOver">
+                                    <VisualState.Setters>
+                                        <Setter Property="Background" Value="#E8F5F4" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState Name="Pressed">
+                                    <VisualState.Setters>
+                                        <Setter Property="TextColor" Value="#9900897B" />
+                                        <Setter Property="Background" Value="#E8F5F4" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState Name="Disabled">
+                                    <VisualState.Setters>
+                                        <Setter Property="TextColor" Value="#6100897B" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateGroupList>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <!-- << button-styling-implicit -->
+
+            <!-- >> button-styling-explicit -->
+            <Style x:Key="ButtonStyle" TargetType="telerik:RadButton">
+                <Setter Property="Padding" Value="12, 8" />
+                <Setter Property="CornerRadius" Value="12" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="TextColor" Value="#8660C5" />
+                <Setter Property="VerticalContentAlignment" Value="Center" />
+                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                <Setter Property="BorderColor" Value="#DFDFDF" />
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="Background" Value="White" />
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <Setter.Value>
+                        <VisualStateGroupList>
+                            <VisualStateGroup Name="CommonStates">
+                                <VisualState Name="Normal" />
+                                <VisualState Name="PointerOver">
+                                    <VisualState.Setters>
+                                        <Setter Property="Background" Value="#F2EFF9" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState Name="Pressed">
+                                    <VisualState.Setters>
+                                        <Setter Property="TextColor" Value="#998660C5" />
+                                        <Setter Property="Background" Value="#F2EFF9" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState Name="Disabled">
+                                    <VisualState.Setters>
+                                        <Setter Property="TextColor" Value="#618660C5" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateGroupList>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <!-- << button-styling-explicit -->
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+    <!-- >> button-styling -->
+    <VerticalStackLayout Spacing="20" HorizontalOptions="{OnPlatform Default=Start, Android=Center, iOS=Center}">
+        <telerik:RadButton Text="Implicit Style" />
+        <telerik:RadButton Text="Explicit Style"
+                           Style="{StaticResource ButtonStyle}" />
+    </VerticalStackLayout>
+    <!-- << button-styling -->
+</ContentView>

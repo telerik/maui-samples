@@ -3,7 +3,6 @@ using QSF.Common;
 using QSF.Services;
 using QSF.ViewModels;
 using QSF.Views;
-using System;
 using System.Globalization;
 using System.Reflection;
 
@@ -34,6 +33,12 @@ public static class Utils
             }
 
             object viewModel = Activator.CreateInstance(viewModelType);
+            var exampleViewModel = viewModel as ExampleViewModel;
+            if (exampleViewModel != null)
+            {
+                exampleViewModel.Example = example;
+            }
+
             exampleView.BindingContext = viewModel;
         }
 
@@ -52,6 +57,18 @@ public static class Utils
         IConfigurationAreaService configurationAreaService = DependencyService.Get<IConfigurationAreaService>();
         View configurationArea = configurationAreaService.CreateConfigurationArea(example);
         return configurationArea;
+    }
+
+    public static string GetControlExamplesCodeURL(Control control)
+    {
+        if (control is null)
+        {
+            return null;
+        }
+
+        IConfigurationService configurationService = DependencyService.Get<IConfigurationService>();
+        string url = configurationService.Configuration.ExampleCodeUrl + $"/{control.Name}Control";
+        return url;
     }
 
     public static string GetExampleCodeURL(Example example)

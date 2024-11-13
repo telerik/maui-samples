@@ -11,11 +11,11 @@
         <!-- >> map-zoom-level-xaml -->
         <telerik:RadMap x:Name="map" MinZoomLevel="2" MaxZoomLevel="5">
             <telerik:RadMap.Layers>
-                <telerik:ShapefileLayer>
-                    <telerik:ShapefileLayer.Reader>
+                <telerik:MapShapefileLayer>
+                    <telerik:MapShapefileLayer.Reader>
                         <telerik:MapShapeReader x:Name="reader"/>
-                    </telerik:ShapefileLayer.Reader>
-                </telerik:ShapefileLayer>
+                    </telerik:MapShapefileLayer.Reader>
+                </telerik:MapShapefileLayer>
             </telerik:RadMap.Layers>
         </telerik:RadMap>
         <!-- << map-zoom-level-xaml -->

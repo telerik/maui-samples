@@ -1,14 +1,14 @@
 ﻿using Microsoft.Maui.Controls.Xaml;
 using System;
 using Telerik.Maui.Controls;
-using Telerik.Maui.Controls.Compatibility.Map;
+using Telerik.Maui.Controls.Map;
 
 namespace SDKBrowserMaui.Examples.MapControl.FeaturesCategory.InteractionModeExample
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class InteractionMode : RadContentView
     {
-        private Array modes = Enum.GetValues(typeof(Telerik.Maui.Controls.Compatibility.Map.InteractionMode));
+        private Array modes = Enum.GetValues(typeof(MapInteractionMode));
 
         public InteractionMode()
         {
@@ -26,7 +26,7 @@ namespace SDKBrowserMaui.Examples.MapControl.FeaturesCategory.InteractionModeExa
 
         private void InteractionModeChanged(object sender, EventArgs e)
         {
-            this.map.InteractionMode = (Telerik.Maui.Controls.Compatibility.Map.InteractionMode)this.modes.GetValue(this.interactionModeSegmented.SelectedIndex);
+            this.map.InteractionMode = (MapInteractionMode)this.modes.GetValue(this.interactionModeSegmented.SelectedIndex);
         }
     }
 }

@@ -7,13 +7,13 @@ using SDKBrowserMaui.Services;
 using Microsoft.Maui.Controls;
 using System.Collections.ObjectModel;
 using SDKBrowserMaui.Common;
-using Telerik.Maui.Controls.Compatibility.DataControls.ListView.Commands;
 
 namespace SDKBrowserMaui.ViewModels
 {
     public class SearchViewModel : ExamplesViewModelBase
     {
         private string searchText;
+        private string log;
         private Func<object, bool> searchFilter;
         private Func<object, object> searchGrouping;
 
@@ -37,6 +37,22 @@ namespace SDKBrowserMaui.ViewModels
                     this.searchText = value;
                     this.OnPropertyChanged();
                     this.OnSearchChanged();
+                }
+            }
+        }
+
+        public string Log
+        {
+            get
+            {
+                return this.log;
+            }
+            set
+            {
+                if (this.log != value)
+                {
+                    this.log = value;
+                    this.OnPropertyChanged();
                 }
             }
         }
@@ -100,15 +116,13 @@ namespace SDKBrowserMaui.ViewModels
         {
             if (this.IsSpecialSearch())
             {
-                this.NavigateToExampleBySearchedText();
+                this.NavigateToExampleOrApplyThemeBySearcText();
             }
 
             var tokens = this.SearchText.Split(default(char[]),
                 StringSplitOptions.RemoveEmptyEntries);
 
             this.SearchFilter = item => this.PassesFilter(item, tokens);
-
-            this.NavigateToExampleOnSearch();
         }
 
         private bool IsSpecialSearch()
@@ -119,36 +133,38 @@ namespace SDKBrowserMaui.ViewModels
                 && this.searchText.EndsWith("#");
         }
 
-        private void NavigateToExampleBySearchedText()
+        private void NavigateToExampleOrApplyThemeBySearcText()
         {
             string trimmedText = this.searchText.Substring(1, this.searchText.Length - 2);
             List<string> searchTextFragments = trimmedText.Split(".").ToList<string>();
 
-            if (searchTextFragments.Count == 2)
+            var count = searchTextFragments.Count;
+            if (count == 2)
             {
-                string controlName = searchTextFragments[0];
-                string exampleName = searchTextFragments[1];
-
-                var backdoorService = DependencyService.Get<IBackdoorService>();
-                backdoorService.TryNavigateToExample(controlName, exampleName);
-            }
-        }
-
-        private void NavigateToExampleOnSearch()
-        {
-            var strings = this.SearchText.Split(';');
-            if (strings.Length > 1)
-            {
-                var controlName = strings[0].Trim();
-                var exampleName = strings[1].Trim();
-                if (exampleName.EndsWith("#"))
+                var prefix = searchTextFragments[0];
+                if (prefix.Contains(":"))
                 {
-                    exampleName = exampleName.Substring(0, exampleName.Length - 1);
-                    var backdoorService = DependencyService.Get<IBackdoorService>();
-                    if (backdoorService != null)
+                    string theme = prefix.Split(':').Last();
+                    string swatch = searchTextFragments[1];
+
+                    var themeViewModel = DependencyService.Get<ThemeSettingsViewModel>();
+                    if (themeViewModel != null)
                     {
-                        backdoorService.TryNavigateToExample(controlName, exampleName);
+                        var definition = themeViewModel.ThemesCatalog.FirstOrDefault(t => t.Theme == theme && t.Swatch == swatch);
+                        if (definition != null)
+                        {
+                            themeViewModel.CurrentTheme = definition;
+                            this.Log = $"{theme}.{swatch}";
+                        }
                     }
+                }
+                else
+                {
+                    string controlName = searchTextFragments[0];
+                    string exampleName = searchTextFragments[1];
+
+                    var backdoorService = DependencyService.Get<IBackdoorService>();
+                    backdoorService.TryNavigateToExample(controlName, exampleName);
                 }
             }
         }

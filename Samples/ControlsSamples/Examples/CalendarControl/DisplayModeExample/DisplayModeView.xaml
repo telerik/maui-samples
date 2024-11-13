@@ -21,17 +21,19 @@
     </ContentView.Resources>
 
     <Grid RowDefinitions="Auto, *">
-        <Grid BackgroundColor="{AppThemeBinding Light={StaticResource DefaultBackgroundColor}, Dark={StaticResource DefaultBackgroundColorDark}}"
-              Padding="16">
-            <telerik:RadCalendar x:Name="calendar"
-                                 DisplayMode="{Binding Source={x:Reference displayModeCombo}, Path=SelectedItem, Mode=TwoWay}"
-                                 MinDisplayMode="{Binding Source={x:Reference minDisplayModeCombo}, Path=SelectedItem, Mode=TwoWay}"
-                                 MaxDisplayMode="{Binding Source={x:Reference maxDisplayModeCombo}, Path=SelectedItem, Mode=TwoWay}"
-                                 MaximumHeightRequest="{OnPlatform iOS=320, Android=320, WinUI=320}"
-                                 BorderThickness="1"
-                                 HorizontalOptions="Center"
-                                 VerticalOptions="Center" />
-        </Grid>
+        <telerik:RadBorder Style="{StaticResource ControlWrapperBorderStyle}"
+                           Padding="16">
+            <Grid>
+                <telerik:RadCalendar x:Name="calendar"
+                                     DisplayMode="{Binding Source={x:Reference displayModeCombo}, Path=SelectedItem, Mode=TwoWay}"
+                                     MinDisplayMode="{Binding Source={x:Reference minDisplayModeCombo}, Path=SelectedItem, Mode=TwoWay}"
+                                     MaxDisplayMode="{Binding Source={x:Reference maxDisplayModeCombo}, Path=SelectedItem, Mode=TwoWay}"
+                                     MaximumHeightRequest="{OnPlatform iOS=320, Android=320, WinUI=320}"
+                                     BorderThickness="1"
+                                     HorizontalOptions="Center"
+                                     VerticalOptions="Center" />
+            </Grid>
+        </telerik:RadBorder>
 
         <ScrollView Grid.Row="1">
             <VerticalStackLayout Style="{StaticResource RootAtExampleAreaStyle}">
@@ -41,7 +43,7 @@
                     <telerik:RadComboBox x:Name="displayModeCombo"
                                          ItemsSource="{Binding DisplayModes}"
                                          SelectedItem="{Binding DisplayMode, Mode=TwoWay}" 
-                                         AutomationId="displayModeComboBox"/>
+                                         AutomationId="displayModeComboBox" />
                 </VerticalStackLayout>
                 <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                     <Label Text="Min Display Mode:"
@@ -49,7 +51,7 @@
                     <telerik:RadComboBox x:Name="minDisplayModeCombo"
                                          ItemsSource="{Binding MinDisplayModes}"
                                          SelectedItem="{Binding MinDisplayMode, Mode=TwoWay}" 
-                                         AutomationId="minDisplayModeComboBox"/>
+                                         AutomationId="minDisplayModeComboBox" />
                 </VerticalStackLayout>
                 <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                     <Label Text="Max Display Mode:"
@@ -57,7 +59,7 @@
                     <telerik:RadComboBox x:Name="maxDisplayModeCombo"
                                          ItemsSource="{Binding MaxDisplayModes}"
                                          SelectedItem="{Binding MaxDisplayMode, Mode=TwoWay}" 
-                                         AutomationId="maxDisplayModeComboBox"/>
+                                         AutomationId="maxDisplayModeComboBox" />
                 </VerticalStackLayout>
             </VerticalStackLayout>
         </ScrollView>

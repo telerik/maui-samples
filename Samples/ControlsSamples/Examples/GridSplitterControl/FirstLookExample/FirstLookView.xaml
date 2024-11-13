@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:columnTypesExample="clr-namespace:QSF.Examples.DataGridControl.ColumnTypesExample"
+             x:Class="QSF.Examples.GridSplitterControl.FirstLookExample.FirstLookView">
+    <ContentView.Resources>
+        <Style x:Key="SingleLineLabelStyle" TargetType="Label">
+            <Setter Property="MaxLines" Value="1" />
+            <Setter Property="LineBreakMode" Value="TailTruncation" />
+        </Style>
+        <DataTemplate x:Key="PropertyItemTemplate">
+            <Label Text="{Binding Title}"
+                   TextColor="{StaticResource PlaceholderColor}"
+                   Padding="16, 8"
+                   HorizontalTextAlignment="Start"
+                   VerticalTextAlignment="Center" />
+        </DataTemplate>
+    </ContentView.Resources>
+    <Grid ColumnDefinitions="{OnPlatform Default=*, MacCatalyst='*, Auto, *', WinUI='*, Auto, *'}">
+        <Grid RowDefinitions="*, Auto, *">
+            <Image Source="{Binding SelectedItem.Title, Source={x:Reference propertyItemsCollectionView}}"
+                   Aspect="AspectFill" />
+            <telerik:RadGridSplitter Grid.Row="1"
+                                     BorderThickness="0, 1" />
+            <telerik:RadCollectionView x:Name="propertyItemsCollectionView"
+                                       Grid.Row="2"
+                                       ItemTemplate="{StaticResource PropertyItemTemplate}"
+                                       ItemsSource="{Binding Images}"
+                                       SelectedItem="{Binding SelectedImage}"
+                                       SelectionChanged="PropertyItemsCollectionViewSelectionChanged" />
+        </Grid>
+        <OnPlatform x:TypeArguments="View">
+            <On Platform="MacCatalyst, WinUI">
+                <telerik:RadGridSplitter Grid.Column="1"
+                                         BorderThickness="1" />
+            </On>
+        </OnPlatform>
+        <OnPlatform x:TypeArguments="View">
+            <On Platform="MacCatalyst, WinUI">
+                <Grid Grid.Column="2"
+                      RowDefinitions="Auto, *">
+                    <Label Text="Information"
+                           FontSize="20"
+                           FontAttributes="Bold"
+                           Margin="16, 32, 0, 4"
+                           Style="{StaticResource SingleLineLabelStyle}" />
+                    <telerik:RadCollectionView Grid.Row="1"
+                                               ItemsSource="{Binding ImageDetails}"
+                                               SelectionMode="None">
+                        <telerik:RadCollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid ColumnDefinitions="*, *"
+                                      ColumnSpacing="8"
+                                      Padding="16, 8">
+                                    <Label Text="{Binding Title}"
+                                           TextColor="{StaticResource PlaceholderColor}"
+                                           Style="{StaticResource SingleLineLabelStyle}"
+                                           VerticalOptions="Center" />
+                                    <Label Grid.Column="1"
+                                           Text="{Binding Value}"
+                                           TextColor="{StaticResource DefaultTextColor}"
+                                           HorizontalTextAlignment="End"
+                                           Style="{StaticResource SingleLineLabelStyle}"
+                                           VerticalOptions="Center" />
+                                </Grid>
+                            </DataTemplate>
+                        </telerik:RadCollectionView.ItemTemplate>
+                        <telerik:RadCollectionView.ItemViewStyle>
+                            <Style TargetType="telerik:RadCollectionViewItemView">
+                                <Setter Property="VisualStateManager.VisualStateGroups">
+                                    <VisualStateGroupList>
+                                        <VisualStateGroup Name="CommonStates">
+                                            <VisualState Name="Normal" />
+                                            <VisualState Name="MouseOver" />
+                                            <VisualState Name="Selected" />
+                                            <VisualState Name="Disabled" />
+                                        </VisualStateGroup>
+                                    </VisualStateGroupList>
+                                </Setter>
+                            </Style>
+                        </telerik:RadCollectionView.ItemViewStyle>
+                    </telerik:RadCollectionView>
+                </Grid>
+            </On>
+        </OnPlatform>
+    </Grid>
+</ContentView>

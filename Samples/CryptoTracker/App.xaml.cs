@@ -38,7 +38,7 @@ public partial class App : Application
 #endif
 	}
 
-#if NET7_0_OR_GREATER && (WINDOWS || MACCATALYST)
+#if WINDOWS || MACCATALYST
 		protected override Window CreateWindow(IActivationState activationState)
 		{
 			var window = base.CreateWindow(activationState);

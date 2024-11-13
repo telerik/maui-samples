@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.ComboBoxControl.CommandsCategory.RemoveTokenExample"
+             x:Class="SDKBrowserMaui.Examples.ComboBoxControl.CommandsCategory.RemoveTokenExample.RemoveTokenCommand">
+    <VerticalStackLayout Spacing="10">
+        <Label Text="RemoveToken Command in custom TokenTemplate" />
+        <!-- >> combobox-default-removetoken -->
+        <telerik:RadComboBox ItemsSource="{Binding Items}"
+                             Placeholder="Select a city"
+                             SelectionMode="Multiple"
+                             DisplayMemberPath="Name"
+                             WidthRequest="{OnPlatform MacCatalyst=300, WinUI=300}"
+                             HorizontalOptions="{OnPlatform MacCatalyst=Start, WinUI=Start}">
+            <telerik:RadComboBox.TokenTemplate>
+                <DataTemplate>
+                    <telerik:RadBorder BackgroundColor="#80CBC4"
+                                       CornerRadius="{OnPlatform Default=4, Android=16, iOS=8}"
+                                       Margin="{OnPlatform Default='2, 4', WinUI='2, 3'}"
+                                       VerticalOptions="Center">
+                        <HorizontalStackLayout Padding="{OnPlatform Android='16, 6', iOS='8, 6, 8, 7', MacCatalyst='5, 2.5', WinUI='10, 3, 8, 2'}"
+                                               Spacing="4">
+                            <Label Text="{Binding Name}"
+                                   TextColor="Black"
+                                   FontSize="{OnPlatform iOS=13, MacCatalyst=13}"
+                                   VerticalTextAlignment="Center" />
+                            <Label FontFamily="TelerikFontExamples"
+                                   Text="&#xE80A;"
+                                   FontSize="{OnPlatform Default=12, Android=14, iOS=14}"
+                                   TextColor="#198679"
+                                   Margin="{OnPlatform Android='0, 3, 0, 0'}"
+                                   VerticalTextAlignment="Center">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding RemoveTokenCommand, Source={RelativeSource AncestorType={x:Type telerik:RadComboBox}}}"
+                                                          CommandParameter="{Binding BindingContext, Source={RelativeSource Self}}" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </HorizontalStackLayout>
+                    </telerik:RadBorder>
+                </DataTemplate>
+            </telerik:RadComboBox.TokenTemplate>
+        </telerik:RadComboBox>
+        <!-- << combobox-default-removetoken -->
+
+        <Label Text="Custom RemoveToken Command" />
+        <!-- >> combobox-custom-removetoken -->
+        <telerik:RadComboBox ItemsSource="{Binding Items}"
+                             Placeholder="Select a city"
+                             SelectionMode="Multiple"
+                             DisplayMemberPath="Name"
+                             WidthRequest="{OnPlatform MacCatalyst=300, WinUI=300}"
+                             HorizontalOptions="{OnPlatform MacCatalyst=Start, WinUI=Start}">
+            <telerik:RadComboBox.RemoveTokenCommand>
+                <local:CustomComboBoxRemoveTokenCommand />
+            </telerik:RadComboBox.RemoveTokenCommand>
+        </telerik:RadComboBox>
+        <!-- << combobox-custom-removetoken -->
+    </VerticalStackLayout>
+</ContentView>

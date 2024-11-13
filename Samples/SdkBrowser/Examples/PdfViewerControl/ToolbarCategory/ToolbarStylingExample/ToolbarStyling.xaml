@@ -51,13 +51,6 @@
             </Style>
 
             <!-- Applicable for Desktop -->
-            <SolidColorBrush x:Key="EntryFocusedBorderBrush" Color="{StaticResource ToolbarAccentColorAlpha50}" />
-            <LinearGradientBrush x:Key="EntryFocusedBorderBrush_WinUI" StartPoint="0.5, 0" EndPoint="0.5, 1">
-                <LinearGradientBrush.GradientStops>
-                    <GradientStop Offset="0.9" Color="#0F000000" />
-                    <GradientStop Offset="1.0" Color="{StaticResource ToolbarAccentColor}" />
-                </LinearGradientBrush.GradientStops>
-            </LinearGradientBrush>
             <Style x:Key="CommonSearchButtonStyle" TargetType="telerik:ButtonToolbarItemView" BasedOn="{StaticResource CommonToolbarItemViewStyle}">
                 <Setter Property="TextColor" Value="{StaticResource ToolbarItemTextColor}" />
             </Style>
@@ -65,7 +58,6 @@
                 <Setter Property="EntryStyle">
                     <Style TargetType="telerik:RadEntry">
                         <Setter Property="TextColor" Value="{StaticResource ToolbarItemInvertedTextColor}" />
-                        <Setter Property="FocusedBorderBrush" Value="{OnPlatform Default={StaticResource EntryFocusedBorderBrush}, WinUI={StaticResource EntryFocusedBorderBrush_WinUI}}" />
                     </Style>
                 </Setter>
             </Style>
@@ -110,8 +102,6 @@
                         <Setter Property="Placeholder" Value="Search in document" />
                         <Setter Property="PlaceholderColor" Value="{OnPlatform Default={StaticResource ToolbarItemPlaceholderTextColor}, iOS={StaticResource ToolbarItemInvertedPlaceholderTextColor}}" />
                         <Setter Property="TextColor" Value="{OnPlatform Default={StaticResource ToolbarButtonTextColor}, iOS={StaticResource ToolbarItemInvertedTextColor}}" />
-                        <Setter Property="ClearButtonColor" Value="{OnPlatform Default={StaticResource ToolbarItemPlaceholderTextColor}, iOS={StaticResource ToolbarItemInvertedPlaceholderTextColor}}" />
-                        <Setter Property="FocusedBorderBrush" Value="{OnPlatform Default={StaticResource ToolbarAccentColor}, iOS={StaticResource ToolbarAccentColorAlpha50}}" />
                     </Style>
                 </Setter>
             </Style>

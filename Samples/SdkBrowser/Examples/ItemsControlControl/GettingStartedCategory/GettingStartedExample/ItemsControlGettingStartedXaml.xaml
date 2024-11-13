@@ -16,14 +16,15 @@
                 <telerik:RadItemsControl.ItemTemplate>
                     <DataTemplate>
                         <Grid RowDefinitions="Auto,Auto">
-                            <Label Text="{Binding Title}" 
+                            <Label Text="{Binding Title}"
                                    FontSize="14"
                                    TextColor="#674BB2"
-                                   Margin="5,0,0,0"/>
-                            <Label Text="{Binding Company}"
-                                   Grid.Row="1" Margin="5,0,0,10"
-                                   TextColor="{AppThemeBinding Light='#99000000', Dark='#99FFFFFF'}" 
-                                   FontSize="12"/>
+                                   Margin="5, 0, 0, 0" />
+                            <Label Grid.Row="1"
+                                   Text="{Binding Company}"
+                                   Margin="5, 0, 0, 10"
+                                   TextColor="#99000000"
+                                   FontSize="12" />
                         </Grid>
                     </DataTemplate>
                 </telerik:RadItemsControl.ItemTemplate>

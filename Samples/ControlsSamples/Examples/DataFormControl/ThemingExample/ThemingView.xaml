@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        xmlns:local="clr-namespace:QSF.Examples.DataFormControl.ThemingExample"
+                        x:Class="QSF.Examples.DataFormControl.ThemingExample.ThemingView"
+                        Padding="16, 20">
+    <telerik:RadContentView.Resources>
+        <telerik:DataFormVerticalStackLayout x:Key="stackLayout" />
+        <telerik:DataFormGridLayout x:Key="gridLayout" />
+        <ControlTemplate x:Key="DatePickerEditorTemplate">
+            <telerik:RadDatePicker Date="{Binding Value, Source={RelativeSource Mode=TemplatedParent}}" />
+        </ControlTemplate>
+    </telerik:RadContentView.Resources>
+
+    <Grid>
+        <telerik:RadDataForm x:Name="dataForm"
+                             ValidationMode="PropertyChanged"
+                             HeaderPosition="{OnIdiom Default=Above, Phone=Beside}"
+                             LayoutDefinition="{OnIdiom Default={StaticResource gridLayout}, Phone={StaticResource stackLayout}}"
+                             AutomationId="dataForm">
+            <telerik:RadDataForm.BindingContext>
+                <local:BookingViewModel />
+            </telerik:RadDataForm.BindingContext>
+            <telerik:DataFormCustomEditor PropertyName="StartDate"
+                                          EditorTemplate="{StaticResource DatePickerEditorTemplate}" />
+            <telerik:DataFormCustomEditor PropertyName="EndDate"
+                                          EditorTemplate="{StaticResource DatePickerEditorTemplate}" />
+            <telerik:DataFormRadSegmentedEditor PropertyName="Accommodation" />
+            <telerik:DataFormRadComboBoxEditor PropertyName="Reservation" />
+        </telerik:RadDataForm>
+    </Grid>
+</telerik:RadContentView>

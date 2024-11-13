@@ -22,26 +22,27 @@
     </telerik:RadContentView.Resources>
 
     <Grid RowDefinitions="Auto, *">
-        <VerticalStackLayout BackgroundColor="{AppThemeBinding Light={StaticResource DefaultBackgroundColor}, Dark={StaticResource DefaultBackgroundColorDark}}"
-                             Padding="16, 24">
-            <HorizontalStackLayout HorizontalOptions="Center"
-                                   VerticalOptions="End"
-                                   Spacing="10"
-                                   Margin="0, 0, 0, 12">
-                <Label Text="File:"
-                       Margin="0" />
-                <Label Text="SpreadProcessingDocument1.xlsx"
-                       FontAttributes="Bold"
-                       Margin="0" />
-            </HorizontalStackLayout>
-            <telerik:RadButton Grid.Row="1"
-                               Style="{StaticResource SubmitButtonStyle}"
-                               Text="{Binding ViewDocumentText}"
-                               VerticalOptions="{OnPlatform Default=End, WinUI=Center, MacCatalyst=Center}"
-                               HorizontalOptions="Center"
-                               Command="{Binding ViewDocumentCommand}" 
-                               AutomationId="viewDocumentButton"/>
-        </VerticalStackLayout>
+        <telerik:RadBorder Style="{StaticResource ControlWrapperBorderStyle}">
+            <VerticalStackLayout>
+                <HorizontalStackLayout HorizontalOptions="Center"
+                                       VerticalOptions="End"
+                                       Spacing="10"
+                                       Margin="0, 0, 0, 12">
+                    <Label Text="File:"
+                           Margin="0" />
+                    <Label Text="SpreadProcessingDocument1.xlsx"
+                           FontAttributes="Bold"
+                           Margin="0" />
+                </HorizontalStackLayout>
+                <telerik:RadButton Grid.Row="1"
+                                   Style="{StaticResource SubmitButtonStyle}"
+                                   Text="{Binding ViewDocumentText}"
+                                   VerticalOptions="{OnPlatform Default=End, WinUI=Center, MacCatalyst=Center}"
+                                   HorizontalOptions="Center"
+                                   Command="{Binding ViewDocumentCommand}" 
+                                   AutomationId="viewDocumentButton" />
+            </VerticalStackLayout>
+        </telerik:RadBorder>
         <ScrollView Grid.Row="1"
                     Margin="{OnIdiom Default='0, 24, 0, 0', Desktop='0, 40, 0, 0'}"
                     Padding="{OnIdiom Default=0, Phone=16}">
@@ -56,16 +57,16 @@
                     <telerik:RadEntry Placeholder="Enter Text to be found ex. fast"
                                       Text="{Binding FindWhat, Mode=OneWayToSource}"
                                       WidthRequest="{OnPlatform WinUI=300, MacCatalyst=300}" 
-                                      AutomationId="findTextEntry"/>
+                                      AutomationId="findTextEntry" />
                     <Label Text="Replace with:" />
                     <telerik:RadEntry Text="{Binding ReplaceWith, Mode=OneWayToSource}"
                                       WidthRequest="{OnPlatform WinUI=300, MacCatalyst=300}" 
-                                      AutomationId="replaceWithEntry"/>
+                                      AutomationId="replaceWithEntry" />
                     <VerticalStackLayout HorizontalOptions="Center">
                         <HorizontalStackLayout Margin="0, 0, 0, 24"
                                                Spacing="10">
                             <telerik:RadCheckBox IsChecked="{Binding MatchCase}" 
-                                                 AutomationId="matchCaseCheckBox"/>
+                                                 AutomationId="matchCaseCheckBox" />
                             <Label Text="Match Case"
                                    HorizontalOptions="Start"
                                    Margin="0" />
@@ -73,7 +74,7 @@
                         <HorizontalStackLayout Margin="0, 0, 0, 24"
                                                Spacing="10">
                             <telerik:RadCheckBox IsChecked="{Binding MatchEntireCellContents}" 
-                                                 AutomationId="matchEntireCellCheckBox"/>
+                                                 AutomationId="matchEntireCellCheckBox" />
                             <Label Text="Match Entire Cell Contents"
                                    HorizontalOptions="Start"
                                    Margin="0" />
@@ -87,7 +88,7 @@
                                    VerticalOptions="{OnPlatform Default=End, WinUI=Center, MacCatalyst=Center}"
                                    HorizontalOptions="{OnPlatform Default=Fill, WinUI=Center, MacCatalyst=Center}"
                                    Style="{StaticResource SubmitButtonStyle}" 
-                                   AutomationId="replaceAndSaveButton"/>
+                                   AutomationId="replaceAndSaveButton" />
             </Grid>
         </ScrollView>
     </Grid>

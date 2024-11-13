@@ -7,6 +7,44 @@
 
     <ContentView.Resources>
         <ResourceDictionary>
+            <!-- >> treeview-expand-styling -->
+            <Style x:Key="TreeViewItemButton_Style"
+                   TargetType="telerik:TreeViewItemButton">
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="BorderColor" Value="Transparent" />
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="BorderWidth" Value="0" />
+                <Setter Property="CornerRadius" Value="0" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="WidthRequest" Value="{OnPlatform Android=48, iOS=44, MacCatalyst=24, WinUI=26}" />
+                <Setter Property="HeightRequest" Value="{OnPlatform Android=48, iOS=44, MacCatalyst=24, WinUI=26}" />
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="FontSize" Value="12" />
+            </Style>
+            <Style x:Key="TreeViewItemExpandButton_Style"
+                   TargetType="telerik:TreeViewItemExpandButton"
+                   BasedOn="{StaticResource TreeViewItemButton_Style}">
+                <Setter Property="Text" Value="{x:Static telerik:TelerikFont.IconEmpty}" />
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup Name="ExpandStates">
+                            <VisualState Name="Leaf" />
+                            <VisualState Name="Expanded">
+                                <VisualState.Setters>
+                                    <Setter Property="Text" Value="{x:Static telerik:TelerikFont.IconDownArrow}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="Collapsed">
+                                <VisualState.Setters>
+                                    <Setter Property="Text" Value="{x:Static telerik:TelerikFont.IconRightArrow}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+            <!-- << treeview-expand-styling -->
             <!-- >> treeview-item-styling -->
             <Style TargetType="telerik:TreeViewItemView" x:Key="TreeViewItemStyle">
                 <Setter Property="BackgroundColor" Value="#0D8660C5" />
@@ -47,14 +85,9 @@
                         <Setter Property="UncheckedColor" Value="Gray" />
                     </Style>
                 </Setter>
+                <Setter Property="ExpandButtonStyle" Value="{StaticResource TreeViewItemExpandButton_Style}" />
             </Style>
             <!-- << treeview-item-styling -->
-
-            <!-- >> treeview-expand-styling -->
-            <Style TargetType="telerik:TreeViewItemExpandButton">
-                <Setter Property="TextColor" Value="#8660C5" />
-            </Style>
-            <!-- << treeview-expand-styling -->
 
             <!-- >> treeview-item-checkbox-styling -->
             <Style TargetType="telerik:TreeViewItemCheckBox">

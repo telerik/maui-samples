@@ -6,12 +6,13 @@
                         Margin="5">
     <telerik:RadContentView.Content>
         <ScrollView>
-            <VerticalStackLayout>
+            <VerticalStackLayout HorizontalOptions="{OnPlatform Default=Fill, MacCatalyst=Start, WinUI=Start}"
+                                 WidthRequest="{OnPlatform MacCatalyst=300, WinUI=300}">
 
                 <Label Text="Numeric mask:" Margin="0, 30, 0, 0" />
                 <telerik:RadNumericMaskedEntry x:Name="numericMaskedEntry" AutomationId="numericMask"/>
 
-                <HorizontalStackLayout Margin="10,0,0,0">
+                <HorizontalStackLayout Margin="10,5,0,0">
                     <Button Text="Change the Value" Clicked="ChangeNumericValue_Clicked" Grid.Column="1" Margin="0,0,20,0" AutomationId="numericChangeValueButton"/>
                     <Button Text="Clear the Value" Clicked="ClearNumeric_Clicked" AutomationId="numericClearValueButton"/>
                 </HorizontalStackLayout>
@@ -19,7 +20,7 @@
                 <Label Text="Regex mask:" Margin="0, 30, 0, 0" />
                 <telerik:RadRegexMaskedEntry x:Name="regexMaskedEntry" Mask="^[0-9]+$" Placeholder="^[0-9]+$" AutomationId="regexMask"/>
 
-                <HorizontalStackLayout Margin="10,0,0,0">
+                <HorizontalStackLayout Margin="10,5,0,0">
                     <Button Text="Change the Value" Clicked="ChangeRegexValue_Clicked" Grid.Column="1" Margin="0,0,20,0" AutomationId="regexChangeValueButton"/>
                     <Button Text="Clear the Value" Clicked="ClearRegex_Clicked" AutomationId="regexClearValueButton"/>
                 </HorizontalStackLayout>
@@ -29,7 +30,7 @@
                 <telerik:RadTextMaskedEntry x:Name="textMaskedEntry" Mask="aaaa" Value="ABCD" AutomationId="textMask"/>
                 <!-- << textmaskedentry-value-xaml -->
                 
-                <HorizontalStackLayout Margin="10,0,0,0">
+                <HorizontalStackLayout Margin="10,5,0,0">
                     <Button Text="Change the Value" Clicked="ChangeTextValue_Clicked" Grid.Column="1" Margin="0,0,20,0" AutomationId="textChangeValueButton"/>
                     <Button Text="Clear the Value" Clicked="ClearText_Clicked" AutomationId="textClearValueButton"/>
                 </HorizontalStackLayout>

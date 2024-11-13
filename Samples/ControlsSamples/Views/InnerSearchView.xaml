@@ -8,7 +8,7 @@
 
     <VisualElement.Resources>
         <Style TargetType="Label" BasedOn="{StaticResource BaseLabelStyle}">
-            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource DefaultTextColor}, Dark={StaticResource DefaultTextColorDark}}" />
+            <Setter Property="TextColor" Value="{StaticResource DefaultTextColor}" />
         </Style>
         <Style x:Key="IconStyle" TargetType="Label">
             <Setter Property="Text" Value="{Binding Icon}" />
@@ -35,34 +35,34 @@
         </DataTemplate>
         <DataTemplate x:Key="ControlResultTemplate">
             <Grid ColumnDefinitions="Auto, *"
-                              ColumnSpacing="12"
-                              Margin="12">
-                <telerik:RadBorder BackgroundColor="{AppThemeBinding Light={StaticResource DefaultBackgroundColor}, Dark=Transparent}"
-                                               CornerRadius="4">
+                  ColumnSpacing="12"
+                  Margin="12">
+                <telerik:RadBorder BackgroundColor="{StaticResource DefaultBackgroundColor}"
+                                   CornerRadius="4">
                     <Label Style="{StaticResource IconStyle}" />
                 </telerik:RadBorder>
                 <Label Grid.Column="1"
-                                   Text="{Binding ControlDisplayName}"
-                                   FontAttributes="Bold"
-                                   VerticalOptions="Center" />
+                       Text="{Binding ControlDisplayName}"
+                       FontAttributes="Bold"
+                       VerticalOptions="Center" />
             </Grid>
         </DataTemplate>
         <DataTemplate x:Key="ExampleResultTemplate">
             <Grid ColumnDefinitions="Auto, *"
-                              ColumnSpacing="12"
-                              Margin="12">
-                <telerik:RadBorder BackgroundColor="{AppThemeBinding Light={StaticResource DefaultBackgroundColor}, Dark=Transparent}"
-                                               CornerRadius="4">
+                  ColumnSpacing="12"
+                  Margin="12">
+                <telerik:RadBorder BackgroundColor="{StaticResource DefaultBackgroundColor}"
+                                   CornerRadius="4">
                     <Label Style="{StaticResource IconStyle}" />
                 </telerik:RadBorder>
                 <Grid Grid.Column="1"
-                                  RowDefinitions="Auto, Auto"
-                                  RowSpacing="2"
-                                  VerticalOptions="Center">
+                      RowDefinitions="Auto, Auto"
+                      RowSpacing="2"
+                      VerticalOptions="Center">
                     <Label Text="{Binding ControlDisplayName}"
-                                       FontAttributes="Bold" />
+                           FontAttributes="Bold" />
                     <Label Grid.Row="1"
-                                       Text="{Binding ExampleDisplayName}" />
+                           Text="{Binding ExampleDisplayName}" />
                 </Grid>
             </Grid>
         </DataTemplate>
@@ -70,7 +70,6 @@
                                                 ControlTemplate="{StaticResource ControlResultTemplate}"
                                                 ExampleTemplate="{StaticResource ExampleResultTemplate}" />
     </VisualElement.Resources>
-
     <Grid>
         <telerik:RadCollectionView x:Name="searchResultsCollectionView"
                                    GroupHeaderTemplate="{StaticResource GroupHeaderTemplate}"
@@ -89,7 +88,7 @@
             <telerik:RadCollectionView.ItemViewStyle>
                 <Style TargetType="telerik:RadCollectionViewItemView">
                     <Setter Property="BorderThickness" Value="0,0,0,1" />
-                    <Setter Property="BorderColor" Value="{AppThemeBinding Light={StaticResource DefaultBorderColor}, Dark={StaticResource DefaultBorderColorDark}}" />
+                    <Setter Property="BorderColor" Value="{StaticResource DefaultBorderColor}" />
                     <Setter Property="Background" Value="Transparent" />
                 </Style>
             </telerik:RadCollectionView.ItemViewStyle>
@@ -116,5 +115,4 @@
                    VerticalOptions="Center" />
         </VerticalStackLayout>
     </Grid>
-
 </telerik:RadBorder>

@@ -23,9 +23,11 @@
                     <telerik:DataGridTextColumn PropertyName="Name" 
                                                 HeaderText="Name">
                         <telerik:DataGridTextColumn.CellContentStyle>
-                            <telerik:DataGridTextCellStyle TextColor="#018383" 
-                                                           FontSize="15" 
-                                                           SelectedTextColor="#A55200"/>   
+                            <Style TargetType="telerik:DataGridTextCellAppearance">
+                                <Setter Property="TextColor" Value="#018383" />
+                                <Setter Property="SelectedTextColor" Value="#A55200" />
+                                <Setter Property="FontSize" Value="15" />
+                            </Style>
                         </telerik:DataGridTextColumn.CellContentStyle>
                     </telerik:DataGridTextColumn>
                     <telerik:DataGridNumericalColumn DataMemberBinding="{Binding StadiumCapacity, StringFormat='{0:N0}'}" 
@@ -36,22 +38,22 @@
                                                 HeaderText="Date Established"/>
                     <telerik:DataGridComboBoxColumn PropertyName="Championship"
                                                     HeaderText="Championship"
-                                                    ItemsSourcePath="Championships"/> 
+                                                    ItemsSourcePath="Championships"/>
                     <telerik:DataGridTemplateColumn HeaderText="Location">
                         <telerik:DataGridTemplateColumn.CellContentTemplate>
                             <DataTemplate>
                                 <Grid>
-                                    <VerticalStackLayout InputTransparent="True">                                        
-                                            <Label Text="{Binding Country}"
+                                    <VerticalStackLayout InputTransparent="True">
+                                        <Label Text="{Binding Country}"
                                                    TextColor="#009688"
                                                    Margin="0, 5, 0, 5"
                                                    HorizontalOptions="Center"
-                                                   VerticalTextAlignment="Center"/>                                       
+                                                   VerticalTextAlignment="Center"/>
                                         <Label Text="{Binding City}"
                                                TextColor="#80CBC4"
                                                HorizontalOptions="Center"
                                                VerticalTextAlignment="Center"
-                                               FontSize="12"/>  
+                                               FontSize="12"/>
                                     </VerticalStackLayout>
                                 </Grid>
                             </DataTemplate>

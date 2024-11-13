@@ -241,6 +241,17 @@
 					</Examples>
 				</Category>
 				<Category>
+					<Name>Commands</Name>
+					<Title>Commands</Title>
+					<Examples>
+						<Example>
+							<Page>RemoveTokenCommand</Page>
+							<Name>RemoveToken</Name>
+							<Title>Remove Token Command</Title>
+						</Example>
+					</Examples>
+				</Category>
+				<Category>
 					<Name>Styling</Name>
 					<Title>Styling</Title>
 					<Examples>
@@ -391,13 +402,24 @@
 					</Examples>
 				</Category>
 				<Category>
-					<Name>Features</Name>
-					<Title>Features</Title>
+					<Name>CornerRadius</Name>
+					<Title>Corner Radius</Title>
 					<Examples>
 						<Example>
-							<Page>KeyFeatures</Page>
-							<Name>KeyFeatures</Name>
-							<Title>Key Features</Title>
+							<Page>BorderCornerRadius</Page>
+							<Name>CornerRadius</Name>
+							<Title>Corner Radius</Title>
+						</Example>
+					</Examples>
+				</Category>
+				<Category>
+					<Name>Styling</Name>
+					<Title>Styling</Title>
+					<Examples>
+						<Example>
+							<Page>Styling</Page>
+							<Name>Styling</Name>
+							<Title>Styling</Title>
 						</Example>
 					</Examples>
 				</Category>
@@ -472,6 +494,32 @@
 							<Page>ButtonGettingStartedXaml</Page>
 							<Name>GettingStarted</Name>
 							<Title>Getting Started - Xaml</Title>
+						</Example>
+					</Examples>
+				</Category>
+				<Category>
+					<Name>Features</Name>
+					<Title>Features</Title>
+					<Examples>
+						<Example>
+							<Page>ContentAlignment</Page>
+							<Name>ContentAlignment</Name>
+							<Title>Content Alignment</Title>
+						</Example>
+						<Example>
+							<Page>Images</Page>
+							<Name>Images</Name>
+							<Title>Setting Images</Title>
+						</Example>
+						<Example>
+							<Page>ButtonCommand</Page>
+							<Name>Command</Name>
+							<Title>Command</Title>
+						</Example>
+						<Example>
+							<Page>Styling</Page>
+							<Name>Styling</Name>
+							<Title>Styling</Title>
 						</Example>
 					</Examples>
 				</Category>
@@ -1020,7 +1068,6 @@
 							<Page>CheckBoxCommand</Page>
 							<Name>CheckBoxCommand</Name>
 							<Title>Command</Title>
-							<ExcludeFrom>net7</ExcludeFrom>
 						</Example>
 						<Example>
 							<Page>ToggleOnTap</Page>
@@ -1374,11 +1421,6 @@
 							<Name>Search</Name>
 							<Title>Search</Title>
 						</Example>
-						<Example>
-							<Page>Commands</Page>
-							<Name>Commands</Name>
-							<Title>Commands</Title>
-						</Example>
 					</Examples>
 				</Category>
 				<Category>
@@ -1431,6 +1473,22 @@
 							<Page>HeaderFooter</Page>
 							<Name>HeaderFooter</Name>
 							<Title>DropDown Header and Footer</Title>
+						</Example>
+					</Examples>
+				</Category>
+				<Category>
+					<Name>Commands</Name>
+					<Title>Commands</Title>
+					<Examples>
+						<Example>
+							<Page>ClearSelectionCommand</Page>
+							<Name>ClearSelection</Name>
+							<Title>Clear Selection Command</Title>
+						</Example>
+						<Example>
+							<Page>RemoveTokenCommand</Page>
+							<Name>RemoveToken</Name>
+							<Title>Remove Token Command</Title>
 						</Example>
 					</Examples>
 				</Category>
@@ -1699,6 +1757,23 @@
 							<Name>Resizing</Name>
 							<Title>Resizing</Title>
 							<ExcludeFrom>Android,iOS</ExcludeFrom>
+						</Example>
+						<Example>
+							<Page>DragTemplates</Page>
+							<Name>DragTemplates</Name>
+							<Title>Drag Templates</Title>
+						</Example>
+					</Examples>
+				</Category>
+				<Category>
+					<Name>Cells</Name>
+					<Title>Cells</Title>
+					<ExcludeFrom>Android,iOS</ExcludeFrom>
+					<Examples>
+						<Example>
+							<Page>MouseHoverCell</Page>
+							<Name>MouseHoverCell</Name>
+							<Title>Mouse Hover Cell</Title>
 						</Example>
 					</Examples>
 				</Category>
@@ -1988,6 +2063,72 @@
 			</Categories>
 		</Control>
 		<Control>
+			<Name>DataPager</Name>
+			<Title>DataPager</Title>
+			<Icon>datapager.png</Icon>
+			<Categories>
+				<Category>
+					<Name>GettingStarted</Name>
+					<Title>Getting Started</Title>
+					<Examples>
+						<Example>
+							<Page>DataPagerGettingStartedXaml</Page>
+							<Name>GettingStarted</Name>
+							<Title>Getting Started - Xaml</Title>
+						</Example>
+						<Example>
+							<Page>DataPagerGettingStartedCSharp</Page>
+							<Name>GettingStarted</Name>
+							<Title>Getting Started - C#</Title>
+						</Example>
+					</Examples>
+				</Category>
+				<Category>
+					<Name>Features</Name>
+					<Title>Features</Title>
+					<Examples>
+						<Example>
+							<Page>PageConfiguration</Page>
+							<Name>PageConfiguration</Name>
+							<Title>Page Configuration</Title>
+						</Example>
+						<Example>
+							<Page>DisplayMode</Page>
+							<Name>DisplayMode</Name>
+							<Title>Display Modes</Title>
+						</Example>
+						<Example>
+							<Page>EllipsisMode</Page>
+							<Name>EllipsisMode</Name>
+							<Title>Ellipsis Modes</Title>
+						</Example>
+					</Examples>
+				</Category>
+				<Category>
+					<Name>Integration</Name>
+					<Title>Integration</Title>
+					<Examples>
+						<Example>
+							<Page>IntegrationDataGrid</Page>
+							<Name>IntegrationDataGrid</Name>
+							<Title>Integration with DataGrid</Title>
+						</Example>
+					</Examples>
+				</Category>
+				<Category>
+					<Name>Styling</Name>
+					<Title>Styling</Title>
+					<Examples>
+						<Example>
+							<Page>Buttons</Page>
+							<Name>Buttons</Name>
+							<Title>Buttons Styling</Title>
+						</Example>
+					</Examples>
+				</Category>
+			</Categories>
+		</Control>
+		<Control>
 			<Name>DatePicker</Name>
 			<Title>DatePicker</Title>
 			<Icon>datepicker.png</Icon>
@@ -2016,6 +2157,17 @@
 							<Page>DateProperties</Page>
 							<Name>DateProperties</Name>
 							<Title>Date Properties</Title>
+						</Example>
+					</Examples>
+				</Category>
+				<Category>
+					<Name>DateOnlySupport</Name>
+					<Title>DateOnly Support</Title>
+					<Examples>
+						<Example>
+							<Page>DateOnlySupport</Page>
+							<Name>DateOnlySupport</Name>
+							<Title>DateOnly Support</Title>
 						</Example>
 					</Examples>
 				</Category>
@@ -2173,6 +2325,17 @@
 						</Example>
 					</Examples>
 				</Category>
+				<Category>
+					<Name>Styling</Name>
+					<Title>Styling</Title>
+					<Examples>
+						<Example>
+							<Page>Styling</Page>
+							<Name>Styling</Name>
+							<Title>Styling</Title>
+						</Example>
+					</Examples>
+				</Category>
 			</Categories>
 		</Control>
 		<Control>
@@ -2253,6 +2416,40 @@
 							<Page>RadialGauge</Page>
 							<Name>RadialGauge</Name>
 							<Title>Radial Gauge</Title>
+						</Example>
+					</Examples>
+				</Category>
+			</Categories>
+		</Control>
+		<Control>
+			<Name>GridSplitter</Name>
+			<Title>GridSplitter</Title>
+			<Icon>gridsplitter.png</Icon>
+			<Categories>
+				<Category>
+					<Name>GettingStarted</Name>
+					<Title>Getting Started</Title>
+					<Examples>
+						<Example>
+							<Page>GridSplitterGettingStarted</Page>
+							<Name>GettingStarted</Name>
+							<Title>Getting Started</Title>
+						</Example>
+					</Examples>
+				</Category>
+				<Category>
+					<Name>Features</Name>
+					<Title>Features</Title>
+					<Examples>
+						<Example>
+							<Page>ResizeConfiguration</Page>
+							<Name>ResizeConfiguration</Name>
+							<Title>Resize Configuration</Title>
+						</Example>
+						<Example>
+							<Page>GripperStyling</Page>
+							<Name>GripperStyling</Name>
+							<Title>Gripper Styling</Title>
 						</Example>
 					</Examples>
 				</Category>
@@ -3007,6 +3204,17 @@
 						</Example>
 					</Examples>
 				</Category>
+				<Category>
+					<Name>Styling</Name>
+					<Title>Styling</Title>
+					<Examples>
+						<Example>
+							<Page>Styling</Page>
+							<Name>Styling</Name>
+							<Title>Styling</Title>
+						</Example>
+					</Examples>
+				</Category>
 			</Categories>
 		</Control>
 		<Control>
@@ -3191,12 +3399,12 @@
 				</Category>
 				<Category>
 					<Name>ContentTemplate</Name>
-					<Title>Popup Content Template</Title>
+					<Title>Content Template</Title>
 					<Examples>
 						<Example>
 							<Page>ContentTemplate</Page>
 							<Name>ContentTemplate</Name>
-							<Title>Popup Content Template</Title>
+							<Title>Content Template</Title>
 						</Example>
 					</Examples>
 				</Category>
@@ -3208,6 +3416,17 @@
 							<Page>ModalPopup</Page>
 							<Name>ModalPopup</Name>
 							<Title>Modal Popup</Title>
+						</Example>
+					</Examples>
+				</Category>
+				<Category>
+					<Name>Styling</Name>
+					<Title>Styling</Title>
+					<Examples>
+						<Example>
+							<Page>Styling</Page>
+							<Name>Styling</Name>
+							<Title>Styling</Title>
 						</Example>
 					</Examples>
 				</Category>
@@ -4130,6 +4349,16 @@
 							<Name>Selection</Name>
 							<Title>Selection</Title>
 						</Example>
+						<Example>
+							<Page>HeaderConfiguration</Page>
+							<Name>HeaderConfiguration</Name>
+							<Title>Header Configuration</Title>
+						</Example>
+						<Example>
+							  <Page>ContentSwiping</Page>
+							  <Name>ContentSwiping</Name>
+							  <Title>Swipe the Content</Title>
+						</Example>
 					</Examples>
 				</Category>
 				<Category>
@@ -4324,17 +4553,6 @@
 					</Examples>
 				</Category>
 				<Category>
-					<Name>Templates</Name>
-					<Title>Templates</Title>
-					<Examples>
-						<Example>
-							<Page>CustomTemplates</Page>
-							<Name>CustomTemplates</Name>
-							<Title>Custom Templates</Title>
-						</Example>
-					</Examples>
-				</Category>
-				<Category>
 					<Name>TimeProperties</Name>
 					<Title>Time Properties</Title>
 					<Examples>
@@ -4342,6 +4560,28 @@
 							<Page>TimeProperties</Page>
 							<Name>TimeProperties</Name>
 							<Title>Time Properties</Title>
+						</Example>
+					</Examples>
+				</Category>
+				<Category>
+					<Name>TimeOnlySupport</Name>
+					<Title>TimeOnly Support</Title>
+					<Examples>
+						<Example>
+							<Page>TimeOnlySupport</Page>
+							<Name>TimeOnlySupport</Name>
+							<Title>TimeOnly Support</Title>
+						</Example>
+					</Examples>
+				</Category>
+				<Category>
+					<Name>Templates</Name>
+					<Title>Templates</Title>
+					<Examples>
+						<Example>
+							<Page>CustomTemplates</Page>
+							<Name>CustomTemplates</Name>
+							<Title>Custom Templates</Title>
 						</Example>
 					</Examples>
 				</Category>
@@ -4390,17 +4630,6 @@
 					</Examples>
 				</Category>
 				<Category>
-					<Name>Templates</Name>
-					<Title>Templates</Title>
-					<Examples>
-						<Example>
-							<Page>CustomTemplates</Page>
-							<Name>CustomTemplates</Name>
-							<Title>Custom Templates</Title>
-						</Example>
-					</Examples>
-				</Category>
-				<Category>
 					<Name>TimeSpanProperties</Name>
 					<Title>TimeSpan Properties</Title>
 					<Examples>
@@ -4408,6 +4637,28 @@
 							<Page>TimeSpanProperties</Page>
 							<Name>TimeSpanProperties</Name>
 							<Title>TimeSpan Properties</Title>
+						</Example>
+					</Examples>
+				</Category>
+				<Category>
+					<Name>TimeOnlySupport</Name>
+					<Title>TimeOnly Support</Title>
+					<Examples>
+						<Example>
+							<Page>TimeOnlySupport</Page>
+							<Name>TimeOnlySupport</Name>
+							<Title>TimeOnly Support</Title>
+						</Example>
+					</Examples>
+				</Category>
+				<Category>
+					<Name>Templates</Name>
+					<Title>Templates</Title>
+					<Examples>
+						<Example>
+							<Page>CustomTemplates</Page>
+							<Name>CustomTemplates</Name>
+							<Title>Custom Templates</Title>
 						</Example>
 					</Examples>
 				</Category>

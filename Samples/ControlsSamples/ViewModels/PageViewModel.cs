@@ -24,7 +24,7 @@ public abstract class PageViewModel : ViewModelBase
         {
             TitleMode = BrowserTitleMode.Show,
             PreferredControlColor = Microsoft.Maui.Graphics.Colors.White,
-            PreferredToolbarColor = App.Current.Resources["ApplicationAccentColor"] as Microsoft.Maui.Graphics.Color
+            PreferredToolbarColor = App.ApplicationAccentColor
         };
 
         this.configurationService = DependencyService.Get<IConfigurationService>();
@@ -33,6 +33,7 @@ public abstract class PageViewModel : ViewModelBase
         this.NavigateToDocumentationCommand = new Command(this.NavigateToDocumentation);
         this.NavigateToFeedbackPortalCommand = new Command(this.NavigateToFeedbackPortal);
         this.NavigateToDownloadTrialCommand = new Command(this.NavigateToDownloadTrial);
+        this.NavigateToControlExamplesCodeCommand = new Command(this.NavigateToControlExamplesCode);
         this.NavigateToExampleCodeCommand = new Command(this.NavigateToExampleCode);
         this.NavigateToDescriptionCommand = new Command(this.NavigateToDescription);
         this.NavigateToThemeSettingsCommand = new Command(this.NavigateToThemeSettings);
@@ -94,6 +95,8 @@ public abstract class PageViewModel : ViewModelBase
 
     public ICommand NavigateToDownloadTrialCommand { get; private set; }
 
+    public ICommand NavigateToControlExamplesCodeCommand { get; private set; }
+
     public ICommand NavigateToExampleCodeCommand { get; private set; }
 
     public ICommand NavigateToDescriptionCommand { get; private set; }
@@ -124,6 +127,11 @@ public abstract class PageViewModel : ViewModelBase
         }
     }
 
+    internal void RaisePropertyChanged(string propertyName)
+    {
+        this.OnPropertyChanged(propertyName);
+    }
+
     private void NavigateToDocumentation()
     {
         TryNavigateToUrl(this.configurationService.Configuration.DocumentationUrl);
@@ -141,10 +149,17 @@ public abstract class PageViewModel : ViewModelBase
         TryNavigateToUrl(url);
     }
 
+    private void NavigateToControlExamplesCode(object obj)
+    {
+        Control control = (Control)obj;
+        string url = Utils.GetControlExamplesCodeURL(control) ?? this.configurationService.Configuration.ExampleCodeUrl;
+        TryNavigateToUrl(url);
+    }
+
     private void NavigateToExampleCode(object obj)
     {
         Example example = (Example)obj;
-        string url = Utils.GetExampleCodeURL(example) ?? this.configurationService.Configuration.ExampleCodeUrl; 
+        string url = Utils.GetExampleCodeURL(example) ?? this.configurationService.Configuration.ExampleCodeUrl;
         TryNavigateToUrl(url);
     }
 
@@ -154,12 +169,12 @@ public abstract class PageViewModel : ViewModelBase
         Example example = obj as Example;
         if (example != null)
         {
-            descriptionViewModel = new DescriptionViewModel(example.Description, example.DisplayName, true);
+            descriptionViewModel = new DescriptionViewModel(example);
         }
         else
         {
             Control control = (Control)obj;
-            descriptionViewModel = new DescriptionViewModel(control.FullDescription, control.DisplayName);
+            descriptionViewModel = new DescriptionViewModel(control);
         }
 
         this.NavigationService.NavigateToDescriptionPageAsync(descriptionViewModel);
@@ -167,7 +182,13 @@ public abstract class PageViewModel : ViewModelBase
 
     private void NavigateToThemeSettings(object obj)
     {
-        ThemeSettingsViewModel viewmodel = new ThemeSettingsViewModel();
+        var examplePage = obj as Pages.ExamplePage;
+        ThemeSettingsViewModel viewmodel = new ThemeSettingsViewModel()
+        {
+            MergedDictionaries = examplePage.Resources.MergedDictionaries,
+            ParentViewModel = (ExampleViewModel)examplePage.BindingContext
+        };
+
         this.NavigationService.NavigateToThemeSettingsPageAsync(viewmodel);
     }
 }

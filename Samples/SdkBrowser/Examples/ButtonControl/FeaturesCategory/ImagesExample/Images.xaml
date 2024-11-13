@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.ButtonControl.FeaturesCategory.ImagesExample.Images">
+    <VerticalStackLayout Spacing="20">
+        <HorizontalStackLayout Spacing="8">
+            <Label Text="BackgroundImage: " VerticalTextAlignment="Center" />
+            <!-- >> button-backgroundimage -->
+            <telerik:RadButton BorderThickness="1"
+                               Padding="{OnPlatform Default=4, iOS=0, MacCatalyst=0}"
+                               BorderColor="#DFDFDF">
+                <telerik:RadButton.ImageSource>
+                    <FontImageSource Glyph="&#xe876;"
+                                     Color="#8660C5"
+                                     Size="{OnPlatform Default=16, iOS=20, MacCatalyst=20}"
+                                     FontFamily="TelerikFontExamples" />
+                </telerik:RadButton.ImageSource>
+            </telerik:RadButton>
+            <!-- << button-backgroundimage -->
+        </HorizontalStackLayout>
+        <HorizontalStackLayout Spacing="8">
+            <Label Text="Text and ImageSource: " VerticalTextAlignment="Center" />
+            <!-- >> button-image -->
+            <telerik:RadButton Text="Submit"
+                               TextColor="Black"
+                               BorderThickness="1"
+                               BorderColor="#DFDFDF"
+                               ContentLayout="Right, 5">
+                <telerik:RadButton.ImageSource>
+                    <FontImageSource Glyph="&#xe876;"
+                                     Size="16"
+                                     Color="#8660C5"
+                                     FontFamily="TelerikFontExamples" />
+                </telerik:RadButton.ImageSource>
+            </telerik:RadButton>
+            <!-- << button-image -->
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
+</ContentView>

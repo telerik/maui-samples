@@ -19,7 +19,7 @@
             </DataTemplate>
             <DataTemplate x:Key="UWPTemplate">
                 <telerik:ListViewTextCell Text="{Binding Name}"
-                                                  TextColor="{AppThemeBinding Light={StaticResource DefaultTextColor}, Dark={StaticResource DefaultTextColorDark}}" />
+                                          TextColor="{StaticResource DefaultTextColor}" />
             </DataTemplate>
         </ResourceDictionary>
     </telerik:RadContentView.Resources>

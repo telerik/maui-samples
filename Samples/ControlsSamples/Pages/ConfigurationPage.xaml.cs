@@ -13,6 +13,7 @@ public partial class ConfigurationPage : ContentPage
     private async void Back_Clicked(object sender, EventArgs e)
     {
         ExampleViewModel vm = (ExampleViewModel)this.BindingContext;
+        this.BindingContext = null;
         await vm.NavigationService.NavigateBackAsync();
     }
 }

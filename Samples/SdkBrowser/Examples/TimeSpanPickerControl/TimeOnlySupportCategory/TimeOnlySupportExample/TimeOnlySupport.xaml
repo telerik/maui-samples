@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.TimePickerControl.TimeOnlySupportCategory.TimeOnlySupportExample"
+             x:Class="SDKBrowserMaui.Examples.TimeSpanPickerControl.TimeOnlySupportCategory.TimeOnlySupportExample.TimeOnlySupport">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <telerik:TimeOnlyToTimeSpanConverter x:Key="TimeOnlyToTimeSpanConverter" />
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+    <!-- >> timespanpicker-timeonly-support -->
+    <VerticalStackLayout WidthRequest="300" HorizontalOptions="Center">
+        <VerticalStackLayout.BindingContext>
+            <local:ViewModel />
+        </VerticalStackLayout.BindingContext>
+        <telerik:RadTimeSpanPicker x:Name="timeSpanPicker"
+                                   MinimumTime="{Binding MinimumTime, Converter={StaticResource TimeOnlyToTimeSpanConverter}}"
+                                   DefaultHighlightedTime="{Binding DefaultHighlightedTime, Converter={StaticResource TimeOnlyToTimeSpanConverter}}"
+                                   Time="{Binding SelectedTime, Mode=TwoWay, Converter={StaticResource TimeOnlyToTimeSpanConverter}}"
+                                   MaximumTime="{Binding MaximumTime, Converter={StaticResource TimeOnlyToTimeSpanConverter}}"
+                                   WidthRequest="{OnPlatform MacCatalyst=300, WinUI=300}"
+                                   HorizontalOptions="{OnPlatform MacCatalyst=Center, WinUI=Center}" />
+    </VerticalStackLayout>
+    <!-- << timespanpicker-timeonly-support -->
+</ContentView>

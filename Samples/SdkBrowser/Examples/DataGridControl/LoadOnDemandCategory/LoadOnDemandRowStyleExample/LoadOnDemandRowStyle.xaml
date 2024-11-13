@@ -6,17 +6,18 @@
     <telerik:RadContentView.Resources>
         <ResourceDictionary>
             <!-- >> datagrid-loadondemandrowstyle-xaml -->
-            <telerik:DataGridLoadOnDemandRowStyle x:Key="CustomDataGridLoadOnDemandRowStyle" 
-                                                  BackgroundColor="#E0F2F1"
-                                                  IndicatorAnimationColor="#00796B"
-                                                  IndicatorAnimationType="Animation5"
-                                                  HorizontalTextAlignment="Center"
-                                                  VerticalTextAlignment="Center"
-                                                  OverlayOpacity="0.5"
-                                                  Text="LOAD MORE"
-                                                  TextFontAttributes="Bold"
-                                                  TextFontSize="14"
-                                                  TextColor="#00796B" />
+            <Style TargetType="telerik:DataGridLoadOnDemandRowAppearance" x:Key="CustomDataGridLoadOnDemandRowStyle">
+                <Setter Property="BackgroundColor" Value="#E0F2F1"/>
+                <Setter Property="IndicatorAnimationColor" Value="#00796B"/>
+                <Setter Property="IndicatorAnimationType" Value="Animation5"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+                <Setter Property="OverlayOpacity" Value="0.5"/>
+                <Setter Property="Text" Value="LOAD MORE"/>
+                <Setter Property="TextFontAttributes" Value="Bold"/>
+                <Setter Property="TextFontSize" Value="14"/>
+                <Setter Property="TextColor" Value="#00796B"/>
+            </Style>
             <!-- << datagrid-loadondemandrowstyle-xaml -->
         </ResourceDictionary>
     </telerik:RadContentView.Resources>

@@ -2,15 +2,15 @@
 using System;
 using System.Collections.Generic;
 using Telerik.Maui.Controls;
-using Telerik.Maui.Controls.Compatibility.Map;
-using Telerik.Maui.Controls.Compatibility.ShapefileReader;
+using Telerik.Maui.Controls.Map;
+using Telerik.Maui.Controls.ShapefileReader;
 
 namespace SDKBrowserMaui.Examples.MapControl.SelectionCategory.ProgrammaticSelectionExample
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ProgrammaticSelection : RadContentView
     {
-        private List<Telerik.Maui.Controls.Compatibility.Map.SelectionMode> modes;
+        private List<MapSelectionMode> modes;
 
         public ProgrammaticSelection()
         {
@@ -24,11 +24,11 @@ namespace SDKBrowserMaui.Examples.MapControl.SelectionCategory.ProgrammaticSelec
             this.reader.DataSource = dataSource;
             // << map-selection-settintsource
 
-            this.modes = new List<SelectionMode>()
+            this.modes = new List<MapSelectionMode>()
             {
-                SelectionMode.None,
-                SelectionMode.Single,
-                SelectionMode.Multiple
+                MapSelectionMode.None,
+                MapSelectionMode.Single,
+                MapSelectionMode.Multiple
             };
 
             this.smSegmented.ItemsSource = this.modes;

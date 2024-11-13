@@ -6,17 +6,17 @@
     <!-- >> map-styling-shapelabelstyle -->
     <telerik:RadMap x:Name="map">
         <telerik:RadMap.Layers>
-            <telerik:ShapefileLayer LabelAttributeName="CNTRY_NAME">
-                <telerik:ShapefileLayer.Reader>
+            <telerik:MapShapefileLayer LabelAttributeName="CNTRY_NAME">
+                <telerik:MapShapefileLayer.Reader>
                     <telerik:MapShapeReader x:Name="reader"/>
-                </telerik:ShapefileLayer.Reader>
-                <telerik:ShapefileLayer.ShapeLabelStyle>
+                </telerik:MapShapefileLayer.Reader>
+                <telerik:MapShapefileLayer.ShapeLabelStyle>
                     <telerik:MapShapeLabelStyle TextColor="DarkRed"
                                                    FontAttributes="Bold"
                                                    FontSize="12"
                                                    FontFamily="Arial"/>
-                </telerik:ShapefileLayer.ShapeLabelStyle>
-            </telerik:ShapefileLayer>
+                </telerik:MapShapefileLayer.ShapeLabelStyle>
+            </telerik:MapShapefileLayer>
         </telerik:RadMap.Layers>
     </telerik:RadMap>
     <!-- << map-styling-shapelabelstyle -->

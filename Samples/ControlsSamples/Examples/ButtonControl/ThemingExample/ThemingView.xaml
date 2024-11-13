@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        xmlns:local="clr-namespace:QSF.Examples.ButtonControl.ThemingExample"
+                        x:Class="QSF.Examples.ButtonControl.ThemingExample.ThemingView">
+    <ContentView.Resources>
+        <FontImageSource x:Key="ButtonFontImageSource"
+                         FontFamily="TelerikFontExamples"
+                         Glyph="&#xe850;"
+                         Size="16"
+                         Color="{Binding TextColor, Source={RelativeSource AncestorType={x:Type telerik:RadButton}}, TargetNullValue={OnPlatform Default=#007AFF, Android=#000000, WinUI=#E4000000}, FallbackValue={OnPlatform Default=#007AFF, Android=#000000, WinUI=#E4000000}}" />
+        <Style x:Key="TitleLabelStyle" TargetType="Label">
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="HorizontalTextAlignment" Value="Center" />
+        </Style>
+        <Style TargetType="telerik:RadWrapLayout">
+            <Setter Property="Margin" Value="0, 0, 0, 16" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+        </Style>
+    </ContentView.Resources>
+
+    <telerik:RadContentView.Content>
+        <ScrollView>
+            <VerticalStackLayout Padding="12, 24"
+                                 Spacing="8">
+                <Label Text="Button" Style="{StaticResource TitleLabelStyle}" />
+                <telerik:RadWrapLayout>
+                    <telerik:RadButton Text="Play"
+                                       AutomationId="button"
+                                       Margin="4" />
+                    <telerik:RadButton Text="Play"
+                                       ImageSource="{StaticResource ButtonFontImageSource}"
+                                       AutomationId="iconTextButton"
+                                       Margin="4" />
+                    <telerik:RadButton ImageSource="{StaticResource ButtonFontImageSource}"
+                                       AutomationId="iconButton"
+                                       Margin="4" />
+                </telerik:RadWrapLayout>
+                <Label Text="Templated Button" Style="{StaticResource TitleLabelStyle}" />
+                <telerik:RadWrapLayout>
+                    <telerik:RadTemplatedButton Content="Send"
+                                                AutomationId="templatedButton"
+                                                Margin="4" />
+                    <telerik:RadTemplatedButton AutomationId="iconTextTemplatedButton"
+                                                Margin="4">
+                        <Grid ColumnDefinitions="Auto, *" ColumnSpacing="4">
+                            <Label FontFamily="TelerikFontExamples"
+                                   FontSize="{OnPlatform Default=16, MacCatalyst=12}"
+                                   Text="&#xe82d;"
+                                   TextColor="{Binding TextColor, Source={RelativeSource AncestorType={x:Type telerik:RadTemplatedButton}}}"
+                                   HorizontalTextAlignment="{Binding HorizontalTextAlignment, Source={RelativeSource AncestorType={x:Type telerik:RadTemplatedButton}}}"
+                                   VerticalTextAlignment="{Binding VerticalTextAlignment, Source={RelativeSource AncestorType={x:Type telerik:RadTemplatedButton}}}" />
+                            <Label Grid.Column="1"
+                                   Text="Send"
+                                   FontFamily="{Binding FontFamily, Source={RelativeSource AncestorType={x:Type telerik:RadTemplatedButton}}}"
+                                   FontSize="{Binding FontSize, Source={RelativeSource AncestorType={x:Type telerik:RadTemplatedButton}}}"
+                                   FontAttributes="{Binding FontAttributes, Source={RelativeSource AncestorType={x:Type telerik:RadTemplatedButton}}}"
+                                   TextColor="{Binding TextColor, Source={RelativeSource AncestorType={x:Type telerik:RadTemplatedButton}}}"
+                                   HorizontalTextAlignment="{Binding HorizontalTextAlignment, Source={RelativeSource AncestorType={x:Type telerik:RadTemplatedButton}}}"
+                                   VerticalTextAlignment="{Binding VerticalTextAlignment, Source={RelativeSource AncestorType={x:Type telerik:RadTemplatedButton}}}" />
+                        </Grid>
+                    </telerik:RadTemplatedButton>
+                    <telerik:RadTemplatedButton FontFamily="TelerikFontExamples"
+                                                Content="&#xe82d;"
+                                                AutomationId="iconTemplatedButton"
+                                                Margin="4" />
+                </telerik:RadWrapLayout>
+                <Label Text="Toggle Button" Style="{StaticResource TitleLabelStyle}" />
+                <telerik:RadWrapLayout>
+                    <telerik:RadToggleButton Content="Wi-Fi"
+                                             AutomationId="toggleButton"
+                                             Margin="4" />
+                    <telerik:RadToggleButton AutomationId="iconTextToggleButton"
+                                             Margin="4">
+                        <Grid ColumnDefinitions="Auto, *" ColumnSpacing="4">
+                            <Label FontFamily="TelerikFontExamples"
+                                   FontSize="{OnPlatform Default=16, MacCatalyst=12}"
+                                   Text="&#xe85f;"
+                                   TextColor="{Binding TextColor, Source={RelativeSource AncestorType={x:Type telerik:RadToggleButton}}}"
+                                   HorizontalTextAlignment="{Binding HorizontalTextAlignment, Source={RelativeSource AncestorType={x:Type telerik:RadToggleButton}}}"
+                                   VerticalTextAlignment="{Binding VerticalTextAlignment, Source={RelativeSource AncestorType={x:Type telerik:RadToggleButton}}}" />
+                            <Label Grid.Column="1"
+                                   Text="Wi-Fi"
+                                   FontFamily="{Binding FontFamily, Source={RelativeSource AncestorType={x:Type telerik:RadToggleButton}}}"
+                                   FontSize="{Binding FontSize, Source={RelativeSource AncestorType={x:Type telerik:RadToggleButton}}}"
+                                   FontAttributes="{Binding FontAttributes, Source={RelativeSource AncestorType={x:Type telerik:RadToggleButton}}}"
+                                   TextColor="{Binding TextColor, Source={RelativeSource AncestorType={x:Type telerik:RadToggleButton}}}"
+                                   HorizontalTextAlignment="{Binding HorizontalTextAlignment, Source={RelativeSource AncestorType={x:Type telerik:RadToggleButton}}}"
+                                   VerticalTextAlignment="{Binding VerticalTextAlignment, Source={RelativeSource AncestorType={x:Type telerik:RadToggleButton}}}" />
+                        </Grid>
+                    </telerik:RadToggleButton>
+                    <telerik:RadToggleButton FontFamily="TelerikFontExamples"
+                                             Content="&#xe85f;"
+                                             AutomationId="iconToggleButton"
+                                             Margin="4" />
+                </telerik:RadWrapLayout>
+            </VerticalStackLayout>
+        </ScrollView>
+    </telerik:RadContentView.Content>
+</telerik:RadContentView>

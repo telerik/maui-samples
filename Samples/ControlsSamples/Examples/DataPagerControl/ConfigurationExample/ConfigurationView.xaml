@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:styles="clr-namespace:QSF.Styles"
+             x:Class="QSF.Examples.DataPagerControl.ConfigurationExample.ConfigurationView"
+             Padding="{OnIdiom Default='16, 20', Phone=0}">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <styles:ConfigurationViewResources />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+
+        <Style x:Key="ConfiguratorComboBoxStyle" TargetType="telerik:RadComboBox">
+            <Setter Property="WidthRequest" Value="{OnIdiom Default=-1, Desktop=300}" />
+            <Setter Property="HorizontalOptions" Value="{OnIdiom Default=Fill, Desktop=Start}" />
+        </Style>
+        <Style x:Key="SliderMinMaxLabelStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="10" />
+            <Setter Property="Opacity" Value="0.6" />
+            <Setter Property="VerticalOptions" Value="Center" />
+        </Style>
+        <Style TargetType="Slider">
+            <Setter Property="Margin" Value="8, 0" />
+            <Setter Property="WidthRequest" Value="{OnIdiom Default=-1, Desktop=280}" />
+            <Setter Property="HorizontalOptions" Value="{OnIdiom Default=Fill, Desktop=Start}" />
+            <Setter Property="VerticalOptions" Value="Center" />
+        </Style>
+        <Style TargetType="telerik:RadNumericInput">
+            <Setter Property="WidthRequest" Value="{OnIdiom Default=-1, Desktop=300}" />
+            <Setter Property="HorizontalOptions" Value="{OnIdiom Default=Fill, Desktop=Start}" />
+        </Style>
+        <Style TargetType="telerik:RadCheckBox">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Disabled">
+                            <VisualState.Setters>
+                                <Setter Property="CheckedColor" Value="#9E9E9E" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentView.Resources>
+
+    <Grid RowDefinitions="{OnPlatform Default='80, *', WinUI='120, *'}">
+        <telerik:RadBorder Style="{StaticResource ControlWrapperBorderStyle}" />
+        <telerik:RadDataPager x:Name="dataPager"
+                              Source="{Binding Source}"
+                              ZIndex="2"
+                              MinNumericButtonsCount="{Binding MinNumericButtonsCount}"
+                              MaxNumericButtonsCount="{Binding MaxNumericButtonsCount}"
+                              EllipsisMode="{Binding EllipsisMode}"
+                              DisplayMode="{Binding DisplayMode}"
+                              ItemSpacing="{Binding ItemSpacing}"
+                              AutomationId="dataPager"
+                              Margin="{OnIdiom Default='20', Phone='5'}" />
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Style="{StaticResource RootAtExampleAreaStyle}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="{OnIdiom Default=*, Phone=0}" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="{OnIdiom Default=0, Phone=*}" />
+                    </Grid.RowDefinitions>
+                    <VerticalStackLayout Style="{OnIdiom Default={StaticResource GroupAtExampleAreaWithColumnBreakStyle}, Phone={StaticResource GroupAtExampleAreaStyle}}">
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Min Numeric Buttons' Count:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <telerik:RadNumericInput Value="{Binding MinNumericButtonsCount, Mode=TwoWay}"
+                                                     Minimum="1"
+                                                     Maximum="{Binding MaxNumericButtonsCount}" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Max Numeric Buttons' Count:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <telerik:RadNumericInput Value="{Binding MaxNumericButtonsCount, Mode=TwoWay}"
+                                                     Minimum="{Binding MinNumericButtonsCount}"
+                                                     Maximum="15" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Ellipsis Mode:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <telerik:RadComboBox x:Name="ellipsisModeComboBox"
+                                                 ItemsSource="{Binding EllipsisModes}"
+                                                 SelectedItem="{Binding EllipsisMode, Mode=TwoWay}"
+                                                 IsClearButtonVisible="False"
+                                                 Style="{StaticResource ConfiguratorComboBoxStyle}"
+                                                 AutomationId="ellipsisModeComboBox" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Item Spacing"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <Grid ColumnDefinitions="{OnIdiom Default='Auto, Auto, Auto', Phone='Auto, *, Auto'}">
+                                <Label Text="{Binding Source={x:Reference itemSpacingSlider}, Path=Minimum, Mode=TwoWay}"
+                                       Style="{StaticResource SliderMinMaxLabelStyle}" />
+                                <Slider x:Name="itemSpacingSlider"
+                                        Grid.Column="1"
+                                        Value="{Binding ItemSpacing}"
+                                        Minimum="0" Maximum="50"
+                                        AutomationId="itemSpacingSlider" />
+                                <Label Grid.Column="2"
+                                       Text="{Binding Source={x:Reference itemSpacingSlider}, Path=Maximum, Mode=TwoWay}"
+                                       Style="{StaticResource SliderMinMaxLabelStyle}" />
+                            </Grid>
+                        </VerticalStackLayout>
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Grid.Column="{OnIdiom Default=1, Phone=0}"
+                                         Grid.Row="{OnIdiom Default=0, Phone=1}"
+                                         Style="{StaticResource GroupAtExampleAreaStyle}">
+                        <VerticalStackLayout>
+                            <Label Text="Display Mode"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <HorizontalStackLayout telerik:RadCheckBox.ToggleOnTap="{Reference noneDisplayModeCb}"
+                                                   Style="{StaticResource CheckBoxGroupStyle}">
+                                <telerik:RadCheckBox x:Name="noneDisplayModeCb"
+                                                     IsChecked="{Binding IsNoneDisplayed, Mode=TwoWay}" />
+                                <Label Text="None"
+                                       Style="{StaticResource HorizontalGroupLabelAtEndStyle}" />
+                            </HorizontalStackLayout>
+                            <HorizontalStackLayout telerik:RadCheckBox.ToggleOnTap="{Reference firstPageButtonDisplayModeCb}"
+                                                   Style="{StaticResource CheckBoxGroupStyle}">
+                                <telerik:RadCheckBox x:Name="firstPageButtonDisplayModeCb"
+                                                     IsChecked="{Binding IsFirstPageButtonDisplayed, Mode=TwoWay}"
+                                                     IsEnabled="{Binding IsFirstPageButtonDisplayEnabled}" />
+                                <Label Text="First Page Button"
+                                       Style="{StaticResource HorizontalGroupLabelAtEndStyle}" />
+                            </HorizontalStackLayout>
+                            <HorizontalStackLayout telerik:RadCheckBox.ToggleOnTap="{Reference prevPageButtonDisplayModeCb}"
+                                                   Style="{StaticResource CheckBoxGroupStyle}">
+                                <telerik:RadCheckBox x:Name="prevPageButtonDisplayModeCb"
+                                                     IsChecked="{Binding IsPrevPageButtonDisplayed, Mode=TwoWay}"
+                                                     IsEnabled="{Binding IsPrevPageButtonDisplayEnabled}" />
+                                <Label Text="Previous Page Button"
+                                       Style="{StaticResource HorizontalGroupLabelAtEndStyle}" />
+                            </HorizontalStackLayout>
+                            <HorizontalStackLayout telerik:RadCheckBox.ToggleOnTap="{Reference numericButtonsDisplayModeCb}"
+                                                   Style="{StaticResource CheckBoxGroupStyle}">
+                                <telerik:RadCheckBox x:Name="numericButtonsDisplayModeCb"
+                                                     IsChecked="{Binding AreNumericButtonsDisplayed, Mode=TwoWay}"
+                                                     IsEnabled="{Binding AreNumericButtonsDisplayEnabled}" />
+                                <Label Text="Numeric Buttons"
+                                       Style="{StaticResource HorizontalGroupLabelAtEndStyle}" />
+                            </HorizontalStackLayout>
+                            <HorizontalStackLayout telerik:RadCheckBox.ToggleOnTap="{Reference navigationComboBoxDisplayModeCb}"
+                                                   Style="{StaticResource CheckBoxGroupStyle}">
+                                <telerik:RadCheckBox x:Name="navigationComboBoxDisplayModeCb"
+                                                     IsChecked="{Binding IsNavigationComboBoxDisplayed, Mode=TwoWay}"
+                                                     IsEnabled="{Binding IsNavigationComboBoxDisplayEnabled}" />
+                                <Label Text="Navigation ComboBox"
+                                       Style="{StaticResource HorizontalGroupLabelAtEndStyle}" />
+                            </HorizontalStackLayout>
+                            <HorizontalStackLayout telerik:RadCheckBox.ToggleOnTap="{Reference nextPageButtonDisplayModeCb}"
+                                                   Style="{StaticResource CheckBoxGroupStyle}">
+                                <telerik:RadCheckBox x:Name="nextPageButtonDisplayModeCb"
+                                                     IsChecked="{Binding IsNextPageButtonDisplayed, Mode=TwoWay}"
+                                                     IsEnabled="{Binding IsNextPageButtonDisplayEnabled}" />
+                                <Label Text="Next Page Button"
+                                       Style="{StaticResource HorizontalGroupLabelAtEndStyle}" />
+                            </HorizontalStackLayout>
+                            <HorizontalStackLayout telerik:RadCheckBox.ToggleOnTap="{Reference lastPageButtonDisplayModeCb}"
+                                                   Style="{StaticResource CheckBoxGroupStyle}">
+                                <telerik:RadCheckBox x:Name="lastPageButtonDisplayModeCb"
+                                                     IsChecked="{Binding IsLastPageButtonDisplayed, Mode=TwoWay}"
+                                                     IsEnabled="{Binding IsLastPageButtonDisplayEnabled}" />
+                                <Label Text="Last Page Button"
+                                       Style="{StaticResource HorizontalGroupLabelAtEndStyle}" />
+                            </HorizontalStackLayout>
+                            <HorizontalStackLayout telerik:RadCheckBox.ToggleOnTap="{Reference pageSizesViewDisplayModeCb}"
+                                                   Style="{StaticResource CheckBoxGroupStyle}">
+                                <telerik:RadCheckBox x:Name="pageSizesViewDisplayModeCb"
+                                                     IsChecked="{Binding IsPageSizesViewDisplayed, Mode=TwoWay}"
+                                                     IsEnabled="{Binding IsPageSizesViewDisplayEnabled}" />
+                                <Label Text="Page Sizes View"
+                                       Style="{StaticResource HorizontalGroupLabelAtEndStyle}" />
+                            </HorizontalStackLayout>
+                            <HorizontalStackLayout telerik:RadCheckBox.ToggleOnTap="{Reference navigationViewDisplayModeCb}"
+                                                   Style="{StaticResource CheckBoxGroupStyle}">
+                                <telerik:RadCheckBox x:Name="navigationViewDisplayModeCb"
+                                                     IsChecked="{Binding IsNavigationViewDisplayed, Mode=TwoWay}"
+                                                     IsEnabled="{Binding IsNavigationViewDisplayEnabled}" />
+                                <Label Text="Navigation View"
+                                       Style="{StaticResource HorizontalGroupLabelAtEndStyle}" />
+                            </HorizontalStackLayout>
+                        </VerticalStackLayout>
+                    </VerticalStackLayout>
+                </Grid>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentView>

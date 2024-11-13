@@ -29,4 +29,13 @@
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Condition=" $(CustomMauiNet9Version) != '' " Version="$(CustomMauiNet9Version)" />
 	</ItemGroup>
 
+	<ItemGroup Condition="'$(SolutionName)' != 'Telerik.Maui' And '$(UseSourceProjects)' != 'True' And '$(UseSourceAssemblies)' != 'True'">
+		<PackageReference Include="Telerik.UI.for.Maui" Version="$(TelerikVersion)" />
+	</ItemGroup>
+
+	<Import Condition="'$(SolutionName)' == 'Telerik.Maui' Or '$(UseSourceProjects)' == 'True'" Project="..\AddSourceProjects.proj" />
+	<Import Condition="'$(SolutionName)' != 'Telerik.Maui' And '$(UseSourceProjects)' != 'True' And '$(UseSourceAssemblies)' == 'True'" Project="..\AddSourceAssemblies.proj" />
+	<Import Condition="'$(UsePlatformAssemblies)' == 'True' AND '$(UsePlatformProjects)' != 'True'" Project="..\..\Source\AddPlatformAssemblies.proj" />
+	<Import Condition="'$(UsePlatformProjects)' == 'True'" Project="..\..\Source\AddPlatformProjects.proj" />
+
 </Project>

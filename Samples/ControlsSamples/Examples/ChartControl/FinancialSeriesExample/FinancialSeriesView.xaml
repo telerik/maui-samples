@@ -11,14 +11,13 @@
                 <styles:GalleryResources/>
             </ResourceDictionary.MergedDictionaries>
             <DataTemplate x:Key="CandlestickSeries">
-                <telerik:RadCartesianChart BackgroundColor="{AppThemeBinding Light=White}"
-                                           StyleClass="TelerikTheme"
+                <telerik:RadCartesianChart BackgroundColor="White"
                                            AutomationId="cartesianChartCandlestickSeries">
                     <telerik:RadCartesianChart.ChartBehaviors>
-                        <telerik:ChartTrackBallBehavior ShowTrackInfo="True"/>
-                        <telerik:ChartPanAndZoomBehavior ZoomMode="Horizontal" 
-                                                         PanMode="Horizontal" 
-                                                         HandleDoubleTap="True"/>
+                        <telerik:ChartTrackBallBehavior ShowTrackInfo="True" />
+                        <telerik:ChartPanAndZoomBehavior ZoomMode="Horizontal"
+                                                         PanMode="Horizontal"
+                                                         HandleDoubleTap="True" />
                     </telerik:RadCartesianChart.ChartBehaviors>
                     <telerik:RadCartesianChart.HorizontalAxis>
                         <telerik:DateTimeContinuousAxis LineColor="#A9A9A9"
@@ -46,13 +45,12 @@
                 </telerik:RadCartesianChart>
             </DataTemplate>
             <DataTemplate x:Key="OhlcSeries">
-                <telerik:RadCartesianChart BackgroundColor="{AppThemeBinding Light=White}"
-                                           StyleClass="TelerikTheme"
+                <telerik:RadCartesianChart BackgroundColor="White"
                                            AutomationId="cartesianChartOhlcSeries">
                     <telerik:RadCartesianChart.ChartBehaviors>
-                        <telerik:ChartTrackBallBehavior ShowTrackInfo="True"/>
-                        <telerik:ChartPanAndZoomBehavior ZoomMode="Horizontal" 
-                                                         PanMode="Horizontal" 
+                        <telerik:ChartTrackBallBehavior ShowTrackInfo="True" />
+                        <telerik:ChartPanAndZoomBehavior ZoomMode="Horizontal"
+                                                         PanMode="Horizontal"
                                                          HandleDoubleTap="True" />
                     </telerik:RadCartesianChart.ChartBehaviors>
                     <telerik:RadCartesianChart.HorizontalAxis>
@@ -82,13 +80,12 @@
             </DataTemplate>
             <DataTemplate x:Key="FinancialIndicators">
                 <telerik:RadCartesianChart x:Name="financialChart"
-                                           BackgroundColor="{AppThemeBinding Light=White}"
-                                           StyleClass="TelerikTheme"
+                                           BackgroundColor="White"
                                            AutomationId="cartesianChartFinancialIndicators">
                     <telerik:RadCartesianChart.ChartBehaviors>
-                        <telerik:ChartTrackBallBehavior ShowTrackInfo="True"/>
-                        <telerik:ChartPanAndZoomBehavior ZoomMode="Horizontal" 
-                                                         PanMode="Horizontal" 
+                        <telerik:ChartTrackBallBehavior ShowTrackInfo="True" />
+                        <telerik:ChartPanAndZoomBehavior ZoomMode="Horizontal"
+                                                         PanMode="Horizontal"
                                                          HandleDoubleTap="True" />
                     </telerik:RadCartesianChart.ChartBehaviors>
                     <telerik:RadCartesianChart.HorizontalAxis>
@@ -113,21 +110,21 @@
                                             HighBinding="High"
                                             LowBinding="Low"
                                             CloseBinding="Close"
-                                            ItemsSource="{Binding SeriesData}"/>
+                                            ItemsSource="{Binding SeriesData}" />
                         <telerik:ExponentialMovingAverageIndicator CategoryBinding="DateCategory"
                                                                    DisplayName="EMA 7days"
                                                                    ValueBinding="Close"
                                                                    Period="7"
                                                                    StrokeThickness="1"
                                                                    Stroke="DarkGreen"
-                                                                   ItemsSource="{Binding SeriesData}"/>
+                                                                   ItemsSource="{Binding SeriesData}" />
                         <telerik:ExponentialMovingAverageIndicator CategoryBinding="DateCategory"
                                                                    DisplayName="EMA 14days"
                                                                    ValueBinding="Close"
                                                                    Period="14"
                                                                    StrokeThickness="1"
                                                                    Stroke="DarkOrange"
-                                                                   ItemsSource="{Binding SeriesData}"/>
+                                                                   ItemsSource="{Binding SeriesData}" />
                     </telerik:RadCartesianChart.Series>
                 </telerik:RadCartesianChart>
             </DataTemplate>
