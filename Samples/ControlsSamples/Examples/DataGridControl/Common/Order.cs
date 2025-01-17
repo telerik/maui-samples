@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Xml.Serialization;
 using QSF.ViewModels;
-using Telerik.Maui.Controls.Compatibility.Common.DataAnnotations;
 
 namespace QSF.Examples.DataGridControl.Common
 {
@@ -24,7 +23,6 @@ namespace QSF.Examples.DataGridControl.Common
         private string shipRegion;
 
         [XmlAttribute(AttributeName = "OrderID")]
-        [DisplayOptions(Header = "Order ID", PlaceholderText = "Order ID")]
         public int OrderID
         {
             get => this.orderID;
@@ -32,7 +30,6 @@ namespace QSF.Examples.DataGridControl.Common
         }
 
         [XmlAttribute(AttributeName = "ShipName")]
-        [DisplayOptions(Header = "Ship Name", PlaceholderText = "Ship Name")]
         public string ShipName
         {
             get => this.shipName;
@@ -40,7 +37,6 @@ namespace QSF.Examples.DataGridControl.Common
         }
 
         [XmlAttribute(AttributeName = "CustomerID")]
-        [DisplayOptions(Header = "Customer ID", PlaceholderText = "Customer ID")]
         public string CustomerID
         {
             get => this.customerID;
@@ -62,7 +58,6 @@ namespace QSF.Examples.DataGridControl.Common
         }
 
         [XmlAttribute(AttributeName = "OrderDate")]
-        [DisplayOptions(Header = "Order Date", PlaceholderText = "Order Date")]
         public DateTime OrderDate
         {
             get => this.orderDate;
@@ -77,7 +72,6 @@ namespace QSF.Examples.DataGridControl.Common
         }
 
         [XmlAttribute(AttributeName = "ShippedDate")]
-        [DisplayOptions(Header = "Shipped Date", PlaceholderText = "Shipped Date")]
         public DateTime ShippedDate
         {
             get => this.shippedDate;
@@ -85,7 +79,6 @@ namespace QSF.Examples.DataGridControl.Common
         }
 
         [XmlAttribute(AttributeName = "ShipVia")]
-        [DisplayOptions(Header = "Ship Via", PlaceholderText = "Ship Via")]
         public double ShipVia
         {
             get => this.shipVia;
@@ -93,7 +86,6 @@ namespace QSF.Examples.DataGridControl.Common
         }
 
         [XmlAttribute(AttributeName = "Freight")]
-        [DisplayOptions(Header = "Freight", PlaceholderText = "Freight")]
         public double Freight
         {
             get => this.freight;
