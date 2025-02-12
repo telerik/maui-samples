@@ -41,7 +41,7 @@ namespace QSF.Examples.PdfProcessingControl.FirstLookExample
             using (MemoryStream stream = new MemoryStream())
             {
                 PdfFormatProvider pdfFormatProvider = new PdfFormatProvider();
-                pdfFormatProvider.Export(document, stream);
+                pdfFormatProvider.Export(document, stream, TimeSpan.FromMinutes(1));
 
                 stream.Seek(0, SeekOrigin.Begin);
 

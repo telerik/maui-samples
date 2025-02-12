@@ -11,39 +11,33 @@
     <Grid Background="White"
           RowDefinitions="50, *">
         <views:HeaderView />
-        <telerik:RadListView x:Name="examples"
-                             Grid.Row="1"
-                             ItemsSource="{Binding Examples}"
-                             SelectionMode="None"
-                             VerticalOptions="Start">
-            <telerik:RadListView.PressedItemStyle>
-                <telerik:ListViewItemStyle BackgroundColor="Transparent" />
-            </telerik:RadListView.PressedItemStyle>
-            <telerik:RadListView.ItemTemplate>
+        <telerik:RadCollectionView x:Name="examples"
+                                   Grid.Row="1"
+                                   ItemsSource="{Binding Examples}"
+                                   SelectionMode="None"
+                                   VerticalOptions="Start">
+            <telerik:RadCollectionView.ItemTemplate>
                 <DataTemplate>
-                    <telerik:ListViewTemplateCell>
-                        <telerik:ListViewTemplateCell.View>
-                            <Grid ColumnSpacing="5"
-                                  RowDefinitions="40"
-                                  ColumnDefinitions="50,*">
-                                <Grid.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="ExampleTapped" />
-                                </Grid.GestureRecognizers>
-                                <Image Source="bullet.png"
-                                       HorizontalOptions="Center"
-                                       VerticalOptions="Center"
-                                       Aspect="Fill"
-                                       WidthRequest="8"
-                                       HeightRequest="8"/>
-                                <Label Grid.Column="1"
-                                       Text="{Binding Title}"
-                                       TextColor="{StaticResource DefaultTextColor}"
-                                       VerticalOptions="Center" />
-                            </Grid>
-                        </telerik:ListViewTemplateCell.View>
-                    </telerik:ListViewTemplateCell>
+                    <Grid ColumnDefinitions="50,*">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="ExampleTapped" />
+                        </Grid.GestureRecognizers>
+                        <Image Source="bullet.png"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"
+                               Aspect="Fill"
+                               WidthRequest="8"
+                               HeightRequest="8" />
+                        <Label Grid.Column="1"
+                               Text="{Binding Title}"
+                               TextColor="{StaticResource DefaultTextColor}"
+                               VerticalOptions="Center" />
+                    </Grid>
                 </DataTemplate>
-            </telerik:RadListView.ItemTemplate>
-        </telerik:RadListView>
+            </telerik:RadCollectionView.ItemTemplate>
+            <telerik:RadCollectionView.ItemsLayout>
+                <telerik:CollectionViewLinearLayout ItemLength="40" />
+            </telerik:RadCollectionView.ItemsLayout>
+        </telerik:RadCollectionView>
     </Grid>
 </ContentPage>

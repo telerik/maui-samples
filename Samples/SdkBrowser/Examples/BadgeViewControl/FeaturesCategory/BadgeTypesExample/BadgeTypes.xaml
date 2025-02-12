@@ -4,40 +4,56 @@
                         xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
                         x:Class="SDKBrowserMaui.Examples.BadgeViewControl.FeaturesCategory.BadgeTypesExample.BadgeTypes">
     <!-- >> badgeview-badge-types -->
-    <telerik:RadListView x:Name="listView" SelectionMode="None">
-        <telerik:RadListView.ItemTemplate>
+    <telerik:RadContentView.Resources>
+        <ResourceDictionary>
+            <Style x:Key="ItemStyle" TargetType="telerik:RadCollectionViewItemView">
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup Name="CommonStates">
+                            <VisualState Name="Normal" />
+                            <VisualState Name="Selected" />
+                            <VisualState Name="MouseOver">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="Transparent" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </telerik:RadContentView.Resources>
+    <telerik:RadCollectionView x:Name="collectionView"
+                               ItemViewStyle="{StaticResource ItemStyle}"
+                               SelectionMode="None">
+        <telerik:RadCollectionView.ItemTemplate>
             <DataTemplate>
-                <telerik:ListViewTemplateCell>
-                    <VerticalStackLayout>
-                        <telerik:RadBadgeView x:Name="badge"
-                                                        BadgeVerticalPosition="End"
-                                                        BadgeOffsetX="-15"
-                                                        BadgeOffsetY="-10"
-                                                        BadgeType="{Binding .}"
-                                                        HorizontalOptions="Center"
-                                                        VerticalOptions="Center">
-                            <telerik:RadBadgeView.Content>
-                                <Image WidthRequest="55" 
-                                       HeightRequest="55"
-                                       Source="avatar.png"/>
-                            </telerik:RadBadgeView.Content>
-                        </telerik:RadBadgeView>
-                        <Label HorizontalOptions="Center"
-                               FontSize="{OnPlatform iOS='13', MacCatalyst='13', Android='10'}"
-                               Text="{Binding .}"/>
-                    </VerticalStackLayout>
-                </telerik:ListViewTemplateCell>
+                <VerticalStackLayout>
+                    <telerik:RadBadgeView x:Name="badge"
+                                          BadgeVerticalPosition="End"
+                                          BadgeOffsetX="-15"
+                                          BadgeOffsetY="-10"
+                                          BadgeType="{Binding .}"
+                                          HorizontalOptions="Center"
+                                          VerticalOptions="Center">
+                        <telerik:RadBadgeView.Content>
+                            <Image WidthRequest="55" 
+                                   HeightRequest="55"
+                                   Source="avatar.png" />
+                        </telerik:RadBadgeView.Content>
+                    </telerik:RadBadgeView>
+                    <Label HorizontalOptions="Center"
+                           FontSize="{OnPlatform iOS='13', MacCatalyst='13', Android='10'}"
+                           Text="{Binding .}" />
+                </VerticalStackLayout>
             </DataTemplate>
-        </telerik:RadListView.ItemTemplate>
-        <telerik:RadListView.ItemStyle>
-            <telerik:ListViewItemStyle BackgroundColor="Transparent"/>
-        </telerik:RadListView.ItemStyle>
-        <telerik:RadListView.LayoutDefinition>
-            <telerik:ListViewGridLayout HorizontalItemSpacing="5"
-                                                VerticalItemSpacing="25"
-                                                ItemLength="{OnPlatform iOS='80', MacCatalyst='80'}"
-                                                SpanCount="4"/>
-        </telerik:RadListView.LayoutDefinition>
-    </telerik:RadListView>
+        </telerik:RadCollectionView.ItemTemplate>
+        <telerik:RadCollectionView.ItemsLayout>
+            <telerik:CollectionViewGridLayout HorizontalItemSpacing="5"
+                                              VerticalItemSpacing="25"
+                                              ItemLength="{OnPlatform iOS='80', MacCatalyst='80'}"
+                                              SpanCount="4" />
+        </telerik:RadCollectionView.ItemsLayout>
+    </telerik:RadCollectionView>
     <!-- << badgeview-badge-types -->
 </telerik:RadContentView>

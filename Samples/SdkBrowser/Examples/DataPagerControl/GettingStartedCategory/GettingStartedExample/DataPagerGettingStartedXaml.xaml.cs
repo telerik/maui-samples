@@ -9,5 +9,6 @@ public partial class DataPagerGettingStartedXaml : ContentView
     {
         InitializeComponent();
         this.BindingContext = new ViewModel();
+        this.dataPager.AutomationId = "dataPager";
     }
 }

@@ -1,13 +1,8 @@
 ﻿using Microsoft.Maui.Controls;
 using SDKBrowserMaui.Common;
 using SDKBrowserMaui.Services;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Telerik.Maui.Controls.Compatibility.DataControls.ListView.Commands;
+using System.Windows.Input;
 
 namespace SDKBrowserMaui.ViewModels
 {
@@ -31,50 +26,49 @@ namespace SDKBrowserMaui.ViewModels
                 }
             }
 
-            this.NextCommand = new Command<ItemTapCommandContext>(this.OnNextCommand);
+            this.NextCommand = new Command((item) => 
+            {
+                var navigationService = DependencyService.Get<INavigationService>();
+
+                var control = item as Control;
+
+                if (control != null)
+                {
+                    if (control.Categories.Count > 1)
+                    {
+                        navigationService.NavigateToAsync<ControlViewModel>(control);
+                    }
+                    else if (control.Categories.Count > 0)
+                    {
+                        var category = control.Categories[0];
+
+                        if (category.Examples.Count > 1)
+                        {
+                            navigationService.NavigateToAsync<CategoryViewModel>(category);
+                        }
+                        else if (category.Examples.Count > 0)
+                        {
+                            var example = category.Examples[0];
+
+                            navigationService.NavigateToAsync<ExampleViewModel>(example);
+                        }
+                    }
+                }
+                else
+                {
+                    var example = item as Example;
+
+                    if (example != null)
+                    {
+                        navigationService.NavigateToAsync<ExampleViewModel>(example);
+                    }
+                }
+
+            });
         }
 
         public ObservableCollection<Example> Examples { get; protected set; }
 
-        public Command<ItemTapCommandContext> NextCommand { get; private set; }
-
-        private void OnNextCommand(ItemTapCommandContext context)
-        {
-            var navigationService = DependencyService.Get<INavigationService>();
-
-            var control = context.Item as Control;
-
-            if (control != null)
-            {
-                if (control.Categories.Count > 1)
-                {
-                    navigationService.NavigateToAsync<ControlViewModel>(control);
-                }
-                else if (control.Categories.Count > 0)
-                {
-                    var category = control.Categories[0];
-
-                    if (category.Examples.Count > 1)
-                    {
-                        navigationService.NavigateToAsync<CategoryViewModel>(category);
-                    }
-                    else if (category.Examples.Count > 0)
-                    {
-                        var example = category.Examples[0];
-
-                        navigationService.NavigateToAsync<ExampleViewModel>(example);
-                    }
-                }
-            }
-            else
-            {
-                var example = context.Item as Example;
-
-                if (example != null)
-                {
-                    navigationService.NavigateToAsync<ExampleViewModel>(example);
-                }
-            }
-        }
+        public ICommand NextCommand { get; set; }
     }
 }

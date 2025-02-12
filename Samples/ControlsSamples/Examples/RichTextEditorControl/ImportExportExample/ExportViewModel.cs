@@ -115,7 +115,7 @@ public class ExportViewModel : ExampleViewModel
 
         using (MemoryStream stream = new MemoryStream())
         {
-            formatProvider.Export(flowDocument, stream);
+            formatProvider.Export(flowDocument, stream, TimeSpan.FromMinutes(1));
             stream.Seek(0, SeekOrigin.Begin);
             await this.fileViewerService.View(stream, exampleName);
         }
@@ -127,9 +127,9 @@ public class ExportViewModel : ExampleViewModel
 
         using (var resourceStream = this.resourceService.GetResourceStream(resourceName))
         {
-            var flowDocument = importProvider.Import(resourceStream);
+            var flowDocument = importProvider.Import(resourceStream, TimeSpan.FromMinutes(1));
             var exportProvider = new HtmlFormatProvider();
-            this.HtmlText = exportProvider.Export(flowDocument);
+            this.HtmlText = exportProvider.Export(flowDocument, TimeSpan.FromMinutes(1));
         }
     }
 }

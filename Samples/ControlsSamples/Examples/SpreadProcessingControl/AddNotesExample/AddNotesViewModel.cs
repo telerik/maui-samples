@@ -1,6 +1,7 @@
 ﻿using Microsoft.Maui.Controls;
 using QSF.Services;
 using QSF.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
@@ -303,7 +304,7 @@ namespace QSF.Examples.SpreadProcessingControl.AddNotesExample
         {
             IWorkbookFormatProvider formatProvider = new XlsxFormatProvider();
             MemoryStream stream = new MemoryStream();
-            formatProvider.Export(workbook, stream);
+            formatProvider.Export(workbook, stream, TimeSpan.FromMinutes(1));
             return stream;
         }
 

@@ -16,44 +16,38 @@
             <Setter Property="HeightRequest" Value="48" />
             <Setter Property="BorderColor" Value="{StaticResource AccentColor8}" />
             <Setter Property="BorderThickness" Value="4" />
+            <Setter Property="VerticalOptions" Value="Center" />
             <Setter Property="HorizontalOptions" Value="Center" />
         </Style>
 
         <DataTemplate x:Key="SalesPersonDetailsTemplate">
-            <telerik:ListViewTemplateCell>
-                <telerik:ListViewTemplateCell.View>
-                    <telerik:RadBorder BorderThickness="1"
-                                       BorderColor="#DFDFDF"
-                                       Padding="10, 0">
-                        <HorizontalStackLayout Spacing="15"
-                                               HorizontalOptions="Start">
-                            <telerik:RadBorder Style="{StaticResource ImageBorderStyle}">
-                                <Image Source="{Binding Image}"
-                                       WidthRequest="48"
-                                       HeightRequest="48"
-                                       BackgroundColor="Transparent"
-                                       VerticalOptions="Center"
-                                       HorizontalOptions="Center" />
-                            </telerik:RadBorder>
-                            <VerticalStackLayout VerticalOptions="Center"
-                                                 HorizontalOptions="Start"
-                                                 Spacing="5">
-                                <Label Text="{Binding FullName}"
-                                       VerticalOptions="Center"
-                                       FontSize="20"
-                                       TextColor="{StaticResource AccentColor8}" />
-                                <Label Text="{Binding CountryName}"
-                                       VerticalOptions="Center"
-                                       FontSize="14" />
-                                <Label Text="{Binding Sales, StringFormat='${0}'}"
-                                       VerticalOptions="Center"
-                                       FontSize="12"
-                                       TextColor="#A790CE" />
-                            </VerticalStackLayout>
-                        </HorizontalStackLayout>
-                    </telerik:RadBorder>
-                </telerik:ListViewTemplateCell.View>
-            </telerik:ListViewTemplateCell>
+            <HorizontalStackLayout Spacing="15"
+                                   HorizontalOptions="Start"
+                                   Padding="{Binding Source={RelativeSource AncestorType={x:Type telerik:RadCollectionViewItemView}}, Path=ActualPadding}">
+                <telerik:RadBorder Style="{StaticResource ImageBorderStyle}">
+                    <Image Source="{Binding Image}"
+                           WidthRequest="48"
+                           HeightRequest="48"
+                           BackgroundColor="Transparent"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center" />
+                </telerik:RadBorder>
+                <VerticalStackLayout VerticalOptions="Center"
+                                     HorizontalOptions="Start"
+                                     Spacing="5">
+                    <Label Text="{Binding FullName}"
+                           VerticalOptions="Center"
+                           FontSize="20"
+                           TextColor="{StaticResource AccentColor8}" />
+                    <Label Text="{Binding CountryName}"
+                           VerticalOptions="Center"
+                           FontSize="14" />
+                    <Label Text="{Binding Sales, StringFormat='${0}'}"
+                           VerticalOptions="Center"
+                           FontSize="12"
+                           TextColor="#A790CE" />
+                </VerticalStackLayout>
+            </HorizontalStackLayout>
         </DataTemplate>
     </ContentView.Resources>
 
@@ -62,28 +56,38 @@
                              HeaderText="Sales Person"
                              AutomationId="expander">
             <telerik:RadExpander.Content>
-                <telerik:RadListView x:Name="listView"
-                                     ItemsSource="{Binding SalesReps}"
-                                     ItemTemplate="{StaticResource SalesPersonDetailsTemplate}"
-                                     SelectionMode="None"
-                                     Margin="0, 10, 0, 0">
-                    <telerik:RadListView.LayoutDefinition>
-                        <telerik:ListViewGridLayout ItemLength="95"
-                                                    SpanCount="{Binding Source={x:Reference ExpanderFirstLookView}, Path=Width, Converter={StaticResource ViewWidthToSpanCountConverter}}"
-                                                    HorizontalItemSpacing="10"
-                                                    VerticalItemSpacing="10" />
-                    </telerik:RadListView.LayoutDefinition>
-                    <telerik:RadListView.ItemStyle>
-                        <telerik:ListViewItemStyle BorderWidth="0"
-                                                   BorderLocation="None" />
-                    </telerik:RadListView.ItemStyle>
-                    <telerik:RadListView.SelectedItemStyle>
-                        <telerik:ListViewItemStyle BackgroundColor="Transparent" />
-                    </telerik:RadListView.SelectedItemStyle>
-                    <telerik:RadListView.PressedItemStyle>
-                        <telerik:ListViewItemStyle BackgroundColor="Transparent" />
-                    </telerik:RadListView.PressedItemStyle>
-                </telerik:RadListView>
+                <telerik:RadCollectionView x:Name="collectionView"
+                                           SelectionMode="None"
+                                           ItemsSource="{Binding SalesReps}"
+                                           ItemTemplate="{StaticResource SalesPersonDetailsTemplate}"
+                                           Margin="0, 10, 0, 0">
+                    <telerik:RadCollectionView.ItemViewStyle>
+                        <Style TargetType="telerik:RadCollectionViewItemView">
+                            <Setter Property="BorderThickness" Value="1" />
+                            <Setter Property="BorderColor" Value="#DFDFDF" />
+                            <Setter Property="Padding" Value="10,0" />
+                            <Setter Property="VisualStateManager.VisualStateGroups">
+                                <VisualStateGroupList>
+                                    <VisualStateGroup Name="CommonStates">
+                                        <VisualState Name="Normal" />
+                                        <VisualState Name="Selected" />
+                                        <VisualState Name="MouseOver">
+                                            <VisualState.Setters>
+                                                <Setter Property="BackgroundColor" Value="Transparent" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateGroupList>
+                            </Setter>
+                        </Style>
+                    </telerik:RadCollectionView.ItemViewStyle>
+                    <telerik:RadCollectionView.ItemsLayout>
+                        <telerik:CollectionViewGridLayout ItemLength="95"
+                                                          SpanCount="{Binding Source={x:Reference ExpanderFirstLookView}, Path=Width, Converter={StaticResource ViewWidthToSpanCountConverter}}"
+                                                          HorizontalItemSpacing="10"
+                                                          VerticalItemSpacing="10" />
+                    </telerik:RadCollectionView.ItemsLayout>
+                </telerik:RadCollectionView>
             </telerik:RadExpander.Content>
         </telerik:RadExpander>
     </Grid>

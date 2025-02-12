@@ -33,15 +33,5 @@ namespace SDKBrowserMaui.ViewModels
             var navigationService = DependencyService.Get<INavigationService>();
             navigationService.NavigateToAsync<ExampleViewModel>(example);
         }
-
-        protected override bool PassesFilter(object item, params string[] tokens)
-        {
-            var example = (Example)item;
-            var comparison = StringComparison.OrdinalIgnoreCase;
-
-            return tokens.All(token =>
-                example.Name.IndexOf(token, comparison) >= 0 ||
-                example.Title.IndexOf(token, comparison) >= 0);
-        }
     }
 }

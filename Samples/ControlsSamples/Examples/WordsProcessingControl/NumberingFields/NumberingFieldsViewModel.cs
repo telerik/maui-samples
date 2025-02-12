@@ -7,7 +7,6 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-
 using Telerik.Windows.Documents.Flow.FormatProviders.Docx;
 using Telerik.Windows.Documents.Flow.FormatProviders.Rtf;
 using Telerik.Windows.Documents.Flow.FormatProviders.Pdf;
@@ -254,7 +253,7 @@ namespace QSF.Examples.WordsProcessingControl.NumberingFieldsExample
 
             using (MemoryStream stream = new MemoryStream())
             {
-                formatProvider.Export(document, stream);
+                formatProvider.Export(document, stream, TimeSpan.FromMinutes(1));
                 stream.Seek(0, SeekOrigin.Begin);
                 await this.fileViewerService.View(stream, exampleName);
                 return true;

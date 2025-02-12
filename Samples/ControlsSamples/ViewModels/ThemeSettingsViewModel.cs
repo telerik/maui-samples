@@ -1,5 +1,6 @@
 using Microsoft.Maui.ApplicationModel;
 using Microsoft.Maui.Controls;
+using Microsoft.Maui.Graphics;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -18,6 +19,21 @@ public class ThemeSettingsViewModel : ViewModelBase
     private static bool prefetchStarted = false;
     private static bool prefetched = false;
     private static double progress = 0;
+
+    // TODO: Delete this once we apply the platform theme on an App level.
+    private static ResourceDictionary defaultSwatch;
+
+    static ThemeSettingsViewModel()
+    {
+        defaultSwatch = new ResourceDictionary();
+        defaultSwatch.Add("RadAppSurfaceColor", Colors.White);
+        defaultSwatch.Add("RadOnAppSurfaceColor", Colors.Black);
+#if WINDOWS
+        defaultSwatch.Add("RadBorderColor", Color.FromArgb("#0F000000"));
+#else
+        defaultSwatch.Add("RadBorderColor", Color.FromArgb("#DFDFDF"));
+#endif
+    }
 
     public ThemeSettingsViewModel()
     {
@@ -38,7 +54,7 @@ public class ThemeSettingsViewModel : ViewModelBase
 
         this.ThemesCatalog = themeDefinitions
             .SelectMany(theme => theme.Swatches)
-            .Where(theme => themeStrings.Contains(theme.Theme + " " + theme.Swatch))
+            .Where(theme => themeStrings.Contains(string.IsNullOrEmpty(theme.Swatch) ? theme.Theme : theme.Theme + " " + theme.Swatch))
             .ToArray();
 
         this.HeaderLabel = "Theme Settings";
@@ -48,6 +64,8 @@ public class ThemeSettingsViewModel : ViewModelBase
             "Light",
             "Dark"
         });
+
+        App.Current.Resources.MergedDictionaries.Remove(defaultSwatch);
 
         Application.Current.RequestedThemeChanged += this.OnRequestedThemeChanged;
     }
@@ -112,7 +130,8 @@ public class ThemeSettingsViewModel : ViewModelBase
 
         set
         {
-            if (value == null || value == this.CurrentTheme)
+            var currentTheme = this.CurrentTheme;
+            if (value == null || value == currentTheme)
             {
                 return;
             }
@@ -121,10 +140,14 @@ public class ThemeSettingsViewModel : ViewModelBase
 
             // TODO: Delete this logic once theming is applied on app level.
             // Now it is needed for desktop because there are controls that require the swatches to be merged on app level.
-#if MACCATALYST || WINDOWS
             var appDictionaries = App.Current.Resources.MergedDictionaries;
-            appDictionaries.Remove(telerikTheming.MergedDictionaries.ElementAt(0));
-            appDictionaries.Remove(telerikTheming.MergedDictionaries.ElementAt(1));
+            appDictionaries.Remove(defaultSwatch);
+
+#if MACCATALYST || WINDOWS
+            if (currentTheme.Theme != "Default")
+            {
+                appDictionaries.Remove(telerikTheming.MergedDictionaries.ElementAt(0));
+            }
 #endif
 
             var themeKey = TelerikTheming.Themes.Single(themeKey =>
@@ -133,9 +156,17 @@ public class ThemeSettingsViewModel : ViewModelBase
 
             telerikTheming.Theme = themeKey;
 
+            if (value.Theme == "Default")
+            {
+                appDictionaries.Add(defaultSwatch);
+            }
 #if MACCATALYST || WINDOWS
-            appDictionaries.Add(telerikTheming.MergedDictionaries.ElementAt(0));
-            appDictionaries.Add(telerikTheming.MergedDictionaries.ElementAt(1));
+            else
+            {
+                appDictionaries.Add(telerikTheming.MergedDictionaries.ElementAt(0));
+                
+            }
+
             this.ResetExampleIfNeeded();
 #endif
             this.OnPropertyChanged();
@@ -212,7 +243,7 @@ public class ThemeSettingsViewModel : ViewModelBase
 
     internal void ResetExampleIfNeeded()
     {
-        if (this.CurrentTheme.DisplayFullName != "Platform Main")
+        if (this.CurrentTheme.Theme != "Default")
         {
             return;
         }

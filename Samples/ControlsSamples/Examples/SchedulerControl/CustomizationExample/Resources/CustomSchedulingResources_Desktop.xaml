@@ -4,22 +4,23 @@
                     xmlns:local="clr-namespace:QSF.Examples.SchedulerControl.CustomizationExample"
                     x:Class="QSF.Examples.SchedulerControl.CustomizationExample.CustomSchedulingResources_Desktop">
     <ResourceDictionary.MergedDictionaries>
-        <telerik:SchedulerDialogResources_Desktop />
+        <telerik:RadSchedulerResources />
     </ResourceDictionary.MergedDictionaries>
 
-     <ControlTemplate x:Key="CustomSchedulerEditAppointmentDialog_ControlTemplate">
+    <ControlTemplate x:Key="CustomSchedulerEditAppointmentDialog_ControlTemplate">
         <Grid RowDefinitions="{OnPlatform Default='28, Auto, *, Auto, Auto', WinUI='32, Auto, *, Auto, Auto'}">
             <Grid ColumnDefinitions="{OnPlatform Default='*, Auto', MacCatalyst='Auto, *'}"
                   Padding="{OnPlatform Default='16, 0', WinUI='12, 0, 0, 0'}">
                 <Label Grid.Column="{OnPlatform Default=0, MacCatalyst=1}"
                        Text="{Binding Header}"
-                       Style="{StaticResource SchedulerDialog_Header_Style}" />
+                       Style="{StaticResource SchedulerDialogHeaderStyle}" />
                 <telerik:RadButton x:Name="PART_CloseButton"
                                    Grid.Column="{OnPlatform Default=1, MacCatalyst=0}"
-                                   Style="{OnPlatform MacCatalyst={StaticResource SchedulerDialog_CloseButton_Style_MacCatalyst}, WinUI={StaticResource SchedulerDialog_CloseButton_Style_WinUI}}" />
+                                   Style="{OnPlatform MacCatalyst={StaticResource SchedulerDialogCloseButtonStyle_MacCatalyst}, WinUI={StaticResource SchedulerDialogCloseButtonStyle_WinUI}}" />
             </Grid>
             <telerik:SchedulerBoxView Grid.Row="1"
                                       HeightRequest="1"
+                                      BackgroundColor="{Binding BorderColor, Source={RelativeSource AncestorType={x:Type telerik:SchedulerDialog}}}"
                                       IsVisible="{OnPlatform Default=False, MacCatalyst=True}" />
             <Grid Grid.Row="2"
                   ColumnDefinitions="Auto, *"
@@ -29,7 +30,7 @@
                   BindingContext="{TemplateBinding BindingContext}"
                   Padding="{OnPlatform Default='20, 20, 20, 0', WinUI='12, 24'}">
                 <Label Text="{telerik:Localize Scheduler_EditAppointmentDialog_Subject}"
-                       Style="{StaticResource SchedulerDialog_Label_Style}" />
+                       Style="{StaticResource SchedulerDialogLabelStyle}" />
                 <telerik:RadEntry Grid.Column="1"
                                   IsEnabled="{Binding IsReadOnly, Converter={StaticResource InvertedBooleanConverter}}"
                                   InputTransparent="{Binding IsReadOnly}"
@@ -38,7 +39,7 @@
                                   ClearButtonVisibility="Never" />
                 <Label Grid.Row="1"
                        Text="{telerik:Localize Scheduler_EditAppointmentDialog_StartTime}"
-                       Style="{StaticResource SchedulerDialog_Label_Style}" />
+                       Style="{StaticResource SchedulerDialogLabelStyle}" />
                 <HorizontalStackLayout Grid.Row="1"
                                        Grid.Column="1"
                                        Spacing="{OnPlatform Default=4, WinUI=8}"
@@ -53,7 +54,7 @@
                 </HorizontalStackLayout>
                 <Label Grid.Row="2"
                        Text="{telerik:Localize Scheduler_EditAppointmentDialog_EndTime}"
-                       Style="{StaticResource SchedulerDialog_Label_Style}" />
+                       Style="{StaticResource SchedulerDialogLabelStyle}" />
                 <HorizontalStackLayout Grid.Row="2"
                                        Grid.Column="1"
                                        Spacing="{OnPlatform Default=4, WinUI=8}"
@@ -61,20 +62,23 @@
                     <telerik:RadDatePicker MinimumDate="{Binding ActualStartDate}"
                                            Date="{Binding ActualEndDate, Mode=TwoWay}"
                                            MinimumWidthRequest="{OnPlatform Default=140, WinUI=145}" />
-                    <telerik:RadTimePicker MinimumTime="{Binding MinimumEndTimeOfDay, Mode=TwoWay}"
-                                           Time="{Binding ActualEndTimeOfDay, Mode=TwoWay}"
+                    <telerik:RadTimePicker Time="{Binding ActualEndTimeOfDay, Mode=TwoWay}"
                                            IsVisible="{Binding IsAllDayAppointment, Converter={StaticResource InvertedBooleanConverter}}"
                                            SpinnerFormat="H:mm"
                                            MinuteStep="15"
+                                           MinimumTime="{Binding MinimumEndTimeOfDay, Mode=TwoWay}"
                                            MinimumWidthRequest="{OnPlatform Default=140, WinUI=145}" />
                 </HorizontalStackLayout>
                 <Label Grid.Row="3"
                        Text="{telerik:Localize Scheduler_EditAppointmentDialog_AllDay}"
-                       Style="{StaticResource SchedulerDialog_Label_Style}" />
-                <Switch Grid.Row="3"
-                        Grid.Column="1"
-                        IsToggled="{Binding IsAllDayAppointment, Mode=TwoWay}"
-                        IsEnabled="{Binding IsReadOnly, Converter={StaticResource InvertedBooleanConverter}}" />
+                       Style="{StaticResource SchedulerDialogLabelStyle}" />
+                <Grid Grid.Row="3"
+                      Grid.Column="1">
+                    <Switch x:Name="allDaySwitch"
+                            IsToggled="{Binding IsAllDayAppointment, Mode=TwoWay}"
+                            IsEnabled="{Binding IsReadOnly, Converter={StaticResource InvertedBooleanConverter}}">
+                    </Switch>
+                </Grid>
                 <Grid Grid.Row="4"
                       Grid.ColumnSpan="2"
                       ColumnDefinitions="Auto, *"
@@ -83,7 +87,7 @@
                       RowSpacing="8"
                       IsVisible="{Binding IsExceptionOccurrence, Converter={StaticResource InvertedBooleanConverter}}">
                     <Label Text="{telerik:Localize Scheduler_EditAppointmentDialog_Repeat}"
-                           Style="{StaticResource SchedulerDialog_Label_Style}" />
+                           Style="{StaticResource SchedulerDialogLabelStyle}" />
                     <telerik:RadComboBox Grid.Column="1"
                                          IsClearButtonVisible="False"
                                          SelectedItem="{Binding RepeatOption, Mode=TwoWay}"
@@ -101,7 +105,8 @@
                 <!-- #region LOCATION option insertion point -->
                 <Label Grid.Row="5"
                        Text="Location"
-                       Style="{StaticResource SchedulerDialog_Label_Style}" />
+                       Style="{StaticResource SchedulerDialogLabelStyle}"
+                       VerticalOptions="Start" />
                 <telerik:RadComboBox Grid.Row="5"
                                      Grid.Column="1"
                                      ItemsSource="{x:Static local:CustomizationViewModel.DefaultLocations}"
@@ -112,48 +117,72 @@
                 <!-- #endregion -->
                 <Label Grid.Row="6"
                        Text="{telerik:Localize Scheduler_EditAppointmentDialog_Description}"
-                       Style="{StaticResource SchedulerDialog_Label_Style}"
+                       Style="{StaticResource SchedulerDialogLabelStyle}"
                        VerticalOptions="Start" />
-                <Grid Grid.Row="6"
-                      Grid.Column="1">
-                    <telerik:RadBorder BackgroundColor="{OnPlatform MacCatalyst=#FFFFFF}"
-                                       BorderColor="{OnPlatform MacCatalyst=#14000000}"
-                                       BorderThickness="{OnPlatform MacCatalyst=1}"
-                                       Padding="{OnPlatform MacCatalyst='1, 0'}"
-                                       CornerRadius="{OnPlatform MacCatalyst=6}">
-                        <Editor x:Name="descriptionEditor"
-                                BackgroundColor="Transparent"
-                                IsEnabled="{Binding IsReadOnly, Converter={StaticResource InvertedBooleanConverter}}"
-                                Text="{Binding Description, Mode=TwoWay}"
-                                HeightRequest="{OnPlatform Default=68, WinUI=70}" />
-                    </telerik:RadBorder>
-                    <Rectangle Stroke="{OnPlatform MacCatalyst=#80007AFF}"
-                               StrokeThickness="{OnPlatform MacCatalyst=3}"
-                               RadiusX="{OnPlatform MacCatalyst=6}"
-                               RadiusY="{OnPlatform MacCatalyst=6}"
-                               IsVisible="{Binding IsFocused, Source={x:Reference descriptionEditor}}" />
-                </Grid>
+                <OnPlatform x:TypeArguments="View">
+                    <On Platform="MacCatalyst">
+                        <Grid Grid.Row="6"
+                              Grid.Column="1">
+                            <telerik:RadBorder BorderBrush="{StaticResource EditorBorderBrush}"
+                                               BorderThickness="1"
+                                               Padding="1, 0"
+                                               CornerRadius="6">
+                                <Editor x:Name="descriptionEditor_MacCatalyst"
+                                        TextColor="{StaticResource RadOnAppSurfaceColor}"
+                                        PlaceholderColor="{StaticResource RadSubtleColor}"
+                                        BackgroundColor="{StaticResource RadEntryBackgroundColor}"
+                                        IsEnabled="{Binding IsReadOnly, Converter={StaticResource InvertedBooleanConverter}}"
+                                        Text="{Binding Description, Mode=TwoWay}"
+                                        HeightRequest="68" />
+                            </telerik:RadBorder>
+                            <Rectangle Stroke="{StaticResource RadEntryFocusedBorderBrush}"
+                                       StrokeThickness="3"
+                                       RadiusX="6"
+                                       RadiusY="6"
+                                       IsVisible="{Binding IsFocused, Source={x:Reference descriptionEditor_MacCatalyst}}" />
+                        </Grid>
+                    </On>
+                    <On Platform="WinUI">
+                        <Grid Grid.Row="6"
+                              Grid.Column="1">
+                            <Editor x:Name="descriptionEditor_WinUI"
+                                    TextColor="{StaticResource RadOnAppSurfaceColor}"
+                                    PlaceholderColor="{StaticResource RadSubtleColor}"
+                                    BackgroundColor="{StaticResource RadEntryBackgroundColor}"
+                                    IsEnabled="{Binding IsReadOnly, Converter={StaticResource InvertedBooleanConverter}}"
+                                    Text="{Binding Description, Mode=TwoWay}"
+                                    HeightRequest="70" />
+                            <telerik:RadBorder BorderBrush="{StaticResource EditorBorderBrush}"
+                                               BorderThickness="1"
+                                               CornerRadius="4" />
+                            <telerik:RadBorder BorderBrush="{StaticResource RadPrimaryColor}"
+                                               BorderThickness="0, 0, 0, 2"
+                                               CornerRadius="4"
+                                               IsVisible="{Binding IsFocused, Source={x:Reference descriptionEditor_WinUI}}" />
+                        </Grid>
+                    </On>
+                </OnPlatform>
             </Grid>
             <Grid Grid.Row="3"
                   Padding="{OnPlatform Default=20, WinUI=16}"
-                  BackgroundColor="{OnPlatform Default=Transparent, WinUI=#F3F3F3}">
+                  BackgroundColor="{StaticResource RadSchedulerDialogFooterBackgroundColor}">
                 <Grid HorizontalOptions="End"
                       ColumnDefinitions="Auto, Auto"
                       ColumnSpacing="8">
                     <telerik:RadButton Grid.Column="{OnPlatform WinUI=1}"
                                        Text="{telerik:Localize Scheduler_EditAppointmentDialog_Cancel}"
-                                       Style="{StaticResource SchedulerDialog_CancelButton_Style}"
+                                       Style="{StaticResource SchedulerDialogCancelButtonStyle}"
                                        Command="{Binding CancelCommand}" />
                     <telerik:RadButton Grid.Column="{OnPlatform MacCatalyst=1}"
                                        Text="{telerik:Localize Scheduler_EditAppointmentDialog_Save}"
-                                       Style="{StaticResource SchedulerDialog_ConfirmButton_Style}"
+                                       Style="{StaticResource SchedulerDialogConfirmButtonStyle}"
                                        IsEnabled="{Binding IsReadOnly, Converter={StaticResource InvertedBooleanConverter}}"
                                        Command="{Binding SaveCommand}" />
                 </Grid>
             </Grid>
             <telerik:SchedulerBoxView Grid.Row="3"
                                       HeightRequest="1"
-                                      BackgroundColor="{OnPlatform Default=Transparent, WinUI=#0F000000}"
+                                      BackgroundColor="{OnPlatform Default=Transparent, WinUI={StaticResource RadBorderColor}}"
                                       IsVisible="{OnPlatform Default=False, WinUI=True}"
                                       VerticalOptions="Start" />
         </Grid>

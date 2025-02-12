@@ -1,64 +1,65 @@
 ﻿using Telerik.Maui.Controls;
 
-namespace SDKBrowserMaui.Examples.DataGridControl.AggregatesCategory
+namespace SDKBrowserMaui.Examples.DataGridControl.AggregatesCategory;
+
+// >> datagrid-aggregates-model
+public class Data : NotifyPropertyChangedBase
 {
-    public class Data : NotifyPropertyChangedBase
+    private string name;
+    private double price;
+    private double deliveryPrice;
+    private int quantity;
+
+    public string Name
     {
-        private string name;
-        private double price;
-        private double deliveryPrice;
-        private int quantity;
-
-        public string Name
+        get => this.name;
+        set
         {
-            get => this.name;
-            set
+            if (value != this.name)
             {
-                if (value != this.name)
-                {
-                    this.name = value;
-                    this.OnPropertyChanged();
-                }
+                this.name = value;
+                this.OnPropertyChanged();
             }
         }
+    }
 
-        public double Price
+    public double Price
+    {
+        get => this.price;
+        set
         {
-            get => this.price;
-            set
+            if (value != this.price)
             {
-                if (value != this.price)
-                {
-                    this.price = value;
-                    this.OnPropertyChanged();
-                }
+                this.price = value;
+                this.OnPropertyChanged();
             }
         }
+    }
 
-        public double DeliveryPrice
+    public double DeliveryPrice
+    {
+        get => this.deliveryPrice;
+        set
         {
-            get => this.deliveryPrice;
-            set
+            if (value != this.deliveryPrice)
             {
-                if (value != this.deliveryPrice)
-                {
-                    this.deliveryPrice = value;
-                    this.OnPropertyChanged();
-                }
+                this.deliveryPrice = value;
+                this.OnPropertyChanged();
             }
         }
+    }
 
-        public int Quantity
+    public int Quantity
+    {
+        get => this.quantity;
+        set
         {
-            get => this.quantity;
-            set
+            if (value != this.quantity)
             {
-                if (value != this.quantity)
-                {
-                    this.quantity = value;
-                    this.OnPropertyChanged();
-                }
+                this.quantity = value;
+                this.OnPropertyChanged();
             }
         }
     }
 }
+// << datagrid-aggregates-model

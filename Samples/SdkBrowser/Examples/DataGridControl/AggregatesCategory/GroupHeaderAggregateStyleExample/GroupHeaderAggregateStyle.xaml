@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.DataGridControl.AggregatesCategory"
+             x:Class="SDKBrowserMaui.Examples.DataGridControl.AggregatesCategory.GroupHeaderAggregateStyleExample.GroupHeaderAggregateStyle">
+
+    <ContentView.Resources>
+        <!-- >> datagrid-group-header-aggregate-styling-example -->
+        <Style x:Key="GroupHeaderStyle" TargetType="telerik:DataGridGroupHeaderAppearance" >
+            <Setter Property="BorderThickness" Value="0, 1" />
+            <Setter Property="BorderColor" Value="#8660C5" />
+            <Setter Property="TextColor" Value="#8660C5" />
+            <Setter Property="TextFontAttributes" Value="Italic" />
+            <Setter Property="AggregatesTextColor" Value="#8660C5" />
+            <Setter Property="AggregatesTextFontAttributes" Value="Italic" />
+        </Style>
+        <!-- << datagrid-group-header-aggregate-styling-example -->
+    </ContentView.Resources>
+
+    <Grid>
+        <!-- >> datagrid-group-header-aggregates -->
+        <telerik:RadDataGrid x:Name="dataGrid"
+                             Grid.Row="1"
+                             ItemsSource="{Binding Peripherals}"
+                             ShowGroupHeaderAggregates="True"
+                             AutoGenerateColumns="False"
+                             CanUserReorderColumns="True"
+                             GroupHeaderStyle="{StaticResource GroupHeaderStyle}"
+                             UserEditMode="Cell">
+            <telerik:RadDataGrid.Columns>
+                <telerik:DataGridTextColumn PropertyName="Name">
+                    <telerik:DataGridTextColumn.AggregateDescriptors>
+                        <telerik:PropertyAggregateDescriptor PropertyName="Name"
+                                                         Function="Count"
+                                                         Caption="Total count: " />
+                    </telerik:DataGridTextColumn.AggregateDescriptors>
+                </telerik:DataGridTextColumn>
+                <telerik:DataGridNumericalColumn PropertyName="Price"
+                                                 CellContentFormat="{}{0:C}">
+                    <telerik:DataGridNumericalColumn.AggregateDescriptors>
+                        <telerik:PropertyAggregateDescriptor PropertyName="Price"
+                                                             Function="Min" 
+                                                             Format="C"
+                                                             Caption="Cheapest item: " />
+                        <telerik:PropertyAggregateDescriptor PropertyName="Price" 
+                                                             Function="Max" 
+                                                             Format="C"
+                                                             Caption="Priciest item: " />
+                    </telerik:DataGridNumericalColumn.AggregateDescriptors>
+                </telerik:DataGridNumericalColumn>
+                <telerik:DataGridNumericalColumn PropertyName="DeliveryPrice"
+                                                 HeaderText="Delivery Price"
+                                                 CellContentFormat="{}{0:C}">
+                    <telerik:DataGridNumericalColumn.AggregateDescriptors>
+                        <telerik:PropertyAggregateDescriptor PropertyName="DeliveryPrice"
+                                                             Function="Average"
+                                                             Format="C"
+                                                             Caption="Average: " />
+                    </telerik:DataGridNumericalColumn.AggregateDescriptors>
+                </telerik:DataGridNumericalColumn>
+                <telerik:DataGridNumericalColumn PropertyName="Quantity">
+                    <telerik:DataGridNumericalColumn.AggregateDescriptors>
+                        <telerik:PropertyAggregateDescriptor PropertyName="Quantity"
+                                                             Function="Sum"
+                                                             Caption="Total amount: " />
+                    </telerik:DataGridNumericalColumn.AggregateDescriptors>
+                </telerik:DataGridNumericalColumn>
+            </telerik:RadDataGrid.Columns>
+            <telerik:RadDataGrid.GroupDescriptors>
+                <telerik:PropertyGroupDescriptor PropertyName="DeliveryPrice" />
+            </telerik:RadDataGrid.GroupDescriptors>
+            <telerik:RadDataGrid.BindingContext>
+                <local:ViewModel />
+            </telerik:RadDataGrid.BindingContext>
+        </telerik:RadDataGrid>
+        <!-- << datagrid-group-header-aggregates -->
+    </Grid>
+</ContentView>

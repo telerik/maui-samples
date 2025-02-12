@@ -104,43 +104,39 @@
                     </telerik:RadButton>
                 </Grid>
             </telerik:RadBorder>
-            <DataTemplate x:Key="ListViewTemplate">
-                <telerik:ListViewTemplateCell>
-                    <Grid>
-                        <BoxView HorizontalOptions="FillAndExpand" 
-                                 HeightRequest="1" 
-                                 Color="#D9D9D9" 
-                                 VerticalOptions="End" />
-                        <Grid ColumnDefinitions="Auto, Auto, *, Auto">
-                            <Label Text="&#xE82A;"
-                                   Grid.Column="0"
-                                   FontFamily="TelerikFontExamples"
-                                   VerticalOptions="CenterAndExpand"
-                                   Margin="16"
-                                   VerticalTextAlignment="Center"
-                                   TextColor="#EFC75E" />
-                            <Label Text="{Binding Name}"
-                                   Grid.Column="1"
-                                   VerticalOptions="Center" />
-                            <telerik:RadButton Clicked="RadButton_Clicked"
-                                               BorderThickness="0"
-                                               BackgroundColor="Transparent"
-                                               VerticalOptions="Center"
-                                               Padding="0"
-                                               Grid.Column="3"
-                                               WidthRequest="46"
-                                               AutomationId="dotsButton">
-                                <telerik:RadButton.ImageSource>
-                                    <FontImageSource FontFamily="TelerikFontExamples" 
-                                                     Glyph="&#xE80C;"
-                                                     Color="DarkGray"
-                                                     Size="Medium" />
-                                </telerik:RadButton.ImageSource>
-                            </telerik:RadButton>
-                        </Grid>
-                    </Grid>
-                </telerik:ListViewTemplateCell>
+            <DataTemplate x:Key="CollectionViewTemplate">
+                <Grid ColumnDefinitions="Auto, Auto, *, Auto">
+                    <Label Text="&#xE82A;"
+                           Grid.Column="0"
+                           FontFamily="TelerikFontExamples"
+                           VerticalOptions="CenterAndExpand"
+                           Margin="16"
+                           VerticalTextAlignment="Center"
+                           TextColor="#EFC75E" />
+                    <Label Text="{Binding Name}"
+                           Grid.Column="1"
+                           VerticalOptions="Center" />
+                    <telerik:RadButton Clicked="RadButton_Clicked"
+                                       BorderThickness="0"
+                                       BackgroundColor="Transparent"
+                                       VerticalOptions="Center"
+                                       Padding="0"
+                                       Grid.Column="3"
+                                       WidthRequest="46"
+                                       AutomationId="dotsButton">
+                        <telerik:RadButton.ImageSource>
+                            <FontImageSource FontFamily="TelerikFontExamples" 
+                                             Glyph="&#xE80C;"
+                                             Color="DarkGray"
+                                             Size="Medium" />
+                        </telerik:RadButton.ImageSource>
+                    </telerik:RadButton>
+                </Grid>
             </DataTemplate>
+            <Style TargetType="telerik:RadCollectionViewItemView">
+                <Setter Property="BorderThickness" Value="0, 0, 0, 1" />
+                <Setter Property="BorderColor" Value="#D9D9D9" />
+            </Style>
         </ResourceDictionary>
     </ContentView.Resources>
     <Grid x:Name="ContentGrid"
@@ -158,10 +154,10 @@
                        VerticalTextAlignment="Center" />
             </HorizontalStackLayout>
         </telerik:RadBorder>
-        <telerik:RadListView x:Name="ListView"
-                             Grid.Row="1"
-                             ItemTemplate="{StaticResource ListViewTemplate}"
-                             ItemsSource="{Binding Items}"
-                             AutomationId="listView" />
+        <telerik:RadCollectionView x:Name="CollectionView"
+                                   Grid.Row="1"
+                                   ItemTemplate="{StaticResource CollectionViewTemplate}"
+                                   ItemsSource="{Binding Items}"
+                                   AutomationId="listView" />
     </Grid>
 </ContentView>

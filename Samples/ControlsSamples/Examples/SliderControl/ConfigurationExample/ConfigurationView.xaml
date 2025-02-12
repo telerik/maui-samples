@@ -21,30 +21,29 @@
         </ResourceDictionary>
     </ContentView.Resources>
     <Grid RowDefinitions="{OnPlatform Default='80, *', WinUI='120, *'}">
-        <telerik:RadBorder Style="{StaticResource ControlWrapperBorderStyle}"
-                           Padding="48, 24">
-            <telerik:RadSlider x:Name="slider"
-                               Minimum="0"
-                               Maximum="100"
-                               Value="40"
-                               TickStep="{Binding TickStep}"
-                               TickThickness="{Binding TickThickness}"
-                               TickLength="{Binding TickLength}"
-                               LabelStep="{Binding LabelStep}"
-                               BackTrackThickness="{Binding BackTrackThickness}"
-                               BackTrackExtent="{Binding BackTrackExtent}"
-                               InRangeTickColor="{Binding InRangeTickColor, Converter={StaticResource ColorNameToColorConverter}, ConverterParameter='InRangeTickColor'}"
-                               OutOfRangeTickColor="{Binding OutOfRangeTickColor, Converter={StaticResource ColorNameToColorConverter}, ConverterParameter='OutOfRangeTickColor'}"
-                               TextColor="{Binding TextColor, Converter={StaticResource ColorNameToColorConverter}}"
-                               BackTrackColor="{Binding BackTrackColor, Converter={StaticResource ColorNameToColorConverter}, ConverterParameter='BackTrackColor'}"
-                               ThumbFill="{Binding ThumbFill, Converter={StaticResource ColorNameToColorConverter}, ConverterParameter='ThumbFill'}"
-                               RangeTrackFill="{Binding RangeTrackFill, Converter={StaticResource ColorNameToColorConverter}, ConverterParameter='RangeTrackFill'}"
-                               TicksPlacement="{Binding TicksPlacement}"
-                               LabelsPlacement="{Binding LabelsPlacement}"
-                               SnapMode="{Binding SnapMode}"
-                               DragMode="{Binding DragMode}"
-                               VerticalOptions="Center" />
-        </telerik:RadBorder>
+        <telerik:RadBorder x:Name="border" Style="{StaticResource ControlWrapperBorderStyle}" />
+		<telerik:RadSlider x:Name="slider"
+						   Minimum="0"
+						   Maximum="100"
+						   Value="40"
+						   TickStep="{Binding TickStep}"
+						   TickThickness="{Binding TickThickness}"
+						   TickLength="{Binding TickLength}"
+						   LabelStep="{Binding LabelStep}"
+						   BackTrackThickness="{Binding BackTrackThickness}"
+						   BackTrackExtent="{Binding BackTrackExtent}"
+						   InRangeTickColor="{Binding InRangeTickColor, Converter={StaticResource ColorNameToColorConverter}, ConverterParameter='InRangeTickColor'}"
+						   OutOfRangeTickColor="{Binding OutOfRangeTickColor, Converter={StaticResource ColorNameToColorConverter}, ConverterParameter='OutOfRangeTickColor'}"
+						   TextColor="{Binding TextColor, Converter={StaticResource ColorNameToColorConverter}}"
+						   BackTrackColor="{Binding BackTrackColor, Converter={StaticResource ColorNameToColorConverter}, ConverterParameter='BackTrackColor'}"
+						   ThumbFill="{Binding ThumbFill, Converter={StaticResource ColorNameToColorConverter}, ConverterParameter='ThumbFill'}"
+						   RangeTrackFill="{Binding RangeTrackFill, Converter={StaticResource ColorNameToColorConverter}, ConverterParameter='RangeTrackFill'}"
+						   TicksPlacement="{Binding TicksPlacement}"
+						   LabelsPlacement="{Binding LabelsPlacement}"
+						   SnapMode="{Binding SnapMode}"
+						   DragMode="{Binding DragMode}"
+						   VerticalOptions="Center"
+						   Margin="{Binding Padding, Source={Reference border}}" />
         <ScrollView Grid.Row="1">
             <VerticalStackLayout Style="{StaticResource RootAtExampleAreaStyle}">
                 <Grid>

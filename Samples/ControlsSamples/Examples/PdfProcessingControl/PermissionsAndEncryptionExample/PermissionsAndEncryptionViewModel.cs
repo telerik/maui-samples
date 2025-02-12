@@ -120,7 +120,7 @@ public class PermissionsAndEncryptionViewModel : ExampleViewModel
 
         using (Stream stream = assembly.GetManifestResourceStream(fileName))
         {
-            this.document = this.provider.Import(stream);
+            this.document = this.provider.Import(stream, TimeSpan.FromMinutes(1));
         }
     }
 
@@ -148,7 +148,7 @@ public class PermissionsAndEncryptionViewModel : ExampleViewModel
             };
 
             pdfFormatProvider.ExportSettings = settings;
-            pdfFormatProvider.Export(this.document, stream);
+            pdfFormatProvider.Export(this.document, stream, TimeSpan.FromMinutes(1));
 
             stream.Seek(0, SeekOrigin.Begin);
 

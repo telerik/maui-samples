@@ -8,6 +8,7 @@ namespace QSF.Examples.DataGridControl.FrozenColumnsExample;
 
 public class FrozenColumnsViewModel : ConfigurationExampleViewModel
 {
+    private bool areGroupHeadersClippedWhenFrozen = true;
     public FrozenColumnsViewModel()
     {
         this.Orders = DataGenerator.GetItems<ObservableCollection<Order>>(ResourcePaths.OrdersPath);
@@ -16,4 +17,10 @@ public class FrozenColumnsViewModel : ConfigurationExampleViewModel
     public ObservableCollection<Order> Orders { get; private set; }
 
     public DataGridColumnCollection Columns { get; set; }
+
+    public bool AreGroupHeadersClippedWhenFrozen
+    {
+        get => this.areGroupHeadersClippedWhenFrozen;
+        set => this.UpdateValue(ref this.areGroupHeadersClippedWhenFrozen, value);
+    }
 }

@@ -60,6 +60,6 @@ internal static class DocumentHelper
     public static RadFlowDocument CreateFlowDocument(string htmlContent)
     {
         var importProvider = new HtmlFormatProvider();
-        return importProvider.Import(htmlContent);
+        return importProvider.Import(htmlContent, TimeSpan.FromMinutes(1));
     }
 }

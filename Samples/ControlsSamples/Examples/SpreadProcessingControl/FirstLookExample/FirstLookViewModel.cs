@@ -104,7 +104,7 @@ namespace QSF.Examples.SpreadProcessingControl.FirstLookExample
         {
             IWorkbookFormatProvider formatProvider = GetProvider(exportFormat);
             MemoryStream stream = new MemoryStream();
-            formatProvider.Export(workbook, stream);
+            formatProvider.Export(workbook, stream, TimeSpan.FromMinutes(1));
             return stream;
         }
 

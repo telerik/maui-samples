@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -76,7 +77,7 @@ namespace QSF.Examples.PdfProcessingControl.NotEmbeddingFontsExample
         {
             using (MemoryStream stream = new MemoryStream())
             {
-                provider.Export(this.document, stream);
+                provider.Export(this.document, stream, TimeSpan.FromMinutes(1));
                 stream.Seek(0, SeekOrigin.Begin);
 
                 this.ExportedFileSize = stream.Length / 1024;
@@ -92,7 +93,7 @@ namespace QSF.Examples.PdfProcessingControl.NotEmbeddingFontsExample
             using (Stream stream = assembly.GetManifestResourceStream(fileName))
             {
                 this.LoadedFileSize = stream.Length / 1024;
-                this.document = provider.Import(stream);
+                this.document = provider.Import(stream, TimeSpan.FromMinutes(1));
             }
         }
     }

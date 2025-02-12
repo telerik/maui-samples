@@ -43,10 +43,10 @@
         </Grid>
         <telerik:RadNavigationView x:Name="navigationView"
                                    Grid.Row="1"
-                                   BorderThickness="{OnIdiom Default=0, Desktop=1}">
+                                   BorderThickness="{OnIdiom Default=0, Desktop=1}"
+                                   SelectionChanged="NavigationViewSelectionChanged">
             <telerik:RadNavigationView.Items>
-                <telerik:NavigationViewItem IsSelected="True"
-                                            Text="Discover">
+                <telerik:NavigationViewItem Text="Discover">
                     <telerik:NavigationViewItem.ImageSource>
                         <FontImageSource Glyph="&#xe852;"
                                          FontFamily="TelerikFontExamples"

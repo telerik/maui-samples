@@ -72,7 +72,7 @@
             <Setter Property="ToolTipProperties.Text" Value="{Binding SelectedExample.DisplayName}" />
         </Style>
         <Style x:Key="ExampleBorderStyle" TargetType="telerik:RadBorder" BasedOn="{StaticResource SecondLevelBorderStyle}">
-            <Setter Property="Background" Value="{DynamicResource RadAppSurfaceColor}" />
+            <Setter Property="BackgroundColor" Value="{DynamicResource RadAppSurfaceColor}" />
             <Setter Property="BorderColor" Value="{OnPlatform Default={StaticResource DefaultBorderColor}, WinUI={StaticResource DefaultBorderColorWinUI}}" />
             <Setter Property="BorderThickness" Value="1" />
         </Style>

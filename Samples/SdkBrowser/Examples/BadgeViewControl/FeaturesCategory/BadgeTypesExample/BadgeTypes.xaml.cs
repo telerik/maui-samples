@@ -12,7 +12,7 @@ namespace SDKBrowserMaui.Examples.BadgeViewControl.FeaturesCategory.BadgeTypesEx
         {
             InitializeComponent();
             // >> badgeview-badge-types-code-behind
-            this.listView.ItemsSource = Enum.GetValues(typeof(BadgeType));
+            this.collectionView.ItemsSource = Enum.GetValues(typeof(BadgeType));
             // << badgeview-badge-types-code-behind
         }
     }

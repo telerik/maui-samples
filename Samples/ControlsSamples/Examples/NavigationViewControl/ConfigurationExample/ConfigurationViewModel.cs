@@ -20,21 +20,24 @@ namespace QSF.Examples.NavigationViewControl.ConfigurationExample
         {
             this.DisplayModes = (IEnumerable<NavigationViewDisplayMode>)Enum.GetValues(typeof(NavigationViewDisplayMode));
             this.header = "Explore";
-            this.displayMode = NavigationViewDisplayMode.Compact;
 
 #if ANDROID
             this.compactWidth = 56;
             this.expandedWidth = 320;
+            this.displayMode = NavigationViewDisplayMode.Minimal;
 
 #elif MACCATALYST
             this.compactWidth = 38;
             this.expandedWidth = 280;
+            this.displayMode = NavigationViewDisplayMode.Compact;
 #elif IOS
             this.compactWidth = 52;
             this.expandedWidth = 320;
+            this.displayMode = NavigationViewDisplayMode.Minimal;
 #elif WINDOWS
             this.compactWidth = 48;
             this.expandedWidth = 260;
+            this.displayMode = NavigationViewDisplayMode.Compact;
 #endif
 
             this.autoChangeDisplayMode = DeviceInfo.Idiom == DeviceIdiom.Desktop || DeviceInfo.Idiom == DeviceIdiom.Tablet;

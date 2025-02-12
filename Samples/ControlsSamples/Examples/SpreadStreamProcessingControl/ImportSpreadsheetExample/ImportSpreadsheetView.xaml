@@ -61,15 +61,17 @@
                                     HeaderStyle="{StaticResource TabViewHeaderStyle}"
                                     HeaderItemStyle="{StaticResource TabViewHeaderItemStyle}"
                                     IsVisible="{Binding Workbook, Converter={StaticResource NullOrEmptyToBoolConverter}}"
-                                    behaviors:BindableTabs.ItemsSource="{Binding Workbook.Worksheets}">
-                    <behaviors:BindableTabs.ItemTemplate>
+                                    ItemsSource="{Binding Workbook.Worksheets}">
+                    <telerik:RadTabView.ItemTemplate>
                         <DataTemplate>
-                            <telerik:RadDataGrid ItemsSource="{Binding Rows}"
-                                                 UserEditMode="None"
-                                                 UserGroupMode="Disabled" 
-                                                 AutomationId="dataGrid"/>
+                            <telerik:TabViewItem HeaderText="{Binding Name}">
+                                <telerik:RadDataGrid ItemsSource="{Binding Rows}"
+                                                     UserEditMode="None"
+                                                     UserGroupMode="Disabled" 
+                                                     AutomationId="dataGrid" />
+                            </telerik:TabViewItem>
                         </DataTemplate>
-                    </behaviors:BindableTabs.ItemTemplate>
+                    </telerik:RadTabView.ItemTemplate>
                 </telerik:RadTabView>
             </Grid>
         </telerik:RadBusyIndicator>

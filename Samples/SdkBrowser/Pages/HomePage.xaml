@@ -9,39 +9,30 @@
     x:Class="SDKBrowserMaui.Pages.HomePage">
     <Grid RowDefinitions="50, *">
         <views:HeaderView />
-        <telerik:RadListView x:Name="controlsListView"
-                             Grid.Row="1"
-                             ItemsSource="{Binding Controls}"
-                             SelectionMode="None"
-                             Background="White">
-            <telerik:RadListView.Commands>
-                <telerik:ListViewUserCommand Command="{Binding NextCommand}" />
-            </telerik:RadListView.Commands>
-            <telerik:RadListView.PressedItemStyle>
-                <telerik:ListViewItemStyle BackgroundColor="Transparent" />
-            </telerik:RadListView.PressedItemStyle>
-            <telerik:RadListView.ItemTemplate>
+        <telerik:RadCollectionView x:Name="controlsCollectionView"
+                                   Grid.Row="1"
+                                   ItemsSource="{Binding Controls}"
+                                   ItemTapCommand="{Binding NextCommand}"
+                                   SelectionMode="None"
+                                   Background="White">
+            <telerik:RadCollectionView.ItemTemplate>
                 <DataTemplate>
-                    <telerik:ListViewTemplateCell>
-                        <telerik:ListViewTemplateCell.View>
-                            <Grid ColumnSpacing="5"
-                                  RowDefinitions="40"
-                                  ColumnDefinitions="50,*">
-                                <Image Source="{Binding Icon}"
-                                       HorizontalOptions="Center"
-                                       VerticalOptions="Center"
-                                       Aspect="Fill"
-                                       WidthRequest="16"
-                                       HeightRequest="16" />
-                                <Label Grid.Column="1"
-                                       Text="{Binding Title}"
-                                       TextColor="{StaticResource DefaultTextColor}"
-                                       VerticalOptions="Center" />
-                            </Grid>
-                        </telerik:ListViewTemplateCell.View>
-                    </telerik:ListViewTemplateCell>
+                    <Grid ColumnDefinitions="50,*">
+                        <Image Source="{Binding Icon}"
+                               HorizontalOptions="Center"
+                               Aspect="Fill"
+                               WidthRequest="16"
+                               HeightRequest="16" />
+                        <Label Grid.Column="1"
+                               Text="{Binding Title}"
+                               TextColor="{StaticResource DefaultTextColor}"
+                               VerticalOptions="Center" />
+                    </Grid>
                 </DataTemplate>
-            </telerik:RadListView.ItemTemplate>
-        </telerik:RadListView>
+            </telerik:RadCollectionView.ItemTemplate>
+            <telerik:RadCollectionView.ItemsLayout>
+                <telerik:CollectionViewLinearLayout ItemLength="40" />
+            </telerik:RadCollectionView.ItemsLayout>
+        </telerik:RadCollectionView>
     </Grid>
 </ContentPage>

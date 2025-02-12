@@ -136,7 +136,7 @@ namespace QSF.Examples.SpreadProcessingControl.ConvertExample
             using (Stream stream = assembly.GetManifestResourceStream(fileName))
             {
                 IWorkbookFormatProvider provider = GetProvider(fileFormat);
-                Workbook workbook = provider.Import(stream);
+                Workbook workbook = provider.Import(stream, TimeSpan.FromMinutes(1));
                 return workbook;
             }
         }
@@ -154,7 +154,7 @@ namespace QSF.Examples.SpreadProcessingControl.ConvertExample
         {
             IWorkbookFormatProvider formatProvider = GetProvider(exportFormat);
             MemoryStream stream = new MemoryStream();
-            formatProvider.Export(workbook, stream);
+            formatProvider.Export(workbook, stream, TimeSpan.FromMinutes(1));
             return stream;
         }
 

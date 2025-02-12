@@ -41,7 +41,7 @@
                                VerticalOptions="Center"
                                HorizontalOptions="Center"
                                Grid.Column="{TemplateBinding IndicatorLocation, Converter={StaticResource ExpandCollapseIndicatorLocationToGridColumnConverter}}"
-                               Margin="{OnPlatform Default='0, 0, 0, 4', WinUI='0, 0, 0, 8', MacCatalyst='0, 0, 0, 2'}" />
+                               Margin="0, 0, 0, 2" />
                         <Label Text="+"
                                TextColor="{StaticResource TextOnAccentColor}"
                                FontSize="Large"
@@ -49,7 +49,7 @@
                                VerticalOptions="Center"
                                HorizontalOptions="Center"
                                Grid.Column="{TemplateBinding IndicatorLocation, Converter={StaticResource ExpandCollapseIndicatorLocationToGridColumnConverter}}"
-                               Margin="{OnPlatform Default='0, 0, 0, 4', WinUI='0, 0, 0, 8', MacCatalyst='0, 0, 0, 2'}" />
+                               Margin="0, 0, 0, 2" />
                         <ContentPresenter Grid.Column="1"
                                           Margin="16, 0, 0, 0" />
                     </Grid>
@@ -300,30 +300,26 @@
                     </telerik:AccordionItemHeader>
                 </telerik:AccordionItem.Header>
                 <telerik:AccordionItem.Content>
-                    <telerik:RadListView ItemsSource="{Binding People}"
-                                         Margin="16">
-                        <telerik:RadListView.ItemTemplate>
+                    <telerik:RadCollectionView ItemsSource="{Binding People}"
+                                               Margin="16">
+                        <telerik:RadCollectionView.ItemTemplate>
                             <DataTemplate>
-                                <telerik:ListViewTemplateCell>
-                                    <telerik:ListViewTemplateCell.View>
-                                        <VerticalStackLayout MinimumHeightRequest="56"
-                                                             Padding="5, 5, 5, 0">
-                                            <HorizontalStackLayout Spacing="16">
-                                                <Label Style="{StaticResource AvatarLabelStyle}" />
-                                                <VerticalStackLayout VerticalOptions="Center">
-                                                    <Label Text="{Binding Name}" />
-                                                    <Label Text="{Binding Information}"
-                                                           Style="{StaticResource InfoTextLabelStyle}" />
-                                                </VerticalStackLayout>
-                                            </HorizontalStackLayout>
-                                            <BoxView Style="{StaticResource SeparatorStyle}"
-                                                     Margin="0, 5, 0, 0" />
+                                <VerticalStackLayout MinimumHeightRequest="56"
+                                                     Padding="5, 5, 5, 0">
+                                    <HorizontalStackLayout Spacing="16">
+                                        <Label Style="{StaticResource AvatarLabelStyle}" />
+                                        <VerticalStackLayout VerticalOptions="Center">
+                                            <Label Text="{Binding Name}" />
+                                            <Label Text="{Binding Information}"
+                                                   Style="{StaticResource InfoTextLabelStyle}" />
                                         </VerticalStackLayout>
-                                    </telerik:ListViewTemplateCell.View>
-                                </telerik:ListViewTemplateCell>
+                                    </HorizontalStackLayout>
+                                    <BoxView Style="{StaticResource SeparatorStyle}"
+                                             Margin="0, 5, 0, 0" />
+                                </VerticalStackLayout>
                             </DataTemplate>
-                        </telerik:RadListView.ItemTemplate>
-                    </telerik:RadListView>
+                        </telerik:RadCollectionView.ItemTemplate>
+                    </telerik:RadCollectionView>
                 </telerik:AccordionItem.Content>
             </telerik:AccordionItem>
         </telerik:RadAccordion>

@@ -11,35 +11,35 @@ namespace QSF.Examples.NavigationViewControl.ConfigurationExample;
 [XamlCompilation(XamlCompilationOptions.Compile)]
 public partial class ConfigurationView : ContentView
 {
-    private readonly List<string> itemImagesPool;
+    private readonly List<string> itemImagesPool = new List<string>();
     private RadPopup popup;
 
     public ConfigurationView()
 	{
+        this.InitImagesPool();
 		InitializeComponent();
+        this.navigationView.SelectedItem = this.navigationView.Items[0];
+    }
 
-        this.itemImagesPool = new List<string>();
-
-        for (int i = 12; i > 0; i--)
+    private void InitImagesPool()
+    {
+        for (int i = 1; i <= 12; i++)
         {
             this.itemImagesPool.Add($"navigationview_firstlook_image_{i}.png");
         }
-
-        this.navigationView.SelectionChanged += this.NavigationViewSelectionChanged;
     }
-
-    public IEnumerable<string> ImagePaths { get; set; }
 
     private void NavigationViewSelectionChanged(object sender, EventArgs e)
     {
-        var itemIndex = this.navigationView.Items.IndexOf((NavigationViewItem)this.navigationView.SelectedItem);
+        RadNavigationView navigationView = (RadNavigationView)sender;
+        var itemIndex = navigationView.Items.IndexOf((NavigationViewItem)navigationView.SelectedItem);
         var itemIndexMultiplier = itemIndex * 3;
 
         if (itemIndex != -1 && (itemIndexMultiplier + 2 < this.itemImagesPool.Count))
         {
-            this.itemImage1.Source = this.itemImagesPool[itemIndexMultiplier + 2];
+            this.itemImage1.Source = this.itemImagesPool[itemIndexMultiplier];
             this.itemImage2.Source = this.itemImagesPool[itemIndexMultiplier + 1];
-            this.itemImage3.Source = this.itemImagesPool[itemIndexMultiplier];
+            this.itemImage3.Source = this.itemImagesPool[itemIndexMultiplier + 2];
         }
     }
 
