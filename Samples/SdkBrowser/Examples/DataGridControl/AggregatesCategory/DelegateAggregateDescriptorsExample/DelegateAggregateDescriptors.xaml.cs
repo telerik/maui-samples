@@ -10,6 +10,7 @@ public partial class DelegateAggregateDescriptors : ContentView
     {
         InitializeComponent();
 
+        // >> datagrid-gelegate-aggregate-source
         this.dataGrid.ItemsSource = new List<Data>
         {
             new Data { Name = "KeyBoard", Price = 24.6, DeliveryPrice = 2, Quantity = 32 },
@@ -19,6 +20,7 @@ public partial class DelegateAggregateDescriptors : ContentView
             new Data { Name = "SSD", Price = 42.9, DeliveryPrice = 3, Quantity = 88 },
             new Data { Name = "RAM", Price = 50, DeliveryPrice = 4, Quantity = 126 }
         };
+        // << datagrid-gelegate-aggregate-source
     }
 }
 

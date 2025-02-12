@@ -2,6 +2,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:converters="clr-namespace:SDKBrowserMaui.Converters"
              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.ViewModels"
              xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
              ios:Page.UseSafeArea="True"
              NavigationPage.HasNavigationBar="False"
@@ -9,7 +10,9 @@
              x:Class="SDKBrowserMaui.Pages.SearchPage">
     <ContentPage.Resources>
         <ResourceDictionary>
-            <converters:InvertedBooleanConverter x:Key="InvertedBooleanConverter" />
+            <DataTemplate x:Key="GroupHeaderTemplate">
+                <Label Text="{Binding Key}" VerticalTextAlignment="Center" FontAttributes="Bold" />
+            </DataTemplate>
         </ResourceDictionary>
     </ContentPage.Resources>
     <Grid RowDefinitions="50, *">
@@ -24,12 +27,13 @@
                            WidthRequest="15"
                            VerticalOptions="Center"
                            HorizontalOptions="Center" />
-                    <telerik:RadEntry Grid.Column="1"
-                                      Placeholder="Search here"
-                                      Text="{Binding SearchText}"
-                                      ClearButtonVisibility="Never"
-                                      AutomationId="searchEntry"
-                                      BorderBrush="Transparent" />
+                    <telerik:RadTextInput Grid.Column="1"
+                                          Placeholder="Search here"
+                                          VerticalOptions="Center"
+                                          VerticalTextAlignment="Center"
+                                          Text="{Binding SearchText, Mode=TwoWay}"
+                                          ClearButtonVisibility="Never"
+                                          AutomationId="searchEntry" />
                     <telerik:RadButton Grid.Column="2"
                                        Text="&#xE80A;"
                                        TextColor="Black"
@@ -59,64 +63,23 @@
                    VerticalOptions="Center" />
             <telerik:RadBorder Grid.Row="1" 
                                CornerRadius="5">
-                <telerik:RadListView SelectionMode="None"
-                                                 BackgroundColor="White"
-                                                 AutomationId="resutlsListView"
-                                                 ItemsSource="{Binding Examples}">
-                    <telerik:RadListView.Commands>
-                        <telerik:ListViewUserCommand  Command="{Binding NextCommand}" />
-                    </telerik:RadListView.Commands>
-                    <telerik:RadListView.PressedItemStyle>
-                        <telerik:ListViewItemStyle BackgroundColor="Transparent" />
-                    </telerik:RadListView.PressedItemStyle>
-                    <telerik:RadListView.ItemTemplate>
-                        <DataTemplate>
-                            <telerik:ListViewTemplateCell>
-                                <Grid Padding="40, 10, 0, 0"
-                                      VerticalOptions="Center">
-                                    <Label VerticalTextAlignment="Center"
-                                           Text="{Binding Title}" 
-                                           HeightRequest="{OnPlatform Default='40', WinUI='20'}"
-                                           TextColor="Black" />
-                                </Grid>
-                            </telerik:ListViewTemplateCell>
-                        </DataTemplate>
-                    </telerik:RadListView.ItemTemplate>
-                    <telerik:RadListView.GroupHeaderTemplate>
-                        <DataTemplate>
-                            <Grid RowDefinitions="40, 2"
-                                  ColumnDefinitions="20, *"
-                                  Padding="5, 0"
-                                  ColumnSpacing="0">
-                                <Image Grid.Column="0"
-                                       Grid.Row="0"
-                                       Source="arrowdown.png"
-                                       IsVisible="{Binding IsExpanded}" />
-                                <Image Grid.Column="0"
-                                       Grid.Row="0"
-                                       Source="arrowright.png"
-                                       IsVisible="{Binding IsExpanded, Converter={StaticResource InvertedBooleanConverter}}" />
-                                <Label Grid.Column="1"
-                                       Grid.Row="0"
-                                       Margin="10, 0, 0, 0"
-                                       Text="{Binding Key}" 
-                                       TextColor="Black"
-                                       VerticalOptions="Center"
-                                       FontAttributes="Bold" />
-                                <BoxView Grid.Column="0"
-                                         Grid.Row="1"
-                                         Grid.ColumnSpan="2"
-                                         BackgroundColor="#d3d3d3" />
-                            </Grid>
-                        </DataTemplate>
-                    </telerik:RadListView.GroupHeaderTemplate>
-                    <telerik:RadListView.FilterDescriptors>
-                        <telerik:ListViewDelegateFilterDescriptor Filter="{Binding SearchFilter}" />
-                    </telerik:RadListView.FilterDescriptors>
-                    <telerik:RadListView.GroupDescriptors>
-                        <telerik:ListViewDelegateGroupDescriptor KeyExtractor="{Binding SearchGrouping}" />
-                    </telerik:RadListView.GroupDescriptors>
-                </telerik:RadListView>
+                <telerik:RadCollectionView x:Name="resultcollectionView"
+                                           SelectionMode="None"
+                                           BackgroundColor="White"
+                                           AutomationId="resutlsListView"
+                                           DisplayMemberPath="Title"
+                                           FilterDescriptors="{Binding FilterDescriptors}"
+                                           ItemTapCommand="{Binding NextCommand}"
+                                           GroupHeaderTemplate="{StaticResource GroupHeaderTemplate}"
+                                           ItemsSource="{Binding Examples}">
+                    <telerik:RadCollectionView.GroupDescriptors>
+                        <telerik:DelegateGroupDescriptor>
+                            <telerik:DelegateGroupDescriptor.KeyLookup>
+                                <local:CustomGroupSearchResults />
+                            </telerik:DelegateGroupDescriptor.KeyLookup>
+                        </telerik:DelegateGroupDescriptor>
+                    </telerik:RadCollectionView.GroupDescriptors>
+                </telerik:RadCollectionView>
             </telerik:RadBorder>
         </Grid>
     </Grid>

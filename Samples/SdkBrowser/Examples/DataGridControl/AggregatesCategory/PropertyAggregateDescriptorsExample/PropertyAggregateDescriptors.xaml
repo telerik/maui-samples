@@ -2,9 +2,11 @@
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.DataGridControl.AggregatesCategory"
              x:Class="SDKBrowserMaui.Examples.DataGridControl.AggregatesCategory.PropertyAggregateDescriptorsExample.PropertyAggregateDescriptors">
     <!-- >> datagrid-property-aggregate-descriptor-example -->
     <telerik:RadDataGrid x:Name="dataGrid"
+                         ItemsSource="{Binding Peripherals}"
                          UserGroupMode="Disabled"
                          AutoGenerateColumns="False"
                          UserEditMode="Cell"
@@ -48,6 +50,9 @@
                 </telerik:DataGridNumericalColumn.AggregateDescriptors>
             </telerik:DataGridNumericalColumn>
         </telerik:RadDataGrid.Columns>
+        <telerik:RadDataGrid.BindingContext>
+            <local:ViewModel />
+        </telerik:RadDataGrid.BindingContext>
     </telerik:RadDataGrid>
     <!-- << datagrid-property-aggregate-descriptor-example -->
 </ContentView>

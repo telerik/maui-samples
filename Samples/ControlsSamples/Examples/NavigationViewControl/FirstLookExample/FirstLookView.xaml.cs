@@ -11,28 +11,28 @@ namespace QSF.Examples.NavigationViewControl.FirstLookExample;
 [XamlCompilation(XamlCompilationOptions.Compile)]
 public partial class FirstLookView : RadContentView
 {
-    private readonly List<string> itemImagesPool;
+    private readonly List<string> itemImagesPool  = new List<string>();
     private RadPopup popup;
 
     public FirstLookView()
     {
+        this.InitImagesPool();
         InitializeComponent();
+        this.navigationView.SelectedItem = this.navigationView.Items[0];
+    }
 
-        this.itemImagesPool = new List<string>();
-
+    private void InitImagesPool()
+    {
         for (int i = 1; i <= 12; i++)
         {
             this.itemImagesPool.Add($"navigationview_firstlook_image_{i}.png");
         }
-
-        this.navigationView.SelectionChanged += this.NavigationViewSelectionChanged;
     }
-
-    public IEnumerable<string> ImagePaths { get; set; }
 
     private void NavigationViewSelectionChanged(object sender, EventArgs e)
     {
-        var itemIndex = this.navigationView.Items.IndexOf((NavigationViewItem)this.navigationView.SelectedItem);
+        RadNavigationView navigationView = (RadNavigationView)sender;
+        var itemIndex = navigationView.Items.IndexOf((NavigationViewItem)navigationView.SelectedItem);
         var itemIndexMultiplier = itemIndex * 3;
 
         if (itemIndex != -1 && (itemIndexMultiplier + 2 < this.itemImagesPool.Count))

@@ -129,7 +129,7 @@ public class OpenSaveShareViewModel : ExampleViewModel
         using (Stream output = File.OpenWrite(filePath))
         {
             var provider = new PdfFormatProvider();
-            provider.Export(this.Document, output);
+            provider.Export(this.Document, output, TimeSpan.FromMinutes(1));
         }
 
         await Application.Current.MainPage.DisplayAlert("Saved on this device as " + PdfFileName + ".", "Location: " + filePath, "OK");

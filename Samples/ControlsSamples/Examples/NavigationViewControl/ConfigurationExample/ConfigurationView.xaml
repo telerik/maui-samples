@@ -47,9 +47,10 @@
                                    CompactPaneWidth="{Binding CompactPaneWidth, Mode=TwoWay}"
                                    ExpandedPaneWidth="{Binding ExpandedPaneWidth, Mode=TwoWay}"
                                    CompactModeThresholdWidth="{Binding CompactModeThresholdWidth, Mode=TwoWay}"
-                                   ExpandedModeThresholdWidth="{Binding ExpandedModeThresholdWidth, Mode=TwoWay}">
+                                   ExpandedModeThresholdWidth="{Binding ExpandedModeThresholdWidth, Mode=TwoWay}"
+                                   SelectionChanged="NavigationViewSelectionChanged">
             <telerik:RadNavigationView.Items>
-                <telerik:NavigationViewItem IsSelected="True" Text="Discover">
+                <telerik:NavigationViewItem Text="Discover">
                     <telerik:NavigationViewItem.ImageSource>
                         <FontImageSource Glyph="&#xe852;"
                                          FontFamily="TelerikFontExamples"

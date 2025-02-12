@@ -1,6 +1,7 @@
 ﻿using Microsoft.Maui.Controls;
 using QSF.Services;
 using QSF.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -91,7 +92,7 @@ namespace QSF.Examples.WordsProcessingControl.ExportExample
 
             using (MemoryStream stream = new MemoryStream())
             {
-                formatProvider.Export(this.flowDocument, stream);
+                formatProvider.Export(this.flowDocument, stream, TimeSpan.FromMinutes(1));
                 stream.Seek(0, SeekOrigin.Begin);
                 await this.fileViewerService.View(stream, exampleName);
             }
@@ -104,7 +105,7 @@ namespace QSF.Examples.WordsProcessingControl.ExportExample
 
             using (Stream stream = assembly.GetManifestResourceStream(fileName))
             {
-                this.flowDocument = new DocxFormatProvider().Import(stream);
+                this.flowDocument = new DocxFormatProvider().Import(stream, TimeSpan.FromMinutes(1));
             }
         }
     }

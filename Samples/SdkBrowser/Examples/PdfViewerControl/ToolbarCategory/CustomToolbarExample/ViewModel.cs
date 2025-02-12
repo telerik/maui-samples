@@ -1,4 +1,5 @@
 ﻿using Microsoft.Maui.Controls;
+using System;
 using System.IO;
 using System.Windows.Input;
 using Telerik.Windows.Documents.Fixed.FormatProviders.Pdf;
@@ -25,7 +26,7 @@ namespace SDKBrowserMaui.Examples.PdfViewerControl.ToolbarCategory.CustomToolbar
                 using (MemoryStream stream = new MemoryStream())
                 {
                     PdfFormatProvider formatProvider = new PdfFormatProvider();
-                    formatProvider.Export(document, stream);
+                    formatProvider.Export(document, stream, TimeSpan.FromMinutes(1));
                     double megabytes = ToKiloBytes(stream.Length);
                     Application.Current.MainPage.DisplayAlert("", "File Size: " + megabytes.ToString("N0") + " KB", "OK");
                 }

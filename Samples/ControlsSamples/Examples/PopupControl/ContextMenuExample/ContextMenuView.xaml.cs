@@ -38,7 +38,7 @@ public partial class ContextMenuView : ContentView
 
         if(DeviceInfo.Idiom == DeviceIdiom.Desktop)
         {
-            this.popup.PlacementTarget = this.ListView;
+            this.popup.PlacementTarget = this.CollectionView;
             this.popup.Placement = PlacementMode.Center;
         }
     }

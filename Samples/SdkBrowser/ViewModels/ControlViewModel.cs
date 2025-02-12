@@ -49,26 +49,5 @@ namespace SDKBrowserMaui.ViewModels
                 navigationService.NavigateToAsync<CategoryViewModel>(category);
             }
         }
-
-        protected override bool PassesFilter(object item, params string[] tokens)
-        {
-            var example = (Example)item;
-            var category = example.Category;
-            var comparison = StringComparison.OrdinalIgnoreCase;
-
-            return tokens.All(token =>
-                example.Name.IndexOf(token, comparison) >= 0 ||
-                example.Title.IndexOf(token, comparison) >= 0 ||
-                category.Name.IndexOf(token, comparison) >= 0 ||
-                category.Title.IndexOf(token, comparison) >= 0);
-        }
-
-        protected override object ExtractGroup(object item)
-        {
-            var example = (Example)item;
-            var category = example.Category;
-
-            return category.Title;
-        }
     }
 }

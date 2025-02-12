@@ -12,11 +12,19 @@
         </ResourceDictionary>
     </ContentView.Resources>
 
-    <Grid RowDefinitions="Auto, *"
+    <Grid RowDefinitions="Auto, Auto, *"
           Style="{StaticResource RootAtSeparateAreaStyle}">
+        <HorizontalStackLayout Style="{StaticResource CheckBoxGroupStyle}">
+            <telerik:RadCheckBox x:Name="clipGroupHeadersCb"
+                                 IsChecked="{Binding AreGroupHeadersClippedWhenFrozen, Mode=TwoWay}" />
+            <Label Text="Clip Group Headers"
+                   Style="{StaticResource HorizontalGroupLabelAtEndStyle}" 
+                   telerik:RadCheckBox.ToggleOnTap="{Reference clipGroupHeadersCb}" />
+        </HorizontalStackLayout>
         <Label Text="Freeze/Unfreeze columns:"
+               Grid.Row="1"
                Style="{StaticResource SectionHeadingLabelStyle}" />
-        <CollectionView Grid.Row="1"
+        <CollectionView Grid.Row="2"
                         ItemsSource="{Binding Columns, Mode=OneWay}"
                         SelectionMode="None">
             <CollectionView.ItemTemplate>

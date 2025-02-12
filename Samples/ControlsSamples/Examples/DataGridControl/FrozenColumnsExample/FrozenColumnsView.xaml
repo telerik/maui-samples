@@ -14,6 +14,7 @@
                              UserGroupMode="Enabled"
                              ShowGroupFooters="True"
                              ShowColumnFooters="True"
+                             AreGroupHeadersClippedWhenFrozen="{Binding AreGroupHeadersClippedWhenFrozen}"
                              AutomationId="dataGrid">
             <telerik:RadDataGrid.Columns>
                 <telerik:DataGridNumericalColumn PropertyName="OrderID"
@@ -48,6 +49,9 @@
                 <telerik:DataGridTextColumn PropertyName="ShipPostalCode"
                                             HeaderText="Ship Postal Code" />
             </telerik:RadDataGrid.Columns>
+            <telerik:RadDataGrid.GroupDescriptors>
+                <telerik:PropertyGroupDescriptor PropertyName="OrderDate" /> 
+            </telerik:RadDataGrid.GroupDescriptors>
         </telerik:RadDataGrid>
     </Grid>
 </ContentView>

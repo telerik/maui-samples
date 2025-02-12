@@ -17,7 +17,7 @@
                              Command="{Binding ChangeIsOpenCommand}"/>
             </VerticalStackLayout>
         </HorizontalStackLayout>
-        <telerik:RadSideDrawer x:Name="drawer" 
+        <telerik:RadSideDrawer x:Name="drawer"
                                Grid.Row="1"
                                DrawerLength="200"
                                IsOpen="{Binding IsDrawerOpen}">
@@ -31,8 +31,8 @@
                 <Grid RowDefinitions="Auto, Auto, *">
                     <Label Grid.Row="1" 
                            Text="Invoked commands:" />
-                    <telerik:RadListView Grid.Row="2"
-                                         ItemsSource="{Binding InvokedCommands}" />
+                    <telerik:RadCollectionView Grid.Row="2"
+                                               ItemsSource="{Binding InvokedCommands}" />
                 </Grid>
             </telerik:RadSideDrawer.MainContent>
             <telerik:RadSideDrawer.DrawerContent>

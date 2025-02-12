@@ -8,10 +8,14 @@ namespace SDKBrowserMaui.Pages
 {
     public partial class HomePage : ContentPage
     {
+        HomeViewModel vm;
+
         public HomePage()
         {
             InitializeComponent();
-            this.BindingContext = new HomeViewModel();
+
+            this.vm = new HomeViewModel();
+            this.BindingContext = this.vm;
         }
     }
 }

@@ -18,12 +18,8 @@ public partial class ThemingView : RadContentView
 
         this.templatedPickerDropDownViewModel = new ColorAndSizeViewModel();
         this.templatedPickerDropDown.BindingContext = this.templatedPickerDropDownViewModel;
-        this.templatedPickerDropDown.DropDownSettings.AcceptCommand = this.templatedPickerDropDownViewModel.AcceptCommand;
-        this.templatedPickerDropDown.DropDownSettings.CancelCommand = this.templatedPickerDropDownViewModel.CancelCommand;
 
         this.templatedPickerPopupViewModel = new ColorAndSizeViewModel();
         this.templatedPickerPopup.BindingContext = this.templatedPickerPopupViewModel;
-        this.templatedPickerPopup.PopupSettings.AcceptCommand = this.templatedPickerPopupViewModel.AcceptCommand;
-        this.templatedPickerPopup.PopupSettings.CancelCommand = this.templatedPickerPopupViewModel.CancelCommand;
     }
 }

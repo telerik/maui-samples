@@ -61,7 +61,7 @@ public partial class MinMaxZoomLevel : ContentView
         string fileName = assembly.GetManifestResourceNames().FirstOrDefault(n => n.Contains("pdf-processing.pdf"));
         using (Stream stream = assembly.GetManifestResourceStream(fileName))
         {
-            RadFixedDocument document = provider.Import(stream);
+            RadFixedDocument document = provider.Import(stream, TimeSpan.FromMinutes(1));
             this.pdfViewer.Source = document;
         }
     }

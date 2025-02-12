@@ -214,7 +214,7 @@ namespace QSF.Examples.SpreadProcessingControl.ConditionalFormattingExample
         {
             IWorkbookFormatProvider formatProvider = new XlsxFormatProvider();
             MemoryStream stream = new MemoryStream();
-            formatProvider.Export(workbook, stream);
+            formatProvider.Export(workbook, stream, TimeSpan.FromMinutes(1));
             return stream;
         }
 
@@ -239,7 +239,7 @@ namespace QSF.Examples.SpreadProcessingControl.ConditionalFormattingExample
             using (Stream stream = assembly.GetManifestResourceStream(fileName))
             {
                 IWorkbookFormatProvider provider = new XlsxFormatProvider();
-                Workbook workbook = provider.Import(stream);
+                Workbook workbook = provider.Import(stream, TimeSpan.FromMinutes(1));
                 return workbook;
             }
         }
@@ -285,7 +285,7 @@ namespace QSF.Examples.SpreadProcessingControl.ConditionalFormattingExample
 
                 using (Stream stream = assembly.GetManifestResourceStream(fileName))
                 {
-                    workbook = provider.Import(stream);
+                    workbook = provider.Import(stream, TimeSpan.FromMinutes(1));
                 }
                 this.AddRules(workbook);
 

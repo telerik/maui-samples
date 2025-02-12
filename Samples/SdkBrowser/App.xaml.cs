@@ -16,6 +16,12 @@ namespace SDKBrowserMaui
     {
         public App(ITestingService testingService)
         {
+#if ANDROID
+            // Setting the AccentColor from the Maui world here is needed
+            // since the moment we try to access it from native Android is too early.
+            Application.AccentColor = Color.FromArgb("#2B0B98");
+#endif
+
             this.UserAppTheme = Microsoft.Maui.ApplicationModel.AppTheme.Light;
 
             this.InitializeComponent();

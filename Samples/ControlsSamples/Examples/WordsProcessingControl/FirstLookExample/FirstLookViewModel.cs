@@ -1,6 +1,7 @@
 ﻿using Microsoft.Maui.Controls;
 using QSF.Services;
 using QSF.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -145,7 +146,7 @@ namespace QSF.Examples.WordsProcessingControl.FirstLookExample
 
             using (MemoryStream stream = new MemoryStream())
             {
-                formatProvider.Export(document, stream);
+                formatProvider.Export(document, stream, TimeSpan.FromMinutes(1));
 
                 stream.Seek(0, SeekOrigin.Begin);
 

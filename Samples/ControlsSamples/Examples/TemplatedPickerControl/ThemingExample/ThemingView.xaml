@@ -24,13 +24,23 @@
                                     SelectedValue="{Binding SelectedValue}"
                                     PickerMode="DropDown"
                                     AutomationId="templatedPickerDropDown"
-                                    Margin="0, 0, 0, 12" />
+                                    Margin="0, 0, 0, 12">
+            <telerik:RadTemplatedPicker.DropDownSettings>
+                <telerik:PickerDropDownSettings AcceptCommand="{Binding AcceptCommand}"
+                                                CancelCommand="{Binding CancelCommand}" />
+            </telerik:RadTemplatedPicker.DropDownSettings>
+        </telerik:RadTemplatedPicker>
         <Label Text="PickerMode - Popup" />
         <telerik:RadTemplatedPicker x:Name="templatedPickerPopup"
                                     Placeholder="Choose size &amp; color"
                                     SelectorTemplate="{StaticResource ColorAndSizePickerSelectorTemplate}"
                                     SelectedValue="{Binding SelectedValue}"
                                     PickerMode="Popup"
-                                    AutomationId="templatedPickerPopup" />
+                                    AutomationId="templatedPickerPopup">
+            <telerik:RadTemplatedPicker.PopupSettings>
+                <telerik:PickerPopupSettings AcceptCommand="{Binding AcceptCommand}"
+                                             CancelCommand="{Binding CancelCommand}" />
+            </telerik:RadTemplatedPicker.PopupSettings>
+        </telerik:RadTemplatedPicker>
     </VerticalStackLayout>
 </telerik:RadContentView>

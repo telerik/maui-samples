@@ -47,21 +47,11 @@ public class CustomizationViewModel : ExampleViewModel
     private void Upload()
     {
         this.ResetUpload();
-
-#if MACCATALYST
-        this.timer.Interval = TimeSpan.FromMilliseconds(1000);
-#else
         this.timer.Interval = TimeSpan.FromMilliseconds(20);
-#endif
 
         this.timer.Tick += (s, e) =>
         {
-#if MACCATALYST
-            this.UploadProgress += 10;
-#else
             this.UploadProgress++;
-#endif
-
             this.StatusText = "Uploading your files to cloud... " + this.UploadProgress + "%";
 
             if (this.UploadProgress == 100)

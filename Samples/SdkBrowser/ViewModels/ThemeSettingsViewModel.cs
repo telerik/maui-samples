@@ -35,7 +35,7 @@ public class ThemeSettingsViewModel : NotifyPropertyChangedBase
 
         this.ThemesCatalog = themeDefinitions
             .SelectMany(theme => theme.Swatches)
-            .Where(theme => themeStrings.Contains(theme.Theme + " " + theme.Swatch))
+            .Where(theme => themeStrings.Contains(string.IsNullOrEmpty(theme.Swatch) ? theme.Theme : theme.Theme + " " + theme.Swatch))
             .ToArray();
         
         this.HeaderLabel = "Theme Settings";

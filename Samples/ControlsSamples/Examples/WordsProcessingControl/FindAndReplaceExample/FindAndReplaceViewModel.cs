@@ -1,6 +1,7 @@
 ﻿using Microsoft.Maui.Controls;
 using QSF.Services;
 using QSF.ViewModels;
+using System;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -126,7 +127,7 @@ namespace QSF.Examples.WordsProcessingControl.FindAndReplaceExample
             RadFlowDocument doc = new RadFlowDocument();
             using (Stream stream = assembly.GetManifestResourceStream(fileName))
             {
-                doc = new DocxFormatProvider().Import(stream);
+                doc = new DocxFormatProvider().Import(stream, TimeSpan.FromMinutes(1));
             }
 
             return doc;
@@ -144,7 +145,7 @@ namespace QSF.Examples.WordsProcessingControl.FindAndReplaceExample
 
             using (MemoryStream stream = new MemoryStream())
             {
-                formatProvider.Export(this.sampleDocument, stream);
+                formatProvider.Export(this.sampleDocument, stream, TimeSpan.FromMinutes(1));
                 stream.Seek(0, SeekOrigin.Begin);
                 await this.fileViewerService.View(stream, exampleName);
             }
@@ -164,7 +165,7 @@ namespace QSF.Examples.WordsProcessingControl.FindAndReplaceExample
 
             using (MemoryStream stream = new MemoryStream())
             {
-                formatProvider.Export(this.replacedDocument, stream);
+                formatProvider.Export(this.replacedDocument, stream, TimeSpan.FromMinutes(1));
                 stream.Seek(0, SeekOrigin.Begin);
                 await this.fileViewerService.View(stream, exampleName);
             }

@@ -1,12 +1,10 @@
-﻿using System;
+﻿using Microsoft.Maui.Controls;
+using SDKBrowserMaui.Common;
+using SDKBrowserMaui.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SDKBrowserMaui.Services;
-using Microsoft.Maui.Controls;
-using System.Collections.ObjectModel;
-using SDKBrowserMaui.Common;
+using Telerik.Maui.Controls.Data;
 
 namespace SDKBrowserMaui.ViewModels
 {
@@ -14,13 +12,11 @@ namespace SDKBrowserMaui.ViewModels
     {
         private string searchText;
         private string log;
-        private Func<object, bool> searchFilter;
-        private Func<object, object> searchGrouping;
+        private CustomFilter filter;
+        private readonly DelegateFilterDescriptor filterDescriptor = new DelegateFilterDescriptor();
 
         public SearchViewModel()
         { 
-            this.SearchFilter = item => this.PassesFilter(item);
-            this.SearchGrouping = item => this.ExtractGroup(item);
             this.searchText = string.Empty;
         }
 
@@ -57,60 +53,7 @@ namespace SDKBrowserMaui.ViewModels
             }
         }
 
-        public Func<object, bool> SearchFilter
-        {
-            get
-            {
-                return this.searchFilter;
-            }
-            private set
-            {
-                if (this.searchFilter != value)
-                {
-                    this.searchFilter = value;
-                    this.OnPropertyChanged();
-                }
-            }
-        }
-
-        public Func<object, object> SearchGrouping
-        {
-            get
-            {
-                return this.searchGrouping;
-            }
-            private set
-            {
-                if (this.searchGrouping != value)
-                {
-                    this.searchGrouping = value;
-                    this.OnPropertyChanged();
-                }
-            }
-        }
-
-        protected virtual bool PassesFilter(object item, params string[] tokens)
-        {
-            var example = (Example)item;
-            var category = example.Category;
-            var control = category.Control;
-            var comparison = StringComparison.OrdinalIgnoreCase;
-
-            return tokens.All(token =>
-                example.Name.IndexOf(token, comparison) >= 0 ||
-                example.Title.IndexOf(token, comparison) >= 0 ||
-                control.Name.IndexOf(token, comparison) >= 0 ||
-                control.Title.IndexOf(token, comparison) >= 0);
-        }
-
-        protected virtual object ExtractGroup(object item)
-        {
-            var example = (Example)item;
-            var category = example.Category;
-            var control = category.Control;
-
-            return control.Title;
-        }
+        public FilterDescriptorCollection FilterDescriptors { get; set; }
 
         private void OnSearchChanged()
         {
@@ -122,7 +65,17 @@ namespace SDKBrowserMaui.ViewModels
             var tokens = this.SearchText.Split(default(char[]),
                 StringSplitOptions.RemoveEmptyEntries);
 
-            this.SearchFilter = item => this.PassesFilter(item, tokens);
+            if (this.FilterDescriptors == null)
+            {
+                return;
+            }
+
+            this.filterDescriptor.Filter = new CustomFilter(tokens);
+
+            if (!this.FilterDescriptors.Contains(this.filterDescriptor))
+            {
+                this.FilterDescriptors.Add(this.filterDescriptor);
+            }
         }
 
         private bool IsSpecialSearch()
@@ -167,6 +120,42 @@ namespace SDKBrowserMaui.ViewModels
                     backdoorService.TryNavigateToExample(controlName, exampleName);
                 }
             }
+        }
+    }
+
+    public class CustomGroupSearchResults : IKeyLookup
+    {
+        public object GetKey(object item)
+        {
+            var example = (Example)item;
+            var category = example.Category;
+            var control = category.Control;
+
+            return control.Title;
+        }
+    }
+
+    public class CustomFilter : IFilter
+    {
+        private string[] tokens;
+
+        public CustomFilter(string[] tokens)
+        {
+            this.tokens = tokens;
+        }
+
+        public bool PassesFilter(object item)
+        {
+            var example = (Example)item;
+            var category = example.Category;
+            var control = category.Control;
+            var comparison = StringComparison.OrdinalIgnoreCase;
+
+            return this.tokens.All(token =>
+                example.Name.IndexOf(token, comparison) >= 0 ||
+                example.Title.IndexOf(token, comparison) >= 0 ||
+                control.Name.IndexOf(token, comparison) >= 0 ||
+                control.Title.IndexOf(token, comparison) >= 0);
         }
     }
 }

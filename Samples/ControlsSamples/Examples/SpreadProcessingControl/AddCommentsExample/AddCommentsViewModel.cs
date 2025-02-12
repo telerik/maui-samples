@@ -2,6 +2,7 @@
 using QSF.Examples.SpreadProcessingControl.AddNotesExample;
 using QSF.Services;
 using QSF.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -308,7 +309,7 @@ namespace QSF.Examples.SpreadProcessingControl.AddCommentsExample
         {
             IWorkbookFormatProvider formatProvider = new XlsxFormatProvider();
             MemoryStream stream = new MemoryStream();
-            formatProvider.Export(workbook, stream);
+            formatProvider.Export(workbook, stream, TimeSpan.FromMinutes(1));
             return stream;
         }
 
