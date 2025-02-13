@@ -32,7 +32,7 @@ You can find more information on the SDK Browser Application in the following do
 
 1. Clone the maui-samples repository on your machine.
 1. Install **Telerik UI for .NET MAUI** - you can download it from [here](https://www.telerik.com/maui-ui).
-1. [Set up your Telerik License Key](https://docs.telerik.com/devtools/maui/installation/licensing/set-up-your-license). Starting with Q1 2025 release, the UI components from the Telerik UI for .NET MAUI library require activation through a license key (trial or commercial). 
+1. [Set up your Telerik License Key](https://docs.telerik.com/devtools/maui/installation/licensing/set-up-your-license). Starting with 2025 Q1 release, the UI components from the Telerik UI for .NET MAUI library require activation through a license key (trial or commercial). 
 Follow the steps described in the documentation's sections of how to [get your Telerik license key](https://docs.telerik.com/devtools/maui/installation/licensing/set-up-your-license#downloading-the-license-key) and what are the options you have to [activate the controls](https://docs.telerik.com/devtools/maui/installation/licensing/set-up-your-license#activating-the-telerik-ui-for-net-maui-components). 
 1. Open the corresponding **.sln** file from the cloned repository, for example - [ControlsSamples.sln](/Samples/ControlsSamples/ControlsSamples.sln).
 1. Restore the NuGet packages. If the NuGet packages are not automatically restored, add one of the following NuGet package sources:
