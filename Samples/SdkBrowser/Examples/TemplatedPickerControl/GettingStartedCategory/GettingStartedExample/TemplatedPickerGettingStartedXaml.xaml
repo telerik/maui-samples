@@ -37,13 +37,13 @@
                     <CollectionView HeightRequest="240"
                                     SelectionMode="Single"
                                     ItemsSource="{Binding Colors}"
-                                    SelectedItem="{TemplateBinding SelectedValue, Mode=TwoWay}">
+                                    SelectedItem="{TemplateBinding SelectedValue, Mode=TwoWay}"
+                                    BackgroundColor="Transparent">
                         <CollectionView.Style>
                             <OnPlatform x:TypeArguments="Style">
                                 <On Platform="WinUI">
                                     <Style TargetType="Grid">
                                         <Setter Property="WidthRequest" Value="{Binding Width, Source={x:Reference picker}}" />
-                                        <Setter Property="BackgroundColor" Value="Transparent"/>
                                     </Style>
                                 </On>
                             </OnPlatform>
@@ -55,7 +55,7 @@
                                         <VisualStateGroup Name="CommonStates">
                                             <VisualState Name="Normal">
                                                 <VisualState.Setters>
-                                                    <Setter Property="BackgroundColor" Value="{OnPlatform Default=White, WinUI=Transparent}" />
+                                                    <Setter Property="BackgroundColor" Value="Transparent" />
                                                 </VisualState.Setters>
                                             </VisualState>
                                             <VisualState Name="Selected">

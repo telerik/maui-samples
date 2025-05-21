@@ -1,18 +1,14 @@
 ﻿using QSF.Examples.DataGridControl.ColumnTypesExample;
 using QSF.Examples.DataGridControl.GroupingExample;
 using QSF.ViewModels;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace QSF.Examples.CollectionViewControl.GroupingExample;
 
-public class GroupingViewModel : ExampleViewModel
+public class GroupingViewModel : ConfigurationExampleViewModel
 {
     private ObservableCollection<Flight> flights;
+    private bool enableStickyGroupHeaders = true;
 
     public GroupingViewModel()
     {
@@ -23,5 +19,11 @@ public class GroupingViewModel : ExampleViewModel
     {
         get => this.flights;
         set => this.UpdateValue(ref this.flights, value);
+    }
+
+    public bool EnableStickyGroupHeaders
+    {
+        get => this.enableStickyGroupHeaders;
+        set => this.UpdateValue(ref this.enableStickyGroupHeaders, value);
     }
 }

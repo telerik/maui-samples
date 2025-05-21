@@ -7,7 +7,7 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <local:TelerikTheming />
+                <local:TelerikThemeResources />
             </ResourceDictionary.MergedDictionaries>
             <Color x:Key="PrimaryColor">#1188FF</Color>
             <Color x:Key="SecondaryColor">White</Color>
@@ -33,7 +33,7 @@
             </Style>
 
             <Style TargetType="Label">
-                <Setter Property="TextColor" Value="{StaticResource DefaultTextColor}" />
+                <Setter Property="TextColor" Value="{DynamicResource RadOnAppSurfaceColor}" />
             </Style>
         </ResourceDictionary>
     </Application.Resources>

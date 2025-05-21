@@ -51,6 +51,9 @@ public static class TestingExtensions
                         SetAutomationIds();
                         StopScrollBarsHiding();
                         
+                        // Workaround for issue #82754
+                        StopEntryEmojiCompat();
+                        
                         BootUpCommandServer(instance);
                     }
                 });
@@ -118,7 +121,17 @@ public static class TestingExtensions
             var scrollView = h.PlatformView;
             scrollView.Resources.Add(scroolBarType, style);
         });
-#endif
+#elif __ANDROID__
+        Microsoft.Maui.Handlers.ScrollViewHandler.Mapper.AppendToMapping("FadeDuration", (h, v) => 
+        {
+            var platformView = h.PlatformView;
+            if (platformView != null)
+            {
+                platformView.ScrollBarFadeDuration = 10;
+                platformView.ScrollBarDefaultDelayBeforeFade = 10;
+            }
+        });
+ #endif
     }
 
     private static void SetAutomationIds()
@@ -268,5 +281,19 @@ public static class TestingExtensions
         return Environment
             .GetCommandLineArgs()
             .Any(arg => arg?.ToUpperInvariant() == var?.ToUpperInvariant());
+    }
+
+    private static void StopEntryEmojiCompat()
+    {
+#if __ANDROID__
+        Telerik.Maui.Handlers.RadTextInputHandler.PlatformViewFactory =
+            (handler) =>
+            {
+                var editText = new Telerik.Maui.Platform.RadMauiTextInput(handler.Context);
+                editText.EmojiCompatEnabled = false;
+
+                return editText;
+            };
+#endif
     }
 }

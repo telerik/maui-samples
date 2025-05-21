@@ -59,14 +59,14 @@
 					<DisplayName>First Look</DisplayName>
 					<Description>Telerik UI for .NET MAUI AIPrompt component helps integrating Large Language Model (LLM) technology into MAUI applications, adding artificial intelligence features.</Description>
 				</Example>
-				<!-- <Example>
+				<Example>
 					<Name>Theming</Name>
 					<Status>New</Status>
 					<Page>ThemingView</Page>
 					<DisplayName>Theming</DisplayName>
 					<IsThemable>true</IsThemable>
 					<Description>This example presents the theming support of the Telerik UI for .NET MAUI AIPrompt.</Description>
-				</Example> -->
+				</Example> 
 			</Examples>
 		</Control>
 
@@ -217,14 +217,12 @@
 			<Examples>
 				<Example>
 					<Name>FirstLook</Name>
-					<Status>Updated</Status>
 					<Page>FirstLookView</Page>
 					<DisplayName>First Look</DisplayName>
 					<Description>This example showcases all supported types of buttons present in Telerik UI for .NET MAUI and some of their key features and capabilities.</Description>
 				</Example>
 				<Example>
 					<Name>Customization</Name>
-					<Status>Updated</Status>
 					<Page>CustomizationView</Page>
 					<DisplayName>Customization</DisplayName>
 					<Description>This example presents the customization capabilities of the supported types of buttons present in Telerik UI for .NET MAUI.</Description>
@@ -382,14 +380,14 @@
 					<IsConfigurable>true</IsConfigurable>
 					<Description>This example demonstrates the various message types that the RadChat provides as well as how they can be customized. You can add new messages by choosing the type from the dropdown and clicking the Add Message button. The message will then be added based on the current configuration.</Description>
 				</Example>
-				<!-- <Example>
+				 <Example>
 					<Name>Theming</Name>
 					<Status>New</Status>
 					<Page>ThemingView</Page>
 					<DisplayName>Theming</DisplayName>
 					<IsThemable>true</IsThemable>
 					<Description>This example presents the theming support of the Telerik UI for .NET MAUI Chat.</Description>
-				</Example> -->
+				</Example> 
 			</Examples>
 		</Control>
 
@@ -432,14 +430,23 @@
 					<Name>Grouping</Name>
 					<Page>GroupingView</Page>
 					<DisplayName>Grouping</DisplayName>
-					<Description>Demonstrates the ability to group the data by a single or multiple properties using GroupDescriptors. In this example, a multi-level grouping scenario is showcased.</Description>
+					<IsConfigurable>true</IsConfigurable>
+					<ExcludeFrom>MacCatalyst,WinUI</ExcludeFrom>
+					<Description>Demonstrates the ability to group the data by a single or multiple properties using GroupDescriptors, and enables group headers to become sticky while scrolling by utilizing the EnableGroupHeaders property. In this example, a multi-level grouping scenario is showcased.</Description>
+					<Status>Updated</Status>
+				</Example>
+				<Example>
+					<Name>Grouping</Name>
+					<Page>GroupingView</Page>
+					<DisplayName>Grouping</DisplayName>
+					<ExcludeFrom>Android,iOS</ExcludeFrom>
+					<Description>Demonstrates the ability to group the data by a single or multiple properties using GroupDescriptors, and enables group headers to become sticky while scrolling by utilizing the EnableGroupHeaders property. In this example, a multi-level grouping scenario is showcased.</Description>
 				</Example>
 				<Example>
 					<Name>GridLayout</Name>
 					<Page>GridLayoutView</Page>
 					<DisplayName>Grid Layout</DisplayName>
 					<Description>Demonstrates the ability to display the items in a horizontal or vertical grid layout. In this example, a vertical grid layout is showcased.</Description>
-					<Status>New</Status>
 					<IsConfigurable>true</IsConfigurable>
 				</Example>
 				<Example>
@@ -447,28 +454,24 @@
 					<Page>HeaderFooterView</Page>
 					<DisplayName>Header &amp; Footer</DisplayName>
 					<Description>Demonstrates the ability to define custom HeaderTemplate &amp; FooterTemplate. Both the header and footer are part of the scrollable area of the RadCollectionView - might need to scroll it to reveal them.</Description>
-					<Status>New</Status>
 				</Example>
 				<Example>
 					<Name>DragDrop</Name>
 					<Page>DragDropView</Page>
 					<DisplayName>Drag &amp; Drop</DisplayName>
 					<Description>Demonstrates the ability to drag and drop between multiple CollectionView instances.</Description>
-					<Status>New</Status>
 				</Example>
 				<Example>
 					<Name>DragVisualTemplate</Name>
 					<Page>DragVisualTemplateView</Page>
 					<DisplayName>Drag Visual Template</DisplayName>
 					<Description>Demonstrates the ability to define a custom DragVisualTemplate which is displayed when an item is dragged.</Description>
-					<Status>New</Status>
 				</Example>
 				<Example>
 					<Name>LoadOnDemand</Name>
 					<Page>LoadOnDemandView</Page>
 					<DisplayName>Load On Demand</DisplayName>
 					<Description>Demonstrates the support for incremental data loading at the time when the user requires the items to be visualized.</Description>
-					<Status>New</Status>
 					<IsConfigurable>true</IsConfigurable>
 				</Example>
 				<Example>
@@ -476,14 +479,12 @@
 					<Page>PullToRefreshView</Page>
 					<DisplayName>Pull to Refresh</DisplayName>
 					<Description>Demonstrates the ability to refresh the data by using the pull to refresh functionality.</Description>
-					<Status>New</Status>
 				</Example>
 				<Example>
 					<Name>ItemSwipe</Name>
 					<Page>ItemSwipeView</Page>
 					<DisplayName>Item Swipe</DisplayName>
 					<Description>Demonstrates the ability to swipe an item to reveal its actionable content.</Description>
-					<Status>New</Status>
 				</Example>
 				<Example>
 					<ControlName>DataPager</ControlName>
@@ -491,7 +492,6 @@
 					<Page>CollectionViewIntegrationView</Page>
 					<DisplayName>Paging</DisplayName>
 					<Description>This example demonstrates how to implement paging functionality using the RadDataPager control.</Description>
-					<Status>New</Status>
 				</Example>
 				<Example>
 					<Name>Configuration</Name>
@@ -499,7 +499,6 @@
 					<DisplayName>Configuration</DisplayName>
 					<IsConfigurable>true</IsConfigurable>
 					<Description>This example presents the various configuration options that the RadCollectionView provides. You can change the control's layout orientation, item size and spacing, selection mode, etc.</Description>
-					<Status>Updated</Status>
 				</Example>
 				<Example>
 					<Name>Theming</Name>
@@ -529,14 +528,12 @@
 					<Page>FilteringView</Page>
 					<DisplayName>Filtering</DisplayName>
 					<Description>Demonstrates the ability to perform advanced filtering by highlighting the first filtered item or the full match. Provides configuration options as well - e.g. case-sensitivity, customization of colors and templates (NoResultsTemplate).</Description>
-					<Status>New</Status>
 				</Example>
 				<Example>
 					<Name>Configuration</Name>
 					<Page>ConfigurationView</Page>
 					<DisplayName>Configuration</DisplayName>
 					<Description>This example presents the various configuration options that the RadComboBox provides. You can change the control's editable state, selection mode, whether the clear button will be visible, etc.</Description>
-					<Status>Updated</Status>
 				</Example>
 				<Example>
 					<Name>Theming</Name>
@@ -607,6 +604,8 @@
 					<Name>AggregateSupport</Name>
 					<Page>AggregateSupportView</Page>
 					<DisplayName>Aggregate Support</DisplayName>
+					<IsConfigurable>true</IsConfigurable>
+					<Status>Updated</Status>
 					<Description>Demonstrates how you can easily use the built-in aggregate functionality of the DataGrid in order to sum data, count data, etc.</Description>
 				</Example>
 				<Example>
@@ -688,7 +687,6 @@
 					<Page>FirstLookView</Page>
 					<DisplayName>Paging Large Data</DisplayName>
 					<Description>This example demonstrates how to implement paging functionality of larger data using the RadDataPager control.</Description>
-					<Status>New</Status>
 				</Example>
 				<Example>
 					<Name>Theming</Name>
@@ -706,28 +704,24 @@
 			<DisplayName>DataPager</DisplayName>
 			<ShortDescription>Enables users to navigate large sets of data efficiently by providing intuitive paging functionality.</ShortDescription>
 			<FullDescription>Telerik UI for .NET MAUI DataPager allows users to navigate pages of content effortlessly, customize page size and count, and integrates seamlessly with data visualization controls like RadDataGrid.</FullDescription>
-			<Status>New</Status>
 			<Examples>
 				<Example>
 					<Name>FirstLook</Name>
 					<Page>FirstLookView</Page>
 					<DisplayName>First Look</DisplayName>
 					<Description>Telerik UI for .NET MAUI DataPager allows users to navigate pages of content effortlessly, customize page size and count, and integrates seamlessly with data visualization controls like RadDataGrid.</Description>
-					<Status>New</Status>
 				</Example>
 				<Example>
 					<Name>CollectionViewIntegration</Name>
 					<Page>CollectionViewIntegrationView</Page>
 					<DisplayName>CollectionView Integration</DisplayName>
 					<Description>This example showcases the integration between the RadDataPager and the RadCollectionView.</Description>
-					<Status>New</Status>
 				</Example>
 				<Example>
 					<Name>Customization</Name>
 					<Page>CustomizationView</Page>
 					<DisplayName>Customization</DisplayName>
 					<Description>This example showcases the ease with which the visual appearance of the DataPager can be customized - for example, personalizing the look and feel of the buttons according to your preferences.</Description>
-					<Status>New</Status>
 					<ExcludeFrom>Android,iOS</ExcludeFrom>
 				</Example>
 				<Example>
@@ -735,16 +729,15 @@
 					<Page>ConfigurationView</Page>
 					<DisplayName>Configuration</DisplayName>
 					<Description>This example presents various configuration options that the RadDataPager control provides. You can control the minimum and maximum count of numeric buttons, adjust item spacing and select which pager elements to display. Additionally, you can choose whether to replace certain numeric buttons with ellipses for a cleaner interface.</Description>
-					<Status>New</Status>
 				</Example>
-				<!-- <Example>
+				 <Example>
 					<Name>Theming</Name>
 					<Page>ThemingView</Page>
 					<DisplayName>Theming</DisplayName>
 					<IsThemable>true</IsThemable>
 					<Description>This example presents the theming support of the Telerik UI for .NET MAUI DataPager.</Description>
 					<Status>New</Status>
-				</Example> -->
+				</Example>
 			</Examples>
 		</Control>
 
@@ -881,7 +874,6 @@
 			<DisplayName>GridSplitter</DisplayName>
 			<ShortDescription>Can be used to resize rows and columns in a grid.</ShortDescription>
 			<FullDescription>The main purpose of the Splitter Control component is to provide a user interface element that allows users to resize rows and columns within a Grid Layout.</FullDescription>
-			<Status>New</Status>
 			<Examples>
 				<Example>
 					<Name>FirstLook</Name>
@@ -904,14 +896,14 @@
 					<DisplayName>First Look</DisplayName>
 					<Description>ImageEditor control is a powerful tool that allows you to easily visualize, edit and save images in your desktop or mobile application. It supports different file formats and comes with standard editing options such as zoom and pan, undo and redo, load and save an image, flip and rotate, resize and crop. Additionally, the control is packed with a variety of tools, filters, and other advanced functions.</Description>
 				</Example>
-				<!-- <Example>
+				 <Example>
 					<Name>Theming</Name>
 					<Status>New</Status>
 					<Page>ThemingView</Page>
 					<DisplayName>Theming</DisplayName>
 					<IsThemable>true</IsThemable>
 					<Description>This example presents the theming support of the Telerik UI for .NET MAUI ImageEditor.</Description>
-				</Example> -->
+				</Example> 
 			</Examples>
 		</Control>
 
@@ -1147,14 +1139,14 @@
 					<IsConfigurable>true</IsConfigurable>
 					<Description>This example highlights the diverse range of configuration options available in the PDF Viewer. You have the ability to fine-tune the spacing between the pages, or set limitations on the zoom level, controlling the extent to which users can enlarge or reduce the content within the control.</Description>
 				</Example>
-				<!-- <Example>
+				 <Example>
 					<Name>Theming</Name>
 					<Status>New</Status>
 					<Page>ThemingView</Page>
 					<DisplayName>Theming</DisplayName>
 					<IsThemable>true</IsThemable>
 					<Description>This example presents the theming support of the Telerik UI for .NET MAUI PDF Viewer.</Description>
-				</Example> -->
+				</Example> 
 			</Examples>
 		</Control>
 
@@ -1290,14 +1282,14 @@
 					<DisplayName>Custom Context Menu</DisplayName>
 					<Description>The RichTextEditor for .NET MAUI allows you to customize its context menu by defining custom commands or adding different built-in context menu items. This example demonstrates how to change the default context menu by adding different built in and custom context menu items.</Description>
 				</Example>
-				<!-- <Example>
+				 <Example>
 					<Name>Theming</Name>
 					<Status>New</Status>
 					<Page>ThemingView</Page>
 					<DisplayName>Theming</DisplayName>
 					<IsThemable>true</IsThemable>
 					<Description>This example presents the theming support of the Telerik UI for .NET MAUI RichTextEditor.</Description>
-				</Example> -->
+				</Example> 
 			</Examples>
 		</Control>
 
@@ -1443,14 +1435,14 @@
 					<DisplayName>Configuration</DisplayName>
 					<Description>This example presents the various configuration options of the RadSlideView and its indicator. Switch the orientation, interaction and overscroll modes, toggle looping of and tune in the animation.</Description>
 				</Example>
-				<!-- <Example>
+				 <Example>
 					<Name>Theming</Name>
 					<Status>New</Status>
 					<Page>ThemingView</Page>
 					<DisplayName>Theming</DisplayName>
 					<IsThemable>true</IsThemable>
 					<Description>This example presents the theming support of the Telerik UI for .NET MAUI SlideView.</Description>
-				</Example> -->
+				</Example> 
 			</Examples>
 		</Control>
 
@@ -1537,7 +1529,6 @@
 					<Name>Configuration</Name>
 					<Page>ConfigurationView</Page>
 					<DisplayName>Configuration</DisplayName>
-					<Status>New</Status>
 					<IsConfigurable>true</IsConfigurable>
 					<Description>This example demonstrates all configuration options that the RadTabView provides. Choose the position of the header and whether it can be scrolled, its offset from the content area, whether it overlays that content and if that content can be swiped.</Description>
 				</Example>
@@ -1633,17 +1624,40 @@
 					<DisplayName>First Look</DisplayName>
 					<Description>Telerik UI for .NET MAUI Toolbar is a flexible control for implementation of tool and button strips, needed in most desktop and mobile applications. Its rich collection of ToolbarItems allows easy customization of every tool or button of the control independently according to the specific needs of the application.</Description>
 				</Example>
-				<!-- <Example>
+				<!--<Example>
 					<Name>Theming</Name>
 					<Status>New</Status>
 					<Page>ThemingView</Page>
 					<DisplayName>Theming</DisplayName>
 					<IsThemable>true</IsThemable>
 					<Description>This example presents the theming support of the Telerik UI for .NET MAUI Toolbar.</Description>
-				</Example> -->
+				</Example>-->
 			</Examples>
 		</Control>
-
+		<Control>
+			<Name>TreeDataGrid</Name>
+			<DisplayName>TreeDataGrid</DisplayName>
+			<ShortDescription>RadTreeDataGrid presents hierarchical data with rows and columns. The control is a combination between DataGrid and TreeView.</ShortDescription>
+			<FullDescription>Telerik UI for MAUI TreeDataGrid presents hierarchical data with rows and columns. The TreeDataGrid combines the powerful data-driven features from the DataGrid control and showing the data in a tree like structure.</FullDescription>
+			<Status>New</Status>
+			<Examples>
+				<Example>
+					<Name>FirstLook</Name>
+					<Page>FirstLookView</Page>
+					<Status>New</Status>
+					<DisplayName>First Look</DisplayName>
+					<Description>Telerik UI for MAUI TreeDataGrid presents hierarchical data with rows and columns. The TreeDataGrid combines the powerful data-driven features from the DataGrid control and showing the data in a tree like structure.</Description>
+				</Example>
+				<Example>
+					<Name>Theming</Name>
+					<Status>New</Status>
+					<Page>ThemingView</Page>
+					<DisplayName>Theming</DisplayName>
+					<IsThemable>true</IsThemable>
+					<Description>This example presents the theming support of the Telerik UI for .NET MAUI TreeDataGrid.</Description>
+				</Example>
+			</Examples>
+		</Control>
 		<Control>
 			<Name>TreeView</Name>
 			<DisplayName>TreeView</DisplayName>
@@ -1758,7 +1772,7 @@
 
 	<HighlightedControls>
 		<HighlightedControl>
-			<DisplayName>DataGrid</DisplayName>
+			<DisplayName>TreeDataGrid</DisplayName>
 			<Icon>datagrid_white.png</Icon>
 		</HighlightedControl>
 		<HighlightedControl>
@@ -1766,8 +1780,8 @@
 			<Icon>collectionview_white.png</Icon>
 		</HighlightedControl>
 		<HighlightedControl>
-			<DisplayName>DataPager</DisplayName>
-			<Icon>datapager_white.png</Icon>
+			<DisplayName>DataGrid</DisplayName>
+			<Icon>datagrid_white.png</Icon>
 		</HighlightedControl>
 	</HighlightedControls>
 

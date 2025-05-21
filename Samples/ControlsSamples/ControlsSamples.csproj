@@ -15,9 +15,6 @@
 
 		<!-- Versions -->
 		<ApplicationVersion>1</ApplicationVersion>
-    
-    <!-- Work-around for Skia issue with latest MAUI -->
-		<WindowsSdkPackageVersion>10.0.19041.54</WindowsSdkPackageVersion>
 
 		<RuntimeIdentifier Condition="$(TargetFramework.Contains('android')) AND $(IsCI) == 'true'">android-arm64</RuntimeIdentifier>
 	</PropertyGroup>
@@ -61,6 +58,8 @@
 		<EmbeddedResource Include="Examples\SpreadProcessingControl\ConditionalFormattingExample\SpreadProcessingDocument2.xlsx" />
 		<EmbeddedResource Include="Examples\SpreadProcessingControl\ConvertExample\SpreadProcessingDocument1.xlsx" />
 		<EmbeddedResource Include="Examples\SpreadStreamProcessingControl\ImportSpreadsheetExample\sample.xlsx" />
+		<EmbeddedResource Include="Examples\TreeDataGridControl\Common\EmployeeDataSource.xml" />
+		<EmbeddedResource Include="Examples\TreeDataGridControl\Common\FolderDataSource.xml" />
 		<EmbeddedResource Include="Examples\TreeViewControl\FirstLookExample\AccountDataSource.xml" />
 		<EmbeddedResource Include="Examples\TreeViewControl\CustomizationExample\FavoriteFoldersDataSource.xml" />
 		<EmbeddedResource Include="Examples\TreeViewControl\ConfigurationExample\FileExplorerDataSource.xml" />
@@ -103,6 +102,17 @@
 		<PackageReference Include="Telerik.UI.for.Maui" Version="$(TelerikVersion)" />
 	</ItemGroup>
 
+    <ItemGroup>
+        <PackageReference Include="Telerik.Documents.Flow" Version="$(DPLVersion)" />
+        <PackageReference Include="Telerik.Documents.Flow.FormatProviders.Pdf" Version="$(DPLVersion)" />
+        <PackageReference Include="Telerik.Documents.Spreadsheet.FormatProviders.OpenXml" Version="$(DPLVersion)" />
+        <PackageReference Include="Telerik.Documents.Spreadsheet.FormatProviders.Pdf" Version="$(DPLVersion)" />
+        <PackageReference Include="Telerik.Documents.Spreadsheet.FormatProviders.Xls" Version="$(DPLVersion)" />
+        <PackageReference Include="Telerik.Documents.Spreadsheet" Version="$(DPLVersion)" />
+        <PackageReference Include="Telerik.Documents.SpreadsheetStreaming" Version="$(DPLVersion)" />
+        <PackageReference Include="Telerik.Zip" Version="$(DPLVersion)" />
+    </ItemGroup>
+
 	<ItemGroup Condition="$(TargetFramework.Contains('net8'))">
 		<PackageReference Include="Microsoft.Maui.Controls" Condition=" $(CustomMauiNet8Version) == '' " Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Controls" Condition=" $(CustomMauiNet8Version) != '' " Version="$(CustomMauiNet8Version)" />
@@ -112,7 +122,7 @@
 	<ItemGroup Condition="$(TargetFramework.Contains('net9'))">
 		<PackageReference Include="Microsoft.Maui.Controls" Condition=" $(CustomMauiNet9Version) == '' " Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Controls" Condition=" $(CustomMauiNet9Version) != '' " Version="$(CustomMauiNet9Version)" />
-		<PackageReference Include="System.Text.Json" Version="9.0.0-preview.6.24327.7" />
+		<PackageReference Include="System.Text.Json" Version="9.0.0" />
 	</ItemGroup>
 
 	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">

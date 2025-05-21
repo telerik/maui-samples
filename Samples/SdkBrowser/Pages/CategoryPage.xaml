@@ -8,7 +8,7 @@
     NavigationPage.HasNavigationBar="False"
     NavigationPage.HasBackButton="False"
     x:Class="SDKBrowserMaui.Pages.CategoryPage">
-    <Grid Background="White"
+    <Grid BackgroundColor="{DynamicResource RadAppSurfaceColor}"
           RowDefinitions="50, *">
         <views:HeaderView />
         <telerik:RadCollectionView x:Name="examples"
@@ -30,7 +30,7 @@
                                HeightRequest="8" />
                         <Label Grid.Column="1"
                                Text="{Binding Title}"
-                               TextColor="{StaticResource DefaultTextColor}"
+                               TextColor="{DynamicResource RadOnAppSurfaceColor}"
                                VerticalOptions="Center" />
                     </Grid>
                 </DataTemplate>

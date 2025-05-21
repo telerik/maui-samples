@@ -32,7 +32,8 @@
                        BorderThickness="{OnPlatform Default=0, MacCatalyst=1, WinUI=1}">
         <telerik:RadCollectionView x:Name="collectionView"
                                    ItemsSource="{Binding Flights}"
-                                   ItemTemplate="{StaticResource FlightDetailsTemplate}">
+                                   ItemTemplate="{StaticResource FlightDetailsTemplate}"
+                                   EnableStickyGroupHeaders="{Binding EnableStickyGroupHeaders}">
             <telerik:RadCollectionView.GroupDescriptors>
                 <telerik:PropertyGroupDescriptor PropertyName="AirlineName" />
                 <telerik:PropertyGroupDescriptor PropertyName="Status" />
