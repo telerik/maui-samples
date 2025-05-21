@@ -14,7 +14,7 @@
                                    ItemsSource="{Binding Controls}"
                                    ItemTapCommand="{Binding NextCommand}"
                                    SelectionMode="None"
-                                   Background="White">
+                                   BackgroundColor="{DynamicResource RadAppSurfaceColor}">
             <telerik:RadCollectionView.ItemTemplate>
                 <DataTemplate>
                     <Grid ColumnDefinitions="50,*">
@@ -25,7 +25,7 @@
                                HeightRequest="16" />
                         <Label Grid.Column="1"
                                Text="{Binding Title}"
-                               TextColor="{StaticResource DefaultTextColor}"
+                               TextColor="{DynamicResource RadOnAppSurfaceColor}"
                                VerticalOptions="Center" />
                     </Grid>
                 </DataTemplate>

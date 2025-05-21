@@ -7,7 +7,7 @@
     NavigationPage.HasNavigationBar="False"
     NavigationPage.HasBackButton="False"
     x:Class="SDKBrowserMaui.Pages.ExamplePage">
-    <Grid Background="White"
+    <Grid BackgroundColor="{DynamicResource RadAppSurfaceColor}"
           RowDefinitions="50, *">
         <views:HeaderView />
         <ContentView Grid.Row="1"

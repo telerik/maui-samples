@@ -1698,7 +1698,12 @@
 						<Example>
 							<Page>GroupHeaderAggregateStyle</Page>
 							<Name>GroupHeaderAggregateStyle</Name>
-							<Title>Group Header Aggregate Styling</Title>
+							<Title>Style and Align GroupHeaderAggregate</Title>
+						</Example>
+						<Example>
+							<Page>GroupHeaderAggregateStyleSelector</Page>
+							<Name>GroupHeaderAggregateStyleSelector</Name>
+							<Title>Group Header Aggregate Style Selector</Title>
 						</Example>
 						<Example>
 							<Page>GroupFooterAggregateStyle</Page>
@@ -2046,6 +2051,11 @@
 							<Name>StyleSelector</Name>
 							<Title>Style Selector</Title>
 						</Example>
+						<Example>
+							<Page>StyleSelector</Page>
+							<Name>RowBackgroundStyleSelector</Name>
+							<Title>Row Background Style Selector</Title>
+						</Example>
 					</Examples>
 				</Category>
 				<Category>
@@ -2124,14 +2134,19 @@
 							<Title>Integration with CollectionView</Title>
 						</Example>
 						<Example>
+							<Page>IntegrationCollectionView</Page>
+							<Name>IntegrationCollectionView</Name>
+							<Title>Integration with Microsoft CollectionView</Title>
+						</Example>
+						<Example>
 							<Page>IntegrationDataGrid</Page>
 							<Name>IntegrationDataGrid</Name>
 							<Title>Integration with DataGrid</Title>
 						</Example>
 						<Example>
-							<Page>IntegrationCollectionView</Page>
-							<Name>IntegrationCollectionView</Name>
-							<Title>Integration with Microsoft CollectionView</Title>
+							<Page>IntegrationTreeDataGrid</Page>
+							<Name>IntegrationTreeDataGrid</Name>
+							<Title>Integration with TreeDataGrid</Title>
 						</Example>
 					</Examples>
 				</Category>
@@ -4824,6 +4839,41 @@
 						</Example>
 					</Examples>
 				</Category>
+			</Categories>
+		</Control>
+		<Control>
+			<Name>TreeDataGrid</Name>
+			<Title>TreeDataGrid</Title>
+			<Icon>datagrid.png</Icon>
+			<Categories>
+				<Category>
+					<Name>GettingStarted</Name>
+					<Title>Getting Started</Title>
+					<Examples>
+						<Example>
+							<Page>GettingStartedXaml</Page>
+							<Name>GettingStarted</Name>
+							<Title>Getting Started</Title>
+						</Example>
+					</Examples>
+				</Category>
+				<Category>
+					<Name>DynamicData</Name>
+					<Title>Dynamic Data Binding</Title>
+					<ExcludeFrom>MacCatalyst,iOS</ExcludeFrom>
+					<Examples>
+						<Example>
+							<Page>DynamicObjectXaml</Page>
+							<Name>DynamicObject</Name>
+							<Title>Dynamic Object</Title>
+						</Example>
+						<Example>
+							<Page>ExpandoObjectXaml</Page>
+							<Name>ExpandoObject</Name>
+							<Title>Expando Object</Title>
+						</Example>
+					</Examples>
+			  </Category>
 			</Categories>
 		</Control>
 		<Control>

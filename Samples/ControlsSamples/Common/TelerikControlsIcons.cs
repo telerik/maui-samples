@@ -59,6 +59,7 @@ internal static class TelerikControlsIcons
         { "TimePicker", char.ConvertFromUtf32(0xe032) },
         { "TimeSpanPicker", char.ConvertFromUtf32(0xe033) },
         { "Toolbar", char.ConvertFromUtf32(0xe034) },
+        { "TreeDataGrid", char.ConvertFromUtf32(0xe013) },
         { "TreeView", char.ConvertFromUtf32(0xe035) },
         { "WordsProcessing", char.ConvertFromUtf32(0xe036) },
         { "WrapLayout", char.ConvertFromUtf32(0xe037) },

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.DataGridControl.StylingCategory.RowBackgroundStyleSelectorExample"
+             x:Class="SDKBrowserMaui.Examples.DataGridControl.StylingCategory.RowBackgroundStyleSelectorExample.StyleSelector">
+
+	<ContentView.Resources>
+		<ResourceDictionary>
+			<!-- >> datagrid-rowbackground-styleselector -->
+			<Style x:Key="RowBackgroundStyle" TargetType="telerik:DataGridRowBackgroundAppearance">
+				<Setter Property="BackgroundColor" Value="#C4E6E3" />
+			</Style>
+
+			<Style x:Key="AlternateRowBackgroundStyle" TargetType="telerik:DataGridRowBackgroundAppearance">
+				<Setter Property="BackgroundColor" Value="#F2FAF9" />
+			</Style>
+
+			<Style x:Key="RowDetailsBackgroundStyle" TargetType="telerik:DataGridRowBackgroundAppearance">
+				<Setter Property="BackgroundColor" Value="#C4E6E3" />
+				<Setter Property="BorderColor" Value="#80CBC4" />
+				<Setter Property="BorderThickness" Value="0, 0, 0, 1" />
+			</Style>
+
+			<Style x:Key="AlternateRowDetailsBackgroundStyle" TargetType="telerik:DataGridRowBackgroundAppearance">
+				<Setter Property="BackgroundColor" Value="#F2FAF9" />
+				<Setter Property="BorderColor" Value="#80CBC4" />
+				<Setter Property="BorderThickness" Value="0, 0, 0, 1" />
+			</Style>
+			
+			<local:MyRowBackgroundStyleSelector x:Key="RowBackgroundStyleSelector"
+												RowBackgroundStyle="{StaticResource RowBackgroundStyle}"
+												AlternateRowBackgroundStyle="{StaticResource AlternateRowBackgroundStyle}"
+												RowDetailsBackgroundStyle="{StaticResource RowDetailsBackgroundStyle}"
+												AlternateRowDetailsBackgroundStyle="{StaticResource AlternateRowDetailsBackgroundStyle}" />
+			<!-- << datagrid-rowbackground-styleselector -->
+		</ResourceDictionary>
+	</ContentView.Resources>
+
+	<!-- >> datagrid-rowbackground-styleselector-example -->
+	<telerik:RadDataGrid x:Name="datagrid"
+						 ItemsSource="{Binding Items}" 
+						 GridLinesVisibility="None"
+                         AutoGenerateColumns="False"
+                         RowBackgroundStyleSelector="{StaticResource RowBackgroundStyleSelector}"
+                         UserEditMode="Cell">
+		<telerik:RadDataGrid.Columns>
+			<telerik:DataGridToggleRowDetailsColumn />
+			<telerik:DataGridTextColumn PropertyName="Name" />
+			<telerik:DataGridTextColumn PropertyName="Age" />
+		</telerik:RadDataGrid.Columns>
+		<telerik:RadDataGrid.RowDetailsTemplate>
+			<DataTemplate>
+				<Grid Padding="12">
+					<Label Text="{Binding City}" />
+				</Grid>
+			</DataTemplate>
+		</telerik:RadDataGrid.RowDetailsTemplate>
+	</telerik:RadDataGrid>
+	<!-- << datagrid-rowbackground-styleselector-example -->
+</ContentView>
+	

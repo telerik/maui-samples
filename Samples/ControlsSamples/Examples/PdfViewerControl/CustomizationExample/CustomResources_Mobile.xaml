@@ -30,14 +30,11 @@
         <Setter Property="DisplayOptions" Value="Image, Text" />
         <Setter Property="ImagePosition" Value="Top" />
         <Setter Property="ImageSpacing" Value="4" />
+        <Setter Property="TextColor" Value="{StaticResource ToolbarCustomAccentColor}" />
         <Setter Property="VisualStateManager.VisualStateGroups">
             <VisualStateGroupList>
                 <VisualStateGroup Name="CommonStates">
-                    <VisualState Name="Normal">
-                        <VisualState.Setters>
-                            <Setter Property="TextColor" Value="{StaticResource ToolbarCustomAccentColor}" />
-                        </VisualState.Setters>
-                    </VisualState>
+                    <VisualState Name="Normal" />
                     <VisualState Name="Disabled">
                         <VisualState.Setters>
                             <Setter Property="TextColor" Value="#618660C5" />

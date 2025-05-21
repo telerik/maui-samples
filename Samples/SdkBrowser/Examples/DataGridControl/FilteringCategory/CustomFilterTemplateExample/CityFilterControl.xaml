@@ -9,8 +9,9 @@
     <telerik:RadBorder BackgroundColor="#F9F9F9"
                        BorderBrush="#DFDFDF"
                        BorderThickness="1">
-        <VerticalStackLayout Padding="12"
-                             Spacing="12">
+        <Grid Padding="12"
+              RowSpacing="12"
+              RowDefinitions="Auto, Auto, Auto, Auto">
             <Label FontFamily="TelerikFontExamples"
                    FontSize="16"
                    Text="&#xe877;"
@@ -21,12 +22,14 @@
                 </Label.GestureRecognizers>
             </Label>
             <telerik:RadComboBox x:Name="descriptorOperatorSelector"
+                                 Grid.Row="1"
                                  IsClearButtonVisible="False"
                                  MinimumWidthRequest="200" />
             <telerik:RadEntry x:Name="filterTextEntry"
+                              Grid.Row="2"
                               Placeholder="Enter filter criteria"
                               ReserveSpaceForErrorView="False" />
-            <HorizontalStackLayout Grid.Row="2"
+            <HorizontalStackLayout Grid.Row="3"
                                    HorizontalOptions="End"
                                    VerticalOptions="Center"
                                    Spacing="8">
@@ -35,7 +38,7 @@
                 <telerik:RadButton Text="Apply"
                                    Command="{Binding ApplyFilterCommand, Source={x:Reference dataGridFilterControl}}" />
             </HorizontalStackLayout>
-        </VerticalStackLayout>
+        </Grid>
     </telerik:RadBorder>
 </telerik:DataGridFilterControlBase>
 <!-- << datagrid-filter-template-filtercontrolbase -->

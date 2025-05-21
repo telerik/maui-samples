@@ -39,6 +39,9 @@
                 <Setter Property="HorizontalOptions" Value="Fill" />
                 <Setter Property="VerticalOptions" Value="Center" />
             </Style>
+            <Style x:Key="GroupAtExampleAreaStyle" TargetType="Layout">
+                <Setter Property="Margin" Value="{OnPlatform Default='0, 0, 0, 40', Android='0, 0, 0, 15', iOS='0, 0, 0, 24'}" />
+            </Style>
         </ResourceDictionary>
     </ContentView.Resources>
 

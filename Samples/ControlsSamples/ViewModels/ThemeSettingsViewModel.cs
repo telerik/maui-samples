@@ -8,6 +8,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace QSF.ViewModels;
@@ -48,13 +49,14 @@ public class ThemeSettingsViewModel : ViewModelBase
             }
         }
 
-        var themeStrings = TelerikTheming.Themes.Select(t => t.FullName).ToHashSet();
+        var themeStrings = Enum.GetValues(typeof(TelerikTheme)).Cast<TelerikTheme>()
+            .Select(theme => Regex.Replace(theme.ToString(), "(?<!^)([A-Z])", " $1")).ToList();
 
         var themeDefinitions = JsonSerializer.Deserialize<ThemeDefinition[]>(result);
 
         this.ThemesCatalog = themeDefinitions
-            .SelectMany(theme => theme.Swatches)
-            .Where(theme => themeStrings.Contains(string.IsNullOrEmpty(theme.Swatch) ? theme.Theme : theme.Theme + " " + theme.Swatch))
+            .SelectMany(themeDef => themeDef.Swatches)
+            .Where(swatchDef => themeStrings.Contains(string.IsNullOrEmpty(swatchDef.Swatch) ? swatchDef.Theme : swatchDef.Theme + " " + swatchDef.Swatch))
             .ToArray();
 
         this.HeaderLabel = "Theme Settings";
@@ -86,10 +88,10 @@ public class ThemeSettingsViewModel : ViewModelBase
 
             // NOTE: This is instance, while the progress is static...
             // may have minor issues going back and forth too quick between pages
-            await TelerikTheming.PrefetchAsync((p, t) =>
+            await TelerikThemeResources.PrefetchAsync((p, t) =>
             {
                 progress = 100.0 * (double)p / ((double)t);
-                this.OnPropertyChanged("Progress");
+                this.OnPropertyChanged(nameof(this.Progress));
             });
 
             prefetched = true;
@@ -106,10 +108,10 @@ public class ThemeSettingsViewModel : ViewModelBase
         {
             if (this.UpdateValue(ref this.mergedDictionaries, value) && this.mergedDictionaries != null)
             {
-                var theming = this.mergedDictionaries.OfType<TelerikTheming>().SingleOrDefault();
-                if (theming == null)
+                var themeResources = this.mergedDictionaries.OfType<TelerikThemeResources>().SingleOrDefault();
+                if (themeResources == null)
                 {
-                    this.mergedDictionaries.Add(new TelerikTheming());
+                    this.mergedDictionaries.Add(new TelerikThemeResources());
                 }
             }
         }
@@ -119,15 +121,15 @@ public class ThemeSettingsViewModel : ViewModelBase
     {
         get
         {
-            var telerikTheming = this.MergedDictionaries.OfType<TelerikTheming>().Single();
+            var theme = this.MergedDictionaries.OfType<TelerikThemeResources>().Single().Theme;
+            var themeSwatch = ExtractThemeAndSwatch(theme.ToString());
 
             var swatchDefinition = this.ThemesCatalog.Single(catalogTheme =>
-                catalogTheme.Theme == telerikTheming.Theme.Theme &&
-                catalogTheme.Swatch == telerikTheming.Theme.Swatch);
+                catalogTheme.Theme == themeSwatch.Theme &&
+                catalogTheme.Swatch == themeSwatch.Swatch);
 
             return swatchDefinition;
         }
-
         set
         {
             var currentTheme = this.CurrentTheme;
@@ -136,7 +138,7 @@ public class ThemeSettingsViewModel : ViewModelBase
                 return;
             }
 
-            var telerikTheming = this.MergedDictionaries.OfType<TelerikTheming>().Single();
+            var themeResources = this.MergedDictionaries.OfType<TelerikThemeResources>().Single();
 
             // TODO: Delete this logic once theming is applied on app level.
             // Now it is needed for desktop because there are controls that require the swatches to be merged on app level.
@@ -146,15 +148,18 @@ public class ThemeSettingsViewModel : ViewModelBase
 #if MACCATALYST || WINDOWS
             if (currentTheme.Theme != "Default")
             {
-                appDictionaries.Remove(telerikTheming.MergedDictionaries.ElementAt(0));
+                appDictionaries.Remove(themeResources.MergedDictionaries.ElementAt(0));
             }
 #endif
 
-            var themeKey = TelerikTheming.Themes.Single(themeKey =>
-                themeKey.Theme == value.Theme &&
-                themeKey.Swatch == value.Swatch);
+            var theme = Enum.GetValues(typeof(TelerikTheme)).Cast<TelerikTheme>()
+                .FirstOrDefault(theme =>
+                {
+                    var themeSwatch = ExtractThemeAndSwatch(theme.ToString());
+                    return themeSwatch.Theme == value.Theme && themeSwatch.Swatch == value.Swatch;
+                });
 
-            telerikTheming.Theme = themeKey;
+            themeResources.Theme = theme;
 
             if (value.Theme == "Default")
             {
@@ -163,8 +168,7 @@ public class ThemeSettingsViewModel : ViewModelBase
 #if MACCATALYST || WINDOWS
             else
             {
-                appDictionaries.Add(telerikTheming.MergedDictionaries.ElementAt(0));
-                
+                appDictionaries.Add(themeResources.MergedDictionaries.ElementAt(0));
             }
 
             this.ResetExampleIfNeeded();
@@ -190,7 +194,6 @@ public class ThemeSettingsViewModel : ViewModelBase
                 default: return "Auto";
             }
         }
-
         set
         {
             switch (value)
@@ -232,6 +235,20 @@ public class ThemeSettingsViewModel : ViewModelBase
             default:
                 return "Unspecified";
         }
+    }
+
+    public static (string Theme, string Swatch) ExtractThemeAndSwatch(string enumName)
+    {
+        var words = Regex.Matches(enumName, @"[A-Z][a-z]*").Cast<Match>().Select(m => m.Value).ToList();
+        if (words.Count < 2)
+        {
+            return (enumName, "");
+        }
+
+        string theme = words[0];
+        string swatch = string.Join(" ", words.Skip(1));
+
+        return (theme, swatch);
     }
 
     private void OnRequestedThemeChanged(object sender, AppThemeChangedEventArgs args)

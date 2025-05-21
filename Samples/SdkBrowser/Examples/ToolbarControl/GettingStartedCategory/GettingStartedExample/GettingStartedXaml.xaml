@@ -202,8 +202,7 @@
                Margin="0, 10" />
         <!-- >> toolbar-navigation-item -->
         <telerik:RadToolbar x:Name="toolbarNavigationButton"
-                            AutomationId="toolbarNavigationButton"
-                            HeightRequest="{OnPlatform Default=56, WinUI=48}">
+                            AutomationId="toolbarNavigationButton">
             <telerik:RadToolbar.Resources>
                 <Style TargetType="telerik:NavigationButtonToolbarItemView">
                     <Setter Property="VerticalOptions" Value="Center" />
@@ -241,8 +240,7 @@
                Margin="0, 10" />
         <!-- >> toolbar-entry-and-busyindicator-items -->
         <telerik:RadToolbar x:Name="toolbarEntryAndBusyIndicator"
-                            AutomationId="toolbarEntryAndBusyIndicator"
-                            HeightRequest="{OnPlatform Default=56, WinUI=48}">
+                            AutomationId="toolbarEntryAndBusyIndicator">
             <telerik:RadToolbar.Resources>
                 <Style TargetType="telerik:ButtonToolbarItemView">
                     <Setter Property="VerticalOptions" Value="Center" />

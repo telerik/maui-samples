@@ -7,23 +7,41 @@
 
     <ContentView.Resources>
         <!-- >> datagrid-group-header-aggregate-styling-example -->
-        <Style x:Key="GroupHeaderStyle" TargetType="telerik:DataGridGroupHeaderAppearance" >
-            <Setter Property="BorderThickness" Value="0, 1" />
-            <Setter Property="BorderColor" Value="#8660C5" />
+		<Style x:Key="GroupHeaderStyle" TargetType="telerik:DataGridGroupHeaderAppearance" >
+			<Setter Property="BorderColor" Value="#8660C5" />
             <Setter Property="TextColor" Value="#8660C5" />
             <Setter Property="TextFontAttributes" Value="Italic" />
             <Setter Property="AggregatesTextColor" Value="#8660C5" />
             <Setter Property="AggregatesTextFontAttributes" Value="Italic" />
         </Style>
         <!-- << datagrid-group-header-aggregate-styling-example -->
-    </ContentView.Resources>
+        
+        <!-- >> datagrid-group-header-aggregate-nexttoheader-style-xaml -->
+        <Style x:Key="GroupAggregateCellStyle" TargetType="telerik:DataGridGroupAggregateCellAppearance">
+            <Setter Property="TextColor" Value="#F18900" />
+        </Style>
+        <!-- << datagrid-group-header-aggregate-nexttoheader-style-xaml -->
 
-    <Grid>
+		<Style TargetType="telerik:DataGridTextColumn">
+			<Setter Property="Width" Value="180" />
+			<Setter Property="SizeMode" Value="{OnPlatform Default=Stretch, Android=Fixed, iOS=Fixed}" />
+		</Style>
+		<Style TargetType="telerik:DataGridNumericalColumn">
+			<Setter Property="Width" Value="180" />
+			<Setter Property="SizeMode" Value="{OnPlatform Default=Stretch, Android=Fixed, iOS=Fixed}" />
+		</Style>
+	</ContentView.Resources>
+    
+    <Grid RowDefinitions="Auto,*" RowSpacing="8">
+        <telerik:RadTemplatedButton Content="Toggle Group Header Aggregates Alignment"
+                                    Clicked="OnGroupHeaderAggregatesAlignmentBtnClicked" />
         <!-- >> datagrid-group-header-aggregates -->
         <telerik:RadDataGrid x:Name="dataGrid"
                              Grid.Row="1"
                              ItemsSource="{Binding Peripherals}"
                              ShowGroupHeaderAggregates="True"
+                             GroupAggregateCellStyle="{StaticResource GroupAggregateCellStyle}"
+                             GroupAggregatesAlignment="NextToHeader"
                              AutoGenerateColumns="False"
                              CanUserReorderColumns="True"
                              GroupHeaderStyle="{StaticResource GroupHeaderStyle}"
@@ -33,7 +51,7 @@
                     <telerik:DataGridTextColumn.AggregateDescriptors>
                         <telerik:PropertyAggregateDescriptor PropertyName="Name"
                                                          Function="Count"
-                                                         Caption="Total count: " />
+                                                         Caption="Count: " />
                     </telerik:DataGridTextColumn.AggregateDescriptors>
                 </telerik:DataGridTextColumn>
                 <telerik:DataGridNumericalColumn PropertyName="Price"
@@ -42,11 +60,11 @@
                         <telerik:PropertyAggregateDescriptor PropertyName="Price"
                                                              Function="Min" 
                                                              Format="C"
-                                                             Caption="Cheapest item: " />
+                                                             Caption="Cheapest: " />
                         <telerik:PropertyAggregateDescriptor PropertyName="Price" 
                                                              Function="Max" 
                                                              Format="C"
-                                                             Caption="Priciest item: " />
+                                                             Caption="Priciest: " />
                     </telerik:DataGridNumericalColumn.AggregateDescriptors>
                 </telerik:DataGridNumericalColumn>
                 <telerik:DataGridNumericalColumn PropertyName="DeliveryPrice"

@@ -116,9 +116,6 @@
             <telerik:RichTextEditorColorPickerToolbarItem x:Name="colorPicker"
                                                           IsVisible="{OnPlatform WinUI=False}"
                                                           Style="{StaticResource CommonButtonToolbarItemViewStyle}" />
-            <telerik:RichTextEditorImagePickerToolbarItem ItemsSource="{Binding EmojiSource}"
-                                                          ImageSource="{StaticResource EmojiPickerToolbarItemIcon}"
-                                                          Style="{StaticResource CommonButtonToolbarItemViewStyle}" />
         </telerik:RadRichTextEditorToolbar>
         <telerik:RadRichTextEditor x:Name="richTextEditor"
                                    Source="{Binding RTSource}"

@@ -8,6 +8,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using System.Text.RegularExpressions;
 using Telerik.Maui.Controls;
 
 namespace SDKBrowserMaui.ViewModels;
@@ -29,15 +30,16 @@ public class ThemeSettingsViewModel : NotifyPropertyChangedBase
 
         Console.WriteLine(result);
 
-        var themeStrings = TelerikTheming.Themes.Select(t => t.FullName).ToHashSet();
+        var themeStrings = Enum.GetValues(typeof(TelerikTheme)).Cast<TelerikTheme>()
+            .Select(theme => Regex.Replace(theme.ToString(), "(?<!^)([A-Z])", " $1")).ToList();
 
         var themeDefinitions = JsonSerializer.Deserialize<ThemeDefinition[]>(result);
 
         this.ThemesCatalog = themeDefinitions
-            .SelectMany(theme => theme.Swatches)
-            .Where(theme => themeStrings.Contains(string.IsNullOrEmpty(theme.Swatch) ? theme.Theme : theme.Theme + " " + theme.Swatch))
+            .SelectMany(themeDef => themeDef.Swatches)
+            .Where(swatchDef => themeStrings.Contains(string.IsNullOrEmpty(swatchDef.Swatch) ? swatchDef.Theme : swatchDef.Theme + " " + swatchDef.Swatch))
             .ToArray();
-        
+
         this.HeaderLabel = "Theme Settings";
 
         this.UserAppThemeOptions = new ReadOnlyCollection<string>(new List<string> {
@@ -53,15 +55,15 @@ public class ThemeSettingsViewModel : NotifyPropertyChangedBase
     {
         get
         {
-            var telerikTheming = App.Current.Resources.MergedDictionaries.OfType<TelerikTheming>().Single();
+            var theme = TelerikThemeResources.AppTheme;
+            var themeSwatch = ExtractThemeAndSwatch(theme.ToString());
 
             var swatchDefinition = this.ThemesCatalog.Single(catalogTheme =>
-                catalogTheme.Theme == telerikTheming.Theme.Theme &&
-                catalogTheme.Swatch == telerikTheming.Theme.Swatch);
+                catalogTheme.Theme == themeSwatch.Theme &&
+                catalogTheme.Swatch == themeSwatch.Swatch);
 
             return swatchDefinition;
         }
-
         set
         {
             if (value == null || value == this.CurrentTheme)
@@ -69,20 +71,16 @@ public class ThemeSettingsViewModel : NotifyPropertyChangedBase
                 return;
             }
 
-            // Console.WriteLine("  Will try to find the theme RD...");
-            var telerikTheming = App.Current.Resources.MergedDictionaries.OfType<TelerikTheming>().Single();
+            var theme = Enum.GetValues(typeof(TelerikTheme)).Cast<TelerikTheme>()
+                .FirstOrDefault(theme =>
+                {
+                    var themeSwatch = ExtractThemeAndSwatch(theme.ToString());
+                    return themeSwatch.Theme == value.Theme && themeSwatch.Swatch == value.Swatch;
+                });
 
-            // Console.WriteLine("  Find ThemeKey from SwatchDefinition " + value.Theme + " " + value.Swatch);
-            
-            var themeKey = TelerikTheming.Themes.Single(themeKey =>
-                themeKey.Theme == value.Theme &&
-                themeKey.Swatch == value.Swatch);
-            // Console.WriteLine("Found: " + themeKey.FullName);
+            TelerikThemeResources.AppTheme = theme;
 
-            // Console.WriteLine("  Switch the theme...");
-            telerikTheming.Theme = themeKey;
-
-            Console.WriteLine($"Set theme to {(value == null ? "null" : themeKey.Theme + " " + themeKey.Swatch)}.");
+            Console.WriteLine($"Set theme to {(value == null ? "null" : value.Theme + " " + value.Swatch)}.");
             this.OnPropertyChanged();
         }
     }
@@ -97,17 +95,16 @@ public class ThemeSettingsViewModel : NotifyPropertyChangedBase
     {
         get
         {
-            switch(Application.Current.UserAppTheme)
+            switch (Application.Current.UserAppTheme)
             {
                 case AppTheme.Light: return "Light";
                 case AppTheme.Dark: return "Dark";
                 default: return "Auto";
             }
         }
-
         set
         {
-            switch(value)
+            switch (value)
             {
                 case "Light":
                     Application.Current.UserAppTheme = Microsoft.Maui.ApplicationModel.AppTheme.Light;
@@ -134,7 +131,7 @@ public class ThemeSettingsViewModel : NotifyPropertyChangedBase
 
     public static string AppThemeToString(AppTheme theme)
     {
-        switch(theme)
+        switch (theme)
         {
             case Microsoft.Maui.ApplicationModel.AppTheme.Light:
                 return "Light";
@@ -144,6 +141,20 @@ public class ThemeSettingsViewModel : NotifyPropertyChangedBase
             default:
                 return "Unspecified";
         }
+    }
+
+    public static (string Theme, string Swatch) ExtractThemeAndSwatch(string enumName)
+    {
+        var words = Regex.Matches(enumName, @"[A-Z][a-z]*").Cast<Match>().Select(m => m.Value).ToList();
+        if (words.Count < 2)
+        {
+            return (enumName, "");
+        }
+
+        string theme = words[0];
+        string swatch = string.Join(" ", words.Skip(1));
+
+        return (theme, swatch);
     }
 
     private void OnRequestedThemeChanged(object sender, AppThemeChangedEventArgs args)

@@ -75,5 +75,7 @@ public class Club : NotifyPropertyChangedBase
     }
 
     public List<string> Championships => new List<string> { "UEFA Champions League", "Premier League", "La Liga" };
+
+    public List<string> Countries => new List<string> { "England", "Spain" };
 }
 // << datagrid-club-model

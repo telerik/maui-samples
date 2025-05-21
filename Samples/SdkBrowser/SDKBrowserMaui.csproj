@@ -10,10 +10,7 @@
 		<ApplicationId>com.telerik.SDKBrowserMaui</ApplicationId>
 		<UseTelerikTheming>true</UseTelerikTheming>
 		<ApplicationVersion>1</ApplicationVersion>
-    
-    <!-- Work-around for Skia issue with latest MAUI -->
-    <WindowsSdkPackageVersion>10.0.19041.54</WindowsSdkPackageVersion>
-    
+		
 		<RuntimeIdentifier Condition="$(TargetFramework.Contains('android')) AND $(IsCI) == 'true'">android-arm64</RuntimeIdentifier>
 	</PropertyGroup>
 
