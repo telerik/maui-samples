@@ -9,7 +9,7 @@
     <telerik:RadContentView.Behaviors>
         <behaviors:AndroidResizeSoftInputModeBehavior />
     </telerik:RadContentView.Behaviors>
-    
+
     <telerik:RadContentView.Resources>
         <Color x:Key="ToolbarItemTextColor">White</Color>
         <Color x:Key="ToolbarItemInvertedTextColor">Black</Color>
@@ -115,6 +115,9 @@
             <telerik:RichTextEditorTextColorToolbarItem Style="{StaticResource CommonButtonToolbarItemViewStyle}" />
             <telerik:RichTextEditorColorPickerToolbarItem x:Name="colorPicker"
                                                           IsVisible="{OnPlatform WinUI=False}"
+                                                          Style="{StaticResource CommonButtonToolbarItemViewStyle}" />
+            <telerik:RichTextEditorImagePickerToolbarItem ItemsSource="{Binding EmojiSource}"
+                                                          ImageSource="{StaticResource EmojiPickerToolbarItemIcon}"
                                                           Style="{StaticResource CommonButtonToolbarItemViewStyle}" />
         </telerik:RadRichTextEditorToolbar>
         <telerik:RadRichTextEditor x:Name="richTextEditor"
