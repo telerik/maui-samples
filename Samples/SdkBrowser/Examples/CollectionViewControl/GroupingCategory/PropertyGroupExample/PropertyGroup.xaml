@@ -4,15 +4,27 @@
              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
              xmlns:local="clr-namespace:SDKBrowserMaui.Examples.CollectionViewControl"
              x:Class="SDKBrowserMaui.Examples.CollectionViewControl.GroupingCategory.PropertyGroupExample.PropertyGroup">
-    <!-- >> collectionview-property-group-descriptor -->
-    <telerik:RadCollectionView ItemsSource="{Binding Locations}"
-                               DisplayMemberPath="City">
-        <telerik:RadCollectionView.BindingContext>
-            <local:ViewModel />
-        </telerik:RadCollectionView.BindingContext>
-        <telerik:RadCollectionView.GroupDescriptors>
-            <telerik:PropertyGroupDescriptor PropertyName="Country" />
-        </telerik:RadCollectionView.GroupDescriptors>
-    </telerik:RadCollectionView>
-    <!-- << collectionview-property-group-descriptor -->
+	<Grid RowDefinitions="Auto, *" RowSpacing="10">
+		<HorizontalStackLayout Spacing="5" HorizontalOptions="Start">
+			<telerik:RadCheckBox x:Name="stickyEnabledCb"
+								 IsChecked="{Binding EnableStickyGroupHeaders, Source={x:Reference GroupingCollecitonView}}" />
+			<Label Text="Enable Sticky GroupHeaders"
+				   VerticalTextAlignment="Center"
+				   telerik:RadCheckBox.ToggleOnTap="{x:Reference stickyEnabledCb}" />
+		</HorizontalStackLayout>
+		<!-- >> collectionview-property-group-descriptor -->
+		<telerik:RadCollectionView Grid.Row="1"
+								   x:Name="GroupingCollecitonView"
+								   ItemsSource="{Binding Locations}" 
+								   EnableStickyGroupHeaders="False"
+								   DisplayMemberPath="City">
+			<telerik:RadCollectionView.BindingContext>
+				<local:ViewModel />
+			</telerik:RadCollectionView.BindingContext>
+			<telerik:RadCollectionView.GroupDescriptors>
+				<telerik:PropertyGroupDescriptor PropertyName="Country" />
+			</telerik:RadCollectionView.GroupDescriptors>
+		</telerik:RadCollectionView>
+		<!-- << collectionview-property-group-descriptor -->
+	</Grid>
 </ContentView>

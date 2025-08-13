@@ -17,7 +17,8 @@
                        TextColor="White"
                        HorizontalTextAlignment="Center"
                        VerticalTextAlignment="Center"
-                       Padding="8, 0" />
+                       Padding="8, 0"
+                       AutomationId="favoriteIcon" />
                 <Grid.GestureRecognizers>
                     <TapGestureRecognizer Tapped="UpdateIsFavoriteContact" />
                 </Grid.GestureRecognizers>
@@ -33,7 +34,8 @@
                        TextColor="White"
                        HorizontalTextAlignment="Center"
                        VerticalTextAlignment="Center"
-                       Padding="8, 0" />
+                       Padding="8, 0"
+                       AutomationId="deleteIcon" />
                 <Grid.GestureRecognizers>
                     <TapGestureRecognizer Tapped="DeleteContact" />
                 </Grid.GestureRecognizers>
@@ -47,7 +49,8 @@
                        TextColor="#FFA726"
                        Text="{Binding IsFavorite, Converter={StaticResource BoolToIconConverter}}"
                        VerticalTextAlignment="Center"
-                       Margin="0, 0, 4, 0" />
+                       Margin="0, 0, 4, 0"
+                       AutomationId="isFavoriteIcon" />
                 <Label Grid.Column="1"
                        Text="{Binding Name}"
                        VerticalTextAlignment="Center" />
@@ -58,7 +61,8 @@
                    LineBreakMode="WordWrap"
                    HorizontalTextAlignment="Center"
                    VerticalTextAlignment="Center"
-                   Margin="20" />
+                   Margin="20"
+                   AutomationId="emptyTemplate" />
         </DataTemplate>
         <Style TargetType="Label" BasedOn="{StaticResource BaseLabelStyle}" />
     </ContentView.Resources>

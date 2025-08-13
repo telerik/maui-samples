@@ -18,7 +18,7 @@ public class CellTapUserCommand : DataGridCommand
     {
         var context = parameter as DataGridCellInfo;
         var cellTap =  $"You tapped on {context.Value} inside {context.Column.HeaderText} column \n";
-        Application.Current.MainPage.DisplayAlert("CellTap Command: ", cellTap, "OK");
+        Application.Current.Windows[0].Page.DisplayAlert("CellTap Command: ", cellTap, "OK");
         this.Owner.CommandService.ExecuteDefaultCommand(DataGridCommandId.CellTap, parameter);
     }
 }

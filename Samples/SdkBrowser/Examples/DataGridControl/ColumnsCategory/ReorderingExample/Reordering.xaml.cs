@@ -17,7 +17,7 @@ public partial class Reordering : ContentView
         if (e.Column.IsFrozen)
         {
             e.Cancel = true;
-            Application.Current.MainPage.DisplayAlert("", "Reorder is canceled because the column is Frozen", "OK");
+            Application.Current.Windows[0].Page.DisplayAlert("", "Reorder is canceled because the column is Frozen", "OK");
         }
     }
 
@@ -31,13 +31,13 @@ public partial class Reordering : ContentView
         if (!e.Column.IsFrozen && e.NewIsFrozen)
         {
             e.Cancel = true;
-            Application.Current.MainPage.DisplayAlert("", $"Cannot add the {(e.Column as DataGridTypedColumn).HeaderText} column to the frozen area", "OK");
+            Application.Current.Windows[0].Page.DisplayAlert("", $"Cannot add the {(e.Column as DataGridTypedColumn).HeaderText} column to the frozen area", "OK");
         }
     }
 
     private void OnColumnReordered(object sender, Telerik.Maui.Controls.DataGrid.ColumnReorderedEventArgs e)
     {
-        Application.Current.MainPage.DisplayAlert("", $"{(e.Column as DataGridTypedColumn).HeaderText} column was reordered!", "OK");
+        Application.Current.Windows[0].Page.DisplayAlert("", $"{(e.Column as DataGridTypedColumn).HeaderText} column was reordered!", "OK");
     }
     // << datagrid-column-reordering-events
 }

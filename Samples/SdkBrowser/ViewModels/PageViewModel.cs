@@ -78,14 +78,8 @@ namespace SDKBrowserMaui.ViewModels
         private void OnSearchCommand()
         {
             var navigationService = DependencyService.Get<INavigationService>();
-            if (UIAutomation.IsEnabled)
-            {
-                navigationService.NavigateToAsync<UITestsHomeViewModel>();
-            }
-            else
-            {
-                navigationService.NavigateToAsync<SearchViewModel>();
-            }
+
+            navigationService.NavigateToAsync<SearchViewModel>();
         }
 
         private void OnBackCommand()

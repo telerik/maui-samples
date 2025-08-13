@@ -23,7 +23,7 @@ public class NavigationService : INavigationService
 
     public NavigationService()
     {
-        this.navigation = Application.Current.MainPage.Navigation;
+        this.navigation = Application.Current.Windows[0].Page.Navigation;
     }
 
     public Task NavigateToAsync<TViewModel>(params object[] arguments)
@@ -40,7 +40,7 @@ public class NavigationService : INavigationService
             DeviceInfo.Platform == DevicePlatform.MacCatalyst)
         {
             // Desktop navigation, MVVM
-            var homeViewModel = (HomeViewModel)((NavigationPage)Application.Current.MainPage).RootPage.BindingContext;
+            var homeViewModel = (HomeViewModel)((NavigationPage)Application.Current.Windows[0].Page).RootPage.BindingContext;
 
             Control control = homeViewModel.Controls.First(c => c.Name == example.ControlName);
             control.StartupExample = control.Examples.FirstOrDefault(e => e.Name == example.Name);
@@ -134,7 +134,7 @@ public class NavigationService : INavigationService
     {
         if (cmd.Length > 10 && cmd.FirstOrDefault() == '#' && cmd.LastOrDefault() == '#')
         {
-            var examples = ((Application.Current.MainPage as NavigationPage).RootPage.BindingContext as HomeViewModel)?.Examples;
+            var examples = ((Application.Current.Windows[0].Page as NavigationPage).RootPage.BindingContext as HomeViewModel)?.Examples;
 
             var splittedText = cmd.Replace("#", string.Empty).Split('.');
             string controlText = splittedText.First();
@@ -143,51 +143,6 @@ public class NavigationService : INavigationService
             Example example = examples.FirstOrDefault(e => e.ControlName == controlText && e.Name == exampleText);
 
             await this.NavigateToExampleAsync(example, popToMain: true);
-        }
-
-        // Quick type - DataGrid.FirstLook goes "DGFL!" ComboBox.FirstLook goes "CmbFL!" (because CheckBox would go CB and mismatch with CB for combo)
-        if (cmd.Length >= 3 && cmd[cmd.Length - 1] == '!')
-        {
-            var examples = ((Application.Current.MainPage as NavigationPage).RootPage.BindingContext as HomeViewModel)?.Examples;
-            var example = examples.FirstOrDefault(e => Abbreviate(e.ControlName) + Abbreviate(e.Name) + '!' == cmd);
-            string Abbreviate(string text)
-            {
-                if (new Dictionary<string, string>{
-                        { "Button", "Btn" },
-                        { "Border", "Brd" },
-                        { "ComboBox", "Cmb" },
-                        { "Customization", "Cu" },
-                        { "Configuration", "Co" },
-                        { "Chart", "Crt"},
-                        { "Chat", "Ch"},
-                        { "Expander", "Ex"},
-                        { "Path", "Ph"},
-                        { "PdfViewer", "PdV"},
-                        { "PdfProcessing", "PdP"},
-                        { "SpreadProcessing", "SpP"},
-                        { "Slider", "Sl"},
-                        { "TreeView", "Trv" }
-                    }.TryGetValue(text, out var lookup))
-                {
-                    return lookup;
-                }
-
-                string result = "";
-                for(var i = 0; i < text.Length; i++)
-                {
-                    char c = text[i];
-                    if (c >= 'A' && c <= 'Z')
-                    {
-                        result += c;
-                    }
-                }
-                return result;
-            }
-
-            if (example != null)
-            {
-                await this.NavigateToExampleAsync(example, popToMain: true);
-            }
         }
     }
 

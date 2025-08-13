@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.BottomSheetControl.StylingCategory.BottomSheetStylingExample.BottomSheetStyling">
+
+	<ContentView.Resources>
+		<ResourceDictionary>
+			<!-- >> bottomsheet-style-resource -->
+			<Style x:Key="bottomSheetStyle" TargetType="telerik:RadBottomSheet">
+				<Setter Property="BorderColor" Value="#00897B" />
+				<Setter Property="BorderThickness" Value="1" />
+			</Style>
+			<!-- << bottomsheet-style-resource -->
+			<!-- >> bottomsheet-content-style-resource -->
+			<Style x:Key="bottomSheetContentStyle" TargetType="telerik:BottomSheetContentView">
+				<Setter Property="BackgroundColor" Value="#D6EEEC" />
+				<Setter Property="BorderColor" Value="#00897B" />
+				<Setter Property="BorderThickness" Value="1" />
+			</Style>
+			<!-- << bottomsheet-content-style-resource -->
+		</ResourceDictionary>
+	</ContentView.Resources>
+
+	<!-- >> bottomsheet-style -->
+	<telerik:RadBottomSheet x:Name="bottomSheet"
+							Style="{StaticResource bottomSheetStyle}"
+							BottomSheetContentStyle="{StaticResource bottomSheetContentStyle}">
+		<telerik:RadBottomSheet.Content>
+			<telerik:RadCollectionView ItemsSource="{Binding People}"
+									   SelectionChanged="OnSelectionChanged"
+									   x:Name="peopleCollectionView">
+				<telerik:RadCollectionView.ItemTemplate>
+					<DataTemplate>
+						<Grid RowDefinitions="Auto, Auto"
+							  Padding="{Binding Source={RelativeSource AncestorType={x:Type telerik:RadCollectionViewItemView}}, Path=ActualPadding}"
+							  RowSpacing="3">
+							<HorizontalStackLayout>
+								<Label Text="Name: " />
+								<Label Text="{Binding Name}" />
+							</HorizontalStackLayout>
+							<HorizontalStackLayout Grid.Row="1">
+								<Label Text="Position: " />
+								<Label Text="{Binding Position}" />
+							</HorizontalStackLayout>
+						</Grid>
+					</DataTemplate>
+				</telerik:RadCollectionView.ItemTemplate>
+				<telerik:RadCollectionView.ItemsLayout>
+					<telerik:CollectionViewLinearLayout ItemSpacing="6" />
+				</telerik:RadCollectionView.ItemsLayout>
+			</telerik:RadCollectionView>
+		</telerik:RadBottomSheet.Content>
+		<telerik:RadBottomSheet.BottomSheetContent>
+			<Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto"
+				  Padding="20,0,0,0"
+				  ColumnDefinitions="100, *"
+				  RowSpacing="8">
+				<Label Text="Country: "
+					   FontAttributes="Bold" />
+				<Label Text="{Binding Country}" 
+					   Grid.Column="1" />
+				<Label Text="Age: "
+					   FontAttributes="Bold"
+					   Grid.Row="1" />
+				<Label Text="{Binding Age}" 
+					   Grid.Row="1" 
+					   Grid.Column="1" />
+				<Label Text="Department: "
+					   FontAttributes="Bold"
+					   Grid.Row="2" />
+				<Label Text="{Binding Department}" 
+					   Grid.Row="2"
+					   Grid.Column="1" />
+				<Label Text="Company Id: "
+					   FontAttributes="Bold"
+					   Grid.Row="3" />
+				<Label Text="{Binding CompanyID}" 
+					   Grid.Row="3" 
+					   Grid.Column="1" />
+				<Label Text="Hired: "
+					   FontAttributes="Bold" 
+					   Grid.Row="4" />
+				<Label Text="{Binding Joined}" 
+					   Grid.Row="4" 
+					   Grid.Column="1" />
+			</Grid>
+		</telerik:RadBottomSheet.BottomSheetContent>
+	</telerik:RadBottomSheet>
+	<!-- << bottomsheet-style -->
+</ContentView>

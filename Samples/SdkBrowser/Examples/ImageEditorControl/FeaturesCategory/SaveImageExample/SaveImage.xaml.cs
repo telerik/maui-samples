@@ -22,7 +22,7 @@ public partial class SaveImage : ContentView
             await this.imageEditor.SaveAsync(fileStream, ImageFormat.Jpeg, 0.9);
         }
 
-        await Application.Current.MainPage.DisplayAlert("", "The Image is saved with original size", "OK");
+        await Application.Current.Windows[0].Page.DisplayAlert("", "The Image is saved with original size", "OK");
     }
     // << imageeditor-saveimage-original
 
@@ -37,7 +37,7 @@ public partial class SaveImage : ContentView
             await this.imageEditor.SaveAsync(fileStream, ImageFormat.Jpeg, 0.9, maxsize);
         }
 
-        await Application.Current.MainPage.DisplayAlert("", "The Image is saved with Size 400:500", "OK");
+        await Application.Current.Windows[0].Page.DisplayAlert("", "The Image is saved with Size 400:500", "OK");
     }
 
     // << imageeditor-saveimage-specific-size
@@ -52,7 +52,7 @@ public partial class SaveImage : ContentView
             await this.imageEditor.SaveAsync(fileStream, ImageFormat.Jpeg, 0.9, 0.5);
         }
 
-        await Application.Current.MainPage.DisplayAlert("", "The Image is downscaled to 50%", "OK");
+        await Application.Current.Windows[0].Page.DisplayAlert("", "The Image is downscaled to 50%", "OK");
     }
     // << imageeditor-saveimage-downscaled
 }

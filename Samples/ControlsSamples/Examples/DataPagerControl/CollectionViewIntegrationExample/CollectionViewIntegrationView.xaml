@@ -91,7 +91,8 @@
                                        ItemsSource="{Binding PagedSource, Source={x:Reference dataPager}}"
                                        ItemTemplate="{OnPlatform Default={StaticResource TechNewsTemplateMobile}, MacCatalyst={StaticResource TechNewsTemplateDesktop}, WinUI={StaticResource TechNewsTemplateDesktop}}"
                                        SelectionMode="None"  
-                                       HorizontalOptions="{OnPlatform MacCatalyst=Start, WinUI=Start}">
+                                       HorizontalOptions="{OnPlatform MacCatalyst=Start, WinUI=Start}"
+                                       AutomationId="collectionView">
                 <telerik:RadCollectionView.ItemsLayout>
                     <telerik:CollectionViewGridLayout SpanCount="{Binding SpanCount}"
                                                       HorizontalItemSpacing="10"
@@ -102,7 +103,8 @@
                                   Grid.Row="2"
                                   Source="{Binding News}" 
                                   DisplayMode="{Binding DisplayMode}"
-                                  PageSize="6" />
+                                  PageSize="6"
+                                  AutomationId="dataPager" />
         </Grid>
     </Grid>
 </ContentView>

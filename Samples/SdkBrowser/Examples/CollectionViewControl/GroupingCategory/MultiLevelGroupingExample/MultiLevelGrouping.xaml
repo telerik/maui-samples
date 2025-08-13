@@ -4,16 +4,28 @@
              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
              xmlns:local="clr-namespace:SDKBrowserMaui.Examples.CollectionViewControl"
              x:Class="SDKBrowserMaui.Examples.CollectionViewControl.GroupingCategory.MultiLevelGroupingExample.MultiLevelGrouping">
-    <!-- >> collectionview-multilevel-grouping -->
-    <telerik:RadCollectionView ItemsSource="{Binding Locations}"
-                               DisplayMemberPath="City">
-        <telerik:RadCollectionView.BindingContext>
-            <local:ViewModel />
-        </telerik:RadCollectionView.BindingContext>
-        <telerik:RadCollectionView.GroupDescriptors>
-            <telerik:PropertyGroupDescriptor PropertyName="Continent" />
-            <telerik:PropertyGroupDescriptor PropertyName="Country" />
-        </telerik:RadCollectionView.GroupDescriptors>
-    </telerik:RadCollectionView>
-    <!-- << collectionview-multilevel-grouping -->
+	<Grid RowDefinitions="Auto, *" RowSpacing="10">
+		<HorizontalStackLayout Spacing="5" HorizontalOptions="Start">
+			<telerik:RadCheckBox x:Name="stickyEnabledCb"
+								 IsChecked="{Binding EnableStickyGroupHeaders, Source={x:Reference multiLevelGroupingCollecitonView}}" />
+			<Label Text="Enable Sticky GroupHeaders"
+				   VerticalTextAlignment="Center"
+				   telerik:RadCheckBox.ToggleOnTap="{x:Reference stickyEnabledCb}" />
+		</HorizontalStackLayout>
+		<!-- >> collectionview-multilevel-grouping -->
+		<telerik:RadCollectionView Grid.Row="1"
+								   x:Name="multiLevelGroupingCollecitonView"
+								   ItemsSource="{Binding Locations}"
+								   EnableStickyGroupHeaders="False"
+                                   DisplayMemberPath="City">
+			<telerik:RadCollectionView.BindingContext>
+				<local:ViewModel />
+			</telerik:RadCollectionView.BindingContext>
+			<telerik:RadCollectionView.GroupDescriptors>
+				<telerik:PropertyGroupDescriptor PropertyName="Continent" />
+				<telerik:PropertyGroupDescriptor PropertyName="Country" />
+			</telerik:RadCollectionView.GroupDescriptors>
+		</telerik:RadCollectionView>
+		<!-- << collectionview-multilevel-grouping -->
+	</Grid>
 </ContentView>

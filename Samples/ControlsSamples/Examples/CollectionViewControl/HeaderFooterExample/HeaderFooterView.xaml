@@ -13,7 +13,8 @@
                        BorderThickness="{OnIdiom Default=0, Desktop=1}">
         <telerik:RadCollectionView x:Name="collectionView"
                                    ItemsSource="{Binding Items}"
-                                   SelectionMode="None">
+                                   SelectionMode="None"
+                                   AutomationId="collectionView">
             <telerik:RadCollectionView.HeaderTemplate>
                 <DataTemplate>
                     <Grid ColumnDefinitions="Auto, *"
@@ -45,7 +46,8 @@
                                            Text="{Binding Label}"
                                            Command="{Binding PayCommand}"
                                            MaximumWidthRequest="{OnPlatform MacCatalyst=240, WinUI=240}"
-                                           HorizontalOptions="{OnPlatform MacCatalyst=Center, WinUI=Center}" />
+                                           HorizontalOptions="{OnPlatform MacCatalyst=Center, WinUI=Center}"
+                                           AutomationId="payButton" />
                     </Grid>
                 </DataTemplate>
             </telerik:RadCollectionView.FooterTemplate>
@@ -60,7 +62,8 @@
                         </Grid.GestureRecognizers>
                         <telerik:RadCheckBox VerticalOptions="Center"
                                              IsChecked="{Binding IsSelected, Mode=TwoWay}"
-                                             CheckedColor="{StaticResource AccentColor8}" />
+                                             CheckedColor="{StaticResource AccentColor8}"
+                                             AutomationId="itemCheckBox" />
                         <telerik:RadBorder Grid.Column="1"
                                            WidthRequest="32"
                                            HeightRequest="32"

@@ -54,7 +54,7 @@ public partial class CRUDOperations : RadContentView
         if (e.AddedItems.Count() > 0)
         {
             var selectedItem = e.AddedItems.First() as DataGridCellInfo;
-            Application.Current.MainPage.DisplayAlert("You have selected", $"{selectedItem.Value}", "OK");
+            Application.Current.Windows[0].Page.DisplayAlert("You have selected", $"{selectedItem.Value}", "OK");
         }
     }
     // << datagrid-datatable-selection

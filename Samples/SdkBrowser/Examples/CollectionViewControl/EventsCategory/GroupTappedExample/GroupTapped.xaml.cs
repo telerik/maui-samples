@@ -12,7 +12,7 @@ public partial class GroupTapped : ContentView
     // >> collectionview-group-tapped-event
     private void OnGroupTapped(object sender, Telerik.Maui.RadTappedEventArgs<Telerik.Maui.Controls.CollectionView.GroupContext> e)
     {
-        Application.Current.MainPage.DisplayAlert("", "You have tapped on Group: " + e.Data.Key, "OK");
+        Application.Current.Windows[0].Page.DisplayAlert("", "You have tapped on Group: " + e.Data.Key, "OK");
     }
     // << collectionview-group-tapped-event
 }

@@ -28,7 +28,7 @@ namespace SDKBrowserMaui.Examples.PdfViewerControl.ToolbarCategory.CustomToolbar
                     PdfFormatProvider formatProvider = new PdfFormatProvider();
                     formatProvider.Export(document, stream, TimeSpan.FromMinutes(1));
                     double megabytes = ToKiloBytes(stream.Length);
-                    Application.Current.MainPage.DisplayAlert("", "File Size: " + megabytes.ToString("N0") + " KB", "OK");
+                    Application.Current.Windows[0].Page.DisplayAlert("", "File Size: " + megabytes.ToString("N0") + " KB", "OK");
                 }
             }
         }

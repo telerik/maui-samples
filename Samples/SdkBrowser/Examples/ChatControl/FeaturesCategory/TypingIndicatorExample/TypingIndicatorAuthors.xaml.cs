@@ -24,7 +24,7 @@ public partial class TypingIndicatorAuthors : RadContentView
 
         Task.Delay(3000).ContinueWith(t =>
         {
-            Device.BeginInvokeOnMainThread(() =>
+            Application.Current.Windows[0].Page.Dispatcher.Dispatch(() =>
             {
                 this.typingIndicator.Authors.Clear();
                 this.chat.Items.Add(new TextMessage { Author = author2, Text = "What are you doing today?" });

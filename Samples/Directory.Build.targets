@@ -4,7 +4,7 @@
     <SupportedOSPlatformVersion>11.0</SupportedOSPlatformVersion>
     <TargetPlatformMinVersion>11.0</TargetPlatformMinVersion>
   </PropertyGroup>
-  <PropertyGroup Condition="$(TargetFramework.Contains('net9.0-ios'))">
+  <PropertyGroup Condition="$(TargetFramework.Contains('net9.0-ios')) OR $(TargetFramework.Contains('10.0-ios'))">
     <SupportedOSPlatformVersion>13.0</SupportedOSPlatformVersion>
     <TargetPlatformMinVersion>13.0</TargetPlatformMinVersion>
   </PropertyGroup>
@@ -16,7 +16,7 @@
     <SupportedOSPlatformVersion>14.0</SupportedOSPlatformVersion>
     <TargetPlatformMinVersion>14.0</TargetPlatformMinVersion>
   </PropertyGroup>
-  <PropertyGroup Condition="$(TargetFramework.Contains('net9.0-maccatalyst'))">
+  <PropertyGroup Condition="$(TargetFramework.Contains('net9.0-maccatalyst')) OR $(TargetFramework.Contains('10.0-maccatalyst'))">
     <SupportedOSPlatformVersion>15.0</SupportedOSPlatformVersion>
     <TargetPlatformMinVersion>15.0</TargetPlatformMinVersion>
   </PropertyGroup>

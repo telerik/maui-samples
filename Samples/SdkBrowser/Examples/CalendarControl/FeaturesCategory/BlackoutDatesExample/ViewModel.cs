@@ -6,7 +6,7 @@ using Telerik.Maui.Controls.Calendar;
 
 namespace SDKBrowserMaui.Examples.CalendarControl.FeaturesCategory.BlackoutDatesExample
 {
-    // >> calendar-blackoutdates-viewmode
+    // >> calendar-blackoutdates-viewmodel
     public class ViewModel : NotifyPropertyChangedBase
     {
         private ObservableCollection<DateTime> blackoutDates;

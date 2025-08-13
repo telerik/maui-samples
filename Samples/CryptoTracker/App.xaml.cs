@@ -9,46 +9,38 @@ namespace CryptoTracker;
 
 public partial class App : Application
 {
-	private Page rootPage;
-	private Color barBackgroundColor = Color.FromArgb("#121212");
-	private Color barTextColor = Color.FromArgb("#FFFFFF");
+    public App()
+    {
+        this.UserAppTheme = Microsoft.Maui.ApplicationModel.AppTheme.Light;
+        Application.AccentColor = Color.FromArgb("#045DEA");
 
-	public App()
-	{
-		this.UserAppTheme = Microsoft.Maui.ApplicationModel.AppTheme.Light;
-		Application.AccentColor = Color.FromArgb("#045DEA");
-		InitializeComponent();
-		DependencyService.Register<ICoinDataService, CoinDataService>();
-		// We use preprocessor directives in order to apply platform specific implementation.
+        this.InitializeComponent();
 
+        DependencyService.Register<ICoinDataService, CoinDataService>();
+    }
+
+    protected override Window CreateWindow(IActivationState activationState)
+    {
 #if ANDROID || IOS
-		this.rootPage = new CoinSelectionPage();
+        var rootPage = new CoinSelectionPage();
 #else
-		this.rootPage = new DesktopPage();
+        var rootPage = new DesktopPage();
 #endif
 
 #if MACCATALYST
-		MainPage = this.rootPage;
+        var window = new Window(rootPage);
 #else
-		MainPage = new NavigationPage(this.rootPage)
-		{
-			BarBackgroundColor = barBackgroundColor,
-			BarTextColor = barTextColor
-		};
+        var window = new Window(new NavigationPage(rootPage)
+        {
+            BarBackgroundColor = Color.FromArgb("#121212"),
+            BarTextColor = Color.FromArgb("#FFFFFF")
+        });
 #endif
-	}
 
 #if WINDOWS || MACCATALYST
-		protected override Window CreateWindow(IActivationState activationState)
-		{
-			var window = base.CreateWindow(activationState);
-			if (window != null)
-			{
-				window.MinimumWidth = 1024;
-				window.MinimumHeight = 768;
-			}
-
-			return window;
-		}
+        window.MinimumWidth = 1024;
+        window.MinimumHeight = 768;
 #endif
+        return window;
+    }
 }

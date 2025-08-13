@@ -18,11 +18,13 @@
                                     Content="Refresh Data"
                                     Command="{Binding RefreshCommand}"
                                     Margin="0, 0, 0, 20"
-                                    HorizontalOptions="Start" />
+                                    HorizontalOptions="Start"
+                                    AutomationId="pullToRefreshButton" />
         <RefreshView Grid.Row="1"
                      IsRefreshing="{Binding IsRefreshing}"
                      Command="{Binding RefreshCommand}">
-            <telerik:RadCollectionView ItemsSource="{Binding Recipes}">
+            <telerik:RadCollectionView ItemsSource="{Binding Recipes}"
+                                       AutomationId="collectionView">
                 <telerik:RadCollectionView.ItemTemplate>
                     <DataTemplate>
                         <Grid ColumnDefinitions="Auto, *"
@@ -44,9 +46,11 @@
                                 <Label Text="{Binding Name}"
                                        TextColor="{StaticResource DefaultTextColor}"
                                        FontSize="16"
-                                       FontAttributes="Bold" />
+                                       FontAttributes="Bold"
+                                       AutomationId="nameLabel" />
                                 <Label Text="{Binding Description}"
-                                       TextColor="{StaticResource DefaultTextColor}" />
+                                       TextColor="{StaticResource DefaultTextColor}"
+                                       AutomationId="descriptionLabel" />
                             </VerticalStackLayout>
                         </Grid>
                     </DataTemplate>

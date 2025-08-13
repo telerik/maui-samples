@@ -15,7 +15,7 @@ public partial class SelectionChanged : ContentView
     // >> calendar-selection-changed-event
     private void OnSelectionChanged(object sender, Telerik.Maui.Controls.Calendar.CalendarSelectionChangedEventArgs e)
     {
-        App.Current.MainPage.DisplayAlert("You have selected: ", "" + e.AddedDates.FirstOrDefault(), "OK");
+        App.Current.Windows[0].Page.DisplayAlert("You have selected: ", "" + e.AddedDates.FirstOrDefault(), "OK");
     }
     // << calendar-selection-changed-event
 }

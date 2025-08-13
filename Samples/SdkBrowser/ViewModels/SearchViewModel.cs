@@ -4,6 +4,7 @@ using SDKBrowserMaui.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Telerik.Maui.Controls.Data;
 
 namespace SDKBrowserMaui.ViewModels
@@ -59,7 +60,7 @@ namespace SDKBrowserMaui.ViewModels
         {
             if (this.IsSpecialSearch())
             {
-                this.NavigateToExampleOrApplyThemeBySearcText();
+                this.NavigateToExampleOrApplyThemeBySearchText();
             }
 
             var tokens = this.SearchText.Split(default(char[]),
@@ -86,7 +87,7 @@ namespace SDKBrowserMaui.ViewModels
                 && this.searchText.EndsWith("#");
         }
 
-        private void NavigateToExampleOrApplyThemeBySearcText()
+        private async Task NavigateToExampleOrApplyThemeBySearchText()
         {
             string trimmedText = this.searchText.Substring(1, this.searchText.Length - 2);
             List<string> searchTextFragments = trimmedText.Split(".").ToList<string>();
@@ -117,7 +118,7 @@ namespace SDKBrowserMaui.ViewModels
                     string exampleName = searchTextFragments[1];
 
                     var backdoorService = DependencyService.Get<IBackdoorService>();
-                    backdoorService.TryNavigateToExample(controlName, exampleName);
+                    await backdoorService.NavigateToExampleAsync(controlName, exampleName);
                 }
             }
         }

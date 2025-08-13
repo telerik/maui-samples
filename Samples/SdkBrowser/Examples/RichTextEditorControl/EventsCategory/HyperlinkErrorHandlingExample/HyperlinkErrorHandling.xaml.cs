@@ -57,7 +57,7 @@ public partial class HyperlinkErrorHandling : ContentView
     private void RichTextEditor_OpenHyperlinkError(object sender, OpenHyperlinkErrorEventArgs e)
     {
         e.Handled = true;
-        Application.Current.MainPage.DisplayAlert(string.Format("Error opening {0}", e.Url), e.Error.Message, "Ok");
+        Application.Current.Windows[0].Page.DisplayAlert(string.Format("Error opening {0}", e.Url), e.Error.Message, "Ok");
     }
     // << richtexteditor-hyperlinkerrorhandling-code
 }

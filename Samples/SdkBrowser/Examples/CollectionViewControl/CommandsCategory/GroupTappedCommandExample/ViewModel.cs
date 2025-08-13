@@ -26,7 +26,7 @@ public class ViewModel
         this.MyGroupTapCommand = new Command((item) =>
         {
             var tappedGroup = (GroupContext)item;
-            Application.Current.MainPage.DisplayAlert("", $"You have tapped on group {tappedGroup.Key}", "OK");
+            Application.Current.Windows[0].Page.DisplayAlert("", $"You have tapped on group {tappedGroup.Key}", "OK");
         });
     }
 

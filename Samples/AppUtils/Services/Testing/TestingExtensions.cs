@@ -3,11 +3,17 @@ using Microsoft.Maui.LifecycleEvents;
 using System.Net;
 using System.Net.Sockets;
 
+#if ANDROID
+using Telerik.Maui.Controls;
+using Android.Views;
+#endif
+
 namespace Telerik.AppUtils.Services;
 
 public static class TestingExtensions
 {
     private static TcpListener? tcpCommandServer = null;
+    private static int DefaultTestCommandTcpPort = 6364;
 
     public static MauiAppBuilder UseTelerikInHouseTestingService(this MauiAppBuilder @this, bool defaultIsAppUnderTest = false, int? testCommandTcpPort = null)
     {
@@ -32,6 +38,10 @@ public static class TestingExtensions
         {
             SetAutomationIds();
             StopScrollBarsHiding();
+
+#if !ANDROID && !IOS
+            BootUpCommandServer(instance);
+#endif
         }
 
         @this.ConfigureLifecycleEvents(events =>
@@ -50,10 +60,10 @@ public static class TestingExtensions
                     {
                         SetAutomationIds();
                         StopScrollBarsHiding();
-                        
+
                         // Workaround for issue #82754
                         StopEntryEmojiCompat();
-                        
+
                         BootUpCommandServer(instance);
                     }
                 });
@@ -122,7 +132,7 @@ public static class TestingExtensions
             scrollView.Resources.Add(scroolBarType, style);
         });
 #elif __ANDROID__
-        Microsoft.Maui.Handlers.ScrollViewHandler.Mapper.AppendToMapping("FadeDuration", (h, v) => 
+        Microsoft.Maui.Handlers.ScrollViewHandler.Mapper.AppendToMapping("FadeDuration", (h, v) =>
         {
             var platformView = h.PlatformView;
             if (platformView != null)
@@ -131,7 +141,45 @@ public static class TestingExtensions
                 platformView.ScrollBarDefaultDelayBeforeFade = 10;
             }
         });
- #endif
+
+        Telerik.Maui.Handlers.RadScrollViewHandler.PlatformViewFactory =
+            (handler) =>
+            {
+                LayoutInflater inflater = (LayoutInflater)handler.Context.GetSystemService(global::Android.App.Activity.LayoutInflaterService);
+                var sv = (Com.Telerik.Widget.Primitives.Panels.RadScrollView)inflater.Inflate(Telerik.Maui.Core.Resource.Layout.scrollview_scrollbars, null, false);
+                sv!.HorizontalScrollBarEnabled = false;
+                sv.VerticalScrollBarEnabled = false;
+                sv.ScrollbarFadingEnabled = true;
+
+                return sv;
+            };
+
+        Microsoft.Maui.Handlers.LayoutHandler.PlatformViewFactory =
+            (handler) =>
+            {
+                var virtualView = handler.VirtualView;
+                if (virtualView is RadCollectionView collectionView)
+                {
+                    collectionView.VerticalScrollBarVisibility = ScrollBarVisibility.Never;
+                    collectionView.HorizontalScrollBarVisibility = ScrollBarVisibility.Never;
+                }
+
+                return null;
+            };
+
+        Microsoft.Maui.Handlers.ContentViewHandler.PlatformViewFactory =
+           (handler) =>
+           {
+               var virtualView = handler.VirtualView;
+               if (virtualView is RadItemsView itemsView)
+               {
+                   itemsView.VerticalScrollBarVisibility = ScrollBarVisibility.Never;
+                   itemsView.HorizontalScrollBarVisibility = ScrollBarVisibility.Never;
+               }
+
+               return null;
+           };
+#endif
     }
 
     private static void SetAutomationIds()
@@ -216,23 +264,23 @@ public static class TestingExtensions
         {
         }
 
-        if (port != null)
+        port ??= DefaultTestCommandTcpPort;
+        // Experimental TCP commands for testing
+        try
         {
-            // Experimental TCP commands for testing
-            try
-            {
-                Console.WriteLine("TEST COMMAND! Starting on port " + port.Value);
-                var ipEndPoint = new IPEndPoint(IPAddress.Loopback, port.Value);
-                tcpCommandServer = new TcpListener(ipEndPoint);
-                tcpCommandServer.Start();
-                tcpCommandServer.BeginAcceptTcpClient(BeginAcceptTcpClientAsync, testingService);
-                Console.WriteLine("TEST COMMAND! Listening on " + port.Value);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("TEST COMMAND! Failed to start server.");
-                Console.WriteLine(e);
-            }
+            Console.WriteLine("TEST COMMAND! Starting on port " + port.Value);
+            var ipEndPoint = new IPEndPoint(IPAddress.Loopback, port.Value);
+            tcpCommandServer = new TcpListener(ipEndPoint);
+            tcpCommandServer.ExclusiveAddressUse = false;
+            tcpCommandServer.Server.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
+            tcpCommandServer.Start();
+            tcpCommandServer.BeginAcceptTcpClient(BeginAcceptTcpClientAsync, testingService);
+            Console.WriteLine("TEST COMMAND! Listening on " + port.Value);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine("TEST COMMAND! Failed to start server.");
+            Console.WriteLine(e);
         }
     }
 

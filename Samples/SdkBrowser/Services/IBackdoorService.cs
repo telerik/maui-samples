@@ -8,8 +8,12 @@ namespace SDKBrowserMaui.Services
 {
     public interface IBackdoorService
     {
-        string NavigateToExample(string controlName, string exampleName);
+        Task<string> NavigateToExampleAsync(string controlName, string exampleName);
 
-        bool TryNavigateToExample(string controlName, string exampleName);
+        Task NavigateToSearchAsync();
+
+        Task NavigateBackAsync();
+
+        bool TrySetTheme(string themeName, string themeSwatch);
     }
 }

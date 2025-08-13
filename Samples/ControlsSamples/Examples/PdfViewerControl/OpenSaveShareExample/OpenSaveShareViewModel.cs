@@ -132,7 +132,7 @@ public class OpenSaveShareViewModel : ExampleViewModel
             provider.Export(this.Document, output, TimeSpan.FromMinutes(1));
         }
 
-        await Application.Current.MainPage.DisplayAlert("Saved on this device as " + PdfFileName + ".", "Location: " + filePath, "OK");
+        await Application.Current.Windows[0].Page.DisplayAlert("Saved on this device as " + PdfFileName + ".", "Location: " + filePath, "OK");
     }
 
     private async Task ShareAsync()

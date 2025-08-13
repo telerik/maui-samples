@@ -27,7 +27,7 @@ partial class ToastMessageService : IToastMessageService
             Placement = Microsoft.UI.Xaml.Controls.Primitives.FlyoutPlacementMode.Bottom
         };
 
-        flyout.ShowAt((FrameworkElement)Microsoft.Maui.Controls.Application.Current.MainPage.Handler.PlatformView);
+        flyout.ShowAt((FrameworkElement)Microsoft.Maui.Controls.Application.Current.Windows[0].Page.Handler.PlatformView);
 
         var timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(3.5) };
         timer.Tick += (sender, e) =>

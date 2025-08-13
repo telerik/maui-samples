@@ -34,6 +34,6 @@ public partial class GetHtml : ContentView
         var htmlString = await this.richTextEditor.GetHtmlAsync();
         // << richtexteditor-keyfeatures-gethtml
 
-        await Application.Current.MainPage.DisplayAlert("Html content", htmlString, "OK");
+        await Application.Current.Windows[0].Page.DisplayAlert("Html content", htmlString, "OK");
     }
 }

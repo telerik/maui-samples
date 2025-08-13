@@ -6,6 +6,7 @@ using SDKBrowserMaui.Pages;
 using SDKBrowserMaui.Services;
 using SDKBrowserMaui.ViewModels;
 using System;
+using System.Threading.Tasks;
 using Telerik.AppUtils.Services;
 using Telerik.Maui.Controls;
 using Application = Microsoft.Maui.Controls.Application;
@@ -27,15 +28,10 @@ namespace SDKBrowserMaui
             this.InitializeComponent();
             this.InitializeDependencies();
 
-            if (testingService.IsAppUnderTest)
+            testingService.OnCommand += (service, command) =>
             {
-                MainPage = new NavigationPage(new UITestsHomePage());
-                UIAutomation.IsEnabled = true;
-            }
-            else
-            {
-                MainPage = new NavigationPage(new HomePage());
-            }
+                HandleTestingServiceCommand(service, command);
+            };
         }
 
         private void InitializeDependencies()
@@ -47,7 +43,7 @@ namespace SDKBrowserMaui
             DependencyService.RegisterSingleton<ThemeSettingsViewModel>(new ThemeSettingsViewModel());
         }
 
-        // TODO: Remove this method once Application.Current.MainPage.DisplayAlert is fixed in Android
+        // TODO: Remove this method once Application.Current.Windows[0].Page.DisplayAlert is fixed in Android
         public static void DisplayAlert(string text)
         {
             var popup = new RadPopup();
@@ -108,23 +104,119 @@ namespace SDKBrowserMaui
             popup.IsOpen = true;
         }
 
-#if WINDOWS || MACCATALYST
         protected override Window CreateWindow(IActivationState activationState)
         {
-            var window = base.CreateWindow(activationState);
-            if (window != null)
-            {
-#if WINDOWS
-                window.Title = "Telerik SDKBrowser Maui";
+            var window = new Window(new NavigationPage(new HomePage()));
+#if WINDOWS || MACCATALYST
+            window.Title = "Telerik SDKBrowser Maui";
+            window.MinimumWidth = 1024;
+            window.MinimumHeight = 768;
 #endif
-
-                window.MinimumWidth = 1024;
-                window.MinimumHeight = 768;
-            }
-
             return window;
         }
-#endif
+
+        private static bool TryParseNavigateToExample(string location, out string control, out string example)
+        {
+            control = example = null;
+            var parts = location.Split('.', 2);
+            if (parts.Length == 2)
+            {
+                control = parts[0];
+                example = parts[1];
+                return true;
+            }
+
+            return false;
+        }
+
+        private void HandleTestingServiceCommand(object service, TestCommandEventArgs e)
+        {
+            var command = e.Command;
+            if (command.StartsWith("NAVIGATE:", StringComparison.OrdinalIgnoreCase))
+            {
+                this.HandleNavigateCommand(e);
+                return;
+            }
+
+            if (command.StartsWith("THEME:", StringComparison.OrdinalIgnoreCase))
+            {
+                this.HandleThemeCommand(e);
+                return;
+            }
+
+            e.Result = Task.FromResult("Unknown command");
+        }
+
+        private void HandleNavigateCommand(TestCommandEventArgs e)
+        {
+            var command = e.Command;
+            var backdoorService = DependencyService.Get<IBackdoorService>();
+            var tcs = new TaskCompletionSource<string>();
+            e.Result = tcs.Task;
+
+            Dispatcher.Dispatch(async () =>
+            {
+                try
+                {
+                    string location = command["NAVIGATE:".Length..].Trim();
+
+                    if (TryParseNavigateToExample(location, out var control, out var example))
+                    {
+                        await backdoorService.NavigateToExampleAsync(control, example);
+                        tcs.SetResult("OK");
+                    }
+                    else if (location.Equals("SEARCH", StringComparison.OrdinalIgnoreCase))
+                    {
+                        await backdoorService.NavigateToSearchAsync();
+                        tcs.SetResult("OK");
+                    }
+                    else if (location.Equals("BACK", StringComparison.OrdinalIgnoreCase))
+                    {
+                        await backdoorService.NavigateBackAsync();
+                        tcs.SetResult("OK");
+                    }
+                    else
+                    {
+                        tcs.SetResult($"{command} not recognized");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    tcs.SetException(ex);
+                }
+            });
+        }
+
+        private void HandleThemeCommand(TestCommandEventArgs e)
+        {
+            var command = e.Command;
+            var backdoorService = DependencyService.Get<IBackdoorService>();
+            var tcs = new TaskCompletionSource<string>();
+            e.Result = tcs.Task;
+
+            Dispatcher.Dispatch(() =>
+            {
+                try
+                {
+                    string themeArgs = command["THEME:".Length..].Trim();
+                    var parts = themeArgs.Split('.', 2);
+
+                    if (parts.Length == 2)
+                    {
+                        bool themeSet = backdoorService.TrySetTheme(parts[0], parts[1]);
+                        tcs.SetResult(themeSet ? "OK" : $"{parts[0]}.{parts[1]} not recognized");
+                    }
+                    else
+                    {
+                        tcs.SetResult($"{command} not recognized");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    tcs.SetException(ex);
+                }
+            });
+        }
     }
 
 #if __ANDROID__

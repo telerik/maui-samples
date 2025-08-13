@@ -13,7 +13,7 @@ public class CommandsViewModel
         MyTapCommand = new Command((item) =>
         {
             var tappedItem = item;
-            Application.Current.MainPage.DisplayAlert("", "You have tapped on: " + tappedItem, "OK");
+            Application.Current.Windows[0].Page.DisplayAlert("", "You have tapped on: " + tappedItem, "OK");
         });
     }
 
