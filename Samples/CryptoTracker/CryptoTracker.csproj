@@ -16,9 +16,6 @@
 		<!-- Versions -->
 		<ApplicationVersion>1</ApplicationVersion>
 		<RuntimeIdentifier Condition="$(TargetFramework.Contains('android')) AND $(IsCI) == 'true'">android-arm64</RuntimeIdentifier>
-
-		<!-- Work-around for Skia issue with latest MAUI -->
-		<WindowsSdkPackageVersion>10.0.19041.54</WindowsSdkPackageVersion>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -51,6 +48,11 @@
 	<ItemGroup Condition="$(TargetFramework.Contains('net9'))">
 		<PackageReference Include="Microsoft.Maui.Controls" Condition=" $(CustomMauiNet9Version) == '' " Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Controls" Condition=" $(CustomMauiNet9Version) != '' " Version="$(CustomMauiNet9Version)" />
+	</ItemGroup>
+
+	<ItemGroup Condition="$(TargetFramework.Contains('net10'))">
+		<PackageReference Include="Microsoft.Maui.Controls" Condition=" $(CustomMauiNet10Version) == '' " Version="$(MauiVersion)" />
+		<PackageReference Include="Microsoft.Maui.Controls" Condition=" $(CustomMauiNet10Version) != '' " Version="$(CustomMauiNet10Version)" />
 	</ItemGroup>
 
 	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">

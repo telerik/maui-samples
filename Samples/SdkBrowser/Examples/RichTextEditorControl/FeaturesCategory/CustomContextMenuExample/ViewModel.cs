@@ -15,7 +15,7 @@ namespace SDKBrowserMaui.Examples.RichTextEditorControl.FeaturesCategory.CustomC
         private void CustomInfoCommandExecute(object param)
         {
             var selectionRange = (RichTextSelectionRange)param;
-            Application.Current.MainPage.DisplayAlert("Info", string.Format("Selection starts at {0} to {1} position.", selectionRange.Start, selectionRange.End), "Ok");
+            Application.Current.Windows[0].Page.DisplayAlert("Info", string.Format("Selection starts at {0} to {1} position.", selectionRange.Start, selectionRange.End), "Ok");
         }
 
         public ICommand CustomInfoCommand { get; set; }

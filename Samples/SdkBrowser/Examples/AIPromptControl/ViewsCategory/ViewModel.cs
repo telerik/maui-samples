@@ -67,7 +67,7 @@ public class ViewModel : NotifyPropertyChangedBase
     {
         AIPromptOutputItem outputItem = (AIPromptOutputItem)arg;
         await Clipboard.Default.SetTextAsync(outputItem.ResponseText);
-        await Application.Current.MainPage.DisplayAlert("Copied to clipboard:", outputItem.ResponseText, "Ok");
+        await Application.Current.Windows[0].Page.DisplayAlert("Copied to clipboard:", outputItem.ResponseText, "Ok");
     }
 
     private void ExecuteRetryCommand(object arg)
@@ -80,7 +80,7 @@ public class ViewModel : NotifyPropertyChangedBase
     private void ExecuteOutputItemRatingChangedCommand(object arg)
     {
         AIPromptOutputItem outputItem = (AIPromptOutputItem)arg;
-        Application.Current.MainPage.DisplayAlert("Response rating changed:", $"The rating of response {outputItems.IndexOf(outputItem)} has changed.", "Ok");
+        Application.Current.Windows[0].Page.DisplayAlert("Response rating changed:", $"The rating of response {outputItems.IndexOf(outputItem)} has changed.", "Ok");
     }
 
     private void ExecuteCommandTappedCommand(object arg)
@@ -92,7 +92,7 @@ public class ViewModel : NotifyPropertyChangedBase
             return;
         }
 
-        Application.Current.MainPage.DisplayAlert("Command executed:", aiPromptCommand.Text + " command has been executed.", "Ok");
+        Application.Current.Windows[0].Page.DisplayAlert("Command executed:", aiPromptCommand.Text + " command has been executed.", "Ok");
     }
 }
 // << aiprompt-views-viewmodel

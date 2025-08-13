@@ -33,7 +33,8 @@
         <telerik:RadCollectionView x:Name="collectionView"
                                    ItemsSource="{Binding Flights}"
                                    ItemTemplate="{StaticResource FlightDetailsTemplate}"
-                                   EnableStickyGroupHeaders="{Binding EnableStickyGroupHeaders}">
+                                   EnableStickyGroupHeaders="{Binding EnableStickyGroupHeaders}"
+                                   AutomationId="collectionView">
             <telerik:RadCollectionView.GroupDescriptors>
                 <telerik:PropertyGroupDescriptor PropertyName="AirlineName" />
                 <telerik:PropertyGroupDescriptor PropertyName="Status" />

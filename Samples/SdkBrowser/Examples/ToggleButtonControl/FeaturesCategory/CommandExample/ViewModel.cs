@@ -32,17 +32,17 @@ public class ViewModel : NotifyPropertyChangedBase
         if (context == true)
         {
             this.MyText = "Button is toggled";
-            Application.Current.MainPage.DisplayAlert("", "Command is executed and ToggleButton is in toggled state", "OK");
+            Application.Current.Windows[0].Page.DisplayAlert("", "Command is executed and ToggleButton is in toggled state", "OK");
         }
         else if (context == false)
         {
             this.MyText = "Button is untoggled";
-            Application.Current.MainPage.DisplayAlert("", "Command is executed and ToggleButton is in untoggled state", "OK");
+            Application.Current.Windows[0].Page.DisplayAlert("", "Command is executed and ToggleButton is in untoggled state", "OK");
         }
         else 
         {
             this.MyText = "Indeterminate state";
-            Application.Current.MainPage.DisplayAlert("", "Command is executed and ToggleButton is in indeterminate state", "OK"); 
+            Application.Current.Windows[0].Page.DisplayAlert("", "Command is executed and ToggleButton is in indeterminate state", "OK"); 
         }
     }
 }

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.SpeechToTextButtonControl.FeaturesCategory.CommandsExample.Commands">
+
+	<ContentView.Resources>
+		<ResourceDictionary>
+			<Style TargetType="Grid">
+				<Setter Property="ColumnSpacing" Value="8" />
+			</Style>
+		</ResourceDictionary>
+	</ContentView.Resources>
+	
+	<!-- >> speechtotext-commands -->
+	<Grid ColumnDefinitions="*, Auto"
+		  RowDefinitions="Auto">
+		<Editor x:Name="editor"
+				AutoSize="TextChanges"
+				Text="{Binding Text, Mode=TwoWay}" />
+		<telerik:RadSpeechToTextButton x:Name="speechToTextButton"
+									   SpeechRecognizedCommand="{Binding SpeechRecognizedCommand}"
+									   ErrorOccurredCommand="{Binding ErrorOccurredCommand}"
+									   Grid.Column="1"
+									   VerticalOptions="Start" />
+	</Grid>
+	<!-- << speechtotext-commands -->
+</ContentView>

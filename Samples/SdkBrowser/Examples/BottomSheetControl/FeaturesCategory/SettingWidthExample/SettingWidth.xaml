@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.BottomSheetControl.FeaturesCategory.SettingWidthExample.SettingWidth">
+	<ContentView.Resources>
+		<ResourceDictionary>
+			<Style TargetType="HorizontalStackLayout">
+				<Setter Property="Spacing" Value="5" />
+				<Setter Property="VerticalOptions" Value="Start" />
+			</Style>
+		</ResourceDictionary>
+	</ContentView.Resources>
+	
+	<!-- >> bottomsheet-setting-with -->
+	<telerik:RadBottomSheet x:Name="bottomSheet">
+		<telerik:RadBottomSheet.Content>
+			<HorizontalStackLayout>
+				<telerik:RadTemplatedButton Content="Setting Width to 400" 
+											Clicked="OnOpenClicked"/>
+				<telerik:RadTemplatedButton Content="Setting width to 50%" 
+											Clicked="OnOpenPercentageClicked"/>
+			</HorizontalStackLayout>
+		</telerik:RadBottomSheet.Content>
+		<telerik:RadBottomSheet.BottomSheetContent>
+			<Label Text="BottomSheet Content"
+				   VerticalOptions="Start"
+				   HorizontalOptions="Center" />
+		</telerik:RadBottomSheet.BottomSheetContent>
+	</telerik:RadBottomSheet>
+	<!-- << bottomsheet-setting-with -->
+</ContentView>

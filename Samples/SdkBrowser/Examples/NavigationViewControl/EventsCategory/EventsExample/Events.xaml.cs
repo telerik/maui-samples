@@ -24,21 +24,21 @@ public partial class Events : ContentView
     private void OnItemClicked(object sender, Telerik.Maui.Controls.NavigationView.NavigationViewItemEventArgs e)
     {
         var item = e.NavigationItem;
-        Application.Current.MainPage.DisplayAlert("Item " + item.Text, " is clicked", "OK");
+        Application.Current.Windows[0].Page.DisplayAlert("Item " + item.Text, " is clicked", "OK");
     }
     // << navigationview-events-itemclicked
 
     // >> navigationview-events-paneopened
     private void OnPaneOpened(object sender, System.EventArgs e)
     {
-        Application.Current.MainPage.DisplayAlert("Pane is opened", "", "OK");
+        Application.Current.Windows[0].Page.DisplayAlert("Pane is opened", "", "OK");
     }
     // << navigationview-events-paneopened
 
     // >> navigationview-events-paneclosed
     private void OnPaneClosed(object sender, System.EventArgs e)
     {
-        Application.Current.MainPage.DisplayAlert("Pane is closed", "", "OK");
+        Application.Current.Windows[0].Page.DisplayAlert("Pane is closed", "", "OK");
     }
     // << navigationview-events-paneclosed
 }

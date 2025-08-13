@@ -22,11 +22,11 @@ public class ViewModel
         var context = (bool)p;
         if (context == true)
         {
-            Application.Current.MainPage.DisplayAlert("Message", "You have selected this option!", "OK");
+            Application.Current.Windows[0].Page.DisplayAlert("Message", "You have selected this option!", "OK");
         }
         else
         {
-            Application.Current.MainPage.DisplayAlert("Message", "You have unselected the option", "OK");
+            Application.Current.Windows[0].Page.DisplayAlert("Message", "You have unselected the option", "OK");
         }
     }
 }

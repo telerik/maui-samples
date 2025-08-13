@@ -22,6 +22,6 @@ public partial class Styling : ContentView
             await this.imageEditor.SaveAsync(fileStream, ImageFormat.Jpeg, 0.9, maxsize);
         }
 
-        await Application.Current.MainPage.DisplayAlert("", "The Image is saved with Size 200:300", "OK");
+        await Application.Current.Windows[0].Page.DisplayAlert("", "The Image is saved with Size 200:300", "OK");
     }
 }

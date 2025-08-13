@@ -1,4 +1,5 @@
 ﻿using Microsoft.Maui.Controls;
+using Microsoft.Maui.Dispatching;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -22,7 +23,7 @@ namespace SDKBrowserMaui.Examples.ChatControl.FeaturesCategory.MVVMSupportExampl
             this.Items = new ObservableCollection<SimpleChatItem>();
 
             // Simulate async data loading
-            Device.StartTimer(TimeSpan.FromMilliseconds(500), () =>
+            Application.Current.Windows[0].Page.Dispatcher.StartTimer(TimeSpan.FromMilliseconds(500), () =>
             {
                 this.Items.Add(new SimpleChatItem { Author = this.Bot, Text = "Hi." });
                 this.Items.Add(new SimpleChatItem { Author = this.Bot, Text = "How can I help you?" });

@@ -18,7 +18,7 @@ public partial class SelectionChanged : ContentView
 		}
 
 		var selectedItem = this.treeView.SelectedItem.ToString();
-		App.Current.MainPage.DisplayAlert("Selection has changed ", "Selected item is: " + selectedItem, "OK");
+		App.Current.Windows[0].Page.DisplayAlert("Selection has changed ", "Selected item is: " + selectedItem, "OK");
     }
     // << treeview-selectionchanged-event
 }

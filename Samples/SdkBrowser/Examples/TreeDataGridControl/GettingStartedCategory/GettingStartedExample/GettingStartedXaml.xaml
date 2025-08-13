@@ -6,7 +6,8 @@
              x:Class="SDKBrowserMaui.Examples.TreeDataGridControl.GettingStartedCategory.GettingStartedExample.GettingStartedXaml">
 
 	<!-- >> treedatagrid-getting-started -->
-	<telerik:RadTreeDataGrid ItemsSource="{Binding Items}"
+	<telerik:RadTreeDataGrid x:Name="treeDataGrid"
+							 ItemsSource="{Binding Items}"
 							 AutoGenerateColumns="False">
 		<telerik:RadTreeDataGrid.ItemDescriptor>
 			<telerik:TreeDataGridItemDescriptor ItemsSourceBinding="{Binding Children}" />

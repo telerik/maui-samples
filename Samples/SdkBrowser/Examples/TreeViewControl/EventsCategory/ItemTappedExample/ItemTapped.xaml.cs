@@ -12,7 +12,7 @@ public partial class ItemTapped : ContentView
     private void OnItemTapped(object sender, Telerik.Maui.Controls.ItemsView.ItemViewTappedEventArgs e)
     {
 		var data = e.Item as Data;
-		App.Current.MainPage.DisplayAlert("You have tapped on: "," " + data.Name,"OK");
+		App.Current.Windows[0].Page.DisplayAlert("You have tapped on: "," " + data.Name,"OK");
     }
     // << treeview-itemtapped-event
 }

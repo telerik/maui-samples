@@ -8,7 +8,7 @@ namespace QSF.Examples.DataGridControl.Common;
 public class Employee : ViewModelBase
 {
     private readonly UIState uiState;
-	
+
     private int id;
     private string name;
     private string businessGroup;
@@ -22,7 +22,7 @@ public class Employee : ViewModelBase
     {
         this.Orders = new ObservableCollection<Order>();
         this.uiState = new UIState();
-	}
+    }
 
     [XmlAttribute(AttributeName = "ID")]
     public int Id
@@ -75,14 +75,14 @@ public class Employee : ViewModelBase
 
     [XmlArray("Orders")]
     [XmlArrayItem("Order")]
-    public ObservableCollection<Order> Orders 
+    public ObservableCollection<Order> Orders
     {
         get => this.orders;
         set => this.UpdateValue(ref this.orders, value);
     }
 
-	public UIState UIState
-	{
-		get => this.uiState;
-	}
+    public UIState UIState
+    {
+        get => this.uiState;
+    }
 }

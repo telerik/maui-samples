@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.BottomSheetControl.FeaturesCategory.AnimationSwipeExample.AnimationSwipe">
+	<ContentView.Resources>
+		<ResourceDictionary>
+			<Style TargetType="VerticalStackLayout">
+				<Setter Property="Spacing" Value="10" />
+				<Setter Property="HorizontalOptions" Value="Start" />
+			</Style>
+			
+			<Style TargetType="HorizontalStackLayout">
+				<Setter Property="Spacing" Value="5" />
+				<Setter Property="VerticalOptions" Value="Center" />
+				<Setter Property="HorizontalOptions" Value="Start" />
+			</Style>
+			
+			<Style TargetType="Label">
+				<Setter Property="VerticalOptions" Value="Center" />
+			</Style>
+
+			<telerik:InvertedBooleanConverter x:Key="MyConverter" />
+		</ResourceDictionary>
+	</ContentView.Resources>
+	
+	<Grid RowDefinitions="Auto, *">
+		<VerticalStackLayout>
+			<HorizontalStackLayout>
+				<telerik:RadCheckBox x:Name="disableAnimationCb"
+					                 IsChecked="{Binding IsAnimationEnabled, Source={x:Reference bottomSheet}, Converter={StaticResource MyConverter}}" />
+				<Label Text="Disable Animation"
+					   VerticalTextAlignment="Center"
+					   telerik:RadCheckBox.ToggleOnTap="{x:Reference disableAnimationCb}"/>
+			</HorizontalStackLayout>
+			<HorizontalStackLayout>
+				<telerik:RadCheckBox x:Name="disableSwipeCb"
+					                 IsChecked="{Binding IsSwipeEnabled, Source={x:Reference bottomSheet}, Converter={StaticResource MyConverter}}" />
+				<Label Text="Disable Swipe"
+					   VerticalTextAlignment="Center"
+					   telerik:RadCheckBox.ToggleOnTap="{x:Reference disableSwipeCb}" />
+			</HorizontalStackLayout>
+		</VerticalStackLayout>
+		<!-- >> bottomsheet-animation-swipe -->
+		<telerik:RadBottomSheet x:Name="bottomSheet"
+								Margin="0, 20, 0, 0"
+								Grid.Row="1">
+			<telerik:RadBottomSheet.Content>
+				<telerik:RadCollectionView ItemsSource="{Binding People}"
+										   SelectionChanged="OnSelectionChanged"
+										   x:Name="peopleCollectionView">
+					<telerik:RadCollectionView.ItemTemplate>
+						<DataTemplate>
+							<Grid RowDefinitions="Auto, Auto"
+								  Padding="{Binding Source={RelativeSource AncestorType={x:Type telerik:RadCollectionViewItemView}}, Path=ActualPadding}"
+								  RowSpacing="3">
+								<HorizontalStackLayout>
+									<Label Text="Name: " />
+									<Label Text="{Binding Name}" />
+								</HorizontalStackLayout>
+								<HorizontalStackLayout Grid.Row="1">
+									<Label Text="Position: " />
+									<Label Text="{Binding Position}" />
+								</HorizontalStackLayout>
+							</Grid>
+						</DataTemplate>
+					</telerik:RadCollectionView.ItemTemplate>
+					<telerik:RadCollectionView.ItemsLayout>
+						<telerik:CollectionViewLinearLayout ItemSpacing="6" />
+					</telerik:RadCollectionView.ItemsLayout>
+				</telerik:RadCollectionView>
+			</telerik:RadBottomSheet.Content>
+			<telerik:RadBottomSheet.BottomSheetContent>
+				<Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto"
+					  Margin="20,0,0,0"
+					  ColumnDefinitions="100, *"
+					  RowSpacing="8">
+					<Label Text="Country: "
+						   FontAttributes="Bold" />
+					<Label Text="{Binding Country}" 
+						   Grid.Column="1" />
+					<Label Text="Age: "
+						   FontAttributes="Bold"
+						   Grid.Row="1" />
+					<Label Text="{Binding Age}" 
+						   Grid.Row="1" 
+						   Grid.Column="1" />
+					<Label Text="Department: "
+						   FontAttributes="Bold"
+						   Grid.Row="2" />
+					<Label Text="{Binding Department}" 
+						   Grid.Row="2"
+						   Grid.Column="1" />
+					<Label Text="Company Id: "
+						   FontAttributes="Bold"
+						   Grid.Row="3" />
+					<Label Text="{Binding CompanyID}" 
+						   Grid.Row="3" 
+						   Grid.Column="1" />
+					<Label Text="Hired: "
+						   FontAttributes="Bold" 
+						   Grid.Row="4" />
+					<Label Text="{Binding Joined}" 
+						   Grid.Row="4" 
+						   Grid.Column="1" />
+				</Grid>
+			</telerik:RadBottomSheet.BottomSheetContent>
+		</telerik:RadBottomSheet>
+		<!-- << bottomsheet-animation-swipe -->
+	</Grid>
+</ContentView>

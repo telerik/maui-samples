@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="QSF.Examples.SpeechToTextButtonControl.FirstLookExample.FirstLookView">
+
+    <ContentView.Resources>
+        <Style x:Key="PlaceholderLabelStyle" TargetType="Label">
+            <Setter Property="TextColor" Value="{StaticResource DefaultTextColor}" />
+        </Style>
+
+        <Style x:Key="PickerStyle" TargetType="telerik:RadPickerBase">
+            <Setter Property="HorizontalOptions" Value="Fill" />
+        </Style>
+
+        <Style x:Key="EntryStyle" TargetType="telerik:RadEntry">
+            <Setter Property="PlaceholderColor" Value="{StaticResource DefaultTextColor}" />
+            <Setter Property="TextColor" Value="{StaticResource DefaultTextColor}" />
+            <Setter Property="HorizontalOptions" Value="Fill" />
+        </Style>
+    </ContentView.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Margin="{OnIdiom Default='16, 20, 16, 8', Phone='16, 24, 16, 0'}">
+            <Label Text="New Event"
+                   FontSize="20"
+                   TextColor="{StaticResource DefaultTextColor}"
+                   HorizontalOptions="Start"
+                   Margin="{OnIdiom Default='0, 0, 0, 8', Phone='0, 0, 0, 4'}"/>
+
+            <telerik:RadBorder BackgroundColor="#F5F5F5"
+                               CornerRadius="4"
+                               Padding="8"
+                               MinimumHeightRequest="{OnIdiom Default='36', Phone='46'}">
+                <Label Text="To enable the Speech-To-Text feature, click on the Speech-To-Text Button."
+                       TextColor="{StaticResource DefaultTextColor}"
+                       FontSize="{OnIdiom Default=14, Phone=12}"
+                       HorizontalTextAlignment="Start"
+                       VerticalTextAlignment="Center"
+                       HorizontalOptions="Fill"
+                       VerticalOptions="Fill"/>
+            </telerik:RadBorder>
+
+            <Grid ColumnDefinitions="*, Auto"
+                  RowDefinitions="Auto, Auto, Auto, Auto, Auto"
+                  ColumnSpacing="15"
+                  RowSpacing="24"
+                  Margin="{OnIdiom Default='0, 36, 16, 24', Phone='0, 24, 16, 32'}">
+                <telerik:RadEntry x:Name="eventNameEntry"
+                                  Placeholder="New Event Name"
+                                  Style="{StaticResource EntryStyle}"
+                                  TextChanged="OnFormFieldChanged" />
+
+                <telerik:RadSpeechToTextButton x:Name="speechToTextButtonNewEvent"
+                                               Grid.Column="1"
+                                               IsContinuousRecognition="False"
+                                               SpeechRecognized="OnSpeechToTextNewEventCompleted"
+                                               ErrorOccurred="OnSpeechRecognitionError"
+                                               VerticalOptions="Center" />
+
+                <telerik:RadEntry x:Name="locationEntry"
+                                  Grid.Row="1"
+                                  Placeholder="Location"
+                                  Style="{StaticResource EntryStyle}"
+                                  TextChanged="OnFormFieldChanged" />
+
+                <telerik:RadSpeechToTextButton x:Name="speechToTextButtonLocation"
+                                               Grid.Column="1"
+                                               Grid.Row="1"
+                                               IsContinuousRecognition="False"
+                                               SpeechRecognized="OnSpeechToTextLocationCompleted"
+                                               ErrorOccurred="OnSpeechRecognitionError"
+                                               VerticalOptions="Center" />
+
+                <telerik:RadDatePicker x:Name="datePicker"
+                                       Grid.Row="2"
+                                       Grid.ColumnSpan="2"
+                                       Placeholder="Date"
+                                       PlaceholderLabelStyle="{StaticResource PlaceholderLabelStyle}"
+                                       Style="{StaticResource PickerStyle}"
+                                       SelectionChanged="OnFormFieldChanged" />
+
+                <telerik:RadTimePicker x:Name="timePicker"
+                                       Grid.Row="3"
+                                       Grid.ColumnSpan="2"
+                                       Placeholder="Time"
+                                       PlaceholderLabelStyle="{StaticResource PlaceholderLabelStyle}"
+                                       Style="{StaticResource PickerStyle}"
+                                       SelectionChanged="OnFormFieldChanged" />
+
+                <telerik:RadBorder Grid.Row="4"
+                                   BorderBrush="{Binding Source={x:Reference timePicker}, Path=BorderBrush}"
+                                   BorderThickness="{OnPlatform Default=1, Android=0, WinUI=0}"
+                                   Padding="1, 0"
+                                   CornerRadius="6">
+                    <Editor x:Name="descriptionEditor"
+                            Placeholder="Description"
+                            PlaceholderColor="{StaticResource DefaultTextColor}"
+                            TextColor="{StaticResource DefaultTextColor}"
+                            FontSize="14"
+                            HeightRequest="96"
+                            HorizontalOptions="Fill"
+                            TextChanged="OnFormFieldChanged" />
+                </telerik:RadBorder>
+
+                <telerik:RadSpeechToTextButton x:Name="speechToTextButtonDescription"
+                                               Grid.Row="4"
+                                               Grid.Column="1"
+                                               VerticalOptions="Start"
+                                               HorizontalOptions="Start"
+                                               SpeechRecognized="OnSpeechToTextDescriptionCompleted"
+                                               ErrorOccurred="OnSpeechRecognitionError" />
+            </Grid>
+
+            <telerik:RadButton x:Name="addEventButton"
+                               Text="Add Event"
+                               IsEnabled="False"
+                               Style="{OnIdiom Desktop={StaticResource AccentButtonStyle}}"
+                               HorizontalOptions="{OnPlatform Default='Start', Android='Fill'}"
+                               Clicked="OnAddEventButtonClicked" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentView>

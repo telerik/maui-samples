@@ -32,11 +32,12 @@ public partial class LinkAnnotation : ContentView
     // >> pdfviewer-annotations-event
     private void LinkTapped(object sender, Telerik.Maui.Controls.PdfViewer.Annotations.LinkAnnotationTappedEventArgs e)
     {
-        if (e.LinkAnnotation.Action is UriAction uriAction)
+        var action = e.LinkAnnotation.Actions.FirstOrDefault();
+        if (action is UriAction uriAction)
         {
             e.Handled = true;
 
-            Application.Current.MainPage.DisplayAlert("Confirm", "Are you sure you want to navigate", "Yes", "No").ContinueWith(t =>
+            Application.Current.Windows[0].Page.DisplayAlert("Confirm", "Are you sure you want to navigate", "Yes", "No").ContinueWith(t =>
             {
                 bool shouldNavigateAway = t.Status == TaskStatus.RanToCompletion ? t.Result : false;
                 if (shouldNavigateAway)

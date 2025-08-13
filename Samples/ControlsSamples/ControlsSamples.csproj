@@ -125,6 +125,12 @@
 		<PackageReference Include="System.Text.Json" Version="9.0.0" />
 	</ItemGroup>
 
+	<ItemGroup Condition="$(TargetFramework.Contains('net10'))">
+		<PackageReference Include="Microsoft.Maui.Controls" Condition=" $(CustomMauiNet10Version) == '' " Version="$(MauiVersion)" />
+		<PackageReference Include="Microsoft.Maui.Controls" Condition=" $(CustomMauiNet10Version) != '' " Version="$(CustomMauiNet10Version)" />
+		<PackageReference Include="System.Text.Json" Version="10.0.0-preview.6.25358.103" />
+	</ItemGroup>
+
 	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">
 		<BundleResource Include="Platforms\iOS\PrivacyInfo.xcprivacy" LogicalName="PrivacyInfo.xcprivacy" />
 	</ItemGroup>

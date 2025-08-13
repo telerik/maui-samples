@@ -18,7 +18,7 @@ public partial class ClearSelectionCommand : ContentView
     {
         public override async void Execute(object parameter)
         {
-            bool executeDefault = await App.Current.MainPage.DisplayAlert("Command", "Execute command?", "Yes", "No");
+            bool executeDefault = await App.Current.Windows[0].Page.DisplayAlert("Command", "Execute command?", "Yes", "No");
             if (executeDefault)
             {
                 base.Execute(parameter);

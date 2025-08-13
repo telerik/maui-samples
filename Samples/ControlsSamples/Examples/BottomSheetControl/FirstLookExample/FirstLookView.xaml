@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="QSF.Examples.BottomSheetControl.FirstLookExample.FirstLookView">
+    <ContentView.Resources>
+        <Style x:Key="AvatarBorderStyle" TargetType="telerik:RadBorder">
+            <Setter Property="BackgroundColor" Value="{StaticResource DefaultBackgroundColor}" />
+            <Setter Property="VerticalOptions" Value="Center" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="HeightRequest" Value="48" />
+            <Setter Property="WidthRequest" Value="48" />
+            <Setter Property="CornerRadius" Value="24" />
+        </Style>
+
+        <Style TargetType="telerik:RadCollectionViewItemView">
+            <Setter Property="BorderColor" Value="{StaticResource DefaultBorderColor}" />
+            <Setter Property="BorderThickness" Value="0, 0, 0, 1" />
+            <Setter Property="CornerRadius" Value="0" />
+        </Style>
+
+        <Style x:Key="DefaultLabelBottomSheetStyle" TargetType="Label">
+            <Setter Property="TextColor" Value="{StaticResource DefaultTextColor}" />
+            <Setter Property="FontSize" Value="14" />
+        </Style>
+
+        <Style x:Key="LargeLabelBottomSheetStyle" TargetType="Label" BasedOn="{StaticResource DefaultLabelBottomSheetStyle}">
+            <Setter Property="FontSize" Value="17" />
+        </Style>
+
+        <Style x:Key="DefaultBottomSheetIconStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="FontFamily" Value="TelerikFontExamples" />
+        </Style>
+
+        <DataTemplate x:Key="EmployeeInfoTemplate">
+            <Grid ColumnDefinitions="Auto, *, Auto"
+                  ColumnSpacing="12"
+                  Padding="16, 8">
+                <telerik:RadBorder Style="{StaticResource AvatarBorderStyle}">
+                    <Image Source="{Binding Image}"
+                           Aspect="AspectFill" />
+                </telerik:RadBorder>
+                <VerticalStackLayout Grid.Column="1"
+                                     Spacing="2"
+                                     VerticalOptions="Center">
+                    <Label Text="{Binding Name}"
+                           FontAttributes="Bold"
+                           TextColor="{StaticResource DefaultTextColor}"
+                           FontSize="16"
+                           LineBreakMode="TailTruncation"
+                           MaxLines="1" />
+                    <Label Text="{Binding Department}"
+                           FontSize="12"
+                           TextColor="{StaticResource DefaultTextColor}"
+                           LineBreakMode="TailTruncation"
+                           MaxLines="1" />
+                    <Label Text="{Binding Email}"
+                           TextColor="{StaticResource PlaceholderColor}"
+                           FontSize="12"
+                           LineBreakMode="TailTruncation"
+                           MaxLines="1" />
+                </VerticalStackLayout>
+                <HorizontalStackLayout Grid.Column="2"
+                                       Spacing="10"
+                                       VerticalOptions="Start"
+                                       HorizontalOptions="End">
+                    <Label Text="&#xe801;"
+                           IsVisible="{Binding IsFavorite}"
+                           Style="{StaticResource DefaultBottomSheetIconStyle}"
+                           TextColor="{StaticResource AccentColor4}"
+                           VerticalOptions="Center" />
+                    <Label Text="&#xe807;"
+                           Style="{StaticResource DefaultBottomSheetIconStyle}"
+                           BackgroundColor="Transparent"
+                           TextColor="{StaticResource DefaultTextColor}"
+                           VerticalOptions="Center" />
+                </HorizontalStackLayout>
+            </Grid>
+        </DataTemplate>
+    </ContentView.Resources>
+    <telerik:RadBottomSheet x:Name="radBottomSheet"
+                            State="{Binding BottomSheetState, Mode=TwoWay}"
+                            BackgroundColor="{StaticResource SecondaryBackgroundColor}"
+                            AutoGenerateStates="False">
+        <telerik:RadBottomSheet.States>
+            <telerik:BottomSheetState Name="Hidden"
+                                      Height="0%" />
+            <telerik:BottomSheetState Name="Minimal"
+                                      Height="{OnPlatform Default='30%', MacCatalyst='150px', WinUI='180px'}" />
+            <telerik:BottomSheetState Name="Partial"
+                                      Height="{OnPlatform Android='640px', iOS='605px', MacCatalyst='680px', WinUI='75%'}" />
+        </telerik:RadBottomSheet.States>
+        <Grid RowDefinitions="Auto, Auto, *"
+              RowSpacing="16"
+              Padding="{OnIdiom Desktop='16, 20'}">
+            <VerticalStackLayout Spacing="8"
+                                 Padding="{OnIdiom Phone='16, 24, 16,0'}"
+                                 HorizontalOptions="Fill">
+                <Label Text="Employee Locator"
+                       FontAttributes="{OnIdiom Phone=Bold, Default=None}"
+                       FontSize="{OnIdiom Phone=16, Default=20}"
+                       TextColor="{StaticResource DefaultTextColor}"
+                       HorizontalOptions="Start"
+                       VerticalOptions="Start" />
+                <telerik:RadBorder BackgroundColor="#F5F5F5"
+                                   CornerRadius="4"
+                                   Padding="8"
+                                   HorizontalOptions="Fill"
+                                   VerticalOptions="Start">
+                    <Label Text="Click Employee or the More icon to open the bottom sheet."
+                           TextColor="{StaticResource DefaultTextColor}"
+                           FontSize="{OnIdiom Phone=12, Default=14}"
+                           HorizontalOptions="Fill"
+                           VerticalOptions="Center" />
+                </telerik:RadBorder>
+            </VerticalStackLayout>
+            <telerik:RadCollectionView Grid.Row="2"
+                                       ItemsSource="{Binding Employees}"
+                                       SelectionMode="Single"
+                                       ItemTemplate="{StaticResource EmployeeInfoTemplate}"
+                                       SelectedItem="{Binding SelectedEmployee, Mode=TwoWay}" />
+        </Grid>
+        <telerik:RadBottomSheet.BottomSheetContent>
+            <VerticalStackLayout Spacing="{OnIdiom Phone=0, Default=16}"
+                                 Padding="16, 0">
+                <Grid ColumnDefinitions="*, Auto">
+                    <Label Text="New York Office"
+                           TextColor="{StaticResource DefaultTextColor}"
+                           VerticalOptions="Center"
+                           FontSize="20" />
+                    <telerik:RadButton Grid.Column="1"
+                                       Style="{StaticResource DefaultBottomSheetIconStyle}"
+                                       Text="&#xe80a;"
+                                       BackgroundColor="Transparent"
+                                       BorderThickness="0"
+                                       TextColor="{StaticResource DefaultTextColor}"
+                                       Command="{Binding CloseBottomSheetCommand}"
+                                       HorizontalOptions="End"
+                                       Padding="0"
+                                       FontSize="{OnIdiom Phone=18, Default=20}"
+                                       WidthRequest="{OnIdiom Phone=40, Default=32}"
+                                       HeightRequest="{OnIdiom Phone=40, Default=32}" />
+                </Grid>
+                <telerik:RadBorder Style="{StaticResource AvatarBorderStyle}"
+                                   Margin="0, 24, 0, 0"
+                                   IsVisible="{OnIdiom Phone=True, Default=False}">
+                    <Image Source="{Binding SelectedEmployee.Image}"
+                           Aspect="AspectFill" />
+                </telerik:RadBorder>
+                <VerticalStackLayout HorizontalOptions="Center"
+                                     Margin="0, 12, 0, 0"
+                                     Spacing="4"
+                                     IsVisible="{OnIdiom Phone=True, Default=False}">
+                    <Label Text="{Binding SelectedEmployee.Name}"
+                           Style="{StaticResource LargeLabelBottomSheetStyle}"
+                           FontAttributes="Bold"
+                           HorizontalTextAlignment="Center" />
+                    <Label Text="{Binding SelectedEmployee.Email}"
+                           Style="{StaticResource DefaultLabelBottomSheetStyle}"
+                           TextColor="{StaticResource PlaceholderColor}"
+                           HorizontalTextAlignment="Center" />
+                    <HorizontalStackLayout Margin="0, 28, 0, 0"
+                                           HorizontalOptions="Center">
+                        <Label Text="{Binding SelectedEmployee.Department, StringFormat='{}{0}, '}"
+                               Style="{StaticResource LargeLabelBottomSheetStyle}" />
+                        <Label Text="{Binding SelectedEmployee.Location}"
+                               Style="{StaticResource LargeLabelBottomSheetStyle}" />
+                    </HorizontalStackLayout>
+                    <telerik:RadBorder BackgroundColor="{StaticResource SeparatorColor}"
+                                       HeightRequest="1"
+                                       HorizontalOptions="Fill"
+                                       Margin="16, 8" />
+                    <Label Text="{Binding SelectedEmployee.BusinessGroup}"
+                           Style="{StaticResource LargeLabelBottomSheetStyle}"
+                           HorizontalTextAlignment="Center" />
+                    <VerticalStackLayout Grid.ColumnSpan="3"
+                                         Grid.Row="1"
+                                         Margin="0, 28, 0, 0"
+                                         Spacing="16"
+                                         VerticalOptions="Center">
+                        <Label Text="{Binding SelectedEmployee.Floor}"
+                               Style="{StaticResource DefaultLabelBottomSheetStyle}"
+                               HorizontalOptions="Center"
+                               MaxLines="1" />
+                        <Image Source="bottomsheet_map.png"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center" />
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+                <Grid ColumnDefinitions="*, Auto, *"
+                      RowDefinitions="Auto, Auto"
+                      VerticalOptions="Center"
+                      IsVisible="{OnIdiom Phone=False, Default=True}">
+                    <HorizontalStackLayout>
+                        <telerik:RadBorder Style="{StaticResource AvatarBorderStyle}">
+                            <Image Source="{Binding SelectedEmployee.Image}"
+                                   Aspect="AspectFill" />
+                        </telerik:RadBorder>
+                        <VerticalStackLayout Spacing="2"
+                                             Margin="12, 0, 0, 0">
+                            <Label Text="{Binding SelectedEmployee.Name}"
+                                   Style="{StaticResource DefaultLabelBottomSheetStyle}"
+                                   MaxLines="1" />
+                            <Label Text="{Binding SelectedEmployee.Email}"
+                                   Style="{StaticResource DefaultLabelBottomSheetStyle}"
+                                   TextColor="{StaticResource PlaceholderColor}"
+                                   LineBreakMode="TailTruncation"
+                                   MaxLines="1"
+                                   FontSize="14" />
+                            <Label Text="{Binding SelectedEmployee.Department}"
+                                   Style="{StaticResource DefaultLabelBottomSheetStyle}"
+                                   FontSize="14"
+                                   LineBreakMode="TailTruncation"
+                                   MaxLines="2" />
+                        </VerticalStackLayout>
+                    </HorizontalStackLayout>
+                    <telerik:RadBorder Grid.Column="1"
+                                       WidthRequest="1"
+                                       BackgroundColor="{StaticResource SeparatorColor}"
+                                       Margin="32, 0"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Fill" />
+                    <VerticalStackLayout Grid.Column="2"
+                                         Spacing="2">
+                        <Label Text="{Binding SelectedEmployee.BusinessGroup}"
+                               Style="{StaticResource DefaultLabelBottomSheetStyle}"
+                               MaxLines="1" />
+                        <Label Grid.Row="1"
+                               Text="{Binding SelectedEmployee.Location}"
+                               Style="{StaticResource DefaultLabelBottomSheetStyle}"
+                               MaxLines="2" />
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Grid.ColumnSpan="3"
+                                         Grid.Row="1"
+                                         Margin="0, 48, 0, 0"
+                                         Spacing="16"
+                                         HorizontalOptions="Center"
+                                         VerticalOptions="Center">
+                        <Label Text="{Binding SelectedEmployee.Floor}"
+                               Style="{StaticResource DefaultLabelBottomSheetStyle}"
+                               MaxLines="1" />
+                        <Image Source="bottomsheet_map.png"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center" />
+                    </VerticalStackLayout>
+                </Grid>
+            </VerticalStackLayout>
+        </telerik:RadBottomSheet.BottomSheetContent>
+    </telerik:RadBottomSheet>
+</ContentView>

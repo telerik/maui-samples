@@ -1,5 +1,6 @@
 ﻿using Microsoft.Maui.Controls;
 using Microsoft.Maui.Controls.Xaml;
+using Microsoft.Maui.Dispatching;
 using System;
 using Telerik.Maui;
 using Telerik.Maui.Controls;
@@ -18,7 +19,7 @@ namespace SDKBrowserMaui.Examples.BusyIndicatorControl.AnimationsCategory.Custom
             RadDoubleAnimation annimation = new RadDoubleAnimation() { Duration = 800, From = 0.1, To = 1, PropertyPath = "Opacity", Target = radBusyIndicator.BusyContent, RepeatForever = true, AutoReverse = true };
             this.radBusyIndicator.Animations.Add(annimation);
 
-            Device.StartTimer(TimeSpan.FromMilliseconds(5000),
+            Application.Current.Windows[0].Page.Dispatcher.StartTimer(TimeSpan.FromMilliseconds(5000),
                 () =>
                 {
                     this.radBusyIndicator.IsBusy = false;

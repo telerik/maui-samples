@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        x:Class="QSF.Examples.SpeechToTextButtonControl.ThemingExample.ThemingView">
+    <Grid ColumnDefinitions="*, Auto"
+          Padding="24"
+          VerticalOptions="Start"
+          HorizontalOptions="Fill">
+        <telerik:RadEntry x:Name="entry"
+                          Margin="0, 0, 16, 0"
+                          Placeholder="Record a message..." />
+        <telerik:RadSpeechToTextButton x:Name="speechToTextButton"
+                                       Grid.Column="1"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"
+                                       IsContinuousRecognition="False"
+                                       SpeechRecognized="OnSpeechToTextCompleted"
+                                       ErrorOccurred="OnSpeechRecognitionError" />
+    </Grid>
+</telerik:RadContentView>

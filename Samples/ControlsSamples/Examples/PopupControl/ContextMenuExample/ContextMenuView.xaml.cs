@@ -24,7 +24,7 @@ public partial class ContextMenuView : ContentView
         var content = (View)this.Resources["popupContent"];
         if(DeviceInfo.Idiom == DeviceIdiom.Phone)
         {
-            content.SetBinding(View.WidthRequestProperty, new Binding("Width", source: Application.Current.MainPage));
+            content.SetBinding(View.WidthRequestProperty, new Binding("Width", source: Application.Current.Windows[0].Page));
         }
 
         this.popup.Content = content;

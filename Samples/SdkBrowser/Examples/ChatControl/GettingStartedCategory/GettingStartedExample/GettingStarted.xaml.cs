@@ -38,7 +38,7 @@ public partial class GettingStarted : RadContentView
     }
     private void OnBotMessageReceived(string message)
     {
-        Device.BeginInvokeOnMainThread(() =>
+        Application.Current.Windows[0].Page.Dispatcher.Dispatch(() =>
         {
             TextMessage textMessage = new TextMessage();
             textMessage.Data = message;

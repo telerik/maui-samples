@@ -15,7 +15,7 @@ public partial class Resizing : ContentView
     private void OnDataGridColumnUserResizeCompleted(object sender, Telerik.Maui.Controls.DataGrid.ColumnUserResizeCompletedEventArgs e)
     {
         var formattedWidth = String.Format("{0:N2}", e.Width);
-        Application.Current.MainPage.DisplayAlert("", $"The {(e.Column as DataGridTypedColumn).HeaderText} column width after resizing is {formattedWidth}", "OK");
+        Application.Current.Windows[0].Page.DisplayAlert("", $"The {(e.Column as DataGridTypedColumn).HeaderText} column width after resizing is {formattedWidth}", "OK");
     }
     // << datagrid-column-resizing-event
 }

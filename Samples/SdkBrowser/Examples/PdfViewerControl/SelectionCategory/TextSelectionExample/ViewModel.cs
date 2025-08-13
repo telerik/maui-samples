@@ -30,7 +30,7 @@ namespace SDKBrowserMaui.Examples.PdfViewerControl.SelectionCategory.TextSelecti
             {
                 PdfViewerSelectionCommandContext context = (PdfViewerSelectionCommandContext)parameter;
                 var selection = context.PdfViewer.Document.Selection;
-                Application.Current.MainPage.DisplayAlert("Selected Text", selection.GetSelectedText(), "OK");
+                Application.Current.Windows[0].Page.DisplayAlert("Selected Text", selection.GetSelectedText(), "OK");
 
                 lock (selection)
                 {

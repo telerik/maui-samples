@@ -22,7 +22,8 @@
                         <TapGestureRecognizer Tapped="FavouriteItemTapped" />
                     </Grid.GestureRecognizers>
                     <Label Style="{StaticResource SwipeItemLabelStyle}"
-                           Text="&#xe801;" />
+                           Text="&#xe801;"
+                           AutomationId="favoriteIcon" />
                 </Grid>
             </DataTemplate>
             <DataTemplate x:Key="EndSwipeItemTemplate">
@@ -33,7 +34,8 @@
                         <TapGestureRecognizer Tapped="DeleteItemTapped" />
                     </Grid.GestureRecognizers>
                     <Label Style="{StaticResource SwipeItemLabelStyle}"
-                           Text="&#xe827;" />
+                           Text="&#xe827;"
+                           AutomationId="deleteIcon" />
                 </Grid>
             </DataTemplate>
             <DataTemplate x:Key="MailItemTemplate">
@@ -51,16 +53,19 @@
                                FontAttributes="Bold"
                                FontSize="16"
                                MaxLines="1"
-                               LineBreakMode="TailTruncation" />
+                               LineBreakMode="TailTruncation"
+                               AutomationId="senderLabel" />
                         <Label Text="{Binding Title}"
                                Style="{StaticResource BaseLabelStyle}"
                                MaxLines="1"
-                               LineBreakMode="TailTruncation" />
+                               LineBreakMode="TailTruncation"
+                               AutomationId="titleLabel" />
                         <Label Text="{Binding Description}"
                                Style="{StaticResource PlaceholderLabelStyle}"
                                FontSize="12"
                                MaxLines="1"
-                               LineBreakMode="TailTruncation" />
+                               LineBreakMode="TailTruncation"
+                               AutomationId="descriptionLabel" />
                     </VerticalStackLayout>
                     <HorizontalStackLayout Grid.Column="2"
                                            Spacing="4"
@@ -71,7 +76,8 @@
                                FontSize="12"
                                Text="&#xe801;"
                                TextColor="{StaticResource AccentColor4}"
-                               VerticalOptions="Center" />
+                               VerticalOptions="Center"
+                               AutomationId="isItemFavoriteIcon" />
                         <Label Text="{Binding Date}"
                                Style="{StaticResource PlaceholderLabelStyle}"
                                FontSize="12"
@@ -96,6 +102,7 @@
                                    EndSwipeTemplate="{StaticResource EndSwipeItemTemplate}"
                                    StartSwipeLength="{OnPlatform Default=77, iOS=70, MacCatalyst=71, WinUI=79}"
                                    EndSwipeLength="{OnPlatform Default=77, iOS=70, MacCatalyst=71, WinUI=79}"
-                                   SelectionMode="None" />
+                                   SelectionMode="None"
+                                   AutomationId="collectionView" />
     </telerik:RadBorder>
 </ContentView>

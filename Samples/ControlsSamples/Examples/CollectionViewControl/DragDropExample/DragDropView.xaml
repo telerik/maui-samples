@@ -99,7 +99,8 @@
                        Style="{StaticResource WorkItemBoxHeaderLabelStyle}" />
             </telerik:RadBorder>
             <telerik:RadCollectionView Grid.Row="1"
-                                       ItemsSource="{Binding InProgressItems}" />
+                                       ItemsSource="{Binding InProgressItems}"
+                                       AutomationId="inProgressCollectionView" />
             <telerik:RadBorder Grid.RowSpan="2"
                                BorderColor="{OnPlatform Default={StaticResource DefaultBorderColor}, MacCatalyst=#0D000000, WinUI={StaticResource DefaultBorderColorWinUI}}"
                                BorderThickness="1"
@@ -114,7 +115,8 @@
                        Style="{StaticResource WorkItemBoxHeaderLabelStyle}" />
             </telerik:RadBorder>
             <telerik:RadCollectionView Grid.Row="1"
-                                       ItemsSource="{Binding DoneItems}" />
+                                       ItemsSource="{Binding DoneItems}"
+                                       AutomationId="doneCollectionView" />
             <Rectangle Grid.RowSpan="2"
                        Style="{StaticResource DragDropAreaStyle}" />
         </Grid>

@@ -16,7 +16,7 @@ namespace SDKBrowserMaui.Services
 
         public NavigationService()
         {
-            this.navigation = Application.Current.MainPage.Navigation;
+            this.navigation = Application.Current.Windows[0].Page.Navigation;
         }
 
         public Task NavigateToAsync<TViewModel>(params object[] arguments)
@@ -26,14 +26,30 @@ namespace SDKBrowserMaui.Services
             return this.navigation.PushAsync(page);
         }
 
-        public Task NavigateToRootAsync()
+        public async Task NavigateToExampleAsync<TViewModel>(Example example, bool popToMain = false, bool isAnimated = true)
         {
-            return this.navigation.PopToRootAsync();
+            var page = this.CreatePage<TViewModel>(example);
+
+            await this.navigation.PushAsync(page, isAnimated);
+
+            if (popToMain)
+            {
+                // Purge the navigation stack...
+                for (int i = 1; i < this.navigation.NavigationStack.Count - 1; i++)
+                {
+                    this.navigation.RemovePage(this.navigation.NavigationStack[i]);
+                }
+            }
         }
 
-        public Task NavigateBackAsync()
+        public Task NavigateToRootAsync(bool isAnimated = true)
         {
-            return this.navigation.PopAsync();
+            return this.navigation.PopToRootAsync(isAnimated);
+        }
+
+        public Task NavigateBackAsync(bool isAnimated = true)
+        {
+            return this.navigation.PopAsync(isAnimated);
         }
 
         private Page CreatePage<TViewModel>(params object[] arguments)

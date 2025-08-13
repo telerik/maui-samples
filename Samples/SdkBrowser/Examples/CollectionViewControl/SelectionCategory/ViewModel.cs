@@ -44,7 +44,7 @@ namespace SDKBrowserMaui.Examples.CollectionViewControl.SelectionCategory
                 if (this.UpdateValue(ref this.selectedItem, value))
                 {
                     this.selectedItem = value;
-                    App.Current.MainPage.DisplayAlert(" ", $"You have selected {selectedItem.Name} which has a population of {selectedItem.Population}.", "OK");
+                    App.Current.Windows[0].Page.DisplayAlert(" ", $"You have selected {selectedItem.Name} which has a population of {selectedItem.Population}.", "OK");
                 }
             }
         }
@@ -64,5 +64,5 @@ namespace SDKBrowserMaui.Examples.CollectionViewControl.SelectionCategory
             }
         }
     }
-    // << collectionview-selection-viewmodell
+    // << collectionview-selection-viewmodel
 }

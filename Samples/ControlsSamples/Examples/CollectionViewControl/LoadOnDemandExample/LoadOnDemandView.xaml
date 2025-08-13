@@ -64,6 +64,7 @@
                                    ItemTemplate="{StaticResource MessageTemplate}"
                                    IsLoadOnDemandEnabled="True"
                                    LoadOnDemandMode="{Binding LoadOnDemandMode, Mode=TwoWay}"
-                                   LoadOnDemandBufferItemsCount="{Binding LoadOnDemandBufferItemsCount, Mode=TwoWay}" />
+                                   LoadOnDemandBufferItemsCount="{Binding LoadOnDemandBufferItemsCount, Mode=TwoWay}"
+                                   AutomationId="collectionView" />
     </telerik:RadBorder>
 </ContentView>

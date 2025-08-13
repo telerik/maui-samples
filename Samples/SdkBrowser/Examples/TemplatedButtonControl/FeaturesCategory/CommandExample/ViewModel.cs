@@ -24,7 +24,7 @@ public class ViewModel : NotifyPropertyChangedBase
     private void CommandExecute(object p)
     {
         this.MyText = "Content Changed";
-        Application.Current.MainPage.DisplayAlert("", "Command is executed and TemplatedButton Content is changed", "OK");
+        Application.Current.Windows[0].Page.DisplayAlert("", "Command is executed and TemplatedButton Content is changed", "OK");
     }
 }
 // << templatedbutton-command-viewmodel

@@ -6,7 +6,7 @@
 		<RootNamespace>SDKBrowserMaui</RootNamespace>
 		<UseMaui>true</UseMaui>
 		<SingleProject>true</SingleProject>
-		<ApplicationTitle>Telerik SDKBrowser Maui</ApplicationTitle>
+		<ApplicationTitle>SDKBrowserMaui</ApplicationTitle>
 		<ApplicationId>com.telerik.SDKBrowserMaui</ApplicationId>
 		<UseTelerikTheming>true</UseTelerikTheming>
 		<ApplicationVersion>1</ApplicationVersion>
@@ -20,7 +20,7 @@
 
 	<PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
 		<RunAnalyzers>false</RunAnalyzers>
-		<NoWarn>XC0022;CS0067;CS1591;CS1574;CS1572;CS0108;CS1998;CS0252;CS0612;CS0169;CS0168;CS0414;CS0618;CS8632</NoWarn>
+		<NoWarn>XC0022;CS0067;CS1591;CS1574;CS1572;CS0108;CS1998;CS0252;CS0612;CS0169;CS0168;CS0414;CS8632</NoWarn>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -54,6 +54,11 @@
 	<ItemGroup Condition="$(TargetFramework.Contains('net9'))">
 		<PackageReference Include="Microsoft.Maui.Controls" Condition=" $(CustomMauiNet9Version) == '' " Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Controls" Condition=" $(CustomMauiNet9Version) != '' " Version="$(CustomMauiNet9Version)" />
+	</ItemGroup>
+
+	<ItemGroup Condition="$(TargetFramework.Contains('net10'))">
+		<PackageReference Include="Microsoft.Maui.Controls" Condition=" $(CustomMauiNet10Version) == '' " Version="$(MauiVersion)" />
+		<PackageReference Include="Microsoft.Maui.Controls" Condition=" $(CustomMauiNet10Version) != '' " Version="$(CustomMauiNet10Version)" />
 	</ItemGroup>
 
 	<ItemGroup>

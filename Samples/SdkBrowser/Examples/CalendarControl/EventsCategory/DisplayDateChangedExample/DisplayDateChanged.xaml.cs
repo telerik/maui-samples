@@ -13,7 +13,7 @@ public partial class DisplayDateChanged : ContentView
 	// >> calendar-displaydate-changed
     private void OnDisplayDateChanged(object sender, ValueChangedEventArgs<System.DateTime> e)
     {
-		App.Current.MainPage.DisplayAlert("Date is ","" + e.NewValue, "OK");
+		App.Current.Windows[0].Page.DisplayAlert("Date is ","" + e.NewValue, "OK");
     }
     // << calendar-displaydate-changed
 }

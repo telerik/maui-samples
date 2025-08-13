@@ -18,6 +18,8 @@ namespace QSF;
 
 public partial class App : Application
 {
+    private readonly ITestingService testingService;
+
     public App(ITestingService testingService)
     {
 #if ANDROID
@@ -31,7 +33,9 @@ public partial class App : Application
         this.InitializeComponent();
         this.InitializeDependencies();
 
-        testingService.OnCommand += (service, command) =>
+        this.testingService = testingService;
+
+        this.testingService.OnCommand += (service, command) =>
         {
             if (command.Command.StartsWith("NAVIGATE:"))
             {
@@ -56,7 +60,7 @@ public partial class App : Application
             }
             else if (command.Command.StartsWith("GET EXAMPLES:"))
             {
-                var examples = ((Application.Current.MainPage as NavigationPage).RootPage.BindingContext as HomeViewModel)?.Examples;
+                var examples = ((Application.Current.Windows[0].Page as NavigationPage).RootPage.BindingContext as HomeViewModel)?.Examples;
                 command.Result =
                     Task.FromResult<string>("OK: " +
                         JsonSerializer.Serialize(
@@ -70,32 +74,16 @@ public partial class App : Application
             }
         };
 
-        if (testingService.IsAppUnderTest && DeviceInfo.Idiom == DeviceIdiom.Desktop)
-        {
-            MainPage = new NavigationPage(new UITestsHomePage(testingService));
-        }
-        else
-        {
-            if (DeviceInfo.Idiom == DeviceIdiom.Desktop)
-            {
-                this.MainPage = new NavigationPage(new MainPageDesktop(testingService));
-            }
-            else
-            {
-                this.MainPage = new NavigationPage(new MainPageMobile(testingService))
-                {
-                    BarTextColor = Colors.White
-                };
-
 #if __ANDROID__ || __IOS__
-                // TODO: When https://github.com/dotnet/maui/issues/5835 is really fixed, remove the following lines and the respective methods.
-                // Currently, setting MaxLines of a Label to more than one for Android or iOS and LineBreakMode to TailTruncation
-                // results to a single-line Label with truncation. The MaxLines is ignored.
-                LabelHandler.Mapper.AppendToMapping(nameof(Label.LineBreakMode), UpdateMaxLines);
-                LabelHandler.Mapper.AppendToMapping(nameof(Label.MaxLines), UpdateMaxLines);
-#endif
-            }
+        if (DeviceInfo.Idiom != DeviceIdiom.Desktop)
+        {
+            // TODO: When https://github.com/dotnet/maui/issues/5835 is really fixed, remove the following lines and the respective methods.
+            // Currently, setting MaxLines of a Label to more than one for Android or iOS and LineBreakMode to TailTruncation
+            // results to a single-line Label with truncation. The MaxLines is ignored.
+            LabelHandler.Mapper.AppendToMapping(nameof(Label.LineBreakMode), UpdateMaxLines);
+            LabelHandler.Mapper.AppendToMapping(nameof(Label.MaxLines), UpdateMaxLines);
         }
+#endif
     }
 
     public static Color ApplicationAccentColor => (Color)App.Current.Resources["ApplicationAccentColor"];
@@ -170,23 +158,39 @@ public partial class App : Application
     }
 #endif
 
-#if WINDOWS || MACCATALYST
     protected override Window CreateWindow(IActivationState activationState)
     {
-        var window = base.CreateWindow(activationState);
-        if (window != null)
+        Page mainPage;
+        if (this.testingService.IsAppUnderTest && DeviceInfo.Idiom == DeviceIdiom.Desktop)
         {
-#if WINDOWS
-            window.Title = "Telerik UI for .NET MAUI Controls Samples";
-#endif
-
-            window.MinimumWidth = 1024;
-            window.MinimumHeight = 768;
+            mainPage = new NavigationPage(new UITestsHomePage(this.testingService));
+        }
+        else
+        {
+            if (DeviceInfo.Idiom == DeviceIdiom.Desktop)
+            {
+                mainPage = new NavigationPage(new MainPageDesktop(this.testingService));
+            }
+            else
+            {
+                mainPage = new NavigationPage(new MainPageMobile(this.testingService))
+                {
+                    BarTextColor = Colors.White
+                };
+            }
         }
 
+        var window = new Window(mainPage);
+#if WINDOWS
+        window.Title = "Telerik UI for .NET MAUI Controls Samples";
+#endif
+
+#if WINDOWS || MACCATALYST
+        window.MinimumWidth = 1024;
+        window.MinimumHeight = 768;
+#endif
         return window;
     }
-#endif
 
     private void InitializeDependencies()
     {

@@ -2,6 +2,7 @@
 using Microsoft.Maui.Controls;
 using SDKBrowserMaui.Common;
 using SDKBrowserMaui.ViewModels;
+using System.Threading.Tasks;
 
 namespace SDKBrowserMaui.Services
 {
@@ -16,39 +17,42 @@ namespace SDKBrowserMaui.Services
             this.navigationService = DependencyService.Get<INavigationService>();
         }
 
-        public string NavigateToExample(string controlName, string exampleName)
+        public async Task<string> NavigateToExampleAsync(string controlName, string exampleName)
         {
             var target = this.configurationService.Configuration.Controls
                 .Where(control => control.Name == controlName)
                 .SelectMany(control => control.Categories)
                 .SelectMany(category => category.Examples)
-                .First(example => example.Page == exampleName);
+                .First(example => example.Page == exampleName || example.Name == exampleName);
 
-            this.NavigateToExample(target);
-
+            await this.navigationService.NavigateToExampleAsync<ExampleViewModel>(target, popToMain: true, isAnimated: false);
             return target.Title;
         }
 
-        public bool TryNavigateToExample(string controlName, string exampleName)
+        public async Task NavigateToSearchAsync()
         {
-            var target = this.configurationService.Configuration.Controls
-                .Where(control => control.Name == controlName)
-                .SelectMany(control => control.Categories)
-                .SelectMany(category => category.Examples)
-                .FirstOrDefault(example => example.Page == exampleName || example.Name == exampleName);
-
-            if (target != null)
-            {
-                this.NavigateToExample(target);
-                return true;
-            }
-
-            return false;
+            await this.navigationService.NavigateToAsync<SearchViewModel>();
         }
 
-        private async void NavigateToExample(Example example)
+        public async Task NavigateBackAsync()
         {
-            await this.navigationService.NavigateToAsync<ExampleViewModel>(example);
+            await this.navigationService.NavigateBackAsync(false);
+        }
+
+        public bool TrySetTheme(string themeName, string themeSwatch)
+        {
+            var themeViewModel = DependencyService.Get<ThemeSettingsViewModel>();
+            if (themeViewModel != null)
+            {
+                var definition = themeViewModel.ThemesCatalog.FirstOrDefault(t => t.Theme == themeName && t.Swatch == themeSwatch);
+                if (definition != null)
+                {
+                    themeViewModel.CurrentTheme = definition;
+                    return true;
+                }
+            }
+            
+            return false;
         }
     }
 }
