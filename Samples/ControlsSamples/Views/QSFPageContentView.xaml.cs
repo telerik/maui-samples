@@ -113,9 +113,7 @@ public partial class QSFPageContentView : RadContentView
                 this.SafeAreaGridWithHeader.ColumnDefinitions[0].Width = insets.Value.Left.Value;
                 this.SafeAreaGridWithHeader.ColumnDefinitions[2].Width = insets.Value.Right.Value;
 
-#if NET10_0_OR_GREATER
                 ((Microsoft.Maui.IView)this.SafeAreaGridWithHeader).InvalidateMeasure();
-#endif
             }
 #elif ANDROID
             if (!this.safeAreaSet)

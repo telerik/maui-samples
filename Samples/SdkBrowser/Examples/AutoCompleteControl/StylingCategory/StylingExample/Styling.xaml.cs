@@ -7,5 +7,7 @@ public partial class Styling : ContentView
 	public Styling()
 	{
 		InitializeComponent();
+
+		this.autoComplete.AutomationId = "autoComplete";
 	}
 }

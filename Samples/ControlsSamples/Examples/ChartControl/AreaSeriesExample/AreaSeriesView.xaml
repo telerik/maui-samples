@@ -11,140 +11,152 @@
                 <styles:GalleryResources/>
             </ResourceDictionary.MergedDictionaries>
             <DataTemplate x:Key="lineArea">
-                <telerik:RadCartesianChart BackgroundColor="White"
+                <telerik:RadCartesianChart BackgroundColor="Transparent"
                                            AutomationId="cartesianChartLineArea">
                     <telerik:RadCartesianChart.ChartBehaviors>
-                        <telerik:ChartSelectionBehavior DataPointSelectionMode="None" 
-                                                             SeriesSelectionMode="Single" />
+                        <telerik:ChartSelectionBehavior DataPointSelectionMode="None"
+                                                        SeriesSelectionMode="Single"/>
                     </telerik:RadCartesianChart.ChartBehaviors>
                     <telerik:RadCartesianChart.HorizontalAxis>
-                        <telerik:CategoricalAxis LineColor="#A9A9A9" 
-                                                      MajorTickThickness="2" 
-                                                      PlotMode="OnTicks" 
-                                                      LabelFitMode="MultiLine" 
-                                                      ShowLabels="True" 
-                                                      MajorTickBackgroundColor="#A9A9A9" />
+                        <telerik:CategoricalAxis LineColor="{DynamicResource ChartLineColor}"
+                                                 LabelTextColor="{DynamicResource DefaultTextColor}"
+                                                 MajorTickThickness="2"
+                                                 PlotMode="OnTicks"
+                                                 LabelFitMode="MultiLine"
+                                                 ShowLabels="True"
+                                                 MajorTickBackgroundColor="{DynamicResource ChartLineColor}"/>
                     </telerik:RadCartesianChart.HorizontalAxis>
                     <telerik:RadCartesianChart.VerticalAxis>
-                        <telerik:NumericalAxis Minimum="0" 
-                                                    Maximum="100" 
-                                                    LineColor="#A9A9A9" 
-                                                    MajorTickBackgroundColor="#A9A9A9" />
+                        <telerik:NumericalAxis Minimum="0"
+                                               Maximum="100"
+                                               LabelTextColor="{DynamicResource DefaultTextColor}"
+                                               LineColor="{DynamicResource ChartLineColor}"
+                                               MajorTickBackgroundColor="{DynamicResource ChartLineColor}"/>
                     </telerik:RadCartesianChart.VerticalAxis>
                     <telerik:RadCartesianChart.Grid>
-                        <telerik:CartesianChartGrid MajorLinesVisibility="Y" 
-                                                         MajorLineThickness="1" />
+                        <telerik:CartesianChartGrid MajorLinesVisibility="Y"
+                                                    MajorLineThickness="1"
+                                                    MajorLineColor="{DynamicResource ChartMajorLineColor}" />
                     </telerik:RadCartesianChart.Grid>
                     <telerik:RadCartesianChart.Series>
-                        <telerik:AreaSeries CategoryBinding="Category" 
-                                                 ValueBinding="Value" 
-                                                 ItemsSource="{Binding SeriesData}" />
+                        <telerik:AreaSeries CategoryBinding="Category"
+                                            ValueBinding="Value"
+                                            ItemsSource="{Binding SeriesData}"/>
                     </telerik:RadCartesianChart.Series>
                 </telerik:RadCartesianChart>
             </DataTemplate>
             <DataTemplate x:Key="splineArea">
-                <telerik:RadCartesianChart BackgroundColor="White"
+                <telerik:RadCartesianChart BackgroundColor="Transparent"
                                            AutomationId="cartesianChartSplineArea">
                     <telerik:RadCartesianChart.ChartBehaviors>
-                        <telerik:ChartSelectionBehavior DataPointSelectionMode="None" 
-                                                             SeriesSelectionMode="Single" />
+                        <telerik:ChartSelectionBehavior DataPointSelectionMode="None"
+                                                        SeriesSelectionMode="Single"/>
                     </telerik:RadCartesianChart.ChartBehaviors>
                     <telerik:RadCartesianChart.HorizontalAxis>
-                        <telerik:CategoricalAxis LineColor="#A9A9A9" 
-                                                      MajorTickThickness="2" 
-                                                      PlotMode="OnTicks" 
-                                                      LabelFitMode="MultiLine" 
-                                                      ShowLabels="True" 
-                                                      MajorTickBackgroundColor="#A9A9A9" />
+                        <telerik:CategoricalAxis LabelTextColor="{DynamicResource DefaultTextColor}"
+                                                 LineColor="{DynamicResource ChartLineColor}"
+                                                 MajorTickThickness="2"
+                                                 PlotMode="OnTicks"
+                                                 LabelFitMode="MultiLine"
+                                                 ShowLabels="True"
+                                                 MajorTickBackgroundColor="{DynamicResource ChartLineColor}"/>
                     </telerik:RadCartesianChart.HorizontalAxis>
                     <telerik:RadCartesianChart.VerticalAxis>
-                        <telerik:NumericalAxis Minimum="0" 
-                                                    Maximum="100" 
-                                                    LineColor="#A9A9A9" 
-                                                    MajorTickBackgroundColor="#A9A9A9" />
+                        <telerik:NumericalAxis Minimum="0"
+                                               Maximum="100"
+                                               LabelTextColor="{DynamicResource DefaultTextColor}"
+                                               LineColor="{DynamicResource ChartLineColor}"
+                                               MajorTickBackgroundColor="{DynamicResource ChartLineColor}"/>
                     </telerik:RadCartesianChart.VerticalAxis>
                     <telerik:RadCartesianChart.Grid>
-                        <telerik:CartesianChartGrid MajorLinesVisibility="Y" 
-                                                         MajorLineThickness="1" />
+                        <telerik:CartesianChartGrid MajorLinesVisibility="Y"
+                                                    MajorLineThickness="1" 
+                                                    MajorLineColor="{DynamicResource ChartMajorLineColor}" />
                     </telerik:RadCartesianChart.Grid>
                     <telerik:RadCartesianChart.Series>
-                        <telerik:SplineAreaSeries CategoryBinding="Category" 
-                                                       ValueBinding="Value" 
-                                                       ItemsSource="{Binding SeriesData}" />
+                        <telerik:SplineAreaSeries CategoryBinding="Category"
+                                                  ValueBinding="Value"
+                                                  ItemsSource="{Binding SeriesData}"/>
                     </telerik:RadCartesianChart.Series>
                 </telerik:RadCartesianChart>
             </DataTemplate>
             <DataTemplate x:Key="stackedLineArea">
-                <telerik:RadCartesianChart BackgroundColor="White"
+                <telerik:RadCartesianChart BackgroundColor="Transparent"
                                            AutomationId="cartesianChartStackedLineArea">
                     <telerik:RadCartesianChart.ChartBehaviors>
-                        <telerik:ChartSelectionBehavior DataPointSelectionMode="None" 
-                                                             SeriesSelectionMode="Single" />
+                        <telerik:ChartSelectionBehavior DataPointSelectionMode="None"
+                                                        SeriesSelectionMode="Single"/>
                     </telerik:RadCartesianChart.ChartBehaviors>
                     <telerik:RadCartesianChart.HorizontalAxis>
-                        <telerik:CategoricalAxis LineColor="#A9A9A9" 
-                                                      MajorTickThickness="2" 
-                                                      PlotMode="OnTicks" 
-                                                      LabelFitMode="MultiLine" 
-                                                      ShowLabels="True" 
-                                                      MajorTickBackgroundColor="#A9A9A9" />
+                        <telerik:CategoricalAxis LabelTextColor="{DynamicResource DefaultTextColor}"
+                                                 LineColor="{DynamicResource ChartLineColor}"
+                                                 MajorTickThickness="2"
+                                                 PlotMode="OnTicks"
+                                                 LabelFitMode="MultiLine"
+                                                 ShowLabels="True"
+                                                 MajorTickBackgroundColor="{DynamicResource ChartLineColor}"/>
                     </telerik:RadCartesianChart.HorizontalAxis>
                     <telerik:RadCartesianChart.VerticalAxis>
-                        <telerik:NumericalAxis Minimum="0" 
-                                                    Maximum="100" 
-                                                    LineColor="#A9A9A9" 
-                                                    MajorTickBackgroundColor="#A9A9A9" />
+                        <telerik:NumericalAxis Minimum="0"
+                                               Maximum="100"
+                                               LabelTextColor="{DynamicResource DefaultTextColor}"
+                                               LineColor="{DynamicResource ChartLineColor}"
+                                               MajorTickBackgroundColor="{DynamicResource ChartLineColor}"/>
                     </telerik:RadCartesianChart.VerticalAxis>
                     <telerik:RadCartesianChart.Grid>
-                        <telerik:CartesianChartGrid MajorLinesVisibility="Y" 
-                                                         MajorLineThickness="1" />
+                        <telerik:CartesianChartGrid MajorLinesVisibility="Y"
+                                                    MajorLineThickness="1"
+                                                    MajorLineColor="{DynamicResource ChartMajorLineColor}" />
                     </telerik:RadCartesianChart.Grid>
                     <telerik:RadCartesianChart.Series>
-                        <telerik:AreaSeries CategoryBinding="Category" 
-                                                 ValueBinding="Value" 
-                                                 ItemsSource="{Binding SeriesData}" 
-                                                 CombineMode="Stack" />
-                        <telerik:AreaSeries CategoryBinding="Category" 
-                                                 ValueBinding="Value" 
-                                                 ItemsSource="{Binding SecondSeriesData}" 
-                                                 CombineMode="Stack" />
+                        <telerik:AreaSeries CategoryBinding="Category"
+                                            ValueBinding="Value"
+                                            ItemsSource="{Binding SeriesData}"
+                                            CombineMode="Stack"/>
+                        <telerik:AreaSeries CategoryBinding="Category"
+                                            ValueBinding="Value"
+                                            ItemsSource="{Binding SecondSeriesData}"
+                                            CombineMode="Stack"/>
                     </telerik:RadCartesianChart.Series>
                 </telerik:RadCartesianChart>
             </DataTemplate>
             <DataTemplate x:Key="stackedSplineArea">
-                <telerik:RadCartesianChart BackgroundColor="White"
+                <telerik:RadCartesianChart BackgroundColor="Transparent"
                                            AutomationId="cartesianChartStackedSplineArea">
                     <telerik:RadCartesianChart.ChartBehaviors>
-                        <telerik:ChartSelectionBehavior DataPointSelectionMode="None" 
-                                                             SeriesSelectionMode="Single" />
+                        <telerik:ChartSelectionBehavior DataPointSelectionMode="None"
+                                                        SeriesSelectionMode="Single"/>
                     </telerik:RadCartesianChart.ChartBehaviors>
                     <telerik:RadCartesianChart.HorizontalAxis>
-                        <telerik:CategoricalAxis LineColor="#A9A9A9" 
-                                                      MajorTickThickness="2" 
-                                                      PlotMode="OnTicks" 
-                                                      LabelFitMode="MultiLine" 
-                                                      ShowLabels="True" 
-                                                      MajorTickBackgroundColor="#A9A9A9" />
+                        <telerik:CategoricalAxis LabelTextColor="{DynamicResource DefaultTextColor}"
+                                                 LineColor="{DynamicResource ChartLineColor}"
+                                                 MajorTickThickness="2"
+                                                 PlotMode="OnTicks"
+                                                 LabelFitMode="MultiLine"
+                                                 ShowLabels="True"
+                                                 MajorTickBackgroundColor="{DynamicResource ChartLineColor}"/>
                     </telerik:RadCartesianChart.HorizontalAxis>
                     <telerik:RadCartesianChart.VerticalAxis>
-                        <telerik:NumericalAxis Minimum="0" 
-                                                    Maximum="100" 
-                                                    LineColor="#A9A9A9" 
-                                                    MajorTickBackgroundColor="#A9A9A9" />
+                        <telerik:NumericalAxis Minimum="0"
+                                               Maximum="100"
+                                               LabelTextColor="{DynamicResource DefaultTextColor}"
+                                               LineColor="{DynamicResource ChartLineColor}"
+                                               MajorTickBackgroundColor="{DynamicResource ChartLineColor}"/>
                     </telerik:RadCartesianChart.VerticalAxis>
                     <telerik:RadCartesianChart.Grid>
-                        <telerik:CartesianChartGrid MajorLinesVisibility="Y" 
-                                                         MajorLineThickness="1" />
+                        <telerik:CartesianChartGrid MajorLinesVisibility="Y"
+                                                    MajorLineThickness="1" 
+                                                    MajorLineColor="{DynamicResource ChartMajorLineColor}" />
                     </telerik:RadCartesianChart.Grid>
                     <telerik:RadCartesianChart.Series>
-                        <telerik:SplineAreaSeries CategoryBinding="Category" 
-                                                       ValueBinding="Value" 
-                                                       ItemsSource="{Binding SeriesData}" 
-                                                       CombineMode="Stack" />
-                        <telerik:SplineAreaSeries CategoryBinding="Category" 
-                                                       ValueBinding="Value" 
-                                                       ItemsSource="{Binding SecondSeriesData}" 
-                                                       CombineMode="Stack" />
+                        <telerik:SplineAreaSeries CategoryBinding="Category"
+                                                  ValueBinding="Value"
+                                                  ItemsSource="{Binding SeriesData}"
+                                                  CombineMode="Stack"/>
+                        <telerik:SplineAreaSeries CategoryBinding="Category"
+                                                  ValueBinding="Value"
+                                                  ItemsSource="{Binding SecondSeriesData}"
+                                                  CombineMode="Stack"/>
                     </telerik:RadCartesianChart.Series>
                 </telerik:RadCartesianChart>
             </DataTemplate>
@@ -153,6 +165,6 @@
     <views:GalleryExampleViewBase.HeaderContent>
         <Label Text="Monthly sales revenue, 2022"
                Style="{StaticResource labelHeaderStyle}"
-               Margin="0, 6, 0, 0" />
+               Margin="0, 6, 0, 0"/>
     </views:GalleryExampleViewBase.HeaderContent>
 </views:GalleryExampleViewBase>

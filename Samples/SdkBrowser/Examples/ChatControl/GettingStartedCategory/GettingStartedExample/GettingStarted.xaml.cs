@@ -7,7 +7,7 @@ namespace SDKBrowserMaui.Examples.ChatControl.GettingStartedCategory.GettingStar
 
 public partial class GettingStarted : RadContentView
 {
-    // >> chat-getting-started-initiliaze
+    // >> chat-getting-started-initialize
     private RepeatBotService botService;
     private Author botAuthor;
 
@@ -22,10 +22,10 @@ public partial class GettingStarted : RadContentView
         ((INotifyCollectionChanged)this.chat.Items).CollectionChanged += ChatItems_CollectionChanged; ;
     }
 
-    // << chat-getting-started-initiliaze
+	// << chat-getting-started-initialize
 
-    // >> chat-getting-started-events
-    private void ChatItems_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+	// >> chat-getting-started-events
+	private void ChatItems_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
     {
         if (e.Action == NotifyCollectionChangedAction.Add)
         {

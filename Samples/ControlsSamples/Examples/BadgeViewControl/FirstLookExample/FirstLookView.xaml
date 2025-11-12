@@ -6,24 +6,22 @@
                         Margin="5">
     <ContentView.Resources>
         <ResourceDictionary>
-            <Color x:Key="SecondaryTextColor">#99000000</Color>
             <Color x:Key="HighLightedColor">#0E88F2</Color>
-            <Color x:Key="MenuItemBackgroundColor">#F8F8F8</Color>
-            <Color x:Key="DisabledTextColor">#9D9CA1</Color>
             <Color x:Key="DisabledBadgeBackground">#FFBABA</Color>
 
-            <Style x:Key="DefaultTabItemStyle" TargetType="Label">
+            <Style x:Key="DefaultTabItemStyle" TargetType="Label"
+                   BasedOn="{StaticResource BaseLabelStyle}">
                 <Setter Property="HorizontalOptions" Value="Center" />
                 <Setter Property="VerticalOptions" Value="Center" />
                 <Setter Property="HorizontalTextAlignment" Value="Center" />
                 <Setter Property="VerticalTextAlignment" Value="Center" />
             </Style>
-            <Style x:Key="DefaultTabItemIconStyle" TargetType="Label" 
+            <Style x:Key="DefaultTabItemIconStyle" TargetType="Label"
                    BasedOn="{StaticResource DefaultTabItemStyle}">
                 <Setter Property="FontSize" Value="Title" />
                 <Setter Property="FontFamily" Value="TelerikFontExamples"/>
             </Style>
-            <Style x:Key="DefaultTabItemLabelStyle" TargetType="Label" 
+            <Style x:Key="DefaultTabItemLabelStyle" TargetType="Label"
                    BasedOn="{StaticResource DefaultTabItemStyle}">
                 <Setter Property="FontSize" Value="Micro" />
             </Style>
@@ -34,7 +32,8 @@
         </ResourceDictionary>
     </ContentView.Resources>
     <Grid RowDefinitions="*, Auto">
-        <telerik:RadItemsControl Grid.Row="0"
+        <telerik:RadItemsControl Grid.Row="0" 
+                                 Background="Transparent"
                                  ItemsSource="{Binding Users}"
                                  AutomationId="usersList">
             <telerik:RadItemsControl.ItemTemplate>
@@ -46,10 +45,10 @@
                                               BadgeVerticalPosition="End"
                                               BadgeHorizontalAlignment="End"
                                               BadgeVerticalAlignment="End"
-                                              Margin="0, 0, 16, 0" 
+                                              Margin="0, 0, 16, 0"
                                               AutomationId="badgeView">
                             <telerik:RadBadgeView.Content>
-                                <Image Source="{Binding ImageSourcePath}" 
+                                <Image Source="{Binding ImageSourcePath}"
                                        WidthRequest="50"
                                        HeightRequest="50" />
                             </telerik:RadBadgeView.Content>
@@ -57,15 +56,16 @@
                         <VerticalStackLayout Grid.Column="1"
                                              Spacing="2"
                                              VerticalOptions="Center">
-                            <Label Text="{Binding Name}" 
+                            <Label Text="{Binding Name}"
                                    FontAttributes="{Binding MessageFontAttributes}"
                                    VerticalTextAlignment="End" />
                             <Label Text="{Binding LastMessageReceived}"
-                                   TextColor="{StaticResource SecondaryTextColor}"
+                                   TextColor="{DynamicResource DefaultTextColor}"
+                                   Opacity="0.6"
                                    FontSize="Micro"
                                    FontAttributes="{Binding MessageFontAttributes}" />
                         </VerticalStackLayout>
-                        <VerticalStackLayout Grid.Column="2" 
+                        <VerticalStackLayout Grid.Column="2"
                                              HorizontalOptions="End"
                                              VerticalOptions="Center" >
                             <Label Text="{Binding LastMessageReceivedDate}"
@@ -84,7 +84,7 @@
         <Grid Grid.Row="1"
               ColumnDefinitions="*, *, *, *"
               VerticalOptions="EndAndExpand"
-              BackgroundColor="{StaticResource MenuItemBackgroundColor}"
+              BackgroundColor="{DynamicResource BadgeMenuItemBackgroundColor}"
               Padding="0, 7">
             <telerik:RadBadgeView BadgeText="12"
                                   BadgeBackgroundColor="{StaticResource DisabledBadgeBackground}"
@@ -92,9 +92,9 @@
                                   AutomationId="callsBadgeView">
                 <telerik:RadBadgeView.Content>
                     <StackLayout>
-                        <Label Text="&#xE904;" TextColor="{StaticResource DisabledTextColor}"
+                        <Label Text="&#xE904;" TextColor="{DynamicResource LabelDisabledTextColor}"
                                Style="{StaticResource DefaultTabItemIconStyle}" />
-                        <Label Text="Calls" TextColor="{StaticResource DisabledTextColor}"
+                        <Label Text="Calls" TextColor="{DynamicResource LabelDisabledTextColor}"
                                Style="{StaticResource DefaultTabItemLabelStyle}" />
                     </StackLayout>
                 </telerik:RadBadgeView.Content>
@@ -117,9 +117,9 @@
             </telerik:RadBadgeView>
 
             <StackLayout Grid.Column="2">
-                <Label Text="&#xE864;" TextColor="{StaticResource DisabledTextColor}"
+                <Label Text="&#xE864;" TextColor="{DynamicResource LabelDisabledTextColor}"
                        Style="{StaticResource DefaultTabItemIconStyle}" />
-                <Label Text="Calendar" TextColor="{StaticResource DisabledTextColor}"
+                <Label Text="Calendar" TextColor="{DynamicResource LabelDisabledTextColor}"
                        Style="{StaticResource DefaultTabItemLabelStyle}" />
             </StackLayout>
             <telerik:RadBadgeView BadgeType="Dot" Grid.Column="3"
@@ -130,9 +130,9 @@
                                   AutomationId="activityBadgeView">
                 <telerik:RadBadgeView.Content>
                     <StackLayout>
-                        <Label Text="&#xE901;" TextColor="{StaticResource DisabledTextColor}"
+                        <Label Text="&#xE901;" TextColor="{DynamicResource LabelDisabledTextColor}"
                                Style="{StaticResource DefaultTabItemIconStyle}" />
-                        <Label Text="Activity" TextColor="{StaticResource DisabledTextColor}"
+                        <Label Text="Activity" TextColor="{DynamicResource LabelDisabledTextColor}"
                                Style="{StaticResource DefaultTabItemLabelStyle}" />
                     </StackLayout>
                 </telerik:RadBadgeView.Content>

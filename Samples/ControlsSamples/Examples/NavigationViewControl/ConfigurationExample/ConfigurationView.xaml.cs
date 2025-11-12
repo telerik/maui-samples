@@ -59,7 +59,7 @@ public partial class ConfigurationView : ContentView
     }
 
     private void OnHyperlinkTapped(object sender, TappedEventArgs e)
-        => Launcher.OpenAsync("https://docs.telerik.com/devtools/maui/controls/navigationview/overview");
+        => Launcher.OpenAsync("https://www.telerik.com/maui-ui/documentation/controls/navigationview/overview");
 
     private void OnClosePopupBtnClicked(object sender, EventArgs e)
         => this.popup.IsOpen = false;

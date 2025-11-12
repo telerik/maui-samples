@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.SchedulerControl.AgendaViewCategory.ScrollIntoViewExample.ScrollIntoView">
+	<!-- >> scheduler-agenda-scrolltoappointment -->
+	<Grid RowDefinitions="Auto, *">
+		<HorizontalStackLayout Spacing="10" Margin="0, 10">
+			<Button Text="Scroll To Last"
+					Clicked="OnScrollToLastAppointmentClicked" />
+			<Button Text="Scroll To First"
+					Clicked="OnScrollToFirstAppointmentClicked" />
+		</HorizontalStackLayout>
+		<telerik:RadScheduler x:Name="scheduler"
+							  AppointmentsSource="{Binding Appointments}"
+							  Grid.Row="1">
+			<telerik:RadScheduler.ViewDefinitions>
+				<telerik:AgendaViewDefinition />
+			</telerik:RadScheduler.ViewDefinitions>
+		</telerik:RadScheduler>
+	</Grid>
+	<!-- << scheduler-agenda-scrolltoappointment -->
+</ContentView>

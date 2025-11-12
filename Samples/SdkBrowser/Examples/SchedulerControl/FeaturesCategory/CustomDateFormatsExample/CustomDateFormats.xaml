@@ -13,8 +13,9 @@
                                                 TimeRulerWidth="80" />
                 <telerik:MonthViewDefinition HeaderTextFormat="{}{0:ddd, MMM dd}"
                                              DayStringFormat="{}{0:dd}"
-                                             WeekDayStringFormat="{OnIdiom '{0:ddd}', Desktop='{0:MMM - dddd}'}"/>
-            </telerik:RadScheduler.ViewDefinitions>
+                                             WeekDayStringFormat="{OnIdiom '{0:ddd}', Desktop='{0:MMM - dddd}'}" />
+				<telerik:AgendaViewDefinition HeaderTextFormat="{}{0:ddd, MMM dd}" />
+			</telerik:RadScheduler.ViewDefinitions>
         </telerik:RadScheduler>
         <!-- << scheduler-custom-date-formats -->
     </Grid>

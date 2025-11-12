@@ -9,9 +9,8 @@
             <Color x:Key="SpecialOfferPercentColor">#F12448</Color>
             <Color x:Key="SpecialOfferCouponLimitColor">#B0B0B0</Color>
 
-            <Style TargetType="Label" x:Key="SpecialOfferHeaderLabelStyle">
+            <Style TargetType="Label" x:Key="SpecialOfferHeaderLabelStyle" BasedOn="{StaticResource BaseLabelStyle}">
                 <Setter Property="FontSize" Value="40" />
-                <Setter Property="TextColor" Value="Black" />
                 <Setter Property="HorizontalOptions" Value="Center"/>
                 <Setter Property="VerticalOptions" Value="Center"/>
             </Style>
@@ -27,10 +26,9 @@
                 <Setter Property="VerticalOptions" Value="End" />
             </Style>
 
-            <Style TargetType="Label" x:Key="SpecialOfferConditionLabelStyle">
+            <Style TargetType="Label" x:Key="SpecialOfferConditionLabelStyle" BasedOn="{StaticResource BaseLabelStyle}">
                 <Setter Property="FontSize" Value="22" />
                 <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
-                <Setter Property="TextColor" Value="Black"/>
             </Style>
 
             <Style TargetType="Label" x:Key="SpecialOfferCouponLimitLabelStyle">
@@ -56,7 +54,10 @@
 
                 <Image Grid.Row="3" HeightRequest="150" Grid.Column="1" Source="barcodespecialoffersalad.png" HorizontalOptions="Center" Margin="0, 10" />
 
-                <telerik:RadBarcode Grid.Row="4" Grid.Column="1" WidthRequest="260" HeightRequest="100" HorizontalOptions="Center" Value="38000106" AutomationId="barcode">
+                <telerik:RadBarcode Grid.Row="4" Grid.Column="1" WidthRequest="260" HeightRequest="100"
+                                    HorizontalOptions="Center" Value="38000106"
+                                    BackgroundColor="Transparent" ForegroundColor="{DynamicResource DefaultTextColor}"
+                                    AutomationId="barcode">
                     <telerik:RadBarcode.Symbology>
                         <telerik:Codabar SizingMode="Stretch" ShowText="True" HorizontalTextAlignment="Center"/>
                     </telerik:RadBarcode.Symbology>

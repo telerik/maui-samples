@@ -7,6 +7,7 @@
                         x:Class="QSF.Examples.SchedulerControl.CustomizationExample.CustomizationView"
                         Padding="{OnIdiom Default=0, Desktop='16, 20'}">
     <telerik:RadContentView.Resources>
+        <scheduler:FormattedSubjectConverter x:Key="FormattedSubjectConverter" />
         <local:AppointmentLocationToColorConverter x:Key="AppointmentLocationToColorConverter" />
 
         <Style x:Key="CreateAppointmentFABStyle" TargetType="telerik:RadButton">
@@ -16,8 +17,8 @@
             <Setter Property="FontFamily" Value="TelerikFont" />
             <Setter Property="FontSize" Value="{OnPlatform Default=24, MacCatalyst=16, WinUI=16}" />
             <Setter Property="Text" Value="{x:Static telerik:TelerikFont.IconPlus}" />
-            <Setter Property="TextColor" Value="#FFFFFF" />
-            <Setter Property="Background" Value="{StaticResource ApplicationAccentColor}" />
+            <Setter Property="TextColor" Value="{OnPlatform Default='#FFFFFF', MacCatalyst={DynamicResource InverseDefaultTextColor}}" />
+            <Setter Property="Background" Value="{DynamicResource ApplicationAccentColor}" />
             <Setter Property="BorderThickness" Value="0" />
             <Setter Property="Padding" Value="0" />
             <Setter Property="Shadow">
@@ -45,22 +46,43 @@
             <Setter Property="HorizontalOptions" Value="Start" />
         </Style>
 
-        <DataTemplate x:Key="CustomAppointmentTemplate">
-            <Grid>
-                <local:CustomizedAppointmentView Subject="{Binding Occurrence.Appointment.Subject}"
-                                                 SubjectTextColor="{StaticResource DefaultTextColor}"
-                                                 Padding="8, 4, 4, 4"
-                                                 BackgroundColor="{Binding Occurrence.Appointment.Location, Converter={StaticResource AppointmentLocationToColorConverter}}" />
-                <telerik:RadBorder Style="{StaticResource CustomAppointmentCategoryBorderStyle}" />
-            </Grid>
-        </DataTemplate>
+        <local:AppointmentTemplateSelector x:Key="CustomAppointmentTemplateSelector">
+            <local:AppointmentTemplateSelector.DefaultTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <local:CustomizedAppointmentView Subject="{Binding Occurrence.Appointment.Subject}"
+                                                         SubjectTextColor="{DynamicResource SchedulerCustomizationTextColor}"
+                                                         DeleteButtonTextColor="{DynamicResource SchedulerCustomizationTextColor}"
+                                                         Padding="8, 4, 4, 4"
+                                                         BackgroundColor="{Binding Occurrence.Appointment.Location, Converter={StaticResource AppointmentLocationToColorConverter}}" />
+                        <telerik:RadBorder Style="{StaticResource CustomAppointmentCategoryBorderStyle}" />
+                    </Grid>
+                </DataTemplate>
+            </local:AppointmentTemplateSelector.DefaultTemplate>
+            <local:AppointmentTemplateSelector.AgendaTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <telerik:AppointmentView HeightRequest="{OnPlatform Android=36, iOS=40, MacCatalyst=20}"
+                                                 Margin="{OnPlatform Default='8, 2, 2, 4', Android='8, 4, 20, 4', iOS='8, 4, 20, 4', WinUI='8, 5, 4, 5'}">
+                            <telerik:AppointmentView.Subject>
+                                <MultiBinding Converter="{StaticResource FormattedSubjectConverter}">
+                                    <Binding Path="." />
+                                    <Binding Path="Occurrence.Appointment.Subject" />
+                                </MultiBinding>
+                            </telerik:AppointmentView.Subject>
+                        </telerik:AppointmentView>
+                        <telerik:RadBorder Style="{StaticResource CustomAppointmentCategoryBorderStyle}" />
+                    </Grid>
+                </DataTemplate>
+            </local:AppointmentTemplateSelector.AgendaTemplate>
+        </local:AppointmentTemplateSelector>
     </telerik:RadContentView.Resources>
 
     <Grid RowDefinitions="*, 44">
         <Grid>
             <telerik:RadScheduler x:Name="scheduler"
                                   AppointmentsSource="{Binding FilteredAppointmentsSource}"
-                                  AppointmentTemplate="{StaticResource CustomAppointmentTemplate}"
+                                  AppointmentTemplate="{StaticResource CustomAppointmentTemplateSelector}"
                                   EditAppointmentDialogStyle="{StaticResource CustomSchedulerEditAppointmentDialog_Style}">
                 <telerik:RadScheduler.ViewDefinitions>
                     <telerik:DayViewDefinition />
@@ -68,6 +90,7 @@
                     <telerik:WeekViewDefinition Title="Work Week" IsWeekendVisible="False" />
                     <telerik:WeekViewDefinition />
                     <telerik:MonthViewDefinition />
+                    <telerik:AgendaViewDefinition />
                 </telerik:RadScheduler.ViewDefinitions>
             </telerik:RadScheduler>
             <telerik:RadButton x:Name="createAppointmentDialogBtn"

@@ -12,10 +12,6 @@ public class HyperlinkLabel : Label
 
     public HyperlinkLabel()
     {
-        TextColor = Application.Current.RequestedTheme == AppTheme.Light 
-            ? Color.FromArgb("#3D57D8")
-            : Color.FromArgb("#8DB8FF");
-        
         GestureRecognizers.Add(new TapGestureRecognizer
         {
             Command = new Command(async () => await Launcher.OpenAsync(Url))

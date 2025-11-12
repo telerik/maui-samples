@@ -11,11 +11,10 @@
     <DotNetOnly>false</DotNetOnly>
     <TelerikVersion>*</TelerikVersion>
     <DplVersion>*-*</DplVersion>
-    <CustomMauiNet8Version></CustomMauiNet8Version>
-    <CustomMauiNet9Version>9.0.40</CustomMauiNet9Version>
+    <CustomMauiNet9Version></CustomMauiNet9Version>
     <CustomMauiNet10Version></CustomMauiNet10Version>
-    <SkiaSharpVersion>3.116.1</SkiaSharpVersion>
-    <TelerikLicensingVersion>[1.6.16,2)</TelerikLicensingVersion>
+    <SkiaSharpVersion>3.119.1</SkiaSharpVersion>
+    <TelerikLicensingVersion>[1.6.31,2)</TelerikLicensingVersion>
 
     <UseSourceProjects>false</UseSourceProjects>
     <UseSourceAssemblies>false</UseSourceAssemblies>
@@ -23,7 +22,6 @@
     <UsePlatformAssemblies>false</UsePlatformAssemblies>
 
     <DotNetVersion Condition=" $(DotNetVersion) == '' ">Net9</DotNetVersion>
-    <NetPlatform Condition=" $(DotNetVersion) == 'Net8' ">net8.0</NetPlatform>
     <NetPlatform Condition=" $(DotNetVersion) == 'Net9' ">net9.0</NetPlatform>
     <NetPlatform Condition=" $(DotNetVersion) == 'Net10' ">net10.0</NetPlatform>
     <AndroidPlatform>$(NetPlatform)-android</AndroidPlatform>

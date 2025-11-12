@@ -17,14 +17,14 @@
                 <Setter Property="Opacity" Value="0.6" />
                 <Setter Property="VerticalOptions" Value="Center" />
             </Style>
-            <Style x:Key="BaseSliderStyle" TargetType="Slider">
+            <Style x:Key="BadgeBaseSliderStyle" TargetType="telerik:RadSlider" BasedOn="{StaticResource RadSliderStyle}">
                 <Setter Property="Minimum" Value="0" />
                 <Setter Property="Maximum" Value="30" />
                 <Setter Property="Margin" Value="8, 0" />
                 <Setter Property="HorizontalOptions" Value="Fill" />
                 <Setter Property="VerticalOptions" Value="Center" />
             </Style>
-       </ResourceDictionary>
+        </ResourceDictionary>
     </ContentView.Resources>
 
     <ContentView.BindingContext>
@@ -149,11 +149,11 @@
                                       Style="{StaticResource GroupAtExampleAreaStyle}">
                                     <Label Style="{StaticResource SliderMinMaxLabelStyle}"
                                            Text="{Binding Source={x:Reference sliderMarginLeft}, Path=Minimum, Mode=TwoWay}" />
-                                    <Slider x:Name="sliderMarginLeft"
-                                            Grid.Column="1"
-                                            Style="{StaticResource BaseSliderStyle}"
-                                            Value="{Binding TextMarginLeft}"
-                                            AutomationId="sliderMarginLeft" />
+                                    <telerik:RadSlider x:Name="sliderMarginLeft"
+                                                       Grid.Column="1"
+                                                       Style="{StaticResource BadgeBaseSliderStyle}"
+                                                       Value="{Binding TextMarginLeft, Mode=TwoWay}"
+                                                       AutomationId="sliderMarginLeft" />
                                     <Label Grid.Column="2"
                                            Style="{StaticResource SliderMinMaxLabelStyle}"
                                            Text="{Binding Source={x:Reference sliderMarginLeft}, Path=Maximum, Mode=TwoWay}" />
@@ -164,11 +164,11 @@
                                       Style="{StaticResource GroupAtExampleAreaStyle}">
                                     <Label Style="{StaticResource SliderMinMaxLabelStyle}"
                                            Text="{Binding Source={x:Reference sliderMarginTop}, Path=Minimum, Mode=TwoWay}" />
-                                    <Slider x:Name="sliderMarginTop"
-                                            Grid.Column="1"
-                                            Style="{StaticResource BaseSliderStyle}"
-                                            Value="{Binding TextMarginTop}"
-                                            AutomationId="sliderMarginTop" />
+                                    <telerik:RadSlider x:Name="sliderMarginTop"
+                                                       Grid.Column="1"
+                                                       Style="{StaticResource BadgeBaseSliderStyle}"
+                                                       Value="{Binding TextMarginTop, Mode=TwoWay}"
+                                                       AutomationId="sliderMarginTop" />
                                     <Label Grid.Column="2"
                                            Style="{StaticResource SliderMinMaxLabelStyle}"
                                            Text="{Binding Source={x:Reference sliderMarginTop}, Path=Maximum, Mode=TwoWay}" />
@@ -179,13 +179,13 @@
                                       Style="{StaticResource GroupAtExampleAreaStyle}">
                                     <Label Style="{StaticResource SliderMinMaxLabelStyle}"
                                            Text="{Binding Source={x:Reference offsetXSlider}, Path=Minimum, Mode=TwoWay}" />
-                                    <Slider x:Name="offsetXSlider"
-                                            Grid.Column="1"
-                                            Style="{StaticResource BaseSliderStyle}"
-                                            Value="{Binding OffSetX}"
-                                            Minimum="-20"
-                                            Maximum="20"
-                                            AutomationId="offsetXSlider" />
+                                    <telerik:RadSlider x:Name="offsetXSlider"
+                                                       Grid.Column="1"
+                                                       Style="{StaticResource BadgeBaseSliderStyle}"
+                                                       Value="{Binding OffSetX, Mode=TwoWay}"
+                                                       Minimum="-20"
+                                                       Maximum="20"
+                                                       AutomationId="offsetXSlider" />
                                     <Label Grid.Column="2"
                                            Style="{StaticResource SliderMinMaxLabelStyle}"
                                            Text="{Binding Source={x:Reference offsetXSlider}, Path=Maximum, Mode=TwoWay}" />
@@ -199,11 +199,11 @@
                                       Style="{StaticResource GroupAtExampleAreaStyle}">
                                     <Label Style="{StaticResource SliderMinMaxLabelStyle}"
                                            Text="{Binding Source={x:Reference sliderMarginRight}, Path=Minimum, Mode=TwoWay}" />
-                                    <Slider x:Name="sliderMarginRight"
-                                            Grid.Column="1"
-                                            Style="{StaticResource BaseSliderStyle}"
-                                            Value="{Binding TextMarginRight}"
-                                            AutomationId="sliderMarginRight" />
+                                    <telerik:RadSlider x:Name="sliderMarginRight"
+                                                       Grid.Column="1"
+                                                       Style="{StaticResource BadgeBaseSliderStyle}"
+                                                       Value="{Binding TextMarginRight, Mode=TwoWay}"
+                                                       AutomationId="sliderMarginRight" />
                                     <Label Grid.Column="2"
                                            Style="{StaticResource SliderMinMaxLabelStyle}"
                                            Text="{Binding Source={x:Reference sliderMarginRight}, Path=Maximum, Mode=TwoWay}" />
@@ -214,11 +214,11 @@
                                       Style="{StaticResource GroupAtExampleAreaStyle}">
                                     <Label Style="{StaticResource SliderMinMaxLabelStyle}"
                                            Text="{Binding Source={x:Reference sliderMarginBottom}, Path=Minimum, Mode=TwoWay}" />
-                                    <Slider x:Name="sliderMarginBottom"
-                                            Grid.Column="1"
-                                            Style="{StaticResource BaseSliderStyle}"
-                                            Value="{Binding TextMarginBottom}"
-                                            AutomationId="sliderMarginBottom" />
+                                    <telerik:RadSlider x:Name="sliderMarginBottom"
+                                                       Grid.Column="1"
+                                                       Style="{StaticResource BadgeBaseSliderStyle}"
+                                                       Value="{Binding TextMarginBottom, Mode=TwoWay}"
+                                                       AutomationId="sliderMarginBottom" />
                                     <Label Grid.Column="2"
                                            Style="{StaticResource SliderMinMaxLabelStyle}"
                                            Text="{Binding Source={x:Reference sliderMarginBottom}, Path=Maximum, Mode=TwoWay}" />
@@ -229,19 +229,18 @@
                                       Style="{StaticResource GroupAtExampleAreaStyle}">
                                     <Label Style="{StaticResource SliderMinMaxLabelStyle}"
                                            Text="{Binding Source={x:Reference offsetYSlider}, Path=Minimum, Mode=TwoWay}" />
-                                    <Slider x:Name="offsetYSlider"
-                                            Grid.Column="1"
-                                            Style="{StaticResource BaseSliderStyle}"
-                                            Value="{Binding OffSetY}"
-                                            Minimum="-20"
-                                            Maximum="20"
-                                            AutomationId="offsetYSlider" />
+                                    <telerik:RadSlider x:Name="offsetYSlider"
+                                                       Grid.Column="1"
+                                                       Style="{StaticResource BadgeBaseSliderStyle}"
+                                                       Value="{Binding OffSetY, Mode=TwoWay}"
+                                                       Minimum="-20"
+                                                       Maximum="20"
+                                                       AutomationId="offsetYSlider" />
                                     <Label Grid.Column="2"
                                            Style="{StaticResource SliderMinMaxLabelStyle}"
                                            Text="{Binding Source={x:Reference offsetYSlider}, Path=Maximum, Mode=TwoWay}" />
                                 </Grid>
                             </VerticalStackLayout>
-                            
                         </Grid>
 
                         <Label Text="Animation"
@@ -268,13 +267,13 @@
                               Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Style="{StaticResource HorizontalGroupLabelAtStartStyle}"
                                    Text="{Binding Source={x:Reference sliderAnimationDuration}, Path=Minimum, Mode=TwoWay}" />
-                            <Slider x:Name="sliderAnimationDuration"
-                                    Grid.Column="1"
-                                    Style="{StaticResource BaseSliderStyle}"
-                                    Value="{Binding BadgeAnimationDuration, Mode=TwoWay}"
-                                    Minimum="300"
-                                    Maximum="3000"
-                                    AutomationId="sliderAnimationDuration" />
+                            <telerik:RadSlider x:Name="sliderAnimationDuration"
+                                               Grid.Column="1"
+                                               Style="{StaticResource BadgeBaseSliderStyle}"
+                                               Value="{Binding BadgeAnimationDuration, Mode=TwoWay}"
+                                               Minimum="300"
+                                               Maximum="3000"
+                                               AutomationId="sliderAnimationDuration" />
                             <Label Grid.Column="2"
                                    Style="{StaticResource HorizontalGroupLabelAtEndStyle}"
                                    Text="{Binding Source={x:Reference sliderAnimationDuration}, Path=Maximum, Mode=TwoWay}" />

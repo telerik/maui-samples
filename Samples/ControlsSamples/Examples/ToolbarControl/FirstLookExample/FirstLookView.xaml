@@ -117,8 +117,9 @@
               Margin="0, 28, 0, 0">
             <telerik:RadBorder IsVisible="{OnPlatform Default=False, MacCatalyst=True}"
                                BorderThickness="1"
-                               BorderColor="{StaticResource DefaultBorderColor}" />
-            <Editor BackgroundColor="Transparent"
+                               BorderColor="{DynamicResource DefaultBorderColor}" />
+            <Editor BackgroundColor="{DynamicResource EntryBackgroundColor}"
+                    TextColor="{DynamicResource DefaultTextColor}"
                     Text="{Binding EmailText}" />
         </Grid>
     </Grid>

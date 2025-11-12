@@ -10,13 +10,10 @@ namespace QSF.Examples.AutoCompleteControl.CustomizationExample
         private string name;
         private string tokenImagePath;
         private string suggestionImagePath;
-        private Color tokenTextColor;
-        private Color backgroundColor;
 
         private static readonly Dictionary<JobType, string> typeToTokenImage;
         private static readonly Dictionary<JobType, string> typeToSuggestionImage;
         private static readonly Dictionary<JobType, Color> typeToTextColor;
-        private static readonly Dictionary<JobType, Color> typeToBackgroundColor;
 
         static JobTitle()
         {
@@ -40,13 +37,6 @@ namespace QSF.Examples.AutoCompleteControl.CustomizationExample
                 { JobType.Developer, Color.FromArgb("#04A2AA")},
                 { JobType.Manager, Color.FromArgb("#FF9040")}
             };
-
-            typeToBackgroundColor = new Dictionary<JobType, Color>()
-            {
-                { JobType.Designer, Color.FromArgb("#F6F1F7")},
-                { JobType.Developer, Color.FromArgb("#E3F4F5")},
-                { JobType.Manager, Color.FromArgb("#FFF4EB")}
-            };
         }
 
         public JobTitle(JobType jobType)
@@ -64,7 +54,6 @@ namespace QSF.Examples.AutoCompleteControl.CustomizationExample
             get => this.name;
             set => UpdateValue(ref this.name, value);
         }
-
 
         public JobType JobType
         {
@@ -93,35 +82,24 @@ namespace QSF.Examples.AutoCompleteControl.CustomizationExample
                 {
                     this.suggestionImagePath = typeToSuggestionImage[this.jobType];
                 }
-
                 return this.suggestionImagePath;
             }
         }
 
-        public Color TextColor
+        public Color TextColor => typeToTextColor[this.jobType];
+
+        public Color BackgroundColor => GetBackgroundColors()[this.jobType];
+
+        private static Dictionary<JobType, Color> GetBackgroundColors()
         {
-            get
+            bool isDarkTheme = ThemingViewModel.IsDarkMode;
+
+            return new Dictionary<JobType, Color>()
             {
-                if (this.tokenTextColor == null)
-                {
-                    this.tokenTextColor = typeToTextColor[this.jobType];
-                }
-
-                return this.tokenTextColor;
-            }
-        }
-
-        public Color BackgroundColor
-        {
-            get
-            {
-                if (this.backgroundColor == null)
-                {
-                    this.backgroundColor = typeToBackgroundColor[this.jobType];
-                }
-
-                return this.backgroundColor;
-            }
+                {JobType.Designer, isDarkTheme ? Color.FromArgb("#2E1E47") : Color.FromArgb("#F6F1F7")},
+                {JobType.Developer,isDarkTheme ? Color.FromArgb("#012C2E") : Color.FromArgb("#E3F4F5")},
+                {JobType.Manager, isDarkTheme ? Color.FromArgb("#3B2415") : Color.FromArgb("#FFF4EB")}
+            };
         }
     }
 }

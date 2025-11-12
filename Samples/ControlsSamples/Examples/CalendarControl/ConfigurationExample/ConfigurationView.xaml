@@ -12,7 +12,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <styles:ConfigurationViewResources />
             </ResourceDictionary.MergedDictionaries>
-            <Style TargetType="telerik:RadComboBox">
+            <Style TargetType="telerik:RadComboBox" BasedOn="{StaticResource RadComboBoxStyle}">
                 <Setter Property="HorizontalOptions" Value="Fill" />
                 <Setter Property="IsClearButtonVisible" Value="False" />
             </Style>
@@ -65,26 +65,56 @@
                             <Label Text="First Day of Week:"
                                    Style="{StaticResource VerticalGroupLabelStyle}" />
                             <telerik:RadComboBox ItemsSource="{Binding DaysOfWeek}"
-                                                 SelectedItem="{Binding FirstDayOfWeek, Mode=TwoWay}" 
+                                                 SelectedItem="{Binding FirstDayOfWeek, Mode=TwoWay}"
                                                  AutomationId="firstDayOfWeekComboBox" />
                         </VerticalStackLayout>
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="Display Day Names:"
                                    Style="{StaticResource VerticalGroupLabelStyle}" />
-                            <Switch VerticalOptions="Center"
-                                    HorizontalOptions="Start"
-                                    IsToggled="{Binding AreDayNamesVisible}"
-                                    Margin="{OnPlatform Default=0, WinUI='0, -2, 0, 0'}" 
-                                    AutomationId="displayDayNamesSwitch" />
+                            <Grid>
+                                <Switch x:Name="displayDayNamesSwitch"
+                                        VerticalOptions="Center"
+                                        HorizontalOptions="Start"
+                                        IsToggled="{Binding AreDayNamesVisible}"
+                                        Style="{StaticResource SwitchStyle}"
+                                        Margin="{OnPlatform Default=0, WinUI='0, -2, 0, 0'}"
+                                        AutomationId="displayDayNamesSwitch" />
+                                <OnPlatform x:TypeArguments="View">
+                                    <On Platform="WinUI">
+                                        <telerik:RadBorder HeightRequest="20"
+                                                           WidthRequest="40"
+                                                           CornerRadius="10"
+                                                           BorderColor="{Binding OnColor, Source={x:Reference displayDayNamesSwitch}}"
+                                                           BorderThickness="1"
+                                                           HorizontalOptions="Start"
+                                                           VerticalOptions="Center" />
+                                    </On>
+                                </OnPlatform>
+                            </Grid>
                         </VerticalStackLayout>
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="Display Out of Scope Dates:"
                                    Style="{StaticResource VerticalGroupLabelStyle}" />
-                            <Switch VerticalOptions="Center"
-                                    HorizontalOptions="Start"
-                                    IsToggled="{Binding IsOutOfScopeVisible}"
-                                    Margin="{OnPlatform Default=0, WinUI='0, -2, 0, 0'}" 
-                                    AutomationId="displayOutOfScopeDaysSwitch" />
+                            <Grid>
+                                <Switch x:Name="displayOutOfScopeDaysSwitch"
+                                        VerticalOptions="Center"
+                                        HorizontalOptions="Start"
+                                        IsToggled="{Binding IsOutOfScopeVisible}"
+                                        Style="{StaticResource SwitchStyle}"
+                                        Margin="{OnPlatform Default=0, WinUI='0, -2, 0, 0'}"
+                                        AutomationId="displayOutOfScopeDaysSwitch" />
+                                <OnPlatform x:TypeArguments="View">
+                                    <On Platform="WinUI">
+                                        <telerik:RadBorder HeightRequest="20"
+                                                           WidthRequest="40"
+                                                           CornerRadius="10"
+                                                           BorderColor="{Binding OnColor, Source={x:Reference displayOutOfScopeDaysSwitch}}"
+                                                           BorderThickness="1"
+                                                           HorizontalOptions="Start"
+                                                           VerticalOptions="Center" />
+                                    </On>
+                                </OnPlatform>
+                            </Grid>
                         </VerticalStackLayout>
                     </VerticalStackLayout>
                     <VerticalStackLayout Grid.Column="{OnIdiom Default=1, Phone=0}"
@@ -94,28 +124,28 @@
                                    Style="{StaticResource VerticalGroupLabelStyle}" />
                             <telerik:RadComboBox x:Name="displayModeCombo"
                                                  ItemsSource="{Binding DisplayModes}"
-                                                 SelectedItem="{Binding DisplayMode, Mode=TwoWay}" 
+                                                 SelectedItem="{Binding DisplayMode, Mode=TwoWay}"
                                                  AutomationId="displayModeComboBox" />
                         </VerticalStackLayout>
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="Selection Mode:"
                                    Style="{StaticResource VerticalGroupLabelStyle}" />
                             <telerik:RadComboBox ItemsSource="{Binding SelectionModes}"
-                                                 SelectedItem="{Binding SelectionMode, Mode=TwoWay}" 
+                                                 SelectedItem="{Binding SelectionMode, Mode=TwoWay}"
                                                  AutomationId="selectionModeComboBox" />
                         </VerticalStackLayout>
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="Interaction Mode:"
                                    Style="{StaticResource VerticalGroupLabelStyle}" />
                             <telerik:RadComboBox ItemsSource="{Binding InteractionModes}"
-                                                 SelectedItem="{Binding InteractionMode, Mode=TwoWay}" 
+                                                 SelectedItem="{Binding InteractionMode, Mode=TwoWay}"
                                                  AutomationId="interactionModeComboBox" />
                         </VerticalStackLayout>
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="Navigation Direction:"
                                    Style="{StaticResource VerticalGroupLabelStyle}" />
                             <telerik:RadComboBox ItemsSource="{Binding NavigationDirections}"
-                                                 SelectedItem="{Binding NavigationDirection, Mode=TwoWay}" 
+                                                 SelectedItem="{Binding NavigationDirection, Mode=TwoWay}"
                                                  AutomationId="navigationComboBox" />
                         </VerticalStackLayout>
                     </VerticalStackLayout>

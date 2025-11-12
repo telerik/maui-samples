@@ -5,23 +5,21 @@
              x:Class="QSF.Examples.RatingControl.RestaurantReviewExample.RestaurantReviewView">
     <ContentView.Resources>
         <ResourceDictionary>
+            <Color x:Key="MainBorderColor">#66A5A5A5</Color>
             <Color x:Key="MainAccentColor">#97979C</Color>
-            <Color x:Key="MainTextColor">Black</Color>
             <Color x:Key="PrimaryGaugeFill">#97979C</Color>
             <Color x:Key="SecondaryGaugeFill">#EDEDED</Color>
         </ResourceDictionary>
-        <Style TargetType="Label">
-            <Setter Property="TextColor" Value="Black"/>
-        </Style>
+        <Style TargetType="Label" BasedOn="{StaticResource BaseLabelStyle}" />
     </ContentView.Resources>
     <ScrollView>
-        <Grid BackgroundColor="White">
+        <Grid>
             <Grid RowSpacing="0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="220" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                <telerik:RadBorder BackgroundColor="#F8F8F8" HeightRequest="120" VerticalOptions="Start">
+                <telerik:RadBorder BackgroundColor="{DynamicResource WrapperBackgroundColor}" HeightRequest="120" VerticalOptions="Start">
                     <Image Source="ratingrestaurantlogo.png" WidthRequest="76" HeightRequest="76"/>
                 </telerik:RadBorder>
                 <Grid Grid.RowSpan="2"
@@ -46,13 +44,12 @@
                             <Label FontAttributes="Bold"
                                    FontSize="24"
                                    HorizontalOptions="End"
-                                   Text="3.9"
-                                   TextColor="{StaticResource MainTextColor}" />
+                                   Text="3.9" />
                             <StackLayout Orientation="Horizontal">
                                 <telerik:RadShapeRating Margin="0,3,0,0"
                                                         HeightRequest="10"
                                                         IsReadOnly="True"
-                                                        ItemFill="White"
+                                                        ItemFill="{DynamicResource TertiaryBackgroundColor}"
                                                         ItemStroke="#FF9500"
                                                         ItemStrokeThickness="1"
                                                         ItemsSpacing="0"
@@ -80,7 +77,7 @@
                                  Margin="0,8,0,16"
                                  HorizontalOptions="FillAndExpand"
                                  VerticalOptions="FillAndExpand"
-                                 Color="#D6D5D9" />
+                                 Color="{StaticResource MainBorderColor}" />
                         <Grid Grid.Column="2">
                             <StackLayout Margin="12, 40, 0, 0">
                                 <Grid ColumnDefinitions="Auto, *"
@@ -268,22 +265,21 @@
                                  BackgroundColor="Transparent">
                         <BoxView HeightRequest="1"
                                  HorizontalOptions="FillAndExpand"
-                                 Color="#D6D5D9" />
+                                 Color="{StaticResource MainBorderColor}" />
                         <Label Margin="0,8,0,8"
                                Text="Recent Reviews"
                                TextColor="#CB212E"
                                FontSize="18"/>
                         <BoxView HeightRequest="1"
                                  HorizontalOptions="FillAndExpand"
-                                 Color="#D6D5D9" />
+                                 Color="{StaticResource MainBorderColor}" />
                     </StackLayout>
                     <Grid Grid.Row="3"
                           Margin="0,16,0,0"
                           HorizontalOptions="Start">
                         <StackLayout Spacing="3">
                             <Label FontSize="20"
-                                   Text="1. Always excellent food and service"
-                                   TextColor="{StaticResource MainTextColor}" />
+                                   Text="1. Always excellent food and service" />
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -307,16 +303,14 @@
                                 <StackLayout Spacing="2" 
                                              Grid.Column="1">
                                     <Label FontSize="14"
-                                           Text="By Daniela Kamenova, Feb 18, 2022"
-                                           TextColor="{StaticResource MainTextColor}" />
+                                           Text="By Daniela Kamenova, Feb 18, 2022"/>
                                     <Label Text="It was really nice dinner. The service was good and the quality of the pasta is awesome. Good list of ..." />
                                 </StackLayout>
 
                             </Grid>
                             <Label FontSize="20"
                                    Text="2. Quite the good food"
-                                   Margin="0, 24, 0, 0"
-                                   TextColor="{StaticResource MainTextColor}" />
+                                   Margin="0, 24, 0, 0" />
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -340,8 +334,7 @@
                                 <StackLayout Spacing="2" 
                                              Grid.Column="1">
                                     <Label FontSize="14"
-                                           Text="By Ivan Ivanov, Mar 11, 2022"
-                                           TextColor="{StaticResource MainTextColor}" />
+                                           Text="By Ivan Ivanov, Mar 11, 2022" />
                                     <Label Text="The food was delicious and the service was extraordinary" />
                                 </StackLayout>
                             </Grid>

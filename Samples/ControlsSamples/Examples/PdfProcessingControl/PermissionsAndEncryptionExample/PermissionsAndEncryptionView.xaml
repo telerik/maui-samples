@@ -8,7 +8,7 @@
     <ContentView.Resources>
         <Style x:Key="WrapperBorderStyle" TargetType="telerik:RadBorder">
             <Setter Property="Margin" Value="10" />
-            <Setter Property="BorderColor" Value="{StaticResource DefaultBorderColor}" />
+            <Setter Property="BorderColor" Value="{DynamicResource DefaultBorderColor}" />
             <Setter Property="BorderThickness" Value="1" />
             <Setter Property="Padding" Value="{OnIdiom Default='10, 5, 15, 5', Desktop=10}" />
         </Style>
@@ -17,7 +17,7 @@
             <Setter Property="VerticalOptions" Value="Center" />
             <Setter Property="HorizontalOptions" Value="Start" />
         </Style>
-        <Style TargetType="telerik:RadComboBox">
+        <Style TargetType="telerik:RadComboBox" BasedOn="{StaticResource RadComboBoxStyle}">
             <Setter Property="MinimumWidthRequest" Value="{OnIdiom Default=230, Desktop=310}" />
             <Setter Property="IsEnabled" Value="{Binding IsEditingRestricted}" />
             <Setter Property="HorizontalOptions" Value="{OnIdiom Default=Fill, Desktop=Start}" />

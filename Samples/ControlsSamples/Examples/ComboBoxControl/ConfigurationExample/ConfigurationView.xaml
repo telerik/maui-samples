@@ -15,7 +15,7 @@
                 <Setter Property="Opacity" Value="0.6" />
                 <Setter Property="VerticalOptions" Value="Center" />
             </Style>
-            <Style TargetType="Slider">
+            <Style TargetType="telerik:RadSlider" BasedOn="{StaticResource RadSliderStyle}">
                 <Setter Property="Margin" Value="8, 0" />
                 <Setter Property="HorizontalOptions" Value="Fill" />
                 <Setter Property="VerticalOptions" Value="Center" />
@@ -66,30 +66,75 @@
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="Is Editable:"
                                    Style="{StaticResource VerticalGroupLabelStyle}" />
-                            <Switch VerticalOptions="Center"
-                                    HorizontalOptions="Start"
-                                    IsToggled="{Binding IsEditable}"
-                                    Margin="{OnPlatform Default=0, WinUI='0, -2, 0, 0'}" 
-                                    AutomationId="isEditableSwitch" />
+                            <Grid>
+                                <Switch x:Name="isEditableSwitch"
+                                        VerticalOptions="Center"
+                                        HorizontalOptions="Start"
+                                        IsToggled="{Binding IsEditable}"
+                                        Margin="{OnPlatform Default=0, WinUI='0, -2, 0, 0'}"
+                                        Style="{DynamicResource SwitchStyle}"
+                                        AutomationId="isEditableSwitch" />
+                                <OnPlatform x:TypeArguments="View">
+                                    <On Platform="WinUI">
+                                        <telerik:RadBorder HeightRequest="20"
+                                                           WidthRequest="40"
+                                                           CornerRadius="10"
+                                                           BorderColor="{Binding OnColor, Source={x:Reference isEditableSwitch}}"
+                                                           BorderThickness="1"
+                                                           HorizontalOptions="Start"
+                                                           VerticalOptions="Center" />
+                                    </On>
+                                </OnPlatform>
+                            </Grid>
                         </VerticalStackLayout>
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="Is Filtering Enabled:"
                                    Style="{StaticResource VerticalGroupLabelStyle}" />
-                            <Switch VerticalOptions="Center"
-                                    HorizontalOptions="Start"
-                                    IsEnabled="{Binding IsEditable}"
-                                    IsToggled="{Binding IsFilteringEnabled}"
-                                    Margin="{OnPlatform Default=0, WinUI='0, -2, 0, 0'}" 
-                                    AutomationId="isFilteringEnabledSwitch" />
+                            <Grid>
+                                <Switch x:Name="isFilteringEnabledSwitch"
+                                        VerticalOptions="Center"
+                                        HorizontalOptions="Start"
+                                        IsEnabled="{Binding IsEditable}"
+                                        IsToggled="{Binding IsFilteringEnabled}"
+                                        Margin="{OnPlatform Default=0, WinUI='0, -2, 0, 0'}"
+                                        Style="{DynamicResource SwitchStyle}"
+                                        AutomationId="isFilteringEnabledSwitch" />
+                                <OnPlatform x:TypeArguments="View">
+                                    <On Platform="WinUI">
+                                        <telerik:RadBorder HeightRequest="20"
+                                                           WidthRequest="40"
+                                                           CornerRadius="10"
+                                                           BorderColor="{Binding OnColor, Source={x:Reference isFilteringEnabledSwitch}}"
+                                                           BorderThickness="1"
+                                                           HorizontalOptions="Start"
+                                                           VerticalOptions="Center" />
+                                    </On>
+                                </OnPlatform>
+                            </Grid>
                         </VerticalStackLayout>
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="Show Clear Button:"
                                    Style="{StaticResource VerticalGroupLabelStyle}" />
-                            <Switch VerticalOptions="Center"
-                                    HorizontalOptions="Start"
-                                    IsToggled="{Binding IsClearButtonVisible}"
-                                    Margin="{OnPlatform Default=0, WinUI='0, -2, 0, 0'}" 
-                                    AutomationId="clearButtonVisibilitySwitch" />
+                            <Grid>
+                                <Switch x:Name="clearButtonVisibilitySwitch"
+                                        VerticalOptions="Center"
+                                        HorizontalOptions="Start"
+                                        IsToggled="{Binding IsClearButtonVisible}"
+                                        Margin="{OnPlatform Default=0, WinUI='0, -2, 0, 0'}"
+                                        Style="{StaticResource SwitchStyle}"
+                                        AutomationId="clearButtonVisibilitySwitch" />
+                                    <OnPlatform x:TypeArguments="View">
+                                        <On Platform="WinUI">
+                                            <telerik:RadBorder HeightRequest="20"
+                                                               WidthRequest="40"
+                                                               CornerRadius="10"
+                                                               BorderColor="{Binding OnColor, Source={x:Reference clearButtonVisibilitySwitch}}"
+                                                               BorderThickness="1"
+                                                               HorizontalOptions="Start"
+                                                               VerticalOptions="Center" />
+                                        </On>
+                                    </OnPlatform>
+                            </Grid>
                         </VerticalStackLayout>
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="Placeholder:"
@@ -129,36 +174,82 @@
                         </VerticalStackLayout>
                     </VerticalStackLayout>
                     <VerticalStackLayout Grid.Column="{OnIdiom Default=1, Phone=0}"
-                                        Grid.Row="{OnIdiom Default=0, Phone=1}">
+                                         Grid.Row="{OnIdiom Default=0, Phone=1}">
                         <Label Text="DropDown Settings"
                                Style="{StaticResource SectionHeadingLabelStyle}" />
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="Is Open:" 
                                    Style="{StaticResource VerticalGroupLabelStyle}" />
-                            <Switch VerticalOptions="Center"
-                                    HorizontalOptions="Start"
-                                    IsToggled="{Binding IsDropDownOpen}"
-                                    Margin="{OnPlatform Default=0, WinUI='0, -2, 0, 0'}" 
-                                    AutomationId="isOpenSwitch" />
+                            <Grid>
+                                <Switch x:Name="isOpenSwitch"
+                                        VerticalOptions="Center"
+                                        HorizontalOptions="Start"
+                                        IsToggled="{Binding IsDropDownOpen}"
+                                        Margin="{OnPlatform Default=0, WinUI='0, -2, 0, 0'}"
+                                        Style="{DynamicResource SwitchStyle}"
+                                        AutomationId="isOpenSwitch" />
+                                <OnPlatform x:TypeArguments="View">
+                                    <On Platform="WinUI">
+                                        <telerik:RadBorder HeightRequest="20"
+                                                           WidthRequest="40"
+                                                           CornerRadius="10"
+                                                           BorderColor="{Binding OnColor, Source={x:Reference isOpenSwitch}}"
+                                                           BorderThickness="1"
+                                                           HorizontalOptions="Start"
+                                                           VerticalOptions="Center" />
+                                    </On>
+                                </OnPlatform>
+                            </Grid>
                         </VerticalStackLayout>
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="Open On Focus:"
                                    Style="{StaticResource VerticalGroupLabelStyle}" />
-                            <Switch VerticalOptions="Center"
-                                    HorizontalOptions="Start"
-                                    IsToggled="{Binding OpenOnFocus}"
-                                    IsEnabled="{Binding IsEditable}"
-                                    Margin="{OnPlatform Default=0, WinUI='0, -2, 0, 0'}" 
-                                    AutomationId="openOnFocusSwitch" />
+                            <Grid>
+                                <Switch x:Name="openOnFocusSwitch" 
+                                        VerticalOptions="Center"
+                                        HorizontalOptions="Start"
+                                        IsToggled="{Binding OpenOnFocus}"
+                                        IsEnabled="{Binding IsEditable}"
+                                        Margin="{OnPlatform Default=0, WinUI='0, -2, 0, 0'}"
+                                        Style="{DynamicResource SwitchStyle}"
+                                        AutomationId="openOnFocusSwitch" />
+                                <OnPlatform x:TypeArguments="View">
+                                    <On Platform="WinUI">
+                                        <telerik:RadBorder HeightRequest="20"
+                                                           WidthRequest="40"
+                                                           CornerRadius="10"
+                                                           IsVisible="{Binding IsToggled, Source={x:Reference openOnFocusSwitch}, Converter={StaticResource InvertedBooleanConverter}}"
+                                                           BorderColor="{Binding OnColor, Source={x:Reference openOnFocusSwitch}}"
+                                                           BorderThickness="1"
+                                                           HorizontalOptions="Start"
+                                                           VerticalOptions="Center" />
+                                    </On>
+                                </OnPlatform>
+                            </Grid>
                         </VerticalStackLayout>
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="Close On Selection:"
                                    Style="{StaticResource VerticalGroupLabelStyle}" />
-                            <Switch VerticalOptions="Center"
-                                    HorizontalOptions="Start"
-                                    IsToggled="{Binding IsDropDownClosedOnSelection}"
-                                    Margin="{OnPlatform Default=0, WinUI='0, -2, 0, 0'}" 
-                                    AutomationId="closeOnSelectionSwitch" />
+                            <Grid>
+                                <Switch x:Name="closeOnSelectionSwitch"
+                                        VerticalOptions="Center"
+                                        HorizontalOptions="Start"
+                                        IsToggled="{Binding IsDropDownClosedOnSelection}"
+                                        Margin="{OnPlatform Default=0, WinUI='0, -2, 0, 0'}"
+                                        Style="{DynamicResource SwitchStyle}"
+                                        AutomationId="closeOnSelectionSwitch" />
+                                <OnPlatform x:TypeArguments="View">
+                                    <On Platform="WinUI">
+                                        <telerik:RadBorder HeightRequest="20"
+                                                           WidthRequest="40"
+                                                           CornerRadius="10"
+                                                           BorderColor="{Binding OnColor, Source={x:Reference closeOnSelectionSwitch}}"
+                                                           BorderThickness="1"
+                                                           HorizontalOptions="Start"
+                                                           VerticalOptions="Center" />
+                                    </On>
+                                </OnPlatform>
+                            </Grid>
                         </VerticalStackLayout>
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="Width:"
@@ -166,12 +257,12 @@
                             <Grid ColumnDefinitions="Auto, *, Auto">
                                 <Label Style="{StaticResource SliderMinMaxLabelStyle}"
                                        Text="{Binding Minimum, Source={x:Reference dropDownWidthSlider}}" />
-                                <Slider x:Name="dropDownWidthSlider"
-                                        Grid.Column="1"
-                                        Minimum="-1"
-                                        Maximum="{OnIdiom Phone=500, Default=800}"
-                                        Value="-1" 
-                                        AutomationId="widthSlider" />
+                                <telerik:RadSlider x:Name="dropDownWidthSlider"
+                                                   Grid.Column="1"
+                                                   Minimum="-1"
+                                                   Maximum="{OnIdiom Phone=500, Default=800}"
+                                                   Value="-1" 
+                                                   AutomationId="widthSlider" />
                                 <Label Grid.Column="2"
                                        Style="{StaticResource SliderMinMaxLabelStyle}"
                                        Text="{Binding Maximum, Source={x:Reference dropDownWidthSlider}}" />
@@ -183,11 +274,11 @@
                             <Grid ColumnDefinitions="Auto, *, Auto">
                                 <Label Style="{StaticResource SliderMinMaxLabelStyle}"
                                        Text="{Binding Minimum, Source={x:Reference dropDownMaxHeightSlider}}" />
-                                <Slider x:Name="dropDownMaxHeightSlider"
-                                        Grid.Column="1"
-                                        Maximum="300"
-                                        Value="{Binding DropDownMaxHeight, Source={x:Reference comboBox}, Mode=TwoWay}"
-                                        AutomationId="maxHeightSlider" />
+                                <telerik:RadSlider x:Name="dropDownMaxHeightSlider"
+                                                   Grid.Column="1"
+                                                   Maximum="300"
+                                                   Value="{Binding DropDownMaxHeight, Source={x:Reference comboBox}, Mode=TwoWay}"
+                                                   AutomationId="maxHeightSlider" />
                                 <Label Grid.Column="2"
                                        Style="{StaticResource SliderMinMaxLabelStyle}"
                                        Text="{Binding Maximum, Source={x:Reference dropDownMaxHeightSlider}}" />
@@ -199,11 +290,11 @@
                             <Grid ColumnDefinitions="Auto, *, Auto">
                                 <Label Style="{StaticResource SliderMinMaxLabelStyle}"
                                        Text="{Binding Minimum, Source={x:Reference dropDownVerticalOffsetSlider}}" />
-                                <Slider x:Name="dropDownVerticalOffsetSlider"
-                                        Grid.Column="1"
-                                        Maximum="24"
-                                        Value="{OnPlatform Default=6, Android=0, WinUI=8}" 
-                                        AutomationId="verticalOffsetSlider" />
+                                <telerik:RadSlider x:Name="dropDownVerticalOffsetSlider"
+                                                   Grid.Column="1"
+                                                   Maximum="24"
+                                                   Value="{OnPlatform Default=6, Android=0, WinUI=8}" 
+                                                   AutomationId="verticalOffsetSlider" />
                                 <Label Grid.Column="2"
                                        Style="{StaticResource SliderMinMaxLabelStyle}"
                                        Text="{Binding Maximum, Source={x:Reference dropDownVerticalOffsetSlider}}" />

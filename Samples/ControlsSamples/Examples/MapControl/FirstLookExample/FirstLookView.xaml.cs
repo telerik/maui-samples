@@ -13,8 +13,13 @@ namespace QSF.Examples.MapControl.FirstLookExample
 
             var source = MapSource.FromResource("QSF.Examples.MapControl.FirstLookExample.usa.shp", typeof(FirstLookView));
             var dataSource = MapSource.FromResource("QSF.Examples.MapControl.FirstLookExample.usa.dbf", typeof(FirstLookView));
-            this.shapeReader.Source = source;
-            this.shapeReader.DataSource = dataSource;
+
+            // Defer map initialization to ensure layout is complete and child bounds are valid in order to zoom to best view.
+            this.Dispatcher.Dispatch(() =>
+            {
+                this.shapeReader.Source = source;
+                this.shapeReader.DataSource = dataSource;
+            });
 #if WINDOWS
             this.map.WidthRequest = 500;
 #endif

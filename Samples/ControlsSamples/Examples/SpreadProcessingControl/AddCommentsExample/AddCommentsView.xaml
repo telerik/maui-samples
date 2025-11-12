@@ -11,7 +11,7 @@
                 <Setter Property="VerticalOptions" Value="Center" />
                 <Setter Property="Margin" Value="0, 0, 0, 12" />
             </Style>
-            <Style TargetType="telerik:RadEntry">
+            <Style TargetType="telerik:RadEntry" BasedOn="{StaticResource RadEntryStyle}">
                 <Setter Property="HorizontalTextAlignment" Value="Center" />
                 <Setter Property="ReserveSpaceForErrorView" Value="False" />
                 <Setter Property="Margin" Value="0, 0, 0, 24" />

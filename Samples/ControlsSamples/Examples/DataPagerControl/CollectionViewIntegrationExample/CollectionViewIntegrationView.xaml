@@ -7,10 +7,7 @@
              Padding="{OnIdiom Default='16, 24', Desktop='16, 20'}">
     <ContentView.Resources>
         <Style TargetType="Label" BasedOn="{StaticResource BaseLabelStyle}" />
-        <Style TargetType="telerik:RadCollectionViewItemView">
-            <Setter Property="BorderThickness" Value="0, 0, 0, 1" />
-            <Setter Property="BorderColor" Value="{StaticResource DefaultBorderColor}" />
-            <Setter Property="CornerRadius" Value="0" />
+        <Style x:Key="CollectionViewItemStyle" TargetType="telerik:RadCollectionViewItemView" BasedOn="{StaticResource CollectionViewItemStyle}">
             <Setter Property="VisualStateManager.VisualStateGroups">
                 <VisualStateGroupList>
                     <VisualStateGroup Name="CommonStates">
@@ -87,7 +84,8 @@
             </Grid>
             <telerik:RadCollectionView x:Name="collectionView"
                                        Margin="0,15"
-                                       Grid.Row="1"
+                                       Grid.Row="1" 
+                                       ItemViewStyle="{StaticResource CollectionViewItemStyle}"
                                        ItemsSource="{Binding PagedSource, Source={x:Reference dataPager}}"
                                        ItemTemplate="{OnPlatform Default={StaticResource TechNewsTemplateMobile}, MacCatalyst={StaticResource TechNewsTemplateDesktop}, WinUI={StaticResource TechNewsTemplateDesktop}}"
                                        SelectionMode="None"  

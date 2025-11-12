@@ -16,7 +16,7 @@ public partial class ConfigurationView : ContentView
 
     private void OnEllipsisModeComboBoxSelectionChanged(object sender, ComboBoxSelectionChangedEventArgs e)
     {
-        if (sender is RadComboBox comboBox)
+        if (sender is RadComboBox comboBox && comboBox.SelectedItem != null)
         {
             if ((DataPagerEllipsisMode)comboBox.SelectedItem != DataPagerEllipsisMode.None)
             {

@@ -19,13 +19,13 @@
             <Setter Property="CornerRadius" Value="3" />
         </Style>
         <Style x:Key="SelectedExampleItemStyle" TargetType="telerik:NonVirtualizedItemsControlItemContainer">
-            <Setter Property="BackgroundColor" Value="{StaticResource ApplicationAccentColor}" />
+            <Setter Property="BackgroundColor" Value="{DynamicResource ApplicationAccentColor}" />
         </Style>
         <DataTemplate x:Key="ExampleItemTemplate">
             <VerticalStackLayout>
                 <BoxView HeightRequest="4"
-                         BackgroundColor="{StaticResource ItemBackgroundColor}" />
-                <views:NavigationItemView BackgroundColor="{StaticResource ItemBackgroundColor}"
+                         BackgroundColor="{DynamicResource ItemBackgroundColor}" />
+                <views:NavigationItemView BackgroundColor="{DynamicResource ItemBackgroundColor}"
                                           Header="{Binding DisplayName}"
                                           Icon="{Binding Icon}"
                                           Status="{Binding Status}"
@@ -33,12 +33,12 @@
                     <views:NavigationItemView.ControlTemplate>
                         <ControlTemplate>
                             <HorizontalStackLayout>
-                                <telerik:RadBorder BackgroundColor="{StaticResource DefaultBackgroundColor}"
+                                <telerik:RadBorder BackgroundColor="{DynamicResource IconBackgroundColor}"
                                                    Margin="6, 4, 4, 4"
                                                    CornerRadius="4">
                                     <Label FontFamily="TelerikControlsIcons"
                                            Text="{TemplateBinding Icon}"
-                                           TextColor="{StaticResource AccentColor8}"
+                                           TextColor="{DynamicResource AccentColor8}"
                                            FontSize="24"
                                            Margin="4"
                                            HorizontalOptions="Center"
@@ -62,7 +62,7 @@
                     </views:NavigationItemView.ControlTemplate>
                 </views:NavigationItemView>
                 <BoxView HeightRequest="4"
-                         BackgroundColor="{StaticResource ItemBackgroundColor}" />
+                         BackgroundColor="{DynamicResource ItemBackgroundColor}" />
             </VerticalStackLayout>
         </DataTemplate>
         <Style x:Key="ExampleHeaderStyle" TargetType="Label">
@@ -73,155 +73,64 @@
         </Style>
         <Style x:Key="ExampleBorderStyle" TargetType="telerik:RadBorder" BasedOn="{StaticResource SecondLevelBorderStyle}">
             <Setter Property="BackgroundColor" Value="{DynamicResource RadAppSurfaceColor}" />
-            <Setter Property="BorderColor" Value="{OnPlatform Default={StaticResource DefaultBorderColor}, WinUI={StaticResource DefaultBorderColorWinUI}}" />
+            <Setter Property="BorderColor" Value="{OnPlatform Default={DynamicResource DefaultBorderColor}, WinUI={DynamicResource DefaultBorderColorWinUI}}" />
             <Setter Property="BorderThickness" Value="1" />
         </Style>
-        <Style x:Key="ButtonStyleBase_MacCatalyst" TargetType="telerik:RadButton">
-            <Setter Property="CornerRadius" Value="4" />
-            <Setter Property="ContentLayout" Value="Left, 0" />
-        </Style>
-        <Style x:Key="ButtonStyleBase" TargetType="telerik:RadButton" BasedOn="{OnPlatform MacCatalyst={StaticResource ButtonStyleBase_MacCatalyst}}">
+        <Style x:Key="ButtonStyleBase" TargetType="telerik:RadButton">
             <Setter Property="TextColor" Value="#FFFFFF" />
+            <Setter Property="Background" Value="Transparent" />
             <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="WidthRequest" Value="{OnPlatform MacCatalyst=38, WinUI=32}" />
+            <Setter Property="HeightRequest" Value="{OnPlatform MacCatalyst=38, WinUI=32}" />
+            <Setter Property="CornerRadius" Value="4" />
         </Style>
+
         <Style x:Key="DocumentationButtonStyle" TargetType="telerik:RadButton" BasedOn="{StaticResource ButtonStyleBase}">
-            <Setter Property="BackgroundColor" Value="#0E88F2" />
+            <Setter Property="ToolTipProperties.Text" Value="Documentation" />
+            <Setter Property="ImageSource">
+                <Setter.Value>
+                    <FontImageSource FontFamily="TelerikFontExamples"
+                                     Glyph="&#xe82c;"
+                                     Size="20"
+                                     Color="#FFFFFF" />
+                </Setter.Value>
+            </Setter>
+            <Setter Property="VisualStateManager.VisualStateGroups" Value="{DynamicResource ButtonBaseVisualStates}" />
         </Style>
+
         <Style x:Key="FeedbackButtonStyle" TargetType="telerik:RadButton" BasedOn="{StaticResource ButtonStyleBase}">
-            <Setter Property="BackgroundColor" Value="{StaticResource AccentColor3}" />
+            <Setter Property="ToolTipProperties.Text" Value="Feedback" />
+            <Setter Property="ImageSource">
+                <Setter.Value>
+                    <FontImageSource FontFamily="TelerikFontExamples"
+                                     Glyph="&#xe8be;"
+                                     Size="20"
+                                     Color="#FFFFFF" />
+                </Setter.Value>
+            </Setter>
+            <Setter Property="VisualStateManager.VisualStateGroups" Value="{DynamicResource ButtonBaseVisualStates}" />
         </Style>
+
         <Style x:Key="ViewCodeButtonStyle" TargetType="telerik:RadButton" BasedOn="{StaticResource ButtonStyleBase}">
             <Setter Property="HorizontalOptions" Value="End" />
-            <Setter Property="BackgroundColor" Value="#fff6ea" />
-            <Setter Property="TextColor" Value="Black" />
+            <Setter Property="Background" Value="{DynamicResource ViewCodeButtonBackgroundBrush}" />
+            <Setter Property="TextColor" Value="{DynamicResource DefaultTextColor}" />
+            <Setter Property="WidthRequest" Value="135" />
+            <Setter Property="ImageSource">
+                <Setter.Value>
+                    <FontImageSource FontFamily="TelerikFontExamples"
+                                     Glyph="&#xe8b9;"
+                                     Size="16"
+                                     Color="{DynamicResource DefaultTextColor}" />
+                </Setter.Value>
+            </Setter>
         </Style>
-        <Style x:Key="ThemeSwatchBorderStyle" TargetType="telerik:RadBorder">
-            <Setter Property="WidthRequest" Value="20" />
-            <Setter Property="HeightRequest" Value="20" />
-            <Setter Property="BorderBrush" Value="{StaticResource DefaultBorderColor}" />
-            <Setter Property="BorderThickness" Value="1" />
-            <Setter Property="CornerRadius" Value="4" />
-            <Setter Property="Margin" Value="-4, 0, 0, 0" />
-        </Style>
-        <DataTemplate x:Key="ThemesComboItemTemplate">
-            <telerik:RadComboBoxItem MinimumWidthRequest="{Binding Width, Source={RelativeSource AncestorType={x:Type telerik:RadItemsControl}}}"
-                                     BorderThickness="{OnPlatform Default=0, WinUI=2}"
-                                     CornerRadius="{OnPlatform Default=6, WinUI=4}">
-                <VisualStateManager.VisualStateGroups>
-                    <VisualStateGroupList>
-                        <VisualStateGroup Name="CommonStates">
-                            <VisualState Name="Normal" />
-                            <VisualState Name="MouseOver">
-                                <VisualState.Setters>
-                                    <Setter Property="BackgroundColor" Value="#EEEEEE" />
-                                </VisualState.Setters>
-                            </VisualState>
-                            <VisualState Name="Highlighted">
-                                <VisualState.Setters>
-                                    <Setter Property="BackgroundColor" Value="#EEEEEE" />
-                                </VisualState.Setters>
-                            </VisualState>
-                            <VisualState Name="Disabled" />
-                        </VisualStateGroup>
-                    </VisualStateGroupList>
-                </VisualStateManager.VisualStateGroups>
-                <Grid ColumnDefinitions="Auto, *"
-                      Padding="0, 10">
-                    <HorizontalStackLayout Margin="12, 0">
-                        <telerik:RadBorder ZIndex="3"
-                                           BackgroundColor="{Binding PreviewColors[0]}"
-                                           Style="{StaticResource ThemeSwatchBorderStyle}"
-                                           Margin="0" />
-                        <telerik:RadBorder ZIndex="2"
-                                           BackgroundColor="{Binding PreviewColors[1]}"
-                                           Style="{StaticResource ThemeSwatchBorderStyle}" />
-                        <telerik:RadBorder ZIndex="1"
-                                           BackgroundColor="{Binding PreviewColors[2]}"
-                                           Style="{StaticResource ThemeSwatchBorderStyle}" />
-                    </HorizontalStackLayout>
-                    <Label Grid.Column="1"
-                           Text="{Binding DisplayFullName}"
-                           VerticalOptions="Center" />
-                </Grid>
-            </telerik:RadComboBoxItem>
-        </DataTemplate>
-        <DataTemplate x:Key="ThemesComboSelectedItemTemplate">
-            <telerik:RadComboBoxItem MinimumWidthRequest="{Binding Width, Source={RelativeSource AncestorType={x:Type telerik:RadItemsControl}}}"
-                                     BackgroundColor="#EEEEEE"
-                                     BorderThickness="{OnPlatform Default=0, WinUI=2}"
-                                     CornerRadius="{OnPlatform Default=6, WinUI=4}">
-                <VisualStateManager.VisualStateGroups>
-                    <VisualStateGroupList>
-                        <VisualStateGroup Name="CommonStates">
-                            <VisualState Name="Normal" />
-                            <VisualState Name="MouseOver">
-                                <VisualState.Setters>
-                                    <Setter Property="BackgroundColor" Value="#EEEEEE" />
-                                </VisualState.Setters>
-                            </VisualState>
-                            <VisualState Name="Highlighted">
-                                <VisualState.Setters>
-                                    <Setter Property="BackgroundColor" Value="#EEEEEE" />
-                                </VisualState.Setters>
-                            </VisualState>
-                            <VisualState Name="Disabled" />
-                        </VisualStateGroup>
-                    </VisualStateGroupList>
-                </VisualStateManager.VisualStateGroups>
-                <Grid ColumnDefinitions="Auto, *"
-                      Padding="0, 10">
-                    <HorizontalStackLayout Margin="12, 0">
-                        <telerik:RadBorder ZIndex="3"
-                                           BackgroundColor="{Binding PreviewColors[0]}"
-                                           Style="{StaticResource ThemeSwatchBorderStyle}"
-                                           Margin="0" />
-                        <telerik:RadBorder ZIndex="2"
-                                           BackgroundColor="{Binding PreviewColors[1]}"
-                                           Style="{StaticResource ThemeSwatchBorderStyle}" />
-                        <telerik:RadBorder ZIndex="1"
-                                           BackgroundColor="{Binding PreviewColors[2]}"
-                                           Style="{StaticResource ThemeSwatchBorderStyle}" />
-                    </HorizontalStackLayout>
-                    <Label Grid.Column="1"
-                           Text="{Binding DisplayFullName}"
-                           VerticalOptions="Center" />
-                    <Rectangle Fill="{StaticResource ApplicationAccentColor}"
-                               WidthRequest="4"
-                               HeightRequest="16"
-                               RadiusX="2"
-                               RadiusY="2"
-                               HorizontalOptions="Start"
-                               VerticalOptions="Center" />
-                </Grid>
-            </telerik:RadComboBoxItem>
-        </DataTemplate>
-        <DataTemplate x:Key="ThemesComboSelectionBoxTemplate">
-            <Grid ColumnDefinitions="Auto, *"
-                  ColumnSpacing="10"
-                  Padding="{OnPlatform Default=10, WinUI='10, 8, 10, 10'}">
-                <HorizontalStackLayout>
-                    <telerik:RadBorder ZIndex="3"
-                         BackgroundColor="{Binding PreviewColors[0]}"
-                         Style="{StaticResource ThemeSwatchBorderStyle}"
-                         Margin="0" />
-                    <telerik:RadBorder ZIndex="2"
-                         BackgroundColor="{Binding PreviewColors[1]}"
-                         Style="{StaticResource ThemeSwatchBorderStyle}" />
-                    <telerik:RadBorder ZIndex="1"
-                         BackgroundColor="{Binding PreviewColors[2]}"
-                         Style="{StaticResource ThemeSwatchBorderStyle}" />
-                </HorizontalStackLayout>
-                <Label Grid.Column="1"
-                       Text="{Binding Theme}"
-                       TextColor="{Binding TextColor, Source={RelativeSource AncestorType={x:Type telerik:RadComboBox}}}"
-                       VerticalTextAlignment="Center" />
-            </Grid>
-        </DataTemplate>
     </VisualElement.Resources>
 
     <Grid RowDefinitions="Auto, *">
         <Grid Margin="0, 20">
-            <Label HorizontalOptions="Center" AutomationId="controlNameInExamplesView">
+            <Label HorizontalOptions="Start" AutomationId="controlNameInExamplesView">
                 <Label.FormattedText>
                     <FormattedString>
                         <Span Text="Examples" Style="{StaticResource PageHeaderLabelStyle}" />
@@ -231,25 +140,24 @@
                 </Label.FormattedText>
             </Label>
             <HorizontalStackLayout HorizontalOptions="End"
-                                   Spacing="8">
-                <telerik:RadButton Text="Documentation"
-                                   Command="{Binding NavigateToControlDocumentationCommand}"
+                                   Spacing="16">
+                <telerik:RadButton Command="{Binding NavigateToControlDocumentationCommand}"
                                    CommandParameter="{Binding Name}"
-                                   ImageSource="icon_documentation_white.png"
                                    Style="{StaticResource DocumentationButtonStyle}"
                                    AutomationId="documentationButton" />
-                <telerik:RadButton Text="Feedback"
-                                   Command="{Binding NavigateToControlFeedbackPortalCommand}"
-                                   ImageSource="icon_feedback_white.png"
+                <telerik:RadButton Command="{Binding NavigateToControlFeedbackPortalCommand}"
                                    Style="{StaticResource FeedbackButtonStyle}"
                                    AutomationId="feedBackButton" />
+                <views:ThemingComboBoxView x:Name="themingComboBox"
+                                           BindingContext="{x:Static Member=viewModels:ThemingViewModel.Instance}" 
+                                           VerticalOptions="Center" />
             </HorizontalStackLayout>
         </Grid>
         <Grid ColumnDefinitions="280, 3*"
               Grid.Row="1"
               ColumnSpacing="10">
             <telerik:RadBorder Style="{StaticResource TopLevelBorderStyle}"
-                               BackgroundColor="{StaticResource SecondaryBackgroundColor}"
+                               BackgroundColor="{DynamicResource SecondaryBackgroundColor}"
                                VerticalOptions="Start">
                 <telerik:NonVirtualizedItemsControl x:Name="examplesList"
                                                     ItemTemplate="{StaticResource ExampleItemTemplate}"
@@ -267,55 +175,35 @@
             </telerik:RadBorder>
             <telerik:RadBorder Grid.Column="1"
                                Style="{StaticResource TopLevelBorderStyle}"
-                               Background="{StaticResource SecondaryBackgroundColor}"
+                               BackgroundColor="{DynamicResource SecondaryBackgroundColor}"
                                Padding="12"
                                AutomationId="exampleContent">
                 <Grid RowDefinitions="Auto, *"
                       ColumnDefinitions="3*, 280"
                       RowSpacing="24"
                       ColumnSpacing="12">
-                    <Grid ColumnDefinitions="*, Auto"
-                          ColumnSpacing="12">
-                        <Label Text="{Binding SelectedExample.DisplayName}"
-                               Style="{StaticResource ExampleHeaderStyle}" />
-                        <telerik:RadComboBox x:Name="themesCombo"
-                                             Grid.Column="1"
-                                             IsClearButtonVisible="False"
-                                             IsVisible="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ControlViewModel}}, Path=SelectedExample.IsThemable}"
-                                             ItemsSource="{Binding ThemesCatalog}"
-                                             SelectedItem="{Binding CurrentTheme, Mode=TwoWay}"
-                                             ItemTemplate="{StaticResource ThemesComboItemTemplate}"
-                                             SelectedItemTemplate="{StaticResource ThemesComboSelectedItemTemplate}"
-                                             SelectionBoxTemplate="{StaticResource ThemesComboSelectionBoxTemplate}"
-                                             WidthRequest="{OnPlatform MacCatalyst=180, WinUI=180}"
-                                             HeightRequest="{OnPlatform MacCatalyst=38, WinUI=32}"
-                                             DropDownWidth="250"
-                                             DropDownMaxHeight="{OnPlatform MacCatalyst=270}"
-                                             VerticalOptions="Center" />
-                    </Grid>
-                    <telerik:RadButton Grid.Column="1"
-                                       Text="View Code"
+                    <Label Text="{Binding SelectedExample.DisplayName}"
+                           Style="{StaticResource ExampleHeaderStyle}" />
+                    <telerik:RadButton Text="View Code"
                                        Command="{Binding NavigateToExampleCodeCommand}"
                                        CommandParameter="{Binding SelectedExample}"
-                                       ImageSource="viewcode.png"
                                        Style="{StaticResource ViewCodeButtonStyle}"
-                                       HorizontalOptions="Start" />
+                                       HorizontalOptions="End" />
                     <telerik:RadBorder x:Name="exampleContainer"
-                                       PropertyChanged="ExampleContainerPropertyChanged"
                                        Content="{Binding SelectedExample, Converter={StaticResource ModelToViewConverter}}"
                                        Grid.Row="1"
                                        Style="{StaticResource ExampleBorderStyle}"
                                        AutomationId="exampleContainer">
                         <telerik:RadBorder.Resources>
                             <Style TargetType="Label">
-                                <Setter Property="TextColor" Value="{DynamicResource RadOnAppSurfaceColor}" />
+                                <Setter Property="TextColor" Value="{DynamicResource DefaultTextColor}" />
                             </Style>
                         </telerik:RadBorder.Resources>
                     </telerik:RadBorder>
                     <telerik:RadBorder Grid.Row="1"
                                        Grid.Column="1"
                                        Style="{StaticResource SecondLevelBorderStyle}"
-                                       BackgroundColor="{StaticResource DefaultBackgroundColor}"
+                                       BackgroundColor="{DynamicResource DefaultBackgroundColor}"
                                        BorderThickness="1">
                         <Grid RowDefinitions="Auto, *" Padding="15">
                             <Label Text="{Binding SelectedExample.Description}"

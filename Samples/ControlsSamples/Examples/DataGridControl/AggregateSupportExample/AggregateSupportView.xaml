@@ -6,29 +6,57 @@
              Margin="{OnIdiom Phone='16,20', Desktop=0}">
 
     <ContentView.Resources>
-        <Style TargetType="telerik:RadNumericInput">
+        <Style TargetType="telerik:RadNumericInput" BasedOn="{StaticResource RadNumericInputStyle}">
             <Setter Property="Minimum" Value="0" />
         </Style>
 
-        <Style TargetType="telerik:DataGridTextColumn">
+        <Style TargetType="telerik:DataGridTextColumn" BasedOn="{StaticResource DataGridTypedColumnBaseStyle}">
             <Setter Property="Width" Value="180" />
             <Setter Property="SizeMode" Value="Fixed" />
+            <Setter Property="CellEditorStyle">
+                <Style TargetType="telerik:RadEntry">
+                    <Setter Property="FontSize" Value="{OnPlatform Default=14, iOS=17}" />
+                    <Setter Property="TextColor" Value="{DynamicResource DefaultTextColor}" />
+                    <Setter Property="CornerRadius" Value="{OnPlatform Default=6, WinUI=4}" />
+                    <Setter Property="Margin" Value="{OnPlatform Android='2, 2.5', iOS='10, 4', MacCatalyst=2, WinUI='3, 4, 3, 5'}" />
+                    <Setter Property="ReserveSpaceForErrorView" Value="False" />
+                    <Setter Property="VerticalOptions" Value="Center" />
+                </Style>
+            </Setter>
         </Style>
 
-        <Style TargetType="telerik:DataGridNumericalColumn">
+        <Style TargetType="telerik:DataGridNumericalColumn" BasedOn="{StaticResource DataGridTypedColumnBaseStyle}">
             <Setter Property="Width" Value="180" />
             <Setter Property="SizeMode" Value="Fixed" />
+            <Setter Property="CellEditorStyle">
+                <Style TargetType="telerik:RadNumericInput">
+                    <Setter Property="Margin" Value="{OnPlatform Android='2, 2.5', iOS='10, 4', MacCatalyst=2, WinUI='3, 4, 3, 5'}" />
+                    <Setter Property="VerticalOptions" Value="Center" />
+                    <Setter Property="TextInputStyle">
+                        <Style TargetType="telerik:NumericInputTextInput">
+                            <Setter Property="FontSize" Value="{OnPlatform Default=14, iOS=17}" />
+                            <Setter Property="TextColor" Value="{DynamicResource DefaultTextColor}" />
+                        </Style>
+                    </Setter>
+                </Style>
+            </Setter>
         </Style>
+
+        <Style x:Key="GroupAggregateCellStyle" TargetType="telerik:DataGridGroupAggregateCellAppearance">
+            <Setter Property="TextColor" Value="{DynamicResource DefaultTextColor}" />
+        </Style>
+
     </ContentView.Resources>
     
     <Grid>
         <telerik:RadDataGrid ItemsSource="{Binding Orders}"
-                             AutoGenerateColumns="False"
+                             AutoGenerateColumns="False" 
                              UserEditMode="Cell"
                              UserGroupMode="Enabled"
                              SelectionUnit="Row"
                              SelectionMode="Multiple"
                              ShowGroupHeaderAggregates="True"
+                             GroupAggregateCellStyle="{StaticResource GroupAggregateCellStyle}"
                              GroupAggregatesAlignment="{Binding GroupAggregatesAlignment, Mode=TwoWay}"
                              ShowGroupFooters="True"
                              ShowColumnFooters="True"
@@ -37,7 +65,7 @@
                 <telerik:PropertyGroupDescriptor PropertyName="ShipCountry" />
             </telerik:RadDataGrid.GroupDescriptors>
             <telerik:RadDataGrid.Columns>
-                <telerik:DataGridNumericalColumn PropertyName="OrderID" 
+                <telerik:DataGridNumericalColumn PropertyName="OrderID"
                                                  HeaderText="Order ID">
                     <telerik:DataGridNumericalColumn.AggregateDescriptors>
                         <telerik:PropertyAggregateDescriptor PropertyName="OrderID"

@@ -6,17 +6,29 @@
 
     <ContentView.Resources>
         <Style x:Key="PlaceholderLabelStyle" TargetType="Label">
-            <Setter Property="TextColor" Value="{StaticResource DefaultTextColor}" />
+            <Setter Property="TextColor" Value="{DynamicResource DefaultTextColor}" />
+            <Setter Property="FontSize" Value="14" />
         </Style>
 
         <Style x:Key="PickerStyle" TargetType="telerik:RadPickerBase">
             <Setter Property="HorizontalOptions" Value="Fill" />
         </Style>
 
+        <Style x:Key="DefaultValidationErrorImageStyle" TargetType="Image">
+            <Setter Property="IsVisible" Value="False" />
+        </Style>
+
         <Style x:Key="EntryStyle" TargetType="telerik:RadEntry">
-            <Setter Property="PlaceholderColor" Value="{StaticResource DefaultTextColor}" />
-            <Setter Property="TextColor" Value="{StaticResource DefaultTextColor}" />
+            <Setter Property="PlaceholderColor" Value="{DynamicResource DefaultTextColor}" />
+            <Setter Property="TextColor" Value="{DynamicResource DefaultTextColor}" />
             <Setter Property="HorizontalOptions" Value="Fill" />
+            <Setter Property="ValidationErrorImageStyle" Value="{StaticResource DefaultValidationErrorImageStyle}" />
+            <Setter Property="MinimumHeightRequest" Value="{OnPlatform Default=32, Android=44, iOS=36}" />
+        </Style>
+
+        <Style TargetType="telerik:RadSpeechToTextButton" BasedOn="{StaticResource RadSpeechToTextButtonStyle}">
+            <Setter Property="MinimumHeightRequest" Value="{OnPlatform Default=32, Android=44, iOS=36}" />
+            <Setter Property="MinimumWidthRequest" Value="{OnPlatform Default=32, Android=44, iOS=36}" />
         </Style>
     </ContentView.Resources>
 
@@ -24,16 +36,14 @@
         <VerticalStackLayout Margin="{OnIdiom Default='16, 20, 16, 8', Phone='16, 24, 16, 0'}">
             <Label Text="New Event"
                    FontSize="20"
-                   TextColor="{StaticResource DefaultTextColor}"
                    HorizontalOptions="Start"
                    Margin="{OnIdiom Default='0, 0, 0, 8', Phone='0, 0, 0, 4'}"/>
 
-            <telerik:RadBorder BackgroundColor="#F5F5F5"
+            <telerik:RadBorder BackgroundColor="{DynamicResource DescriptionBackgroundColor}"
                                CornerRadius="4"
                                Padding="8"
                                MinimumHeightRequest="{OnIdiom Default='36', Phone='46'}">
                 <Label Text="To enable the Speech-To-Text feature, click on the Speech-To-Text Button."
-                       TextColor="{StaticResource DefaultTextColor}"
                        FontSize="{OnIdiom Default=14, Phone=12}"
                        HorizontalTextAlignment="Start"
                        VerticalTextAlignment="Center"
@@ -74,7 +84,6 @@
 
                 <telerik:RadDatePicker x:Name="datePicker"
                                        Grid.Row="2"
-                                       Grid.ColumnSpan="2"
                                        Placeholder="Date"
                                        PlaceholderLabelStyle="{StaticResource PlaceholderLabelStyle}"
                                        Style="{StaticResource PickerStyle}"
@@ -82,7 +91,6 @@
 
                 <telerik:RadTimePicker x:Name="timePicker"
                                        Grid.Row="3"
-                                       Grid.ColumnSpan="2"
                                        Placeholder="Time"
                                        PlaceholderLabelStyle="{StaticResource PlaceholderLabelStyle}"
                                        Style="{StaticResource PickerStyle}"
@@ -95,8 +103,8 @@
                                    CornerRadius="6">
                     <Editor x:Name="descriptionEditor"
                             Placeholder="Description"
-                            PlaceholderColor="{StaticResource DefaultTextColor}"
-                            TextColor="{StaticResource DefaultTextColor}"
+                            PlaceholderColor="{DynamicResource DefaultTextColor}"
+                            TextColor="{DynamicResource DefaultTextColor}"
                             FontSize="14"
                             HeightRequest="96"
                             HorizontalOptions="Fill"

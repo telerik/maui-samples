@@ -40,4 +40,7 @@ public class Control
 
     [XmlIgnore]
     public Example StartupExample { get; set; }
+
+    [XmlIgnore]
+    public Example SelectedExample { get; set; }
 }

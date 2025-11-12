@@ -19,7 +19,7 @@ public class FileTypeToIconColorConverter : IValueConverter
             "ppt" => Color.FromArgb("#E0552F"),
             "mov" => Color.FromArgb("#837AE4"),
             "xlsx" => Color.FromArgb("#4B8B39"),
-            _ => Colors.Black,
+            _ => TelerikThemeResources.AppTheme.ToString().IndexOf("Dark", StringComparison.OrdinalIgnoreCase) >= 0 ? Color.FromArgb("#FFFFFF") : Color.FromArgb("#000000")
         };
     }
 

@@ -9,15 +9,15 @@ public partial class FirstLookView : RadContentView
     public FirstLookView()
     {
         this.InitializeComponent();
-
-        this.Dispatcher.DispatchDelayed(TimeSpan.FromMilliseconds(200), () =>
-        {
-            this.aiPromptButton.Popup.IsOpen = true;
-        });
-
+        this.Loaded += this.OnFirstLookViewLoaded;
 #if MACCATALYST || WINDOWS
         this.richTextEditor.AutoGenerateContextMenu = false;
         this.richTextEditor.ContextMenuItems.Add(new RichTextEditorSelectAllContextMenuItem());
 #endif
+    }
+
+    private void OnFirstLookViewLoaded(object sender, EventArgs e)
+    {
+        this.aiPromptButton.Popup.IsOpen = true;
     }
 }

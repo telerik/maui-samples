@@ -1,16 +1,17 @@
-﻿using Microsoft.Maui.Graphics;
-using Telerik.Maui.Controls.BadgeView;
+﻿using Microsoft.Maui.ApplicationModel;
 using Microsoft.Maui.Controls;
-using Microsoft.Maui.ApplicationModel;
+using Microsoft.Maui.Graphics;
 using Telerik.Maui.Controls;
+using Telerik.Maui.Controls.BadgeView;
+using QSF.ViewModels;
 
 namespace QSF.Examples.BadgeViewControl.FirstLookExample
 {
     public class User : NotifyPropertyChangedBase
     {
         private string unreadMessagesText;
-        private Color highLightedTextColor = Application.Current.RequestedTheme == AppTheme.Light ? Color.FromArgb("#0E88F2") : Color.FromArgb("#42A5F5");
-        private Color defaultTextColor = Application.Current.RequestedTheme == AppTheme.Light ? Color.FromArgb("#99000000") : Color.FromArgb("#99FFFFFF");
+        private Color highLightedTextColor = !ThemingViewModel.IsDarkMode ? Color.FromArgb("#0E88F2") : Color.FromArgb("#42A5F5");
+        private Color defaultTextColor = !ThemingViewModel.IsDarkMode ? Color.FromArgb("#99000000") : Color.FromArgb("#99FFFFFF");
 
         public string Name { get; set; }
 
@@ -32,7 +33,7 @@ namespace QSF.Examples.BadgeViewControl.FirstLookExample
         {
             get
             {
-                return this.UnreadMessagesText != null ? this.highLightedTextColor : this.defaultTextColor;
+                return this.UnreadMessagesText != null ? this.highLightedTextColor : defaultTextColor;
             }
         }
 

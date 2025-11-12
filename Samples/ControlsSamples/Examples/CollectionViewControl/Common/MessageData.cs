@@ -17,11 +17,11 @@ public class MessageData : NotifyPropertyChangedBase
 
     public string MessageDelivered { get; set; }
 
-    public Color BackgroundColor { get; set; }
+    public string BackgroundColorKey { get; set; }
 
-    public Color TextColor { get; set; }
+    public string TextColorKey { get; set; }
 
-    public Color StatusColor { get; set; }
+    public string StatusColorKey { get; set; }
 
     public string SenderAbbreviation
     {

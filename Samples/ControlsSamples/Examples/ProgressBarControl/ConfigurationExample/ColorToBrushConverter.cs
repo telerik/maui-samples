@@ -2,6 +2,7 @@
 using Microsoft.Maui.Graphics;
 using System;
 using System.Globalization;
+using System.Linq;
 using Telerik.Maui.Controls;
 
 namespace QSF.Examples.ProgressBarControl.ConfigurationExample;
@@ -18,18 +19,9 @@ public class ColorToBrushConverter : IValueConverter
             case "Default":
                 if (parameter != null)
                 {
-                    if (parameter.ToString().Equals("ProgressFill"))
-                    {
-                        color = (RadLinearProgressBar.ProgressFillProperty.DefaultValue as SolidColorBrush).Color;
-                        break;
-                    }
-                    else if (parameter.ToString().Equals("TrackFill"))
-                    {
-                        color = (RadLinearProgressBar.TrackFillProperty.DefaultValue as SolidColorBrush).Color;
-                        break;
-                    }
+                    color = GetThemeColor((string)parameter);
+                    break;
                 }
-
                 color = null;
                 break;
             case "Black":
@@ -59,6 +51,40 @@ public class ColorToBrushConverter : IValueConverter
 
     public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
     {
+        return null;
+    }
+
+    private Color GetThemeColor(string resourceKey)
+    {
+        if (string.IsNullOrWhiteSpace(resourceKey))
+        {
+            return null;
+        }
+
+        string resolvedKey = resourceKey switch
+        {
+            "TrackFill" => resourceKey.Contains("Telerik") ? "RadBorderColor" : "RadProgressBarTrackFillColor",
+            "ProgressFill" => "RadPrimaryColor",
+            _ => resourceKey
+        };
+
+        var swatch = TelerikThemeResources.Current.MergedDictionaries.FirstOrDefault();
+
+        if (swatch != null)
+        {
+            if (swatch.TryGetValue(resolvedKey, out var colorValue))
+            {
+                if (colorValue is Color color)
+                {
+                    return color;
+                }
+                if (colorValue is OnPlatform<Color> colorOnPlatform)
+                {
+                    return colorOnPlatform.Default;
+                }
+            }
+        }
+
         return null;
     }
 }

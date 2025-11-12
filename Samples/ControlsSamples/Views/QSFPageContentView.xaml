@@ -20,7 +20,7 @@
                 <Grid Grid.RowSpan="2"
                       Grid.ColumnSpan="3"
                       ZIndex="-1"
-                      Background="{StaticResource ApplicationAccentColor}"
+                      BackgroundColor="{DynamicResource ApplicationAccentColor}"
                       IgnoreSafeArea="True" />
                 <OnPlatform x:TypeArguments="View">
                     <On Platform="iOS">
@@ -29,7 +29,7 @@
                               ZIndex="1"
                               IgnoreSafeArea="True">
                             <Grid x:Name="PART_Acrylic"
-                                  Background="{StaticResource ApplicationAccentColor}"
+                                  BackgroundColor="{DynamicResource ApplicationAccentColor}"
                                   IgnoreSafeArea="True" />
                         </Grid>
                     </On>
@@ -37,14 +37,14 @@
                         <Grid Grid.RowSpan="2"
                               Grid.ColumnSpan="3"
                               ZIndex="1"
-                              Background="{StaticResource ApplicationAccentColor}"
+                              BackgroundColor="{DynamicResource ApplicationAccentColor}"
                               IgnoreSafeArea="True" />
                     </On>
                 </OnPlatform>
                 <Grid Grid.Row="2"
                       Grid.RowSpan="2"
                       Grid.ColumnSpan="3"
-                      ZIndex="-2" 
+                      ZIndex="-2"
                       Background="{TemplateBinding Background}" />
                 <Grid x:Name="PART_Body"
                       Grid.Row="2"

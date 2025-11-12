@@ -12,10 +12,9 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <telerik:RadBorder BackgroundColor="{StaticResource DefaultBackgroundColor}"
+            <telerik:RadBorder BackgroundColor="{DynamicResource WrapperBackgroundColor}"
                                CornerRadius="{OnPlatform Default=0, MacCatalyst='2, 2, 0, 0', WinUI='2, 2, 0, 0'}">
                 <Label Text="{Binding UnstructuredMessage}"
-                       TextColor="Black"
                        FontSize="22"
                        HorizontalTextAlignment="Center"
                        Margin="0,13" />
@@ -29,6 +28,8 @@
                                 Value="{Binding Path=Value}"
                                 IsValid="{Binding Path=IsValid}"
                                 ErrorMessage="{Binding Path=ErrorMessage}"
+                                BackgroundColor="Transparent"
+                                ForegroundColor="{DynamicResource DefaultTextColor}"
                                 AutomationId="barcode">
                 <telerik:RadBarcode.Symbology>
                     <telerik:SwissQRCode />
@@ -63,7 +64,7 @@
                     </HorizontalStackLayout>
                 </VerticalStackLayout>
 
-                <BoxView Color="#000000" Grid.Row="1" />
+                <BoxView Color="{DynamicResource SecondaryBorderColor}" Grid.Row="1" />
 
                 <VerticalStackLayout Grid.Row="2">
                     <Label Text="Payable by:"
@@ -84,7 +85,7 @@
                 </VerticalStackLayout>
 
                 <telerik:RadBorder Grid.Row="4"
-                                   BorderBrush="#000000"
+                                   BorderColor="{DynamicResource SecondaryBorderColor}"
                                    BorderThickness="0, 2"
                                    Padding="0, 4">
                     <Grid>

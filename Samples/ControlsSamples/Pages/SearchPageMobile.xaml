@@ -28,7 +28,7 @@
         </Style>
         <Style x:Key="EntryStyle" TargetType="telerik:RadEntry">
             <!--These setters are intentional - TextOnAccentColor and PlaceholderColor, as the underlying color is an accent one.-->
-            <Setter Property="TextColor" Value="{StaticResource TextOnAccentColor}" />
+            <Setter Property="TextColor" Value="{DynamicResource TextOnAccentColor}" />
             <Setter Property="PlaceholderColor" Value="#99FFFFFF" />
             <Setter Property="BackgroundColor" Value="Transparent"/>
             <Setter Property="BorderBrush" Value="Transparent" />
@@ -44,18 +44,18 @@
                         </VisualStateGroup>
                     </VisualStateGroupList>
                 </Setter.Value>
-            </Setter>
+            </Setter>  
         </Style>
         <Style x:Key="BoxViewStyle" TargetType="BoxView">
             <Setter Property="IsVisible" Value="{OnPlatform Default=true, iOS=false}" />
             <Setter Property="HeightRequest" Value="1" />
             <Setter Property="Margin" Value="{OnPlatform Default='8, 0, 0, 4', iOS=0}" />
             <Setter Property="VerticalOptions" Value="End" />
-            <Setter Property="BackgroundColor" Value="White" />
+            <Setter Property="BackgroundColor" Value="{DynamicResource DefaultBackgroundColor}" />
         </Style>
     </VisualElement.Resources>
 
-    <views:QSFPageContentView Background="{StaticResource SecondaryBackgroundColor}">
+    <views:QSFPageContentView BackgroundColor="{DynamicResource SecondaryBackgroundColor}">
         <views:QSFPageContentView.HeaderControlTemplate>
             <ControlTemplate>
                 <Grid ColumnDefinitions="Auto, *">

@@ -37,11 +37,11 @@
                 <Setter Property="BorderColor" Value="{StaticResource OutgoingBackgroundColor}" />
                 <Setter Property="BorderThickness" Value="1" />
             </Style>
-            <Style TargetType="telerik:IncomingTextMessageView" ApplyToDerivedTypes="True">
+            <Style TargetType="telerik:ChatIncomingTextMessageView" ApplyToDerivedTypes="True">
                 <Setter Property="LabelStyle" Value="{StaticResource LabelStyle}" />
                 <Setter Property="BorderStyle" Value="{StaticResource IncomingBorderStyle}" />
             </Style>
-            <Style TargetType="telerik:OutgoingTextMessageView" ApplyToDerivedTypes="True">
+            <Style TargetType="telerik:ChatOutgoingTextMessageView" ApplyToDerivedTypes="True">
                 <Setter Property="LabelStyle" Value="{StaticResource LabelStyle}" />
                 <Setter Property="BorderStyle" Value="{StaticResource OutgoingBorderStyle}" />
             </Style>
@@ -50,7 +50,6 @@
     <Grid>
         <telerik:RadChat x:Name="chat"
                          BackgroundColor="{StaticResource ChatBackgroundColor}"
-                         InputAreaBackgroundColor="{StaticResource ChatBackgroundColor}"
                          SendMessageButtonImage="{StaticResource SendIconSource}">
             <telerik:RadChat.Author>
                 <telerik:Author Name="You" 

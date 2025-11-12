@@ -6,7 +6,7 @@
                         x:Class="QSF.Examples.ChatControl.ConfigurationExample.ConfigurationView"
                         Padding="16">
     <telerik:RadBorder BorderThickness="{OnIdiom Default=0, Desktop=1}"
-                       BorderColor="{OnPlatform Default={StaticResource DefaultBorderColor}, WinUI={StaticResource DefaultBorderColorWinUI}}"
+                       BorderColor="{DynamicResource PlatformBorderColor}"
                        HorizontalOptions="{OnIdiom Default=Fill, Desktop=Center}">
         <Grid WidthRequest="{OnIdiom Default=-1, Desktop=450}">
             <telerik:RadChat x:Name="chat"

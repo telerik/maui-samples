@@ -7,7 +7,7 @@
                         x:Name="sliderFirstLookContentView"
                         Padding="16, 20">
     <telerik:RadContentView.Resources>
-        <Style TargetType="telerik:RadSlider">
+        <Style TargetType="telerik:RadSlider" BasedOn="{StaticResource RadSliderStyle}">
             <Setter Property="Minimum" Value="0" />
             <Setter Property="Maximum" Value="20000" />
             <Setter Property="MinimumWidthRequest" Value="300" />
@@ -88,17 +88,17 @@
             <VerticalStackLayout>
                 <Label Text="24h ATM Limit"
                        Style="{StaticResource ExampleLabelStyle}" />
-                <telerik:RadSlider Value="{Binding ATMLimit}" />
+                <telerik:RadSlider Value="{Binding ATMLimit, Mode=TwoWay}" />
             </VerticalStackLayout>
             <VerticalStackLayout Grid.Row="1">
                 <Label Text="24h POS Limit"
                        Style="{StaticResource ExampleLabelStyle}" />
-                <telerik:RadSlider Value="{Binding POSLimit}" />
+                <telerik:RadSlider Value="{Binding POSLimit, Mode=TwoWay}" />
             </VerticalStackLayout>
             <VerticalStackLayout Grid.Row="2">
                 <Label Text="Total 24h Limit"
                        Style="{StaticResource ExampleLabelStyle}" />
-                <telerik:RadSlider Value="{Binding TotalLimit}" />
+                <telerik:RadSlider Value="{Binding TotalLimit, Mode=TwoWay}" />
             </VerticalStackLayout>
         </Grid>
     </Grid>

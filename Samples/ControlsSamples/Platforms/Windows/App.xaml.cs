@@ -28,6 +28,7 @@ namespace QSF.WinUI
         {
             base.OnLaunched(args);
 
+            TelerikTitleBarHelper.SetRequestedTheme(false);
             Microsoft.Maui.ApplicationModel.Platform.OnLaunched(args);
         }
     }

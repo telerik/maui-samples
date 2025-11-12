@@ -7,19 +7,18 @@
              x:Class="QSF.Examples.CollectionViewControl.DragVisualTemplateExample.DragVisualTemplateView"
              Padding="{OnIdiom Default='16, 20', Phone=0}">
     <ContentView.Resources>
-        <Style x:Key="PrimaryLabelStyle" TargetType="Label">
-            <Setter Property="TextColor" Value="#000000" />
+        <Style x:Key="PrimaryLabelStyle" TargetType="Label" BasedOn="{StaticResource BaseLabelStyle}">
             <Setter Property="Grid.Column" Value="2" />
             <Setter Property="HorizontalTextAlignment" Value="Start" />
         </Style>
         <Style x:Key="SecondaryLabelStyle" TargetType="Label">
-            <Setter Property="TextColor" Value="#99000000" />
+            <Setter Property="TextColor" Value="{DynamicResource PlaceholderColor}" />
             <Setter Property="Grid.Column" Value="1" />
             <Setter Property="HorizontalTextAlignment" Value="Start" />
         </Style>
         <DataTemplate x:Key="CustomDragVisualTemplate">
-            <telerik:RadBorder BackgroundColor="{OnPlatform Default=#F3F3F3, WinUI=#FAFAFA}"
-                               BorderBrush="{OnPlatform WinUI=#1F000000}"
+            <telerik:RadBorder BackgroundColor="{DynamicResource CollectionViewDragVisualBackgroundColor}"
+                               BorderBrush="{DynamicResource DefaultBorderColorWinUI}"
                                BorderThickness="{OnPlatform WinUI=1}"
                                CornerRadius="{OnPlatform Default=8, iOS=0, WinUI=0}"
                                Padding="8">

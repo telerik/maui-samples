@@ -16,24 +16,6 @@ public partial class MainPageMobile : ContentPage
         this.testingService = testingService;
         this.BindingContext = new HomeViewModel(testingService);
         this.InitializeComponent();
-
-        this.Loaded += this.OnLoaded;
-    }
-
-    private void OnLoaded(object sender, EventArgs args)
-    {
-        this.Loaded -= OnLoaded;
-
-        if (DependencyService.Get<ITestingService>().IsAppUnderTest)
-        {
-            HomeViewModel vm = (HomeViewModel)this.BindingContext;
-#if IOS
-            // TRICKY: Pushing a non-animated page on startup will screw up the page navigation in iOS.
-            vm.NavigationService.NavigateToExampleAsync(vm.Examples[0], animated: true);
-#else
-            vm.NavigationService.NavigateToExampleAsync(vm.Examples[0], animated: false);
-#endif
-        }
     }
 
     private void Settings_Clicked(object sender, EventArgs e)

@@ -8,8 +8,8 @@
 
     <telerik:RadContentView.Resources>
         <DataTemplate x:Key="SettingsPopupContentTemplate">
-            <telerik:RadBorder BackgroundColor="{OnPlatform Default=White, WinUI=#F9F9F9}"
-                               BorderColor="{OnPlatform Default=#DFDFDF, WinUI=#0F000000}"
+            <telerik:RadBorder BackgroundColor="{DynamicResource SettingsBackgroundColor}"
+                               BorderColor="{DynamicResource PlatformBorderColor}"
                                BorderThickness="1"
                                CornerRadius="8">
                 <Grid RowDefinitions="Auto, Auto, Auto"
@@ -34,10 +34,10 @@
     </telerik:RadContentView.Resources>
 
     <Grid RowDefinitions="Auto, *">
-        <Grid Background="#070707"
+        <Grid BackgroundColor="{DynamicResource NavigationViewFirstLookHeaderBackgroundColor}"
               Padding="12, 6">
             <Label Text="EXPLORE TODAY"
-                   TextColor="White"
+                   TextColor="#FFFFFF"
                    FontSize="16"
                    FontAttributes="Bold" />
         </Grid>

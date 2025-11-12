@@ -30,8 +30,6 @@
                     <telerik:MapShapeStyle StrokeColor="White" FillColor="#95D3E8"/>
                 </local:DensityShapeStyleSelector.LowestDensityStyle>
             </local:DensityShapeStyleSelector>
-            <Color x:Key="HeaderTitleTextColor">#4B4C4C</Color>
-            <Color x:Key="FooterTitleTextColor">#4B4C4C</Color>
             <Color x:Key="FooterDetailTextColor">#8E8E93</Color>
         </ResourceDictionary>
     </ContentView.Resources>
@@ -44,9 +42,10 @@
         <Label Text="Population density (2019)"
                FontSize="19"
                Margin="24, 26, 0, 26"
-               TextColor="{StaticResource HeaderTitleTextColor}" />
+               Opacity="0.7" />
         <telerik:RadMap x:Name="map"
                         Grid.Row="1"
+                        BackgroundColor="Transparent"
                         AutomationId="map">
             <telerik:RadMap.Layers>
                 <telerik:MapShapefileLayer x:Name="shapeLayer"
@@ -68,7 +67,8 @@
             <Label Text="Population per square mile by state. 2019 census figures."
                    FontSize="14"
                    Margin="0, 0, 26, 0"
-                   TextColor="{StaticResource HeaderTitleTextColor}" />
+                   Opacity="0.7"
+                   TextColor="{DynamicResource DefaultTextColor}" />
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -85,7 +85,7 @@
                                                    HeightRequest="12"
                                                    VerticalOptions="CenterAndExpand"
                                                    Margin="0, 0, 8, 0"/>
-                                <Label Text="{Binding Density}" 
+                                <Label Text="{Binding Density}"
                                        TextColor="{StaticResource FooterDetailTextColor}"
                                        VerticalTextAlignment="Center"
                                        FontSize="12"/>
@@ -94,6 +94,8 @@
                     </telerik:RadCollectionView.ItemTemplate>
                     <telerik:RadCollectionView.ItemViewStyle>
                         <Style TargetType="telerik:RadCollectionViewItemView">
+                            <Setter Property="BorderColor" Value="{DynamicResource SeparatorColor}" />
+                            <Setter Property="BorderThickness" Value="{OnPlatform Default='0, 0, 0, 1', WinUI='0'}" />
                             <Setter Property="VisualStateManager.VisualStateGroups">
                                 <VisualStateGroupList>
                                     <VisualStateGroup Name="CommonStates">
@@ -126,7 +128,7 @@
                     <telerik:RadBorder CornerRadius="2"
                                        WidthRequest="180"
                                        BorderThickness="0"
-                                       BackgroundColor="#F8F8F8">
+                                       BackgroundColor="{DynamicResource DefaultBackgroundColor}">
                         <Grid>
                             <StackLayout Margin="17, 17, 0, 0">
                                 <Label Text="{Binding StateName}"

@@ -9,7 +9,7 @@ public partial class ManualValidation : ContentView
 	{
 		InitializeComponent();
 	}
-
+	// >> dataform-validation-changes
 	private void OnValidateChangesClicked(object sender, System.EventArgs e)
 	{
         var propertyName = "FirstName";
@@ -27,24 +27,24 @@ public partial class ManualValidation : ContentView
             // << dataform-validatechanges-on-property
         }
     }
-    
-
-    private void OnCancelClicked(object sender, System.EventArgs e)
+	// << dataform-validation-changes
+	// >> dataform-cancel-changes
+	private void OnCancelClicked(object sender, System.EventArgs e)
     {
         var propertyName = "FirstName";
 
         if (string.IsNullOrEmpty(propertyName))
         {
-            // >> dataform-validatechanges
+            // >> dataform-cancelchanges
             this.dataForm.CancelChanges();
-            // << dataform-validatechanges
-        }
-        else
+			// << dataform-cancelchanges
+		}
+		else
         {
             // >> dataform-cancelchanges-on-property
             this.dataForm.CancelChanges(propertyName);
             // << dataform-cancelchanges-on-property
         }
     }
-    // << dataform-validation-changes
+	// << dataform-cancel-changes
 }

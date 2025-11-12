@@ -8,10 +8,10 @@
              x:Class="QSF.Views.HighlightsCardsView">
 
     <VisualElement.Resources>
-        <OnPlatform x:TypeArguments="Color" x:Key="Color1" Default="{StaticResource AccentColor4}" />
-        <OnPlatform x:TypeArguments="Color" x:Key="Color2" Default="{StaticResource AccentColor5}" />
-        <OnPlatform x:TypeArguments="Color" x:Key="Color3" Default="{StaticResource AccentColor6}" />
-        <OnPlatform x:TypeArguments="Color" x:Key="Color4" Default="{StaticResource AccentColor2}" />
+        <SolidColorBrush x:Key="Color1" Color="{DynamicResource AccentColor4}" />
+        <SolidColorBrush x:Key="Color2" Color="{DynamicResource AccentColor5}" />
+        <SolidColorBrush x:Key="Color3" Color="{DynamicResource AccentColor6}" />
+        <SolidColorBrush x:Key="Color4" Color="{DynamicResource AccentColor2}" />
     </VisualElement.Resources>
 
     <telerik:RadBorder CornerRadius="4"

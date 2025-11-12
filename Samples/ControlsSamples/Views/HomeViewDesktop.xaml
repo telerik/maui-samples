@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
              xmlns:views="clr-namespace:QSF.Views"
+             xmlns:pages="clr-namespace:QSF.Pages"
              xmlns:layouts="clr-namespace:QSF.Layouts"
              xmlns:converters="clr-namespace:QSF.Converters"
              x:Class="QSF.Views.HomeViewDesktop"
@@ -12,6 +13,7 @@
         <converters:ScreenWidthToItemWidthConverter x:Key="ScreenWidthToItemWidthConverter" />
         <DataTemplate x:Key="ControlItemTemplate">
             <views:SmoothItemView Header="{Binding DisplayName}"
+                                  BackgroundColor="{DynamicResource ItemBackgroundColor}"
                                   Icon="{Binding Icon}"
                                   Description="{Binding ShortDescription}"
                                   Status="{Binding Status}"
@@ -26,23 +28,33 @@
               Margin="0, 20">
             <Label Text="Telerik UI for .NET MAUI"
                    Style="{StaticResource PageHeaderLabelStyle}"
-                   HorizontalOptions="Center"
-                   Grid.ColumnSpan="2" 
+                   HorizontalOptions="Start"
+                   Grid.ColumnSpan="2"
                    AutomationId="telerikTitle"/>
-            <telerik:RadButton Command="{Binding NavigateToDownloadTrialCommand}"
-                               Grid.Column="1"
-                               Margin="0, 0, 5, 0"
-                               HorizontalOptions="End"
-                               Style="{StaticResource MoreInfoButtonStyle}"
-                               MinimumWidthRequest="{OnPlatform MacCatalyst=122}" 
-                               AutomationId="moreInfoButton"/>
+            <HorizontalStackLayout  Grid.Column="1"
+                                    Spacing="15"
+                                    HorizontalOptions="End">
+                <telerik:RadButton Command="{Binding NavigateToDownloadTrialCommand}"
+                                   HorizontalOptions="End"
+                                   HorizontalContentAlignment="Center"
+                                   ToolTipProperties.Text="More Info"
+                                   Style="{StaticResource MoreInfoButtonStyle}"
+                                   BorderThickness="0"
+                                   MinimumWidthRequest="{OnPlatform MacCatalyst=38, WinUI=32}"
+                                   MinimumHeightRequest="{OnPlatform MacCatalyst=38, WinUI=32}"
+                                   VisualStateManager.VisualStateGroups="{StaticResource ButtonBaseVisualStates}"
+                                   AutomationId="moreInfoButton"/>
+                <views:ThemingComboBoxView Grid.Column="2"
+                                           HorizontalOptions="End"
+                                           BindingContext="{Binding BindingContext.ThemingViewModel, Source={RelativeSource AncestorType={Type pages:MainPageDesktop}}}" />
+            </HorizontalStackLayout>
         </Grid>
         <views:HighlightsView Grid.Row="1" AutomationId="heighlightedAreas"/>
         <Label Text="All Controls"
                FontSize="{OnPlatform Default=20, MacCatalyst=22}"
                FontAttributes="Bold"
                Grid.Row="2"
-               Margin="7, 19, 0, 6"/>
+               Margin="7, 19, 0, 6" />
         <telerik:NonVirtualizedItemsControl ItemTemplate="{StaticResource ControlItemTemplate}"
                                             ItemsSource="{Binding Controls}"
                                             Grid.Row="3">
@@ -54,5 +66,5 @@
             </telerik:NonVirtualizedItemsControl.ItemsLayoutTemplate>
         </telerik:NonVirtualizedItemsControl>
     </Grid>
-    
+
 </ContentView>

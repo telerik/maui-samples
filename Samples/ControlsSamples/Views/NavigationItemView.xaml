@@ -3,13 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
              x:Class="QSF.Views.NavigationItemView"
-             BackgroundColor="{StaticResource ItemBackgroundColor}">
+             BackgroundColor="{DynamicResource ItemBackgroundColor}">
     <ContentView.ControlTemplate>
         <ControlTemplate>
             <HorizontalStackLayout Padding="0, 2">
                 <Label FontFamily="TelerikControlsIcons"
                        Text="{TemplateBinding Icon}"
-                       TextColor="{StaticResource AccentColor8}"
+                       TextColor="{DynamicResource AccentColor8}"
                        FontSize="24"
                        Margin="4, 0, 8, 0"
                        HorizontalOptions="Center"

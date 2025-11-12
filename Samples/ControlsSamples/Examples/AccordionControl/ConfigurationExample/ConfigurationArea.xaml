@@ -19,7 +19,7 @@
             <HorizontalStackLayout telerik:RadCheckBox.ToggleOnTap="{Reference CanCollapseAllItemsCb}"
                                    Style="{StaticResource CheckBoxGroupStyle}">
                 <telerik:RadCheckBox x:Name="CanCollapseAllItemsCb"
-                                     IsChecked="{Binding CanCollapseAllItems, Mode=TwoWay}" 
+                                     IsChecked="{Binding CanCollapseAllItems, Mode=TwoWay}"
                                      AutomationId="collapseAllItemsCheckBox"/>
                 <Label Text="Can Collapse All Items"
                     Style="{StaticResource HorizontalGroupLabelAtEndStyle}" />
@@ -27,7 +27,7 @@
             <HorizontalStackLayout telerik:RadCheckBox.ToggleOnTap="{Reference CanExpandMultipleItemsCb}"
                                    Style="{StaticResource CheckBoxGroupStyle}">
                 <telerik:RadCheckBox x:Name="CanExpandMultipleItemsCb"
-                                     IsChecked="{Binding CanExpandMultipleItems, Mode=TwoWay}" 
+                                     IsChecked="{Binding CanExpandMultipleItems, Mode=TwoWay}"
                                      AutomationId="expandMultipleItemsCheckBox"/>
                 <Label Text="Can Expand Multiple Items"
                        Style="{StaticResource HorizontalGroupLabelAtEndStyle}" />
@@ -35,7 +35,7 @@
             <HorizontalStackLayout telerik:RadCheckBox.ToggleOnTap="{Reference IsAnimationEnabledCb}"
                                    Style="{StaticResource CheckBoxGroupStyle}">
                 <telerik:RadCheckBox x:Name="IsAnimationEnabledCb"
-                                     IsChecked="{Binding IsAnimationEnabled}" 
+                                     IsChecked="{Binding IsAnimationEnabled}"
                                      AutomationId="animationCheckBox"/>
                 <Label Text="Is Animation Enabled"
                        Style="{StaticResource HorizontalGroupLabelAtEndStyle}" />
@@ -54,13 +54,13 @@
             <Grid ColumnDefinitions="Auto, *, Auto">
                 <Label Text="{Binding Source={x:Reference animationDurationSlider}, Path=Minimum}"
                        Style="{StaticResource HorizontalGroupLabelAtStartStyle}" />
-                <Slider x:Name="animationDurationSlider"
-                        Grid.Column="1"
-                        Minimum="300" Maximum="3000"
-                        Value="{Binding AnimationDuration,Mode=TwoWay}"
-                        HorizontalOptions="FillAndExpand"
-                        VerticalOptions="FillAndExpand"
-                        AutomationId="animationDurationSlider"/>
+                <telerik:RadSlider x:Name="animationDurationSlider"
+                                   Grid.Column="1"
+                                   Minimum="300" Maximum="3000"
+                                   Value="{Binding AnimationDuration, Mode=TwoWay}"
+                                   HorizontalOptions="FillAndExpand"
+                                   VerticalOptions="FillAndExpand"
+                                   AutomationId="animationDurationSlider"/>
                 <Label Grid.Column="2"
                        Text="{Binding Source={x:Reference animationDurationSlider}, Path=Maximum}"
                        Style="{StaticResource HorizontalGroupLabelAtEndStyle}" />
@@ -72,13 +72,13 @@
             <Grid ColumnDefinitions="Auto, *, Auto">
                 <Label Text="{Binding Source={x:Reference spacingSlider}, Path=Minimum, Mode=TwoWay}"
                        Style="{StaticResource HorizontalGroupLabelAtStartStyle}" />
-                <Slider x:Name="spacingSlider"
-                        Grid.Column="1"
-                        Value="{Binding Spacing}"
-                        Minimum="0" Maximum="50"
-                        HorizontalOptions="FillAndExpand"
-                        VerticalOptions="FillAndExpand"
-                        AutomationId="spacingSlider"/>
+                <telerik:RadSlider x:Name="spacingSlider"
+                                   Grid.Column="1"
+                                   Value="{Binding Spacing, Mode=TwoWay}"
+                                   Minimum="0" Maximum="50"
+                                   HorizontalOptions="FillAndExpand"
+                                   VerticalOptions="FillAndExpand"
+                                   AutomationId="spacingSlider"/>
                 <Label Grid.Column="2"
                        Text="{Binding Source={x:Reference spacingSlider}, Path=Maximum, Mode=TwoWay}"
                        Style="{StaticResource HorizontalGroupLabelAtEndStyle}" />

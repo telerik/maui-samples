@@ -4,25 +4,29 @@
              xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
              xmlns:views="clr-namespace:QSF.Views"
              xmlns:qsf="clr-namespace:QSF.Pages"
+             xmlns:converters="clr-namespace:QSF.Converters"
              x:Class="QSF.Pages.ThemeSettingsPage"
              NavigationPage.HasNavigationBar="False"
              ios:Page.UseSafeArea="False">
     <ContentPage.Resources>
+        <converters:LoaderImageConverter x:Key="LoaderImageConverter" />
         <Style x:Key="ThemeSwatchOuterBorderStyle" TargetType="telerik:RadBorder">
             <Setter Property="WidthRequest" Value="28" />
             <Setter Property="HeightRequest" Value="28" />
-            <Setter Property="Background" Value="#FFFFFF" />
+            <Setter Property="Background" Value="{DynamicResource ThemeSwatchOuterBorderColor}" />
             <Setter Property="CornerRadius" Value="14" />
             <Setter Property="Margin" Value="-8, 0, 0, 0" />
         </Style>
         <Style x:Key="ThemeSwatchInnerBorderStyle" TargetType="telerik:RadBorder">
             <Setter Property="WidthRequest" Value="24" />
             <Setter Property="HeightRequest" Value="24" />
-            <Setter Property="BorderBrush" Value="#29000000" />
+            <Setter Property="BorderBrush" Value="{DynamicResource ThemeSwatchInnerBorderColor}" />
             <Setter Property="BorderThickness" Value="1" />
             <Setter Property="CornerRadius" Value="12" />
         </Style>
         <Style x:Key="StatelessCollectionViewItemViewStyle" TargetType="telerik:RadCollectionViewItemView">
+            <Setter Property="BorderThickness" Value="0, 0, 0, 1" />
+            <Setter Property="BorderBrush" Value="{DynamicResource SeparatorColor}" />
             <Setter Property="VisualStateManager.VisualStateGroups">
                 <VisualStateGroupList>
                     <VisualStateGroup Name="CommonStates">
@@ -35,7 +39,7 @@
             </Setter>
         </Style>
     </ContentPage.Resources>
-    <views:QSFPageContentView Background="#FFFFFF">
+    <views:QSFPageContentView BackgroundColor="{DynamicResource DefaultBackgroundColor}">
         <views:QSFPageContentView.HeaderControlTemplate>
             <ControlTemplate>
                 <Grid ColumnDefinitions="Auto, *, Auto">
@@ -55,13 +59,15 @@
             <ControlTemplate>
                 <Grid>
                     <VerticalStackLayout IsVisible="{Binding Loading}"
-                                         Spacing="24"
-                                         Padding="16, 24"
+                                         Margin="0, -100, 0, 0"
                                          VerticalOptions="Center">
-                        <Label Text="Initializing themes..."
-                               TextColor="{StaticResource DefaultTextColor}"
-                               FontSize="18"
+                        <Image Source="{Binding Progress, Converter={StaticResource LoaderImageConverter}}"
                                HorizontalOptions="Center" />
+                        <Label Text="Initializing themes..."
+                               TextColor="{DynamicResource DefaultTextColor}"
+                               FontSize="18"
+                               Margin="0, 38, 0, 15"
+                               HorizontalOptions="Center"/>
                         <telerik:RadLinearProgressBar Value="{Binding Progress}"
                                                       ValueDisplayMode="None"
                                                       ProgressAnimationDuration="0"
@@ -70,17 +76,18 @@
                     </VerticalStackLayout>
                     <telerik:RadCollectionView x:Name="PART_ScrollableView"
                                                SelectionMode="Single"
-                                               ItemsSource="{Binding ThemesCatalog}"
+                                               ItemsSource="{Binding ThemesList}"
                                                ItemViewStyle="{StaticResource StatelessCollectionViewItemViewStyle}"
                                                SelectedItem="{Binding CurrentTheme, Mode=TwoWay}"
                                                IsVisible="{Binding Path=Prefetched}"
-                                               Margin="24, 16">
+                                               Margin="24, 16"
+                                               VerticalOptions="Start">
                         <telerik:RadCollectionView.ItemTemplate>
                             <DataTemplate>
                                 <Grid ColumnDefinitions="Auto, *, Auto"
                                       ColumnSpacing="8"
                                       Padding="0, 8">
-                                    <telerik:RadBorder Background="#F5F5F5"
+                                    <telerik:RadBorder BackgroundColor="{DynamicResource ThemeSwatchesBackgroundColor}"
                                                        CornerRadius="29"
                                                        Padding="4">
                                         <HorizontalStackLayout>
@@ -110,7 +117,7 @@
                                            FontFamily="TelerikFontExamples"
                                            FontSize="20"
                                            Text="&#xe876;"
-                                           TextColor="{StaticResource ApplicationAccentColor}"
+                                           TextColor="{DynamicResource ApplicationAccentColor}"
                                            VerticalTextAlignment="Center" />
                                 </Grid>
                             </DataTemplate>

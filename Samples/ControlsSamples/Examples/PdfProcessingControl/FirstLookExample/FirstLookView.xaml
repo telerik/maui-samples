@@ -7,7 +7,8 @@
     <Grid RowDefinitions="Auto,Auto">
         <Image Source="pdfprocessingfirstlookscreen.png" HeightRequest="400" AutomationId="pdfProcessingScreenImage"/>
         <telerik:RadButton Style="{StaticResource SubmitButtonStyle}"
-                           Text="Generate PDF" 
+                           Text="Generate PDF"
+                           Margin="0, 16, 0, 0"
                            VerticalOptions="{OnPlatform WinUI='Center', MacCatalyst='Center'}"
                            HorizontalOptions="{OnPlatform WinUI='Center', MacCatalyst='Center'}"
                            Command="{Binding Save}"

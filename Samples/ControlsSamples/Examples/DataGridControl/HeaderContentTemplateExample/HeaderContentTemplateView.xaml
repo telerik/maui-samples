@@ -23,7 +23,7 @@
                                     TrueColor="{StaticResource AccentFillColor}"
                                     FalseColor="{StaticResource TextColor}" />
 
-        <Style TargetType="telerik:DataGridColumnHeaderAppearance" x:Key="EmptyHeaderStyle">
+        <Style TargetType="telerik:DataGridColumnHeaderAppearance" x:Key="EmptyHeaderStyle" BasedOn="{StaticResource DataGridColumnHeaderStyle}">
             <Setter Property="BackgroundColor" Value="{StaticResource MainBackgroundColor}" />
             <Setter Property="BorderThickness" Value="0" />
             <Setter Property="HoverBackgroundColor" Value="{StaticResource HoverBackgroundColor}" />
@@ -93,7 +93,7 @@
             </Grid>
         </DataTemplate>
 
-        <Style TargetType="telerik:DataGridTypedColumn" ApplyToDerivedTypes="True">
+        <Style x:Key="DataGridColumnStyle" TargetType="telerik:DataGridTypedColumn" ApplyToDerivedTypes="True" BasedOn="{StaticResource DataGridTypedColumnBaseStyle}">
             <Setter Property="HeaderStyle" Value="{StaticResource EmptyHeaderStyle}" />
             <Setter Property="HeaderContentTemplate" Value="{StaticResource CustomHeaderTemplate}" />
         </Style>
@@ -110,16 +110,21 @@
             <telerik:RadDataGrid.Columns>
                 <telerik:DataGridNumericalColumn PropertyName="OrderID"
                                                  IsFrozen="True"
-                                                 HeaderText="Order ID" />
+                                                 HeaderText="Order ID"
+                                                 Style="{StaticResource DataGridColumnStyle}" />
                 <telerik:DataGridDateColumn PropertyName="OrderDate"
-                                            HeaderText="Order Date" />
+                                            HeaderText="Order Date"
+                                            Style="{StaticResource DataGridColumnStyle}" />
                 <telerik:DataGridDateColumn PropertyName="ShippedDate"
-                                            HeaderText="Shipped Date" />
+                                            HeaderText="Shipped Date" 
+                                            Style="{StaticResource DataGridColumnStyle}" />
                 <telerik:DataGridNumericalColumn PropertyName="Freight"
                                                  HeaderText="Freight"
-                                                 CellContentFormat="${0:N2}" />
+                                                 CellContentFormat="${0:N2}"
+                                                 Style="{StaticResource DataGridColumnStyle}" />
                 <telerik:DataGridTextColumn PropertyName="ShipCountry"
-                                            HeaderText="Ship Country" />
+                                            HeaderText="Ship Country"
+                                            Style="{StaticResource DataGridColumnStyle}"/>
             </telerik:RadDataGrid.Columns>
         </telerik:RadDataGrid>
     </Grid>

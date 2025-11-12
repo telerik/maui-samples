@@ -11,7 +11,7 @@ namespace QSF.Examples.DatePickerControl.FirstLookExample
     public class FirstLookViewModel : ExampleViewModel
     {
         private DateTime? startDate;
-        private DateTime? endDate;
+        private DateTime? endDate; 
 
         public FirstLookViewModel()
         {
@@ -22,25 +22,25 @@ namespace QSF.Examples.DatePickerControl.FirstLookExample
             {
                 new CardItem()
                 {
-                    BackgroundColor = Color.FromArgb("#ECF6FE"),
-                    BorderColor = Color.FromArgb("#D6EBFC"),
-                    SelectedBorderColor = Color.FromArgb("#0E88F2"),
+                    BackgroundColorKey = "PickerBackgroundColor1",
+                    BorderColorKey = "PickerBorderColor1",
+                    SelectedBorderColorKey = "PickerSelectedBorderColor1",
                     ImageSource = "remote_work.png",
                     Label = "WFH Request"
                 },
                 new CardItem()
                 {
-                    BackgroundColor = Color.FromArgb("#FEF2F1"),
-                    BorderColor = Color.FromArgb("#FEE5E3"),
-                    SelectedBorderColor = Color.FromArgb("#F85446"),
+                    BackgroundColorKey = "PickerBackgroundColor2",
+                    BorderColorKey = "PickerBorderColor2",
+                    SelectedBorderColorKey = "PickerSelectedBorderColor2",
                     ImageSource = "sick_leave.png",
                     Label = "Sick Leave"
                 },
                 new CardItem()
                 {
-                    BackgroundColor = Color.FromArgb("#FFF4EB"),
-                    BorderColor = Color.FromArgb("#FFE9D8"),
-                    SelectedBorderColor = Color.FromArgb("#FFAC3E"),
+                    BackgroundColorKey = "PickerBackgroundColor3",
+                    BorderColorKey = "PickerBorderColor3",
+                    SelectedBorderColorKey = "PickerSelectedBorderColor3",
                     ImageSource = "time_off.png",
                     Label = "PTO Request"
                 }

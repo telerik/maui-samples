@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="QSF.Examples.SkeletonControl.FirstLookExample.FirstLookView"
+             Padding="{OnIdiom Default='16, 20', Phone=0}">
+
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Style x:Key="OffsetSkeletonStyle" TargetType="telerik:RadSkeleton">
+                <Setter Property="Margin" Value="0" />
+                <Style.Triggers>
+                    <DataTrigger TargetType="telerik:RadSkeleton"
+                                 Binding="{Binding IsLoading}"
+                                 Value="True">
+                        <Setter Property="Margin" Value="0, 12, 0, 0" />
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+
+            <DataTemplate x:Key="MailItemTemplate">
+                <Grid ColumnDefinitions="Auto, *, Auto"
+                      ColumnSpacing="12"
+                      Padding="16, 8">
+                    <Image Source="{Binding Image}"
+                           WidthRequest="48"
+                           HeightRequest="48"
+                           VerticalOptions="Center" />
+                    <VerticalStackLayout Grid.Column="1"
+                                         Spacing="2">
+                        <Label Text="{Binding Sender}"
+                               Style="{StaticResource BaseLabelStyle}"
+                               FontAttributes="Bold"
+                               FontSize="16"
+                               MaxLines="1"
+                               LineBreakMode="TailTruncation"
+                               AutomationId="senderLabel" />
+                        <Label Text="{Binding Title}"
+                               Style="{StaticResource BaseLabelStyle}"
+                               MaxLines="1"
+                               LineBreakMode="TailTruncation"
+                               AutomationId="titleLabel" />
+                        <Label Text="{Binding Description}"
+                               Style="{StaticResource PlaceholderLabelStyle}"
+                               FontSize="12"
+                               MaxLines="1"
+                               LineBreakMode="TailTruncation"
+                               AutomationId="descriptionLabel" />
+                    </VerticalStackLayout>
+                    <HorizontalStackLayout Grid.Column="2"
+                                           Spacing="4"
+                                           VerticalOptions="Start"
+                                           HorizontalOptions="End">
+                        <Label IsVisible="{Binding IsFavourite}"
+                               FontFamily="TelerikFontExamples"
+                               FontSize="12"
+                               Text="&#xe801;"
+                               TextColor="{DynamicResource AccentColor4}"
+                               VerticalOptions="Center"
+                               AutomationId="isItemFavoriteIcon" />
+                        <Label Text="{Binding Date}"
+                               Style="{StaticResource PlaceholderLabelStyle}"
+                               FontSize="12"
+                               VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+                </Grid>
+            </DataTemplate>
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+    <Grid RowDefinitions="*, Auto">
+        <telerik:RadBorder BorderColor="{DynamicResource PlatformBorderColor}"
+                           BorderThickness="{OnIdiom Default=0, Desktop=1}">
+            <telerik:RadSkeleton Style="{StaticResource OffsetSkeletonStyle}"
+                                 IsLoading="{Binding IsLoading}"
+                                 RepeatCount="20"
+                                 RepeatSpacing="12"
+                                 BorderColor="Transparent"
+                                 LoadingViewMinimumHeight="70">
+                <telerik:RadCollectionView x:Name="collectionView"
+                                           ItemsSource="{Binding Mails}"
+                                           ItemViewStyle="{StaticResource CollectionViewItemStyle}"
+                                           ItemTemplate="{StaticResource MailItemTemplate}"
+                                           SelectionMode="None"
+                                           AutomationId="collectionView" />
+            </telerik:RadSkeleton>
+        </telerik:RadBorder>
+
+        <telerik:RadButton Grid.Row="2"
+                           Text="Reload Data"
+                           BackgroundColor="Transparent"
+                           TextColor="{StaticResource AccentColor8}"
+                           BorderColor="{StaticResource AccentColor8}"
+                           Command="{Binding ReloadCommand}"
+                           BorderThickness="2"
+                           CornerRadius="4"
+                           MinimumWidthRequest="120"
+                           MinimumHeightRequest="40"
+                           HorizontalOptions="Start"
+                           Margin="{OnIdiom Default='0, 16, 0, 0', Phone='16, 16, 16, 16'}"
+                           FontSize="14" />
+    </Grid>
+</ContentView>

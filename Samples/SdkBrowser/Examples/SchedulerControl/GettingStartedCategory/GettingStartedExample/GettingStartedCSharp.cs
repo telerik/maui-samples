@@ -15,8 +15,9 @@ namespace SDKBrowserMaui.Examples.SchedulerControl.GettingStartedCategory.Gettin
             scheduler.ViewDefinitions.Add(new WeekViewDefinition());
             scheduler.ViewDefinitions.Add(new WeekViewDefinition(){IsWeekendVisible = false, Title = "Work Week"});
             scheduler.ViewDefinitions.Add(new MultidayViewDefinition(){VisibleDays = 3, Title = "3 Day"});
-            scheduler.ViewDefinitions.Add(new MonthViewDefinition());
             scheduler.ViewDefinitions.Add(new DayViewDefinition());
+            scheduler.ViewDefinitions.Add(new MonthViewDefinition());
+            scheduler.ViewDefinitions.Add(new AgendaViewDefinition());
             // << scheduler-gettingstarted-csharp
 
             content.Add(scheduler);

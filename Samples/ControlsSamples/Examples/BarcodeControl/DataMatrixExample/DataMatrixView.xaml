@@ -6,18 +6,21 @@
                     Margin="5">
     <ScrollView>
         <Grid RowDefinitions="Auto, 220, *">
-            <telerik:RadBorder BackgroundColor="{StaticResource DefaultBackgroundColor}"
+            <telerik:RadBorder BackgroundColor="{DynamicResource WrapperBackgroundColor}"
                                CornerRadius="{OnPlatform Default=0, MacCatalyst='2, 2, 0, 0', WinUI='2, 2, 0, 0'}">
                 <Label Text="Ultra Precision Syringe - 50 cc"
-                       TextColor="Black"
+                       TextColor="{DynamicResource DefaultTextColor}"
                        FontSize="22"
                        HorizontalTextAlignment="Center"
                        Margin="0, 13" />
             </telerik:RadBorder>
-    
-            <Grid BackgroundColor="White"
+
+            <Grid BackgroundColor="Transparent"
                   Grid.Row="1">
                 <telerik:RadBarcode HeightRequest="180"
+                                    Background="{DynamicResource AppSurfaceBrush}" 
+                                    ForegroundColor="{DynamicResource DefaultTextColor}"
+                                    HorizontalOptions="Center"
                                     Value="{Binding Value}"
                                     AutomationId="barcode">
                     <telerik:RadBarcode.Symbology>
@@ -32,10 +35,10 @@
                 <Label Text="{Binding ProdDate}" />
                 <Label Text="{Binding SerialN}" />
                 <Label Text="{Binding Batch}" />
-                <telerik:RadBorder BorderColor="#202223"
+                <telerik:RadBorder BorderColor="{DynamicResource BarcodeDataMatrixBorderColor}"
                                    BorderThickness="0, 0, 0, 1"
                                    Margin="0, 15" />
-                <Label Text="Manufacturer:" 
+                <Label Text="Manufacturer:"
                        FontAttributes="Bold" />
                 <Label Text="{Binding Manufacturer}" />
                 <Label Text="{Binding Address}" />

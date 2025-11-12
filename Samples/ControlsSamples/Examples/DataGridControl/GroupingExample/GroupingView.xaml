@@ -8,7 +8,7 @@
 
     <ContentView.Resources>
         <Style TargetType="telerik:DataGridCellDecorationAppearance" x:Key="TextCellDecorationsStyle">
-            <Setter Property="BackgroundColor" Value="#1A7C59B6" />
+            <Setter Property="BackgroundColor" Value="{DynamicResource DataGridGroupingViewCellDecorationBackgroundColor}" />
         </Style>
         <columnTypesExample:StatusFlightToBooleanConverter x:Key="StatusFlightToBooleanConverter" />
         <telerik:BoolToValueConverter x:Key="BoolToUserGroupModeConverter">
@@ -27,7 +27,7 @@
                        Margin="2, 0" />
                 <Label Text="{Binding StatusTime}"
                        IsVisible="{Binding Status, Converter={StaticResource StatusFlightToBooleanConverter}}"
-                       TextColor="{StaticResource AccentColor8}"
+                       TextColor="{DynamicResource AccentColor8}"
                        Margin="2, 0" />
             </HorizontalStackLayout>
         </DataTemplate>

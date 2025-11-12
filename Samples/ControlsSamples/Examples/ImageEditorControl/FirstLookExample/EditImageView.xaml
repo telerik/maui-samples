@@ -9,7 +9,7 @@
     
     <Grid ColumnDefinitions="{OnIdiom Default='*, Auto', Phone='*'}"
           RowDefinitions="{OnIdiom Default='Auto, *', Phone='Auto, *, Auto'}"
-          BackgroundColor="#989898">
+          BackgroundColor="{DynamicResource ImageViewBackgroundColor}">
 
         <!-- Toolbar with save and discard buttons -->
         <telerik:RadToolbar x:Name="toolbar"
@@ -19,7 +19,7 @@
             
             <telerik:RadToolbar.Resources>
                 <ResourceDictionary>
-                    <Style TargetType="telerik:ButtonToolbarItemView">
+                    <Style TargetType="telerik:ButtonToolbarItemView" BasedOn="{StaticResource ButtonToolbarItemViewBaseStyle}">
                         <Setter Property="HorizontalOptions" Value="{OnIdiom Default=Start, Phone=End}"/>
                     </Style>
                 </ResourceDictionary>

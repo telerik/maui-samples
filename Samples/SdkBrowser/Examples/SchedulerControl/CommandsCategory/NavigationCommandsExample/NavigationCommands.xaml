@@ -14,7 +14,7 @@
                     Command="{Binding Source={x:Reference scheduler}, Path=TodayCommand}" />
             <Button Text="Increase Visible Range"
                     Margin="5"
-                    Command="{Binding Source={x:Reference scheduler}, Path=IncreaseVisibleRangeCommand}" />           
+                    Command="{Binding Source={x:Reference scheduler}, Path=IncreaseVisibleRangeCommand}" />
             <!-- << scheduler-navigating-in-current-view -->
         </telerik:RadWrapLayout>
         <!-- >> scheduler-navigation-commands -->
@@ -25,6 +25,7 @@
                 <telerik:MultidayViewDefinition VisibleDays="3" Title="3 Day" />
                 <telerik:DayViewDefinition />
                 <telerik:MonthViewDefinition />
+                <telerik:AgendaViewDefinition />
             </telerik:RadScheduler.ViewDefinitions>
         </telerik:RadScheduler>
         <!-- << scheduler-navigation-commands -->

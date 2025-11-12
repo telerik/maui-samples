@@ -20,7 +20,7 @@ public class DragDropViewModel : ExampleViewModel
                 Title = "Add design for the new demos of CollectionView",
                 Description = "Create design for the standalone demos that will showcase the CollectionView's new features.",
                 Assignee = "Eva Lawson",
-                AssigneeAvatarColor = Color.FromArgb("#F8F8F8"),
+                AssigneeAvatarColorKey = "AvatarColor1",
                 Tags = new List<Color>() { (Color)App.Current.Resources["AccentColor2"], (Color)App.Current.Resources["AccentColor3"], (Color)App.Current.Resources["AccentColor4"] },
             },
             new WorkItem
@@ -28,7 +28,7 @@ public class DragDropViewModel : ExampleViewModel
                 Title = "Create demos for the new features of CollectionView",
                 Description = "Showcase the CollectionView's new features - reordering, grid layout, header and footer, etc.",
                 Assignee = "Layton Buck",
-                AssigneeAvatarColor = Color.FromArgb("#D3F2F3"),
+                AssigneeAvatarColorKey = "AvatarColor2",
                 Tags = new List<Color>() { (Color)App.Current.Resources["AccentColor3"] },
             },
             new WorkItem
@@ -36,7 +36,7 @@ public class DragDropViewModel : ExampleViewModel
                 Title = "Create tests for the new features of CollectionView",
                 Description = "Cover the new CollectionView features with tests.",
                 Assignee = "Chester Harvey",
-                AssigneeAvatarColor = Color.FromArgb("#CCE7CB"),
+                AssigneeAvatarColorKey = "AvatarColor3",
                 Tags = new List<Color>() { (Color)App.Current.Resources["AccentColor2"], (Color)App.Current.Resources["AccentColor3"], (Color)App.Current.Resources["AccentColor4"] },
             },
             new WorkItem
@@ -44,7 +44,7 @@ public class DragDropViewModel : ExampleViewModel
                 Title = "Write documentation for the new features of CollectionView",
                 Description = "Document the CollectionView's new features - reordering, grid layout, header and footer, etc.",
                 Assignee = "Jenny Fuller",
-                AssigneeAvatarColor = Color.FromArgb("#FECAD1"),
+                AssigneeAvatarColorKey = "AvatarColor4",
                 Tags = new List<Color>() { (Color)App.Current.Resources["AccentColor2"], (Color)App.Current.Resources["AccentColor3"] },
             },
             new WorkItem
@@ -52,7 +52,7 @@ public class DragDropViewModel : ExampleViewModel
                 Title = "Expose DataGrid column reordering event",
                 Description = "Implement notification that a column reordering is in progress and info about which column is being dragged and add option to cancel the operation.",
                 Assignee = "Ashley Robertson",
-                AssigneeAvatarColor = Color.FromArgb("#FFE6C5"),
+                AssigneeAvatarColorKey = "AvatarColor5",
                 Tags = new List<Color>() { (Color)App.Current.Resources["AccentColor4"] },
             },
             new WorkItem
@@ -60,7 +60,7 @@ public class DragDropViewModel : ExampleViewModel
                 Title = "Expose DataGrid column resizing event",
                 Description = "Expose similar events to Telerik WPF DataGrid's ColumnWidthChanging and ColumnWidthChanged events.",
                 Assignee = "Ashley Robertson",
-                AssigneeAvatarColor = Color.FromArgb("#FFE6C5"),
+                AssigneeAvatarColorKey = "AvatarColor5",
                 Tags = new List<Color>() { (Color)App.Current.Resources["AccentColor3"], (Color)App.Current.Resources["AccentColor4"] },
             },
             new WorkItem
@@ -68,7 +68,7 @@ public class DragDropViewModel : ExampleViewModel
                 Title = "Add how to article for DataGrid's busy indicator customization",
                 Description = "Add information on how to customize the busy indicator of the DataGrid component.",
                 Assignee = "Jenny Fuller",
-                AssigneeAvatarColor = Color.FromArgb("#FECAD1"),
+                AssigneeAvatarColorKey = "AvatarColor4",
                 Tags = new List<Color>() { (Color)App.Current.Resources["AccentColor2"] },
             },
             new WorkItem
@@ -76,7 +76,7 @@ public class DragDropViewModel : ExampleViewModel
                 Title = "Add filtering support to ComboBox",
                 Description = "Enhance the functionality of the ComboBox component by allowing users to filter and search through options.",
                 Assignee = "Ashley Robertson",
-                AssigneeAvatarColor = Color.FromArgb("#FFE6C5"),
+                AssigneeAvatarColorKey = "AvatarColor1",
                 Tags = new List<Color>() { (Color)App.Current.Resources["AccentColor3"], (Color)App.Current.Resources["AccentColor4"] },
             },
             new WorkItem
@@ -84,7 +84,7 @@ public class DragDropViewModel : ExampleViewModel
                 Title = "Create demos for the new filtering feature of ComboBox",
                 Description = "Demonstrate basic filtering as the user types in the ComboBox as well as show case-sensitive and case-insensitive options.",
                 Assignee = "Layton Buck",
-                AssigneeAvatarColor = Color.FromArgb("#D3F2F3"),
+                AssigneeAvatarColorKey = "AvatarColor2",
                 Tags = new List<Color>() { (Color)App.Current.Resources["AccentColor2"], (Color)App.Current.Resources["AccentColor3"], (Color)App.Current.Resources["AccentColor4"] },
             },
             new WorkItem
@@ -92,7 +92,7 @@ public class DragDropViewModel : ExampleViewModel
                 Title = "Create tests for the new features of ComboBox",
                 Description = "Cover the new ComboBox filtering feature with tests.",
                 Assignee = "Chester Harvey",
-                AssigneeAvatarColor = Color.FromArgb("#CCE7CB"),
+                AssigneeAvatarColorKey = "AvatarColor3",
                 Tags = new List<Color>() { (Color)App.Current.Resources["AccentColor2"], (Color)App.Current.Resources["AccentColor4"] },
             },
         };

@@ -9,21 +9,21 @@
         <Grid Margin="0, 20">
             <Label Text="Telerik UI for .NET MAUI"
                    Style="{StaticResource PageHeaderLabelStyle}"
-                   HorizontalOptions="Center" />
+                   HorizontalOptions="Start" />
         </Grid>
         <telerik:RadBorder Grid.Row="1"
-                           BackgroundColor="{StaticResource SecondaryBackgroundColor}"
+                           BackgroundColor="{DynamicResource SearchBackgroundColor}"
                            CornerRadius="4"
                            Padding="{OnPlatform Default=0, MacCatalyst='16, 20', WinUI='16, 20'}">
             <Grid RowDefinitions="Auto, *"
                   RowSpacing="4">
                 <telerik:RadEntry x:Name="searchEntry"
-                                  ReserveSpaceForErrorView="False" 
-                                  AutomationId="searchEntry"/>
+                                  ReserveSpaceForErrorView="False"
+                                  AutomationId="searchEntry" />
                 <views:InnerSearchView Grid.Row="1"
                                        SearchText="{Binding Text, Source={Reference searchEntry}}"
-                                       SelectedSearchResult="{Binding SelectedSearchResult, Source={RelativeSource AncestorType={Type views:SearchViewDesktop}}}" 
-                                       AutomationId="searchResults"/>
+                                       SelectedSearchResult="{Binding SelectedSearchResult, Source={RelativeSource AncestorType={Type views:SearchViewDesktop}}}"
+                                       AutomationId="searchResults" />
             </Grid>
         </telerik:RadBorder>
     </Grid>

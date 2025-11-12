@@ -32,7 +32,7 @@ public class GlobalizationViewModel : ExampleViewModel
     public CultureInfo Culture
     {
         get { return this.culture; }
-        set { this.UpdateValue(ref this.culture, value); }
+        set { this.UpdateValue(ref this.culture, value ?? CultureInfo.CurrentCulture); }
     }
 
     public CultureData SelectedCulture
@@ -40,7 +40,7 @@ public class GlobalizationViewModel : ExampleViewModel
         get { return this.selectedCulture; }
         set
         {
-            if (this.selectedCulture != value)
+            if (this.selectedCulture != value && value != null)
             {
                 this.selectedCulture = value;
                 this.UpdateValue(ref this.selectedCulture, value);
@@ -52,34 +52,44 @@ public class GlobalizationViewModel : ExampleViewModel
 
     private static CultureInfo CreateCultureInfo(CultureData data)
     {
-        CultureInfo cultureInfo = CultureInfo.CreateSpecificCulture(data.Name);
-        switch (data.DisplayName)
+        if (data == null || string.IsNullOrEmpty(data.Name))
         {
-            case "Hebrew":
-                cultureInfo.DateTimeFormat.Calendar = new HebrewCalendar();
-                break;
-            case "Hijri":
-                cultureInfo.DateTimeFormat.Calendar = new HijriCalendar();
-                break;
-            case "Japanese":
-                // The JapaneseCalendar and JapaneseLunisolarCalendar are currently the only two calendar classes in .NET that recognize more than one era.
-                // As the Calendar control works with only one era, we use the GregorianCalendar.
-                cultureInfo.DateTimeFormat.Calendar = new GregorianCalendar();
-                break;
-            case "Persian":
-                cultureInfo.DateTimeFormat.Calendar = new PersianCalendar();
-                break;
-            case "Taiwan":
-                cultureInfo.DateTimeFormat.Calendar = new TaiwanCalendar();
-                break;
-            case "Thai/Buddhist":
-                cultureInfo.DateTimeFormat.Calendar = new ThaiBuddhistCalendar();
-                break;
-            case "Umm al-Qura":
-                cultureInfo.DateTimeFormat.Calendar = new UmAlQuraCalendar();
-                break;
+            return CultureInfo.CurrentCulture;
         }
 
-        return cultureInfo;
+        try
+        {
+            CultureInfo cultureInfo = CultureInfo.CreateSpecificCulture(data.Name);
+            switch (data.DisplayName)
+            {
+                case "Hebrew":
+                    cultureInfo.DateTimeFormat.Calendar = new HebrewCalendar();
+                    break;
+                case "Hijri":
+                    cultureInfo.DateTimeFormat.Calendar = new HijriCalendar();
+                    break;
+                case "Japanese":
+                    cultureInfo.DateTimeFormat.Calendar = new GregorianCalendar();
+                    break;
+                case "Persian":
+                    cultureInfo.DateTimeFormat.Calendar = new PersianCalendar();
+                    break;
+                case "Taiwan":
+                    cultureInfo.DateTimeFormat.Calendar = new TaiwanCalendar();
+                    break;
+                case "Thai/Buddhist":
+                    cultureInfo.DateTimeFormat.Calendar = new ThaiBuddhistCalendar();
+                    break;
+                case "Umm al-Qura":
+                    cultureInfo.DateTimeFormat.Calendar = new UmAlQuraCalendar();
+                    break;
+            }
+
+            return cultureInfo;
+        }
+        catch (Exception)
+        {
+            return CultureInfo.CurrentCulture;
+        }
     }
 }

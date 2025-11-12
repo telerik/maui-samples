@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:styles="clr-namespace:QSF.Styles"
+             x:Class="QSF.Examples.SkeletonControl.ConfigurationExample.ConfigurationArea">
+
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <styles:ConfigurationViewResources />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+    <VerticalStackLayout Style="{StaticResource RootAtSeparateAreaStyle}">
+
+        <HorizontalStackLayout Style="{StaticResource CheckBoxGroupStyle}"
+                               telerik:RadCheckBox.ToggleOnTap="{Reference isLoadingCheck}">
+            <telerik:RadCheckBox x:Name="isLoadingCheck"
+                                 IsChecked="{Binding IsContentLoading}" />
+            <Label Text="Is Loading"
+                   Style="{StaticResource HorizontalGroupLabelAtEndStyle}" />
+        </HorizontalStackLayout>
+
+        <HorizontalStackLayout Style="{StaticResource CheckBoxGroupStyle}"
+                               telerik:RadCheckBox.ToggleOnTap="{Reference customTemplateCheck}">
+            <telerik:RadCheckBox x:Name="customTemplateCheck"
+                                 IsChecked="{Binding UseCustomTemplate}" />
+            <Label Text="Use Custom Template"
+                   Style="{StaticResource HorizontalGroupLabelAtEndStyle}" />
+        </HorizontalStackLayout>
+
+        <VerticalStackLayout Style="{StaticResource GroupAtSeparateAreaStyle}"
+                             Margin="0, 8, 0, 12">
+            <Label Text="Skeleton Type:"
+                   Style="{StaticResource VerticalGroupLabelStyle}" />
+            <telerik:RadComboBox ItemsSource="{Binding SkeletonTypes}"
+                                 SelectedItem="{Binding SelectedSkeletonType, Mode=TwoWay}"
+                                 IsClearButtonVisible="False" />
+        </VerticalStackLayout>
+
+        <VerticalStackLayout Style="{StaticResource GroupAtSeparateAreaStyle}">
+            <Label Text="Animation Type:"
+                   Style="{StaticResource VerticalGroupLabelStyle}" />
+            <telerik:RadComboBox ItemsSource="{Binding AnimationTypes}"
+                                 SelectedItem="{Binding SelectedAnimationType, Mode=TwoWay}"
+                                 IsClearButtonVisible="False" />
+        </VerticalStackLayout>
+
+        <VerticalStackLayout Style="{StaticResource GroupAtSeparateAreaStyle}">
+            <Label Text="Animation Color:"
+                   Style="{StaticResource VerticalGroupLabelStyle}" />
+            <telerik:RadComboBox ItemsSource="{Binding ColorChoices}"
+                                 SelectedItem="{Binding SelectedColorChoice, Mode=TwoWay}"
+                                 DisplayMemberPath="Name"
+                                 IsClearButtonVisible="False" />
+        </VerticalStackLayout>
+
+        <VerticalStackLayout Style="{StaticResource GroupAtSeparateAreaStyle}">
+            <Label Text="Repeat Count:"
+                   Style="{StaticResource VerticalGroupLabelStyle}" />
+            <telerik:RadNumericInput Value="{Binding RepeatCount}"
+                                     Minimum="1"
+                                     Maximum="50"
+                                     Step="1" />
+        </VerticalStackLayout>
+
+        <VerticalStackLayout Style="{StaticResource GroupAtSeparateAreaStyle}">
+            <Label Text="Repeat Spacing:"
+                   Style="{StaticResource VerticalGroupLabelStyle}" />
+            <telerik:RadNumericInput Value="{Binding RepeatSpacing}"
+                                     Minimum="0"
+                                     Maximum="60"
+                                     Step="2" />
+        </VerticalStackLayout>
+
+        <VerticalStackLayout Style="{StaticResource GroupAtSeparateAreaStyle}">
+            <Label Text="Width:"
+                   Style="{StaticResource VerticalGroupLabelStyle}" />
+            <telerik:RadNumericInput Value="{Binding LoadingWidth}"
+                                     Minimum="64"
+                                     Maximum="800"
+                                     Step="32" />
+        </VerticalStackLayout>
+
+        <VerticalStackLayout Style="{StaticResource GroupAtSeparateAreaStyle}">
+            <Label Text="Height:"
+                   Style="{StaticResource VerticalGroupLabelStyle}" />
+            <telerik:RadNumericInput Value="{Binding LoadingHeight}"
+                                     Minimum="64"
+                                     Maximum="400"
+                                     Step="16" />
+        </VerticalStackLayout>
+
+        <telerik:RadButton Text="Reset"
+                           Command="{Binding ResetCommand}" />
+    </VerticalStackLayout>
+</ContentView>

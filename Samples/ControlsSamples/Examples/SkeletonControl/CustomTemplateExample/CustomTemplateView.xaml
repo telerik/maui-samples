@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:converters="clr-namespace:QSF.Converters"
+             x:Class="QSF.Examples.SkeletonControl.CustomTemplateExample.CustomTemplateView"
+             Padding="{OnIdiom Default='16, 20', Phone=0}">
+
+    <ContentView.Resources>
+        <converters:ResourceKeyToColorConverter x:Key="ResourceKeyToColorConverter" />
+
+        <DataTemplate x:Key="MessageSkeletonTemplate">
+            <Grid MinimumHeightRequest="64"
+                  VerticalOptions="Start"
+                  Padding="{OnPlatform Default='16, 16, 12, 16', MacCatalyst='16, 16, 20, 16'}"
+                  ColumnSpacing="8"
+                  ColumnDefinitions="Auto, *, Auto">
+                <RoundRectangle MinimumWidthRequest="32"
+                                MinimumHeightRequest="32"
+                                CornerRadius="6"
+                                VerticalOptions="Center" />
+                <Grid Grid.Column="1"
+                      RowDefinitions="Auto, Auto"
+                      VerticalOptions="Center"
+                      HorizontalOptions="Fill">
+                    <RoundRectangle MinimumHeightRequest="12"
+                                    MinimumWidthRequest="110"
+                                    CornerRadius="4"
+                                    Margin="0, 4, 0, 0"
+                                    HorizontalOptions="Start" />
+                    <RoundRectangle Grid.Row="1"
+                                    MinimumHeightRequest="8"
+                                    MinimumWidthRequest="240"
+                                    CornerRadius="4"
+                                    Margin="0, 8, 0, 0"
+                                    HorizontalOptions="Start" />
+                </Grid>
+                <RoundRectangle Grid.Column="2"
+                                MinimumHeightRequest="12"
+                                MinimumWidthRequest="32"
+                                CornerRadius="8"
+                                VerticalOptions="Center" />
+            </Grid>
+        </DataTemplate>
+    </ContentView.Resources>
+
+    <Grid RowDefinitions="*, Auto">
+
+        <telerik:RadBorder BorderColor="{DynamicResource PlatformBorderColor}"
+                           BorderThickness="{OnPlatform Default=0, MacCatalyst=1, WinUI=1}">
+
+            <telerik:RadSkeleton x:Name="skeleton"
+                                 IsLoading="{Binding IsLoading}"
+                                 LoadingViewTemplate="{StaticResource MessageSkeletonTemplate}"
+                                 RepeatCount="20"
+                                 RepeatSpacing="20"
+                                 LoadingViewColor="{DynamicResource SkeletonLoadingColor}"
+                                 BorderColor="Transparent"
+                                 BackgroundColor="Transparent">
+
+                <telerik:RadCollectionView x:Name="collectionView"
+                                           ItemsSource="{Binding Messages}"
+                                           Margin="{OnPlatform Default=0, MacCatalyst='0, -1', WinUI='0, -1'}"
+                                           AutomationId="collectionView">
+                    <telerik:RadCollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Padding="{OnPlatform Default='16, 16, 12, 16', MacCatalyst='16, 16, 20, 16'}"
+                                  ColumnSpacing="8"
+                                  ColumnDefinitions="Auto, *, Auto">
+                                <Grid>
+                                    <telerik:RadBorder CornerRadius="4"
+                                                       WidthRequest="32"
+                                                       HeightRequest="32"
+                                                       BackgroundColor="{Binding BackgroundColorKey, Converter={StaticResource ResourceKeyToColorConverter}}"
+                                                       VerticalOptions="Center"
+                                                       HorizontalOptions="Center">
+                                        <Label Text="{Binding SenderAbbreviation}"
+                                               TextColor="{Binding TextColorKey, Converter={StaticResource ResourceKeyToColorConverter}}"
+                                               VerticalTextAlignment="Center"
+                                               HorizontalTextAlignment="Center" />
+                                    </telerik:RadBorder>
+                                    <telerik:RadBorder CornerRadius="8"
+                                                       WidthRequest="12"
+                                                       HeightRequest="12"
+                                                       BackgroundColor="{Binding StatusColorKey, Converter={StaticResource ResourceKeyToColorConverter}}"
+                                                       BorderColor="{Binding BackgroundColor, Source={RelativeSource AncestorType={x:Type telerik:RadCollectionView}}}"
+                                                       BorderThickness="1"
+                                                       Margin="0, 0, -4, -3"
+                                                       VerticalOptions="End"
+                                                       HorizontalOptions="End" />
+                                </Grid>
+                                <Grid Grid.Column="1"
+                                      RowDefinitions="Auto, *">
+                                    <Label Text="{Binding Sender}"
+                                           Style="{StaticResource BaseLabelStyle}"
+                                           HorizontalOptions="Start" />
+                                    <Label Grid.Row="1"
+                                           Text="{Binding Message}"
+                                           Style="{StaticResource PlaceholderLabelStyle}"
+                                           HorizontalOptions="Start"
+                                           VerticalOptions="End"
+                                           FontSize="12" />
+                                </Grid>
+                                <telerik:RadBorder Grid.Column="2"
+                                                   CornerRadius="8"
+                                                   VerticalOptions="Center"
+                                                   BackgroundColor="#12000000">
+                                    <Label Text="{Binding MessageDelivered}"
+                                           Style="{StaticResource PlaceholderLabelStyle}"
+                                           FontSize="11"
+                                           Padding="8, 2" />
+                                </telerik:RadBorder>
+                            </Grid>
+                        </DataTemplate>
+                    </telerik:RadCollectionView.ItemTemplate>
+                </telerik:RadCollectionView>
+            </telerik:RadSkeleton>
+        </telerik:RadBorder>
+
+        <telerik:RadButton Grid.Row="1"
+                           Text="Reload Data"
+                           BackgroundColor="Transparent"
+                           TextColor="{StaticResource AccentColor8}"
+                           BorderColor="{StaticResource AccentColor8}"
+                           Command="{Binding ReloadCommand}"
+                           BorderThickness="2"
+                           CornerRadius="4"
+                           MinimumWidthRequest="120"
+                           MinimumHeightRequest="40"
+                           HorizontalOptions="Start"
+                           Margin="{OnIdiom Default='0, 16, 0, 0', Phone='16, 16, 16, 16'}"
+                           FontSize="14" />
+    </Grid>
+</ContentView>

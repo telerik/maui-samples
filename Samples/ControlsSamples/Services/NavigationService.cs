@@ -1,16 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
 using Microsoft.Maui.Controls;
 using Microsoft.Maui.Devices;
-using Telerik.AppUtils.Services;
 using QSF.Common;
 using QSF.Helpers;
 using QSF.Pages;
 using QSF.ViewModels;
+using System.Globalization;
+using System.Linq;
+using System.Reflection;
+using System.Threading.Tasks;
+using Telerik.AppUtils.Services;
 
 namespace QSF.Services;
 
@@ -20,10 +18,12 @@ namespace QSF.Services;
 public class NavigationService : INavigationService
 {
     private readonly INavigation navigation;
+    private readonly TelemetryService telemetryService;
 
     public NavigationService()
     {
         this.navigation = Application.Current.Windows[0].Page.Navigation;
+        this.telemetryService = ServiceHelper.GetService<TelemetryService>();
     }
 
     public Task NavigateToAsync<TViewModel>(params object[] arguments)
@@ -81,6 +81,9 @@ public class NavigationService : INavigationService
                 }
             }
         }
+
+        // Track the navigation to the example
+        this.telemetryService.TrackNavigatedToExample(example);
     }
 
     public Task NavigateToConfigurationPageAsync(ExampleViewModel viewModel)
@@ -104,10 +107,10 @@ public class NavigationService : INavigationService
         return this.navigation.PushAsync(settingsPage);
     }
 
-    public Task NavigateToThemeSettingsPageAsync(ThemeSettingsViewModel themeSettingsViewModel)
+    public Task NavigateToThemeSettingsPageAsync(ThemingViewModel themingViewModel)
     {
         ThemeSettingsPage themeSettingsPage = new ThemeSettingsPage();
-        themeSettingsPage.BindingContext = themeSettingsViewModel;
+        themeSettingsPage.BindingContext = themingViewModel;
         return this.navigation.PushAsync(themeSettingsPage);
     }
 

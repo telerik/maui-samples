@@ -11,12 +11,14 @@ namespace SDKBrowserMaui.Common
     {
         public string Name { get; set; }
         public string Title { get; set; }
-        public string Icon { get; set; }
+
         public string ExcludeFrom { get; set; }
 
         [XmlIgnore]
         public Configuration Configuration { get; set; }
         public List<Category> Categories { get; set; }
+
+        public string Icon => TelerikControlsIcons.GetIcon(this.Name);
 
         public Control()
         {

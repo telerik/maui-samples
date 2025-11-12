@@ -7,43 +7,39 @@ namespace QSF.Examples.TemplatedPickerControl.Common;
 public class SizeModel : NotifyPropertyChangedBase
 {
     private string name;
-    private Color backgroundColor;
-    private Color textColor;
+    private string backgroundColorKey;
+    private string textColorKey;
 
-    public SizeModel(string name, string backgroundColor, string textColor)
-        : this(name, Color.FromArgb(backgroundColor), Color.FromArgb(textColor))
-    {
-    }
-
-    public SizeModel(string name, Color backgroundColor, Color textColor)
+    public SizeModel(string name, string backgroundColorKey, string textColorKey)
     {
         this.name = name;
-        this.backgroundColor = backgroundColor;
-        this.textColor = textColor;
+        this.backgroundColorKey = backgroundColorKey;
+        this.textColorKey = textColorKey;
     }
 
+    // Convenience constructor with defaults
     public SizeModel(string name)
     {
         this.name = name;
-        this.backgroundColor = Color.FromArgb("#EAEAEA");
-        this.textColor = Colors.Black;
+        this.backgroundColorKey = "TemplatePickerDeselectedSizeBackgroundColor";
+        this.textColorKey = "DefaultTextColor";
     }
 
     public string Name
     {
-        get => this.name; 
+        get => this.name;
         set => UpdateValue(ref this.name, value);
     }
 
-    public Color BackgroundColor
+    public string BackgroundColorKey
     {
-        get => this.backgroundColor; 
-        set => UpdateValue(ref this.backgroundColor, value);
+        get => this.backgroundColorKey;
+        set => UpdateValue(ref this.backgroundColorKey, value);
     }
 
-    public Color TextColor
+    public string TextColorKey
     {
-        get => this.textColor;
-        set => UpdateValue(ref this.textColor, value);
+        get => this.textColorKey;
+        set => UpdateValue(ref this.textColorKey, value);
     }
 }

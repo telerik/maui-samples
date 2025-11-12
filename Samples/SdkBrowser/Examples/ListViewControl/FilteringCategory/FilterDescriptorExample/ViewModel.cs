@@ -2,13 +2,11 @@
 
 namespace SDKBrowserMaui.Examples.ListViewControl.FilteringCategory.FilterDescriptorExample
 {
-    // >> listview-features-filtering-data-class
     public class Person
     {
         public string Name { get; set; }
         public int Age { get; set; }
     }
-    // << listview-features-filtering-data-class
 
     // >> listview-features-filtering-viewmodel
     public class ViewModel

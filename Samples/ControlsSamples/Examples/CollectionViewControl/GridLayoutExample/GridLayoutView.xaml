@@ -8,8 +8,9 @@
     <telerik:RadContentView.Resources>
         <Style TargetType="Label" BasedOn="{StaticResource BaseLabelStyle}" />
 
-        <Style TargetType="telerik:RadCollectionViewItemView">
+        <Style x:Key="CollectionViewItemStyle" TargetType="telerik:RadCollectionViewItemView">
             <Setter Property="BorderThickness" Value="{OnPlatform Default='0, 0, 0, 1', MacCatalyst=0, WinUI=0}" />
+            <Setter Property="BorderColor" Value="{DynamicResource DefaultBorderColor}" />
             <Setter Property="CornerRadius" Value="0" />
             <Setter Property="VisualStateManager.VisualStateGroups">
                 <VisualStateGroupList>
@@ -81,6 +82,7 @@
     </telerik:RadContentView.Resources>
 
     <telerik:RadCollectionView x:Name="collectionView"
+                               ItemViewStyle="{StaticResource CollectionViewItemStyle}"
                                ItemsSource="{Binding Properties}"
                                ItemTemplate="{OnPlatform Default={StaticResource PropertyItemTemplateMobile}, MacCatalyst={StaticResource PropertyItemTemplateDesktop}, WinUI={StaticResource PropertyItemTemplateDesktop}}"
                                SelectionMode="None"

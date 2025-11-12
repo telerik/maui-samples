@@ -13,7 +13,7 @@ public partial class Commands : ContentView
 	public Commands()
 	{
 		InitializeComponent();
-        // >> pdfviewer-search-docusment-loading
+       
         Func <CancellationToken, Task<Stream>> streamFunc = ct => Task.Run(() =>
         {
             Assembly assembly = typeof(Commands).Assembly;
@@ -22,6 +22,5 @@ public partial class Commands : ContentView
             return stream;
         });
         this.pdfViewer.Source = streamFunc;
-        // << pdfviewer-search-docusment-loading
     }
 }

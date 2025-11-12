@@ -119,14 +119,14 @@ public partial class HighlightsCardsView : ContentView
         tap.Tapped += this.ItemContainer_Tapped;
 
         ContentView itemContainer = new ContentView();
-        itemContainer.BackgroundColor = this.GetContainerBackgroundColor(index);
+        itemContainer.Background = this.GetContainerBackgroundColor(index);
         itemContainer.GestureRecognizers.Add(tap);
         itemContainer.Content = itemView;
 
         return itemContainer;
     }
 
-    private Color GetContainerBackgroundColor(int index)
+    private SolidColorBrush GetContainerBackgroundColor(int index)
     {
         index = index % 4;
 
@@ -137,19 +137,19 @@ public partial class HighlightsCardsView : ContentView
             "Color4";
 
         object colorRes = this.Resources[key];
-        Color color;
+        SolidColorBrush color;
 
-        if (colorRes is OnPlatform<Color> onPlatform)
+        if (colorRes is OnPlatform<SolidColorBrush> solidColorRes)
         {
-            color = (Color)onPlatform;
+            color = (SolidColorBrush)solidColorRes;
         }
-        else if (colorRes is Color clr)
+        else if (colorRes is SolidColorBrush clr)
         {
             color = clr;
         }
         else
         {
-            color = Colors.Red;
+            color = new SolidColorBrush(Colors.Red);
         }
 
         return color;

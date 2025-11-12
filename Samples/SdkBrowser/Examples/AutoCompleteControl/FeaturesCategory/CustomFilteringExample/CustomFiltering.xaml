@@ -6,7 +6,7 @@
              x:Class="SDKBrowserMaui.Examples.AutoCompleteControl.FeaturesCategory.CustomFilteringExample.CustomFiltering">
     <VerticalStackLayout>
         <!-- >> autocomplete-customfiltering -->
-        <telerik:RadAutoComplete x:Name="аutoComplete"
+        <telerik:RadAutoComplete x:Name="autoComplete"
                                  Filter="{Binding Filter}"
                                  TextSearchPath="FirstName"
                                  ItemsSource="{Binding Source}"
@@ -14,11 +14,11 @@
                                  SuggestionViewMaxHeight="300">
             <telerik:RadAutoComplete.SuggestionItemTemplate>
                 <DataTemplate>
-                    <HorizontalStackLayout HeightRequest="30" 
-                                           Spacing="5" 
-                                           Margin="5">
-                        <Label Text="{Binding FirstName}"/>
-                        <Label Text="{Binding LastName}"/>
+                    <HorizontalStackLayout HeightRequest="30"
+                                           Spacing="5"
+                                           Margin="5, 0">
+                        <Label Text="{Binding FirstName}" VerticalOptions="Center" />
+                        <Label Text="{Binding LastName}" VerticalOptions="Center" />
                     </HorizontalStackLayout>
                 </DataTemplate>
             </telerik:RadAutoComplete.SuggestionItemTemplate>

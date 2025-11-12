@@ -18,11 +18,12 @@
             <telerik:RadCollectionView.ItemTemplate>
                 <DataTemplate>
                     <Grid ColumnDefinitions="50,*">
-                        <Image Source="{Binding Icon}"
+                        <Label Text="{Binding Icon}"
+                               FontFamily="TelerikControlsIcons"
+                               FontSize="16"
+                               TextColor="#71559b"
                                HorizontalOptions="Center"
-                               Aspect="Fill"
-                               WidthRequest="16"
-                               HeightRequest="16" />
+                               VerticalOptions="Center" />
                         <Label Grid.Column="1"
                                Text="{Binding Title}"
                                TextColor="{DynamicResource RadOnAppSurfaceColor}"

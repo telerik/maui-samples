@@ -11,15 +11,12 @@
                                                      FontFamily="TelerikFontExamples"
                                                      Size="16" />
 
-        <Style TargetType="telerik:RadCollectionViewItemView">
-            <Setter Property="BorderColor" Value="{OnPlatform Default={StaticResource DefaultBorderColor}, MacCatalyst=#0D000000, WinUI={StaticResource DefaultBorderColorWinUI}}" />
-            <Setter Property="BorderThickness" Value="0, 0, 0, 1" />
-        </Style>
-
-        <Style x:Key="MyMailTextStyle" TargetType="telerik:NavigationViewHeader">
+        <Style x:Key="MyMailTextStyle" TargetType="telerik:NavigationViewHeader" BasedOn="{StaticResource NavigationViewHeaderStyle}">
             <Setter Property="FontAttributes" Value="Bold" />
-            <Setter Property="BorderColor" Value="{OnPlatform Default={StaticResource DefaultBorderColor}, MacCatalyst=#0D000000, WinUI={StaticResource DefaultBorderColorWinUI}}" />
+            <Setter Property="BorderColor" Value="{DynamicResource PlatformBorderColor}" />
             <Setter Property="BorderThickness" Value="0, 0, 1, 1" />
+            <Setter Property="BackgroundColor" Value="{DynamicResource NavigationViewConfigurationHeaderBackgroundColor}" />
+            <Setter Property="TextColor" Value="{DynamicResource DefaultTextColor}" />
         </Style>
 
         <Style TargetType="telerik:NavigationViewPane">
@@ -110,9 +107,10 @@
                                ItemTemplate="{StaticResource ItemTemplateSelector}"
                                SelectedItem="{Binding SelectedItem}"
                                BorderThickness="1"
-                               BorderColor="{StaticResource DefaultBorderColor}">
+                               BorderColor="{DynamicResource DefaultBorderColor}">
         <telerik:RadNavigationView.Content>
             <telerik:RadCollectionView ItemsSource="{Binding Mails}"
+                                       ItemViewStyle="{StaticResource CollectionViewItemStyle}"
                                        ItemTemplate="{StaticResource MailTemplate}"
                                        SelectionMode="None"
                                        FilterDescriptors="{Binding FilterDescriptors}" />

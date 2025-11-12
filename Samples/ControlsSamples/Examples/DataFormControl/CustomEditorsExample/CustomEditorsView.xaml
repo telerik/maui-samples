@@ -63,7 +63,10 @@
                     <ControlTemplate>
                         <Editor Text="{Binding Value, Mode=TwoWay, Source={RelativeSource Mode=TemplatedParent}}"
                                 Placeholder="Leave your comments here"
-                                HeightRequest="120"
+                                HeightRequest="120" 
+                                BackgroundColor="#1AFFFFFF"
+                                TextColor="{DynamicResource DefaultTextColor}"
+                                PlaceholderColor="{DynamicResource PlaceholderColor}"
                                 AutomationId="commentsEditor"/>
                     </ControlTemplate>
                 </telerik:DataFormCustomEditor.EditorTemplate>

@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    xmlns:telerikTheming="clr-namespace:Telerik.Maui.Controls.Theming;assembly=Telerik.Maui.Controls"
+                    xmlns:converters="clr-namespace:QSF.Converters"
+                    x:Class="QSF.Styles.ColorsLight">
+
+    <!-- Accent Colors -->
+    <Color x:Key="ApplicationAccentColor">#8660C5</Color>
+    <Color x:Key="AccentColor2">#3341A1</Color>
+    <Color x:Key="AccentColor3">#04A2AA</Color>
+    <Color x:Key="AccentColor4">#FF9040</Color>
+    <Color x:Key="AccentColor5">#8AAAFF</Color>
+    <Color x:Key="AccentColor6">#55D3DE</Color>
+    <Color x:Key="AccentColor7">#FFAC3E</Color>
+    <Color x:Key="AccentColor8">#7C59B6</Color>
+    <Color x:Key="AccentColor9">#4652AA</Color>
+
+    <!-- Text Colors -->
+    <Color x:Key="DefaultTextColor">#000000</Color>
+    <Color x:Key="HyperlinkLabelTextColor">#3D57D8</Color>
+    <Color x:Key="IconTextColor">#7C59B6</Color>
+    <Color x:Key="InverseDefaultTextColor">#FFFFFF</Color>
+    <Color x:Key="LabelDisabledTextColor">#60000000</Color>
+    <Color x:Key="PlaceholderColor">#99000000</Color>
+    <Color x:Key="TextOnAccentColor">#FFFFFF</Color>
+
+    <!-- Background Colors -->
+    <Color x:Key="BadgeNewBackgroundColor">#FD5064</Color>
+    <Color x:Key="BadgeUpdatedBackgroundColor">#FF9040</Color>
+    <Color x:Key="CollectionViewItemPointerOverBackgroundColor">#FAFAFA</Color>
+    <Color x:Key="DefaultBackgroundColor">#F8F8F8</Color>
+    <Color x:Key="IconBackgroundColor">#F8F8F8</Color>
+    <Color x:Key="ItemBackgroundColor">#FFFFFF</Color>
+    <Color x:Key="NavigationViewBackgroundColor">#F2F2F2</Color>
+    <Color x:Key="RadAppSurfaceColor">#FFFFFF</Color>
+    <Color x:Key="SecondaryBackgroundColor">#FFFFFF</Color>
+    <Color x:Key="SearchBackgroundColor">#FFFFFF</Color>
+    <Color x:Key="TertiaryBackgroundColor">#FFFFFF</Color>
+    <Color x:Key="ThemeSwatchesBackgroundColor">#F5F5F5</Color>
+    <Color x:Key="ThemesComboBackgroundColor">#FFFFFF</Color>
+    <Color x:Key="ThemesComboBoxPointerOverBackgroundColor">#EEEEEE</Color>
+    <Color x:Key="ViewCodeButtonBackgroundColor">#FFF6EA</Color>
+    <Color x:Key="WrapperBackgroundColor">#18A5A5A5</Color>
+    <Color x:Key="DescriptionBackgroundColor">#F5F5F5</Color>
+
+    <Color x:Key="ControlPageItemBackgroundColor1">#4D3341A1</Color>
+    <Color x:Key="ControlPageItemBackgroundColor2">#4D04A2AA</Color>
+    <Color x:Key="ControlPageItemBackgroundColor3">#4DFF9040</Color>
+    <Color x:Key="ControlPageItemBackgroundColor4">#4D8AAAFF</Color>
+    <Color x:Key="ControlPageItemBackgroundColor5">#4D55D3DE</Color>
+    <Color x:Key="ControlPageItemBackgroundColor6">#4DFFAC3E</Color>
+
+    <!-- Examples key colors -->
+    <Color x:Key="AvatarColor1">#F8F8F8</Color>
+    <Color x:Key="AvatarColor2">#D3F2F3</Color>
+    <Color x:Key="AvatarColor3">#CCE7CB</Color>
+    <Color x:Key="AvatarColor4">#FECAD1</Color>
+    <Color x:Key="AvatarColor5">#FFE6C5</Color>
+
+    <Color x:Key="PickerBackgroundColor1">#ECF6FE</Color>
+    <Color x:Key="PickerBackgroundColor2">#FEF2F1</Color>
+    <Color x:Key="PickerBackgroundColor3">#FFF4EB</Color>
+    <Color x:Key="PickerBorderColor1">#D6EBFC</Color> 
+    <Color x:Key="PickerBorderColor2">#FEE5E3</Color>
+    <Color x:Key="PickerBorderColor3">#FFE9D8</Color>
+    <Color x:Key="PickerSelectedBorderColor1">#0E88F2</Color>
+    <Color x:Key="PickerSelectedBorderColor2">#F85446</Color>
+    <Color x:Key="PickerSelectedBorderColor3">#FFAC3E</Color>
+
+    <Color x:Key="CollectionViewMessageDataProviderBackgroundColor1">#FFE6C5</Color>
+    <Color x:Key="CollectionViewMessageDataProviderBackgroundColor2">#FECAD1</Color>
+    <Color x:Key="CollectionViewMessageDataProviderBackgroundColor3">#D3F2F3</Color>
+    <Color x:Key="CollectionViewMessageDataProviderBackgroundColor4">#CCE7CB</Color>
+    <Color x:Key="CollectionViewMessageDataProviderTextColor1">#FFAC3E</Color>
+    <Color x:Key="CollectionViewMessageDataProviderTextColor2">#FD5064</Color>
+    <Color x:Key="CollectionViewMessageDataProviderTextColor3">#55D3DE</Color>
+    <Color x:Key="CollectionViewMessageDataProviderTextColor4">#56AF51</Color>
+    <Color x:Key="CollectionViewMessageDataProviderStatusColor1">#60C858</Color>
+    <Color x:Key="CollectionViewMessageDataProviderStatusColor2">#F85446</Color>
+
+    <Color x:Key="ChatroomMessageBackgroundColor1">#FFCDCDC0</Color>
+    <Color x:Key="ChatroomMessageBackgroundColor2">#FFD9E3DA</Color>
+    <Color x:Key="ChatroomMessageBackgroundColor3">#FFF3DCD4</Color>
+    <Color x:Key="ChatroomMessageBackgroundColor4">#FFC8D5E1</Color>
+    <Color x:Key="ChatroomMessageBackgroundColor5">#FFF1F2CE</Color>
+    <Color x:Key="ChatroomMessageBackgroundColor6">#FFECC9C7</Color>
+
+    <!-- Border Colors -->
+    <OnPlatform x:Key="ControlsMenuBorderColor" x:TypeArguments="Color" Default="#DFDFDF">
+        <On Platform="WinUI" Value="#D9D9D9" />
+    </OnPlatform>
+    <Color x:Key="DefaultBorderColor">#DFDFDF</Color>
+    <Color x:Key="DefaultBorderColorMacCatalyst">#0D000000</Color>
+    <Color x:Key="DefaultBorderColorWinUI">#0F000000</Color>
+    <Color x:Key="SecondaryBorderColor">#000000</Color>
+    <Color x:Key="SeparatorColor">#E3E4E5</Color>
+    <Color x:Key="SeparatorOnAccentColor">#36FFFFFF</Color>
+    <Color x:Key="SwitchBorderColor">#EBEBEB</Color>
+    <Color x:Key="ThemeSwatchInnerBorderColor">#29000000</Color>
+    <Color x:Key="ThemeSwatchOuterBorderColor">#FFFFFF</Color>
+    <OnPlatform x:Key="PlatformBorderColor" x:TypeArguments="Color" Default="#DFDFDF">
+        <On Platform="WinUI" Value="#0F000000" />
+    </OnPlatform>
+    <OnPlatform x:Key="ButtonFontImageColor" x:TypeArguments="Color" Default="#007AFF">
+        <On Platform="Android" Value="{StaticResource DefaultTextColor}" />
+        <On Platform="WinUI" Value="{StaticResource PlaceholderColor}" />
+    </OnPlatform>
+
+    <!-- Examples Colors -->
+    <Color x:Key="AccordionCustomizationAvatarLabelTextColor">#CCCCCC</Color>
+    <Color x:Key="AccordionCustomizationCollapsedBackgroundColor">#151950</Color>
+    <Color x:Key="AccordionCustomizationExpandedBackgroundColor">#7C59B6</Color>
+    <Color x:Key="BadgeMenuItemBackgroundColor">#F8F8F8</Color>
+    <Color x:Key="BarcodeBoardingPassAccentColor">#3A6BC7</Color>
+    <Color x:Key="BarcodeBoardingPassBoxViewBackgroundColor">#0F000000</Color>
+    <Color x:Key="BarcodeBoardingPassTextColor">#4A4E52</Color>
+    <Color x:Key="BarcodeDataMatrixBorderColor">#202223</Color>
+    <Color x:Key="BorderFirstLookSeparatorColor">#DCE7F2</Color>
+    <Color x:Key="CalendarCustomizationBackgroundColor">#F3F3F3</Color>
+    <Color x:Key="CalendarCustomizationLabelBackgroundColor">#F2EFF9</Color>
+    <OnPlatform x:Key="CalendarFirstLookBackgroundColor" x:TypeArguments="Color" Default="Transparent">
+        <On Platform="Android" Value="#F3F3F3" />
+        <On Platform="iOS" Value="#F3F3F3" />
+    </OnPlatform>
+    <Color x:Key="ChartLineColor">#A9A9A9</Color>
+    <OnPlatform x:Key="ChartMajorLineColor" x:TypeArguments="Color" Default="#EDEDED">
+        <On Platform="WinUI" Value="Transparent" />
+    </OnPlatform>
+    <Color x:Key="ChartLabelHeaderTextColor">#757575</Color>
+    <Color x:Key="CollectionViewExampleIconBackgroundColor">#1F7C59B6</Color>
+    <Color x:Key="CollectionViewIconBackgroundColor">#1F040405</Color>
+    <Color x:Key="CustomizationButtonBackgroundColor">#FFFFFF</Color>
+    <Color x:Key="CustomizationButtonBorderColor">#849C31</Color>
+    <Color x:Key="CustomizationButtonPointerOverBackgroundColor">#F8FAF4</Color>
+    <Color x:Key="CustomizationButtonTextColor">#6B7C27</Color>
+    <Color x:Key="CustomizationCircularButtonPointerOverBackgroundColor">#F5F7FA</Color>
+    <Color x:Key="CustomizationCircularButtonTextColor">#3D609B</Color>
+    <Color x:Key="CustomizationLoadingButtonBackgroundColor">#F2EFF9</Color>
+    <Color x:Key="CustomizationLoadingButtonPointerOverBackgroundColor">#E6DFF3</Color>
+    <Color x:Key="CustomizationLoadingButtonPressedTextColor">#998660C5</Color>
+    <Color x:Key="CustomizationLoadingButtonTextColor">#8660C5</Color>
+    <Color x:Key="DataGridCustomizationAccentColor">#7C59B6</Color>
+    <Color x:Key="DataGridCustomizationAccentColorAlpha">#1A7C59B6</Color>
+    <Color x:Key="DataGridCustomizationColumnHeaderBackgroundColor">#8A6BBE</Color>
+    <Color x:Key="DataGridCustomizationHoverBackgroundColor">#C4B5DE</Color>
+    <Color x:Key="DataGridCustomizationNumericCellDecorationColor">#E1DAEE</Color>
+    <Color x:Key="DataGridCustomizationSelectedCellColor">#A790CE</Color>
+    <Color x:Key="DataGridGroupingViewCellDecorationBackgroundColor">#1A7C59B6</Color>
+    <Color x:Key="DataGridGroupingViewNumericCellDecorationBackgroundColor">#E1DAEE</Color>
+    <Color x:Key="ImageViewBackgroundColor">#989898</Color>
+    <Color x:Key="ListViewBorderColor">#B1B1B1</Color>
+    <Color x:Key="NavigationViewConfigurationHeaderBackgroundColor">#F2F2F2</Color>
+    <Color x:Key="NavigationViewFirstLookHeaderBackgroundColor">#070707</Color>
+    <Color x:Key="RteImportViewImageBackgroundColor">#C1C1C1</Color>
+    <Color x:Key="RteImportViewImageBorderColor">#D5D5D5</Color>
+    <OnPlatform x:Key="SchedulerCustomizationTextColor" x:TypeArguments="Color" Default="{StaticResource DefaultTextColor}">
+        <On Platform="WinUI" Value="#000000" />
+    </OnPlatform>
+    <Color x:Key="SegmentedControlFirstLookDisabledSegmentTextColor">#888660C5</Color>
+    <Color x:Key="SegmentedControlSegmentBackgroundColor">#22FFFFFF</Color>
+    <Color x:Key="SegmentedControlSelectedSegmentBackgroundColor">#8660C5</Color>
+    <Color x:Key="SegmentedControlSelectedSegmentBackgroundColorImage">#66A5A5A5</Color>
+    <OnPlatform x:Key="SettingsBackgroundColor" x:TypeArguments="Color" Default="{StaticResource TertiaryBackgroundColor}">
+        <On Platform="WinUI" Value="{StaticResource DefaultBackgroundColor}" />
+    </OnPlatform>
+    <Color x:Key="SpreadProcessingControlAddNotesViewBorderBackgroundColor">#FAFFEA</Color>
+    <Color x:Key="SpreadProcessingControlAddNotesViewBorderColor">#D7E3B2</Color>
+    <Color x:Key="TabViewHeaderBackgroundColor">#F8F8F8</Color>
+    <Color x:Key="TemplatePickerDeselectedSizeBackgroundColor">#EAEAEA</Color>
+    <Color x:Key="TemplatePickerSelectedSizeBackgroundColor">#919191</Color>
+    <Color x:Key="ToolbarCustomAccentColor">#674BB2</Color>
+    <Color x:Key="ToolbarCustomAccentColorAlpha">#99674BB2</Color>
+    <Color x:Key="ToolbarCustomDisabledAccentColor">#618660C5</Color>
+    <Color x:Key="ZipLibraryListViewPressedBackgroundColor">#F8F8F8</Color>
+    <Color x:Key="SkeletonLoadingColor">#FFCFCFCF</Color>
+
+    <SolidColorBrush x:Key="AppSurfaceBrush" Color="{StaticResource RadAppSurfaceColor}" />
+    <SolidColorBrush x:Key="CustomizationButtonBackground" Color="{StaticResource CustomizationButtonBackgroundColor}" />
+    <SolidColorBrush x:Key="CustomizationFlatButtonBackground" Color="#EAEAEA" />
+    <SolidColorBrush x:Key="CustomizationButtonPointerOverBackground" Color="{StaticResource CustomizationButtonPointerOverBackgroundColor}" />
+    <SolidColorBrush x:Key="CustomizationCircularButtonBackground" Color="{StaticResource CustomizationCircularButtonTextColor}" />
+    <SolidColorBrush x:Key="ViewCodeButtonBackgroundBrush" Color="{StaticResource ViewCodeButtonBackgroundColor}" />
+
+    <!-- ColorFilters Colors -->
+    <telerikTheming:ColorFilter x:Key="AccentColor8DisabledColor" Color="{StaticResource AccentColor8}" Alpha="0.38" />
+    <telerikTheming:ColorFilter x:Key="SwitchToggledOffThumbColor" Lighten="{OnPlatform Default=0, Android=-0.07, WinUI=0.36}">
+        <telerikTheming:ColorFilter.Color>
+            <OnPlatform x:TypeArguments="Color" Default="{StaticResource TextOnAccentColor}">
+                <On Platform="WinUI" Value="{StaticResource DefaultTextColor}" />
+            </OnPlatform>
+        </telerikTheming:ColorFilter.Color>
+    </telerikTheming:ColorFilter>
+    <telerikTheming:ColorFilter x:Key="SwitchToggledOffOnColor" Lighten="{OnPlatform Default=0, WinUI=0.63}">
+        <telerikTheming:ColorFilter.Color>
+            <OnPlatform x:TypeArguments="Color" Default="#FAFAFA">
+                <On Platform="WinUI" Value="{StaticResource DefaultTextColor}" />
+            </OnPlatform>
+        </telerikTheming:ColorFilter.Color>
+    </telerikTheming:ColorFilter>
+    <telerikTheming:ColorFilter x:Key="SwitchToggledOnThumbColor">
+        <telerikTheming:ColorFilter.Color>
+            <OnPlatform x:TypeArguments="Color" Default="{StaticResource TextOnAccentColor}">
+                <On Platform="Android" Value="#2A0B95" />
+            </OnPlatform>
+        </telerikTheming:ColorFilter.Color>
+    </telerikTheming:ColorFilter>
+    <telerikTheming:ColorFilter x:Key="SwitchToggledOnOnColor" Alpha="{OnPlatform Default=1, Android=0.18}">
+        <telerikTheming:ColorFilter.Color>
+            <OnPlatform x:TypeArguments="Color" Default="#007AFF">
+                <On Platform="Android" Value="#2B0B98" />
+            </OnPlatform>
+        </telerikTheming:ColorFilter.Color>
+    </telerikTheming:ColorFilter>
+    <telerikTheming:ColorFilter x:Key="DefaultTextColorAlpha60" Color="{StaticResource DefaultTextColor}" Alpha="0.6" />
+    <telerikTheming:ColorFilter x:Key="DataPagerButtonAccentColorAlpha38" Color="{StaticResource ApplicationAccentColor}" Alpha="0.38" />
+    <telerikTheming:ColorFilter x:Key="DataPagerButtonAccentColorAlpha60" Color="{StaticResource ApplicationAccentColor}" Alpha="0.60" />
+    <telerikTheming:ColorFilter x:Key="DataPagerButtonNonAccentColorAlpha16" Color="{StaticResource DefaultTextColor}" Alpha="0.16" />
+    <telerikTheming:ColorFilter x:Key="DataPagerButtonNonAccentColorAlpha28" Color="{StaticResource DefaultTextColor}" Alpha="0.28" />
+    <telerikTheming:ColorFilter x:Key="DataPagerButtonNonAccentColorAlpha60" Color="{StaticResource DefaultTextColor}" Alpha="0.60" />
+    <telerikTheming:ColorFilter x:Key="EntryBackgroundColor" Color="#FFFFFF" Alpha="{OnPlatform Default=1, Android=0, WinUI=0.7}" />
+    <telerikTheming:ColorFilter x:Key="SchedulerDialogFooterBackgroundColor" Color="#FFFFFF" Alpha="{OnPlatform Default=1, MacCatalyst=0}" Lighten="{OnPlatform Default=0, Android=-0.03, iOS=-0.03, WinUI=-0.05}" />
+
+    <!-- Platform-Specific Colors -->
+    <OnPlatform x:Key="CollectionViewDragVisualBackgroundColor" x:TypeArguments="Color" Default="#F3F3F3">
+        <On Platform="WinUI" Value="#FAFAFA" />
+    </OnPlatform>
+    <OnPlatform x:Key="AutoCompleteSuggestionViewBackgroundColor" x:TypeArguments="Color" Default="White">
+        <On Platform="WinUI" Value="#DFDFDF" />
+        <On Platform="MacCatalyst" Value="#DFDFDF" />
+    </OnPlatform>
+     <OnPlatform x:Key="MenuItemPointerOverBackgroundColor" x:TypeArguments="Color" Default="#E6E6EC">
+        <On Platform="WinUI" Value="#0A000000" />
+    </OnPlatform>
+    <OnPlatform x:Key="MenuItemSelectedBackgroundColor" x:TypeArguments="Color" Default="#E6E6EC">
+        <On Platform="WinUI" Value="#0A000000" />
+    </OnPlatform>
+     <!-- <OnPlatform x:Key="SwitchToggledOnThumbColor" x:TypeArguments="Color" Default="{StaticResource TextOnAccentColor}">
+        <On Platform="Android" Value="#2B0B98" />
+    </OnPlatform> -->
+
+    <!-- Platform-Specific Brushes -->
+    <OnPlatform x:Key="EditorBorderBrush" x:TypeArguments="Brush">
+        <On Platform="Android">
+            <SolidColorBrush Color="#9E9E9E" />
+        </On>
+        <On Platform="WinUI">
+            <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                <LinearGradientBrush.GradientStops>
+                    <GradientStop Offset="0.00" Color="#EDEDED" />
+                    <GradientStop Offset="0.93" Color="#EDEDED" />
+                    <GradientStop Offset="1.00" Color="#999999" />
+                </LinearGradientBrush.GradientStops>
+            </LinearGradientBrush>
+        </On>
+        <OnPlatform.Default>
+            <SolidColorBrush Color="#EBEBEB" />
+        </OnPlatform.Default>
+    </OnPlatform>
+
+    <!-- Converters -->
+    <converters:StringToFontImageSourceConverter x:Key="StringToFontImageSourceConverter"
+                                                 FontFamily="TelerikFontExamples"
+                                                 Color="{StaticResource DefaultTextColor}"
+                                                 Size="12" />
+    <converters:StringToFontImageSourceConverter x:Key="StringToFontImageSourceConverterLarge"
+                                                 FontFamily="TelerikFontExamples"
+                                                 Color="{StaticResource DefaultTextColor}"
+                                                 Size="16" />
+    <converters:StringToFontImageSourceConverter x:Key="NavigationViewStringToFontImageSourceConverter"
+                                                 FontFamily="TelerikControlsIcons"
+                                                 Color="{StaticResource AccentColor8}"
+                                                 Size="{OnPlatform Default=16, MacCatalyst=20}" />
+    <converters:StatusTagToColorConverter x:Key="StatusTagToColorConverter"
+                                          NewColor="{StaticResource BadgeNewBackgroundColor}"
+                                          UpdatedColor="{StaticResource BadgeUpdatedBackgroundColor}"
+                                          BetaColor="{StaticResource AccentColor8}" />
+
+</ResourceDictionary>

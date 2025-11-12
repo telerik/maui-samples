@@ -7,7 +7,8 @@
              NavigationPage.HasNavigationBar="False"
              NavigationPage.HasBackButton="False"
              x:Class="QSF.Examples.TreeViewControl.FirstLookExample.EmailsPage">
-    <Grid RowDefinitions="Auto, *">
+    <Grid RowDefinitions="Auto, *"
+          BackgroundColor="{DynamicResource ItemBackgroundColor}">
         <Grid ColumnDefinitions="Auto, *"
               Style="{StaticResource HeaderStyle}">
             <ImageButton Clicked="BackBtnClicked"

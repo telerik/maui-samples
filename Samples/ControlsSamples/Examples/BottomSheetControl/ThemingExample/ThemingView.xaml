@@ -14,11 +14,6 @@
             <Setter Property="CornerRadius" Value="24" />
         </Style>
 
-        <Style TargetType="telerik:RadCollectionViewItemView">
-            <Setter Property="CornerRadius" Value="0" />
-            <Setter Property="BorderThickness" Value="0" />
-        </Style>
-
         <Style x:Key="DefaultLabelBottomSheetStyle" TargetType="Label">
             <Setter Property="FontSize" Value="14" />
             <Setter Property="LineBreakMode" Value="WordWrap" />
@@ -34,6 +29,50 @@
             <Setter Property="FontSize" Value="14" />
             <Setter Property="VerticalOptions" Value="Center" />
         </Style>
+
+        <DataTemplate x:Key="EmployeeInfoTemplate">
+            <Grid>
+                <Grid ColumnDefinitions="Auto, *, Auto"
+                      RowDefinitions="Auto, Auto"
+                      Padding="16, 8"
+                      ColumnSpacing="12">
+                    <telerik:RadBorder Style="{StaticResource AvatarBorderStyle}">
+                        <Image Source="{Binding Image}"
+                               Aspect="AspectFill" />
+                    </telerik:RadBorder>
+                    <VerticalStackLayout Grid.Column="1"
+                                         Spacing="2"
+                                         VerticalOptions="Center">
+                        <Label Text="{Binding Name}"
+                               FontAttributes="Bold"
+                               FontSize="16"
+                               LineBreakMode="TailTruncation"
+                               MaxLines="1" />
+                        <Label Text="{Binding Company}"
+                               FontSize="12"
+                               LineBreakMode="TailTruncation"
+                               MaxLines="1" />
+                        <Label Text="{Binding Email}"
+                               Opacity="0.8"
+                               FontSize="12"
+                               LineBreakMode="TailTruncation"
+                               MaxLines="1" />
+                    </VerticalStackLayout>
+                    <HorizontalStackLayout Grid.Column="2"
+                                           Spacing="10"
+                                           VerticalOptions="Start"
+                                           HorizontalOptions="End">
+                        <Label Text="&#xe801;"
+                               IsVisible="{Binding IsFavorite}"
+                               Style="{StaticResource BottomSheetContactIconStyle}"
+                               TextColor="{StaticResource AccentColor4}" />
+                        <Label Text="&#xe807;"
+                               Style="{StaticResource BottomSheetContactIconStyle}"
+                               BackgroundColor="Transparent" />
+                    </HorizontalStackLayout>
+                </Grid>
+            </Grid>
+        </DataTemplate>
     </ContentView.Resources>
     <telerik:RadBottomSheet x:Name="radBottomSheet"
                             State="{Binding BottomSheetState, Mode=TwoWay}"
@@ -42,44 +81,32 @@
             <telerik:BottomSheetState Name="Hidden"
                                       Height="0%" />
             <telerik:BottomSheetState Name="Partial"
-                                      Height="{OnPlatform Android='405px', iOS='390px', MacCatalyst='325px', WinUI='335px'}" />
+                                      Height="{OnPlatform Android='405px', iOS='390px', MacCatalyst='315px', WinUI='335px'}" />
             <telerik:BottomSheetState Name="FullScreen"
-                                      Height="{OnPlatform Android='540px', iOS='520px', MacCatalyst='400px', WinUI='405px'}" />
+                                      Height="{OnPlatform Android='540px', iOS='520px', MacCatalyst='360px', WinUI='405px'}" />
         </telerik:RadBottomSheet.States>
         <Grid RowDefinitions="Auto, *"
               RowSpacing="16"
               Padding="16, 20">
-           <Label Text="Employees"
-                  FontAttributes="{OnIdiom Phone=Bold, Desktop=None}"
-                  FontSize="{OnIdiom Phone=16, Desktop=20}"
-                  HorizontalOptions="Start"
-                  VerticalOptions="Start" />
-                  
-           <telerik:RadCollectionView Grid.Row="1"
-                                      DisplayMemberPath="Name"
-                                      ItemsSource="{Binding Employees}"
-                                      SelectedItem="{Binding SelectedEmployee, Mode=TwoWay}"
-                                      SelectionMode="Single" />
+            <Label Text="Employees"
+                   FontAttributes="{OnIdiom Phone=Bold, Desktop=None}"
+                   FontSize="{OnIdiom Phone=16, Desktop=20}"
+                   HorizontalOptions="Start"
+                   VerticalOptions="Start" />
+
+            <telerik:RadCollectionView Grid.Row="1"
+                                       DisplayMemberPath="Name"
+                                       ItemsSource="{Binding Employees}"
+                                       SelectedItem="{Binding SelectedEmployee, Mode=TwoWay}"
+                                       SelectionMode="Single" />
         </Grid>
         <telerik:RadBottomSheet.BottomSheetContent>
             <VerticalStackLayout Padding="16, 0">
-                <Grid ColumnDefinitions="*, Auto"
-                      Margin="{OnIdiom Desktop='0, 0, 0, 20', Phone='0, 0, 0, 5'}">
-                    <Label Text="Employee Information"
-                           FontSize="17"
-                           VerticalOptions="Center"
-                           IsVisible="{OnIdiom Phone=False, Desktop=True}" />
-                    <telerik:RadButton FontFamily="TelerikFontExamples"
-                                       Text="&#xe80a;"
-                                       Command="{Binding CloseBottomSheetCommand}"
-                                       HorizontalOptions="End"
-                                       Padding="0" Margin="0"
-                                       BorderThickness="0"
-                                       BackgroundColor="Transparent"
-                                       FontSize="{OnIdiom Phone=18, Default=20}"
-                                       WidthRequest="{OnIdiom Phone=40, Default=32}"
-                                       HeightRequest="{OnIdiom Phone=40, Default=32}" />
-                </Grid>
+                <Label Text="Employee Information"
+                       FontSize="17"
+                       Margin="{OnIdiom Desktop='0, 0, 0, 20', Phone='0, 0, 0, 5'}"
+                       VerticalOptions="Center"
+                       IsVisible="{OnIdiom Phone=False, Desktop=True}" />
                 <telerik:RadBorder Style="{StaticResource AvatarBorderStyle}"
                                    WidthRequest="96"
                                    HeightRequest="96"
@@ -111,16 +138,13 @@
                                          Spacing="8">
                         <HorizontalStackLayout Spacing="12">
                             <Label Text="&#xe89e;"
-                                   FontFamily="TelerikFontExamples"
-                                   FontSize="14"
-                                   VerticalOptions="Center" />
+                                   Style="{StaticResource BottomSheetContactIconStyle}" />
                             <Label Text="{Binding SelectedEmployee.Email}"
                                    Style="{StaticResource DefaultLabelBottomSheetStyle}" />
                         </HorizontalStackLayout>
                         <HorizontalStackLayout Spacing="12">
                             <Label Text="&#xe887;"
-                                   FontFamily="TelerikFontExamples"
-                                   VerticalOptions="Center" />
+                                   Style="{StaticResource BottomSheetContactIconStyle}" />
                             <Label Text="{Binding SelectedEmployee.Phone}"
                                    Style="{StaticResource DefaultLabelBottomSheetStyle}" />
                         </HorizontalStackLayout>

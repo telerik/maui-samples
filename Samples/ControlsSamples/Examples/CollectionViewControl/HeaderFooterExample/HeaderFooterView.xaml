@@ -6,10 +6,9 @@
              Padding="{OnIdiom Default='16, 20', Phone=0}">
     <ContentView.Resources>
         <ResourceDictionary>
-            <telerik:ColorFilter x:Key="AccentColorAlpha12" Color="{StaticResource AccentColor8}" Alpha="0.12" />
         </ResourceDictionary>
     </ContentView.Resources>
-    <telerik:RadBorder BorderColor="{OnPlatform Default={StaticResource DefaultBorderColor}, MacCatalyst=#0D000000, WinUI={StaticResource DefaultBorderColorWinUI}}"
+    <telerik:RadBorder BorderColor="{DynamicResource PlatformBorderColor}"
                        BorderThickness="{OnIdiom Default=0, Desktop=1}">
         <telerik:RadCollectionView x:Name="collectionView"
                                    ItemsSource="{Binding Items}"
@@ -19,7 +18,7 @@
                 <DataTemplate>
                     <Grid ColumnDefinitions="Auto, *"
                           ColumnSpacing="8"
-                          BackgroundColor="{StaticResource DefaultBackgroundColor}"
+                          BackgroundColor="{DynamicResource WrapperBackgroundColor}"
                           Padding="16, 24">
                         <Image Source="person_2.png"
                                WidthRequest="48"
@@ -28,7 +27,7 @@
                         <VerticalStackLayout Grid.Column="1"
                                              VerticalOptions="Center">
                             <Label Text="My Subscriptions"
-                                   TextColor="{StaticResource DefaultTextColor}"
+                                   TextColor="{DynamicResource DefaultTextColor}"
                                    FontSize="20"
                                    VerticalOptions="Center" />
                             <Label Text="{Binding Items.Count, StringFormat='Upcoming payments: {0}'}"
@@ -40,7 +39,7 @@
             </telerik:RadCollectionView.HeaderTemplate>
             <telerik:RadCollectionView.FooterTemplate>
                 <DataTemplate>
-                    <Grid BackgroundColor="{StaticResource DefaultBackgroundColor}"
+                    <Grid BackgroundColor="{DynamicResource DefaultBackgroundColor}"
                           Padding="16, 24">
                         <telerik:RadButton Style="{StaticResource AccentButtonStyle}"
                                            Text="{Binding Label}"
@@ -62,14 +61,14 @@
                         </Grid.GestureRecognizers>
                         <telerik:RadCheckBox VerticalOptions="Center"
                                              IsChecked="{Binding IsSelected, Mode=TwoWay}"
-                                             CheckedColor="{StaticResource AccentColor8}"
-                                             AutomationId="itemCheckBox" />
+                                             CheckedColor="{DynamicResource AccentColor8}"
+                                             AutomationId="itemCheckBox"  />
                         <telerik:RadBorder Grid.Column="1"
                                            WidthRequest="32"
                                            HeightRequest="32"
                                            CornerRadius="16"
                                            Margin="12, 0"
-                                           BackgroundColor="{StaticResource AccentColorAlpha12}"
+                                           BackgroundColor="{DynamicResource CollectionViewExampleIconBackgroundColor}"
                                            HorizontalOptions="Center"
                                            VerticalOptions="Center">
                             <Label Text="{Binding Icon}"
@@ -77,19 +76,19 @@
                                    VerticalOptions="Center"
                                    FontSize="20"
                                    FontFamily="TelerikFontExamples"
-                                   TextColor="{StaticResource AccentColor8}" />
+                                   TextColor="{DynamicResource AccentColor8}" />
                         </telerik:RadBorder>
                         <StackLayout Grid.Column="2"
                                      VerticalOptions="Center">
                             <Label Text="{Binding Name}"
-                                   TextColor="{StaticResource DefaultTextColor}" />
+                                   TextColor="{DynamicResource DefaultTextColor}" />
                             <Label Text="{Binding Company}"
-                                   TextColor="{StaticResource PlaceholderColor}"
+                                   TextColor="{DynamicResource PlaceholderColor}"
                                    FontSize="12" />
                         </StackLayout>
                         <Label Grid.Column="3"
                                Text="{Binding Amount, StringFormat='${0}'}"
-                               TextColor="{StaticResource DefaultTextColor}"
+                               TextColor="{DynamicResource DefaultTextColor}"
                                HorizontalOptions="End"
                                VerticalOptions="Center" />
                     </Grid>

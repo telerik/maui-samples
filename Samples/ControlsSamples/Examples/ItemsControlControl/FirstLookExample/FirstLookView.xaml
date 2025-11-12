@@ -8,13 +8,14 @@
         <Grid IsClippedToBounds="True">
             <telerik:RadItemsControl x:Name="itemsControl" 
                                      AutomationId="itemsControl"
+                                     Background="Transparent"
                                      ItemsSource="{Binding Experiences}">
                 <telerik:RadItemsControl.ItemTemplate>
                     <DataTemplate>
                         <telerik:RadBorder BorderThickness="0, 0, 0, 1"
                                            Margin="10, 0"
-                                           BackgroundColor="White"
-                                           BorderColor="#b1b1b1">
+                                           BackgroundColor="{DynamicResource RadAppSurfaceColor}"
+                                           BorderColor="{DynamicResource DefaultBorderColor}">
                             <Grid RowDefinitions="Auto" 
                                   ColumnSpacing="5"
                                   ColumnDefinitions="Auto,*">
@@ -35,12 +36,12 @@
                                                      VerticalOptions="Center">
                                     <Label Text="{Binding Title}" 
                                            VerticalOptions="Center"
-                                           HorizontalOptions="Start"
-                                           TextColor="Black"/>
+                                           HorizontalOptions="Start" />
                                     <Label Text="{Binding Company}"
                                            HorizontalOptions="Start"
                                            VerticalOptions="Start"
-                                           TextColor="#99000000"
+                                           Opacity="0.6"
+                                           TextColor="{DynamicResource DefaultTextColor}"
                                            FontSize="12"/>
                                 </VerticalStackLayout>
                             </Grid>

@@ -8,14 +8,14 @@
              Padding="{OnIdiom Default='16, 20', Phone=0}">
     <ContentView.Resources>
         <ResourceDictionary>
-            <Style TargetType="telerik:RadNavigationView">
+            <Style TargetType="telerik:RadNavigationView" BasedOn="{StaticResource RadNavigationViewStyle}">
                 <Setter Property="HorizontalOptions" Value="Fill" />
                 <Setter Property="BorderThickness" Value="{OnIdiom Default=0, Desktop=1}"/>
             </Style>
 
             <DataTemplate x:Key="SettingsPopupContentTemplate">
-                <telerik:RadBorder BackgroundColor="{OnPlatform Default=White, WinUI=#F9F9F9}"
-                                   BorderColor="{OnPlatform Default=#DFDFDF, WinUI=#0F000000}"
+                <telerik:RadBorder BackgroundColor="{DynamicResource SettingsBackgroundColor}"
+                                   BorderColor="{DynamicResource PlatformBorderColor}"
                                    BorderThickness="1"
                                    CornerRadius="8">
                     <Grid RowDefinitions="Auto, Auto, Auto"

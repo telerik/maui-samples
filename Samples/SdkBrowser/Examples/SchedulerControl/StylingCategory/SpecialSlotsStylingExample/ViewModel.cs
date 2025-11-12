@@ -8,8 +8,8 @@ using Telerik.Maui.Controls.Scheduler;
 
 namespace SDKBrowserMaui.Examples.SchedulerControl.StylingCategory.SpecialSlotsStylingExample
 {
-    // >> scheduler-specialslots-viewmodel
-    public class ViewModel : NotifyPropertyChangedBase
+	// >> scheduler-specialslots-styling-viewmodel
+	public class ViewModel : NotifyPropertyChangedBase
     {
         public ViewModel()
         {
@@ -32,5 +32,5 @@ namespace SDKBrowserMaui.Examples.SchedulerControl.StylingCategory.SpecialSlotsS
 
         public ObservableCollection<Slot> NonWorkingHours { get; set; }
     }
-    // << scheduler-specialslots-viewmodel
+	// << scheduler-specialslots-styling-viewmodel
 }

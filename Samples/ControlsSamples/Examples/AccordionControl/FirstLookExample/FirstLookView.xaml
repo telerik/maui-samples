@@ -7,11 +7,11 @@
                         Padding="16">
 
     <telerik:RadContentView.Resources>
-        <Style TargetType="Label">
+        <Style TargetType="Label" BasedOn="{StaticResource BaseLabelStyle}">
             <Setter Property="Margin" Value="15, 5" />
         </Style>
     </telerik:RadContentView.Resources>
-    
+
     <telerik:RadAccordion AutomationId="accordion">
         <telerik:AccordionItem IsExpanded="True" HeaderText="Citizens Financial Group">
             <telerik:AccordionItem.Content>

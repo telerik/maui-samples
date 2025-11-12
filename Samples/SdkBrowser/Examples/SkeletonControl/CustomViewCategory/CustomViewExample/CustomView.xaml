@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.SkeletonControl.CustomViewCategory.CustomViewExample.CustomView">
+
+	<ContentView.Resources>
+		<ResourceDictionary>
+			<Style TargetType="Image">
+				<Setter Property="HorizontalOptions" Value="Start" />
+			</Style>
+			<Style TargetType="Label">
+				<Setter Property="WidthRequest" Value="150" />
+			</Style>
+			<!-- >> skeleton-loadingview-template -->
+			<DataTemplate x:Key="CustomSkeletonView">
+				<Grid RowDefinitions="40, 100, 200"
+					  RowSpacing="10"
+					  Padding="10">
+					<HorizontalStackLayout Spacing="10">
+						<Image WidthRequest="40" />
+						<Image WidthRequest="40" />
+						<Image WidthRequest="40" />
+						<Image WidthRequest="40" />
+					</HorizontalStackLayout>
+					<Image WidthRequest="200"
+						   HeightRequest="100"
+						   HorizontalOptions="Start"
+						   Grid.Row="1" />
+					<Grid Grid.Row="2"
+						  ColumnDefinitions="40, *"
+						  ColumnSpacing="10">
+						<Image HeightRequest="40"
+							   WidthRequest="40"
+							   VerticalOptions="Start"
+							   Grid.Column="0" />
+						<VerticalStackLayout HorizontalOptions="Start"
+											 Spacing="10"
+											 Grid.Column="1">
+							<Label />
+							<Label HorizontalOptions="Start"
+								   VerticalOptions="Start" />
+						</VerticalStackLayout>
+					</Grid>
+				</Grid>
+			</DataTemplate>
+			<!-- << skeleton-loadingview-template -->
+		</ResourceDictionary>
+	</ContentView.Resources>
+	
+	<Grid RowDefinitions="Auto, *"
+		  RowSpacing="10">
+		<HorizontalStackLayout Spacing="10">
+			<Label Text="Is Content Loading"
+				   VerticalOptions="Center" />
+			<telerik:RadCheckBox x:Name="isSkeletonLoading"
+								 IsChecked="{Binding Source={x:Reference skeleton}, Path=IsLoading}" />
+		</HorizontalStackLayout>
+		<!-- >> skeleton-customview -->
+		<telerik:RadSkeleton LoadingViewTemplate="{StaticResource CustomSkeletonView}"
+							 Grid.Row="1"
+							 x:Name="skeleton">
+			<Grid RowDefinitions="Auto, 100, 200"
+				  Padding="10"
+				  RowSpacing="10">
+				<HorizontalStackLayout Spacing="10">
+					<Image>
+						<Image.Source>
+							<FontImageSource Glyph="&#xe80f;"
+											 FontFamily="TelerikFontExamples"
+											 Color="#8660C5"
+											 Size="{OnPlatform Default=16, iOS=20, MacCatalyst=20}" />
+						</Image.Source>
+					</Image>
+					<Image>
+						<Image.Source>
+							<FontImageSource Glyph="&#xe87b;"
+											 FontFamily="TelerikFontExamples"
+											 Color="#8660C5"
+											 Size="{OnPlatform Default=16, iOS=20, MacCatalyst=20}" />
+						</Image.Source>
+					</Image>
+					<Image>
+						<Image.Source>
+							<FontImageSource Glyph="&#xe818;"
+											 FontFamily="TelerikFontExamples"
+											 Color="#8660C5"
+											 Size="{OnPlatform Default=16, iOS=20, MacCatalyst=20}" />
+						</Image.Source>
+					</Image>
+					<Image>
+						<Image.Source>
+							<FontImageSource Glyph="&#xe827;"
+											 FontFamily="TelerikFontExamples"
+											 Color="#8660C5"
+											 Size="{OnPlatform Default=16, iOS=20, MacCatalyst=20}" />
+						</Image.Source>
+					</Image>
+				</HorizontalStackLayout>
+				<telerik:RadBorder WidthRequest="200"
+								   HeightRequest="100"
+								   BorderColor="#8660C5"
+								   BorderThickness="1"
+								   HorizontalOptions="Start"
+								   Grid.Row="1">
+					<Label Text="Main View"
+						   VerticalTextAlignment="Center"
+						   HorizontalTextAlignment="Center" />
+				</telerik:RadBorder>
+				<Grid Grid.Row="2"
+					  ColumnDefinitions="20, *"
+					  ColumnSpacing="20">
+					<Image VerticalOptions="Start"
+						   Grid.Column="0">
+						<Image.Source>
+							<FontImageSource Glyph="&#xe82a;"
+											 FontFamily="TelerikFontExamples"
+											 Color="#8660C5"
+											 Size="{OnPlatform Default=16, iOS=20, MacCatalyst=20}" />
+						</Image.Source>
+					</Image>
+					<VerticalStackLayout HorizontalOptions="Start"
+										 Spacing="10"
+										 Grid.Column="1">
+						<Label Text="Title" />
+						<Label Text="Description"
+							   HorizontalOptions="Start"
+							   VerticalOptions="Start" />
+					</VerticalStackLayout>
+				</Grid>
+			</Grid>
+		</telerik:RadSkeleton>
+		<!-- << skeleton-customview -->
+	</Grid>
+</ContentView>

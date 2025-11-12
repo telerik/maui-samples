@@ -40,11 +40,6 @@
 		<PackageReference Include="Telerik.UI.for.Maui" Version="$(TelerikVersion)" />
 	</ItemGroup>
 
-	<ItemGroup Condition="$(TargetFramework.Contains('net8'))">
-		<PackageReference Include="Microsoft.Maui.Controls" Condition=" $(CustomMauiNet8Version) == '' " Version="$(MauiVersion)" />
-		<PackageReference Include="Microsoft.Maui.Controls" Condition=" $(CustomMauiNet8Version) != '' " Version="$(CustomMauiNet8Version)" />
-	</ItemGroup>
-
 	<ItemGroup Condition="$(TargetFramework.Contains('net9'))">
 		<PackageReference Include="Microsoft.Maui.Controls" Condition=" $(CustomMauiNet9Version) == '' " Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Controls" Condition=" $(CustomMauiNet9Version) != '' " Version="$(CustomMauiNet9Version)" />

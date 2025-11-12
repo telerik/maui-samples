@@ -58,5 +58,21 @@ public class SumIfAggregateFunction : IAggregateFunction
             this.value += myFunction.value;
         }
     }
+
+    public void Update(object oldValue, object newValue)
+    {
+        var oldPrice = (double)oldValue;
+        var newPrice = (double)newValue;
+
+        if (oldPrice > this.GreaterThanValue)
+        {
+            this.value -= oldPrice;
+        }
+
+        if (newPrice > this.GreaterThanValue)
+        {
+            this.value += newPrice;
+        }
+    }
 }
 // << datagrid-delegate-aggregate-function

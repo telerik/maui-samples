@@ -5,9 +5,9 @@
              x:Class="QSF.Examples.EntryControl.FirstLookExample.FirstLookView">
     <ContentView.Resources>
         <ResourceDictionary>
-            <Style x:Key="EntryStyle" TargetType="telerik:RadEntry">
-                <Setter Property="TextColor" Value="{StaticResource DefaultTextColor}" />
-                <Setter Property="PlaceholderColor" Value="{StaticResource PlaceholderColor}" />
+            <Style x:Key="EntryStyle" TargetType="telerik:RadEntry" BasedOn="{StaticResource RadEntryStyle}">
+                <Setter Property="TextColor" Value="{DynamicResource DefaultTextColor}" />
+                <Setter Property="PlaceholderColor" Value="{DynamicResource PlaceholderColor}" />
                 <Setter Property="Margin" Value="0, 12, 0, 0" />
             </Style>
         </ResourceDictionary>
@@ -37,7 +37,7 @@
                     <Label Text="Sign up to receive our monthly newsletter."
                            FontSize="14"
                            HorizontalOptions="Center"
-                           TextColor="#191919" />
+                           Opacity="0.902" />
                     <Image Source="entryfirstlook.png"
                            MaximumHeightRequest="80"
                            MaximumWidthRequest="110"

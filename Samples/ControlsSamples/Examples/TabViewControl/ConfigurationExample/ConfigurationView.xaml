@@ -5,11 +5,6 @@
              x:Class="QSF.Examples.TabViewControl.ConfigurationExample.ConfigurationView"
              Padding="16">
     <ContentView.Resources>
-        <Style TargetType="telerik:RadCollectionViewItemView">
-            <Setter Property="Background" Value="Transparent" />
-            <Setter Property="BorderColor" Value="{StaticResource DefaultBorderColor}" />
-            <Setter Property="BorderThickness" Value="0, 0, 0, 1" />
-        </Style>
         <DataTemplate x:Key="CollectionViewItemTemplate">
             <Grid RowDefinitions="Auto, Auto"
                   RowSpacing="8"
@@ -29,6 +24,7 @@
         </DataTemplate>
         <DataTemplate x:Key="TabViewItemContentTemplate">
             <telerik:RadCollectionView ItemsSource="{Binding Customers}"
+                                       ItemViewStyle="{StaticResource CollectionViewItemStyle}"
                                        ItemTemplate="{StaticResource CollectionViewItemTemplate}"
                                        Margin="12" />
         </DataTemplate>

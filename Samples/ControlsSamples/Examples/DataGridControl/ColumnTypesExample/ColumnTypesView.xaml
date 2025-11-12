@@ -15,7 +15,7 @@
                        Margin="2, 0" />
                 <Label Text="{Binding StatusTime}"
                        IsVisible="{Binding Status, Converter={StaticResource StatusFlightToBooleanConverter}}"
-                       TextColor="{StaticResource AccentColor8}"
+                       TextColor="{DynamicResource AccentColor8}"
                        Margin="2, 0" />
             </HorizontalStackLayout>
         </DataTemplate>
@@ -25,7 +25,7 @@
                 <Label Text="{Binding DestinationFullName}" />
                 <Label Text="{Binding DestinationShortName}"
                        FontSize="Caption"
-                       TextColor="{StaticResource AccentColor8}" />
+                       TextColor="{DynamicResource AccentColor8}" />
             </VerticalStackLayout>
         </DataTemplate>
     </ContentView.Resources>

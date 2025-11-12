@@ -11,7 +11,7 @@
                 <styles:GalleryResources/>
             </ResourceDictionary.MergedDictionaries>
             <DataTemplate x:Key="CandlestickSeries">
-                <telerik:RadCartesianChart BackgroundColor="White"
+                <telerik:RadCartesianChart BackgroundColor="Transparent"
                                            AutomationId="cartesianChartCandlestickSeries">
                     <telerik:RadCartesianChart.ChartBehaviors>
                         <telerik:ChartTrackBallBehavior ShowTrackInfo="True" />
@@ -20,7 +20,8 @@
                                                          HandleDoubleTap="True" />
                     </telerik:RadCartesianChart.ChartBehaviors>
                     <telerik:RadCartesianChart.HorizontalAxis>
-                        <telerik:DateTimeContinuousAxis LineColor="#A9A9A9"
+                        <telerik:DateTimeContinuousAxis LabelTextColor="{DynamicResource DefaultTextColor}"
+                                                        LineColor="{DynamicResource ChartLineColor}"
                                                         LabelFitMode="Rotate"
                                                         LabelFormat="dd/MM"
                                                         PlotMode="BetweenTicks"
@@ -29,10 +30,11 @@
                         </telerik:DateTimeContinuousAxis>
                     </telerik:RadCartesianChart.HorizontalAxis>
                     <telerik:RadCartesianChart.VerticalAxis>
-                        <telerik:NumericalAxis LineColor="#A9A9A9"
+                        <telerik:NumericalAxis LabelTextColor="{DynamicResource DefaultTextColor}"
+                                               LineColor="{DynamicResource ChartLineColor}"
                                                Minimum="320"
                                                Maximum="370"
-                                               MajorTickBackgroundColor="#A9A9A9" />
+                                               MajorTickBackgroundColor="{DynamicResource ChartLineColor}" />
                     </telerik:RadCartesianChart.VerticalAxis>
                     <telerik:RadCartesianChart.Series>
                         <telerik:CandlestickSeries CategoryBinding="DateCategory"
@@ -45,7 +47,7 @@
                 </telerik:RadCartesianChart>
             </DataTemplate>
             <DataTemplate x:Key="OhlcSeries">
-                <telerik:RadCartesianChart BackgroundColor="White"
+                <telerik:RadCartesianChart BackgroundColor="Transparent"
                                            AutomationId="cartesianChartOhlcSeries">
                     <telerik:RadCartesianChart.ChartBehaviors>
                         <telerik:ChartTrackBallBehavior ShowTrackInfo="True" />
@@ -54,7 +56,9 @@
                                                          HandleDoubleTap="True" />
                     </telerik:RadCartesianChart.ChartBehaviors>
                     <telerik:RadCartesianChart.HorizontalAxis>
-                        <telerik:DateTimeContinuousAxis LineColor="#A9A9A9"
+                        <telerik:DateTimeContinuousAxis LabelTextColor="{DynamicResource DefaultTextColor}"
+                                                        LineColor="{DynamicResource ChartLineColor}"
+                                                        MajorTickBackgroundColor="{DynamicResource ChartLineColor}"
                                                         LabelFitMode="Rotate"
                                                         LabelFormat="dd/MM"
                                                         PlotMode="BetweenTicks"
@@ -63,10 +67,11 @@
                         </telerik:DateTimeContinuousAxis>
                     </telerik:RadCartesianChart.HorizontalAxis>
                     <telerik:RadCartesianChart.VerticalAxis>
-                        <telerik:NumericalAxis LineColor="#A9A9A9"
+                        <telerik:NumericalAxis LabelTextColor="{DynamicResource DefaultTextColor}"
+                                               LineColor="{DynamicResource ChartLineColor}"
                                                Minimum="320"
                                                Maximum="370"
-                                               MajorTickBackgroundColor="#A9A9A9" />
+                                               MajorTickBackgroundColor="{DynamicResource ChartLineColor}" />
                     </telerik:RadCartesianChart.VerticalAxis>
                     <telerik:RadCartesianChart.Series>
                         <telerik:OhlcSeries CategoryBinding="DateCategory"
@@ -80,7 +85,7 @@
             </DataTemplate>
             <DataTemplate x:Key="FinancialIndicators">
                 <telerik:RadCartesianChart x:Name="financialChart"
-                                           BackgroundColor="White"
+                                           BackgroundColor="Transparent"
                                            AutomationId="cartesianChartFinancialIndicators">
                     <telerik:RadCartesianChart.ChartBehaviors>
                         <telerik:ChartTrackBallBehavior ShowTrackInfo="True" />
@@ -89,7 +94,8 @@
                                                          HandleDoubleTap="True" />
                     </telerik:RadCartesianChart.ChartBehaviors>
                     <telerik:RadCartesianChart.HorizontalAxis>
-                        <telerik:DateTimeContinuousAxis LineColor="#A9A9A9"
+                        <telerik:DateTimeContinuousAxis LabelTextColor="{DynamicResource DefaultTextColor}"
+                                                        LineColor="{DynamicResource ChartLineColor}"
                                                         LabelFitMode="Rotate"
                                                         LabelFormat="dd/MM"
                                                         PlotMode="BetweenTicks"
@@ -98,10 +104,11 @@
                         </telerik:DateTimeContinuousAxis>
                     </telerik:RadCartesianChart.HorizontalAxis>
                     <telerik:RadCartesianChart.VerticalAxis>
-                        <telerik:NumericalAxis LineColor="#A9A9A9"
+                        <telerik:NumericalAxis LabelTextColor="{DynamicResource DefaultTextColor}"
+                                               LineColor="{DynamicResource ChartLineColor}"
                                                Minimum="320"
                                                Maximum="370"
-                                               MajorTickBackgroundColor="#A9A9A9" />
+                                               MajorTickBackgroundColor="{DynamicResource ChartLineColor}" />
                     </telerik:RadCartesianChart.VerticalAxis>
                     <telerik:RadCartesianChart.Series>
                         <telerik:OhlcSeries CategoryBinding="DateCategory"

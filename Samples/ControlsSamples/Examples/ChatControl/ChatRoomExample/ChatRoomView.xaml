@@ -11,25 +11,28 @@
             <local:ChatroomMessageConverter x:Key="ChatroomMessageConverter" AuthorsMap="{StaticResource AuthorsMap}" />
             <local:ChatroomParticipantConverter x:Key="ChatroomParticipantConverter" AuthorsMap="{StaticResource AuthorsMap}" />
             <local:BackgroundColorConverter x:Key="BackgroundColorConverter">
-                <local:BackgroundColorConverter.Colors>
-                    <Color>#FFCDCDC0</Color>
-                    <Color>#FFD9E3DA</Color>
-                    <Color>#FFF3DCD4</Color>
-                    <Color>#FFC8D5E1</Color>
-                    <Color>#FFF1F2CE</Color>
-                    <Color>#FFECC9C7</Color>
-                </local:BackgroundColorConverter.Colors>
+                <local:BackgroundColorConverter.ColorKeys>
+                    <x:String>ChatroomMessageBackgroundColor1</x:String>
+                    <x:String>ChatroomMessageBackgroundColor2</x:String>
+                    <x:String>ChatroomMessageBackgroundColor3</x:String>
+                    <x:String>ChatroomMessageBackgroundColor4</x:String>
+                    <x:String>ChatroomMessageBackgroundColor5</x:String>
+                    <x:String>ChatroomMessageBackgroundColor6</x:String>
+                </local:BackgroundColorConverter.ColorKeys>
             </local:BackgroundColorConverter>
+            <Style x:Key="TextMessageLabel" TargetType="Label">
+                <Setter Property="TextColor" Value="{DynamicResource DefaultTextColor}" />
+            </Style>
             <Style x:Key="BorderStyle" TargetType="telerik:RadBorder">
                 <Setter Property="BackgroundColor" Value="{Binding Author, Converter={StaticResource BackgroundColorConverter}}" />
             </Style>
-            <Style TargetType="telerik:IncomingTextMessageView" ApplyToDerivedTypes="True">
+            <Style TargetType="telerik:ChatIncomingTextMessageView" ApplyToDerivedTypes="True">
                 <Setter Property="BorderStyle" Value="{StaticResource BorderStyle}" />
-                <Setter Property="LabelStyle" Value="{StaticResource BaseLabelStyle}" />
+                <Setter Property="LabelStyle" Value="{StaticResource TextMessageLabel}" />
             </Style>
-            <Style TargetType="telerik:OutgoingTextMessageView" ApplyToDerivedTypes="True">
+            <Style TargetType="telerik:ChatOutgoingTextMessageView" ApplyToDerivedTypes="True">
                 <Setter Property="BorderStyle" Value="{StaticResource BorderStyle}" />
-                <Setter Property="LabelStyle" Value="{StaticResource BaseLabelStyle}" />
+                <Setter Property="LabelStyle" Value="{StaticResource TextMessageLabel}" />
             </Style>
         </ResourceDictionary>
     </telerik:RadContentView.Resources>
@@ -39,7 +42,7 @@
     </telerik:RadContentView.BindingContext>
 
     <telerik:RadBorder BorderThickness="{OnIdiom Default=0, Desktop=1}"
-                       BorderColor="{OnPlatform Default={StaticResource DefaultBorderColor}, WinUI={StaticResource DefaultBorderColorWinUI}}"
+                       BorderColor="{DynamicResource PlatformBorderColor}"
                        HorizontalOptions="{OnIdiom Default=Fill, Desktop=Center}">
         <telerik:RadChat x:Name="chat"
                          WidthRequest="{OnIdiom Default=-1, Desktop=450}"
@@ -55,7 +58,7 @@
             <telerik:RadChat.TypingIndicator>
                 <telerik:TypingIndicator ItemConverter="{StaticResource ChatroomParticipantConverter}"
                                          ItemsSource="{Binding TypingParticipants}"
-                                         DotsColor="{StaticResource ApplicationAccentColor}" 
+                                         DotsColor="{DynamicResource ApplicationAccentColor}"
                                          AutomationId="typingIndicator"/>
             </telerik:RadChat.TypingIndicator>
         </telerik:RadChat>

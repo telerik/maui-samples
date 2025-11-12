@@ -8,5 +8,7 @@ public partial class HighlightText : ContentView
 	{
 		InitializeComponent();
         this.BindingContext = new ClientsViewModel();
+		this.autoCompleteView1.AutomationId = "defaultSuggestionItemTemplate";
+        this.autoCompleteView2.AutomationId = "customSuggestionItemTemplate";
     }
 }

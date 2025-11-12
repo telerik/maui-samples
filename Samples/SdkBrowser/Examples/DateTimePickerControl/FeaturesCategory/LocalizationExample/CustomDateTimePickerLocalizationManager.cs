@@ -7,7 +7,8 @@ using Telerik.Maui;
 
 namespace SDKBrowserMaui.Examples.DateTimePickerControl.FeaturesCategory.LocalizationExample
 {
-    internal class CustomDateTimePickerLocalizationManager : TelerikLocalizationManager
+	// >> datetimepicker-custom-localization-manager
+	internal class CustomDateTimePickerLocalizationManager : TelerikLocalizationManager
     {
         public override string GetString(string key)
         {
