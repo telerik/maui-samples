@@ -75,14 +75,15 @@ public class HomeViewModel : PageViewModel
         }
         set
         {
-            if (this.UpdateValue(ref this.selectedControl, value))
+            var oldSelectedControl = this.selectedControl;
+            if (this.UpdateValue(ref this.selectedControl, value) && oldSelectedControl != null)
             {
+                // If we are changing the control - clear the old example selection.
+                oldSelectedControl.SelectedExample = null;
                 this.OnSelectedControlChanged();
             }
         }
     }
-
-    public bool IsTestSearchEntryVisible => this.testingService.IsAppUnderTest;
 
     public bool IsHomeSelected
     {

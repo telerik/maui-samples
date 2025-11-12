@@ -24,32 +24,31 @@
                      Glyph="&#xe860;"
                      FontFamily="TelerikFontExamples"
                      Size="16" />
-    <Color x:Key="ToolbarCustomAccentColor">#674BB2</Color>
     <Style x:Key="CommonToolbarItemStyle" TargetType="telerik:ButtonToolbarItemView">
         <Setter Property="ContentPadding" Value="8" />
         <Setter Property="DisplayOptions" Value="Image, Text" />
         <Setter Property="ImagePosition" Value="Top" />
         <Setter Property="ImageSpacing" Value="4" />
-        <Setter Property="TextColor" Value="{StaticResource ToolbarCustomAccentColor}" />
+        <Setter Property="TextColor" Value="{DynamicResource ToolbarCustomAccentColor}" />
         <Setter Property="VisualStateManager.VisualStateGroups">
             <VisualStateGroupList>
                 <VisualStateGroup Name="CommonStates">
                     <VisualState Name="Normal" />
                     <VisualState Name="PointerOver">
                         <VisualState.Setters>
-                            <Setter Property="TextColor" Value="{StaticResource ToolbarCustomAccentColor}" />
+                            <Setter Property="TextColor" Value="{DynamicResource ToolbarCustomAccentColor}" />
                             <Setter Property="BackgroundColor" Value="#268660C5" />
                         </VisualState.Setters>
                     </VisualState>
                     <VisualState Name="Opened">
                         <VisualState.Setters>
-                            <Setter Property="BackgroundColor" Value="{StaticResource ApplicationAccentColor}" />
+                            <Setter Property="BackgroundColor" Value="{DynamicResource ApplicationAccentColor}" />
                             <Setter Property="TextColor" Value="{StaticResource TextOnAccentColor}" />
                         </VisualState.Setters>
                     </VisualState>
                     <VisualState Name="Disabled">
                         <VisualState.Setters>
-                            <Setter Property="TextColor" Value="#618660C5" />
+                            <Setter Property="TextColor" Value="{DynamicResource ToolbarCustomDisabledAccentColor}" />
                         </VisualState.Setters>
                     </VisualState>
                 </VisualStateGroup>
@@ -71,7 +70,7 @@
                 <Setter Property="EntryStyle">
                     <Style TargetType="telerik:RadEntry">
                         <Setter Property="Placeholder" Value="Search in document" />
-                        <Setter Property="PlaceholderColor" Value="#99674BB2" />
+                        <Setter Property="PlaceholderColor" Value="{DynamicResource ToolbarCustomAccentColorAlpha}" />
                     </Style>
                 </Setter>
             </Style>

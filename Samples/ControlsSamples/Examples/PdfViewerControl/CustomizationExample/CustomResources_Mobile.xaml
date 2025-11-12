@@ -24,20 +24,19 @@
                      Glyph="&#xe860;"
                      FontFamily="TelerikFontExamples"
                      Size="16" />
-    <Color x:Key="ToolbarCustomAccentColor">#674BB2</Color>
     <Style x:Key="CommonToolbarItemStyle" TargetType="telerik:ButtonToolbarItemView">
         <Setter Property="ContentPadding" Value="8" />
         <Setter Property="DisplayOptions" Value="Image, Text" />
         <Setter Property="ImagePosition" Value="Top" />
         <Setter Property="ImageSpacing" Value="4" />
-        <Setter Property="TextColor" Value="{StaticResource ToolbarCustomAccentColor}" />
+        <Setter Property="TextColor" Value="{DynamicResource ToolbarCustomAccentColor}" />
         <Setter Property="VisualStateManager.VisualStateGroups">
             <VisualStateGroupList>
                 <VisualStateGroup Name="CommonStates">
                     <VisualState Name="Normal" />
                     <VisualState Name="Disabled">
                         <VisualState.Setters>
-                            <Setter Property="TextColor" Value="#618660C5" />
+                            <Setter Property="TextColor" Value="{DynamicResource ToolbarCustomDisabledAccentColor}" />
                         </VisualState.Setters>
                     </VisualState>
                 </VisualStateGroup>
@@ -55,7 +54,7 @@
         <Setter Property="EntryStyle">
             <Style TargetType="telerik:RadEntry">
                 <Setter Property="Placeholder" Value="Search in document" />
-                <Setter Property="PlaceholderColor" Value="#99674BB2" />
+                <Setter Property="PlaceholderColor" Value="{DynamicResource ToolbarCustomAccentColorAlpha}" />
             </Style>
         </Setter>
     </Style>
@@ -64,7 +63,7 @@
     <Style TargetType="telerik:PdfViewerSearchBusyIndicatorToolbarItemView">
         <Setter Property="BusyIndicatorStyle">
             <Style TargetType="telerik:RadBusyIndicator">
-                <Setter Property="AnimationContentColor" Value="{StaticResource ToolbarCustomAccentColor}" />
+                <Setter Property="AnimationContentColor" Value="{DynamicResource ToolbarCustomAccentColor}" />
                 <Setter Property="AnimationType" Value="Animation9" />
             </Style>
         </Setter>
@@ -74,6 +73,6 @@
         <Setter Property="TextColor" Value="#FFFFFF" />
     </Style>
     <telerik:PdfViewerSearchSettings x:Key="PdfViewerCustomSearchSettings"
-                                     MainSearchResultFill="#668660C5"
+                                     MainSearchResultFill="{DynamicResource ToolbarCustomAccentColorAlpha}"
                                      SearchResultsFill="#6604A2AA" />
 </ResourceDictionary>

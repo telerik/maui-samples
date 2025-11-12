@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Windows;
 using Microsoft.Maui.Controls;
 using Microsoft.Maui.Graphics;
 
@@ -9,12 +10,17 @@ namespace QSF.Examples.ChatControl.ChatRoomExample;
 public class BackgroundColorConverter : IValueConverter
 {
     private List<Color> colors;
+    private List<string> colorKeys;
     private Dictionary<object, Color> dict;
+
+    private Dictionary<object, string> dictKey;
 
     public BackgroundColorConverter()
     {
         this.colors = new List<Color>();
+        this.colorKeys = new List<string>();
         this.dict = new Dictionary<object, Color>();
+        this.dictKey = new Dictionary<object, string>();
     }
 
     public List<Color> Colors
@@ -25,6 +31,14 @@ public class BackgroundColorConverter : IValueConverter
         }
     }
 
+    public List<string> ColorKeys
+    {
+        get
+        {
+            return this.colorKeys;
+        }
+    }
+
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
         if (value == null)
@@ -32,14 +46,32 @@ public class BackgroundColorConverter : IValueConverter
             return default(Color);
         }
 
-        Color color;
-        if (!dict.TryGetValue(value, out color))
+        if (dictKey.TryGetValue(value, out string cachedColorKey))
         {
-            color = this.GetColor(dict.Count);
-            dict[value] = color;
+            if (Application.Current?.Resources != null &&
+                Application.Current.Resources.TryGetValue(cachedColorKey, out var resource) &&
+                resource is Color color)
+            {
+                return color;
+            }
+        }
+        else
+        {
+            string colorKey = this.GetColorKey(dictKey.Count);
+            if (!string.IsNullOrEmpty(colorKey))
+            {
+                dictKey[value] = colorKey;
+                
+                if (Application.Current?.Resources != null &&
+                    Application.Current.Resources.TryGetValue(colorKey, out var resource) &&
+                    resource is Color resourceColor)
+                {
+                    return resourceColor;
+                }
+            }
         }
 
-        return color;
+        return default(Color);
     }
 
     public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
@@ -47,13 +79,32 @@ public class BackgroundColorConverter : IValueConverter
         throw new NotImplementedException();
     }
 
+    private string GetColorKey(int index)
+    {
+        if (this.colorKeys.Count == 0)
+        {
+            return null;
+        }
+
+        return this.colorKeys[index % this.colorKeys.Count];
+    }
+
+    // Update the existing GetColor method to use GetColorKey
     private Color GetColor(int index)
     {
-        if (this.colors.Count == 0)
+        string resourceKey = this.GetColorKey(index);
+        if (string.IsNullOrEmpty(resourceKey))
         {
             return default(Color);
         }
 
-        return this.colors[index % this.colors.Count];
+        if (Application.Current?.Resources != null &&
+            Application.Current.Resources.TryGetValue(resourceKey, out var resource) &&
+            resource is Color color)
+        {
+            return color;
+        }
+
+        return default(Color);
     }
 }

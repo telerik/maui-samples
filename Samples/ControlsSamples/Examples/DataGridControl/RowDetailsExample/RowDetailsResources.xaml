@@ -4,20 +4,19 @@
                     xmlns:local="clr-namespace:QSF.Examples.DataGridControl.RowDetailsExample"
                     xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
                     x:Class="QSF.Examples.DataGridControl.RowDetailsExample.RowDetailsResources">
-    <Style TargetType="Label" BasedOn="{StaticResource BaseLabelStyle}" />
     <Style x:Key="InfoLabelStyle" TargetType="Label">
-        <Setter Property="TextColor" Value="{StaticResource DefaultTextColor}" />
+        <Setter Property="TextColor" Value="{DynamicResource DefaultTextColor}" />
         <Setter Property="Opacity" Value="0.5" />
         <Setter Property="Margin" Value="0, 0, 0, 8" />
     </Style>
     <DataTemplate x:Key="DataGridRowDetailsTemplate">
-        <Grid BackgroundColor="White">
+        <Grid BackgroundColor="{DynamicResource TertiaryBackgroundColor}">
             <telerik:RadTabView HeightRequest="400"
                                 IsContentSwipeEnabled="False"
                                 SelectedIndex="{Binding UIState.SelectedTabIndex, Mode=TwoWay}"
                                 Margin="12"
                                 BorderThickness="{OnPlatform Default=1, MacCatalyst=0, WinUI=0}"
-                                BorderColor="{StaticResource DefaultBorderColor}"
+                                BorderColor="{DynamicResource DefaultBorderColor}"
                                 AutomationId="rowDetailsTabView">
                 <telerik:TabViewItem HeaderText="Orders Info" AutomationId="orderInfoTabViewItem">
                     <telerik:RadDataGrid x:Name="dataGrid"
@@ -42,7 +41,7 @@
                 <telerik:TabViewItem HeaderText="Assignee Info" AutomationId="assigneeInfoTabView">
                     <telerik:RadBorder CornerRadius="8"
                                        BorderThickness="1"
-                                       BorderColor="{OnPlatform Default={StaticResource DefaultBorderColor}, WinUI={StaticResource DefaultBorderColorWinUI}}"
+                                       BorderColor="{DynamicResource PlatformBorderColor}"
                                        HorizontalOptions="Center"
                                        VerticalOptions="Center"
                                        Margin="12"
@@ -86,14 +85,15 @@
                           RowSpacing="12">
                         <Label Text="Container freight rate index"
                                HorizontalTextAlignment="Center" />
-                        <telerik:RadCartesianChart Grid.Row="1" AutomationId="cartesianChart">
+                        <telerik:RadCartesianChart Grid.Row="1" AutomationId="cartesianChart" Background="Transparent">
                             <telerik:RadCartesianChart.HorizontalAxis>
                                 <telerik:DateTimeContinuousAxis LabelFormat="d MMM"
                                                                 MajorStep="1"
-                                                                MajorStepUnit="Month" />
+                                                                MajorStepUnit="Month"
+                                                                LabelTextColor="{DynamicResource DefaultTextColor}"/>
                             </telerik:RadCartesianChart.HorizontalAxis>
                             <telerik:RadCartesianChart.VerticalAxis>
-                                <telerik:NumericalAxis />
+                                <telerik:NumericalAxis LabelTextColor="{DynamicResource DefaultTextColor}"/>
                             </telerik:RadCartesianChart.VerticalAxis>
                             <telerik:RadCartesianChart.Series>
                                 <telerik:LineSeries ItemsSource="{Binding Orders}"
@@ -107,14 +107,14 @@
                     </Grid>
                 </telerik:TabViewItem>
             </telerik:RadTabView>
-            <BoxView BackgroundColor="{OnPlatform Default={StaticResource DefaultBorderColor}, WinUI={StaticResource DefaultBorderColorWinUI}}"
+            <BoxView BackgroundColor="{DynamicResource PlatformBorderColor}"
                      HeightRequest="1"
                      VerticalOptions="Start" />
-            <BoxView BackgroundColor="{OnPlatform Default={StaticResource DefaultBorderColor}, WinUI={StaticResource DefaultBorderColorWinUI}}"
+            <BoxView BackgroundColor="{DynamicResource PlatformBorderColor}"
                      WidthRequest="1"
                      HorizontalOptions="Start"
                      IsVisible="{OnPlatform Default=true, WinUI=false}" />
-            <BoxView BackgroundColor="{OnPlatform Default={StaticResource DefaultBorderColor}, WinUI={StaticResource DefaultBorderColorWinUI}}"
+            <BoxView BackgroundColor="{DynamicResource PlatformBorderColor}"
                      WidthRequest="1"
                      HorizontalOptions="End"
                      IsVisible="{OnPlatform Default=true, WinUI=false}" />

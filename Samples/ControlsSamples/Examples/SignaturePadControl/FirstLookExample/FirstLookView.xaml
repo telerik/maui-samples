@@ -9,7 +9,7 @@
         <Style TargetType="telerik:RadBorder" x:Key="BorderStyle">
             <Setter Property="CornerRadius" Value="4" />
             <Setter Property="BorderThickness" Value="2" />
-            <Setter Property="BorderColor" Value="{StaticResource AccentColor8}" />
+            <Setter Property="BorderColor" Value="{DynamicResource AccentColor8}" />
             <Setter Property="BackgroundColor" Value="Transparent" />
             <Setter Property="HorizontalOptions" Value="FillAndExpand" />
             <Setter Property="VerticalOptions" Value="CenterAndExpand" />
@@ -17,7 +17,7 @@
             <Setter Property="Margin" Value="0, 0, 8, 0" />
         </Style>
         <Style TargetType="telerik:RadBorder" BasedOn="{StaticResource BorderStyle}" x:Key="SelectedBorderStyle">
-            <Setter Property="BackgroundColor" Value="{StaticResource AccentColor8}" />
+            <Setter Property="BackgroundColor" Value="{DynamicResource AccentColor8}" />
         </Style>
         <Style TargetType="Label" x:Key="ExampleBaseLabelStyle" BasedOn="{StaticResource BaseLabelStyle}">
             <Setter Property="VerticalOptions" Value="Center" />
@@ -28,7 +28,7 @@
             <Setter Property="HorizontalOptions" Value="Center" />
             <Setter Property="VerticalTextAlignment" Value="Center" />
             <Setter Property="HorizontalTextAlignment" Value="Center" />
-            <Setter Property="TextColor" Value="{StaticResource AccentColor8}" />
+            <Setter Property="TextColor" Value="{DynamicResource AccentColor8}" />
         </Style>
         <Style TargetType="Label" x:Key="SelectedTipLabelStyle" BasedOn="{StaticResource TipLabelStyle}">
             <Setter Property="TextColor" Value="{StaticResource TextOnAccentColor}" />
@@ -40,8 +40,8 @@
             <Setter Property="FontSize" Value="14" />
         </Style>
         <Style TargetType="telerik:RadSignaturePad" x:Key="SignaturePadStyle">
-            <Setter Property="BackgroundColor" Value="#F3F3F3" />
-            <Setter Property="StrokeColor" Value="Black" />
+            <Setter Property="BackgroundColor" Value="{DynamicResource WrapperBackgroundColor}" />
+            <Setter Property="StrokeColor" Value="{DynamicResource DefaultTextColor}" />
             <Setter Property="StrokeThickness" Value="{OnIdiom Desktop=4, Default=10}" />
             <Setter Property="HeightRequest" Value="{OnIdiom Desktop=240, Default=200}" />
         </Style>
@@ -52,11 +52,12 @@
         </Style>
         <ControlTemplate x:Key="PopupControlTemplate">
             <telerik:RadBorder CornerRadius="{OnPlatform Default=8, Android=4}"
-                               BackgroundColor="#FFFFFF"
+                               BackgroundColor="{DynamicResource DefaultBackgroundColor}"
                                Margin="{OnIdiom Phone='24, 0', Desktop=0}">
                 <Grid RowDefinitions="Auto, *">
                     <Button Text="&#xe877;"
-                            TextColor="#99000000"
+                            Opacity="0.6"
+                            TextColor="{DynamicResource DefaultTextColor}"
                             FontFamily="TelerikFontExamples"
                             WidthRequest="44"
                             HeightRequest="44"
@@ -72,8 +73,7 @@
                         <Label Text="Amount Paid: $93.36"
                                FontSize="21"
                                VerticalOptions="Center"
-                               HorizontalOptions="Center"
-                               TextColor="#000000" />
+                               HorizontalOptions="Center" />
                         <Label Text="Tip included" 
                                Style="{StaticResource InfoLabelStyle}"
                                HorizontalOptions="Center"

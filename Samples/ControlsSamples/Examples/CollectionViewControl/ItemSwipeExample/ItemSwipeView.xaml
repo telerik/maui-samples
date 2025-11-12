@@ -15,7 +15,7 @@
                 <Setter Property="VerticalTextAlignment" Value="Center" />
             </Style>
             <DataTemplate x:Key="StartSwipeItemTemplate">
-                <Grid BackgroundColor="{StaticResource AccentColor2}"
+                <Grid BackgroundColor="{DynamicResource AccentColor2}"
                       HorizontalOptions="Fill"
                       VerticalOptions="Fill">
                     <Grid.GestureRecognizers>
@@ -75,7 +75,7 @@
                                FontFamily="TelerikFontExamples"
                                FontSize="12"
                                Text="&#xe801;"
-                               TextColor="{StaticResource AccentColor4}"
+                               TextColor="{DynamicResource AccentColor4}"
                                VerticalOptions="Center"
                                AutomationId="isItemFavoriteIcon" />
                         <Label Text="{Binding Date}"
@@ -85,17 +85,13 @@
                     </HorizontalStackLayout>
                 </Grid>
             </DataTemplate>
-            <Style TargetType="telerik:RadCollectionViewItemView">
-                <Setter Property="BorderColor" Value="{OnPlatform Default={StaticResource DefaultBorderColor}, MacCatalyst=#0D000000, WinUI={StaticResource DefaultBorderColorWinUI}}" />
-                <Setter Property="BorderThickness" Value="0, 0, 0, 1" />
-                <Setter Property="CornerRadius" Value="0" />
-            </Style>
         </ResourceDictionary>
     </ContentView.Resources>
-    <telerik:RadBorder BorderColor="{OnPlatform Default={StaticResource DefaultBorderColor}, MacCatalyst=#0D000000, WinUI={StaticResource DefaultBorderColorWinUI}}"
+    <telerik:RadBorder BorderColor="{DynamicResource PlatformBorderColor}"
                        BorderThickness="{OnIdiom Default=0, Desktop=1}">
         <telerik:RadCollectionView x:Name="collectionView"
                                    ItemsSource="{Binding Mails}"
+                                   ItemViewStyle="{StaticResource CollectionViewItemStyle}"
                                    ItemTemplate="{StaticResource MailItemTemplate}"
                                    IsItemSwipeEnabled="True"
                                    StartSwipeTemplate="{StaticResource StartSwipeItemTemplate}"

@@ -8,11 +8,7 @@
              Padding="{OnIdiom Default='16, 20', Phone=0}">
     <ContentView.Resources>
         <ResourceDictionary>
-            <converters:StringToFontImageSourceConverter x:Key="StringToFontImageSourceConverter"
-                                                         FontFamily="TelerikFontExamples"
-                                                         Color="#99000000"
-                                                         Size="12" />
-            <Style x:Key="TreeViewItemStyle" TargetType="telerik:TreeViewItemView">
+            <Style x:Key="TreeViewItemStyle" TargetType="telerik:TreeViewItemView" BasedOn="{StaticResource TreeViewItemViewStyle}">
                 <Setter Property="IsExpandButtonVisible" Value="{Binding BindingContext.IsItemExpandButtonVisible, Source={x:Reference treeView}}" />
                 <Setter Property="IsImageVisible" Value="{Binding BindingContext.IsItemImageVisible, Source={x:Reference treeView}}" />
                 <Setter Property="Spacing" Value="{Binding BindingContext.ItemSpacing, Source={x:Reference treeView}}" />

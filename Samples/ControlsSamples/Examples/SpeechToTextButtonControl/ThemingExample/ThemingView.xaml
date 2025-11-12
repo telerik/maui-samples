@@ -9,9 +9,12 @@
           HorizontalOptions="Fill">
         <telerik:RadEntry x:Name="entry"
                           Margin="0, 0, 16, 0"
+                          MinimumHeightRequest="{OnPlatform Default=32, Android=44, iOS=36}"
                           Placeholder="Record a message..." />
         <telerik:RadSpeechToTextButton x:Name="speechToTextButton"
                                        Grid.Column="1"
+                                       MinimumHeightRequest="{OnPlatform Default=32, Android=44, iOS=36}"
+                                       MinimumWidthRequest="{OnPlatform Default=32, Android=44, iOS=36}"
                                        HorizontalOptions="Center"
                                        VerticalOptions="Center"
                                        IsContinuousRecognition="False"

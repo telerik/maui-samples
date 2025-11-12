@@ -2,13 +2,15 @@
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:converters="clr-namespace:QSF.Converters"
              x:Class="QSF.Views.PickerExampleViewBase"
              ControlTemplate="{StaticResource DefaultControlTemplate}">
     <ContentView.Resources>
         <ResourceDictionary>
+            <converters:ResourceKeyToColorConverter x:Key="ResourceKeyToColorConverter" />
             <Style x:Key="CardItemStyle" TargetType="telerik:NonVirtualizedItemsControlItemContainer">
-                <Setter Property="BackgroundColor" Value="{Binding BackgroundColor}" />
-                <Setter Property="BorderColor" Value="{Binding BorderColor}" />
+                <Setter Property="BackgroundColor" Value="{Binding BackgroundColorKey, Converter={StaticResource ResourceKeyToColorConverter}}" />
+                <Setter Property="BorderColor" Value="{Binding BorderColorKey, Converter={StaticResource ResourceKeyToColorConverter}}" />
                 <Setter Property="BorderThickness" Value="{OnPlatform Default=1, WinUI=2}" />
                 <Setter Property="CornerRadius" Value="4" />
                 <Setter Property="Padding" Value="24, 16" />
@@ -16,7 +18,7 @@
             </Style>
             <Style x:Key="SelectedCardItemStyle" TargetType="telerik:NonVirtualizedItemsControlItemContainer" BasedOn="{StaticResource CardItemStyle}">
                 <Setter Property="BorderThickness" Value="2" />
-                <Setter Property="BorderColor" Value="{Binding SelectedBorderColor}" />
+                <Setter Property="BorderColor" Value="{Binding SelectedBorderColorKey, Converter={StaticResource ResourceKeyToColorConverter}}" />
             </Style>
             <DataTemplate x:Key="DefaultItemTemplate">
                 <VerticalStackLayout Spacing="4">
@@ -26,7 +28,7 @@
                            Aspect="AspectFit" />
                     <Label Text="{Binding Label}"
                            IsVisible="{Binding Label, Converter={StaticResource NullOrEmptyToBoolConverter}}"
-                           TextColor="{Binding SelectedBorderColor}"
+                           TextColor="{Binding SelectedBorderColorKey, Converter={StaticResource ResourceKeyToColorConverter}}"
                            MaximumWidthRequest="65"
                            LineBreakMode="WordWrap"
                            HorizontalTextAlignment="Center"
@@ -60,7 +62,7 @@
                                            HorizontalOptions="Start"
                                            Style="{StaticResource SubmitButtonStyle}"
                                            Command="{TemplateBinding ButtonCommand}"
-                                           Text="{TemplateBinding ButtonText}" 
+                                           Text="{TemplateBinding ButtonText}"
                                            AutomationId="{TemplateBinding ButtonAutomationId}"/>
                     </VerticalStackLayout>
                 </Grid>

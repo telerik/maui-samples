@@ -12,14 +12,9 @@
             <ResourceDictionary.MergedDictionaries>
                 <styles:ConfigurationViewResources />
             </ResourceDictionary.MergedDictionaries>
+            <converters:ColorNameToColorConverter x:Key="ColorNameToColorConverter" />
 
-            <converters:ColorNameToColorConverter x:Key="ColorNameToColorConverter">
-                <converters:ColorNameToColorConverter.DefaultValuesResourceDictionary>
-                    <example:ComboBoxConstants />
-                </converters:ColorNameToColorConverter.DefaultValuesResourceDictionary>
-            </converters:ColorNameToColorConverter>
-
-            <Style TargetType="telerik:RadComboBox">
+            <Style TargetType="telerik:RadComboBox" BasedOn="{StaticResource RadComboBoxStyle}">
                 <Setter Property="IsClearButtonVisible" Value="False" />
                 <Setter Property="WidthRequest" Value="{OnIdiom Default=-1, Desktop=300}" />
                 <Setter Property="HorizontalOptions" Value="{OnIdiom Default=Fill, Desktop=Start}" />
@@ -31,7 +26,7 @@
                            MaximumHeightRequest="64"
                            HorizontalOptions="Center" />
                     <Label Text="{Binding Source={x:Reference comboBox}, Path=NoResultsMessage}"
-                           TextColor="{StaticResource PlaceholderColor}"
+                           TextColor="{DynamicResource PlaceholderColor}"
                            LineBreakMode="WordWrap"
                            HorizontalTextAlignment="Center" />
                 </VerticalStackLayout>
@@ -44,7 +39,7 @@
             <RowDefinition Height="{OnPlatform Android=136, iOS=125, MacCatalyst=110, WinUI=112}" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <telerik:RadBorder Style="{StaticResource ControlWrapperBorderStyle}">
+        <telerik:RadBorder Style="{DynamicResource ControlWrapperBorderStyle}">
             <telerik:RadComboBox x:Name="comboBox"
                                  IsEditable="True"
                                  IsFilteringEnabled="True"

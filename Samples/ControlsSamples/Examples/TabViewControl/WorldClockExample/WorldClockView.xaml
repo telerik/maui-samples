@@ -7,29 +7,26 @@
     <ContentView.Resources>
         <ResourceDictionary>
 
-            <Color x:Key="PrimaryColorLight">#99000000</Color>
-            <Color x:Key="SecondaryColorLight">#DE000000</Color>
-            
             <Style TargetType="telerik:TabViewHeader" x:Key="TabViewHeaderStyle">
-                <Setter Property="BackgroundColor" Value="#F8F8F8" />
+                <Setter Property="BackgroundColor" Value="{DynamicResource TabViewHeaderBackgroundColor}" />
             </Style>
 
             <Style TargetType="telerik:TabViewHeaderItem" x:Key="TabViewHeaderItemStyle">
-                <Setter Property="TextColor" Value="Black"/>
                 <Setter Property="FontSize" Value="16"/>
+                <Setter Property="TextColor" Value="{DynamicResource DefaultTextColor}"/>
                 <Setter Property="VisualStateManager.VisualStateGroups">
                     <VisualStateGroupList>
                         <VisualStateGroup Name="CommonStates">
                             <VisualState Name="Normal"/>
                             <VisualState Name="Disabled">
                                 <VisualState.Setters>
-                                    <Setter Property="TextColor" Value="#61000000" />
+                                    <Setter Property="Opacity" Value="0.7" />
                                 </VisualState.Setters>
                             </VisualState>
                             <VisualState Name="Selected">
                                 <VisualState.Setters>
                                     <Setter Property="TextColor" Value="White" />
-                                    <Setter Property="BackgroundColor" Value="{StaticResource AccentColor8}" />
+                                    <Setter Property="BackgroundColor" Value="{DynamicResource AccentColor8}" />
                                 </VisualState.Setters>
                             </VisualState>
                         </VisualStateGroup>
@@ -38,10 +35,11 @@
             </Style>
             
             <Style x:Key="CurrentDateStyle" TargetType="Label">
-                <Setter Property="TextColor" Value="{StaticResource PrimaryColorLight}" />
+                <Setter Property="TextColor" Value="{DynamicResource DefaultTextColor}" />
                 <Setter Property="FontSize" Value="Medium" />
                 <Setter Property="HorizontalOptions" Value="Center" />
                 <Setter Property="Margin" Value="0, 24, 0, 24" />
+                <Setter Property="Opacity" Value="0.6" />
             </Style>
             
             <Style x:Key="TimeIconStyle" TargetType="Image">
@@ -53,30 +51,32 @@
             </Style>
             
             <Style x:Key="GmtStyle" TargetType="Label">
-                <Setter Property="TextColor" Value="{StaticResource PrimaryColorLight}" />
+                <Setter Property="TextColor" Value="{DynamicResource DefaultTextColor}" />
                 <Setter Property="FontSize" Value="Medium" />
                 <Setter Property="HorizontalOptions" Value="Center" />
                 <Setter Property="Margin" Value="0, 0, 0, 3" />
+                <Setter Property="Opacity" Value="0.6" />
             </Style>
             
             <Style x:Key="CityNameStyle" TargetType="Label">
-                <Setter Property="TextColor" Value="{StaticResource SecondaryColorLight}" />
+                <Setter Property="TextColor" Value="{DynamicResource DefaultTextColor}" />
                 <Setter Property="FontSize" Value="Title" />
                 <Setter Property="HorizontalOptions" Value="Center" />
                 <Setter Property="Margin" Value="0, 0, 0, 20" />
+                <Setter Property="Opacity" Value="0.87" />
             </Style>
             
             <Style x:Key="CurrentTimeStyle" TargetType="Label">
-                <Setter Property="TextColor" Value="{StaticResource SecondaryColorLight}" />
+                <Setter Property="TextColor" Value="{DynamicResource DefaultTextColor}" />
                 <Setter Property="FontSize" Value="100" />
                 <Setter Property="HorizontalOptions" Value="Center" />
                 <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="Opacity" Value="0.87" />
             </Style>
         </ResourceDictionary>
     </ContentView.Resources>
     <ContentView.Content>
-        <telerik:RadTabView BackgroundColor="White" 
-                            HeaderStyle="{StaticResource TabViewHeaderStyle}"
+        <telerik:RadTabView HeaderStyle="{StaticResource TabViewHeaderStyle}"
                             HeaderItemStyle="{StaticResource TabViewHeaderItemStyle}"
                             AutomationId="tabView">
             <telerik:TabViewItem HeaderText="Sofia" >

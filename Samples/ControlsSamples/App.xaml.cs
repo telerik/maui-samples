@@ -3,6 +3,7 @@ using Microsoft.Maui.Controls;
 using Microsoft.Maui.Devices;
 using Microsoft.Maui.Graphics;
 using Microsoft.Maui.Handlers;
+using QSF.Helpers;
 using QSF.Pages;
 using QSF.Services;
 using QSF.ViewModels;
@@ -19,21 +20,20 @@ namespace QSF;
 public partial class App : Application
 {
     private readonly ITestingService testingService;
+    private readonly TelemetryService telemetryService;
 
-    public App(ITestingService testingService)
+    public App(ITestingService testingService, TelemetryService telemetryService)
     {
 #if ANDROID
         // Setting the AccentColor from the Maui world here is needed
         // since the moment we try to access it from native Android is too early.
         Application.AccentColor = Color.FromArgb("#2B0B98");
 #endif
-
-        this.UserAppTheme = Microsoft.Maui.ApplicationModel.AppTheme.Light;
-
         this.InitializeComponent();
         this.InitializeDependencies();
 
         this.testingService = testingService;
+        this.telemetryService = telemetryService;
 
         this.testingService.OnCommand += (service, command) =>
         {
@@ -71,6 +71,12 @@ public partial class App : Application
                                     { "Example", e.Name }
                                 })
                                 .ToList()));
+            }
+            else if (command.Command.StartsWith("THEME:"))
+            {
+                var themeString = command.Command.Substring("THEME:".Length).Trim();
+                var theme = Enum.Parse<TelerikTheme>(themeString);
+                ThemingViewModel.Instance.CurrentTheme = ThemingViewModel.Instance.ThemesList.First(t => t.Value == theme);
             }
         };
 
@@ -138,6 +144,73 @@ public partial class App : Application
         popup.IsOpen = true;
     }
 
+    protected override Window CreateWindow(IActivationState activationState)
+    {
+        Page mainPage;
+
+        if (DeviceInfo.Idiom == DeviceIdiom.Desktop)
+        {
+            mainPage = new NavigationPage(new MainPageDesktop(this.testingService));
+        }
+        else
+        {
+            mainPage = new NavigationPage(new MainPageMobile(this.testingService))
+            {
+                BarTextColor = Colors.White
+            };
+        }
+
+        var window = new Window(mainPage);
+#if WINDOWS
+        window.Title = "Telerik UI for .NET MAUI Controls Samples";
+#endif
+
+#if WINDOWS || MACCATALYST
+        window.MinimumWidth = 1024;
+        window.MinimumHeight = 768;
+#endif
+
+        var crashReporter = ServiceHelper.GetRequiredService<CrashReporter>();
+
+        window.Destroying += async (_, __) =>
+        {
+            crashReporter?.Dispose();
+            await this.FlushTelemetryAsync();
+        };
+
+        window.Stopped += async (_, __) =>
+        {
+            crashReporter?.Dispose();
+            await this.FlushTelemetryAsync();
+        };
+
+        return window;
+    }
+    
+    protected override void OnSleep()
+    {
+        base.OnSleep();
+        // Fire-and-forget: flush pending telemetry and allow a brief delay for send
+        _ = this.FlushTelemetryAsync();
+    }
+
+    protected override void OnStart()
+    {
+        base.OnStart();
+
+        // Initialize version tracking so IsFirstLaunch* flags are accurate before sending telemetry
+        Microsoft.Maui.ApplicationModel.VersionTracking.Track();
+
+        // Track app start event
+        this.telemetryService.TrackAppStart();
+#if IOS
+        UIKit.UINavigationController vc = (UIKit.UINavigationController)Microsoft.Maui.ApplicationModel.Platform.GetCurrentUIViewController();
+        vc.InteractivePopGestureRecognizer.Delegate = new BackSwipeWithoutNavigationBar(vc);
+        vc.InteractivePopGestureRecognizer.Enabled = true;
+
+#endif
+    }
+
 #if __ANDROID__
     private static void UpdateMaxLines(ILabelHandler handler, ILabel label)
     {
@@ -158,40 +231,6 @@ public partial class App : Application
     }
 #endif
 
-    protected override Window CreateWindow(IActivationState activationState)
-    {
-        Page mainPage;
-        if (this.testingService.IsAppUnderTest && DeviceInfo.Idiom == DeviceIdiom.Desktop)
-        {
-            mainPage = new NavigationPage(new UITestsHomePage(this.testingService));
-        }
-        else
-        {
-            if (DeviceInfo.Idiom == DeviceIdiom.Desktop)
-            {
-                mainPage = new NavigationPage(new MainPageDesktop(this.testingService));
-            }
-            else
-            {
-                mainPage = new NavigationPage(new MainPageMobile(this.testingService))
-                {
-                    BarTextColor = Colors.White
-                };
-            }
-        }
-
-        var window = new Window(mainPage);
-#if WINDOWS
-        window.Title = "Telerik UI for .NET MAUI Controls Samples";
-#endif
-
-#if WINDOWS || MACCATALYST
-        window.MinimumWidth = 1024;
-        window.MinimumHeight = 768;
-#endif
-        return window;
-    }
-
     private void InitializeDependencies()
     {
         DependencyService.Register<IConfigurationService, ConfigurationService>();
@@ -208,16 +247,21 @@ public partial class App : Application
         DependencyService.Register<IMediaPickerService, MediaPickerService>();
     }
 
-#if IOS
-    protected override void OnStart()
+    private async Task FlushTelemetryAsync()
     {
-        base.OnStart();
-
-        UIKit.UINavigationController vc = (UIKit.UINavigationController)Microsoft.Maui.ApplicationModel.Platform.GetCurrentUIViewController();
-        vc.InteractivePopGestureRecognizer.Delegate = new BackSwipeWithoutNavigationBar(vc);
-        vc.InteractivePopGestureRecognizer.Enabled = true;
+        try
+        {
+            this.telemetryService.Flush();
+            // Give the channel a moment to send before the app is suspended/terminated
+            await Task.Delay(500).ConfigureAwait(false);
+        }
+        catch
+        {
+            // Ignore flush errors; the app may be suspending/terminating and telemetry must not block or crash.
+        }
     }
 
+#if IOS
     public class BackSwipeWithoutNavigationBar : UIKit.UIGestureRecognizerDelegate
     {
         private UIKit.UINavigationController vc;

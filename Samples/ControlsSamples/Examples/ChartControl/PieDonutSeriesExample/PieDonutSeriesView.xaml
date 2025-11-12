@@ -15,12 +15,13 @@
             <Grid RowDefinitions="Auto, *">
                 <telerik:RadLegend Margin="0, 10, 0, 0"
                                    LegendProvider="{x:Reference chart}"
+                                   LegendItemFontColor="{DynamicResource DefaultTextColor}"
                                    HeightRequest="50"
                                    Orientation="Horizontal">
                 </telerik:RadLegend>
                 <telerik:RadPieChart x:Name="chart"
                                      Grid.Row="1"
-                                     BackgroundColor="White"
+                                     BackgroundColor="Transparent"
                                      AutomationId="pieChart">
                     <telerik:RadPieChart.ChartBehaviors>
                         <telerik:ChartSelectionBehavior DataPointSelectionMode="Single"
@@ -39,12 +40,13 @@
             <Grid RowDefinitions="Auto, *">
                 <telerik:RadLegend Margin="0, 10, 0, 0"
                                    LegendProvider="{x:Reference chart}"
+                                   LegendItemFontColor="{DynamicResource DefaultTextColor}"
                                    HeightRequest="50"
                                    Orientation="Horizontal">
                 </telerik:RadLegend>
                 <telerik:RadPieChart x:Name="chart"
                                      Grid.Row="1"
-                                     BackgroundColor="White"
+                                     BackgroundColor="Transparent"
                                      AutomationId="pieChart2">
                     <telerik:RadPieChart.ChartBehaviors>
                         <telerik:ChartSelectionBehavior DataPointSelectionMode="Single"
@@ -63,13 +65,14 @@
             <Grid RowDefinitions="Auto, *">
                 <telerik:RadLegend Margin="0, 10, 0, 0"
                                    LegendProvider="{x:Reference chart}"
+                                   LegendItemFontColor="{DynamicResource DefaultTextColor}"
                                    HeightRequest="50"
                                    Orientation="Horizontal"
                                    AutomationId="donutChart">
                 </telerik:RadLegend>
                 <telerik:RadPieChart x:Name="chart"
                                      Grid.Row="1"
-                                     BackgroundColor="White">
+                                     BackgroundColor="Transparent">
                     <telerik:RadPieChart.ChartBehaviors>
                         <telerik:ChartSelectionBehavior DataPointSelectionMode="Single"
                                                         SeriesSelectionMode="None" />

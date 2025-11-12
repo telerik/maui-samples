@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.DataGridControl.ScrollingCategory.ScrollingExample.Scrolling">
+
+	<Grid RowDefinitions="Auto, *"
+		  RowSpacing="10">
+		<HorizontalStackLayout Spacing="10"
+							   HorizontalOptions="Start">
+			<!-- >> button-scrolling-to-item -->
+			<telerik:RadTemplatedButton Content="Scroll to Last Item"
+										Clicked="OnScrolltoLastItemClicked" />
+			<!-- << button-scrolling-to-item -->
+			
+			<!-- >> button-scrolling-to-column -->
+			<telerik:RadTemplatedButton Content="Scroll to Last Column"
+										Clicked="OnScrolltoLastColumnClicked" />
+			<!-- << button-scrolling-to-column -->
+		</HorizontalStackLayout>
+		<!-- >> datagrid-scrolling -->
+		<telerik:RadDataGrid ItemsSource="{Binding Shops}"
+							 UserGroupMode="Disabled"
+							 UserSortMode="None"
+							 UserFilterMode="Disabled"
+							 x:Name="dataGrid"
+							 Grid.Row="1" />
+		<!-- << datagrid-scrolling -->
+	</Grid>
+</ContentView>

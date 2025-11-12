@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.ChatControl.FeaturesCategory.ButtonsVisibilityExample"
+             x:Class="SDKBrowserMaui.Examples.ChatControl.FeaturesCategory.ButtonsVisibilityExample.ButtonsVisibility">
+	<ContentView.Resources>
+		<ResourceDictionary>
+			<Style TargetType="HorizontalStackLayout">
+				<Setter Property="Spacing" Value="5" />
+				<Setter Property="Margin" Value="5" />
+			</Style>
+		</ResourceDictionary>
+	</ContentView.Resources>
+	<Grid RowDefinitions="Auto, *">
+		<telerik:RadWrapLayout>
+			<HorizontalStackLayout>
+				<Label Text="IsMoreButtonVisible: " />
+				<telerik:RadCheckBox IsChecked="{Binding Source={x:Reference chat}, Path=IsMoreButtonVisible}" />
+			</HorizontalStackLayout>
+			<HorizontalStackLayout>
+				<Label Text="AutoGenerateMoreButtonActions: " />
+				<telerik:RadCheckBox IsChecked="{Binding Source={x:Reference chat}, Path=AutoGenerateMoreButtonActions}" />
+			</HorizontalStackLayout>
+		</telerik:RadWrapLayout>
+		<!-- >> chat-buttons-visibility -->
+		<telerik:RadChat x:Name="chat"
+						 IsMoreButtonVisible="True"
+						 AutoGenerateMoreButtonActions="True"
+						 IsSpeechToTextButtonVisible="{OnPlatform Default=true, WinUI=false}"
+						 Grid.Row="1" />
+		<!-- << chat-buttons-visibility -->
+	</Grid>
+</ContentView>

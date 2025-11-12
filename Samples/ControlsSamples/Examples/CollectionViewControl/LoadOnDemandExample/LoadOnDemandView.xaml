@@ -7,6 +7,7 @@
              x:Class="QSF.Examples.CollectionViewControl.LoadOnDemandExample.LoadOnDemandView"
              Padding="{OnIdiom Default='16, 20', Phone=0}">
     <ContentView.Resources>
+        <converters:ResourceKeyToColorConverter x:Key="ResourceKeyToColorConverter" />
         <DataTemplate x:Key="MessageTemplate">
             <Grid Padding="{OnPlatform Default='16, 16, 12, 16', MacCatalyst='16, 16, 20, 16'}"
                   ColumnSpacing="8"
@@ -15,18 +16,18 @@
                     <telerik:RadBorder CornerRadius="6"
                                        WidthRequest="32"
                                        HeightRequest="32"
-                                       BackgroundColor="{Binding BackgroundColor}"
+                                       BackgroundColor="{Binding BackgroundColorKey, Converter={StaticResource ResourceKeyToColorConverter}}"
                                        VerticalOptions="Center"
                                        HorizontalOptions="Center">
                         <Label Text="{Binding SenderAbbreviation}"
-                               TextColor="{Binding TextColor}"
+                               TextColor="{Binding TextColorKey, Converter={StaticResource ResourceKeyToColorConverter}}"
                                VerticalTextAlignment="Center"
                                HorizontalTextAlignment="Center" />
                     </telerik:RadBorder>
                     <telerik:RadBorder CornerRadius="6"
                                        WidthRequest="12"
                                        HeightRequest="12"
-                                       BackgroundColor="{Binding StatusColor}"
+                                       BackgroundColor="{Binding StatusColorKey, Converter={StaticResource ResourceKeyToColorConverter}}"
                                        BorderColor="{Binding BackgroundColor, Source={RelativeSource AncestorType={x:Type telerik:RadCollectionView}}}"
                                        BorderThickness="1"
                                        Margin="0, 0, -4, -3"
@@ -57,7 +58,7 @@
             </Grid>
         </DataTemplate>
     </ContentView.Resources>
-    <telerik:RadBorder BorderColor="{OnPlatform Default={StaticResource DefaultBorderColor}, MacCatalyst=#0D000000, WinUI={StaticResource DefaultBorderColorWinUI}}"
+    <telerik:RadBorder BorderColor="{DynamicResource PlatformBorderColor}"
                        BorderThickness="{OnPlatform Default=0, MacCatalyst=1, WinUI=1}">
         <telerik:RadCollectionView x:Name="collectionView"
                                    ItemsSource="{Binding Messages}"

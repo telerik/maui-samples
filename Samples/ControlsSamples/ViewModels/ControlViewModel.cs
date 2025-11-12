@@ -38,8 +38,11 @@ public class ControlViewModel : PageViewModel
 
         if (DeviceInfo.Idiom == DeviceIdiom.Desktop)
         {
-            this.SelectedExample = this.control.StartupExample ?? this.Examples.FirstOrDefault();
+            // Restore the selection if reloaded while changing theme.
+            this.SelectedExample = this.control.SelectedExample ?? this.control.StartupExample ?? this.Examples.FirstOrDefault();
         }
+
+        ThemingViewModel.Instance.ThemeChangedCallback = (oldTheme, newTheme) => this.OnPropertyChanged("SelectedExample");
     }
 
     public Control Control
@@ -50,13 +53,24 @@ public class ControlViewModel : PageViewModel
         }
     }
 
-    public ObservableCollection<Example> Examples { get; private set; }
 
     public Example SelectedExample
     {
-        get { return this.selectedExample; }
-        set { this.UpdateValue(ref this.selectedExample, value); }
+        get 
+        { 
+            return this.selectedExample; 
+        }
+        set 
+        {
+            if (this.UpdateValue(ref this.selectedExample, value))
+            {
+                this.Control.SelectedExample = this.selectedExample;
+                this.TelemetryService.TrackNavigatedToExample(this.selectedExample);
+            }
+        }
     }
+
+    public ObservableCollection<Example> Examples { get; private set; }
 
     public ICommand NavigateToExampleCommand { get; private set; }
 
@@ -93,7 +107,7 @@ public class ControlViewModel : PageViewModel
         else
         {
             IConfigurationService configurationService = DependencyService.Get<IConfigurationService>();
-            string url = configurationService.Configuration.DocumentationUrl?.Replace("introduction", this.control.Name);
+            string url = configurationService.Configuration.DocumentationUrl?.Replace("introduction", $"controls/{this.control.Name.ToLower()}/overview");
             return url;
         }
     }

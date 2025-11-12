@@ -12,7 +12,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <styles:ConfigurationViewResources />
             </ResourceDictionary.MergedDictionaries>
-            <Style TargetType="telerik:RadComboBox">
+            <Style TargetType="telerik:RadComboBox" BasedOn="{StaticResource RadComboBoxStyle}">
                 <Setter Property="IsClearButtonVisible" Value="False" />
                 <Setter Property="WidthRequest" Value="{OnIdiom Default=-1, Desktop=300}" />
                 <Setter Property="HorizontalOptions" Value="{OnIdiom Default=Fill, Desktop=Start}" />
@@ -42,7 +42,7 @@
                            Style="{StaticResource VerticalGroupLabelStyle}" />
                     <telerik:RadComboBox x:Name="displayModeCombo"
                                          ItemsSource="{Binding DisplayModes}"
-                                         SelectedItem="{Binding DisplayMode, Mode=TwoWay}" 
+                                         SelectedItem="{Binding DisplayMode, Mode=TwoWay}"
                                          AutomationId="displayModeComboBox" />
                 </VerticalStackLayout>
                 <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
@@ -50,7 +50,7 @@
                            Style="{StaticResource VerticalGroupLabelStyle}" />
                     <telerik:RadComboBox x:Name="minDisplayModeCombo"
                                          ItemsSource="{Binding MinDisplayModes}"
-                                         SelectedItem="{Binding MinDisplayMode, Mode=TwoWay}" 
+                                         SelectedItem="{Binding MinDisplayMode, Mode=TwoWay}"
                                          AutomationId="minDisplayModeComboBox" />
                 </VerticalStackLayout>
                 <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
@@ -58,7 +58,7 @@
                            Style="{StaticResource VerticalGroupLabelStyle}" />
                     <telerik:RadComboBox x:Name="maxDisplayModeCombo"
                                          ItemsSource="{Binding MaxDisplayModes}"
-                                         SelectedItem="{Binding MaxDisplayMode, Mode=TwoWay}" 
+                                         SelectedItem="{Binding MaxDisplayMode, Mode=TwoWay}"
                                          AutomationId="maxDisplayModeComboBox" />
                 </VerticalStackLayout>
             </VerticalStackLayout>

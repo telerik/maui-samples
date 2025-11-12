@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.SkeletonControl.BuiltInViewsCategory.BuiltInViewsExample.BuiltInViews">
+	<ContentView.Resources>
+		<ResourceDictionary>
+			<Style TargetType="VerticalStackLayout">
+				<Setter Property="Spacing" Value="5" />
+				<Setter Property="MinimumWidthRequest" Value="300" />
+				<Setter Property="Margin" Value="0,10,10,10" />
+			</Style>
+			<Style TargetType="Label">
+				<Setter Property="HorizontalTextAlignment" Value="Center" />
+			</Style>
+		</ResourceDictionary>
+	</ContentView.Resources>
+	<ScrollView>
+		<telerik:RadWrapLayout>
+			<VerticalStackLayout>
+				<Label Text="Article:" />
+				<!-- >> skeleton-type -->
+				<telerik:RadSkeleton SkeletonType="Article" />
+				<!-- << skeleton-type -->
+			</VerticalStackLayout>
+			<VerticalStackLayout>
+				<Label Text="Text:" />
+				<telerik:RadSkeleton SkeletonType="Text" />
+			</VerticalStackLayout>
+			<VerticalStackLayout>
+				<Label Text="PersonaCircle:" />
+				<telerik:RadSkeleton SkeletonType="PersonaCircle" />
+			</VerticalStackLayout>
+			<VerticalStackLayout>
+				<Label Text="PersonaSquare:" />
+				<telerik:RadSkeleton SkeletonType="PersonaSquare" />
+			</VerticalStackLayout>
+			<VerticalStackLayout>
+				<Label Text="Image:" />
+				<telerik:RadSkeleton SkeletonType="Image" LoadingViewMinimumHeight="200" />
+			</VerticalStackLayout>
+			<VerticalStackLayout>
+				<Label Text="Video:" />
+				<telerik:RadSkeleton SkeletonType="Video" LoadingViewMinimumHeight="200" />
+			</VerticalStackLayout>
+			<VerticalStackLayout>
+				<Label Text="Card:" />
+				<telerik:RadSkeleton SkeletonType="Card" LoadingViewMinimumHeight="200" />
+			</VerticalStackLayout>
+			<VerticalStackLayout>
+				<Label Text="ContentFeed:" />
+				<telerik:RadSkeleton SkeletonType="ContentFeed" LoadingViewMinimumHeight="200" />
+			</VerticalStackLayout>
+		</telerik:RadWrapLayout>
+	</ScrollView>
+
+</ContentView>

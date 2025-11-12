@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:styles="clr-namespace:QSF.Styles"
+             x:Class="QSF.Examples.SkeletonControl.ConfigurationExample.ConfigurationView"
+             Padding="{OnIdiom Default='16, 20', Phone=0}">
+
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <styles:ConfigurationViewResources />
+            </ResourceDictionary.MergedDictionaries>
+
+            <DataTemplate x:Key="CustomSkeletonTemplate">
+                <Grid Padding="16"
+                      RowSpacing="14"
+                      ColumnSpacing="16"
+                      RowDefinitions="72, 120"
+                      ColumnDefinitions="72, *">
+                    <Ellipse MinimumWidthRequest="56"
+                             MinimumHeightRequest="56"
+                             HorizontalOptions="Start"
+                             VerticalOptions="Start" />
+
+                    <VerticalStackLayout Grid.Column="1"
+                                         Spacing="10"
+                                         VerticalOptions="Start">
+                        <RoundRectangle MinimumWidthRequest="160"
+                                        MinimumHeightRequest="20"
+                                        CornerRadius="4" />
+                        <Grid ColumnDefinitions="*, *"
+                              ColumnSpacing="12"
+                              MinimumHeightRequest="14">
+                            <RoundRectangle MinimumHeightRequest="14"
+                                            CornerRadius="4" />
+                            <RoundRectangle Grid.Column="1"
+                                            MinimumHeightRequest="14"
+                                            CornerRadius="4" />
+                        </Grid>
+                        <RoundRectangle MinimumWidthRequest="200"
+                                        MinimumHeightRequest="14"
+                                        CornerRadius="4" />
+                    </VerticalStackLayout>
+
+                    <RoundRectangle Grid.Row="1"
+                                    Grid.ColumnSpan="2"
+                                    MinimumHeightRequest="120"
+                                    CornerRadius="8" />
+                </Grid>
+            </DataTemplate>
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+    <telerik:RadBorder BorderColor="{DynamicResource PlatformBorderColor}"
+                       BorderThickness="{OnPlatform Default=0, MacCatalyst=1, WinUI=1}"
+                       Padding="0">
+        <telerik:RadSkeleton IsLoading="{Binding IsContentLoading}"
+                             SkeletonType="{Binding SelectedSkeletonType}"
+                             SkeletonAnimationType="{Binding SelectedAnimationType}"
+                             LoadingViewColor="{Binding LoadingColor}"
+                             RepeatCount="{Binding RepeatCount}"
+                             RepeatSpacing="{Binding RepeatSpacing}"
+                             LoadingViewMinimumWidth="{Binding LoadingWidth}"
+                             LoadingViewMinimumHeight="{Binding LoadingHeight}"
+                             BackgroundColor="Transparent"
+                             BorderColor="Transparent">
+
+            <telerik:RadSkeleton.Triggers>
+                <DataTrigger TargetType="telerik:RadSkeleton"
+                             Binding="{Binding UseCustomTemplate}"
+                             Value="True">
+                    <Setter Property="LoadingViewTemplate" Value="{StaticResource CustomSkeletonTemplate}" />
+                </DataTrigger>
+                <DataTrigger TargetType="telerik:RadSkeleton"
+                             Binding="{Binding UseCustomTemplate}"
+                             Value="False">
+                    <Setter Property="LoadingViewTemplate" Value="{x:Null}" />
+                </DataTrigger>
+            </telerik:RadSkeleton.Triggers>
+
+            <VerticalStackLayout Padding="16"
+                                 Spacing="12">
+                <Label Text="Loaded Content"
+                       FontSize="16"
+                       FontAttributes="Bold" />
+                <Label Text="This area represents the actual UI displayed once loading completes."
+                       FontSize="13"
+                       LineBreakMode="WordWrap" />
+                <HorizontalStackLayout Spacing="12">
+                    <telerik:RadBorder CornerRadius="8"
+                                       BackgroundColor="{DynamicResource RadPrimaryColor}"
+                                       Padding="8, 4">
+                        <Label Text="Tag 1"
+                               TextColor="{DynamicResource RadOnPrimaryColor}" />
+                    </telerik:RadBorder>
+                    <telerik:RadBorder CornerRadius="8"
+                                       BackgroundColor="{DynamicResource RadPrimaryColor}"
+                                       Padding="8, 4">
+                        <Label Text="Tag 2"
+                               TextColor="{DynamicResource RadOnPrimaryColor}" />
+                    </telerik:RadBorder>
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+
+        </telerik:RadSkeleton>
+    </telerik:RadBorder>
+</ContentView>

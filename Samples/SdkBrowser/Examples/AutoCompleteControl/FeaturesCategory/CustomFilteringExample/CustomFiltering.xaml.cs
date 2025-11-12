@@ -7,5 +7,7 @@ public partial class CustomFiltering : ContentView
 	public CustomFiltering()
 	{
 		InitializeComponent();
+
+		this.autoComplete.AutomationId = "autoComplete";
 	}
 }

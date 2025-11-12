@@ -2,6 +2,7 @@
 
 namespace SDKBrowserMaui.Examples.ListViewControl.StylingCategory.ItemStylesExample
 {
+	// >> listview-itemstyles-source
     public class Person
     {
         public Person(string name)

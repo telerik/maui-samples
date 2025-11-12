@@ -4,7 +4,7 @@
                           xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
                           xmlns:views="clr-namespace:QSF.Views"
                           x:Class="QSF.Views.SmoothItemView"
-                          BackgroundColor="{StaticResource ItemBackgroundColor}">
+                          BackgroundColor="{DynamicResource ItemBackgroundColor}">
 
     <VisualElement.Resources>
         <Style x:Key="BorderStyle" TargetType="telerik:RadBorder">
@@ -15,12 +15,12 @@
     <ContentView.ControlTemplate>
         <ControlTemplate>
             <Grid ColumnDefinitions="Auto, *">
-                <telerik:RadBorder BackgroundColor="{StaticResource DefaultBackgroundColor}"
+                <telerik:RadBorder BackgroundColor="{DynamicResource IconBackgroundColor}"
                                    Margin="6, 12, 12, 12"
                                    Style="{StaticResource BorderStyle}">
                     <Label FontFamily="TelerikControlsIcons"
                            Text="{TemplateBinding Icon}"
-                           TextColor="{StaticResource AccentColor8}"
+                           TextColor="{DynamicResource AccentColor8}"
                            FontSize="24"
                            Margin="12"
                            HorizontalOptions="Center"

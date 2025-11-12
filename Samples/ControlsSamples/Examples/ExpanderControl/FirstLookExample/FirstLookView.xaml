@@ -14,7 +14,7 @@
             <Setter Property="CornerRadius" Value="48" />
             <Setter Property="WidthRequest" Value="48" />
             <Setter Property="HeightRequest" Value="48" />
-            <Setter Property="BorderColor" Value="{StaticResource AccentColor8}" />
+            <Setter Property="BorderColor" Value="{DynamicResource AccentColor8}" />
             <Setter Property="BorderThickness" Value="4" />
             <Setter Property="VerticalOptions" Value="Center" />
             <Setter Property="HorizontalOptions" Value="Center" />
@@ -38,7 +38,7 @@
                     <Label Text="{Binding FullName}"
                            VerticalOptions="Center"
                            FontSize="20"
-                           TextColor="{StaticResource AccentColor8}" />
+                           TextColor="{DynamicResource AccentColor8}" />
                     <Label Text="{Binding CountryName}"
                            VerticalOptions="Center"
                            FontSize="14" />
@@ -64,7 +64,7 @@
                     <telerik:RadCollectionView.ItemViewStyle>
                         <Style TargetType="telerik:RadCollectionViewItemView">
                             <Setter Property="BorderThickness" Value="1" />
-                            <Setter Property="BorderColor" Value="#DFDFDF" />
+                            <Setter Property="BorderColor" Value="{DynamicResource DefaultBorderColor}" />
                             <Setter Property="Padding" Value="10,0" />
                             <Setter Property="VisualStateManager.VisualStateGroups">
                                 <VisualStateGroupList>

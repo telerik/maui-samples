@@ -5,21 +5,17 @@
                         x:Class="QSF.Examples.BarcodeControl.BoardingPassExample.BoardingPassView">
     <telerik:RadContentView.Resources>
         <ResourceDictionary>
-            <Color x:Key="BoardingPassAccentColor">#3A6BC7</Color>
-            <Color x:Key="BackgroundColor">#F5F6F7</Color>
-            <Color x:Key="TextColor">#4A4E52</Color>
-
             <Style TargetType="Label" x:Key="PassBoxHeaderLabelStyle">
-                <Setter Property="TextColor" Value="White" />
                 <Setter Property="Margin" Value="0" />
                 <Setter Property="FontSize" Value="24" />
+                <Setter Property="TextColor" Value="White" />
             </Style>
             <Style TargetType="Label" x:Key="BodyLabelStyle">
                 <Setter Property="FontSize" Value="14" />
-                <Setter Property="TextColor" Value="#4A4E52" />
+                <Setter Property="TextColor" Value="{DynamicResource BarcodeBoardingPassTextColor}" />
             </Style>
             <Style x:Key="DestinationsHeaderLabelStyle" TargetType="Label">
-                <Setter Property="TextColor" Value="{StaticResource BoardingPassAccentColor}" />
+                <Setter Property="TextColor" Value="{DynamicResource BarcodeBoardingPassAccentColor}" />
                 <Setter Property="FontSize" Value="30" />
             </Style>
 
@@ -33,7 +29,7 @@
             </Style>
 
             <Style TargetType="Label" x:Key="PassBoxPropertyNameLabelStyle" BasedOn="{StaticResource BodyLabelStyle}">
-                <Setter Property="TextColor" Value="{StaticResource BoardingPassAccentColor}" />
+                <Setter Property="TextColor" Value="{DynamicResource BarcodeBoardingPassAccentColor}" />
                 <Setter Property="Margin" Value="0, 30, 0, 0" />
             </Style>
 
@@ -44,14 +40,13 @@
     </telerik:RadContentView.Resources>
 
     <ScrollView>
-        <Grid Padding="20"
-              BackgroundColor="{StaticResource BackgroundColor}">
+        <Grid Padding="20" BackgroundColor="{DynamicResource DefaultBackgroundColor}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <telerik:RadBorder BackgroundColor="{StaticResource BoardingPassAccentColor}" HeightRequest="80" CornerRadius="6, 6, 0, 0">
+            <telerik:RadBorder BackgroundColor="{DynamicResource BarcodeBoardingPassAccentColor}" HeightRequest="80" CornerRadius="6, 6, 0, 0">
                 <HorizontalStackLayout Margin="20, 0, 0, 0" VerticalOptions="Center">
                     <Label Text="SOF " Style="{StaticResource PassBoxHeaderLabelStyle}" />
                     <Image Source="arrowright.png" HeightRequest="22" Margin="0, 5, 0, 0" />
@@ -59,10 +54,10 @@
                 </HorizontalStackLayout>
             </telerik:RadBorder>
 
-            <telerik:RadBorder BackgroundColor="White"
-                               Grid.Row="1" 
+            <telerik:RadBorder BackgroundColor="{DynamicResource RadAppSurfaceColor}"
+                               Grid.Row="1"
                                CornerRadius="0, 0, 6, 6">
-                <Grid Padding="20, 0" 
+                <Grid Padding="20, 0"
                       ColumnDefinitions="*,2*,*"
                       RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,*">
                     <VerticalStackLayout HorizontalOptions="End" Style="{StaticResource DestinationsHeaderContainerStyle}">
@@ -82,7 +77,7 @@
                         <Label Text="Portugal" HorizontalOptions="Center" Style="{StaticResource DestinationsBodyLabelStyle}" />
                     </VerticalStackLayout>
 
-                    <BoxView BackgroundColor="{StaticResource BackgroundColor}" Grid.Row="1" Grid.ColumnSpan="3" HeightRequest="2" Margin="0, 10" />
+                    <BoxView BackgroundColor="{DynamicResource BarcodeBoardingPassBoxViewBackgroundColor}" Grid.Row="1" Grid.ColumnSpan="3" HeightRequest="2" Margin="0, 10" />
 
                     <Label Text="Passenger" Style="{StaticResource PassBoxPropertyNameLabelStyle}" Grid.Row="2" Grid.ColumnSpan="2" />
                     <Label Text="Mrs. Lara Howard" Grid.Row="3" Grid.ColumnSpan="2" Style="{StaticResource PassBoxPropertyValueLabelStyle}" />
@@ -99,7 +94,7 @@
                     <Label Text="Hour" Style="{StaticResource PassBoxPropertyNameLabelStyle}" Grid.Row="4" Grid.Column="2" />
                     <Label Text="6.30 pm" Grid.Row="5" Grid.Column="2" Style="{StaticResource PassBoxPropertyValueLabelStyle}" />
 
-                    <BoxView BackgroundColor="{StaticResource BackgroundColor}" Grid.Row="6" Grid.ColumnSpan="3" HeightRequest="2" Margin="0, 30, 0, 0" />
+                    <BoxView BackgroundColor="{DynamicResource BarcodeBoardingPassBoxViewBackgroundColor}" Grid.Row="6" Grid.ColumnSpan="3" HeightRequest="2" Margin="0, 30, 0, 0" />
 
                     <Label Text="Terminal" Style="{StaticResource PassBoxPropertyNameLabelStyle}" Grid.Row="7" />
                     <Label Text="12" Grid.Row="8" Grid.ColumnSpan="2" Style="{StaticResource PassBoxPropertyValueLabelStyle}" />
@@ -110,10 +105,14 @@
                     <Label Text="Boarding" Style="{StaticResource PassBoxPropertyNameLabelStyle}" Grid.Row="7" Grid.Column="2" />
                     <Label Text="4.30 pm" Grid.Row="8" Grid.Column="2" Style="{StaticResource PassBoxPropertyValueLabelStyle}" />
 
-                    <telerik:RadBarcode Grid.Row="9" Grid.ColumnSpan="3" WidthRequest="260" HeightRequest="260" HorizontalOptions="Center" VerticalOptions="Center"
-                                    Margin="0, 20, 0, 0"
-                                    Value="Mrs Lara Howard SOF LIS S7 129 12C 06 June 2018 6:30 pm 12 36"
-                                    AutomationId="barcode">
+                    <telerik:RadBarcode Grid.Row="9" Grid.ColumnSpan="3" 
+                                        WidthRequest="260" HeightRequest="260" 
+                                        HorizontalOptions="Center" VerticalOptions="Center"
+                                        Margin="0, 20, 0, 0" 
+                                        Background="{DynamicResource AppSurfaceBrush}" 
+                                        ForegroundColor="{DynamicResource DefaultTextColor}"
+                                        Value="Mrs Lara Howard SOF LIS S7 129 12C 06 June 2018 6:30 pm 12 36"
+                                        AutomationId="barcode">
                         <telerik:RadBarcode.Symbology>
                             <telerik:QRCode SizingMode="Stretch" />
                         </telerik:RadBarcode.Symbology>

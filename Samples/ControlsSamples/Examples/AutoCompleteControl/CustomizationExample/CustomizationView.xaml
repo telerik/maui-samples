@@ -4,7 +4,6 @@
              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
              x:Class="QSF.Examples.AutoCompleteControl.CustomizationExample.CustomizationView">
     <Grid.Resources>
-        <Color x:Key="highlightTextColor">#7C59B6</Color>
         <Style TargetType="Label" x:Key="titleLabelStyle">
             <Setter Property="FontSize" Value="24" />
             <Setter Property="TextColor" Value="#0E88F2" />
@@ -17,22 +16,23 @@
                                Margin="0,6">
                 <HorizontalStackLayout>
                     <telerik:RadBorder CornerRadius="10"
-                                       BackgroundColor="White"
+                                       BackgroundColor="#87CCCCCC"
                                        WidthRequest="20"
                                        HeightRequest="20"
                                        Margin="8,0">
-                        <Image Source="{Binding TokenImagePath}"
+                        <Image Source="{Binding TokenImagePath}" 
+                               Opacity="0.5"
                                HeightRequest="20"
-                               WidthRequest="20" 
+                               WidthRequest="20"
                                Aspect="Center" />
                     </telerik:RadBorder>
                     <Label Text="{Binding Name}"
                            TextColor="{Binding TextColor}"
                            VerticalTextAlignment="Center" />
-                    <Label Text="&#xe877;" 
-                           FontFamily="TelerikFontExamples" 
-                           VerticalTextAlignment="Center" 
-                           TextColor="#99000000" 
+                    <Label Text="&#xe877;"
+                           FontFamily="TelerikFontExamples"
+                           VerticalTextAlignment="Center"
+                           TextColor="{DynamicResource PlaceholderColor}"
                            Margin="4,9,9,9">
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Tapped="TokenCloseButton_Tapped" />
@@ -51,12 +51,13 @@
                                    Margin="8,4">
                     <Image Source="{Binding SuggestionImagePath}"
                            HeightRequest="20"
-                           WidthRequest="20" 
+                           WidthRequest="20"
                            Aspect="Center" />
                 </telerik:RadBorder>
-                <telerik:RadHighlightLabel VerticalTextAlignment="Center" 
+                <telerik:RadHighlightLabel VerticalTextAlignment="Center"
                                            UnformattedText="{Binding Name}"
-                                           HighlightTextColor="{StaticResource highlightTextColor}"
+                                           TextColor="{DynamicResource DefaultTextColor}"
+                                           HighlightTextColor="{DynamicResource AccentColor8}"
                                            HighlightText="{Binding Source={x:Reference autoComplete}, Path=SearchText}" />
             </HorizontalStackLayout>
         </DataTemplate>
@@ -71,14 +72,14 @@
                 <Label Text="IT Jobs" Style="{StaticResource titleLabelStyle}" />
                 <telerik:RadAutoComplete x:Name="autoComplete"
                                          AutomationId="autoComplete"
-                                         BackgroundColor="White"
+                                         BackgroundColor="{DynamicResource TertiaryBackgroundColor}"
                                          Grid.Row="1"
                                          ItemsSource="{Binding JobTitles}"
                                          TextSearchPath="Name"
                                          DisplayMode="Tokens"
                                          CompletionMode="Contains"
                                          TokenTemplate="{StaticResource TokenTemplate}"
-                                         SuggestionViewBackgroundColor="{OnIdiom Desktop=#DFDFDF, Phone=White}"
+                                         SuggestionViewBackgroundColor="{DynamicResource AutoCompleteSuggestionViewBackgroundColor}"
                                          SuggestionItemTemplate="{StaticResource SuggestionItemTemplate}" />
             </Grid>
         </telerik:RadBorder>
@@ -86,8 +87,8 @@
         <CollectionView Margin="{OnIdiom Phone='24,11', Desktop='40,11'}" Grid.Row="1" ItemsSource="{Binding Jobs}" >
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <telerik:RadBorder BorderThickness="{OnIdiom Phone='0,0,0,1', Desktop=0}" 
-                                       BorderColor="#DFDFDF"
+                    <telerik:RadBorder BorderThickness="{OnIdiom Phone='0,0,0,1', Desktop=0}"
+                                       BorderColor="{DynamicResource DefaultBorderColor}"
                                        HeightRequest="{OnIdiom Phone=48, Desktop=40}">
                         <Label Text="{Binding}" Padding="16,0,0,0" VerticalTextAlignment="Center" />
                     </telerik:RadBorder>

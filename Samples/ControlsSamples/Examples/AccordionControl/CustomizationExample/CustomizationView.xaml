@@ -23,19 +23,19 @@
                     </telerik:RadBorder.GestureRecognizers>
                     <Grid ColumnDefinitions="Auto, *, Auto" ColumnSpacing="0" RowSpacing="0">
                         <telerik:RadBorder Grid.Column="{TemplateBinding IndicatorLocation, Converter={StaticResource ExpandCollapseIndicatorLocationToGridColumnConverter}}"
-                                           BackgroundColor="#151950"
+                                           BackgroundColor="{DynamicResource AccordionCustomizationCollapsedBackgroundColor}"
                                            WidthRequest="44"
                                            HeightRequest="44">
                             <telerik:RadBorder.Triggers>
                                 <DataTrigger TargetType="telerik:RadBorder"
                                              Binding="{TemplateBinding IsExpanded}"
                                              Value="True">
-                                    <Setter Property="BackgroundColor" Value="{StaticResource AccentColor8}" />
+                                    <Setter Property="BackgroundColor" Value="{DynamicResource AccordionCustomizationExpandedBackgroundColor}" />
                                 </DataTrigger>
                             </telerik:RadBorder.Triggers>
                         </telerik:RadBorder>
                         <Label Text="-"
-                               TextColor="{StaticResource TextOnAccentColor}"
+                               TextColor="{DynamicResource TextOnAccentColor}"
                                FontSize="Large"
                                IsVisible="{TemplateBinding IsExpanded}"
                                VerticalOptions="Center"
@@ -43,7 +43,7 @@
                                Grid.Column="{TemplateBinding IndicatorLocation, Converter={StaticResource ExpandCollapseIndicatorLocationToGridColumnConverter}}"
                                Margin="0, 0, 0, 2" />
                         <Label Text="+"
-                               TextColor="{StaticResource TextOnAccentColor}"
+                               TextColor="{DynamicResource TextOnAccentColor}"
                                FontSize="Large"
                                IsVisible="{TemplateBinding IsExpanded, Converter={StaticResource InvertedBooleanConverter}}"
                                VerticalOptions="Center"
@@ -59,27 +59,26 @@
                 <Setter Property="ControlTemplate" Value="{StaticResource AccordionItemHeaderTemplate}" />
                 <Setter Property="Padding" Value="0" />
                 <Setter Property="BorderThickness" Value="0, 0, 0, 1" />
-                <Setter Property="BorderColor" Value="{OnPlatform Default={StaticResource DefaultBorderColor}, WinUI={StaticResource DefaultBorderColorWinUI}}" />
+                <Setter Property="BorderColor" Value="{DynamicResource PlatformBorderColor}" />
             </Style>
-
             <Style TargetType="Label" BasedOn="{StaticResource BaseLabelStyle}">
                 <Setter Property="Margin" Value="0" />
                 <Setter Property="VerticalOptions" Value="Center" />
             </Style>
-            <Style x:Key="InfoTextLabelStyle" TargetType="Label">
-                <Setter Property="Opacity" Value="0.39" />
+            <Style x:Key="InfoTextLabelStyle" TargetType="Label" BasedOn="{StaticResource BaseLabelStyle}">
                 <Setter Property="FontSize" Value="13" />
+                <Setter Property="Opacity" Value="0.7" />
             </Style>
             <Style x:Key="SeparatorStyle" TargetType="BoxView">
                 <Setter Property="HeightRequest" Value="1" />
-                <Setter Property="BackgroundColor" Value="{StaticResource SeparatorColor}" />
+                <Setter Property="BackgroundColor" Value="{DynamicResource SeparatorColor}" />
                 <Setter Property="Margin" Value="0, 6" />
             </Style>
             <Style x:Key="AvatarLabelStyle" TargetType="Label">
                 <Setter Property="Text" Value="&#xE836;" />
+                <Setter Property="TextColor" Value="{DynamicResource AccordionCustomizationAvatarLabelTextColor}" />
                 <Setter Property="FontFamily" Value="TelerikFontExamples" />
                 <Setter Property="FontSize" Value="45" />
-                <Setter Property="Opacity" Value="0.13" />
             </Style>
             <Style x:Key="BulletPointBorderStyle" TargetType="telerik:RadBorder">
                 <Setter Property="CornerRadius" Value="6" />
@@ -139,17 +138,17 @@
                                              Margin="20, 0, 0, 0">
                             <HorizontalStackLayout Spacing="5">
                                 <telerik:RadBorder Style="{StaticResource BulletPointBorderStyle}"
-                                                   BackgroundColor="{StaticResource AccentColor8}" />
+                                                   BackgroundColor="{DynamicResource AccentColor8}" />
                                 <Label Text="Ecommerce" />
                             </HorizontalStackLayout>
                             <HorizontalStackLayout Spacing="5">
                                 <telerik:RadBorder Style="{StaticResource BulletPointBorderStyle}"
-                                                   BackgroundColor="{StaticResource AccentColor7}" />
+                                                   BackgroundColor="{DynamicResource AccentColor7}" />
                                 <Label Text="Personal Selling" />
                             </HorizontalStackLayout>
                             <HorizontalStackLayout Spacing="5">
                                 <telerik:RadBorder Style="{StaticResource BulletPointBorderStyle}"
-                                                   BackgroundColor="{StaticResource AccentColor3}" />
+                                                   BackgroundColor="{DynamicResource AccentColor3}" />
                                 <Label Text="Direct Marketing" />
                             </HorizontalStackLayout>
                         </VerticalStackLayout>
@@ -166,7 +165,7 @@
                 <telerik:AccordionItem.Content>
                     <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto"
                           ColumnDefinitions="*, *, *"
-                          ColumnSpacing="20" 
+                          ColumnSpacing="20"
                           RowSpacing="5"
                           Margin="16" >
                         <Label Text="Order Id:"

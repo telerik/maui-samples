@@ -9,18 +9,22 @@
                          FontFamily="TelerikFontExamples"
                          Glyph="&#xe850;"
                          Size="16"
-                         Color="{OnPlatform Default=#007AFF, Android=#000000, WinUI=#E4000000}" />
+                         Color="{DynamicResource ButtonFontImageColor}" />
+        <OnPlatform x:Key="ButtonImageTextColor" x:TypeArguments="Color" Default="#007AFF">
+            <On Platform="Android" Value="#000000" />
+            <On Platform="WinUI" Value="#000000" />
+        </OnPlatform>
         <Style x:Key="TitleLabelStyle" TargetType="Label" BasedOn="{StaticResource BaseLabelStyle}">
             <Setter Property="FontAttributes" Value="Bold" />
             <Setter Property="HorizontalTextAlignment" Value="Center" />
         </Style>
-        <Style TargetType="telerik:RadButton">
+        <Style TargetType="telerik:RadButton" BasedOn="{StaticResource RadButtonStyle}">
             <Setter Property="Margin" Value="4" />
         </Style>
-        <Style TargetType="telerik:RadTemplatedButton">
+        <Style TargetType="telerik:RadTemplatedButton" BasedOn="{StaticResource RadTemplatedButtonStyle}">
             <Setter Property="Margin" Value="4" />
         </Style>
-        <Style TargetType="telerik:RadToggleButton">
+        <Style TargetType="telerik:RadToggleButton" BasedOn="{StaticResource RadToggleButtonStyle}">
             <Setter Property="Margin" Value="4" />
         </Style>
         <Style TargetType="telerik:RadWrapLayout">
@@ -47,6 +51,7 @@
                                        WidthRequest="70"
                                        HeightRequest="{OnPlatform Default=36, WinUI=32}"
                                        CornerRadius="{OnPlatform Default=4, iOS=8, MacCatalyst=5}"
+                                       TextColor="{DynamicResource ButtonImageTextColor}"
                                        AutomationId="imageButton" />
                 </telerik:RadWrapLayout>
                 <Label Text="Templated Button" Style="{StaticResource TitleLabelStyle}" />
@@ -74,12 +79,14 @@
                     <telerik:RadTemplatedButton FontFamily="TelerikFontExamples"
                                                 Content="&#xe82d;"
                                                 AutomationId="iconTemplatedButton" />
-                    <telerik:RadTemplatedButton Padding="0"
-                                                AutomationId="imageTemplatedButton">
+                    <telerik:RadTemplatedButton Padding="0" 
+                                                AutomationId="imageTemplatedButton"
+                                                BorderThickness="{OnPlatform WinUI=0}"
+                                                TextColor="{OnPlatform Default='#000000', WinUI={DynamicResource ButtonImageTextColor}}">
                         <Grid>
                             <Image Source="button_background_image.png"
                                    WidthRequest="70"
-                                   HeightRequest="{OnPlatform Default=36, MacCatalyst=20, WinUI=32}"
+                                   HeightRequest="{OnPlatform Default=36, WinUI=32}"
                                    Aspect="AspectFill" />
                             <Label Text="Send"
                                    FontFamily="{Binding FontFamily, Source={RelativeSource AncestorType={x:Type telerik:RadTemplatedButton}}}"

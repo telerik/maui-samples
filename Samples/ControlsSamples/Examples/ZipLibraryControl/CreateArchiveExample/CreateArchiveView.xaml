@@ -22,7 +22,7 @@
             </Style>
         </ResourceDictionary>
     </telerik:RadContentView.Resources>
-    <Grid Grid.ColumnSpacing="0" 
+    <Grid Grid.ColumnSpacing="0"
           RowDefinitions="*,Auto"
           Grid.RowSpacing="0">
         <telerik:RadListView x:Name="list" 
@@ -52,10 +52,9 @@
                                                      VerticalOptions="Center" 
                                                      Grid.Column="1">
                                     <Label Text="{Binding FileName}" 
-                                           FontSize="16" 
-                                           TextColor="Black" />
+                                           FontSize="16" />
                                     <Label Text="{Binding FileSize, Converter={StaticResource FileSizeConverter}}"
-                                           FontSize="13" TextColor="Black" />
+                                           FontSize="13" />
                                 </VerticalStackLayout>
                                 <Image IsVisible="{Binding IsSelected}" 
                                        Grid.Column="2"
@@ -70,8 +69,11 @@
                     </telerik:ListViewTemplateCell>
                 </DataTemplate>
             </telerik:RadListView.ItemTemplate>
+             <telerik:RadListView.ItemStyle>
+                <telerik:ListViewItemStyle BackgroundColor="{DynamicResource RadAppSurfaceColor}" BorderColor="{DynamicResource DefaultBorderColor}" BorderWidth="1" />
+            </telerik:RadListView.ItemStyle>
             <telerik:RadListView.PressedItemStyle>
-                <telerik:ListViewItemStyle BackgroundColor="#F8F8F8"/>
+                <telerik:ListViewItemStyle BackgroundColor="{DynamicResource ZipLibraryListViewPressedBackgroundColor}" />
             </telerik:RadListView.PressedItemStyle>
         </telerik:RadListView>
 

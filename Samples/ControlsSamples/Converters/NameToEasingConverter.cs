@@ -37,16 +37,25 @@ namespace QSF.Converters
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            Easing color = (Easing)value;
+            if (value is Easing easingValue && easingToName.TryGetValue(easingValue, out string name))
+            {
+                return name;
+            }
 
-            return easingToName[color];
+            return Easing.BounceIn.ToString();
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            string name = (string)value;
+            if (value is string stringValue && !string.IsNullOrEmpty(stringValue))
+            {
+                if (nameToEasing.TryGetValue(stringValue, out Easing easing))
+                {
+                    return easing;
+                }
+            }
 
-            return nameToEasing[name];
+            return Easing.BounceIn;
         }
     }
 }

@@ -3,7 +3,7 @@
 namespace SDKBrowserMaui.Examples.TabViewControl.FeaturesCategory.DataBindingExample;
 
 // >> tabview-databinding-datamodel
-public class Customer : Location
+public class Customer
 {
     public string Name { get; set; }
     public int Number { get; set; }

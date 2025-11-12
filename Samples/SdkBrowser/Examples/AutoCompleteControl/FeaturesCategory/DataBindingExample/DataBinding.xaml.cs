@@ -8,6 +8,8 @@ public partial class DataBinding : ContentView
 	{
 		InitializeComponent();
 
+        this.autoComplete.AutomationId = "autoComplete";
+
         // >> autocomplete-focused
         this.autoComplete.Focused += this.AutoCompleteView_Focused;
         // << autocomplete-focused

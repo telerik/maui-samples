@@ -7,61 +7,65 @@
              Margin="{OnIdiom Phone='16,20', Desktop=0}">
 
     <ContentView.Resources>
-        <Color x:Key="lightPurple">#1A7C59B6</Color>
-        <Color x:Key="selectedCellColor">#A790CE</Color>
-        <Color x:Key="purple">#7C59B6</Color>
+        <ResourceDictionary>
+            <Color x:Key="FilterIndicatorTextColor">#99FFFFFF</Color>
+            <Color x:Key="WhiteColor">White</Color>
+        </ResourceDictionary>
+
         <local:GroupStyleSelector x:Key="GroupSelector">
             <local:GroupStyleSelector.RegionStyleTemplate>
-                <Style TargetType="telerik:DataGridGroupHeaderAppearance">
+                <Style TargetType="telerik:DataGridGroupHeaderAppearance" BasedOn="{StaticResource DataGridGroupHeaderStyle}">
                     <Setter Property="BorderThickness" Value="0, 0, 0, 1" />
-                    <Setter Property="BorderColor" Value="White"/>
+                    <Setter Property="BorderColor" Value="{DynamicResource InverseDefaultTextColor}"/>
                     <Setter Property="ButtonMargin" Value="10, 5, 10, 5" />
-                    <Setter Property="BackgroundColor" Value="{StaticResource lightPurple}"/>
+                    <Setter Property="BackgroundColor" Value="{DynamicResource DataGridCustomizationAccentColorAlpha}"/>
                 </Style>
             </local:GroupStyleSelector.RegionStyleTemplate>
             <local:GroupStyleSelector.CountryStyleTemplate>
-                <Style TargetType="telerik:DataGridGroupHeaderAppearance">
+                <Style TargetType="telerik:DataGridGroupHeaderAppearance" BasedOn="{StaticResource DataGridGroupHeaderStyle}">
                     <Setter Property="BorderThickness" Value="0, 0, 0, 1" />
-                    <Setter Property="BorderColor" Value="White"/>
+                    <Setter Property="BorderColor" Value="{DynamicResource InverseDefaultTextColor}"/>
                     <Setter Property="ButtonMargin" Value="10, 5, 10, 5" />
-                    <Setter Property="BackgroundColor" Value="{StaticResource lightPurple}"/>
+                    <Setter Property="BackgroundColor" Value="{DynamicResource DataGridCustomizationAccentColorAlpha}"/>
                 </Style>
             </local:GroupStyleSelector.CountryStyleTemplate>
         </local:GroupStyleSelector>
-        <Style TargetType="telerik:DataGridColumnHeaderAppearance" x:Key="columHeaderStyle">
+        <Style x:Key="columHeaderStyle" TargetType="telerik:DataGridColumnHeaderAppearance" BasedOn="{StaticResource DataGridColumnHeaderStyle}">
             <Setter Property="TextMargin" Value="10, 20" />
-            <Setter Property="TextColor" Value="White" />
+            <Setter Property="TextColor" Value="{StaticResource WhiteColor}" />
             <Setter Property="TextFontSize" Value="16" />
             <Setter Property="TextFontAttributes" Value="Bold" />
             <Setter Property="BorderThickness" Value="0" />
-            <Setter Property="SortIndicatorColor" Value="White" />
+            <Setter Property="SortIndicatorColor" Value="{StaticResource WhiteColor}" />
             <Setter Property="SortIndicatorMargin" Value="{OnPlatform iOS='10, 5, 10, 10', Default=10}" />
             <Setter Property="FilterIndicatorMargin" Value="10" />
             <Setter Property="FilterIndicatorFontAttributes" Value="Bold" />
-            <Setter Property="FilterIndicatorTextColor" Value="#99FFFFFF" />
-            <Setter Property="FilterIndicatorActiveTextColor" Value="White" />
-            <Setter Property="BackgroundColor" Value="{StaticResource purple}" />
-            <Setter Property="HoverBackgroundColor" Value="#8A6BBE" />
+            <Setter Property="FilterIndicatorTextColor" Value="{StaticResource FilterIndicatorTextColor}" />
+            <Setter Property="FilterIndicatorActiveTextColor" Value="{StaticResource WhiteColor}" />
+            <Setter Property="BackgroundColor" Value="{DynamicResource AccentColor8}" />
+            <Setter Property="HoverBackgroundColor" Value="{DynamicResource DataGridCustomizationColumnHeaderBackgroundColor}" />
         </Style>
         <Style TargetType="telerik:DataGridTextCellAppearance" x:Key="cityCellContentStyle">
-            <Setter Property="TextColor" Value="Black" />
+            <Setter Property="TextColor" Value="{StaticResource DefaultTextColor}" />
+            <Setter Property="HoverTextColor" Value="{DynamicResource DefaultTextColor}" />
+            <Setter Property="SelectedTextColor" Value="{DynamicResource DefaultTextColor}" />
             <Setter Property="HorizontalTextAlignment" Value="Start" />
             <Setter Property="FontAttributes" Value="Italic" />
         </Style>
         <Style TargetType="telerik:DataGridTextCellAppearance" x:Key="numericCellContentStyle">
-            <Setter Property="TextColor" Value="{StaticResource purple}" />
-            <Setter Property="HoverTextColor" Value="{StaticResource purple}" />
-            <Setter Property="SelectedTextColor" Value="Black" />
+            <Setter Property="TextColor" Value="{DynamicResource DataGridCustomizationAccentColor}" />
+            <Setter Property="HoverTextColor" Value="{DynamicResource DataGridCustomizationAccentColor}" />
+            <Setter Property="SelectedTextColor" Value="{DynamicResource DefaultTextColor}" />
         </Style>
         <Style TargetType="telerik:DataGridCellDecorationAppearance" x:Key="numericCellDecorationsStyle">
-            <Setter Property="BackgroundColor" Value="{OnPlatform WinUI=Transparent, Default=#E1DAEE}" />
+            <Setter Property="BackgroundColor" Value="{OnPlatform WinUI=Transparent, Default={DynamicResource DataGridCustomizationNumericCellDecorationColor}}" />
         </Style>
         <Style TargetType="telerik:DataGridSelectionAppearance" x:Key="selectedRowStyle">
             <Setter Property="BorderThickness" Value="0" />
-            <Setter Property="BackgroundColor" Value="{StaticResource selectedCellColor}" />
+            <Setter Property="BackgroundColor" Value="{DynamicResource DataGridCustomizationSelectedCellColor}" />
         </Style>
         <Style TargetType="telerik:DataGridMouseHoverAppearance" x:Key="hoverStyle">
-            <Setter Property="BackgroundColor" Value="#C4B5DE" />
+            <Setter Property="BackgroundColor" Value="{DynamicResource DataGridCustomizationHoverBackgroundColor}" />
         </Style>
     </ContentView.Resources>
 
@@ -78,7 +82,7 @@
                              UserGroupMode="Enabled"
                              GridLinesThickness="1"
                              GridLinesVisibility="Horizontal"
-                             GridLinesColor="#DFDFDF"
+                             GridLinesColor="{DynamicResource DefaultBorderColor}"
                              GroupHeaderStyleSelector="{StaticResource GroupSelector}"
                              AutomationId="dataGrid">
             <telerik:RadDataGrid.GroupDescriptors>

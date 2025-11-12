@@ -10,7 +10,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <styles:ConfigurationViewResources />
             </ResourceDictionary.MergedDictionaries>
-            <Style TargetType="telerik:RadComboBox">
+            <Style TargetType="telerik:RadComboBox" BasedOn="{StaticResource RadComboBoxStyle}">
                 <Setter Property="HorizontalOptions" Value="Fill" />
                 <Setter Property="IsClearButtonVisible" Value="False" />
             </Style>
@@ -37,12 +37,12 @@
         <VerticalStackLayout Style="{StaticResource GroupAtSeparateAreaStyle}">
             <Label Text="Zoom:"
                    Style="{StaticResource VerticalGroupLabelStyle}" />
-            <Slider Value="{Binding ZoomLevel}"
-                    Minimum="400"
-                    Maximum="5000"
-                    HorizontalOptions="Fill"
-                    VerticalOptions="Center"
-                    IsEnabled="{Binding ActiveViewDefinition, Converter={StaticResource ViewDefinitionToBoolConverter}, ConverterParameter='MonthViewDefinition'}" />
+            <telerik:RadSlider Value="{Binding ZoomLevel, Mode=TwoWay}"
+                               Minimum="400"
+                               Maximum="5000"
+                               HorizontalOptions="Fill"
+                               VerticalOptions="Center"
+                               IsEnabled="{Binding ActiveViewDefinition, Converter={StaticResource ViewDefinitionToBoolConverter}, ConverterParameter='MonthViewDefinition'}" />
         </VerticalStackLayout>
         <VerticalStackLayout Style="{StaticResource GroupAtSeparateAreaStyle}">
             <Label Text="Minor Tick Length:"
@@ -86,12 +86,12 @@
         <VerticalStackLayout Style="{StaticResource GroupAtSeparateAreaStyle}">
             <Label Text="Visible Days:"
                    Style="{StaticResource VerticalGroupLabelStyle}" />
-            <Slider Value="{Binding VisibleDays}"
-                    Minimum="1"
-                    Maximum="10"
-                    HorizontalOptions="Fill"
-                    VerticalOptions="Center"
-                    IsEnabled="{Binding ActiveViewDefinition, Converter={StaticResource ViewDefinitionToBoolConverter}, ConverterParameter='DayViewDefinition, WeekViewDefinition, MonthViewDefinition'}" />
+            <telerik:RadSlider Value="{Binding VisibleDays, Mode=TwoWay}"
+                               Minimum="1"
+                               Maximum="10"
+                               HorizontalOptions="Fill"
+                               VerticalOptions="Center"
+                               IsEnabled="{Binding ActiveViewDefinition, Converter={StaticResource ViewDefinitionToBoolConverter}, ConverterParameter='DayViewDefinition, WeekViewDefinition, MonthViewDefinition'}" />
         </VerticalStackLayout>
         <HorizontalStackLayout telerik:RadCheckBox.ToggleOnTap="{Reference todayButtonVisibleCb}"
                                Style="{StaticResource CheckBoxGroupStyle}">

@@ -1,0 +1,40 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                    xmlns:local="clr-namespace:QSF.Examples.SchedulerControl.CustomizationExample"
+                    x:Class="QSF.Examples.SchedulerControl.CustomizationExample.SharedSchedulingResources">
+    
+    <telerik:StringToBoolConverter x:Key="StringToBoolConverter" />
+
+    <Style x:Key="SchedulerDialogHeaderStyle" TargetType="Label">
+        <Setter Property="FontAttributes" Value="{OnPlatform Default=Bold, WinUI=None}" />
+        <Setter Property="TextColor" Value="{DynamicResource DefaultTextColor}" />
+        <Setter Property="HorizontalTextAlignment" Value="{OnPlatform Default=Start, MacCatalyst=Center}" />
+        <Setter Property="VerticalTextAlignment" Value="Center" />
+        <Setter Property="LineBreakMode" Value="TailTruncation" />
+        <Setter Property="Margin" Value="{OnPlatform Default=0, MacCatalyst='16, 0, 0, 0', WinUI='0, 0, 12, 0'}" />
+    </Style>
+
+    <Style x:Key="SchedulerDialogSwitchStyle" TargetType="Switch">
+        <Setter Property="OnColor" Value="{DynamicResource SwitchToggledOffOnColor}" />
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup Name="CommonStates">
+                    <VisualState Name="On">
+                        <VisualState.Setters>
+                            <Setter Property="Switch.OnColor" Value="{DynamicResource RadPrimaryColor}" />
+                            <Setter Property="Switch.ThumbColor" Value="{DynamicResource SwitchToggledOnThumbColor}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState Name="Off">
+                        <VisualState.Setters>
+                            <Setter Property="Switch.OnColor" Value="{DynamicResource SwitchToggledOffOnColor}" />
+                            <Setter Property="Switch.ThumbColor" Value="{DynamicResource SwitchToggledOffThumbColor}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

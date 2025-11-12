@@ -2,25 +2,25 @@
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:markupExtensions="clr-namespace:QSF.MarkupExtensions"
              xmlns:example="clr-namespace:QSF.Examples.PopupControl.ContextMenuExample"
              x:Class="QSF.Examples.PopupControl.ContextMenuExample.ContextMenuView">
     <ContentView.Resources>
         <ResourceDictionary>
             <telerik:RadBorder x:Key="popupContent"
-                               BackgroundColor="#F8F8F8" 
+                               BackgroundColor="{DynamicResource DefaultBackgroundColor}" 
                                HeightRequest="280" 
                                WidthRequest="360" 
                                CornerRadius="8">
                 <telerik:RadBorder.Resources>
                     <ResourceDictionary>
-                        <Color x:Key="ButtonTextColor">#919191</Color>
                         <Style TargetType="telerik:RadButton">
                             <Setter Property="BorderThickness" Value="0" />
                             <Setter Property="VerticalOptions" Value="Center" />
                             <Setter Property="HorizontalOptions" Value="Start" />
                             <Setter Property="BackgroundColor" Value="Transparent" />
                             <Setter Property="FontSize" Value="14" />
-                            <Setter Property="TextColor" Value="{StaticResource ButtonTextColor}" />
+                            <Setter Property="TextColor" Value="{DynamicResource PlaceholderColor}" />
                         </Style>
                     </ResourceDictionary>
                 </telerik:RadBorder.Resources>
@@ -33,7 +33,7 @@
                         <telerik:RadButton.ImageSource>
                             <FontImageSource FontFamily="TelerikFontExamples" 
                                              Glyph="{OnIdiom Default='&#xe877;', Phone=''}"
-                                             Color="{StaticResource ButtonTextColor}"
+                                             Color="{DynamicResource PlaceholderColor}"
                                              Size="Medium" />
                         </telerik:RadButton.ImageSource>
                     </telerik:RadButton>
@@ -46,7 +46,7 @@
                         <telerik:RadButton.ImageSource>
                             <FontImageSource FontFamily="TelerikFontExamples"
                                              Glyph="&#xE813;"
-                                             Color="{StaticResource ButtonTextColor}"
+                                             Color="{DynamicResource PlaceholderColor}"
                                              Size="Medium" />
                         </telerik:RadButton.ImageSource>
                     </telerik:RadButton>
@@ -59,7 +59,7 @@
                         <telerik:RadButton.ImageSource>
                             <FontImageSource FontFamily="TelerikFontExamples"
                                              Glyph="&#xE83E;"
-                                             Color="{StaticResource ButtonTextColor}"
+                                             Color="{DynamicResource PlaceholderColor}"
                                              Size="Small" />
                         </telerik:RadButton.ImageSource>
                     </telerik:RadButton>
@@ -72,7 +72,7 @@
                         <telerik:RadButton.ImageSource>
                             <FontImageSource FontFamily="TelerikFontExamples"
                                              Glyph="&#xE819;"
-                                             Color="{StaticResource ButtonTextColor}"
+                                             Color="{DynamicResource PlaceholderColor}"
                                              Size="Small" />
                         </telerik:RadButton.ImageSource>
                     </telerik:RadButton>
@@ -85,7 +85,7 @@
                         <telerik:RadButton.ImageSource>
                             <FontImageSource FontFamily="TelerikFontExamples"
                                              Glyph="&#xE818;"
-                                             Color="{StaticResource ButtonTextColor}"
+                                             Color="{DynamicResource PlaceholderColor}"
                                              Size="Small" />
                         </telerik:RadButton.ImageSource>
                     </telerik:RadButton>
@@ -98,7 +98,7 @@
                         <telerik:RadButton.ImageSource>
                             <FontImageSource FontFamily="TelerikFontExamples"
                                              Glyph="&#xE817;"
-                                             Color="{StaticResource ButtonTextColor}"
+                                             Color="{DynamicResource PlaceholderColor}"
                                              Size="Small" />
                         </telerik:RadButton.ImageSource>
                     </telerik:RadButton>
@@ -112,8 +112,12 @@
                            VerticalOptions="CenterAndExpand"
                            Margin="16"
                            VerticalTextAlignment="Center"
-                           TextColor="#EFC75E" />
+                           TextColor="{markupExtensions:TelerikThemeExtension Default='#EFC75E',
+                                                                              TelerikMainDark='#DDFFCA28',
+                                                                              TelerikTurquoise='#F9C553',
+                                                                              TelerikTurquoiseDark='#F9C553'}" />
                     <Label Text="{Binding Name}"
+                           TextColor="{DynamicResource DefaultTextColor}"
                            Grid.Column="1"
                            VerticalOptions="Center" />
                     <telerik:RadButton Clicked="RadButton_Clicked"
@@ -127,16 +131,12 @@
                         <telerik:RadButton.ImageSource>
                             <FontImageSource FontFamily="TelerikFontExamples" 
                                              Glyph="&#xE80C;"
-                                             Color="DarkGray"
+                                             Color="#A9A9A9"
                                              Size="Medium" />
                         </telerik:RadButton.ImageSource>
                     </telerik:RadButton>
                 </Grid>
             </DataTemplate>
-            <Style TargetType="telerik:RadCollectionViewItemView">
-                <Setter Property="BorderThickness" Value="0, 0, 0, 1" />
-                <Setter Property="BorderColor" Value="#D9D9D9" />
-            </Style>
         </ResourceDictionary>
     </ContentView.Resources>
     <Grid x:Name="ContentGrid"
@@ -156,6 +156,7 @@
         </telerik:RadBorder>
         <telerik:RadCollectionView x:Name="CollectionView"
                                    Grid.Row="1"
+                                   ItemViewStyle="{StaticResource CollectionViewItemStyle}"
                                    ItemTemplate="{StaticResource CollectionViewTemplate}"
                                    ItemsSource="{Binding Items}"
                                    AutomationId="listView" />

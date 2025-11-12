@@ -5,16 +5,11 @@
              x:Class="QSF.Examples.DataPagerControl.CustomizationExample.CustomizationView"
              Padding="{OnIdiom Default='16, 20', Phone=16}">
     <ContentView.Resources>
-        <telerik:ColorFilter x:Key="DataPagerButtonAccentColorAlpha38" Color="{StaticResource ApplicationAccentColor}" Alpha="0.38" />
-        <telerik:ColorFilter x:Key="DataPagerButtonAccentColorAlpha60" Color="{StaticResource ApplicationAccentColor}" Alpha="0.60" />
-        <telerik:ColorFilter x:Key="DataPagerButtonNonAccentColorAlpha16" Color="{StaticResource DefaultTextColor}" Alpha="0.16" />
-        <telerik:ColorFilter x:Key="DataPagerButtonNonAccentColorAlpha28" Color="{StaticResource DefaultTextColor}" Alpha="0.28" />
-        <telerik:ColorFilter x:Key="DataPagerButtonNonAccentColorAlpha60" Color="{StaticResource DefaultTextColor}" Alpha="0.60" />
         <Style x:Key="DataPagerButtonStyle" TargetType="telerik:DataPagerButton">
             <Setter Property="MinimumWidthRequest" Value="36" />
             <Setter Property="MinimumHeightRequest" Value="36" />
             <Setter Property="CornerRadius" Value="18" />
-            <Setter Property="TextColor" Value="{StaticResource DefaultTextColor}" />
+            <Setter Property="TextColor" Value="{DynamicResource DefaultTextColor}" />
             <Setter Property="Background" Value="Transparent" />
             <Setter Property="BorderThickness" Value="0" />
             <Setter Property="VerticalOptions" Value="Center" />
@@ -39,13 +34,13 @@
                             <VisualState Name="Normal" />
                             <VisualState Name="PointerOver">
                                 <VisualState.Setters>
-                                    <Setter Property="telerik:DataPagerButton.Background" Value="{StaticResource DataPagerButtonNonAccentColorAlpha16}" />
+                                    <Setter Property="telerik:DataPagerButton.Background" Value="{DynamicResource DataPagerButtonNonAccentColorAlpha16}" />
                                 </VisualState.Setters>
                             </VisualState>
                             <VisualState Name="Pressed">
                                 <VisualState.Setters>
-                                    <Setter Property="telerik:DataPagerButton.TextColor" Value="{StaticResource DataPagerButtonNonAccentColorAlpha60}" />
-                                    <Setter Property="telerik:DataPagerButton.Background" Value="{StaticResource DataPagerButtonNonAccentColorAlpha28}" />
+                                    <Setter Property="telerik:DataPagerButton.TextColor" Value="{DynamicResource DataPagerButtonNonAccentColorAlpha60}" />
+                                    <Setter Property="telerik:DataPagerButton.Background" Value="{DynamicResource DataPagerButtonNonAccentColorAlpha28}" />
                                 </VisualState.Setters>
                             </VisualState>
                             <VisualState Name="Disabled">
@@ -59,32 +54,32 @@
             </Setter>
         </Style>
         <Style x:Key="DataPagerNumericButtonStyle" TargetType="telerik:DataPagerButton" BasedOn="{StaticResource DataPagerButtonStyle}">
-            <Setter Property="TextColor" Value="{StaticResource ApplicationAccentColor}" />
+            <Setter Property="TextColor" Value="{DynamicResource ApplicationAccentColor}" />
             <Setter Property="VisualStateManager.VisualStateGroups">
                 <VisualStateGroupList>
                     <VisualStateGroup Name="CommonStates">
                         <VisualState Name="Normal" />
                         <VisualState Name="PointerOver">
                             <VisualState.Setters>
-                                <Setter Property="telerik:DataPagerButton.Background" Value="{StaticResource DataPagerButtonAccentColorAlpha38}" />
+                                <Setter Property="telerik:DataPagerButton.Background" Value="{DynamicResource DataPagerButtonAccentColorAlpha38}" />
                             </VisualState.Setters>
                         </VisualState>
                         <VisualState Name="Pressed">
                             <VisualState.Setters>
-                                <Setter Property="telerik:DataPagerButton.TextColor" Value="{StaticResource DataPagerButtonAccentColorAlpha60}" />
-                                <Setter Property="telerik:DataPagerButton.Background" Value="{StaticResource DataPagerButtonAccentColorAlpha38}" />
+                                <Setter Property="telerik:DataPagerButton.TextColor" Value="{DynamicResource DataPagerButtonAccentColorAlpha60}" />
+                                <Setter Property="telerik:DataPagerButton.Background" Value="{DynamicResource DataPagerButtonAccentColorAlpha38}" />
                             </VisualState.Setters>
                         </VisualState>
                         <VisualState Name="Selected">
                             <VisualState.Setters>
-                                <Setter Property="telerik:DataPagerButton.TextColor" Value="{StaticResource TextOnAccentColor}" />
-                                <Setter Property="telerik:DataPagerButton.Background" Value="{StaticResource ApplicationAccentColor}" />
+                                <Setter Property="telerik:DataPagerButton.TextColor" Value="{DynamicResource InverseDefaultTextColor}" />
+                                <Setter Property="telerik:DataPagerButton.Background" Value="{DynamicResource ApplicationAccentColor}" />
                             </VisualState.Setters>
                         </VisualState>
                         <VisualState Name="SelectedDisabled">
                             <VisualState.Setters>
-                                <Setter Property="telerik:DataPagerButton.TextColor" Value="{StaticResource TextOnAccentColor}" />
-                                <Setter Property="telerik:DataPagerButton.Background" Value="{StaticResource ApplicationAccentColor}" />
+                                <Setter Property="telerik:DataPagerButton.TextColor" Value="{DynamicResource TextOnAccentColor}" />
+                                <Setter Property="telerik:DataPagerButton.Background" Value="{DynamicResource ApplicationAccentColor}" />
                             </VisualState.Setters>
                         </VisualState>
                         <VisualState Name="Disabled">

@@ -2,6 +2,7 @@
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:markupExtensions="clr-namespace:QSF.MarkupExtensions"
              x:Class="QSF.Examples.TreeDataGridControl.FirstLookExample.FirstLookView"
              Margin="{OnIdiom Phone='16, 20', Desktop=0}">
 
@@ -18,12 +19,12 @@
                         <HorizontalStackLayout VerticalOptions="Center" 
                                                Margin="6, 0, 0, 0">
                             <Label FontFamily="TelerikFontExamples"
-                                   TextColor="#7c59b6"
+                                   TextColor="{DynamicResource AccentColor8}"
                                    FontSize="16"
                                    Text="{Binding Icon}" />
                             <Label Text="{Binding Name}"
                                    FontSize="16"
-                                   TextColor ="#000000"
+                                   TextColor ="{DynamicResource DefaultTextColor}"
                                    Margin="8, 0, 0, 0" />
                         </HorizontalStackLayout>
                     </DataTemplate>

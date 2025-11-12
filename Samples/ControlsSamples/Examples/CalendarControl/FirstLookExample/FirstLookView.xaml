@@ -8,8 +8,8 @@
     <ContentView.Resources>
         <ResourceDictionary>
             <DataTemplate x:Key="ReminderTemplate">
-                <telerik:RadBorder BackgroundColor="#F3F3F3"
-                                   BorderColor="{OnPlatform Default={StaticResource DefaultBorderColor}, WinUI={StaticResource DefaultBorderColorWinUI}}"
+                <telerik:RadBorder BackgroundColor="{DynamicResource CalendarFirstLookBackgroundColor}"
+                                   BorderColor="{DynamicResource PlatformBorderColor}"
                                    CornerRadius="4"
                                    BorderThickness="1"
                                    Padding="16, 8"
@@ -21,7 +21,7 @@
             </DataTemplate>
             <DataTemplate x:Key="ReminderTemplate_Phone">
                 <Grid Margin="0, 0, 0, 4">
-                    <telerik:RadBorder BackgroundColor="{StaticResource ItemBackgroundColor}"
+                    <telerik:RadBorder BackgroundColor="{DynamicResource ItemBackgroundColor}"
                                        CornerRadius="4"
                                        Padding="16, 8">
                         <Label Text="{Binding Title}"
@@ -29,7 +29,7 @@
                                MaxLines="1" />
                     </telerik:RadBorder>
                     <telerik:RadBorder WidthRequest="3"
-                                       BackgroundColor="{StaticResource ApplicationAccentColor}"
+                                       BackgroundColor="{DynamicResource ApplicationAccentColor}"
                                        CornerRadius="4, 0, 0, 4"
                                        HorizontalOptions="Start" />
                 </Grid>
@@ -39,7 +39,7 @@
 
     <Grid RowDefinitions="Auto, *"
           ColumnDefinitions="Auto, *"
-          BackgroundColor="{OnPlatform Default=Transparent, iOS=#F3F3F3, Android=#F3F3F3}"
+          BackgroundColor="{DynamicResource CalendarFirstLookBackgroundColor}"
           Padding="{OnIdiom Default=0, Phone=16}">
         <telerik:RadCalendar x:Name="calendar"
                              Grid.Column="{OnIdiom Default=1, Desktop=0}"
@@ -63,7 +63,7 @@
                                       AutomationId="reminderItemsView"/>
                 <Label IsVisible="{Binding IsEmptyMessageVisible}"
                        Text="No reminders for this day"
-                       TextColor="{StaticResource AccentColor4}" />
+                       TextColor="{DynamicResource AccentColor4}" />
             </Grid>
         </Grid>
     </Grid>

@@ -46,7 +46,7 @@
                                   Keyboard="{Binding SelectedKeyboard, Converter={StaticResource KeyboardConverter}}"
                                   TextColor="{Binding TextColor, Converter={StaticResource ColorConverter}}"
                                   FontSize="{Binding SelectedFontSize, Converter={StaticResource FontSizeConverter}}"
-                                  BackgroundColor="White"
+                                  BackgroundColor="{DynamicResource TertiaryBackgroundColor}"
                                   Placeholder="Enter Text"
                                   VerticalOptions="Center" 
                                   AutomationId="mainEntry" />
@@ -66,20 +66,50 @@
                     <HorizontalStackLayout Style="{OnIdiom Default={StaticResource GroupAtExampleAreaWithColumnBreakStyle}, Phone={StaticResource GroupAtExampleAreaStyle}}">
                         <Label Text="Is Password:"
                                Style="{StaticResource HorizontalGroupLabelAtStartStyle}" />
-                        <Switch IsToggled="{Binding Source={x:Reference entry}, Path=IsPassword, Mode=TwoWay}"
-                                HorizontalOptions="Center" 
-                                VerticalOptions="Center" 
-                                AutomationId="passwordSwitch" />
+                        <Grid>
+                            <Switch x:Name="passwordSwitch"
+                                    IsToggled="{Binding Source={x:Reference entry}, Path=IsPassword, Mode=TwoWay}"
+                                    Style="{DynamicResource SwitchStyle}"
+                                    HorizontalOptions="Center" 
+                                    VerticalOptions="Center" 
+                                    AutomationId="passwordSwitch" />
+                            <OnPlatform x:TypeArguments="View">
+                                <On Platform="WinUI">
+                                    <telerik:RadBorder HeightRequest="20"
+                                                       WidthRequest="40"
+                                                       CornerRadius="10"
+                                                       BorderColor="{Binding OnColor, Source={x:Reference passwordSwitch}}"
+                                                       BorderThickness="1"
+                                                       HorizontalOptions="Start"
+                                                       VerticalOptions="Center" />
+                                </On>
+                            </OnPlatform>
+                        </Grid>
                     </HorizontalStackLayout>
                     <HorizontalStackLayout Grid.Column="{OnIdiom Default=1, Phone=0}" 
                                            Grid.Row="{OnIdiom Default=0, Phone=1}"
                                            IsVisible="{OnPlatform WinUI=True}">
                         <Label Text="Is Read Only:"
                                Style="{StaticResource HorizontalGroupLabelAtStartStyle}" />
-                        <Switch IsToggled="{Binding Source={x:Reference entry}, Path=IsReadOnly, Mode=TwoWay}"
-                                HorizontalOptions="Center" 
-                                VerticalOptions="Center" 
-                                AutomationId="readOnlySwitch" />
+                        <Grid>
+                            <Switch x:Name="readOnlySwitch"
+                                    IsToggled="{Binding Source={x:Reference entry}, Path=IsReadOnly, Mode=TwoWay}"
+                                    Style="{StaticResource SwitchStyle}"
+                                    HorizontalOptions="Center" 
+                                    VerticalOptions="Center" 
+                                    AutomationId="readOnlySwitch" />
+                            <OnPlatform x:TypeArguments="View">
+                                <On Platform="WinUI">
+                                    <telerik:RadBorder HeightRequest="20"
+                                                       WidthRequest="40"
+                                                       CornerRadius="10"
+                                                       BorderColor="{Binding OnColor, Source={x:Reference readOnlySwitch}}"
+                                                       BorderThickness="1"
+                                                       HorizontalOptions="Start"
+                                                       VerticalOptions="Center" />
+                                </On>
+                            </OnPlatform>
+                        </Grid>
                     </HorizontalStackLayout>
                 </Grid>
                 <Grid>

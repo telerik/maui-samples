@@ -2,6 +2,7 @@
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:views="clr-namespace:QSF.Views"
              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
              xmlns:common="clr-namespace:QSF.Common"
              x:Class="QSF.Views.SettingsView">
@@ -12,20 +13,23 @@
             <Setter Property="Margin" Value="0, 12" />
             <Setter Property="HorizontalOptions" Value="Start" />
             <Setter Property="VerticalOptions" Value="Center" />
+            <Setter Property="VerticalOptions" Value="Center" />
         </Style>
     </ContentView.Resources>
     <Grid RowDefinitions="Auto, *">
         <Label Text="Settings"
-               Style="{StaticResource PageHeaderLabelStyle}"
-               HorizontalOptions="Center"
+               Style="{DynamicResource PageHeaderLabelStyle}"
+               HorizontalOptions="Start"
+               Grid.ColumnSpan="3"
                Margin="0, 20"
                IsVisible="{OnPlatform Default=True, Android=False, iOS=False}" />
         <ScrollView Grid.Row="1"
                     HorizontalScrollBarVisibility="Never">
-            <telerik:RadBorder BackgroundColor="{StaticResource SecondaryBackgroundColor}"
+            <telerik:RadBorder BackgroundColor="{DynamicResource SecondaryBackgroundColor}"
                                CornerRadius="4"
                                Padding="16, 20">
-                <Grid>
+                <Grid RowDefinitions="*, Auto"
+                      RowSpacing="12">
                     <VerticalStackLayout Spacing="12">
                         <VerticalStackLayout IsVisible="False">
                             <Label Text="Appearance"
@@ -61,33 +65,63 @@
                                    Style="{StaticResource HeadingLabelStyle}" />
                             <VerticalStackLayout Spacing="12">
                                 <common:HyperlinkLabel Text="Documentation"
-                                                       Url="https://docs.telerik.com/devtools/maui/"
+                                                       Url="https://www.telerik.com/maui-ui/documentation"
+													   TextColor="{DynamicResource HyperlinkLabelTextColor}"
+                                                       HorizontalOptions="Start" />
+                                <common:HyperlinkLabel Text="AI Coding Assistant"
+                                                       Url="https://www.telerik.com/maui-ui/documentation/ai/overview"
+													   TextColor="{DynamicResource HyperlinkLabelTextColor}"
                                                        HorizontalOptions="Start" />
                                 <common:HyperlinkLabel Text="Feedback Portal"
                                                        Url="https://feedback.telerik.com/maui"
+                                                       TextColor="{DynamicResource HyperlinkLabelTextColor}"
                                                        HorizontalOptions="Start" />
                                 <common:HyperlinkLabel Text="Forum"
                                                        Url="https://www.telerik.com/forums/maui"
+                                                       TextColor="{DynamicResource HyperlinkLabelTextColor}"
                                                        HorizontalOptions="Start" />
                                 <common:HyperlinkLabel Text="Blogs"
                                                        Url="https://www.telerik.com/blogs/mobile-net-maui"
+                                                       TextColor="{DynamicResource HyperlinkLabelTextColor}"
                                                        HorizontalOptions="Start" />
                                 <common:HyperlinkLabel Text=".NET MAUI Resources Hub"
                                                        Url="https://www.telerik.com/maui-ui/resources"
+                                                       TextColor="{DynamicResource HyperlinkLabelTextColor}"
                                                        HorizontalOptions="Start" />
                                 <common:HyperlinkLabel Text="Video Tutorials"
                                                        Url="https://www.telerik.com/videos/product/maui-ui"
+                                                       TextColor="{DynamicResource HyperlinkLabelTextColor}"
                                                        HorizontalOptions="Start" />
                                 <common:HyperlinkLabel Text="All Telerik Products"
                                                        Url="https://www.telerik.com/support/demos"
+                                                       TextColor="{DynamicResource HyperlinkLabelTextColor}"
                                                        HorizontalOptions="Start" />
                                 <common:HyperlinkLabel Text="Privacy Policy"
                                                        Url="https://www.progress.com/legal/privacy-policy"
+                                                       TextColor="{DynamicResource HyperlinkLabelTextColor}"
                                                        HorizontalOptions="Start" />
                                 <common:HyperlinkLabel Text="Source Code"
-                                                       Url="https://github.com/telerik/maui-samples/tree/main/Samples/ControlsSamples"
+                                                       Url="https://www.github.com/telerik/maui-samples/tree/main/Samples/ControlsSamples"
+													   TextColor="{DynamicResource HyperlinkLabelTextColor}"
                                                        HorizontalOptions="Start" />
                             </VerticalStackLayout>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Spacing="4">
+                            <Label Text="Help us improve Telerik UI"
+                                   Style="{StaticResource HeadingLabelStyle}" />
+                            <Label Text="It is our goal to always provide the best products and user experience to our customers. By enabling this option anonymous data will be collected and sent to Telerik detailing how the demos in this application are being used. No information is collected that could be used to either identify or contact you."
+                                   MaximumWidthRequest="750"
+                                   HorizontalOptions="Start"/>
+                            <HorizontalStackLayout Spacing="12"
+                                                   Margin="0, 16">
+                                <telerik:RadCheckBox x:Name="sendUsageDataCheckBox"
+                                                     IsCheckedChanged="SendUsageDataCheckBox_IsCheckedChanged" />
+                                <Label Text="Send usage data"
+                                       VerticalTextAlignment="Center" />
+                            </HorizontalStackLayout>
+                            <common:HyperlinkLabel Text="Learn more"
+                                                   Url="https://www.telerik.com/company/product-improvement-program"
+                                                   HorizontalOptions="Start" />
                         </VerticalStackLayout>
                         <VerticalStackLayout>
                             <Label Text="About"
@@ -99,7 +133,8 @@
                             </HorizontalStackLayout>
                         </VerticalStackLayout>
                     </VerticalStackLayout>
-                    <Label Text="{Binding Source={x:Static sys:DateTime.Now}, StringFormat='Copyright © {0:yyyy} Progress Software Corporation'}"
+                    <Label Grid.Row="1"
+                           Text="{Binding Source={x:Static sys:DateTime.Now}, StringFormat='Copyright © {0:yyyy} Progress Software Corporation'}"
                            FontSize="10"
                            VerticalOptions="End" />
                 </Grid>

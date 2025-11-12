@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:storage="clr-namespace:Microsoft.Maui.Storage;assembly=Microsoft.Maui.Essentials"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:QSF.Examples.ChatControl.AIIntegrationExample"
+             x:Class="QSF.Examples.ChatControl.AIIntegrationExample.AIIntegrationView"
+             Padding="{OnIdiom Default=0, Desktop=16}">
+    
+    <VisualElement.Resources>
+        <local:ItemConverter x:Key="ItemConverter" />
+    </VisualElement.Resources>
+
+    <telerik:RadContentView.BindingContext>
+        <local:AIIntegrationViewModel />
+    </telerik:RadContentView.BindingContext>
+
+    <telerik:RadBorder BorderThickness="{OnIdiom Default=0, Desktop=1}"
+                       BorderColor="{DynamicResource PlatformBorderColor}"
+                       HorizontalOptions="{OnIdiom Default=Fill, Desktop=Center}">
+        <Grid WidthRequest="{OnIdiom Default=-1, Desktop=450}">
+            <telerik:RadChat x:Name="chat"
+                             ItemConverter="{StaticResource ItemConverter}"
+                             ItemsSource="{Binding Messages}"
+                             Message="{Binding Prompt}"
+                             SendMessageCommand="{Binding SendMessageCommand}"
+                             AttachedFileConverter="{Static local:AttachedFileConverter.Instance}" 
+                             AttachedFilesSource="{Binding AttachedFiles}"
+                             AttachFilesCommand="{Binding AttachFilesCommand, Converter={Static local:AttachFilesCommandConverter.Instance}}"
+                             PickFileTypes="{Static storage:FilePickerFileType.Images}"
+                             RemoveAttachedFileCommand="{Binding RemoveAttachedFileCommand}"
+                             IsMoreButtonVisible="True"
+                             IsSpeechToTextButtonVisible="True">
+                <telerik:RadChat.TypingIndicator>
+                    <telerik:TypingIndicator AutomationId="typingIndicator"
+                                             Image="ai_assistant.png"
+                                             Text="analyzing"
+                                             IsTyping="{Binding IsWaitingForAIResponse}" />
+                </telerik:RadChat.TypingIndicator>
+            </telerik:RadChat>
+        </Grid>
+    </telerik:RadBorder>
+</telerik:RadContentView>

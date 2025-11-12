@@ -20,13 +20,6 @@ public abstract class PageViewModel : ViewModelBase
 
     public PageViewModel()
     {
-        browserLaunchOptions = new BrowserLaunchOptions()
-        {
-            TitleMode = BrowserTitleMode.Show,
-            PreferredControlColor = Microsoft.Maui.Graphics.Colors.White,
-            PreferredToolbarColor = App.ApplicationAccentColor
-        };
-
         this.configurationService = DependencyService.Get<IConfigurationService>();
 
         this.AppTitle = configurationService.Configuration.HeaderTitle;
@@ -37,6 +30,25 @@ public abstract class PageViewModel : ViewModelBase
         this.NavigateToExampleCodeCommand = new Command(this.NavigateToExampleCode);
         this.NavigateToDescriptionCommand = new Command(this.NavigateToDescription);
         this.NavigateToThemeSettingsCommand = new Command(this.NavigateToThemeSettings);
+
+#if WINDOWS || MACCATALYST
+        this.ThemingViewModel = ThemingViewModel.Instance;
+#endif
+    }
+
+    private static BrowserLaunchOptions GetOrCreateBrowserLaunchOptions()
+    {
+        if (browserLaunchOptions == null)
+        {
+            browserLaunchOptions = new BrowserLaunchOptions()
+            {
+                TitleMode = BrowserTitleMode.Show,
+                PreferredControlColor = Microsoft.Maui.Graphics.Colors.White,
+                PreferredToolbarColor = App.ApplicationAccentColor
+            };
+        }
+
+        return browserLaunchOptions;
     }
 
     public string AppTitle
@@ -103,7 +115,7 @@ public abstract class PageViewModel : ViewModelBase
 
     public ICommand NavigateToThemeSettingsCommand { get; private set; }
 
-    public bool IsThemeSettingsVisible => DependencyService.Get<ITestingService>().IsAppUnderTest;
+    public ThemingViewModel ThemingViewModel { get; }
 
     public static void TryNavigateToUrl(string url)
     {
@@ -112,7 +124,7 @@ public abstract class PageViewModel : ViewModelBase
             return;
         }
 
-        Browser.Default.OpenAsync(new System.Uri(url), browserLaunchOptions);
+        Browser.Default.OpenAsync(new System.Uri(url), GetOrCreateBrowserLaunchOptions());
     }
 
     public static void TryNavigateToUrl(string url, ICommand fallbackCommand)
@@ -182,13 +194,6 @@ public abstract class PageViewModel : ViewModelBase
 
     private void NavigateToThemeSettings(object obj)
     {
-        var examplePage = obj as Pages.ExamplePage;
-        ThemeSettingsViewModel viewmodel = new ThemeSettingsViewModel()
-        {
-            MergedDictionaries = examplePage.Resources.MergedDictionaries,
-            ParentViewModel = (ExampleViewModel)examplePage.BindingContext
-        };
-
-        this.NavigationService.NavigateToThemeSettingsPageAsync(viewmodel);
+        this.NavigationService.NavigateToThemeSettingsPageAsync(ThemingViewModel.Instance);
     }
 }

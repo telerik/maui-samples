@@ -8,28 +8,27 @@
              xmlns:views="clr-namespace:QSF.Views"
              xmlns:qsf="clr-namespace:QSF.Pages"
              x:Class="QSF.Pages.ControlPage"
+             x:Name="page"
              Style="{StaticResource PageStyle}">
     <VisualElement.Resources>
         <converters:RandomItemConverter x:Key="RandomBackgroundConverter">
-            <SolidColorBrush Color="{StaticResource AccentColor2}" />
-            <SolidColorBrush Color="{StaticResource AccentColor3}" />
-            <SolidColorBrush Color="{StaticResource AccentColor4}" />
-            <SolidColorBrush Color="{StaticResource AccentColor5}" />
-            <SolidColorBrush Color="{StaticResource AccentColor6}" />
-            <SolidColorBrush Color="{StaticResource AccentColor7}" />
+            <SolidColorBrush Color="{DynamicResource ControlPageItemBackgroundColor1}" />
+            <SolidColorBrush Color="{DynamicResource ControlPageItemBackgroundColor2}" />
+            <SolidColorBrush Color="{DynamicResource ControlPageItemBackgroundColor3}" />
+            <SolidColorBrush Color="{DynamicResource ControlPageItemBackgroundColor4}" />
+            <SolidColorBrush Color="{DynamicResource ControlPageItemBackgroundColor5}" />
+            <SolidColorBrush Color="{DynamicResource ControlPageItemBackgroundColor6}" />
         </converters:RandomItemConverter>
         <Style x:Key="BorderStyle" TargetType="telerik:RadBorder">
-            <Setter Property="BackgroundColor" Value="{StaticResource SecondaryBackgroundColor}" />
+            <Setter Property="BackgroundColor" Value="{DynamicResource SecondaryBackgroundColor}" />
             <Setter Property="CornerRadius" Value="4" />
             <Setter Property="Margin" Value="4" />
         </Style>
         <Style x:Key="ExampleBorderStyle" TargetType="telerik:RadBorder">
             <Setter Property="Background" Value="{Binding Source={RelativeSource Mode=Self}, Converter={StaticResource RandomBackgroundConverter}}" />
             <Setter Property="CornerRadius" Value="4" />
-            <Setter Property="Opacity" Value="0.3" />
         </Style>
-        <Style x:Key="LabelStyle" TargetType="Label">
-            <Setter Property="TextColor" Value="{StaticResource DefaultTextColor}" />
+        <Style x:Key="LabelStyle" TargetType="Label" BasedOn="{StaticResource BaseLabelStyle}">
             <Setter Property="Margin" Value="0, 8, 0, 0" />
         </Style>
         <DataTemplate x:Key="ExampleItemTemplate">
@@ -46,7 +45,7 @@
                                                Style="{StaticResource ExampleBorderStyle}" />
                             <Label FontFamily="TelerikControlsIcons"
                                    Text="{Binding Icon}"
-                                   TextColor="{StaticResource AccentColor8}"
+                                   TextColor="{DynamicResource IconTextColor}"
                                    FontSize="60"
                                    HorizontalOptions="Center"
                                    VerticalOptions="Center" />
@@ -64,12 +63,12 @@
         </DataTemplate>
     </VisualElement.Resources>
 
-    <views:QSFPageContentView Background="{StaticResource DefaultBackgroundColor}">
+    <views:QSFPageContentView BackgroundColor="{DynamicResource DefaultBackgroundColor}">
         <views:QSFPageContentView.HeaderControlTemplate>
             <ControlTemplate>
                 <Grid ColumnDefinitions="Auto, Auto, *">
                     <ImageButton Command="{Binding NavigateBackCommand}"
-                                 Style="{OnPlatform Default={StaticResource DefaultBackButtonStyle}, iOS={StaticResource IOSBackButtonStyle}}" 
+                                 Style="{OnPlatform Default={StaticResource DefaultBackButtonStyle}, iOS={StaticResource IOSBackButtonStyle}}"
                                  AutomationId="backButton" />
                     <Label Grid.Column="1"
                            Style="{StaticResource HeaderLabelStyle}"
@@ -84,6 +83,11 @@
                                      Source="viewcode_white.png"
                                      Style="{StaticResource PageAppBarImageButtonStyle}"
                                      AutomationId="navigateToExampleContent" />
+                        <ImageButton Command="{Binding NavigateToThemeSettingsCommand}"
+                                     CommandParameter="{Binding Source={x:Reference page}}"
+                                     Source="{StaticResource ThemesButtonFontImageSource}"
+                                     Style="{StaticResource PageAppBarImageButtonStyle}"
+                                     AutomationId="navigateToThemeSettings" />
                         <ImageButton Command="{Binding NavigateToDescriptionCommand}"
                                      CommandParameter="{Binding Control}"
                                      Source="info_mobile_white.png"

@@ -6,39 +6,29 @@
                         x:Class="SDKBrowserMaui.Examples.DateTimePickerControl.StylingCategory.DropDownStylingExample.DropDownStyling">
     <telerik:RadContentView.Resources>
         <ResourceDictionary>
-            <!-- >> datepicker-style-dropdownview-style -->
+            <!-- >> datetimepicker-style-dropdownview-style -->
             <Style TargetType="telerik:PickerDropDownContentView" x:Key="dropDownViewStyle">
                 <Setter Property="BackgroundColor" Value="#E4FCFF"/>
             </Style>
-            <!-- << datepicker-style-dropdownview-style -->
+			<!-- << datetimepicker-style-dropdownview-style -->
             
-            <!-- >> datetimepicker-style-footer-style -->
-            <Style TargetType="telerik:PickerDropDownFooterView" x:Key="footerStyle">
+=            <Style TargetType="telerik:PickerDropDownFooterView" x:Key="footerStyle">
                 <Setter Property="BackgroundColor" Value="Transparent"/>
             </Style>
-            <!-- << datetimepicker-style-footer-style -->
-
-            <!-- >> datetimepicker-style-accept-button-style -->
+=
             <Style TargetType="Button" x:Key="acceptButtonStyle">
                 <Setter Property="BackgroundColor" Value="Transparent"/>
                 <Setter Property="TextColor" Value="#00B5DC"/>
             </Style>
-            <!-- << datetimepicker-style-accept-button-style -->
 
-            <!-- >> datetimepicker-style-cancel-button-style -->
             <Style TargetType="Button" x:Key="cancelButtonStyle">
                 <Setter Property="BackgroundColor" Value="Transparent"/>
                 <Setter Property="TextColor" Value="#00B5DC"/>
             </Style>
-            <!-- << datetimepicker-style-cancel-button-style -->
 
-            <!-- >> datetimepicker-string-accept-button-text -->
             <x:String x:Key="acceptButtonText">OK</x:String>
-            <!-- << datetimepicker-string-accept-button-text -->
 
-            <!-- >> datetimepicker-string-cancel-button-text -->
             <x:String x:Key="cancelButtonText">X</x:String>
-            <!-- << datetimepicker-string-cancel-button-text -->
         </ResourceDictionary>
     </telerik:RadContentView.Resources>
     <VerticalStackLayout WidthRequest="300" HorizontalOptions="Center">

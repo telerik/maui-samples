@@ -115,10 +115,10 @@ namespace SDKBrowserMaui.Services
 
             string netVersion = string.Empty;
 
-#if NET8_0
-            netVersion = "net8";
-#elif NET9_0
+#if NET9_0
             netVersion = "net9";
+#elif NET10_0
+            netVersion = "net10";
 #endif
 
             if (platforms.Contains(netVersion, StringComparer.OrdinalIgnoreCase))

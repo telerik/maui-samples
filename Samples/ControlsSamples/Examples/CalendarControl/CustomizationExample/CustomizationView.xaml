@@ -8,8 +8,39 @@
     <ContentView.Resources>
         <ResourceDictionary>
             <local:ColorWithAlphaConverter x:Key="ColorWithAlphaConverter" />
-
             <local:ReminderStyleSelector x:Key="ReminderStyleSelector">
+                <local:ReminderStyleSelector.NormalLabelStyle>
+                    <Style TargetType="telerik:CalendarBorderLabel">
+                        <Setter Property="TextColor" Value="{DynamicResource DefaultTextColor}" />
+                        <Setter Property="HorizontalTextAlignment" Value="Center" />
+                        <Setter Property="VerticalTextAlignment" Value="Center" />
+                    </Style>
+                </local:ReminderStyleSelector.NormalLabelStyle>
+                <local:ReminderStyleSelector.MouseOverBorderStyle>
+                    <Style TargetType="telerik:CalendarBorderLabel">
+                        <Setter Property="TextColor" Value="{DynamicResource DefaultTextColor}" />
+                        <Setter Property="BorderBackgroundColor" Value="{Binding Source={RelativeSource Self}, Path=TextColor, Converter={StaticResource ColorWithAlphaConverter}, ConverterParameter=0.15}" />
+                        <Setter Property="HorizontalTextAlignment" Value="Center" />
+                        <Setter Property="VerticalTextAlignment" Value="Center" />
+                    </Style>
+                </local:ReminderStyleSelector.MouseOverBorderStyle>
+                <local:ReminderStyleSelector.OutOfScopeLabelStyle>
+                    <Style TargetType="telerik:CalendarBorderLabel">
+                        <Setter Property="TextColor" Value="{DynamicResource DefaultTextColor}" />
+                        <Setter Property="Opacity" Value="0.38" />
+                        <Setter Property="HorizontalTextAlignment" Value="Center" />
+                        <Setter Property="VerticalTextAlignment" Value="Center" />
+                    </Style>
+                </local:ReminderStyleSelector.OutOfScopeLabelStyle>
+                <local:ReminderStyleSelector.SelectedMouseOverBorderStyle>
+                    <Style TargetType="telerik:CalendarBorderLabel">
+                        <Setter Property="TextColor" Value="{DynamicResource RadPrimaryColor}" />
+                        <Setter Property="BorderColor" Value="{Binding Source={RelativeSource Self}, Path=TextColor}" />
+                        <Setter Property="BorderBackgroundColor" Value="{Binding Source={RelativeSource Self}, Path=TextColor, Converter={StaticResource ColorWithAlphaConverter}, ConverterParameter=0.15}" />
+                        <Setter Property="HorizontalTextAlignment" Value="Center" />
+                        <Setter Property="VerticalTextAlignment" Value="Center" />
+                    </Style>
+                </local:ReminderStyleSelector.SelectedMouseOverBorderStyle>
                 <local:ReminderStyleSelector.ReminderMouseOverBorderStyle>
                     <Style TargetType="telerik:CalendarBorderLabel">
                         <Setter Property="BorderBackgroundColor" Value="{Binding Source={RelativeSource Self}, Path=TextColor, Converter={StaticResource ColorWithAlphaConverter}, ConverterParameter=0.15}" />
@@ -30,13 +61,13 @@
                 <local:ReminderTemplateSelector.TaskTemplate>
                     <DataTemplate>
                         <telerik:CalendarBorderLabel Text="{Binding Text}"
-                                                     TextColor="{StaticResource AccentColor4}"
+                                                     TextColor="{DynamicResource AccentColor4}"
                                                      HorizontalTextAlignment="Center"
                                                      VerticalTextAlignment="Center"
                                                      FontAttributes="Bold">
                             <Label FontFamily="TelerikFontExamples"
                                    Text="&#xe80b;"
-                                   TextColor="{StaticResource AccentColor4}"
+                                   TextColor="{DynamicResource AccentColor4}"
                                    HorizontalTextAlignment="Center"
                                    VerticalTextAlignment="End"
                                    Margin="{OnPlatform Default=0, WinUI='0, 0, 0, 4'}" />
@@ -46,14 +77,14 @@
                 <local:ReminderTemplateSelector.BirthdayTemplate>
                     <DataTemplate>
                         <telerik:CalendarBorderLabel Text="{Binding Text}"
-                                                     TextColor="{StaticResource AccentColor3}"
+                                                     TextColor="{DynamicResource AccentColor3}"
                                                      HorizontalTextAlignment="Center"
                                                      VerticalTextAlignment="Center"
                                                      FontAttributes="Bold">
                             <Label FontFamily="TelerikFontExamples"
                                    FontSize="{OnPlatform Default=8, WinUI=8, iOS=6}"
                                    Text="&#xe805;"
-                                   TextColor="{StaticResource AccentColor3}"
+                                   TextColor="{DynamicResource AccentColor3}"
                                    HorizontalTextAlignment="Center"
                                    VerticalTextAlignment="End"
                                    Margin="{OnPlatform Default='0, 0, 0, 4', WinUI='0, 0, 0, 6'}" />
@@ -63,8 +94,8 @@
                 <local:ReminderTemplateSelector.NonWorkingDayTemplate>
                     <DataTemplate>
                         <telerik:CalendarBorderLabel Text="{Binding Text}"
-                                                     TextColor="#aa8fd6"
-                                                     BackgroundColor="#f2eff9"
+                                                     TextColor="#AA8FD6"
+                                                     BackgroundColor="{DynamicResource CalendarCustomizationLabelBackgroundColor}"
                                                      HorizontalTextAlignment="Center"
                                                      VerticalTextAlignment="Center" />
                     </DataTemplate>
@@ -72,14 +103,14 @@
                 <local:ReminderTemplateSelector.NonWorkingDayWithReminderTemplate>
                     <DataTemplate>
                         <telerik:CalendarBorderLabel Text="{Binding Text}"
-                                                     TextColor="#aa8fd6"
-                                                     BackgroundColor="#f2eff9"
+                                                     TextColor="#AA8FD6"
+                                                     BackgroundColor="{DynamicResource CalendarCustomizationLabelBackgroundColor}"
                                                      HorizontalTextAlignment="Center"
                                                      VerticalTextAlignment="Center"
                                                      FontAttributes="Bold">
                             <Label FontFamily="TelerikFontExamples"
                                    Text="&#xe80b;"
-                                   TextColor="#aa8fd6"
+                                   TextColor="#AA8FD6"
                                    HorizontalTextAlignment="Center"
                                    VerticalTextAlignment="End"
                                    Margin="{OnPlatform Default=0, WinUI='0, 0, 0, 4'}" />
@@ -89,8 +120,8 @@
             </local:ReminderTemplateSelector>
 
             <DataTemplate x:Key="ReminderTemplate">
-                <telerik:RadBorder BackgroundColor="#F3F3F3"
-                                   BorderColor="{OnPlatform Default={StaticResource DefaultBorderColor}, WinUI={StaticResource DefaultBorderColorWinUI}}"
+                <telerik:RadBorder BackgroundColor="{DynamicResource CalendarCustomizationBackgroundColor}"
+                                   BorderColor="{DynamicResource PlatformBorderColor}"
                                    BorderThickness="1"
                                    CornerRadius="4"
                                    Padding="16, 8"
@@ -102,7 +133,7 @@
             </DataTemplate>
 
             <Style x:Key="CalendarHeaderBorderStyle" TargetType="telerik:RadBorder">
-                <Setter Property="BackgroundColor" Value="#40DFDFDF" />
+                <Setter Property="BackgroundColor" Value="{DynamicResource WrapperBackgroundColor}" />
                 <Setter Property="BorderThickness" Value="0" />
                 <Setter Property="Padding" Value="{OnPlatform Default='16, 0', Android=0, WinUI='12, 4'}" />
             </Style>
@@ -121,7 +152,7 @@
                              HeaderBorderStyle="{StaticResource CalendarHeaderBorderStyle}"
                              MaximumHeightRequest="{OnPlatform iOS=350, Android=320}"
                              BorderThickness="1"
-                             Margin="{OnIdiom Default=0, Phone='0, 24, 0, 0'}" 
+                             Margin="{OnIdiom Default=0, Phone='0, 24, 0, 0'}"
                              AutomationId="calendar"/>
         <Grid Grid.Row="{OnIdiom Default=1, Desktop=0}"
               Grid.RowSpan="{OnIdiom Default=1, Desktop=2}"
@@ -135,11 +166,11 @@
                   Margin="0, 8, 0, 0">
                 <telerik:RadItemsView Grid.Row="1"
                                       ItemsSource="{Binding FilteredRemindersList}"
-                                      ItemTemplate="{StaticResource ReminderTemplate}" 
+                                      ItemTemplate="{StaticResource ReminderTemplate}"
                                       AutomationId="remindersItemsView"/>
                 <Label IsVisible="{Binding IsEmptyMessageVisible}"
                        Text="No reminders for this day"
-                       TextColor="{StaticResource AccentColor4}" />
+                       TextColor="{DynamicResource AccentColor4}" />
             </Grid>
         </Grid>
     </Grid>

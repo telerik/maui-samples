@@ -7,10 +7,10 @@
              xmlns:qsf="clr-namespace:QSF.Pages"
              ios:Page.UseSafeArea="False"
              NavigationPage.HasNavigationBar="False"
+             x:Name="home"
              x:Class="QSF.Pages.MainPageMobile">
 
     <ContentPage.Resources>
-        <converters:StatusTagToColorConverter x:Key="StatusTagToColorConverter" NewColor="#FD5064" UpdatedColor="#FF9040" BetaColor="{StaticResource AccentColor8}" />
         <converters:StatusTagToStringConverter x:Key="StatusTagToStringConverter" NewValue="New" UpdatedValue="Upd" BetaValue="Beta" />
 
         <DataTemplate x:Key="ControlsCollectionViewHeaderTemplate">
@@ -35,12 +35,13 @@
         <DataTemplate x:Key="ControlsCollectionViewItemTemplate">
             <Grid ColumnDefinitions="Auto, *"
                   ColumnSpacing="14"
+                  BackgroundColor="{DynamicResource ItemBackgroundColor}"
                   Padding="14, 8">
                 <telerik:RadBorder WidthRequest="44"
                                    CornerRadius="4"
-                                   BackgroundColor="{StaticResource DefaultBackgroundColor}">
+                                   BackgroundColor="{DynamicResource IconBackgroundColor}">
                     <Label Text="{Binding Icon}"
-                           TextColor="{StaticResource AccentColor8}"
+                           TextColor="{DynamicResource AccentColor8}"
                            FontSize="24"
                            FontFamily="TelerikControlsIcons"
                            HorizontalTextAlignment="Center"
@@ -70,14 +71,14 @@
             </Grid>
         </DataTemplate>
 
-        <Style x:Key="ControlsCollectionViewItemViewStyle" TargetType="telerik:RadCollectionViewItemView">
+        <Style x:Key="ControlsCollectionViewItemViewStyle" TargetType="telerik:RadCollectionViewItemView" BasedOn="{StaticResource RadCollectionViewItemStyle}">
             <Setter Property="BorderThickness" Value="0, 0, 0, 1" />
-            <Setter Property="BackgroundColor" Value="{StaticResource ItemBackgroundColor}" />
-            <Setter Property="BorderColor" Value="{StaticResource SeparatorColor}" />
+            <Setter Property="BorderColor" Value="#33B8B8B8" />
+            <Setter Property="BackgroundColor" Value="{DynamicResource ItemBackgroundColor}" />
         </Style>
     </ContentPage.Resources>
 
-    <views:QSFPageContentView Background="{StaticResource DefaultBackgroundColor}">
+    <views:QSFPageContentView BackgroundColor="{DynamicResource DefaultBackgroundColor}">
         <views:QSFPageContentView.HeaderControlTemplate>
             <ControlTemplate>
                 <Grid ColumnDefinitions="Auto, *, Auto"
@@ -107,26 +108,33 @@
                                      VerticalOptions="Center"
                                      BackgroundColor="Transparent" 
                                      AutomationId="searchButton" />
+                        <ImageButton Command="{Binding NavigateToThemeSettingsCommand}"
+                                     CommandParameter="{Binding Source={x:Reference home}}"
+                                     Source="{StaticResource ThemesButtonFontImageSource}"
+                                     Style="{StaticResource PageAppBarImageButtonStyle}"
+                                     AutomationId="navigateToThemeSettings" />
                     </HorizontalStackLayout>
                 </Grid>
             </ControlTemplate>
         </views:QSFPageContentView.HeaderControlTemplate>
         <views:QSFPageContentView.BodyControlTemplate>
             <ControlTemplate>
-                <telerik:RadCollectionView x:Name="controlsCollectionView"
+                <Grid>
+                    <telerik:RadCollectionView x:Name="controlsCollectionView"
                                            Grid.Row="1"
                                            HeaderTemplate="{StaticResource ControlsCollectionViewHeaderTemplate}"
                                            ItemTemplate="{StaticResource ControlsCollectionViewItemTemplate}"
                                            ItemsSource="{Binding Controls}"
                                            ItemTapped="controlsCollectionView_ItemTapped"
-                                           ItemViewStyle="{StaticResource ControlsCollectionViewItemViewStyle}"
+                                           ItemViewStyle="{DynamicResource ControlsCollectionViewItemViewStyle}"
                                            SelectionMode="None"
                                            Margin="16, 16, 16, 0"
                                            AutomationId="controlsCollectionView">
-                    <telerik:RadCollectionView.ItemsLayout>
-                        <telerik:CollectionViewLinearLayout ItemLength="96" />
-                    </telerik:RadCollectionView.ItemsLayout>
-                </telerik:RadCollectionView>
+                        <telerik:RadCollectionView.ItemsLayout>
+                            <telerik:CollectionViewLinearLayout ItemLength="96" />
+                        </telerik:RadCollectionView.ItemsLayout>
+                    </telerik:RadCollectionView>
+                </Grid>
             </ControlTemplate>
         </views:QSFPageContentView.BodyControlTemplate>
     </views:QSFPageContentView>

@@ -7,11 +7,10 @@
     <telerik:RadContentView.Resources>
         <ResourceDictionary>
             <DataTemplate x:Key="EmailTemplate">
-                <Grid RowDefinitions="Auto, Auto, Auto, Auto"
+                <Grid RowDefinitions="Auto, Auto, Auto, Auto" 
                       ColumnDefinitions="*, Auto">
                     <Label FontSize="16"
                            Text="{Binding Sender}"
-                           TextColor="{StaticResource DefaultTextColor}"
                            HorizontalOptions="Start"
                            VerticalOptions="Center" />
                     <Label Grid.Column="1"
@@ -23,7 +22,6 @@
                     <Label Grid.Row="1"
                            Grid.ColumnSpan="2"
                            Text="{Binding Subject}"
-                           TextColor="{StaticResource DefaultTextColor}"
                            FontSize="14" />
                     <Label Grid.Row="2"
                            Grid.ColumnSpan="2"
@@ -31,12 +29,12 @@
                            FontSize="14"
                            MaxLines="1"
                            LineBreakMode="TailTruncation"
-                           Opacity="0.6" />
+                           Style="{StaticResource PlaceholderLabelStyle}" />
                     <BoxView Grid.Row="3"
                              Grid.ColumnSpan="2"
                              HeightRequest="1"
                              Margin="{OnIdiom Default='0, 8', Desktop='0, 4'}"
-                             BackgroundColor="{StaticResource SeparatorColor}" />
+                             BackgroundColor="{DynamicResource SeparatorColor}" />
                 </Grid>
             </DataTemplate>
             <DataTemplate x:Key="NoEmailsTemplate">

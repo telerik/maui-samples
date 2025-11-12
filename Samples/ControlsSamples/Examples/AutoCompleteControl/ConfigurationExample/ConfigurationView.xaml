@@ -10,14 +10,9 @@
             <ResourceDictionary.MergedDictionaries>
                 <styles:ConfigurationViewResources />
             </ResourceDictionary.MergedDictionaries>
-            <Style x:Key="SliderMinMaxLabelStyle" TargetType="Label">
+            <Style x:Key="SliderMinMaxLabelStyle" TargetType="Label" BasedOn="{StaticResource BaseLabelStyle}">
                 <Setter Property="FontSize" Value="10" />
                 <Setter Property="Opacity" Value="0.6" />
-                <Setter Property="VerticalOptions" Value="Center" />
-            </Style>
-            <Style TargetType="Slider">
-                <Setter Property="Margin" Value="8, 0" />
-                <Setter Property="HorizontalOptions" Value="Fill" />
                 <Setter Property="VerticalOptions" Value="Center" />
             </Style>
         </ResourceDictionary>
@@ -63,11 +58,26 @@
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="Show Clear Button:"
                                    Style="{StaticResource VerticalGroupLabelStyle}" />
-                            <Switch VerticalOptions="Center"
-                                    HorizontalOptions="Start"
-                                    IsToggled="{Binding IsClearButtonVisible}"
-                                    Margin="{OnPlatform Default=0, WinUI='0, -2, 0, 0'}" 
-                                    AutomationId="clearButtonVisibilitySwitch" />
+                            <Grid>
+                                <Switch x:Name="clearButtonVisibilitySwitch"
+                                        VerticalOptions="Center"
+                                        HorizontalOptions="Start"
+                                        IsToggled="{Binding IsClearButtonVisible}"
+                                        Style="{StaticResource SwitchStyle}"
+                                        Margin="{OnPlatform Default=0, WinUI='0, -2, 0, 0'}"
+                                        AutomationId="clearButtonVisibilitySwitch" />
+                                <OnPlatform x:TypeArguments="View">
+                                    <On Platform="WinUI">
+                                        <telerik:RadBorder HeightRequest="20"
+                                                           WidthRequest="40"
+                                                           CornerRadius="10"
+                                                           BorderColor="{Binding OnColor, Source={x:Reference clearButtonVisibilitySwitch}}"
+                                                           BorderThickness="1"
+                                                           HorizontalOptions="Start"
+                                                           VerticalOptions="Center" />
+                                    </On>
+                                </OnPlatform>
+                            </Grid>
                         </VerticalStackLayout>
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="Placeholder:"
@@ -139,11 +149,26 @@
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="Show Suggestion View:"
                                    Style="{StaticResource VerticalGroupLabelStyle}" />
-                            <Switch VerticalOptions="Center"
-                                    HorizontalOptions="Start"
-                                    IsToggled="{Binding ShowSuggestionView}"
-                                    Margin="{OnPlatform Default=0, WinUI='0, -2, 0, 0'}"
-                                    AutomationId="showSuggestionViewSwitch" />
+                            <Grid>
+                                <Switch x:Name="showSuggestionViewSwitch"
+                                        VerticalOptions="Center"
+                                        HorizontalOptions="Start"
+                                        IsToggled="{Binding ShowSuggestionView}"
+                                        Style="{StaticResource SwitchStyle}"
+                                        Margin="{OnPlatform Default=0, WinUI='0, -2, 0, 0'}"
+                                        AutomationId="showSuggestionViewSwitch" />
+                                <OnPlatform x:TypeArguments="View">
+                                    <On Platform="WinUI">
+                                        <telerik:RadBorder HeightRequest="20"
+                                                           WidthRequest="40"
+                                                           CornerRadius="10"
+                                                           BorderColor="{Binding OnColor, Source={x:Reference showSuggestionViewSwitch}}"
+                                                           BorderThickness="1"
+                                                           HorizontalOptions="Start"
+                                                           VerticalOptions="Center" />
+                                    </On>
+                                </OnPlatform>
+                            </Grid>
                         </VerticalStackLayout>
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="Position:"
@@ -165,11 +190,14 @@
                             <Grid ColumnDefinitions="Auto, *, Auto">
                                 <Label Text="{Binding Minimum, Source={x:Reference suggestionViewMaxHeightSlider}}"
                                        Style="{StaticResource SliderMinMaxLabelStyle}" />
-                                <Slider x:Name="suggestionViewMaxHeightSlider"
-                                        Grid.Column="1"
-                                        Maximum="300"
-                                        Value="{Binding SuggestionViewMaxHeight, Source={x:Reference autoComplete}, Mode=TwoWay}"
-                                        AutomationId="maxHeightSlider" />
+                                <telerik:RadSlider x:Name="suggestionViewMaxHeightSlider"
+                                                   Grid.Column="1"
+                                                   Maximum="300"
+                                                   Value="{Binding SuggestionViewMaxHeight, Source={x:Reference autoComplete}, Mode=TwoWay}"
+                                                   Margin="8, 0"
+                                                   HorizontalOptions="Fill"
+                                                   VerticalOptions="Center"
+                                                   AutomationId="maxHeightSlider" />
                                 <Label Grid.Column="2"
                                        Style="{StaticResource SliderMinMaxLabelStyle}"
                                        Text="{Binding Maximum, Source={x:Reference suggestionViewMaxHeightSlider}}" />

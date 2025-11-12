@@ -12,7 +12,7 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
 
-        <Style x:Key="ConfiguratorComboBoxStyle" TargetType="telerik:RadComboBox">
+        <Style x:Key="ConfiguratorComboBoxStyle" TargetType="telerik:RadComboBox" BasedOn="{StaticResource RadComboBoxStyle}">
             <Setter Property="WidthRequest" Value="{OnIdiom Default=-1, Desktop=300}" />
             <Setter Property="HorizontalOptions" Value="{OnIdiom Default=Fill, Desktop=Start}" />
         </Style>
@@ -21,17 +21,17 @@
             <Setter Property="Opacity" Value="0.6" />
             <Setter Property="VerticalOptions" Value="Center" />
         </Style>
-        <Style TargetType="Slider">
+        <Style TargetType="telerik:RadSlider" BasedOn="{StaticResource RadSliderStyle}">
             <Setter Property="Margin" Value="8, 0" />
             <Setter Property="WidthRequest" Value="{OnIdiom Default=-1, Desktop=280}" />
             <Setter Property="HorizontalOptions" Value="{OnIdiom Default=Fill, Desktop=Start}" />
             <Setter Property="VerticalOptions" Value="Center" />
         </Style>
-        <Style TargetType="telerik:RadNumericInput">
+        <Style TargetType="telerik:RadNumericInput" BasedOn="{StaticResource RadNumericInputStyle}">
             <Setter Property="WidthRequest" Value="{OnIdiom Default=-1, Desktop=300}" />
             <Setter Property="HorizontalOptions" Value="{OnIdiom Default=Fill, Desktop=Start}" />
         </Style>
-        <Style TargetType="telerik:RadCheckBox">
+        <Style TargetType="telerik:RadCheckBox" BasedOn="{StaticResource RadCheckBoxStyle}">
             <Setter Property="VisualStateManager.VisualStateGroups">
                 <VisualStateGroupList>
                     <VisualStateGroup x:Name="CommonStates">
@@ -102,11 +102,11 @@
                             <Grid ColumnDefinitions="{OnIdiom Default='Auto, Auto, Auto', Phone='Auto, *, Auto'}">
                                 <Label Text="{Binding Source={x:Reference itemSpacingSlider}, Path=Minimum, Mode=TwoWay}"
                                        Style="{StaticResource SliderMinMaxLabelStyle}" />
-                                <Slider x:Name="itemSpacingSlider"
-                                        Grid.Column="1"
-                                        Value="{Binding ItemSpacing}"
-                                        Minimum="0" Maximum="50"
-                                        AutomationId="itemSpacingSlider" />
+                                <telerik:RadSlider x:Name="itemSpacingSlider"
+                                                   Grid.Column="1"
+                                                   Value="{Binding ItemSpacing, Mode=TwoWay}"
+                                                   Minimum="0" Maximum="50"
+                                                   AutomationId="itemSpacingSlider" />
                                 <Label Grid.Column="2"
                                        Text="{Binding Source={x:Reference itemSpacingSlider}, Path=Maximum, Mode=TwoWay}"
                                        Style="{StaticResource SliderMinMaxLabelStyle}" />

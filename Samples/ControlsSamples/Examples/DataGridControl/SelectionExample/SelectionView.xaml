@@ -2,6 +2,7 @@
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:markupExtensions="clr-namespace:QSF.MarkupExtensions"
              x:Class="QSF.Examples.DataGridControl.SelectionExample.SelectionView">
     <ContentView.Resources>
         <ResourceDictionary>
@@ -11,7 +12,7 @@
                     <Label Text="{Binding DestinationFullName}" />
                     <Label Text="{Binding DestinationShortName}"
                            FontSize="Caption"
-                           TextColor="{StaticResource AccentColor8}" />
+                           TextColor="{DynamicResource AccentColor8}" />
                 </VerticalStackLayout>
             </DataTemplate>
         </ResourceDictionary>

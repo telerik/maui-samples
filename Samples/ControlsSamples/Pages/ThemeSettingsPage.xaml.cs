@@ -12,24 +12,24 @@ public partial class ThemeSettingsPage : ContentPage
 
     protected override void OnAppearing()
     {
-        ThemeSettingsViewModel vm = (ThemeSettingsViewModel)this.BindingContext;
+        var vm = (ThemingViewModel)this.BindingContext;
         if (!vm.PrefetchStarted)
         {
             _ = vm.PrefetchAsync();
         }
+
         base.OnAppearing();
     }
 
     protected override bool OnBackButtonPressed()
     {
-        ThemeSettingsViewModel vm = (ThemeSettingsViewModel)this.BindingContext;
+        var vm = (ThemingViewModel)this.BindingContext;
         return vm.Loading;
     }
 
     private async void Back_Clicked(object sender, EventArgs e)
     {
-        ThemeSettingsViewModel vm = (ThemeSettingsViewModel)this.BindingContext;
-        vm.ResetExampleIfNeeded();
+        var vm = (ThemingViewModel)this.BindingContext;
         await vm.NavigationService.NavigateBackAsync();
     }
 }

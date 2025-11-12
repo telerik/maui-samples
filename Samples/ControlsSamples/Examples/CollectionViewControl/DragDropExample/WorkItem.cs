@@ -9,7 +9,7 @@ public class WorkItem : NotifyPropertyChangedBase
     private string title;
     private string description;
     private string assignee;
-    private Color assigneeAvatarColor;
+    private string assigneeAvatarColorKey;
     private List<Color> tags;
 
     public string Title
@@ -30,10 +30,10 @@ public class WorkItem : NotifyPropertyChangedBase
         set => this.UpdateValue(ref this.assignee, value);
     }
 
-    public Color AssigneeAvatarColor
+    public string AssigneeAvatarColorKey
     {
-        get => this.assigneeAvatarColor;
-        set => this.UpdateValue(ref this.assigneeAvatarColor, value);
+        get => this.assigneeAvatarColorKey;
+        set => this.UpdateValue(ref this.assigneeAvatarColorKey, value);
     }
 
     public string AssigneeAbbreviation

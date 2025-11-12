@@ -7,10 +7,10 @@
                         NavigationPage.HasNavigationBar="False">
     <ScrollView>
         <Grid RowDefinitions="Auto, *"
-              BackgroundColor="#989898">
+              BackgroundColor="{DynamicResource ImageViewBackgroundColor}">
             <Label Margin="10, 20, 10, 0"
                    FontSize="{OnPlatform Default=18, Android=20, iOS=17}"
-                   TextColor="{StaticResource TextOnAccentColor}"
+                   TextColor="{DynamicResource TextOnAccentColor}"
                    HorizontalOptions="Center"
                    Text="Pick a sample file to import" />
             <FlexLayout x:Name="fileLayout"
@@ -24,8 +24,8 @@
                     <DataTemplate>
                         <VerticalStackLayout Spacing="12"
                                              Margin="8">
-                            <telerik:RadBorder BackgroundColor="#d5d5d5"
-                                               BorderColor="#c1c1c1"
+                            <telerik:RadBorder BackgroundColor="{DynamicResource RteImportViewImageBackgroundColor}"
+                                               BorderColor="{DynamicResource RteImportViewImageBorderColor}"
                                                BorderThickness="1"
                                                CornerRadius="4"
                                                Padding="16"
@@ -39,7 +39,7 @@
                                              AutomationId="fileFormatButton"/>
                             </telerik:RadBorder>
                             <Label Text="{Binding ResourceFileType}"
-                                   TextColor="{StaticResource TextOnAccentColor}"
+                                   TextColor="{DynamicResource TextOnAccentColor}"
                                    HorizontalOptions="Center" />
                         </VerticalStackLayout>
                     </DataTemplate>

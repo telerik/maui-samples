@@ -7,6 +7,32 @@
     <ContentView.Resources>
         <ResourceDictionary>
             <!-- >> autocomplete-custom-styles -->
+
+            <Style TargetType="telerik:RadHighlightLabel">
+                <Style.Triggers>
+                    <DataTrigger TargetType="telerik:RadHighlightLabel"
+                                 Binding="{Binding IsMouseOver, Source={RelativeSource AncestorType={x:Type telerik:RadCollectionViewItemView}}}" 
+                                 Value="True">
+                        <Setter Property="TextColor" Value="#000000" />
+                        <Setter Property="HighlightTextColor" Value="#00897B" />
+                    </DataTrigger>
+                    <DataTrigger TargetType="telerik:RadHighlightLabel"
+                                 Binding="{Binding IsCurrent, Source={RelativeSource AncestorType={x:Type telerik:RadCollectionViewItemView}}}" 
+                                 Value="True">
+                        <Setter Property="TextColor" Value="#000000" />
+                        <Setter Property="HighlightTextColor" Value="#00897B" />
+                    </DataTrigger>
+                   <MultiTrigger TargetType="telerik:RadHighlightLabel">
+                        <MultiTrigger.Conditions>
+                           <BindingCondition Binding="{Binding IsCurrent, Source={RelativeSource AncestorType={x:Type telerik:RadCollectionViewItemView}}}" Value="True" />
+                            <BindingCondition Binding="{Binding IsMouseOver, Source={RelativeSource AncestorType={x:Type telerik:RadCollectionViewItemView}}}" Value="True" />
+                        </MultiTrigger.Conditions>
+                        <Setter Property="TextColor" Value="#000000" />
+                        <Setter Property="HighlightTextColor" Value="#00897B" />
+                    </MultiTrigger>
+                </Style.Triggers>
+            </Style>
+
             <Style TargetType="telerik:RadTextInput" x:Key="TextInputStyle">
                 <Setter Property="CharacterSpacing" Value="4" />
                 <Setter Property="HorizontalTextAlignment" Value="Start" />
@@ -37,12 +63,38 @@
                 </Setter>
             </Style>
 
+            <Style TargetType="telerik:RadCollectionViewItemView" x:Key="SuggestionItemStyle">
+                <Setter Property="BorderBrush" Value="#80CBC4" />
+                <Setter Property="BorderThickness" Value="0, 0, 0, 1" />
+				<Setter Property="CornerRadius" Value="0" />
+				<Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup Name="CommonStates">
+                            <VisualState Name="Normal" />
+                            <VisualState Name="MouseOver">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#D6EEEC" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="Focused">
+                                <VisualState.Setters>
+                                    <Setter Property="BorderBrush" Value="#00897B" />
+                                    <Setter Property="BorderThickness" Value="1" />
+                                    <Setter Property="CornerRadius" Value="5" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+
             <Style TargetType="telerik:RadAutoComplete" x:Key="AutoCompleteStyle">
                 <Setter Property="TextColor" Value="#00897B" />
                 <Setter Property="BorderThickness" Value="1" />
                 <Setter Property="BorderBrush" Value="#00897B" />
                 <Setter Property="PlaceholderColor" Value="#00A392" />
                 <Setter Property="BackgroundColor" Value="#FFFFFF" />
+                <Setter Property="SuggestionItemStyle" Value="{StaticResource SuggestionItemStyle}" />
                 <Setter Property="SuggestionItemHighlightTextColor" Value="#00897B" />
                 <Setter Property="SuggestionViewBorderColor" Value="#00897B" />
                 <Setter Property="SuggestionViewBackgroundColor" Value="#F4FAF9" />
@@ -79,7 +131,8 @@
     <VerticalStackLayout HorizontalOptions="{OnPlatform Default=Fill, MacCatalyst=Start, WinUI=Start}"
                          WidthRequest="{OnPlatform MacCatalyst=300, WinUI=300}">
         <!-- >> autocomplete-styling-xaml -->
-        <telerik:RadAutoComplete ItemsSource="{Binding Source}" 
+        <telerik:RadAutoComplete x:Name="autoComplete"
+                                 ItemsSource="{Binding Source}"
                                  TextSearchPath="Name"
                                  Placeholder="Search here"
                                  Style="{StaticResource AutoCompleteStyle}">

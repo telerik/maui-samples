@@ -11,7 +11,7 @@
                 <Setter Property="VerticalOptions" Value="Center" />
                 <Setter Property="Margin" Value="0, 0, 0, 12" />
             </Style>
-            <Style TargetType="telerik:RadEntry">
+            <Style TargetType="telerik:RadEntry" BasedOn="{StaticResource RadEntryStyle}">
                 <Setter Property="HorizontalTextAlignment" Value="Center" />
                 <Setter Property="ReserveSpaceForErrorView" Value="False" />
                 <Setter Property="Margin" Value="0, 0, 0, 24" />
@@ -24,13 +24,13 @@
             <VerticalStackLayout>
                 <Label Text="Note Preview:" />
                 <telerik:RadBorder HeightRequest="90"
-                                   BackgroundColor="#FAFFEA"
-                                   BorderColor="#D7E3B2"
+                                   BackgroundColor="{DynamicResource SpreadProcessingControlAddNotesViewBorderBackgroundColor}"
+                                   BorderColor="{DynamicResource SpreadProcessingControlAddNotesViewBorderColor}"
                                    BorderThickness="1"
                                    Padding="8"
                                    HorizontalOptions="Center">
                     <Label Text="{Binding Text, Mode=TwoWay}"
-                           TextColor="Black"
+                           TextColor="#000000"
                            VerticalOptions="Start"
                            Margin="0"
                            AutomationId="previewNote" />

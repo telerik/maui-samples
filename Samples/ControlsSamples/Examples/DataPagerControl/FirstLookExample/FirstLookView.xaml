@@ -2,6 +2,7 @@
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:markupExtensions="clr-namespace:QSF.MarkupExtensions"
              xmlns:columnTypesExample="clr-namespace:QSF.Examples.DataGridControl.ColumnTypesExample"
              x:Class="QSF.Examples.DataPagerControl.FirstLookExample.FirstLookView">
     <ContentView.Resources>
@@ -17,7 +18,7 @@
                        Margin="2, 0" />
                 <Label Text="{Binding StatusTime}"
                        IsVisible="{Binding Status, Converter={StaticResource StatusFlightToBooleanConverter}}"
-                       TextColor="{StaticResource AccentColor8}"
+                       TextColor="{DynamicResource AccentColor8}"
                        Margin="2, 0" />
             </HorizontalStackLayout>
         </DataTemplate>

@@ -6,7 +6,9 @@
                         x:Class="QSF.Examples.AIPromptControl.FirstLookExample.FirstLookView"
                         Padding="16">
     <Grid>
-        <telerik:RadRichTextEditor x:Name="richTextEditor"
+        <telerik:RadRichTextEditor x:Name="richTextEditor" 
+                                   BackgroundColor="{DynamicResource TertiaryBackgroundColor}"
+                                   TextColor="{DynamicResource DefaultTextColor}"
                                    AutomationId="richTextEditor" />
         <telerik:RadAIPromptButton x:Name="aiPromptButton"
                                    AutomationId="aiPromptButton"

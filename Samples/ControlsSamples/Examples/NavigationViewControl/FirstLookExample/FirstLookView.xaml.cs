@@ -31,11 +31,16 @@ public partial class FirstLookView : RadContentView
 
     private void NavigationViewSelectionChanged(object sender, EventArgs e)
     {
-        RadNavigationView navigationView = (RadNavigationView)sender;
-        var itemIndex = navigationView.Items.IndexOf((NavigationViewItem)navigationView.SelectedItem);
-        var itemIndexMultiplier = itemIndex * 3;
+        var navigationView = sender as RadNavigationView;
+        var selectedItem = navigationView?.SelectedItem as NavigationViewItem;
+        int itemIndex = navigationView?.Items.IndexOf(selectedItem) ?? -1;
+        if (navigationView == null || selectedItem == null || itemIndex == -1)
+        {
+            return;
+        }
 
-        if (itemIndex != -1 && (itemIndexMultiplier + 2 < this.itemImagesPool.Count))
+        int itemIndexMultiplier = itemIndex * 3;
+        if (itemIndexMultiplier + 2 < this.itemImagesPool.Count)
         {
             this.itemImage1.Source = this.itemImagesPool[itemIndexMultiplier];
             this.itemImage2.Source = this.itemImagesPool[itemIndexMultiplier + 1];
@@ -59,7 +64,7 @@ public partial class FirstLookView : RadContentView
     }
 
     private void OnHyperlinkTapped(object sender, TappedEventArgs e)
-        => Launcher.OpenAsync("https://docs.telerik.com/devtools/maui/controls/navigationview/overview");
+        => Launcher.OpenAsync("https://www.telerik.com/maui-ui/documentation/controls/navigationview/overview");
 
     private void OnClosePopupBtnClicked(object sender, EventArgs e)
         => this.popup.IsOpen = false;

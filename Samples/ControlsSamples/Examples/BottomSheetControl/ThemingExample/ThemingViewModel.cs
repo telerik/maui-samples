@@ -16,7 +16,6 @@ public class ThemingViewModel : ExampleViewModel
     {
         this.Employees = this.LoadEmployees();
         this.SelectEmployeeCommand = new Command<Employee>((e) => this.SelectedEmployee = e);
-        this.CloseBottomSheetCommand = new Command(this.OnCloseBottomSheet);
         this.SelectedEmployee = this.Employees[0];
     }
 
@@ -42,12 +41,6 @@ public class ThemingViewModel : ExampleViewModel
     }
 
     public ICommand SelectEmployeeCommand { get; }
-    public ICommand CloseBottomSheetCommand { get; }
-
-    private void OnCloseBottomSheet()
-    {
-        this.BottomSheetState = "Hidden";
-    }
 
     private ObservableCollection<Employee> LoadEmployees()
     {

@@ -9,6 +9,8 @@ public partial class SuggestionViewTemplate : ContentView
 	public SuggestionViewTemplate()
 	{
 		InitializeComponent();
+
+        this.autoComplete.AutomationId = "autoComplete";
 	}
 
     private void DataGrid_SelectionChanged(object sender, Telerik.Maui.Controls.DataGrid.DataGridSelectionChangedEventArgs e)

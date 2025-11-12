@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+			 x:Class="SDKBrowserMaui.Examples.SkeletonControl.RepeatCategory.RepeatExample.Repeat">
+	
+	<ContentView.Resources>
+		<ResourceDictionary>
+			<Style TargetType="HorizontalStackLayout">
+				<Setter Property="Spacing" Value="10" />
+			</Style>
+			<Style TargetType="Label">
+				<Setter Property="VerticalOptions" Value="Center" />
+			</Style>
+		</ResourceDictionary>
+	</ContentView.Resources>
+	<Grid RowDefinitions="Auto, *"
+		  RowSpacing="10">
+		<VerticalStackLayout Spacing="5">
+			<HorizontalStackLayout>
+				<Label Text="Spacing between repeated views:" />
+				<telerik:RadNumericInput Minimum="0" Maximum="5" Value="{Binding Source={x:Reference skeleton}, Path=RepeatSpacing}" />
+			</HorizontalStackLayout>
+			<HorizontalStackLayout>
+				<Label Text="Numer of repetitions:" />
+				<telerik:RadNumericInput Minimum="1" Maximum="4" Value="{Binding Source={x:Reference skeleton}, Path=RepeatCount}" />
+			</HorizontalStackLayout>
+		</VerticalStackLayout>
+		<!-- >> skeleton-repeat -->
+		<telerik:RadSkeleton RepeatSpacing="2"
+							 RepeatCount="3"
+							 x:Name="skeleton"
+							 Grid.Row="1" />
+		<!-- << skeleton-repeat -->
+	</Grid>
+</ContentView>

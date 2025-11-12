@@ -21,8 +21,8 @@
                     <telerik:ListViewTemplateCell>
                         <telerik:ListViewTemplateCell.View>
                             <telerik:RadBorder BorderThickness="0, 0, 0, 1"
-                                               BackgroundColor="White"
-                                               BorderColor="#b1b1b1">
+                                               BackgroundColor="{DynamicResource RadAppSurfaceColor}"
+                                               BorderColor="{DynamicResource ListViewBorderColor}">
                                 <Grid RowDefinitions="Auto" 
                                       ColumnSpacing="5"
                                       ColumnDefinitions="Auto,*,Auto">
@@ -49,11 +49,11 @@
                                                HorizontalOptions="Start"
                                                FontSize="14"
                                                FontAttributes="Bold"
-                                               TextColor="Black"/>
+                                               TextColor="{DynamicResource DefaultTextColor}"/>
                                         <Label Text="{Binding Information}"
                                                HorizontalOptions="Start"
                                                VerticalOptions="Start"
-                                               TextColor="#99000000"
+                                               TextColor="{DynamicResource PlaceholderTextColor}"
                                                FontSize="12"/>
                                         <Label Text="{Binding Date}"
                                                HorizontalOptions="Start"
@@ -75,6 +75,9 @@
                     </telerik:ListViewTemplateCell>
                 </DataTemplate>
             </telerik:RadListView.ItemTemplate>
+            <telerik:RadListView.PressedItemStyle>
+                <telerik:ListViewItemStyle BackgroundColor="#80919191"/>
+            </telerik:RadListView.PressedItemStyle>
         </telerik:RadListView>
     </telerik:RadContentView.Content>
 </telerik:RadContentView>

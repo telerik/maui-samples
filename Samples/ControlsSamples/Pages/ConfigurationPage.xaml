@@ -8,7 +8,7 @@
              NavigationPage.HasNavigationBar="False"
              ios:Page.UseSafeArea="False">
     <views:QSFPageContentView x:Name="content"
-                              Background="{StaticResource SecondaryBackgroundColor}">
+                              BackgroundColor="{DynamicResource SecondaryBackgroundColor}">
         <views:QSFPageContentView.HeaderControlTemplate>
             <ControlTemplate>
                 <Grid ColumnDefinitions="Auto, *"

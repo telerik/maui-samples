@@ -9,7 +9,7 @@ public partial class MainPageDesktop : ContentPage
 {
     public MainPageDesktop(ITestingService testingService)
     {
-        this.BindingContext = new HomeViewModel(testingService);
         this.InitializeComponent();
+        this.BindingContext = new HomeViewModel(testingService);
     }
 }

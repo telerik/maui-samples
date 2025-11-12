@@ -16,7 +16,7 @@ public interface INavigationService
 
     public Task NavigateToSettingsPageAsync(SettingsViewModel viewmodel);
 
-    public Task NavigateToThemeSettingsPageAsync(ThemeSettingsViewModel viewmodel);
+    public Task NavigateToThemeSettingsPageAsync(ThemingViewModel viewmodel);
 
     public Task NavigateToRootAsync();
 

@@ -10,10 +10,11 @@
 
     <ScrollView>
         <Grid RowDefinitions="Auto, *"
-              BackgroundColor="#989898">
+              BackgroundColor="{DynamicResource ImageViewBackgroundColor}">
         
             <Label Margin="10,20,10,0"
                    HorizontalOptions="Center"
+                   TextColor="{DynamicResource TextOnAccentColor}"
                    Style="{StaticResource HeaderLabelStyle}"
                    Text="Pick an image to edit" />
 

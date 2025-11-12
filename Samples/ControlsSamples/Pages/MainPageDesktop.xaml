@@ -7,30 +7,27 @@
              xmlns:viewModels="clr-namespace:QSF.ViewModels"
              NavigationPage.HasNavigationBar="False"
              NavigationPage.HasBackButton="False"
+             xmlns:markupExtensions="clr-namespace:QSF.MarkupExtensions"
              x:Class="QSF.Pages.MainPageDesktop"
              Style="{StaticResource PageStyle}">
 
     <VisualElement.Resources>
-        <converters:StringToFontImageSourceConverter x:Key="StringToFontImageSourceConverter"
-                                                     FontFamily="TelerikControlsIcons"
-                                                     Color="{StaticResource AccentColor8}"
-                                                     Size="{OnPlatform Default=16, MacCatalyst=20}" />
         <FontImageSource x:Key="HomeIcon"
                          Glyph="&#xe03a;"
                          FontFamily="TelerikControlsIcons"
-                         Color="{StaticResource AccentColor8}"
+                         Color="{DynamicResource ApplicationAccentColor}"
                          Size="{OnPlatform Default=16, MacCatalyst=20}"
                          AutomationId="homeButton" />
         <FontImageSource x:Key="SearchIcon"
                          Glyph="&#xe03b;"
                          FontFamily="TelerikControlsIcons"
-                         Color="{StaticResource AccentColor8}"
+                         Color="{DynamicResource ApplicationAccentColor}"
                          Size="{OnPlatform Default=16, MacCatalyst=20}"
                          AutomationId="searchButton" />
         <FontImageSource x:Key="SettingsIcon"
                          Glyph="&#xe03c;"
                          FontFamily="TelerikControlsIcons"
-                         Color="{StaticResource AccentColor8}"
+                         Color="{DynamicResource ApplicationAccentColor}"
                          Size="{OnPlatform Default=16, MacCatalyst=20}" />
         <DataTemplate x:Key="ControlItemTemplate">
             <Grid ColumnDefinitions="*, Auto"
@@ -48,67 +45,176 @@
             <Setter Property="MinimumHeightRequest" Value="40" />
             <Setter Property="Command" Value="{Binding SelectControlCommand}" />
             <Setter Property="ToolTipProperties.Text" Value="{Binding DisplayName}" />
+            <Setter Property="TextColor" Value="{DynamicResource DefaultTextColor}" />
+            <Setter Property="ContentPadding" Value="4, 2" />
+            <Setter Property="CornerRadius" Value="4" />
+            <Setter Property="ControlTemplate">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Grid BackgroundColor="Transparent">
+                            <telerik:RadBorder BackgroundColor="{TemplateBinding BackgroundColor}"
+                                               Background="{TemplateBinding Background}"
+                                               BorderColor="{TemplateBinding BorderColor}"
+                                               BorderBrush="{TemplateBinding BorderBrush}"
+                                               BorderThickness="{TemplateBinding BorderThickness}"
+                                               CornerRadius="{TemplateBinding CornerRadius}"
+                                               Margin="{TemplateBinding ContentPadding}" />
+                            <Grid ColumnDefinitions="Auto, *"
+                                  ColumnSpacing="{TemplateBinding Spacing}">
+                                <Grid WidthRequest="{TemplateBinding LeadingWidth}">
+                                    <Image Source="{TemplateBinding ActualImageSource}"
+                                           Aspect="{TemplateBinding ImageAspect}"
+                                           WidthRequest="{TemplateBinding ImageWidth}"
+                                           HeightRequest="{TemplateBinding ImageHeight}" />
+                                </Grid>
+                                <ContentPresenter Grid.Column="1" />
+                            </Grid>
+                            <OnPlatform x:TypeArguments="View">
+                                <On Platform="WinUI">
+                                    <telerik:RadBorder IsVisible="{TemplateBinding IsSelected}"
+                                                       BackgroundColor="{DynamicResource RadPrimaryColor}"
+                                                       HorizontalOptions="Start"
+                                                       CornerRadius="2"
+                                                       WidthRequest="3"
+                                                       ScaleY="0.5"
+                                                       Margin="{TemplateBinding ContentPadding}" />
+                                </On>
+                            </OnPlatform>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <Setter.Value>
+                    <VisualStateGroupList>
+                        <VisualStateGroup Name="CommonStates">
+                            <VisualState Name="Normal" />
+                            <VisualState Name="PointerOver">
+                                <VisualState.Setters>
+                                    <Setter Property="telerik:NavigationViewItemView.BackgroundColor" Value="{DynamicResource MenuItemPointerOverBackgroundColor}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="Selected">
+                                <VisualState.Setters>
+                                    <Setter Property="telerik:NavigationViewItemView.BackgroundColor" Value="{DynamicResource MenuItemSelectedBackgroundColor}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="Disabled">
+                            <VisualState.Setters>
+                                <Setter Property="Opacity" Value="0.5" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter.Value>
+            </Setter>
         </Style>
         <Style x:Key="ItemStyle_MacCatalyst" TargetType="telerik:NavigationViewItemView">
             <Setter Property="MinimumHeightRequest" Value="40" />
             <Setter Property="ToolTipProperties.Text" Value="{Binding DisplayName}" />
+            <Setter Property="TextColor" Value="{DynamicResource DefaultTextColor}" />
+            <Setter Property="ContentPadding" Value="7, 0" />
+            <Setter Property="CornerRadius" Value="6" />
             <Setter Property="VisualStateManager.VisualStateGroups">
                 <VisualStateGroupList>
                     <VisualStateGroup Name="CommonStates">
                         <VisualState Name="Normal" />
                         <VisualState Name="PointerOver">
                             <VisualState.Setters>
-                                <Setter Property="telerik:NavigationViewItemView.BackgroundColor" Value="#EBECEC" />
+                                <Setter Property="telerik:NavigationViewItemView.BackgroundColor" Value="{DynamicResource MenuItemPointerOverBackgroundColor}" />
                             </VisualState.Setters>
                         </VisualState>
                         <VisualState Name="Selected">
                             <VisualState.Setters>
-                                <Setter Property="telerik:NavigationViewItemView.BackgroundColor" Value="#DBDCDC" />
-                                <Setter Property="telerik:NavigationViewItemView.TextColor" Value="#000000" />
+                                <Setter Property="telerik:NavigationViewItemView.BackgroundColor" Value="{DynamicResource MenuItemSelectedBackgroundColor}" />
                             </VisualState.Setters>
                         </VisualState>
                         <VisualState Name="Disabled">
                             <VisualState.Setters>
-                                <Setter Property="telerik:NavigationViewItemView.TextColor" Value="#61000000" />
+                                <Setter Property="Opacity" Value="0.5" />
                             </VisualState.Setters>
                         </VisualState>
                     </VisualStateGroup>
                 </VisualStateGroupList>
             </Setter>
         </Style>
-        <Style x:Key="HomeItemStyle" TargetType="telerik:NavigationViewItemView" BasedOn="{OnPlatform MacCatalyst={StaticResource ItemStyle_MacCatalyst}}">
+        <Style x:Key="HomeItemStyle" TargetType="telerik:NavigationViewItemView" BasedOn="{OnPlatform Default={StaticResource DefaultItemStyle}, MacCatalyst={StaticResource ItemStyle_MacCatalyst}}">
             <Setter Property="ToolTipProperties.Text" Value="Home" />
         </Style>
-        <Style x:Key="SearchItemStyle" TargetType="telerik:NavigationViewItemView" BasedOn="{OnPlatform MacCatalyst={StaticResource ItemStyle_MacCatalyst}}">
+        <Style x:Key="SearchItemStyle" TargetType="telerik:NavigationViewItemView" BasedOn="{OnPlatform Default={StaticResource DefaultItemStyle}, MacCatalyst={StaticResource ItemStyle_MacCatalyst}}">
             <Setter Property="ToolTipProperties.Text" Value="Search" />
         </Style>
-        <Style x:Key="SettingsItemStyle" TargetType="telerik:NavigationViewItemView" BasedOn="{OnPlatform MacCatalyst={StaticResource ItemStyle_MacCatalyst}}">
+        <Style x:Key="SettingsItemStyle" TargetType="telerik:NavigationViewItemView" BasedOn="{OnPlatform Default={StaticResource DefaultItemStyle}, MacCatalyst={StaticResource ItemStyle_MacCatalyst}}">
             <Setter Property="ToolTipProperties.Text" Value="Settings" />
         </Style>
         <Style x:Key="NavigatableItemStyle_MacCatalyst" TargetType="telerik:NavigationViewItemView" BasedOn="{StaticResource ItemStyle_MacCatalyst}">
             <Setter Property="Command" Value="{Binding SelectControlCommand}" />
         </Style>
-        <Style x:Key="ControlsMenuPaneStyle" TargetType="telerik:NavigationViewPane">
+        <Style x:Key="NavigationViewPaneHeaderStyle" TargetType="telerik:NavigationViewPaneHeader">
+            <Setter Property="BorderColor" Value="{DynamicResource ControlsMenuBorderColor}" />
+            <Setter Property="BorderThickness" Value="0,0, 0, 1" />
+            <Setter Property="ContentPadding" Value="{OnPlatform Default='0, 0, 0, 8', MacCatalyst='0, 8', WinUI='0, 4'}" />
+        </Style>
+        <Style x:Key="NavigationViewPaneFooterStyle" TargetType="telerik:NavigationViewPaneFooter">
+            <Setter Property="BorderColor" Value="{DynamicResource ControlsMenuBorderColor}" />
+            <Setter Property="BorderThickness" Value="0, 1, 0, 0" />
+            <Setter Property="ContentPadding" Value="{OnPlatform Default='0, 0, 0, 8', MacCatalyst='0, 8', WinUI='0, 4'}" />
+        </Style>
+        <Style x:Key="ControlsMenuPaneStyle" TargetType="telerik:NavigationViewPane" BasedOn="{StaticResource NavigationViewPaneStyle}">
             <Setter Property="VerticalScrollBarVisibility" Value="Never" />
             <Setter Property="BorderThickness" Value="0, 0, 1, 0" />
-            <Setter Property="BorderColor" Value="{OnPlatform Default=#DFDFDF, WinUI=#D9D9D9}" />
+            <Setter Property="BackgroundColor" Value="{DynamicResource NavigationViewBackgroundColor}" />
+            <Setter Property="BorderColor" Value="{DynamicResource ControlsMenuBorderColor}" />
+            <Setter Property="HeaderStyle" Value="{StaticResource NavigationViewPaneHeaderStyle}" />
+            <Setter Property="FooterStyle" Value="{StaticResource NavigationViewPaneFooterStyle}" />
         </Style>
+       <VisualStateGroupList x:Key="NavigationViewToggleButtonVisualStates">
+            <VisualStateGroup Name="CommonStates">
+                <VisualState Name="Normal" />
+                <VisualState Name="Toggled" />
+                <VisualState Name="Disabled" />
+            </VisualStateGroup>
+        </VisualStateGroupList>
+        <VisualStateGroupList x:Key="NavigationViewToggleButtonVisualStates_WinUI">
+            <VisualStateGroup Name="CommonStates">
+                <VisualState Name="Normal" />
+                <VisualState Name="PointerOver">
+                    <VisualState.Setters>
+                        <Setter Property="Button.BackgroundColor" Value="#26B0B0B0" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState Name="ToggledPointerOver">
+                    <VisualState.Setters>
+                        <Setter Property="Button.BackgroundColor" Value="#26B0B0B0" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState Name="Toggled" />
+                <VisualState Name="Disabled" />
+            </VisualStateGroup>
+        </VisualStateGroupList>
         <Style x:Key="AccentHeaderButtonStyle" TargetType="telerik:NavigationViewToggleButton">
             <Setter Property="FontFamily" Value="TelerikControlsIcons" />
             <Setter Property="FontSize" Value="{OnPlatform Default=16, MacCatalyst=20}" />
             <Setter Property="Text" Value="&#xe039;" />
-            <Setter Property="TextColor" Value="{StaticResource AccentColor8}" />
+            <Setter Property="TextColor" Value="{DynamicResource AccentColor8}" />
+            <Setter Property="BackgroundColor" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="VisualStateManager.VisualStateGroups"
+                    Value="{OnPlatform Default={StaticResource NavigationViewToggleButtonVisualStates},
+                                       WinUI={StaticResource NavigationViewToggleButtonVisualStates_WinUI}}" />
         </Style>
         <Style x:Key="ControlsMenuHeaderStyle" TargetType="telerik:NavigationViewHeader">
             <Setter Property="BorderThickness" Value="0, 0, 1, 0" />
-            <Setter Property="BorderColor" Value="{OnPlatform Default=#DFDFDF, WinUI=#D9D9D9}" />
+            <Setter Property="Background" Value="{DynamicResource NavigationViewBackgroundColor}" />
+            <Setter Property="BorderColor" Value="{DynamicResource ControlsMenuBorderColor}" />
             <Setter Property="HeaderButtonStyle" Value="{StaticResource AccentHeaderButtonStyle}" />
         </Style>
     </VisualElement.Resources>
 
-    <telerik:RadNavigationView ItemsSource="{Binding Controls}"
+    <telerik:RadNavigationView x:Name="navigationView"
+                               ItemsSource="{Binding Controls}"
                                ImageSourcePath="Icon"
-                               ImageSourceConverter="{StaticResource StringToFontImageSourceConverter}"
+                               ImageSourceConverter="{StaticResource NavigationViewStringToFontImageSourceConverter}"
                                ItemTemplate="{StaticResource ControlItemTemplate}"
                                SelectedItem="{Binding SelectedControl}"
                                ItemStyle="{OnPlatform Default={StaticResource DefaultItemStyle}, MacCatalyst={StaticResource NavigatableItemStyle_MacCatalyst}}"
@@ -134,7 +240,7 @@
                                         IsSelected="{Binding IsSettingsSelected, Mode=TwoWay}"
                                         Style="{StaticResource SettingsItemStyle}" />
         </telerik:RadNavigationView.Items>
-        <Grid BackgroundColor="{StaticResource DefaultBackgroundColor}">
+        <Grid BackgroundColor="{DynamicResource DefaultBackgroundColor}">
             <HorizontalStackLayout VerticalOptions="Start">
                 <Image Source="homepagebackground.png"
                        Aspect="Center" />
@@ -144,7 +250,7 @@
             <Grid Padding="64, 32"
                   Grid.Row="0"
                   Grid.RowSpan="2">
-                <ContentView Content="{Binding SelectedControl, Converter={StaticResource ModelToViewConverter}}" />
+                <ContentView Content="{Binding Source={x:Reference navigationView}, Path=SelectedItem, Converter={StaticResource ModelToViewConverter}}" />
                 <views:HomeViewDesktop IsVisible="{Binding IsHomeSelected}" />
                 <views:SearchViewDesktop IsVisible="{Binding IsSearchSelected}"
                                          SelectedSearchResult="{Binding SelectedSearchResult}" />

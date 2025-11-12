@@ -9,11 +9,7 @@
                         Padding="{OnIdiom Default='16, 20', Phone=0}">
     <telerik:RadContentView.Resources>
         <ResourceDictionary>
-            <converters:StringToFontImageSourceConverter x:Key="StringToFontImageSourceConverter"
-                                                         FontFamily="TelerikFontExamples"
-                                                         Color="#99000000"
-                                                         Size="12" />
-            <Style x:Key="TreeViewItemStyle" TargetType="telerik:TreeViewItemView">
+            <Style x:Key="TreeViewItemStyle" TargetType="telerik:TreeViewItemView" BasedOn="{StaticResource TreeViewItemViewStyle}">
                 <Setter Property="IsImageVisible" Value="True" />
                 <Setter Property="IsExpanded" Value="{Binding IsExpanded}" />
                 <Setter Property="IsLeaf" Value="{Binding IsLeaf}" />
@@ -23,8 +19,8 @@
     </telerik:RadContentView.Resources>
 
     <Grid RowDefinitions="Auto, *">
-        <telerik:RadBorder BackgroundColor="{StaticResource DefaultBackgroundColor}"
-                           BorderColor="{OnPlatform Default={StaticResource DefaultBorderColor}, WinUI={StaticResource DefaultBorderColorWinUI}}"
+        <telerik:RadBorder BackgroundColor="{DynamicResource WrapperBackgroundColor}"
+                           BorderColor="{DynamicResource PlatformBorderColor}"
                            BorderThickness="{OnIdiom Default='0, 0, 0, 1', Desktop=1}"
                            Padding="16, 24"
                            MinimumHeightRequest="80">
@@ -45,12 +41,12 @@
             </Grid>
        </telerik:RadBorder>
         <telerik:RadBorder Grid.Row="1"
-                           BorderColor="{OnPlatform Default={StaticResource DefaultBorderColor}, WinUI={StaticResource DefaultBorderColorWinUI}}"
+                           BorderColor="{DynamicResource PlatformBorderColor}"
                            BorderThickness="{OnIdiom Default=0, Desktop='1, 0, 1, 1'}">
             <Grid ColumnDefinitions="Auto, *">
                 <Grid Grid.ColumnSpan="{OnIdiom Default=1, Phone=2}"
                       Padding="{OnIdiom Default=0, Desktop='0, 10'}"
-                      BackgroundColor="{OnPlatform Default=Transparent, MacCatalyst={StaticResource DefaultBackgroundColor}, WinUI={StaticResource DefaultBackgroundColor}}">
+                      BackgroundColor="{OnIdiom Phone=Transparent, Desktop={DynamicResource WrapperBackgroundColor}}">
                     <telerik:RadTreeView x:Name="treeView"
                                          ItemsSource="{Binding Account.Folders}"
                                          SelectedItem="{Binding SelectedItem, Mode=TwoWay}"

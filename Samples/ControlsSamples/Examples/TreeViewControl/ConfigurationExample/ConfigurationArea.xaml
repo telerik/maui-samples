@@ -9,7 +9,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <styles:ConfigurationViewResources />
             </ResourceDictionary.MergedDictionaries>
-            <Style TargetType="telerik:RadComboBox">
+            <Style TargetType="telerik:RadComboBox" BasedOn="{StaticResource RadComboBoxStyle}">
                 <Setter Property="HorizontalOptions" Value="Fill" />
                 <Setter Property="IsClearButtonVisible" Value="False" />
             </Style>
@@ -39,13 +39,13 @@
             <Grid ColumnDefinitions="Auto, *, Auto">
                 <Label Text="{Binding Source={x:Reference levelIndentationSlider}, Path=Minimum, Mode=TwoWay}"
                        Style="{StaticResource HorizontalGroupLabelAtStartStyle}" />
-                <Slider x:Name="levelIndentationSlider"
-                        Grid.Column="1"
-                        Value="{Binding LevelIndentation}"
-                        Minimum="0" Maximum="60"
-                        HorizontalOptions="Fill"
-                        VerticalOptions="Center" 
-                        AutomationId="levelIndentationSlider"/>
+                <telerik:RadSlider x:Name="levelIndentationSlider"
+                                   Grid.Column="1"
+                                   Value="{Binding LevelIndentation, Mode=TwoWay}"
+                                   Minimum="0" Maximum="60"
+                                   HorizontalOptions="Fill"
+                                   VerticalOptions="Center" 
+                                   AutomationId="levelIndentationSlider" />
                 <Label Grid.Column="2"
                        Text="{Binding Source={x:Reference levelIndentationSlider}, Path=Maximum, Mode=TwoWay}"
                        Style="{StaticResource HorizontalGroupLabelAtEndStyle}" />
@@ -78,13 +78,13 @@
             <Grid ColumnDefinitions="Auto, *, Auto">
                 <Label Text="{Binding Source={x:Reference spacingSlider}, Path=Minimum, Mode=TwoWay}"
                        Style="{StaticResource HorizontalGroupLabelAtStartStyle}" />
-                <Slider x:Name="spacingSlider"
-                        Grid.Column="1"
-                        Value="{Binding ItemSpacing}"
-                        Minimum="0" Maximum="50"
-                        HorizontalOptions="Fill"
-                        VerticalOptions="Center" 
-                        AutomationId="spacingSlider"/>
+                <telerik:RadSlider x:Name="spacingSlider"
+                                   Grid.Column="1"
+                                   Value="{Binding ItemSpacing, Mode=TwoWay}"
+                                   Minimum="0" Maximum="50"
+                                   HorizontalOptions="Fill"
+                                   VerticalOptions="Center" 
+                                   AutomationId="spacingSlider"/>
                 <Label Grid.Column="2"
                        Text="{Binding Source={x:Reference spacingSlider}, Path=Maximum, Mode=TwoWay}"
                        Style="{StaticResource HorizontalGroupLabelAtEndStyle}" />

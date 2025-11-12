@@ -82,7 +82,7 @@
                                  AutomationId="itemsSourceCombo" />
         </Grid>
         <telerik:RadBorder Grid.Row="1"
-                           BorderColor="{OnPlatform Default={StaticResource DefaultBorderColor}, MacCatalyst=#0D000000, WinUI={StaticResource DefaultBorderColorWinUI}}"
+                           BorderColor="{DynamicResource PlatformBorderColor}"
                            BorderThickness="{OnPlatform Default=0, MacCatalyst=1, WinUI=1}">
             <telerik:RadCollectionView x:Name="collectionView"
                                        ItemsSource="{Binding ItemsSource}"

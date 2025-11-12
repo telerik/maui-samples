@@ -33,6 +33,7 @@ namespace SDKBrowserMaui
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("telerikfontexamples.ttf", "TelerikFontExamples");
+                    fonts.AddFont("telerikcontrolsicons.ttf", "TelerikControlsIcons");
                 });
 
             return builder.Build();

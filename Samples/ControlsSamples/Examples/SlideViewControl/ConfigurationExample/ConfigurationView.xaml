@@ -19,19 +19,19 @@
                 <Setter Property="AnimationDuration" Value="{Binding IndicatorAnimationDuration}" />
                 <Setter Property="AnimationEasing" Value="{Binding IndicatorAnimationEasing}" />
             </Style>
-            <Style x:Key="SliderStyle" TargetType="Slider">
+            <Style x:Key="SliderStyle" TargetType="telerik:RadSlider" BasedOn="{StaticResource RadSliderStyle}">
                 <Setter Property="Minimum" Value="300" />
                 <Setter Property="Maximum" Value="3000" />
                 <Setter Property="Margin" Value="8, 0" />
                 <Setter Property="HorizontalOptions" Value="Fill" />
                 <Setter Property="VerticalOptions" Value="Center" />
             </Style>
-            <Style TargetType="telerik:RadComboBox">
+            <Style TargetType="telerik:RadComboBox" BasedOn="{StaticResource RadComboBoxStyle}">
                 <Setter Property="HorizontalOptions" Value="Fill" />
                 <Setter Property="IsClearButtonVisible" Value="False" />
             </Style>
             <DataTemplate x:Key="ItemTemplate">
-                <telerik:RadBorder BackgroundColor="{StaticResource AccentColor8}"
+                <telerik:RadBorder BackgroundColor="{DynamicResource AccentColor8}"
                                    WidthRequest="60"
                                    HeightRequest="60"
                                    CornerRadius="8">
@@ -86,12 +86,27 @@
                                              Grid.Row="{OnIdiom Default=0, Phone=1}"
                                              Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="Has Looping:"
-                                   Style="{StaticResource VerticalGroupLabelStyle}"  />
-                            <Switch VerticalOptions="Center"
-                                    HorizontalOptions="Start"
-                                    IsToggled="{Binding HasLooping}"
-                                    Margin="{OnPlatform Default=0, WinUI='0, -2, 0, 0'}" 
-                                    AutomationId="loopingSwitch" />
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <Grid>
+                                <Switch x:Name="loopingSwitch"
+                                        Style="{StaticResource SwitchStyle}"
+                                        VerticalOptions="Center"
+                                        HorizontalOptions="Start"
+                                        IsToggled="{Binding HasLooping}"
+                                        Margin="{OnPlatform Default=0, WinUI='0, -2, 0, 0'}"
+                                        AutomationId="loopingSwitch" />
+                                <OnPlatform x:TypeArguments="View">
+                                    <On Platform="WinUI">
+                                        <telerik:RadBorder HeightRequest="20"
+                                                           WidthRequest="40"
+                                                           CornerRadius="10"
+                                                           BorderColor="{Binding OnColor, Source={x:Reference loopingSwitch}}"
+                                                           BorderThickness="1"
+                                                           HorizontalOptions="Start"
+                                                           VerticalOptions="Center" />
+                                    </On>
+                                </OnPlatform>
+                            </Grid>
                         </VerticalStackLayout>
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="Orientation:"
@@ -133,11 +148,11 @@
                               Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Style="{StaticResource HorizontalGroupLabelAtStartStyle}"
                                    Text="{Binding Source={x:Reference animationDurationSlider}, Path=Minimum, Mode=TwoWay}" />
-                            <Slider x:Name="animationDurationSlider"
-                                    Grid.Column="1"
-                                    Style="{StaticResource SliderStyle}"
-                                    Value="{Binding AnimationDuration, Mode=TwoWay}" 
-                                    AutomationId="animationDurationSlider" />
+                            <telerik:RadSlider x:Name="animationDurationSlider"
+                                               Grid.Column="1"
+                                               Style="{StaticResource SliderStyle}"
+                                               Value="{Binding AnimationDuration, Mode=TwoWay}" 
+                                               AutomationId="animationDurationSlider" />
                             <Label Grid.Column="2"
                                    Style="{StaticResource HorizontalGroupLabelAtEndStyle}"
                                    Text="{Binding Source={x:Reference animationDurationSlider}, Path=Maximum, Mode=TwoWay}" />
@@ -179,11 +194,11 @@
                               Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Style="{StaticResource HorizontalGroupLabelAtStartStyle}"
                                    Text="{Binding Source={x:Reference indicatorAnimationDurationSlider}, Path=Minimum, Mode=TwoWay}" />
-                            <Slider x:Name="indicatorAnimationDurationSlider"
-                                    Grid.Column="1"
-                                    Style="{StaticResource SliderStyle}"
-                                    Value="{Binding IndicatorAnimationDuration, Mode=TwoWay}"
-                                    AutomationId="indicatorAnimationDurationSlider" />
+                            <telerik:RadSlider x:Name="indicatorAnimationDurationSlider"
+                                               Grid.Column="1"
+                                               Style="{StaticResource SliderStyle}"
+                                               Value="{Binding IndicatorAnimationDuration, Mode=TwoWay}"
+                                               AutomationId="indicatorAnimationDurationSlider" />
                             <Label Grid.Column="2"
                                    Style="{StaticResource HorizontalGroupLabelAtEndStyle}"
                                    Text="{Binding Source={x:Reference indicatorAnimationDurationSlider}, Path=Maximum, Mode=TwoWay}" />

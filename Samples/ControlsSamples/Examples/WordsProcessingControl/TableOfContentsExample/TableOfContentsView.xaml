@@ -4,163 +4,168 @@
                         xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
                         x:Class="QSF.Examples.WordsProcessingControl.TableOfContentsExample.TableOfContentsView"
                         Padding="{OnIdiom Default='16, 20', Phone=0}">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="{OnIdiom Default=Auto, Phone=*}" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-        <Grid.Resources>
-            <Style TargetType="telerik:RadCheckBox" BasedOn="{StaticResource ExampleCheckBoxStyle}">
-                <Setter Property="Margin" Value="0, 0, 8, 0" />
-            </Style>
-            <Style TargetType="Label">
-                <Setter Property="VerticalOptions" Value="Center" />
-            </Style>
-            <Style x:Key="ExampleTabViewHeaderItemStyle" TargetType="telerik:TabViewHeaderItem">
-                <Setter Property="TextColor" Value="#99000000" />
-                <Setter Property="VisualStateManager.VisualStateGroups">
-                    <VisualStateGroupList>
-                        <VisualStateGroup Name="CommonStates">
-                            <VisualState Name="Normal" />
-                            <VisualState Name="Selected">
-                                <VisualState.Setters>
-                                    <Setter Property="TextColor" Value="{StaticResource ApplicationAccentColor}" />
-                                    <Setter Property="BorderColor" Value="{OnPlatform Default='#DFDFDF', Android={StaticResource AccentColor8}}" />
-                                </VisualState.Setters>
-                            </VisualState>
-                        </VisualStateGroup>
-                    </VisualStateGroupList>
-                </Setter>
-            </Style>
-        </Grid.Resources>
-        <telerik:RadBorder Style="{StaticResource ControlWrapperBorderStyle}"
-                           Padding="16">
-            <Grid RowDefinitions="Auto, Auto"
-                  VerticalOptions="Center">
-                <HorizontalStackLayout HorizontalOptions="Center"
+    <ScrollView>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="{OnIdiom Default=Auto, Phone=*}" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.Resources>
+                <Style TargetType="telerik:RadCheckBox" BasedOn="{StaticResource ExampleCheckBoxStyle}">
+                    <Setter Property="Margin" Value="0, 0, 8, 0" />
+                </Style>
+                <Style TargetType="Label" BasedOn="{StaticResource BaseLabelStyle}">
+                    <Setter Property="VerticalOptions" Value="Center" />
+                </Style>
+                <Style x:Key="ExampleTabViewHeaderItemStyle"
+                       TargetType="telerik:TabViewHeaderItem"
+                       BasedOn="{StaticResource TabViewHeaderItemStyle}">
+                    <Setter Property="TextColor" Value="{DynamicResource DefaultTextColorAlpha60}" />
+                    <Setter Property="VisualStateManager.VisualStateGroups">
+                        <VisualStateGroupList>
+                            <VisualStateGroup Name="CommonStates">
+                                <VisualState Name="Normal" />
+                                <VisualState Name="Selected">
+                                    <VisualState.Setters>
+                                        <Setter Property="TextColor" Value="{DynamicResource ApplicationAccentColor}" />
+                                        <Setter Property="BorderColor" Value="{OnPlatform Default={DynamicResource DefaultBorderStyle}, Android={DynamicResource AccentColor8}}" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateGroupList>
+                    </Setter>
+                </Style>
+            </Grid.Resources>
+
+            <telerik:RadBorder Style="{StaticResource ControlWrapperBorderStyle}"
+                               Padding="16">
+                <Grid RowDefinitions="Auto, Auto"
+                      VerticalOptions="Center">
+                    <HorizontalStackLayout HorizontalOptions="Center"
+                                           VerticalOptions="Center"
+                                           Spacing="10">
+                        <Label Text="File: " />
+                        <Label Text="{Binding FileName}" />
+                    </HorizontalStackLayout>
+                    <telerik:RadButton Grid.Row="1"
+                                       BackgroundColor="Transparent"
                                        VerticalOptions="Center"
-                                       Spacing="10">
-                    <Label Text="File: " />
-                    <Label Text="{Binding FileName}" />
-                </HorizontalStackLayout>
-                <telerik:RadButton Grid.Row="1"
-                                   BackgroundColor="Transparent"
-                                   VerticalOptions="Center"
-                                   HorizontalOptions="{OnIdiom Phone='FillAndExpand', Desktop='Center'}"
-                                   Text="Load Document"
-                                   Command="{Binding LoadSampleCommand}" 
-                                   Style="{StaticResource SubmitButtonStyle}"
-                                   Margin="{OnIdiom Phone='0, 24, 0, 0', Desktop='0, 24'}" 
-                                   AutomationId="loadDocumentButton" />
-            </Grid>
-        </telerik:RadBorder>
+                                       HorizontalOptions="{OnIdiom Phone='FillAndExpand', Desktop='Center'}"
+                                       Text="Load Document"
+                                       Command="{Binding LoadSampleCommand}"
+                                       Style="{StaticResource SubmitButtonStyle}"
+                                       Margin="{OnIdiom Phone='0, 24, 0, 0', Desktop='0, 24'}"
+                                       AutomationId="loadDocumentButton" />
+                </Grid>
+            </telerik:RadBorder>
 
-        <telerik:RadTabView Grid.Row="1"
-                            HeaderItemStyle="{StaticResource ExampleTabViewHeaderItemStyle}"
-                            Margin="{OnIdiom Phone=0, Desktop='16, 16, 16, 0'}"
-                            AutomationId="tabView">
-            <telerik:TabViewItem HeaderText="TABLE OF CONTENTS">
-                <ScrollView Orientation="Vertical">
-                    <VerticalStackLayout Padding="16, 0">
-                        <Label Text="Insert a Table of Contents by selecting one or more of the following properties:"
+            <telerik:RadTabView Grid.Row="1"
+                                HeaderItemStyle="{StaticResource ExampleTabViewHeaderItemStyle}"
+                                Margin="{OnIdiom Phone=0, Desktop='16, 16, 16, 0'}"
+                                AutomationId="tabView">
+                <telerik:TabViewItem HeaderText="TABLE OF CONTENTS">
+                    <ScrollView Orientation="Vertical">
+                        <VerticalStackLayout Padding="16, 0">
+                            <Label Text="Insert a Table of Contents by selecting one or more of the following properties:"
                                    FontAttributes="Bold"
                                    Margin="0, 24, 0, 0" />
-                        <HorizontalStackLayout Margin="0, 24, 0, 0">
-                            <telerik:RadCheckBox IsChecked="{Binding Path=IncludeHeadings}" 
-                                                 AutomationId="includeHeadingCheckBox" />
-                            <Label Text="Include Headings:" />
-                        </HorizontalStackLayout>
-                        <telerik:RadEntry Text="{Binding HeadingLevel}"
+                            <HorizontalStackLayout Margin="0, 24, 0, 0">
+                                <telerik:RadCheckBox IsChecked="{Binding Path=IncludeHeadings}"
+                                                     AutomationId="includeHeadingCheckBox" />
+                                <Label Text="Include Headings:" />
+                            </HorizontalStackLayout>
+                            <telerik:RadEntry Text="{Binding HeadingLevel}"
                                               WidthRequest="{OnIdiom Desktop=300, Phone='-1'}"
                                               HorizontalOptions="{OnIdiom Desktop=Start, Phone=Fill}"
-                                              Margin="0, 12, 0, 0" 
+                                              Margin="0, 12, 0, 0"
                                               AutomationId="includeHeadingEntry" />
-                        <HorizontalStackLayout Margin="0, 24, 0, 0">
-                            <telerik:RadCheckBox IsChecked="{Binding Path=IncludeTcFields}" 
-                                                 AutomationId="includeTcFieldsCheckBox" />
-                            <Label Text="Include TC Fields:" />
-                        </HorizontalStackLayout>
-                        <telerik:RadEntry Text="{Binding TcLevel}"
+                            <HorizontalStackLayout Margin="0, 24, 0, 0">
+                                <telerik:RadCheckBox IsChecked="{Binding Path=IncludeTcFields}"
+                                                     AutomationId="includeTcFieldsCheckBox" />
+                                <Label Text="Include TC Fields:" />
+                            </HorizontalStackLayout>
+                            <telerik:RadEntry Text="{Binding TcLevel}"
                                               WidthRequest="{OnIdiom Desktop=300, Phone='-1'}"
                                               HorizontalOptions="{OnIdiom Desktop=Start, Phone=Fill}"
-                                              Margin="0, 12, 0, 0" 
+                                              Margin="0, 12, 0, 0"
                                               AutomationId="includeTcFieldsEntry" />
-                        <HorizontalStackLayout Margin="0, 24, 0, 0">
-                            <telerik:RadCheckBox IsChecked="{Binding Path=IncludeCaptions}" 
-                                                 AutomationId="includeCaptionsCheckBox" />
-                            <Label Text="Include Captions:" />
-                        </HorizontalStackLayout>
-                        <telerik:RadEntry Text="{Binding Caption}"
+                            <HorizontalStackLayout Margin="0, 24, 0, 0">
+                                <telerik:RadCheckBox IsChecked="{Binding Path=IncludeCaptions}"
+                                                     AutomationId="includeCaptionsCheckBox" />
+                                <Label Text="Include Captions:" />
+                            </HorizontalStackLayout>
+                            <telerik:RadEntry Text="{Binding Caption}"
                                               WidthRequest="{OnIdiom Desktop=300, Phone='-1'}"
                                               HorizontalOptions="{OnIdiom Desktop=Start, Phone=Fill}"
-                                              Margin="0, 12, 0, 0" 
+                                              Margin="0, 12, 0, 0"
                                               AutomationId="includeCaptionsEntry" />
-                        <Button Style="{StaticResource SubmitButtonStyle}" 
+                            <Button Style="{StaticResource SubmitButtonStyle}"
                                     HorizontalOptions="Start"
-                                    Command="{Binding InsertAndUpdateTocFieldsCommand}" 
+                                    Command="{Binding InsertAndUpdateTocFieldsCommand}"
                                     Text="Insert TOC"
-                                    Margin="{OnIdiom Phone='0, 24, 0, 0', Desktop='0, 24'}" 
+                                    Margin="{OnIdiom Phone='0, 24, 0, 0', Desktop='0, 24'}"
                                     AutomationId="insertTocButton" />
-                    </VerticalStackLayout>
-                </ScrollView>
-            </telerik:TabViewItem>
+                        </VerticalStackLayout>
+                    </ScrollView>
+                </telerik:TabViewItem>
 
-            <telerik:TabViewItem HeaderText="TABLE OF AUTHORITIES">
-                <ScrollView Orientation="Vertical">
-                    <VerticalStackLayout Padding="16, 0"
+                <telerik:TabViewItem HeaderText="TABLE OF AUTHORITIES">
+                    <ScrollView Orientation="Vertical">
+                        <VerticalStackLayout Padding="16, 0"
                                              HorizontalOptions="Start">
-                        <Label Text="Insert a Table of Authorities by selecting one or more of the following properties:"
+                            <Label Text="Insert a Table of Authorities by selecting one or more of the following properties:"
                                    FontAttributes="Bold"
                                    Margin="0, 24, 0, 0" />
-                        <Label Text="TA Field level:"
+                            <Label Text="TA Field level:"
                                    Margin="0, 24, 0, 0" />
-                        <telerik:RadEntry Text="{Binding CategoryLevel}"
+                            <telerik:RadEntry Text="{Binding CategoryLevel}"
                                               WidthRequest="{OnIdiom Desktop=300, Phone='-1'}"
                                               HorizontalOptions="{OnIdiom Desktop=Start, Phone=Fill}"
-                                              Margin="0, 12, 0, 0" 
+                                              Margin="0, 12, 0, 0"
                                               AutomationId="fieldLevelEntry" />
-                        <HorizontalStackLayout Margin="0, 24, 0, 0">
-                            <telerik:RadCheckBox IsChecked="{Binding Path=IncludeCategoryHeader}" 
-                                                 AutomationId="includeCategoryHeaderCheckBox" />
-                            <Label Text="Include Category Header" />
-                        </HorizontalStackLayout>
-                        <Button Style="{StaticResource SubmitButtonStyle}"
+                            <HorizontalStackLayout Margin="0, 24, 0, 0">
+                                <telerik:RadCheckBox IsChecked="{Binding Path=IncludeCategoryHeader}"
+                                                     AutomationId="includeCategoryHeaderCheckBox" />
+                                <Label Text="Include Category Header" />
+                            </HorizontalStackLayout>
+                            <Button Style="{StaticResource SubmitButtonStyle}"
                                     HorizontalOptions="Start"
                                     Command="{Binding InsertAndUpdateToaFieldsCommand}"
                                     Text="Insert TOA"
-                                    Margin="{OnIdiom Phone='0, 24, 0, 0', Desktop='0, 24'}" 
+                                    Margin="{OnIdiom Phone='0, 24, 0, 0', Desktop='0, 24'}"
                                     AutomationId="insertToaButton" />
-                    </VerticalStackLayout>
-                </ScrollView>
-            </telerik:TabViewItem>
-        </telerik:RadTabView>
+                        </VerticalStackLayout>
+                    </ScrollView>
+                </telerik:TabViewItem>
+            </telerik:RadTabView>
 
-        <Grid Grid.Row="2"
-              ColumnDefinitions="Auto, *"
-              Padding="16, 0"
-              Margin="0, 24, 0, 0">
-            <Label Text="Export to:"
-                   VerticalTextAlignment="Center" />
-            <telerik:RadComboBox x:Name="exportCombox"
-                                 Grid.Column="1"
-                                 ItemsSource="{Binding ExportFormats, Mode=OneTime}"
-                                 SelectedItem="{Binding SelectedExportFormat, Mode=OneWayToSource}"
-                                 WidthRequest="{OnIdiom Desktop=300, Phone='-1'}"
-                                 HorizontalOptions="{OnIdiom Desktop=Start, Phone=Fill}"
-                                 Margin="20, 0, 0, 0"
-                                 AutomationId="exportFormatsComboBox" />
+            <Grid Grid.Row="2"
+                  ColumnDefinitions="Auto, *"
+                  Padding="16, 0"
+                  Margin="0, 24, 0, 0">
+                <Label Text="Export to:"
+                       VerticalTextAlignment="Center" />
+                <telerik:RadComboBox x:Name="exportCombox"
+                                     Grid.Column="1"
+                                     ItemsSource="{Binding ExportFormats, Mode=OneTime}"
+                                     SelectedItem="{Binding SelectedExportFormat, Mode=OneWayToSource}"
+                                     WidthRequest="{OnIdiom Desktop=300, Phone='-1'}"
+                                     HorizontalOptions="{OnIdiom Desktop=Start, Phone=Fill}"
+                                     Margin="20, 0, 0, 0"
+                                     AutomationId="exportFormatsComboBox" />
+            </Grid>
+
+            <telerik:RadButton Grid.Row="3"
+                               Text="Export"
+                               Style="{StaticResource SubmitButtonStyle}"
+                               HorizontalOptions="{OnIdiom Phone='Fill', Desktop='Start'}"
+                               VerticalOptions="{OnIdiom Phone='End', Desktop='Start'}"
+                               Command="{Binding ExportCommand}"
+                               IsEnabled="{Binding IsDocumentLoaded}"
+                               Margin="16, 24"
+                               AutomationId="exportButton" />
         </Grid>
-
-        <telerik:RadButton Grid.Row="3"
-                           Text="Export"
-                           Style="{StaticResource SubmitButtonStyle}"
-                           HorizontalOptions="{OnIdiom Phone='Fill', Desktop='Start'}"
-                           VerticalOptions="{OnIdiom Phone='End', Desktop='Start'}"
-                           Command="{Binding ExportCommand}"
-                           IsEnabled="{Binding IsDocumentLoaded}"
-                           Margin="16, 24"
-                           AutomationId="exportButton" />
-    </Grid>
+    </ScrollView>
 </telerik:RadContentView>

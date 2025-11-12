@@ -7,8 +7,7 @@
     <ContentView.Resources>
         <ResourceDictionary>
             <local:StringToDockConverter x:Key="StringToDockConverter" />
-            <Style TargetType="Label">
-                <Setter Property="TextColor" Value="Black" />
+            <Style TargetType="Label" BasedOn="{StaticResource BaseLabelStyle}">
                 <Setter Property="FontSize" Value="Medium" />
                 <Setter Property="FontFamily" Value="telerikfontexamples" />
                 <Setter Property="Margin" Value="20,17" />
@@ -18,21 +17,21 @@
     <telerik:RadDockLayout AutomationId="dockLayout">
         <Grid x:Name="titlePanel"
               HeightRequest="60"
-              BackgroundColor="{StaticResource AccentColor8}"
+              BackgroundColor="#7C59B6"
               IsVisible="{Binding IsTitlePanelVisible}"
               telerik:RadDockLayout.Dock="{Binding TitlePanelDock, Converter={StaticResource StringToDockConverter}}">
             <Label Text="Title" TextColor="White"/>
         </Grid>
         <Grid x:Name="navigationPanel"
               HeightRequest="60"
-              BackgroundColor="#ADD9FC"
+              BackgroundColor="#805BB3F9"
               IsVisible="{Binding IsNavigationPanelVisible}"
               telerik:RadDockLayout.Dock="{Binding NavigationPanelDock, Converter={StaticResource StringToDockConverter}}">
             <Label Text="Navigation" />
         </Grid>
         <Grid x:Name="listPanel"
               WidthRequest="120"
-              BackgroundColor="#DFDFDF"
+              BackgroundColor="{DynamicResource DefaultBorderColor}"
               IsVisible="{Binding IsListPanelVisible}"
               telerik:RadDockLayout.Dock="{Binding ListPanelDock, Converter={StaticResource StringToDockConverter}}">
             <VerticalStackLayout Margin="20">
@@ -43,7 +42,7 @@
                 <Label Margin="0" Text="&#xE84A;" FontSize="50"/>
             </VerticalStackLayout>
         </Grid>
-        <Grid BackgroundColor="#F8F8F8" 
+        <Grid BackgroundColor="{DynamicResource DefaultBackgroundColor}" 
               IsVisible="{Binding IsContentPanelVisible}">
             <VerticalStackLayout Margin="20">
                 <Label Text="Content" FontSize="Small" Margin="0"/>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.SchedulerControl.AgendaViewCategory.TemplatesExample.Templates">
+
+	<ContentView.Resources>
+		<ResourceDictionary>
+			<!-- >> scheduler-agenda-templates -->
+			<DataTemplate x:Key="CustomAppointmentDataTemplate">
+				<telerik:RadBorder CornerRadius="4"
+								   Margin="5"
+								   IsClippedToBounds="True"
+								   BackgroundColor="#D2C6E6">
+					<Grid>
+						<BoxView WidthRequest="4"
+								 BackgroundColor="#8660C5"
+								 HorizontalOptions="Start"
+								 VerticalOptions="Center" />
+						<Label Text="{Binding Occurrence.Appointment.Subject}"
+							   TextColor="Black"
+							   VerticalTextAlignment="Center"
+							   Margin="6, 0, 4, 0" />
+					</Grid>
+				</telerik:RadBorder>
+			</DataTemplate>
+
+			<DataTemplate x:Key="CustomMonthTemplate">
+				<Grid BackgroundColor="#B2DFDB"
+					  Padding="10,5">
+					<Label Text="{Binding FormattedMonth}"
+						   FontSize="20"
+						   TextColor="#00796B" />
+				</Grid>
+			</DataTemplate>
+			<DataTemplate x:Key="CustomWeekTemplate">
+				<Grid Padding="8,4">
+					<Label TextColor="#8660C5">
+						<Label.FormattedText>
+							<FormattedString>
+								<Span Text="&#xe863; "
+									  FontFamily="TelerikFontExamples" />
+								<Span Text="{Binding FormattedWeek}" />
+							</FormattedString>
+						</Label.FormattedText>
+					</Label>
+				</Grid>
+			</DataTemplate>
+			<DataTemplate x:Key="CustomDayTemplate">
+				<Grid BackgroundColor="#40FFAC3E"
+					  Padding="8,4">
+					<Label Grid.Column="0"
+						   Text="{Binding FormattedDay}"
+						   FontSize="14"
+						   TextColor="#F18900"
+						   Margin="0,0,8,0" />
+				</Grid>
+			</DataTemplate>
+			<DataTemplate x:Key="CustomDurationTemplate">
+				<Label TextColor="Black"
+					   FontSize="12"
+					   Padding="8,0" VerticalTextAlignment="Center"
+					   WidthRequest="135">
+					<Label.FormattedText>
+						<FormattedString>
+							<Span Text="&#xe838; "
+								  FontFamily="TelerikFontExamples" />
+							<Span Text="{Binding FormattedStartTime}" />
+							<Span Text=" - " />
+							<Span Text="{Binding FormattedEndTime}" />
+						</FormattedString>
+					</Label.FormattedText>
+				</Label>
+			</DataTemplate>
+			<!-- << scheduler-agenda-templates -->
+		</ResourceDictionary>
+	</ContentView.Resources>
+	<!-- >> scheduler-agendaview-templates -->
+	<telerik:RadScheduler x:Name="scheduler"
+						  AppointmentsSource="{Binding Appointments}"
+						  AppointmentTemplate="{StaticResource CustomAppointmentDataTemplate}">
+		<telerik:RadScheduler.ViewDefinitions>
+			<telerik:AgendaViewDefinition MonthTemplate="{StaticResource CustomMonthTemplate}"
+										  WeekTemplate="{StaticResource CustomWeekTemplate}"
+										  DayTemplate="{StaticResource CustomDayTemplate}"
+										  AppointmentDurationTemplate="{StaticResource CustomDurationTemplate}" />
+		</telerik:RadScheduler.ViewDefinitions>
+	</telerik:RadScheduler>
+	<!-- << scheduler-agendaview-templates -->
+</ContentView>

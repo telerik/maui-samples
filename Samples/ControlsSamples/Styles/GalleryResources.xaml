@@ -3,7 +3,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                     x:Class="QSF.Styles.GalleryResources">
     <Style x:Key="labelHeaderStyle" TargetType="Label">
-        <Setter Property="TextColor" Value="#757575" />
+        <Setter Property="TextColor" Value="{DynamicResource ChartLabelHeaderTextColor}" />
         <Setter Property="HorizontalOptions" Value="Center" />
         <Setter Property="FontSize" Value="{OnPlatform iOS='10', Default='14'}" />
     </Style>

@@ -6,6 +6,7 @@ using QSF.ViewModels;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
+using QSF.Converters;
 
 namespace QSF.Examples.TemplatedPickerControl.Common;
 
@@ -13,19 +14,19 @@ public class ColorAndSizeViewModel : ExampleViewModel
 {
     private ColorModel selectedColor;
     private SizeModel selectedSize;
-    private Color defaultDeselectedColor;
-    private Color defaultSelectedColor;
-    private Color defaultDeselectedTextColor;
-    private Color defaultSelectedTextColor;
+    private string defaultDeselectedColorKey;
+    private string defaultSelectedColorKey;
+    private string defaultDeselectedTextColorKey;
+    private string defaultSelectedTextColorKey;
     private string highlightedValue;
     private string selectedValue;
 
     public ColorAndSizeViewModel()
     {
-        this.defaultDeselectedColor = Color.FromArgb("#EAEAEA");
-        this.defaultSelectedColor = Color.FromArgb("#919191");
-        this.defaultDeselectedTextColor = Colors.Black;
-        this.defaultSelectedTextColor = Colors.White;
+        this.defaultDeselectedColorKey = "TemplatePickerDeselectedSizeBackgroundColor";
+        this.defaultSelectedColorKey = "TemplatePickerSelectedSizeBackgroundColor";
+        this.defaultDeselectedTextColorKey = "DefaultTextColor";
+        this.defaultSelectedTextColorKey = "TextOnAccentColor";
         this.HighlightedValue = string.Empty;
         this.SelectedValue = string.Empty;
 
@@ -56,12 +57,12 @@ public class ColorAndSizeViewModel : ExampleViewModel
             {
                 if (this.SelectedSize != null)
                 {
-                    this.SelectedSize.BackgroundColor = this.defaultDeselectedColor;
-                    this.SelectedSize.TextColor = this.defaultDeselectedTextColor;
+                    this.SelectedSize.BackgroundColorKey = this.defaultDeselectedColorKey;
+                    this.SelectedSize.TextColorKey = "DefaultTextColor";
                 }
 
-                arg.BackgroundColor = this.defaultSelectedColor;
-                arg.TextColor = this.defaultSelectedTextColor;
+                arg.BackgroundColorKey = this.defaultSelectedColorKey;
+                arg.TextColorKey = this.defaultSelectedTextColorKey;
                 this.SelectedSize = arg;
 
                 if (this.HighlightedValue != null && this.HighlightedValue.Contains(", "))
@@ -97,9 +98,9 @@ public class ColorAndSizeViewModel : ExampleViewModel
         {
             new CardItem()
             {
-                BackgroundColor = Color.FromArgb("#ECF6FE"),
-                BorderColor = Color.FromArgb("#D6EBFC"),
-                SelectedBorderColor = Color.FromArgb("#0E88F2"),
+                BackgroundColorKey = "PickerBackgroundColor1",
+                BorderColorKey = "PickerBorderColor1",
+                SelectedBorderColorKey = "PickerSelectedBorderColor1",
                 ImageSource = "top.png"
             },
         };

@@ -8,6 +8,9 @@ public partial class AutoCompleteGettingStartedXaml : ContentView
 	public AutoCompleteGettingStartedXaml()
 	{
 		InitializeComponent();
+
+        this.autoComplete.AutomationId = "autoComplete";
+
         // >> autocomplete-getting-started-items-source
         this.autoComplete.ItemsSource = new List<string>()
             {

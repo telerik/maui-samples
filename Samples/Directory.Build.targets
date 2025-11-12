@@ -1,9 +1,5 @@
 <Project>
   <!-- platform version number information -->
-  <PropertyGroup Condition="$(TargetFramework.Contains('net8.0-ios'))">
-    <SupportedOSPlatformVersion>11.0</SupportedOSPlatformVersion>
-    <TargetPlatformMinVersion>11.0</TargetPlatformMinVersion>
-  </PropertyGroup>
   <PropertyGroup Condition="$(TargetFramework.Contains('net9.0-ios')) OR $(TargetFramework.Contains('10.0-ios'))">
     <SupportedOSPlatformVersion>13.0</SupportedOSPlatformVersion>
     <TargetPlatformMinVersion>13.0</TargetPlatformMinVersion>

@@ -5,40 +5,37 @@
                         x:Class="QSF.Examples.SegmentedControlControl.FirstLookExample.FirstLookView"
                         Margin="16, 20">
 
-
     <telerik:RadContentView.Resources>
         <ResourceDictionary>
             <Style TargetType="VerticalStackLayout">
                 <Setter Property="Spacing" Value="20"/>
             </Style>
-            <Style TargetType="Label" x:Key="descriptionLabel">
+            <Style TargetType="Label" x:Key="descriptionLabel" BasedOn="{StaticResource BaseLabelStyle}">
                 <Setter Property="FontSize" Value="14"/>
-                <Setter Property="TextColor" Value="Black"/>
                 <Setter Property="Margin" Value="0,4,0,0"/>
                 <Setter Property="HorizontalOptions" Value="Start"/>
             </Style>
             <Style TargetType="telerik:RadSegmentedControl" x:Key="segmentedStyle">
-                <Setter Property="SegmentTextColor" Value="Black"/>
+                <Setter Property="SegmentTextColor" Value="{DynamicResource DefaultTextColor}"/>
                 <Setter Property="HorizontalOptions" Value="Start"/>
                 <Setter Property="SelectedSegmentTextColor" Value="White"/>
-                <Setter Property="SegmentBackgroundColor" Value="White"/>
-                <Setter Property="SelectedSegmentBackgroundColor" Value="#8660C5"/>
-                <Setter Property="DisabledSegmentTextColor" Value="#888660C5"/>
+                <Setter Property="SegmentBackgroundColor" Value="{DynamicResource SegmentedControlSegmentBackgroundColor}"/>
+                <Setter Property="SelectedSegmentBackgroundColor" Value="{DynamicResource SegmentedControlSelectedSegmentBackgroundColor}"/>
+                <Setter Property="DisabledSegmentTextColor" Value="{DynamicResource SegmentedControlFirstLookDisabledSegmentTextColor}"/>
             </Style>
         </ResourceDictionary>
     </telerik:RadContentView.Resources>
     <VerticalStackLayout>
         <Label Grid.Row="1"
                Text="Modes" 
-               FontSize="18"
-               TextColor="Black"/>
+               FontSize="18" />
         <VerticalStackLayout IsVisible="{OnPlatform Android='False', iOS='False'}">
             <Label Text="Image"
                    Style="{StaticResource descriptionLabel}"/>
             <telerik:RadSegmentedControl ItemsSource="{Binding SmallImages}"
                                          SelectedIndex="0"
                                          HorizontalOptions="Start"
-                                         SelectedSegmentBackgroundColor="LightGray"
+                                         SelectedSegmentBackgroundColor="{DynamicResource SegmentedControlSelectedSegmentBackgroundColorImage}"
                                          AutomationId="imageSegmentedControl"/>
         </VerticalStackLayout>
         <VerticalStackLayout>

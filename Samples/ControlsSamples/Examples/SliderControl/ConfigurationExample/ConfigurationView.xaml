@@ -13,37 +13,33 @@
             <ResourceDictionary.MergedDictionaries>
                 <styles:ConfigurationViewResources />
             </ResourceDictionary.MergedDictionaries>
-            <converters:ColorNameToColorConverter x:Key="ColorNameToColorConverter">
-                <converters:ColorNameToColorConverter.DefaultValuesResourceDictionary>
-                    <slider:HorizontalSliderConstants />
-                </converters:ColorNameToColorConverter.DefaultValuesResourceDictionary>
-            </converters:ColorNameToColorConverter>
+            <converters:ColorNameToColorConverter x:Key="ColorNameToColorConverter" />
         </ResourceDictionary>
     </ContentView.Resources>
     <Grid RowDefinitions="{OnPlatform Default='80, *', WinUI='120, *'}">
         <telerik:RadBorder x:Name="border" Style="{StaticResource ControlWrapperBorderStyle}" />
-		<telerik:RadSlider x:Name="slider"
-						   Minimum="0"
-						   Maximum="100"
-						   Value="40"
-						   TickStep="{Binding TickStep}"
-						   TickThickness="{Binding TickThickness}"
-						   TickLength="{Binding TickLength}"
-						   LabelStep="{Binding LabelStep}"
-						   BackTrackThickness="{Binding BackTrackThickness}"
-						   BackTrackExtent="{Binding BackTrackExtent}"
-						   InRangeTickColor="{Binding InRangeTickColor, Converter={StaticResource ColorNameToColorConverter}, ConverterParameter='InRangeTickColor'}"
-						   OutOfRangeTickColor="{Binding OutOfRangeTickColor, Converter={StaticResource ColorNameToColorConverter}, ConverterParameter='OutOfRangeTickColor'}"
-						   TextColor="{Binding TextColor, Converter={StaticResource ColorNameToColorConverter}}"
-						   BackTrackColor="{Binding BackTrackColor, Converter={StaticResource ColorNameToColorConverter}, ConverterParameter='BackTrackColor'}"
-						   ThumbFill="{Binding ThumbFill, Converter={StaticResource ColorNameToColorConverter}, ConverterParameter='ThumbFill'}"
-						   RangeTrackFill="{Binding RangeTrackFill, Converter={StaticResource ColorNameToColorConverter}, ConverterParameter='RangeTrackFill'}"
-						   TicksPlacement="{Binding TicksPlacement}"
-						   LabelsPlacement="{Binding LabelsPlacement}"
-						   SnapMode="{Binding SnapMode}"
-						   DragMode="{Binding DragMode}"
-						   VerticalOptions="Center"
-						   Margin="{Binding Padding, Source={Reference border}}" />
+        <telerik:RadSlider x:Name="slider"
+                           Minimum="0"
+                           Maximum="100"
+                           Value="40"
+                           TickStep="{Binding TickStep, Mode=TwoWay}"
+                           TickThickness="{Binding TickThickness, Mode=TwoWay}"
+                           TickLength="{Binding TickLength, Mode=TwoWay}"
+                           LabelStep="{Binding LabelStep, Mode=TwoWay}"
+                           BackTrackThickness="{Binding BackTrackThickness, Mode=TwoWay}"
+                           BackTrackExtent="{Binding BackTrackExtent, Mode=TwoWay}"
+                           InRangeTickColor="{Binding InRangeTickColor, Converter={StaticResource ColorNameToColorConverter}, ConverterParameter='InRangeTickColor'}"
+                           OutOfRangeTickColor="{Binding OutOfRangeTickColor,Converter={StaticResource ColorNameToColorConverter}, ConverterParameter='OutOfRangeTickColor'}"
+                           TextColor="{Binding TextColor, Converter={StaticResource ColorNameToColorConverter}}"
+                           BackTrackColor="{Binding BackTrackColor, Converter={StaticResource ColorNameToColorConverter}, ConverterParameter='BackTrackColor', TargetNullValue='#8B8B8B'}"
+                           ThumbFill="{Binding ThumbFill, Converter={StaticResource ColorNameToColorConverter}, ConverterParameter='ThumbFill'}"
+                           RangeTrackFill="{Binding RangeTrackFill, Converter={StaticResource ColorNameToColorConverter}, ConverterParameter='RangeTrackFill'}"
+                           TicksPlacement="{Binding TicksPlacement, Mode=TwoWay}"
+                           LabelsPlacement="{Binding LabelsPlacement, Mode=TwoWay}"
+                           SnapMode="{Binding SnapMode, Mode=TwoWay}"
+                           DragMode="{Binding DragMode, Mode=TwoWay}"
+                           VerticalOptions="Center"
+                           Margin="{Binding Padding, Source={Reference border}}" />
         <ScrollView Grid.Row="1">
             <VerticalStackLayout Style="{StaticResource RootAtExampleAreaStyle}">
                 <Grid>
@@ -68,21 +64,21 @@
                         </VerticalStackLayout>
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="Ticks Placement:"
-                                   Style="{StaticResource VerticalGroupLabelStyle}"  />
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
                             <telerik:RadComboBox ItemsSource="{Binding TicksPlacements}"
                                                  SelectedItem="{Binding TicksPlacement, Mode=TwoWay}"
                                                  IsClearButtonVisible="False" />
                         </VerticalStackLayout>
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="In-range Tick Color:"
-                                   Style="{StaticResource VerticalGroupLabelStyle}"  />
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
                             <telerik:RadComboBox ItemsSource="{Binding Colors}"
                                                  SelectedItem="{Binding InRangeTickColor, Mode=TwoWay}"
                                                  IsClearButtonVisible="False" />
                         </VerticalStackLayout>
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="Out of Range Tick Color:"
-                                   Style="{StaticResource VerticalGroupLabelStyle}"  />
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
                             <telerik:RadComboBox ItemsSource="{Binding Colors}"
                                                  SelectedItem="{Binding OutOfRangeTickColor, Mode=TwoWay}"
                                                  IsClearButtonVisible="False" />
@@ -123,21 +119,21 @@
                         </VerticalStackLayout>
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="Labels Placement:"
-                                   Style="{StaticResource VerticalGroupLabelStyle}"  />
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
                             <telerik:RadComboBox ItemsSource="{Binding LabelsPlacements}"
                                                  SelectedItem="{Binding LabelsPlacement, Mode=TwoWay}"
                                                  IsClearButtonVisible="False" />
                         </VerticalStackLayout>
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="Text Color:"
-                                   Style="{StaticResource VerticalGroupLabelStyle}"  />
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
                             <telerik:RadComboBox ItemsSource="{Binding Colors}"
                                                  SelectedItem="{Binding TextColor, Mode=TwoWay}"
                                                  IsClearButtonVisible="False" />
                         </VerticalStackLayout>
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="Backtrack Color:"
-                                   Style="{StaticResource VerticalGroupLabelStyle}"  />
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
                             <telerik:RadComboBox ItemsSource="{Binding Colors}"
                                                  SelectedItem="{Binding BackTrackColor, Mode=TwoWay}"
                                                  IsClearButtonVisible="False" />
@@ -176,14 +172,14 @@
                     <VerticalStackLayout Style="{OnIdiom Default={StaticResource GroupAtExampleAreaWithColumnBreakStyle}, Phone={StaticResource GroupAtExampleAreaStyle}}">
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="Thumb Fill Color:"
-                                   Style="{StaticResource VerticalGroupLabelStyle}"  />
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
                             <telerik:RadComboBox ItemsSource="{Binding Colors}"
                                                  SelectedItem="{Binding ThumbFill, Mode=TwoWay}"
                                                  IsClearButtonVisible="False" />
                         </VerticalStackLayout>
                         <VerticalStackLayout>
                             <Label Text="Range Track Fill Color:"
-                                   Style="{StaticResource VerticalGroupLabelStyle}"  />
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
                             <telerik:RadComboBox ItemsSource="{Binding Colors}"
                                                  SelectedItem="{Binding RangeTrackFill, Mode=TwoWay}"
                                                  IsClearButtonVisible="False" />
@@ -194,14 +190,14 @@
                                          Style="{StaticResource GroupAtExampleAreaStyle}">
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="Snap Mode:"
-                                   Style="{StaticResource VerticalGroupLabelStyle}"  />
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
                             <telerik:RadComboBox ItemsSource="{Binding SnapModes}"
                                                  SelectedItem="{Binding SnapMode, Mode=TwoWay}"
                                                  IsClearButtonVisible="False" />
                         </VerticalStackLayout>
                         <VerticalStackLayout>
                             <Label Text="Drag Mode:"
-                                   Style="{StaticResource VerticalGroupLabelStyle}"  />
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
                             <telerik:RadComboBox ItemsSource="{Binding DragModes}"
                                                  SelectedItem="{Binding DragMode, Mode=TwoWay}"
                                                  IsClearButtonVisible="False" />

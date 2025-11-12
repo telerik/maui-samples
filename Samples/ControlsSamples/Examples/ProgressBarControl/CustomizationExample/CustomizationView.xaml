@@ -5,7 +5,7 @@
                         x:Class="QSF.Examples.ProgressBarControl.CustomizationExample.CustomizationView">
     <ScrollView>
         <VerticalStackLayout>
-            <VerticalStackLayout BackgroundColor="#F3F3F3"
+            <VerticalStackLayout BackgroundColor="{DynamicResource WrapperBackgroundColor}"
                                  Padding="{OnIdiom Desktop='0, 24, 0, 0', Phone='0, 50, 0, 0'}">
                 <Label Text="Cloud Uploader"
                        FontSize="20"
@@ -26,7 +26,7 @@
                                                   HorizontalOptions="Center"
                                                   VerticalOptions="Center"
                                                   TrackFill="Transparent"
-                                                  ProgressFill="{StaticResource ApplicationAccentColor}"
+                                                  ProgressFill="{DynamicResource ApplicationAccentColor}"
                                                   ProgressAnimationDuration="20"
                                                   Value="{Binding UploadProgress, Mode=TwoWay}" 
                                                   AutomationId="progressBar"/>

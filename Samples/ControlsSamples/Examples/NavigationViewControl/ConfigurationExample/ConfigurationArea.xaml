@@ -9,7 +9,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <styles:ConfigurationViewResources />
             </ResourceDictionary.MergedDictionaries>
-            <Style TargetType="telerik:RadComboBox">
+            <Style TargetType="telerik:RadComboBox" BasedOn="{StaticResource RadComboBoxStyle}">
                 <Setter Property="HorizontalOptions" Value="Fill" />
                 <Setter Property="IsClearButtonVisible" Value="False" />
             </Style>
@@ -47,10 +47,25 @@
         <VerticalStackLayout IsVisible="{OnIdiom Default=True, Phone=False}">
             <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                 <Label Text="AutoChangeDisplayMode:" Style="{StaticResource VerticalGroupLabelStyle}" />
-                <Switch VerticalOptions="Center"
-                        HorizontalOptions="Start"
-                        IsToggled="{Binding AutoChangeDisplayMode}"
-                        Margin="{OnPlatform Default=0, WinUI='0, -2, 0, 0'}" />
+                <Grid>
+                    <Switch x:Name="AutoChangeDisplayModeSwitch"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Start"
+                            IsToggled="{Binding AutoChangeDisplayMode}"
+                            Style="{StaticResource SwitchStyle}"
+                            Margin="{OnPlatform Default=0, WinUI='0, -2, 0, 0'}" />
+                    <OnPlatform x:TypeArguments="View">
+                        <On Platform="WinUI">
+                            <telerik:RadBorder HeightRequest="20"
+                                               WidthRequest="40"
+                                               CornerRadius="10"
+                                               BorderColor="{Binding OnColor, Source={x:Reference AutoChangeDisplayModeSwitch}}"
+                                               BorderThickness="1"
+                                               HorizontalOptions="Start"
+                                               VerticalOptions="Center" />
+                        </On>
+                    </OnPlatform>
+                </Grid>
             </VerticalStackLayout>
             <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                 <Label Text="CompactModeThresholdWidth:" Style="{StaticResource VerticalGroupLabelStyle}" />

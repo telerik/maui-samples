@@ -12,7 +12,7 @@
                 <Setter Property="CornerRadius" Value="104" />
                 <Setter Property="WidthRequest" Value="104" />
                 <Setter Property="HeightRequest" Value="104" />
-                <Setter Property="BorderColor" Value="#DFDFDF" />
+                <Setter Property="BorderColor" Value="{DynamicResource DefaultBorderColor}" />
                 <Setter Property="BorderThickness" Value="8" />
                 <Setter Property="HorizontalOptions" Value="Center" />
             </Style>
@@ -53,7 +53,7 @@
             </Style>
             <Style x:Key="UserStatisticsSeparatorStyle" TargetType="BoxView">
                 <Setter Property="Margin" Value="{OnIdiom Default='20, 0', Phone='12, 0'}" />
-                <Setter Property="BackgroundColor" Value="#DCE7F2" />
+                <Setter Property="BackgroundColor" Value="{DynamicResource BorderFirstLookSeparatorColor}" />
                 <Setter Property="WidthRequest" Value="1" />
             </Style>
             <Style x:Key="CommentUserNameLabelStyle" TargetType="Label">
@@ -66,7 +66,7 @@
                 <Setter Property="HeightRequest" Value="40" />
                 <Setter Property="CornerRadius" Value="40" />
                 <Setter Property="VerticalOptions" Value="Start" />
-                <Setter Property="BorderColor" Value="#DFDFDF" />
+                <Setter Property="BorderColor" Value="{DynamicResource DefaultBorderColor}" />
                 <Setter Property="BorderThickness" Value="3" />
             </Style>
             <Style x:Key="CommentAvatarImageStyle" TargetType="Image">
@@ -76,10 +76,10 @@
             <Style x:Key="CommentTextBorderStyle" TargetType="telerik:RadBorder">
                 <Setter Property="VerticalOptions" Value="Start" />
                 <Setter Property="CornerRadius" Value="0, 16, 16, 16" />
-                <Setter Property="BackgroundColor" Value="#F8F8F8" />
+                <Setter Property="BackgroundColor" Value="{DynamicResource WrapperBackgroundColor}" />
                 <Setter Property="Padding" Value="12, 12, 30, 12" />
             </Style>
-            <Style x:Key="CommentTextLabelStyle" TargetType="Label">
+            <Style x:Key="CommentTextLabelStyle" TargetType="Label" BasedOn="{StaticResource BaseLabelStyle}">
                 <Setter Property="HorizontalTextAlignment" Value="Start" />
                 <Setter Property="MaxLines" Value="{OnPlatform Default='-1', WinUI=4}" />
                 <Setter Property="LineHeight" Value="1.4" />
@@ -104,7 +104,7 @@
             </telerik:RadBorder>
             <telerik:RadBorder Grid.Row="1"
                                BorderThickness="0, 0, 0, 1"
-                               BorderColor="#DCE7F2"
+                               BorderColor="{DynamicResource BorderFirstLookSeparatorColor}"
                                Padding="{OnIdiom Default='0, 24', Phone=16}">
                 <Grid ColumnDefinitions="*, Auto, Auto, Auto, *"
                       HorizontalOptions="Center"

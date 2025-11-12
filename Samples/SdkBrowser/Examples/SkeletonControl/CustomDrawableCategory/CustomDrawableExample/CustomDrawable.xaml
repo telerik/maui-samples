@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.SkeletonControl.CustomDrawableCategory.CustomDrawableExample.CustomDrawable">
+	<!-- >> skeleton-custom-drawable -->
+	<Grid RowDefinitions="Auto, *"
+		  RowSpacing="10">
+		<HorizontalStackLayout Spacing="10">
+			<Label Text="Is Content Loading"
+				   VerticalOptions="Center" />
+			<telerik:RadCheckBox x:Name="isSkeletonLoading"
+								 IsChecked="{Binding Source={x:Reference skeleton}, Path=IsLoading}" />
+		</HorizontalStackLayout>
+		<telerik:RadSkeleton Grid.Row="1"
+							 x:Name="skeleton"
+							 LoadingViewColor="#998660C5">
+			<Grid RowDefinitions="Auto, Auto"
+				  Padding="10"
+				  RowSpacing="10">
+				<Label Text="This is a sample text that would be shown after the skeleton is no longer loading."
+					   Grid.Row="0" />
+				<HorizontalStackLayout Spacing="10"
+									   Grid.Row="1">
+					<telerik:RadButton Text="Like" />
+					<telerik:RadButton Text="Dislike" />
+				</HorizontalStackLayout>
+			</Grid>
+		</telerik:RadSkeleton>
+	</Grid>
+	<!-- << skeleton-custom-drawable -->
+</ContentView>

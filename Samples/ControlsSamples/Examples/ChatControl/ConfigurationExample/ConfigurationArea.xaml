@@ -57,7 +57,7 @@
         <telerik:RadButton Text="Add Message"
                            Command="{Binding AddMessageCommand}"
                            Style="{StaticResource SubmitButtonStyle}"
-                           Margin="0, 0, 0, 12" 
+                           Margin="0, 0, 0, 12"
                            AutomationId="addMessageButton"/>
 
         <Label Text="Suggested Replies"
@@ -74,7 +74,7 @@
         <telerik:RadButton Text="Add Suggestions"
                            Command="{Binding AddSuggestedActionsCommand}"
                            Style="{StaticResource SubmitButtonStyle}"
-                           Margin="0, 0, 0, 12" 
+                           Margin="0, 0, 0, 12"
                            AutomationId="addSuggestedActionsButton"/>
 
         <Label Text="Time Breaks"
@@ -83,13 +83,13 @@
             <Label Text="Text:"
                    Style="{StaticResource VerticalGroupLabelStyle}" />
             <telerik:RadEntry Text="{Binding TimeBreakText, Mode=TwoWay}"
-                              ReserveSpaceForErrorView="False" 
+                              ReserveSpaceForErrorView="False"
                               AutomationId="timeBreakTextEntry"/>
         </VerticalStackLayout>
         <telerik:RadButton Text="Add Time Break"
                            Command="{Binding AddTimeBreakCommand}"
                            Style="{StaticResource SubmitButtonStyle}"
-                           Margin="0, 0, 0, 12" 
+                           Margin="0, 0, 0, 12"
                            AutomationId="addTimeBreakButton"/>
 
         <Label Text="Typing Indicator"
@@ -98,13 +98,13 @@
             <Label Text="Text:"
                    Style="{StaticResource VerticalGroupLabelStyle}" />
             <telerik:RadEntry Text="{Binding TypingIndicatorText, Mode=TwoWay}"
-                              ReserveSpaceForErrorView="False" 
+                              ReserveSpaceForErrorView="False"
                               AutomationId="typingIndicatorTextEntry"/>
         </VerticalStackLayout>
         <telerik:RadButton Text="{Binding ToggleTypingIndicatorText}"
                            Command="{Binding ToggleTypingIndicatorCommand}"
                            Style="{StaticResource SubmitButtonStyle}"
-                           Margin="0, 0, 0, 12" 
+                           Margin="0, 0, 0, 12"
                            AutomationId="showTypingIndicatorButton"/>
     </VerticalStackLayout>
 </ContentView>

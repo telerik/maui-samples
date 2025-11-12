@@ -12,7 +12,7 @@
                            Padding="16">
             <Grid>
                 <telerik:RadCalendar x:Name="calendar"
-                                     Culture="{Binding Culture}"
+                                     Culture="{Binding Culture, Mode=OneWay}"
                                      MaximumHeightRequest="{OnPlatform iOS=320, Android=320, WinUI=320}"
                                      BorderThickness="1"
                                      HorizontalOptions="Center"

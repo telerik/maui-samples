@@ -24,6 +24,7 @@
         </Grid>
         <telerik:RadCartesianChart x:Name="trendlinesChart"
                                    Grid.Row="1"
+                                   BackgroundColor="Transparent"
                                    AutomationId="cartesianTrendlinesChart">
             <telerik:RadCartesianChart.ChartBehaviors>
                 <telerik:ChartPanAndZoomBehavior ZoomMode="Horizontal"
@@ -31,7 +32,8 @@
                                                  HandleDoubleTap="True" />
             </telerik:RadCartesianChart.ChartBehaviors>
             <telerik:RadCartesianChart.HorizontalAxis>
-                <telerik:DateTimeContinuousAxis LineColor="#A9A9A9"
+                <telerik:DateTimeContinuousAxis LabelTextColor="{DynamicResource DefaultTextColor}"
+                                                LineColor="{DynamicResource ChartLineColor}"
                                                 LabelFitMode="Rotate"
                                                 LabelFormat="dd/MM"
                                                 GapLength="0.8"
@@ -40,10 +42,11 @@
                                                 MajorStepUnit="Month" />
             </telerik:RadCartesianChart.HorizontalAxis>
             <telerik:RadCartesianChart.VerticalAxis>
-                <telerik:NumericalAxis LineColor="#A9A9A9"
+                <telerik:NumericalAxis LabelTextColor="{DynamicResource DefaultTextColor}"
+                                       LineColor="{DynamicResource ChartLineColor}"
                                        Minimum="320"
                                        Maximum="400"
-                                       MajorTickBackgroundColor="#A9A9A9" />
+                                       MajorTickBackgroundColor="{DynamicResource ChartLineColor}" />
             </telerik:RadCartesianChart.VerticalAxis>
             <telerik:RadCartesianChart.Series>
                 <telerik:OhlcSeries CategoryBinding="DateCategory"
@@ -75,6 +78,7 @@
         </Grid>
         <telerik:RadCartesianChart x:Name="indicatorsChart"
                                    Grid.Row="3"
+                                   BackgroundColor="Transparent"
                                    AutomationId="cartesianIndicatorsChart">
             <telerik:RadCartesianChart.ChartBehaviors>
                 <telerik:ChartPanAndZoomBehavior ZoomMode="Horizontal"
@@ -82,7 +86,8 @@
                                                  HandleDoubleTap="True" />
             </telerik:RadCartesianChart.ChartBehaviors>
             <telerik:RadCartesianChart.HorizontalAxis>
-                <telerik:DateTimeContinuousAxis LineColor="#A9A9A9"
+                <telerik:DateTimeContinuousAxis LabelTextColor="{DynamicResource DefaultTextColor}"
+                                                LineColor="{DynamicResource ChartLineColor}"
                                                 LabelFitMode="Rotate"
                                                 LabelFormat="dd/MM"
                                                 GapLength="0.8"
@@ -91,8 +96,9 @@
                                                 MajorStepUnit="Month" />
             </telerik:RadCartesianChart.HorizontalAxis>
             <telerik:RadCartesianChart.VerticalAxis>
-                <telerik:NumericalAxis LineColor="#A9A9A9"
-                                       MajorTickBackgroundColor="#A9A9A9" />
+                <telerik:NumericalAxis LabelTextColor="{DynamicResource DefaultTextColor}"
+                                       LineColor="{DynamicResource ChartLineColor}"
+                                       MajorTickBackgroundColor="{DynamicResource ChartLineColor}" />
             </telerik:RadCartesianChart.VerticalAxis>
             <telerik:RadCartesianChart.Series>
             </telerik:RadCartesianChart.Series>

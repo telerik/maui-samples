@@ -1,7 +1,7 @@
 using Microsoft.Maui.Controls;
 using Microsoft.Maui.Graphics;
-using System;
 using System.Globalization;
+using System.Linq;
 
 namespace QSF.Converters;
 
@@ -17,13 +17,11 @@ public class ColorNameToColorConverter : IValueConverter
         switch (colorString)
         {
             case "Default":
-                if (parameter != null && this.DefaultValuesResourceDictionary != null 
-                    && this.DefaultValuesResourceDictionary.ContainsKey((string)parameter))
+                if (parameter != null)
                 {
-                    color = this.DefaultValuesResourceDictionary[(string)parameter] as Color;
+                    color = GetThemeColor((string)parameter);
                     break;
                 }
-
                 color = null;
                 break;
             case "Black":
@@ -53,6 +51,49 @@ public class ColorNameToColorConverter : IValueConverter
 
     public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
     {
+        return null;
+    }
+
+    private Color GetThemeColor(string resourceKey)
+    {
+        if (string.IsNullOrWhiteSpace(resourceKey))
+        {
+            return null;
+        }
+
+        string resolvedKey = resourceKey switch
+        {
+            "BackTrackColor" => resourceKey.Contains("Telerik") ? "RadBorderAltColor" : "RadSliderBackTrackColor",
+            "InRangeTickColor" => resourceKey.Contains("Telerik") ? "RadBorderColor" : "RadSliderMiddleTickBackgroundColor",
+            "OutOfRangeTickColor" => resourceKey.Contains("Telerik") ? "RadBorderColor" : "RadSliderOutOfRangeTickBackgroundColor",
+            "TextColor" => "RadOnAppSurfaceColor",
+            "ThumbFill" => resourceKey.Contains("Telerik") ? "RadPrimaryColor" : "RadSliderThumbFillColor",
+            "StartThumbFill" => resourceKey.Contains("Telerik") ? "RadPrimaryColor" : "RadSliderThumbFillColor",
+            "EndThumbFill" => resourceKey.Contains("Telerik") ? "RadPrimaryColor" : "RadSliderThumbFillColor",
+            "RangeTrackFill" => "RadPrimaryColor",
+            "HighlightTextColor" => "RadPrimaryColor",
+            "ProgressFill" => "RadPrimaryColor",
+            "TrackFill" => "RadBorderColor",
+            _ => resourceKey
+        };
+
+        var swatch = TelerikThemeResources.Current.MergedDictionaries.FirstOrDefault();
+
+        if (swatch != null)
+        {
+            if (swatch.TryGetValue(resolvedKey, out var colorValue))
+            {
+                if (colorValue is Color color)
+                {
+                    return color;
+                }
+                if (colorValue is OnPlatform<Color> colorOnPlatform)
+                {
+                    return colorOnPlatform.Default;
+                }
+            }
+        }
+
         return null;
     }
 }

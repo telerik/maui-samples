@@ -3,21 +3,23 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                     xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                    xmlns:converters="clr-namespace:QSF.Converters"
                     x:Class="QSF.Examples.TemplatedPickerControl.Common.StylesAndTemplates">
+    <converters:ResourceKeyToColorConverter x:Key="ResourceKeyToColorConverter" />
     <Style x:Key="DefaultUniformGridStyle" TargetType="telerik:RadUniformGrid">
         <Setter Property="Margin" Value="5, 0, 0, 0" />
     </Style>
     <Style x:Key="DefaltSizeLabelStyle" TargetType="Label">
         <Setter Property="HorizontalOptions" Value="Center" />
         <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="TextColor" Value="{DynamicResource DefaultTextColor}" />
     </Style>
     <Style x:Key="ItemGridStyle" TargetType="Grid">
         <Setter Property="WidthRequest" Value="40" />
         <Setter Property="HeightRequest" Value="40" />
         <Setter Property="Margin" Value="12, 16" />
     </Style>
-    <Style x:Key="DefaultHeaderLabelStyle" TargetType="Label">
-        <Setter Property="TextColor" Value="{StaticResource DefaultTextColor}" />
+    <Style x:Key="DefaultHeaderLabelStyle" TargetType="Label" BasedOn="{StaticResource BaseLabelStyle}">
         <Setter Property="HorizontalOptions" Value="{OnPlatform Default='Center', MacCatalyst='Start', WinUI='Start'}" />
         <Setter Property="VerticalOptions" Value="Center" />
         <Setter Property="Margin" Value="{OnPlatform Default='10, 0', WinUI='20, 0'}" />
@@ -43,11 +45,12 @@
                 <TapGestureRecognizer Command="{Binding BindingContext.SelectSizeCommand, Source={RelativeSource AncestorType={x:Type telerik:RadUniformGrid}}}"
                                       CommandParameter="{Binding}" />
             </View.GestureRecognizers>
-            <Ellipse Fill="{Binding BackgroundColor}" />
-            <Label Text="{Binding Name}"
-                    Style="{StaticResource DefaltSizeLabelStyle}"
-                    TextColor="{Binding TextColor}" 
-                    AutomationId="{Binding Name, StringFormat='size{0}'}"/>
+            <telerik:RadBorder BackgroundColor="{Binding BackgroundColorKey, Converter={StaticResource ResourceKeyToColorConverter}}" CornerRadius="20">
+                <Label Text="{Binding Name}"
+                       Style="{StaticResource DefaltSizeLabelStyle}"
+                       TextColor="{Binding TextColorKey, Converter={StaticResource ResourceKeyToColorConverter}}" 
+                       AutomationId="{Binding Name, StringFormat='size{0}'}" />
+            </telerik:RadBorder>
         </Grid>
     </DataTemplate>
     <DataTemplate x:Key="ColorItemTemplate">

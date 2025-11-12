@@ -19,11 +19,11 @@
                 <Color x:Key="DarkPurple">#151950</Color>
             </local:KeyValueConverter>
             <Style x:Key="AvatarBorderStyle" TargetType="telerik:RadBorder">
-                <Setter Property="CornerRadius" Value="{Binding BorderCornerRadius}" />
+                <Setter Property="CornerRadius" Value="{Binding BorderCornerRadius, Mode=TwoWay}" />
                 <Setter Property="WidthRequest" Value="104" />
                 <Setter Property="HeightRequest" Value="104" />
-                <Setter Property="BackgroundColor" Value="{StaticResource DefaultBackgroundColor}" />
-                <Setter Property="BorderColor" Value="{Binding SelectedBorderColor, Converter={StaticResource ColorConverter}}" />
+                <Setter Property="BackgroundColor" Value="{DynamicResource DefaultBackgroundColor}" />
+                <Setter Property="BorderColor" Value="{Binding SelectedBorderColor, Converter={StaticResource ColorConverter}, Mode=OneWay}" />
                 <Setter Property="BorderThickness" Value="{Binding BorderThickness}" />
                 <Setter Property="HorizontalOptions" Value="Center" />
             </Style>
@@ -32,7 +32,7 @@
                 <Setter Property="Opacity" Value="0.6" />
                 <Setter Property="VerticalOptions" Value="Center" />
             </Style>
-            <Style x:Key="DefaultSliderStyle" TargetType="Slider">
+            <Style x:Key="DefaultSliderStyle" TargetType="telerik:RadSlider" BasedOn="{StaticResource RadSliderStyle}">
                 <Setter Property="Minimum" Value="0" />
                 <Setter Property="Maximum" Value="60" />
                 <Setter Property="Margin" Value="8, 0" />
@@ -40,14 +40,14 @@
                 <Setter Property="VerticalOptions" Value="Center" />
             </Style>
             <Style x:Key="GroupAtExampleAreaStyle" TargetType="Layout">
-                <Setter Property="Margin" Value="{OnPlatform Default='0, 0, 0, 40', Android='0, 0, 0, 15', iOS='0, 0, 0, 24'}" />
+                <Setter Property="Margin" Value="{OnPlatform Default='0, 0, 0, 40', Android='0, 0, 0, 15', iOS='0, 0, 0, 20'}" />
             </Style>
         </ResourceDictionary>
     </ContentView.Resources>
 
     <Grid RowDefinitions="Auto, *">
         <telerik:RadBorder Style="{StaticResource ControlWrapperBorderStyle}">
-            <telerik:RadBorder Style="{StaticResource AvatarBorderStyle}" 
+            <telerik:RadBorder Style="{StaticResource AvatarBorderStyle}"
                                AutomationId="avatarBorder">
                 <Image Aspect="AspectFill"
                        Source="{Binding Avatar}" />
@@ -69,15 +69,15 @@
                                Text="Border Thickness:" />
                         <Grid ColumnDefinitions="Auto, Auto, *, Auto">
                             <Label Style="{StaticResource HorizontalGroupLabelAtStartStyle}"
-                                   Text="{Binding BorderThickness.Left, StringFormat='B: {0:N0}'}" />
+                                   Text="{Binding BorderThickness.Left, StringFormat='B: {0:N0}', Mode=TwoWay}" />
                             <Label Grid.Column="1"
                                    Style="{StaticResource SliderMinMaxLabelStyle}"
                                    Text="0" />
-                            <Slider Grid.Column="2"
-                                    Style="{StaticResource DefaultSliderStyle}"
-                                    Value="{Binding BorderThicknessValue}"
-                                    Maximum="15"
-                                    AutomationId="borderThicknesSlider" />
+                            <telerik:RadSlider Grid.Column="2"
+                                               Style="{StaticResource DefaultSliderStyle}"
+                                               Value="{Binding BorderThicknessValue, Mode=TwoWay}"
+                                               Maximum="15"
+                                               AutomationId="borderThicknesSlider" />
                             <Label Grid.Column="3"
                                    Style="{StaticResource SliderMinMaxLabelStyle}"
                                    Text="15" />
@@ -113,10 +113,10 @@
                             <Label Grid.Column="1"
                                    Style="{StaticResource SliderMinMaxLabelStyle}"
                                    Text="0" />
-                            <Slider Grid.Column="2"
-                                    Style="{StaticResource DefaultSliderStyle}"
-                                    Value="{Binding LeftCornerRadius}"
-                                    AutomationId="leftCornerRadiusSlider" />
+                            <telerik:RadSlider Grid.Column="2"
+                                               Style="{StaticResource DefaultSliderStyle}"
+                                               Value="{Binding LeftCornerRadius, Mode=TwoWay}"
+                                               AutomationId="leftCornerRadiusSlider" />
                             <Label Grid.Column="3"
                                    Style="{StaticResource SliderMinMaxLabelStyle}"
                                    Text="60" />
@@ -128,10 +128,10 @@
                             <Label Grid.Column="1"
                                    Style="{StaticResource SliderMinMaxLabelStyle}"
                                    Text="0" />
-                            <Slider Grid.Column="2"
-                                    Style="{StaticResource DefaultSliderStyle}"
-                                    Value="{Binding TopCornerRadius}"
-                                    AutomationId="topCornerRadiusSlider" />
+                            <telerik:RadSlider Grid.Column="2"
+                                               Style="{StaticResource DefaultSliderStyle}"
+                                               Value="{Binding TopCornerRadius, Mode=TwoWay}"
+                                               AutomationId="topCornerRadiusSlider" />
                             <Label Grid.Column="3"
                                    Style="{StaticResource SliderMinMaxLabelStyle}"
                                    Text="60" />
@@ -146,10 +146,10 @@
                             <Label Grid.Column="1"
                                    Style="{StaticResource SliderMinMaxLabelStyle}"
                                    Text="0" />
-                            <Slider Grid.Column="2"
-                                    Style="{StaticResource DefaultSliderStyle}"
-                                    Value="{Binding RightCornerRadius}"
-                                    AutomationId="rightCornerRadiusSlider" />
+                            <telerik:RadSlider Grid.Column="2"
+                                               Style="{StaticResource DefaultSliderStyle}"
+                                               Value="{Binding RightCornerRadius, Mode=TwoWay}"
+                                               AutomationId="rightCornerRadiusSlider" />
                             <Label Grid.Column="3"
                                    Style="{StaticResource SliderMinMaxLabelStyle}"
                                    Text="60" />
@@ -163,10 +163,10 @@
                             <Label Grid.Column="1"
                                    Style="{StaticResource SliderMinMaxLabelStyle}"
                                    Text="0" />
-                            <Slider Grid.Column="2"
-                                    Style="{StaticResource DefaultSliderStyle}"
-                                    Value="{Binding BottomCornerRadius}"
-                                    AutomationId="bottomCornerRadiusSlider" />
+                            <telerik:RadSlider Grid.Column="2"
+                                               Style="{StaticResource DefaultSliderStyle}"
+                                               Value="{Binding BottomCornerRadius, Mode=TwoWay}"
+                                               AutomationId="bottomCornerRadiusSlider" />
                             <Label Grid.Column="3"
                                    Style="{StaticResource SliderMinMaxLabelStyle}"
                                    Text="60" />

@@ -98,8 +98,7 @@
                                    SelectionMode="None"
                                    Margin="{OnIdiom Default='16, 8, 16, 0', Desktop=0}">
             <telerik:RadCollectionView.ItemViewStyle>
-                <Style TargetType="telerik:RadCollectionViewItemView">
-                    <Setter Property="BorderColor" Value="{StaticResource DefaultBorderColor}" />
+                <Style TargetType="telerik:RadCollectionViewItemView" BasedOn="{StaticResource CollectionViewItemStyle}">
                     <Setter Property="BorderThickness" Value="{OnIdiom Default='0, 0, 0, 1', Desktop='0'}" />
                     <Setter Property="VisualStateManager.VisualStateGroups">
                         <VisualStateGroupList>

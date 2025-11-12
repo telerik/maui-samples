@@ -7,16 +7,6 @@
              x:Class="QSF.Pages.ExamplePage"
              Style="{StaticResource PageStyle}"
              x:Name="page">
-    <VisualElement.Resources>
-        <FontImageSource x:Key="ThemesButtonFontImageSource"
-                         FontFamily="TelerikFontExamples"
-                         Glyph="&#xe8b2;"
-                         Size="24"
-                         Color="#FFFFFF" />
-        <Style TargetType="Label">
-            <Setter Property="TextColor" Value="{DynamicResource RadOnAppSurfaceColor}" />
-        </Style>
-    </VisualElement.Resources>
 
     <views:QSFPageContentView BackgroundColor="{DynamicResource RadAppSurfaceColor}">
         <views:QSFPageContentView.HeaderControlTemplate>
@@ -26,22 +16,10 @@
                                  Style="{OnPlatform Default={StaticResource DefaultBackButtonStyle}, iOS={StaticResource IOSBackButtonStyle}}" 
                                  AutomationId="backButton" />
                     <Label Grid.Column="1"
-                           Text="{Binding HeaderTitle}"
+                           Text="{Binding HeaderTitle, Mode=TwoWay}"
                            Style="{StaticResource HeaderLabelStyle}"
                            Margin="10, 0"
                            AutomationId="exampleName" />
-                    <telerik:RadEntry x:Name="searchEntry"
-                                      Grid.Column="1"
-                                      Placeholder="Search for example"
-                                      PlaceholderColor="Black"
-                                      TextColor="Black"
-                                      HeightRequest="{OnPlatform Android=44, iOS=32}"
-                                      WidthRequest="200"
-                                      BackgroundColor="White"
-                                      BindingContext="{Binding Source={RelativeSource AncestorType={x:Type NavigationPage}}, Path=RootPage.BindingContext}"
-                                      IsVisible="{Binding IsTestSearchEntryVisible}"
-                                      TextChanged="OnExampleSearchTextChanged"
-                                      AutomationId="searchEntry" />
                     <HorizontalStackLayout Grid.Column="2"
                                            HorizontalOptions="End"
                                            Spacing="16">
@@ -54,7 +32,6 @@
                         <ImageButton Command="{Binding NavigateToThemeSettingsCommand}"
                                      CommandParameter="{Binding Source={x:Reference page}}"
                                      Source="{StaticResource ThemesButtonFontImageSource}"
-                                     IsVisible="{Binding Example.IsThemable}"
                                      Style="{StaticResource PageAppBarImageButtonStyle}"
                                      AutomationId="navigateToThemeSettings" />
                         <ImageButton Command="{Binding NavigateToDescriptionCommand}"

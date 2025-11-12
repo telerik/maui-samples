@@ -6,23 +6,20 @@
                         Margin="16, 20">
     <telerik:RadContentView.Resources>
         <ResourceDictionary>
-            <Color x:Key="MainBackgroundColor">White</Color>
-
-            <Style TargetType="Label">
+            <Style TargetType="Label" BasedOn="{StaticResource BaseLabelStyle}">
                 <Setter Property="VerticalTextAlignment" Value="Center" />
                 <Setter Property="Margin" Value="5,0,5,0" />
                 <Setter Property="FontSize" Value="16" />
             </Style>
 
-            <Style TargetType="Label" x:Key="InfoLabel">
+            <Style TargetType="Label" x:Key="InfoLabel" BasedOn="{StaticResource BaseLabelStyle}">
                 <Setter Property="FontSize" Value="18" />
                 <Setter Property="Margin" Value="0,20" />
             </Style>
         </ResourceDictionary>
     </telerik:RadContentView.Resources>
     <telerik:RadContentView.Content>
-        <Grid BackgroundColor="{StaticResource MainBackgroundColor}"
-              RowDefinitions="Auto,*">
+        <Grid RowDefinitions="Auto,*">
             <Label Text="Please complete our survey"
                    Margin="0"
                    FontSize="20" />

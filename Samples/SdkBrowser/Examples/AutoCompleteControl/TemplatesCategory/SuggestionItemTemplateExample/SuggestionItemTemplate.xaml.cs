@@ -7,5 +7,7 @@ public partial class SuggestionItemTemplate : ContentView
 	public SuggestionItemTemplate()
 	{
 		InitializeComponent();
+
+		this.autoComplete.AutomationId = "autoComplete";
 	}
 }

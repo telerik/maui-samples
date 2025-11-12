@@ -4,8 +4,81 @@
                     xmlns:local="clr-namespace:QSF.Examples.SchedulerControl.CustomizationExample"
                     x:Class="QSF.Examples.SchedulerControl.CustomizationExample.CustomSchedulingResources_Desktop">
     <ResourceDictionary.MergedDictionaries>
-        <telerik:RadSchedulerResources />
+        <local:SharedSchedulingResources />
     </ResourceDictionary.MergedDictionaries>
+    
+    <Style x:Key="SchedulerDialogCloseButtonBaseStyle" TargetType="telerik:RadButton">
+        <Setter Property="FontFamily" Value="{x:Static telerik:TelerikFont.Name}" />
+        <Setter Property="TextColor" Value="{DynamicResource DefaultTextColor}" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="VerticalOptions" Value="Center" />
+    </Style>
+
+    <Style x:Key="SchedulerDialogCloseButtonStyle_MacCatalyst" TargetType="telerik:RadButton" BasedOn="{StaticResource SchedulerDialogCloseButtonBaseStyle}">
+        <Setter Property="FontSize" Value="6" />
+        <Setter Property="TextColor" Value="#000000" />
+        <Setter Property="BackgroundColor" Value="#FF5F57" />
+        <Setter Property="BorderColor" Value="#1F000000" />
+        <Setter Property="BorderWidth" Value="0.5" />
+        <Setter Property="WidthRequest" Value="12" />
+        <Setter Property="HeightRequest" Value="12" />
+        <Setter Property="CornerRadius" Value="6" />
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup Name="CommonStates">
+                    <VisualState Name="Normal" />
+                    <VisualState Name="PointerOver">
+                        <VisualState.Setters>
+                            <Setter Property="telerik:RadButton.Text" Value="{x:Static telerik:TelerikFont.IconCancel}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState Name="Pressed">
+                        <VisualState.Setters>
+                            <Setter Property="telerik:RadButton.Text" Value="{x:Static telerik:TelerikFont.IconCancel}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+
+    <Style x:Key="SchedulerDialogCloseButtonStyle_WinUI" TargetType="telerik:RadButton" BasedOn="{StaticResource SchedulerDialogCloseButtonBaseStyle}">
+        <Setter Property="Text" Value="{x:Static telerik:TelerikFont.IconCancel}" />
+        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="BorderColor" Value="Transparent" />
+        <Setter Property="BorderWidth" Value="0" />
+        <Setter Property="WidthRequest" Value="46" />
+        <Setter Property="HeightRequest" Value="32" />
+        <Setter Property="CornerRadius" Value="0" />
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup Name="CommonStates">
+                    <VisualState Name="Normal" />
+                    <VisualState Name="PointerOver">
+                        <VisualState.Setters>
+                            <Setter Property="telerik:RadButton.TextColor" Value="{DynamicResource RadOnErrorColor}" />
+                            <Setter Property="telerik:RadButton.BackgroundColor" Value="{DynamicResource RadErrorColor}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState Name="Pressed">
+                        <VisualState.Setters>
+                            <Setter Property="telerik:RadButton.TextColor" Value="{DynamicResource RadOnErrorColor}" />
+                            <Setter Property="telerik:RadButton.BackgroundColor" Value="{DynamicResource RadErrorColor}" />
+                            <Setter Property="telerik:RadButton.Opacity" Value="0.9" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+
+    <Style x:Key="SchedulerDialogLabelStyle" TargetType="Label">
+        <Setter Property="MinimumWidthRequest" Value="{OnPlatform Default=0, MacCatalyst=100, WinUI=80}" />
+        <Setter Property="TextColor" Value="{DynamicResource DefaultTextColor}" />
+        <Setter Property="FontSize" Value="{OnPlatform Default=14, iOS=17}" />
+        <Setter Property="VerticalOptions" Value="Center" />
+    </Style>
 
     <ControlTemplate x:Key="CustomSchedulerEditAppointmentDialog_ControlTemplate">
         <Grid RowDefinitions="{OnPlatform Default='28, Auto, *, Auto, Auto', WinUI='32, Auto, *, Auto, Auto'}">
@@ -76,8 +149,19 @@
                       Grid.Column="1">
                     <Switch x:Name="allDaySwitch"
                             IsToggled="{Binding IsAllDayAppointment, Mode=TwoWay}"
-                            IsEnabled="{Binding IsReadOnly, Converter={StaticResource InvertedBooleanConverter}}">
-                    </Switch>
+                            IsEnabled="{Binding IsReadOnly, Converter={StaticResource InvertedBooleanConverter}}"
+                            Style="{DynamicResource SchedulerDialogSwitchStyle}" />
+                    <OnPlatform x:TypeArguments="View">
+                        <On Platform="WinUI">
+                            <telerik:RadBorder HeightRequest="20"
+                                               WidthRequest="40"
+                                               CornerRadius="10"
+                                               BorderColor="{Binding OnColor, Source={x:Reference allDaySwitch}}"
+                                               BorderThickness="1"
+                                               HorizontalOptions="Start"
+                                               VerticalOptions="Center" />
+                        </On>
+                    </OnPlatform>
                 </Grid>
                 <Grid Grid.Row="4"
                       Grid.ColumnSpan="2"
@@ -123,19 +207,19 @@
                     <On Platform="MacCatalyst">
                         <Grid Grid.Row="6"
                               Grid.Column="1">
-                            <telerik:RadBorder BorderBrush="{StaticResource EditorBorderBrush}"
+                            <telerik:RadBorder BorderBrush="{DynamicResource EditorBorderBrush}"
                                                BorderThickness="1"
                                                Padding="1, 0"
                                                CornerRadius="6">
                                 <Editor x:Name="descriptionEditor_MacCatalyst"
-                                        TextColor="{StaticResource RadOnAppSurfaceColor}"
-                                        PlaceholderColor="{StaticResource RadSubtleColor}"
-                                        BackgroundColor="{StaticResource RadEntryBackgroundColor}"
+                                        TextColor="{DynamicResource DefaultTextColor}"
+                                        PlaceholderColor="{DynamicResource RadSubtleColor}"
+                                        BackgroundColor="{DynamicResource EntryBackgroundColor}"
                                         IsEnabled="{Binding IsReadOnly, Converter={StaticResource InvertedBooleanConverter}}"
                                         Text="{Binding Description, Mode=TwoWay}"
                                         HeightRequest="68" />
                             </telerik:RadBorder>
-                            <Rectangle Stroke="{StaticResource RadEntryFocusedBorderBrush}"
+                            <Rectangle Stroke="{DynamicResource RadPrimaryColor}"
                                        StrokeThickness="3"
                                        RadiusX="6"
                                        RadiusY="6"
@@ -146,16 +230,16 @@
                         <Grid Grid.Row="6"
                               Grid.Column="1">
                             <Editor x:Name="descriptionEditor_WinUI"
-                                    TextColor="{StaticResource RadOnAppSurfaceColor}"
-                                    PlaceholderColor="{StaticResource RadSubtleColor}"
-                                    BackgroundColor="{StaticResource RadEntryBackgroundColor}"
+                                    TextColor="{DynamicResource DefaultTextColor}"
+                                    PlaceholderColor="{DynamicResource RadSubtleColor}"
+                                    BackgroundColor="{DynamicResource EntryBackgroundColor}"
                                     IsEnabled="{Binding IsReadOnly, Converter={StaticResource InvertedBooleanConverter}}"
                                     Text="{Binding Description, Mode=TwoWay}"
                                     HeightRequest="70" />
-                            <telerik:RadBorder BorderBrush="{StaticResource EditorBorderBrush}"
+                            <telerik:RadBorder BorderBrush="{DynamicResource EditorBorderBrush}"
                                                BorderThickness="1"
                                                CornerRadius="4" />
-                            <telerik:RadBorder BorderBrush="{StaticResource RadPrimaryColor}"
+                            <telerik:RadBorder BorderBrush="{DynamicResource RadPrimaryColor}"
                                                BorderThickness="0, 0, 0, 2"
                                                CornerRadius="4"
                                                IsVisible="{Binding IsFocused, Source={x:Reference descriptionEditor_WinUI}}" />
@@ -182,7 +266,7 @@
             </Grid>
             <telerik:SchedulerBoxView Grid.Row="3"
                                       HeightRequest="1"
-                                      BackgroundColor="{OnPlatform Default=Transparent, WinUI={StaticResource RadBorderColor}}"
+                                      BackgroundColor="{DynamicResource RadBorderColor}"
                                       IsVisible="{OnPlatform Default=False, WinUI=True}"
                                       VerticalOptions="Start" />
         </Grid>
@@ -191,5 +275,7 @@
     <Style x:Key="CustomSchedulerEditAppointmentDialog_Style" TargetType="telerik:SchedulerDialog">
         <Setter Property="ControlTemplate" Value="{StaticResource CustomSchedulerEditAppointmentDialog_ControlTemplate}" />
         <Setter Property="HeightRequest" Value="{OnPlatform Default=450, WinUI=530}" />
+        <Setter Property="BackgroundColor" Value="{DynamicResource DefaultBackgroundColor}" />
+        <Setter Property="BorderColor" Value="{DynamicResource RadBorderColor}" />
     </Style>
 </ResourceDictionary>
