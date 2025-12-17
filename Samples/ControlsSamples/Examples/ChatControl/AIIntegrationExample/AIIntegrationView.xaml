@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:storage="clr-namespace:Microsoft.Maui.Storage;assembly=Microsoft.Maui.Essentials"
-             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
-             xmlns:local="clr-namespace:QSF.Examples.ChatControl.AIIntegrationExample"
-             x:Class="QSF.Examples.ChatControl.AIIntegrationExample.AIIntegrationView"
-             Padding="{OnIdiom Default=0, Desktop=16}">
-    
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        xmlns:chat="clr-namespace:QSF.Examples.ChatControl"
+                        xmlns:local="clr-namespace:QSF.Examples.ChatControl.AIIntegrationExample"
+                        x:Class="QSF.Examples.ChatControl.AIIntegrationExample.AIIntegrationView"
+                        Padding="{OnIdiom Default=0, Desktop=16}">
+
     <VisualElement.Resources>
         <local:ItemConverter x:Key="ItemConverter" />
+        <Style x:Key="SpeechToTextButtonStyle" TargetType="telerik:RadSpeechToTextButton" BasedOn="{StaticResource ChatInputAreaSpeechToTextButtonStyle}">
+            <Setter Property="SpeechRecognizerCreator" Value="{x:Static chat:SpeechRecognizerProvider.SpeechRecognizerCreator}" />
+        </Style>
     </VisualElement.Resources>
-
     <telerik:RadContentView.BindingContext>
         <local:AIIntegrationViewModel />
     </telerik:RadContentView.BindingContext>
@@ -24,13 +26,13 @@
                              ItemsSource="{Binding Messages}"
                              Message="{Binding Prompt}"
                              SendMessageCommand="{Binding SendMessageCommand}"
-                             AttachedFileConverter="{Static local:AttachedFileConverter.Instance}" 
+                             AttachedFileConverter="{Static chat:AttachedFileConverter.Instance}"
                              AttachedFilesSource="{Binding AttachedFiles}"
-                             AttachFilesCommand="{Binding AttachFilesCommand, Converter={Static local:AttachFilesCommandConverter.Instance}}"
-                             PickFileTypes="{Static storage:FilePickerFileType.Images}"
+                             AttachFilesCommand="{Binding AttachFilesCommand, Converter={Static chat:AttachFilesCommandConverter.Instance}}"
                              RemoveAttachedFileCommand="{Binding RemoveAttachedFileCommand}"
                              IsMoreButtonVisible="True"
-                             IsSpeechToTextButtonVisible="True">
+                             IsSpeechToTextButtonVisible="True"
+                             SpeechToTextButtonStyle="{OnPlatform WinUI={StaticResource SpeechToTextButtonStyle}}">
                 <telerik:RadChat.TypingIndicator>
                     <telerik:TypingIndicator AutomationId="typingIndicator"
                                              Image="ai_assistant.png"

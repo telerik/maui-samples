@@ -17,16 +17,45 @@
             <telerik:RadAutoComplete.SuggestionItemTemplate>
                 <DataTemplate>
                     <Grid ColumnDefinitions="Auto,Auto">
-                        <telerik:RadBorder Margin="5"
-                                           CornerRadius="5"
-                                           HeightRequest="20"
-                                           BackgroundColor="#8660C5"
-                                           WidthRequest="20"/>
-                        <Label Margin="5" 
+                        <Grid.Resources>
+                            <Style x:Key="LabelStyle" TargetType="Label">
+                                <Setter Property="VerticalOptions" Value="Center" />
+                                <Setter Property="TextColor" Value="#000000" />
+                            </Style>
+                            <Style x:Key="LabelStyle_MacCatalyst" TargetType="Label" BasedOn="{StaticResource LabelStyle}">
+                                <Style.Triggers>
+                                    <DataTrigger TargetType="Label"
+                                                 Binding="{Binding IsMouseOver, Source={RelativeSource AncestorType={x:Type ContentView}}}"
+                                                 Value="True">
+                                        <Setter Property="TextColor" Value="#FFFFFF" />
+                                    </DataTrigger>
+                                    <DataTrigger TargetType="Label"
+                                                 Binding="{Binding IsCurrent, Source={RelativeSource AncestorType={x:Type ContentView}}}"
+                                                 Value="True">
+                                        <Setter Property="TextColor" Value="#FFFFFF" />
+                                    </DataTrigger>
+                                    <MultiTrigger TargetType="Label">
+                                        <MultiTrigger.Conditions>
+                                            <BindingCondition Binding="{Binding IsCurrent, Source={RelativeSource AncestorType={x:Type ContentView}}}"
+                                                              Value="True" />
+                                            <BindingCondition Binding="{Binding IsMouseOver, Source={RelativeSource AncestorType={x:Type ContentView}}}"
+                                                              Value="True" />
+                                        </MultiTrigger.Conditions>
+                                        <Setter Property="TextColor" Value="#FFFFFF" />
+                                    </MultiTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Grid.Resources>
+                        <telerik:RadBorder BackgroundColor="#B8B8B8"
+                                           HeightRequest="{OnPlatform Default=20, WinUI=16}"
+                                           WidthRequest="{OnPlatform Default=20, WinUI=16}"
+                                           Margin="5"
+                                           CornerRadius="5" />
+                        <Label Margin="5"
                                Grid.Column="1"
                                FontSize="18"
                                Text="{Binding Name}"
-                               TextColor="Black"/>
+                               Style="{OnPlatform Default={StaticResource LabelStyle}, MacCatalyst={StaticResource LabelStyle_MacCatalyst}}" />
                     </Grid>
                 </DataTemplate>
             </telerik:RadAutoComplete.SuggestionItemTemplate>

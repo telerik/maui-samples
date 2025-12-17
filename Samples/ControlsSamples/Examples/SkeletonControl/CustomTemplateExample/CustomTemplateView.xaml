@@ -10,34 +10,33 @@
         <converters:ResourceKeyToColorConverter x:Key="ResourceKeyToColorConverter" />
 
         <DataTemplate x:Key="MessageSkeletonTemplate">
-            <Grid MinimumHeightRequest="64"
-                  VerticalOptions="Start"
+            <Grid VerticalOptions="Start"
                   Padding="{OnPlatform Default='16, 16, 12, 16', MacCatalyst='16, 16, 20, 16'}"
                   ColumnSpacing="8"
                   ColumnDefinitions="Auto, *, Auto">
-                <RoundRectangle MinimumWidthRequest="32"
-                                MinimumHeightRequest="32"
+                <RoundRectangle WidthRequest="32"
+                                HeightRequest="32"
                                 CornerRadius="6"
                                 VerticalOptions="Center" />
                 <Grid Grid.Column="1"
                       RowDefinitions="Auto, Auto"
                       VerticalOptions="Center"
                       HorizontalOptions="Fill">
-                    <RoundRectangle MinimumHeightRequest="12"
-                                    MinimumWidthRequest="110"
+                    <RoundRectangle HeightRequest="12"
+                                    WidthRequest="110"
                                     CornerRadius="4"
                                     Margin="0, 4, 0, 0"
                                     HorizontalOptions="Start" />
                     <RoundRectangle Grid.Row="1"
-                                    MinimumHeightRequest="8"
-                                    MinimumWidthRequest="240"
+                                    HeightRequest="8"
+                                    WidthRequest="240"
                                     CornerRadius="4"
                                     Margin="0, 8, 0, 0"
                                     HorizontalOptions="Start" />
                 </Grid>
                 <RoundRectangle Grid.Column="2"
-                                MinimumHeightRequest="12"
-                                MinimumWidthRequest="32"
+                                HeightRequest="12"
+                                WidthRequest="32"
                                 CornerRadius="8"
                                 VerticalOptions="Center" />
             </Grid>

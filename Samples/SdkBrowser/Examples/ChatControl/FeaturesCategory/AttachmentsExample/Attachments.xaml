@@ -16,7 +16,7 @@
 					 IsMoreButtonVisible="True"
 					 Message="{Binding Message}"
 					 SendMessageCommand="{Binding SendMessageCommand}"
-					 AttachedFileConverter="{Static local:AttachedFileConverter.Instance}" 
+					 AttachedFileConverter="{Static local:AttachedFileConverter.Instance}"
 					 AttachedFilesSource="{Binding AttachedFiles}"
 					 AttachFilesCommand="{Binding AttachFilesCommand, Converter={Static local:AttachFilesCommandConverter.Instance}}" />
 	<!-- << chat-attachments-xaml -->

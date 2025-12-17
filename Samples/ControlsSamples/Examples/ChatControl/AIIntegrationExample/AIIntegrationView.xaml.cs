@@ -1,38 +1,66 @@
 ﻿using Microsoft.Maui.Controls;
+using System.Collections.Generic;
 using Telerik.Maui.Controls;
-using Telerik.Maui.SpeechRecognizer;
+using Telerik.Maui.Controls.Chat;
 
 namespace QSF.Examples.ChatControl.AIIntegrationExample;
 
 public partial class AIIntegrationView : RadContentView
 {
+    private SuggestedActionsItem suggestedActionsItem;
+
     public AIIntegrationView()
     {
         InitializeComponent();
-
-#if WINDOWS
-        Style sttbStyle = new Style(typeof(RadSpeechToTextButton));
-        sttbStyle.Setters.Add(new Setter { Property = RadSpeechToTextButton.SpeechRecognizerCreatorProperty, Value = new Func<RadSpeechRecognizer>(() => new RadSpeechRecognizer()), });
-        this.chat.SpeechToTextButtonStyle = sttbStyle;
-#endif
-
         this.Unloaded += this.OnUnloaded;
+
+        this.Dispatcher.Dispatch(this.AddSuggestedActions);
+    }
+
+    private void AddSuggestedActions()
+    {
+        if (this.suggestedActionsItem != null)
+        {
+            return;
+        }
+
+        if (this.BindingContext is not AIIntegrationViewModel vm || vm.QuickActions.Count == 0)
+        {
+            return;
+        }
+
+        var item = new SuggestedActionsItem();
+        var actions = new List<SuggestedAction>();
+
+        foreach (var quickAction in vm.QuickActions)
+        {
+            actions.Add(new SuggestedAction
+            {
+                Text = quickAction,
+                Command = new Command(() =>
+                {
+                    vm.QuickActionCommand.Execute(quickAction);
+
+                    this.Dispatcher.Dispatch(() =>
+                    {
+                        vm.Messages.Remove(item);
+                        this.suggestedActionsItem = null;
+                    });
+                })
+            });
+        }
+
+        item.Actions = actions;
+
+        vm.Messages.Add(item);
+        this.suggestedActionsItem = item;
     }
 
     private void OnUnloaded(object sender, EventArgs args)
     {
-        if (!this.IsLoaded)
+        if (!this.IsLoaded && this.BindingContext is AIIntegrationViewModel vm)
         {
-            AIIntegrationViewModel vm = this.BindingContext as AIIntegrationViewModel;
-
-            if (vm != null)
-            {
-                try
-                {
-                    vm.DisconnectAI();
-                }
-                catch { }
-            }
+            try { vm.DisconnectAI(); } catch { }
         }
     }
 }

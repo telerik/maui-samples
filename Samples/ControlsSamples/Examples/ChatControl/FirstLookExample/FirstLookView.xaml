@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        xmlns:telerikChat="clr-namespace:Telerik.Maui.Controls.Chat;assembly=Telerik.Maui.Controls"
+                        xmlns:chat="clr-namespace:QSF.Examples.ChatControl"
+                        xmlns:local="clr-namespace:QSF.Examples.ChatControl.FirstLookExample"
+                        x:Class="QSF.Examples.ChatControl.FirstLookExample.FirstLookView"
+                        Padding="{OnIdiom Default=0, Desktop=16}">
+
+    <VisualElement.Resources>
+        <local:FirstLookItemConverter x:Key="ItemConverter" />
+        <ControlTemplate x:Key="InlineTypingIndicatorTemplate">
+            <Grid Padding="{OnPlatform Default='0, 10', WinUI='0, 12'}"
+                  ColumnDefinitions="Auto, Auto, Auto"
+                  ColumnSpacing="4">
+                <Image Source="{TemplateBinding ActualImage}"
+                       WidthRequest="{OnPlatform Default=24, WinUI=32}"
+                       HeightRequest="{OnPlatform Default=24, WinUI=32}"
+                       VerticalOptions="Center"
+                       Aspect="AspectFit"
+                       Margin="0, 2" />
+                <Label Grid.Column="1"
+                       Text="{TemplateBinding ActualText}"
+                       FontSize="{TemplateBinding FontSize}"
+                       FontFamily="{TemplateBinding FontFamily}"
+                       FontAttributes="{TemplateBinding FontAttributes}"
+                       VerticalOptions="Center" />
+                <telerikChat:TypingIndicatorDots Grid.Column="2"
+                                                 Color="{DynamicResource ApplicationAccentColor}"
+                                                 Scale="0.6"
+                                                 IsTyping="{TemplateBinding ActualIsTyping}"
+                                                 VerticalOptions="Center"
+                                                 Margin="-4, 4, 0, 0" />
+            </Grid>
+        </ControlTemplate>
+        <Style x:Key="SpeechToTextButtonStyle" TargetType="telerik:RadSpeechToTextButton" BasedOn="{StaticResource ChatInputAreaSpeechToTextButtonStyle}">
+            <Setter Property="SpeechRecognizerCreator" Value="{x:Static chat:SpeechRecognizerProvider.SpeechRecognizerCreator}" />
+        </Style>
+    </VisualElement.Resources>
+    
+    <telerik:RadContentView.BindingContext>
+        <local:FirstLookViewModel />
+    </telerik:RadContentView.BindingContext>
+
+    <telerik:RadBorder BorderThickness="{OnIdiom Default=0, Desktop=1}"
+                       BorderColor="{DynamicResource PlatformBorderColor}"
+                       HorizontalOptions="{OnIdiom Default=Fill, Desktop=Center}">
+        <Grid WidthRequest="{OnIdiom Default=-1, Desktop=450}">
+            <telerik:RadChat x:Name="chat"
+                             ItemConverter="{StaticResource ItemConverter}"
+                             ItemsSource="{Binding Messages}"
+                             Message="{Binding Message}"
+                             SendMessageCommand="{Binding SendMessageCommand}"
+                             AttachedFileConverter="{Static chat:AttachedFileConverter.Instance}"
+                             AttachedFilesSource="{Binding AttachedFiles}"
+                             AttachFilesCommand="{Binding AttachFilesCommand, Converter={Static chat:AttachFilesCommandConverter.Instance}}"
+                             RemoveAttachedFileCommand="{Binding RemoveAttachedFileCommand}"
+                             IsMoreButtonVisible="True"
+                             IsSpeechToTextButtonVisible="True"
+                             SpeechToTextButtonStyle="{OnPlatform WinUI={StaticResource SpeechToTextButtonStyle}}">
+                <telerik:RadChat.TypingIndicator>
+                    <telerik:TypingIndicator IsTyping="{Binding IsRecipientTyping}"
+                                             ControlTemplate="{StaticResource InlineTypingIndicatorTemplate}"
+                                             Image="person_2.png"
+                                             Text="John is typing"
+                                             AutomationId="typingIndicator" />
+                </telerik:RadChat.TypingIndicator>
+            </telerik:RadChat>
+        </Grid>
+    </telerik:RadBorder>
+    
+</telerik:RadContentView>

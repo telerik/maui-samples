@@ -5,7 +5,7 @@ using System.Linq;
 using System.Windows.Input;
 using Telerik.Maui.Controls;
 
-namespace QSF.Examples.ChatControl.AIIntegrationExample;
+namespace QSF.Examples.ChatControl;
 
 /// <summary>
 /// A custom converter that converts from chat specific objects to business objecs, 

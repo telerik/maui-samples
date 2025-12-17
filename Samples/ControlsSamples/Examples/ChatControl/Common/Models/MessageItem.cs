@@ -1,6 +1,6 @@
 ﻿using Telerik.Maui.Controls;
 
-namespace QSF.Examples.ChatControl.AIIntegrationExample;
+namespace QSF.Examples.ChatControl;
 
 public class MessageItem : NotifyPropertyChangedBase
 {

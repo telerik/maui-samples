@@ -381,18 +381,28 @@
 			<FullDescription>The Chat component empowers developers to create modern, engaging conversational interfaces in .NET MAUI applications. Its flexible architecture allows effortless integration with chatbots, large language models (LLMs), and custom business logic, enabling rich and intelligent user experiences.</FullDescription>
 			<Examples>
 				<Example>
+					<Status>New</Status>
+					<Name>FirstLook</Name>
+					<Page>FirstLookView</Page>
+					<DisplayName>First Look</DisplayName>
+					<Description>This example shows a person-to-person conversation using the Chat control and demonstrates multiple functionalities, such as quick replies, typing indicator, bulk/single file uploads and downloading/sharing attachments.</Description>
+				</Example>
+				<Example>
+					<Status>New</Status>
 					<Name>AIIntegration</Name>
 					<Page>AIIntegrationView</Page>
 					<DisplayName>AI Integration</DisplayName>
 					<Description>This example showcases the integration of the component with an AI service. This enables the user to participate in a person-to-AI conversation.</Description>
 				</Example>
 				<Example>
+					<Status>Updated</Status>
 					<Name>ChatRoom</Name>
 					<Page>ChatRoomView</Page>
 					<DisplayName>Chat Room</DisplayName>
 					<Description>This example demonstrates one way to go about implementing a chat room with multiple participants. Some of the features that are demonstrated are: typing indicator, timebreaks, color customization, MVVM support.</Description>
 				</Example>
 				<Example>
+					<Status>Updated</Status>
 					<Name>Configuration</Name>
 					<Page>ConfigurationView</Page>
 					<DisplayName>Configuration</DisplayName>
@@ -587,6 +597,7 @@
 		</Control>
 
 		<Control>
+			<Status>Updated</Status>
 			<Name>DataGrid</Name>
 			<DisplayName>DataGrid</DisplayName>
 			<ShortDescription>A powerful and feature-rich control used to visualize and edit data represented in a tabular fashion.</ShortDescription>
@@ -691,6 +702,13 @@
 					<Page>FirstLookView</Page>
 					<DisplayName>Paging Large Data</DisplayName>
 					<Description>This example demonstrates how to implement paging functionality of larger data using the RadDataPager control.</Description>
+				</Example>
+				<Example>
+					<Status>New</Status>
+					<Name>ExportToExcel</Name>
+					<Page>ExportToExcelView</Page>
+					<DisplayName>Export Data To Excel</DisplayName>
+					<Description>This example demonstrates how to export data from the DataGrid control to excel.</Description>
 				</Example>
 				<!--<Example>
 					<Name>Theming</Name>
@@ -1391,7 +1409,6 @@
 					<Description>The Telerik UI for .NET MAUI Skeleton control is a UI element that serves as a placeholder while content is being loaded. It provides a visual representation of the layout and structure of the content that will eventually be displayed, helping to improve the user experience during loading times.</Description>
 				</Example>
 				<Example>
-					<ExcludeFrom>Android</ExcludeFrom>
 					<Name>CustomTemplate</Name>
 					<Page>CustomTemplateView</Page>
 					<DisplayName>Custom Template</DisplayName>

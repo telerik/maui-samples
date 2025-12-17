@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.ChatControl.FeaturesCategory.AttachmentsExample"
+             x:Class="SDKBrowserMaui.Examples.ChatControl.FeaturesCategory.AttachmentsStylingExample.AttachmentsStyling">
+	<ContentView.Resources>
+		<ResourceDictionary>
+			<local:ItemConverter x:Key="ItemConverter" />
+			<!-- >> chat-styling-attachments-imagestyle -->
+			<telerik:ChatFileExtensionToImageSourceConverter x:Key="ChatFileExtensionToImageSourceConverter">
+				<telerik:ChatFileExtensionToImageSourceConverter.FallbackValue>
+					<FontImageSource FontFamily="{Static telerik:TelerikFont.Name}"
+									 Glyph="{Static telerik:TelerikFont.IconFile}"
+									 Size="16"
+									 Color="#F18900" />
+				</telerik:ChatFileExtensionToImageSourceConverter.FallbackValue>
+				<telerik:ChatFileExtensionToImageSourceConverterItem FileExtensions=".pdf, .doc, .docx, .pptx">
+					<telerik:ChatFileExtensionToImageSourceConverterItem.ImageSource>
+						<FontImageSource FontFamily="{Static telerik:TelerikFont.Name}"
+										 Glyph="{Static telerik:TelerikFont.IconGallery}"
+										 Size="16"
+										 Color="#8660C5" />
+					</telerik:ChatFileExtensionToImageSourceConverterItem.ImageSource>
+				</telerik:ChatFileExtensionToImageSourceConverterItem>
+				<telerik:ChatFileExtensionToImageSourceConverterItem FileExtensions=".png, .jpg, .bmp, .jpeg">
+					<telerik:ChatFileExtensionToImageSourceConverterItem.ImageSource>
+						<FontImageSource FontFamily="{Static telerik:TelerikFont.Name}"
+										 Glyph="{Static telerik:TelerikFont.IconImage}"
+										 Size="16"
+										 Color="#80CBC4" />
+					</telerik:ChatFileExtensionToImageSourceConverterItem.ImageSource>
+				</telerik:ChatFileExtensionToImageSourceConverterItem>
+			</telerik:ChatFileExtensionToImageSourceConverter>
+			<!-- << chat-styling-attachments-imagestyle -->
+			
+			<!-- >> chat-styling-image-outgoing-messages -->
+			<telerik:ChatFileExtensionToImageSourceConverter x:Key="ChatOutgoingFileExtensionToImageSourceConverter">
+				<telerik:ChatFileExtensionToImageSourceConverter.FallbackValue>
+					<FontImageSource FontFamily="{Static telerik:TelerikFont.Name}"
+									 Glyph="{Static telerik:TelerikFont.IconFile}"
+									 Size="16"
+									 Color="#000000" />
+				</telerik:ChatFileExtensionToImageSourceConverter.FallbackValue>
+				<telerik:ChatFileExtensionToImageSourceConverterItem FileExtensions=".pdf, .doc, .docx, .pptx">
+					<telerik:ChatFileExtensionToImageSourceConverterItem.ImageSource>
+						<FontImageSource FontFamily="{Static telerik:TelerikFont.Name}"
+										 Glyph="{Static telerik:TelerikFont.IconGallery}"
+										 Size="16"
+										 Color="#000000" />
+					</telerik:ChatFileExtensionToImageSourceConverterItem.ImageSource>
+				</telerik:ChatFileExtensionToImageSourceConverterItem>
+				<telerik:ChatFileExtensionToImageSourceConverterItem FileExtensions=".png, .jpg, .bmp, .jpeg">
+					<telerik:ChatFileExtensionToImageSourceConverterItem.ImageSource>
+						<FontImageSource FontFamily="{Static telerik:TelerikFont.Name}"
+										 Glyph="{Static telerik:TelerikFont.IconImage}"
+										 Size="16"
+										 Color="#000000" />
+					</telerik:ChatFileExtensionToImageSourceConverterItem.ImageSource>
+				</telerik:ChatFileExtensionToImageSourceConverterItem>
+			</telerik:ChatFileExtensionToImageSourceConverter>
+			<!-- << chat-styling-image-outgoing-messages -->
+			
+			<!-- >> chat-styling-attachments-messages -->
+			<VisualStateGroupList x:Key="ChatOutgoingMessageAttachmentsDropDownMenuButtonVisualStates">
+				<VisualStateGroup Name="CommonStates">
+					<VisualState Name="Normal" />
+					<VisualState Name="PointerOver">
+						<VisualState.Setters>
+							<Setter Property="telerik:DropDownMenuButtonToolbarItemView.BackgroundColor" Value="#EBEBEB" />
+						</VisualState.Setters>
+					</VisualState>
+					<VisualState Name="Opened">
+						<VisualState.Setters>
+							<Setter Property="telerik:DropDownMenuButtonToolbarItemView.BackgroundColor" Value="#D6D6D6" />
+						</VisualState.Setters>
+					</VisualState>
+				</VisualStateGroup>
+			</VisualStateGroupList>
+			<Style x:Key="OutgoingAttachmentImageStyle" TargetType="Image">
+				<Setter Property="Source" Value="{Binding Attachment.FileName, Source={RelativeSource Mode=TemplatedParent}, Converter={StaticResource ChatOutgoingFileExtensionToImageSourceConverter}}" />
+			</Style>
+			<Style x:Key="OutgoingChatMessageAttachmentDropDownMenuButtonStyle" TargetType="telerik:DropDownMenuButtonToolbarItemView">
+				<Setter Property="TextColor" Value="#000000" />
+				<Setter Property="VisualStateManager.VisualStateGroups" Value="{StaticResource ChatOutgoingMessageAttachmentsDropDownMenuButtonVisualStates}" />
+			</Style>
+			<Style x:Key="OutgoingAttachmentActionsViewStyle" TargetType="telerik:ChatMessageAttachmentActionsView">
+				<Setter Property="MenuButtonStyle" Value="{StaticResource OutgoingChatMessageAttachmentDropDownMenuButtonStyle}" />
+			</Style>
+			<Style x:Key="OutgoingMessageAttachmentStyle" TargetType="telerik:ChatMessageAttachmentView">
+				<Setter Property="ImageStyle" Value="{StaticResource OutgoingAttachmentImageStyle}" />
+				<Setter Property="TitleStyle">
+					<Setter.Value>
+						<Style TargetType="Label">
+							<Setter Property="TextColor" Value="Black" />
+						</Style>
+					</Setter.Value>
+				</Setter>
+				<Setter Property="SubtitleStyle">
+					<Setter.Value>
+						<Style TargetType="Label">
+							<Setter Property="TextColor" Value="Black" />
+						</Style>
+					</Setter.Value>
+				</Setter>
+				<Setter Property="ActionsViewStyle" Value="{StaticResource OutgoingAttachmentActionsViewStyle}" />
+			</Style>
+			<Style x:Key="OutgoingAttachmentsListViewStyle" TargetType="telerik:ChatMessageAttachmentsListView">
+				<Setter Property="AttachmentStyle" Value="{StaticResource OutgoingMessageAttachmentStyle}" />
+			</Style>
+			<Style TargetType="telerik:ChatOutgoingAttachmentsMessageView" ApplyToDerivedTypes="True">
+				<Setter Property="BorderStyle">
+					<Setter.Value>
+						<Style TargetType="telerik:RadBorder">
+							<Setter Property="BackgroundColor" Value="#80CBC4" />
+						</Style>
+					</Setter.Value>
+				</Setter>
+				<Setter Property="LabelStyle">
+					<Setter.Value>
+						<Style TargetType="Label">
+							<Setter Property="TextColor" Value="Black" />
+						</Style>
+					</Setter.Value>
+				</Setter>
+				<Setter Property="AttachmentsListViewStyle" Value="{StaticResource OutgoingAttachmentsListViewStyle}" />
+			</Style>
+			
+			<Style TargetType="telerik:ChatAttachmentsMessageView" ApplyToDerivedTypes="True">
+				<Setter Property="BorderStyle">
+					<Setter.Value>
+						<Style TargetType="telerik:RadBorder">
+							<Setter Property="BackgroundColor" Value="#80CBC4" />
+						</Style>
+					</Setter.Value>
+				</Setter>
+				<Setter Property="LabelStyle">
+					<Setter.Value>
+						<Style TargetType="Label">
+							<Setter Property="TextColor" Value="Black" />
+						</Style>
+					</Setter.Value>
+				</Setter>
+			</Style>
+			<!-- << chat-styling-attachments-messages -->
+			
+			<!-- >> chat-styling-attached-file -->
+			<Style TargetType="telerik:ChatInputAreaAttachedFileItemView">
+				<Setter Property="TitleStyle">
+					<Setter.Value>
+						<Style TargetType="Label">
+							<Setter Property="FontAttributes" Value="Italic" />
+						</Style>
+					</Setter.Value>
+				</Setter>
+				<Setter Property="RemoveButtonStyle">
+					<Setter.Value>
+						<Style TargetType="telerik:RadTemplatedButton">
+							
+						</Style>
+					</Setter.Value>
+				</Setter>
+				<Setter Property="ImageStyle">
+					<Setter.Value>
+						<Style TargetType="Image">
+							<Setter Property="Source" Value="{Binding AttachedFile.FileName, Source={RelativeSource Mode=TemplatedParent}, Converter={StaticResource ChatFileExtensionToImageSourceConverter}}" />
+						</Style>
+					</Setter.Value>
+				</Setter>
+			</Style>
+			<!-- << chat-styling-attached-file -->
+		</ResourceDictionary>
+	</ContentView.Resources>
+	<!-- >> chat-attachments-styling -->
+	<telerik:RadChat x:Name="chat"
+					 IsMoreButtonVisible="True"
+					 AutoGenerateMoreButtonActions="True"
+					 IsSpeechToTextButtonVisible="{OnPlatform Default=true, WinUI=false}"
+					 ItemConverter="{StaticResource ItemConverter}"
+					 ItemsSource="{Binding Items}"
+					 Message="{Binding Message}"
+					 SendMessageCommand="{Binding SendMessageCommand}"
+					 AttachedFileConverter="{Static local:AttachedFileConverter.Instance}"
+					 AttachedFilesSource="{Binding AttachedFiles}"
+					 AttachFilesCommand="{Binding AttachFilesCommand, Converter={Static local:AttachFilesCommandConverter.Instance}}" />
+	<!-- << chat-attachments-styling -->
+</ContentView>

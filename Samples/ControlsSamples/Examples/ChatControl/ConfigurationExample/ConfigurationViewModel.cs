@@ -1,11 +1,13 @@
-using System;
+using Microsoft.Maui.Controls;
+using QSF.ViewModels;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Input;
-using Microsoft.Maui.Controls;
-using QSF.ViewModels;
+using Telerik.Maui.Controls;
 using Telerik.Maui.Controls.Chat;
 
 namespace QSF.Examples.ChatControl.ConfigurationExample;
@@ -54,6 +56,8 @@ public class ConfigurationViewModel : ConfigurationExampleViewModel
     private string typingIndicatorText;
     private string toggleTypingIndicatorText;
 
+    private ObservableCollection<ChatAttachedFile> attachedFiles;
+
     public ConfigurationViewModel()
     {
         this.authorMe = new Author() { Name = "Me" };
@@ -71,12 +75,14 @@ public class ConfigurationViewModel : ConfigurationExampleViewModel
 
         this.Items = new ObservableCollection<ChatItem>
         {
-            new TextMessage() { Author = this.authorBot, Text = "Welcome to the RadChat configurator!" },
-            new TextMessage() { Author = this.authorBot, Text = "You can add new messages and customize the control by using the toolbox on the right." }
+            new TextMessage { Author = this.authorBot, Text = "Welcome to the RadChat configurator!" },
+            new TextMessage { Author = this.authorBot, Text = "You can add new messages and customize the control by using the toolbox on the right." }
         };
 
-        this.SendMessageCommand = new Command(this.OnSendMessageCommandExecuted);
+        this.SendMessageCommand = new Command(this.OnSendMessageCommandExecuted, this.CanExecuteSendMessageCommand);
         this.AddMessageCommand = new Command(this.OnAddMessageCommandExecuted);
+        this.AttachedFiles = new ObservableCollection<ChatAttachedFile>();
+        this.AttachFilesCommand = new Command(this.AttachFiles);
         this.PickerOkCommand = new Command(this.OnPickerOkCommandExecuted, this.CanExecutePickerOkCommand);
         this.PickerCancelCommand = new Command(this.OnPickerCancelCommandExecuted);
         this.AddSuggestedActionsCommand = new Command(this.OnAddSuggestedActionsCommandExecuted, this.CanExecuteAddSuggestedActionsCommand);
@@ -85,30 +91,25 @@ public class ConfigurationViewModel : ConfigurationExampleViewModel
     }
 
     public string Me { get; } = "Me";
-
     public string Bot { get; } = "Bot";
-
     public ObservableCollection<string> SuggestedActions { get; set; }
-
     public ObservableCollection<Author> TypingIndicatorAuthors { get; set; }
-
     public IEnumerable<MessageType> MessageTypes { get; } = Enum.GetValues(typeof(MessageType)).Cast<MessageType>();
-
     public IList<ChatItem> Items { get; set; }
-
     public ICommand AddMessageCommand { get; set; }
-
     public ICommand PickerOkCommand { get; set; }
-
     public ICommand PickerCancelCommand { get; set; }
-
     public Command AddSuggestedActionsCommand { get; set; }
+    public ICommand AddTimeBreakCommand { get; set; }
+    public ICommand ToggleTypingIndicatorCommand { get; set; }
+    public Command SendMessageCommand { get; set; }
+    public ICommand AttachFilesCommand { get; set; }
 
-    public ICommand AddTimeBreakCommand{ get; set; }
-
-    public ICommand ToggleTypingIndicatorCommand{ get; set; }
-
-    public ICommand SendMessageCommand{ get; set; }
+    public ObservableCollection<ChatAttachedFile> AttachedFiles
+    {
+        get => this.attachedFiles;
+        private set => this.UpdateValue(ref this.attachedFiles, value, this.OnAttachedFilesChanged);
+    }
 
     public Author AuthorMe
     {
@@ -125,7 +126,13 @@ public class ConfigurationViewModel : ConfigurationExampleViewModel
     public string Message
     {
         get => this.message;
-        set => this.UpdateValue(ref this.message, value);
+        set
+        {
+            if (this.UpdateValue(ref this.message, value))
+            {
+                this.SendMessageCommand.ChangeCanExecute();
+            }
+        }
     }
 
     public MessageType MessageType
@@ -256,26 +263,150 @@ public class ConfigurationViewModel : ConfigurationExampleViewModel
         set => this.UpdateValue(ref this.toggleTypingIndicatorText, value);
     }
 
-    internal Author GetChatAuthor()
+    internal Author GetChatAuthor() => this.CurrentAuthorName == this.authorMe.Name ? this.authorMe : this.authorBot;
+
+    private void OnAttachedFilesChanged(ObservableCollection<ChatAttachedFile> oldValue)
     {
-        return this.CurrentAuthorName == this.authorMe.Name ? this.authorMe : this.authorBot;
+        if (oldValue != null)
+        {
+            oldValue.CollectionChanged -= this.AttachedFiles_CollectionChanged;
+        }
+
+        if (this.attachedFiles != null)
+        {
+            this.attachedFiles.CollectionChanged += this.AttachedFiles_CollectionChanged;
+        }
+
+        this.SendMessageCommand.ChangeCanExecute();
     }
 
-    private void OnSendMessageCommandExecuted()
+    private async void AttachedFiles_CollectionChanged(object sender, NotifyCollectionChangedEventArgs args)
     {
-        if (String.IsNullOrEmpty(this.Message))
+        this.SendMessageCommand.ChangeCanExecute();
+
+        if (args.Action == NotifyCollectionChangedAction.Add)
+        {
+            foreach (ChatAttachedFile chatFile in args.NewItems)
+            {
+                await this.TryUploadFile(chatFile);
+            }
+        }
+        else if (args.Action == NotifyCollectionChangedAction.Remove)
+        {
+            foreach (ChatAttachedFile chatFile in args.OldItems)
+            {
+                this.TryDeleteFile(chatFile);
+            }
+        }
+
+        this.SendMessageCommand.ChangeCanExecute();
+    }
+
+    private async Task TryUploadFile(ChatAttachedFile chatFile)
+    {
+        if (!this.AttachedFiles.Contains(chatFile))
         {
             return;
         }
 
-        TextMessage item = new()
-        {
-            Author = this.GetChatAuthor(),
-            Text = this.Message
-        };
+        Guid uploadedGuid = Guid.Empty;
 
-        this.Items.Add(item);
-        this.Message = String.Empty;
+        using (Stream stream = await chatFile.GetFileStream())
+        {
+            uploadedGuid = await DataFileService.UploadFile(stream);
+        }
+
+        if (this.AttachedFiles.Contains(chatFile))
+        {
+            chatFile.Data = uploadedGuid;
+        }
+        else if (uploadedGuid != Guid.Empty)
+        {
+            DataFileService.DeleteFile(uploadedGuid);
+        }
+
+        this.SendMessageCommand.ChangeCanExecute();
+    }
+
+    private void TryDeleteFile(ChatAttachedFile chatFile)
+    {
+        if (chatFile.Data is Guid guid && guid != Guid.Empty)
+        {
+            DataFileService.DeleteFile(guid);
+        }
+    }
+
+    private void AttachFiles(object commandParameter)
+    {
+        if (commandParameter is not IList<IFileInfo> filesToAttach || filesToAttach.Count == 0)
+        {
+            return;
+        }
+
+        foreach (IFileInfo file in filesToAttach)
+        {
+            var chatFile = new ChatAttachedFile
+            {
+                FileName = file.FileName,
+                FileSize = file.FileSize,
+                GetFileStream = file.OpenReadAsync,
+                Data = Guid.Empty
+            };
+
+            this.AttachedFiles.Add(chatFile);
+        }
+
+        filesToAttach.Clear();
+    }
+
+    private bool CanExecuteSendMessageCommand()
+    {
+        if (this.AttachedFiles.Any(f => f.Data is Guid g && g == Guid.Empty))
+        {
+            return false;
+        }
+
+        return !string.IsNullOrWhiteSpace(this.Message) || this.AttachedFiles.Count > 0;
+    }
+
+    private void OnSendMessageCommandExecuted()
+    {
+        var author = this.GetChatAuthor();
+        string textToSend = this.Message;
+        this.Message = string.Empty;
+
+        if (this.AttachedFiles.Count > 0)
+        {
+            List<ChatAttachment> chatAttachments = this.AttachedFiles
+                .Select(a =>
+                {
+                    var guid = (a.Data is Guid g) ? g : Guid.Empty;
+                    return new ChatAttachment
+                    {
+                        FileName = a.FileName,
+                        FileSize = a.FileSize,
+                        GetFileStream = () => DataFileService.OpenFileStream(guid)
+                    };
+                })
+                .ToList();
+
+            var attachmentsMessage = new ChatAttachmentsMessage
+            {
+                Author = author,
+                Text = textToSend,
+                Attachments = chatAttachments
+            };
+
+            this.Items.Add(attachmentsMessage);
+
+            this.AttachedFiles = new ObservableCollection<ChatAttachedFile>();
+        }
+        else if (!string.IsNullOrWhiteSpace(textToSend))
+        {
+            this.Items.Add(new TextMessage { Author = author, Text = textToSend });
+        }
+
+        this.SendMessageCommand.ChangeCanExecute();
     }
 
     private void OnAddMessageCommandExecuted(object arg)
@@ -319,17 +450,9 @@ public class ConfigurationViewModel : ConfigurationExampleViewModel
 
         context.PropertyChanged += (s, e) =>
         {
-            string property = e.PropertyName;
-
-            if (context is ItemPickerContext && property == nameof(ItemPickerContext.SelectedItem))
-            {
-                ((Command)this.PickerOkCommand).ChangeCanExecute();
-            }
-            else if (context is DatePickerContext && property == nameof(DatePickerContext.SelectedDate))
-            {
-                ((Command)this.PickerOkCommand).ChangeCanExecute();
-            }
-            else if (context is TimePickerContext && property == nameof(TimePickerContext.SelectedValue))
+            if (context is ItemPickerContext && e.PropertyName == nameof(ItemPickerContext.SelectedItem) ||
+                context is DatePickerContext && e.PropertyName == nameof(DatePickerContext.SelectedDate) ||
+                context is TimePickerContext && e.PropertyName == nameof(TimePickerContext.SelectedValue))
             {
                 ((Command)this.PickerOkCommand).ChangeCanExecute();
             }
@@ -372,7 +495,7 @@ public class ConfigurationViewModel : ConfigurationExampleViewModel
             this.Items.Add(pickerItem);
             pickerContext.PropertyChanged += (s, e) =>
             {
-                if (e.PropertyName == "SelectedItem" && pickerContext.SelectedItem != null)
+                if (e.PropertyName == nameof(ItemPickerContext.SelectedItem) && pickerContext.SelectedItem != null)
                 {
                     this.Items.Remove(pickerItem);
                     this.Items.Add(new TextMessage { Author = author, Text = "" + pickerContext.SelectedItem });
@@ -398,7 +521,7 @@ public class ConfigurationViewModel : ConfigurationExampleViewModel
             this.Items.Add(pickerItem);
             pickerContext.PropertyChanged += (s, e) =>
             {
-                if (e.PropertyName == "SelectedDate" && pickerContext.SelectedDate != null)
+                if (e.PropertyName == nameof(DatePickerContext.SelectedDate) && pickerContext.SelectedDate != null)
                 {
                     this.Items.Remove(pickerItem);
                     this.Items.Add(new TextMessage { Author = author, Text = "" + pickerContext.SelectedDate });
@@ -424,7 +547,7 @@ public class ConfigurationViewModel : ConfigurationExampleViewModel
             this.Items.Add(pickerItem);
             pickerContext.PropertyChanged += (s, e) =>
             {
-                if (e.PropertyName == "SelectedValue" && pickerContext.SelectedValue != null)
+                if (e.PropertyName == nameof(TimePickerContext.SelectedValue) && pickerContext.SelectedValue != null)
                 {
                     this.Items.Remove(pickerItem);
                     this.Items.Add(new TextMessage { Author = author, Text = "" + pickerContext.SelectedValue });
@@ -456,7 +579,7 @@ public class ConfigurationViewModel : ConfigurationExampleViewModel
                     this.HideChatPicker();
                 }
 
-                this.Items.Add(new TextMessage { Author =  this.GetChatAuthor(), Text = cardActionResultText });
+                this.Items.Add(new TextMessage { Author = this.GetChatAuthor(), Text = cardActionResultText });
             }),
         };
         return new List<CardActionContext>() { selectAction };
@@ -517,15 +640,8 @@ public class ConfigurationViewModel : ConfigurationExampleViewModel
         }
     }
 
-    private void AddImageMessage(Author author, bool renderInline)
-    {
-        this.AddCardMessageCore(author, renderInline, true);
-    }
-
-    private void AddCardMessage(Author author, bool renderInline)
-    {
-        this.AddCardMessageCore(author, renderInline, false);
-    }
+    private void AddImageMessage(Author author, bool renderInline) => this.AddCardMessageCore(author, renderInline, true);
+    private void AddCardMessage(Author author, bool renderInline) => this.AddCardMessageCore(author, renderInline, false);
 
     private bool CanExecutePickerOkCommand()
     {
@@ -560,7 +676,7 @@ public class ConfigurationViewModel : ConfigurationExampleViewModel
 
         if (pickerContext is ItemPickerContext itemPickerContext)
         {
-            text += itemPickerContext.SelectedItem.ToString();
+            text += itemPickerContext.SelectedItem;
         }
 
         if (pickerContext is DatePickerContext datePickerContext)
@@ -577,10 +693,7 @@ public class ConfigurationViewModel : ConfigurationExampleViewModel
         this.Items.Add(new TextMessage { Text = text, Author = this.GetChatAuthor() });
     }
 
-    private void OnPickerCancelCommandExecuted()
-    {
-        this.HideChatPicker();
-    }
+    private void OnPickerCancelCommandExecuted() => this.HideChatPicker();
 
     private void SelectedSuggestionsChanged(object sender, NotifyCollectionChangedEventArgs e)
     {
@@ -622,7 +735,6 @@ public class ConfigurationViewModel : ConfigurationExampleViewModel
         return actions;
     }
 
-
     private void OnAddSuggestedActionsCommandExecuted()
     {
         var suggestedActionsItem = new SuggestedActionsItem();
@@ -632,27 +744,11 @@ public class ConfigurationViewModel : ConfigurationExampleViewModel
 
     private bool CanExecuteAddSuggestedActionsCommand() => this.selectedSuggestions?.Count > 0;
 
-    private void OnAddTimeBreakCommandExecuted()
-    {
-        this.Items.Add(new TimeBreak() { Text = this.TimeBreakText });
-    }
+    private void OnAddTimeBreakCommandExecuted() => this.Items.Add(new TimeBreak() { Text = this.TimeBreakText });
 
     private bool CanExecuteAddTimeBreakCommand() => !String.IsNullOrWhiteSpace(this.timeBreakText);
 
-    private void OnToggleTypingIndicatorCommandExecuted()
-    {
-        this.IsTypingIndicatorVisible = !this.isTypingIndicatorVisible;
-    }
+    private void OnToggleTypingIndicatorCommandExecuted() => this.IsTypingIndicatorVisible = !this.isTypingIndicatorVisible;
 
-    private bool CanExecuteToggleTypingIndicatorCommand()
-    {
-        if (!this.IsTypingIndicatorVisible)
-        {
-            return !String.IsNullOrWhiteSpace(this.TypingIndicatorText);
-        }
-        else
-        {
-            return true;
-        }
-    }
+    private bool CanExecuteToggleTypingIndicatorCommand() => !this.IsTypingIndicatorVisible ? !String.IsNullOrWhiteSpace(this.TypingIndicatorText) : true;
 }

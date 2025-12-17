@@ -4,33 +4,65 @@
              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
              xmlns:local="clr-namespace:SDKBrowserMaui.Examples.AutoCompleteControl.FeaturesCategory.HighlightTextExample"
              x:Class="SDKBrowserMaui.Examples.AutoCompleteControl.FeaturesCategory.HighlightTextExample.HighlightText">
-	<VerticalStackLayout Spacing="10">
-		<Label Text="Using the default SuggestionItemTemplate" />
-		<!-- >> autocomplete-highlight-text -->
-		<telerik:RadAutoComplete x:Name="autoCompleteView1"
+    <ContentView.Resources>
+        <Style x:Key="AutoCompleteSuggestionItemLabelStyle" TargetType="telerik:RadHighlightLabel">
+            <Setter Property="HighlightTextColor" Value="BlueViolet" />
+            <Setter Property="TextColor" Value="#000000" />
+            <Setter Property="Padding" Value="10" />
+        </Style>
+        <Style x:Key="AutoCompleteSuggestionItemLabelStyle_MacCatalyst" TargetType="telerik:RadHighlightLabel" BasedOn="{StaticResource AutoCompleteSuggestionItemLabelStyle}">
+            <Style.Triggers>
+                <DataTrigger TargetType="telerik:RadHighlightLabel"
+                             Binding="{Binding IsMouseOver, Source={RelativeSource AncestorType={x:Type telerik:RadCollectionViewItemView}}}"
+                             Value="True">
+                    <Setter Property="TextColor" Value="#FFFFFF" />
+                    <Setter Property="HighlightTextColor" Value="#FFFFFF" />
+                </DataTrigger>
+                <DataTrigger TargetType="telerik:RadHighlightLabel"
+                             Binding="{Binding IsCurrent, Source={RelativeSource AncestorType={x:Type telerik:RadCollectionViewItemView}}}"
+                             Value="True">
+                    <Setter Property="TextColor" Value="#FFFFFF" />
+                    <Setter Property="HighlightTextColor" Value="#FFFFFF" />
+                </DataTrigger>
+                <MultiTrigger TargetType="telerik:RadHighlightLabel">
+                    <MultiTrigger.Conditions>
+                        <BindingCondition Binding="{Binding IsCurrent, Source={RelativeSource AncestorType={x:Type telerik:RadCollectionViewItemView}}}"
+                                          Value="True" />
+                        <BindingCondition Binding="{Binding IsMouseOver, Source={RelativeSource AncestorType={x:Type telerik:RadCollectionViewItemView}}}"
+                                          Value="True" />
+                    </MultiTrigger.Conditions>
+                    <Setter Property="TextColor" Value="#FFFFFF" />
+                    <Setter Property="HighlightTextColor" Value="#FFFFFF" />
+                </MultiTrigger>
+            </Style.Triggers>
+        </Style>
+    </ContentView.Resources>
+    <VerticalStackLayout Spacing="10">
+        <Label Text="Using the default SuggestionItemTemplate" />
+        <!-- >> autocomplete-highlight-text -->
+        <telerik:RadAutoComplete x:Name="autoCompleteView1"
                                  ItemsSource="{Binding Source}"
                                  TextSearchPath="Name"
                                  Placeholder="Search Here..."
                                  SuggestionItemHighlightTextColor="BlueViolet"
                                  SuggestionViewMaxHeight="100" />
-		<!-- << autocomplete-highlight-text -->
+        <!-- << autocomplete-highlight-text -->
 
-		<Label Text="Using a custom SuggestionItemTemplate" />
-		<!-- >> autocomplete-highlight-text-behavior -->
-		<telerik:RadAutoComplete x:Name="autoCompleteView2"
+        <Label Text="Using a custom SuggestionItemTemplate" />
+        <!-- >> autocomplete-highlight-text-behavior -->
+        <telerik:RadAutoComplete x:Name="autoCompleteView2"
                                  ItemsSource="{Binding Source}"
                                  TextSearchPath="Name"
                                  Placeholder="Search Here..."
                                  SuggestionViewMaxHeight="100">
-			<telerik:RadAutoComplete.SuggestionItemTemplate>
-				<DataTemplate>
-					<telerik:RadHighlightLabel TextColor="Black" Padding="10"
-											   HighlightTextColor="BlueViolet"
-											   UnformattedText="{Binding Name}"
-											   HighlightText="{Binding Source={x:Reference autoCompleteView2}, Path=Text}" />
-				</DataTemplate>
-			</telerik:RadAutoComplete.SuggestionItemTemplate>
-		</telerik:RadAutoComplete>
-		<!-- << autocomplete-highlight-text-behavior -->
-	</VerticalStackLayout>
+            <telerik:RadAutoComplete.SuggestionItemTemplate>
+                <DataTemplate>
+                    <telerik:RadHighlightLabel UnformattedText="{Binding Name}"
+                                               HighlightText="{Binding Source={x:Reference autoCompleteView2}, Path=Text}"
+                                               Style="{OnPlatform Default= {StaticResource AutoCompleteSuggestionItemLabelStyle}, MacCatalyst={StaticResource AutoCompleteSuggestionItemLabelStyle_MacCatalyst}}" />
+                </DataTemplate>
+            </telerik:RadAutoComplete.SuggestionItemTemplate>
+        </telerik:RadAutoComplete>
+        <!-- << autocomplete-highlight-text-behavior -->
+    </VerticalStackLayout>
 </ContentView>
