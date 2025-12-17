@@ -9,11 +9,7 @@
                          FontFamily="TelerikFontExamples"
                          Glyph="&#xe850;"
                          Size="16"
-                         Color="{DynamicResource ButtonFontImageColor}" />
-        <OnPlatform x:Key="ButtonImageTextColor" x:TypeArguments="Color" Default="#007AFF">
-            <On Platform="Android" Value="#000000" />
-            <On Platform="WinUI" Value="#000000" />
-        </OnPlatform>
+                         Color="{OnPlatform Default='#007AFF', Android='#000000', WinUI='#000000'}" />
         <Style x:Key="TitleLabelStyle" TargetType="Label" BasedOn="{StaticResource BaseLabelStyle}">
             <Setter Property="FontAttributes" Value="Bold" />
             <Setter Property="HorizontalTextAlignment" Value="Center" />
@@ -51,7 +47,7 @@
                                        WidthRequest="70"
                                        HeightRequest="{OnPlatform Default=36, WinUI=32}"
                                        CornerRadius="{OnPlatform Default=4, iOS=8, MacCatalyst=5}"
-                                       TextColor="{DynamicResource ButtonImageTextColor}"
+                                       TextColor="{OnPlatform Default='#007AFF', Android='#000000', WinUI='#000000'}"
                                        AutomationId="imageButton" />
                 </telerik:RadWrapLayout>
                 <Label Text="Templated Button" Style="{StaticResource TitleLabelStyle}" />
@@ -82,7 +78,7 @@
                     <telerik:RadTemplatedButton Padding="0" 
                                                 AutomationId="imageTemplatedButton"
                                                 BorderThickness="{OnPlatform WinUI=0}"
-                                                TextColor="{OnPlatform Default='#000000', WinUI={DynamicResource ButtonImageTextColor}}">
+                                                TextColor="{OnPlatform Default='#000000', iOS='#007AFF'}">
                         <Grid>
                             <Image Source="button_background_image.png"
                                    WidthRequest="70"

@@ -37,4 +37,58 @@
         </Setter>
     </Style>
 
+    <Style x:Key="SchedulerDialogCancelButtonStyle_Mobile" TargetType="telerik:RadButton">
+        <Setter Property="FontSize" Value="{OnPlatform Default=14, iOS=17}" />
+        <Setter Property="TextColor" Value="{DynamicResource RadPrimaryColor}" />
+        <Setter Property="Background" Value="Transparent" />
+    </Style>
+
+    <Style x:Key="SchedulerDialogCancelButtonStyle_MacCatalyst" TargetType="telerik:RadButton">
+        <Setter Property="TextColor" Value="{DynamicResource RadOnAppSurfaceColor}" />
+        <Setter Property="BackgroundColor" Value="{DynamicResource RadBaseColor}" />
+        <Setter Property="BorderColor" Value="{DynamicResource RadBorderColor}" />
+        <Setter Property="BorderWidth" Value="0.5" />
+        <Setter Property="CornerRadius" Value="5" />
+        <Setter Property="Padding" Value="8, 2" />
+        <Setter Property="Shadow">
+            <Setter.Value>
+                <Shadow Offset="0, 1" Radius="1.5" Brush="#33000000" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="SchedulerDialogCancelButtonStyle" TargetType="telerik:RadButton" BasedOn="{OnPlatform Android={StaticResource SchedulerDialogCancelButtonStyle_Mobile}, iOS={StaticResource SchedulerDialogCancelButtonStyle_Mobile}, MacCatalyst={StaticResource SchedulerDialogCancelButtonStyle_MacCatalyst}}">
+        <Setter Property="MinimumWidthRequest" Value="{OnPlatform Default=65, WinUI=120}" />
+    </Style>
+
+    <Style x:Key="SchedulerDialogConfirmButtonStyle_Mobile" TargetType="telerik:RadButton">
+        <Setter Property="FontSize" Value="{OnPlatform Default=14, iOS=17}" />
+        <Setter Property="TextColor" Value="{DynamicResource RadPrimaryColor}" />
+        <Setter Property="Background" Value="Transparent" />
+    </Style>
+
+    <Style x:Key="SchedulerDialogConfirmButtonStyle_MacCatalyst" TargetType="telerik:RadButton">
+        <Setter Property="TextColor" Value="{DynamicResource RadOnPrimaryColor}" />
+        <Setter Property="BackgroundColor" Value="{DynamicResource RadPrimaryColor}" />
+        <Setter Property="CornerRadius" Value="5" />
+        <Setter Property="Padding" Value="8, 2" />
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup Name="CommonStates">
+                    <VisualState Name="Normal" />
+                    <VisualState Name="PointerOver" />
+                    <VisualState Name="Disabled">
+                        <VisualState.Setters>
+                            <Setter Property="telerik:RadButton.TextColor" Value="{DynamicResource RadPrimaryButtonDisabledTextColor}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+
+    <Style x:Key="SchedulerDialogConfirmButtonStyle" TargetType="telerik:RadButton" BasedOn="{OnPlatform Android={StaticResource SchedulerDialogConfirmButtonStyle_Mobile}, iOS={StaticResource SchedulerDialogConfirmButtonStyle_Mobile}, MacCatalyst={StaticResource SchedulerDialogConfirmButtonStyle_MacCatalyst}}">
+        <Setter Property="MinimumWidthRequest" Value="{OnPlatform Default=0, MacCatalyst=50, WinUI=120}" />
+    </Style>
+
 </ResourceDictionary>

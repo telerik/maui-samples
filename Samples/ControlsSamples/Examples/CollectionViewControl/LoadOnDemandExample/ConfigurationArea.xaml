@@ -18,6 +18,7 @@
                    Style="{StaticResource VerticalGroupLabelStyle}" />
             <telerik:RadComboBox ItemsSource="{Binding LoadOnDemandModes}"
                                  SelectedItem="{Binding LoadOnDemandMode, Mode=TwoWay}"
+                                 DropDownMaxHeight="{OnPlatform MacCatalyst=200}"
                                  HorizontalOptions="Fill"
                                  IsClearButtonVisible="False"
                                  AutomationId="loadOnDemandModeComboBox" />

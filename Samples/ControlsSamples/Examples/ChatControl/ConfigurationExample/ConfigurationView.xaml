@@ -1,10 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
-                        xmlns:converters="clr-namespace:QSF.Converters"
-                        x:Class="QSF.Examples.ChatControl.ConfigurationExample.ConfigurationView"
-                        Padding="16">
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:converters="clr-namespace:QSF.Converters"
+             xmlns:local="clr-namespace:QSF.Examples.ChatControl.ConfigurationExample"
+             xmlns:chat="clr-namespace:QSF.Examples.ChatControl"
+             x:Class="QSF.Examples.ChatControl.ConfigurationExample.ConfigurationView"
+             Padding="{OnIdiom Default='0', Desktop='16'}">
+
+    <VisualElement.Resources>
+        <Style x:Key="SpeechToTextButtonStyle" TargetType="telerik:RadSpeechToTextButton" BasedOn="{StaticResource ChatInputAreaSpeechToTextButtonStyle}">
+            <Setter Property="SpeechRecognizerCreator" Value="{Static chat:SpeechRecognizerProvider.SpeechRecognizerCreator}" />
+        </Style>
+    </VisualElement.Resources>
+
     <telerik:RadBorder BorderThickness="{OnIdiom Default=0, Desktop=1}"
                        BorderColor="{DynamicResource PlatformBorderColor}"
                        HorizontalOptions="{OnIdiom Default=Fill, Desktop=Center}">
@@ -14,6 +23,12 @@
                              ItemsSource="{Binding Items}"
                              Message="{Binding Message}"
                              SendMessageCommand="{Binding SendMessageCommand}"
+                             AttachedFilesSource="{Binding AttachedFiles}"
+                             AttachFilesCommand="{Binding AttachFilesCommand}"
+                             RemoveAttachedFileCommand="{Binding RemoveAttachedFileCommand}"
+                             IsMoreButtonVisible="True"
+                             IsSpeechToTextButtonVisible="True"
+                             SpeechToTextButtonStyle="{StaticResource SpeechToTextButtonStyle}"
                              AutomationId="chat">
                 <telerik:RadChat.Picker>
                     <telerik:RadChatPicker IsVisible="{Binding IsPickerVisible}"

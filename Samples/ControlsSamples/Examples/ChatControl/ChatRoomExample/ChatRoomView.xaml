@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
              xmlns:local="clr-namespace:QSF.Examples.ChatControl.ChatRoomExample"
+             xmlns:chat="clr-namespace:QSF.Examples.ChatControl"
              x:Class="QSF.Examples.ChatControl.ChatRoomExample.ChatRoomView"
              Padding="{OnIdiom Default=0, Desktop=16}">
     <telerik:RadContentView.Resources>
@@ -34,6 +35,9 @@
                 <Setter Property="BorderStyle" Value="{StaticResource BorderStyle}" />
                 <Setter Property="LabelStyle" Value="{StaticResource TextMessageLabel}" />
             </Style>
+            <Style x:Key="SpeechToTextButtonStyle" TargetType="telerik:RadSpeechToTextButton" BasedOn="{StaticResource ChatInputAreaSpeechToTextButtonStyle}">
+                <Setter Property="SpeechRecognizerCreator" Value="{x:Static chat:SpeechRecognizerProvider.SpeechRecognizerCreator}" />
+            </Style>
         </ResourceDictionary>
     </telerik:RadContentView.Resources>
 
@@ -54,6 +58,9 @@
                          ItemConverter="{StaticResource ChatroomMessageConverter}"
                          ItemsSource="{Binding Items}"
                          SendMessageCommand="{Binding SendMessageCommand}"
+                         IsSpeechToTextButtonVisible="True"
+                         IsMoreButtonVisible="True"
+                         SpeechToTextButtonStyle="{OnPlatform WinUI={StaticResource SpeechToTextButtonStyle}}"
                          AutomationId="chat">
             <telerik:RadChat.TypingIndicator>
                 <telerik:TypingIndicator ItemConverter="{StaticResource ChatroomParticipantConverter}"

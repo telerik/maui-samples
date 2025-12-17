@@ -61,16 +61,19 @@
             </local:AppointmentTemplateSelector.DefaultTemplate>
             <local:AppointmentTemplateSelector.AgendaTemplate>
                 <DataTemplate>
-                    <Grid>
-                        <telerik:AppointmentView HeightRequest="{OnPlatform Android=36, iOS=40, MacCatalyst=20}"
-                                                 Margin="{OnPlatform Default='8, 2, 2, 4', Android='8, 4, 20, 4', iOS='8, 4, 20, 4', WinUI='8, 5, 4, 5'}">
-                            <telerik:AppointmentView.Subject>
+                    <Grid Margin="{OnPlatform Default='8, 2, 2, 4', Android='8, 4, 20, 4', iOS='8, 4, 20, 4', WinUI='8, 5, 4, 5'}">
+                        <local:CustomizedAppointmentView HeightRequest="{OnPlatform Android=36, iOS=40, MacCatalyst=20}"
+                                                         Padding="{OnPlatform Default='8, 2, 4, 2', WinUI='8, 1, 4, 4'}"
+                                                         SubjectTextColor="{DynamicResource SchedulerCustomizationTextColor}"
+                                                         DeleteButtonTextColor="{DynamicResource SchedulerCustomizationTextColor}"
+                                                         BackgroundColor="{Binding Occurrence.Appointment.Location, Converter={StaticResource AppointmentLocationToColorConverter}}">
+                            <local:CustomizedAppointmentView.Subject>
                                 <MultiBinding Converter="{StaticResource FormattedSubjectConverter}">
                                     <Binding Path="." />
                                     <Binding Path="Occurrence.Appointment.Subject" />
                                 </MultiBinding>
-                            </telerik:AppointmentView.Subject>
-                        </telerik:AppointmentView>
+                            </local:CustomizedAppointmentView.Subject>
+                        </local:CustomizedAppointmentView>
                         <telerik:RadBorder Style="{StaticResource CustomAppointmentCategoryBorderStyle}" />
                     </Grid>
                 </DataTemplate>

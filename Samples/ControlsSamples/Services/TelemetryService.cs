@@ -192,6 +192,10 @@ public class ApplicationTelemetryInitializer : ITelemetryInitializer
         // Useful for App Insights filtering
         telemetry.Context.Cloud.RoleName = Microsoft.Maui.ApplicationModel.AppInfo.Name;
         telemetry.Context.Cloud.RoleInstance = installationId.Value;
+
+        // Assign a stable pseudonymous user id so AI can compute unique users.
+        telemetry.Context.User.Id = installationId.Value;
+        telemetry.Context.User.AccountId = installationId.Value;
     }
 
     private static string GetOsVersion()
@@ -212,12 +216,12 @@ public class ApplicationTelemetryInitializer : ITelemetryInitializer
 
     private static string GetOrCreateInstallationId()
     {
-        const string key = "Telemetry.InstallationId";
-        var id = Microsoft.Maui.Storage.Preferences.Get(key, null);
+        const string key = "Telerik.ControlsSamples.Telemetry.InstallationId";
+        var id = Preferences.Get(key, null);
         if (string.IsNullOrEmpty(id))
         {
             id = Guid.NewGuid().ToString("N");
-            Microsoft.Maui.Storage.Preferences.Set(key, id);
+            Preferences.Set(key, id);
         }
 
         return id;

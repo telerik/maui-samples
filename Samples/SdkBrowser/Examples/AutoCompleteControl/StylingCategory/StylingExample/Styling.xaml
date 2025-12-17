@@ -9,6 +9,7 @@
             <!-- >> autocomplete-custom-styles -->
 
             <Style TargetType="telerik:RadHighlightLabel">
+                <Setter Property="TextColor" Value="{OnPlatform Android=#000000}" />
                 <Style.Triggers>
                     <DataTrigger TargetType="telerik:RadHighlightLabel"
                                  Binding="{Binding IsMouseOver, Source={RelativeSource AncestorType={x:Type telerik:RadCollectionViewItemView}}}" 
@@ -31,7 +32,20 @@
                         <Setter Property="HighlightTextColor" Value="#00897B" />
                     </MultiTrigger>
                 </Style.Triggers>
-            </Style>
+            </Style> 
+
+            <DataTemplate x:Key="SuggestionItemTemplate">
+                <telerik:RadBorder MinimumWidthRequest="{Binding Width, Source={RelativeSource AncestorType={x:Type telerik:RadAutoComplete}}}">
+                    <telerik:RadHighlightLabel x:Name="label"
+                                               telerik:LabelUtils.TextPath="{Binding TextSearchPath, Source={RelativeSource AncestorType={x:Type telerik:RadAutoComplete}}}"
+                                               HeightRequest="{OnPlatform Default=36, Android=32, MacCatalyst=22}"
+                                               FontSize="{OnPlatform Default=14, MacCatalyst=13, iOS=17}"
+                                               HighlightText="{Binding SearchText, Source={RelativeSource AncestorType={x:Type telerik:RadAutoComplete}}}"
+                                               HighlightTextColor="{Binding SuggestionItemHighlightTextColor, Source={RelativeSource AncestorType={x:Type telerik:RadAutoComplete}}}"
+                                               Padding="4"
+                                               VerticalTextAlignment="Center" />
+                </telerik:RadBorder>
+            </DataTemplate>
 
             <Style TargetType="telerik:RadTextInput" x:Key="TextInputStyle">
                 <Setter Property="CharacterSpacing" Value="4" />
@@ -63,11 +77,13 @@
                 </Setter>
             </Style>
 
-            <Style TargetType="telerik:RadCollectionViewItemView" x:Key="SuggestionItemStyle">
-                <Setter Property="BorderBrush" Value="#80CBC4" />
-                <Setter Property="BorderThickness" Value="0, 0, 0, 1" />
-				<Setter Property="CornerRadius" Value="0" />
-				<Setter Property="VisualStateManager.VisualStateGroups">
+            <Style x:Key="SuggestionItemStyle" TargetType="telerik:RadCollectionViewItemView">
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="BorderBrush" Value="{OnPlatform Default='#80CBC4', WinUI='Transparent'}" />
+                <Setter Property="BorderThickness" Value="{OnPlatform Default='0, 0, 0, 1', WinUI='1'}" />
+                <Setter Property="Margin" Value="1" />
+                <Setter Property="CornerRadius" Value="0" />
+                <Setter Property="VisualStateManager.VisualStateGroups">
                     <VisualStateGroupList>
                         <VisualStateGroup Name="CommonStates">
                             <VisualState Name="Normal" />
@@ -78,6 +94,15 @@
                             </VisualState>
                             <VisualState Name="Focused">
                                 <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#D6EEEC" />
+                                    <Setter Property="BorderBrush" Value="#00897B" />
+                                    <Setter Property="BorderThickness" Value="1" />
+                                    <Setter Property="CornerRadius" Value="5" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="FocusedMouseOver">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#D6EEEC" />
                                     <Setter Property="BorderBrush" Value="#00897B" />
                                     <Setter Property="BorderThickness" Value="1" />
                                     <Setter Property="CornerRadius" Value="5" />
@@ -101,6 +126,7 @@
                 <Setter Property="SuggestionViewCornerRadius" Value="8" />
                 <Setter Property="ClearButtonStyle" Value="{StaticResource ClearButtonStyle}" />
                 <Setter Property="TextInputStyle" Value="{StaticResource TextInputStyle}" />
+                <Setter Property="SuggestionItemTemplate" Value="{StaticResource SuggestionItemTemplate}" />
                 <Setter Property="VisualStateManager.VisualStateGroups">
                     <VisualStateGroupList>
                         <VisualStateGroup Name="CommonStates">

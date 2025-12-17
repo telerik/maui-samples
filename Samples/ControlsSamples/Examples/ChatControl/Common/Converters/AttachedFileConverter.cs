@@ -1,7 +1,7 @@
 ﻿using Telerik.Maui.Controls;
 using Telerik.Maui.Controls.Chat;
 
-namespace QSF.Examples.ChatControl.AIIntegrationExample;
+namespace QSF.Examples.ChatControl;
 
 public class AttachedFileConverter : IChatAttachedFileConverter
 {

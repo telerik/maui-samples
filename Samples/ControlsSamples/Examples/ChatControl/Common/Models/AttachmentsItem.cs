@@ -1,6 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 
-namespace QSF.Examples.ChatControl.AIIntegrationExample;
+namespace QSF.Examples.ChatControl;
 
 public class AttachmentsItem : MessageItem
 {

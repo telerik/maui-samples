@@ -2,7 +2,7 @@
 using System.IO;
 using System.Threading.Tasks;
 
-namespace QSF.Examples.ChatControl.AIIntegrationExample;
+namespace QSF.Examples.ChatControl;
 
 public static class DataFileService
 {

@@ -22,22 +22,23 @@
             </telerik:RadCollectionView.ItemsLayout>
             <telerik:RadCollectionView.ItemTemplate>
                 <DataTemplate>
-                    <VerticalStackLayout Spacing="0"
-                                         Padding="10,13">
+                    <Grid HeightRequest="50"
+                          RowDefinitions="20, *"
+                          RowSpacing="2"
+                          Padding="10, 12">
                         <Image Source="{Binding Path=Icon}"
                                WidthRequest="20"
-                               HeightRequest="20"
                                VerticalOptions="Center"
                                HorizontalOptions="Center"
                                AutomationId="{Binding Path=DataTemplateResourceKey}"/>
-                        <BoxView HeightRequest="4"
+                        <BoxView Grid.Row="1"
+                                 HeightRequest="4"
                                  WidthRequest="40"
                                  HorizontalOptions="Center"
                                  VerticalOptions="End"
                                  IsVisible="{Binding Path=IsSelected}"
-                                 Color="#E0E9FC"
-                                 Margin="0, 2, 0, -1" />
-                    </VerticalStackLayout>
+                                 Color="#E0E9FC" />
+                    </Grid>
                 </DataTemplate>
             </telerik:RadCollectionView.ItemTemplate>
             <telerik:RadCollectionView.ItemViewStyle>

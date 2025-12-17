@@ -1,14 +1,11 @@
-﻿using System.IO;
-using System.Threading.Tasks;
-using Telerik.Maui.Controls;
+﻿using Telerik.Maui.Controls;
 
-namespace QSF.Examples.ChatControl.AIIntegrationExample;
+namespace QSF.Examples.ChatControl;
 
-public class AttachedFileData : NotifyPropertyChangedBase
+public class AttachmentData : NotifyPropertyChangedBase
 {
     private string name;
     private long size;
-    private Func<Task<Stream>> getStream;
     private Guid guid;
 
     public string Name
@@ -27,11 +24,5 @@ public class AttachedFileData : NotifyPropertyChangedBase
     {
         get => this.guid;
         set => this.UpdateValue(ref this.guid, value);
-    }
-
-    public Func<Task<Stream>> GetStream
-    {
-        get => this.getStream;
-        set => this.UpdateValue(ref this.getStream, value);
     }
 }

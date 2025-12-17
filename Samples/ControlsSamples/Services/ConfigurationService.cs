@@ -57,6 +57,18 @@ namespace QSF.Services
                     // If we have updated or new example we want to mark the control as updated as well.
                     control.Status = StatusType.Updated;
                 }
+
+                if (control.Status == StatusType.New)
+                {
+                    // If the control is new we want to mark all examples as new as well.
+                    foreach (var example in control.Examples)
+                    {
+                        if (example.Status == StatusType.Normal)
+                        {
+                            example.Status = StatusType.New;
+                        }
+                    }
+                }
             }
         }
 

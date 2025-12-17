@@ -9,6 +9,9 @@ public partial class ExamplePage : ContentPage
 {
     public ExamplePage()
     {
+#if ANDROID && NET10_0_OR_GREATER
+        this.SafeAreaEdges = new Microsoft.Maui.SafeAreaEdges(Microsoft.Maui.SafeAreaRegions.Container);
+#endif
         this.InitializeComponent();
         ThemingViewModel.Instance.ThemeChangedCallback = (oldTheme, newTheme) => this.Refresh();
     }

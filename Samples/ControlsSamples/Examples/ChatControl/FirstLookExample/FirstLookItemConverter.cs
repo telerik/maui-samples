@@ -5,20 +5,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Telerik.Maui.Controls.Chat;
 
-namespace QSF.Examples.ChatControl.AIIntegrationExample;
+namespace QSF.Examples.ChatControl.FirstLookExample;
 
-public class ItemConverter : IChatItemConverter
+public class FirstLookItemConverter : IChatItemConverter
 {
-    private static ItemConverter instance;
-
-    public static ItemConverter Instance => instance ??= new ItemConverter();
-
-    private Dictionary<object, Author> authorDict;
-
-    public ItemConverter()
-    {
-        this.authorDict = new Dictionary<object, Author>();
-    }
+    private readonly Dictionary<object, Author> authorCache = new Dictionary<object, Author>();
 
     public ChatItem ConvertToChatItem(object dataItem, ChatItemConverterContext context)
     {
@@ -48,49 +39,48 @@ public class ItemConverter : IChatItemConverter
         return null;
     }
 
+    private Author GetOrCreateAuthor(object authorData, ChatItemConverterContext context)
+    {
+        if (authorData == null)
+        {
+            return null;
+        }
+
+        if (!this.authorCache.TryGetValue(authorData, out var author))
+        {
+            var vm = context.Chat.BindingContext as FirstLookViewModel;
+
+            if (vm != null && Equals(vm.Me, authorData))
+            {
+                author = context.Chat.Author;
+            }
+            else
+            {
+                author = new Author { Data = authorData, Name = authorData.ToString(), Avatar = $"{authorData}.png", };
+            }
+
+            this.authorCache[authorData] = author;
+        }
+
+        return author;
+    }
+
     private static ChatAttachment CreateChatAttachment(AttachmentData attachment)
     {
-        ChatAttachment chatAttachment = new ChatAttachment { Data = attachment, FileName = attachment.Name, FileSize = attachment.Size };
+        ChatAttachment chatAttachment = new ChatAttachment { Data = attachment, FileName = attachment.Name, FileSize = attachment.Size, };
         chatAttachment.GetFileStream = () => GetFileStreamTask(attachment);
         return chatAttachment;
     }
 
     private static async Task<Stream> GetFileStreamTask(AttachmentData attachment)
     {
-        if (attachment.Guid != Guid.Empty)
+        if (attachment.Guid != System.Guid.Empty)
         {
-            Stream stream = await DataFileService.OpenFileStream(attachment.Guid);
-            return stream;
+            return await DataFileService.OpenFileStream(attachment.Guid);
         }
         else
         {
             return null;
         }
-    }
-
-    private Author GetOrCreateAuthor(object authorData, ChatItemConverterContext context)
-    {
-        Author author;
-
-        if (!this.authorDict.TryGetValue(authorData, out author))
-        {
-            AIIntegrationViewModel vm = (AIIntegrationViewModel)context.Chat.BindingContext;
-
-            if (object.Equals(vm.Me, authorData))
-            {
-                author = context.Chat.Author;
-            }
-            else
-            {
-                author = new Author();
-                author.Data = authorData;
-                author.Name = "" + authorData;
-                author.Avatar = string.Format("{0}.png", authorData);
-            }
-
-            this.authorDict[authorData] = author;
-        }
-
-        return author;
     }
 }
