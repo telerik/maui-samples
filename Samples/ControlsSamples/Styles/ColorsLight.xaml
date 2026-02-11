@@ -43,6 +43,7 @@
     <Color x:Key="ViewCodeButtonBackgroundColor">#FFF6EA</Color>
     <Color x:Key="WrapperBackgroundColor">#18A5A5A5</Color>
     <Color x:Key="DescriptionBackgroundColor">#F5F5F5</Color>
+    <Color x:Key="HighlightedExampleBackgroundColor">#2FB7BD</Color>
 
     <Color x:Key="ControlPageItemBackgroundColor1">#4D3341A1</Color>
     <Color x:Key="ControlPageItemBackgroundColor2">#4D04A2AA</Color>
@@ -106,6 +107,7 @@
         <On Platform="Android" Value="{StaticResource DefaultTextColor}" />
         <On Platform="WinUI" Value="{StaticResource PlaceholderColor}" />
     </OnPlatform>
+    <Color x:Key="HighlightedExampleBorderColor">#4FC6CB</Color>
 
     <!-- Examples Colors -->
     <Color x:Key="AccordionCustomizationAvatarLabelTextColor">#CCCCCC</Color>
@@ -220,6 +222,7 @@
     <telerikTheming:ColorFilter x:Key="DataPagerButtonNonAccentColorAlpha60" Color="{StaticResource DefaultTextColor}" Alpha="0.60" />
     <telerikTheming:ColorFilter x:Key="EntryBackgroundColor" Color="#FFFFFF" Alpha="{OnPlatform Default=1, Android=0, WinUI=0.7}" />
     <telerikTheming:ColorFilter x:Key="SchedulerDialogFooterBackgroundColor" Color="#FFFFFF" Alpha="{OnPlatform Default=1, MacCatalyst=0}" Lighten="{OnPlatform Default=0, Android=-0.03, iOS=-0.03, WinUI=-0.05}" />
+    <telerikTheming:ColorFilter x:Key="DataGridAIChatBackgroundColor" Color="#FFFFFF" Lighten="{OnPlatform Default=-0.05, Android=-0.03}" />
 
     <!-- Platform-Specific Colors -->
     <OnPlatform x:Key="CollectionViewDragVisualBackgroundColor" x:TypeArguments="Color" Default="#F3F3F3">
@@ -234,6 +237,9 @@
     </OnPlatform>
     <OnPlatform x:Key="MenuItemSelectedBackgroundColor" x:TypeArguments="Color" Default="#E6E6EC">
         <On Platform="WinUI" Value="#0A000000" />
+    </OnPlatform>
+    <OnPlatform x:Key="DataGridAIViewBackgroundColor" x:TypeArguments="Color" Default="#F7F7F7">
+        <On Platform="WinUI" Value="#F5F5F5" />
     </OnPlatform>
      <!-- <OnPlatform x:Key="SwitchToggledOnThumbColor" x:TypeArguments="Color" Default="{StaticResource TextOnAccentColor}">
         <On Platform="Android" Value="#2B0B98" />

@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:example="clr-namespace:QSF.Examples.DataGridControl.AIChatIntegrationExample"
+             xmlns:utilities="clr-namespace:QSF.ExampleUtilities"
+             x:Class="QSF.Examples.DataGridControl.AIChatIntegrationExample.AIChatView">
+    <ContentView.Resources>
+        <example:AIChatItemConverter x:Key="AIChatItemConverter" />
+        <example:AIChatItemTemplateSelectors x:Key="AIChatItemTemplateSelectors">
+            <example:AIChatItemTemplateSelectors.AIItemTemplate>
+                <DataTemplate>
+                    <example:AIChatMessageView MessageText="{Binding Text}"
+                                               TimeStamp="{Binding Data}" />
+                </DataTemplate>
+            </example:AIChatItemTemplateSelectors.AIItemTemplate>
+            <example:AIChatItemTemplateSelectors.UserItemTemplate>
+                <DataTemplate>
+                    <telerik:ChatOutgoingSingleTextMessageView Item="{Binding}" />
+                </DataTemplate>
+            </example:AIChatItemTemplateSelectors.UserItemTemplate>
+        </example:AIChatItemTemplateSelectors>
+        <ControlTemplate x:Key="AIIntegrationChatControlTemplate">
+            <Grid IsClippedToBounds="True">
+                <Grid IsClippedToBounds="True"
+                      RowSpacing="2"
+                      RowDefinitions="*, Auto, Auto"
+                      BackgroundColor="{DynamicResource RadAppSurfaceColor}">
+                    <Grid RowDefinitions="*, Auto"
+                          BackgroundColor="{DynamicResource DataGridAIChatBackgroundColor}">
+                        <telerik:RadChatListView x:Name="PART_ChatListView"
+                                                 telerik:StyleHelper.InheritedStyleClass="{TemplateBinding ActualStyleClass}"
+                                                 AutoScrollMode="{TemplateBinding AutoScrollMode}"
+                                                 ScrollMediator="{TemplateBinding ActualScrollMediator}"
+                                                 ItemViewStyle="{TemplateBinding ActualChatListViewItemStyle}"
+                                                 ItemTemplate="{TemplateBinding ItemTemplateSelector}"
+                                                 ItemsSource="{TemplateBinding Items}"
+                                                 AutomationId="RadChatListView" />
+                        <telerik:RadContentView telerik:StyleHelper.InheritedStyleClass="{TemplateBinding ActualStyleClass}"
+                                                Grid.Row="1"
+                                                VerticalOptions="End"
+                                                Content="{TemplateBinding TypingIndicator}"
+                                                IsVisible="{TemplateBinding TypingIndicator.ActualIsTyping}"
+                                                Padding="{OnPlatform Default='10, 0', WinUI='10, 0', MacCatalyst='12, 0'}" />
+                    </Grid>
+                    <Grid Grid.Row="1"
+                          BackgroundColor="{DynamicResource RadSurfaceAltColor}"
+                          Padding="8">
+                        <OnPlatform x:TypeArguments="View">
+                            <On Platform="MacCatalyst, WinUI">
+                                <example:AIChatSuggestionsView ItemsSource="{Binding SuggestedPrompts}"
+                                                               ItemTapCommand="{Binding SuggestionTapCommand}" />
+                            </On>
+                            <On Platform="Android, iOS">
+                                <telerik:RadCollectionView HeightRequest="{OnPlatform Default=28, Android=32}"
+                                                           ItemsSource="{Binding SuggestedPrompts}"
+                                                           ItemTapCommand="{Binding SuggestionTapCommand}"
+                                                           HorizontalScrollBarVisibility="Never"
+                                                           SelectionMode="None">
+                                    <telerik:RadCollectionView.ItemsLayout>
+                                        <telerik:CollectionViewLinearLayout Orientation="Horizontal"
+                                                                            ItemSpacing="4" />
+                                    </telerik:RadCollectionView.ItemsLayout>
+                                    <telerik:RadCollectionView.ItemViewStyle>
+                                        <Style TargetType="telerik:RadCollectionViewItemView">
+                                            <Setter Property="CornerRadius" Value="{OnPlatform Default=8, Android=16}" />
+                                            <Setter Property="Padding" Value="{OnPlatform Default='8, 5', Android='14, 6'}" />
+                                            <Setter Property="BackgroundColor" Value="{DynamicResource RadPrimaryColor}" />
+                                            <Setter Property="ControlTemplate">
+                                                <ControlTemplate>
+                                                    <Label Text="{Binding .}"
+                                                           Padding="{Binding Source={RelativeSource AncestorType={x:Type telerik:RadCollectionViewItemView}}, Path=ActualPadding}"
+                                                           TextColor="{DynamicResource RadOnPrimaryColor}"
+                                                           HorizontalTextAlignment="Start"
+                                                           VerticalTextAlignment="Center" />
+                                                </ControlTemplate>
+                                            </Setter>
+                                        </Style>
+                                    </telerik:RadCollectionView.ItemViewStyle>
+                                </telerik:RadCollectionView>
+                            </On>
+                        </OnPlatform>
+                    </Grid>
+                    <Grid Grid.Row="2"
+                          BackgroundColor="{Binding BackgroundColor, Source={x:Reference PART_PromptInput}}"
+                          Padding="8, 0, 8, 8"
+                          telerik:KeyboardHelper.IsTranslationPivot="True">
+                        <telerik:RadPromptInput x:Name="PART_PromptInput"
+                                                telerik:StyleHelper.InheritedStyleClass="{TemplateBinding ActualStyleClass}"
+                                                Style="{TemplateBinding InputAreaStyle}"
+                                                Message="{TemplateBinding Message, Mode=TwoWay}"
+                                                SendMessageCommand="{TemplateBinding ActualSendMessageCommand}"
+                                                RemoveAttachedFileCommand="{TemplateBinding ActualRemoveAttachedFileCommand}"
+                                                SendMessageButtonImage="{TemplateBinding SendMessageButtonImage}"
+                                                AttachedFiles="{TemplateBinding AttachedFiles}"
+                                                MoreButtonStyle="{TemplateBinding MoreButtonStyle}"
+                                                SpeechToTextButtonStyle="{TemplateBinding SpeechToTextButtonStyle}"
+                                                IsSpeechToTextButtonVisible="{TemplateBinding IsSpeechToTextButtonVisible}"
+                                                IsMoreButtonVisible="{TemplateBinding IsMoreButtonVisible}"
+                                                AutoGenerateMoreButtonActions="{TemplateBinding AutoGenerateMoreButtonActions}"
+                                                MoreButtonActions="{TemplateBinding MoreButtonActions}"
+                                                PickFileCommand="{TemplateBinding PickFileCommand}"
+                                                PickPhotoCommand="{TemplateBinding PickPhotoCommand}"
+                                                TakePhotoCommand="{TemplateBinding TakePhotoCommand}"
+                                                PickFileTypes="{TemplateBinding PickFileTypes}"
+                                                telerik:KeyboardHelper.IsTranslationTarget="False"
+                                                telerik:KeyboardHelper.IsTranslationPivot="False"
+                                                AutomationId="RadChatPromptInput" />
+                    </Grid>
+                </Grid>
+            </Grid>
+        </ControlTemplate>
+        <ControlTemplate x:Key="AIChatTypingIndicatorControlTemplate">
+            <Grid Padding="{OnPlatform Default='0, 10', WinUI='0, 12'}">
+                <Label x:Name="PART_TypingIndicatorLabel"
+                       Text="{TemplateBinding ActualText}"
+                       FontSize="{TemplateBinding FontSize}"
+                       FontFamily="{TemplateBinding FontFamily}"
+                       FontAttributes="{TemplateBinding FontAttributes}" />
+            </Grid>
+        </ControlTemplate>
+        <Style x:Key="SpeechToTextButtonStyle" TargetType="telerik:RadSpeechToTextButton" BasedOn="{StaticResource ChatSpeechToTextButtonStyle}">
+            <Setter Property="SpeechRecognizerCreator" Value="{x:Static utilities:SpeechRecognizerProvider.SpeechRecognizerCreator}" />
+        </Style>
+        <Style x:Key="ChatPromptInputStyle" TargetType="telerik:RadPromptInput">
+            <Setter Property="Placeholder" Value="{telerik:Localize DataGrid_AI_InputView_Placeholder}" />
+            <Setter Property="SpeechToTextButtonStyle" Value="{OnPlatform WinUI={StaticResource SpeechToTextButtonStyle}}" />
+        </Style>
+    </ContentView.Resources>
+    <telerik:RadBorder BorderThickness="{OnPlatform Default=1, Android=0, iOS=0}"
+                       BorderBrush="{DynamicResource RadBorderBrush}">
+        <Grid RowDefinitions="Auto, *">
+            <Grid ColumnDefinitions="Auto, *, Auto"
+                  ColumnSpacing="10"
+                  Padding="10, 12"
+                  BackgroundColor="{DynamicResource RadAppSurfaceColor}"
+                  IsVisible="{OnPlatform Default=True, Android=False, iOS=False}">
+                <telerik:RadBorder CornerRadius="8"
+                                   BorderThickness="0"
+                                   WidthRequest="32"
+                                   HeightRequest="32">
+                    <Label FontFamily="{x:Static telerik:TelerikFont.Name}"
+                           Text="{x:Static telerik:TelerikFont.IconSparkle}"
+                           TextColor="{DynamicResource RadOnAppSurfaceColor}"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center" />
+                </telerik:RadBorder>
+                <Label Grid.Column="1"
+                       TextColor="{DynamicResource RadOnAppSurfaceColor}">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="AI Grid Assistant"
+                                  FontAttributes="{OnPlatform Default=None, MacCatalyst=Bold}"
+                                  FontSize="{OnPlatform Default=20, MacCatalyst=15}" />
+                            <Span Text="&#10;" />
+                            <Span Text="Data Grid Controller"
+                                  FontSize="12" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <telerik:RadTemplatedButton Grid.Column="2"
+                                            WidthRequest="32"
+                                            HeightRequest="32"
+                                            FontFamily="{x:Static telerik:TelerikFont.Name}"
+                                            FontSize="{OnPlatform Default=10, MacCatalyst=14}"
+                                            Content="{x:Static telerik:TelerikFont.IconCancel}"
+                                            TextColor="{DynamicResource RadSubtleColor}"
+                                            BorderThickness="0"
+                                            BackgroundColor="Transparent"
+                                            HorizontalTextAlignment="Center"
+                                            VerticalTextAlignment="Center"
+                                            Shadow="{x:Null}"
+                                            Command="{Binding HideChatCommand}" />
+            </Grid>
+            <telerik:RadChat Grid.Row="1"
+                             ControlTemplate="{StaticResource AIIntegrationChatControlTemplate}"
+                             ItemConverter="{StaticResource AIChatItemConverter}"
+                             ItemsSource="{Binding Messages}"
+                             ItemTemplateSelector="{StaticResource AIChatItemTemplateSelectors}"
+                             Message="{Binding Prompt}"
+                             SendMessageCommand="{Binding SendMessageCommand}"
+                             InputAreaStyle="{StaticResource ChatPromptInputStyle}"
+                             IsSpeechToTextButtonVisible="True">
+                <telerik:RadChat.TypingIndicator>
+                    <telerik:TypingIndicator ControlTemplate="{StaticResource AIChatTypingIndicatorControlTemplate}"
+                                             Text="{telerik:Localize DataGrid_AI_InputView_Thinking}"
+                                             FontSize="12"
+                                             FontAttributes="Italic"
+                                             IsTyping="{Binding IsProcessingAIRequest}" />
+                </telerik:RadChat.TypingIndicator>
+            </telerik:RadChat>
+        </Grid>
+    </telerik:RadBorder>
+</ContentView>

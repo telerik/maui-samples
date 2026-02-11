@@ -4,6 +4,7 @@
                         xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
                         xmlns:telerikChat="clr-namespace:Telerik.Maui.Controls.Chat;assembly=Telerik.Maui.Controls"
                         xmlns:chat="clr-namespace:QSF.Examples.ChatControl"
+                        xmlns:utilities="clr-namespace:QSF.ExampleUtilities"
                         xmlns:local="clr-namespace:QSF.Examples.ChatControl.FirstLookExample"
                         x:Class="QSF.Examples.ChatControl.FirstLookExample.FirstLookView"
                         Padding="{OnIdiom Default=0, Desktop=16}">
@@ -34,8 +35,11 @@
                                                  Margin="-4, 4, 0, 0" />
             </Grid>
         </ControlTemplate>
-        <Style x:Key="SpeechToTextButtonStyle" TargetType="telerik:RadSpeechToTextButton" BasedOn="{StaticResource ChatInputAreaSpeechToTextButtonStyle}">
-            <Setter Property="SpeechRecognizerCreator" Value="{x:Static chat:SpeechRecognizerProvider.SpeechRecognizerCreator}" />
+        <Style x:Key="SpeechToTextButtonStyle" TargetType="telerik:RadSpeechToTextButton" BasedOn="{StaticResource ChatSpeechToTextButtonStyle}">
+            <Setter Property="SpeechRecognizerCreator" Value="{x:Static utilities:SpeechRecognizerProvider.SpeechRecognizerCreator}" />
+        </Style>
+        <Style x:Key="ChatPromptInputStyle" TargetType="telerik:RadPromptInput">
+            <Setter Property="SpeechToTextButtonStyle" Value="{OnPlatform WinUI={StaticResource SpeechToTextButtonStyle}}" />
         </Style>
     </VisualElement.Resources>
     
@@ -58,7 +62,7 @@
                              RemoveAttachedFileCommand="{Binding RemoveAttachedFileCommand}"
                              IsMoreButtonVisible="True"
                              IsSpeechToTextButtonVisible="True"
-                             SpeechToTextButtonStyle="{OnPlatform WinUI={StaticResource SpeechToTextButtonStyle}}">
+                             InputAreaStyle="{OnPlatform WinUI={StaticResource ChatPromptInputStyle}}">
                 <telerik:RadChat.TypingIndicator>
                     <telerik:TypingIndicator IsTyping="{Binding IsRecipientTyping}"
                                              ControlTemplate="{StaticResource InlineTypingIndicatorTemplate}"

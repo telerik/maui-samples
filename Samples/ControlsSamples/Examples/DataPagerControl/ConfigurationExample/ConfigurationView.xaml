@@ -21,12 +21,6 @@
             <Setter Property="Opacity" Value="0.6" />
             <Setter Property="VerticalOptions" Value="Center" />
         </Style>
-        <Style TargetType="telerik:RadSlider" BasedOn="{StaticResource RadSliderStyle}">
-            <Setter Property="Margin" Value="8, 0" />
-            <Setter Property="WidthRequest" Value="{OnIdiom Default=-1, Desktop=280}" />
-            <Setter Property="HorizontalOptions" Value="{OnIdiom Default=Fill, Desktop=Start}" />
-            <Setter Property="VerticalOptions" Value="Center" />
-        </Style>
         <Style TargetType="telerik:RadNumericInput" BasedOn="{StaticResource RadNumericInputStyle}">
             <Setter Property="WidthRequest" Value="{OnIdiom Default=-1, Desktop=300}" />
             <Setter Property="HorizontalOptions" Value="{OnIdiom Default=Fill, Desktop=Start}" />
@@ -106,6 +100,10 @@
                                                    Grid.Column="1"
                                                    Value="{Binding ItemSpacing, Mode=TwoWay}"
                                                    Minimum="0" Maximum="50"
+                                                   Margin="8, 0"
+                                                   WidthRequest="{OnIdiom Default=-1, Desktop=280}"
+                                                   HorizontalOptions="{OnIdiom Default=Fill, Desktop=Start}"
+                                                   VerticalOptions="Center"
                                                    AutomationId="itemSpacingSlider" />
                                 <Label Grid.Column="2"
                                        Text="{Binding Source={x:Reference itemSpacingSlider}, Path=Maximum, Mode=TwoWay}"

@@ -6,6 +6,7 @@
              xmlns:pages="clr-namespace:QSF.Pages"
              xmlns:layouts="clr-namespace:QSF.Layouts"
              xmlns:converters="clr-namespace:QSF.Converters"
+             xmlns:helpers="clr-namespace:QSF.Helpers"
              x:Class="QSF.Views.HomeViewDesktop"
              x:Name="HomeView">
 
@@ -18,6 +19,7 @@
                                   Description="{Binding ShortDescription}"
                                   Status="{Binding Status}"
                                   TapCommand="{Binding BindingContext.SelectControlCommand, Source={RelativeSource AncestorType={Type views:HomeViewDesktop}}}"
+                                  helpers:DesktopUtils.MouseCursorType="Hand"
                                   Margin="6"
                                   Padding="6" />
         </DataTemplate>

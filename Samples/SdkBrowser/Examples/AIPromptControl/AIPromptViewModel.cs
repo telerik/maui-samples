@@ -36,7 +36,7 @@ public class AIPromptViewModel: NotifyPropertyChangedBase
         this.retryCommand = new Command(this.ExecuteRetryCommand);
 
         this.commands.Add(new AIPromptCommand { ImageSource = new FontImageSource() { FontFamily = TelerikFont.Name, Size = 12, Glyph = TelerikFont.IconPaste }, Text = "Simplify", });
-        this.commands.Add(new AIPromptCommand { ImageSource = new FontImageSource() { FontFamily = TelerikFont.Name, Size = 12, Glyph = TelerikFont.IconReset }, Text = "Check Syntax" });
+        this.commands.Add(new AIPromptCommand { ImageSource = new FontImageSource() { FontFamily = TelerikFont.Name, Size = 12, Glyph = TelerikFont.IconCancel2 }, Text = "Check Syntax" });
 
         this.commands.Add(new AIPromptCommandGroup
         {

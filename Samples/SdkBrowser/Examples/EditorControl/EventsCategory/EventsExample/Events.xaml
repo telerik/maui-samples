@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.EditorControl.EventsCategory.EventsExample.Events">
+       <Grid RowDefinitions="100, Auto, Auto"
+             RowSpacing="4"
+             HorizontalOptions="{OnPlatform Default=Fill, MacCatalyst=Start, WinUI=Start}"
+             WidthRequest="{OnPlatform MacCatalyst=300, WinUI=300}">
+              <!-- >> editor-events-xaml -->
+        <telerik:RadEditor TextChanging="OnTextChanging"
+                           Completed="OnCompleted" />
+        <!-- << editor-events-xaml -->
+        <Label x:Name="eventLabel"
+               Grid.Row="1" />
+        <telerik:RadEntry Placeholder="Focus to raise the Editor's Completed event"
+                          Grid.Row="2" />
+    </Grid>
+</ContentView>

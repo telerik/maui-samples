@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.DataGridControl.PromptControlledCategory"
+             x:Class="SDKBrowserMaui.Examples.DataGridControl.PromptControlledCategory.TemplatesExample.Templates">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <!-- >> datagrid-promptcontrolled-empty-template -->
+            <DataTemplate x:Key="EmptyContentTemplate">
+                <telerik:RadBorder BorderBrush="Gray"
+                                   BorderThickness="1"
+                                   BackgroundColor="White">
+                    <VerticalStackLayout HorizontalOptions="Center"
+                                         VerticalOptions="Center"
+                                         Spacing="2">
+                        <Label Text="No suggestions available to display."
+                               FontAttributes="Bold"
+                               FontSize="16"
+                               HorizontalOptions="Center" />
+                        <Label Text="Use the AI prompt control for entering prompts"
+                               FontSize="14"
+                               HorizontalOptions="Center" />
+                    </VerticalStackLayout>
+                </telerik:RadBorder>
+            </DataTemplate>
+            <!-- << datagrid-promptcontrolled-empty-template -->
+
+            <!-- >> datagrid-promptcontrolled-aiview-template -->
+            <DataTemplate x:Key="AIViewTemplate">
+                <Grid ColumnDefinitions="*, 100"
+                      RowDefinitions="44"
+                      ColumnSpacing="10"
+                      Padding="{OnPlatform Android='5, 24', iOS='5, 24'}"
+                      BindingContext="{Binding AISettings, Source={RelativeSource AncestorType={Type telerik:RadDataGrid}}}">
+                    <telerik:RadEntry Text="{Binding InputText, Mode=TwoWay}"
+                                      telerik:KeyboardHelper.IsTranslationPivot="{OnPlatform Default=False, Android=True, iOS=True}"
+                                      telerik:KeyboardHelper.IsTranslationSource="{OnPlatform Default=False, Android=True, iOS=True}"
+                                      Placeholder="Enter your prompt..." />
+                    <telerik:RadTemplatedButton Content="Send"
+                                                Command="{Binding PromptRequestCommand}"
+                                                CommandParameter="{Binding InputText}" 
+                                                Grid.Column="1" />
+                </Grid>
+            </DataTemplate>
+            <!-- << datagrid-promptcontrolled-aiview-template --> 
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <Grid RowDefinitions="Auto, *"
+          RowSpacing="10">
+        <VerticalStackLayout Spacing="10">
+            <telerik:RadTemplatedButton Content="Apply AI PromptView Template"
+                                        WidthRequest="300"
+                                        HorizontalOptions="Start"
+                                        HorizontalTextAlignment="{OnPlatform Default=Center, iOS=Start}"
+                                        Clicked="OnApplyPromptViewTemplateClicked" />
+            <telerik:RadTemplatedButton Content="Apply EmptyPrompt Template"
+                                        WidthRequest="300"
+                                        HorizontalOptions="Start"
+                                        HorizontalTextAlignment="{OnPlatform Default=Center, iOS=Start}"
+                                        Clicked="OnApplyEmptyPromptTemplateClicked"/>
+        </VerticalStackLayout>
+        <!-- >> datagrid-promptcontrolled-template -->
+        <telerik:RadDataGrid x:Name="dataGrid"
+                             ItemsSource="{Binding Flights}"
+                             AutoGenerateColumns="False"
+                             IsAIEnabled="True"
+                             UserEditMode="Cell"
+                             UserGroupMode="Enabled"
+                             Grid.Row="1">
+            <telerik:RadDataGrid.Commands>
+                <local:DataGridUserCommand Id="PromptRequest"
+                                           Command="{Binding ProcessAICommand}" />
+                <local:DataGridUserCommand Id="CancelPromptRequest"
+                                           Command="{Binding CancelAICommand}" />
+            </telerik:RadDataGrid.Commands>
+            <telerik:RadDataGrid.AISettings>
+                <telerik:DataGridAISettings x:Name="AISettings"
+                                            SuggestedPrompts="{Binding SuggestedPrompts}" />
+            </telerik:RadDataGrid.AISettings>
+            <telerik:RadDataGrid.Columns>
+                <telerik:DataGridNumericalColumn HeaderText="Flight Number" PropertyName="FlightNumber" />
+                <telerik:DataGridTextColumn HeaderText="Destination" PropertyName="To" />
+                <telerik:DataGridTimeColumn HeaderText="Departure Time" PropertyName="DepartureTime" />
+                <telerik:DataGridTimeColumn HeaderText="Arrival Time" PropertyName="ArrivalTime" />
+                <telerik:DataGridTextColumn HeaderText="Company" PropertyName="Company" />
+            </telerik:RadDataGrid.Columns>
+        </telerik:RadDataGrid>
+        <!-- << datagrid-promptcontrolled-template -->
+    </Grid>
+</ContentView>

@@ -29,4 +29,8 @@ public class Configuration
     public List<DemoApp> DemoApps { get; set; }
 
     public List<HighlightedControl> HighlightedControls { get; set; }
+
+    public string HighlightedExamplesTitle { get; set; }
+
+    public List<HighlightedExample> HighlightedExamples { get; set; }
 }

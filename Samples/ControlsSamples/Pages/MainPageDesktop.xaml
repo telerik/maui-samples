@@ -9,21 +9,20 @@
              NavigationPage.HasBackButton="False"
              xmlns:markupExtensions="clr-namespace:QSF.MarkupExtensions"
              x:Class="QSF.Pages.MainPageDesktop"
-             Style="{StaticResource PageStyle}">
+             Style="{StaticResource PageStyle}"
+             AutomationId="mainPageDesktop">
 
     <VisualElement.Resources>
         <FontImageSource x:Key="HomeIcon"
                          Glyph="&#xe03a;"
                          FontFamily="TelerikControlsIcons"
                          Color="{DynamicResource ApplicationAccentColor}"
-                         Size="{OnPlatform Default=16, MacCatalyst=20}"
-                         AutomationId="homeButton" />
+                         Size="{OnPlatform Default=16, MacCatalyst=20}" />
         <FontImageSource x:Key="SearchIcon"
                          Glyph="&#xe03b;"
                          FontFamily="TelerikControlsIcons"
                          Color="{DynamicResource ApplicationAccentColor}"
-                         Size="{OnPlatform Default=16, MacCatalyst=20}"
-                         AutomationId="searchButton" />
+                         Size="{OnPlatform Default=16, MacCatalyst=20}" />
         <FontImageSource x:Key="SettingsIcon"
                          Glyph="&#xe03c;"
                          FontFamily="TelerikControlsIcons"
@@ -140,12 +139,15 @@
         </Style>
         <Style x:Key="HomeItemStyle" TargetType="telerik:NavigationViewItemView" BasedOn="{OnPlatform Default={StaticResource DefaultItemStyle}, MacCatalyst={StaticResource ItemStyle_MacCatalyst}}">
             <Setter Property="ToolTipProperties.Text" Value="Home" />
+            <Setter Property="AutomationId" Value="homeNavigationItem" />
         </Style>
         <Style x:Key="SearchItemStyle" TargetType="telerik:NavigationViewItemView" BasedOn="{OnPlatform Default={StaticResource DefaultItemStyle}, MacCatalyst={StaticResource ItemStyle_MacCatalyst}}">
             <Setter Property="ToolTipProperties.Text" Value="Search" />
+            <Setter Property="AutomationId" Value="searchNavigationItem" />
         </Style>
         <Style x:Key="SettingsItemStyle" TargetType="telerik:NavigationViewItemView" BasedOn="{OnPlatform Default={StaticResource DefaultItemStyle}, MacCatalyst={StaticResource ItemStyle_MacCatalyst}}">
             <Setter Property="ToolTipProperties.Text" Value="Settings" />
+            <Setter Property="AutomationId" Value="settingsNavigationItem" />
         </Style>
         <Style x:Key="NavigatableItemStyle_MacCatalyst" TargetType="telerik:NavigationViewItemView" BasedOn="{StaticResource ItemStyle_MacCatalyst}">
             <Setter Property="Command" Value="{Binding SelectControlCommand}" />

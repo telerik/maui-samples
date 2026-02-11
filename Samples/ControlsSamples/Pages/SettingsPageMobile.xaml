@@ -7,13 +7,14 @@
              x:Class="QSF.Pages.SettingsPageMobile"
              NavigationPage.HasNavigationBar="False"
              ios:Page.UseSafeArea="False">
-    <views:QSFPageContentView BackgroundColor="{DynamicResource SecondaryBackgroundColor}">
+    <views:QSFPageContentView BackgroundColor="{DynamicResource SecondaryBackgroundColor}" AutomationId="settingsPageMobile">
         <views:QSFPageContentView.HeaderControlTemplate>
             <ControlTemplate>
                 <Grid ColumnDefinitions="Auto, *">
                     <ImageButton Clicked="Back_Clicked"
                                  HorizontalOptions="Start"
-                                 Style="{OnPlatform Default={StaticResource DefaultBackButtonStyle}, iOS={StaticResource IOSBackButtonStyle}}" />
+                                 Style="{OnPlatform Default={StaticResource DefaultBackButtonStyle}, iOS={StaticResource IOSBackButtonStyle}}"
+                                 AutomationId="backButton" />
                     <Label Grid.Column="1"
                            Text="{Binding HeaderLabel}"
                            VerticalOptions="Center"

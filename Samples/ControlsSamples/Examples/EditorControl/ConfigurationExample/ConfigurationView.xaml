@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:localConverter="clr-namespace:QSF.Converters"
+             xmlns:styles="clr-namespace:QSF.Styles"
+             xmlns:converter="clr-namespace:Microsoft.Maui.Converters;assembly=Microsoft.Maui"
+             xmlns:styleConverter="clr-namespace:Microsoft.Maui.Graphics.Converters;assembly=Microsoft.Maui.Graphics"
+             x:Class="QSF.Examples.EditorControl.ConfigurationExample.ConfigurationView"
+             Padding="{OnIdiom Default='16, 20', Phone=0}">
+
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary>
+                <ResourceDictionary.MergedDictionaries>
+                    <styles:ConfigurationViewResources/>
+                </ResourceDictionary.MergedDictionaries>
+            </ResourceDictionary>
+
+            <localConverter:ValueTypeConverter x:Key="KeyboardConverter">
+                <converter:KeyboardTypeConverter />
+            </localConverter:ValueTypeConverter>
+
+            <localConverter:ValueTypeConverter x:Key="ColorConverter">
+                <styleConverter:ColorTypeConverter />
+            </localConverter:ValueTypeConverter>
+
+            <localConverter:ValueTypeConverter x:Key="FontSizeConverter">
+                <FontSizeConverter />
+            </localConverter:ValueTypeConverter>
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+    <Grid RowDefinitions="Auto, *">
+        <telerik:RadBorder Style="{StaticResource ControlWrapperBorderStyle}">
+            <Grid>
+                <telerik:RadEditor x:Name="editor"
+                                   AutoSize="TextChanges"
+                                   MaxLength="{Binding Source={x:Reference maxLengthNumeric}, Path=Value}"
+                                   Keyboard="{Binding SelectedKeyboard, Converter={StaticResource KeyboardConverter}}"
+                                   TextColor="{Binding TextColor, Converter={StaticResource ColorConverter}}"
+                                   FontSize="{Binding SelectedFontSize, Converter={StaticResource FontSizeConverter}}"
+                                   BackgroundColor="{DynamicResource TertiaryBackgroundColor}"
+                                   Placeholder="Enter text"/>
+            </Grid>
+        </telerik:RadBorder>
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Style="{StaticResource RootAtExampleAreaStyle}">
+                <Grid Style="{StaticResource GroupAtExampleAreaStyle}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="{OnIdiom Default=*, Phone=0}" />
+                        <ColumnDefinition Width="{OnIdiom Default=*, Phone=0}" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="{OnIdiom Default=0, Phone=*}" />
+                        <RowDefinition Height="{OnIdiom Default=0, Phone=*}" />
+                    </Grid.RowDefinitions>
+                    <HorizontalStackLayout Style="{OnIdiom Default={StaticResource GroupAtExampleAreaWithColumnBreakStyle}, Phone={StaticResource GroupAtExampleAreaStyle}}">
+                        <Label Text="Is Spell Check:"
+                               Style="{StaticResource HorizontalGroupLabelAtStartStyle}" />
+                        <Grid>
+                            <Switch x:Name="spellCheckSwitch"
+                                    IsToggled="{Binding Source={x:Reference editor}, Path=IsSpellCheckEnabled, Mode=TwoWay}"
+                                    Style="{DynamicResource SwitchStyle}"
+                                    HorizontalOptions="Center" 
+                                    VerticalOptions="Center" />
+                            <OnPlatform x:TypeArguments="View">
+                                <On Platform="WinUI">
+                                    <telerik:RadBorder HeightRequest="20"
+                                                       WidthRequest="40"
+                                                       CornerRadius="10"
+                                                       BorderColor="{Binding OnColor, Source={x:Reference spellCheckSwitch}}"
+                                                       BorderThickness="1"
+                                                       HorizontalOptions="Start"
+                                                       VerticalOptions="Center" />
+                                </On>
+                            </OnPlatform>
+                        </Grid>
+                    </HorizontalStackLayout>
+                    <HorizontalStackLayout Grid.Column="{OnIdiom Default=1, Phone=0}" 
+                                           Grid.Row="{OnIdiom Default=0, Phone=1}"
+                                           Style="{OnIdiom Default={StaticResource GroupAtExampleAreaWithColumnBreakStyle}, Phone={StaticResource GroupAtExampleAreaStyle}}">
+                        <Label Text="Is Text Prediction:"
+                               Style="{StaticResource HorizontalGroupLabelAtStartStyle}" />
+                        <Grid>
+                            <Switch x:Name="textPredictionSwitch"
+                                    IsToggled="{Binding Source={x:Reference editor}, Path=IsTextPredictionEnabled , Mode=TwoWay}"
+                                    Style="{DynamicResource SwitchStyle}"
+                                    HorizontalOptions="Center" 
+                                    VerticalOptions="Center" />
+                            <OnPlatform x:TypeArguments="View">
+                                <On Platform="WinUI">
+                                    <telerik:RadBorder HeightRequest="20"
+                                   WidthRequest="40"
+                                   CornerRadius="10"
+                                   BorderColor="{Binding OnColor, Source={x:Reference textPredictionSwitch}}"
+                                   BorderThickness="1"
+                                   HorizontalOptions="Start"
+                                   VerticalOptions="Center" />
+                                </On>
+                            </OnPlatform>
+                        </Grid>
+                    </HorizontalStackLayout>
+                    <HorizontalStackLayout Grid.Column="{OnIdiom Default=2, Phone=0}" 
+                                           Grid.Row="{OnIdiom Default=0, Phone=2}"
+                                           IsVisible="{OnPlatform WinUI=True}">
+                        <Label Text="Is Read Only:"
+                               Style="{StaticResource HorizontalGroupLabelAtStartStyle}" />
+                        <Grid>
+                            <Switch x:Name="readOnlySwitch"
+                                    IsToggled="{Binding Source={x:Reference editor}, Path=IsReadOnly, Mode=TwoWay}"
+                                    Style="{StaticResource SwitchStyle}"
+                                    HorizontalOptions="Center" 
+                                    VerticalOptions="Center" />
+                            <OnPlatform x:TypeArguments="View">
+                                <On Platform="WinUI">
+                                    <telerik:RadBorder HeightRequest="20"
+                                                       WidthRequest="40"
+                                                       CornerRadius="10"
+                                                       BorderColor="{Binding OnColor, Source={x:Reference readOnlySwitch}}"
+                                                       BorderThickness="1"
+                                                       HorizontalOptions="Start"
+                                                       VerticalOptions="Center" />
+                                </On>
+                            </OnPlatform>
+                        </Grid>
+                    </HorizontalStackLayout>
+                </Grid>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="{OnIdiom Default=0, Phone=Auto}" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="{OnIdiom Default=*, Phone=0}" />
+                    </Grid.ColumnDefinitions>
+                    <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaWithColumnBreakStyle}">
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Text:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <telerik:RadEditor HorizontalOptions="Fill"
+                                               AutoSize="TextChanges"
+                                               ReserveSpaceForErrorView="False"
+                                               MaxLength="{Binding Value, Source={x:Reference maxLengthNumeric}}"
+                                               Text="{Binding Source={x:Reference editor}, Path=Text, Mode=TwoWay}" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Text Color:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <telerik:RadComboBox x:Name="textColorComboBox"
+                                                 SelectedItem="{Binding SelectedTextColor, Mode=TwoWay}"
+                                                 ItemsSource="{Binding TextColors}" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Max Length (symbols):"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <telerik:RadNumericInput x:Name="maxLengthNumeric"
+                                                     IsReadOnly="False"
+                                                     Value="100"
+                                                     Minimum="0"
+                                                     HorizontalOptions="FillAndExpand" />
+                        </VerticalStackLayout>
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Grid.Row="{OnIdiom Default=0, Phone=1}" 
+                                         Grid.Column="{OnIdiom Default=1, Phone=0}">
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Auto Size:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <telerik:RadComboBox SelectedItem="{Binding Source={x:Reference editor}, Path=AutoSize, Mode=TwoWay}">
+                                <telerik:RadComboBox.ItemsSource>
+                                    <x:Array Type="{x:Type EditorAutoSizeOption}">
+                                        <EditorAutoSizeOption>TextChanges</EditorAutoSizeOption>
+                                        <EditorAutoSizeOption>Disabled</EditorAutoSizeOption>
+                                    </x:Array>
+                                </telerik:RadComboBox.ItemsSource>
+                            </telerik:RadComboBox>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout IsVisible="{OnIdiom Desktop=False, Phone=True}"
+                                             Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Keyboard:" 
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <telerik:RadComboBox x:Name="keyboardComboBox"
+                                                 SelectedItem="{Binding SelectedKeyboard, Mode=TwoWay}" 
+                                                 ItemsSource="{Binding Keyboards}" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="SelectionOnFocus Behavior:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <telerik:RadComboBox x:Name="selectionOnFocusComboBox"
+                                                 SelectedItem="{Binding Source={x:Reference editor}, Path=SelectionOnFocus, Mode=TwoWay}">
+                                <telerik:RadComboBox.ItemsSource>
+                                    <x:Array Type="{x:Type telerik:SelectionOnFocus}">
+                                        <telerik:SelectionOnFocus>Unchanged</telerik:SelectionOnFocus>
+                                        <telerik:SelectionOnFocus>CursorAtStart</telerik:SelectionOnFocus>
+                                        <telerik:SelectionOnFocus>CursorAtEnd</telerik:SelectionOnFocus>
+                                        <telerik:SelectionOnFocus>SelectAll</telerik:SelectionOnFocus>
+                                    </x:Array>
+                                </telerik:RadComboBox.ItemsSource>
+                            </telerik:RadComboBox>
+                        </VerticalStackLayout>
+                    </VerticalStackLayout>
+                </Grid>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentView>

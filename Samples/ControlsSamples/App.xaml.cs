@@ -58,6 +58,26 @@ public partial class App : Application
                     }
                 });
             }
+            else if (command.Command.StartsWith("NAVIGATE HOME") || command.Command.StartsWith("HOME"))
+            {
+                var tcs = new TaskCompletionSource<string>();
+                command.Result = tcs.Task;
+                Dispatcher.Dispatch(async () =>
+                {
+                    try
+                    {
+                        await DependencyService
+                            .Get<INavigationService>()
+                            .NavigateToRootAsync();
+
+                        tcs.SetResult("OK");
+                    }
+                    catch (Exception e)
+                    {
+                        tcs.SetException(e);
+                    }
+                });
+            }
             else if (command.Command.StartsWith("GET EXAMPLES:"))
             {
                 var examples = ((Application.Current.Windows[0].Page as NavigationPage).RootPage.BindingContext as HomeViewModel)?.Examples;

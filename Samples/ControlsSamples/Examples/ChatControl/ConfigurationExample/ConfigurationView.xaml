@@ -4,13 +4,13 @@
              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
              xmlns:converters="clr-namespace:QSF.Converters"
              xmlns:local="clr-namespace:QSF.Examples.ChatControl.ConfigurationExample"
-             xmlns:chat="clr-namespace:QSF.Examples.ChatControl"
+             xmlns:utilities="clr-namespace:QSF.ExampleUtilities"
              x:Class="QSF.Examples.ChatControl.ConfigurationExample.ConfigurationView"
              Padding="{OnIdiom Default='0', Desktop='16'}">
 
     <VisualElement.Resources>
-        <Style x:Key="SpeechToTextButtonStyle" TargetType="telerik:RadSpeechToTextButton" BasedOn="{StaticResource ChatInputAreaSpeechToTextButtonStyle}">
-            <Setter Property="SpeechRecognizerCreator" Value="{Static chat:SpeechRecognizerProvider.SpeechRecognizerCreator}" />
+        <Style x:Key="SpeechToTextButtonStyle" TargetType="telerik:RadSpeechToTextButton" BasedOn="{StaticResource ChatSpeechToTextButtonStyle}">
+            <Setter Property="SpeechRecognizerCreator" Value="{x:Static utilities:SpeechRecognizerProvider.SpeechRecognizerCreator}" />
         </Style>
     </VisualElement.Resources>
 

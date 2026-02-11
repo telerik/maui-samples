@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:common="clr-namespace:SDKBrowserMaui.Common"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.DataGridControl.PromptControlledCategory"
+             x:Class="SDKBrowserMaui.Examples.DataGridControl.PromptControlledCategory.StylingExample.Styling">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <!-- >> datagrid-prompt-input-style -->
+            <Style x:Key="PromptInputStyle" TargetType="telerik:DataGridAIPromptInput">
+                <Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="BorderBrush" Value="#00897B" />
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="CornerRadius" Value="10" />
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <Setter.Value>
+                        <VisualStateGroupList>
+                            <VisualStateGroup Name="CommonStates">
+                                <VisualState Name="Normal" />
+                                <VisualState Name="PointerOver">
+                                    <VisualState.Setters>
+                                        <Setter Property="BorderBrush" Value="#9900897B" />
+                                        <Setter Property="BackgroundColor" Value="White" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState Name="Focused">
+                                    <VisualState.Setters>
+                                        <Setter Property="BorderBrush" Value="#00897B" />
+                                        <Setter Property="BackgroundColor" Value="White" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateGroupList>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="IsSpeechToTextButtonVisible" Value="{x:Null}" />
+                <Setter Property="SpeechToTextButtonStyle">
+                    <Setter.Value>
+                        <Style TargetType="telerik:RadSpeechToTextButton">
+                            <Setter Property="SpeechRecognizerCreator" Value="{x:Static common:SpeechRecognizerProvider.SpeechRecognizerCreator}" />
+                            <Setter Property="CornerRadius" Value="12" />
+                            <Setter Property="VerticalTextAlignment" Value="Center" />
+                            <Setter Property="HorizontalTextAlignment" Value="Center" />
+                            <Setter Property="TextColor" Value="#00897B" />
+                            <Setter Property="BackgroundColor" Value="Transparent" />
+                            <Setter Property="BorderBrush" Value="LightGray" />
+                            <Setter Property="BorderThickness" Value="2" />
+                            <Setter Property="VisualStateManager.VisualStateGroups">
+                                <VisualStateGroupList>
+                                    <VisualStateGroup Name="CommonStates">
+                                        <VisualState Name="Normal" />
+                                        <VisualState Name="Pressed">
+                                            <VisualState.Setters>
+                                                <Setter Property="TextColor" Value="#9900897B" />
+                                                <Setter Property="BackgroundColor" Value="#E8F5F4" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                        <VisualState Name="Listening">
+                                            <VisualState.Setters>
+                                                <Setter Property="Content" Value="{x:Static telerik:TelerikFont.IconStopRecording}" />
+                                                <Setter Property="TextColor" Value="#000000" />
+                                                <Setter Property="BackgroundColor" Value="#00897B" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                        <VisualState Name="ListeningPressed">
+                                            <VisualState.Setters>
+                                                <Setter Property="Content" Value="{x:Static telerik:TelerikFont.IconStopRecording}" />
+                                                <Setter Property="TextColor" Value="#9900897B" />
+                                                <Setter Property="BackgroundColor" Value="#E8F5F4" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                        <VisualState Name="Error">
+                                            <VisualState.Setters>
+                                                <Setter Property="TextColor" Value="#FF0000" />
+                                                <Setter Property="BackgroundColor" Value="Transparent" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                        <VisualState Name="Disabled">
+                                            <VisualState.Setters>
+                                                <Setter Property="BackgroundColor" Value="#6100897B" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateGroupList>
+                            </Setter>
+                        </Style>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="SendButtonStyle">
+                    <Setter.Value>
+                        <Style TargetType="telerik:RadTemplatedButton">
+                            <Setter Property="CornerRadius" Value="12" />
+                            <Setter Property="VerticalTextAlignment" Value="Center" />
+                            <Setter Property="HorizontalTextAlignment" Value="Center" />
+                            <Setter Property="TextColor" Value="#FFFFFF" />
+                            <Setter Property="Background" Value="#00897B" />
+                            <Setter Property="BorderBrush" Value="LightGray" />
+                            <Setter Property="BorderThickness" Value="2" />
+                            <Setter Property="VisualStateManager.VisualStateGroups">
+                                <VisualStateGroupList>
+                                    <VisualStateGroup Name="CommonStates">
+                                        <VisualState Name="Normal">
+                                            <VisualState.Setters>
+                                                <Setter Property="Background" Value="#00897B" />
+                                                <Setter Property="TextColor" Value="#FFFFFF" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                        <VisualState Name="Pressed">
+                                            <VisualState.Setters>
+                                                <Setter Property="Background" Value="#9900897B" />
+                                                <Setter Property="TextColor" Value="#E8F5F4" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                        <VisualState Name="Disabled">
+                                            <VisualState.Setters>
+                                                <Setter Property="BackgroundColor" Value="#6100897B" />
+                                                <Setter Property="TextColor" Value="#FFFFFF" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateGroupList>
+                            </Setter>
+                        </Style>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <!-- << datagrid-prompt-input-style -->
+
+            <!-- >> datagrid-promptcontrolled-suggestionview-style -->
+            <Style x:Key="SuggestionViewStyle" TargetType="telerik:DataGridAISuggestionsView">
+                <Setter Property="SeparatorStyle">
+                    <Setter.Value>
+                        <Style TargetType="Rectangle">
+                            <Setter Property="BackgroundColor" Value="#80CBC4" />
+                        </Style>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="SuggestedPromptsLabelStyle">
+                    <Setter.Value>
+                        <Style TargetType="Label">
+                            <Setter Property="TextColor" Value="#00897B" />
+                        </Style>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="SuggestedPromptsIconStyle">
+                    <Setter.Value>
+                        <Style TargetType="Label">
+                        </Style>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="SuggestedPromptsCollectionViewStyle">
+                    <Setter.Value>
+                        <Style TargetType="telerik:RadCollectionView">
+                            <Setter Property="ItemViewStyle">
+                                <Setter.Value>
+                                    <Style TargetType="telerik:RadCollectionViewItemView">
+                                        <Setter Property="BorderColor" Value="#80CBC4" />
+                                        <Setter Property="BorderThickness" Value="0, 0, 0, 1" />
+                                        <Setter Property="CornerRadius" Value="0" />
+                                        <Setter Property="VisualStateManager.VisualStateGroups">
+                                            <VisualStateGroupList>
+                                                <VisualStateGroup Name="CommonStates">
+                                                    <VisualState Name="Normal" />
+                                                    <VisualState Name="MouseOver">
+                                                        <VisualState.Setters>
+                                                            <Setter Property="BackgroundColor" Value="#D6EEEC" />
+                                                        </VisualState.Setters>
+                                                    </VisualState>
+                                                    <VisualState Name="Selected">
+                                                        <VisualState.Setters>
+                                                            <Setter Property="BackgroundColor" Value="#C4E6E3" />
+                                                        </VisualState.Setters>
+                                                    </VisualState>
+                                                </VisualStateGroup>
+                                            </VisualStateGroupList>
+                                        </Setter>
+                                    </Style>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <!-- << datagrid-promptcontrolled-suggestionview-style -->
+
+            <!-- >> datagrid-promptcontrolled-floatingaction-button-style -->
+            <Style x:Key="DataGridAIFloatingActionButtonStyle" TargetType="telerik:DataGridAIFloatingActionButton">
+                <Setter Property="CornerRadius" Value="12" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="Background" Value="#00897B" />
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <Setter.Value>
+                        <VisualStateGroupList>
+                            <VisualStateGroup Name="CommonStates">
+                                <VisualState Name="Normal">
+                                    <VisualState.Setters>
+                                        <Setter Property="Background" Value="#00897B" />
+                                        <Setter Property="TextColor" Value="#FFFFFF" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState Name="Pressed">
+                                    <VisualState.Setters>
+                                        <Setter Property="Background" Value="#006459" />
+                                        <Setter Property="TextColor" Value="#E8F5F4" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState Name="Disabled">
+                                    <VisualState.Setters>
+                                        <Setter Property="Background" Value="#416460" />
+                                        <Setter Property="TextColor" Value="#E8F5F4" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateGroupList>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <!-- << datagrid-promptcontrolled-floatingaction-button-style -->
+
+            <!-- >> datagrid-promptcontrolled-bottomsheet-contentheaderlabel-style -->
+            <Style x:Key="BottomSheetContentHeaderLabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="#00897B" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="Margin" Value="10" />
+            </Style>
+            <!-- << datagrid-promptcontrolled-bottomsheet-contentheaderlabel-style -->
+
+            <!-- >> datagrid-promptcontrolled-bottomsheet-content-style -->
+            <Style x:Key="BottomSheetContentStyle" TargetType="telerik:BottomSheetContentView">
+                <Setter Property="BackgroundColor" Value="#D6EEEC" />
+                <Setter Property="BorderColor" Value="#00897B" />
+                <Setter Property="BorderThickness" Value="1" />
+            </Style>
+            <!-- << datagrid-promptcontrolled-bottomsheet-content-style -->
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <!-- >> datagrid-promptcontrolled-style -->
+    <telerik:RadDataGrid ItemsSource="{Binding Flights}"
+                         AutoGenerateColumns="False"
+                         IsAIEnabled="True"
+                         UserEditMode="Cell"
+                         UserGroupMode="Enabled">
+        <telerik:RadDataGrid.Commands>
+            <local:DataGridUserCommand Id="PromptRequest"
+                                       Command="{Binding ProcessAICommand}" />
+            <local:DataGridUserCommand Id="CancelPromptRequest"
+                                       Command="{Binding CancelAICommand}" />
+        </telerik:RadDataGrid.Commands>
+        <telerik:RadDataGrid.AISettings>
+            <telerik:DataGridAISettings FloatingActionButtonStyle="{StaticResource DataGridAIFloatingActionButtonStyle}"
+                                        SuggestedPrompts="{Binding SuggestedPrompts}"
+                                        SuggestionsViewStyle="{StaticResource SuggestionViewStyle}"
+                                        PromptInputStyle="{StaticResource PromptInputStyle}"
+                                        BottomSheetContentHeaderLabelStyle="{StaticResource BottomSheetContentHeaderLabelStyle}"
+                                        BottomSheetContentStyle="{StaticResource BottomSheetContentStyle}" />
+        </telerik:RadDataGrid.AISettings>
+        <telerik:RadDataGrid.Columns>
+            <telerik:DataGridNumericalColumn HeaderText="Flight Number" PropertyName="FlightNumber" />
+            <telerik:DataGridTextColumn HeaderText="Destination" PropertyName="To" />
+            <telerik:DataGridTimeColumn HeaderText="Departure Time" PropertyName="DepartureTime" />
+            <telerik:DataGridTimeColumn HeaderText="Arrival Time" PropertyName="ArrivalTime" />
+            <telerik:DataGridTextColumn HeaderText="Company" PropertyName="Company" />
+        </telerik:RadDataGrid.Columns>
+    </telerik:RadDataGrid>
+    <!-- << datagrid-promptcontrolled-style -->
+</ContentView>

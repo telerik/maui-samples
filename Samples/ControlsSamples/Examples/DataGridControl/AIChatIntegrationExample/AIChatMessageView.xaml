@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:system="clr-namespace:System;assembly=netstandard"
+             x:Class="QSF.Examples.DataGridControl.AIChatIntegrationExample.AIChatMessageView">
+    <ContentView.Resources>
+        <VisualStateGroupList x:Key="ChatAIMessageTemplatedButtonVisualStateGroupList">
+            <VisualStateGroup Name="CommonStates">
+                <VisualState Name="Normal" />
+                <VisualState Name="PointerOver" />
+                <VisualState Name="Pressed">
+                    <VisualState.Setters>
+                        <Setter Property="telerik:RadTemplatedButton.TextColor" Value="{DynamicResource RadOnAppSurfaceColorAlpha50}" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState Name="Disabled">
+                    <VisualState.Setters>
+                        <Setter Property="telerik:RadTemplatedButton.Opacity" Value="0.6" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateGroupList>
+        <VisualStateGroupList x:Key="ChatAIMessageToggleButtonVisualStateGroupList">
+            <VisualStateGroup Name="CommonStates">
+                <VisualState Name="Normal" />
+                <VisualState Name="MouseOver" />
+                <VisualState Name="Pressed">
+                    <VisualState.Setters>
+                        <Setter Property="telerik:RadToggleButton.TextColor" Value="{DynamicResource RadOnAppSurfaceColorAlpha50}" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState Name="Disabled">
+                    <VisualState.Setters>
+                        <Setter Property="telerik:RadToggleButton.Opacity" Value="0.6" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState Name="Toggled">
+                    <VisualState.Setters>
+                        <Setter Property="telerik:RadToggleButton.TextColor" Value="{DynamicResource RadPrimaryColor}" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState Name="ToggledMouseOver">
+                    <VisualState.Setters>
+                        <Setter Property="telerik:RadToggleButton.TextColor" Value="{DynamicResource RadPrimaryColor}" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState Name="ToggledPressed">
+                    <VisualState.Setters>
+                        <Setter Property="telerik:RadToggleButton.TextColor" Value="{DynamicResource RadPrimaryActiveColor}" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState Name="ToggledDisabled">
+                    <VisualState.Setters>
+                        <Setter Property="telerik:RadToggleButton.Opacity" Value="0.6" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+            <VisualStateGroup Name="FocusStates">
+                <VisualState Name="Unfocused" />
+                <VisualState Name="Focused" />
+            </VisualStateGroup>
+        </VisualStateGroupList>
+        <Style x:Key="ChatAIMessageBaseButtonStyle" TargetType="telerik:RadButtonBase">
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Shadow" Value="{x:Null}" />
+            <Setter Property="WidthRequest" Value="32" />
+            <Setter Property="HeightRequest" Value="32" />
+        </Style>
+        <Style x:Key="ChatAIMessageTemplatedButtonStyle" TargetType="telerik:RadTemplatedButton" BasedOn="{StaticResource ChatAIMessageBaseButtonStyle}">
+            <Setter Property="HorizontalTextAlignment" Value="Center" />
+            <Setter Property="VerticalTextAlignment" Value="Center" />
+            <Setter Property="FontSize" Value="{OnPlatform Default=16, MacCatalyst=12}" />
+            <Setter Property="FontFamily" Value="{x:Static telerik:TelerikFont.Name}" />
+            <Setter Property="TextColor" Value="{DynamicResource RadOnAppSurfaceColor}" />
+            <Setter Property="VisualStateManager.VisualStateGroups" Value="{StaticResource ChatAIMessageTemplatedButtonVisualStateGroupList}" />
+        </Style>
+        <Style x:Key="ChatAIMessageToggleButtonStyle" TargetType="telerik:RadToggleButton" BasedOn="{StaticResource ChatAIMessageBaseButtonStyle}">
+            <Setter Property="HorizontalTextAlignment" Value="Center" />
+            <Setter Property="VerticalTextAlignment" Value="Center" />
+            <Setter Property="FontSize" Value="{OnPlatform Default=16, MacCatalyst=12}" />
+            <Setter Property="FontFamily" Value="{x:Static telerik:TelerikFont.Name}" />
+            <Setter Property="TextColor" Value="{DynamicResource RadOnAppSurfaceColor}" />
+            <Setter Property="VisualStateManager.VisualStateGroups" Value="{StaticResource ChatAIMessageToggleButtonVisualStateGroupList}" />
+        </Style>
+        <LinearGradientBrush x:Key="ChatAIBorderBackground" StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Color="#C158E4" Offset="0" />
+            <GradientStop Color="#4B5FFA" Offset="1" />
+        </LinearGradientBrush>
+    </ContentView.Resources>
+    <ContentView.ControlTemplate>
+        <ControlTemplate>
+            <Grid ColumnDefinitions="Auto, *"
+                  RowDefinitions="Auto, *"
+                  Padding="10, 8"
+                  RowSpacing="10"
+                  ColumnSpacing="10">
+                <telerik:RadBorder CornerRadius="18"
+                                   BorderThickness="0"
+                                   Background="{StaticResource ChatAIBorderBackground}"
+                                   WidthRequest="32"
+                                   HeightRequest="32">
+                    <Label FontFamily="{x:Static telerik:TelerikFont.Name}"
+                           Text="{x:Static telerik:TelerikFont.IconSparkle}"
+                           TextColor="#FFFFFF"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center" />
+                </telerik:RadBorder>
+                <Label Grid.Column="1"
+                       FontSize="14"
+                       VerticalTextAlignment="Center"
+                       TextColor="{DynamicResource RadOnAppSurfaceColor}"
+                       Text="{TemplateBinding TimeStamp, StringFormat='AI Assistant {0:hh:mm tt}'}" />
+                <Grid Grid.Column="1"
+                      Grid.Row="1"
+                      RowDefinitions="*, Auto"
+                      RowSpacing="10">
+                    <Label FontSize="14"
+                           TextColor="{DynamicResource RadOnAppSurfaceColor}"
+                           Text="{TemplateBinding MessageText}" />
+                    <HorizontalStackLayout Grid.Row="1">
+                        <telerik:RadTemplatedButton x:Name="PART_CopyButton"
+                                                    Style="{StaticResource ChatAIMessageTemplatedButtonStyle}"
+                                                    Content="{x:Static telerik:TelerikFont.IconCopy}" />
+                        <telerik:RadToggleButton x:Name="PART_ThumbsUp"
+                                                 Style="{StaticResource ChatAIMessageToggleButtonStyle}"
+                                                 Content="{x:Static telerik:TelerikFont.IconThumbsUp}" />
+                        <telerik:RadToggleButton x:Name="PART_ThumbsDown"
+                                                 Style="{StaticResource ChatAIMessageToggleButtonStyle}"
+                                                 Content="{x:Static telerik:TelerikFont.IconThumbsDown}" />
+                    </HorizontalStackLayout>
+                </Grid>
+            </Grid>
+        </ControlTemplate>
+    </ContentView.ControlTemplate>
+</ContentView>
