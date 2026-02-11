@@ -27,6 +27,7 @@ internal static class TelerikControlsIcons
         { "DatePicker", char.ConvertFromUtf32(0xe014) },
         { "DateTimePicker", char.ConvertFromUtf32(0xe015) },
         { "DockLayout", char.ConvertFromUtf32(0xe016) },
+        { "Editor", char.ConvertFromUtf32(0xe849) },
         { "Entry", char.ConvertFromUtf32(0xe017) },
         { "Expander", char.ConvertFromUtf32(0xe018) },
         { "Gauge", char.ConvertFromUtf32(0xe019) },

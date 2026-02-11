@@ -78,7 +78,7 @@
         </Style>
     </ContentPage.Resources>
 
-    <views:QSFPageContentView BackgroundColor="{DynamicResource DefaultBackgroundColor}">
+    <views:QSFPageContentView BackgroundColor="{DynamicResource DefaultBackgroundColor}" AutomationId="mainPageMobile">
         <views:QSFPageContentView.HeaderControlTemplate>
             <ControlTemplate>
                 <Grid ColumnDefinitions="Auto, *, Auto"
@@ -98,7 +98,8 @@
                                      Aspect="Center"
                                      HorizontalOptions="EndAndExpand"
                                      VerticalOptions="Center"
-                                     BackgroundColor="Transparent" />
+                                     BackgroundColor="Transparent"
+                                     AutomationId="settingsButton" />
                         <ImageButton Clicked="Search_Clicked"
                                      Source="searchheader.png"
                                      WidthRequest="35"
@@ -112,7 +113,7 @@
                                      CommandParameter="{Binding Source={x:Reference home}}"
                                      Source="{StaticResource ThemesButtonFontImageSource}"
                                      Style="{StaticResource PageAppBarImageButtonStyle}"
-                                     AutomationId="navigateToThemeSettings" />
+                                     AutomationId="themeSettingsButton" />
                     </HorizontalStackLayout>
                 </Grid>
             </ControlTemplate>

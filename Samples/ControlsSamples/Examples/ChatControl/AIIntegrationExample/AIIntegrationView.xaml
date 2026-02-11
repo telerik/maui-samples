@@ -3,14 +3,18 @@
                         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                         xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
                         xmlns:chat="clr-namespace:QSF.Examples.ChatControl"
+                        xmlns:utilities="clr-namespace:QSF.ExampleUtilities"
                         xmlns:local="clr-namespace:QSF.Examples.ChatControl.AIIntegrationExample"
                         x:Class="QSF.Examples.ChatControl.AIIntegrationExample.AIIntegrationView"
                         Padding="{OnIdiom Default=0, Desktop=16}">
 
     <VisualElement.Resources>
         <local:ItemConverter x:Key="ItemConverter" />
-        <Style x:Key="SpeechToTextButtonStyle" TargetType="telerik:RadSpeechToTextButton" BasedOn="{StaticResource ChatInputAreaSpeechToTextButtonStyle}">
-            <Setter Property="SpeechRecognizerCreator" Value="{x:Static chat:SpeechRecognizerProvider.SpeechRecognizerCreator}" />
+        <Style x:Key="SpeechToTextButtonStyle" TargetType="telerik:RadSpeechToTextButton" BasedOn="{StaticResource ChatSpeechToTextButtonStyle}">
+            <Setter Property="SpeechRecognizerCreator" Value="{x:Static utilities:SpeechRecognizerProvider.SpeechRecognizerCreator}" />
+        </Style>
+        <Style x:Key="ChatPromptInputStyle" TargetType="telerik:RadPromptInput">
+            <Setter Property="SpeechToTextButtonStyle" Value="{OnPlatform WinUI={StaticResource SpeechToTextButtonStyle}}" />
         </Style>
     </VisualElement.Resources>
     <telerik:RadContentView.BindingContext>
@@ -32,7 +36,7 @@
                              RemoveAttachedFileCommand="{Binding RemoveAttachedFileCommand}"
                              IsMoreButtonVisible="True"
                              IsSpeechToTextButtonVisible="True"
-                             SpeechToTextButtonStyle="{OnPlatform WinUI={StaticResource SpeechToTextButtonStyle}}">
+                             InputAreaStyle="{OnPlatform WinUI={StaticResource ChatPromptInputStyle}}">
                 <telerik:RadChat.TypingIndicator>
                     <telerik:TypingIndicator AutomationId="typingIndicator"
                                              Image="ai_assistant.png"

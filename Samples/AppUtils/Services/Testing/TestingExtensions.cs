@@ -39,6 +39,11 @@ public static class TestingExtensions
             SetAutomationIds();
             StopScrollBarsHiding();
 
+            if (!instance.TestCommandTcpPort.HasValue && TryGetPortFromCommandLine(out var cmdLinePort))
+            {
+                instance.TestCommandTcpPort = cmdLinePort;
+            }
+
 #if !ANDROID && !IOS
             BootUpCommandServer(instance);
 #endif
@@ -54,6 +59,16 @@ public static class TestingExtensions
                     if (!instance.IsAppUnderTest)
                     {
                         instance.IsAppUnderTest = activity.Intent?.GetBooleanExtra("TK_TEST", false) == true;
+                    }
+
+                    // Read TCP command port from intent if provided
+                    if (!instance.TestCommandTcpPort.HasValue && activity.Intent != null)
+                    {
+                        var providedPort = activity.Intent.GetIntExtra("TK_TEST_TCP_COMMAND_PORT", -1);
+                        if (providedPort != -1)
+                        {
+                            instance.TestCommandTcpPort = providedPort;
+                        }
                     }
 
                     if (instance.IsAppUnderTest)
@@ -251,31 +266,32 @@ public static class TestingExtensions
 
     private static void BootUpCommandServer(TestingService testingService)
     {
-        int? port = testingService.TestCommandTcpPort;
-        try
-        {
-            var portEnvVar = Environment.GetEnvironmentVariable("TK_TEST_TCP_COMMAND_PORT");
-            if (portEnvVar != null)
-            {
-                port = int.Parse(portEnvVar);
-            }
-        }
-        catch
-        {
-        }
+        int port = DefaultTestCommandTcpPort;
 
-        port ??= DefaultTestCommandTcpPort;
+        // First, check if port is provided via TestCommandTcpPort
+        if (testingService.TestCommandTcpPort.HasValue)
+        {
+            port = testingService.TestCommandTcpPort.Value;
+        }
+        else if (TryGetPortFromEnvironment(out var envPort))
+        {
+            port = envPort;
+        }
+        else if (TryGetPortFromCommandLine(out var cmdLinePort))
+        {
+            port = cmdLinePort;
+        }
         // Experimental TCP commands for testing
         try
         {
-            Console.WriteLine("TEST COMMAND! Starting on port " + port.Value);
-            var ipEndPoint = new IPEndPoint(IPAddress.Loopback, port.Value);
+            Console.WriteLine("TEST COMMAND! Starting on port " + port);
+            var ipEndPoint = new IPEndPoint(IPAddress.Loopback, port);
             tcpCommandServer = new TcpListener(ipEndPoint);
             tcpCommandServer.ExclusiveAddressUse = false;
             tcpCommandServer.Server.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
             tcpCommandServer.Start();
             tcpCommandServer.BeginAcceptTcpClient(BeginAcceptTcpClientAsync, testingService);
-            Console.WriteLine("TEST COMMAND! Listening on " + port.Value);
+            Console.WriteLine("TEST COMMAND! Listening on " + port);
         }
         catch (Exception e)
         {
@@ -329,6 +345,45 @@ public static class TestingExtensions
         return Environment
             .GetCommandLineArgs()
             .Any(arg => arg?.ToUpperInvariant() == var?.ToUpperInvariant());
+    }
+
+    private static bool TryGetPortFromEnvironment(out int port)
+    {
+        port = DefaultTestCommandTcpPort;
+        try
+        {
+            var portEnvVar = Environment.GetEnvironmentVariable("TK_TEST_TCP_COMMAND_PORT");
+            if (!string.IsNullOrEmpty(portEnvVar) && int.TryParse(portEnvVar, out port))
+            {
+                return true;
+            }
+        }
+        catch
+        {
+        }
+        return false;
+    }
+
+    private static bool TryGetPortFromCommandLine(out int port)
+    {
+        port = DefaultTestCommandTcpPort;
+        try
+        {
+            var args = Environment.GetCommandLineArgs();
+            var portArg = args.FirstOrDefault(arg => arg?.StartsWith("TK_TEST_TCP_COMMAND_PORT=", StringComparison.OrdinalIgnoreCase) == true);
+            if (portArg != null)
+            {
+                var portValue = portArg.Split('=')[1];
+                if (int.TryParse(portValue, out port))
+                {
+                    return true;
+                }
+            }
+        }
+        catch
+        {
+        }
+        return false;
     }
 
     private static void StopEntryEmojiCompat()

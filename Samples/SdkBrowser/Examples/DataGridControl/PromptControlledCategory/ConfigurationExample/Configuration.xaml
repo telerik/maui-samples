@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:common="clr-namespace:SDKBrowserMaui.Common"
+             x:Class="SDKBrowserMaui.Examples.DataGridControl.PromptControlledCategory.ConfigurationExample.Configuration">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Style TargetType="VerticalStackLayout">
+                <Setter Property="Spacing" Value="10" />
+            </Style>
+            <Style TargetType="HorizontalStackLayout">
+                <Setter Property="Spacing" Value="10" />
+            </Style>
+            <Style TargetType="telerik:RadCheckBox">
+                <Setter Property="IsThreeState" Value="False" />
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <Grid RowDefinitions="Auto,*"
+          RowSpacing="10">
+        <VerticalStackLayout>
+            <HorizontalStackLayout IsVisible="{OnPlatform Default=True, Android=False, iOS=False}">
+                <telerik:RadCheckBox IsChecked="{Binding Source={x:Reference AISettings}, Path=OpenOnFocus}" />
+                <Label Text="Open on Focus" />
+            </HorizontalStackLayout>
+            <HorizontalStackLayout>
+                <telerik:RadCheckBox IsChecked="{Binding Source={x:Reference AISettings}, Path=IsSuggestedPromptsVisible}" />
+                <Label Text="Suggested Prompts visible" />
+            </HorizontalStackLayout>
+            <HorizontalStackLayout>
+                <telerik:RadCheckBox IsChecked="{Binding Source={x:Reference AISettings}, Path=IsRecentPromptsVisible}" />
+                <Label Text="Recent Prompts visible" />
+            </HorizontalStackLayout>
+            <HorizontalStackLayout>
+                <telerik:RadCheckBox IsChecked="{Binding Source={x:Reference AISettings}, Path=IsEmptyContentVisible}" />
+                <Label Text="Empty Content visible" />
+            </HorizontalStackLayout>
+            <HorizontalStackLayout>
+                <telerik:RadCheckBox IsChecked="{Binding Source={x:Reference AISettings}, Path=SubmitPromptOnSelection}" />
+                <Label Text="Submit Prompt on Selection" />
+            </HorizontalStackLayout>
+            <telerik:RadTemplatedButton Content="Clear Suggested Prompts Collection" 
+                                        WidthRequest="300" 
+                                        HorizontalTextAlignment="{OnPlatform Default=Center, iOS=Start}"
+                                        HorizontalOptions="Start"
+                                        Clicked="OnClearSuggestedPromptsCollectionClicked" />
+            <telerik:RadTemplatedButton Content="Clear Recent Prompts Collection" 
+                                        WidthRequest="300" 
+                                        HorizontalTextAlignment="{OnPlatform Default=Center, iOS=Start}"
+                                        HorizontalOptions="Start"
+                                        Clicked="OnClearRecentPromptsCollectionClicked"/>
+        </VerticalStackLayout>
+        <!-- >> datagrid-prompt-controlled-configuration -->
+        <telerik:RadDataGrid x:Name="dataGrid"
+                             AutoGenerateColumns="False"
+                             IsAIEnabled="True"
+                             UserEditMode="Cell"
+                             UserGroupMode="Enabled"
+                             PromptRequest="OnPromptRequest"
+                             CancelPromptRequest="OnCancelPromptRequest"
+                             Grid.Row="1">
+            <telerik:RadDataGrid.AISettings>
+                <telerik:DataGridAISettings x:Name="AISettings" />
+            </telerik:RadDataGrid.AISettings>
+            <telerik:RadDataGrid.Columns>
+                <telerik:DataGridTextColumn PropertyName="Name" HeaderText="Name" />
+                <telerik:DataGridTextColumn PropertyName="Position" HeaderText="Job Position" />
+                <telerik:DataGridTextColumn PropertyName="City" HeaderText="City" />
+                <telerik:DataGridTextColumn PropertyName="PostalCode" HeaderText="Postal Code" />
+                <telerik:DataGridTextColumn PropertyName="Company" HeaderText="Company" />
+            </telerik:RadDataGrid.Columns>
+        </telerik:RadDataGrid>
+        <!-- << datagrid-prompt-controlled-configuration -->
+    </Grid>
+</ContentView>

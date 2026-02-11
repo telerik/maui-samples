@@ -29,12 +29,15 @@ public class HomeViewModel : PageViewModel
 
         this.Controls = GetControls(configuration);
         this.HighlightControls = GetHighlightControls(configuration);
+        this.HighlightedExamples = GetHighlightedExamples(configuration);
+        this.HighlightedExamplesTitle = configuration.HighlightedExamplesTitle;
         this.Examples = GetExamples(configuration);
         this.MauiHighlights = GetMauiHighlights(configuration);
         this.DemoApps = GetDemoApps(configuration);
 
         this.SelectHomeCommand = new Command(this.SelectHome);
         this.SelectControlCommand = new Command(this.SelectControl);
+        this.SelectExampleCommand = new Command(this.SelectExample);
         this.SelectDemoAppCommand = new Command(this.SelectDemoApp);
         this.SelectMauiHighlightCommand = new Command(this.SelectMauiHighlight);
         this.SelectSearchCommand = new Command(this.SelectSearch);
@@ -47,6 +50,10 @@ public class HomeViewModel : PageViewModel
 
     public ObservableCollection<HighlightedControl> HighlightControls { get; }
 
+    public ObservableCollection<HighlightedExample> HighlightedExamples { get; }
+
+    public string HighlightedExamplesTitle { get; }
+
     public ObservableCollection<Example> Examples { get; }
 
     public ObservableCollection<MauiHighlight> MauiHighlights { get; }
@@ -56,6 +63,8 @@ public class HomeViewModel : PageViewModel
     public ICommand SelectHomeCommand { get; }
 
     public ICommand SelectControlCommand { get; }
+
+    public ICommand SelectExampleCommand { get; }
 
     public ICommand SelectDemoAppCommand { get; }
 
@@ -179,6 +188,45 @@ public class HomeViewModel : PageViewModel
         return result;
     }
 
+    private static ObservableCollection<HighlightedExample> GetHighlightedExamples(Configuration configuration)
+    {
+        ObservableCollection<HighlightedExample> result = new ObservableCollection<HighlightedExample>();
+
+        if (configuration.HighlightedExamples == null)
+        {
+            return result;
+        }
+
+        foreach (HighlightedExample highlighted in configuration.HighlightedExamples)
+        {
+            result.Add(highlighted);
+
+            Control control = configuration.Controls.FirstOrDefault(c => object.Equals(highlighted.ControlName, c.Name));
+            if (control == null)
+            {
+                continue;
+            }
+
+            if (string.IsNullOrEmpty(highlighted.Icon))
+            {
+                highlighted.Icon = control.Icon;
+            }
+
+            Example example = control.Examples.FirstOrDefault(e => object.Equals(highlighted.ExampleName, e.Name));
+            if (example == null)
+            {
+                continue;
+            }
+
+            if (string.IsNullOrEmpty(highlighted.Description))
+            {
+                highlighted.Description = example.Description;
+            }
+        }
+
+        return result;
+    }
+
     private static ObservableCollection<Example> GetExamples(Configuration configuration)
     {
         ObservableCollection<Example> result = new ObservableCollection<Example>();
@@ -220,12 +268,36 @@ public class HomeViewModel : PageViewModel
 
     private void SelectControl(object obj)
     {
-        Control control = this.TryGetControl(obj);
-        this.SelectedControl = control;
+        Control selectedControl = null;
+        if (obj is HighlightedControl highlightedControl)
+        {
+            selectedControl = this.Controls.FirstOrDefault(c => c.DisplayName == highlightedControl.DisplayName);
+        }
+        else if (obj is Control control)
+        {
+            selectedControl = control;
+        }
 
+        this.SelectedControl = selectedControl;
         if (DeviceInfo.Idiom != DeviceIdiom.Desktop)
         {
-            this.NavigateTo(this.selectedControl);
+            this.NavigateTo(this.SelectedControl);
+        }
+    }
+
+    private void SelectExample(object obj)
+    {
+        if (obj is HighlightedExample highlightedExample)
+        {
+            Control control = this.Controls.FirstOrDefault(c => c.Name == highlightedExample.ControlName);
+            Example example = control.Examples.FirstOrDefault(e => e.Name == highlightedExample.ExampleName);
+            control.SelectedExample = example;
+            this.SelectedControl = control;
+
+            if (DeviceInfo.Idiom != DeviceIdiom.Desktop)
+            {
+                this.NavigationService.NavigateToExampleAsync(example);
+            }
         }
     }
 
@@ -249,18 +321,6 @@ public class HomeViewModel : PageViewModel
     private void SelectSettings()
     {
         this.IsSettingsSelected = true;
-    }
-
-    private Control TryGetControl(object obj)
-    {
-        Control control = obj as Control;
-
-        if (control == null && obj is HighlightedControl highlight)
-        {
-            control = this.Controls.FirstOrDefault(c => c.DisplayName == highlight.DisplayName);
-        }
-
-        return control;
     }
 
     private string TryGetUrl(object obj)

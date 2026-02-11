@@ -7,5 +7,6 @@ public partial class GettingStartedXaml : ContentView
 	public GettingStartedXaml()
 	{
 		InitializeComponent();
-	}
+		this.skeleton.AutomationId = "skeleton";
+    }
 }

@@ -36,6 +36,9 @@ namespace QSF
                     // Remove or improve that implementation if the new look of ImageButton is needed in WinUI.
                     handlers.AddHandler(typeof(Microsoft.Maui.Controls.ImageButton), typeof(QSF.WinUI.RadImageButtonHandler));
 #endif
+#if MACCATALYST
+                    handlers.AddHandler(typeof(QSF.Examples.DataGridControl.AIChatIntegrationExample.AIChatSuggestionHostLayout), typeof(QSF.Examples.DataGridControl.AIChatIntegrationExample.AIChatSuggestionHostLayoutHandler));
+#endif
                 })
                 .ConfigureFonts(fonts =>
                 {

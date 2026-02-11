@@ -10,6 +10,47 @@ public static class AppCrashHelper
         return AttachUnhandledExceptionHandler();
     }
 
+    public static void MakeCopyToast(string title, string message)
+    {
+        Label titleLabel = new Label { Text = title, TextColor = Colors.White, Margin = new Thickness(15, 5, 15, 5) };
+        RadPopup popup = new RadPopup();
+        Button closeButton = new Button { Text = "X" };
+        Grid.SetColumn(closeButton, 1);
+        closeButton.Clicked += (_, _) => { popup.IsOpen = false; };
+        Label messageLabel = new Label { Text = message, TextColor = Colors.White, Margin = new Thickness(15) };
+        Grid.SetRow(messageLabel, 1);
+        Grid.SetColumnSpan(messageLabel, 2);
+        Button copyDetailsButton = new Button { Text = "Copy details" };
+        copyDetailsButton.Clicked += async (_, _) => await Clipboard.SetTextAsync(message);
+        Grid.SetRow(copyDetailsButton, 2);
+        Grid.SetColumn(copyDetailsButton, 1);
+        Grid grid = new Grid();
+        grid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+        grid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Star });
+        grid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+        grid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Star });
+        grid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+        RadBorder border = new RadBorder { Content = grid, BackgroundColor = Colors.Black, Margin = new Thickness(25, 0, 25, 40), CornerRadius = new Thickness(6), Opacity = 0.85, HorizontalOptions = LayoutOptions.Center };
+        grid.Children.Add(titleLabel);
+        grid.Children.Add(closeButton);
+        grid.Children.Add(messageLabel);
+        grid.Children.Add(copyDetailsButton);
+        Layout container = new RadLayout();
+        container.Children.Add(border);
+        popup.Content = container;
+        popup.IsModal = true;
+        Window window = Application.Current?.Windows[0];
+
+        if (window != null)
+        {
+            container.WidthRequest = window.Width;
+            container.MaximumHeightRequest = window.Height;
+        }
+
+        popup.Placement = PlacementMode.Center;
+        popup.IsOpen = true;
+    }
+
     private static void ShowLastRunCrashInfo(IDispatcher dispatcher)
     {
         string message = null;
@@ -76,45 +117,4 @@ public static class AppCrashHelper
     }
 
     private static string GetFileName() => Path.Combine(FileSystem.AppDataDirectory, "LastRunCrashInfo.txt");
-
-    private static void MakeCopyToast(string title, string message)
-    {
-        Label titleLabel = new Label { Text = title, TextColor = Colors.White, Margin = new Thickness(15, 5, 15, 5) };
-        RadPopup popup = new RadPopup();
-        Button closeButton = new Button { Text = "X" };
-        Grid.SetColumn(closeButton, 1);
-        closeButton.Clicked += (_, _) => { popup.IsOpen = false; };
-        Label messageLabel = new Label { Text = message, TextColor = Colors.White, Margin = new Thickness(15) };
-        Grid.SetRow(messageLabel, 1);
-        Grid.SetColumnSpan(messageLabel, 2);
-        Button copyDetailsButton = new Button { Text = "Copy details" };
-        copyDetailsButton.Clicked += async (_, _) => await Clipboard.SetTextAsync(message);
-        Grid.SetRow(copyDetailsButton, 2);
-        Grid.SetColumn(copyDetailsButton, 1);
-        Grid grid = new Grid();
-        grid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-        grid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Star });
-        grid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-        grid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Star });
-        grid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
-        RadBorder border = new RadBorder { Content = grid, BackgroundColor = Colors.Black, Margin = new Thickness(25, 0, 25, 40), CornerRadius = new Thickness(6), Opacity = 0.85, HorizontalOptions = LayoutOptions.Center };
-        grid.Children.Add(titleLabel);
-        grid.Children.Add(closeButton);
-        grid.Children.Add(messageLabel);
-        grid.Children.Add(copyDetailsButton);
-        Layout container = new RadLayout();
-        container.Children.Add(border);
-        popup.Content = container;
-        popup.IsModal = true;
-        Window window = Application.Current?.Windows[0];
-
-        if (window != null)
-        {
-            container.WidthRequest = window.Width;
-            container.MaximumHeightRequest = window.Height;
-        }
-
-        popup.Placement = PlacementMode.Center;
-        popup.IsOpen = true;
-    }
 }

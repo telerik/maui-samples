@@ -32,13 +32,6 @@
                 <Setter Property="Opacity" Value="0.6" />
                 <Setter Property="VerticalOptions" Value="Center" />
             </Style>
-            <Style x:Key="DefaultSliderStyle" TargetType="telerik:RadSlider" BasedOn="{StaticResource RadSliderStyle}">
-                <Setter Property="Minimum" Value="0" />
-                <Setter Property="Maximum" Value="60" />
-                <Setter Property="Margin" Value="8, 0" />
-                <Setter Property="HorizontalOptions" Value="Fill" />
-                <Setter Property="VerticalOptions" Value="Center" />
-            </Style>
             <Style x:Key="GroupAtExampleAreaStyle" TargetType="Layout">
                 <Setter Property="Margin" Value="{OnPlatform Default='0, 0, 0, 40', Android='0, 0, 0, 15', iOS='0, 0, 0, 20'}" />
             </Style>
@@ -74,7 +67,10 @@
                                    Style="{StaticResource SliderMinMaxLabelStyle}"
                                    Text="0" />
                             <telerik:RadSlider Grid.Column="2"
-                                               Style="{StaticResource DefaultSliderStyle}"
+                                               Minimum="0"
+                                               Margin="8, 0"
+                                               HorizontalOptions="Fill"
+                                               VerticalOptions="Center"
                                                Value="{Binding BorderThicknessValue, Mode=TwoWay}"
                                                Maximum="15"
                                                AutomationId="borderThicknesSlider" />
@@ -114,7 +110,11 @@
                                    Style="{StaticResource SliderMinMaxLabelStyle}"
                                    Text="0" />
                             <telerik:RadSlider Grid.Column="2"
-                                               Style="{StaticResource DefaultSliderStyle}"
+                                               Minimum="0"
+                                               Maximum="60"
+                                               Margin="8, 0"
+                                               HorizontalOptions="Fill"
+                                               VerticalOptions="Center"
                                                Value="{Binding LeftCornerRadius, Mode=TwoWay}"
                                                AutomationId="leftCornerRadiusSlider" />
                             <Label Grid.Column="3"
@@ -129,7 +129,11 @@
                                    Style="{StaticResource SliderMinMaxLabelStyle}"
                                    Text="0" />
                             <telerik:RadSlider Grid.Column="2"
-                                               Style="{StaticResource DefaultSliderStyle}"
+                                               Minimum="0"
+                                               Maximum="60"
+                                               Margin="8, 0"
+                                               HorizontalOptions="Fill"
+                                               VerticalOptions="Center"
                                                Value="{Binding TopCornerRadius, Mode=TwoWay}"
                                                AutomationId="topCornerRadiusSlider" />
                             <Label Grid.Column="3"
@@ -147,7 +151,11 @@
                                    Style="{StaticResource SliderMinMaxLabelStyle}"
                                    Text="0" />
                             <telerik:RadSlider Grid.Column="2"
-                                               Style="{StaticResource DefaultSliderStyle}"
+                                               Minimum="0"
+                                               Maximum="60"
+                                               Margin="8, 0"
+                                               HorizontalOptions="Fill"
+                                               VerticalOptions="Center"
                                                Value="{Binding RightCornerRadius, Mode=TwoWay}"
                                                AutomationId="rightCornerRadiusSlider" />
                             <Label Grid.Column="3"
@@ -164,7 +172,11 @@
                                    Style="{StaticResource SliderMinMaxLabelStyle}"
                                    Text="0" />
                             <telerik:RadSlider Grid.Column="2"
-                                               Style="{StaticResource DefaultSliderStyle}"
+                                               Minimum="0"
+                                               Maximum="60"
+                                               Margin="8, 0"
+                                               HorizontalOptions="Fill"
+                                               VerticalOptions="Center"
                                                Value="{Binding BottomCornerRadius, Mode=TwoWay}"
                                                AutomationId="bottomCornerRadiusSlider" />
                             <Label Grid.Column="3"

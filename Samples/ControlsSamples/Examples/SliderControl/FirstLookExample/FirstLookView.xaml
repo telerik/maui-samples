@@ -7,12 +7,6 @@
                         x:Name="sliderFirstLookContentView"
                         Padding="16, 20">
     <telerik:RadContentView.Resources>
-        <Style TargetType="telerik:RadSlider" BasedOn="{StaticResource RadSliderStyle}">
-            <Setter Property="Minimum" Value="0" />
-            <Setter Property="Maximum" Value="20000" />
-            <Setter Property="MinimumWidthRequest" Value="300" />
-            <Setter Property="TooltipStringFormat" Value="{}{0:N0}" />
-        </Style>
         <Style x:Key="ExampleLabelStyle" TargetType="Label" BasedOn="{StaticResource BaseLabelStyle}">
             <Setter Property="Margin" Value="{OnPlatform Default='0, 0, 0, 12', Android='3, 0, 0, 12', WinUI='4, 0, 0, 12'}" />
         </Style>
@@ -88,17 +82,29 @@
             <VerticalStackLayout>
                 <Label Text="24h ATM Limit"
                        Style="{StaticResource ExampleLabelStyle}" />
-                <telerik:RadSlider Value="{Binding ATMLimit, Mode=TwoWay}" />
+                <telerik:RadSlider Value="{Binding ATMLimit, Mode=TwoWay}"
+                                   Minimum="0"
+                                   Maximum="20000"
+                                   MinimumWidthRequest="300"
+                                   TooltipStringFormat="{}{0:N0}" />
             </VerticalStackLayout>
             <VerticalStackLayout Grid.Row="1">
                 <Label Text="24h POS Limit"
                        Style="{StaticResource ExampleLabelStyle}" />
-                <telerik:RadSlider Value="{Binding POSLimit, Mode=TwoWay}" />
+                <telerik:RadSlider Value="{Binding POSLimit, Mode=TwoWay}"
+                                   Minimum="0"
+                                   Maximum="20000"
+                                   MinimumWidthRequest="300"
+                                   TooltipStringFormat="{}{0:N0}" />
             </VerticalStackLayout>
             <VerticalStackLayout Grid.Row="2">
                 <Label Text="Total 24h Limit"
                        Style="{StaticResource ExampleLabelStyle}" />
-                <telerik:RadSlider Value="{Binding TotalLimit, Mode=TwoWay}" />
+                <telerik:RadSlider Value="{Binding TotalLimit, Mode=TwoWay}"
+                                   Minimum="0"
+                                   Maximum="20000"
+                                   MinimumWidthRequest="300"
+                                   TooltipStringFormat="{}{0:N0}" />
             </VerticalStackLayout>
         </Grid>
     </Grid>

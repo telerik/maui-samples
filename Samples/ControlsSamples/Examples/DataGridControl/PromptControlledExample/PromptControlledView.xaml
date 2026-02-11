@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:utilities="clr-namespace:QSF.ExampleUtilities"
+             xmlns:local="clr-namespace:QSF.Examples.DataGridControl.PromptControlledExample"
+             x:Class="QSF.Examples.DataGridControl.PromptControlledExample.PromptControlledView">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Style TargetType="CollectionView">
+                <Setter Property="ItemSizingStrategy" Value="MeasureFirstItem" />
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    
+    <Grid>
+        <telerik:RadDataGrid x:Name="dataGrid"
+                             AutomationId="dataGrid"
+                             ItemsSource="{Binding Orders}"
+                             AutoGenerateColumns="False"
+                             UserEditMode="Cell"
+                             UserGroupMode="Enabled"
+                             IsAIEnabled="True">
+            <telerik:RadDataGrid.Commands>
+                <local:DataGridUserCommand Id="PromptRequest"
+                                           Command="{Binding ProcessAICommand}" />
+                <local:DataGridUserCommand Id="CancelPromptRequest"
+                                           Command="{Binding CancelAICommand}" />
+            </telerik:RadDataGrid.Commands>
+            <telerik:RadDataGrid.AISettings>
+                <telerik:DataGridAISettings SuggestedPrompts="{Binding SuggestedPrompts}">
+                    <telerik:DataGridAISettings.PromptInputStyle>
+                        <Style TargetType="telerik:DataGridAIPromptInput">
+                            <Setter Property="IsSpeechToTextButtonVisible" Value="{x:Null}" />
+                            <Setter Property="SpeechToTextButtonStyle">
+                                <Setter.Value>
+                                    <Style TargetType="telerik:RadSpeechToTextButton" BasedOn="{StaticResource DataGridAIPromptInputSpeechToTextButtonStyle}">
+                                        <Setter Property="SpeechRecognizerCreator" Value="{x:Static utilities:SpeechRecognizerProvider.SpeechRecognizerCreator}" />
+                                    </Style>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </telerik:DataGridAISettings.PromptInputStyle>
+                </telerik:DataGridAISettings>
+            </telerik:RadDataGrid.AISettings>
+            <telerik:RadDataGrid.Columns>
+                <telerik:DataGridTextColumn PropertyName="ShipCountry"
+                                            HeaderText="Ship Country" />
+                <telerik:DataGridDateColumn PropertyName="OrderDate"
+                                            HeaderText="Order Date" />
+                <telerik:DataGridNumericalColumn PropertyName="Freight"
+                                                 HeaderText="Freight"
+                                                 CellContentFormat="${0:N2}" />
+                <telerik:DataGridDateColumn PropertyName="ShippedDate"
+                                            HeaderText="Shipped Date" />
+                <telerik:DataGridTextColumn PropertyName="ShipCity"
+                                            HeaderText="Ship City" />
+                <telerik:DataGridTextColumn PropertyName="ShipName"
+                                            HeaderText="Ship Name" />
+                <telerik:DataGridNumericalColumn PropertyName="OrderID"
+                                                 HeaderText="Order ID" />
+            </telerik:RadDataGrid.Columns>
+        </telerik:RadDataGrid>
+    </Grid>
+</ContentView>

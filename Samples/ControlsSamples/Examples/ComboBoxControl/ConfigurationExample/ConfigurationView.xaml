@@ -15,11 +15,6 @@
                 <Setter Property="Opacity" Value="0.6" />
                 <Setter Property="VerticalOptions" Value="Center" />
             </Style>
-            <Style TargetType="telerik:RadSlider" BasedOn="{StaticResource RadSliderStyle}">
-                <Setter Property="Margin" Value="8, 0" />
-                <Setter Property="HorizontalOptions" Value="Fill" />
-                <Setter Property="VerticalOptions" Value="Center" />
-            </Style>
         </ResourceDictionary>
     </ContentView.Resources>
 
@@ -261,7 +256,10 @@
                                                    Grid.Column="1"
                                                    Minimum="-1"
                                                    Maximum="{OnIdiom Phone=500, Default=800}"
-                                                   Value="-1" 
+                                                   Value="-1"
+                                                   Margin="8, 0"
+                                                   HorizontalOptions="Fill"
+                                                   VerticalOptions="Center"
                                                    AutomationId="widthSlider" />
                                 <Label Grid.Column="2"
                                        Style="{StaticResource SliderMinMaxLabelStyle}"
@@ -278,6 +276,9 @@
                                                    Grid.Column="1"
                                                    Maximum="300"
                                                    Value="{Binding DropDownMaxHeight, Source={x:Reference comboBox}, Mode=TwoWay}"
+                                                   Margin="8, 0"
+                                                   HorizontalOptions="Fill"
+                                                   VerticalOptions="Center"
                                                    AutomationId="maxHeightSlider" />
                                 <Label Grid.Column="2"
                                        Style="{StaticResource SliderMinMaxLabelStyle}"
@@ -293,7 +294,10 @@
                                 <telerik:RadSlider x:Name="dropDownVerticalOffsetSlider"
                                                    Grid.Column="1"
                                                    Maximum="24"
-                                                   Value="{OnPlatform Default=6, Android=0, WinUI=8}" 
+                                                   Value="{OnPlatform Default=6, Android=0, WinUI=8}"
+                                                   Margin="8, 0"
+                                                   HorizontalOptions="Fill"
+                                                   VerticalOptions="Center"
                                                    AutomationId="verticalOffsetSlider" />
                                 <Label Grid.Column="2"
                                        Style="{StaticResource SliderMinMaxLabelStyle}"

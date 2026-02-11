@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.EditorControl.FeaturesCategory.FeaturesExample.Features">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Style TargetType="HorizontalStackLayout">
+                <Setter Property="Spacing" Value="5" />
+            </Style>
+            <Style TargetType="VerticalStackLayout">
+                <Setter Property="Spacing" Value="10" />
+            </Style>
+            <Style TargetType="telerik:RadMultilineTextInput">
+                <Setter Property="MaxLines" Value="{Binding Source={x:Reference maxLines}, Path=Value}" />
+            </Style>
+            <Style TargetType="Label">
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <Grid RowDefinitions="Auto, Auto"
+          HorizontalOptions="{OnPlatform Default=Fill, MacCatalyst=Start, WinUI=Start}"
+          WidthRequest="{OnPlatform MacCatalyst=300, WinUI=300}"
+          RowSpacing="10">
+        <VerticalStackLayout>
+            <HorizontalStackLayout>
+                <Label Text="Auto size:" />
+                <telerik:RadComboBox SelectedItem="{Binding Source={x:Reference editor}, Path=AutoSize}">
+                    <telerik:RadComboBox.ItemsSource>
+                        <x:Array Type="{x:Type EditorAutoSizeOption}">
+                            <EditorAutoSizeOption>TextChanges</EditorAutoSizeOption>
+                            <EditorAutoSizeOption>Disabled</EditorAutoSizeOption>
+                        </x:Array>
+                    </telerik:RadComboBox.ItemsSource>
+                </telerik:RadComboBox>
+            </HorizontalStackLayout>
+            <HorizontalStackLayout>
+                <Label Text="Selection on Focus:" />
+                <telerik:RadComboBox SelectedItem="{Binding Source={x:Reference editor}, Path=SelectionOnFocus}">
+                    <telerik:RadComboBox.ItemsSource>
+                        <x:Array Type="{x:Type telerik:SelectionOnFocus}">
+                            <telerik:SelectionOnFocus>SelectAll</telerik:SelectionOnFocus>
+                            <telerik:SelectionOnFocus>Unchanged</telerik:SelectionOnFocus>
+                            <telerik:SelectionOnFocus>CursorAtStart</telerik:SelectionOnFocus>
+                            <telerik:SelectionOnFocus>CursorAtEnd</telerik:SelectionOnFocus>
+                        </x:Array>
+                    </telerik:RadComboBox.ItemsSource>
+                </telerik:RadComboBox>
+            </HorizontalStackLayout>
+            <HorizontalStackLayout>
+                <Label Text="Is Clear Button Visible:" />
+                <telerik:RadComboBox SelectedItem="{Binding Source={x:Reference editor}, Path=ClearButtonVisibility}">
+                    <telerik:RadComboBox.ItemsSource>
+                        <x:Array Type="{x:Type ClearButtonVisibility}">
+                            <ClearButtonVisibility>Never</ClearButtonVisibility>
+                            <ClearButtonVisibility>WhileEditing</ClearButtonVisibility>
+                        </x:Array>
+                    </telerik:RadComboBox.ItemsSource>
+                </telerik:RadComboBox>
+            </HorizontalStackLayout>
+            <HorizontalStackLayout Spacing="10">
+                <HorizontalStackLayout>
+                    <Label Text="MaxLines:" />
+                    <telerik:RadNumericInput x:Name="maxLines"
+                                             Minimum="3" 
+                                             Value="6" 
+                                             Maximum="20" />
+                </HorizontalStackLayout>
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+        <!-- >> editor-features -->
+        <telerik:RadEditor x:Name="editor"
+                           Grid.Row="1"
+                           ClearButtonVisibility="Never"
+                           AutoSize="TextChanges"
+                           Padding="10"
+                           SelectionOnFocus="SelectAll" />
+        <!-- << editor-features -->
+    </Grid>
+</ContentView>

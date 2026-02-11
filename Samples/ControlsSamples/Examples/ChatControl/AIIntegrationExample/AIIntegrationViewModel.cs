@@ -11,13 +11,12 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Telerik.AppUtils.Services;
 
 namespace QSF.Examples.ChatControl.AIIntegrationExample;
 
 public class AIIntegrationViewModel : ExampleViewModel
 {
-    private static int predefinedPhotosIndex = -1;
-
     private string chatId;
     private object prompt;
     private bool isWaitingForAIResponse;
@@ -188,14 +187,9 @@ public class AIIntegrationViewModel : ExampleViewModel
 
     private void SetPredefinedPrompt()
     {
-        if (predefinedPhotosIndex == -1)
-        {
-            var rnd = new Random();
-            predefinedPhotosIndex = rnd.Next(ConversationConstants.aiPredefinedPhotos.Length);
-        }
-
-        string photo = ConversationConstants.aiPredefinedPhotos[predefinedPhotosIndex % ConversationConstants.aiPredefinedPhotos.Length];
-        predefinedPhotosIndex++;
+        var rnd = DependencyService.Get<ITestingService>().Random(42);
+        int photoIndex = rnd.Next(ConversationConstants.aiPredefinedPhotos.Length);
+        string photo = ConversationConstants.aiPredefinedPhotos[photoIndex];
 
         Func<Stream> getStreamFunc = () =>
         {

@@ -11,6 +11,7 @@ public partial class SettingWidth : ContentView
 		InitializeComponent();
 
 		this.Loaded += this.OnLoaded;
+		this.bottomSheet.AutomationId = "bottomSheet";
     }
 
     private void OnLoaded(object sender, EventArgs e)

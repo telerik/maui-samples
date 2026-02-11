@@ -39,14 +39,15 @@
             </Setter>
         </Style>
     </ContentPage.Resources>
-    <views:QSFPageContentView BackgroundColor="{DynamicResource DefaultBackgroundColor}">
+    <views:QSFPageContentView BackgroundColor="{DynamicResource DefaultBackgroundColor}" AutomationId="themeSettingsPage">
         <views:QSFPageContentView.HeaderControlTemplate>
             <ControlTemplate>
                 <Grid ColumnDefinitions="Auto, *, Auto">
                     <ImageButton IsEnabled="{Binding Prefetched}"
                                  Clicked="Back_Clicked"
                                  HorizontalOptions="Start"
-                                 Style="{OnPlatform Default={StaticResource DefaultBackButtonStyle}, iOS={StaticResource IOSBackButtonStyle}}" />
+                                 Style="{OnPlatform Default={StaticResource DefaultBackButtonStyle}, iOS={StaticResource IOSBackButtonStyle}}"
+                                 AutomationId="backButton" />
                     <Label Grid.Column="1"
                            Text="{Binding HeaderLabel}"
                            Style="{StaticResource HeaderLabelStyle}"

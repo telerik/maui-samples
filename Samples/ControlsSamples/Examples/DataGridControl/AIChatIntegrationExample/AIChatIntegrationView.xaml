@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:example="clr-namespace:QSF.Examples.DataGridControl.AIChatIntegrationExample"
+             x:Class="QSF.Examples.DataGridControl.AIChatIntegrationExample.AIChatIntegrationView">
+    <ContentView.Resources>
+        <DataTemplate x:Key="DataGridAIViewTemplate_Desktop">
+            <telerik:RadBorder BorderThickness="1, 1, 1, 0"
+                               BorderBrush="{DynamicResource RadBorderBrush}"
+                               BackgroundColor="{DynamicResource DataGridAIViewBackgroundColor}">
+                <Grid ColumnDefinitions="Auto, *"
+                      Margin="12, 9, 16, 9">
+                    <telerik:RadTemplatedButton Background="Transparent"
+                                                BorderThickness="0"
+                                                IsEnabled="{Binding IsResetAllowed}"
+                                                FontSize="14"
+                                                Clicked="OnResetChangesButtonClicked">
+                        <telerik:RadTemplatedButton.ControlTemplate>
+                            <ControlTemplate>
+                                <telerik:RadEffectsView x:Name="PART_EffectsView"
+                                                        BackgroundColor="{TemplateBinding BackgroundColor}"
+                                                        Background="{TemplateBinding Background}"
+                                                        BorderColor="{TemplateBinding BorderColor}"
+                                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                                        CornerRadius="{TemplateBinding CornerRadius, Converter={StaticResource CornerRadiusToThicknessConverter}}"
+                                                        Padding="{TemplateBinding Padding}">
+                                    <Grid ColumnDefinitions="Auto, Auto"
+                                          ColumnSpacing="10">
+                                        <Label FontFamily="{x:Static telerik:TelerikFont.Name}"
+                                               Text="{x:Static telerik:TelerikFont.IconRefresh}"
+                                               TextColor="{TemplateBinding TextColor}"
+                                               FontSize="{TemplateBinding FontSize}"
+                                               VerticalTextAlignment="Center" />
+                                        <Label Grid.Column="1"
+                                               Text="Reset Changes"
+                                               TextColor="{TemplateBinding TextColor}"
+                                               FontSize="{TemplateBinding FontSize}"
+                                               VerticalOptions="Center"
+                                               VerticalTextAlignment="Center" />
+                                    </Grid>
+                                </telerik:RadEffectsView>
+                            </ControlTemplate>
+                        </telerik:RadTemplatedButton.ControlTemplate>
+                    </telerik:RadTemplatedButton>
+                    <telerik:DataGridAIFloatingActionButton Grid.Column="1"
+                                                            Command="{Binding VisualizeChatCommand}"
+                                                            HorizontalOptions="End" />
+                </Grid>
+            </telerik:RadBorder>
+        </DataTemplate>
+        <DataTemplate x:Key="DataGridAIViewTemplate_Mobile">
+            <Grid RowDefinitions="Auto, *"
+                  BackgroundColor="Transparent">
+                <Grid ColumnDefinitions="Auto, *, Auto"
+                      BackgroundColor="Transparent"
+                      Margin="10, 0, 10, 10">
+                    <Label WidthRequest="32"
+                           HeightRequest="32"
+                           FontFamily="{x:Static telerik:TelerikFont.Name}"
+                           Text="{x:Static telerik:TelerikFont.IconSparkle}"
+                           TextColor="{DynamicResource RadOnAppSurfaceColor}"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center" />
+                    <Label Grid.Column="1"
+                           Text="{telerik:Localize DataGrid_AI_SheetContent_HeaderLabel}"
+                           FontSize="20"
+                           TextColor="{DynamicResource RadOnAppSurfaceColor}"
+                           VerticalOptions="Center" />
+                    <telerik:RadTemplatedButton Grid.Column="2"
+                                                Background="Transparent"
+                                                BorderThickness="0"
+                                                IsVisible="{Binding IsResetAllowed}"
+                                                WidthRequest="32"
+                                                HeightRequest="32"
+                                                FontSize="14"
+                                                TextColor="{DynamicResource RadOnAppSurfaceColor}"
+                                                HorizontalTextAlignment="Center"
+                                                FontFamily="{x:Static telerik:TelerikFont.Name}"
+                                                Content="{x:Static telerik:TelerikFont.IconRefresh}"
+                                                Clicked="OnResetChangesButtonClicked" />
+                </Grid>
+                <example:AIChatView Grid.Row="1" />
+            </Grid>
+        </DataTemplate>
+        <Style TargetType="telerik:DataGridAIBottomSheet">
+            <Setter Property="AutoGenerateStates" Value="False" />
+            <Setter Property="States" Value="{Binding BottomSheetStates}" />
+        </Style>
+    </ContentView.Resources>
+    <Grid ColumnDefinitions="*, Auto">
+        <telerik:RadDataGrid x:Name="dataGrid"
+                             ItemsSource="{Binding Orders}"
+                             AutoGenerateColumns="False"
+                             UserEditMode="Cell"
+                             UserGroupMode="Enabled"
+                             IsAIEnabled="True"
+                             AIViewTemplate="{OnPlatform iOS={StaticResource DataGridAIViewTemplate_Mobile}, Android={StaticResource DataGridAIViewTemplate_Mobile}, MacCatalyst={StaticResource DataGridAIViewTemplate_Desktop}, WinUI={StaticResource DataGridAIViewTemplate_Desktop}}"
+                             AIRequestFunc="{Binding AIRequestFunc}"
+                             AIResponseAction="{Binding AIResponseAction}">
+            <telerik:RadDataGrid.AISettings>
+                <telerik:DataGridAISettings SuggestedPrompts="{Binding SuggestedPrompts}"/>
+            </telerik:RadDataGrid.AISettings>
+        </telerik:RadDataGrid>
+        <OnPlatform x:TypeArguments="View">
+            <On Platform="MacCatalyst, WinUI">
+                <Grid Grid.Column="1"
+                      Margin="10, 0, 0, 0"
+                      IsVisible="{Binding IsChatVisible}">
+                    <example:AIChatView MaximumWidthRequest="370" />
+                </Grid>
+            </On>
+        </OnPlatform>
+    </Grid>
+</ContentView>

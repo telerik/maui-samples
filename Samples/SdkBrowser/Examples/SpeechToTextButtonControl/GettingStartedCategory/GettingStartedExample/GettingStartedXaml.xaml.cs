@@ -8,6 +8,7 @@ public partial class GettingStartedXaml : ContentView
 	public GettingStartedXaml()
 	{
 		InitializeComponent();
+		this.speechToTextButton.AutomationId = "speechToTextButton";
 
 #if WINDOWS
 		this.speechToTextButton.SpeechRecognizerCreator = () => new RadSpeechRecognizer();

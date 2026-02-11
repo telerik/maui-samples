@@ -39,6 +39,7 @@
     </OnPlatform>
     <Color x:Key="MenuItemPointerOverBackgroundColor">#2D2D2D</Color>
     <Color x:Key="MenuItemSelectedBackgroundColor">#2D2D2D</Color>
+    <Color x:Key="DataGridAIViewBackgroundColor">Transparent</Color>
     <Color x:Key="NavigationViewBackgroundColor">#202020</Color>
     <OnPlatform x:Key="RadAppSurfaceColor" x:TypeArguments="Color" Default="#000000">
         <On Platform="MacCatalyst" Value="#202020" />
@@ -54,6 +55,7 @@
         <On Platform="WinUI" Value="#18A5A5A5" />
     </OnPlatform>
     <Color x:Key="DescriptionBackgroundColor">#2D2D2D</Color>
+    <Color x:Key="HighlightedExampleBackgroundColor">#2FB7BD</Color>
 
     <Color x:Key="ControlPageItemBackgroundColor1">#2E91A1</Color>
     <Color x:Key="ControlPageItemBackgroundColor2">#3765B7</Color>
@@ -121,6 +123,11 @@
         <On Platform="Android" Value="{StaticResource DefaultTextColor}" />
         <On Platform="WinUI" Value="{StaticResource PlaceholderColor}" />
     </OnPlatform>
+    <OnPlatform x:Key="SurfaceAltColor" x:TypeArguments="Color" Default="#000000">
+        <On Platform="Android" Value="#121212" />
+        <On Platform="WinUI" Value="#292929" />
+    </OnPlatform>
+    <Color x:Key="HighlightedExampleBorderColor">#4FC6CB</Color>
 
     <!-- Examples Colors -->
     <Color x:Key="AccordionCustomizationAvatarLabelTextColor">#66FFFFFF</Color>
@@ -245,6 +252,7 @@
     <telerikTheming:ColorFilter x:Key="DataPagerButtonNonAccentColorAlpha60" Color="{StaticResource DefaultTextColor}" Alpha="0.60" />
     <telerikTheming:ColorFilter x:Key="EntryBackgroundColor" Color="#000000" Alpha="{OnPlatform Default=1, WinUI=0.06}" Lighten="{OnPlatform Default=0, Android=0.12}" />
     <telerikTheming:ColorFilter x:Key="SchedulerDialogFooterBackgroundColor" Color="#000000" Alpha="{OnPlatform Default=1, iOS=0.82, MacCatalyst=0}" Lighten="{OnPlatform Default=0, Android=0.12, iOS=0.15, WinUI=-0.2}" />
+    <telerikTheming:ColorFilter x:Key="DataGridAIChatBackgroundColor" Color="{StaticResource SurfaceAltColor}" Lighten="{OnPlatform Default=0, MacCatalyst=0.12, WinUI=-0.21}" />
 
     <!-- Platform-Specific Colors -->
     <OnPlatform x:Key="AutoCompleteSuggestionViewBackgroundColor" x:TypeArguments="Color" Default="#000000">
