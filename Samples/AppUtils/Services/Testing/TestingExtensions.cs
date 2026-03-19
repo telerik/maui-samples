@@ -2,9 +2,9 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Maui.LifecycleEvents;
 using System.Net;
 using System.Net.Sockets;
+using Telerik.Maui.Controls;
 
 #if ANDROID
-using Telerik.Maui.Controls;
 using Android.Views;
 #endif
 
@@ -168,7 +168,19 @@ public static class TestingExtensions
 
                 return sv;
             };
+#elif MACCATALYST
+        Microsoft.Maui.Handlers.ScrollViewHandler.Mapper.AppendToMapping("HideScrollBars", (h, v) =>
+        {
+            var platformView = h.PlatformView;
+            if (platformView != null)
+            {
+                platformView.ShowsVerticalScrollIndicator = false;
+                platformView.ShowsHorizontalScrollIndicator = false;
+            }
+        });
+#endif
 
+#if __ANDROID__ || MACCATALYST
         Microsoft.Maui.Handlers.LayoutHandler.PlatformViewFactory =
             (handler) =>
             {

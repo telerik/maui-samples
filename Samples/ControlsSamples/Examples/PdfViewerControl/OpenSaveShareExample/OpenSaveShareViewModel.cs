@@ -118,7 +118,7 @@ public class OpenSaveShareViewModel : ExampleViewModel
 
     private async Task SaveAsync()
     {
-        var localFolder = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+        var localFolder = FileSystem.Current.CacheDirectory;
         var filePath = Path.Combine(localFolder, PdfFileName);
 
         if (this.Document == null)

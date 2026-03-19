@@ -4,6 +4,90 @@
                         xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
                         x:Class="QSF.Examples.SideDrawerControl.FirstLookExample.FirstLookView"
                         Margin="5">
+    <telerik:RadContentView.Resources>
+        <ResourceDictionary>
+            <Style x:Key="ItemStyle" TargetType="telerik:RadCollectionViewItemView">
+                <Setter Property="BorderColor" Value="{DynamicResource ControlsMenuBorderColor}" />
+                <Setter Property="BackgroundColor" Value="{OnPlatform Default={DynamicResource TertiaryBackgroundColor}, WinUI=Transparent}" />
+                <Setter Property="BorderThickness" Value="0, 0, 0, 1" />
+            </Style>
+
+            <VisualStateGroupList x:Key="CollectionViewItemVisualStates">
+                <VisualStateGroup Name="CommonStates">
+                    <VisualState Name="Normal" />
+                    <VisualState Name="MouseOver" />
+                    <VisualState Name="Selected">
+                        <VisualState.Setters>
+                            <Setter Property="telerik:RadCollectionViewItemView.BackgroundColor" Value="#80A78FCD" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState Name="Disabled" />
+                </VisualStateGroup>
+                <VisualStateGroup Name="OrientationStates">
+                    <VisualState Name="Vertical" />
+                    <VisualState Name="Horizontal">
+                        <VisualState.Setters>
+                            <Setter Property="telerik:RadCollectionViewItemView.BorderThickness" Value="0, 0, 1, 0" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+
+            <VisualStateGroupList x:Key="CollectionViewItemVisualStates_Desktop">
+                <VisualStateGroup Name="CommonStates">
+                    <VisualState Name="Normal" />
+                    <VisualState Name="MouseOver">
+                        <VisualState.Setters>
+                            <Setter Property="telerik:RadCollectionViewItemView.BackgroundColor" Value="#50C3B5DD" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState Name="Selected">
+                        <VisualState.Setters>
+                            <Setter Property="telerik:RadCollectionViewItemView.BackgroundColor" Value="#80A78FCD" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState Name="Focused">
+                        <VisualState.Setters>
+                            <Setter Property="telerik:RadCollectionViewItemView.BorderColor" Value="{DynamicResource RadCollectionViewItemCurrentBorderColor}" />
+                            <Setter Property="telerik:RadCollectionViewItemView.BorderThickness" Value="{OnPlatform MacCatalyst=1}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState Name="FocusedSelected">
+                        <VisualState.Setters>
+                            <Setter Property="telerik:RadCollectionViewItemView.BackgroundColor" Value="#80A78FCD" />
+                            <Setter Property="telerik:RadCollectionViewItemView.BorderColor" Value="{DynamicResource RadCollectionViewItemCurrentBorderColor}" />
+                            <Setter Property="telerik:RadCollectionViewItemView.BorderThickness" Value="{OnPlatform MacCatalyst=1}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState Name="FocusedMouseOver">
+                        <VisualState.Setters>
+                            <Setter Property="telerik:RadCollectionViewItemView.BackgroundColor" Value="#50C3B5DD" />
+                            <Setter Property="telerik:RadCollectionViewItemView.BorderColor" Value="{DynamicResource RadCollectionViewItemCurrentBorderColor}" />
+                            <Setter Property="telerik:RadCollectionViewItemView.BorderThickness" Value="{OnPlatform MacCatalyst=1}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState Name="Disabled" />
+                </VisualStateGroup>
+                <VisualStateGroup Name="OrientationStates">
+                    <VisualState Name="Vertical" />
+                    <VisualState Name="Horizontal">
+                        <VisualState.Setters>
+                            <Setter Property="telerik:RadCollectionViewItemView.BorderThickness" Value="{OnPlatform Android='0, 0, 1, 0', iOS='0, 0, 1, 0', MacCatalyst='0, 0, 1, 0'}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+
+            <Style x:Key="SelectedCategoryItemStyle" TargetType="telerik:RadCollectionViewItemView">
+                <Setter Property="BorderColor" Value="Transparent" />
+                <Setter Property="BackgroundColor" Value="{DynamicResource WrapperBackgroundColor}" />
+                <Setter Property="VisualStateManager.VisualStateGroups"
+                        Value="{OnPlatform Default={StaticResource CollectionViewItemVisualStates},
+                                           MacCatalyst={StaticResource CollectionViewItemVisualStates_Desktop},
+                                           WinUI={StaticResource CollectionViewItemVisualStates_Desktop}}" />
+            </Style>
+        </ResourceDictionary>
+    </telerik:RadContentView.Resources>
     <telerik:RadContentView.Content>
         <telerik:RadSideDrawer x:Name="drawer"
                                DrawerLength="300"
@@ -11,7 +95,7 @@
             <telerik:RadSideDrawer.MainContent>
                 <Grid RowDefinitions="Auto,*,Auto"
                       BackgroundColor="{DynamicResource TertiaryBackgroundColor}">
-                    <HorizontalStackLayout Spacing="10" Margin="0,0,0,20">
+                    <HorizontalStackLayout Spacing="10" Margin="0, 0, 0, 20">
                         <Label FontFamily="TelerikControlsIcons"
                                Text="&#xe039;"
                                TextColor="{DynamicResource AccentColor8}"
@@ -29,44 +113,32 @@
                                VerticalOptions="Center" />
                     </HorizontalStackLayout>
                     <Grid Grid.Row="1">
-                        <telerik:RadListView ItemsSource="{Binding Items}"
-                                             Margin="50,0,0,0"
-                                             SelectionMode="None"
-                                             AutomationId="controlsListView">
-                            <telerik:RadListView.ItemTemplate>
+                        <telerik:RadCollectionView ItemsSource="{Binding Items}"
+                                                   Margin="50, 0, 0, 0"
+                                                   ItemViewStyle="{StaticResource ItemStyle}"
+                                                   SelectionMode="None"
+                                                   FilterDescriptors="{Binding FilterDescriptors}"
+                                                   AutomationId="controlsCollectionView">
+                            <telerik:RadCollectionView.ItemTemplate>
                                 <DataTemplate>
-                                    <telerik:ListViewTemplateCell>
-                                        <telerik:ListViewTemplateCell.View>
-                                            <telerik:RadBorder BorderThickness="0, 0, 0, 1"
-                                                               BackgroundColor="{OnPlatform Default={DynamicResource TertiaryBackgroundColor}, WinUI=Transparent}"
-                                                               BorderColor="{DynamicResource ControlsMenuBorderColor}">
-                                                <Grid ColumnSpacing="10"
-                                                      RowDefinitions="Auto"
-                                                      ColumnDefinitions="Auto,*"
-                                                      Padding="10">
-                                                    <Label FontFamily="TelerikControlsIcons"
-                                                           Text="{Binding Icon}"
-                                                           TextColor="{DynamicResource AccentColor8}"
-                                                           FontSize="30"
-                                                           HorizontalOptions="Center"
-                                                           VerticalOptions="Center" />
-                                                    <Label Grid.Column="1"
-                                                           Text="{Binding Title}"
-                                                           TextColor="{DynamicResource DefaultTextColor}"
-                                                           VerticalOptions="Center" />
-                                                </Grid>
-                                            </telerik:RadBorder>
-                                        </telerik:ListViewTemplateCell.View>
-                                    </telerik:ListViewTemplateCell>
+                                    <Grid ColumnSpacing="10"
+                                          RowDefinitions="Auto"
+                                          ColumnDefinitions="Auto,*"
+                                          Padding="10">
+                                        <Label FontFamily="TelerikControlsIcons"
+                                               Text="{Binding Icon}"
+                                               TextColor="{DynamicResource AccentColor8}"
+                                               FontSize="30"
+                                               HorizontalOptions="Center"
+                                               VerticalOptions="Center" />
+                                        <Label Grid.Column="1"
+                                               Text="{Binding Title}"
+                                               TextColor="{DynamicResource DefaultTextColor}"
+                                               VerticalOptions="Center" />
+                                    </Grid>
                                 </DataTemplate>
-                            </telerik:RadListView.ItemTemplate>
-                            <telerik:RadListView.FilterDescriptors>
-                                <telerik:ListViewDelegateFilterDescriptor Filter="{Binding FilterCondition}" />
-                            </telerik:RadListView.FilterDescriptors>
-                            <telerik:RadListView.PressedItemStyle>
-                                <telerik:ListViewItemStyle BackgroundColor="Transparent" />
-                            </telerik:RadListView.PressedItemStyle>
-                        </telerik:RadListView>
+                            </telerik:RadCollectionView.ItemTemplate>
+                        </telerik:RadCollectionView>
                     </Grid>
                     <telerik:RadButton Text="Navigate to Product Page"
                                        Grid.Row="2"
@@ -88,38 +160,23 @@
                                FontAttributes="Bold" />
                         <Label Text="All controls separated in categories" />
                     </VerticalStackLayout>
-                    <VerticalStackLayout Grid.Row="1">
-                        <telerik:RadListView ItemsSource="{Binding Categories}"
-                                             HeightRequest="500"
-                                             SelectedItem="{Binding SelectedCategory, Mode=TwoWay}"
-                                             AutomationId="controlsCategoriesListView">
-                            <telerik:RadListView.ItemStyle>
-                                <telerik:ListViewItemStyle BackgroundColor="{DynamicResource WrapperBackgroundColor}"
-                                                           BorderColor="Transparent" />
-                            </telerik:RadListView.ItemStyle>
-                            <telerik:RadListView.SelectedItemStyle>
-                                <telerik:ListViewItemStyle BackgroundColor="#80C3B5DD" />
-                            </telerik:RadListView.SelectedItemStyle>
-                            <telerik:RadListView.PressedItemStyle>
-                                <telerik:ListViewItemStyle BackgroundColor="#80A78FCD" />
-                            </telerik:RadListView.PressedItemStyle>
-                            <telerik:RadListView.LayoutDefinition>
-                                <telerik:ListViewLinearLayout ItemLength="{OnPlatform Default='50', iOS='44'}" />
-                            </telerik:RadListView.LayoutDefinition>
-                            <telerik:RadListView.ItemTemplate>
-                                <DataTemplate>
-                                    <telerik:ListViewTemplateCell>
-                                        <telerik:ListViewTemplateCell.View>
-                                            <Grid Padding="16, 0, 16, 0">
-                                                <Label Text="{Binding}"
-                                                       VerticalOptions="Center" />
-                                            </Grid>
-                                        </telerik:ListViewTemplateCell.View>
-                                    </telerik:ListViewTemplateCell>
-                                </DataTemplate>
-                            </telerik:RadListView.ItemTemplate>
-                        </telerik:RadListView>
-                    </VerticalStackLayout>
+                    <telerik:RadCollectionView ItemsSource="{Binding Categories}"
+                                               Grid.Row="1"
+                                               SelectedItem="{Binding SelectedCategory, Mode=TwoWay}"
+                                               ItemViewStyle="{StaticResource SelectedCategoryItemStyle}"
+                                               AutomationId="controlsCategoriesCollectionView">
+                        <telerik:RadCollectionView.ItemsLayout>
+                            <telerik:CollectionViewLinearLayout ItemLength="{OnPlatform Default='50', iOS='44'}" />
+                        </telerik:RadCollectionView.ItemsLayout>
+                        <telerik:RadCollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Padding="16, 0, 16, 0">
+                                    <Label Text="{Binding}"
+                                           VerticalOptions="Center" />
+                                </Grid>
+                            </DataTemplate>
+                        </telerik:RadCollectionView.ItemTemplate>
+                    </telerik:RadCollectionView>
                 </Grid>
             </telerik:RadSideDrawer.DrawerContent>
         </telerik:RadSideDrawer>

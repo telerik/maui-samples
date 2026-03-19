@@ -21,10 +21,6 @@
             <Setter Property="Opacity" Value="0.6" />
             <Setter Property="VerticalOptions" Value="Center" />
         </Style>
-        <Style TargetType="telerik:RadNumericInput" BasedOn="{StaticResource RadNumericInputStyle}">
-            <Setter Property="WidthRequest" Value="{OnIdiom Default=-1, Desktop=300}" />
-            <Setter Property="HorizontalOptions" Value="{OnIdiom Default=Fill, Desktop=Start}" />
-        </Style>
         <Style TargetType="telerik:RadCheckBox" BasedOn="{StaticResource RadCheckBoxStyle}">
             <Setter Property="VisualStateManager.VisualStateGroups">
                 <VisualStateGroupList>
@@ -71,14 +67,18 @@
                                    Style="{StaticResource VerticalGroupLabelStyle}" />
                             <telerik:RadNumericInput Value="{Binding MinNumericButtonsCount, Mode=TwoWay}"
                                                      Minimum="1"
-                                                     Maximum="{Binding MaxNumericButtonsCount}" />
+                                                     Maximum="{Binding MaxNumericButtonsCount}"
+                                                     WidthRequest="{OnIdiom Default=-1, Desktop=300}"
+                                                     HorizontalOptions="{OnIdiom Default=Fill, Desktop=Start}" />
                         </VerticalStackLayout>
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="Max Numeric Buttons' Count:"
                                    Style="{StaticResource VerticalGroupLabelStyle}" />
                             <telerik:RadNumericInput Value="{Binding MaxNumericButtonsCount, Mode=TwoWay}"
                                                      Minimum="{Binding MinNumericButtonsCount}"
-                                                     Maximum="15" />
+                                                     Maximum="15"
+                                                     WidthRequest="{OnIdiom Default=-1, Desktop=300}"
+                                                     HorizontalOptions="{OnIdiom Default=Fill, Desktop=Start}" />
                         </VerticalStackLayout>
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="Ellipsis Mode:"

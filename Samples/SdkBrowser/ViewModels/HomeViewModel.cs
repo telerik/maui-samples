@@ -1,10 +1,7 @@
 ﻿using Microsoft.Maui.Controls;
 using SDKBrowserMaui.Common;
 using SDKBrowserMaui.Services;
-using System;
 using System.Collections.ObjectModel;
-using System.Linq;
-using Telerik.Maui.Controls.Compatibility.DataControls.ListView.Commands;
 
 namespace SDKBrowserMaui.ViewModels
 {

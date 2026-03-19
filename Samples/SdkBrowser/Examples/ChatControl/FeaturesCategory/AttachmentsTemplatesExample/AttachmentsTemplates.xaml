@@ -6,6 +6,10 @@
              x:Class="SDKBrowserMaui.Examples.ChatControl.FeaturesCategory.AttachmentsTemplatesExample.AttachmentsTemplates">
 	<ContentView.Resources>
 		<ResourceDictionary>
+			<Style TargetType="telerik:RadTemplatedButton">
+				<Setter Property="Background" Value="LightGray" />
+				<Setter Property="TextColor" Value="Black" />
+			</Style>
 			<local:ItemConverter x:Key="ItemConverter" />
 			<!-- >> chat-attachments-view-templates -->
 			<Style TargetType="telerik:ChatMessageAttachmentView">
@@ -22,12 +26,12 @@
 															 Color="Black" />
 										</Image.Source>
 									</Image>
-									<Button Text="Download"
-											Command="{Binding DownloadAttachmentsCommand, Source={RelativeSource AncestorType={Type telerik:RadChat}}}"
-											CommandParameter="{TemplateBinding Attachment}" />
-									<Button Text="Share"
-											Command="{Binding ShareAttachmentsCommand, Source={RelativeSource AncestorType={Type telerik:RadChat}}}"
-											CommandParameter="{TemplateBinding Attachment}" />
+									<telerik:RadTemplatedButton Content="Download"
+																Command="{Binding DownloadAttachmentsCommand, Source={RelativeSource AncestorType={Type telerik:RadChat}}}"
+																CommandParameter="{TemplateBinding Attachment}" />
+									<telerik:RadTemplatedButton Content="Share"
+																Command="{Binding ShareAttachmentsCommand, Source={RelativeSource AncestorType={Type telerik:RadChat}}}"
+																CommandParameter="{TemplateBinding Attachment}" />
 									<Label Text="{TemplateBinding Attachment.FileName}"
 										   VerticalTextAlignment="Center"/>
 								</HorizontalStackLayout>
@@ -45,12 +49,12 @@
 						<ControlTemplate>
 							<telerik:RadBorder BackgroundColor="#00796B" CornerRadius="5">
 								<HorizontalStackLayout Spacing="5" Padding="2">
-									<Button Text="Download"
-											Command="{Binding DownloadAttachmentsCommand, Source={RelativeSource AncestorType={Type telerik:RadChat}}}"
-											CommandParameter="{TemplateBinding Attachment}" />
-									<Button Text="Share"
-											Command="{Binding ShareAttachmentsCommand, Source={RelativeSource AncestorType={Type telerik:RadChat}}}"
-											CommandParameter="{TemplateBinding Attachment}" />
+									<telerik:RadTemplatedButton Content="Download"
+																Command="{Binding DownloadAttachmentsCommand, Source={RelativeSource AncestorType={Type telerik:RadChat}}}"
+																CommandParameter="{TemplateBinding Attachment}" />
+									<telerik:RadTemplatedButton Content="Share"
+																Command="{Binding ShareAttachmentsCommand, Source={RelativeSource AncestorType={Type telerik:RadChat}}}"
+																CommandParameter="{TemplateBinding Attachment}" />
 								</HorizontalStackLayout>
 							</telerik:RadBorder>
 						</ControlTemplate>

@@ -1,5 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using QSF.Examples.ListViewControl.FirstLookExample;
 using QSF.Examples.ChartControl;
 using QSF.ViewModels;
 

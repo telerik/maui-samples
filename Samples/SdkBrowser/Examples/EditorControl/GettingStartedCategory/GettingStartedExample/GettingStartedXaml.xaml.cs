@@ -7,5 +7,7 @@ public partial class GettingStartedXaml : ContentView
     public GettingStartedXaml()
     {
         InitializeComponent();
+
+        this.editor.AutomationId = "editor";
     }
 }
