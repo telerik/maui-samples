@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:commands="clr-namespace:SDKBrowserMaui.Examples.DataGridControl.PromptControlledCategory"
+             x:Class="SDKBrowserMaui.Examples.TreeDataGridControl.PromptControlledCategory.PromptControlledExample.PromptControlled">
+    <!-- >> treedatagrid-ai-prompt-controlled -->
+    <telerik:RadTreeDataGrid x:Name="treeDataGrid"
+                             ItemsSource="{Binding Items}"
+                             IsAIEnabled="True"
+                             AutoGenerateColumns="False">
+        <telerik:RadTreeDataGrid.ItemDescriptor>
+            <telerik:TreeDataGridItemDescriptor ItemsSourceBinding="{Binding Children}" />
+        </telerik:RadTreeDataGrid.ItemDescriptor>
+        <telerik:RadDataGrid.Commands>
+            <commands:DataGridUserCommand Id="PromptRequest"
+                                          Command="{Binding ProcessAICommand}" />
+            <commands:DataGridUserCommand Id="CancelPromptRequest"
+                                          Command="{Binding CancelAICommand}" />
+        </telerik:RadDataGrid.Commands>
+        <telerik:RadTreeDataGrid.AISettings>
+            <telerik:DataGridAISettings SuggestedPrompts="{Binding SuggestedPrompts}" />
+        </telerik:RadTreeDataGrid.AISettings>
+        <telerik:RadTreeDataGrid.Columns>
+            <telerik:DataGridTextColumn PropertyName="Name" />
+            <telerik:DataGridNumericalColumn PropertyName="Size" />
+            <telerik:DataGridTextColumn PropertyName="Type" />
+        </telerik:RadTreeDataGrid.Columns>
+    </telerik:RadTreeDataGrid>
+    <!-- << treedatagrid-ai-prompt-controlled -->
+</ContentView>

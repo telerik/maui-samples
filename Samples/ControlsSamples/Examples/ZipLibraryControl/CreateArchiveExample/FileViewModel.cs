@@ -2,86 +2,85 @@
 using QSF.Services;
 using QSF.ViewModels;
 
-namespace QSF.Examples.ZipLibraryControl.CreateArchiveExample
+namespace QSF.Examples.ZipLibraryControl.CreateArchiveExample;
+
+public class FileViewModel : ViewModelBase
 {
-    public class FileViewModel : ViewModelBase
+    private string fileExtension;
+    private string fileName;
+    private long fileSize;
+    private bool isSelected;
+
+    public FileViewModel(string resourceName)
     {
-        private string fileExtension;
-        private string fileName;
-        private long fileSize;
-        private bool isSelected;
+        this.FileName = System.IO.Path.GetFileNameWithoutExtension(resourceName);
 
-        public FileViewModel(string resourceName)
+        IResourceService resourceService = DependencyService.Get<IResourceService>();
+        this.FileSize = resourceService.GetResourceSize(resourceName);
+
+        this.FileExtension = System.IO.Path.GetExtension(resourceName);
+    }
+
+    public string FileExtension
+    {
+        get
         {
-            this.FileName = System.IO.Path.GetFileNameWithoutExtension(resourceName);
-
-            IResourceService resourceService = DependencyService.Get<IResourceService>();
-            this.FileSize = resourceService.GetResourceSize(resourceName);
-
-            this.FileExtension = System.IO.Path.GetExtension(resourceName);
+            return this.fileExtension;
         }
-
-        public string FileExtension
+        private set
         {
-            get
+            if (this.fileExtension != value)
             {
-                return this.fileExtension;
-            }
-            private set
-            {
-                if (this.fileExtension != value)
-                {
-                    this.fileExtension = value;
-                    this.OnPropertyChanged();
-                }
+                this.fileExtension = value;
+                this.OnPropertyChanged();
             }
         }
+    }
 
-        public string FileName
+    public string FileName
+    {
+        get
         {
-            get
+            return this.fileName;
+        }
+        private set
+        {
+            if (this.fileName != value)
             {
-                return this.fileName;
-            }
-            private set
-            {
-                if (this.fileName != value)
-                {
-                    this.fileName = value;
-                    this.OnPropertyChanged();
-                }
+                this.fileName = value;
+                this.OnPropertyChanged();
             }
         }
+    }
 
-        public long FileSize
+    public long FileSize
+    {
+        get
         {
-            get
+            return this.fileSize;
+        }
+        private set
+        {
+            if (this.fileSize != value)
             {
-                return this.fileSize;
-            }
-            private set
-            {
-                if (this.fileSize != value)
-                {
-                    this.fileSize = value;
-                    this.OnPropertyChanged();
-                }
+                this.fileSize = value;
+                this.OnPropertyChanged();
             }
         }
+    }
 
-        public bool IsSelected
+    public bool IsSelected
+    {
+        get
         {
-            get
+            return this.isSelected;
+        }
+        set
+        {
+            if (this.isSelected != value)
             {
-                return this.isSelected;
-            }
-            set
-            {
-                if (this.isSelected != value)
-                {
-                    this.isSelected = value;
-                    this.OnPropertyChanged();
-                }
+                this.isSelected = value;
+                this.OnPropertyChanged();
             }
         }
     }

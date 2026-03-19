@@ -4,6 +4,7 @@ using Telerik.Maui.Controls.DataGrid;
 
 namespace SDKBrowserMaui.Examples.DataGridControl.PromptControlledCategory;
 
+// >> datagrid-user-command
 public sealed class DataGridUserCommand : DataGridCommand
 {
     public static readonly BindableProperty CommandProperty =
@@ -35,3 +36,4 @@ public sealed class DataGridUserCommand : DataGridCommand
         }
     }
 }
+// << datagrid-user-command

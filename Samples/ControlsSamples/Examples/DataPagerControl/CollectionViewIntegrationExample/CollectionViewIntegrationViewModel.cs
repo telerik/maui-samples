@@ -44,7 +44,7 @@ public class CollectionViewIntegrationViewModel : ExampleViewModel
         "It’s where remote learners and workers gather for virtual lessons and meetings, where gamers converge to build worlds, race cars and blast away foes, and where healthcare workers have been keeping track of COVID-19 patients and the resources they need to treat them..",
         "A Native American Youth and Family Center advocate helped Nelson, a member of a Sioux tribe, sign up on a new platform called My NeighbOR.",
     };
-    private static readonly string iconListView = "\ue8bc";
+    private static readonly string iconCollectionView = "\ue8bc";
     private static readonly string iconGridView = "\ue8bb";
     private readonly ObservableCollection<TechnologyNews> news = new ObservableCollection<TechnologyNews>();
     private DataPagerDisplayMode displayMode;
@@ -93,9 +93,9 @@ public class CollectionViewIntegrationViewModel : ExampleViewModel
 
     private void OnChangeLayoutCommandExecuted(object obj)
     {
-        if (this.icon == iconListView)
+        if (this.icon == iconCollectionView)
         {
-            this.SetListViewLayout();
+            this.SetCollectionViewLayout();
         }
         else
         {
@@ -105,7 +105,7 @@ public class CollectionViewIntegrationViewModel : ExampleViewModel
 
     private void SetGridViewLayout()
     {
-        this.Icon = iconListView;
+        this.Icon = iconCollectionView;
 
 #if ANDROID || IOS
         this.SpanCount = 2;
@@ -114,7 +114,7 @@ public class CollectionViewIntegrationViewModel : ExampleViewModel
 #endif
     }
 
-    private void SetListViewLayout()
+    private void SetCollectionViewLayout()
     {
         this.Icon = iconGridView;
         this.SpanCount = 1;

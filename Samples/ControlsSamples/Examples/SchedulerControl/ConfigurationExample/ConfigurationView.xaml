@@ -8,7 +8,7 @@
         <telerik:RadScheduler InteractionMode="{Binding InteractionMode}"
                               IsTodayButtonVisible="{Binding IsTodayButtonVisible}"
                               AppointmentsSource="{Binding Appointments}"
-                              ActiveViewDefinition="{Binding ActiveViewDefinition}">
+                              ActiveViewDefinition="{Binding ActiveViewDefinition, Mode=OneWayToSource}">
             <telerik:RadScheduler.ViewDefinitions>
                 <telerik:DayViewDefinition DayStartTime="{Binding DayStartTime}"
                                            DayEndTime="{Binding DayEndTime}"

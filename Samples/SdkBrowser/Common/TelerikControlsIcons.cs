@@ -35,7 +35,6 @@ internal static class TelerikControlsIcons
         { "ImageEditor", char.ConvertFromUtf32(0xe01a) },
         { "ItemsControl", char.ConvertFromUtf32(0xe01b) },
         { "ListPicker", char.ConvertFromUtf32(0xe01c) },
-        { "ListView", char.ConvertFromUtf32(0xe01d) },
         { "Map", char.ConvertFromUtf32(0xe01e) },
         { "MaskedEntry", char.ConvertFromUtf32(0xe01f) },
         { "NavigationView", char.ConvertFromUtf32(0xe020) },

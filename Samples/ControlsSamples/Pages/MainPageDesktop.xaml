@@ -117,19 +117,26 @@
             <Setter Property="VisualStateManager.VisualStateGroups">
                 <VisualStateGroupList>
                     <VisualStateGroup Name="CommonStates">
-                        <VisualState Name="Normal" />
+                        <VisualState Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:NavigationViewItemView.TextColor" Value="{DynamicResource DefaultTextColor}" />
+                            </VisualState.Setters>
+                        </VisualState>
                         <VisualState Name="PointerOver">
                             <VisualState.Setters>
+                                <Setter Property="telerik:NavigationViewItemView.TextColor" Value="{DynamicResource DefaultTextColor}" />
                                 <Setter Property="telerik:NavigationViewItemView.BackgroundColor" Value="{DynamicResource MenuItemPointerOverBackgroundColor}" />
                             </VisualState.Setters>
                         </VisualState>
                         <VisualState Name="Selected">
                             <VisualState.Setters>
+                                <Setter Property="telerik:NavigationViewItemView.TextColor" Value="{DynamicResource DefaultTextColor}" />
                                 <Setter Property="telerik:NavigationViewItemView.BackgroundColor" Value="{DynamicResource MenuItemSelectedBackgroundColor}" />
                             </VisualState.Setters>
                         </VisualState>
                         <VisualState Name="Disabled">
                             <VisualState.Setters>
+                                <Setter Property="telerik:NavigationViewItemView.TextColor" Value="{DynamicResource DefaultTextColor}" />
                                 <Setter Property="Opacity" Value="0.5" />
                             </VisualState.Setters>
                         </VisualState>

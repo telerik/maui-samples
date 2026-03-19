@@ -73,13 +73,7 @@ public partial class QSFPageContentView : RadContentView
 
     private void BaseInitializeComponent()
     {
-        // TODO: First get the scrollable view and assign it to FullScreenScrollView in OnApplyTemplate.
-        // Then update this to be against RadCollectionView.
-        if (this.FullScreenScrollView is RadListView radListView)
-        {
-            // radListView.Scrolled += this.FullScreenScrollViewScrolled;
-        }
-        else if (this.FullScreenScrollView is ScrollView scrollView)
+        if (this.FullScreenScrollView is ScrollView scrollView)
         {
             scrollView.Scrolled += this.FullScreenScrollViewScrolled;
         }
@@ -135,31 +129,7 @@ public partial class QSFPageContentView : RadContentView
 
     private void SetFullScreenListViewPaddings()
     {
-        if (this.FullScreenScrollView is RadListView radListView)
-        {
-#if IOS
-            if (radListView?.Handler?.PlatformView is TelerikUI.TKListView platformList)
-            {
-                // platformList.ContentInset = new UIKit.UIEdgeInsets(50, 0, 0, 0);
-                // Re-implement in CollectionView instead of fixing up the native RadListView
-                // platformList.VerticalScrollIndicatorInsets = new UIKit.UIEdgeInsets(50, 0, 0, 0);
-            }
-#elif ANDROID
-            if (!this.scrollViewPaddingSet && radListView?.Handler?.PlatformView is Telerik.Maui.Controls.Compatibility.DataControlsRenderer.Android.ListView.RadListViewWrapper platformList)
-            {
-                // var density = Microsoft.Maui.Devices.DeviceDisplay.MainDisplayInfo.Density;
-                // var decor = Microsoft.Maui.ApplicationModel.Platform.CurrentActivity.Window.DecorView;
-                // var insets = decor.RootView.RootWindowInsets;
-
-                // platformList.ListView.SetClipToPadding(false);
-                // platformList.ListView.SetPadding(insets.StableInsetLeft, insets.StableInsetTop + (int)(50.0 * density), insets.StableInsetRight, insets.StableInsetBottom);
-                // platformList.ListView.ScrollToStart();
-
-                // this.scrollViewPaddingSet = true;
-            }
-#endif
-        }
-        else if (this.FullScreenScrollView is ScrollView scrollview)
+        if (this.FullScreenScrollView is ScrollView scrollview)
         {
 #if IOS
             if (scrollview?.Handler?.PlatformView is UIKit.UIScrollView platformView)

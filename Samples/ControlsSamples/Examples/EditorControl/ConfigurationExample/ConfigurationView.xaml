@@ -37,6 +37,7 @@
                 <telerik:RadEditor x:Name="editor"
                                    AutoSize="TextChanges"
                                    MaxLength="{Binding Source={x:Reference maxLengthNumeric}, Path=Value}"
+                                   MaxLines="{Binding Source={x:Reference maxLinesNumeric}, Path=Value}"
                                    Keyboard="{Binding SelectedKeyboard, Converter={StaticResource KeyboardConverter}}"
                                    TextColor="{Binding TextColor, Converter={StaticResource ColorConverter}}"
                                    FontSize="{Binding SelectedFontSize, Converter={StaticResource FontSizeConverter}}"
@@ -177,6 +178,16 @@
                                     </x:Array>
                                 </telerik:RadComboBox.ItemsSource>
                             </telerik:RadComboBox>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Max Lines:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <telerik:RadNumericInput x:Name="maxLinesNumeric"
+                                                     IsReadOnly="False"
+                                                     Value="5"
+                                                     Minimum="0"
+                                                     Maximum="10"
+                                                     HorizontalOptions="FillAndExpand" />
                         </VerticalStackLayout>
                         <VerticalStackLayout IsVisible="{OnIdiom Desktop=False, Phone=True}"
                                              Style="{StaticResource GroupAtExampleAreaStyle}">

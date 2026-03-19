@@ -11,9 +11,6 @@
             <Style TargetType="VerticalStackLayout">
                 <Setter Property="Spacing" Value="10" />
             </Style>
-            <Style TargetType="telerik:RadMultilineTextInput">
-                <Setter Property="MaxLines" Value="{Binding Source={x:Reference maxLines}, Path=Value}" />
-            </Style>
             <Style TargetType="Label">
                 <Setter Property="VerticalTextAlignment" Value="Center" />
             </Style>
@@ -64,7 +61,7 @@
                     <Label Text="MaxLines:" />
                     <telerik:RadNumericInput x:Name="maxLines"
                                              Minimum="3" 
-                                             Value="6" 
+                                             Value="{Binding Source={x:Reference editor}, Path=MaxLines}" 
                                              Maximum="20" />
                 </HorizontalStackLayout>
             </HorizontalStackLayout>
@@ -72,6 +69,7 @@
         <!-- >> editor-features -->
         <telerik:RadEditor x:Name="editor"
                            Grid.Row="1"
+                           MaxLines="6"
                            ClearButtonVisibility="Never"
                            AutoSize="TextChanges"
                            Padding="10"

@@ -9,7 +9,7 @@
                          FontFamily="TelerikFontExamples"
                          Glyph="&#xe850;"
                          Size="16"
-                         Color="{OnPlatform Default='#007AFF', Android='#000000', WinUI='#000000'}" />
+                         Color="{DynamicResource ButtonFontImageColor}" />
         <Style x:Key="TitleLabelStyle" TargetType="Label" BasedOn="{StaticResource BaseLabelStyle}">
             <Setter Property="FontAttributes" Value="Bold" />
             <Setter Property="HorizontalTextAlignment" Value="Center" />
@@ -45,7 +45,7 @@
                     <telerik:RadButton Text="Play"
                                        BackgroundImage="button_background_image.png"
                                        WidthRequest="70"
-                                       HeightRequest="{OnPlatform Default=36, WinUI=32}"
+                                       HeightRequest="{OnPlatform Default=-1, WinUI=32}"
                                        CornerRadius="{OnPlatform Default=4, iOS=8, MacCatalyst=5}"
                                        TextColor="{OnPlatform Default='#007AFF', Android='#000000', WinUI='#000000'}"
                                        AutomationId="imageButton" />
@@ -82,7 +82,7 @@
                         <Grid>
                             <Image Source="button_background_image.png"
                                    WidthRequest="70"
-                                   HeightRequest="{OnPlatform Default=36, WinUI=32}"
+                                   HeightRequest="{OnPlatform Default=-1, WinUI=32}"
                                    Aspect="AspectFill" />
                             <Label Text="Send"
                                    FontFamily="{Binding FontFamily, Source={RelativeSource AncestorType={x:Type telerik:RadTemplatedButton}}}"

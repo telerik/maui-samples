@@ -14,68 +14,76 @@
             <converters:DebugConverter x:Key="DebugConverter" />
 
             <Style TargetType="Image" x:Key="SelectImage">
-                <Setter Property="Margin" Value="14"/>
-                <Setter Property="HeightRequest" Value="20"/>
-                <Setter Property="Aspect" Value="AspectFit"/>
-                <Setter Property="VerticalOptions" Value="Center"/>
-                <Setter Property="HorizontalOptions" Value="End"/>
+                <Setter Property="Margin" Value="14" />
+                <Setter Property="HeightRequest" Value="20" />
+                <Setter Property="Aspect" Value="AspectFit" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="End" />
+            </Style>
+
+            <Style x:Key="ItemStyle" TargetType="telerik:RadCollectionViewItemView">
+                <Setter Property="BorderColor" Value="{DynamicResource DefaultBorderColor}" />
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="BackgroundColor" Value="{DynamicResource RadAppSurfaceColor}" />
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup Name="CommonStates">
+                            <VisualState Name="Normal" />
+                            <VisualState Name="MouseOver" />
+                            <VisualState Name="Selected">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="{DynamicResource ZipLibraryCollectionViewPressedBackgroundColor}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
             </Style>
         </ResourceDictionary>
     </telerik:RadContentView.Resources>
     <Grid Grid.ColumnSpacing="0"
           RowDefinitions="*,Auto"
           Grid.RowSpacing="0">
-        <telerik:RadListView x:Name="list" 
-                             ItemsSource="{Binding Files, Converter={StaticResource DebugConverter}}" 
-                             SelectionMode="None"
-                             AutomationId="listView">
-            <telerik:RadListView.Behaviors>
-                <local:ListViewItemTappedBehavior Command="{Binding ItemTapCommand}" />
-            </telerik:RadListView.Behaviors>
-            <telerik:RadListView.LayoutDefinition>
-                <telerik:ListViewLinearLayout ItemLength="80" />
-            </telerik:RadListView.LayoutDefinition>
-            <telerik:RadListView.ItemTemplate>
+        <telerik:RadCollectionView x:Name="list" 
+                                   ItemsSource="{Binding Files, Converter={StaticResource DebugConverter}}" 
+                                   SelectionMode="None"
+                                   ItemViewStyle="{StaticResource ItemStyle}"
+                                   ItemTapCommand="{Binding ItemTapCommand}"
+                                   AutomationId="collectionView">
+            <telerik:RadCollectionView.ItemsLayout>
+                <telerik:CollectionViewLinearLayout ItemLength="80" />
+            </telerik:RadCollectionView.ItemsLayout>
+            <telerik:RadCollectionView.ItemTemplate>
                 <DataTemplate>
-                    <telerik:ListViewTemplateCell>
-                        <telerik:ListViewTemplateCell.View>
-                            <Grid ColumnSpacing="0" 
-                                  RowSpacing="0" 
-                                  ColumnDefinitions="Auto,2*,1*"
-                                  BackgroundColor="{Binding IsSelected, Converter={StaticResource SelectionToBackgroundColorConverter}}">
-                                <Image Source="{Binding FileExtension, Converter={StaticResource FileExtensionToIconConverter}}" 
-                                       Style="{StaticResource SelectImage}"
-                                       HeightRequest="50"
-                                       WidthRequest="50"
-                                       HorizontalOptions="Start"/>
-                                <VerticalStackLayout HorizontalOptions="Start"
-                                                     VerticalOptions="Center" 
-                                                     Grid.Column="1">
-                                    <Label Text="{Binding FileName}" 
-                                           FontSize="16" />
-                                    <Label Text="{Binding FileSize, Converter={StaticResource FileSizeConverter}}"
-                                           FontSize="13" />
-                                </VerticalStackLayout>
-                                <Image IsVisible="{Binding IsSelected}" 
-                                       Grid.Column="2"
-                                       Style="{StaticResource SelectImage}"
-                                       Source="selected_item.png"/>
-                                <Image IsVisible="{Binding IsSelected, Converter={StaticResource InvertedBooleanConverter}}" 
-                                       Grid.Column="2"
-                                       Style="{StaticResource SelectImage}"
-                                       Source="unselected_item.png"/>
-                            </Grid>
-                        </telerik:ListViewTemplateCell.View>
-                    </telerik:ListViewTemplateCell>
+                    <Grid ColumnSpacing="0" 
+                          RowSpacing="0" 
+                          ColumnDefinitions="Auto,2*,1*"
+                          BackgroundColor="{Binding IsSelected, Converter={StaticResource SelectionToBackgroundColorConverter}}">
+                        <Image Source="{Binding FileExtension, Converter={StaticResource FileExtensionToIconConverter}}" 
+                               Style="{StaticResource SelectImage}"
+                               HeightRequest="50"
+                               WidthRequest="50"
+                               HorizontalOptions="Start"/>
+                        <VerticalStackLayout HorizontalOptions="Start"
+                                             VerticalOptions="Center" 
+                                             Grid.Column="1">
+                            <Label Text="{Binding FileName}" 
+                                   FontSize="16" />
+                            <Label Text="{Binding FileSize, Converter={StaticResource FileSizeConverter}}"
+                                   FontSize="13" />
+                        </VerticalStackLayout>
+                        <Image IsVisible="{Binding IsSelected}" 
+                               Grid.Column="2"
+                               Style="{StaticResource SelectImage}"
+                               Source="selected_item.png"/>
+                        <Image IsVisible="{Binding IsSelected, Converter={StaticResource InvertedBooleanConverter}}" 
+                               Grid.Column="2"
+                               Style="{StaticResource SelectImage}"
+                               Source="unselected_item.png" />
+                    </Grid>
                 </DataTemplate>
-            </telerik:RadListView.ItemTemplate>
-             <telerik:RadListView.ItemStyle>
-                <telerik:ListViewItemStyle BackgroundColor="{DynamicResource RadAppSurfaceColor}" BorderColor="{DynamicResource DefaultBorderColor}" BorderWidth="1" />
-            </telerik:RadListView.ItemStyle>
-            <telerik:RadListView.PressedItemStyle>
-                <telerik:ListViewItemStyle BackgroundColor="{DynamicResource ZipLibraryListViewPressedBackgroundColor}" />
-            </telerik:RadListView.PressedItemStyle>
-        </telerik:RadListView>
+            </telerik:RadCollectionView.ItemTemplate>
+        </telerik:RadCollectionView>
 
         <telerik:RadButton Style="{StaticResource SubmitButtonStyle}" 
                            Margin="16, 20"
@@ -84,6 +92,6 @@
                            HorizontalOptions="{OnIdiom Default=Start, Phone=FillAndExpand}"
                            Grid.Row="1"
                            Command="{Binding CreateArchiveCommand}" 
-                           AutomationId="submitButton"/>
+                           AutomationId="submitButton" />
     </Grid>
 </telerik:RadContentView>
