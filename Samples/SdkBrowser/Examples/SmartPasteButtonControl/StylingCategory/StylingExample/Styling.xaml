@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.SmartPasteButtonControl.StylingCategory.StylingExample.Styling">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+            </Style>
+            <Style TargetType="telerik:RadEntry">
+                <Setter Property="WidthRequest" Value="200" />
+            </Style>
+            <Style TargetType="HorizontalStackLayout">
+                <Setter Property="Spacing" Value="10" />
+            </Style>
+            <Style TargetType="VerticalStackLayout">
+                <Setter Property="Spacing" Value="5" />
+            </Style>
+            <Style TargetType="telerik:RadTemplatedButton">
+                <Setter Property="HorizontalOptions" Value="Start" />
+            </Style>
+            <!-- >> smartpastebutton-styling-implicit -->
+            <Style TargetType="telerik:RadSmartPasteButton">
+                <Setter Property="Padding" Value="12, 8" />
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="CornerRadius" Value="12" />
+                <Setter Property="FontAttributes" Value="Italic" />
+                <Setter Property="TextColor" Value="#00897B" />
+                <Setter Property="IconTextColor" Value="#00897B" />
+                <Setter Property="IconFontSize" Value="20" />
+                <Setter Property="BorderColor" Value="LightGray" />
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <Setter.Value>
+                        <VisualStateGroupList>
+                            <VisualStateGroup Name="CommonStates">
+                                <VisualState Name="Normal" />
+                                <VisualState Name="MouseOver">
+                                    <VisualState.Setters>
+                                        <Setter Property="BackgroundColor" Value="#E8F5F4" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState Name="Pressed">
+                                    <VisualState.Setters>
+                                        <Setter Property="TextColor" Value="#9900897B" />
+                                        <Setter Property="BackgroundColor" Value="#E8F5F4" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState Name="Disabled">
+                                    <VisualState.Setters>
+                                        <Setter Property="TextColor" Value="#6100897B" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState Name="Processing">
+                                    <VisualState.Setters>
+                                        <Setter Property="BackgroundColor" Value="#E8F5F4" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState Name="ProcessingPressed">
+                                    <VisualState.Setters>
+                                        <Setter Property="TextColor" Value="#9900897B" />
+                                        <Setter Property="BackgroundColor" Value="#D7F0EE" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState Name="ProcessingMouseOver">
+                                    <VisualState.Setters>
+                                        <Setter Property="BackgroundColor" Value="#DFF3F1" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState Name="ProcessingFocused">
+                                    <VisualState.Setters>
+                                        <Setter Property="BackgroundColor" Value="#DFF3F1" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateGroupList>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <!-- << smartpastebutton-styling-implicit -->
+            <!-- >> smartpastebutton-styling-explicit -->
+            <Style x:Key="SmartPasteButtonStyle" TargetType="telerik:RadSmartPasteButton">
+                <Setter Property="Padding" Value="12, 8" />
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="CornerRadius" Value="12" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="TextColor" Value="#8660C5" />
+                <Setter Property="IconTextColor" Value="#8660C5" />
+                <Setter Property="BorderColor" Value="LightGray" />
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <Setter.Value>
+                        <VisualStateGroupList>
+                            <VisualStateGroup Name="CommonStates">
+                                <VisualState Name="Normal" />
+                                <VisualState Name="MouseOver">
+                                    <VisualState.Setters>
+                                        <Setter Property="BackgroundColor" Value="#F2EFF9" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState Name="Pressed">
+                                    <VisualState.Setters>
+                                        <Setter Property="TextColor" Value="#998660C5" />
+                                        <Setter Property="IconTextColor" Value="#998660C5" />
+                                        <Setter Property="BackgroundColor" Value="#F2EFF9" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState Name="Disabled">
+                                    <VisualState.Setters>
+                                        <Setter Property="TextColor" Value="#618660C5" />
+                                        <Setter Property="IconTextColor" Value="#618660C5" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState Name="Processing">
+                                    <VisualState.Setters>
+                                        <Setter Property="BackgroundColor" Value="#F2EFF9" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState Name="ProcessingPressed">
+                                    <VisualState.Setters>
+                                        <Setter Property="TextColor" Value="#998660C5" />
+                                        <Setter Property="IconTextColor" Value="#998660C5" />
+                                        <Setter Property="BackgroundColor" Value="#E8E1F7" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState Name="ProcessingMouseOver">
+                                    <VisualState.Setters>
+                                        <Setter Property="BackgroundColor" Value="#EEE8F8" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState Name="ProcessingFocused">
+                                    <VisualState.Setters>
+                                        <Setter Property="BackgroundColor" Value="#EEE8F8" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateGroupList>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <!-- << smartpastebutton-styling-explicit -->
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <Grid RowDefinitions="Auto, Auto"
+          RowSpacing="10"
+          Padding="5">
+        <VerticalStackLayout>
+            <HorizontalStackLayout>
+                <Label Text="Name: " />
+                <telerik:RadEntry Text="{Binding Name}" />
+            </HorizontalStackLayout>
+            <HorizontalStackLayout>
+                <Label Text="City: " />
+                <telerik:RadEntry Text="{Binding City}" />
+            </HorizontalStackLayout>
+            <VerticalStackLayout>
+                <Label Text="Description: " />
+                <telerik:RadEditor Text="{Binding Description}"
+                                   AutoSize="TextChanges" />
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+        <VerticalStackLayout Grid.Row="1">
+            <Label Text="{Binding CopyText}"/>
+            <telerik:RadTemplatedButton Content="Copy To Clipboard"
+                                        Command="{Binding CopyToClipboardCommand}" />
+            <!-- >> smartpastebutton-styling-implicit-xaml -->
+            <telerik:RadSmartPasteButton Provider="{Binding .}"
+                                         SmartPasteRequestCommand="{Binding SmartPasteRequestCommand}"/>
+            <!-- << smartpastebutton-styling-implicit-xaml -->
+            <!-- >> smartpastebutton-styling-explicit-xaml -->
+            <telerik:RadSmartPasteButton Style="{StaticResource SmartPasteButtonStyle}"
+                                         Provider="{Binding .}"
+                                         SmartPasteRequestCommand="{Binding SmartPasteRequestCommand}" />
+            <!-- << smartpastebutton-styling-explicit-xaml -->
+        </VerticalStackLayout>
+    </Grid>
+    
+</ContentView>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.SmartPasteButtonControl.ExternalEditorCategory.ExternalEditorExample.ExternalEditor">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalTextAlignment" Value="Start" />
+            </Style>
+            <Style TargetType="telerik:RadEntry">
+                <Setter Property="WidthRequest" Value="200" />
+            </Style>
+            <Style TargetType="HorizontalStackLayout">
+                <Setter Property="Spacing" Value="10" />
+            </Style>
+            <Style TargetType="telerik:RadTemplatedButton">
+                <Setter Property="HorizontalOptions" Value="Start" />
+            </Style>
+            <Style TargetType="telerik:RadSmartPasteButton">
+                <Setter Property="HorizontalOptions" Value="Start" />
+            </Style>
+            <Style TargetType="VerticalStackLayout">
+                <Setter Property="Spacing" Value="10" />
+                <Setter Property="HorizontalOptions" Value="Start" />
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <!-- >> smartpastebutton-external-editor -->
+    <Grid RowDefinitions="Auto, Auto"
+          RowSpacing="10">
+        <VerticalStackLayout>
+            <HorizontalStackLayout>
+                <Label Text="Name: " />
+                <telerik:RadEntry Text="{Binding Name}" />
+            </HorizontalStackLayout>
+            <HorizontalStackLayout>
+                <Label Text="City: " />
+                <telerik:RadEntry Text="{Binding City}" />
+            </HorizontalStackLayout>
+            <VerticalStackLayout>
+                <Label Text="Description: " />
+                <telerik:RadEditor Text="{Binding Description}"
+                                   AutoSize="TextChanges" />
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+        <VerticalStackLayout Grid.Row="1">
+            <Label Text="{Binding CopyText}"/>
+            <telerik:RadTemplatedButton Content="Copy To Clipboard"
+                                        Command="{Binding CopyToClipboardCommand}" />
+            <telerik:RadSmartPasteButton Provider="{Binding .}"
+                                         SmartPasteRequestCommand="{Binding SmartPasteRequestCommand}" />
+        </VerticalStackLayout>
+    </Grid>
+    <!-- << smartpastebutton-external-editor -->
+</ContentView>

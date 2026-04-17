@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFrameworks>$(MauiAppPlatforms)</TargetFrameworks>
@@ -46,6 +46,10 @@
 		<PackageReference Include="Telerik.UI.for.Maui" Version="$(TelerikVersion)" />
 	</ItemGroup>
 
+	<ItemGroup>
+		<PackageReference Include="Telerik.AI.SmartComponents.Extensions" Version="2.1.0" />
+	</ItemGroup>
+
 	<ItemGroup Condition="$(TargetFramework.Contains('net9'))">
 		<PackageReference Include="Microsoft.Maui.Controls" Condition=" $(CustomMauiNet9Version) == '' " Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Controls" Condition=" $(CustomMauiNet9Version) != '' " Version="$(CustomMauiNet9Version)" />
@@ -59,7 +63,6 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\AppUtils\AppUtils.csproj" />
 	</ItemGroup>
-
 
 	<Import Condition="'$(SolutionName)' == 'Telerik.Maui' Or '$(UseSourceProjects)' == 'True'" Project="..\AddSourceProjects.proj" />
 	<Import Condition="'$(SolutionName)' != 'Telerik.Maui' And '$(UseSourceProjects)' != 'True' And '$(UseSourceAssemblies)' == 'True'" Project="..\AddSourceAssemblies.proj" />

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.SmartPasteButtonControl"
+             x:Class="SDKBrowserMaui.Examples.SmartPasteButtonControl.TemplateCategory.TemplateExample.Template">
+    <Grid RowSpacing="10"
+          RowDefinitions="Auto, *">
+        <VerticalStackLayout x:Name="smartPasteForm"
+                             Spacing="10">
+            <Label x:Name="label"
+                   Text="John Doe is a Front-End Developer living in Broadway, New York, USA. He builds responsive user interfaces, implements reusable UI components, collaborates closely with designers, and improves accessibility and performance across web applications. His email is john.doe@example.com." />
+            <HorizontalStackLayout Spacing="10">
+                <telerik:RadTemplatedButton Content="Copy To Clipboard"
+                                            HorizontalOptions="Start"
+                                            Clicked="OnCopyFromClipboardClicked"/>
+                <!-- >> smartpastebutton-template-xaml -->
+                <telerik:RadSmartPasteButton Provider="{x:Reference dataForm}"
+                                             HorizontalOptions="Start"
+                                             Text="Smart Paste From Clipboard"
+                                             SmartPasteRequest="OnSmartPasteRequest">
+                    <telerik:RadSmartPasteButton.ControlTemplate>
+                        <ControlTemplate>
+                            <telerik:RadEffectsView x:Name="PART_EffectsView"
+                                                    BackgroundColor="{TemplateBinding BackgroundColor}"
+                                                    Background="{TemplateBinding Background}"
+                                                    BorderColor="{TemplateBinding BorderColor}"
+                                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                                    CornerRadius="{TemplateBinding CornerRadius, Converter={x:Static telerik:CornerRadiusToThicknessConverter.Instance}}"
+                                                    Padding="{TemplateBinding Padding}">
+                                <HorizontalStackLayout Spacing="8"
+                                                       HorizontalOptions="Center"
+                                                       VerticalOptions="Center">
+                                    <telerik:RadPath Fill="#00897B"
+                                                     StrokeThickness="0"
+                                                     WidthRequest="24"
+                                                     HeightRequest="24"
+                                                     VerticalOptions="Center"
+                                                     Geometry="{x:Static telerik:RadGeometry.Star}" />
+                                    <Label Text="{TemplateBinding Text}"
+                                           TextColor="{TemplateBinding TextColor}"
+                                           FontFamily="{TemplateBinding FontFamily}"
+                                           FontSize="{TemplateBinding FontSize}"
+                                           FontAttributes="{TemplateBinding FontAttributes}"
+                                           VerticalTextAlignment="Center" />
+                                </HorizontalStackLayout>
+                            </telerik:RadEffectsView>
+                        </ControlTemplate>
+                    </telerik:RadSmartPasteButton.ControlTemplate>
+                </telerik:RadSmartPasteButton>
+                <!-- << smartpastebutton-template-xaml -->
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+        <telerik:RadDataForm x:Name="dataForm"
+                             AutoGenerateItems="False" 
+                             Grid.Row="1">
+            <telerik:RadDataForm.BindingContext>
+                <local:Profile />
+            </telerik:RadDataForm.BindingContext>
+            <telerik:DataFormRadEntryEditor PropertyName="Name" />
+            <telerik:DataFormRadEmailMaskedEditor PropertyName="Email" />
+            <telerik:DataFormRadEntryEditor PropertyName="JobTitle" />
+            <telerik:DataFormRadEntryEditor PropertyName="Address" />
+        </telerik:RadDataForm>
+    </Grid>
+</ContentView>

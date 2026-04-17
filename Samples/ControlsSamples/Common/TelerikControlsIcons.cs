@@ -54,6 +54,7 @@ internal static class TelerikControlsIcons
         { "Skeleton", char.ConvertFromUtf32(0xe848) },
         { "Slider", char.ConvertFromUtf32(0xe03e) },
         { "SlideView", char.ConvertFromUtf32(0xe02e) },
+        { "SmartPasteButton", char.ConvertFromUtf32(0xe84a) },
         { "SpeechToTextButton", char.ConvertFromUtf32(0xe045) },
         { "SpreadProcessing", char.ConvertFromUtf32(0xe02f) },
         { "SpreadStreamProcessing", char.ConvertFromUtf32(0xe02f) },

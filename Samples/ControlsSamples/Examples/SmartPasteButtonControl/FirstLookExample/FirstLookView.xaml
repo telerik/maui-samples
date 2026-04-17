@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="QSF.Examples.SmartPasteButtonControl.FirstLookExample.FirstLookView">
+
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Style x:Key="IconLabelStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="TelerikFontExamples" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="TextColor" Value="{DynamicResource SmartPasteButtonFirstLookIconTextColor}" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+            </Style>
+
+            <Style x:Key="ToolbarSeparatorStyle" TargetType="BoxView">
+                <Setter Property="WidthRequest" Value="1" />
+                <Setter Property="HeightRequest" Value="20" />
+                <Setter Property="BackgroundColor" Value="{DynamicResource SmartPasteButtonFirstLookToolbarSeparatorColor}" />
+            </Style>
+
+            <Style x:Key="EditorHeaderLabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="TextColor" Value="{DynamicResource DefaultTextColor}" />
+                <Setter Property="Margin" Value="0, 0, 0, 4" />
+            </Style>
+
+            <Style x:Key="SmallBorderStyle" TargetType="telerik:RadBorder">
+                <Setter Property="HeightRequest" Value="6" />
+                <Setter Property="WidthRequest" Value="21" />
+                <Setter Property="CornerRadius" Value="3" />
+                <Setter Property="BackgroundColor" Value="{DynamicResource SmartPasteButtonFirstLookSmallBorderBackgroundColor}" />
+            </Style>
+
+            <Style x:Key="ToolbarButtonBorderStyle" TargetType="telerik:RadBorder">
+                <Setter Property="HeightRequest" Value="30" />
+                <Setter Property="BackgroundColor" Value="{DynamicResource SmartPasteButtonFirstLookToolbarButtonBackgroundColor}" />
+            </Style>
+
+            <Style x:Key="ToolbarButtonLeadingStyle" TargetType="telerik:RadBorder" BasedOn="{StaticResource ToolbarButtonBorderStyle}">
+                <Setter Property="WidthRequest" Value="45" />
+                <Setter Property="CornerRadius" Value="5, 0, 0, 5" />
+                <Setter Property="BackgroundColor" Value="{DynamicResource SmartPasteButtonFirstLookToolbarButtonStartBackgroundColor}" />
+            </Style>
+
+            <Style x:Key="ToolbarButtonTrailingStyle" TargetType="telerik:RadBorder" BasedOn="{StaticResource ToolbarButtonBorderStyle}">
+                <Setter Property="WidthRequest" Value="45" />
+                <Setter Property="CornerRadius" Value="0, 5, 5, 0" />
+            </Style>
+
+            <Style x:Key="ToolbarButtonWideStyle" TargetType="telerik:RadBorder" BasedOn="{StaticResource ToolbarButtonBorderStyle}">
+                <Setter Property="MinimumWidthRequest" Value="100" />
+                <Setter Property="CornerRadius" Value="5, 0, 0, 5" />
+            </Style>
+
+            <Style x:Key="ToolbarButtonIconStyle" TargetType="telerik:RadBorder" BasedOn="{StaticResource ToolbarButtonBorderStyle}">
+                <Setter Property="WidthRequest" Value="28" />
+                <Setter Property="CornerRadius" Value="0, 5, 5, 0" />
+            </Style>
+
+            <Style x:Key="ToolbarButtonSquareStyle" TargetType="telerik:RadBorder" BasedOn="{StaticResource ToolbarButtonBorderStyle}">
+                <Setter Property="WidthRequest" Value="30" />
+                <Setter Property="CornerRadius" Value="5" />
+            </Style>
+
+            <Style x:Key="ToolbarButtonWideInnerStyle" TargetType="telerik:RadBorder">
+                <Setter Property="HeightRequest" Value="6" />
+                <Setter Property="CornerRadius" Value="3" />
+                <Setter Property="Margin" Value="12, 0" />
+                <Setter Property="BackgroundColor" Value="{DynamicResource SmartPasteButtonFirstLookSmallBorderBackgroundColor}" />
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+    <ScrollView>
+        <Grid Margin="{OnIdiom Default='16, 20', Phone='16'}"
+              ColumnDefinitions="{OnIdiom Default='284, *', Phone='*'}"
+              RowDefinitions="{OnIdiom Default='Auto, *', Phone='Auto, Auto, Auto'}"
+              ColumnSpacing="{OnIdiom Default=24, Phone=0}"
+              RowSpacing="{OnIdiom Default=0, Phone=8}">
+            <Label Text="Recommendation Letter"
+                   FontSize="16"
+                   FontAttributes="Bold"
+                   Margin="{OnIdiom Default='0, 0, 16, 16', Phone='0, 0, 16, 4'}" />
+            <VerticalStackLayout Grid.Column="0"
+                                 Grid.Row="1"
+                                 Spacing="{OnPlatform Default=12, iOS=8, WinUI=16}">
+                <telerik:RadBorder BorderColor="{DynamicResource DefaultBorderColor}"
+                                   BorderThickness="1"
+                                   CornerRadius="4">
+                    <VerticalStackLayout x:Name="LetterContentPanel" Spacing="{OnPlatform Default=13, Android=12, iOS=12, WinUI=11}">
+                        <telerik:RadBorder BackgroundColor="{DynamicResource SmartPasteButtonFirstLookEditorToolbarBackgroundColor}"
+                                           BorderColor="{DynamicResource DefaultBorderColor}"
+                                           BorderThickness="0, 0, 0, 1"
+                                           Padding="12">
+                            <Grid ColumnDefinitions="Auto, *, Auto"
+                                  ColumnSpacing="6"
+                                  HorizontalOptions="Fill"
+                                  VerticalOptions="Center">
+                                <HorizontalStackLayout Grid.Column="0">
+                                    <telerik:RadBorder Style="{StaticResource ToolbarButtonLeadingStyle}">
+                                        <telerik:RadBorder Style="{StaticResource SmallBorderStyle}" />
+                                    </telerik:RadBorder>
+                                    <telerik:RadBorder Style="{StaticResource ToolbarButtonTrailingStyle}">
+                                        <telerik:RadBorder Style="{StaticResource SmallBorderStyle}" />
+                                    </telerik:RadBorder>
+                                </HorizontalStackLayout>
+                                <Grid Grid.Column="1"
+                                      ColumnDefinitions="*, Auto, Auto">
+                                    <telerik:RadBorder Grid.Column="0"
+                                                       Style="{StaticResource ToolbarButtonWideStyle}">
+                                        <telerik:RadBorder Style="{StaticResource ToolbarButtonWideInnerStyle}" />
+                                    </telerik:RadBorder>
+                                    <BoxView Grid.Column="1"
+                                             Style="{StaticResource ToolbarSeparatorStyle}" />
+                                    <telerik:RadBorder Grid.Column="2"
+                                                       Style="{StaticResource ToolbarButtonIconStyle}">
+                                        <Label Text="&#xe80d;"
+                                               Style="{StaticResource IconLabelStyle}" />
+                                    </telerik:RadBorder>
+                                </Grid>
+                                <telerik:RadBorder Grid.Column="2"
+                                                   Style="{StaticResource ToolbarButtonSquareStyle}">
+                                    <Label Text="&#xe807;"
+                                           Style="{StaticResource IconLabelStyle}" />
+                                </telerik:RadBorder>
+                            </Grid>
+                        </telerik:RadBorder>
+                        <Label Text="Title"
+                               Margin="12, 0"
+                               FontSize="16"
+                               TextColor="{DynamicResource DefaultTextColor}" />
+                        <Label Text="{Binding LetterDescription}"
+                               Margin="{OnPlatform Default='12, 0, 12, 12', MacCatalyst='12, 0, 12, 13', WinUI='12, 0, 12, 4'}"
+                               FontSize="14"
+                               HeightRequest="{OnPlatform WinUI=120}" />
+                    </VerticalStackLayout>
+                </telerik:RadBorder>
+                <telerik:RadTemplatedButton x:Name="copyTextButton"
+                                            Content="{Binding CopyText, Mode=TwoWay}"
+                                            HorizontalOptions="End"
+                                            Margin="{OnPlatform Default='0', MacCatalyst='0, 12, 0, 0'}"
+                                            Command="{Binding CopyTextCommand}" />
+            </VerticalStackLayout>
+            <telerik:RadBusyIndicator AnimationType="Animation4"
+                                      ContentUnderOpacity="0.4"
+                                      AnimationContentColor="{DynamicResource AccentColor2}"
+                                      AnimationContentHeightRequest="100"
+                                      AnimationContentWidthRequest="100"
+                                      Grid.Column="{OnIdiom Default=1, Phone=0}"
+                                      Grid.Row="{OnIdiom Default=1, Phone=2}"
+                                      VerticalOptions="StartAndExpand"
+                                      IsBusy="{Binding IsLoading}">
+                <VerticalStackLayout Spacing="{OnPlatform Default=12, iOS=8}">
+                    <telerik:RadDataForm x:Name="dataForm"
+                                         HeaderLabelStyle="{StaticResource EditorHeaderLabelStyle}"
+                                         AutoGenerateItems="False"
+                                         Padding="{OnPlatform Default=0, MacCatalyst='0, 4, 0, 0'}">
+                        <telerik:DataFormRadEntryEditor PropertyName="FullName"
+                                                        Placeholder="Full Name" />
+                        <telerik:DataFormRadEntryEditor PropertyName="City"
+                                                        Placeholder="City" />
+                        <telerik:DataFormRadEntryEditor PropertyName="PhoneNumber"
+                                                        Placeholder="e.g. XXXXXXXX" />
+                    </telerik:RadDataForm>
+                    <HorizontalStackLayout Spacing="{OnPlatform Default=12, iOS=8}"
+                                           HorizontalOptions="End"
+                                           Margin="{OnPlatform Default=0, MacCatalyst='0, 8, 0, 0'}">
+                        <telerik:RadTemplatedButton x:Name="resetButton"
+                                                    Command="{Binding ResetCommand}" 
+                                                    MinimumWidthRequest="{OnPlatform Android=44, iOS=40, MacCatalyst=24, WinUI=32}"
+                                                    AutomationId="resetButton">
+                            <Label Text="&#xe905;"
+                                   FontFamily="TelerikFontExamples"
+                                   FontSize="{OnPlatform Default=16, MacCatalyst=14, WinUI=14}"
+                                   FontAttributes="{Binding FontAttributes, Source={RelativeSource AncestorType={x:Type telerik:RadTemplatedButton}}}"
+                                   TextColor="{Binding TextColor, Source={RelativeSource AncestorType={x:Type telerik:RadTemplatedButton}}}"
+                                   HorizontalTextAlignment="{Binding HorizontalTextAlignment, Source={RelativeSource AncestorType={x:Type telerik:RadTemplatedButton}}}"
+                                   VerticalTextAlignment="{Binding VerticalTextAlignment, Source={RelativeSource AncestorType={x:Type telerik:RadTemplatedButton}}}" />
+                        </telerik:RadTemplatedButton>
+                        <telerik:RadSmartPasteButton x:Name="smartPasteButton"
+                                                     Provider="{x:Reference dataForm}"
+                                                     SmartPasteRequestCommand="{Binding SmartPasteCommand}" />
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+            </telerik:RadBusyIndicator>
+        </Grid>
+    </ScrollView>
+</ContentView>
