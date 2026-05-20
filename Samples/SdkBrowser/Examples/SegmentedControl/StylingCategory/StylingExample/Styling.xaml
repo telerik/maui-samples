@@ -3,16 +3,46 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
              x:Class="SDKBrowserMaui.Examples.SegmentedControl.StylingCategory.StylingExample.Styling">
-    <VerticalStackLayout>
-        <!--  >> segmentcontrol-styling-xaml  -->
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <!-- >> segmentcontrol-item-segment-style-xaml -->
+            <Style x:Key="SegmentItemView" TargetType="telerik:RadSegmentedControlItemView">
+                <Setter Property="CornerRadius" Value="4" />
+                <Setter Property="TextColor" Value="#8660C5" />
+                <Setter Property="SelectedTextColor" Value="White" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="Margin" Value="1, 0" />
+            </Style>
+            <!-- << segmentcontrol-item-segment-style-xaml -->
+            <!-- >> segmentcontrol-selected-segment-style-xaml -->
+            <Style x:Key="SelectedSegmentIndicatorStyle" TargetType="telerik:RadBorder">
+                <Setter Property="BackgroundColor" Value="#8660C5" />
+                <Setter Property="CornerRadius" Value="4" />
+                <Setter Property="Padding" Value="2" />
+            </Style>
+            <!-- << segmentcontrol-selected-segment-style-xaml -->
+            <!-- >> segmentcontrol-separator-style-xaml -->
+            <Style x:Key="SegmentSeparatorStyle" TargetType="telerik:RadBorder">
+                <Setter Property="WidthRequest" Value="2" />
+                <Setter Property="BackgroundColor" Value="#C4B5FD" />
+                <Setter Property="Margin" Value="0, 4" />
+            </Style>
+            <!-- << segmentcontrol-separator-style-xaml -->
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+    <VerticalStackLayout BackgroundColor="{OnPlatform WinUI=#FFFFFF}"
+                         Padding="{OnPlatform WinUI=10}"
+                         Spacing="10" VerticalOptions="Start">
+        <!-- >> segmentcontrol-styling-xaml -->
         <telerik:RadSegmentedControl x:Name="segmentControl"
-                                     Margin="10"
-                                     DisabledSegmentTextColor="#808660C5"
-                                     HeightRequest="60"
-                                     SegmentBackgroundColor="#FFFFFF"
-                                     SegmentTextColor="#3A9BFD"
-                                     SelectedSegmentBackgroundColor="#3A9BFD"
-                                     SelectedSegmentTextColor="#FFFFFF"
+                                     ItemViewStyle="{StaticResource SegmentItemView}"
+                                     SelectionIndicatorStyle="{StaticResource SelectedSegmentIndicatorStyle}"
+                                     SeparatorStyle="{StaticResource SegmentSeparatorStyle}"
+                                     BorderColor="#7C3AED"
+                                     BackgroundColor="#1A7C3AED"
+                                     BorderThickness="1"
+                                     CornerRadius="8"
                                      VerticalOptions="Start">
             <telerik:RadSegmentedControl.ItemsSource>
                 <x:Array Type="{x:Type x:String}">
@@ -23,6 +53,6 @@
                 </x:Array>
             </telerik:RadSegmentedControl.ItemsSource>
         </telerik:RadSegmentedControl>
-        <!--  << segmentcontrol-styling-xaml  -->
+        <!-- << segmentcontrol-styling-xaml -->
     </VerticalStackLayout>
 </ContentView>

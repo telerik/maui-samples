@@ -154,15 +154,32 @@
     <Color x:Key="CollectionViewBorderColor">#B1B1B1</Color>
     <Color x:Key="NavigationViewConfigurationHeaderBackgroundColor">#F2F2F2</Color>
     <Color x:Key="NavigationViewFirstLookHeaderBackgroundColor">#070707</Color>
+    <Color x:Key="PromptInputFirstLookBorderBackgroundColor">#F3F3F3</Color>
+    <Color x:Key="PromptInputFirstLookToggleButtonPointerOverBorderColor">#99A1AF</Color>
     <Color x:Key="RteImportViewImageBackgroundColor">#C1C1C1</Color>
     <Color x:Key="RteImportViewImageBorderColor">#D5D5D5</Color>
     <OnPlatform x:Key="SchedulerCustomizationTextColor" x:TypeArguments="Color" Default="{StaticResource DefaultTextColor}">
         <On Platform="WinUI" Value="#000000" />
     </OnPlatform>
     <Color x:Key="SegmentedControlFirstLookDisabledSegmentTextColor">#888660C5</Color>
+    <Color x:Key="SegmentedControlFirstLookSkeletonColor">#F3F3F3</Color>
+    <Color x:Key="SegmentedControlFirstLookLeftPanelBackgroundColor">#F8F8F8</Color>
+    <Color x:Key="SegmentedControlFirstLookSegmentedBackgroundColor">#EAEAEA</Color>
+    <Color x:Key="SegmentedControlFirstLookSegmentedIndicatorBorderColor">#BBBBBB</Color>
+    <Color x:Key="SegmentedControlFirstLookSegmentedIndicatorBackgroundColor">#FFFFFF</Color>
+    <Color x:Key="SegmentedControlFirstLookSegmentedTextColor">#000000</Color>
+    <Color x:Key="SegmentedControlFirstLookTitleTextColor">#B9B9B9</Color>
+    <Color x:Key="SegmentedControlFirstLookAvatarBadgeBackgroundColor">#E7E8ED</Color>
     <Color x:Key="SegmentedControlSegmentBackgroundColor">#22FFFFFF</Color>
     <Color x:Key="SegmentedControlSelectedSegmentBackgroundColor">#8660C5</Color>
     <Color x:Key="SegmentedControlSelectedSegmentBackgroundColorImage">#66A5A5A5</Color>
+    <Color x:Key="SmartPasteButtonFirstLookIconTextColor">#FFFFFF</Color>
+    <Color x:Key="SmartPasteButtonFirstLookToolbarSeparatorColor">#FFFFFF</Color>
+    <Color x:Key="SmartPasteButtonFirstLookSmallBorderBackgroundColor">#FFFFFF</Color>
+    <Color x:Key="SmartPasteButtonFirstLookEditorToolbarBackgroundColor">#FAFAFA</Color>
+    <Color x:Key="SmartPasteButtonFirstLookToolbarButtonStartBackgroundColor">#20212529</Color>
+    <Color x:Key="SmartPasteButtonFirstLookToolbarButtonBackgroundColor">#30212529</Color>
+    <Color x:Key="SmartPasteButtonFirstLookBusyIndicatorColor">#0E5781</Color>
     <OnPlatform x:Key="SettingsBackgroundColor" x:TypeArguments="Color" Default="{StaticResource TertiaryBackgroundColor}">
         <On Platform="WinUI" Value="{StaticResource DefaultBackgroundColor}" />
     </OnPlatform>
@@ -223,6 +240,12 @@
     <telerikTheming:ColorFilter x:Key="EntryBackgroundColor" Color="#FFFFFF" Alpha="{OnPlatform Default=1, Android=0, WinUI=0.7}" />
     <telerikTheming:ColorFilter x:Key="SchedulerDialogFooterBackgroundColor" Color="#FFFFFF" Alpha="{OnPlatform Default=1, MacCatalyst=0}" Lighten="{OnPlatform Default=0, Android=-0.03, iOS=-0.03, WinUI=-0.05}" />
     <telerikTheming:ColorFilter x:Key="DataGridAIChatBackgroundColor" Color="#FFFFFF" Lighten="{OnPlatform Default=-0.05, Android=-0.03}" />
+    <telerikTheming:ColorFilter x:Key="PromptInputFirstLookButtonBackgroundColor" Alpha="{OnPlatform Default=1, Android=0.12, iOS=0.12}">
+        <OnPlatform x:TypeArguments="Color" Default="#F3F3F3">
+            <On Platform="Android" Value="{StaticResource ApplicationAccentColor}" />
+            <On Platform="iOS" Value="#007AFF" />
+        </OnPlatform>
+    </telerikTheming:ColorFilter>
 
     <!-- Platform-Specific Colors -->
     <OnPlatform x:Key="CollectionViewDragVisualBackgroundColor" x:TypeArguments="Color" Default="#F3F3F3">

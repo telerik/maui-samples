@@ -6,7 +6,7 @@
              x:Class="CryptoTracker.Views.CoinInfoChartView"
              x:Name="coinInfoChartView">
 
-    <telerik:RadBorder Style="{StaticResource ListViewBorderWrapStyle}"
+    <telerik:RadBorder Style="{StaticResource CollectionViewBorderWrapStyle}"
                        Padding="10,10,10,20"
                        BorderThickness="1"
                        BorderColor="{StaticResource BorderColor}" >
@@ -32,6 +32,11 @@
                             <FileImageSource File="chartcandleactive.png"/>
                         </x:Array>
                     </telerik:RadSegmentedControl.ItemsSource>
+                    <telerik:RadSegmentedControl.ItemTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding .}" WidthRequest="24" HeightRequest="24"/>
+                        </DataTemplate>
+                    </telerik:RadSegmentedControl.ItemTemplate>
                 </telerik:RadSegmentedControl>
             </Grid>
 

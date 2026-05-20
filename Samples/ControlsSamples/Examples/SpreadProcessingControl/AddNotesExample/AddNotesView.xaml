@@ -6,7 +6,7 @@
                         Padding="{OnIdiom Default='16, 20', Phone=0}">
     <telerik:RadContentView.Resources>
         <ResourceDictionary>
-            <Style TargetType="Label" BasedOn="{StaticResource BaseLabelStyle}">
+            <Style x:Key="LabelStyle" TargetType="Label" BasedOn="{StaticResource BaseLabelStyle}">
                 <Setter Property="HorizontalOptions" Value="Center" />
                 <Setter Property="VerticalOptions" Value="Center" />
                 <Setter Property="Margin" Value="0, 0, 0, 12" />
@@ -22,7 +22,8 @@
     <Grid RowDefinitions="Auto, *">
         <telerik:RadBorder Style="{StaticResource ControlWrapperBorderStyle}">
             <VerticalStackLayout>
-                <Label Text="Note Preview:" />
+                <Label Text="Note Preview:"
+                       Style="{StaticResource LabelStyle}" />
                 <telerik:RadBorder HeightRequest="90"
                                    BackgroundColor="{DynamicResource SpreadProcessingControlAddNotesViewBorderBackgroundColor}"
                                    BorderColor="{DynamicResource SpreadProcessingControlAddNotesViewBorderColor}"
@@ -33,7 +34,8 @@
                            TextColor="#000000"
                            VerticalOptions="Start"
                            Margin="0"
-                           AutomationId="previewNote" />
+                           AutomationId="previewNote"
+                           Style="{StaticResource LabelStyle}" />
                 </telerik:RadBorder>
             </VerticalStackLayout>
         </telerik:RadBorder>
@@ -46,20 +48,24 @@
                            FontSize="20"
                            FontAttributes="Bold"
                            HorizontalOptions="Center"
-                           Margin="0, 0, 0, 24" />
-                    <Label Text="Related Property:" />
+                           Margin="0, 0, 0, 24"
+                           Style="{StaticResource LabelStyle}" />
+                    <Label Text="Related Property:" 
+                           Style="{StaticResource LabelStyle}" />
                     <telerik:RadSegmentedControl ItemsSource="{Binding Items, Mode=TwoWay}"
                                                  SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
                                                  WidthRequest="{OnPlatform WinUI=300, MacCatalyst=300}"
                                                  MinimumHeightRequest="{Binding Source={x:Reference authorEntry}, Path=Height}"
                                                  Margin="0, 0, 0, 24" 
                                                  AutomationId="settingsSegmented" />
-                    <Label Text="Author Name:" />
+                    <Label Text="Author Name:"
+                           Style="{StaticResource LabelStyle}" />
                     <telerik:RadEntry x:Name="authorEntry"
                                       Text="{Binding Author, Mode=TwoWay}"
                                       WidthRequest="{OnPlatform WinUI=300, MacCatalyst=300}" 
                                       AutomationId="authorNameEntry" />
-                    <Label Text="Description Text:" />
+                    <Label Text="Description Text:"
+                           Style="{StaticResource LabelStyle}" />
                     <telerik:RadEntry Text="{Binding Description, Mode=TwoWay}"
                                       WidthRequest="{OnPlatform WinUI=300, MacCatalyst=300}" 
                                       AutomationId="descriptionEntry" />

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.SegmentedControl.DataBindingCategory"
+             x:Class="SDKBrowserMaui.Examples.SegmentedControl.DataBindingCategory.DataBindingExample.DataBinding">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+            </Style>
+            <!-- >> segmentedcontrol-databinding-selectionindicator -->
+            <Style x:Key="SelectedSegmentIndicatorStyle" TargetType="telerik:RadBorder">
+                <Setter Property="BackgroundColor" Value="#408660C5" />
+                <Setter Property="CornerRadius" Value="4" />
+                <Setter Property="Padding" Value="2" />
+            </Style>
+            <!-- << segmentedcontrol-databinding-selectionindicator -->
+            <!-- >> segmentedcontrol-datatemplatetypes -->
+            <DataTemplate x:Key="CommonTemplate">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="{Binding Icon}"
+                           FontFamily="TelerikFontExamples" />
+                    <Label Text="{Binding Category}"
+                           FontSize="10"/>
+                </VerticalStackLayout>
+            </DataTemplate>
+            <DataTemplate x:Key="CalendarTemplate">
+                <Label Text="{Binding Icon}"
+                       FontFamily="TelerikFontExamples"
+                       FontSize="20" />
+            </DataTemplate>
+            <local:EvenOddDataTemplateSelector x:Key="FileCategoriesTemplateSelector"
+                                               CommonTemplate="{StaticResource CommonTemplate}"
+                                               CalendarTemplate="{StaticResource CalendarTemplate}" />
+            <!-- << segmentedcontrol-datatemplatetypes -->
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <VerticalStackLayout Spacing="10"
+                         VerticalOptions="Start">
+        <!-- >> segmentedcontrol-databinding-displaymemberpath -->
+        <telerik:RadSegmentedControl ItemsSource="{Binding FileCategories}"
+                                     DisplayMemberPath="Category"/>
+        <!-- << segmentedcontrol-databinding-displaymemberpath -->
+
+        <!-- >> segmentedcontrol-databinding-itemtemplate -->
+        <telerik:RadSegmentedControl ItemsSource="{Binding FileCategories}"
+                                     SelectionIndicatorStyle="{StaticResource SelectedSegmentIndicatorStyle}">
+            <telerik:RadSegmentedControl.ItemTemplate>
+                <DataTemplate>
+                    <VerticalStackLayout Spacing="10">
+                        <Label Text="{Binding Icon}"
+                               VerticalTextAlignment="Center"
+                               FontFamily="TelerikFontExamples" />
+                        <Label Text="{Binding Category}"
+                               FontSize="10"/>
+                    </VerticalStackLayout>
+                </DataTemplate>
+            </telerik:RadSegmentedControl.ItemTemplate>
+        </telerik:RadSegmentedControl>
+        <!-- << segmentedcontrol-databinding-itemtemplate -->
+
+        <!-- >> segmentedcontrol-databinding-itemtemplate-selector -->
+        <telerik:RadSegmentedControl ItemsSource="{Binding FileCategories}"
+                                     ItemTemplate="{StaticResource FileCategoriesTemplateSelector}"
+                                     SelectionIndicatorStyle="{StaticResource SelectedSegmentIndicatorStyle}" />
+        <!-- << segmentedcontrol-databinding-itemtemplate-selector -->
+    </VerticalStackLayout>
+</ContentView>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.DropDownButtonControl.FeaturesCategory.AutoOpenDelayExample.AutoOpenDelay">
+    <VerticalStackLayout WidthRequest="{OnPlatform MacCatalyst=300, WinUI=300}"
+                         VerticalOptions="Start"
+                         HorizontalOptions="{OnIdiom Default=Fill, Desktop=Start}"
+                         Spacing="10">
+        <Label Text="Hover the button. After the AutoOpenDelay elapses, the drop-down opens automatically."
+               HorizontalTextAlignment="Start" />
+        <!-- >> dropdownbutton-autoopendelay -->
+        <telerik:RadDropDownButton Content="Hover"
+                                   AutoOpenDelay="0:0:1">
+            <telerik:RadDropDownButton.DropDownContent>
+                <Label Text="Opened after a 1 second delay." />
+            </telerik:RadDropDownButton.DropDownContent>
+        </telerik:RadDropDownButton>
+        <!-- << dropdownbutton-autoopendelay -->
+    </VerticalStackLayout>
+</ContentView>

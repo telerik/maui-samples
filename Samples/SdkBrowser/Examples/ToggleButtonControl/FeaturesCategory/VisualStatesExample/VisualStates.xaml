@@ -19,12 +19,24 @@
                     <VisualStateGroupList>
                         <VisualStateGroup Name="CommonStates">
                             <VisualState Name="Normal" />
+                            <VisualState Name="Focused" />
                             <VisualState Name="MouseOver">
                                 <VisualState.Setters>
                                     <Setter Property="Background" Value="#D2D2D2" />
                                 </VisualState.Setters>
                             </VisualState>
+                            <VisualState Name="FocusedMouseOver">
+                                <VisualState.Setters>
+                                    <Setter Property="Background" Value="#D2D2D2" />
+                                </VisualState.Setters>
+                            </VisualState>
                             <VisualState Name="Pressed">
+                                <VisualState.Setters>
+                                    <Setter Property="Background" Value="#D2D2D2" />
+                                    <Setter Property="TextColor" Value="#99000000" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="FocusedPressed">
                                 <VisualState.Setters>
                                     <Setter Property="Background" Value="#D2D2D2" />
                                     <Setter Property="TextColor" Value="#99000000" />
@@ -41,6 +53,12 @@
                                     <Setter Property="Background" Value="#00897B" />
                                 </VisualState.Setters>
                             </VisualState>
+                            <VisualState Name="FocusedToggled">
+                                <VisualState.Setters>
+                                    <Setter Property="TextColor" Value="#FFFFFF" />
+                                    <Setter Property="Background" Value="#00897B" />
+                                </VisualState.Setters>
+                            </VisualState>
                             <VisualState Name="ToggledMouseOver">
                                 <VisualState.Setters>
                                     <Setter Property="TextColor" Value="#FFFFFF" />
@@ -48,7 +66,21 @@
                                     <Setter Property="BorderBrush" Value="#32A095" />
                                 </VisualState.Setters>
                             </VisualState>
+                            <VisualState Name="FocusedToggledMouseOver">
+                                <VisualState.Setters>
+                                    <Setter Property="TextColor" Value="#FFFFFF" />
+                                    <Setter Property="Background" Value="#32A095" />
+                                    <Setter Property="BorderBrush" Value="#32A095" />
+                                </VisualState.Setters>
+                            </VisualState>
                             <VisualState Name="ToggledPressed">
+                                <VisualState.Setters>
+                                    <Setter Property="TextColor" Value="#99000000" />
+                                    <Setter Property="Background" Value="#4CACA2" />
+                                    <Setter Property="BorderBrush" Value="#4CACA2" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="FocusedToggledPressed">
                                 <VisualState.Setters>
                                     <Setter Property="TextColor" Value="#99000000" />
                                     <Setter Property="Background" Value="#4CACA2" />
@@ -65,10 +97,6 @@
                             <VisualState Name="IndeterminateMouseOver" />
                             <VisualState Name="IndeterminatePressed" />
                             <VisualState Name="IndeterminateDisabled" />
-                        </VisualStateGroup>
-                        <VisualStateGroup Name="FocusStates">
-                            <VisualState Name="Unfocused" />
-                            <VisualState Name="Focused" />
                         </VisualStateGroup>
                     </VisualStateGroupList>
                 </Setter>

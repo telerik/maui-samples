@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFrameworks>$(MauiAppPlatforms)</TargetFrameworks>
@@ -10,11 +10,17 @@
 		<ApplicationId>com.telerik.SDKBrowserMaui</ApplicationId>
 		<UseTelerikTheming>true</UseTelerikTheming>
 		<ApplicationVersion>1</ApplicationVersion>
-		
-		<RuntimeIdentifier Condition="$(TargetFramework.Contains('android')) AND $(IsCI) == 'true'">android-arm64</RuntimeIdentifier>
+		<RuntimeIdentifier Condition="$(TargetFramework.ToLower().Contains('android')) AND $(IsCI) == 'true'">android-arm64</RuntimeIdentifier>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="$(TargetFramework.Contains('maccatalyst'))">
+	<!-- Enable XAML source generation for faster build times and improved performance. 
+	This generates C# code from XAML at compile time instead of runtime inflation.
+	To disable, remove this PropertyGroup.  -->
+	<PropertyGroup Condition="$(TargetFramework.ToLower().Contains('net10'))">
+		<MauiXamlInflator>SourceGen</MauiXamlInflator>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="$(TargetFramework.ToLower().Contains('maccatalyst'))">
 		<DefineConstants>$(DefineConstants);__MACCATALYST__</DefineConstants>
 	</PropertyGroup>
 
@@ -46,20 +52,23 @@
 		<PackageReference Include="Telerik.UI.for.Maui" Version="$(TelerikVersion)" />
 	</ItemGroup>
 
-	<ItemGroup Condition="$(TargetFramework.Contains('net9'))">
+	<ItemGroup>
+		<PackageReference Include="Telerik.AI.SmartComponents.Extensions" Version="2.1.0" />
+	</ItemGroup>
+
+	<ItemGroup Condition="$(TargetFramework.ToLower().Contains('net9'))">
 		<PackageReference Include="Microsoft.Maui.Controls" Condition=" $(CustomMauiNet9Version) == '' " Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Controls" Condition=" $(CustomMauiNet9Version) != '' " Version="$(CustomMauiNet9Version)" />
 	</ItemGroup>
 
-	<ItemGroup Condition="$(TargetFramework.Contains('net10'))">
+	<ItemGroup Condition="$(TargetFramework.ToLower().Contains('net10'))">
 		<PackageReference Include="Microsoft.Maui.Controls" Condition=" $(CustomMauiNet10Version) == '' " Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Controls" Condition=" $(CustomMauiNet10Version) != '' " Version="$(CustomMauiNet10Version)" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\AppUtils\AppUtils.csproj" />
+		<ProjectReference Include="..\AppUtils\AppUtils.csproj" />
 	</ItemGroup>
-
 
 	<Import Condition="'$(SolutionName)' == 'Telerik.Maui' Or '$(UseSourceProjects)' == 'True'" Project="..\AddSourceProjects.proj" />
 	<Import Condition="'$(SolutionName)' != 'Telerik.Maui' And '$(UseSourceProjects)' != 'True' And '$(UseSourceAssemblies)' == 'True'" Project="..\AddSourceAssemblies.proj" />

@@ -54,6 +54,14 @@
                                  AutomationId="selectionModeComboBox" />
         </VerticalStackLayout>
         <VerticalStackLayout Style="{StaticResource GroupAtSeparateAreaStyle}">
+            <Label Text="Selection Gesture:"
+                   Style="{StaticResource VerticalGroupLabelStyle}" />
+            <telerik:RadComboBox ItemsSource="{Binding SelectionGestures}"
+                                 SelectedItem="{Binding SelectionGesture, Mode=TwoWay}"
+                                 HorizontalOptions="Fill"
+                                 IsClearButtonVisible="False" />
+        </VerticalStackLayout>
+        <VerticalStackLayout Style="{StaticResource GroupAtSeparateAreaStyle}">
             <Label Text="Empty Content Display Mode:"
                    Style="{StaticResource VerticalGroupLabelStyle}" />
             <telerik:RadComboBox ItemsSource="{Binding EmptyContentDisplayModes}"

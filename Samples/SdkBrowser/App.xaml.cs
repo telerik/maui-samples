@@ -144,7 +144,12 @@ namespace SDKBrowserMaui
                 return;
             }
 
-            e.Result = Task.FromResult("Unknown command");
+            // Only reply "Unknown command" if no other handler (e.g. WebView2CaptureHandler in AppUtils)
+            // has already claimed this command by setting a pending (not-yet-completed) result task.
+            if (e.Result.IsCompleted)
+            {
+                e.Result = Task.FromResult("Unknown command");
+            }
         }
 
         private void HandleNavigateCommand(TestCommandEventArgs e)
@@ -218,14 +223,4 @@ namespace SDKBrowserMaui
             });
         }
     }
-
-#if __ANDROID__
-    // TODO: This is a temp workaround that prevents the linker from removing the constructor of the TextCellRenderer used by the ListView.
-    // As soon as Maui provides more linker options it can be removed.
-    [global::Android.Runtime.Preserve]
-    public class DummyTextCellRenderer : Microsoft.Maui.Controls.Handlers.Compatibility.TextCellRenderer
-    {
-
-    }
-#endif
 }

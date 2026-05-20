@@ -1,29 +1,27 @@
-﻿using System;
-using CryptoTracker.Data;
+﻿using CryptoTracker.Data;
 using Microsoft.Maui.Controls;
-using Telerik.Maui.Controls.Compatibility.DataControls.ListView;
+using System;
 
-namespace CryptoTracker.Views
+namespace CryptoTracker.Views;
+
+public partial class CoinSelectionView : ContentView
 {
-    public partial class CoinSelectionView : ContentView
+    public CoinSelectionView()
     {
-        public CoinSelectionView()
-        {
-            this.InitializeComponent();
-        }
+        this.InitializeComponent();
+    }
 
-        public event EventHandler<CoinSelectionEventArgs> CoinSelected;
+    public event EventHandler<CoinSelectionEventArgs> CoinSelected;
 
-        private void OnListViewItemTapped(object sender, ItemTapEventArgs e)
-        {
-            this.trendingListView.SelectedItem = null;
-            this.CoinSelected?.Invoke(this, new CoinSelectionEventArgs((CoinData)e.Item));
-        }
+    private void OnCollectionViewItemTapped(object sender, Telerik.Maui.RadTappedEventArgs<object> e)
+    {
+        this.trendingCollectionView.SelectedItem = null;
+        this.CoinSelected?.Invoke(this, new CoinSelectionEventArgs((CoinData)e.Data));
+    }
 
-        private void OnTrendingListViewItemTapped(object sender, ItemTapEventArgs e)
-        {
-            this.listView.SelectedItem = null;
-            this.CoinSelected?.Invoke(this, new CoinSelectionEventArgs(((TrendingCoinData)e.Item).Data));
-        }
+    private void OnTrendingCollectionViewItemTapped(object sender, Telerik.Maui.RadTappedEventArgs<object> e)
+    {
+        this.collectionView.SelectedItem = null;
+        this.CoinSelected?.Invoke(this, new CoinSelectionEventArgs(((TrendingCoinData)e.Data).Data));
     }
 }

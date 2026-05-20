@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.DropDownButtonControl.GettingStartedCategory.GettingStartedExample.GettingStarted">
+    <VerticalStackLayout WidthRequest="{OnPlatform MacCatalyst=300, WinUI=300}"
+                         VerticalOptions="Start"
+                         HorizontalOptions="{OnIdiom Default=Fill, Desktop=Start}"
+                         Spacing="10">
+        <!-- >> dropdownbutton-gettingstarted -->
+        <telerik:RadDropDownButton Content="Save as">
+            <telerik:RadDropDownButton.DropDownContent>
+                <VerticalStackLayout Padding="12" Spacing="6">
+                    <Label Text="Select format"
+                           FontAttributes="Bold" />
+                    <telerik:RadTemplatedButton Content=".pdf" />
+                    <telerik:RadTemplatedButton Content=".txt" />
+                    <telerik:RadTemplatedButton Content=".docx" />
+                </VerticalStackLayout>
+            </telerik:RadDropDownButton.DropDownContent>
+        </telerik:RadDropDownButton>
+        <!-- << dropdownbutton-gettingstarted -->
+        <!-- >> dropdownbutton-gettingstarted-list-content -->
+        <telerik:RadDropDownButton Content="More Options">
+            <telerik:RadDropDownButton.DropDownContent>
+                <telerik:RadCollectionView>
+                    <telerik:RadCollectionView.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Vacation</x:String>
+                            <x:String>Business Trip</x:String>
+                            <x:String>Family Trip</x:String>
+                        </x:Array>
+                    </telerik:RadCollectionView.ItemsSource>
+                </telerik:RadCollectionView>
+            </telerik:RadDropDownButton.DropDownContent>
+        </telerik:RadDropDownButton>
+        <!-- << dropdownbutton-gettingstarted-list-content -->
+    </VerticalStackLayout>
+</ContentView>

@@ -23,6 +23,9 @@
         <Style TargetType="telerik:RadToggleButton" BasedOn="{StaticResource RadToggleButtonStyle}">
             <Setter Property="Margin" Value="4" />
         </Style>
+        <Style TargetType="telerik:RadDropDownButton" BasedOn="{StaticResource RadDropDownButtonStyle}">
+            <Setter Property="Margin" Value="4" />
+        </Style>
         <Style TargetType="telerik:RadWrapLayout">
             <Setter Property="Margin" Value="0, 0, 0, 16" />
             <Setter Property="HorizontalOptions" Value="Center" />
@@ -120,6 +123,92 @@
                     <telerik:RadToggleButton FontFamily="TelerikFontExamples"
                                              Content="&#xe85f;"
                                              AutomationId="iconToggleButton" />
+                </telerik:RadWrapLayout>
+                <Label Text="DropDown Button" Style="{StaticResource TitleLabelStyle}" />
+                <telerik:RadWrapLayout>
+                    <telerik:RadDropDownButton x:Name="dropDownButton"
+                                                Content="Wi-Fi"
+                                                AutomationId="dropDownButton">
+                        <telerik:RadDropDownButton.DropDownContent>
+                            <telerik:RadCollectionView AutomationId="dropDownCollectionView"
+                                                       ItemsSource="{Binding WiFiNetworks}"
+                                                       DisplayMemberPath="Name"
+                                                       SelectionChanged="OnDropDownItemSelected" />
+                        </telerik:RadDropDownButton.DropDownContent>
+                    </telerik:RadDropDownButton>
+                    <telerik:RadDropDownButton x:Name="iconTextDropDownButton"
+                                                AutomationId="iconTextDropDownButton">
+                        <telerik:RadDropDownButton.Content>
+                            <Grid ColumnDefinitions="Auto, *" ColumnSpacing="4">
+                                <Label FontFamily="TelerikFontExamples"
+                                       FontSize="{OnPlatform Default=16, MacCatalyst=12}"
+                                       Text="&#xe85f;"
+                                       TextColor="{Binding TextColor, Source={RelativeSource AncestorType={x:Type telerik:RadDropDownButton}}}"
+                                       HorizontalTextAlignment="{Binding HorizontalTextAlignment, Source={RelativeSource AncestorType={x:Type telerik:RadDropDownButton}}}"
+                                       VerticalTextAlignment="{Binding VerticalTextAlignment, Source={RelativeSource AncestorType={x:Type telerik:RadDropDownButton}}}" />
+                                <Label Grid.Column="1"
+                                       Text="Wi-Fi"
+                                       FontFamily="{Binding FontFamily, Source={RelativeSource AncestorType={x:Type telerik:RadDropDownButton}}}"
+                                       FontSize="{Binding FontSize, Source={RelativeSource AncestorType={x:Type telerik:RadDropDownButton}}}"
+                                       FontAttributes="{Binding FontAttributes, Source={RelativeSource AncestorType={x:Type telerik:RadDropDownButton}}}"
+                                       TextColor="{Binding TextColor, Source={RelativeSource AncestorType={x:Type telerik:RadDropDownButton}}}"
+                                       HorizontalTextAlignment="{Binding HorizontalTextAlignment, Source={RelativeSource AncestorType={x:Type telerik:RadDropDownButton}}}"
+                                       VerticalTextAlignment="{Binding VerticalTextAlignment, Source={RelativeSource AncestorType={x:Type telerik:RadDropDownButton}}}" />
+                            </Grid>
+                        </telerik:RadDropDownButton.Content>
+                        <telerik:RadDropDownButton.DropDownContent>
+                            <telerik:RadCollectionView AutomationId="iconTextDropDownCollectionView"
+                                                       ItemsSource="{Binding WiFiNetworks}"
+                                                       SelectionChanged="OnIconTextDropDownItemSelected">
+                                <telerik:RadCollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid ColumnDefinitions="Auto, *" 
+                                              ColumnSpacing="4"
+                                              Margin="10, 0">
+                                            <Label FontFamily="TelerikFontExamples"
+                                                   FontSize="{OnPlatform Default=16, MacCatalyst=12}"
+                                                   Text="{Binding Icon}"
+                                                   VerticalTextAlignment="Center" />
+                                            <Label Grid.Column="1"
+                                                   Text="{Binding Name}"
+                                                   VerticalTextAlignment="Center" />
+                                        </Grid>
+                                    </DataTemplate>
+                                </telerik:RadCollectionView.ItemTemplate>
+                            </telerik:RadCollectionView>
+                        </telerik:RadDropDownButton.DropDownContent>
+                    </telerik:RadDropDownButton>
+                    <telerik:RadDropDownButton x:Name="iconDropDownButton"
+                                                AutomationId="iconDropDownButton">
+                        <telerik:RadDropDownButton.Content>
+                            <Grid ColumnDefinitions="Auto" 
+                                  ColumnSpacing="4">
+                                <Label FontFamily="TelerikFontExamples"
+                                       FontSize="{OnPlatform Default=16, MacCatalyst=12}"
+                                       Text="&#xe87b;"
+                                       TextColor="{Binding TextColor, Source={RelativeSource AncestorType={x:Type telerik:RadDropDownButton}}}"
+                                       HorizontalTextAlignment="{Binding HorizontalTextAlignment, Source={RelativeSource AncestorType={x:Type telerik:RadDropDownButton}}}"
+                                       VerticalTextAlignment="{Binding VerticalTextAlignment, Source={RelativeSource AncestorType={x:Type telerik:RadDropDownButton}}}" />
+                            </Grid>
+                        </telerik:RadDropDownButton.Content>
+                        <telerik:RadDropDownButton.DropDownContent>
+                            <telerik:RadCollectionView AutomationId="iconDropDownCollectionView"
+                                                       ItemsSource="{Binding SaveOperations}"
+                                                       SelectionChanged="OnIconDropDownItemSelected">
+                                <telerik:RadCollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid ColumnDefinitions="Auto"
+                                              Margin="10, 0">
+                                            <Label FontFamily="TelerikFontExamples"
+                                                   FontSize="{OnPlatform Default=16, MacCatalyst=12}"
+                                                   Text="{Binding Icon}"
+                                                   VerticalTextAlignment="Center" />
+                                        </Grid>
+                                    </DataTemplate>
+                                </telerik:RadCollectionView.ItemTemplate>
+                            </telerik:RadCollectionView>
+                        </telerik:RadDropDownButton.DropDownContent>
+                    </telerik:RadDropDownButton>
                 </telerik:RadWrapLayout>
             </VerticalStackLayout>
         </ScrollView>

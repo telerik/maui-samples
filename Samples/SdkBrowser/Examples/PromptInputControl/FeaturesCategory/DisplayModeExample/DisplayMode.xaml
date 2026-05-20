@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.PromptInputControl.FeaturesCategory.DisplayModeExample.DisplayMode">
+    <Grid RowDefinitions="*, *, *"
+          RowSpacing="10"
+          VerticalOptions="Start">
+        <!-- >> promptinput-displaymode-automatic-xaml -->
+        <telerik:RadPromptInput Placeholder="Automatic display mode" />
+        <!-- << promptinput-displaymode-automatic-xaml -->
+        <!-- >> promptinput-displaymode-compact-xaml -->
+        <telerik:RadPromptInput DisplayMode="Compact" 
+                                Placeholder="Compact display mode"
+                                Grid.Row="1" />
+        <!-- << promptinput-displaymode-compact-xaml -->
+        <!-- >> promptinput-displaymode-expanded-xaml -->
+        <telerik:RadPromptInput DisplayMode="Expanded" 
+                                Placeholder="Expanded display mode"
+                                Grid.Row="2" />
+        <!-- << promptinput-displaymode-expanded-xaml -->
+    </Grid>
+</ContentView>

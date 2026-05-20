@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.DropDownButtonControl.FeaturesCategory.AnimationsExample.Animations">
+    <ContentView.Resources>
+        <Style TargetType="Label" x:Key="LabelStyle">
+            <Setter Property="VerticalOptions" Value="Center" />
+            <Setter Property="VerticalTextAlignment" Value="Center" />
+            <Setter Property="Margin" Value="0, 0, 0, 8" />
+        </Style>
+        <Style TargetType="HorizontalStackLayout">
+            <Setter Property="Spacing" Value="5" />
+        </Style>
+    </ContentView.Resources>
+    <VerticalStackLayout HorizontalOptions="{OnIdiom Default=Fill, Desktop=Start}"
+                         Spacing="10"
+                         VerticalOptions="Start"
+                         WidthRequest="{OnPlatform WinUI=360, MacCatalyst=360}">
+        <HorizontalStackLayout>
+            <Label Text="DropDownAnimation:" Style="{StaticResource LabelStyle}" />
+            <telerik:RadComboBox SelectedItem="{Binding DropDownAnimation, Source={x:Reference animationDropDownButton}}">
+                <telerik:RadComboBox.ItemsSource>
+                    <x:Array Type="{x:Type telerik:PopupAnimationType}">
+                        <telerik:PopupAnimationType>None</telerik:PopupAnimationType>
+                        <telerik:PopupAnimationType>Fade</telerik:PopupAnimationType>
+                        <telerik:PopupAnimationType>Zoom</telerik:PopupAnimationType>
+                        <telerik:PopupAnimationType>Slide</telerik:PopupAnimationType>
+                    </x:Array>
+                </telerik:RadComboBox.ItemsSource>
+            </telerik:RadComboBox>
+        </HorizontalStackLayout>
+        <HorizontalStackLayout>
+            <Label Text="DropDownAnimationDuration: " Style="{StaticResource LabelStyle}" />
+            <telerik:RadNumericInput Minimum="100"
+                                     Step="20"
+                                     Value="{Binding DropDownAnimationDuration, Source={x:Reference animationDropDownButton}}"
+                                     Maximum="600" />
+        </HorizontalStackLayout>
+        <!-- >> dropdownbutton-dropdownstyling-animation-fade -->
+        <telerik:RadDropDownButton Content="Click" 
+                                   x:Name="animationDropDownButton"
+                                   DropDownAnimation="Fade"
+                                   DropDownAnimationDuration="400">
+            <telerik:RadDropDownButton.DropDownContent>
+                <Label Text="Content of the drop-down" 
+                             Padding="12" />
+            </telerik:RadDropDownButton.DropDownContent>
+        </telerik:RadDropDownButton>
+        <!-- << dropdownbutton-dropdownstyling-animation-fade -->
+    </VerticalStackLayout>
+</ContentView>

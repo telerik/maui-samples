@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.SegmentedControl.StylingCategory.StyleSelectorExample"
+             x:Class="SDKBrowserMaui.Examples.SegmentedControl.StylingCategory.StyleSelectorExample.StyleSelector">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <!-- >> segmentedcontrol-styleselector-definition-xaml -->
+            <Style TargetType="Label">
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+            </Style>
+            <Style x:Key="AllStyle" TargetType="telerik:RadSegmentedControlItemView">
+                <Setter Property="SelectedTextColor" Value="#000000" />
+                <Setter Property="TextColor" Value="#00897B" />
+                <Setter Property="BorderColor" Value="#80CBC4" />
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="CornerRadius" Value="0" />
+                <Setter Property="Padding" Value="8" />
+                <Setter Property="Margin" Value="2, 0" />
+            </Style>
+            <Style x:Key="BookingStyle" TargetType="telerik:RadSegmentedControlItemView">
+                <Setter Property="SelectedTextColor" Value="#7350B0" />
+                <Setter Property="TextColor" Value="#8660C5" />
+                <Setter Property="BorderColor" Value="#908660C5" />
+                <Setter Property="BorderThickness" Value="2" />
+                <Setter Property="CornerRadius" Value="1" />
+                <Setter Property="Padding" Value="8" />
+                <Setter Property="Margin" Value="2, 0" />
+            </Style>
+            <Style x:Key="RadSegmentedControlSelectionIndicatorStyle" TargetType="telerik:RadBorder">
+                <Setter Property="BackgroundColor" Value="#BFE5E1" />
+                <Setter Property="CornerRadius" Value="1" />
+                <Setter Property="Padding" Value="5" />
+                <Setter Property="Margin" Value="4, 2" />
+            </Style>
+            <Style x:Key="RadSegmentedControlSeparatorStyle" TargetType="telerik:RadBorder">
+                <Setter Property="WidthRequest" Value="0" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
+            </Style>
+            <local:BookingStyleSelector x:Key="FileCategoryStyleSelector"
+                                        AllStyle="{StaticResource AllStyle}"
+                                        BookingStyle="{StaticResource BookingStyle}" />
+            <!-- << segmentedcontrol-styleselector-definition-xaml -->
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <VerticalStackLayout BackgroundColor="{OnPlatform WinUI=#FFFFFF}"
+                         Padding="{OnPlatform WinUI=10}">
+        <!-- >> segmentedcontrol-styleselector-xaml -->
+        <telerik:RadSegmentedControl ItemsSource="{Binding FileCategories}"
+                                     DisplayMemberPath="Category"
+                                     ItemViewStyleSelector="{StaticResource FileCategoryStyleSelector}"
+                                     SelectionIndicatorStyle="{StaticResource RadSegmentedControlSelectionIndicatorStyle}"
+                                     SeparatorStyle="{StaticResource RadSegmentedControlSeparatorStyle}"
+                                     BorderBrush="#80CBC4"
+                                     BackgroundColor="#FFF"
+                                     CornerRadius="2"
+                                     BorderThickness="2" Padding="1, 3" />
+        <!-- << segmentedcontrol-styleselector-xaml -->
+    </VerticalStackLayout>
+</ContentView>

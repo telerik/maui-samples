@@ -128,16 +128,12 @@
                 <telerik:SchedulerBoxView Grid.Row="12"
                                           IsVisible="{Binding IsExceptionOccurrence, Converter={StaticResource InvertedBooleanConverter}}"
                                           Style="{StaticResource SchedulerDialogSeparatorStyle_Mobile}" />
-                <Editor x:Name="descriptionEditor"
-                        Grid.Row="13"
-                        Grid.ColumnSpan="2"
-                        FontSize="{OnPlatform iOS=17}"
-                        Text="{Binding Description, Mode=TwoWay}"
-                        TextColor="{DynamicResource DefaultTextColor}"
-                        VerticalTextAlignment="Start"
-                        Placeholder="{telerik:Localize Scheduler_EditAppointmentDialog_Description}"
-                        PlaceholderColor="{DynamicResource RadSubtleColor}"
-                        Background="{StaticResource RadAppSurfaceColor}" />
+                <telerik:RadEditor Grid.Row="13"
+                                   Grid.ColumnSpan="2"
+                                   FontSize="{OnPlatform iOS=17}"
+                                   Text="{Binding Description, Mode=TwoWay}"
+                                   VerticalTextAlignment="Start"
+                                   Placeholder="{telerik:Localize Scheduler_EditAppointmentDialog_Description}" />
             </Grid>
             <Grid Grid.Row="2"
                   ColumnDefinitions="*, *"

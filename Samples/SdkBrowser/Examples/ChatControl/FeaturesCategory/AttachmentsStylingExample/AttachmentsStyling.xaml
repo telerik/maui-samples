@@ -65,14 +65,20 @@
             <VisualStateGroupList x:Key="ChatOutgoingMessageAttachmentsDropDownMenuButtonVisualStates">
                 <VisualStateGroup Name="CommonStates">
                     <VisualState Name="Normal" />
+                    <VisualState Name="Focused" />
                     <VisualState Name="PointerOver">
                         <VisualState.Setters>
-                            <Setter Property="telerik:DropDownMenuButtonToolbarItemView.BackgroundColor" Value="#EBEBEB" />
+                            <Setter Property="telerik:RadDropDownButton.Background" Value="#EBEBEB" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState Name="FocusedMouseOver">
+                        <VisualState.Setters>
+                            <Setter Property="telerik:RadDropDownButton.Background" Value="#EBEBEB" />
                         </VisualState.Setters>
                     </VisualState>
                     <VisualState Name="Opened">
                         <VisualState.Setters>
-                            <Setter Property="telerik:DropDownMenuButtonToolbarItemView.BackgroundColor" Value="#D6D6D6" />
+                            <Setter Property="telerik:RadDropDownButton.Background" Value="#D6D6D6" />
                         </VisualState.Setters>
                     </VisualState>
                 </VisualStateGroup>
@@ -80,7 +86,7 @@
             <Style x:Key="OutgoingAttachmentImageStyle" TargetType="Image">
                 <Setter Property="Source" Value="{Binding Attachment.FileName, Source={RelativeSource Mode=TemplatedParent}, Converter={StaticResource ChatOutgoingFileExtensionToImageSourceConverter}}" />
             </Style>
-            <Style x:Key="OutgoingChatMessageAttachmentDropDownMenuButtonStyle" TargetType="telerik:DropDownMenuButtonToolbarItemView">
+            <Style x:Key="OutgoingChatMessageAttachmentDropDownMenuButtonStyle" TargetType="telerik:RadDropDownButton">
                 <Setter Property="TextColor" Value="#000000" />
                 <Setter Property="VisualStateManager.VisualStateGroups" Value="{StaticResource ChatOutgoingMessageAttachmentsDropDownMenuButtonVisualStates}" />
             </Style>
@@ -113,12 +119,24 @@
                     <VisualStateGroupList>
                         <VisualStateGroup Name="CommonStates">
                             <VisualState Name="Normal" />
-                            <VisualState Name="PointerOver">
+                            <VisualState Name="Focused" />
+                            <VisualState Name="MouseOver">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#EBEBEB" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="FocusedMouseOver">
                                 <VisualState.Setters>
                                     <Setter Property="BackgroundColor" Value="#EBEBEB" />
                                 </VisualState.Setters>
                             </VisualState>
                             <VisualState Name="Pressed">
+                                <VisualState.Setters>
+                                    <Setter Property="TextColor" Value="{DynamicResource RadOnPrimaryColorAlpha80}" />
+                                    <Setter Property="BackgroundColor" Value="#D6D6D6" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="FocusedPressed">
                                 <VisualState.Setters>
                                     <Setter Property="TextColor" Value="{DynamicResource RadOnPrimaryColorAlpha80}" />
                                     <Setter Property="BackgroundColor" Value="#D6D6D6" />

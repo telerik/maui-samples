@@ -42,7 +42,7 @@
                         <CollectionView.Style>
                             <OnPlatform x:TypeArguments="Style">
                                 <On Platform="WinUI">
-                                    <Style TargetType="Grid">
+                                    <Style TargetType="CollectionView">
                                         <Setter Property="WidthRequest" Value="{Binding Width, Source={x:Reference picker}}" />
                                     </Style>
                                 </On>

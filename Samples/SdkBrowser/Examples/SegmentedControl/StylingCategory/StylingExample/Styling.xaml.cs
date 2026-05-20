@@ -4,9 +4,8 @@ namespace SDKBrowserMaui.Examples.SegmentedControl.StylingCategory.StylingExampl
 
 public partial class Styling : ContentView
 {
-	public Styling()
-	{
-		InitializeComponent();
-        this.segmentControl.SetSegmentEnabled(2, false);
+    public Styling()
+    {
+        this.InitializeComponent();
     }
 }

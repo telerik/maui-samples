@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:dropdown="clr-namespace:Telerik.Maui.Controls.DropDownButton;assembly=Telerik.Maui.Controls"
+             x:Class="SDKBrowserMaui.Examples.DropDownButtonControl.FeaturesCategory.ButtonConfigurationExample.ButtonConfiguration">
+    <ContentView.Resources>
+        <Style TargetType="Label" x:Key="LabelStyle">
+            <Setter Property="VerticalTextAlignment" Value="Center" />
+            <Setter Property="VerticalOptions" Value="Center" />
+            <Setter Property="Margin" Value="0, 20, 0, 8" />
+        </Style>
+    </ContentView.Resources>
+    <VerticalStackLayout HorizontalOptions="{OnIdiom Default=Fill, Desktop=Start}"
+                         VerticalOptions="Start"
+                         WidthRequest="{OnPlatform WinUI=320, MacCatalyst=320}">
+        <Label Text="IsDropDownIndicatorVisible='False':" Style="{StaticResource LabelStyle}" />
+        <!-- >> dropdownbutton-buttonconfiguration-indicatorvisible -->
+        <telerik:RadDropDownButton Content="No Indicator"
+                                   IsDropDownIndicatorVisible="False">
+            <telerik:RadDropDownButton.DropDownContent>
+                <Label Text="The drop-down content" />
+            </telerik:RadDropDownButton.DropDownContent>
+        </telerik:RadDropDownButton>
+        <!-- << dropdownbutton-buttonconfiguration-indicatorvisible -->
+        
+        <HorizontalStackLayout Spacing="8" VerticalOptions="Center">
+            <Label Text="DropDown Indicator Position: " Style="{StaticResource LabelStyle}"/>
+            <telerik:RadComboBox SelectedItem="{Binding DropDownIndicatorPosition, Source={x:Reference indicatorDropDownButton}}"
+                                 Margin="0, 20, 0, 8">
+                <telerik:RadComboBox.ItemsSource>
+                    <x:Array Type="{x:Type dropdown:DropDownButtonIndicatorPosition}">
+                        <dropdown:DropDownButtonIndicatorPosition>Left</dropdown:DropDownButtonIndicatorPosition>
+                        <dropdown:DropDownButtonIndicatorPosition>Right</dropdown:DropDownButtonIndicatorPosition>
+                        <dropdown:DropDownButtonIndicatorPosition>Top</dropdown:DropDownButtonIndicatorPosition>
+                        <dropdown:DropDownButtonIndicatorPosition>Bottom</dropdown:DropDownButtonIndicatorPosition>
+                    </x:Array>
+                </telerik:RadComboBox.ItemsSource>
+            </telerik:RadComboBox>
+        </HorizontalStackLayout>
+        
+        <!-- >> dropdownbutton-buttonconfiguration-indicatorposition -->
+        <telerik:RadDropDownButton Content="Indicator position"
+                                   DropDownIndicatorPosition="Left"
+                                   x:Name="indicatorDropDownButton">
+            <telerik:RadDropDownButton.DropDownContent>
+                <Label Text="The drop-down content" />
+            </telerik:RadDropDownButton.DropDownContent>
+        </telerik:RadDropDownButton>
+        <!-- << dropdownbutton-buttonconfiguration-indicatorposition -->
+        
+        <Label Style="{StaticResource LabelStyle}">
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span Text="IsDropDownOpen: " />
+                    <Span Text="{Binding IsOpen, Source={x:Reference openDropDownButton}}" />
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+        <!-- >> dropdownbutton-buttonconfiguration-isopen -->
+        <telerik:RadDropDownButton Content="Opened"
+                                   x:Name="openDropDownButton"
+                                   IsOpen="True">
+            <telerik:RadDropDownButton.DropDownContent>
+                <Label Text="The drop-down content" />
+            </telerik:RadDropDownButton.DropDownContent>
+        </telerik:RadDropDownButton>
+        <!-- << dropdownbutton-buttonconfiguration-isopen -->
+    </VerticalStackLayout>
+</ContentView>

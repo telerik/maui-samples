@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.DropDownButtonControl.StylingCategory.ButtonStylingExample.ButtonStyling">
+    <ContentView.Resources>
+        <!-- >> dropdownbutton-buttonstyling-styles -->
+        <Style TargetType="Label" x:Key="DropDownIndicatorStyle">
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="TextColor" Value="#A30111"/>
+        </Style>
+        <Style TargetType="telerik:RadDropDownButton" x:Key="DropDownButtonStyle">
+            <Setter Property="TextColor" Value="#00897B" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="BorderBrush" Value="#00897B" />
+            <Setter Property="BackgroundColor" Value="#FFFFFF" />
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup Name="CommonStates">
+                        <VisualState Name="Normal" />
+                        <VisualState Name="Focused" />
+                        <VisualState Name="Pressed">
+                            <VisualState.Setters>
+                                <Setter Property="TextColor" Value="#9900897B" />
+                                <Setter Property="Background" Value="#E8F5F4" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="FocusedPressed">
+                            <VisualState.Setters>
+                                <Setter Property="TextColor" Value="#9900897B" />
+                                <Setter Property="Background" Value="#E8F5F4" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="Opened">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadDropDownButton.BorderBrush" Value="#00BCA9" />
+                                <Setter Property="telerik:RadDropDownButton.BorderThickness" Value="1" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="PointerOver">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadDropDownButton.BackgroundColor" Value="#F9F9F9" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="FocusedMouseOver">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadDropDownButton.BackgroundColor" Value="#F9F9F9" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="Disabled">
+                            <VisualState.Setters>
+                                <Setter Property="Opacity" Value="0.6" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+        <!-- << dropdownbutton-buttonstyling-styles -->
+    </ContentView.Resources>
+    <VerticalStackLayout HorizontalOptions="{OnIdiom Default=Fill, Desktop=Start}"
+                         VerticalOptions="Start"
+                         WidthRequest="{OnPlatform WinUI=320, MacCatalyst=320}">
+        <!-- >> dropdownbutton-buttonstyling-apply -->
+        <telerik:RadDropDownButton Content="More Options"
+                                   Style="{StaticResource DropDownButtonStyle}"
+                                   DropDownIndicatorStyle="{StaticResource DropDownIndicatorStyle}">
+            <telerik:RadDropDownButton.DropDownContent>
+                <VerticalStackLayout Padding="12" Spacing="6">
+                    <Label Text="Actions"
+                           FontAttributes="Bold" />
+                    <telerik:RadTemplatedButton Content="New" />
+                    <telerik:RadTemplatedButton Content="Open" />
+                    <telerik:RadTemplatedButton Content="Save" />
+                </VerticalStackLayout>
+            </telerik:RadDropDownButton.DropDownContent>
+        </telerik:RadDropDownButton>
+        <!-- << dropdownbutton-buttonstyling-apply -->
+    </VerticalStackLayout>
+</ContentView>

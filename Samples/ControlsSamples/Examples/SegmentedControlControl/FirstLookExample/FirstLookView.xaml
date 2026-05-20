@@ -1,59 +1,154 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
-                        x:Class="QSF.Examples.SegmentedControlControl.FirstLookExample.FirstLookView"
-                        Margin="16, 20">
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="QSF.Examples.SegmentedControlControl.FirstLookExample.FirstLookView"
+             Margin="16, 20">
 
-    <telerik:RadContentView.Resources>
+    <ContentView.Resources>
         <ResourceDictionary>
-            <Style TargetType="VerticalStackLayout">
-                <Setter Property="Spacing" Value="20"/>
+            <Style x:Key="SkeletonBoxViewStyle" TargetType="BoxView">
+                <Setter Property="BackgroundColor" Value="{DynamicResource SegmentedControlFirstLookSkeletonColor}" />
+                <Setter Property="CornerRadius" Value="3" />
             </Style>
-            <Style TargetType="Label" x:Key="descriptionLabel" BasedOn="{StaticResource BaseLabelStyle}">
-                <Setter Property="FontSize" Value="14"/>
-                <Setter Property="Margin" Value="0,4,0,0"/>
-                <Setter Property="HorizontalOptions" Value="Start"/>
+
+            <Style x:Key="AvatarSkeletonStyle" TargetType="BoxView" BasedOn="{StaticResource SkeletonBoxViewStyle}">
+                <Setter Property="WidthRequest" Value="70" />
+                <Setter Property="HeightRequest" Value="70" />
+                <Setter Property="CornerRadius" Value="35" />
+                <Setter Property="Margin" Value="0, 30, 0, 20" />
             </Style>
-            <Style TargetType="telerik:RadSegmentedControl" x:Key="segmentedStyle">
-                <Setter Property="SegmentTextColor" Value="{DynamicResource DefaultTextColor}"/>
-                <Setter Property="HorizontalOptions" Value="Start"/>
-                <Setter Property="SelectedSegmentTextColor" Value="White"/>
-                <Setter Property="SegmentBackgroundColor" Value="{DynamicResource SegmentedControlSegmentBackgroundColor}"/>
-                <Setter Property="SelectedSegmentBackgroundColor" Value="{DynamicResource SegmentedControlSelectedSegmentBackgroundColor}"/>
-                <Setter Property="DisabledSegmentTextColor" Value="{DynamicResource SegmentedControlFirstLookDisabledSegmentTextColor}"/>
+
+            <Style x:Key="NameLineSkeletonStyle" TargetType="BoxView" BasedOn="{StaticResource SkeletonBoxViewStyle}">
+                <Setter Property="WidthRequest" Value="100" />
+                <Setter Property="HeightRequest" Value="15" />
+            </Style>
+
+            <Style x:Key="SubtitleLineSkeletonStyle" TargetType="BoxView" BasedOn="{StaticResource SkeletonBoxViewStyle}">
+                <Setter Property="WidthRequest" Value="60" />
+                <Setter Property="HeightRequest" Value="10" />
+                <Setter Property="CornerRadius" Value="2" />
+            </Style>
+
+            <Style x:Key="MenuLineSkeletonStyle" TargetType="BoxView" BasedOn="{StaticResource SkeletonBoxViewStyle}">
+                <Setter Property="WidthRequest" Value="140" />
+                <Setter Property="HeightRequest" Value="15" />
+            </Style>
+
+            <Style x:Key="FieldLabelSkeletonStyle" TargetType="BoxView" BasedOn="{StaticResource SkeletonBoxViewStyle}">
+                <Setter Property="WidthRequest" Value="120" />
+                <Setter Property="HorizontalOptions" Value="Start" />
+            </Style>
+
+            <Style x:Key="FieldInputSkeletonStyle" TargetType="BoxView" BasedOn="{StaticResource SkeletonBoxViewStyle}">
+                <Setter Property="CornerRadius" Value="5" />
+                <Setter Property="HorizontalOptions" Value="Fill" />
+            </Style>
+
+            <Style TargetType="telerik:Badge">
+                <Setter Property="ControlTemplate">
+                    <Setter.Value>
+                        <ControlTemplate>
+                            <telerik:RadBorder HeightRequest="16"
+                                               WidthRequest="16"
+                                               BackgroundColor="#197FFF"
+                                               CornerRadius="8">
+                                <telerik:RadBorder BackgroundColor="White"
+                                                   WidthRequest="4"
+                                                   HeightRequest="4"
+                                                   CornerRadius="2" />
+                            </telerik:RadBorder>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
             </Style>
         </ResourceDictionary>
-    </telerik:RadContentView.Resources>
-    <VerticalStackLayout>
-        <Label Grid.Row="1"
-               Text="Modes" 
-               FontSize="18" />
-        <VerticalStackLayout IsVisible="{OnPlatform Android='False', iOS='False'}">
-            <Label Text="Image"
-                   Style="{StaticResource descriptionLabel}"/>
-            <telerik:RadSegmentedControl ItemsSource="{Binding SmallImages}"
-                                         SelectedIndex="0"
-                                         HorizontalOptions="Start"
-                                         SelectedSegmentBackgroundColor="{DynamicResource SegmentedControlSelectedSegmentBackgroundColorImage}"
-                                         AutomationId="imageSegmentedControl"/>
-        </VerticalStackLayout>
-        <VerticalStackLayout>
-            <Label Text="Text" 
-                   Style="{StaticResource descriptionLabel}"/>
-            <telerik:RadSegmentedControl ItemsSource="{Binding Categories}"
-                                         Style="{StaticResource segmentedStyle}"
-                                         SelectedIndex="1" 
-                                         AutomationId="textSegmentedControl"/>
-        </VerticalStackLayout>
-        <VerticalStackLayout>
-            <Label Text="Disabled" 
-                   Style="{StaticResource descriptionLabel}"/>
-            <telerik:RadSegmentedControl x:Name="segmented"
-                                         Style="{StaticResource segmentedStyle}"
-                                         ItemsSource="{Binding Categories}"
-                                         SelectedIndex="0"
-                                         AutomationId="disabledSegmentedControl"/>
-        </VerticalStackLayout>
-    </VerticalStackLayout>
-</telerik:RadContentView>
+    </ContentView.Resources>
+
+    <ScrollView>
+        <Grid ColumnDefinitions="{OnPlatform Default='Auto, *', Android='*', iOS='*'}"
+              ColumnSpacing="30">
+            <VerticalStackLayout WidthRequest="180"
+                                 IsVisible="{OnPlatform Default=True, Android=False, iOS=False}"
+                                 BackgroundColor="{DynamicResource SegmentedControlFirstLookLeftPanelBackgroundColor}">
+                <BoxView Style="{StaticResource AvatarSkeletonStyle}" />
+                <VerticalStackLayout VerticalOptions="Center"
+                                     Spacing="5">
+                    <BoxView Style="{StaticResource NameLineSkeletonStyle}" />
+                    <BoxView Style="{StaticResource SubtitleLineSkeletonStyle}" />
+                </VerticalStackLayout>
+                <VerticalStackLayout Spacing="15"
+                                     Margin="0, 50, 0, 0">
+                    <BoxView Style="{StaticResource MenuLineSkeletonStyle}" />
+                    <BoxView Style="{StaticResource MenuLineSkeletonStyle}" />
+                    <BoxView Style="{StaticResource MenuLineSkeletonStyle}" />
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+            <VerticalStackLayout Grid.Column="{OnPlatform Default=1, Android=0, iOS=0}">
+                <telerik:RadBadgeView BadgeHorizontalPosition="End"
+                                      BadgeVerticalPosition="End"
+                                      BadgeHorizontalAlignment="End"
+                                      BadgeVerticalAlignment="End"
+                                      VerticalOptions="Center"
+                                      HorizontalOptions="Center"
+                                      IsVisible="{OnPlatform Default=False, Android=True, iOS=True}"
+                                      Margin="0, 0, 0, 20">
+                    <telerik:RadBadgeView.Content>
+                        <telerik:RadBorder WidthRequest="60"
+                                           HeightRequest="60"
+                                           BackgroundColor="{DynamicResource SegmentedControlFirstLookAvatarBadgeBackgroundColor}"
+                                           CornerRadius="30">
+                            <telerik:RadBorder BorderColor="#9BA1AF"
+                                               WidthRequest="10"
+                                               CornerRadius="5"
+                                               HeightRequest="10"
+                                               BorderThickness="1">
+                                <telerik:RadBorder WidthRequest="6"
+                                                   HeightRequest="6"
+                                                   CornerRadius="3"
+                                                   Margin="2"
+                                                   BackgroundColor="#9BA1AF" />
+                            </telerik:RadBorder>
+                        </telerik:RadBorder>
+                    </telerik:RadBadgeView.Content>
+                </telerik:RadBadgeView>
+                <Label Text="Create Your Account"
+                       FontSize="28"
+                       TextColor="{DynamicResource RadOnAppSurfaceColor}"
+                       HorizontalTextAlignment="{OnPlatform Default=Start, Android=Center, iOS=Center}" />
+                <Label Text="Profile Type"
+                       FontSize="16"
+                       FontAttributes="Bold"
+                       Margin="0, 40, 0, 20" />
+                <telerik:RadSegmentedControl x:Name="profileTypeSegmented"
+                                             WidthRequest="350"
+                                             DisplayMemberPath="Name"
+                                             HorizontalOptions="Start"
+                                             ItemsSource="{Binding ProfileTypes}"
+                                             SelectedItem="{Binding SelectedProfileType, Mode=TwoWay}" />
+                <Label Text="{Binding SelectedProfileType.Name}"
+                       FontSize="16"
+                       Margin="0, 20, 0, 6"
+                       FontAttributes="Bold" />
+                <Label Text="{Binding SelectedProfileDescription}"
+                       FontSize="14"
+                       LineBreakMode="WordWrap" />
+                <VerticalStackLayout Spacing="20"
+                                     Margin="0, 25, 0, 0">
+                    <Grid RowDefinitions="15, 55"
+                          RowSpacing="5">
+                        <BoxView Style="{StaticResource FieldLabelSkeletonStyle}" />
+                        <BoxView Grid.Row="1"
+                                 Style="{StaticResource FieldInputSkeletonStyle}" />
+                    </Grid>
+                    <Grid RowDefinitions="15, 55"
+                          RowSpacing="5">
+                        <BoxView Style="{StaticResource FieldLabelSkeletonStyle}" />
+                        <BoxView Grid.Row="1"
+                                 Style="{StaticResource FieldInputSkeletonStyle}" />
+                    </Grid>
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </Grid>
+    </ScrollView>
+</ContentView>
