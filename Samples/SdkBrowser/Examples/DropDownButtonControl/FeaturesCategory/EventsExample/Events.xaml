@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.DropDownButtonControl.FeaturesCategory.EventsExample.Events">
+    <VerticalStackLayout Spacing="10"
+                         HorizontalOptions="{OnIdiom Default=Fill, Desktop=Start}"
+                         VerticalOptions="Start"
+                         WidthRequest="{OnPlatform WinUI=320, MacCatalyst=320}">
+        <HorizontalStackLayout Spacing="5">
+            <Label Text="Cancel Opening"
+                   telerik:RadCheckBox.ToggleOnTap="{x:Reference cancelOpeningCheckBox}"/>
+            <telerik:RadCheckBox x:Name="cancelOpeningCheckBox"
+                                 IsThreeState="False" />
+        </HorizontalStackLayout>
+        <!-- >> dropdownbutton-events -->
+        <telerik:RadDropDownButton Content="Open drop-down"
+                                   Opening="OnDropDownOpening"
+                                   Opened="OnDropDownOpened"
+                                   Closed="OnDropDownClosed">
+            <telerik:RadDropDownButton.DropDownContent>
+                <VerticalStackLayout Padding="12" Spacing="6">
+                    <Label Text="Actions"
+                           FontAttributes="Bold" />
+                    <telerik:RadTemplatedButton Content="New" />
+                    <telerik:RadTemplatedButton Content="Open" />
+                    <telerik:RadTemplatedButton Content="Save" />
+                </VerticalStackLayout>
+            </telerik:RadDropDownButton.DropDownContent>
+        </telerik:RadDropDownButton>
+        <!-- << dropdownbutton-events -->
+        <Label x:Name="eventsLog"
+               LineBreakMode="WordWrap" />
+    </VerticalStackLayout>
+</ContentView>

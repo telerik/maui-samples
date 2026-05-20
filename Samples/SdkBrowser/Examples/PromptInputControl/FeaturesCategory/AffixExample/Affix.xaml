@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.PromptInputControl.FeaturesCategory.AffixExample"
+             x:Class="SDKBrowserMaui.Examples.PromptInputControl.FeaturesCategory.AffixExample.Affix">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <!-- >> promptinput-affix-top-template -->
+            <DataTemplate x:Key="TopAffixTemplate">
+                <HorizontalStackLayout Spacing="8">
+                    <Label Text="&#xe822;"
+                           FontFamily="TelerikFontExamples"
+                           FontSize="13"
+                           VerticalTextAlignment="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding BindingContext.OpenPopup, Source={x:Reference promptInput}}" />
+                        </Label.GestureRecognizers>
+                        <telerik:RadPopup.Popup>
+                            <telerik:RadPopup IsOpen="{Binding BindingContext.IsPopupOpen, Source={x:Reference promptInput}}"
+                                              OutsideBackgroundColor="#66000000"
+                                              Placement="{OnPlatform Android=Center, iOS=Center}"
+                                              VerticalOffset="8">
+                                <telerik:RadBorder BackgroundColor="#F9F9F9"
+                                                   CornerRadius="8"
+                                                   WidthRequest="300">
+                                    <Grid BackgroundColor="#E0E0E0"
+                                          Padding="12">
+                                        <Label Text="Settings Popup"
+                                               TextColor="#666666"
+                                               HorizontalOptions="Center" />
+                                        <Label Text="&#xe877;"
+                                               FontFamily="TelerikFontExamples"
+                                               FontSize="16"
+                                               TextColor="#666666"
+                                               HorizontalOptions="End">
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding BindingContext.ClosePopup, Source={x:Reference promptInput}}" />
+                                            </Label.GestureRecognizers>
+                                        </Label>
+                                    </Grid>
+                                </telerik:RadBorder>
+                            </telerik:RadPopup>
+                        </telerik:RadPopup.Popup>
+                    </Label>
+                    <Label Text="Customer Support Assistant" TextColor="Gray" />
+                </HorizontalStackLayout>
+            </DataTemplate>
+            <!-- << promptinput-affix-top-template -->
+            <!-- >> promptinput-affix-start-template -->
+            <DataTemplate x:Key="StartAffixTemplate">
+                <telerik:RadComboBox ItemsSource="{Binding BindingContext.ChatModels, Source={x:Reference promptInput}}"
+                                     SelectedItem="{Binding BindingContext.SelectedModel, Source={x:Reference promptInput}}"
+                                     IsClearButtonVisible="False"
+                                     WidthRequest="150"
+                                     FontSize="12" />
+            </DataTemplate>
+            <!-- << promptinput-affix-start-template -->
+            <!-- >> promptinput-affix-end-template -->
+            <DataTemplate x:Key="EndAffixTemplate">
+                <Label Text="{Binding BindingContext.CharacterCount, Mode=TwoWay, Source={x:Reference promptInput}}" />
+            </DataTemplate>
+            <!-- << promptinput-affix-end-template -->
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <VerticalStackLayout Spacing="12">
+        <!-- >> promptinput-affix -->
+        <telerik:RadPromptInput x:Name="promptInput"
+                                DisplayMode="Expanded"
+                                Message="{Binding PromptText, Mode=TwoWay}"
+                                Placeholder="Type a prompt"
+                                TopAffixContentTemplate="{StaticResource TopAffixTemplate}"
+                                StartAffixContentTemplate="{StaticResource StartAffixTemplate}"
+                                EndAffixContentTemplate="{StaticResource EndAffixTemplate}" />
+        <!-- << promptinput-affix -->
+    </VerticalStackLayout>
+</ContentView>

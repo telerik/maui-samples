@@ -1,10 +1,6 @@
 using Microsoft.Maui.Controls;
 using QSF.ViewModels;
-using System;
-using System.Collections.Specialized;
-using System.Linq;
 using Telerik.Maui.Controls;
-using Telerik.Maui.Controls.Compatibility.DataControls;
 
 namespace QSF.Views;
 

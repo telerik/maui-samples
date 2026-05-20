@@ -1,12 +1,6 @@
 using Microsoft.Maui.Controls;
-using QSF.ExampleUtilities;
-using QSF.Pages;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using Telerik.Maui.Controls;
-using Telerik.Maui.Controls.Compatibility.DataControls;
-using Telerik.Maui.Controls.DataControls;
 
 namespace QSF.Views;
 

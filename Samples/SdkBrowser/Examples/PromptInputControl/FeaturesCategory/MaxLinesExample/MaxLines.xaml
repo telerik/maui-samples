@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.PromptInputControl.FeaturesCategory.MaxLinesExample.MaxLines">
+    <VerticalStackLayout Spacing="10">
+        <HorizontalStackLayout Spacing="8">
+            <Label Text="MaxLines:"
+                   VerticalTextAlignment="Center" />
+            <telerik:RadNumericInput x:Name="maxLines"
+                                             Minimum="1" 
+                                             Value="{Binding Source={x:Reference promptInput}, Path=MaxInputLines}" 
+                                             Maximum="6" />
+        </HorizontalStackLayout>
+        <!-- >> promptinput-maxinputlines-xaml -->
+        <telerik:RadPromptInput x:Name="promptInput"
+                                MaxInputLines="4" />
+        <!-- << promptinput-maxinputlines-xaml -->
+    </VerticalStackLayout>
+</ContentView>

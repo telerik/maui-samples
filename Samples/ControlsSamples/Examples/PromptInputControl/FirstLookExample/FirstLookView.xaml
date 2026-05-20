@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:utilities="clr-namespace:QSF.ExampleUtilities"
+             x:Class="QSF.Examples.PromptInputControl.FirstLookExample.FirstLookView">
+
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Style x:Key="GreetingLabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="25" />
+                <Setter Property="TextColor" Value="{DynamicResource RadOnAppSurfaceColor}" />
+            </Style>
+
+            <Style x:Key="ToggleButtonLabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="TextColor" Value="{DynamicResource RadOnAppSurfaceColor}" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+
+            <Style x:Key="RadToggleButtonContentGridStyle" TargetType="Grid">
+                <Setter Property="ColumnSpacing" Value="{OnPlatform Default=12, Android=4, iOS=4}" />
+            </Style>
+
+            <Style x:Key="WrapLayoutGridStyle" TargetType="Grid">
+                <Setter Property="Margin" Value="{OnPlatform Default='0, 0, 12, 12', Android='0, 0, 8, 8', iOS='0, 0, 8, 8'}" />
+            </Style>
+
+            <Style x:Key="ToggleButtonIconBorderStyle" TargetType="telerik:RadBorder">
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="Padding" Value="{OnPlatform Default=8, Android=0, iOS=0}" />
+                <Setter Property="CornerRadius" Value="4" />
+                <Setter Property="Background" Value="{OnPlatform Default={DynamicResource PromptInputFirstLookButtonBackgroundColor}, 
+                                                                 Android=Transparent,
+                                                                 iOS=Transparent}" />
+            </Style>
+
+            <Style x:Key="ToggleButtonIconStyle" TargetType="Label">
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="FontSize" Value="{OnPlatform Default=16, Android=14, iOS=14}" />
+                <Setter Property="TextColor" Value="{DynamicResource RadOnAppSurfaceColor}" />
+            </Style>
+
+            <Style x:Key="ToggleButtonGradientBorderStyle" TargetType="Border">
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="StrokeShape">
+                    <RoundRectangle CornerRadius="{OnPlatform Default=8, Android=16, iOS=16}" />
+                </Setter>
+                <Setter Property="Stroke">
+                    <Setter.Value>
+                        <LinearGradientBrush StartPoint="0, 0" EndPoint="0, 1">
+                            <GradientStop Color="#C158E4" Offset="0.1" />
+                            <GradientStop Color="#4B5FFA" Offset="1.0" />
+                        </LinearGradientBrush>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="StrokeThickness" Value="1" />
+            </Style>
+
+            <Style x:Key="SuggestionPrefixLabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="TextColor" Value="{DynamicResource RadOnAppSurfaceColor}" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+
+            <Style x:Key="SuggestionButtonLabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="12" />
+                <Setter Property="TextColor" Value="{DynamicResource RadOnAppSurfaceColor}" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+
+            <Style x:Key="StatusLabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="TextColor" Value="{DynamicResource RadOnAppSurfaceColor}" />
+            </Style>
+
+            <Style x:Key="StatusValueLabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="13" />
+                <Setter Property="TextColor" Value="{DynamicResource RadOnAppSurfaceColor}" />
+            </Style>
+
+            <Style x:Key="ToggleButtonStyle" TargetType="telerik:RadToggleButton" BasedOn="{StaticResource RadToggleButtonStyle}">
+                <Setter Property="CornerRadius" Value="{OnPlatform Default=8, Android=16, iOS=16}" />
+                <Setter Property="HeightRequest" Value="{OnPlatform Default=54, Android=30, iOS=30}" />
+                <Setter Property="IsThreeState" Value="False" />
+                <Setter Property="Background" Value="{DynamicResource RadAppSurfaceColor}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource RadBorderColor}" />
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="Padding" Value="{OnPlatform Default='8, 8, 24, 8', Android='12, 4', iOS='12, 4'}" />
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal" />
+                            <VisualState x:Name="MouseOver">
+                                <VisualState.Setters>
+                                    <Setter Property="telerik:RadToggleButton.BorderBrush" Value="{DynamicResource PromptInputFirstLookToggleButtonPointerOverBorderColor}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Toggled">
+                                <VisualState.Setters>
+                                    <Setter Property="BorderBrush" Value="Transparent" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="ToggledMouseOver">
+                                <VisualState.Setters>
+                                    <Setter Property="BorderBrush" Value="Transparent" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+
+            <Style x:Key="SuggestionButtonStyle" TargetType="telerik:RadTemplatedButton">
+                <Setter Property="CornerRadius" Value="{OnPlatform Default=4, Android=8, iOS=8}" />
+                <Setter Property="Background" Value="{DynamicResource PromptInputFirstLookButtonBackgroundColor}" />
+                <Setter Property="BorderBrush" Value="Transparent" />
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="Margin" Value="0, 0, 8, 8" />
+                <Setter Property="Padding" Value="{OnPlatform Default='10, 4', Android='8, 5', iOS='8, 5'}" />
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <Grid RowDefinitions="{OnPlatform Default='Auto, Auto', Android='*, Auto', iOS='*, Auto'}"
+          Padding="16, 16, 16, 0">
+        <Grid RowDefinitions="Auto, Auto, Auto, Auto">
+            <VerticalStackLayout >
+                <Label Text="Hi,"
+                       FontSize="20"
+                       Style="{StaticResource GreetingLabelStyle}"
+                       Margin="0, 0, 0, 2" />
+                <Label Text="How can I help you today?"
+                       Style="{StaticResource GreetingLabelStyle}"
+                       Margin="{OnPlatform Default='0, 0, 0, 48', Android='0, 0, 0, 35', iOS='0, 0, 0, 35'}" />
+            </VerticalStackLayout>
+            <telerik:RadWrapLayout Orientation="Horizontal"
+                                   Grid.Row="1"
+                                   Margin="0, 0, 0, 16">
+                <Grid Style="{StaticResource WrapLayoutGridStyle}">
+                    <telerik:RadToggleButton x:Name="SemanticSearchToggleButton"
+                                             Command="{Binding SemanticSearchCommand}"
+                                             IsToggled="{Binding IsSemanticSearchToggled, Mode=TwoWay}"
+                                             Style="{StaticResource ToggleButtonStyle}">
+                        <telerik:RadToggleButton.Content>
+                            <Grid ColumnDefinitions="Auto, Auto"
+                                  Style="{StaticResource RadToggleButtonContentGridStyle}">
+                                <telerik:RadBorder Style="{StaticResource ToggleButtonIconBorderStyle}">
+                                    <Label Text="&#xe041;"
+                                           FontFamily="TelerikControlsIcons"
+                                           Style="{StaticResource ToggleButtonIconStyle}" />
+                                </telerik:RadBorder>
+                                <Label Grid.Column="1"
+                                       Text="{Binding SemanticSearchText}"
+                                       Style="{StaticResource ToggleButtonLabelStyle}" />
+                            </Grid>
+                        </telerik:RadToggleButton.Content>
+                    </telerik:RadToggleButton>
+                    <Border Style="{StaticResource ToggleButtonGradientBorderStyle}"
+                            InputTransparent="True"
+                            IsVisible="{Binding Source={x:Reference SemanticSearchToggleButton}, Path=IsToggled}" />
+                </Grid>
+
+                <Grid Style="{StaticResource WrapLayoutGridStyle}">
+                    <telerik:RadToggleButton x:Name="SummarizationToggleButton"
+                                             Command="{Binding SummarizationCommand}"
+                                             IsToggled="{Binding IsSummarizationToggled, Mode=TwoWay}"
+                                             Style="{StaticResource ToggleButtonStyle}">
+                        <telerik:RadToggleButton.Content>
+                            <Grid ColumnDefinitions="Auto, Auto"
+                                  Style="{StaticResource RadToggleButtonContentGridStyle}">
+                                <telerik:RadBorder Style="{StaticResource ToggleButtonIconBorderStyle}">
+                                    <Label Text="&#xe041;"
+                                           FontFamily="TelerikControlsIcons"
+                                           Style="{StaticResource ToggleButtonIconStyle}" />
+                                </telerik:RadBorder>
+                                <Label Grid.Column="1"
+                                       Text="{Binding SummarizationText}"
+                                       Style="{StaticResource ToggleButtonLabelStyle}" />
+                            </Grid>
+                        </telerik:RadToggleButton.Content>
+                    </telerik:RadToggleButton>
+                    <Border Style="{StaticResource ToggleButtonGradientBorderStyle}"
+                            InputTransparent="True"
+                            IsVisible="{Binding Source={x:Reference SummarizationToggleButton}, Path=IsToggled}" />
+                </Grid>
+
+                <Grid Style="{StaticResource WrapLayoutGridStyle}">
+                    <telerik:RadToggleButton x:Name="WritingToggleButton"
+                                             Command="{Binding WritingCommand}"
+                                             IsToggled="{Binding IsWritingToggled, Mode=TwoWay}"
+                                             Style="{StaticResource ToggleButtonStyle}">
+                        <telerik:RadToggleButton.Content>
+                            <Grid ColumnDefinitions="Auto, Auto"
+                                  Style="{StaticResource RadToggleButtonContentGridStyle}">
+                                <telerik:RadBorder Style="{StaticResource ToggleButtonIconBorderStyle}">
+                                    <Label Text="&#xe041;"
+                                           FontFamily="TelerikControlsIcons"
+                                           Style="{StaticResource ToggleButtonIconStyle}" />
+                                </telerik:RadBorder>
+                                <Label Grid.Column="1"
+                                       Text="{Binding WritingText}"
+                                       Style="{StaticResource ToggleButtonLabelStyle}" />
+                            </Grid>
+                        </telerik:RadToggleButton.Content>
+                    </telerik:RadToggleButton>
+                    <Border Style="{StaticResource ToggleButtonGradientBorderStyle}"
+                            InputTransparent="True"
+                            IsVisible="{Binding Source={x:Reference WritingToggleButton}, Path=IsToggled}" />
+                </Grid>
+            </telerik:RadWrapLayout>
+
+            <telerik:RadPromptInput Message="{Binding PromptInputText, Mode=TwoWay}"
+                                    IsSpeechToTextButtonVisible="True"
+                                    IsMoreButtonVisible="True"
+                                    AttachedFiles="{Binding AttachedFiles}"
+                                    SendMessageCommand="{Binding SendMessageCommand}"
+                                    Grid.Row="2"
+                                    DisplayMode="Expanded"
+                                    VerticalOptions="Start"
+                                    Margin="{OnPlatform Default='0, 0, 0, 28', Android='0, 0, 0, 30', iOS='0, 0, 0, 30'}" />
+            <Grid Grid.Row="3"
+                  Margin="0, 0, 0, 16"
+                  RowDefinitions="Auto, Auto"
+                  ColumnDefinitions="*"
+                  RowSpacing="12">
+                <Label Text="Try this, too:"
+                       Style="{StaticResource SuggestionPrefixLabelStyle}" />
+                <telerik:RadWrapLayout Orientation="Horizontal"
+                                       HorizontalOptions="Fill"
+                                       Grid.Row="1">
+                    <telerik:RadTemplatedButton Content="{Binding AnalyzeStyleText}"
+                                                Command="{Binding AnalyzeStyleCommand}"
+                                                Style="{StaticResource SuggestionButtonStyle}" />
+                    <telerik:RadTemplatedButton Content="{Binding ConvertToTableText}"
+                                                Command="{Binding ConvertToTableCommand}"
+                                                Style="{StaticResource SuggestionButtonStyle}" />
+                    <telerik:RadTemplatedButton Content="{Binding OptimizeSuggestionsText}"
+                                                Command="{Binding OptimizeSuggestionsCommand}"
+                                                Style="{StaticResource SuggestionButtonStyle}" />
+                </telerik:RadWrapLayout>
+            </Grid>
+        </Grid>
+
+        <VerticalStackLayout Grid.Row="1"
+                             Margin="0, 0, 0, 58"
+                             VerticalOptions="End">
+            <telerik:RadBorder BackgroundColor="{DynamicResource PromptInputFirstLookBorderBackgroundColor}"
+                               BorderThickness="0"
+                               CornerRadius="8"
+                               Padding="8">
+                <HorizontalStackLayout Spacing="4">
+                    <Label Text="Command executed:"
+                           Style="{StaticResource StatusLabelStyle}" />
+                    <Label Text="{Binding LastExecutedCommand}"
+                           Style="{StaticResource StatusValueLabelStyle}" />
+                </HorizontalStackLayout>
+            </telerik:RadBorder>
+        </VerticalStackLayout>
+    </Grid>
+</ContentView>

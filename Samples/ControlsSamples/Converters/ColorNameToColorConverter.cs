@@ -74,6 +74,8 @@ public class ColorNameToColorConverter : IValueConverter
             "HighlightTextColor" => "RadPrimaryColor",
             "ProgressFill" => "RadPrimaryColor",
             "TrackFill" => "RadBorderColor",
+            "SegmentedControlSelectedBackgroundColor" => "RadSegmentedControlSelectedBackgroundColor",
+            "SegmentedControlSelectedTextColor" => "RadSegmentedControlSelectedTextColor",
             _ => resourceKey
         };
 

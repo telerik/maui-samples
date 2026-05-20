@@ -5,7 +5,7 @@
              x:Class="SDKBrowserMaui.Examples.AIPromptControl.StylingCategory.InputViewStylingExample.InputViewStyling">
     <VisualElement.Resources>
         <!-- >> aiprompt-inputview-style -->
-        <Style x:Key="MyInputEditorStyle" TargetType="Editor">
+        <Style x:Key="MyInputEditorStyle" TargetType="telerik:RadEditor">
             <Setter Property="TextColor" Value="#00897B" />
         </Style>
         <Style x:Key="MyInputButtonStyle" TargetType="telerik:RadTemplatedButton">
@@ -33,12 +33,24 @@
                 <VisualStateGroupList>
                     <VisualStateGroup Name="CommonStates">
                         <VisualState Name="Normal" />
-                        <VisualState Name="PointerOver">
+                        <VisualState Name="Focused" />
+                        <VisualState Name="MouseOver">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadTemplatedButton.Background" Value="#E8F5F4" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="FocusedMouseOver">
                             <VisualState.Setters>
                                 <Setter Property="telerik:RadTemplatedButton.Background" Value="#E8F5F4" />
                             </VisualState.Setters>
                         </VisualState>
                         <VisualState Name="Pressed">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadTemplatedButton.TextColor" Value="#9900897B" />
+                                <Setter Property="telerik:RadTemplatedButton.Background" Value="#E8F5F4" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="FocusedPressed">
                             <VisualState.Setters>
                                 <Setter Property="telerik:RadTemplatedButton.TextColor" Value="#9900897B" />
                                 <Setter Property="telerik:RadTemplatedButton.Background" Value="#E8F5F4" />

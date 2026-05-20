@@ -63,13 +63,21 @@
                 <telerik:RadSegmentedControl Grid.Column="1"
                                              Margin="24, 0, 0, 0"
                                              HorizontalOptions="Fill"
-                                             HeightRequest="34"
                                              MinimumHeightRequest="0"
-                                             SelectedSegmentTextColor="White"
-                                             SelectedSegmentBackgroundColor="{DynamicResource AccentColor8}"
                                              ItemsSource="{Binding Genders}"
                                              SelectedIndex="{Binding Gender, Mode=TwoWay, Converter={StaticResource GenderConverter}}" 
-                                             AutomationId="genderSegmentedControl"/>
+                                             AutomationId="genderSegmentedControl">
+                    <telerik:RadSegmentedControl.SelectionIndicatorStyle>
+                        <Style TargetType="telerik:RadBorder">
+                            <Setter Property="BackgroundColor" Value="{DynamicResource AccentColor8}" />
+                        </Style>
+                    </telerik:RadSegmentedControl.SelectionIndicatorStyle>
+                    <telerik:RadSegmentedControl.ItemViewStyle>
+                        <Style TargetType="telerik:RadSegmentedControlItemView">
+                            <Setter Property="SelectedTextColor" Value="White" />
+                        </Style>
+                    </telerik:RadSegmentedControl.ItemViewStyle>
+                </telerik:RadSegmentedControl>
             </Grid>
             <VerticalStackLayout Grid.Row="{OnIdiom Default=3, Phone=4}"
                                  Margin="0, 40, 0, 0"

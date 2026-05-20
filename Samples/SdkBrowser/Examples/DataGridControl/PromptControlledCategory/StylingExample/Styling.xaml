@@ -56,6 +56,12 @@
                                                 <Setter Property="BackgroundColor" Value="#E8F5F4" />
                                             </VisualState.Setters>
                                         </VisualState>
+                                        <VisualState Name="FocusedPressed">
+                                            <VisualState.Setters>
+                                                <Setter Property="TextColor" Value="#9900897B" />
+                                                <Setter Property="BackgroundColor" Value="#E8F5F4" />
+                                            </VisualState.Setters>
+                                        </VisualState>
                                         <VisualState Name="Listening">
                                             <VisualState.Setters>
                                                 <Setter Property="Content" Value="{x:Static telerik:TelerikFont.IconStopRecording}" />
@@ -106,7 +112,19 @@
                                                 <Setter Property="TextColor" Value="#FFFFFF" />
                                             </VisualState.Setters>
                                         </VisualState>
+                                        <VisualState Name="Focused">
+                                            <VisualState.Setters>
+                                                <Setter Property="Background" Value="#00897B" />
+                                                <Setter Property="TextColor" Value="#FFFFFF" />
+                                            </VisualState.Setters>
+                                        </VisualState>
                                         <VisualState Name="Pressed">
+                                            <VisualState.Setters>
+                                                <Setter Property="Background" Value="#9900897B" />
+                                                <Setter Property="TextColor" Value="#E8F5F4" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                        <VisualState Name="FocusedPressed">
                                             <VisualState.Setters>
                                                 <Setter Property="Background" Value="#9900897B" />
                                                 <Setter Property="TextColor" Value="#E8F5F4" />
@@ -201,7 +219,19 @@
                                         <Setter Property="TextColor" Value="#FFFFFF" />
                                     </VisualState.Setters>
                                 </VisualState>
+                                <VisualState Name="Focused">
+                                    <VisualState.Setters>
+                                        <Setter Property="Background" Value="#00897B" />
+                                        <Setter Property="TextColor" Value="#FFFFFF" />
+                                    </VisualState.Setters>
+                                </VisualState>
                                 <VisualState Name="Pressed">
+                                    <VisualState.Setters>
+                                        <Setter Property="Background" Value="#006459" />
+                                        <Setter Property="TextColor" Value="#E8F5F4" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState Name="FocusedPressed">
                                     <VisualState.Setters>
                                         <Setter Property="Background" Value="#006459" />
                                         <Setter Property="TextColor" Value="#E8F5F4" />

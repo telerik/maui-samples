@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        xmlns:styles="clr-namespace:QSF.Styles"
+                        xmlns:example="clr-namespace:QSF.Examples.SegmentedControlControl.ConfigurationExample"
+                        xmlns:converters="clr-namespace:QSF.Converters"
+                        x:Class="QSF.Examples.SegmentedControlControl.ConfigurationExample.ConfigurationView">
+    <telerik:RadContentView.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <styles:ConfigurationViewResources />
+            </ResourceDictionary.MergedDictionaries>
+            <example:BooleanToFlowDirectionConverter x:Key="BooleanToFlowDirectionConverter" />
+            <converters:ColorNameToColorConverter x:Key="ColorNameToColorConverter" />
+
+            <Style x:Key="ItemViewStyle" TargetType="telerik:RadSegmentedControlItemView">
+                <Setter Property="SizeMode" Value="{Binding BindingContext.SelectedSizeMode, Source={x:Reference segmentedControl}}" />
+                <Setter Property="WidthRequest" Value="{Binding BindingContext.SelectedWidthRequest, Source={x:Reference segmentedControl}}" />
+                <Setter Property="FontSize" Value="{Binding BindingContext.SelectedFontSize, Source={x:Reference segmentedControl}}" />
+                <Setter Property="FontAttributes" Value="{Binding BindingContext.SelectedFontAttributes, Source={x:Reference segmentedControl}}" />
+                <Setter Property="TextDecorations" Value="{Binding BindingContext.SelectedTextDecorations, Source={x:Reference segmentedControl}}" />
+                <Setter Property="HorizontalTextAlignment" Value="{Binding BindingContext.SelectedHorizontalAlignment, Source={x:Reference segmentedControl}}" />
+                <Setter Property="TextColor" Value="{Binding BindingContext.TextColor, Source={x:Reference segmentedControl}, Converter={StaticResource ColorNameToColorConverter}, ConverterParameter=TextColor}" />
+                <Setter Property="SelectedTextColor" Value="{Binding BindingContext.SelectedTextColor, Source={x:Reference segmentedControl}, Converter={StaticResource ColorNameToColorConverter}, ConverterParameter=SegmentedControlSelectedTextColor}" />
+            </Style>
+        </ResourceDictionary>
+    </telerik:RadContentView.Resources>
+    <Grid RowDefinitions="Auto, *"
+          Padding="{OnIdiom Default='16, 20', Phone=0}">
+        <telerik:RadSegmentedControl x:Name="segmentedControl"
+                                     ItemsSource="{Binding CategoryItems}"
+                                     DisplayMemberPath="{Binding Source={x:Reference displayMemberPathComboBox}, Path=SelectedItem}"
+                                     SelectionMode="{Binding Source={x:Reference selectionModeComboBox}, Path=SelectedItem}"
+                                     BorderThickness="{Binding Source={x:Reference borderThicknessComboBox}, Path=SelectedItem, Mode=OneWay}"
+                                     BorderColor="{Binding SelectedSegmentedControlBorderColor, Converter={StaticResource ColorNameToColorConverter}, ConverterParameter=SegmentedControlSelectedBackgroundColor}"
+                                     FlowDirection="{Binding Source={x:Reference flowDirectionCheckBox}, Path=IsChecked, Converter={StaticResource BooleanToFlowDirectionConverter}}"
+                                     HorizontalOptions="Center"
+                                     VerticalOptions="Center"
+                                     ItemViewStyle="{StaticResource ItemViewStyle}"
+                                     Margin="16">
+        </telerik:RadSegmentedControl>
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Style="{StaticResource RootAtExampleAreaStyle}">
+                <HorizontalStackLayout Style="{StaticResource GroupAtSeparateAreaStyle}">
+                    <telerik:RadCheckBox x:Name="flowDirectionCheckBox" />
+                    <Label Text="FlowDirection" Style="{StaticResource HorizontalGroupLabelAtEndStyle}" />
+                </HorizontalStackLayout>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="{OnIdiom Default=*, Phone=0}" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="{OnIdiom Default=0, Phone=*}" />
+                    </Grid.RowDefinitions>
+                    <VerticalStackLayout Style="{OnIdiom Default={StaticResource GroupAtExampleAreaWithColumnBreakStyle}, Phone={StaticResource GroupAtExampleAreaStyle}}">
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="BorderThickness:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <telerik:RadComboBox x:Name="borderThicknessComboBox"
+                                                 ItemsSource="{Binding SegmentedControlThickness}"
+                                                 SelectedIndex="0" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Display Member Path:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <telerik:RadComboBox x:Name="displayMemberPathComboBox"
+                                                 SelectedIndex="0">
+                                <telerik:RadComboBox.ItemsSource>
+                                    <x:Array Type="{x:Type x:String}">
+                                        <x:String>Name</x:String>
+                                        <x:String>Category</x:String>
+                                    </x:Array>
+                                </telerik:RadComboBox.ItemsSource>
+                            </telerik:RadComboBox>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Font Attributes:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <telerik:RadComboBox ItemsSource="{Binding FontAttributeOptions}"
+                                                 SelectedItem="{Binding SelectedFontAttributes, Mode=TwoWay}" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Text Color:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <telerik:RadComboBox ItemsSource="{Binding ColorOptions}"
+                                                 IsClearButtonVisible="False"
+                                                 SelectedItem="{Binding TextColor, Mode=TwoWay}" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Text Decorations:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <telerik:RadComboBox ItemsSource="{Binding TextDecorationOptions}"
+                                                 SelectedItem="{Binding SelectedTextDecorations, Mode=TwoWay}" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout>
+                            <Label Text="Size Mode:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <telerik:RadComboBox ItemsSource="{Binding SizeModes}"
+                                                 SelectedItem="{Binding SelectedSizeModeOption, Mode=TwoWay}" />
+                        </VerticalStackLayout>
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Style="{OnIdiom Default={StaticResource GroupAtExampleAreaWithColumnBreakStyle}, Phone={StaticResource GroupAtExampleAreaStyle}}"
+                                         Grid.Column="{OnIdiom Default=1, Phone=0}"
+                                         Grid.Row="{OnIdiom Default=0, Phone=1}">
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="BorderColor:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <telerik:RadComboBox x:Name="borderColorComboBox"
+                                                 SelectedItem="{Binding SelectedSegmentedControlBorderColor, Mode=TwoWay}"
+                                                 ItemsSource="{Binding ColorOptions}" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Selection Mode:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <telerik:RadComboBox x:Name="selectionModeComboBox"
+                                                 SelectedIndex="1">
+                                <telerik:RadComboBox.ItemsSource>
+                                    <x:Array Type="{x:Type telerik:SegmentedControlSelectionMode}">
+                                        <telerik:SegmentedControlSelectionMode>None</telerik:SegmentedControlSelectionMode>
+                                        <telerik:SegmentedControlSelectionMode>Single</telerik:SegmentedControlSelectionMode>
+                                        <telerik:SegmentedControlSelectionMode>SingleDeselect</telerik:SegmentedControlSelectionMode>
+                                    </x:Array>
+                                </telerik:RadComboBox.ItemsSource>
+                            </telerik:RadComboBox>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Font Size:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <telerik:RadComboBox ItemsSource="{Binding FontSizeOptions}"
+                                                 SelectedItem="{Binding SelectedFontSize, Mode=TwoWay}" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Selected Text Color:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <telerik:RadComboBox ItemsSource="{Binding ColorOptions}"
+                                                 IsClearButtonVisible="False"
+                                                 SelectedItem="{Binding SelectedTextColor, Mode=TwoWay}" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Horizontal Text Alignment:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <telerik:RadComboBox ItemsSource="{Binding AlignmentOptions}"
+                                                 SelectedItem="{Binding SelectedHorizontalAlignment, Mode=TwoWay}" />
+                        </VerticalStackLayout>
+                    </VerticalStackLayout>
+                </Grid>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</telerik:RadContentView>

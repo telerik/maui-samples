@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.DropDownButtonControl.FeaturesCategory.TemplatesExample.Templates">
+    <ContentView.Resources>
+        <Style TargetType="Label" x:Key="LabelStyle">
+            <Setter Property="HorizontalOptions" Value="Start" />
+            <Setter Property="VerticalOptions" Value="Center" />
+            <Setter Property="Margin" Value="0, 0, 0, 8" />
+        </Style>
+        <!-- >> dropdownbutton-templates-datatemplate -->
+        <DataTemplate x:Key="DropDownTemplate">
+            <telerik:RadCollectionView ItemsSource="{Binding ItemsColors}"
+                                       SelectedItem="{Binding PickedColor, Mode=TwoWay}">
+                <telerik:RadCollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <telerik:RadBorder WidthRequest="25"
+                                           HeightRequest="25"
+                                           BackgroundColor="{Binding CustomColor}" />
+                    </DataTemplate>
+                </telerik:RadCollectionView.ItemTemplate>
+                <telerik:RadCollectionView.ItemsLayout>
+                    <telerik:CollectionViewGridLayout SpanCount="3"
+                                                      ItemLength="30"
+                                                      HorizontalItemSpacing="2"
+                                                      VerticalItemSpacing="2" />
+                </telerik:RadCollectionView.ItemsLayout>
+            </telerik:RadCollectionView>
+        </DataTemplate>
+        <!-- << dropdownbutton-templates-datatemplate -->
+    </ContentView.Resources>
+    <VerticalStackLayout HorizontalOptions="{OnIdiom Default=Fill, Desktop=Start}"
+                         WidthRequest="{OnPlatform WinUI=360, MacCatalyst=360}">
+        <!-- >> dropdownbutton-templates-dropdowncontenttemplate -->
+        <telerik:RadDropDownButton WidthRequest="60"
+                                   Content="&#xe89d;"
+                                   TextColor="Black"
+                                   BackgroundColor="{Binding PickedColor.CustomColor}"
+                                   FontFamily="TelerikFontExamples"
+                                   HorizontalOptions="Start"
+                                   DropDownContentTemplate="{StaticResource DropDownTemplate}" />
+        <!-- << dropdownbutton-templates-dropdowncontenttemplate -->
+    </VerticalStackLayout>
+</ContentView>

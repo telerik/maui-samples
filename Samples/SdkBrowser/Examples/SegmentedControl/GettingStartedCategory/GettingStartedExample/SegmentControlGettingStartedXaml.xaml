@@ -1,31 +1,46 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
                         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                         xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
                         x:Class="SDKBrowserMaui.Examples.SegmentedControl.GettingStartedCategory.GettingStartedExample.SegmentControlGettingStartedXaml"
                         Margin="5">
     <telerik:RadContentView.Content>
-        <Grid RowDefinitions="*,*">
-            <VerticalStackLayout>
-                <!--  >> segmentcontrol-gettingstarted-xaml  -->
-                <telerik:RadSegmentedControl x:Name="segmentControlText" 
-                                                VerticalOptions="Start"/>
-                <!--  << segmentcontrol-gettingstarted-xaml  -->
-            </VerticalStackLayout>
-            <VerticalStackLayout Grid.Row="1">
-                <!--  >> segmentcontrol-gettingstarted-images-xaml  -->
-                <telerik:RadSegmentedControl x:Name="segmentControlImages"
-                                                  VerticalOptions="Start">
-                    <telerik:RadSegmentedControl.ItemsSource>
-                        <x:Array Type="{x:Type FileImageSource}">
-                            <FileImageSource>available.png</FileImageSource>
-                            <FileImageSource>away.png</FileImageSource>
-                            <FileImageSource>busy.png</FileImageSource>
-                        </x:Array>
-                    </telerik:RadSegmentedControl.ItemsSource>
-                </telerik:RadSegmentedControl>
-                <!--  << segmentcontrol-gettingstarted-images-xaml  -->
-            </VerticalStackLayout>
-        </Grid>
+        <VerticalStackLayout Spacing="20"
+                             BackgroundColor="{OnPlatform WinUI=#FFFFFF}"
+                             Padding="{OnPlatform WinUI=10}"
+                             VerticalOptions="Start">
+            <!-- >> segmentcontrol-gettingstarted-xaml -->
+            <telerik:RadSegmentedControl>
+                <telerik:RadSegmentedControl.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Popular</x:String>
+                        <x:String>Library</x:String>
+                        <x:String>Playlists</x:String>
+                        <x:String>Friends</x:String>
+                    </x:Array>
+                </telerik:RadSegmentedControl.ItemsSource>
+            </telerik:RadSegmentedControl>
+            <!-- << segmentcontrol-gettingstarted-xaml -->
+            <!-- >> segmentcontrol-gettingstarted-images-xaml -->
+            <telerik:RadSegmentedControl>
+                <telerik:RadSegmentedControl.ItemTemplate>
+                    <DataTemplate>
+                        <Image Source="{Binding .}"
+                               Margin="5"
+                               HeightRequest="40"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center" />
+                    </DataTemplate>
+                </telerik:RadSegmentedControl.ItemTemplate>
+                <telerik:RadSegmentedControl.ItemsSource>
+                    <x:Array Type="{x:Type FileImageSource}">
+                        <FileImageSource>available.png</FileImageSource>
+                        <FileImageSource>away.png</FileImageSource>
+                        <FileImageSource>busy.png</FileImageSource>
+                    </x:Array>
+                </telerik:RadSegmentedControl.ItemsSource>
+            </telerik:RadSegmentedControl>
+            <!-- << segmentcontrol-gettingstarted-images-xaml -->
+        </VerticalStackLayout>
     </telerik:RadContentView.Content>
 </telerik:RadContentView>

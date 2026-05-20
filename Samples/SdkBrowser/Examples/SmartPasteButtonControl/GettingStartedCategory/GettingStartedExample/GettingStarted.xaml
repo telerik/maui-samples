@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.SmartPasteButtonControl"
+             x:Class="SDKBrowserMaui.Examples.SmartPasteButtonControl.GettingStartedCategory.GettingStartedExample.GettingStarted">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Style TargetType="telerik:RadTemplatedButton">
+                <Setter Property="HorizontalOptions" Value="Start" />
+            </Style>
+            <Style TargetType="telerik:RadSmartPasteButton">
+                <Setter Property="HorizontalOptions" Value="Start" />
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <Grid RowSpacing="10"
+          RowDefinitions="Auto, *">
+        <VerticalStackLayout x:Name="smartPasteForm"
+                             HorizontalOptions="Start"
+                             Spacing="12">
+            <Label x:Name="label"
+                   Text="John Doe is a Front-End Developer living in Broadway, New York, USA. He builds responsive user interfaces, implements reusable UI components, collaborates closely with designers, and improves accessibility and performance across web applications. His email is john.doe@example.com." />
+            <!-- >> smartpastebutton-gettingstarted-copy-xaml -->
+            <telerik:RadTemplatedButton Content="Copy To Clipboard"
+                                        Clicked="OnCopyFromClipboardClicked"/>
+            <!-- << smartpastebutton-gettingstarted-copy-xaml -->
+            <!-- >> smartpastebutton-gettingstarted-xaml -->
+            <telerik:RadSmartPasteButton Provider="{x:Reference dataForm}"
+                                         SmartPasteRequest="OnSmartPasteRequest" />
+            <!-- << smartpastebutton-gettingstarted-xaml -->
+        </VerticalStackLayout>
+        <!-- >> smartpastebutton-gettingstarted-dataform-xaml -->
+        <telerik:RadDataForm x:Name="dataForm"
+                             AutoGenerateItems="False" 
+                             Grid.Row="1">
+            <telerik:RadDataForm.BindingContext>
+                <local:Profile />
+            </telerik:RadDataForm.BindingContext>
+            <telerik:DataFormRadEntryEditor PropertyName="Name" />
+            <telerik:DataFormRadEmailMaskedEditor PropertyName="Email" />
+            <telerik:DataFormRadEntryEditor PropertyName="JobTitle" />
+            <telerik:DataFormRadEntryEditor PropertyName="Address" />
+        </telerik:RadDataForm>
+        <!-- << smartpastebutton-gettingstarted-dataform-xaml -->
+    </Grid>
+</ContentView>

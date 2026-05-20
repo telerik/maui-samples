@@ -16,7 +16,14 @@
 		<!-- Versions -->
 		<ApplicationVersion>1</ApplicationVersion>
 
-		<RuntimeIdentifier Condition="$(TargetFramework.Contains('android')) AND $(IsCI) == 'true'">android-arm64</RuntimeIdentifier>
+		<RuntimeIdentifier Condition="$(TargetFramework.ToLower().Contains('android')) AND $(IsCI) == 'true'">android-arm64</RuntimeIdentifier>
+	</PropertyGroup>
+
+	<!-- Enable XAML source generation for faster build times and improved performance. 
+	This generates C# code from XAML at compile time instead of runtime inflation.
+	To disable, remove this PropertyGroup.  -->
+	<PropertyGroup Condition="$(TargetFramework.ToLower().Contains('net10'))">
+		<MauiXamlInflator>SourceGen</MauiXamlInflator>
 	</PropertyGroup>
 
 	<PropertyGroup>
@@ -30,16 +37,17 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<MauiImage IsAppIcon="true" Include="Resources\appicon.svg" ForegroundFile="Resources\appicon.svg" />
+		<MauiIcon Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'" Include="Resources\appicon.svg" ForegroundFile="Resources\appicon.svg" ForegroundScale="1.3" Color="#512BD4"/>
+		<MauiIcon Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'ios'" Include="Resources\appicon.svg" ForegroundFile="Resources\appicon.svg" Color="#512BD4"/>
 		<MauiImage Include="Resources\Images\*" />
 		<MauiFont Include="Resources\Fonts\*" />
 	</ItemGroup>
 
-	<ItemGroup Condition="$(TargetFramework.Contains('-android')) == true">
+	<ItemGroup Condition="$(TargetFramework.ToLower().Contains('-android')) == true">
 		<MauiSplashScreen Include="Resources\appiconfg_android.svg" Color="#8660C5" />
 	</ItemGroup>
 
-	<ItemGroup Condition="$(TargetFramework.Contains('-android')) == false">
+	<ItemGroup Condition="$(TargetFramework.ToLower().Contains('-android')) == false">
 		<MauiSplashScreen Include="Resources\appiconfg.svg" Color="#8660C5" />
 	</ItemGroup>
 
@@ -96,7 +104,7 @@
 		<EmbeddedResource Include="ViewModels\Themes\Catalog.json" />
 	</ItemGroup>
 
-	<PropertyGroup Condition="$(TargetFramework.Contains('-windows'))">
+	<PropertyGroup Condition="$(TargetFramework.ToLower().Contains('-windows'))">
 		<DefineConstants>$(DefineConstants)TRACE;WINDOWS</DefineConstants>
 	</PropertyGroup>
 
@@ -104,25 +112,29 @@
 		<PackageReference Include="Telerik.UI.for.Maui" Version="$(TelerikVersion)" />
 	</ItemGroup>
 
-    <ItemGroup>
-        <PackageReference Include="Microsoft.Extensions.Logging.ApplicationInsights" Version="2.23.0" />
-        <PackageReference Include="Telerik.Documents.Flow" Version="$(DPLVersion)" />
-        <PackageReference Include="Telerik.Documents.Flow.FormatProviders.Pdf" Version="$(DPLVersion)" />
-        <PackageReference Include="Telerik.Documents.Spreadsheet.FormatProviders.OpenXml" Version="$(DPLVersion)" />
-        <PackageReference Include="Telerik.Documents.Spreadsheet.FormatProviders.Pdf" Version="$(DPLVersion)" />
-        <PackageReference Include="Telerik.Documents.Spreadsheet.FormatProviders.Xls" Version="$(DPLVersion)" />
-        <PackageReference Include="Telerik.Documents.Spreadsheet" Version="$(DPLVersion)" />
-        <PackageReference Include="Telerik.Documents.SpreadsheetStreaming" Version="$(DPLVersion)" />
-        <PackageReference Include="Telerik.Zip" Version="$(DPLVersion)" />
-    </ItemGroup>
-
-	<ItemGroup Condition="$(TargetFramework.Contains('net9'))">
-		<PackageReference Include="Microsoft.Maui.Controls" Condition=" $(CustomMauiNet9Version) == '' " Version="$(MauiVersion)" />
-		<PackageReference Include="Microsoft.Maui.Controls" Condition=" $(CustomMauiNet9Version) != '' " Version="$(CustomMauiNet9Version)" />
-		<PackageReference Include="System.Text.Json" Version="9.0.0" />
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Extensions.Logging.ApplicationInsights" Version="2.23.0" />
+		<PackageReference Include="Telerik.Documents.Flow" Version="$(DPLVersion)" />
+		<PackageReference Include="Telerik.Documents.Flow.FormatProviders.Pdf" Version="$(DPLVersion)" />
+		<PackageReference Include="Telerik.Documents.Spreadsheet.FormatProviders.OpenXml" Version="$(DPLVersion)" />
+		<PackageReference Include="Telerik.Documents.Spreadsheet.FormatProviders.Pdf" Version="$(DPLVersion)" />
+		<PackageReference Include="Telerik.Documents.Spreadsheet.FormatProviders.Xls" Version="$(DPLVersion)" />
+		<PackageReference Include="Telerik.Documents.Spreadsheet" Version="$(DPLVersion)" />
+		<PackageReference Include="Telerik.Documents.SpreadsheetStreaming" Version="$(DPLVersion)" />
+		<PackageReference Include="Telerik.Zip" Version="$(DPLVersion)" />
 	</ItemGroup>
 
-	<ItemGroup Condition="$(TargetFramework.Contains('net10'))">
+	<ItemGroup>
+		<PackageReference Include="Telerik.AI.SmartComponents.Extensions" Version="2.1.0" />
+	</ItemGroup>
+
+	<ItemGroup Condition="$(TargetFramework.ToLower().Contains('net9'))">
+		<PackageReference Include="Microsoft.Maui.Controls" Condition=" $(CustomMauiNet9Version) == '' " Version="$(MauiVersion)" />
+		<PackageReference Include="Microsoft.Maui.Controls" Condition=" $(CustomMauiNet9Version) != '' " Version="$(CustomMauiNet9Version)" />
+		<PackageReference Include="System.Text.Json" Version="9.0.5" />
+	</ItemGroup>
+
+	<ItemGroup Condition="$(TargetFramework.ToLower().Contains('net10'))">
 		<PackageReference Include="Microsoft.Maui.Controls" Condition=" $(CustomMauiNet10Version) == '' " Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Controls" Condition=" $(CustomMauiNet10Version) != '' " Version="$(CustomMauiNet10Version)" />
 		<PackageReference Include="System.Text.Json" Version="10.0.0" />

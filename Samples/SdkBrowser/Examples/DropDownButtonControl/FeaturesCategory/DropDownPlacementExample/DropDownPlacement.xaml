@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.DropDownButtonControl.FeaturesCategory.DropDownPlacementExample.DropDownPlacement">
+    <ContentView.Resources>
+        <Style TargetType="Label" x:Key="LabelStyle">
+            <Setter Property="VerticalTextAlignment" Value="Center" />
+            <Setter Property="Margin" Value="0, 0, 0, 8" />
+        </Style>
+    </ContentView.Resources>
+    <VerticalStackLayout WidthRequest="{OnPlatform MacCatalyst=300, WinUI=300}"
+                         VerticalOptions="Center"
+                         HorizontalOptions="Center"
+                         Spacing="10">
+        <HorizontalStackLayout Spacing="5">
+            <Label Text="DropDownPlacement: " Style="{StaticResource LabelStyle}" />
+            <telerik:RadComboBox SelectedItem="{Binding DropDownPlacement, Source={x:Reference placementDropDownButton}}">
+                <telerik:RadComboBox.ItemsSource>
+                    <x:Array Type="{x:Type telerik:PlacementMode}">
+                        <telerik:PlacementMode>Bottom</telerik:PlacementMode>
+                        <telerik:PlacementMode>Right</telerik:PlacementMode>
+                        <telerik:PlacementMode>Left</telerik:PlacementMode>
+                        <telerik:PlacementMode>Top</telerik:PlacementMode>
+                        <telerik:PlacementMode>Center</telerik:PlacementMode>
+                        <telerik:PlacementMode>Relative</telerik:PlacementMode>
+                    </x:Array>
+                </telerik:RadComboBox.ItemsSource>
+            </telerik:RadComboBox>
+        </HorizontalStackLayout>
+        <!-- >> dropdownbutton-placement -->
+        <telerik:RadDropDownButton Content="More Options"
+                                   x:Name="placementDropDownButton"
+                                   DropDownPlacement="Top">
+            <telerik:RadDropDownButton.DropDownContent>
+                <VerticalStackLayout Padding="12" Spacing="6">
+                    <Label Text="Actions"
+                           FontAttributes="Bold" />
+                    <telerik:RadTemplatedButton Content="New" />
+                    <telerik:RadTemplatedButton Content="Open" />
+                    <telerik:RadTemplatedButton Content="Save" />
+                </VerticalStackLayout>
+            </telerik:RadDropDownButton.DropDownContent>
+        </telerik:RadDropDownButton>
+        <!-- << dropdownbutton-placement -->
+    </VerticalStackLayout>
+</ContentView>

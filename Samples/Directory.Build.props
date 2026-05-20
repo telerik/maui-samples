@@ -12,7 +12,7 @@
     <TelerikVersion>*</TelerikVersion>
     <DplVersion>*-*</DplVersion>
     <CustomMauiNet9Version></CustomMauiNet9Version>
-    <CustomMauiNet10Version></CustomMauiNet10Version>
+    <CustomMauiNet10Version>10.0.60</CustomMauiNet10Version>
     <SkiaSharpVersion>3.119.1</SkiaSharpVersion>
     <TelerikLicensingVersion>[1.8.2,2)</TelerikLicensingVersion>
 
@@ -21,7 +21,7 @@
     <UsePlatformProjects>false</UsePlatformProjects>
     <UsePlatformAssemblies>false</UsePlatformAssemblies>
 
-    <DotNetVersion Condition=" $(DotNetVersion) == '' ">Net9</DotNetVersion>
+    <DotNetVersion Condition=" $(DotNetVersion) == '' ">Net10</DotNetVersion>
     <NetPlatform Condition=" $(DotNetVersion) == 'Net9' ">net9.0</NetPlatform>
     <NetPlatform Condition=" $(DotNetVersion) == 'Net10' ">net10.0</NetPlatform>
     <AndroidPlatform>$(NetPlatform)-android</AndroidPlatform>
@@ -29,6 +29,9 @@
     <MacCatalystPlatform>$(NetPlatform)-maccatalyst</MacCatalystPlatform>
     <WindowsPlatform>$(NetPlatform)-windows10.0.19041.0</WindowsPlatform>
     <ValidateXcodeVersion>false</ValidateXcodeVersion>
+
+    <!-- Prevent the dotnet/maui submodule (eng/Versions.targets) from overriding the AzDO pipeline build number. -->
+    <_SkipUpdateBuildNumber>true</_SkipUpdateBuildNumber>
   </PropertyGroup>
 
   <PropertyGroup>

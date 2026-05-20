@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:telerikDropDownButton="clr-namespace:Telerik.Maui.Controls.DropDownButton;assembly=Telerik.Maui.Controls"
+             xmlns:styles="clr-namespace:QSF.Styles"
+             x:Class="QSF.Examples.ButtonControl.DropDownButtonExample.DropDownButtonView"
+             Padding="{OnIdiom Default='16, 20', Phone=0}">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <styles:ConfigurationViewResources />
+            </ResourceDictionary.MergedDictionaries>
+            <Style x:Key="SliderMinMaxLabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="10" />
+                <Setter Property="Opacity" Value="0.6" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+ 
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="{OnPlatform Android=136, iOS=125, MacCatalyst=110, WinUI=112}" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <telerik:RadBorder Style="{StaticResource ControlWrapperBorderStyle}">
+            <telerik:RadDropDownButton x:Name="dropDownButton"
+                                       Content="{Binding CustomContent}"
+                                       IsOpen="{Binding IsDropDownOpen, Mode=TwoWay}"
+                                       IsDropDownIndicatorVisible="{Binding IsDropDownIndicatorVisible}"
+                                       DropDownIndicatorPosition="{Binding DropDownIndicatorPosition}"
+                                       DropDownWidth="{Binding Value, Source={x:Reference dropDownWidthSlider}}"
+                                       DropDownHeight="{Binding Value, Source={x:Reference dropDownHeightSlider}}"
+                                       DropDownPlacement="{Binding DropDownPlacement}"
+                                       AutoOpenDelay="{Binding AutoOpenDelay}"
+                                       DropDownAnimation="{Binding DropDownAnimation}"
+                                       DropDownAnimationDuration="{Binding Value, Source={x:Reference animationDurationSlider}}"
+                                       WidthRequest="{OnPlatform MacCatalyst=200, WinUI=200}"
+                                       HorizontalOptions="{OnPlatform Default=Center, MacCatalyst=Start, WinUI=Start}"
+                                       VerticalOptions="Center">
+                <telerik:RadDropDownButton.DropDownContent>
+                    <telerik:RadCollectionView ItemsSource="{Binding WiFiNetworks}"
+                                               SelectionChanged="OnDropDownItemSelected">
+                        <telerik:RadCollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid ColumnDefinitions="Auto, *"
+                                      ColumnSpacing="4"
+                                      Margin="10, 0">
+                                    <Label FontFamily="TelerikFontExamples"
+                                           FontSize="{OnPlatform Default=16, MacCatalyst=12}"
+                                           Text="{Binding Icon}"
+                                           VerticalTextAlignment="Center" />
+                                    <Label Grid.Column="1"
+                                           Text="{Binding Name}"
+                                           VerticalTextAlignment="Center" />
+                                </Grid>
+                            </DataTemplate>
+                        </telerik:RadCollectionView.ItemTemplate>
+                    </telerik:RadCollectionView>
+                </telerik:RadDropDownButton.DropDownContent>
+            </telerik:RadDropDownButton>
+        </telerik:RadBorder>
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Style="{StaticResource RootAtExampleAreaStyle}">
+                <Grid Style="{StaticResource GroupAtExampleAreaStyle}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="{OnIdiom Default=*, Phone=0}" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="{OnIdiom Default=0, Phone=*}" />
+                    </Grid.RowDefinitions>
+                    <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaWithColumnBreakStyle}">
+                        <Label Text="Button Settings"
+                               Style="{StaticResource SectionHeadingLabelStyle}" />
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Is Open:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <Grid>
+                                <Switch x:Name="isOpenSwitch"
+                                        VerticalOptions="Center"
+                                        HorizontalOptions="Start"
+                                        IsToggled="{Binding IsDropDownOpen}"
+                                        Margin="{OnPlatform Default=0, WinUI='0, -2, 0, 0'}"
+                                        Style="{DynamicResource SwitchStyle}" />
+                                <OnPlatform x:TypeArguments="View">
+                                    <On Platform="WinUI">
+                                        <telerik:RadBorder HeightRequest="20"
+                                                           WidthRequest="40"
+                                                           CornerRadius="10"
+                                                           BorderColor="{Binding OnColor, Source={x:Reference isOpenSwitch}}"
+                                                           BorderThickness="1"
+                                                           HorizontalOptions="Start"
+                                                           VerticalOptions="Center" />
+                                    </On>
+                                </OnPlatform>
+                            </Grid>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Show DropDown Indicator:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <Grid>
+                                <Switch x:Name="indicatorVisibleSwitch"
+                                        VerticalOptions="Center"
+                                        HorizontalOptions="Start"
+                                        IsToggled="{Binding IsDropDownIndicatorVisible}"
+                                        Margin="{OnPlatform Default=0, WinUI='0, -2, 0, 0'}"
+                                        Style="{DynamicResource SwitchStyle}" />
+                                <OnPlatform x:TypeArguments="View">
+                                    <On Platform="WinUI">
+                                        <telerik:RadBorder HeightRequest="20"
+                                                           WidthRequest="40"
+                                                           CornerRadius="10"
+                                                           BorderColor="{Binding OnColor, Source={x:Reference indicatorVisibleSwitch}}"
+                                                           BorderThickness="1"
+                                                           HorizontalOptions="Start"
+                                                           VerticalOptions="Center" />
+                                    </On>
+                                </OnPlatform>
+                            </Grid>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Content:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <telerik:RadEntry Text="{Binding CustomContent}"
+                                              ReserveSpaceForErrorView="False" 
+                                              AutomationId="placeholderEntry" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Indicator Position:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <telerik:RadComboBox SelectedItem="{Binding DropDownIndicatorPosition}">
+                                <telerik:RadComboBox.ItemsSource>
+                                    <x:Array Type="{x:Type telerikDropDownButton:DropDownButtonIndicatorPosition}">
+                                        <telerikDropDownButton:DropDownButtonIndicatorPosition>Right</telerikDropDownButton:DropDownButtonIndicatorPosition>
+                                        <telerikDropDownButton:DropDownButtonIndicatorPosition>Left</telerikDropDownButton:DropDownButtonIndicatorPosition>
+                                        <telerikDropDownButton:DropDownButtonIndicatorPosition>Top</telerikDropDownButton:DropDownButtonIndicatorPosition>
+                                        <telerikDropDownButton:DropDownButtonIndicatorPosition>Bottom</telerikDropDownButton:DropDownButtonIndicatorPosition>
+                                    </x:Array>
+                                </telerik:RadComboBox.ItemsSource>
+                            </telerik:RadComboBox>
+                        </VerticalStackLayout>
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Grid.Column="{OnIdiom Default=1, Phone=0}"
+                                         Grid.Row="{OnIdiom Default=0, Phone=1}">
+                        <Label Text="DropDown Size &amp; Animation"
+                               Style="{StaticResource SectionHeadingLabelStyle}" />
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="DropDown Placement:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <telerik:RadComboBox SelectedItem="{Binding DropDownPlacement}">
+                                <telerik:RadComboBox.ItemsSource>
+                                    <x:Array Type="{x:Type telerik:PlacementMode}">
+                                        <telerik:PlacementMode>Bottom</telerik:PlacementMode>
+                                        <telerik:PlacementMode>Top</telerik:PlacementMode>
+                                        <telerik:PlacementMode>Left</telerik:PlacementMode>
+                                        <telerik:PlacementMode>Right</telerik:PlacementMode>
+                                        <telerik:PlacementMode>Center</telerik:PlacementMode>
+                                    </x:Array>
+                                </telerik:RadComboBox.ItemsSource>
+                            </telerik:RadComboBox>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="DropDown Width:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <Grid ColumnDefinitions="Auto, *, Auto">
+                                <Label Style="{StaticResource SliderMinMaxLabelStyle}"
+                                       Text="{Binding Minimum, Source={x:Reference dropDownWidthSlider}}" />
+                                <telerik:RadSlider x:Name="dropDownWidthSlider"
+                                                   Grid.Column="1"
+                                                   Minimum="-1"
+                                                   Maximum="{OnIdiom Phone=120, Default=600}"
+                                                   Value="-1"
+                                                   Margin="8, 0"
+                                                   HorizontalOptions="Fill"
+                                                   VerticalOptions="Center" />
+                                <Label Grid.Column="2"
+                                       Style="{StaticResource SliderMinMaxLabelStyle}"
+                                       Text="{Binding Maximum, Source={x:Reference dropDownWidthSlider}}" />
+                            </Grid>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="DropDown Height:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <Grid ColumnDefinitions="Auto, *, Auto">
+                                <Label Style="{StaticResource SliderMinMaxLabelStyle}"
+                                       Text="{Binding Minimum, Source={x:Reference dropDownHeightSlider}}" />
+                                <telerik:RadSlider x:Name="dropDownHeightSlider"
+                                                   Grid.Column="1"
+                                                   Minimum="-1"
+                                                   Maximum="400"
+                                                   Value="-1"
+                                                   Margin="8, 0"
+                                                   HorizontalOptions="Fill"
+                                                   VerticalOptions="Center" />
+                                <Label Grid.Column="2"
+                                       Style="{StaticResource SliderMinMaxLabelStyle}"
+                                       Text="{Binding Maximum, Source={x:Reference dropDownHeightSlider}}" />
+                            </Grid>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Animation Duration (ms):"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <Grid ColumnDefinitions="Auto, *, Auto">
+                                <Label Style="{StaticResource SliderMinMaxLabelStyle}"
+                                       Text="{Binding Minimum, Source={x:Reference animationDurationSlider}}" />
+                                <telerik:RadSlider x:Name="animationDurationSlider"
+                                                   Grid.Column="1"
+                                                   Minimum="0"
+                                                   Maximum="2000"
+                                                   Value="200"
+                                                   Margin="8, 0"
+                                                   HorizontalOptions="Fill"
+                                                   VerticalOptions="Center" />
+                                <Label Grid.Column="2"
+                                       Style="{StaticResource SliderMinMaxLabelStyle}"
+                                       Text="{Binding Maximum, Source={x:Reference animationDurationSlider}}" />
+                            </Grid>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="DropDown Animation:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <telerik:RadComboBox SelectedItem="{Binding DropDownAnimation}">
+                                <telerik:RadComboBox.ItemsSource>
+                                    <x:Array Type="{x:Type telerik:PopupAnimationType}">
+                                        <telerik:PopupAnimationType>None</telerik:PopupAnimationType>
+                                        <telerik:PopupAnimationType>Fade</telerik:PopupAnimationType>
+                                        <telerik:PopupAnimationType>Zoom</telerik:PopupAnimationType>
+                                        <telerik:PopupAnimationType>Slide</telerik:PopupAnimationType>
+                                    </x:Array>
+                                </telerik:RadComboBox.ItemsSource>
+                            </telerik:RadComboBox>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}"
+                                             IsVisible="{OnPlatform Default=True, Android=False, iOS=False}">
+                            <Label Text="Auto Open Delay:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <telerik:RadComboBox SelectedItem="{Binding AutoOpenDelay}">
+                                <telerik:RadComboBox.ItemsSource>
+                                    <x:Array Type="{x:Type x:TimeSpan}">
+                                        <x:TimeSpan>0:0:0</x:TimeSpan>
+                                        <x:TimeSpan>0:0:0.5</x:TimeSpan>
+                                        <x:TimeSpan>0:0:1</x:TimeSpan>
+                                        <x:TimeSpan>0:0:1.5</x:TimeSpan>
+                                        <x:TimeSpan>0:0:2</x:TimeSpan>
+                                    </x:Array>
+                                </telerik:RadComboBox.ItemsSource>
+                            </telerik:RadComboBox>
+                        </VerticalStackLayout>
+                    </VerticalStackLayout>
+                </Grid>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentView>

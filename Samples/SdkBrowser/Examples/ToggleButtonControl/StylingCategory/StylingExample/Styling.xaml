@@ -21,12 +21,24 @@
                         <VisualStateGroupList>
                             <VisualStateGroup Name="CommonStates">
                                 <VisualState Name="Normal" />
+                                <VisualState Name="Focused" />
                                 <VisualState Name="MouseOver">
                                     <VisualState.Setters>
                                         <Setter Property="Background" Value="#E8F5F4" />
                                     </VisualState.Setters>
                                 </VisualState>
+                                <VisualState Name="FocusedMouseOver">
+                                    <VisualState.Setters>
+                                        <Setter Property="Background" Value="#E8F5F4" />
+                                    </VisualState.Setters>
+                                </VisualState>
                                 <VisualState Name="Pressed">
+                                    <VisualState.Setters>
+                                        <Setter Property="TextColor" Value="#9900897B" />
+                                        <Setter Property="Background" Value="#E8F5F4" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState Name="FocusedPressed">
                                     <VisualState.Setters>
                                         <Setter Property="TextColor" Value="#9900897B" />
                                         <Setter Property="Background" Value="#E8F5F4" />
@@ -43,13 +55,31 @@
                                         <Setter Property="Background" Value="#00897B" />
                                     </VisualState.Setters>
                                 </VisualState>
+                                <VisualState Name="FocusedToggled">
+                                    <VisualState.Setters>
+                                        <Setter Property="TextColor" Value="#FFFFFF" />
+                                        <Setter Property="Background" Value="#00897B" />
+                                    </VisualState.Setters>
+                                </VisualState>
                                 <VisualState Name="ToggledMouseOver">
                                     <VisualState.Setters>
                                         <Setter Property="TextColor" Value="#FFFFFF" />
                                         <Setter Property="Background" Value="#32A095" />
                                     </VisualState.Setters>
                                 </VisualState>
+                                <VisualState Name="FocusedToggledMouseOver">
+                                    <VisualState.Setters>
+                                        <Setter Property="TextColor" Value="#FFFFFF" />
+                                        <Setter Property="Background" Value="#32A095" />
+                                    </VisualState.Setters>
+                                </VisualState>
                                 <VisualState Name="ToggledPressed">
+                                    <VisualState.Setters>
+                                        <Setter Property="TextColor" Value="#99000000" />
+                                        <Setter Property="Background" Value="#4CACA2" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState Name="FocusedToggledPressed">
                                     <VisualState.Setters>
                                         <Setter Property="TextColor" Value="#99000000" />
                                         <Setter Property="Background" Value="#4CACA2" />
@@ -88,12 +118,24 @@
                         <VisualStateGroupList>
                             <VisualStateGroup Name="CommonStates">
                                 <VisualState Name="Normal" />
+                                <VisualState Name="Focused" />
                                 <VisualState Name="MouseOver">
                                     <VisualState.Setters>
                                         <Setter Property="Background" Value="#F2EFF9" />
                                     </VisualState.Setters>
                                 </VisualState>
+                                <VisualState Name="FocusedMouseOver">
+                                    <VisualState.Setters>
+                                        <Setter Property="Background" Value="#F2EFF9" />
+                                    </VisualState.Setters>
+                                </VisualState>
                                 <VisualState Name="Pressed">
+                                    <VisualState.Setters>
+                                        <Setter Property="TextColor" Value="#998660C5" />
+                                        <Setter Property="Background" Value="#F2EFF9" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState Name="FocusedPressed">
                                     <VisualState.Setters>
                                         <Setter Property="TextColor" Value="#998660C5" />
                                         <Setter Property="Background" Value="#F2EFF9" />
@@ -110,13 +152,31 @@
                                         <Setter Property="Background" Value="#8660C5" />
                                     </VisualState.Setters>
                                 </VisualState>
+                                <VisualState Name="FocusedToggled">
+                                    <VisualState.Setters>
+                                        <Setter Property="TextColor" Value="#FFFFFF" />
+                                        <Setter Property="Background" Value="#8660C5" />
+                                    </VisualState.Setters>
+                                </VisualState>
                                 <VisualState Name="ToggledMouseOver">
                                     <VisualState.Setters>
                                         <Setter Property="TextColor" Value="#FFFFFF" />
                                         <Setter Property="Background" Value="#9E7FD0" />
                                     </VisualState.Setters>
                                 </VisualState>
+                                <VisualState Name="FocusedToggledMouseOver">
+                                    <VisualState.Setters>
+                                        <Setter Property="TextColor" Value="#FFFFFF" />
+                                        <Setter Property="Background" Value="#9E7FD0" />
+                                    </VisualState.Setters>
+                                </VisualState>
                                 <VisualState Name="ToggledPressed">
+                                    <VisualState.Setters>
+                                        <Setter Property="TextColor" Value="#99000000" />
+                                        <Setter Property="Background" Value="#AA8FD6" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState Name="FocusedToggledPressed">
                                     <VisualState.Setters>
                                         <Setter Property="TextColor" Value="#99000000" />
                                         <Setter Property="Background" Value="#AA8FD6" />

@@ -88,6 +88,7 @@
                                        ItemsSource="{Binding ItemsSource}"
                                        ItemTemplate="{StaticResource ContactTemplate}"
                                        SelectionMode="{Binding SelectionMode, Mode=TwoWay}"
+                                       SelectionGesture="{Binding SelectionGesture, Mode=TwoWay}"
                                        EmptyContentTemplate="{StaticResource NoContactsTemplate}"
                                        EmptyContentDisplayMode="{Binding EmptyContentDisplayMode, Mode=TwoWay}"
                                        IsDragDropEnabled="{Binding IsDragDropEnabled, Mode=TwoWay}"

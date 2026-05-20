@@ -15,13 +15,25 @@
                     <VisualStateGroupList>
                         <VisualStateGroup Name="CommonStates">
                             <VisualState Name="Normal" />
+                            <VisualState Name="Focused" />
                             <VisualState Name="Pressed">
+                                <VisualState.Setters>
+                                    <Setter Property="TextColor" Value="#99000000" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="FocusedPressed">
                                 <VisualState.Setters>
                                     <Setter Property="TextColor" Value="#99000000" />
                                 </VisualState.Setters>
                             </VisualState>
                             <VisualState Name="Disabled" />
                             <VisualState Name="Toggled">
+                                <VisualState.Setters>
+                                    <Setter Property="TextColor" Value="#FFFFFF" />
+                                    <Setter Property="Background" Value="#00897B" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="FocusedToggled">
                                 <VisualState.Setters>
                                     <Setter Property="TextColor" Value="#FFFFFF" />
                                     <Setter Property="Background" Value="#00897B" />
@@ -34,14 +46,17 @@
                                     <Setter Property="Background" Value="#4CACA2" />
                                 </VisualState.Setters>
                             </VisualState>
+                            <VisualState Name="FocusedToggledPressed">
+                                <VisualState.Setters>
+                                    <Setter Property="TextColor" Value="#99FFFFFF" />
+                                    <Setter Property="telerik:RadEffects.RippleColor" Value="#B2DFDB" />
+                                    <Setter Property="Background" Value="#4CACA2" />
+                                </VisualState.Setters>
+                            </VisualState>
                             <VisualState Name="ToggledDisabled" />
                             <VisualState Name="Indeterminate" />
                             <VisualState Name="IndeterminatePressed" />
                             <VisualState Name="IndeterminateDisabled" />
-                        </VisualStateGroup>
-                        <VisualStateGroup Name="FocusStates">
-                            <VisualState Name="Unfocused" />
-                            <VisualState Name="Focused" />
                         </VisualStateGroup>
                     </VisualStateGroupList>
                 </Setter>

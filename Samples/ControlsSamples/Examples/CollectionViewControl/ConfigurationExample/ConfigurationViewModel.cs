@@ -21,6 +21,7 @@ public class ConfigurationViewModel : ConfigurationExampleViewModel
     private double minimumItemLength;
     private double itemSpacing;
     private CollectionViewSelectionMode selectionMode = CollectionViewSelectionMode.Single;
+    private CollectionViewSelectionGesture selectionGesture = CollectionViewSelectionGesture.Tap;
     private EmptyContentDisplayMode emptyContentDisplayMode;
     private bool isDragDropEnabled;
     private bool isItemSwipeEnabled;
@@ -52,6 +53,8 @@ public class ConfigurationViewModel : ConfigurationExampleViewModel
     public IEnumerable<Orientation> LayoutOrientations { get; } = new List<Orientation> { Orientation.Vertical, Orientation.Horizontal };
 
     public IEnumerable<CollectionViewSelectionMode> SelectionModes { get; } = Enum.GetValues(typeof(CollectionViewSelectionMode)).Cast<CollectionViewSelectionMode>();
+
+    public IEnumerable<CollectionViewSelectionGesture> SelectionGestures { get; } = Enum.GetValues(typeof(CollectionViewSelectionGesture)).Cast<CollectionViewSelectionGesture>();
 
     public IEnumerable<EmptyContentDisplayMode> EmptyContentDisplayModes { get; } = Enum.GetValues(typeof(EmptyContentDisplayMode)).Cast<EmptyContentDisplayMode>();
 
@@ -134,6 +137,12 @@ public class ConfigurationViewModel : ConfigurationExampleViewModel
     {
         get => this.selectionMode;
         set => this.UpdateValue(ref this.selectionMode, value);
+    }
+
+    public CollectionViewSelectionGesture SelectionGesture
+    {
+        get => this.selectionGesture;
+        set => this.UpdateValue(ref this.selectionGesture, value);
     }
 
     public EmptyContentDisplayMode EmptyContentDisplayMode

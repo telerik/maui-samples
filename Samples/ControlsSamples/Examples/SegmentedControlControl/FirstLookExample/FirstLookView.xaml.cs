@@ -1,15 +1,14 @@
-﻿using Microsoft.Maui.Controls.Xaml;
+﻿using Microsoft.Maui.Controls;
 using Telerik.Maui.Controls;
 
-namespace QSF.Examples.SegmentedControlControl.FirstLookExample
+namespace QSF.Examples.SegmentedControlControl.FirstLookExample;
+
+public partial class FirstLookView : ContentView
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class FirstLookView : RadContentView
+    public FirstLookView()
     {
-        public FirstLookView()
-        {
-            InitializeComponent();
-            this.segmented.SetSegmentEnabled(2, false);
-        }
+        this.InitializeComponent();
+
+        this.profileTypeSegmented.SetSegmentEnabled(2, false);
     }
 }

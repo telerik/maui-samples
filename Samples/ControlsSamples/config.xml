@@ -194,6 +194,7 @@
 
 		<Control>
 			<Name>Button</Name>
+			<Status>Updated</Status>
 			<DisplayName>Buttons</DisplayName>
 			<ShortDescription>A set of Buttons allowing the invocation of UI functionality on a click, while at the same time providing flexible customization capabilities, ease of use and integration with other components.</ShortDescription>
 			<FullDescription>Telerik UI for .NET MAUI Buttons represent an essential set of components allowing the invocation of UI functionality on a click, while at the same time providing flexible customization capabilities, ease of use and integration with other components.</FullDescription>
@@ -201,14 +202,23 @@
 				<Example>
 					<Name>FirstLook</Name>
 					<Page>FirstLookView</Page>
+					<Status>Updated</Status>
 					<DisplayName>First Look</DisplayName>
 					<Description>This example showcases all supported types of buttons present in Telerik UI for .NET MAUI and some of their key features and capabilities.</Description>
 				</Example>
 				<Example>
 					<Name>Customization</Name>
 					<Page>CustomizationView</Page>
+					<Status>Updated</Status>
 					<DisplayName>Customization</DisplayName>
 					<Description>This example presents the customization capabilities of the supported types of buttons present in Telerik UI for .NET MAUI.</Description>
+				</Example>
+				<Example>
+					<Name>DropDownButton</Name>
+					<Status>New</Status>
+					<Page>DropDownButtonView</Page>
+					<DisplayName>DropDown Button</DisplayName>
+					<Description>This example presents the various configuration options that the RadDropDownButton provides. Adjust the drop-down width and height, toggle the drop-down indicator visibility, change the drop-down position, and explore other settings to see their effects in real-time.</Description>
 				</Example>
 			</Examples>
 		</Control>
@@ -447,6 +457,7 @@
 				</Example>
 				<Example>
 					<Name>Configuration</Name>
+					<Status>Updated</Status>
 					<Page>ConfigurationView</Page>
 					<DisplayName>Configuration</DisplayName>
 					<IsConfigurable>true</IsConfigurable>
@@ -1058,6 +1069,23 @@
 		</Control>
 
 		<Control>
+			<Name>PromptInput</Name>
+			<DisplayName>PromptInput</DisplayName>
+			<Status>New</Status>
+			<ShortDescription>A feature-rich input control that bridges human-AI interaction within your .NET MAUI applications.</ShortDescription>
+			<FullDescription>The Telerik UI for .NET MAUI PromptInput is a feature-rich input control that bridges human-AI interaction within your .NET MAUI applications. It provides a polished, ready-made interface for sending prompts and managing the full input lifecycle in AI-driven scenarios such as chatbots, in-app assistants, and more. Beyond text input, the control supports voice dictation, file attachments, and in-app camera capture, covering everything users need to engage naturally within a conversational experience.</FullDescription>
+			<Examples>
+				<Example>
+					<Status>New</Status>
+					<Name>FirstLook</Name>
+					<Page>FirstLookView</Page>
+					<DisplayName>First Look</DisplayName>
+					<Description>The Telerik UI for .NET MAUI PromptInput is a feature-rich input control that bridges human-AI interaction within your .NET MAUI applications. It provides a polished, ready-made interface for sending prompts and managing the full input lifecycle in AI-driven scenarios such as chatbots, in-app assistants, and more. Beyond text input, the control supports voice dictation, file attachments, and in-app camera capture, covering everything users need to engage naturally within a conversational experience.</Description>
+				</Example>
+		  </Examples>
+		</Control>
+
+		<Control>
 			<Name>RangeSlider</Name>
 			<DisplayName>RangeSlider</DisplayName>
 			<ShortDescription>Specifies a range between a minimum and a maximum value by moving the start and end thumbs along the track.</ShortDescription>
@@ -1163,14 +1191,30 @@
 		<Control>
 			<Name>SegmentedControl</Name>
 			<DisplayName>SegmentedControl</DisplayName>
+			<Status>Updated</Status>
 			<ShortDescription>Displays horizontally aligned, mutually exclusive options, which can be selected by the user.</ShortDescription>
 			<FullDescription>Telerik UI for .NET MAUI SegmentedControl enables you to display several options in a convenient picker and select value with a single tap.</FullDescription>
 			<Examples>
 				<Example>
 					<Name>FirstLook</Name>
 					<Page>FirstLookView</Page>
+					<Status>Updated</Status>
 					<DisplayName>First Look</DisplayName>
 					<Description>Telerik UI for .NET MAUI SegmentedControl enables you to display several options in a convenient picker and select value with a single tap. This example showcases the usage of the SegmentedControl in a MVVM environment. Images can easily be displayed in the SegmentedControl, and styles can be used to achieve the same look for the SegmentedControl's in your application.</Description>
+				</Example>
+				<Example>
+					<Name>Configuration</Name>
+					<Page>ConfigurationView</Page>
+					<Status>New</Status>
+					<DisplayName>Configuration</DisplayName>
+					<Description>This example presents the various configuration options that the RadSegmentedControl provides.</Description>
+				</Example>
+				<Example>
+					<Name>ItemTemplate</Name>
+					<Page>ItemTemplateView</Page>
+					<Status>New</Status>
+					<DisplayName>Item Template</DisplayName>
+					<Description>This example showcases how to customize each item of the RadSegmentedControl, by defining separate ItemTemplate instances.</Description>
 				</Example>
 			</Examples>
 		</Control>
@@ -1275,6 +1319,22 @@
 			</Examples>
 		</Control>
 
+		<Control>
+			<Name>SmartPasteButton</Name>
+			<Status>New</Status>
+			<DisplayName>SmartPasteButton</DisplayName>
+			<ShortDescription>A button that enables smart pasting of text into input fields.</ShortDescription>
+			<FullDescription>Telerik UI for .NET MAUI SmartPasteButton is an AI-powered component that streamlines data entry by extracting structured information from clipboard content and automatically populating form fields.</FullDescription>
+			<Examples>
+				<Example>
+					<Name>FirstLook</Name>
+					<Status>New</Status>
+					<Page>FirstLookView</Page>
+					<DisplayName>First Look</DisplayName>
+					<Description>Telerik UI for .NET MAUI SmartPasteButton is an AI-powered component that streamlines data entry by extracting structured information from clipboard content and automatically populating form fields.</Description>
+				</Example>
+			</Examples>
+		</Control>
 		<Control>
 			<Name>SpeechToTextButton</Name>
 			<DisplayName>SpeechToTextButton</DisplayName>
@@ -1571,6 +1631,11 @@
 	<HighlightedExamplesTitle>AI Examples:</HighlightedExamplesTitle>
 	<HighlightedExamples>
 		<HighlightedExample>
+			<ControlName>SmartPasteButton</ControlName>
+			<ExampleName>FirstLook</ExampleName>
+			<DisplayName>AI SmartPasteButton</DisplayName>
+		</HighlightedExample>
+		<HighlightedExample>
 			<ControlName>DataGrid</ControlName>
 			<ExampleName>PromptControlled</ExampleName>
 			<DisplayName>AI Smart DataGrid</DisplayName>
@@ -1579,11 +1644,6 @@
 			<ControlName>DataGrid</ControlName>
 			<ExampleName>AIChatIntegration</ExampleName>
 			<DisplayName>DataGrid AI Chat Assistant</DisplayName>
-		</HighlightedExample>
-		<HighlightedExample>
-			<ControlName>Chat</ControlName>
-			<ExampleName>AIIntegration</ExampleName>
-			<DisplayName>Chat AI Integration</DisplayName>
 		</HighlightedExample>
 	</HighlightedExamples>
 

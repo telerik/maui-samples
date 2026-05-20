@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
                         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                         xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
@@ -198,8 +198,15 @@
                 <VisualStateGroupList>
                     <VisualStateGroup Name="CommonStates">
                         <VisualState Name="Normal" />
-                        <VisualState Name="PointerOver" />
+                        <VisualState Name="Focused" />
+                        <VisualState Name="MouseOver" />
+                        <VisualState Name="FocusedMouseOver" />
                         <VisualState Name="Pressed">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadTemplatedButton.TextColor" Value="#99FFFFFF" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="FocusedPressed">
                             <VisualState.Setters>
                                 <Setter Property="telerik:RadTemplatedButton.TextColor" Value="#99FFFFFF" />
                             </VisualState.Setters>
@@ -216,12 +223,23 @@
                 <VisualStateGroupList>
                     <VisualStateGroup Name="CommonStates">
                         <VisualState Name="Normal" />
-                        <VisualState Name="PointerOver">
+                        <VisualState Name="Focused" />
+                        <VisualState Name="MouseOver">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadTemplatedButton.Background" Value="#40B8B8B8" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="FocusedMouseOver">
                             <VisualState.Setters>
                                 <Setter Property="telerik:RadTemplatedButton.Background" Value="#40B8B8B8" />
                             </VisualState.Setters>
                         </VisualState>
                         <VisualState Name="Pressed">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadTemplatedButton.TextColor" Value="{DynamicResource PlaceholderColor}" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="FocusedPressed">
                             <VisualState.Setters>
                                 <Setter Property="telerik:RadTemplatedButton.TextColor" Value="{DynamicResource PlaceholderColor}" />
                             </VisualState.Setters>
@@ -238,12 +256,24 @@
                 <VisualStateGroupList>
                     <VisualStateGroup Name="CommonStates">
                         <VisualState Name="Normal" />
-                        <VisualState Name="PointerOver">
+                        <VisualState Name="Focused" />
+                        <VisualState Name="MouseOver">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadTemplatedButton.Background" Value="#40B8B8B8" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="FocusedMouseOver">
                             <VisualState.Setters>
                                 <Setter Property="telerik:RadTemplatedButton.Background" Value="#40B8B8B8" />
                             </VisualState.Setters>
                         </VisualState>
                         <VisualState Name="Pressed">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadTemplatedButton.TextColor" Value="#996B7C27" />
+                                <Setter Property="telerik:RadTemplatedButton.BorderBrush" Value="#99849C31" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="FocusedPressed">
                             <VisualState.Setters>
                                 <Setter Property="telerik:RadTemplatedButton.TextColor" Value="#996B7C27" />
                                 <Setter Property="telerik:RadTemplatedButton.BorderBrush" Value="#99849C31" />
@@ -263,12 +293,24 @@
                 <VisualStateGroupList>
                     <VisualStateGroup Name="CommonStates">
                         <VisualState Name="Normal" />
-                        <VisualState Name="PointerOver">
+                        <VisualState Name="Focused" />
+                        <VisualState Name="MouseOver">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadTemplatedButton.Background" Value="{DynamicResource CustomizationCircularButtonPointerOverBackgroundColor}" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="FocusedMouseOver">
                             <VisualState.Setters>
                                 <Setter Property="telerik:RadTemplatedButton.Background" Value="{DynamicResource CustomizationCircularButtonPointerOverBackgroundColor}" />
                             </VisualState.Setters>
                         </VisualState>
                         <VisualState Name="Pressed">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadTemplatedButton.TextColor" Value="#993D609B" />
+                                <Setter Property="telerik:RadTemplatedButton.BorderBrush" Value="#993D609B" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="FocusedPressed">
                             <VisualState.Setters>
                                 <Setter Property="telerik:RadTemplatedButton.TextColor" Value="#993D609B" />
                                 <Setter Property="telerik:RadTemplatedButton.BorderBrush" Value="#993D609B" />
@@ -290,7 +332,7 @@
                 <VisualStateGroupList>
                     <VisualStateGroup Name="CommonStates">
                         <VisualState Name="Normal" />
-                        <VisualState Name="PointerOver">
+                        <VisualState Name="MouseOver">
                             <VisualState.Setters>
                                 <Setter Property="telerik:RadTemplatedButton.Background" Value="{DynamicResource CustomizationLoadingButtonPointerOverBackgroundColor}" />
                             </VisualState.Setters>
@@ -317,7 +359,13 @@
                 <VisualStateGroupList>
                     <VisualStateGroup Name="CommonStates">
                         <VisualState Name="Normal" />
+                        <VisualState Name="Focused" />
                         <VisualState Name="MouseOver">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadToggleButton.Background" Value="#40B8B8B8" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="FocusedMouseOver">
                             <VisualState.Setters>
                                 <Setter Property="telerik:RadToggleButton.Background" Value="#40B8B8B8" />
                             </VisualState.Setters>
@@ -327,8 +375,19 @@
                                 <Setter Property="telerik:RadToggleButton.TextColor" Value="{DynamicResource PlaceholderColor}" />
                             </VisualState.Setters>
                         </VisualState>
+                        <VisualState Name="FocusedPressed">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadToggleButton.TextColor" Value="{DynamicResource PlaceholderColor}" />
+                            </VisualState.Setters>
+                        </VisualState>
                         <VisualState Name="Disabled" />
                         <VisualState Name="Toggled">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadToggleButton.TextColor" Value="#FFFFFF" />
+                                <Setter Property="telerik:RadToggleButton.Background" Value="#EC9E46" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="FocusedToggled">
                             <VisualState.Setters>
                                 <Setter Property="telerik:RadToggleButton.TextColor" Value="#FFFFFF" />
                                 <Setter Property="telerik:RadToggleButton.Background" Value="#EC9E46" />
@@ -341,7 +400,21 @@
                                 <Setter Property="telerik:RadToggleButton.BorderBrush" Value="#EA922F" />
                             </VisualState.Setters>
                         </VisualState>
+                        <VisualState Name="FocusedToggledMouseOver">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadToggleButton.TextColor" Value="#FFFFFF" />
+                                <Setter Property="telerik:RadToggleButton.Background" Value="#EA922F" />
+                                <Setter Property="telerik:RadToggleButton.BorderBrush" Value="#EA922F" />
+                            </VisualState.Setters>
+                        </VisualState>
                         <VisualState Name="ToggledPressed">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadToggleButton.TextColor" Value="#99000000" />
+                                <Setter Property="telerik:RadToggleButton.Background" Value="#EEAA5D" />
+                                <Setter Property="telerik:RadToggleButton.BorderBrush" Value="#EEAA5D" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="FocusedToggledPressed">
                             <VisualState.Setters>
                                 <Setter Property="telerik:RadToggleButton.TextColor" Value="#99000000" />
                                 <Setter Property="telerik:RadToggleButton.Background" Value="#EEAA5D" />
@@ -364,12 +437,24 @@
                 <VisualStateGroupList>
                     <VisualStateGroup Name="CommonStates">
                         <VisualState Name="Normal" />
+                        <VisualState Name="Focused" />
                         <VisualState Name="MouseOver">
                             <VisualState.Setters>
                                 <Setter Property="telerik:RadToggleButton.Background" Value="{DynamicResource CustomizationButtonPointerOverBackground}" />
                             </VisualState.Setters>
                         </VisualState>
+                        <VisualState Name="FocusedMouseOver">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadToggleButton.Background" Value="{DynamicResource CustomizationButtonPointerOverBackground}" />
+                            </VisualState.Setters>
+                        </VisualState>
                         <VisualState Name="Pressed">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadToggleButton.TextColor" Value="#996B7C27" />
+                                <Setter Property="telerik:RadToggleButton.BorderBrush" Value="#99849C31" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="FocusedPressed">
                             <VisualState.Setters>
                                 <Setter Property="telerik:RadToggleButton.TextColor" Value="#996B7C27" />
                                 <Setter Property="telerik:RadToggleButton.BorderBrush" Value="#99849C31" />
@@ -382,13 +467,31 @@
                                 <Setter Property="telerik:RadToggleButton.Background" Value="#849C31" />
                             </VisualState.Setters>
                         </VisualState>
+                        <VisualState Name="FocusedToggled">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadToggleButton.TextColor" Value="#FFFFFF" />
+                                <Setter Property="telerik:RadToggleButton.Background" Value="#849C31" />
+                            </VisualState.Setters>
+                        </VisualState>
                         <VisualState Name="ToggledMouseOver">
                             <VisualState.Setters>
                                 <Setter Property="telerik:RadToggleButton.TextColor" Value="#FFFFFF" />
                                 <Setter Property="telerik:RadToggleButton.Background" Value="#849C31" />
                             </VisualState.Setters>
                         </VisualState>
+                        <VisualState Name="FocusedToggledMouseOver">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadToggleButton.TextColor" Value="#FFFFFF" />
+                                <Setter Property="telerik:RadToggleButton.Background" Value="#849C31" />
+                            </VisualState.Setters>
+                        </VisualState>
                         <VisualState Name="ToggledPressed">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadToggleButton.TextColor" Value="#99FFFFFF" />
+                                <Setter Property="telerik:RadToggleButton.Background" Value="#849C31" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="FocusedToggledPressed">
                             <VisualState.Setters>
                                 <Setter Property="telerik:RadToggleButton.TextColor" Value="#99FFFFFF" />
                                 <Setter Property="telerik:RadToggleButton.Background" Value="#849C31" />
@@ -414,20 +517,63 @@
             <Setter Property="VisualStateManager.VisualStateGroups">
                 <VisualStateGroupList>
                     <VisualStateGroup Name="CommonStates">
-                        <VisualState Name="Normal" />
+                        <VisualState Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadToggleButton.Content" Value="&#xe801;" />
+                                <Setter Property="telerik:RadToggleButton.TextColor" Value="#3D609B" />
+                                <Setter Property="telerik:RadToggleButton.Background" Value="{DynamicResource CustomizationButtonBackground}" />
+                                <Setter Property="telerik:RadToggleButton.BorderBrush" Value="{DynamicResource CustomizationCircularButtonBackground}" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="Focused" >
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadToggleButton.Content" Value="&#xe801;" />
+                                <Setter Property="telerik:RadToggleButton.TextColor" Value="#3D609B" />
+                                <Setter Property="telerik:RadToggleButton.Background" Value="{DynamicResource CustomizationButtonBackground}" />
+                                <Setter Property="telerik:RadToggleButton.BorderBrush" Value="{DynamicResource CustomizationCircularButtonBackground}" />
+                            </VisualState.Setters>
+                        </VisualState>
                         <VisualState Name="MouseOver">
                             <VisualState.Setters>
+                                <Setter Property="telerik:RadToggleButton.Content" Value="&#xe801;" />
+                                <Setter Property="telerik:RadToggleButton.TextColor" Value="#3D609B" />
                                 <Setter Property="telerik:RadToggleButton.Background" Value="{DynamicResource CustomizationButtonPointerOverBackground}" />
+                                <Setter Property="telerik:RadToggleButton.BorderBrush" Value="{DynamicResource CustomizationCircularButtonBackground}" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="FocusedMouseOver">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadToggleButton.Content" Value="&#xe801;" />
+                                <Setter Property="telerik:RadToggleButton.TextColor" Value="#3D609B" />
+                                <Setter Property="telerik:RadToggleButton.Background" Value="{DynamicResource CustomizationButtonPointerOverBackground}" />
+                                <Setter Property="telerik:RadToggleButton.BorderBrush" Value="{DynamicResource CustomizationCircularButtonBackground}" />
                             </VisualState.Setters>
                         </VisualState>
                         <VisualState Name="Pressed">
                             <VisualState.Setters>
+                                <Setter Property="telerik:RadToggleButton.Content" Value="&#xe801;" />
                                 <Setter Property="telerik:RadToggleButton.TextColor" Value="#993D609B" />
+                                <Setter Property="telerik:RadToggleButton.Background" Value="{DynamicResource CustomizationButtonBackground}" />
+                                <Setter Property="telerik:RadToggleButton.BorderBrush" Value="#993D609B" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="FocusedPressed">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadToggleButton.Content" Value="&#xe801;" />
+                                <Setter Property="telerik:RadToggleButton.TextColor" Value="#993D609B" />
+                                <Setter Property="telerik:RadToggleButton.Background" Value="{DynamicResource CustomizationButtonBackground}" />
                                 <Setter Property="telerik:RadToggleButton.BorderBrush" Value="#993D609B" />
                             </VisualState.Setters>
                         </VisualState>
                         <VisualState Name="Disabled" />
                         <VisualState Name="Toggled">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadToggleButton.Content" Value="&#xe805;" />
+                                <Setter Property="telerik:RadToggleButton.TextColor" Value="#FFFFFF" />
+                                <Setter Property="telerik:RadToggleButton.Background" Value="{DynamicResource CustomizationCircularButtonBackground}" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="FocusedToggled">
                             <VisualState.Setters>
                                 <Setter Property="telerik:RadToggleButton.Content" Value="&#xe805;" />
                                 <Setter Property="telerik:RadToggleButton.TextColor" Value="#FFFFFF" />
@@ -441,7 +587,21 @@
                                 <Setter Property="telerik:RadToggleButton.Background" Value="#36568B" />
                             </VisualState.Setters>
                         </VisualState>
+                        <VisualState Name="FocusedToggledMouseOver">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadToggleButton.Content" Value="&#xe805;" />
+                                <Setter Property="telerik:RadToggleButton.TextColor" Value="#FFFFFF" />
+                                <Setter Property="telerik:RadToggleButton.Background" Value="#36568B" />
+                            </VisualState.Setters>
+                        </VisualState>
                         <VisualState Name="ToggledPressed">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadToggleButton.Content" Value="&#xe805;" />
+                                <Setter Property="telerik:RadToggleButton.TextColor" Value="#D9FFFFFF" />
+                                <Setter Property="telerik:RadToggleButton.Background" Value="#506FA5" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="FocusedToggledPressed">
                             <VisualState.Setters>
                                 <Setter Property="telerik:RadToggleButton.Content" Value="&#xe805;" />
                                 <Setter Property="telerik:RadToggleButton.TextColor" Value="#D9FFFFFF" />
@@ -457,7 +617,152 @@
                 </VisualStateGroupList>
             </Setter>
         </Style>
-
+        <Style x:Key="DropDownButton_FlatIndicatorStyle" TargetType="Label">
+            <Setter Property="TextColor" Value="{DynamicResource DefaultTextColor}" />
+            <Style.Triggers>
+                <DataTrigger TargetType="Label"
+                             Binding="{Binding IsOpen, Source={RelativeSource AncestorType={x:Type telerik:RadDropDownButton}}}"
+                             Value="True">
+                    <Setter Property="TextColor" Value="#FFFFFF" />
+                </DataTrigger>
+                <DataTrigger TargetType="Label"
+                             Binding="{Binding IsPressed, Source={RelativeSource AncestorType={x:Type telerik:RadDropDownButton}}}"
+                             Value="True">
+                    <Setter Property="TextColor" Value="{DynamicResource PlaceholderColor}" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="DropDownButton_FlatStyle" TargetType="telerik:RadDropDownButton" BasedOn="{StaticResource RadButtonBase_FlatStyle}">
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="TextColor" Value="{DynamicResource DefaultTextColor}" />
+            <Setter Property="DropDownIndicatorStyle" Value="{StaticResource DropDownButton_FlatIndicatorStyle}" />
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup Name="CommonStates">
+                        <VisualState Name="Normal" />
+                        <VisualState Name="Focused" />
+                        <VisualState Name="MouseOver">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadDropDownButton.Background" Value="#40B8B8B8" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="FocusedMouseOver">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadDropDownButton.Background" Value="#40B8B8B8" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="Pressed">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadDropDownButton.TextColor" Value="{DynamicResource PlaceholderColor}" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="FocusedPressed">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadDropDownButton.TextColor" Value="{DynamicResource PlaceholderColor}" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="Opened">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadDropDownButton.TextColor" Value="#FFFFFF" />
+                                <Setter Property="telerik:RadDropDownButton.Background" Value="#EC9E46" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="Disabled" />
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+        <Style x:Key="DropDownButton_RoundedIndicatorStyle" TargetType="Label">
+            <Setter Property="TextColor" Value="{DynamicResource CustomizationButtonTextColor}" />
+        </Style>
+        <Style x:Key="DropDownButton_RoundedStyle" TargetType="telerik:RadDropDownButton" BasedOn="{StaticResource RadButtonBase_RoundedStyle}">
+            <Setter Property="TextColor" Value="{DynamicResource CustomizationButtonTextColor}" />
+            <Setter Property="DropDownBorderColor" Value="{DynamicResource CustomizationButtonTextColor}" />
+            <Setter Property="DropDownIndicatorStyle" Value="{StaticResource DropDownButton_RoundedIndicatorStyle}" />
+            <Setter Property="DropDownBorderThickness" Value="1" />
+            <Setter Property="DropDownCornerRadius" Value="10" />
+            <Setter Property="DropDownHeight" Value="100" />
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup Name="CommonStates">
+                        <VisualState Name="Normal" />
+                        <VisualState Name="Focused" />
+                        <VisualState Name="MouseOver">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadDropDownButton.Background" Value="{DynamicResource CustomizationButtonPointerOverBackground}" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="FocusedMouseOver">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadDropDownButton.Background" Value="{DynamicResource CustomizationButtonPointerOverBackground}" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="Pressed">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadDropDownButton.TextColor" Value="#996B7C27" />
+                                <Setter Property="telerik:RadDropDownButton.BorderBrush" Value="#99849C31" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="FocusedPressed">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadDropDownButton.TextColor" Value="#996B7C27" />
+                                <Setter Property="telerik:RadDropDownButton.BorderBrush" Value="#99849C31" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="Opened">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadDropDownButton.TextColor" Value="{DynamicResource CustomizationButtonTextColor}" />
+                                <Setter Property="telerik:RadDropDownButton.BorderBrush" Value="{DynamicResource CustomizationButtonTextColor}" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="Disabled" />
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+        <Style x:Key="DropDownButton_CircularStyle" TargetType="telerik:RadDropDownButton" BasedOn="{StaticResource RadButtonBase_CircularStyle}">
+            <Setter Property="FontFamily" Value="TelerikFont" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Content" Value="&#xe81c;" />
+            <Setter Property="TextColor" Value="{DynamicResource CustomizationCircularButtonTextColor}" />
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup Name="CommonStates">
+                        <VisualState Name="Normal" />
+                        <VisualState Name="Focused" />
+                        <VisualState Name="MouseOver">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadDropDownButton.Background" Value="{DynamicResource CustomizationCircularButtonPointerOverBackgroundColor}" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="FocusedMouseOver">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadDropDownButton.Background" Value="{DynamicResource CustomizationCircularButtonPointerOverBackgroundColor}" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="Pressed">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadDropDownButton.TextColor" Value="#993D609B" />
+                                <Setter Property="telerik:RadDropDownButton.BorderBrush" Value="#993D609B" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="FocusedPressed">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadDropDownButton.TextColor" Value="#993D609B" />
+                                <Setter Property="telerik:RadDropDownButton.BorderBrush" Value="#993D609B" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="Opened">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadDropDownButton.TextColor" Value="#FFFFFF" />
+                                <Setter Property="telerik:RadDropDownButton.Background" Value="{DynamicResource CustomizationCircularButtonBackground}" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="Disabled" />
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
         <Style TargetType="telerik:RadWrapLayout">
             <Setter Property="Margin" Value="0, 0, 0, 16" />
             <Setter Property="HorizontalOptions" Value="Center" />
@@ -539,6 +844,37 @@
                     <telerik:RadToggleButton IsToggled="True"
                                              Style="{StaticResource ToggleButton_CircularStyle}"
                                              AutomationId="circularToggleButton" />
+                </telerik:RadWrapLayout>
+                <Label Text="DropDown Button" Style="{StaticResource TitleLabelStyle}" />
+                <telerik:RadWrapLayout>
+                    <telerik:RadDropDownButton Content="Save As"
+                                               Style="{StaticResource DropDownButton_FlatStyle}"
+                                               AutomationId="flatDropDownButton">
+                        <telerik:RadDropDownButton.DropDownContent>
+                            <telerik:RadCollectionView ItemsSource="{Binding SaveOperations}"
+                                                       DisplayMemberPath="Name"
+                                                       SelectionChanged="OnCollectionViewSelectionChanged" />
+                        </telerik:RadDropDownButton.DropDownContent>
+                    </telerik:RadDropDownButton>
+                    <telerik:RadDropDownButton x:Name="dropDownButton"
+                                               Content="Save As"
+                                               Style="{StaticResource DropDownButton_RoundedStyle}"
+                                               AutomationId="roundedDropDownButton">
+                        <telerik:RadDropDownButton.DropDownContent>
+                            <telerik:RadCollectionView ItemsSource="{Binding SaveOperations}"
+                                                       DisplayMemberPath="Name"
+                                                       SelectionChanged="OnCollectionViewSelectionChanged" />
+                        </telerik:RadDropDownButton.DropDownContent>
+                    </telerik:RadDropDownButton>
+                    <telerik:RadDropDownButton Style="{StaticResource DropDownButton_CircularStyle}"
+                                               IsDropDownIndicatorVisible="False"
+                                               AutomationId="circularDropDownButton">
+                        <telerik:RadDropDownButton.DropDownContent>
+                            <telerik:RadCollectionView ItemsSource="{Binding SaveOperations}"
+                                                       DisplayMemberPath="Name"
+                                                       SelectionChanged="OnCollectionViewSelectionChanged" />
+                        </telerik:RadDropDownButton.DropDownContent>
+                    </telerik:RadDropDownButton>
                 </telerik:RadWrapLayout>
             </VerticalStackLayout>
         </ScrollView>

@@ -203,49 +203,12 @@
                        Text="{telerik:Localize Scheduler_EditAppointmentDialog_Description}"
                        Style="{StaticResource SchedulerDialogLabelStyle}"
                        VerticalOptions="Start" />
-                <OnPlatform x:TypeArguments="View">
-                    <On Platform="MacCatalyst">
-                        <Grid Grid.Row="6"
-                              Grid.Column="1">
-                            <telerik:RadBorder BorderBrush="{DynamicResource EditorBorderBrush}"
-                                               BorderThickness="1"
-                                               Padding="1, 0"
-                                               CornerRadius="6">
-                                <Editor x:Name="descriptionEditor_MacCatalyst"
-                                        TextColor="{DynamicResource DefaultTextColor}"
-                                        PlaceholderColor="{DynamicResource RadSubtleColor}"
-                                        BackgroundColor="{DynamicResource EntryBackgroundColor}"
-                                        IsEnabled="{Binding IsReadOnly, Converter={StaticResource InvertedBooleanConverter}}"
-                                        Text="{Binding Description, Mode=TwoWay}"
-                                        HeightRequest="68" />
-                            </telerik:RadBorder>
-                            <Rectangle Stroke="{DynamicResource RadPrimaryColor}"
-                                       StrokeThickness="3"
-                                       RadiusX="6"
-                                       RadiusY="6"
-                                       IsVisible="{Binding IsFocused, Source={x:Reference descriptionEditor_MacCatalyst}}" />
-                        </Grid>
-                    </On>
-                    <On Platform="WinUI">
-                        <Grid Grid.Row="6"
-                              Grid.Column="1">
-                            <Editor x:Name="descriptionEditor_WinUI"
-                                    TextColor="{DynamicResource DefaultTextColor}"
-                                    PlaceholderColor="{DynamicResource RadSubtleColor}"
-                                    BackgroundColor="{DynamicResource EntryBackgroundColor}"
-                                    IsEnabled="{Binding IsReadOnly, Converter={StaticResource InvertedBooleanConverter}}"
-                                    Text="{Binding Description, Mode=TwoWay}"
-                                    HeightRequest="70" />
-                            <telerik:RadBorder BorderBrush="{DynamicResource EditorBorderBrush}"
-                                               BorderThickness="1"
-                                               CornerRadius="4" />
-                            <telerik:RadBorder BorderBrush="{DynamicResource RadPrimaryColor}"
-                                               BorderThickness="0, 0, 0, 2"
-                                               CornerRadius="4"
-                                               IsVisible="{Binding IsFocused, Source={x:Reference descriptionEditor_WinUI}}" />
-                        </Grid>
-                    </On>
-                </OnPlatform>
+                <telerik:RadEditor Grid.Row="6"
+                                   Grid.Column="1"
+                                   IsEnabled="{Binding IsReadOnly, Converter={StaticResource InvertedBooleanConverter}}"
+                                   Text="{Binding Description, Mode=TwoWay}"
+                                   HeightRequest="{OnPlatform MacCatalyst=68, WinUI=70}"
+                                   ReserveSpaceForErrorView="False" />
             </Grid>
             <Grid Grid.Row="3"
                   Padding="{OnPlatform Default=20, WinUI=16}"

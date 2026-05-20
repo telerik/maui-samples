@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.GaugeControl.FeaturesCategory.LabelFormatterExample.LabelFormatter">
+    <Grid>
+        <!-- >> gauge-label-formatter-xaml -->
+        <telerik:RadRadialGauge>
+            <telerik:RadRadialGauge.Axis>
+                <telerik:GaugeLinearAxis x:Name="axis" 
+                                         Maximum="90" 
+                                         TickLength="0"
+                                         LabelOffset="{OnPlatform Android=0, iOS=0}"
+                                         Minimum="0"
+                                         Step="30" />
+            </telerik:RadRadialGauge.Axis>
+            <telerik:RadRadialGauge.Ranges>
+                <telerik:GaugeRangesDefinition>
+                    <telerik:GaugeRange Color="Green"
+                                        From="0"
+                                        To="50" />
+                    <telerik:GaugeGradientRange From="50" To="90">
+                        <telerik:RadGradientStop Offset="60" Color="Yellow" />
+                        <telerik:RadGradientStop Offset="90" Color="Red" />
+                    </telerik:GaugeGradientRange>
+                </telerik:GaugeRangesDefinition>
+            </telerik:RadRadialGauge.Ranges>
+            <telerik:RadRadialGauge.Indicators>
+                <telerik:GaugeNeedleIndicator Offset="30" Value="60" />
+                <telerik:GaugeShapeIndicator Value="65" />
+            </telerik:RadRadialGauge.Indicators>
+        </telerik:RadRadialGauge>
+        <!-- << gauge-label-formatter-xaml -->
+    </Grid>
+</ContentView>

@@ -44,6 +44,11 @@ public static class TestingExtensions
                 instance.TestCommandTcpPort = cmdLinePort;
             }
 
+#if WINDOWS
+            WebView2CaptureHandler.Register(instance);
+            CaptureWindowHandler.Register(instance);
+#endif
+
 #if !ANDROID && !IOS
             BootUpCommandServer(instance);
 #endif
@@ -236,6 +241,8 @@ public static class TestingExtensions
         // For reference see: https://github.com/dotnet/maui/blob/main/src/Core/src/Platform/Android/SemanticExtensions.cs#L26
         Microsoft.Maui.Handlers.EntryHandler.Mapper.ModifyMapping(nameof(IView.Semantics), (h, v, m) => { });
         Microsoft.Maui.Handlers.EntryHandler.Mapper.ModifyMapping(nameof(IView.AutomationId), (h, v, m) => SetEditTextContentDescription(h, v));
+        Microsoft.Maui.Handlers.EditorHandler.Mapper.ModifyMapping(nameof(IView.Semantics), (h, v, m) => { });
+        Microsoft.Maui.Handlers.EditorHandler.Mapper.ModifyMapping(nameof(IView.AutomationId), (h, v, m) => SetEditorContentDescription(h, v));
 #endif
 #endif
     }
@@ -263,6 +270,19 @@ public static class TestingExtensions
 
 #if __ANDROID__
     private static void SetEditTextContentDescription(Microsoft.Maui.Handlers.IEntryHandler handler, IView view)
+    {
+        var automationId = view.AutomationId;
+        if (!string.IsNullOrEmpty(automationId))
+        {
+            var platformView = handler.PlatformView;
+            if (platformView != null)
+            {
+                platformView.ContentDescription = automationId;
+            }
+        }
+    }
+
+    private static void SetEditorContentDescription(Microsoft.Maui.Handlers.IEditorHandler handler, IView view)
     {
         var automationId = view.AutomationId;
         if (!string.IsNullOrEmpty(automationId))

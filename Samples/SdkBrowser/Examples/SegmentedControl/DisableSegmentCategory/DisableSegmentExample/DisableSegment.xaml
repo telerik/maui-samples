@@ -3,11 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
              x:Class="SDKBrowserMaui.Examples.SegmentedControl.DisableSegmentCategory.DisableSegmentExample.DisableSegment">
-    <VerticalStackLayout>
-        <!--  >> segmentcontrol-disablesegment-xaml  -->
+    <VerticalStackLayout BackgroundColor="{OnPlatform WinUI=#FFFFFF}"
+                         Padding="{OnPlatform WinUI=10}"
+                         Spacing="10"
+                         VerticalOptions="Start">
+        <!-- >> segmentcontrol-disablesegment-xaml -->
         <telerik:RadSegmentedControl x:Name="segmentControl"
-                                     DisabledSegmentTextColor="#808660C5"
-                                     HeightRequest="60"
                                      VerticalOptions="Start">
             <telerik:RadSegmentedControl.ItemsSource>
                 <x:Array Type="{x:Type x:String}">
@@ -18,6 +19,6 @@
                 </x:Array>
             </telerik:RadSegmentedControl.ItemsSource>
         </telerik:RadSegmentedControl>
-        <!--  << segmentcontrol-disablesegment-xaml  -->
+        <!-- << segmentcontrol-disablesegment-xaml -->
     </VerticalStackLayout>
 </ContentView>

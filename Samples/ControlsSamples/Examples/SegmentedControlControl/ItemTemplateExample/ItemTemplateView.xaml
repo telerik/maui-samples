@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        x:Class="QSF.Examples.SegmentedControlControl.ItemTemplateExample.ItemTemplateView"
+                        Padding="{OnIdiom Default='16, 20', Phone=0}">
+    <telerik:RadContentView.Resources>
+        <ResourceDictionary>
+            <Style TargetType="VerticalStackLayout">
+                <Setter Property="Margin" Value="10, 0, 10, 0" />
+                <Setter Property="Spacing" Value="10" />
+            </Style>
+            <Style TargetType="Label" x:Key="DescriptionLabelStyle" BasedOn="{StaticResource BaseLabelStyle}">
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="Margin" Value="0, 4, 0, 0" />
+            </Style>
+        </ResourceDictionary>
+    </telerik:RadContentView.Resources>
+    <VerticalStackLayout>
+        <VerticalStackLayout IsVisible="{OnPlatform Android='False', iOS='False'}">
+            <Label Text="Icons"
+                   Style="{StaticResource DescriptionLabelStyle}" />
+            <telerik:RadSegmentedControl ItemsSource="{Binding IconItems}">
+                <telerik:RadSegmentedControl.ItemTemplate>
+                    <DataTemplate>
+                        <Label FontFamily="{Binding ImageSource.FontFamily}"
+                               Text="{Binding ImageSource.Glyph}"
+                               TextColor="{Binding Source={RelativeSource AncestorType={x:Type telerik:RadSegmentedControlItemView}}, Path=ActualTextColor}"
+                               VerticalTextAlignment="Center"
+                               HorizontalTextAlignment="Center"
+                               FontSize="24" />
+                    </DataTemplate>
+                </telerik:RadSegmentedControl.ItemTemplate>
+            </telerik:RadSegmentedControl>
+        </VerticalStackLayout>
+        <VerticalStackLayout>
+            <Label Text="Text" 
+                   Style="{StaticResource DescriptionLabelStyle}" />
+            <telerik:RadSegmentedControl ItemsSource="{Binding TextItems}" 
+                                         DisplayMemberPath="Text" />
+        </VerticalStackLayout>
+        <VerticalStackLayout>
+            <Label Text="Icons and Text" 
+                   Style="{StaticResource DescriptionLabelStyle}" />
+            <telerik:RadSegmentedControl ItemsSource="{Binding IconAndTextItems}">
+                <telerik:RadSegmentedControl.ItemTemplate>
+                    <DataTemplate>
+                        <HorizontalStackLayout HorizontalOptions="Center"
+                                               Spacing="8">
+                            <Label FontFamily="{Binding ImageSource.FontFamily}"
+                                   Text="{Binding ImageSource.Glyph}"
+                                   TextColor="{Binding Source={RelativeSource AncestorType={x:Type telerik:RadSegmentedControlItemView}}, Path=ActualTextColor}"
+                                   FontSize="24"
+                                   VerticalTextAlignment="Center"
+                                   HorizontalTextAlignment="Center"
+                                   Margin="0, 0, 4, 0" />
+                            <Label Text="{Binding Text}"
+                                   TextColor="{Binding Source={RelativeSource AncestorType={x:Type telerik:RadSegmentedControlItemView}}, Path=ActualTextColor}"
+                                   VerticalOptions="Center" />
+                        </HorizontalStackLayout>
+                    </DataTemplate>
+                </telerik:RadSegmentedControl.ItemTemplate>
+            </telerik:RadSegmentedControl>
+        </VerticalStackLayout>
+        <VerticalStackLayout>
+            <Label Text="Images" 
+                   Style="{StaticResource DescriptionLabelStyle}" />
+            <telerik:RadSegmentedControl ItemsSource="{Binding ImageItems}">
+                <telerik:RadSegmentedControl.ItemTemplate>
+                    <DataTemplate>
+                        <HorizontalStackLayout HorizontalOptions="Center">
+                            <Image Source="{Binding ImageSource}"
+                                   WidthRequest="24"
+                                   HeightRequest="24"
+                                   Margin="0, 0, 4, 0"
+                                   Aspect="Center" />
+                        </HorizontalStackLayout>
+                    </DataTemplate>
+                </telerik:RadSegmentedControl.ItemTemplate>
+            </telerik:RadSegmentedControl>
+        </VerticalStackLayout>
+        <VerticalStackLayout>
+            <Label Text="Images and Text" 
+                   Style="{StaticResource DescriptionLabelStyle}" />
+            <telerik:RadSegmentedControl ItemsSource="{Binding ImageAndTextItems}">
+                <telerik:RadSegmentedControl.ItemTemplate>
+                    <DataTemplate>
+                        <HorizontalStackLayout HorizontalOptions="Center" 
+                                               VerticalOptions="Center"
+                                               Spacing="8">
+                            <Image Source="{Binding ImageSource}"
+                                   WidthRequest="24"
+                                   HeightRequest="24"
+                                   Margin="0, 0, 4, 0"
+                                   Aspect="Center" />
+                            <Label Text="{Binding Text}" 
+                                   TextColor="{Binding Source={RelativeSource AncestorType={x:Type telerik:RadSegmentedControlItemView}}, Path=ActualTextColor}"
+                                   VerticalOptions="Center" />
+                        </HorizontalStackLayout>
+                    </DataTemplate>
+                </telerik:RadSegmentedControl.ItemTemplate>
+            </telerik:RadSegmentedControl>
+        </VerticalStackLayout>
+    </VerticalStackLayout>
+</telerik:RadContentView>

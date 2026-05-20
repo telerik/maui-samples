@@ -3,23 +3,50 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
              x:Class="SDKBrowserMaui.Examples.SegmentedControl.SelectionCategory.SelectionExample.Selection">
-    <VerticalStackLayout>
-        <!--  >> segmentcontrol-selection-xaml  -->
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Style TargetType="VerticalStackLayout">
+                <Setter Property="Spacing" Value="10" />
+                <Setter Property="VerticalOptions" Value="Start" />
+            </Style>
+            <Style TargetType="HorizontalStackLayout">
+                <Setter Property="Spacing" Value="10" />
+            </Style>
+            <Style TargetType="Label">
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <VerticalStackLayout BackgroundColor="{OnPlatform WinUI=#FFFFFF}"
+                         Padding="{OnPlatform WinUI=10}">
+        <!-- >> segmentcontrol-selection-xaml -->
         <telerik:RadSegmentedControl x:Name="segmentControl"
                                      ItemsSource="{Binding Categories}"
                                      SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
-                                     SelectionChanged="SelectionChanged"
-                                     HeightRequest="60"
-                                     VerticalOptions="Start" />
-        <!--  << segmentcontrol-selection-xaml  -->
-        <HorizontalStackLayout Padding="20">
-            <Label Text="Selected Item:"
-                   Margin="0,0,5,0" />
+                                     SelectionChanged="OnSelectionChanged"
+                                     SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}"
+                                     SelectionMode="SingleDeselect" />
+        <!-- << segmentcontrol-selection-xaml -->
+        <HorizontalStackLayout>
+            <Label Text="Selected Index: " />
+            <Label Text="{Binding SelectedIndex, Source={x:Reference segmentControl}}" />
+        </HorizontalStackLayout>
+        <HorizontalStackLayout>
+            <Label Text="Selected Item:" />
             <Label Text="{Binding SelectedItem, Source={x:Reference segmentControl}}" />
         </HorizontalStackLayout>
-        <Label Text="SelectionChanged raised."
-               Padding="20, 20, 0, 0" />
-        <Label x:Name="selectionItemLabel"
-               Padding="20,0,0,0" />
+        <HorizontalStackLayout>
+            <Label Text="Selection Mode: " />
+            <telerik:RadComboBox SelectedItem="{Binding SelectionMode, Source={x:Reference segmentControl}}">
+                <telerik:RadComboBox.ItemsSource>
+                    <x:Array Type="{x:Type telerik:SegmentedControlSelectionMode}">
+                        <telerik:SegmentedControlSelectionMode>None</telerik:SegmentedControlSelectionMode>
+                        <telerik:SegmentedControlSelectionMode>Single</telerik:SegmentedControlSelectionMode>
+                        <telerik:SegmentedControlSelectionMode>SingleDeselect</telerik:SegmentedControlSelectionMode>
+                    </x:Array>
+                </telerik:RadComboBox.ItemsSource>
+            </telerik:RadComboBox>
+        </HorizontalStackLayout>
+        <Label x:Name="selectionItemLabel" />
     </VerticalStackLayout>
 </ContentView>
