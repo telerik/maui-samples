@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        xmlns:views="using:TelerikCRM.Maui.Views"
+                        xmlns:vm="using:TelerikCRM.Maui.ViewModels"
+                        x:Class="TelerikCRM.Maui.Views.EmployeeDetailViewHeader">
+    <telerik:RadContentView.Resources>
+        <Style x:Key="InfoLabelStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="{OnPlatform Default=12, Android=14, iOS=14}" />
+            <Setter Property="TextColor" Value="{DynamicResource RadOnAppSurfaceColorAlpha60}" />
+            <Setter Property="HorizontalOptions" Value="{OnPlatform Default=Start, Android=Center, iOS=Center}" />
+        </Style>
+
+        <ControlTemplate x:Key="EmployeeDetailViewHeaderTemplate_Desktop">
+            <telerik:RadBorder BorderThickness="0, 0, 0, 1"
+                               BorderBrush="{DynamicResource RadBaseSubtleColor}"
+                               Background="{DynamicResource RadSurfaceColor}">
+                <Grid ColumnDefinitions="Auto, Auto, *, Auto, *, Auto, *, Auto, *, Auto, *, Auto"
+                      ColumnSpacing="12"
+                      Background="{DynamicResource RadSurfaceColor}"
+                      Padding="{DynamicResource NestedViewContentPadding_Desktop}">
+                    <!-- Photo + Name -->
+                    <telerik:RadBorder WidthRequest="48"
+                                       HeightRequest="48"
+                                       CornerRadius="24"
+                                       VerticalOptions="Center">
+                        <Image Source="{Binding SelectedEmployee.PhotoImageSource, TargetNullValue='profile_photo.png', FallbackValue='profile_photo.png'}"
+                               Aspect="AspectFill" />
+                    </telerik:RadBorder>
+                    <VerticalStackLayout Grid.Column="1"
+                                         VerticalOptions="Center">
+                        <Label Text="{Binding SelectedEmployee.Name}"
+                               FontSize="16"
+                               FontAttributes="Bold" />
+                        <Label Text="{Binding SelectedEmployee.OfficeLocation}"
+                               Style="{DynamicResource InfoLabelStyle}" />
+                    </VerticalStackLayout>
+                    <!-- Separator -->
+                    <Rectangle Grid.Column="2"
+                               WidthRequest="1"
+                               Fill="{DynamicResource RadBaseSubtleColor}"
+                               VerticalOptions="Fill"
+                               HorizontalOptions="Center"
+                               Margin="0, 8" />
+                    <!-- Hire Date -->
+                    <VerticalStackLayout Grid.Column="3"
+                                         VerticalOptions="Center">
+                        <Label Text="Hire Date"
+                               Style="{DynamicResource InfoLabelStyle}" />
+                        <Label Text="{Binding SelectedEmployee.HireDate, StringFormat='{0:dd/MM/yyyy}'}" />
+                    </VerticalStackLayout>
+                    <!-- Separator -->
+                    <Rectangle Grid.Column="4"
+                               WidthRequest="1"
+                               Fill="{DynamicResource RadBaseSubtleColor}"
+                               VerticalOptions="Fill"
+                               HorizontalOptions="Center"
+                               Margin="0, 8" />
+                    <!-- Salary -->
+                    <VerticalStackLayout Grid.Column="5"
+                                         VerticalOptions="Center">
+                        <Label Text="Salary"
+                               Style="{DynamicResource InfoLabelStyle}" />
+                        <Label Text="{Binding SelectedEmployee.Salary, StringFormat='{0:C0}'}" />
+                    </VerticalStackLayout>
+                    <!-- Separator -->
+                    <Rectangle Grid.Column="6"
+                               WidthRequest="1"
+                               Fill="{DynamicResource RadBaseSubtleColor}"
+                               VerticalOptions="Fill"
+                               HorizontalOptions="Center"
+                               Margin="0, 8" />
+                    <!-- Absence Time -->
+                    <VerticalStackLayout Grid.Column="7"
+                                         VerticalOptions="Center">
+                        <Label Text="Absence Time"
+                               Style="{DynamicResource InfoLabelStyle}" />
+                        <HorizontalStackLayout>
+                            <Label Text="{Binding SelectedEmployee.VacationUsed}" />
+                            <Label Text="{Binding SelectedEmployee.VacationBalance, StringFormat='/{0} days'}" />
+                        </HorizontalStackLayout>
+                    </VerticalStackLayout>
+                    <!-- Separator -->
+                    <Rectangle Grid.Column="8"
+                               WidthRequest="1"
+                               Fill="{DynamicResource RadBaseSubtleColor}"
+                               VerticalOptions="Fill"
+                               HorizontalOptions="Center"
+                               Margin="0, 8" />
+                    <!-- Notes -->
+                    <VerticalStackLayout Grid.Column="9"
+                                         VerticalOptions="Center"
+                                         MaximumWidthRequest="200">
+                        <Label Text="Notes"
+                               Style="{DynamicResource InfoLabelStyle}" />
+                        <Label Text="{Binding SelectedEmployee.Notes}"
+                               MaxLines="2"
+                               LineBreakMode="TailTruncation" />
+                    </VerticalStackLayout>
+                    <!-- Separator -->
+                    <Rectangle Grid.Column="10"
+                               WidthRequest="1"
+                               Fill="{DynamicResource RadBaseSubtleColor}"
+                               VerticalOptions="Fill"
+                               HorizontalOptions="Center"
+                               Margin="0, 8" />
+                    <!-- Toolbar -->
+                    <HorizontalStackLayout Grid.Column="11"
+                                           Spacing="4"
+                                           VerticalOptions="Center">
+                        <telerik:RadTemplatedButton Style="{DynamicResource FlatButtonStyle}"
+                                                    Content="&#xe833;"
+                                                    FontFamily="TelerikFontExamples"
+                                                    FontSize="16"
+                                                    Command="{Binding ToolbarCommand}"
+                                                    CommandParameter="order" />
+                        <telerik:RadTemplatedButton Style="{DynamicResource FlatButtonStyle}"
+                                                    Content="&#xe818;"
+                                                    FontFamily="TelerikFontExamples"
+                                                    FontSize="16"
+                                                    Command="{Binding ToolbarCommand}"
+                                                    CommandParameter="edit" />
+                    </HorizontalStackLayout>
+                </Grid>
+            </telerik:RadBorder>
+        </ControlTemplate>
+
+        <ControlTemplate x:Key="EmployeeDetailViewHeaderTemplate_Mobile">
+            <telerik:RadBorder Background="{DynamicResource RadSurfaceColor}"
+                               CornerRadius="8"
+                               Padding="4, 8">
+                <Grid RowDefinitions="Auto, Auto"
+                      RowSpacing="16">
+                    <VerticalStackLayout HorizontalOptions="Center">
+                        <telerik:RadBorder WidthRequest="72"
+                                           HeightRequest="72"
+                                           CornerRadius="36"
+                                           HorizontalOptions="Center"
+                                           Margin="0, 8">
+                            <Image Source="{Binding SelectedEmployee.PhotoImageSource, TargetNullValue='profile_photo.png', FallbackValue='profile_photo.png'}"
+                                   Aspect="AspectFill" />
+                        </telerik:RadBorder>
+                        <Label Text="{Binding SelectedEmployee.Name}"
+                               FontSize="18"
+                               FontAttributes="Bold"
+                               HorizontalTextAlignment="Center" />
+                        <Label Text="{Binding SelectedEmployee.OfficeLocation}"
+                               Style="{DynamicResource InfoLabelStyle}"
+                               HorizontalTextAlignment="Center" />
+                    </VerticalStackLayout>
+                    <Grid Grid.Row="1"
+                          RowDefinitions="Auto, Auto, Auto, Auto"
+                          ColumnDefinitions="Auto, *">
+                        <!-- office location -->
+                        <Label Text="Office Location"
+                               Style="{DynamicResource InfoLabelStyle}"
+                               HorizontalOptions="Start"
+                               Margin="8, 16" />
+                        <Label Grid.Column="1"
+                               Text="{Binding SelectedEmployee.OfficeLocation}"
+                               HorizontalOptions="End"
+                               Margin="0, 16, 8, 16" />
+                        <Rectangle Grid.ColumnSpan="2"
+                                   HeightRequest="1"
+                                   StrokeThickness="0"
+                                   Fill="{DynamicResource RadBaseSubtleColor}"
+                                   VerticalOptions="End" />
+                        <!-- hire date -->
+                        <Label Grid.Row="1"
+                               Text="Hire Date"
+                               Style="{DynamicResource InfoLabelStyle}"
+                               HorizontalOptions="Start"
+                               VerticalOptions="Center"
+                               Margin="8, 16" />
+                        <Label Grid.Row="1"
+                               Grid.Column="1"
+                               Text="{Binding SelectedEmployee.HireDate, StringFormat='{0:dd/MM/yyyy}'}"
+                               HorizontalOptions="End"
+                               Margin="0, 16, 8, 16" />
+                        <Rectangle Grid.Row="1"
+                                   Grid.ColumnSpan="2"
+                                   HeightRequest="1"
+                                   StrokeThickness="0"
+                                   Fill="{DynamicResource RadBaseSubtleColor}"
+                                   VerticalOptions="End" />
+                        <!-- salary -->
+                        <Label Grid.Row="2"
+                               Text="Salary"
+                               Style="{DynamicResource InfoLabelStyle}"
+                               HorizontalOptions="Start"
+                               VerticalOptions="Center"
+                               Margin="8, 16" />
+                        <Label Grid.Row="2"
+                               Grid.Column="1"
+                               Text="{Binding SelectedEmployee.Salary, StringFormat='{0:C0}'}"
+                               HorizontalOptions="End"
+                               Margin="0, 16, 8, 16" />
+                        <Rectangle Grid.Row="2"
+                                   Grid.ColumnSpan="2"
+                                   HeightRequest="1"
+                                   StrokeThickness="0"
+                                   Fill="{DynamicResource RadBaseSubtleColor}"
+                                   VerticalOptions="End" />
+                        <!-- time off balance -->
+                        <Label Grid.Row="3"
+                               Text="Absence Time"
+                               Style="{DynamicResource InfoLabelStyle}"
+                               HorizontalOptions="Start"
+                               VerticalOptions="Center"
+                               Margin="8, 16" />
+                        <HorizontalStackLayout Grid.Row="3"
+                                               Grid.Column="1"
+                                               HorizontalOptions="End"
+                                               Margin="0, 16, 8, 16">
+                            <Label Text="{Binding SelectedEmployee.VacationUsed}" />
+                            <Label Text="{Binding SelectedEmployee.VacationBalance, StringFormat='/{0} days'}" />
+                        </HorizontalStackLayout>
+                    </Grid>
+                </Grid>
+            </telerik:RadBorder>
+        </ControlTemplate>
+    </telerik:RadContentView.Resources>
+
+    <telerik:RadContentView.ControlTemplate>
+        <OnPlatform x:TypeArguments="ControlTemplate">
+            <On Platform="Default, WinUI, MacCatalyst" Value="{StaticResource EmployeeDetailViewHeaderTemplate_Desktop}" />
+            <On Platform="Android, iOS" Value="{StaticResource EmployeeDetailViewHeaderTemplate_Mobile}" />
+        </OnPlatform>
+    </telerik:RadContentView.ControlTemplate>
+</telerik:RadContentView>

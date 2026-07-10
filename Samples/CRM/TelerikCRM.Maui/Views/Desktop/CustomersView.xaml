@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:BaseContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                       xmlns:views="using:TelerikCRM.Maui.Views"
+                       xmlns:vm="using:TelerikCRM.Maui.ViewModels"
+                       xmlns:models="using:TelerikCRM.Maui.Models.DataService"
+                       x:Class="TelerikCRM.Maui.Views.Desktop.CustomersView"
+                       ControlTemplate="{StaticResource TopLevelContentViewDesktopTemplate}"
+                       Padding="{DynamicResource TopLevelViewPadding_Desktop}">
+    <Grid RowDefinitions="Auto, *"
+          RowSpacing="16">
+        <Grid ColumnDefinitions="*, Auto">
+            <Label Text="Customers"
+                   Style="{DynamicResource NavigationViewItemTitleStyle}" />
+            <telerik:RadTemplatedButton x:Name="createNewButton"
+                                        Grid.Column="1"
+                                        Style="{DynamicResource FlatButtonStyle}"
+                                        BindingContext="{Binding DetailViewModel}"
+                                        Command="{Binding CreateNewCommand}"
+                                        VerticalOptions="Center">
+                <HorizontalStackLayout Spacing="4">
+                    <Label Text="&#xe813;"
+                           TextColor="{Binding TextColor, Source={x:Reference createNewButton}}"
+                           FontFamily="TelerikFontExamples"
+                           FontSize="16"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center" />
+                    <Label Text="Create New"
+                           VerticalTextAlignment="Center"
+                           LineBreakMode="TailTruncation" />
+                </HorizontalStackLayout>
+            </telerik:RadTemplatedButton>
+        </Grid>
+        <telerik:RadBorder Grid.Row="1"
+                           Style="{DynamicResource NavigationViewItemElevatedBorderStyle}">
+            <Grid x:DataType="vm:CustomersViewModel"
+                  ColumnDefinitions="230, *"
+                  ColumnSpacing="16">
+                <telerik:RadBorder CornerRadius="8">
+                    <telerik:RadCollectionView x:Name="collectionView"
+                                               ItemsSource="{Binding Customers}"
+                                               ItemTapCommand="{Binding ItemTapCommand}"
+                                               SelectedItem="{Binding SelectedCustomer}">
+                        <telerik:RadCollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="models:Customer">
+                                <Grid ColumnDefinitions="Auto, *"
+                                      ColumnSpacing="8"
+                                      Padding="8, 4">
+                                    <telerik:RadBorder Background="{DynamicResource RadSurfaceColor}"
+                                                       WidthRequest="32"
+                                                       HeightRequest="32"
+                                                       CornerRadius="16">
+                                        <Label Text="{Binding Name, Converter={StaticResource NameToInitialsConverter}}"
+                                               TextColor="{DynamicResource RadOnAppSurfaceColorAlpha60}"
+                                               HorizontalTextAlignment="Center"
+                                               VerticalTextAlignment="Center" />
+                                    </telerik:RadBorder>
+                                    <Label Grid.Column="1"
+                                           Text="{Binding Name}"
+                                           VerticalTextAlignment="Center" />
+                                </Grid>
+                            </DataTemplate>
+                        </telerik:RadCollectionView.ItemTemplate>
+                    </telerik:RadCollectionView>
+                </telerik:RadBorder>
+
+                <telerik:RadBorder Grid.Column="1"
+                                   Style="{DynamicResource NavigationViewItemNestedBorderStyle}"
+                                   Margin="{DynamicResource NestedViewMargin_Desktop_Bottom}">
+                    <views:CustomerDetailView BindingContext="{Binding DetailViewModel}" />
+                </telerik:RadBorder>
+
+                <telerik:RadBusyIndicator Grid.ColumnSpan="2"
+                                          IsVisible="{Binding IsBusy}"
+                                          IsBusy="{Binding IsBusy}"
+                                          Style="{StaticResource TransparentBusyIndicatorStyle}" />
+            </Grid>
+        </telerik:RadBorder>
+    </Grid>
+</views:BaseContentView>

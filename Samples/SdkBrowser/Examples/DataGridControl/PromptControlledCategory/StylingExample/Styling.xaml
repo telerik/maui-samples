@@ -106,15 +106,22 @@
                             <Setter Property="VisualStateManager.VisualStateGroups">
                                 <VisualStateGroupList>
                                     <VisualStateGroup Name="CommonStates">
-                                        <VisualState Name="Normal">
+                                        <VisualState Name="Normal" />
+                                        <VisualState Name="MouseOver">
                                             <VisualState.Setters>
-                                                <Setter Property="Background" Value="#00897B" />
+                                                <Setter Property="Background" Value="#CC00897B" />
                                                 <Setter Property="TextColor" Value="#FFFFFF" />
                                             </VisualState.Setters>
                                         </VisualState>
                                         <VisualState Name="Focused">
                                             <VisualState.Setters>
                                                 <Setter Property="Background" Value="#00897B" />
+                                                <Setter Property="TextColor" Value="#FFFFFF" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                        <VisualState Name="FocusedMouseOver">
+                                            <VisualState.Setters>
+                                                <Setter Property="Background" Value="#CC00897B" />
                                                 <Setter Property="TextColor" Value="#FFFFFF" />
                                             </VisualState.Setters>
                                         </VisualState>

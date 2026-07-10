@@ -1,0 +1,356 @@
+﻿<?xml version = "1.0" encoding = "UTF-8" ?>
+<Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="using:TelerikCRM.Maui"
+             xmlns:dataModels="using:TelerikCRM.Maui.Models.DataService"
+             xmlns:common="using:TelerikCRM.Maui.Common"
+             xmlns:navModels="clr-namespace:TelerikCRM.Maui.Models"
+             xmlns:converters="using:TelerikCRM.Maui.Converters"
+             xmlns:vm="clr-namespace:TelerikCRM.Maui.ViewModels"
+             xmlns:selectors="clr-namespace:TelerikCRM.Maui.Selectors"
+             xmlns:views="clr-namespace:TelerikCRM.Maui.Views"
+             x:Class="TelerikCRM.Maui.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <local:TelerikThemeResources Theme="PlatformLight" />
+                <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
+                <ResourceDictionary Source="Resources/Styles/Offsets.xaml" />
+                <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <Style x:Key="SearchViewGroupStyle" TargetType="telerik:RadCollectionViewGroupView">
+                <Setter Property="BorderColor" Value="{DynamicResource RadBorderColor}" />
+                <Setter Property="BorderThickness" Value="{OnPlatform Default=0, Android='0, 0, 0, 1', iOS='0, 0, 0, 1'}" />
+                <Setter Property="ExpandCollapseIndicatorStyle">
+                    <Setter.Value>
+                        <Style TargetType="Label">
+                            <Setter Property="IsVisible" Value="False" />
+                        </Style>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <DataTemplate x:Key="NoSearchResultsTemplate">
+                <Label Text="{Binding NoResultsMessage}"
+                       FontSize="{OnPlatform Default=14, Android=16, iOS=17}"
+                       FontAttributes="Bold"
+                       MinimumHeightRequest="{OnPlatform Android=48, iOS=44, MacCatalyst=24, WinUI=40}"
+                       Margin="{OnPlatform Default=0, MacCatalyst='8, 0', WinUI='8, 0'}"
+                       VerticalOptions="Start"
+                       VerticalTextAlignment="Center" />
+            </DataTemplate>
+            <DataTemplate x:Key="EmployeeItemTemplateDesktop">
+                <Label Text="{Binding Name}"
+                       Margin="16, 0"
+                       VerticalTextAlignment="Center" />
+            </DataTemplate>
+            <DataTemplate x:Key="CustomerItemTemplateDesktop">
+                <Label Text="{Binding Name}"
+                       Margin="16, 0"
+                       VerticalTextAlignment="Center" />
+            </DataTemplate>
+            <DataTemplate x:Key="ProductItemTemplateDesktop">
+                <Label Text="{Binding Title}"
+                       Margin="16, 0"
+                       VerticalTextAlignment="Center" />
+            </DataTemplate>
+            <selectors:SearchResultItemTemplateSelector x:Key="SearchResultItemTemplateSelectorDesktop"
+                                                        EmployeeTemplate="{StaticResource EmployeeItemTemplateDesktop}"
+                                                        CustomerTemplate="{StaticResource CustomerItemTemplateDesktop}"
+                                                        ProductTemplate="{StaticResource ProductItemTemplateDesktop}" />
+            <DataTemplate x:Key="SearchResultGroupHeaderTemplateDesktop">
+                <Label FontAttributes="Bold"
+                       Text="{Binding Key}"
+                       TextColor="{DynamicResource RadOnAppSurfaceColor}"
+                       HorizontalTextAlignment="Start"
+                       VerticalTextAlignment="Center"
+                       Margin="8, 0" />
+            </DataTemplate>
+            <ControlTemplate x:Key="TopLevelContentViewDesktopTemplate">
+                <Grid RowDefinitions="Auto, *"
+                      RowSpacing="16">
+                    <Grid.BindingContext>
+                        <vm:SearchViewModel />
+                    </Grid.BindingContext>
+                    <Grid ColumnDefinitions="Auto, Auto"
+                          ColumnSpacing="8"
+                          HorizontalOptions="End">
+                          <telerik:RadEntry Text="{Binding SearchText, Mode=TwoWay}"
+                                            Placeholder="Search"
+                                            ReserveSpaceForErrorView="False"
+                                            WidthRequest="200"
+                                            VerticalOptions="Center">
+                            <telerik:RadPopup.Popup>
+                                <telerik:RadPopup IsOpen="{Binding IsSeachOpen}"
+                                                  VerticalOffset="{OnPlatform Default=4, MacCatalyst=6}">
+                                    <telerik:RadBorder BackgroundColor="{DynamicResource RadAppSurfaceColor}"
+                                                       BorderColor="{DynamicResource RadBorderColor}"
+                                                       BorderThickness="1"
+                                                       CornerRadius="8"
+                                                       Shadow="{StaticResource PopupShadow}"
+                                                       Padding="6"
+                                                       WidthRequest="200"
+                                                       MaximumHeightRequest="{OnPlatform Default=200, MacCatalyst=154}">
+                                        <telerik:RadCollectionView ItemsSource="{Binding SearchResults}"
+                                                                   ItemTemplate="{StaticResource SearchResultItemTemplateSelectorDesktop}"
+                                                                   SelectedItem="{Binding SelectedSearchResult, Mode=TwoWay}"
+                                                                   GroupViewStyle="{StaticResource SearchViewGroupStyle}"
+                                                                   GroupHeaderTemplate="{StaticResource SearchResultGroupHeaderTemplateDesktop}"
+                                                                   EmptyContentDisplayMode="ItemsSourceNullOrEmpty"
+                                                                   EmptyContentTemplate="{StaticResource NoSearchResultsTemplate}">
+                                           <telerik:RadCollectionView.GroupDescriptors>
+                                               <telerik:DelegateGroupDescriptor>
+                                                   <telerik:DelegateGroupDescriptor.KeyLookup>
+                                                       <common:SearchGroupKeyLookup />
+                                                   </telerik:DelegateGroupDescriptor.KeyLookup>
+                                               </telerik:DelegateGroupDescriptor>
+                                           </telerik:RadCollectionView.GroupDescriptors>
+                                           <telerik:RadCollectionView.ItemViewStyle>
+                                               <Style TargetType="telerik:RadCollectionViewItemView">
+                                                   <Setter Property="BorderThickness" Value="{OnPlatform Default=0, WinUI='4, 2'}" />
+                                                   <Setter Property="BorderColor" Value="Transparent" />
+                                                   <Setter Property="Background" Value="Transparent" />
+                                               </Style>
+                                           </telerik:RadCollectionView.ItemViewStyle>
+                                        </telerik:RadCollectionView>
+                                    </telerik:RadBorder>
+                                </telerik:RadPopup>
+                            </telerik:RadPopup.Popup>
+                          </telerik:RadEntry>
+                        <views:CurrentAppUserView Grid.Column="1" />
+                    </Grid>
+                    <ContentPresenter Grid.Row="1" />
+                </Grid>
+            </ControlTemplate>
+
+            <!-- TODO: Review and delete the following after finalization of app redesign -->
+
+            <!-- Telerik CRM branded Colors -->
+
+            <Color x:Key="AccentColor">#232A39</Color>
+            <Color x:Key="AccentDarkColor">#0F171E</Color>
+            <Color x:Key="AccentLightColor">#3D4268</Color>
+            <Color x:Key="AccentSecondaryColor">#6196D1</Color>
+            <Color x:Key="AccentTertiaryColor">#BAB65A</Color>
+
+            <Color x:Key="LightBaseColor">#FFFFFF</Color>
+            <Color x:Key="DarkBaseColor">#003366</Color>
+            <Color x:Key="MediumBaseColor">#969393</Color>
+
+            <Color x:Key="LightBackgroundColor">#FAFAFA</Color>
+            <Color x:Key="GrayBackgroundColor">#C0C0C0</Color>
+
+            <Color x:Key="LightTranslucentBackgroundColor">#CCEAEAEC</Color>
+            <Color x:Key="MediumTranslucentBackgroundColor">#AA000000</Color>
+            <Color x:Key="DarkTranslucentBackgroundColor">#CC000000</Color>
+
+            <Color x:Key="ExtraLightTextColor">#FFFFFF</Color>
+            <Color x:Key="LightGrayTextColor">#999999</Color>
+            <Color x:Key="DarkGrayTextColor">#4d4d4d</Color>
+
+            <Color x:Key="SeparatorColor">#FF768099</Color>
+
+            <SolidColorBrush x:Key="AccentBrush"
+                             Color="{StaticResource AccentColor}" />
+            <SolidColorBrush x:Key="AccentDarkBrush"
+                             Color="{StaticResource AccentDarkColor}" />
+            <SolidColorBrush x:Key="AccentLightBrush"
+                             Color="{StaticResource AccentLightColor}" />
+            <SolidColorBrush x:Key="AccentSecondaryBrush"
+                             Color="{StaticResource AccentSecondaryColor}" />
+            <SolidColorBrush x:Key="AccentTertiaryBrush"
+                             Color="{StaticResource AccentTertiaryColor}" />
+
+            <SolidColorBrush x:Key="LightBaseBrush"
+                             Color="{StaticResource LightBaseColor}" />
+            <SolidColorBrush x:Key="DarkBaseBrush"
+                             Color="{StaticResource DarkBaseColor}" />
+            <SolidColorBrush x:Key="MediumBaseBrush"
+                             Color="{StaticResource MediumBaseColor}" />
+
+            <SolidColorBrush x:Key="LightBackgroundBrush"
+                             Color="{StaticResource LightBackgroundColor}" />
+            <SolidColorBrush x:Key="GrayBackgroundBrush"
+                             Color="{StaticResource GrayBackgroundColor}" />
+
+            <SolidColorBrush x:Key="LightTranslucentBackgroundBrush"
+                             Color="{StaticResource LightTranslucentBackgroundColor}" />
+            <SolidColorBrush x:Key="MediumTranslucentBackgroundBrush"
+                             Color="{StaticResource MediumTranslucentBackgroundColor}" />
+            <SolidColorBrush x:Key="DarkTranslucentBackgroundBrush"
+                             Color="{StaticResource DarkTranslucentBackgroundColor}" />
+
+            <SolidColorBrush x:Key="ExtraLightTextBrush"
+                             Color="{StaticResource ExtraLightTextColor}" />
+            <SolidColorBrush x:Key="LightGrayTextBrush"
+                             Color="{StaticResource LightGrayTextColor}" />
+            <SolidColorBrush x:Key="DarkGrayTextBrush"
+                             Color="{StaticResource DarkGrayTextColor}" />
+
+
+            <!-- Converters -->
+
+            <converters:IntToDoubleConverter x:Key="IntToDoubleConverter" />
+            <converters:NameToInitialsConverter x:Key="NameToInitialsConverter" />
+
+
+            <!-- Reusable configurations -->
+
+            <RowDefinitionCollection x:Key="AutoStarRowDefinitions">
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </RowDefinitionCollection>
+
+            <RowDefinitionCollection x:Key="OneTwoStarRowDefinitions">
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="2*" />
+            </RowDefinitionCollection>
+
+            <!-- Telerik CRM Styles -->
+
+            <!-- Styles originally in Resources/Styles/Styles.xaml -->
+            <Style TargetType="Page"
+                   ApplyToDerivedTypes="True">
+                <Setter Property="Padding"
+                        Value="0" />
+                <Setter Property="BackgroundColor"
+                        Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}" />
+                <Setter Property="Shell.BackgroundColor"
+                        Value="{AppThemeBinding Light={StaticResource AccentColor}, Dark={StaticResource AccentColor}}" />
+                <Setter Property="Shell.TitleColor"
+                        Value="{AppThemeBinding Light={StaticResource ExtraLightTextColor}, Dark={StaticResource ExtraLightTextColor}}" />
+            </Style>
+
+            <Style TargetType="Shell"
+                   ApplyToDerivedTypes="True">
+                <Setter Property="Shell.BackgroundColor"
+                        Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Gray950}}" />
+                <Setter Property="Shell.ForegroundColor"
+                        Value="{OnPlatform WinUI={StaticResource Primary}, Default={StaticResource White}}" />
+                <Setter Property="Shell.TitleColor"
+                        Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource White}}" />
+                <Setter Property="Shell.DisabledColor"
+                        Value="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray950}}" />
+                <Setter Property="Shell.UnselectedColor"
+                        Value="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray200}}" />
+                <Setter Property="Shell.NavBarHasShadow"
+                        Value="False" />
+                <Setter Property="Shell.TabBarBackgroundColor"
+                        Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}" />
+                <Setter Property="Shell.TabBarForegroundColor"
+                        Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource White}}" />
+                <Setter Property="Shell.TabBarTitleColor"
+                        Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource White}}" />
+                <Setter Property="Shell.TabBarUnselectedColor"
+                        Value="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray200}}" />
+            </Style>
+
+            <Style TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor"
+                        Value="{AppThemeBinding Light={StaticResource AccentColor}, Dark={StaticResource AccentColor}}" />
+                <Setter Property="BarTextColor"
+                        Value="{AppThemeBinding Light={StaticResource ExtraLightTextColor}, Dark={StaticResource ExtraLightTextColor}}" />
+                <Setter Property="IconColor"
+                        Value="{AppThemeBinding Light={StaticResource ExtraLightTextColor}, Dark={StaticResource ExtraLightTextColor}}" />
+            </Style>
+
+            <!-- Styles inherited from Xamarin.Forms -->
+
+            <Style x:Key="PageDescriptionStyle"
+                   TargetType="Label">
+                <Setter Property="TextColor"
+                        Value="White" />
+                <Setter Property="FontSize"
+                        Value="16" />
+            </Style>
+
+            <Style x:Key="PageHeaderGridStyle"
+                   TargetType="Grid">
+                <Setter Property="BackgroundColor"
+                        Value="{StaticResource AccentLightColor}" />
+            </Style>
+
+            <Style x:Key="PageHeaderStackLayoutStyle"
+                   TargetType="VerticalStackLayout">
+                <Setter Property="BackgroundColor"
+                        Value="{StaticResource AccentLightColor}" />
+            </Style>
+
+            <Style x:Key="HintOverlayLabelStyle"
+                   TargetType="Label">
+                <Setter Property="HorizontalTextAlignment"
+                        Value="Center" />
+                <Setter Property="LineBreakMode"
+                        Value="WordWrap" />
+                <Setter Property="TextColor"
+                        Value="{StaticResource ExtraLightTextColor}" />
+            </Style>
+
+            <!-- RadBorder Resources -->
+
+            <Style x:Key="ImageBorderCircleStyle"
+                   TargetType="telerik:RadBorder">
+                <Setter Property="BorderThickness"
+                        Value="2" />
+                <Setter Property="CornerRadius"
+                        Value="90" />
+                <Setter Property="BorderColor"
+                        Value="{StaticResource GrayBackgroundColor}" />
+            </Style>
+
+            <!-- RadBusyIndicator Resources -->
+
+            <Style x:Key="BaseBusyIndicatorStyle"
+                   TargetType="telerik:RadBusyIndicator">
+                <Setter Property="AnimationType"
+                        Value="Animation3" />
+                <Setter Property="AnimationContentHeightRequest"
+                        Value="100" />
+                <Setter Property="AnimationContentWidthRequest"
+                        Value="100" />
+                <Setter Property="AnimationContentColor"
+                        Value="{StaticResource RadPrimaryColor}" />
+                <Setter Property="HorizontalOptions"
+                        Value="Fill" />
+                <Setter Property="VerticalOptions"
+                        Value="Fill" />
+                <Setter Property="BusyContentTemplate">
+                    <Setter.Value>
+                        <ControlTemplate>
+                            <Grid RowSpacing="12">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <ContentPresenter Content="{TemplateBinding Path=AnimationContent}"
+                                                  Grid.Row="1" />
+
+                                <!-- ProTip: All the view models inherit the IsBusyMessage from ViewModelBase, so we can use it as AncestorType in this single location -->
+                                <Label Text="{Binding IsBusyMessage, Source={RelativeSource AncestorType={x:Type vm:ViewModelBase}}}"
+                                       HorizontalTextAlignment="Center"
+                                       TextColor="{StaticResource RadDarkColor}"
+                                       Grid.Row="2"/>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="TransparentBusyIndicatorStyle"
+                   TargetType="telerik:RadBusyIndicator"
+                   BasedOn="{StaticResource BaseBusyIndicatorStyle}">
+                <Setter Property="BackgroundColor"
+                        Value="Transparent" />
+            </Style>
+
+            <Style x:Key="OpaqueBusyIndicatorStyle"
+                   TargetType="telerik:RadBusyIndicator"
+                   BasedOn="{StaticResource BaseBusyIndicatorStyle}">
+                <Setter Property="BackgroundColor"
+                        Value="{StaticResource LightTranslucentBackgroundColor}" />
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

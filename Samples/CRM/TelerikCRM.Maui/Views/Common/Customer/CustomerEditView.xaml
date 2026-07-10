@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:BaseContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                       xmlns:views="using:TelerikCRM.Maui.Views"
+                       xmlns:vm="using:TelerikCRM.Maui.ViewModels"
+                       xmlns:converters="clr-namespace:TelerikCRM.Maui.Converters"
+                       x:Class="TelerikCRM.Maui.Views.CustomerEditView"
+                       x:DataType="vm:CustomerEditViewModel">
+    <views:BaseContentView.Resources>
+        <converters:StringToBooleanConverter x:Key="StringStartsWithToBooleanConverter" ComparisonMethod="StartsWith" />
+    </views:BaseContentView.Resources>
+
+    <Grid RowDefinitions="*, Auto"
+          Padding="16">
+        <telerik:RadDataForm x:Name="dataForm"
+                             BindingContext="{Binding SelectedCustomer}"
+                             LayoutDefinition="{StaticResource DataFormGridLayout}"
+                             CommitMode="Explicit"
+                             AutoGenerateItems="False">
+            <telerik:DataFormRadEntryEditor PropertyName="Name"
+                                            HeaderText="Name"
+                                            Style="{StaticResource DataFormEditorStyle}" />
+            <telerik:DataFormRadEntryEditor PropertyName="Street"
+                                            HeaderText="Street"
+                                            Style="{StaticResource DataFormEditorStyle}" />
+            <telerik:DataFormRadEntryEditor PropertyName="City"
+                                            HeaderText="City"
+                                            Style="{StaticResource DataFormEditorStyle}" />
+            <telerik:DataFormRadTextMaskedEditor PropertyName="State"
+                                                 HeaderText="State"
+                                                 Mask="LL"
+                                                 Style="{StaticResource DataFormEditorStyle}" />
+            <telerik:DataFormRadTextMaskedEditor PropertyName="ZipCode"
+                                                 HeaderText="ZipCode"
+                                                 Mask="00000"
+                                                 Style="{StaticResource DataFormEditorStyle}" />
+            <telerik:DataFormRadEntryEditor PropertyName="Country"
+                                            HeaderText="Country"
+                                            Style="{StaticResource DataFormEditorStyle}" />
+            <telerik:DataFormCustomEditor PropertyName="Notes"
+                                          HeaderText="Notes"
+                                          EditorTemplate="{StaticResource DataFormCustomMultilineEditorTemplate}"
+                                          Style="{StaticResource DataFormCustomMultilineEditorStyle}" />
+        </telerik:RadDataForm>
+        <OnPlatform x:TypeArguments="View">
+            <On Platform="Android, iOS">
+                <telerik:RadTemplatedButton Grid.Row="1"
+                                            Content="{Binding DeleteContextName, StringFormat='Delete {0}'}"
+                                            Command="{Binding DeleteCommand}"
+                                            IsVisible="{Binding Title, Converter={StaticResource StringStartsWithToBooleanConverter}, ConverterParameter='Edit'}"
+                                            Style="{DynamicResource FlatButtonStyle}"
+                                            TextColor="{DynamicResource RadErrorColor}" />
+            </On>
+        </OnPlatform>
+        <telerik:RadBusyIndicator Grid.RowSpan="2"
+                                  IsVisible="{Binding IsBusy}"
+                                  IsBusy="{Binding IsBusy}"
+                                  Style="{StaticResource OpaqueBusyIndicatorStyle}" />
+    </Grid>
+</views:BaseContentView>

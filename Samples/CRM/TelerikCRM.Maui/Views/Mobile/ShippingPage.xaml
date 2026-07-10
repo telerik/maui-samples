@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<views:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                xmlns:views="using:TelerikCRM.Maui.Views"
+                xmlns:mobileViews="using:TelerikCRM.Maui.Views.Mobile"
+                xmlns:vm="using:TelerikCRM.Maui.ViewModels"
+                xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+                x:Class="TelerikCRM.Maui.Views.Mobile.ShippingPage"
+                NavigationPage.HasNavigationBar="False"
+                ios:Page.UseSafeArea="False">
+    <Grid RowDefinitions="Auto, *">
+        <mobileViews:HeaderView />
+        <telerik:RadScheduler x:Name="shippingScheduler"
+                              Grid.Row="1"
+                              AppointmentsSource="{Binding ShippingAppointments}"
+                              CurrentDate="{Binding CalendarDisplayDate}"
+                              Margin="{DynamicResource TopLevelViewPadding_Mobile}">
+            <telerik:RadScheduler.ViewDefinitions>
+                <telerik:MultidayViewDefinition VisibleDays="3"
+                                                Title="3 Days"
+                                                IsCurrentTimeIndicatorVisible="True" />
+                <telerik:DayViewDefinition IsCurrentTimeIndicatorVisible="True" />
+                <telerik:WeekViewDefinition IsCurrentTimeIndicatorVisible="False"
+                                            IsWeekendVisible="True" />
+                <telerik:MonthViewDefinition />
+            </telerik:RadScheduler.ViewDefinitions>
+        </telerik:RadScheduler>
+        <telerik:RadBusyIndicator Grid.RowSpan="2"
+                                  IsVisible="{Binding IsBusy}"
+                                  IsBusy="{Binding IsBusy}"
+                                  Style="{StaticResource OpaqueBusyIndicatorStyle}" />
+    </Grid>
+</views:BasePage>

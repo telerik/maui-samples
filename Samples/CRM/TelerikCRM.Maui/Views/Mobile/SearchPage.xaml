@@ -1,0 +1,163 @@
+﻿<views:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                xmlns:views="using:TelerikCRM.Maui.Views"
+                xmlns:common="using:TelerikCRM.Maui.Common"
+                xmlns:converters="clr-namespace:TelerikCRM.Maui.Converters"
+                xmlns:selectors="clr-namespace:TelerikCRM.Maui.Selectors"
+                xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+                x:Class="TelerikCRM.Maui.Views.Mobile.SearchPage"
+                NavigationPage.HasNavigationBar="False"
+                ios:Page.UseSafeArea="False">
+    <views:BasePage.Resources>
+        <Style x:Key="BackButtonStyle" TargetType="telerik:RadTemplatedButton">
+            <Setter Property="TextColor" Value="{DynamicResource RadOnAppSurfaceColorAlpha60}" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="MinimumWidthRequest" Value="20" />
+            <Setter Property="MinimumHeightRequest" Value="20" />
+            <Setter Property="Shadow" Value="{x:Null}" />
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="MouseOver" />
+                        <VisualState x:Name="Pressed" />
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+        <DataTemplate x:Key="EmployeeItemTemplate">
+            <Grid ColumnDefinitions="Auto, *, Auto"
+                  ColumnSpacing="8"
+                  Padding="8">
+                <telerik:RadBorder WidthRequest="32"
+                                   HeightRequest="32"
+                                   CornerRadius="16">
+                    <Image Source="{Binding PhotoImageSource, TargetNullValue='profile_photo.png', FallbackValue='profile_photo.png'}"
+                           Aspect="AspectFill" />
+                </telerik:RadBorder>
+                <Label Grid.Column="1"
+                       Text="{Binding Name}"
+                       VerticalOptions="Center" />
+                <Label Grid.Column="2"
+                       Text="&#xe81b;"
+                       TextColor="{DynamicResource RadOnAppSurfaceColorAlpha60}"
+                       FontFamily="TelerikFontExamples"
+                       FontSize="{OnPlatform Default=16, iOS=12}"
+                       VerticalTextAlignment="Center" />
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="CustomerItemTemplate">
+            <Grid ColumnDefinitions="Auto, *, Auto"
+                  ColumnSpacing="8"
+                  Padding="8">
+                <telerik:RadBorder Background="{DynamicResource RadSurfaceColor}"
+                                   WidthRequest="32"
+                                   HeightRequest="32"
+                                   CornerRadius="16">
+                    <Label Text="{Binding Name, Converter={StaticResource NameToInitialsConverter}}"
+                           TextColor="{DynamicResource RadOnAppSurfaceColorAlpha60}"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center" />
+                </telerik:RadBorder>
+                <Label Grid.Column="1"
+                       Text="{Binding Name}"
+                       VerticalTextAlignment="Center" />
+                <Label Grid.Column="2"
+                       Text="&#xe81b;"
+                       TextColor="{DynamicResource RadOnAppSurfaceColorAlpha60}"
+                       FontFamily="TelerikFontExamples"
+                       FontSize="{OnPlatform Default=16, iOS=12}"
+                       VerticalTextAlignment="Center" />
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="ProductItemTemplate">
+            <Grid ColumnDefinitions="Auto, *, Auto"
+                  ColumnSpacing="8"
+                  Padding="8">
+                <telerik:RadBorder WidthRequest="32"
+                                   HeightRequest="32"
+                                   CornerRadius="16">
+                    <Image Source="{Binding PhotoImageSource, TargetNullValue='art_placeholder.png', FallbackValue='art_placeholder.png'}"
+                           Aspect="AspectFill" />
+                </telerik:RadBorder>
+                <Label Grid.Column="1"
+                       Text="{Binding Title}"
+                       VerticalOptions="Center" />
+                <Label Grid.Column="2"
+                       Text="&#xe81b;"
+                       TextColor="{DynamicResource RadOnAppSurfaceColorAlpha60}"
+                       FontFamily="TelerikFontExamples"
+                       FontSize="{OnPlatform Default=16, iOS=12}"
+                       VerticalTextAlignment="Center" />
+            </Grid>
+        </DataTemplate>
+        <selectors:SearchResultItemTemplateSelector x:Key="SearchResultItemTemplateSelector"
+                                                    EmployeeTemplate="{StaticResource EmployeeItemTemplate}"
+                                                    CustomerTemplate="{StaticResource CustomerItemTemplate}"
+                                                    ProductTemplate="{StaticResource ProductItemTemplate}" />
+        <DataTemplate x:Key="SearchResultGroupHeaderTemplate">
+            <Label FontSize="{OnPlatform Android=16, iOS=17}"
+                   FontAttributes="Bold"
+                   Text="{Binding Key}"
+                   TextColor="{DynamicResource RadOnAppSurfaceColor}"
+                   HorizontalTextAlignment="Start"
+                   VerticalTextAlignment="Center" />
+        </DataTemplate>
+    </views:BasePage.Resources>
+
+    <Grid RowDefinitions="42, *">
+        <Grid ColumnDefinitions="Auto, *"
+              BackgroundColor="{DynamicResource RadSurfaceColor}"
+              Padding="10, 0">
+            <telerik:RadTemplatedButton x:Name="backButton"
+                                        Command="{Binding NavigateBackCommand}"
+                                        Style="{StaticResource BackButtonStyle}">
+                <HorizontalStackLayout Spacing="4">
+                    <Label Text="&#xe80e;"
+                           TextColor="{Binding TextColor, Source={x:Reference backButton}}"
+                           FontFamily="TelerikFontExamples"
+                           FontSize="16"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center" />
+                    <Label Text="{Binding NavigateBackContextName}"
+                           VerticalTextAlignment="Center"
+                           LineBreakMode="TailTruncation" />
+                </HorizontalStackLayout>
+            </telerik:RadTemplatedButton>
+            <telerik:RadEntry Grid.Column="1"
+                              Placeholder="Search"
+                              Text="{Binding SearchText, Mode=TwoWay}"
+                              VerticalOptions="Center"
+                              Margin="4, 0, 16, 0" />
+        </Grid>
+        <telerik:RadCollectionView x:Name="searchResultsCollectionView"
+                                   Grid.Row="1"
+                                   ItemsSource="{Binding SearchResults}"
+                                   ItemTemplate="{StaticResource SearchResultItemTemplateSelector}"
+                                   SelectedItem="{Binding SelectedSearchResult, Mode=TwoWay}"
+                                   GroupViewStyle="{StaticResource SearchViewGroupStyle}"
+                                   GroupHeaderTemplate="{StaticResource SearchResultGroupHeaderTemplate}"
+                                   EmptyContentDisplayMode="ItemsSourceNullOrEmpty"
+                                   EmptyContentTemplate="{StaticResource NoSearchResultsTemplate}"
+                                   Margin="16">
+            <telerik:RadCollectionView.GroupDescriptors>
+                <telerik:DelegateGroupDescriptor>
+                    <telerik:DelegateGroupDescriptor.KeyLookup>
+                        <common:SearchGroupKeyLookup />
+                    </telerik:DelegateGroupDescriptor.KeyLookup>
+                </telerik:DelegateGroupDescriptor> 
+            </telerik:RadCollectionView.GroupDescriptors>
+            <telerik:RadCollectionView.ItemViewStyle>
+                <Style TargetType="telerik:RadCollectionViewItemView">
+                    <Setter Property="BorderThickness" Value="0, 0, 0, 1" />
+                    <Setter Property="BorderColor" Value="{DynamicResource RadBorderColor}" />
+                    <Setter Property="Background" Value="Transparent" />
+                </Style>
+            </telerik:RadCollectionView.ItemViewStyle>
+        </telerik:RadCollectionView>
+    </Grid>
+</views:BasePage>

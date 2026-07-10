@@ -5,15 +5,14 @@
                         xmlns:behaviors="clr-namespace:QSF.Behaviors"
                         xmlns:local="clr-namespace:QSF.Examples.RichTextEditorControl.ImportExportExample"
                         x:Class="QSF.Examples.RichTextEditorControl.ImportExportExample.ExportView">
-    <telerik:RadContentView.Behaviors>
-        <behaviors:AndroidResizeSoftInputModeBehavior />
-    </telerik:RadContentView.Behaviors>
-    
     <telerik:RadContentView.Resources>
         <local:RichTextContext x:Key="richTextContext" RichTextEditor="{x:Reference richTextEditor}" />
     </telerik:RadContentView.Resources>
 
     <Grid RowDefinitions="{OnIdiom Default='Auto, *', Phone='*, Auto'}">
+        <Grid.Behaviors>
+            <behaviors:AndroidKeyboardPaddingBehavior/>
+        </Grid.Behaviors>
         <telerik:RadRichTextEditorToolbar Grid.Row="{OnIdiom Default=0, Phone=1}" 
                                           ZIndex="10"
                                           RichTextEditor="{x:Reference richTextEditor}"

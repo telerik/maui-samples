@@ -9,8 +9,9 @@ using Telerik.AppUtils.Services;
 
 namespace QSF.Examples.DataGridControl.ColumnTypesExample
 {
-    public class ColumnTypesViewModel : ExampleViewModel
+    public class ColumnTypesViewModel : ConfigurationExampleViewModel
     {
+        private bool showColumnHeaders = true;
         private List<string> carriers;
         private List<(string, string)> countryNames;
 
@@ -53,7 +54,14 @@ namespace QSF.Examples.DataGridControl.ColumnTypesExample
         }
 
         public ObservableCollection<Flight> Flights { get; set; }
+
         public ObservableCollection<string> Statuses { get; private set; }
+
+        public bool ShowColumnHeaders
+        {
+            get => this.showColumnHeaders;
+            set => this.UpdateValue(ref this.showColumnHeaders, value);
+        }
 
         private void CreateFlights()
         {

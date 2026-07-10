@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<views:BaseContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                                  xmlns:views="clr-namespace:TelerikCRM.Maui.Views"
+                                  xmlns:viewModels="clr-namespace:TelerikCRM.Maui.ViewModels"
+                                  xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                                  x:Class="TelerikCRM.Maui.Views.Desktop.AboutView"
+                                  x:DataType="viewModels:AboutViewModel"
+                                  ControlTemplate="{StaticResource TopLevelContentViewDesktopTemplate}"
+                                  Padding="{DynamicResource TopLevelViewPadding_Desktop}">
+    <views:BaseContentView.BindingContext>
+        <viewModels:AboutViewModel />
+    </views:BaseContentView.BindingContext>
+
+    <Grid RowDefinitions="Auto, *"
+          RowSpacing="{DynamicResource TopLevelViewTitleContentSpacing}">
+        <Label Text="About"
+               Style="{DynamicResource NavigationViewItemTitleStyle}" />
+         <telerik:RadBorder Grid.Row="1"
+                            Style="{DynamicResource NavigationViewItemBorderStyle}">
+            <Grid RowDefinitions="*, Auto"
+                  RowSpacing="20">
+                <ScrollView>
+                    <VerticalStackLayout Spacing="20">
+                        <Label Text="The Telerik Customer Relationship Management (CRM) sample application showcases a modern UI and real-time responsiveness while handling huge sets of data." />
+                        <Label Text="It demonstrates best practices in .NET MAUI development, as well as showcases the power of the Telerik UI for .NET MAUI controls suite." />
+                        <Label Text="Boost Your Cross-Platform App Development with 70+ .NET MAUI Components" FontSize="15" FontAttributes="Bold" />
+                        <Label Text="Telerik UI for .NET MAUI delivers 70+ controls to meet all cross-platform app requirements for data handling, performance, UX, design, and so much more." />
+                        <Label Text="Save Months in UI Development with One Suite for Any Scenario" FontSize="15" FontAttributes="Bold" />
+                        <Label Text="The UI suite will offer all the .NET MAUI components you will ever need for building modern-looking and high-performance multi-platform app UI, enabling you to shorten development time." />
+                        <Label Text="Get Superior Performance &amp; Advanced UI Capabilities" FontSize="15" FontAttributes="Bold" />
+                        <Label Text="Build your next .NET MAUI application with feature-rich and customizable UI controls that integrate seamlessly into your project and come with advanced UI virtualization, fast loading and countless other features." />
+                        <Label Text="Helpful Links" FontSize="15" FontAttributes="Bold" />
+                        <VerticalStackLayout WidthRequest="230"
+                                             HorizontalOptions="Start">
+                            <telerik:RadTemplatedButton Style="{DynamicResource HyperlinkButtonStyle}"
+                                                        Command="{Binding OpenWebCommand}"
+                                                        CommandParameter="ProductPage">
+                                <Grid ColumnDefinitions="*, Auto">
+                                    <Label Text="Telerik UI for .NET MAUI"
+                                           Style="{DynamicResource HyperlinkButtonLabelStyle}" />
+                                    <Label Grid.Column="1"
+                                           Style="{DynamicResource HyperlinkButtonIconStyle}" />
+                                </Grid>
+                            </telerik:RadTemplatedButton>
+                            <telerik:RadTemplatedButton Style="{DynamicResource HyperlinkButtonStyle}"
+                                                        Command="{Binding OpenWebCommand}"
+                                                        CommandParameter="ReleaseHistoryPage">
+                                <Grid ColumnDefinitions="*, Auto">
+                                    <Label Text="What's New?"
+                                           Style="{DynamicResource HyperlinkButtonLabelStyle}" />
+                                    <Label Grid.Column="1"
+                                           Style="{DynamicResource HyperlinkButtonIconStyle}" />
+                                </Grid>
+                            </telerik:RadTemplatedButton>
+                            <telerik:RadTemplatedButton Style="{DynamicResource HyperlinkButtonStyle}"
+                                                        Command="{Binding OpenWebCommand}"
+                                                        CommandParameter="DocumentationPage">
+                                <Grid ColumnDefinitions="*, Auto">
+                                    <Label Text="Documentation"
+                                           Style="{DynamicResource HyperlinkButtonLabelStyle}" />
+                                    <Label Grid.Column="1"
+                                           Style="{DynamicResource HyperlinkButtonIconStyle}" />
+                                </Grid>
+                            </telerik:RadTemplatedButton>
+                            <telerik:RadTemplatedButton Style="{DynamicResource HyperlinkButtonStyle}"
+                                                        Command="{Binding OpenWebCommand}"
+                                                        CommandParameter="GitHubDemosPage">
+                                <Grid ColumnDefinitions="*, Auto">
+                                    <Label Text="Source Code"
+                                           Style="{DynamicResource HyperlinkButtonLabelStyle}" />
+                                    <Label Grid.Column="1"
+                                           Style="{DynamicResource HyperlinkButtonIconStyle}" />
+                                </Grid>
+                            </telerik:RadTemplatedButton>
+                        </VerticalStackLayout>
+                    </VerticalStackLayout>
+                </ScrollView>
+                <Label Grid.Row="1"
+                       Text="{Binding TelerikDescription}"
+                       TextColor="{DynamicResource RadOnAppSurfaceColorAlpha60}"
+                       FontSize="12"
+                       Margin="0, 0, 0, 16" />
+            </Grid>
+        </telerik:RadBorder>
+    </Grid>
+</views:BaseContentView>

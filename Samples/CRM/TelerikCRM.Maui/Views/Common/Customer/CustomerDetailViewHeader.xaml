@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        xmlns:views="using:TelerikCRM.Maui.Views"
+                        xmlns:vm="using:TelerikCRM.Maui.ViewModels"
+                        x:Class="TelerikCRM.Maui.Views.CustomerDetailViewHeader">
+    <telerik:RadContentView.Resources>
+        <Style x:Key="InfoLabelStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="{OnPlatform Default=12, Android=14, iOS=14}" />
+            <Setter Property="TextColor" Value="{DynamicResource RadOnAppSurfaceColorAlpha60}" />
+            <Setter Property="HorizontalOptions" Value="{OnPlatform Default=Start, Android=Center, iOS=Center}" />
+        </Style>
+
+        <ControlTemplate x:Key="CustomerDetailViewHeaderTemplate_Desktop">
+            <telerik:RadBorder BorderThickness="0, 0, 0, 1"
+                               BorderBrush="{DynamicResource RadBaseSubtleColor}"
+                               Background="{DynamicResource RadSurfaceColor}">
+                <Grid ColumnDefinitions="Auto, Auto, *"
+                      ColumnSpacing="32"
+                      Padding="{DynamicResource NestedViewContentPadding_Desktop}">
+                    <VerticalStackLayout>
+                        <Label Text="{Binding SelectedCustomer.Name}"
+                               FontSize="16"
+                               FontAttributes="Bold" />
+                        <Label Text="{Binding SelectedCustomer.City}"
+                               Style="{DynamicResource InfoLabelStyle}" />
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Grid.Column="1">
+                        <Label Text="Address"
+                               Style="{DynamicResource InfoLabelStyle}" />
+                        <Label Text="{Binding SelectedCustomer.Street}" />
+                        <Label Text="{Binding SelectedCustomer.City}" />
+                        <HorizontalStackLayout Spacing="4">
+                            <Label Text="{Binding SelectedCustomer.State}" />
+                            <Label Text="{Binding SelectedCustomer.ZipCode}" />
+                            <Label Text="{Binding SelectedCustomer.Country}" />
+                        </HorizontalStackLayout>
+                    </VerticalStackLayout>
+                    <HorizontalStackLayout Grid.Column="2"
+                                           Spacing="4"
+                                           HorizontalOptions="End"
+                                           VerticalOptions="Start">
+                        <telerik:RadTemplatedButton Style="{DynamicResource FlatButtonStyle}"
+                                                    Content="&#xe833;"
+                                                    FontFamily="TelerikFontExamples"
+                                                    FontSize="16"
+                                                    Command="{Binding ToolbarCommand}"
+                                                    CommandParameter="order" />
+                        <telerik:RadTemplatedButton Style="{DynamicResource FlatButtonStyle}"
+                                                    Content="&#xe818;"
+                                                    FontFamily="TelerikFontExamples"
+                                                    FontSize="16"
+                                                    Command="{Binding ToolbarCommand}"
+                                                    CommandParameter="edit" />
+                    </HorizontalStackLayout>
+                </Grid>
+            </telerik:RadBorder>
+        </ControlTemplate>
+
+        <ControlTemplate x:Key="CustomerDetailViewHeaderTemplate_Mobile">
+            <telerik:RadBorder Background="{DynamicResource RadSurfaceColor}"
+                               CornerRadius="8"
+                               Padding="4, 8">
+                <Grid RowDefinitions="Auto, Auto"
+                      RowSpacing="8">
+                    <Label Text="{Binding SelectedCustomer.Name}"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           HorizontalTextAlignment="Center" />
+                    <Grid Grid.Row="1"
+                          RowDefinitions="Auto, Auto, Auto"
+                          ColumnDefinitions="Auto, *">
+                        <Label Text="Location"
+                               Style="{DynamicResource InfoLabelStyle}"
+                               HorizontalOptions="Start"
+                               Margin="8, 16" />
+                        <Label Grid.Column="1"
+                               Text="{Binding SelectedCustomer.City}"
+                               HorizontalOptions="End"
+                               Margin="0, 16, 8, 16" />
+                        <Rectangle Grid.Row="1"
+                                   Grid.ColumnSpan="2"
+                                   HeightRequest="1"
+                                   StrokeThickness="0"
+                                   Fill="{DynamicResource RadBaseSubtleColor}" />
+                        <Label Grid.Row="2"
+                               Text="Address"
+                               Style="{DynamicResource InfoLabelStyle}"
+                               HorizontalOptions="Start"
+                               VerticalOptions="Center"
+                               Margin="8, 16" />
+                        <VerticalStackLayout Grid.Column="1"
+                                             Grid.Row="2"
+                                             HorizontalOptions="End"
+                                             Margin="0, 16, 8, 16">
+                            <Label Text="{Binding SelectedCustomer.Street}"
+                                   HorizontalTextAlignment="End" />
+                            <Label Text="{Binding SelectedCustomer.City}"
+                                   HorizontalTextAlignment="End" />
+                            <HorizontalStackLayout Spacing="4">
+                                <Label Text="{Binding SelectedCustomer.State}"
+                                       HorizontalTextAlignment="End" />
+                                <Label Text="{Binding SelectedCustomer.ZipCode}"
+                                       HorizontalTextAlignment="End" />
+                                <Label Text="{Binding SelectedCustomer.Country}"
+                                       HorizontalTextAlignment="End" />
+                            </HorizontalStackLayout>
+                        </VerticalStackLayout>
+                    </Grid>
+                </Grid>
+            </telerik:RadBorder>
+        </ControlTemplate>
+    </telerik:RadContentView.Resources>
+
+    <telerik:RadContentView.ControlTemplate>
+        <OnPlatform x:TypeArguments="ControlTemplate">
+            <On Platform="Default, WinUI, MacCatalyst" Value="{StaticResource CustomerDetailViewHeaderTemplate_Desktop}" />
+            <On Platform="Android, iOS" Value="{StaticResource CustomerDetailViewHeaderTemplate_Mobile}" />
+        </OnPlatform>
+    </telerik:RadContentView.ControlTemplate>
+</telerik:RadContentView>

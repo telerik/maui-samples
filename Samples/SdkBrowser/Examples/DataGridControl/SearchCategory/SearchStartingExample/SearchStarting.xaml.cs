@@ -14,7 +14,7 @@ public partial class SearchStarting : ContentView
         this.BindingContext = new ViewModel();
 	}
 
-    // >> scheduler-search-searchstarting-event
+    // >> datagrid-search-searchstarting-event
     private void DataGridSearchSettings_SearchStarting(object sender, DataGridSearchStartingEventArgs args)
     {
         DataGridSearchSettings searchSettings = (DataGridSearchSettings)sender;
@@ -23,5 +23,5 @@ public partial class SearchStarting : ContentView
         args.SearchTerms = split;
         args.SearchTermsLogicalOperator = LogicalOperator.Or;
     }
-    // << scheduler-search-searchstarting-event
+    // << datagrid-search-searchstarting-event
 }

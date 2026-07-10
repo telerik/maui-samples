@@ -523,6 +523,7 @@
 		<Control>
 			<Name>DataGrid</Name>
 			<DisplayName>DataGrid</DisplayName>
+			<Status>Updated</Status>
 			<ShortDescription>A powerful and feature-rich control used to visualize and edit data represented in a tabular fashion.</ShortDescription>
 			<FullDescription>Telerik UI for .NET MAUI DataGrid control provides the ability to easily perform operations like sorting, filtering, grouping and editing over the underlying data.</FullDescription>
 			<Examples>
@@ -534,10 +535,10 @@
 				</Example>
 				<Example>
 					<Status>New</Status>
-					<Name>PromptControlled</Name>
-					<Page>PromptControlledView</Page>
+					<Name>SemanticSearch</Name>
+					<Page>SemanticSearchView</Page>
 					<DisplayName>AI Smart DataGrid</DisplayName>
-					<Description>Demonstrates the AI-powered features in the DataGrid control. The user can interact with the DataGrid using natural language prompts to perform operations like sorting, grouping, filtering, and column manipulation.</Description>
+					<Description>Demonstrates the AI-powered capabilities of the DataGrid control through semantic search and natural-language interactions. It uses a local AI embedding model to match user intent by meaning and helps users explore data with smarter, context-aware queries. The user can interact with the DataGrid using natural language prompts to perform operations like sorting, grouping, filtering, and column manipulation.</Description>
 				</Example>
 				<Example>
 					<Status>New</Status>
@@ -545,6 +546,13 @@
 					<Page>AIChatIntegrationView</Page>
 					<DisplayName>AI Chat Assistant</DisplayName>
 					<Description>Showcases the AI‑powered features of the DataGrid control by executing natural‑language prompts within the RadChat component. Using these prompts, the user can perform operations such as sorting, grouping, filtering, and modifying columns.</Description>
+				</Example>
+				<Example>
+					<Status>New</Status>
+					<Name>PromptControlled</Name>
+					<Page>PromptControlledView</Page>
+					<DisplayName>AI Controlled DataGrid</DisplayName>
+					<Description>Demonstrates the AI-powered features in the DataGrid control. The user can interact with the DataGrid using natural language prompts to perform operations like sorting, grouping, filtering, and column manipulation.</Description>
 				</Example>
 				<Example>
 					<Name>FrozenColumns</Name>
@@ -568,10 +576,12 @@
 					<Description>Demonstrates how you can easily store big clusters of data in the DataGrid</Description>
 				</Example>
 				<Example>
+					<Status>Updated</Status>
 					<Name>ColumnTypes</Name>
 					<Page>ColumnTypesView</Page>
 					<DisplayName>Column Types</DisplayName>
-					<Description>Demonstrates the different type of columns that DataGrid control provides. Column types such as Text, Boolean, Template, Date, Time, Numeric.</Description>
+					<IsConfigurable>true</IsConfigurable>
+					<Description>Demonstrates the different type of columns that DataGrid control provides. Column types such as Text, Boolean, Template, Date, Time, Numeric. Also there is an option for hiding the column headers.</Description>
 				</Example>
 				<Example>
 					<Name>DataFormatting</Name>
@@ -1637,7 +1647,7 @@
 		</HighlightedExample>
 		<HighlightedExample>
 			<ControlName>DataGrid</ControlName>
-			<ExampleName>PromptControlled</ExampleName>
+			<ExampleName>SemanticSearch</ExampleName>
 			<DisplayName>AI Smart DataGrid</DisplayName>
 		</HighlightedExample>
 		<HighlightedExample>

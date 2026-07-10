@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:BasePage x:Name="Page"
+                xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                xmlns:views="using:TelerikCRM.Maui.Views"
+                xmlns:mobileViews="using:TelerikCRM.Maui.Views.Mobile"
+                xmlns:vm="using:TelerikCRM.Maui.ViewModels"
+                xmlns:converters="clr-namespace:TelerikCRM.Maui.Converters"
+                xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+                x:Class="TelerikCRM.Maui.Views.Mobile.OrderEditPage"
+                NavigationPage.HasNavigationBar="False"
+                ios:Page.UseSafeArea="False">
+    <views:BasePage.Resources>
+        <converters:StringToBooleanConverter x:Key="StringStartsWithToBooleanConverter" ComparisonMethod="StartsWith" />
+        <DataTemplate x:Key="ProductItemTemplate">
+            <Grid ColumnDefinitions="Auto, *"
+                  ColumnSpacing="8"
+                  Padding="8, 4">
+                <telerik:RadBorder BackgroundColor="{DynamicResource RadSurfaceColor}"
+                                   BorderColor="{DynamicResource RadBaseSubtleColor}"
+                                   BorderThickness="1"
+                                   CornerRadius="8"
+                                   HeightRequest="40"
+                                   WidthRequest="40">
+                    <Image Source="{Binding PhotoImageSource, TargetNullValue='art_placeholder.png', FallbackValue='art_placeholder.png'}"
+                           Aspect="AspectFill" />
+                </telerik:RadBorder>
+                <VerticalStackLayout Grid.Column="1"
+                                     Spacing="4"
+                                     VerticalOptions="Center">
+                    <Label Text="{Binding Title}"
+                           FontAttributes="Bold" />
+                    <Label Text="{Binding InventoryCount, StringFormat='In Stock: {0}'}"
+                           FontSize="12" />
+                </VerticalStackLayout>
+            </Grid>
+        </DataTemplate>
+        <Style x:Key="OrderEntityLabelStyle" TargetType="Label">
+            <Setter Property="TextColor" Value="{DynamicResource RadSubtleColor}" />
+            <Setter Property="Margin" Value="0, 0, 0, 4" />
+        </Style>
+    </views:BasePage.Resources>
+
+    <Grid RowDefinitions="Auto, *, Auto">
+        <mobileViews:HeaderView />
+        <ScrollView Grid.Row="1"
+                    Margin="16">
+            <VerticalStackLayout>
+                <Label Text="Product"
+                       Style="{StaticResource OrderEntityLabelStyle}" />
+                <telerik:RadComboBox ItemsSource="{Binding Products}"
+                                     SelectedItem="{Binding SelectedProduct, Mode=TwoWay}"
+                                     ItemTemplate="{StaticResource ProductItemTemplate}"
+                                     SelectedItemTemplate="{StaticResource ProductItemTemplate}"
+                                     Placeholder="Select a product"
+                                     DisplayMemberPath="Title"
+                                     Margin="0, 0, 0, 16" />
+                <Label Text="Order Date"
+                       Style="{StaticResource OrderEntityLabelStyle}" />
+                <telerik:RadDatePicker Date="{Binding SelectedOrder.OrderDate, Mode=TwoWay}"
+                                       Margin="0, 0, 0, 16" />
+                <Label Text="Ordered By"
+                       Style="{StaticResource OrderEntityLabelStyle}"
+                       Margin="0, 0, 0, 16" />
+                <telerik:RadComboBox Grid.Row="2"
+                                     Grid.Column="1"
+                                     ItemsSource="{Binding Customers}"
+                                     SelectedItem="{Binding SelectedCustomer, Mode=TwoWay}"
+                                     Placeholder="Select a customer"
+                                     DisplayMemberPath="Name"
+                                     Margin="0, 0, 0, 16" />
+                <Label Text="Sold By"
+                       Style="{StaticResource OrderEntityLabelStyle}" />
+                <telerik:RadComboBox ItemsSource="{Binding Employees}"
+                                     SelectedItem="{Binding SelectedEmployee, Mode=TwoWay}"
+                                     Placeholder="Select an employee"
+                                     DisplayMemberPath="Name"
+                                     Margin="0, 0, 0, 16" />
+                <Label Text="Quantity"
+                       Style="{StaticResource OrderEntityLabelStyle}" />
+                <telerik:RadNumericInput Value="{Binding SelectedOrder.Quantity, Mode=TwoWay, Converter={StaticResource IntToDoubleConverter}}"
+                                         Minimum="1"
+                                         Maximum="{Binding SelectedProduct.InventoryCount}"
+                                         Step="1"
+                                         Margin="0, 0, 0, 16" />
+                <Label Text="Total Price"
+                       Style="{StaticResource OrderEntityLabelStyle}" />
+                <telerik:RadEntry Text="{Binding SelectedOrder.TotalPrice, StringFormat='{0:C}'}"
+                                  IsReadOnly="True"
+                                  Margin="0, 0, 0, 16" />
+                <Label Text="Shipped By"
+                       Style="{StaticResource OrderEntityLabelStyle}" />
+                <telerik:RadComboBox ItemsSource="{Binding DeliveryServices}"
+                                     SelectedItem="{Binding SelectedDeliveryService, Mode=TwoWay}"
+                                     Placeholder="Select a courier"
+                                     Margin="0, 0, 0, 16" />
+                <Label Text="Address"
+                       Style="{StaticResource OrderEntityLabelStyle}" />
+                <telerik:RadEntry Text="{Binding SelectedOrder.Street, Mode=TwoWay}"
+                                  Placeholder="Enter street"
+                                  Margin="0, 0, 0, 16" />
+                <Label Text="City"
+                       Style="{StaticResource OrderEntityLabelStyle}" />
+                <telerik:RadEntry Text="{Binding SelectedOrder.City, Mode=TwoWay}"
+                                  Placeholder="Enter city"
+                                  Margin="0, 0, 0, 16" />
+                <Label Text="State"
+                       Style="{StaticResource OrderEntityLabelStyle}" />
+                <telerik:RadEntry Text="{Binding SelectedOrder.State, Mode=TwoWay}"
+                                  Placeholder="Enter state"
+                                  Margin="0, 0, 0, 16" />
+                <Label Text="ZIP Code"
+                       Style="{StaticResource OrderEntityLabelStyle}" />
+                <telerik:RadEntry Text="{Binding SelectedOrder.ZipCode, Mode=TwoWay}"
+                                  Placeholder="Enter ZIP (5 or 9 digit)"
+                                  Margin="0, 0, 0, 16" />
+                <Label Text="Country"
+                       Style="{StaticResource OrderEntityLabelStyle}" />
+                <telerik:RadEntry Text="{Binding SelectedOrder.Country, Mode=TwoWay}"
+                                  Placeholder="Enter country"
+                                  Margin="0, 0, 0, 16" />
+                <Label Text="Notes"
+                       Style="{StaticResource OrderEntityLabelStyle}" />
+                <telerik:RadBorder BorderColor="{DynamicResource RadBorderColor}"
+                                   BorderThickness="{OnPlatform Default=0, iOS=1}"
+                                   Padding="{OnPlatform iOS='3, 0'}"
+                                   CornerRadius="{OnPlatform iOS=10}">
+                    <Editor BackgroundColor="Transparent"
+                            Text="{Binding SelectedOrder.Notes, Mode=TwoWay}"
+                            VerticalTextAlignment="Start" />
+                </telerik:RadBorder>
+            </VerticalStackLayout>
+        </ScrollView>
+        <telerik:RadTemplatedButton Grid.Row="2"
+                                    Content="{Binding DeleteContextName, StringFormat='Delete {0}'}"
+                                    Command="{Binding DeleteCommand}"
+                                    IsVisible="{Binding Title, Converter={StaticResource StringStartsWithToBooleanConverter}, ConverterParameter='Edit'}"
+                                    Style="{DynamicResource FlatButtonStyle}"
+                                    TextColor="{DynamicResource RadErrorColor}" />
+       <telerik:RadBusyIndicator Grid.RowSpan="3"
+                                 IsVisible="{Binding IsBusy}"
+                                 IsBusy="{Binding IsBusy}"
+                                 Style="{StaticResource OpaqueBusyIndicatorStyle}" />
+    </Grid>
+</views:BasePage>

@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:BaseContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                       xmlns:views="using:TelerikCRM.Maui.Views"
+                       xmlns:vm="using:TelerikCRM.Maui.ViewModels"
+                       xmlns:converters="clr-namespace:TelerikCRM.Maui.Converters"
+                       x:Class="TelerikCRM.Maui.Views.EmployeeEditView"
+                       x:DataType="vm:EmployeeEditViewModel">
+    <views:BaseContentView.Resources>
+        <converters:StringToBooleanConverter x:Key="StringStartsWithToBooleanConverter" ComparisonMethod="StartsWith" />
+    </views:BaseContentView.Resources>
+
+    <Grid RowDefinitions="Auto, *, Auto"
+          RowSpacing="{OnPlatform Default=16, MacCatalyst=8, WinUI=8}"
+          Padding="16">
+        <telerik:RadBorder BackgroundColor="{DynamicResource RadSurfaceColor}"
+                           BorderColor="{DynamicResource RadBaseSubtleColor}"
+                           BorderThickness="1"
+                           CornerRadius="8"
+                           Padding="5">
+            <telerik:RadBorder CornerRadius="8"
+                               HorizontalOptions="Center">
+                <Grid WidthRequest="230"
+                      HeightRequest="130">
+                    <Image Source="{Binding SelectedEmployee.PhotoImageSource, TargetNullValue='profile_photo.png', FallbackValue='profile_photo.png'}"
+                           Aspect="AspectFill" />
+                    <telerik:RadTemplatedButton Command="{Binding SetPhotoCommand}"
+                                                Content="&#xe818;"
+                                                FontFamily="TelerikFontExamples"
+                                                Style="{DynamicResource ActionButtonStyle}"
+                                                Margin="0, 16, 16, 0"
+                                                HorizontalOptions="End"
+                                                VerticalOptions="Start" />
+                </Grid>
+            </telerik:RadBorder>
+        </telerik:RadBorder>
+        <telerik:RadDataForm x:Name="dataForm"
+                             Grid.Row="1"
+                             BindingContext="{Binding SelectedEmployee}"
+                             LayoutDefinition="{StaticResource DataFormGridLayout}"
+                             CommitMode="Explicit"
+                             AutoGenerateItems="False">
+            <telerik:DataFormRadEntryEditor PropertyName="Name"
+                                            HeaderText="Name"
+                                            Style="{StaticResource DataFormEditorStyle}" />
+            <telerik:DataFormRadDatePickerEditor PropertyName="HireDate"
+                                                 HeaderText="Hire Date"
+                                                 Style="{StaticResource DataFormEditorStyle}" />
+            <telerik:DataFormRadNumericEditor PropertyName="Salary"
+                                              HeaderText="Salary"
+                                              Style="{StaticResource DataFormEditorStyle}" />
+            <telerik:DataFormRadEntryEditor PropertyName="OfficeLocation"
+                                            HeaderText="Location"
+                                            Style="{StaticResource DataFormEditorStyle}" />
+            <telerik:DataFormRadNumericEditor PropertyName="VacationBalance"
+                                              HeaderText="PTO Balance"
+                                              Style="{StaticResource DataFormEditorStyle}" />
+            <telerik:DataFormRadNumericEditor PropertyName="VacationUsed"
+                                              HeaderText="Time Off"
+                                              Style="{StaticResource DataFormEditorStyle}" />
+            <telerik:DataFormRadEntryEditor PropertyName="Notes"
+                                            HeaderText="Notes"
+                                            Style="{StaticResource DataFormEditorStyle}" />
+        </telerik:RadDataForm>
+        <OnPlatform x:TypeArguments="View">
+            <On Platform="Android, iOS">
+                <telerik:RadTemplatedButton Grid.Row="2"
+                                            Content="{Binding DeleteContextName, StringFormat='Delete {0}'}"
+                                            Command="{Binding DeleteCommand}"
+                                            IsVisible="{Binding Title, Converter={StaticResource StringStartsWithToBooleanConverter}, ConverterParameter='Edit'}"
+                                            Style="{DynamicResource FlatButtonStyle}"
+                                            TextColor="{DynamicResource RadErrorColor}" />
+            </On>
+        </OnPlatform>
+    </Grid>
+</views:BaseContentView>

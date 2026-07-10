@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                xmlns:views="using:TelerikCRM.Maui.Views"
+                xmlns:mobileViews="using:TelerikCRM.Maui.Views.Mobile"
+                xmlns:vm="using:TelerikCRM.Maui.ViewModels"
+                xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+                x:Class="TelerikCRM.Maui.Views.Mobile.ImageEditorPage"
+                x:Name="Page"
+                NavigationPage.HasNavigationBar="False"
+                ios:Page.UseSafeArea="False">
+    <Grid RowDefinitions="Auto, *">
+       <mobileViews:HeaderView />
+        <Grid Grid.Row="1"
+              RowDefinitions="*, Auto">
+            <telerik:RadImageEditor x:Name="imageEditor"
+                                    ImageLoaded="ImageEditorImageLoaded" />
+            <telerik:RadImageEditorToolbar Grid.Row="1"
+                                           ImageEditor="{x:Reference imageEditor}" />
+        </Grid>
+       <telerik:RadBusyIndicator Grid.RowSpan="2"
+                                 AnimationContentColor="{StaticResource AccentColor}"
+                                 AnimationContentHeightRequest="100"
+                                 AnimationContentWidthRequest="100"
+                                 IsVisible="{Binding IsBusy}"
+                                 IsBusy="{Binding IsBusy}"
+                                 Style="{StaticResource OpaqueBusyIndicatorStyle}" />
+    </Grid>
+</views:BasePage>

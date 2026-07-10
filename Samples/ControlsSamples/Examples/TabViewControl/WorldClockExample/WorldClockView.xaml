@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
                         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                         xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
@@ -43,7 +43,14 @@
             </Style>
             
             <Style x:Key="TimeIconStyle" TargetType="Image">
-                <Setter Property="Source" Value="clock.png" />
+                <Setter Property="Source">
+                    <Setter.Value>
+                        <FontImageSource FontFamily="TelerikFont"
+                                         Glyph="&#xe87c;"
+                                         Size="100"
+                                         Color="{DynamicResource RadSubtleColor}" />
+                    </Setter.Value>
+                </Setter>
                 <Setter Property="WidthRequest" Value="100"/>
                 <Setter Property="HeightRequest" Value="100"/>
                 <Setter Property="HorizontalOptions" Value="Center" />

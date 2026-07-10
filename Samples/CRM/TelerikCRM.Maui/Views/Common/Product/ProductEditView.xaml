@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:BaseContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                       xmlns:views="using:TelerikCRM.Maui.Views"
+                       xmlns:vm="using:TelerikCRM.Maui.ViewModels"
+                       xmlns:converters="clr-namespace:TelerikCRM.Maui.Converters"
+                       x:Class="TelerikCRM.Maui.Views.ProductEditView"
+                       x:DataType="vm:ProductEditViewModel">
+    <views:BaseContentView.Resources>
+        <converters:StringToBooleanConverter x:Key="StringStartsWithToBooleanConverter" ComparisonMethod="StartsWith" />
+        <telerik:DataFormGridLayout x:Key="ProductEditFormGridLayout"
+                                    ColumnCount="1"
+                                    RowSpacing="{OnPlatform Default=16, MacCatalyst=8, WinUI=8}"
+                                    ColumnSpacing="{OnPlatform Default=0, MacCatalyst=16, WinUI=16}" />
+        <Style x:Key="ProductEditFormRestrictedWidthEditorStyle" TargetType="telerik:DataFormEditor">
+            <Setter Property="WidthRequest" Value="200" />
+            <Setter Property="HorizontalOptions" Value="Start" />
+        </Style>
+        <Style x:Key="ProductEditFormEditorStyle" TargetType="telerik:DataFormEditor">
+            <Setter Property="HeaderPosition" Value="{OnPlatform Default=Above, MacCatalyst=Beside, WinUI=Beside}" />
+            <Setter Property="EditorStyle" Value="{StaticResource ProductEditFormRestrictedWidthEditorStyle}" />
+            <Setter Property="ErrorDisplayOptions" Value="None" />
+            <Setter Property="RowSpacing" Value="0" />
+            <Setter Property="ColumnSpacing" Value="0" />
+        </Style>
+    </views:BaseContentView.Resources>
+
+    <Grid RowDefinitions="Auto, *, Auto"
+          RowSpacing="{OnPlatform Default=16, MacCatalyst=8, WinUI=8}"
+          Padding="16">
+        <telerik:RadBorder BackgroundColor="{DynamicResource RadSurfaceColor}"
+                           BorderColor="{DynamicResource RadBaseSubtleColor}"
+                           BorderThickness="1"
+                           CornerRadius="8"
+                           Padding="5">
+            <telerik:RadBorder CornerRadius="8"
+                               HorizontalOptions="Center">
+                <Grid WidthRequest="230"
+                      HeightRequest="130">
+                    <Image Source="{Binding SelectedProduct.PhotoImageSource, TargetNullValue='art_placeholder.png', FallbackValue='art_placeholder.png'}"
+                           Aspect="AspectFill" />
+                    <telerik:RadTemplatedButton Command="{Binding SetPhotoCommand}"
+                                                Content="&#xe818;"
+                                                FontFamily="TelerikFontExamples"
+                                                Style="{DynamicResource ActionButtonStyle}"
+                                                Margin="0, 16, 16, 0"
+                                                HorizontalOptions="End"
+                                                VerticalOptions="Start" />
+                </Grid>
+            </telerik:RadBorder>
+        </telerik:RadBorder>
+        <telerik:RadDataForm x:Name="dataForm"
+                             Grid.Row="1"
+                             BindingContext="{Binding SelectedProduct}"
+                             LayoutDefinition="{StaticResource ProductEditFormGridLayout}"
+                             CommitMode="Explicit"
+                             AutoGenerateItems="False">
+            <telerik:DataFormRadEntryEditor PropertyName="Title"
+                                            HeaderText="Title"
+                                            Style="{OnPlatform Default={StaticResource ProductEditFormEditorStyle}, Android={StaticResource DataFormEditorStyle}, iOS={StaticResource DataFormEditorStyle}}" />
+            <telerik:DataFormRadNumericEditor PropertyName="Price"
+                                              HeaderText="Price"
+                                              Style="{OnPlatform Default={StaticResource ProductEditFormEditorStyle}, Android={StaticResource DataFormEditorStyle}, iOS={StaticResource DataFormEditorStyle}}" />
+            <telerik:DataFormRadNumericEditor PropertyName="InventoryCount"
+                                              HeaderText="Inventory"
+                                              Style="{OnPlatform Default={StaticResource ProductEditFormEditorStyle}, Android={StaticResource DataFormEditorStyle}, iOS={StaticResource DataFormEditorStyle}}" />
+            <telerik:DataFormCustomEditor PropertyName="IsDiscontinued"
+                                          HeaderText="Discontinued"
+                                          EditorTemplate="{StaticResource DataFormCustomBooleanEditorTemplate}"
+                                          Style="{StaticResource DataFormEditorStyle}" />
+            <telerik:DataFormCustomEditor PropertyName="Description"
+                                          HeaderText="Description"
+                                          EditorTemplate="{StaticResource DataFormCustomMultilineEditorTemplate}"
+                                          Style="{StaticResource DataFormCustomMultilineEditorStyle}" />
+        </telerik:RadDataForm>
+        <OnPlatform x:TypeArguments="View">
+            <On Platform="Android, iOS">
+                <telerik:RadTemplatedButton Grid.Row="2"
+                                            Content="{Binding DeleteContextName, StringFormat='Delete {0}'}"
+                                            Command="{Binding DeleteCommand}"
+                                            IsVisible="{Binding Title, Converter={StaticResource StringStartsWithToBooleanConverter}, ConverterParameter='Edit'}"
+                                            Style="{DynamicResource FlatButtonStyle}"
+                                            TextColor="{DynamicResource RadErrorColor}" />
+            </On>
+        </OnPlatform>
+    </Grid>
+</views:BaseContentView>

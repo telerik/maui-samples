@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        xmlns:views="using:TelerikCRM.Maui.Views"
+                        xmlns:vm="using:TelerikCRM.Maui.ViewModels"
+                        xmlns:converters="clr-namespace:TelerikCRM.Maui.Converters"
+                        x:Class="TelerikCRM.Maui.Views.Desktop.PopupWrapperView"
+                        WidthRequest="600">
+    <telerik:RadContentView.Resources>
+        <converters:StringToBooleanConverter x:Key="StringStartsWithToBooleanConverter" ComparisonMethod="StartsWith" />
+    </telerik:RadContentView.Resources>
+    <telerik:RadContentView.ControlTemplate>
+        <ControlTemplate>
+            <telerik:RadBorder Background="{DynamicResource RadAppSurfaceColor}"
+                               CornerRadius="8">
+                <Grid RowDefinitions="{OnPlatform Default='28, *, Auto', WinUI='32, *, Auto'}">
+                    <telerik:RadBorder BorderColor="{OnPlatform Default=Transparent, MacCatalyst={DynamicResource RadBorderColor}}"
+                                       BorderThickness="{OnPlatform Default=0, MacCatalyst='0, 0, 0, 1'}" >
+                        <Grid ColumnDefinitions="{OnPlatform Default='*, Auto', MacCatalyst='Auto, *'}"
+                              Padding="{OnPlatform Default='16, 0', WinUI='12, 0, 0, 0'}">
+                            <Label Grid.Column="{OnPlatform Default=0, MacCatalyst=1}"
+                                   Text="{Binding Title}"
+                                   Style="{StaticResource ModalDialogHeaderStyle}" />
+                            <telerik:RadButton Grid.Column="{OnPlatform Default=1, MacCatalyst=0}"
+                                               Command="{Binding CloseModalCommand}"
+                                               Style="{OnPlatform MacCatalyst={StaticResource ModalDialogCloseButtonStyle_MacCatalyst}, WinUI={StaticResource ModalDialogCloseButtonStyle_WinUI}}" />
+                        </Grid>
+                    </telerik:RadBorder>
+                    <ContentPresenter Grid.Row="1" />
+                    <telerik:RadBorder Grid.Row="2"
+                                       BackgroundColor="{OnPlatform Default=Transparent, WinUI={DynamicResource RadBaseColor}}"
+                                       BorderColor="{OnPlatform Default=Transparent, WinUI={DynamicResource RadBorderColor}}"
+                                       BorderThickness="{OnPlatform Default=0, WinUI='0, 1, 0, 0'}"
+                                       Padding="{OnPlatform Default=20, WinUI='24, 16'}">
+                        <Grid ColumnDefinitions="*, *"
+                              ColumnSpacing="8">
+                            <telerik:RadTemplatedButton Content="{Binding DeleteContextName, StringFormat='Delete {0}'}"
+                                                        Command="{Binding DeleteCommand}"
+                                                        IsVisible="{Binding Title, Converter={StaticResource StringStartsWithToBooleanConverter}, ConverterParameter='Edit'}"
+                                                        Style="{DynamicResource FlatButtonStyle}"
+                                                        TextColor="{DynamicResource RadErrorColor}"
+                                                        HorizontalOptions="Start" />
+                            <Grid Grid.Column="1"
+                                  ColumnDefinitions="Auto, Auto"
+                                  ColumnSpacing="8"
+                                  HorizontalOptions="End">
+                                <telerik:RadTemplatedButton Content="Cancel"
+                                                            Command="{Binding CloseModalCommand}"
+                                                            Style="{DynamicResource FlatButtonStyle}" />
+                                <telerik:RadTemplatedButton Grid.Column="1"
+                                                            Content="Save"
+                                                            Command="{Binding SaveModalCommand}"
+                                                            Style="{DynamicResource PrimaryButtonStyle}" />
+                            </Grid>
+                        </Grid>
+                    </telerik:RadBorder>
+                </Grid>
+            </telerik:RadBorder>
+        </ControlTemplate>
+    </telerik:RadContentView.ControlTemplate>
+</telerik:RadContentView>

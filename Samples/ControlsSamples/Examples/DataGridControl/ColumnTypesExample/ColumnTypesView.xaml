@@ -31,11 +31,12 @@
     </ContentView.Resources>
     <Grid RowDefinitions="*">
         <telerik:RadDataGrid ItemsSource="{Binding Flights}"
+                             ShowColumnHeaders="{Binding ShowColumnHeaders}"
                              SelectionMode="None"
                              UserEditMode="Cell"
                              UserSortMode="None"
                              UserFilterMode="Disabled"
-                             UserGroupMode="Disabled"
+                             UserGroupMode="Enabled"
                              AutoGenerateColumns="False"
                              AutomationId="dataGrid">
             <telerik:RadDataGrid.Columns>

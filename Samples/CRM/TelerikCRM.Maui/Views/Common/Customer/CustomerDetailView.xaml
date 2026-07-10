@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:BaseContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                       xmlns:views="using:TelerikCRM.Maui.Views"
+                       xmlns:vm="using:TelerikCRM.Maui.ViewModels"
+                       xmlns:models="using:TelerikCRM.Maui.Models.DataService"
+                       xmlns:converters="clr-namespace:TelerikCRM.Maui.Converters"
+                       x:Class="TelerikCRM.Maui.Views.CustomerDetailView">
+    <views:BaseContentView.Resources>
+        <converters:ProductIdConverter x:Key="ProductIdConverter" />
+        <Style x:Key="OrderCardLabelStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="TextColor" Value="{DynamicResource RadOnAppSurfaceColorAlpha60}" />
+            <Setter Property="MaxLines" Value="1" />
+            <Setter Property="LineBreakMode" Value="TailTruncation" />
+        </Style>
+        <telerik:CollectionViewGridLayout x:Key="OrdersLayoutDesktop"
+                                          SpanCount="2"
+                                          HorizontalItemSpacing="16" />
+        <Style x:Key="CollectionViewStyleMobile" TargetType="telerik:RadCollectionView">
+            <Setter Property="ItemTapCommand" Value="{Binding ItemTapCommand}" />
+        </Style>
+    </views:BaseContentView.Resources>
+
+    <Grid RowDefinitions="Auto, *">
+        <views:CustomerDetailViewHeader Margin="{OnPlatform Android=16, iOS=16}" />
+        <Grid Grid.Row="1"
+              RowDefinitions="Auto, *"
+              RowSpacing="16"
+              Padding="16">
+            <Label Text="Orders History"
+                   FontSize="{OnPlatform Android=18, iOS=18}"
+                   FontAttributes="Bold" />
+            <RefreshView Grid.Row="1"
+                         Command="{Binding RefreshRequestedCommand}"
+                         IsRefreshing="{Binding IsRefreshing}">
+                <telerik:RadCollectionView ItemsSource="{Binding SelectedCustomerOrders}"
+                                           ItemsLayout="{OnPlatform MacCatalyst={StaticResource OrdersLayoutDesktop}, WinUI={StaticResource OrdersLayoutDesktop}}"
+                                           SelectionMode="None"
+                                           Style="{OnPlatform Android={StaticResource CollectionViewStyleMobile}, iOS={StaticResource CollectionViewStyleMobile}}">
+                    <telerik:RadCollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid ColumnDefinitions="Auto, *, Auto, Auto"
+                                  ColumnSpacing="8"
+                                  RowDefinitions="{OnPlatform Default=Auto, Android='Auto, Auto', iOS='Auto, Auto'}"
+                                  Padding="{OnPlatform Default='8, 16', Android=8, iOS=8}">
+                                <OnPlatform x:TypeArguments="View">
+                                    <On Platform="Android, iOS">
+                                        <Label Grid.ColumnSpan="3"
+                                               Text="{Binding ProductId, Converter={StaticResource ProductIdConverter}, ConverterParameter='Title'}"
+                                               FontAttributes="Bold"
+                                               FontSize="{OnPlatform Android=16, iOS=16}"
+                                               MaxLines="1"
+                                               LineBreakMode="TailTruncation" />
+                                    </On>
+                                </OnPlatform>
+                                <telerik:RadBorder Grid.Row="{OnPlatform Default=0, Android=1, iOS=1}"
+                                                   WidthRequest="{OnPlatform Default=56, Android=48, iOS=48}"
+                                                   HeightRequest="{OnPlatform Default=56, Android=48, iOS=48}"
+                                                   CornerRadius="{OnPlatform Default=28, Android=24, iOS=24}"
+                                                   Margin="{OnPlatform Default=0, Android='0, 4', iOS='0, 4'}">
+                                    <Image Source="{Binding ProductId, Converter={StaticResource ProductIdConverter}, ConverterParameter='PhotoUri', TargetNullValue='art_placeholder.png', FallbackValue='art_placeholder.png'}"
+                                           Aspect="AspectFill" />
+                                </telerik:RadBorder>
+                                <VerticalStackLayout Grid.Column="1"
+                                                     Grid.Row="{OnPlatform Default=0, Android=1, iOS=1}"
+                                                     Margin="{OnPlatform Default=0, Android='0, 4', iOS='0, 4'}"
+                                                     VerticalOptions="Center">
+                                    <OnPlatform x:TypeArguments="View">
+                                        <On Platform="MacCatalyst, WinUI">
+                                            <Label Text="{Binding ProductId, Converter={StaticResource ProductIdConverter}, ConverterParameter='Title'}"
+                                                   FontAttributes="Bold"
+                                                   MaxLines="1"
+                                                   LineBreakMode="TailTruncation" />
+                                        </On>
+                                    </OnPlatform>
+                                    <Grid ColumnDefinitions="Auto, *"
+                                          RowDefinitions="Auto, Auto, Auto">
+                                        <Label Text="Ordered:"
+                                               Style="{DynamicResource OrderCardLabelStyle}" />
+                                        <Label Grid.Column="1"
+                                               Text="{Binding OrderDate, StringFormat='{0:dd.MM.yyyy}'}"
+                                               Style="{DynamicResource OrderCardLabelStyle}"
+                                               HorizontalOptions="End" />
+                                        <Label Grid.Row="1"
+                                               Text="Total Cost:"
+                                               Style="{DynamicResource OrderCardLabelStyle}" />
+                                        <Label Grid.Row="1"
+                                               Grid.Column="1"
+                                               Text="{Binding TotalPrice, StringFormat='{0:C2}'}"
+                                               Style="{DynamicResource OrderCardLabelStyle}"
+                                               HorizontalOptions="End" />
+                                        <Label Grid.Row="2"
+                                               Text="Quantity:"
+                                               Style="{DynamicResource OrderCardLabelStyle}" />
+                                        <Label Grid.Row="2"
+                                               Grid.Column="1"
+                                               Text="{Binding Quantity}"
+                                               Style="{DynamicResource OrderCardLabelStyle}"
+                                               HorizontalOptions="End" />
+                                    </Grid>
+                                </VerticalStackLayout>
+                                <telerik:RadBorder Grid.Column="2"
+                                                   Grid.Row="{OnPlatform Default=0, Android=1, iOS=1}"
+                                                   Background="{DynamicResource RadSurfaceColor}"
+                                                   CornerRadius="8"
+                                                   Padding="{OnPlatform Default='8, 0', Android=0, iOS=0}">
+                                    <telerik:RadBarcode Value="{Binding ProductId}"
+                                                        WidthRequest="60"
+                                                        HeightRequest="60"
+                                                        BackgroundColor="Transparent"
+                                                        HorizontalOptions="End">
+                                        <telerik:RadBarcode.Symbology>
+                                            <telerik:QRCode />
+                                        </telerik:RadBarcode.Symbology>
+                                    </telerik:RadBarcode>
+                                </telerik:RadBorder>
+                                <telerik:RadTemplatedButton Grid.Column="3"
+                                                            IsVisible="{OnPlatform Android=False, iOS=False}"
+                                                            Content="Edit"
+                                                            Command="{Binding Source={RelativeSource AncestorType={x:Type telerik:RadCollectionView}}, Path=BindingContext.ItemTapCommand}"
+                                                            CommandParameter="{Binding}"
+                                                            Style="{DynamicResource OutlineButtonStyle}"
+                                                            TextColor="{DynamicResource RadOnAppSurfaceColorAlpha60}"
+                                                            BorderBrush="{DynamicResource RadOnAppSurfaceColorAlpha60}"
+                                                            FontSize="12"
+                                                            HorizontalOptions="End"
+                                                            VerticalOptions="Center" />
+                            </Grid>
+                        </DataTemplate>
+                    </telerik:RadCollectionView.ItemTemplate>
+                </telerik:RadCollectionView>
+            </RefreshView>
+        </Grid>
+        <telerik:RadBusyIndicator Grid.RowSpan="2"
+                                  IsVisible="{Binding IsBusy}"
+                                  IsBusy="{Binding IsBusy}"
+                                  Style="{StaticResource OpaqueBusyIndicatorStyle}" />
+    </Grid>
+</views:BaseContentView>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.DataGridControl.SearchCategory.SemanticSearchExample.SemanticSearch">
+    <Grid RowDefinitions="*">
+        <!-- >> datagrid-semantic-search-xaml -->
+        <telerik:RadDataGrid x:Name="dataGrid"
+                             ItemsSource="{Binding Products}"
+                             IsAIEnabled="True"
+                             AutoGenerateColumns="False">
+            <telerik:RadDataGrid.SearchSettings>
+                <telerik:DataGridSearchSettings />
+            </telerik:RadDataGrid.SearchSettings>
+            <telerik:RadDataGrid.AISettings>
+                <telerik:DataGridAISettings ViewMode="Search"
+                                            SearchMode="SemanticSearch"
+                                            IsSuggestedPromptsVisible="False"
+                                            IsRecentPromptsVisible="False" />
+            </telerik:RadDataGrid.AISettings>
+            <telerik:RadDataGrid.SemanticSearchSettings>
+                <telerik:DataGridSemanticSearchSettings SearchStarting="OnSearchStarting"
+                                                        SearchCompleted="OnSearchCompleted" />
+            </telerik:RadDataGrid.SemanticSearchSettings>
+            <telerik:RadDataGrid.Columns>
+                <telerik:DataGridTextColumn PropertyName="CategoryName"
+                                            HeaderText="Category" />
+                <telerik:DataGridTextColumn PropertyName="Description"
+                                            HeaderText="Description" />
+            </telerik:RadDataGrid.Columns>
+        </telerik:RadDataGrid>
+        <!-- << datagrid-semantic-search-xaml -->
+    </Grid>
+</ContentView>
