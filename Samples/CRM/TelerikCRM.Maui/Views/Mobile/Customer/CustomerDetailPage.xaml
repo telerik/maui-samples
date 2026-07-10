@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:BasePage x:Name="Page"
+                xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                xmlns:views="using:TelerikCRM.Maui.Views"
+                xmlns:mobileViews="using:TelerikCRM.Maui.Views.Mobile"
+                xmlns:vm="using:TelerikCRM.Maui.ViewModels"
+                xmlns:models="using:TelerikCRM.Maui.Models.DataService"
+                xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+                x:Class="TelerikCRM.Maui.Views.Mobile.CustomerDetailPage"
+                x:DataType="vm:CustomerDetailViewModel"
+                NavigationPage.HasNavigationBar="False"
+                ios:Page.UseSafeArea="False">
+     <Grid RowDefinitions="Auto, *">
+        <mobileViews:HeaderView />
+        <HorizontalStackLayout HorizontalOptions="End"
+                               VerticalOptions="Center"
+                               Margin="0, 0, 16, 0">
+            <telerik:RadTemplatedButton Command="{Binding ToolbarCommand}"
+                                        CommandParameter="order"
+                                        Content="&#xe833;"
+                                        FontFamily="TelerikFontExamples"
+                                        Style="{DynamicResource FlatButtonStyle}" />
+            <telerik:RadTemplatedButton Command="{Binding ToolbarCommand}"
+                                        CommandParameter="edit"
+                                        Content="&#xe818;"
+                                        FontFamily="TelerikFontExamples"
+                                        Style="{DynamicResource FlatButtonStyle}" />
+        </HorizontalStackLayout>
+        <views:CustomerDetailView Grid.Row="1" />
+    </Grid>
+</views:BasePage>

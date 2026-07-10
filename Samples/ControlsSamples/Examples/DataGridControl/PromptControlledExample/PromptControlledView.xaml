@@ -28,7 +28,9 @@
                                            Command="{Binding CancelAICommand}" />
             </telerik:RadDataGrid.Commands>
             <telerik:RadDataGrid.AISettings>
-                <telerik:DataGridAISettings SuggestedPrompts="{Binding SuggestedPrompts}">
+                <telerik:DataGridAISettings SuggestedPrompts="{Binding SuggestedPrompts}"
+                                            IsTextSearchOptionVisible="False"
+                                            IsSemanticSearchOptionVisible="False">
                     <telerik:DataGridAISettings.PromptInputStyle>
                         <Style TargetType="telerik:DataGridAIPromptInput">
                             <Setter Property="IsSpeechToTextButtonVisible" Value="{x:Null}" />

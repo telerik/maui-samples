@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.DataGridControl.ColumnsCategory.HideColumnHeadersExample"
+             x:Class="SDKBrowserMaui.Examples.DataGridControl.ColumnsCategory.HideColumnHeadersExample.HideColumnHeaders">
+    <ContentView.BindingContext>
+        <local:HideColumnHeadersViewModel />
+    </ContentView.BindingContext>
+    <!-- >> datagrid-hide-column-headers-example -->
+    <Grid RowDefinitions="Auto, *">
+        <HorizontalStackLayout Grid.Row="0" 
+                               Spacing="10" 
+                               Margin="10"
+                               VerticalOptions="Center">
+            <Label Text="Show Column Headers:" 
+                   VerticalOptions="Center" />
+            <telerik:RadCheckBox IsChecked="{Binding ShowColumnHeaders, Source={x:Reference dataGrid}}" 
+                                 VerticalOptions="Center" />
+        </HorizontalStackLayout>
+        <telerik:RadDataGrid Grid.Row="1"
+                             ShowColumnHeaders="False"
+                             AutoGenerateColumns="False"
+                             UserGroupMode="Enabled"
+                             ItemsSource="{Binding Items}"
+                             x:Name="dataGrid">
+            <telerik:RadDataGrid.Columns>
+                <telerik:DataGridTextColumn PropertyName="Name" IsFrozen="True" />
+                <telerik:DataGridNumericalColumn PropertyName="Age" />
+                <telerik:DataGridTextColumn PropertyName="City" />
+            </telerik:RadDataGrid.Columns>
+        </telerik:RadDataGrid>
+    </Grid>
+    <!-- << datagrid-hide-column-headers-example -->
+</ContentView>

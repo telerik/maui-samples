@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Name="mainPage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:converters="using:TelerikCRM.Maui.Converters"
+             xmlns:views="using:TelerikCRM.Maui.Views"
+             xmlns:viewModels="using:TelerikCRM.Maui.ViewModels"
+             x:Class="TelerikCRM.Maui.Views.Desktop.MainPage"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Resources>
+        <converters:PageModelToViewConverter x:Key="PageModelToViewConverter" />
+
+        <converters:StringToFontImageSourceConverter x:Key="StringToFontImageSourceConverter"
+                                                     FontFamily="TelerikFontExamples"
+                                                     Size="16" />
+
+        <telerik:DictionaryConverter x:Key="NavigationViewDisplayModeToHeaderBorderThicknessConverter">
+            <telerik:DictionaryConverterItem Key="{telerik:NavigationViewDisplayMode Minimal}" Value="{Thickness Bottom=1}" />
+            <telerik:DictionaryConverterItem Key="{telerik:NavigationViewDisplayMode Compact}" Value="{Thickness Right=1}" />
+            <telerik:DictionaryConverterItem Key="{telerik:NavigationViewDisplayMode Expanded}" Value="{Thickness Right=1}" />
+        </telerik:DictionaryConverter>
+
+        <telerik:DictionaryConverter x:Key="NavigationViewDisplayModeToPaneBorderThicknessConverter">
+            <telerik:DictionaryConverterItem Key="{telerik:NavigationViewDisplayMode Minimal}" Value="{Thickness Right=1}" />
+            <telerik:DictionaryConverterItem Key="{telerik:NavigationViewDisplayMode Compact}" Value="{Thickness Top=1, Right=1}" />
+            <telerik:DictionaryConverterItem Key="{telerik:NavigationViewDisplayMode Expanded}" Value="{Thickness Top=1, Right=1}" />
+        </telerik:DictionaryConverter>
+
+        <FontImageSource x:Key="AboutIcon"
+                         Glyph="&#xe8ac;"
+                         FontFamily="TelerikFontExamples"
+                         Size="16" />
+
+        <Style TargetType="telerik:NavigationViewHeader">
+            <Setter Property="BorderBrush" Value="{DynamicResource RadBorderColor}" />
+            <Setter Property="BorderThickness" Value="{Binding Source={RelativeSource AncestorType={x:Type telerik:RadNavigationView}}, Path=DisplayMode, Converter={StaticResource NavigationViewDisplayModeToHeaderBorderThicknessConverter}}" />
+            <Setter Property="HeightRequest" Value="56" />
+        </Style>
+
+        <Style TargetType="telerik:NavigationViewPane">
+            <Setter Property="BorderBrush" Value="{DynamicResource RadBorderColor}" />
+            <Setter Property="BorderThickness" Value="{Binding Source={RelativeSource AncestorType={x:Type telerik:RadNavigationView}}, Path=DisplayMode, Converter={StaticResource NavigationViewDisplayModeToPaneBorderThicknessConverter}}" />
+        </Style>
+    </ContentPage.Resources>
+
+    <Grid>
+        <telerik:RadNavigationView x:Name="navigationView"
+                                   ItemsSource="{Binding Pages}"
+                                   SelectedItem="{Binding SelectedPage, Mode=TwoWay}"
+                                   ImageSourcePath="Icon"
+                                   ImageSourceConverter="{StaticResource StringToFontImageSourceConverter}"
+                                   DisplayMemberPath="Title">
+            <telerik:RadNavigationView.Items>
+                <telerik:NavigationViewItem Text="About"
+                                            Position="Footer"
+                                            ImageSource="{StaticResource AboutIcon}" />
+            </telerik:RadNavigationView.Items>
+            <ContentView Content="{Binding SelectedItem, Source={x:Reference navigationView}, Converter={StaticResource PageModelToViewConverter}}" />
+        </telerik:RadNavigationView>
+        <telerik:RadBusyIndicator BindingContext="{Binding Source={x:Reference mainPage}}"
+                                  IsVisible="{Binding IsBusy}"
+                                  IsBusy="{Binding IsBusy}"
+                                  Style="{StaticResource OpaqueBusyIndicatorStyle}" />
+    </Grid>
+</ContentPage>

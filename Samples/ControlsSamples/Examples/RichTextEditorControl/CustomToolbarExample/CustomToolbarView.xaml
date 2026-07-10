@@ -6,9 +6,6 @@
                         xmlns:local="clr-namespace:QSF.Examples.RichTextEditorControl.CustomToolbarExample"
                         x:Class="QSF.Examples.RichTextEditorControl.CustomToolbarExample.CustomToolbarView"
                         Padding="{OnIdiom Default='16, 20', Phone=16}">
-    <telerik:RadContentView.Behaviors>
-        <behaviors:AndroidResizeSoftInputModeBehavior />
-    </telerik:RadContentView.Behaviors>
 
     <telerik:RadContentView.Resources>
         <Color x:Key="ToolbarItemTextColor">White</Color>
@@ -101,6 +98,9 @@
 
     <Grid RowDefinitions="{OnIdiom Desktop='Auto, *', Phone='*, Auto'}"
           RowSpacing="8">
+        <Grid.Behaviors>
+            <behaviors:AndroidKeyboardPaddingBehavior/>
+        </Grid.Behaviors>
         <telerik:RadRichTextEditorToolbar x:Name="richTextToolbar"
                                           Grid.Row="{OnIdiom Desktop=0, Phone=1}"
                                           ZIndex="10"

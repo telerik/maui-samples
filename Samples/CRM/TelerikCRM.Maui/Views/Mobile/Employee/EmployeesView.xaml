@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:BaseContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                       xmlns:models="using:TelerikCRM.Maui.Models.DataService"
+                       xmlns:views="using:TelerikCRM.Maui.Views"
+                       xmlns:vm="using:TelerikCRM.Maui.ViewModels"
+                       x:Class="TelerikCRM.Maui.Views.Mobile.EmployeesView"
+                       x:DataType="vm:EmployeesViewModel"
+                       Padding="{DynamicResource TopLevelViewPadding_Mobile}">
+    <Grid RowDefinitions="Auto, *"
+          RowSpacing="{DynamicResource TopLevelViewTitleContentSpacing}">
+        <Label Text="Employees"
+               Style="{DynamicResource NavigationViewItemTitleStyle}" />
+        <telerik:RadCollectionView Grid.Row="1"
+                                   ItemsSource="{Binding Employees}"
+                                   ItemTapCommand="{Binding ItemTapCommand}"
+                                   SelectionMode="None">
+            <telerik:RadCollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:Employee">
+                    <Grid ColumnDefinitions="Auto, *, Auto"
+                          ColumnSpacing="8"
+                          Padding="8">
+                        <telerik:RadBorder WidthRequest="32"
+                                           HeightRequest="32"
+                                           CornerRadius="16">
+                            <Image Source="{Binding PhotoImageSource, TargetNullValue='profile_photo.png', FallbackValue='profile_photo.png'}"
+                                   Aspect="AspectFill" />
+                        </telerik:RadBorder>
+                        <VerticalStackLayout Grid.Column="1"
+                                             VerticalOptions="Center">
+                            <Label Text="{Binding Name}" />
+                            <Label Text="{Binding OfficeLocation}"
+                                   TextColor="{DynamicResource RadOnAppSurfaceColorAlpha60}"
+                                   FontSize="12" />
+                        </VerticalStackLayout>
+                        <Label Grid.Column="2"
+                               Text="&#xe81b;"
+                               TextColor="{DynamicResource RadOnAppSurfaceColorAlpha60}"
+                               FontFamily="TelerikFontExamples"
+                               FontSize="{OnPlatform Default=16, iOS=12}"
+                               VerticalTextAlignment="Center" />
+                    </Grid>
+                </DataTemplate>
+            </telerik:RadCollectionView.ItemTemplate>
+        </telerik:RadCollectionView>
+
+        <telerik:RadBusyIndicator Grid.RowSpan="2"
+                                  IsVisible="{Binding IsBusy}"
+                                  IsBusy="{Binding IsBusy}"
+                                  Style="{StaticResource TransparentBusyIndicatorStyle}" />
+    </Grid>
+</views:BaseContentView>

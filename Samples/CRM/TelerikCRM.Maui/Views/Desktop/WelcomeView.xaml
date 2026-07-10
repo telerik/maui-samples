@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:BaseContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                       xmlns:views="using:TelerikCRM.Maui.Views"
+                       xmlns:models="clr-namespace:TelerikCRM.Maui.Models"
+                       xmlns:vm="using:TelerikCRM.Maui.ViewModels"
+                       xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+                       x:Class="TelerikCRM.Maui.Views.Desktop.WelcomeView"
+                       NavigationPage.HasNavigationBar="False"
+                       ios:Page.UseSafeArea="False"
+                       WidthRequest="600"
+                       HeightRequest="440">
+    <views:BaseContentView.Resources>
+        <ControlTemplate x:Key="CollectionViewItemControlTemplate">
+            <Grid>
+                <ContentPresenter />
+                <telerik:RadBorder IsVisible="{TemplateBinding IsSelected}"
+                                   BackgroundColor="{DynamicResource RadPrimaryColor}"
+                                   HorizontalOptions="Start"
+                                   WidthRequest="4">
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroupList>
+                            <VisualStateGroup Name="CommonStates">
+                                <VisualState Name="Normal" />
+                                <VisualState Name="Disabled">
+                                    <VisualState.Setters>
+                                        <Setter Property="Opacity" Value="0.38" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateGroupList>
+                    </VisualStateManager.VisualStateGroups>
+                </telerik:RadBorder>
+            </Grid>
+        </ControlTemplate>
+        <Style TargetType="telerik:RadCollectionViewItemView">
+            <Setter Property="MinimumHeightRequest" Value="0" />
+            <Setter Property="BorderColor" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="CornerRadius" Value="2" />
+            <Setter Property="ControlTemplate" Value="{StaticResource CollectionViewItemControlTemplate}" />
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup Name="CommonStates">
+                        <VisualState Name="Normal" />
+                        <VisualState Name="MouseOver">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadCollectionViewItemView.BackgroundColor" Value="{DynamicResource RadPrimaryColorAlpha8}" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:RadCollectionViewItemView.BackgroundColor" Value="{DynamicResource RadPrimaryColorAlpha8}" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup Name="OrientationStates">
+                        <VisualState Name="Vertical" />
+                        <VisualState Name="Horizontal" />
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+        
+        <DataTemplate x:Key="CollectionViewItemTemplate" x:DataType="models:WelcomeCard">
+            <Label Text="{Binding Title}"
+                   TextColor="{DynamicResource RadSubtleColor}"
+                   VerticalTextAlignment="Center"
+                   Padding="12, 0, 0, 0">
+                <Label.Triggers>
+                    <DataTrigger TargetType="Label" Binding="{Binding IsSelected, Source={RelativeSource AncestorType={x:Type telerik:RadCollectionViewItemView}}}" Value="True">
+                        <Setter Property="TextColor" Value="{DynamicResource RadOnAppSurfaceColor}" />
+                    </DataTrigger>
+                </Label.Triggers>
+            </Label>
+        </DataTemplate>
+    </views:BaseContentView.Resources>
+
+    <telerik:RadBorder Background="{DynamicResource RadAppSurfaceColor}"
+                       CornerRadius="8">
+        <Grid RowDefinitions="{OnPlatform Default='28, *, Auto', WinUI='32, *, Auto'}">
+            <telerik:RadBorder BorderColor="{OnPlatform Default=Transparent, MacCatalyst={DynamicResource RadBorderColor}}"
+                               BorderThickness="{OnPlatform Default=0, MacCatalyst='0, 0, 0, 1'}" >
+                <Grid ColumnDefinitions="{OnPlatform Default='*, Auto', MacCatalyst='Auto, *'}"
+                      Padding="{OnPlatform Default='16, 0', WinUI='12, 0, 0, 0'}">
+                    <Label x:Name="modalTitleLabel"
+                           Grid.Column="{OnPlatform Default=0, MacCatalyst=1}"
+                           Style="{StaticResource ModalDialogHeaderStyle}" />
+                    <telerik:RadButton Grid.Column="{OnPlatform Default=1, MacCatalyst=0}"
+                                       Clicked="CloseModalButtonClicked"
+                                       Style="{OnPlatform MacCatalyst={StaticResource ModalDialogCloseButtonStyle_MacCatalyst}, WinUI={StaticResource ModalDialogCloseButtonStyle_WinUI}}" />
+                </Grid>
+            </telerik:RadBorder>
+            <Grid Grid.Row="1"
+                  RowDefinitions="Auto, *, Auto"
+                  RowSpacing="16"
+                  ColumnDefinitions="200, *"
+                  Padding="16">
+                <telerik:RadBorder Grid.RowSpan="2" 
+                                   BackgroundColor="{DynamicResource RadPrimaryColorAlpha5}"
+                                   CornerRadius="4" />
+                <HorizontalStackLayout Margin="16, 16, 16, 0">
+                    <Label Text="Telerik CRM"
+                           TextColor="{DynamicResource RadOnAppSurfaceColor}"
+                           FontAttributes="Bold"
+                           FontSize="22" />
+                    <Label Text="."
+                           TextColor="{DynamicResource RadPrimaryColor}"
+                           FontAttributes="Bold"
+                           FontSize="22" />
+                </HorizontalStackLayout>
+                <telerik:RadCollectionView x:Name="collectionView"
+                                           Grid.Row="1"
+                                           ItemsSource="{Binding WelcomeCards}"
+                                           ItemTemplate="{StaticResource CollectionViewItemTemplate}"
+                                           DisplayMemberPath="Title"
+                                           SelectionChanged="WelcomeCardChanged"
+                                           Margin="16, 0">
+                    <telerik:RadCollectionView.ItemsLayout>
+                        <telerik:CollectionViewLinearLayout ItemSpacing="6" ItemLength="{OnPlatform Default=32, MacCatalyst=24}"/>
+                    </telerik:RadCollectionView.ItemsLayout>
+                </telerik:RadCollectionView>
+                <Image x:Name="image"
+                       Grid.RowSpan="2"
+                       Grid.Column="1"
+                       MaximumHeightRequest="300"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center" />
+                <Label x:Name="infoLabel"
+                       Grid.Row="2"
+                       Grid.ColumnSpan="2"
+                       TextColor="{DynamicResource RadOnAppSurfaceColor}"
+                       LineBreakMode="WordWrap" />
+            </Grid>
+            <telerik:RadBorder Grid.Row="2"
+                               BackgroundColor="{OnPlatform Default=Transparent, WinUI={DynamicResource RadBaseColor}}"
+                               BorderColor="{OnPlatform Default=Transparent, WinUI={DynamicResource RadBorderColor}}"
+                               BorderThickness="{OnPlatform Default=0, WinUI='0, 1, 0, 0'}"
+                               Padding="{OnPlatform Default=20, WinUI='24, 16'}">
+                <telerik:RadTemplatedButton x:Name="defaultButton"
+                                            Style="{DynamicResource PrimaryButtonStyle}"
+                                            MinimumWidthRequest="100"
+                                            HorizontalOptions="End"
+                                            VerticalOptions="End" />
+            </telerik:RadBorder>
+        </Grid>
+    </telerik:RadBorder>
+</views:BaseContentView>

@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:BaseContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                       xmlns:views="using:TelerikCRM.Maui.Views"
+                       xmlns:vm="using:TelerikCRM.Maui.ViewModels"
+                       xmlns:models="using:TelerikCRM.Maui.Models.DataService"
+                       x:Class="TelerikCRM.Maui.Views.Mobile.ProductsView"
+                       x:DataType="vm:ProductsViewModel"
+                       Padding="{DynamicResource TopLevelViewPadding_Mobile}">
+    <views:BaseContentView.Resources>
+        <Style TargetType="telerik:RadCollectionViewItemView">
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="CornerRadius" Value="0" />
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup Name="CommonStates">
+                        <VisualState Name="Normal" />
+                        <VisualState Name="MouseOver" />
+                        <VisualState Name="Selected" />
+                        <VisualState Name="Disabled" />
+                    </VisualStateGroup>
+                    <VisualStateGroup Name="OrientationStates">
+                        <VisualState Name="Vertical" />
+                        <VisualState Name="Horizontal" />
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+
+        <DataTemplate x:Key="ProductTemplate" x:DataType="models:Product">
+            <VerticalStackLayout Spacing="12">
+                <telerik:RadBorder HeightRequest="140"
+                                   CornerRadius="8">
+                    <Grid>
+                        <Image Source="{Binding PhotoImageSource, TargetNullValue='art_placeholder.png', FallbackValue='art_placeholder.png'}"
+                               Aspect="AspectFill" />
+                        <telerik:RadBorder IsVisible="{Binding IsDiscontinued}"
+                                           Background="{DynamicResource RadErrorSubtleColor}"
+                                           CornerRadius="18"
+                                           HeightRequest="24"
+                                           Padding="8, 0"
+                                           Margin="0, 8, 8, 0"
+                                           HorizontalOptions="End"
+                                           VerticalOptions="Start">
+                            <Label Text="Discontinued"
+                                   TextColor="{DynamicResource RadErrorColor}"
+                                   FontSize="10"
+                                   VerticalTextAlignment="Center" />
+                        </telerik:RadBorder>
+                    </Grid>
+                </telerik:RadBorder>
+                <Label Text="{Binding Title}"
+                       FontAttributes="Bold"
+                       FontSize="{OnPlatform Android=16, iOS=17}"
+                       LineBreakMode="TailTruncation" />
+                <telerik:RadBorder BorderThickness="0, 0, 0, 1"
+                                   BorderBrush="{DynamicResource RadBaseSubtleColor}"
+                                   Padding="8, 16">
+                    <Grid ColumnDefinitions="*, Auto">
+                        <Label Text="Cost"
+                               TextColor="{DynamicResource RadOnAppSurfaceColorAlpha60}" />
+                        <Label Grid.Column="1"
+                               Text="{Binding Price, StringFormat='{0:C0}'}"
+                               HorizontalOptions="End" />
+                    </Grid>
+                </telerik:RadBorder>
+                <telerik:RadBorder Grid.Row="3"
+                                   BorderThickness="0, 0, 0, 1"
+                                   BorderBrush="{DynamicResource RadBaseSubtleColor}"
+                                   Padding="8, 16">
+                    <Grid ColumnDefinitions="*, Auto">
+                        <Label Text="In Stock"
+                               TextColor="{DynamicResource RadOnAppSurfaceColorAlpha60}" />
+                        <Label Grid.Column="1"
+                               Text="{Binding InventoryCount}"
+                               HorizontalOptions="End" />
+                    </Grid>
+                </telerik:RadBorder>
+            </VerticalStackLayout>
+        </DataTemplate>
+    </views:BaseContentView.Resources>
+
+    <Grid x:Name="rootGrid"
+          RowDefinitions="Auto, *"
+          RowSpacing="{DynamicResource TopLevelViewTitleContentSpacing}">
+        <Label Text="Products"
+               Style="{DynamicResource NavigationViewItemTitleStyle}" />
+        <telerik:RadCollectionView Grid.Row="1"
+                                   ItemsSource="{Binding Products}"
+                                   ItemTemplate="{StaticResource ProductTemplate}"
+                                   ItemTapCommand="{Binding ItemTapCommand}"
+                                   SelectionMode="None">
+            <telerik:RadCollectionView.ItemsLayout>
+                <telerik:CollectionViewGridLayout SpanCount="2"
+                                                  VerticalItemSpacing="16"
+                                                  HorizontalItemSpacing="16" />
+            </telerik:RadCollectionView.ItemsLayout>
+        </telerik:RadCollectionView>
+        <telerik:RadBusyIndicator Grid.RowSpan="2"
+                                  IsVisible="{Binding IsBusy}"
+                                  IsBusy="{Binding IsBusy}"
+                                  Style="{StaticResource TransparentBusyIndicatorStyle}" />
+    </Grid>
+</views:BaseContentView>

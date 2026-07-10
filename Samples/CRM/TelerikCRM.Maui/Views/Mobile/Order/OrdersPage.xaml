@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:spreadsheetStreaming="clr-namespace:Telerik.Documents.SpreadsheetStreaming;assembly=Telerik.Documents.SpreadsheetStreaming"
+                xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                xmlns:views="using:TelerikCRM.Maui.Views"
+                xmlns:mobileViews="using:TelerikCRM.Maui.Views.Mobile"
+                xmlns:converters="clr-namespace:TelerikCRM.Maui.Converters"
+                xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+                x:Class="TelerikCRM.Maui.Views.Mobile.OrdersPage"
+                NavigationPage.HasNavigationBar="False"
+                ios:Page.UseSafeArea="False">
+    <views:BasePage.Resources>
+        <converters:OrderToDetailsSourceConverter x:Key="OrderToDetailsSourceConverter" />
+        <DataTemplate x:Key="RowDetailsTemplate">
+            <telerik:RadBorder Background="{DynamicResource RadSurfaceColor}"
+                               BorderColor="{DynamicResource RadBorderColor}"
+                               BorderThickness="{OnPlatform Android='1, 0', iOS='1, 1, 1, 0'}"
+                               Padding="12">
+                <telerik:RadDataGrid ItemsSource="{Binding Converter={StaticResource OrderToDetailsSourceConverter}}"
+                                     Background="{DynamicResource RadAppSurfaceColor}"
+                                     HeightRequest="{OnPlatform Android=86, iOS=97}"
+                                     AutoGenerateColumns="False"
+                                     UserEditMode="None"
+                                     UserSortMode="None"
+                                     UserFilterMode="Disabled"
+                                     UserGroupMode="Disabled"
+                                     SelectionMode="None"
+                                     CanUserReorderColumns="False">
+                    <telerik:RadDataGrid.Columns>
+                        <telerik:DataGridTextColumn PropertyName="ProductName"
+                                                    HeaderText="Product Name" />
+                        <telerik:DataGridTextColumn PropertyName="ProductPrice"
+                                                    HeaderText="Price" />
+                        <telerik:DataGridTextColumn PropertyName="OrderedBy"
+                                                    HeaderText="Ordered By" />
+                        <telerik:DataGridTextColumn PropertyName="SoldBy"
+                                                    HeaderText="Sold By" />
+                        <telerik:DataGridTextColumn PropertyName="DeliveredBy"
+                                                    HeaderText="Delivered By" />
+                    </telerik:RadDataGrid.Columns>
+                </telerik:RadDataGrid>
+            </telerik:RadBorder>
+        </DataTemplate>
+        <Style x:Key="ExportButtonStyle" TargetType="telerik:RadTemplatedButton">
+            <Setter Property="WidthRequest" Value="38" />
+            <Setter Property="HeightRequest" Value="38" />
+            <Setter Property="CornerRadius" Value="19" />
+            <Setter Property="FontSize" Value="11" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="TextColor" Value="{DynamicResource RadAppSurfaceColor}" />
+            <Setter Property="Background" Value="{DynamicResource RadOnAppSurfaceColorAlpha60}" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Shadow" Value="{OnPlatform Default={DynamicResource MainShadow}, Android={x:Null}}" />
+            <Setter Property="Margin" Value="0, 0, 0, 12" />
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="MouseOver" />
+                        <VisualState x:Name="Pressed">
+                            <VisualState.Setters>
+                                <Setter Property="TextColor" Value="{DynamicResource RadAppSurfaceColorAlpha50}" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Disabled">
+                            <VisualState.Setters>
+                                <Setter Property="Opacity" Value="0.6" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </views:BasePage.Resources>
+
+    <Grid RowDefinitions="Auto, *">
+        <mobileViews:HeaderView />
+        <Grid Grid.Row="1"
+              Padding="{DynamicResource TopLevelViewPadding_Mobile_TopLeft}">
+            <telerik:RadDataGrid x:Name="dataGrid"
+                                 ItemsSource="{Binding Orders}"
+                                 IsBusy="{Binding IsBusy}"
+                                 GridLinesVisibility="Both"
+                                 AutoGenerateColumns="False"
+                                 UserGroupMode="Enabled"
+                                 UserFilterMode="Enabled"
+                                 UserSortMode="Multiple"
+                                 SelectedItem="{Binding SelectedOrder, Mode=TwoWay}"
+                                 SelectionMode="Single"
+                                 RowDetailsTemplate="{StaticResource RowDetailsTemplate}">
+                <telerik:RadDataGrid.Columns>
+                    <telerik:DataGridToggleRowDetailsColumn />
+                    <telerik:DataGridDateColumn PropertyName="OrderDate"
+                                                HeaderText="Ordered"
+                                                CellContentFormat="{}{0:d}" />
+                    <telerik:DataGridNumericalColumn PropertyName="Quantity"
+                                                     HeaderText="Quantity"
+                                                     CellContentFormat="{}{0:N0}" />
+                    <telerik:DataGridNumericalColumn PropertyName="TotalPrice"
+                                                     HeaderText="Total"
+                                                     CellContentFormat="{}{0:C0}" />
+                    <telerik:DataGridTextColumn PropertyName="City"
+                                                HeaderText="City" />
+                    <telerik:DataGridTextColumn PropertyName="State"
+                                                HeaderText="State" />
+                    <telerik:DataGridTextColumn PropertyName="Country"
+                                                HeaderText="Country" />
+                </telerik:RadDataGrid.Columns>
+            </telerik:RadDataGrid>
+            <telerik:RadTemplatedButton Grid.RowSpan="2"
+                                        Style="{DynamicResource FloatingButtonStyle}"
+                                        FontFamily="TelerikFontExamples"
+                                        FontSize="16"
+                                        Content="&#xe8a9;"
+                                        Command="{Binding TogglePopupCommand}"
+                                        HorizontalOptions="End"
+                                        VerticalOptions="End"
+                                        Margin="0, 0, 16, 16">
+                <telerik:RadPopup.Popup>
+                    <telerik:RadPopup IsOpen="{Binding IsPopupOpen, Mode=TwoWay}">
+                        <telerik:RadBorder Padding="3, 0">
+                            <VerticalStackLayout>
+                                <telerik:RadTemplatedButton Content="XLSX"
+                                                            Command="{Binding ExportToXlsxCommand}"
+                                                            Style="{StaticResource ExportButtonStyle}" />
+                                <telerik:RadTemplatedButton Content="CSV"
+                                                            Command="{Binding ExportToCsvCommand}"
+                                                            Style="{StaticResource ExportButtonStyle}" />
+                            </VerticalStackLayout>
+                        </telerik:RadBorder>
+                    </telerik:RadPopup>
+                </telerik:RadPopup.Popup>
+            </telerik:RadTemplatedButton>
+            <telerik:RadBusyIndicator Grid.RowSpan="2"
+                                      IsVisible="{Binding IsBusy}"
+                                      IsBusy="{Binding IsBusy}"
+                                      Style="{StaticResource TransparentBusyIndicatorStyle}" />
+        </Grid>
+    </Grid>
+</views:BasePage>

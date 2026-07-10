@@ -27,6 +27,7 @@
         <HorizontalStackLayout Spacing="8" VerticalOptions="Center">
             <Label Text="DropDown Indicator Position: " Style="{StaticResource LabelStyle}"/>
             <telerik:RadComboBox SelectedItem="{Binding DropDownIndicatorPosition, Source={x:Reference indicatorDropDownButton}}"
+                                 MinimumWidthRequest="130"
                                  Margin="0, 20, 0, 8">
                 <telerik:RadComboBox.ItemsSource>
                     <x:Array Type="{x:Type dropdown:DropDownButtonIndicatorPosition}">

@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:BasePage x:Name="Page"
+                xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                xmlns:views="using:TelerikCRM.Maui.Views"
+                xmlns:mobileViews="using:TelerikCRM.Maui.Views.Mobile"
+                xmlns:vm="using:TelerikCRM.Maui.ViewModels"
+                xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+                x:Class="TelerikCRM.Maui.Views.Mobile.OrderDetailPage"
+                x:DataType="vm:OrderDetailViewModel"
+                NavigationPage.HasNavigationBar="False"
+                ios:Page.UseSafeArea="False">
+    <views:BasePage.Resources>
+        <Style x:Key="OrderDetailLabelStyle" TargetType="Label">
+            <Setter Property="TextColor" Value="{DynamicResource RadSubtleColor}" />
+            <Setter Property="VerticalTextAlignment" Value="Start" />
+            <Setter Property="Margin" Value="0, 16" />
+        </Style>
+        <Style x:Key="OrderDetailValueLabelStyle" TargetType="Label">
+            <Setter Property="TextColor" Value="{DynamicResource RadOnAppSurfaceColor}" />
+            <Setter Property="VerticalTextAlignment" Value="Center" />
+            <Setter Property="HorizontalTextAlignment" Value="End" />
+            <Setter Property="Margin" Value="0, 16" />
+        </Style>
+        <Style x:Key="OrderDetailSeparatorStyle" TargetType="telerik:RadBorder">
+            <Setter Property="Grid.ColumnSpan" Value="2" />
+            <Setter Property="HeightRequest" Value="1" />
+            <Setter Property="Background" Value="{DynamicResource RadBaseSubtleColor}" />
+            <Setter Property="VerticalOptions" Value="End" />
+        </Style>
+    </views:BasePage.Resources>
+
+    <Grid RowDefinitions="Auto, *">
+        <mobileViews:HeaderView />
+        <telerik:RadTemplatedButton Command="{Binding ToolbarCommand}"
+                                    CommandParameter="edit"
+                                    Content="&#xe818;"
+                                    FontFamily="TelerikFontExamples"
+                                    Style="{DynamicResource FlatButtonStyle}"
+                                    Margin="0, 0, 16, 0"
+                                    HorizontalOptions="End"
+                                    VerticalOptions="Center" />
+        <Grid Grid.Row="1"
+              Padding="16"
+              RowDefinitions="Auto, Auto, *"
+              RowSpacing="16">
+            <telerik:RadBorder CornerRadius="8"
+                               HeightRequest="140">
+                <Image Source="{Binding RelatedProduct.PhotoImageSource, TargetNullValue='art_placeholder.png', FallbackValue='art_placeholder.png'}"
+                       Aspect="AspectFill" />
+            </telerik:RadBorder>
+            <Label Grid.Row="1"
+                   Text="{Binding RelatedProduct.Title}"
+                   FontSize="16"
+                   FontAttributes="Bold" />
+            <ScrollView Grid.Row="2">
+                <Grid ColumnDefinitions="Auto, *"
+                      ColumnSpacing="8"
+                      RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto">
+                    <Label Text="Ordered"
+                           Style="{StaticResource OrderDetailLabelStyle}" />
+                    <Label Grid.Column="1"
+                           Text="{Binding SelectedOrder.OrderDate, StringFormat='{0:D}'}"
+                           Style="{StaticResource OrderDetailValueLabelStyle}" />
+                    <telerik:RadBorder Style="{StaticResource OrderDetailSeparatorStyle}" />
+                    <Label Grid.Row="1"
+                           Text="Ordered By"
+                           Style="{StaticResource OrderDetailLabelStyle}" />
+                    <Label Grid.Row="1"
+                           Grid.Column="1"
+                           Text="{Binding RelatedCustomer.Name}"
+                           Style="{StaticResource OrderDetailValueLabelStyle}" />
+                    <telerik:RadBorder Grid.Row="1"
+                                       Style="{StaticResource OrderDetailSeparatorStyle}" />
+                    <Label Grid.Row="2"
+                           Text="Sold By"
+                           Style="{StaticResource OrderDetailLabelStyle}" />
+                    <Label Grid.Row="2"
+                           Grid.Column="1"
+                           Text="{Binding RelatedEmployee.Name}"
+                           Style="{StaticResource OrderDetailValueLabelStyle}" />
+                    <telerik:RadBorder Grid.Row="2"
+                                       Style="{StaticResource OrderDetailSeparatorStyle}" />
+                    <Label Grid.Row="3"
+                           Text="Price Per Item"
+                           Style="{StaticResource OrderDetailLabelStyle}" />
+                    <Label Grid.Row="3"
+                           Grid.Column="1"
+                           Text="{Binding RelatedProduct.Price, StringFormat='{0:C2}'}"
+                           Style="{StaticResource OrderDetailValueLabelStyle}" />
+                    <telerik:RadBorder Grid.Row="3"
+                                       Style="{StaticResource OrderDetailSeparatorStyle}" />
+                    <Label Grid.Row="4"
+                           Text="Quantity"
+                           Style="{StaticResource OrderDetailLabelStyle}" />
+                    <Label Grid.Row="4"
+                           Grid.Column="1"
+                           Text="{Binding SelectedOrder.Quantity, StringFormat='{0:N0}'}"
+                           Style="{StaticResource OrderDetailValueLabelStyle}" />
+                    <telerik:RadBorder Grid.Row="4"
+                                       Style="{StaticResource OrderDetailSeparatorStyle}" />
+                    <Label Grid.Row="5"
+                           Text="Total Price"
+                           Style="{StaticResource OrderDetailLabelStyle}" />
+                    <Label Grid.Row="5"
+                           Grid.Column="1"
+                           Text="{Binding SelectedOrder.TotalPrice, StringFormat='{0:C2}'}"
+                           Style="{StaticResource OrderDetailValueLabelStyle}" />
+                    <telerik:RadBorder Grid.Row="5"
+                                       Style="{StaticResource OrderDetailSeparatorStyle}" />
+                    <Label Grid.Row="6"
+                           Text="Shipped By"
+                           Style="{StaticResource OrderDetailLabelStyle}" />
+                    <Label Grid.Row="6"
+                           Grid.Column="1"
+                           Text="{Binding SelectedOrder.DeliveryService, StringFormat='{0:C2}'}"
+                           Style="{StaticResource OrderDetailValueLabelStyle}" />
+                    <telerik:RadBorder Grid.Row="6"
+                                       Style="{StaticResource OrderDetailSeparatorStyle}" />
+                    <Label Grid.Row="7"
+                           Text="Notes"
+                           Style="{StaticResource OrderDetailLabelStyle}" />
+                    <Label Grid.Row="7"
+                           Grid.Column="1"
+                           Text="{Binding SelectedOrder.Notes}"
+                           Style="{StaticResource OrderDetailValueLabelStyle}"
+                           LineBreakMode="WordWrap" />
+                </Grid>
+            </ScrollView>
+        </Grid>
+        <telerik:RadBusyIndicator Grid.RowSpan="2"
+                                  IsVisible="{Binding IsBusy}"
+                                  IsBusy="{Binding IsBusy}"
+                                  Style="{StaticResource OpaqueBusyIndicatorStyle}" />
+    </Grid>
+</views:BasePage>

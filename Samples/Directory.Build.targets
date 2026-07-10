@@ -21,13 +21,37 @@
     <TargetPlatformMinVersion>10.14</TargetPlatformMinVersion>
   </PropertyGroup>
   <PropertyGroup Condition="$(TargetFramework.Contains('-android'))">
-    <SupportedOSPlatformVersion>21.0</SupportedOSPlatformVersion>
-    <TargetPlatformMinVersion>21.0</TargetPlatformMinVersion>
+    <SupportedOSPlatformVersion Condition="'$(SupportedOSPlatformVersion)' == ''">21.0</SupportedOSPlatformVersion>
+    <TargetPlatformMinVersion Condition="'$(TargetPlatformMinVersion)' == ''">21.0</TargetPlatformMinVersion>
   </PropertyGroup>
   <PropertyGroup Condition="$(TargetFramework.Contains('-windows10'))">
     <SupportedOSPlatformVersion>10.0.17763.0</SupportedOSPlatformVersion>
     <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
   </PropertyGroup>
+
+  <PropertyGroup>
+    <_PatchOnnxRuntimeGenAIFrameworkInfoPlist Condition="'$(MSBuildProjectName)' == 'ControlsSamples' Or '$(MSBuildProjectName)' == 'TestingApp'">true</_PatchOnnxRuntimeGenAIFrameworkInfoPlist>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios' and '$(_PatchOnnxRuntimeGenAIFrameworkInfoPlist)' == 'true'">
+    <_CodesignAppBundleDependsOn>$(_CodesignAppBundleDependsOn);_PatchOnnxRuntimeGenAIMinimumOSVersionInAppBundle</_CodesignAppBundleDependsOn>
+  </PropertyGroup>
+
+  <Target
+    Name="_PatchOnnxRuntimeGenAIMinimumOSVersionInAppBundle"
+    Condition="
+      $([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios' and
+      '$(_PatchOnnxRuntimeGenAIFrameworkInfoPlist)' == 'true' and
+      Exists('$(AppBundleDir)/Frameworks/onnxruntime-genai.framework/Info.plist')">
+    <PropertyGroup>
+      <_OnnxRuntimeGenAIFrameworkInfoPlist>$(AppBundleDir)/Frameworks/onnxruntime-genai.framework/Info.plist</_OnnxRuntimeGenAIFrameworkInfoPlist>
+      <_OnnxRuntimeGenAIMinimumOSVersion Condition="'$(TargetPlatformMinVersion)' != ''">$(TargetPlatformMinVersion)</_OnnxRuntimeGenAIMinimumOSVersion>
+      <_OnnxRuntimeGenAIMinimumOSVersion Condition="'$(_OnnxRuntimeGenAIMinimumOSVersion)' == '' and '$(SupportedOSPlatformVersion)' != ''">$(SupportedOSPlatformVersion)</_OnnxRuntimeGenAIMinimumOSVersion>
+    </PropertyGroup>
+
+    <Message Importance="high" Text="Patching MinimumOSVersion in '$(_OnnxRuntimeGenAIFrameworkInfoPlist)' to '$(_OnnxRuntimeGenAIMinimumOSVersion)'." />
+    <Exec Command="if /usr/libexec/PlistBuddy -c &quot;Print :MinimumOSVersion&quot; &quot;$(_OnnxRuntimeGenAIFrameworkInfoPlist)&quot; &gt;/dev/null 2&gt;&amp;1; then /usr/libexec/PlistBuddy -c &quot;Set :MinimumOSVersion $(_OnnxRuntimeGenAIMinimumOSVersion)&quot; &quot;$(_OnnxRuntimeGenAIFrameworkInfoPlist)&quot;; else /usr/libexec/PlistBuddy -c &quot;Add :MinimumOSVersion string $(_OnnxRuntimeGenAIMinimumOSVersion)&quot; &quot;$(_OnnxRuntimeGenAIFrameworkInfoPlist)&quot;; fi" />
+  </Target>
 
   <Target
     Name="_RemoveDependencyPriFiles"

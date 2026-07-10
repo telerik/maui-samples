@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        xmlns:views="using:TelerikCRM.Maui.Views"
+                        xmlns:vm="using:TelerikCRM.Maui.ViewModels"
+                        x:Class="TelerikCRM.Maui.Views.Mobile.HeaderView">
+    <telerik:RadContentView.ControlTemplate>
+        <ControlTemplate>
+            <Grid HeightRequest="42"
+                  BackgroundColor="{DynamicResource RadSurfaceColor}"
+                  Padding="10, 0">
+                <Grid.Resources>
+                    <telerik:InvertedBooleanConverter x:Key="InvertedBooleanConverter" />
+                    <telerik:InvertedNullToBooleanConverter x:Key="InvertedNullToBooleanConverter" />
+                    <Style TargetType="telerik:RadTemplatedButton">
+                        <Setter Property="TextColor" Value="{DynamicResource RadOnAppSurfaceColorAlpha60}" />
+                        <Setter Property="Background" Value="Transparent" />
+                        <Setter Property="BorderThickness" Value="0" />
+                        <Setter Property="Padding" Value="0" />
+                        <Setter Property="MinimumWidthRequest" Value="20" />
+                        <Setter Property="MinimumHeightRequest" Value="20" />
+                        <Setter Property="Shadow" Value="{x:Null}" />
+                        <Setter Property="VisualStateManager.VisualStateGroups">
+                            <VisualStateGroupList>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal" />
+                                    <VisualState x:Name="MouseOver" />
+                                    <VisualState x:Name="Pressed" />
+                                    <VisualState x:Name="Disabled" />
+                                </VisualStateGroup>
+                            </VisualStateGroupList>
+                        </Setter>
+                    </Style>
+                </Grid.Resources>
+                <Grid ColumnDefinitions="100, *, 100" IgnoreSafeArea="True">
+                    <Grid>
+                        <telerik:RadTemplatedButton x:Name="backButton"
+                                                    IsVisible="{Binding CanNavigateBack, FallbackValue=False}"
+                                                    Command="{Binding NavigateBackCommand}">
+                            <HorizontalStackLayout Spacing="4">
+                                <Label Text="&#xe80e;"
+                                       TextColor="{Binding TextColor, Source={x:Reference backButton}}"
+                                       FontFamily="TelerikFontExamples"
+                                       FontSize="16"
+                                       HorizontalTextAlignment="Center"
+                                       VerticalTextAlignment="Center" />
+                                <Label Text="{Binding NavigateBackContextName}"
+                                       VerticalTextAlignment="Center"
+                                       LineBreakMode="TailTruncation" />
+                            </HorizontalStackLayout>
+                        </telerik:RadTemplatedButton>
+                        <views:CurrentAppUserView IsVisible="{Binding CanNavigateBack, Converter={StaticResource InvertedBooleanConverter}, FallbackValue=False}" />
+                    </Grid>
+                    <Label Grid.Column="1"
+                           Text="{Binding Title, TargetNullValue='Telerik CRM', FallbackValue='Telerik CRM'}"
+                           FontAttributes="Bold"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"
+                           LineBreakMode="TailTruncation" />
+                    <HorizontalStackLayout Grid.Column="2"
+                                           Spacing="16"
+                                           HorizontalOptions="End">
+                        <telerik:RadTemplatedButton IsVisible="{Binding SearchCommand, Converter={StaticResource InvertedNullToBooleanConverter}}"
+                                                    Command="{Binding SearchCommand}"
+                                                    Content="&#xe810;"
+                                                    FontFamily="TelerikFontExamples"
+                                                    FontSize="16" />
+                        <telerik:RadTemplatedButton IsVisible="{Binding CanCreateNew, FallbackValue=False}"
+                                                    Command="{Binding CreateNewCommand}"
+                                                    Content="&#xe813;"
+                                                    FontFamily="TelerikFontExamples"
+                                                    FontSize="16" />
+                         <telerik:RadTemplatedButton IsVisible="{Binding CanSave, FallbackValue=False}"
+                                                     Command="{Binding SaveCommand}"
+                                                     CommandParameter="{Binding SaveCommandParameter}"
+                                                     Content="Save"
+                                                     Padding="6, 0"
+                                                     TextColor="{DynamicResource RadOnAppSurfaceColor}" />
+                    </HorizontalStackLayout>
+                </Grid>
+            </Grid>
+        </ControlTemplate>
+    </telerik:RadContentView.ControlTemplate>
+</telerik:RadContentView>
+
+

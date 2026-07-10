@@ -9,13 +9,15 @@
             <Setter Property="Margin" Value="0, 0, 0, 8" />
         </Style>
     </ContentView.Resources>
-    <VerticalStackLayout WidthRequest="{OnPlatform MacCatalyst=300, WinUI=300}"
+    <VerticalStackLayout WidthRequest="{OnPlatform WinUI=300, MacCatalyst=300}"
                          VerticalOptions="Center"
                          HorizontalOptions="Center"
                          Spacing="10">
         <HorizontalStackLayout Spacing="5">
-            <Label Text="DropDownPlacement: " Style="{StaticResource LabelStyle}" />
-            <telerik:RadComboBox SelectedItem="{Binding DropDownPlacement, Source={x:Reference placementDropDownButton}}">
+            <Label Text="DropDownPlacement: "
+                   Style="{StaticResource LabelStyle}" />
+            <telerik:RadComboBox SelectedItem="{Binding DropDownPlacement, Source={x:Reference placementDropDownButton}}"
+                                 MinimumWidthRequest="130">
                 <telerik:RadComboBox.ItemsSource>
                     <x:Array Type="{x:Type telerik:PlacementMode}">
                         <telerik:PlacementMode>Bottom</telerik:PlacementMode>
@@ -30,6 +32,7 @@
         </HorizontalStackLayout>
         <!-- >> dropdownbutton-placement -->
         <telerik:RadDropDownButton Content="More Options"
+                                   WidthRequest="150"
                                    x:Name="placementDropDownButton"
                                    DropDownPlacement="Top">
             <telerik:RadDropDownButton.DropDownContent>

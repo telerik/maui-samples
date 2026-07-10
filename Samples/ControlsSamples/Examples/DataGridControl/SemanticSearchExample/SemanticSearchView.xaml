@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:utilities="clr-namespace:QSF.ExampleUtilities"
+             xmlns:command="clr-namespace:QSF.Examples.DataGridControl.PromptControlledExample"
+             x:Class="QSF.Examples.DataGridControl.SemanticSearchExample.SemanticSearchView">
+    <ContentView.Resources>
+        <telerik:MultiBooleanConverter x:Key="MultiBooleanConverter"
+                                       LogicalOperator="Or"
+                                       TrueValue="False"
+                                       FalseValue="True" />
+    </ContentView.Resources>
+    <Grid>
+        <telerik:RadDataGrid x:Name="dataGrid"
+                             ItemsSource="{Binding Products}"
+                             AutoGenerateColumns="False"
+                             IsAIEnabled="True"
+                             UserGroupMode="Enabled">
+            <telerik:RadDataGrid.IsVisible>
+                <MultiBinding Converter="{StaticResource MultiBooleanConverter}">
+                    <Binding Path="IsDownloading" />
+                    <Binding Path="HasDownloadError" />
+                </MultiBinding>
+            </telerik:RadDataGrid.IsVisible>
+            <telerik:RadDataGrid.Commands>
+                <command:DataGridUserCommand Id="PromptRequest"
+                                             Command="{Binding ProcessAICommand}"/>
+                <command:DataGridUserCommand Id="CancelPromptRequest"
+                                             Command="{Binding CancelAICommand}"/>
+            </telerik:RadDataGrid.Commands>
+            <telerik:RadDataGrid.AISettings>
+                <telerik:DataGridAISettings ViewMode="Search"
+                                            SearchMode="SemanticSearch"
+                                            SuggestedPrompts="{Binding SuggestedPrompts}">
+                    <telerik:DataGridAISettings.PromptInputStyle>
+                        <Style TargetType="telerik:DataGridAIPromptInput">
+                            <Setter Property="IsSpeechToTextButtonVisible" Value="{x:Null}" />
+                            <Setter Property="SpeechToTextButtonStyle">
+                                <Setter.Value>
+                                    <Style TargetType="telerik:RadSpeechToTextButton" BasedOn="{StaticResource DataGridAIPromptInputSpeechToTextButtonStyle}">
+                                        <Setter Property="SpeechRecognizerCreator" Value="{x:Static utilities:SpeechRecognizerProvider.SpeechRecognizerCreator}" />
+                                    </Style>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </telerik:DataGridAISettings.PromptInputStyle>
+                </telerik:DataGridAISettings>
+            </telerik:RadDataGrid.AISettings>
+            <telerik:RadDataGrid.SemanticSearchSettings>
+                <telerik:DataGridSemanticSearchSettings ProvideSearchMatchesAction="{Binding ProvideSearchMatchesAction}" />
+            </telerik:RadDataGrid.SemanticSearchSettings>
+            <telerik:RadDataGrid.Columns>
+                <telerik:DataGridTextColumn PropertyName="CategoryName"
+                                            HeaderText="Category" />
+                <telerik:DataGridTextColumn PropertyName="Description"
+                                            HeaderText="Description" />
+            </telerik:RadDataGrid.Columns>
+        </telerik:RadDataGrid>
+        <VerticalStackLayout HorizontalOptions="Center"
+                             VerticalOptions="Center"
+                             IsVisible="{Binding IsDownloading}"
+                             Spacing="8">
+            <telerik:RadLinearProgressBar Value="{Binding DownloadProgress}"
+                                          CustomText="{Binding DownloadProgressText}"
+                                          Maximum="1" />
+            <Label Text="{Binding DownloadProgressText}"
+                   TextColor="{DynamicResource DefaultTextColor}" />
+        </VerticalStackLayout>
+        <VerticalStackLayout HorizontalOptions="Center"
+                             VerticalOptions="Center"
+                             Padding="{OnPlatform Default='16, 0', MacCatalyst='32, 0', WinUI='32, 0'}"
+                             IsVisible="{Binding HasDownloadError}"
+                             Spacing="16">
+            <Label FontFamily="{x:Static telerik:TelerikFont.Name}"
+                   FontSize="48"
+                   Text="{x:Static telerik:TelerikFont.IconError}"
+                   TextColor="{DynamicResource ApplicationAccentColor}"
+                   HorizontalTextAlignment="Center" />
+            <Label Text="{Binding ErrorMessage}"
+                   TextColor="{DynamicResource DefaultTextColor}"
+                   HorizontalTextAlignment="Center" />
+            <telerik:RadButton Text="Retry"
+                               Margin="{OnPlatform MacCatalyst='0, 16, 0, 0', WinUI='0, 16, 0, 0'}"
+                               HorizontalOptions="Center"
+                               Command="{Binding RetryDownloadCommand}" />
+        </VerticalStackLayout>
+    </Grid>
+</ContentView>

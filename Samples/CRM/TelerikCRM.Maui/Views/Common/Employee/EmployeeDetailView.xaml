@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<views:BaseContentView x:Name="Page"
+                       xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                       xmlns:views="using:TelerikCRM.Maui.Views"
+                       xmlns:vm="using:TelerikCRM.Maui.ViewModels"
+                       x:Class="TelerikCRM.Maui.Views.EmployeeDetailView"
+                       x:DataType="vm:EmployeeDetailViewModel">
+    <views:BaseContentView.Resources>
+        <Style x:Key="SectionHeadingStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="{OnPlatform Default=14, Android=16, iOS=16}" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="Margin" Value="0, 8" />
+            <Setter Property="HorizontalOptions" Value="{OnPlatform Default=Center, Android=Start, iOS=Start}" />
+        </Style>
+        <Style x:Key="InfoLabelStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="{OnPlatform Default=12, Android=14, iOS=14}" />
+            <Setter Property="TextColor" Value="{DynamicResource RadOnAppSurfaceColorAlpha60}" />
+            <Setter Property="HorizontalOptions" Value="{OnPlatform Default=Start, Android=Center, iOS=Center}" />
+        </Style>
+        <Style x:Key="SeparatorStyle" TargetType="Rectangle">
+            <Setter Property="StrokeThickness" Value="0" />
+            <Setter Property="Fill" Value="{DynamicResource RadBaseSubtleColor}" />
+        </Style>
+        <Style x:Key="VerticalSeparatorStyle" TargetType="Rectangle" BasedOn="{StaticResource SeparatorStyle}">
+            <Setter Property="WidthRequest" Value="1" />
+        </Style>
+        <Style x:Key="HorizontalSeparatorStyle" TargetType="Rectangle" BasedOn="{StaticResource SeparatorStyle}">
+            <Setter Property="HeightRequest" Value="1" />
+        </Style>
+        <Style x:Key="TileStyle" TargetType="telerik:RadBorder">
+            <Setter Property="CornerRadius" Value="8" />
+            <Setter Property="BorderColor" Value="{DynamicResource RadBorderAltColor}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="BackgroundColor" Value="{DynamicResource RadSurfaceColor}" />
+            <Setter Property="Padding" Value="{OnPlatform Default='16, 12', Android='12, 10', iOS='12, 10'}" />
+            <Setter Property="HorizontalOptions" Value="Fill" />
+        </Style>
+        <Style x:Key="TileValueStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="{OnPlatform Default=20, Android=18, iOS=18}" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="TextColor" Value="{DynamicResource RadOnAppSurfaceColor}" />
+        </Style>
+        <Style x:Key="TileLabelStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="{OnPlatform Default=11, Android=12, iOS=12}" />
+            <Setter Property="TextColor" Value="{DynamicResource RadOnAppSurfaceColorAlpha60}" />
+            <Setter Property="Margin" Value="0, 4, 0, 0" />
+        </Style>
+    </views:BaseContentView.Resources>
+
+    <Grid RowDefinitions="Auto, *">
+        <views:EmployeeDetailViewHeader Margin="{OnPlatform Android=16, iOS=16}" />
+        <ScrollView Grid.Row="1" Padding="16">
+            <Grid RowDefinitions="Auto, Auto, *"
+                  ColumnDefinitions="*">
+
+                <!-- KPI Tiles -->
+                <Grid Grid.Row="0"
+                      ColumnDefinitions="*, *, *, *"
+                      ColumnSpacing="{OnPlatform Default=12, Android=8, iOS=8}"
+                      Margin="0, 0, 0, 16">
+                    <telerik:RadBorder Style="{StaticResource TileStyle}">
+                        <VerticalStackLayout>
+                            <Label Text="{Binding AverageOrderValue, StringFormat='{0:C0}'}"
+                                   Style="{StaticResource TileValueStyle}" />
+                            <Label Text="Avg Order Value"
+                                   Style="{StaticResource TileLabelStyle}" />
+                        </VerticalStackLayout>
+                    </telerik:RadBorder>
+                    <telerik:RadBorder Grid.Column="1" Style="{StaticResource TileStyle}">
+                        <VerticalStackLayout>
+                            <Label Text="{Binding SalesContributionPercent, StringFormat='{0:F1}%'}"
+                                   Style="{StaticResource TileValueStyle}" />
+                            <Label Text="Sales Contribution"
+                                   Style="{StaticResource TileLabelStyle}" />
+                        </VerticalStackLayout>
+                    </telerik:RadBorder>
+                    <telerik:RadBorder Grid.Column="2" Style="{StaticResource TileStyle}">
+                        <VerticalStackLayout>
+                            <Label Text="{Binding VacationRemaining, StringFormat='{0} days'}"
+                                   Style="{StaticResource TileValueStyle}" />
+                            <Label Text="Vacation Remaining"
+                                   Style="{StaticResource TileLabelStyle}" />
+                        </VerticalStackLayout>
+                    </telerik:RadBorder>
+                    <telerik:RadBorder Grid.Column="3" Style="{StaticResource TileStyle}">
+                        <VerticalStackLayout>
+                            <Label Text="{Binding TenureYears, StringFormat='{0} yrs'}"
+                                   Style="{StaticResource TileValueStyle}" />
+                            <Label Text="Tenure"
+                                   Style="{StaticResource TileLabelStyle}" />
+                        </VerticalStackLayout>
+                    </telerik:RadBorder>
+                </Grid>
+
+                <Rectangle Grid.Row="0"
+                           Style="{DynamicResource HorizontalSeparatorStyle}"
+                           VerticalOptions="End" />
+
+                <!-- Compensation, Time Off, Total Sales, Performance -->
+                <Grid Grid.Row="1"
+                      ColumnDefinitions="{OnPlatform Default='*, *, *, *', Android='*, *', iOS='*, *'}"
+                      RowDefinitions="{OnPlatform Default='*', Android='*, *', iOS='*, *'}"
+                      Margin="0, 16, 0, 0">
+
+                    <!-- Compensation -->
+                    <Grid RowDefinitions="Auto, *"
+                          ColumnDefinitions="*, 1"
+                          Padding="{OnPlatform Android='4, 0', iOS='4, 0'}">
+                        <Label Text="Compensation"
+                               Style="{DynamicResource SectionHeadingStyle}"
+                               HorizontalOptions="Center" />
+                        <Grid Grid.Row="1"
+                              RowDefinitions="*, Auto"
+                              VerticalOptions="Fill"
+                              HorizontalOptions="Fill"
+                              HeightRequest="{OnPlatform Default=200, Android=180, iOS=180}"
+                              Padding="0, 0, 0, 8">
+                            <telerik:RadPieChart x:Name="CompensationChart"
+                                                 BackgroundColor="Transparent"
+                                                 HorizontalOptions="Center"
+                                                 VerticalOptions="Center"
+                                                 WidthRequest="{OnPlatform Default=130, Android=110, iOS=110}"
+                                                 HeightRequest="{OnPlatform Default=130, Android=110, iOS=110}">
+                                <telerik:RadPieChart.Series>
+                                    <telerik:DonutSeries ValueBinding="Value"
+                                                         ItemsSource="{Binding CompensationData}"
+                                                         RadiusFactor="0.9"
+                                                         InnerRadiusFactor="0.4"
+                                                         LegendTitleBinding="Title" />
+                                </telerik:RadPieChart.Series>
+                                <telerik:RadPieChart.Palette>
+                                    <telerik:ChartPalette>
+                                        <telerik:ChartPalette.Entries>
+                                            <telerik:PaletteEntry FillColor="#FF6358"
+                                                                  StrokeColor="#FF6358" />
+                                            <telerik:PaletteEntry FillColor="#666666"
+                                                                  StrokeColor="#666666" />
+                                            <telerik:PaletteEntry FillColor="#03A9F4"
+                                                                  StrokeColor="#03A9F4" />
+                                        </telerik:ChartPalette.Entries>
+                                    </telerik:ChartPalette>
+                                </telerik:RadPieChart.Palette>
+                            </telerik:RadPieChart>
+                            <FlexLayout Grid.Row="1"
+                                        Wrap="Wrap"
+                                        JustifyContent="Center"
+                                        AlignItems="Center"
+                                        Direction="Row">
+                                <HorizontalStackLayout>
+                                    <Label FontFamily="TelerikFontExamples"
+                                           FontSize="16"
+                                           Text="&#xe80b;"
+                                           TextColor="{StaticResource RadPrimaryColor}"
+                                           VerticalOptions="Center" />
+                                    <Label Text="Base Salary"
+                                           TextColor="{DynamicResource RadOnAppSurfaceColorAlpha60}"
+                                           FontSize="{OnPlatform Default=11, Android=13, iOS=13}"
+                                           VerticalOptions="Center" />
+                                </HorizontalStackLayout>
+                                <HorizontalStackLayout>
+                                    <Label FontFamily="TelerikFontExamples"
+                                           FontSize="16"
+                                           Text="&#xe80b;"
+                                           TextColor="{StaticResource RadSecondaryColor}"
+                                           VerticalOptions="Center" />
+                                    <Label Text="Benefits"
+                                           TextColor="{DynamicResource RadOnAppSurfaceColorAlpha60}"
+                                           FontSize="{OnPlatform Default=11, Android=13, iOS=13}"
+                                           VerticalOptions="Center" />
+                                </HorizontalStackLayout>
+                                <HorizontalStackLayout>
+                                    <Label FontFamily="TelerikFontExamples"
+                                           FontSize="16"
+                                           Text="&#xe80b;"
+                                           TextColor="{StaticResource RadTertiaryColor}"
+                                           VerticalOptions="Center" />
+                                    <Label Text="Bonus"
+                                           TextColor="{DynamicResource RadOnAppSurfaceColorAlpha60}"
+                                           FontSize="{OnPlatform Default=11, Android=13, iOS=13}"
+                                           VerticalOptions="Center" />
+                                </HorizontalStackLayout>
+                            </FlexLayout>
+                        </Grid>
+                        <Rectangle Grid.RowSpan="2"
+                                   Grid.Column="1"
+                                   Style="{DynamicResource VerticalSeparatorStyle}"
+                                   HorizontalOptions="End" />
+                    </Grid>
+
+                    <!-- Time Off -->
+                    <Grid Grid.Column="1"
+                          RowDefinitions="Auto, *, Auto"
+                          ColumnDefinitions="*, 1"
+                          Padding="{OnPlatform Android='4, 0', iOS='4, 0'}">
+                        <Label Text="Time Off"
+                               Style="{DynamicResource SectionHeadingStyle}"
+                               HorizontalOptions="Center" />
+                        <Grid Grid.Row="1" VerticalOptions="Center">
+                            <telerik:RadRadialGauge x:Name="VacationGauge"
+                                                     StartAngle="90"
+                                                     SweepAngle="360"
+                                                     AxisRadiusFactor="1"
+                                                     WidthRequest="{OnPlatform Default=120, Android=100, iOS=100}"
+                                                     HeightRequest="{OnPlatform Default=120, Android=100, iOS=100}">
+                                <telerik:RadRadialGauge.Axis>
+                                    <telerik:GaugeLinearAxis Maximum="{Binding SelectedEmployee.VacationBalance}"
+                                                             StrokeThickness="0"
+                                                             ShowLabels="False" />
+                                </telerik:RadRadialGauge.Axis>
+                                <telerik:RadRadialGauge.Ranges>
+                                    <telerik:GaugeRangesDefinition x:Name="VacationRangesDefinition"
+                                                                   StartThickness="{OnPlatform Default=10, Android=8, iOS=8}"
+                                                                   EndThickness="{OnPlatform Default=10, Android=8, iOS=8}">
+                                        <telerik:GaugeRange To="{Binding SelectedEmployee.VacationBalance}"
+                                                            Color="#EBEBEB" />
+                                    </telerik:GaugeRangesDefinition>
+                                </telerik:RadRadialGauge.Ranges>
+                                <telerik:RadRadialGauge.Indicators>
+                                    <telerik:GaugeBarIndicator Value="{Binding SelectedEmployee.VacationUsed}"
+                                                               Fill="#FF6358"
+                                                               StartThickness="{OnPlatform Default=10, Android=8, iOS=8}"
+                                                               EndThickness="{OnPlatform Default=10, Android=8, iOS=8}"
+                                                               StartCap="Oval"
+                                                               EndCap="Oval" />
+                                </telerik:RadRadialGauge.Indicators>
+                            </telerik:RadRadialGauge>
+                            <Label Text="{Binding SelectedEmployee.VacationUsed}"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"
+                                   FontSize="16" />
+                        </Grid>
+                        <Label Grid.Row="2"
+                               Text="{Binding SelectedEmployee.VacationBalance, StringFormat='Vacation Total: {0}'}"
+                               Style="{DynamicResource InfoLabelStyle}"
+                               HorizontalOptions="Center"
+                               Margin="0, 8" />
+                        <Rectangle Grid.RowSpan="3"
+                                   Grid.Column="1"
+                                   Style="{DynamicResource VerticalSeparatorStyle}"
+                                   HorizontalOptions="End"
+                                   IsVisible="{OnPlatform Default=True, Android=False, iOS=False}" />
+                    </Grid>
+
+                    <OnPlatform x:TypeArguments="View">
+                        <On Platform="Android, iOS">
+                            <Rectangle Grid.ColumnSpan="2"
+                                       Style="{DynamicResource HorizontalSeparatorStyle}"
+                                       VerticalOptions="End" />
+                        </On>
+                    </OnPlatform>
+
+                    <!-- Total Sales -->
+                    <Grid Grid.Column="{OnPlatform Default=2, Android=0, iOS=0}"
+                          Grid.Row="{OnPlatform Default=0, Android=1, iOS=1}"
+                          RowDefinitions="Auto, *, Auto"
+                          ColumnDefinitions="*, 1"
+                          Margin="{OnPlatform Android='0, 16, 0, 10', iOS='0, 16, 0, 10'}"
+                          MinimumHeightRequest="120">
+                        <Label Text="Total Sales"
+                               Style="{DynamicResource SectionHeadingStyle}"
+                               HorizontalOptions="Center" />
+                        <Grid Grid.Row="1" VerticalOptions="Center" HorizontalOptions="Center">
+                            <telerik:RadRadialGauge StartAngle="180"
+                                                   SweepAngle="180"
+                                                   AxisRadiusFactor="1"
+                                                   WidthRequest="{OnPlatform Default=200, Android=140, iOS=140}"
+                                                   HeightRequest="{OnPlatform Default=110, Android=80, iOS=80}">
+                                <telerik:RadRadialGauge.Axis>
+                                    <telerik:GaugeLinearAxis Maximum="{Binding CompanySalesCount}"
+                                                             StrokeThickness="0"
+                                                             ShowLabels="False" />
+                                </telerik:RadRadialGauge.Axis>
+                                <telerik:RadRadialGauge.Ranges>
+                                    <telerik:GaugeRangesDefinition StartThickness="{OnPlatform Default=10, Android=8, iOS=8}"
+                                                                   EndThickness="{OnPlatform Default=10, Android=8, iOS=8}">
+                                        <telerik:GaugeRange To="{Binding CompanySalesCount}"
+                                                            Color="#EBEBEB" />
+                                    </telerik:GaugeRangesDefinition>
+                                </telerik:RadRadialGauge.Ranges>
+                                <telerik:RadRadialGauge.Indicators>
+                                    <telerik:GaugeBarIndicator Value="{Binding EmployeeSalesCount}"
+                                                               Fill="{StaticResource RadPrimaryColor}"
+                                                               StartThickness="{OnPlatform Default=10, Android=8, iOS=8}"
+                                                               EndThickness="{OnPlatform Default=10, Android=8, iOS=8}"
+                                                               StartCap="Oval"
+                                                               EndCap="Oval" />
+                                </telerik:RadRadialGauge.Indicators>
+                            </telerik:RadRadialGauge>
+                            <Label Text="{Binding EmployeeSalesCount, StringFormat='{0:N0}'}"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="End"
+                                   FontSize="18"
+                                   FontAttributes="Bold" />
+                        </Grid>
+                        <HorizontalStackLayout Grid.Row="2"
+                                               HorizontalOptions="Center"
+                                               Margin="0, 8, 0, 16">
+                            <Label Text="{Binding EmployeeSalesCount, StringFormat='{}{0:N0} Sales'}"
+                                   Style="{DynamicResource InfoLabelStyle}" />
+                            <Label Text="{Binding CompanySalesCount, StringFormat=' of {0:N0}'}"
+                                   Style="{DynamicResource InfoLabelStyle}" />
+                        </HorizontalStackLayout>
+                        <Rectangle Grid.RowSpan="3"
+                                   Grid.Column="1"
+                                   Style="{DynamicResource VerticalSeparatorStyle}"
+                                   HorizontalOptions="End"
+                                   IsVisible="{OnPlatform Default=True, Android=False, iOS=False}" />
+                    </Grid>
+
+                    <!-- Performance -->
+                    <Grid Grid.Column="{OnPlatform Default=3, Android=1, iOS=1}"
+                          Grid.Row="{OnPlatform Default=0, Android=1, iOS=1}"
+                          RowDefinitions="Auto, *, Auto"
+                          Margin="{OnPlatform Android='0, 16, 0, 10', iOS='0, 16, 0, 10'}"
+                          MinimumHeightRequest="120">
+                        <Label Text="Performance"
+                               Style="{DynamicResource SectionHeadingStyle}"
+                               HorizontalOptions="Center" />
+                        <Grid Grid.Row="1" VerticalOptions="Center" HorizontalOptions="Center">
+                            <telerik:RadRadialGauge StartAngle="180"
+                                                   SweepAngle="180"
+                                                   AxisRadiusFactor="1"
+                                                   WidthRequest="{OnPlatform Default=200, Android=140, iOS=140}"
+                                                   HeightRequest="{OnPlatform Default=110, Android=80, iOS=80}">
+                                <telerik:RadRadialGauge.Axis>
+                                    <telerik:GaugeLinearAxis Maximum="100"
+                                                             Minimum="0"
+                                                             StrokeThickness="0"
+                                                             ShowLabels="False" />
+                                </telerik:RadRadialGauge.Axis>
+                                <telerik:RadRadialGauge.Ranges>
+                                    <telerik:GaugeRangesDefinition StartThickness="{OnPlatform Default=10, Android=8, iOS=8}"
+                                                                   EndThickness="{OnPlatform Default=10, Android=8, iOS=8}">
+                                        <telerik:GaugeRange To="100"
+                                                            Color="#EBEBEB" />
+                                    </telerik:GaugeRangesDefinition>
+                                </telerik:RadRadialGauge.Ranges>
+                                <telerik:RadRadialGauge.Indicators>
+                                    <telerik:GaugeBarIndicator Value="{Binding SalesContributionPercent}"
+                                                               Fill="{StaticResource RadTertiaryColor}"
+                                                               StartThickness="{OnPlatform Default=10, Android=8, iOS=8}"
+                                                               EndThickness="{OnPlatform Default=10, Android=8, iOS=8}"
+                                                               StartCap="Oval"
+                                                               EndCap="Oval" />
+                                </telerik:RadRadialGauge.Indicators>
+                            </telerik:RadRadialGauge>
+                            <Label Text="{Binding EmployeeSalesRevenue, StringFormat='{0:C0}'}"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="End"
+                                   FontSize="18"
+                                   FontAttributes="Bold" />
+                        </Grid>
+                        <HorizontalStackLayout Grid.Row="2"
+                                               HorizontalOptions="Center"
+                                               Margin="0, 8, 0, 16">
+                            <Label Text="{Binding EmployeeSalesRevenue, StringFormat='{0:C0}'}"
+                                   Style="{DynamicResource InfoLabelStyle}" />
+                            <Label Text="{Binding CompanySalesRevenue, StringFormat=' of {0:C0}'}"
+                                   Style="{DynamicResource InfoLabelStyle}" />
+                        </HorizontalStackLayout>
+                    </Grid>
+                </Grid>
+
+                <Rectangle Grid.Row="1"
+                           Style="{DynamicResource HorizontalSeparatorStyle}"
+                           VerticalOptions="End" />
+
+                <!-- Sales Overview -->
+                <Grid Grid.Row="2"
+                      RowDefinitions="{OnPlatform Default='Auto, *', Android='Auto, 200'}"
+                      Margin="0, 16, 0, 0"
+                      MinimumHeightRequest="250"
+                      VerticalOptions="FillAndExpand">
+                    <Label Text="Sales Overview" Style="{DynamicResource SectionHeadingStyle}" />
+                    <telerik:RadCartesianChart x:Name="SalesHistoryChart"
+                                               Grid.Row="1"
+                                               BackgroundColor="Transparent"
+                                               HorizontalOptions="Fill"
+                                               VerticalOptions="Fill">
+                        <telerik:RadCartesianChart.HorizontalAxis>
+                            <telerik:CategoricalAxis ShowLabels="True"
+                                                     PlotMode="BetweenTicks"
+                                                     LabelFitMode="Rotate"
+                                                     LabelFontSize="9"
+                                                     MajorTickInterval="{OnPlatform Default=1, Android=2, iOS=2}"
+                                                     LabelTextColor="{StaticResource RadOnAppSurfaceColorAlpha60}">
+                                <telerik:CategoricalAxis.LabelFormatter>
+                                    <views:DateLabelFormatter />
+                                </telerik:CategoricalAxis.LabelFormatter>
+                            </telerik:CategoricalAxis>
+                        </telerik:RadCartesianChart.HorizontalAxis>
+                        <telerik:RadCartesianChart.VerticalAxis>
+                            <telerik:NumericalAxis RangeExtendDirection="Both"
+                                                   LabelFormat="C0"
+                                                   MajorTickThickness="0"
+                                                   LineColor="Transparent"
+                                                   LabelFontSize="9"
+                                                   LabelTextColor="{StaticResource RadOnAppSurfaceColorAlpha60}" />
+                        </telerik:RadCartesianChart.VerticalAxis>
+                        <telerik:RadCartesianChart.Grid>
+                            <telerik:CartesianChartGrid x:Name="ChartGrid"
+                                                        MajorLinesVisibility="Y"
+                                                        MajorLineThickness="1"
+                                                        MajorLineColor="{StaticResource RadBorderColor}" />
+                        </telerik:RadCartesianChart.Grid>
+                        <telerik:RadCartesianChart.Series>
+                            <telerik:BarSeries ItemsSource="{Binding SalesHistory}"
+                                               ValueBinding="Value"
+                                               CategoryBinding="Date"
+                                               AllowSelect="True"/>
+                        </telerik:RadCartesianChart.Series>
+                        <telerik:RadCartesianChart.Palette>
+                            <telerik:ChartPalette>
+                                <telerik:ChartPalette.Entries>
+                                    <telerik:PaletteEntry FillColor="{StaticResource RadPrimaryColor}"
+                                                          StrokeColor="{StaticResource RadPrimaryColor}" />
+                                    <telerik:PaletteEntry FillColor="{StaticResource RadTertiaryColor}"
+                                                          StrokeColor="{StaticResource RadTertiaryColor}" />
+                                    <telerik:PaletteEntry FillColor="{StaticResource RadSecondaryColor}"
+                                                          StrokeColor="{StaticResource RadSecondaryColor}" />
+                                </telerik:ChartPalette.Entries>
+                            </telerik:ChartPalette>
+                        </telerik:RadCartesianChart.Palette>
+                    </telerik:RadCartesianChart>
+                </Grid>
+            </Grid>
+        </ScrollView>
+
+        <telerik:RadBusyIndicator Grid.RowSpan="2"
+                                  IsVisible="{Binding IsBusy}"
+                                  IsBusy="{Binding IsBusy}"
+                                  Style="{StaticResource OpaqueBusyIndicatorStyle}" />
+    </Grid>
+</views:BaseContentView>

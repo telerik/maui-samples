@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Name="mainPage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:converters="using:TelerikCRM.Maui.Converters"
+             xmlns:models="using:TelerikCRM.Maui.ViewModels"
+             xmlns:views="using:TelerikCRM.Maui.Views"
+             xmlns:mobileViews="using:TelerikCRM.Maui.Views.Mobile"
+             xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+             x:Class="TelerikCRM.Maui.Views.Mobile.MainPage"
+             NavigationPage.HasNavigationBar="False"
+             ios:Page.UseSafeArea="False">
+    <ContentPage.Resources>
+        <converters:PageModelToViewConverter x:Key="PageModelToViewConverter" />
+
+        <DataTemplate x:Key="TabViewItemTemplate">
+            <telerik:TabViewItem HeaderText="{Binding Title}">
+                <ContentView Content="{Binding Converter={StaticResource PageModelToViewConverter}}" />
+            </telerik:TabViewItem>
+        </DataTemplate>
+
+        <ControlTemplate x:Key="TabViewHeaderItemTemplate">
+            <telerik:RadBorder BackgroundColor="{TemplateBinding BackgroundColor}"
+                               BorderColor="{TemplateBinding BorderColor}"
+                               BorderThickness="{TemplateBinding BorderThickness}"
+                               CornerRadius="{TemplateBinding CornerRadius}"
+                               Padding="{TemplateBinding ContentPadding}">
+                <VerticalStackLayout>
+                    <Image WidthRequest="20"
+                           HeightRequest="20"
+                           HorizontalOptions="Center">
+                        <Image.Source>
+                            <FontImageSource Glyph="{Binding Icon}"
+                                             FontFamily="TelerikFontExamples"
+                                             Color="{TemplateBinding TextColor}"
+                                             Size="16" />
+                        </Image.Source>
+                    </Image>
+                    <ContentPresenter Content="{TemplateBinding Content}" />
+                </VerticalStackLayout>
+            </telerik:RadBorder>
+        </ControlTemplate>
+
+        <Style x:Key="TabViewHeaderItemStyle" TargetType="telerik:TabViewHeaderItem">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="TextColor" Value="{DynamicResource RadOnAppSurfaceColor}" />
+            <Setter Property="BackgroundColor" Value="Transparent" />
+            <Setter Property="BorderColor" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="ContentPadding" Value="8, 5" />
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:TabViewHeaderItem.TextColor" Value="{DynamicResource RadPrimaryColor}" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Disabled">
+                            <VisualState.Setters>
+                                <Setter Property="telerik:TabViewHeaderItem.Opacity" Value="0.6" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
+
+    <Grid RowDefinitions="Auto, *">
+        <mobileViews:HeaderView x:Name="header" />
+        <telerik:RadTabView x:Name="tabView"
+                            Grid.Row="1"
+                            SelectionChanged="OnTabViewSelecionChnaged"
+                            ItemsSource="{Binding Pages}"
+                            ItemTemplate="{StaticResource TabViewItemTemplate}"
+                            HeaderItemTemplate="{StaticResource TabViewHeaderItemTemplate}"
+                            HeaderItemStyle="{StaticResource TabViewHeaderItemStyle}"
+                            HeaderPosition="Bottom" />
+        <telerik:RadBusyIndicator x:Name="mainBusyIndicator" 
+                                  Grid.RowSpan="2"
+                                  IsVisible="{Binding IsBusy}"
+                                  IsBusy="{Binding IsBusy}"
+                                  Style="{StaticResource OpaqueBusyIndicatorStyle}" />
+    </Grid>
+</ContentPage>

@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:BaseContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                       xmlns:views="using:TelerikCRM.Maui.Views"
+                       xmlns:models="clr-namespace:TelerikCRM.Maui.Models"
+                       xmlns:vm="using:TelerikCRM.Maui.ViewModels"
+                       xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+                       x:Class="TelerikCRM.Maui.Views.Mobile.WelcomeView"
+                       x:DataType="vm:WelcomeViewModel"
+                       NavigationPage.HasNavigationBar="False"
+                       ios:Page.UseSafeArea="False"
+                       Background="{DynamicResource RadAppSurfaceColor}"
+                       Padding="{OnPlatform Android='16, 24', iOS='16, 24'}">
+    <views:BaseContentView.Resources>
+        <telerik:StringToBoolConverter x:Key="TitleToIsVisibleConverter" />
+        <DataTemplate x:Key="SlideViewItemTemplate" x:DataType="models:WelcomeCard">
+            <Grid RowDefinitions="Auto, Auto, *">
+                <HorizontalStackLayout Margin="0, 64, 0, 0">
+                    <Label Text="{Binding Title}"
+                           TextColor="{DynamicResource RadOnAppSurfaceColor}"
+                           FontAttributes="Bold"
+                           FontSize="32" />
+                    <Label Text="."
+                           TextColor="{DynamicResource RadPrimaryColor}"
+                           FontAttributes="Bold"
+                           FontSize="32"
+                           IsVisible="{Binding Title, Converter={StaticResource TitleToIsVisibleConverter}, ConverterParameter='Telerik CRM'}" />
+                </HorizontalStackLayout>
+                <Label Grid.Row="1"
+                       Text="{Binding Subtitle}"
+                       TextColor="{DynamicResource RadOnAppSurfaceColor}"
+                       FontAttributes="Bold"
+                       LineHeight="1.4"
+                       Margin="0, 40, 0, 0" />
+                <Grid Grid.Row="2"
+                      Margin="0, 16">
+                    <Path Data="M368.034 279.97C262.45 315.604 156.866 314.833 51.2816 277.657C46.1689 275.825 39.6702 270.892 36.9773 266.765C-11.7104 190.965 -11.7104 115.165 36.9773 39.3645C39.6702 35.2367 46.1689 30.3043 51.2816 28.4724C156.866 -8.7035 262.45 -9.47451 368.034 26.1596C373.146 27.9154 379.691 32.855 382.439 37.0674C432.11 114.399 432.11 191.73 382.439 269.062C379.692 273.274 373.146 278.214 368.034 279.97Z"
+                          Fill="{DynamicResource RadBaseColor}"
+                          Opacity="0.5" />
+                    <Image Source="{Binding IconSource}"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center" />
+                </Grid>
+            </Grid>
+        </DataTemplate>
+        <Style TargetType="telerik:SlideViewIndicatorItem">
+            <Setter Property="ControlTemplate">
+                <ControlTemplate>
+                    <Grid WidthRequest="16" HeightRequest="8">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup Name="CommonStates">
+                                <VisualState Name="Normal" />
+                                <VisualState x:Name="MouseOver" />
+                                <VisualState Name="Selected">
+                                    <VisualState.Setters>
+                                        <Setter TargetName="indicator" Property="Rectangle.Fill" Value="{DynamicResource RadBaseEmphasisColor}" />
+                                        <Setter TargetName="indicator" Property="Rectangle.WidthRequest" Value="16" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState Name="SelectedMouseOver" />
+                                <VisualState Name="Disabled">
+                                    <VisualState.Setters>
+                                        <Setter TargetName="indicator" Property="Rectangle.Opacity" Value="0.38" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                        </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Rectangle x:Name="indicator"
+                                   WidthRequest="8"
+                                   HeightRequest="8"
+                                   RadiusX="4"
+                                   RadiusY="4"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"
+                                   Fill="{DynamicResource RadBaseColor}" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter>
+        </Style>
+    </views:BaseContentView.Resources>
+
+    <Grid RowDefinitions="Auto, *">
+        <Path Data="M137.495 172.884C146.504 185.507 161.057 193 176.566 193H375V-52H-23L137.495 172.884Z"
+              Fill="{DynamicResource RadPrimaryColorAlpha8}"
+              HeightRequest="190"
+              HorizontalOptions="End"
+              VerticalOptions="Start"
+              Opacity="0.6" />
+        <telerik:RadSlideView x:Name="slideView"
+                              ItemsSource="{Binding WelcomeCards}"
+                              ItemTemplate="{StaticResource SlideViewItemTemplate}"
+                              HasLooping="False"
+                              CurrentItemChanged="SlideViewItemChanged" />
+        <Grid Grid.Row="1"
+              ColumnDefinitions="*, *"
+              VerticalOptions="End"
+              Margin="0, 40, 0, 0">
+            <telerik:RadTemplatedButton Content="Skip"
+                                        Clicked="SkipButtonClicked"
+                                        Style="{DynamicResource FlatButtonStyle}"
+                                        HorizontalOptions="Start"
+                                        VerticalOptions="End" />
+            <telerik:RadTemplatedButton x:Name="defaultButton"
+                                        Grid.Column="1"
+                                        Content="Next"
+                                        Style="{DynamicResource PrimaryButtonStyle}"
+                                        MinimumWidthRequest="100"
+                                        HorizontalOptions="End"
+                                        VerticalOptions="End" />
+        </Grid>
+    </Grid>
+</views:BaseContentView>

@@ -1,4 +1,4 @@
-﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
              xmlns:converters="clr-namespace:QSF.Converters"
@@ -47,6 +47,7 @@
             <Setter Property="TextColor" Value="{DynamicResource DefaultTextColor}" />
             <Setter Property="ContentPadding" Value="4, 2" />
             <Setter Property="CornerRadius" Value="4" />
+            <Setter Property="ImageAspect" Value="Center" />
             <Setter Property="ControlTemplate">
                 <Setter.Value>
                     <ControlTemplate>
@@ -59,12 +60,15 @@
                                                CornerRadius="{TemplateBinding CornerRadius}"
                                                Margin="{TemplateBinding ContentPadding}" />
                             <Grid ColumnDefinitions="Auto, *"
-                                  ColumnSpacing="{TemplateBinding Spacing}">
+                                  ColumnSpacing="{TemplateBinding Spacing}"
+                                  Margin="{DynamicResource DefaultItemGridMargin}">
                                 <Grid WidthRequest="{TemplateBinding LeadingWidth}">
                                     <Image Source="{TemplateBinding ActualImageSource}"
                                            Aspect="{TemplateBinding ImageAspect}"
                                            WidthRequest="{TemplateBinding ImageWidth}"
-                                           HeightRequest="{TemplateBinding ImageHeight}" />
+                                           HeightRequest="{TemplateBinding ImageHeight}"
+                                           HorizontalOptions="Center"
+                                           VerticalOptions="Center" />
                                 </Grid>
                                 <ContentPresenter Grid.Column="1" />
                             </Grid>
