@@ -11,6 +11,7 @@
 		<UseTelerikTheming>true</UseTelerikTheming>
 		<ApplicationVersion>1</ApplicationVersion>
 		<RuntimeIdentifier Condition="$(TargetFramework.ToLower().Contains('android')) AND $(IsCI) == 'true'">android-arm64</RuntimeIdentifier>
+		<RuntimeIdentifiers Condition="$(TargetFramework.ToLower().Contains('net11.0-maccatalyst')) AND $(CreatePackage) == 'true'">maccatalyst-x64;maccatalyst-arm64</RuntimeIdentifiers>
 	</PropertyGroup>
 
 	<!-- Enable XAML source generation for faster build times and improved performance. 
@@ -64,6 +65,11 @@
 	<ItemGroup Condition="$(TargetFramework.ToLower().Contains('net10'))">
 		<PackageReference Include="Microsoft.Maui.Controls" Condition=" $(CustomMauiNet10Version) == '' " Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Controls" Condition=" $(CustomMauiNet10Version) != '' " Version="$(CustomMauiNet10Version)" />
+	</ItemGroup>
+
+	<ItemGroup Condition="$(TargetFramework.ToLower().Contains('net11'))">
+		<PackageReference Include="Microsoft.Maui.Controls" Condition=" $(CustomMauiNet11Version) == '' " Version="$(MauiVersion)" />
+		<PackageReference Include="Microsoft.Maui.Controls" Condition=" $(CustomMauiNet11Version) != '' " Version="$(CustomMauiNet11Version)" />
 	</ItemGroup>
 
 	<ItemGroup>

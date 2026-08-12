@@ -1,14 +1,14 @@
-﻿using Microsoft.Maui.Controls;
+using Microsoft.Maui.Controls;
 using QSF.Examples.WordsProcessingControl.Converters;
 using QSF.Services;
 using QSF.ViewModels;
 using System;
 using System.IO;
 using System.Windows.Input;
-using Telerik.Windows.Documents.Common.FormatProviders;
-using Telerik.Windows.Documents.Extensibility;
-using Telerik.Windows.Documents.Flow.FormatProviders.Html;
-using Telerik.Windows.Documents.Flow.Model;
+using Telerik.Documents.Common.FormatProviders;
+using Telerik.Documents.Extensibility;
+using Telerik.Documents.Flow.FormatProviders.Html;
+using Telerik.Documents.Flow.Model;
 
 namespace QSF.Examples.RichTextEditorControl.ImportExportExample;
 

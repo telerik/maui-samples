@@ -213,8 +213,7 @@ namespace CryptoTracker.ViewModels
         private async void DownLoadDailyCoinData(int limitDays)
         {
             this.IsChartLoading = true;
-            var coinService = DependencyService.Get<ICoinDataService>();
-            this.CoinData = await coinService.GetOHLCCoinDataAsync(this.SelectedCoin, limitDays);
+            this.CoinData = await LocalCoinDataProvider.GetOHLCCoinDataAsync(this.SelectedCoin, limitDays);
             this.LoadCoinData();
             this.IsChartLoading = false;
         }
@@ -222,8 +221,7 @@ namespace CryptoTracker.ViewModels
         private async void DownLoadHourlyCoinData()
         {
             this.IsChartLoading = true;
-            var coinService = DependencyService.Get<ICoinDataService>();
-            this.hourlyCoinData = await coinService.GetHourlyOHLCCoinDataAsync(this.SelectedCoin);
+            this.hourlyCoinData = await LocalCoinDataProvider.GetHourlyOHLCCoinDataAsync(this.SelectedCoin);
             this.IsChartLoading = false;
         }
 

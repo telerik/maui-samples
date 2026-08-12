@@ -13,9 +13,6 @@ public partial class MainPageMobile : ContentPage
 
     public MainPageMobile(ITestingService testingService)
     {
-#if ANDROID && NET10_0_OR_GREATER
-        this.SafeAreaEdges = new Microsoft.Maui.SafeAreaEdges(Microsoft.Maui.SafeAreaRegions.Container);
-#endif
         this.testingService = testingService;
         this.BindingContext = new HomeViewModel(testingService);
         this.InitializeComponent();

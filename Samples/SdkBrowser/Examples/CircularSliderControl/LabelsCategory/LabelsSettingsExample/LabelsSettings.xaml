@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:rangeSlider="clr-namespace:Telerik.Maui.Controls.RangeSlider;assembly=Telerik.Maui.Controls"
+             x:Class="SDKBrowserMaui.Examples.CircularSliderControl.LabelsCategory.LabelsSettingsExample.LabelsSettings">
+    <ContentView.Resources>
+        <x:Array x:Key="LabelsPlacements" Type="{x:Type rangeSlider:SliderLabelsPlacement}">
+            <rangeSlider:SliderLabelsPlacement>None</rangeSlider:SliderLabelsPlacement>
+            <rangeSlider:SliderLabelsPlacement>Start</rangeSlider:SliderLabelsPlacement>
+            <rangeSlider:SliderLabelsPlacement>End</rangeSlider:SliderLabelsPlacement>
+        </x:Array>
+    </ContentView.Resources>
+        <Grid RowDefinitions="Auto, Auto, Auto"
+                    RowSpacing="10">
+                <HorizontalStackLayout Grid.Row="0"
+                                       Spacing="5"
+                                       HorizontalOptions="Center">
+            <Label Text="Labels placement:"
+                   VerticalOptions="Center" />
+            <telerik:RadComboBox ItemsSource="{StaticResource LabelsPlacements}"
+                                 SelectedItem="{Binding Source={x:Reference circularSlider}, Path=LabelsPlacement, Mode=TwoWay}"
+                                 IsClearButtonVisible="False"
+                                 WidthRequest="150" />
+        </HorizontalStackLayout>
+                     <HorizontalStackLayout Grid.Row="1"
+                                   Spacing="5"
+                                   HorizontalOptions="Center">
+            <Label Text="Label step:"
+                   VerticalOptions="Center" />
+            <telerik:RadNumericInput Value="{Binding Source={x:Reference circularSlider}, Path=LabelStep, Mode=TwoWay}"
+                                     Minimum="5"
+                                     Maximum="20"
+                                     Step="5"
+                                     WidthRequest="150" />
+        </HorizontalStackLayout>
+        <!-- >> circularslider-labels-settings -->
+        <telerik:RadCircularSlider Grid.Row="2"
+                                   x:Name="circularSlider"
+                                   Minimum="0"
+                                   Maximum="100"
+                                   Value="35"
+                                   LabelsPlacement="End"
+                                   LabelStep="10"
+                                   HorizontalOptions="Fill"
+                                   VerticalOptions="Start"
+                                   MinimumHeightRequest="300" />
+        <!-- << circularslider-labels-settings -->
+    </Grid>
+</ContentView>

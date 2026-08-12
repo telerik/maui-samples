@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<views:GalleryExampleViewBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                              xmlns:views="clr-namespace:QSF.Views"
+                              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                              xmlns:charts="clr-namespace:Telerik.Maui.Controls.Charts;assembly=Telerik.Maui.Controls"
+                              xmlns:styles="clr-namespace:QSF.Styles"
+                              xmlns:system="clr-namespace:System;assembly=netstandard"
+                              x:Class="QSF.Examples.ChartsControl.ScatterSeriesExample.ScatterSeriesView">
+    <views:GalleryExampleViewBase.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <styles:GalleryResources/>
+            </ResourceDictionary.MergedDictionaries>
+            <DataTemplate x:Key="ScatterPointSeries">
+                <charts:RadCartesianChart AutomationId="cartesianChartScatterPointSeries">
+                    <charts:RadCartesianChart.Grid>
+                        <charts:CartesianChartGrid MajorLinesVisibility="Both"/>
+                    </charts:RadCartesianChart.Grid>
+                    <charts:RadCartesianChart.Axes>
+                        <charts:NumericalAxis Location="Bottom"
+                                                 Minimum="0"
+                                                 Maximum="100"/>
+                        <charts:NumericalAxis Location="Left"/>
+                    </charts:RadCartesianChart.Axes>
+                    <charts:RadCartesianChart.Series>
+                        <charts:PointSeries HorizontalBinding="Value"
+                                               VerticalBinding="ValueY"
+                                               PointSize="10"
+                                               ItemsSource="{Binding SeriesData}"/>
+                        <charts:PointSeries HorizontalBinding="Value"
+                                               VerticalBinding="ValueY"
+                                               PointSize="10"
+                                               ItemsSource="{Binding SecondSeriesData}"/>
+                    </charts:RadCartesianChart.Series>
+                </charts:RadCartesianChart>
+            </DataTemplate>
+            <DataTemplate x:Key="ScatterLineSeries">
+                <charts:RadCartesianChart AutomationId="cartesianChartScatterLineSeries">
+                    <charts:RadCartesianChart.Grid>
+                        <charts:CartesianChartGrid MajorLinesVisibility="Both"/>
+                    </charts:RadCartesianChart.Grid>
+                    <charts:RadCartesianChart.Axes>
+                        <charts:NumericalAxis Location="Bottom"
+                                                 Minimum="0"
+                                                 Maximum="100"/>
+                        <charts:NumericalAxis Location="Left"/>
+                    </charts:RadCartesianChart.Axes>
+                    <charts:RadCartesianChart.Series>
+                        <charts:LineSeries HorizontalBinding="Value"
+                                              VerticalBinding="ValueY"
+                                              ItemsSource="{Binding SeriesData}"/>
+                    </charts:RadCartesianChart.Series>
+                </charts:RadCartesianChart>
+            </DataTemplate>
+            <DataTemplate x:Key="ScatterAreaSeries">
+                <charts:RadCartesianChart AutomationId="cartesianChartScatterAreaSeries">
+                    <charts:RadCartesianChart.Grid>
+                        <charts:CartesianChartGrid MajorLinesVisibility="Both"/>
+                    </charts:RadCartesianChart.Grid>
+                    <charts:RadCartesianChart.Axes>
+                        <charts:NumericalAxis Location="Bottom"
+                                                 Minimum="0"
+                                                 Maximum="100"/>
+                        <charts:NumericalAxis Location="Left"/>
+                    </charts:RadCartesianChart.Axes>
+                    <charts:RadCartesianChart.Series>
+                        <charts:AreaSeries HorizontalBinding="Value"
+                                              VerticalBinding="ValueY"
+                                              ItemsSource="{Binding SeriesData}"/>
+                    </charts:RadCartesianChart.Series>
+                </charts:RadCartesianChart>
+            </DataTemplate>
+        </ResourceDictionary>
+    </views:GalleryExampleViewBase.Resources>
+    <views:GalleryExampleViewBase.HeaderContent>
+        <Label Text="{Binding Source={x:Static system:DateTime.Now}, Path=Year, StringFormat='Monthly sales revenue, {0}'}"
+               Style="{StaticResource labelHeaderStyle}"
+               Margin="0, 6, 0, 0" />
+    </views:GalleryExampleViewBase.HeaderContent>
+</views:GalleryExampleViewBase>

@@ -1,12 +1,12 @@
-﻿using System;
+using System;
 using System.IO;
-using Telerik.Windows.Documents.Common.FormatProviders;
-using Telerik.Windows.Documents.Flow.FormatProviders.Docx;
-using Telerik.Windows.Documents.Flow.FormatProviders.Html;
-using Telerik.Windows.Documents.Flow.FormatProviders.Pdf;
-using Telerik.Windows.Documents.Flow.FormatProviders.Rtf;
-using Telerik.Windows.Documents.Flow.FormatProviders.Txt;
-using Telerik.Windows.Documents.Flow.Model;
+using Telerik.Documents.Common.FormatProviders;
+using Telerik.Documents.Flow.FormatProviders.Docx;
+using Telerik.Documents.Flow.FormatProviders.Html;
+using Telerik.Documents.Flow.FormatProviders.Pdf;
+using Telerik.Documents.Flow.FormatProviders.Rtf;
+using Telerik.Documents.Flow.FormatProviders.Txt;
+using Telerik.Documents.Flow.Model;
 
 namespace QSF.Examples.RichTextEditorControl.ImportExportExample;
 

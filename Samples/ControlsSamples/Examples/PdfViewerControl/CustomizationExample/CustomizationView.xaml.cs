@@ -1,8 +1,8 @@
-﻿using Microsoft.Maui.Controls;
+using Microsoft.Maui.Controls;
 using Microsoft.Maui.Controls.Xaml;
 using System.ComponentModel;
 using Telerik.Maui.Controls;
-using Telerik.Windows.Documents.Fixed.Model;
+using Telerik.Documents.Fixed.Model;
 using QSF.Examples.PdfViewerControl.Common;
 using Microsoft.Maui.Devices;
 

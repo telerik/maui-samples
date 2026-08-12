@@ -1,4 +1,4 @@
-﻿using Microsoft.Maui.Controls;
+using Microsoft.Maui.Controls;
 using QSF.Services;
 using QSF.ViewModels;
 using System;
@@ -7,13 +7,13 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Telerik.Documents.Common.Model;
-using Telerik.Windows.Documents.Spreadsheet.FormatProviders;
-using Telerik.Windows.Documents.Spreadsheet.FormatProviders.OpenXml.Xlsx;
-using Telerik.Windows.Documents.Spreadsheet.FormatProviders.Pdf;
-using Telerik.Windows.Documents.Spreadsheet.FormatProviders.TextBased.Csv;
-using Telerik.Windows.Documents.Spreadsheet.FormatProviders.TextBased.Txt;
-using Telerik.Windows.Documents.Spreadsheet.Model;
-using Telerik.Windows.Documents.Spreadsheet.Utilities;
+using Telerik.Documents.Spreadsheet.FormatProviders;
+using Telerik.Documents.Spreadsheet.FormatProviders.OpenXml.Xlsx;
+using Telerik.Documents.Spreadsheet.FormatProviders.Pdf;
+using Telerik.Documents.Spreadsheet.FormatProviders.TextBased.Csv;
+using Telerik.Documents.Spreadsheet.FormatProviders.TextBased.Txt;
+using Telerik.Documents.Spreadsheet.Model;
+using Telerik.Documents.Spreadsheet.Utilities;
 
 namespace QSF.Examples.SpreadProcessingControl.FirstLookExample
 {

@@ -4,7 +4,8 @@
              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
              x:Class="SDKBrowserMaui.Examples.RichTextEditorControl.ToolbarCategory.CustomToolbarExample.CustomToolbar">
     <!-- >> richtexteditor-custom-toolbar-xaml -->
-    <Grid RowDefinitions="{OnIdiom Desktop='Auto, *', Phone='*, Auto'}">
+    <Grid x:Name="grid"
+          RowDefinitions="{OnIdiom Desktop='Auto, *', Phone='*, Auto'}">
         <telerik:RadRichTextEditorToolbar x:Name="richTextToolbar"
                                           Grid.Row="{OnIdiom Desktop=0, Phone=1}"
                                           ZIndex="10"

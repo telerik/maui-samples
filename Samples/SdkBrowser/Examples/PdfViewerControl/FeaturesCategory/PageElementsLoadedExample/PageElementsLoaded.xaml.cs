@@ -33,7 +33,7 @@ public partial class PageElementsLoaded : ContentView
     {
         foreach (var item in e.Page.Content)
         {
-            if (item is Telerik.Windows.Documents.Fixed.Model.Graphics.Path path)
+            if (item is Telerik.Documents.Fixed.Model.Graphics.Path path)
             {
                 if (path.StrokeThickness == 0)
                 {

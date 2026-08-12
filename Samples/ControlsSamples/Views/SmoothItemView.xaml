@@ -42,10 +42,14 @@
                 </VerticalStackLayout>
 
                 <ContentView Grid.ColumnSpan="2"
-                             Content="{TemplateBinding Status, Converter={StaticResource StatusTagToTemplateConverter}}"
                              HorizontalOptions="End"
-                             VerticalOptions="Start" 
-                             AutomationId="statusTag"/>
+                             VerticalOptions="Start"
+                             AutomationId="statusTag">
+                    <HorizontalStackLayout Spacing="2">
+                        <ContentView Content="{TemplateBinding Status, Converter={StaticResource StatusTagToTemplateConverter}}" />
+                        <ContentView Content="{TemplateBinding HasAICapability, Converter={StaticResource BoolToAITagTemplateConverter}}" />
+                    </HorizontalStackLayout>
+                </ContentView>
             </Grid>
         </ControlTemplate>
     </ContentView.ControlTemplate>

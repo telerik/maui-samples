@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.CircularSliderControl.FeaturesCategory.TrackAndThumbSizeExample.TrackAndThumbSize">
+    <ContentView.Resources>
+        <!-- >> circularslider-thumb-size -->
+        <Shadow x:Key="SliderThumbShadow" Offset="{OnPlatform Default='0, 0', Android='0, 3', iOS='0, 3'}" Radius="{OnPlatform Default=0, Android=3, iOS=3}" Brush="{DynamicResource RadOnAppSurfaceColor}" Opacity="0.15" />
+
+        <telerik:DictionaryConverter x:Key="TicksPlacementToCornerRadiusConverter">
+            <telerik:DictionaryConverter.FallbackValue>
+                <OnPlatform x:TypeArguments="Thickness" Default="24" />
+            </telerik:DictionaryConverter.FallbackValue>
+            <telerik:DictionaryConverterItem Key="{x:Static telerik:SliderTicksPlacement.None}">
+                <telerik:DictionaryConverterItem.Value>
+                    <OnPlatform x:TypeArguments="Thickness" Default="24">
+                        <On Platform="Android" Value="0" />
+                    </OnPlatform>
+                </telerik:DictionaryConverterItem.Value>
+            </telerik:DictionaryConverterItem>
+        </telerik:DictionaryConverter>
+        
+        <ControlTemplate x:Key="CircularSliderThumbControlTemplate">
+            <Rectangle WidthRequest="48"
+                       HeightRequest="48"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       Fill="{TemplateBinding Fill}"
+                       Stroke="{TemplateBinding Stroke}"
+                       StrokeThickness="{TemplateBinding StrokeThickness}"
+                       RadiusX="{Binding CornerRadius.Left, Source={RelativeSource Mode=TemplatedParent}}"
+                       RadiusY="{Binding CornerRadius.Top, Source={RelativeSource Mode=TemplatedParent}}">
+            </Rectangle>
+        </ControlTemplate>
+
+        <ControlTemplate x:Key="SliderThumbControlTemplate_Android">
+            <telerik:RadLayout>
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter TargetName="Ellipse" Property="Ellipse.Fill" Value="{TemplateBinding Fill}" />
+                                <Setter TargetName="BackgroundEllipse" Property="Ellipse.Opacity" Value="0.0" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Pressed">
+                            <VisualState.Setters>
+                                <Setter TargetName="Ellipse" Property="Ellipse.Fill" Value="{TemplateBinding Fill}" />
+                        
+                                <Setter TargetName="BackgroundEllipse" Property="Ellipse.Opacity" Value="0.12" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="Disabled">
+                            <VisualState.Setters>
+                                <Setter TargetName="Ellipse" Property="Ellipse.Fill" Value="{DynamicResource RadSliderThumbDisabledColor}" />
+                                <Setter TargetName="BackgroundEllipse" Property="Ellipse.Opacity" Value="0.0" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+                <Ellipse x:Name="Ellipse"
+                         WidthRequest="48"
+                         HeightRequest="48"
+                         HorizontalOptions="Center"
+                         VerticalOptions="Center"
+                         Stroke="{TemplateBinding Stroke}"
+                         StrokeThickness="{TemplateBinding StrokeThickness}" />
+                <Ellipse x:Name="BackgroundEllipse"
+                         Fill="{TemplateBinding Fill}" />
+            </telerik:RadLayout>
+        </ControlTemplate>
+
+        <ControlTemplate x:Key="SliderThumbControlTemplate_WinUI">
+            <telerik:RadLayout BackgroundColor="Transparent">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter TargetName="Ellipse" Property="Ellipse.Fill" Value="{TemplateBinding Fill}" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="PointerOver">
+                            <VisualState.Setters>
+                                <Setter TargetName="Ellipse" Property="Ellipse.Fill" Value="{TemplateBinding Fill}" />
+                                <Setter TargetName="Ellipse" Property="Ellipse.Opacity" Value="0.9" />
+                                <Setter TargetName="Ellipse" Property="Ellipse.ScaleX" Value="1.16" />
+                                <Setter TargetName="Ellipse" Property="Ellipse.ScaleY" Value="1.16" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Pressed">
+                            <VisualState.Setters>
+                                <Setter TargetName="Ellipse" Property="Ellipse.Fill" Value="{TemplateBinding Fill}" />
+                                <Setter TargetName="Ellipse" Property="Ellipse.Opacity" Value="0.8" />
+                                <Setter TargetName="Ellipse" Property="Ellipse.ScaleX" Value="0.83" />
+                                <Setter TargetName="Ellipse" Property="Ellipse.ScaleY" Value="0.83" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="Disabled">
+                            <VisualState.Setters>
+                                <Setter TargetName="Ellipse" Property="Ellipse.Fill" Value="{DynamicResource RadSliderThumbDisabledColor}" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+                <telerik:RadBorder WidthRequest="48"
+                                   HeightRequest="48"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"
+                                   BackgroundColor="#80CBC4"
+                                   BorderColor="{TemplateBinding Stroke}"
+                                   BorderThickness="{TemplateBinding StrokeThickness}"
+                                   CornerRadius="24" />
+                <Ellipse x:Name="Ellipse"
+                         WidthRequest="32"
+                         HeightRequest="32"
+                         HorizontalOptions="Center"
+                         VerticalOptions="Center" />
+            </telerik:RadLayout>
+        </ControlTemplate>
+
+        <Style x:Key="SliderThumbBaseStyle" TargetType="telerik:SliderThumb">
+            <Setter Property="MinimumWidthRequest" Value="48" />
+            <Setter Property="MinimumHeightRequest" Value="48" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Fill" Value="{DynamicResource RadSliderThumbFillColor}" />
+            <Setter Property="Stroke" Value="{DynamicResource RadSliderThumbStrokeColor}" />
+            <Setter Property="StrokeThickness" Value="{OnPlatform Default=1, Android=0}" />
+            <Setter Property="CornerRadius" Value="{Binding TicksPlacement, Source={RelativeSource AncestorType={Type telerik:RadSliderBase}}, Converter={StaticResource TicksPlacementToCornerRadiusConverter}}" />
+            <Setter Property="Shadow" Value="{StaticResource SliderThumbShadow}" />
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Focused" />
+                        <VisualState x:Name="Disabled">
+                            <VisualState.Setters>
+                                <Setter Property="Fill" Value="{DynamicResource RadSliderThumbDisabledColor}" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+
+        <Style x:Key="CircularSliderThumbStyle" TargetType="telerik:SliderThumb" BasedOn="{StaticResource SliderThumbBaseStyle}">
+            <Setter Property="ControlTemplate" Value="{OnPlatform Default={StaticResource CircularSliderThumbControlTemplate}, Android={StaticResource SliderThumbControlTemplate_Android}, WinUI={StaticResource SliderThumbControlTemplate_WinUI}}" />
+        </Style>
+        <!-- << circularslider-thumb-size -->
+    </ContentView.Resources>
+    <Grid>
+        <!-- >> circularslider-track-and-thumb-size-slider -->
+        <telerik:RadCircularSlider Minimum="0"
+                                   Maximum="100"
+                                   Value="35"
+                                   ThumbFill="#00695C"
+                                   BackTrackColor="#B2DFDB"
+                                   BackTrackThickness="20"
+                                   RangeTrackFill="#009688"
+                                   VerticalOptions="Start"
+                                   MinimumHeightRequest="300"
+                                   ThumbStyle="{StaticResource CircularSliderThumbStyle}" />
+        <!-- << circularslider-track-and-thumb-size-slider -->
+    </Grid>
+</ContentView>

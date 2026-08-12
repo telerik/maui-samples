@@ -1,4 +1,4 @@
-﻿using Microsoft.Maui.Controls;
+using Microsoft.Maui.Controls;
 using QSF.Services;
 using QSF.ViewModels;
 using System;
@@ -7,10 +7,10 @@ using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Windows.Input;
-using Telerik.Windows.Documents.Common.FormatProviders;
-using Telerik.Windows.Documents.Flow.FormatProviders.Docx;
-using Telerik.Windows.Documents.Flow.Model;
-using Telerik.Windows.Documents.Flow.Model.Editing;
+using Telerik.Documents.Common.FormatProviders;
+using Telerik.Documents.Flow.FormatProviders.Docx;
+using Telerik.Documents.Flow.Model;
+using Telerik.Documents.Flow.Model.Editing;
 
 namespace QSF.Examples.WordsProcessingControl.FindAndReplaceExample
 {

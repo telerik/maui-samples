@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
              xmlns:styles="clr-namespace:QSF.Styles"
+             xmlns:local="clr-namespace:QSF.Examples.AutoCompleteControl.ConfigurationExample"
              x:Class="QSF.Examples.AutoCompleteControl.ConfigurationExample.ConfigurationView"
              Padding="{OnIdiom Default='16, 20', Phone=0}">
     <ContentView.Resources>
@@ -10,6 +11,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <styles:ConfigurationViewResources />
             </ResourceDictionary.MergedDictionaries>
+            <local:StringToDoubleConverter x:Key="StringToDoubleConverter" />
             <Style x:Key="SliderMinMaxLabelStyle" TargetType="Label" BasedOn="{StaticResource BaseLabelStyle}">
                 <Setter Property="FontSize" Value="10" />
                 <Setter Property="Opacity" Value="0.6" />
@@ -37,6 +39,7 @@
                                      SuggestMode="{Binding SuggestMode}"
                                      DisplayMode="{Binding DisplayMode}"
                                      WidthRequest="{OnPlatform MacCatalyst=300, WinUI=300}"
+                                     SuggestionViewWidth="{Binding SelectedItem, Source={x:Reference suggestionViewWidthComboBox}, Converter={StaticResource StringToDoubleConverter}}"
                                      HorizontalOptions="{OnPlatform Default=Fill, MacCatalyst=Start, WinUI=Start}"
                                      VerticalOptions="Center"
                                      AutomationId="cityAutoComplete" />
@@ -202,6 +205,24 @@
                                        Style="{StaticResource SliderMinMaxLabelStyle}"
                                        Text="{Binding Maximum, Source={x:Reference suggestionViewMaxHeightSlider}}" />
                             </Grid>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Width:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <telerik:RadComboBox x:Name="suggestionViewWidthComboBox"
+                                                 IsClearButtonVisible="False"
+                                                 SelectedIndex="0">
+                                <telerik:RadComboBox.ItemsSource>
+                                    <x:Array Type="{x:Type x:String}">
+                                        <x:String>Default</x:String>
+                                        <x:String>100</x:String>
+                                        <x:String>150</x:String>
+                                        <x:String>200</x:String>
+                                        <x:String>250</x:String>
+                                        <x:String>300</x:String>
+                                    </x:Array>
+                                </telerik:RadComboBox.ItemsSource>
+                            </telerik:RadComboBox>
                         </VerticalStackLayout>
                     </VerticalStackLayout>
                 </Grid>

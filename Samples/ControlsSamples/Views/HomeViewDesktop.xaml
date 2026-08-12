@@ -18,6 +18,7 @@
                                   Icon="{Binding Icon}"
                                   Description="{Binding ShortDescription}"
                                   Status="{Binding Status}"
+                                  HasAICapability="{Binding HasAICapability}"
                                   TapCommand="{Binding BindingContext.SelectControlCommand, Source={RelativeSource AncestorType={Type views:HomeViewDesktop}}}"
                                   helpers:DesktopUtils.MouseCursorType="Hand"
                                   Margin="6"
@@ -52,7 +53,7 @@
             </HorizontalStackLayout>
         </Grid>
         <views:HighlightsView Grid.Row="1" AutomationId="heighlightedAreas"/>
-        <Label Text="All Controls"
+        <Label Text="Components"
                FontSize="{OnPlatform Default=20, MacCatalyst=22}"
                FontAttributes="Bold"
                Grid.Row="2"

@@ -5,7 +5,8 @@
              xmlns:local="clr-namespace:SDKBrowserMaui.Examples.RichTextEditorControl.FeaturesCategory.CustomImagePickerExample"
              x:Class="SDKBrowserMaui.Examples.RichTextEditorControl.FeaturesCategory.CustomImagePickerExample.CustomImagePicker">
     <!-- >> richtexteditor-custom-image-picker -->
-    <Grid RowDefinitions="{OnIdiom Desktop='Auto, *', Phone='*, Auto'}">
+    <Grid x:Name="grid"
+          RowDefinitions="{OnIdiom Desktop='Auto, *', Phone='*, Auto'}">
         <telerik:RadRichTextEditor x:Name="richTextEditor"
                                    Grid.Row="{OnIdiom Desktop=1, Phone=0}"
                                    Source="{Binding RTSource}" />

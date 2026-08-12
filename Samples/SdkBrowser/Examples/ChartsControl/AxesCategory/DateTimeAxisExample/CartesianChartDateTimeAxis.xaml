@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:charts="clr-namespace:Telerik.Maui.Controls.Charts;assembly=Telerik.Maui.Controls"
+             xmlns:models="clr-namespace:SDKBrowserMaui.Examples.ChartsControl"
+             x:Class="SDKBrowserMaui.Examples.ChartsControl.AxesCategory.DateTimeAxisExample.CartesianChartDateTimeAxis">
+    <!-- >> chart-cartesian-datetime-axis-xaml -->
+    <charts:RadCartesianChart>
+        <charts:RadCartesianChart.BindingContext>
+            <models:DateTimeViewModel />
+        </charts:RadCartesianChart.BindingContext>
+        <charts:RadCartesianChart.Resources>
+            <Style x:Key="axisLabelStyle" TargetType="charts:ChartLabelAppearance">
+                <Setter Property="TextColor" Value="#3F51B5" />
+                <Setter Property="FontSize" Value="11" />
+                <Setter Property="FontAttributes" Value="Bold" />
+            </Style>
+        </charts:RadCartesianChart.Resources>
+        <charts:RadCartesianChart.Axes>
+            <charts:DateTimeAxis MajorStep="1"
+                                 MajorStepUnit="Month"
+                                 MajorTickColor="#865FC5"
+                                 MajorTickThickness="3"
+                                 MajorTickLength="8"
+                                 LabelFormat="MMM/yyyy"
+                                 LineColor="#FF453A"
+                                 LineThickness="2"
+                                 LabelStyle="{StaticResource axisLabelStyle}" />
+            <charts:NumericalAxis Location="Left"
+                                  MajorTickLength="8"
+                                  MajorTickThickness="3"
+                                  LineColor="#0B84FF"
+                                  LineThickness="2"
+                                  LabelStyle="{StaticResource axisLabelStyle}" />
+        </charts:RadCartesianChart.Axes>
+        <charts:RadCartesianChart.Series>
+            <charts:LineSeries HorizontalBinding="Date"
+                               VerticalBinding="Value"
+                               ItemsSource="{Binding Data}" />
+        </charts:RadCartesianChart.Series>
+    </charts:RadCartesianChart>
+    <!-- << chart-cartesian-datetime-axis-xaml -->
+</ContentView>

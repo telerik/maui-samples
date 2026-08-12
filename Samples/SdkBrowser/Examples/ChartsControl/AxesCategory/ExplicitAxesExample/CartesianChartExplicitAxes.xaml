@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:charts="clr-namespace:Telerik.Maui.Controls.Charts;assembly=Telerik.Maui.Controls"
+             xmlns:models="clr-namespace:SDKBrowserMaui.Examples.ChartsControl"
+             x:Class="SDKBrowserMaui.Examples.ChartsControl.AxesCategory.ExplicitAxesExample.CartesianChartExplicitAxes">
+    <!-- >> chart-cartesian-explicit-axes-xaml -->
+    <charts:RadCartesianChart>
+        <charts:RadCartesianChart.BindingContext>
+            <models:MultiSeriesViewModel />
+        </charts:RadCartesianChart.BindingContext>
+        <charts:RadCartesianChart.Resources>
+            <Style x:Key="categoryLabelStyle" TargetType="charts:ChartLabelAppearance">
+                <Setter Property="FontSize" Value="11" />
+                <Setter Property="FontAttributes" Value="Bold" />
+            </Style>
+            <Style x:Key="primaryLabelStyle" TargetType="charts:ChartLabelAppearance">
+                <Setter Property="TextColor" Value="#3F51B5" />
+                <Setter Property="FontSize" Value="11" />
+            </Style>
+            <Style x:Key="secondaryLabelStyle" TargetType="charts:ChartLabelAppearance">
+                <Setter Property="TextColor" Value="#E91E63" />
+                <Setter Property="FontSize" Value="11" />
+            </Style>
+        </charts:RadCartesianChart.Resources>
+        <charts:RadCartesianChart.Axes>
+            <charts:CategoricalAxis x:Name="categoryAxis"
+                                    Location="Bottom"
+                                    LabelStyle="{StaticResource categoryLabelStyle}"
+                                    ShowLabels="True"
+                                    LineColor="#FF453A"
+                                    LineThickness="2" />
+            <charts:NumericalAxis x:Name="primaryValueAxis"
+                                  Location="Left"
+                                  Minimum="0"
+                                  Maximum="100"
+                                  LabelStyle="{StaticResource primaryLabelStyle}"
+                                  ShowLabels="True"
+                                  LineColor="#0B84FF"
+                                  LineThickness="2" />
+            <charts:NumericalAxis x:Name="secondaryValueAxis"
+                                  Location="Right"
+                                  Minimum="0"
+                                  Maximum="100"
+                                  LabelStyle="{StaticResource secondaryLabelStyle}"
+                                  ShowLabels="True"
+                                  LineColor="#865FC5"
+                                  LineThickness="2" />
+        </charts:RadCartesianChart.Axes>
+        <charts:RadCartesianChart.Series>
+            <charts:BarSeries DisplayName="Product A"
+                              HorizontalBinding="Category"
+                              VerticalBinding="ProductA"
+                              ItemsSource="{Binding Data}"
+                              HorizontalAxis="{x:Reference categoryAxis}"
+                              VerticalAxis="{x:Reference primaryValueAxis}" />
+            <charts:LineSeries DisplayName="Product B"
+                               HorizontalBinding="Category"
+                               VerticalBinding="ProductB"
+                               ItemsSource="{Binding Data}"
+                               StrokeThickness="2"
+                               HorizontalAxis="{x:Reference categoryAxis}"
+                               VerticalAxis="{x:Reference secondaryValueAxis}" />
+        </charts:RadCartesianChart.Series>
+    </charts:RadCartesianChart>
+    <!-- << chart-cartesian-explicit-axes-xaml -->
+</ContentView>

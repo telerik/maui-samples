@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:charts="clr-namespace:Telerik.Maui.Controls.Charts;assembly=Telerik.Maui.Controls"
+             xmlns:models="clr-namespace:SDKBrowserMaui.Examples.ChartsControl"
+             x:Class="SDKBrowserMaui.Examples.ChartsControl.FeaturesCategory.MultipleSeriesExample.CartesianChartMultipleSeries">
+    <!-- >> chart-cartesian-multiple-series-xaml -->
+    <charts:RadCartesianChart>
+        <charts:RadCartesianChart.BindingContext>
+            <models:MultiSeriesViewModel />
+        </charts:RadCartesianChart.BindingContext>
+        <charts:RadCartesianChart.Axes>
+            <charts:CategoricalAxis />
+            <charts:NumericalAxis />
+        </charts:RadCartesianChart.Axes>
+        <charts:RadCartesianChart.Series>
+            <charts:BarSeries DisplayName="Product A"
+                              HorizontalBinding="Category"
+                              VerticalBinding="ProductA"
+                              ItemsSource="{Binding Data}" />
+            <charts:LineSeries DisplayName="Product B"
+                               HorizontalBinding="Category"
+                               VerticalBinding="ProductB"
+                               ItemsSource="{Binding Data}"
+                               StrokeThickness="2" />
+        </charts:RadCartesianChart.Series>
+    </charts:RadCartesianChart>
+    <!-- << chart-cartesian-multiple-series-xaml -->
+</ContentView>

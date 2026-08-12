@@ -261,6 +261,24 @@ public static class TestingExtensions
                 {
                     return;
                 }
+#if NET11_0_OR_GREATER
+                // .NET 11 added a dedicated ContentPanelAutomationPeer for MAUI ContentView-backed
+                // ContentPanels: its GetChildrenCore() returns null once AutomationProperties.Name is set,
+                // COLLAPSING the whole subtree. SemanticProperties.Description maps to Name, so applying it
+                // to such a container hides its descendants (e.g. RadCollectionViewItemLabel, SpinnerItemLabel).
+                // These ContentPanels are already exposed in the Content view by default and the core
+                // AutomationId mapper already set their native AutomationId, so Appium can locate them WITHOUT
+                // a Name — skip them. Border-backed containers (MauiBorderAutomationPeer) and native containers
+                // such as Telerik's RadBorder (a native WinUI Border — see RadBorderHandler.UWP.cs; e.g.
+                // PickerListSpinner = RadSpinner : RadBorder) are NOT surfaced by AutomationId alone and are
+                // unaffected by the child-collapse, so they still need Description (= Name) to appear.
+                if (v.Handler?.PlatformView is Microsoft.Maui.Platform.ContentPanel contentPanel
+                    && contentPanel.CrossPlatformLayout is not Microsoft.Maui.IBorderView
+                    && contentPanel.CrossPlatformLayout is Microsoft.Maui.IContentView)
+                {
+                    return;
+                }
+#endif
 #endif
                 SemanticProperties.SetDescription(element, automationId);
             }

@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        xmlns:local="clr-namespace:QSF.Examples.AIControl.A2UIExample"
+                        xmlns:views="clr-namespace:QSF.Examples.AIControl.A2UIExample.Views"
+                        x:Class="QSF.Examples.AIControl.A2UIExample.A2UIView">
+
+    <telerik:RadContentView.Resources>
+        <ResourceDictionary>
+            <telerik:InvertedBooleanConverter x:Key="InvertedBooleanConverter" />
+            <telerik:StringToBoolConverter x:Key="StringToBoolConverter" />
+
+            <Style x:Key="DashboardCardStyle" TargetType="telerik:RadBorder">
+                <Setter Property="CornerRadius" Value="12" />
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="BackgroundColor" Value="{DynamicResource SecondaryBackgroundColor}" />
+                <Setter Property="WidthRequest" Value="260" />
+                <Setter Property="HeightRequest" Value="200" />
+                <Setter Property="Padding" Value="20" />
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <Setter.Value>
+                        <VisualStateGroupList>
+                            <VisualStateGroup Name="CommonStates">
+                                <VisualState Name="Normal">
+                                    <VisualState.Setters>
+                                        <Setter Property="BorderColor" Value="{DynamicResource DefaultBorderColor}" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState Name="PointerOver">
+                                    <VisualState.Setters>
+                                        <Setter Property="BorderColor" Value="{DynamicResource ApplicationAccentColor}" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateGroupList>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="StepOuterRingStyle" TargetType="telerik:RadBorder">
+                <Setter Property="WidthRequest" Value="34" />
+                <Setter Property="HeightRequest" Value="34" />
+                <Setter Property="CornerRadius" Value="17" />
+                <Setter Property="BackgroundColor" Value="{DynamicResource RadAppSurfaceColor}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource A2UIStepOuterRingColor}" />
+                <Setter Property="BorderThickness" Value="2" />
+            </Style>
+
+            <Style x:Key="StepCircleButtonStyle" TargetType="telerik:RadTemplatedButton">
+                <Setter Property="WidthRequest" Value="28" />
+                <Setter Property="HeightRequest" Value="28" />
+                <Setter Property="CornerRadius" Value="14" />
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="BorderBrush" Value="{DynamicResource DefaultBorderColor}" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+
+            <Style x:Key="StepIconLabelStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="TelerikFontExamples" />
+                <Setter Property="FontSize" Value="{OnPlatform iOS=11, Android=11, Default=14}" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+            </Style>
+
+            <Style x:Key="StepNameLabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+            </Style>
+        </ResourceDictionary>
+    </telerik:RadContentView.Resources>
+
+    <ScrollView>
+        <Grid>
+            <VerticalStackLayout IsVisible="{Binding IsLanding}"
+                                 Spacing="4"
+                                 Padding="24, 48, 24, 24"
+                                 HorizontalOptions="Center">
+                <Label Text="🛬 AI Flight Assistant"
+                       FontSize="28"
+                       FontAttributes="Bold"
+                       HorizontalTextAlignment="Center" />
+                <Label Text="Choose an item below to get started."
+                       FontSize="16"
+                       HorizontalTextAlignment="Center"
+                       Opacity="0.7" />
+                <Grid HorizontalOptions="Center"
+                      Margin="0, 32, 0, 0"
+                      ColumnSpacing="16"
+                      RowSpacing="16"
+                      RowDefinitions="Auto, Auto"
+                      ColumnDefinitions="Auto, Auto">
+                    <telerik:RadBorder Style="{StaticResource DashboardCardStyle}">
+                        <telerik:RadBorder.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding DashboardCardCommand}" />
+                        </telerik:RadBorder.GestureRecognizers>
+                        <VerticalStackLayout Spacing="8">
+                            <Label Text="AI Flight Research"
+                                   FontSize="18"
+                                   FontAttributes="Bold"
+                                   HorizontalTextAlignment="Center" />
+                            <Label Text="✈"
+                                   FontSize="40"
+                                   HorizontalTextAlignment="Center"
+                                   Margin="0, 8" />
+                            <Label Text="Explore flight routes, compare prices, and get an AI-generated dashboard with key facts, charts, and data tables."
+                                   FontSize="13"
+                                   HorizontalTextAlignment="Justify" />
+                        </VerticalStackLayout>
+                    </telerik:RadBorder>
+                    <telerik:RadBorder Grid.Row="{OnPlatform iOS=1, Android=1, Default=0}"
+                                       Grid.Column="{OnPlatform iOS=0, Android=0, Default=1}"
+                                       Style="{StaticResource DashboardCardStyle}">
+                        <telerik:RadBorder.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding FormCardCommand}" />
+                        </telerik:RadBorder.GestureRecognizers>
+                        <VerticalStackLayout Spacing="8">
+                            <Label Text="AI Flight Booking"
+                                   FontSize="18"
+                                   FontAttributes="Bold"
+                                   HorizontalTextAlignment="Center" />
+                            <Label Text="🎫"
+                                   FontSize="40"
+                                   HorizontalTextAlignment="Center"
+                                   Margin="0, 8" />
+                            <Label Text="Fill in a smart AI-generated booking form tailored to your journey."
+                                   FontSize="13"
+                                   HorizontalTextAlignment="Justify" />
+                        </VerticalStackLayout>
+                    </telerik:RadBorder>
+                </Grid>
+            </VerticalStackLayout>
+
+            <Grid IsVisible="{Binding IsActive}"
+                  RowDefinitions="Auto, Auto, *, Auto">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="{OnPlatform iOS=0, Android=0, Default='*'}" />
+                    <ColumnDefinition Width="{OnPlatform iOS='*', Android='*', Default='3*'}" />
+                    <ColumnDefinition Width="{OnPlatform iOS=0, Android=0, Default='*'}" />
+                </Grid.ColumnDefinitions>
+                <telerik:RadButton Grid.ColumnSpan="3"
+                                   Text="← Back to Home"
+                                   Margin="8"
+                                   HorizontalOptions="Start"
+                                   Command="{Binding ResetCommand}"
+                                   IsEnabled="{Binding IsAgentRunning, Converter={StaticResource InvertedBooleanConverter}}" />
+                <Grid Grid.Row="1"
+                      Grid.Column="1"
+                      ColumnDefinitions="Auto, *, Auto"
+                      RowDefinitions="Auto, Auto, Auto"
+                      Padding="16, 4, 16, 8">
+                    <BoxView Grid.Column="0"
+                             Grid.ColumnSpan="3"
+                             Margin="{OnPlatform Default='63, 0', Android='60, 0', MacCatalyst='66, 0'}"
+                             HeightRequest="2"
+                             VerticalOptions="Center"
+                             Color="{DynamicResource SeparatorColor}">
+                        <BoxView.Triggers>
+                            <DataTrigger TargetType="BoxView"
+                                         Binding="{Binding WizardStepIndex}" Value="1">
+                                <Setter Property="Color" Value="{DynamicResource ApplicationAccentColor}" />
+                            </DataTrigger>
+                        </BoxView.Triggers>
+                    </BoxView>
+                    <Grid HorizontalOptions="Center"
+                          VerticalOptions="Center">
+                        <telerik:RadBorder Style="{StaticResource StepOuterRingStyle}"
+                                           Background="{DynamicResource RadAppSurfaceColor}"
+                                           IsVisible="True">
+                            <telerik:RadBorder.Triggers>
+                                <DataTrigger TargetType="telerik:RadBorder"
+                                             Binding="{Binding WizardStepIndex}" Value="1">
+                                    <Setter Property="IsVisible" Value="False" />
+                                </DataTrigger>
+                            </telerik:RadBorder.Triggers>
+                        </telerik:RadBorder>
+                        <telerik:RadTemplatedButton Style="{StaticResource StepCircleButtonStyle}"
+                                                    Command="{Binding ChangeStepCommand}"
+                                                    CommandParameter="0"
+                                                    IsEnabled="{Binding IsAgentRunning, Converter={StaticResource InvertedBooleanConverter}}"
+                                                    Background="{DynamicResource ApplicationAccentColor}"
+                                                    BorderThickness="0">
+                            <Label Style="{StaticResource StepIconLabelStyle}"
+                                   Text="&#xe83d;"
+                                   TextColor="{DynamicResource TextOnAccentColor}" />
+                        </telerik:RadTemplatedButton>
+                    </Grid>
+                    <Label Grid.Row="1"
+                           Style="{StaticResource StepNameLabelStyle}"
+                           FontAttributes="Bold">
+                        <Label.Triggers>
+                            <DataTrigger TargetType="Label"
+                                         Binding="{Binding WizardStepIndex}" Value="1">
+                                <Setter Property="FontAttributes" Value="None" />
+                                <Setter Property="FontSize" Value="14" />
+                            </DataTrigger>
+                        </Label.Triggers>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Flight research" />
+                                <Span Text="&#10;(Optional)"
+                                      TextColor="{DynamicResource ApplicationAccentColor}"
+                                      FontAttributes="Italic" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Grid Grid.Column="2"
+                          HorizontalOptions="Center"
+                          VerticalOptions="Center">
+                        <telerik:RadBorder Style="{StaticResource StepOuterRingStyle}"
+                                           IsVisible="False">
+                            <telerik:RadBorder.Triggers>
+                                <DataTrigger TargetType="telerik:RadBorder"
+                                             Binding="{Binding WizardStepIndex}" Value="1">
+                                    <Setter Property="IsVisible" Value="True" />
+                                </DataTrigger>
+                            </telerik:RadBorder.Triggers>
+                        </telerik:RadBorder>
+                        <telerik:RadTemplatedButton Style="{StaticResource StepCircleButtonStyle}"
+                                                    Command="{Binding ChangeStepCommand}"
+                                                    CommandParameter="1"
+                                                    IsEnabled="{Binding IsAgentRunning, Converter={StaticResource InvertedBooleanConverter}}"
+                                                    Background="Transparent">
+                            <telerik:RadTemplatedButton.Triggers>
+                                <DataTrigger TargetType="telerik:RadTemplatedButton"
+                                             Binding="{Binding WizardStepIndex}" Value="1">
+                                    <Setter Property="Background" Value="{DynamicResource ApplicationAccentColor}" />
+                                    <Setter Property="BorderThickness" Value="0" />
+                                </DataTrigger>
+                            </telerik:RadTemplatedButton.Triggers>
+                            <Label Style="{StaticResource StepIconLabelStyle}"
+                                   Text="&#xe8be;"
+                                   TextColor="{DynamicResource PlaceholderColor}">
+                                <Label.Triggers>
+                                    <DataTrigger TargetType="Label"
+                                                 Binding="{Binding WizardStepIndex}" Value="1">
+                                        <Setter Property="TextColor" Value="{DynamicResource TextOnAccentColor}" />
+                                    </DataTrigger>
+                                </Label.Triggers>
+                            </Label>
+                        </telerik:RadTemplatedButton>
+                    </Grid>
+                    <Label Grid.Row="1"
+                           Grid.Column="2"
+                           Style="{StaticResource StepNameLabelStyle}"
+                           FontSize="14"
+                           Text="Book your flight">
+                        <Label.Triggers>
+                            <DataTrigger TargetType="Label"
+                                         Binding="{Binding WizardStepIndex}" Value="1">
+                                <Setter Property="FontAttributes" Value="Bold" />
+                            </DataTrigger>
+                        </Label.Triggers>
+                    </Label>
+                </Grid>
+                <Grid Grid.Row="2"
+                      Grid.ColumnSpan="3"
+                      Padding="16">
+                    <views:A2UIPromptView x:Name="promptView"
+                                          IsVisible="{Binding IsConfirmationVisible, Converter={StaticResource InvertedBooleanConverter}}" />
+                    <views:BookingConfirmationView MaximumWidthRequest="500"
+                                                   HorizontalOptions="Center"
+                                                   VerticalOptions="Start"
+                                                   Result="{Binding FormSubmitResult}"
+                                                   IsVisible="{Binding IsConfirmationVisible}" />
+                </Grid>
+                <Grid Grid.Row="3"
+                      Grid.ColumnSpan="3"
+                      ColumnDefinitions="*, Auto"
+                      Padding="16, 8">
+                    <Label VerticalOptions="Center"
+                           FontSize="14"
+                           Text="Step 1 of 2">
+                        <Label.Triggers>
+                            <DataTrigger TargetType="Label"
+                                         Binding="{Binding WizardStepIndex}" Value="1">
+                                <Setter Property="Text" Value="Step 2 of 2" />
+                            </DataTrigger>
+                        </Label.Triggers>
+                    </Label>
+                    <telerik:RadButton Grid.Column="1"
+                                       Text="Next"
+                                       Command="{Binding ChangeStepCommand}"
+                                       CommandParameter="1"
+                                       IsEnabled="{Binding IsAgentRunning, Converter={StaticResource InvertedBooleanConverter}}"
+                                       IsVisible="True">
+                        <telerik:RadButton.Triggers>
+                            <DataTrigger TargetType="telerik:RadButton"
+                                         Binding="{Binding WizardStepIndex}" Value="1">
+                                <Setter Property="IsVisible" Value="False" />
+                            </DataTrigger>
+                        </telerik:RadButton.Triggers>
+                    </telerik:RadButton>
+                    <HorizontalStackLayout Grid.Column="1"
+                                           Spacing="8"
+                                           IsVisible="False">
+                        <HorizontalStackLayout.Triggers>
+                            <DataTrigger TargetType="HorizontalStackLayout"
+                                         Binding="{Binding WizardStepIndex}" Value="1">
+                                <Setter Property="IsVisible" Value="True" />
+                            </DataTrigger>
+                        </HorizontalStackLayout.Triggers>
+                        <telerik:RadButton Text="Previous"
+                                           Command="{Binding ChangeStepCommand}"
+                                           CommandParameter="0"
+                                           IsEnabled="{Binding IsAgentRunning, Converter={StaticResource InvertedBooleanConverter}}" />
+                        <telerik:RadButton Text="Done"
+                                           Command="{Binding FinishCommand}"
+                                           IsEnabled="{Binding IsAgentRunning, Converter={StaticResource InvertedBooleanConverter}}" />
+                    </HorizontalStackLayout>
+                </Grid>
+            </Grid>
+
+            <VerticalStackLayout IsVisible="{Binding IsCompleted}"
+                                 Spacing="16"
+                                 Padding="12, 48, 12, 24"
+                                 HorizontalOptions="Center"
+                                 VerticalOptions="Start">
+                <telerik:RadBorder CornerRadius="12"
+                                   BorderThickness="1"
+                                   BorderColor="{DynamicResource DefaultBorderColor}"
+                                   BackgroundColor="{DynamicResource SecondaryBackgroundColor}"
+                                   Padding="24"
+                                   MaximumWidthRequest="500">
+                    <VerticalStackLayout Spacing="12">
+                        <Label Text="🎉 All Done!"
+                               FontSize="22"
+                               FontAttributes="Bold"
+                               HorizontalTextAlignment="Center" />
+                        <Label Text="Your flight has been planned and booked. We hope you have a wonderful journey!"
+                               FontSize="15"
+                               HorizontalTextAlignment="Center" />
+                        <telerik:RadButton Text="Start Over"
+                                           Command="{Binding ResetCommand}"
+                                           Style="{StaticResource AccentButtonStyle}"
+                                           HorizontalOptions="Center"
+                                           Margin="0, 8, 0, 0" />
+                    </VerticalStackLayout>
+                </telerik:RadBorder>
+            </VerticalStackLayout>
+        </Grid>
+    </ScrollView>
+</telerik:RadContentView>

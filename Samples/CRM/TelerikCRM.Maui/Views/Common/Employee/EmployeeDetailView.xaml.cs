@@ -55,7 +55,11 @@ public partial class EmployeeDetailView
     {
         var platformView = this.SalesHistoryChart.Handler?.PlatformView;
 #if IOS || MACCATALYST
-        var platformChart = (Telerik.Maui.Controls.Compatibility.ChartRenderer.iOS.TKExtendedChart)platformView;
+        if (platformView is not Telerik.Maui.Controls.Compatibility.ChartRenderer.iOS.TKExtendedChart platformChart)
+        {
+            return;
+        }
+
         platformChart.YAxis.Style.LabelStyle.TextAlignment = TelerikUI.TKChartAxisLabelAlignment.Left;
         platformChart.YAxis.Style.LabelStyle.FirstLabelTextAlignment = TelerikUI.TKChartAxisLabelAlignment.Left;
 #endif

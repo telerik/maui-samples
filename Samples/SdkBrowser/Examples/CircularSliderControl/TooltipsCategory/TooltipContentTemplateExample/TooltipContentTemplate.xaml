@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.CircularSliderControl.TooltipsCategory.TooltipContentTemplateExample.TooltipContentTemplate">
+    <Grid>
+        <!-- >> circularslider-tooltip-content-template -->
+        <telerik:RadCircularSlider Minimum="0"
+                                   Maximum="100"
+                                   Value="35"
+                                   TooltipStringFormat="{}{0:N0}%"
+                                   HorizontalOptions="Fill"
+                                   VerticalOptions="Start"
+                                   MinimumHeightRequest="300">
+            <telerik:RadCircularSlider.TooltipContentTemplate>
+                <DataTemplate>
+                    <Border BackgroundColor="#009688"
+                            Padding="8, 4"
+                            StrokeShape="RoundRectangle 4">
+                        <Label Text="{Binding FormattedValue}"
+                               TextColor="White"
+                               FontAttributes="Bold" />
+                    </Border>
+                </DataTemplate>
+            </telerik:RadCircularSlider.TooltipContentTemplate>
+        </telerik:RadCircularSlider>
+        <!-- << circularslider-tooltip-content-template -->
+    </Grid>
+</ContentView>

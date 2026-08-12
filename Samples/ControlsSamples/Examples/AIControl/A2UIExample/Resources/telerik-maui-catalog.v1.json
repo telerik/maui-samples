@@ -1,0 +1,603 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://telerik.com/a2ui/catalogs/telerik-maui/v1/catalog.json",
+    "title": "Telerik UI for MAUI — A2UI Catalog v1",
+    "catalogId": "https://telerik.com/a2ui/catalogs/telerik-maui/v1/catalog.json",
+    "components": {
+        "Form": {
+            "description": "A form component used for submitting data",
+            "allOf": [
+                { "$ref": "#/$defs/ComponentCommon" },
+                {
+                    "type": "object",
+                    "title": "Form",
+                    "properties": {
+                        "component": { "const": "Form" },
+                        "label": {
+                            "type": "string",
+                            "description": "Form title."
+                        },
+                        "children": {
+                            "$ref": "#/$defs/ComponentIdList",
+                            "description": "Ordered list of child component IDs."
+                        }
+                    },
+                    "required": [ "component", "children" ],
+                    "unevaluatedProperties": false
+                }
+            ]
+        },
+        "Card": {
+            "description": "A content container component that displays plain text information with a title and content.",
+            "allOf": [
+                { "$ref": "#/$defs/ComponentCommon" },
+                {
+                    "type": "object",
+                    "title": "Card",
+                    "properties": {
+                        "component": { "const": "Card" },
+                        "imageSrc": {
+                            "type": "string",
+                            "description": "Optional URL of a publicly available image relevant to the card content. Must be a direct image URL (jpg/png/webp)."
+                        },
+                        "header": {
+                            "type": "object",
+                            "description": "Optional card header section.",
+                            "properties": {
+                                "title": {
+                                    "type": "string",
+                                    "description": "Title shown in the card header bar."
+                                }
+                            }
+                        },
+                        "body": {
+                            "type": "object",
+                            "description": "Card body section.",
+                            "properties": {
+                                "title": {
+                                    "type": "string",
+                                    "description": "Subtitle shown at the top of the card body, above a separator."
+                                },
+                                "content": {
+                                    "type": "string",
+                                    "description": "Main descriptive text rendered as a paragraph in the card body."
+                                }
+                            }
+                        },
+                        "children": {
+                            "$ref": "#/$defs/ComponentIdList",
+                            "description": "Ordered list of child component IDs (for form use only)."
+                        }
+                    },
+                    "required": [ "component" ],
+                    "unevaluatedProperties": false
+                }
+            ]
+        },
+        "TextField": {
+            "description": "An input element that allows users to type text to be submitted to a form",
+            "allOf": [
+                { "$ref": "#/$defs/ComponentCommon" },
+                {
+                    "type": "object",
+                    "title": "TextField",
+                    "properties": {
+                        "component": { "const": "TextField" },
+                        "label": {
+                            "$ref": "#/$defs/StringValue",
+                            "description": "Field label shown to the user."
+                        },
+                        "variant": {
+                            "type": "string",
+                            "enum": [ "text", "multiline", "number", "password" ],
+                            "default": "text",
+                            "description": "text | multiline | number | password"
+                        },
+                        "placeholder": {
+                            "$ref": "#/$defs/StringValue",
+                            "description": "Hint text shown inside the empty field."
+                        },
+                        "value": {
+                            "$ref": "#/$defs/StringValue",
+                            "description": "Current value or data-binding: { \"path\": \"/form/fieldname\" }."
+                        }
+                    },
+                    "required": [ "component" ],
+                    "unevaluatedProperties": false
+                }
+            ]
+        },
+        "DateTimePicker": {
+            "description": "An interactive calendar and clock selection field that allows submitting date and time information",
+            "allOf": [
+                { "$ref": "#/$defs/ComponentCommon" },
+                {
+                    "type": "object",
+                    "title": "DateTimePicker",
+                    "properties": {
+                        "component": { "const": "DateTimePicker" },
+                        "label": {
+                            "$ref": "#/$defs/StringValue",
+                            "description": "Field label shown to the user."
+                        },
+                        "enableTime": {
+                            "type": "boolean",
+                            "description": "true = date + time picker, false = date-only picker."
+                        },
+                        "value": {
+                            "$ref": "#/$defs/StringValue",
+                            "description": "Current value or data-binding: { \"path\": \"/form/fieldname\" }."
+                        },
+                        "min": {
+                            "$ref": "#/$defs/StringValue",
+                            "description": "Earliest selectable date in ISO 8601 format. Omit if there is no lower bound."
+                        },
+                        "max": {
+                            "$ref": "#/$defs/StringValue",
+                            "description": "Latest selectable date in ISO 8601 format. Omit if there is no upper bound."
+                        }
+                    },
+                    "required": [ "component" ],
+                    "unevaluatedProperties": false
+                }
+            ]
+        },
+        "Select": {
+            "description": "A dropdown menu selector components providing an interface to choose an option from a predefined list of options.",
+            "allOf": [
+                { "$ref": "#/$defs/ComponentCommon" },
+                {
+                    "type": "object",
+                    "title": "Select",
+                    "properties": {
+                        "component": { "const": "Select" },
+                        "label": {
+                            "$ref": "#/$defs/StringValue",
+                            "description": "Field label shown to the user."
+                        },
+                        "variant": {
+                            "type": "string",
+                            "enum": [ "single", "multiple" ],
+                            "default": "single",
+                            "description": "single (only supported value — multi-select is not yet implemented)"
+                        },
+                        "options": {
+                            "type": "array",
+                            "description": "List of selectable options.",
+                            "items": {
+                                "type": "object",
+                                "required": [ "label", "value" ],
+                                "properties": {
+                                    "label": {
+                                        "$ref": "#/$defs/StringValue",
+                                        "description": "Display text shown to the user."
+                                    },
+                                    "value": {
+                                        "type": "string",
+                                        "description": "Machine-readable value submitted with the form."
+                                    }
+                                }
+                            }
+                        },
+                        "value": {
+                            "oneOf": [
+                                { "$ref": "#/$defs/StringValue" },
+                                { "$ref": "#/$defs/StringListValue" }
+                            ],
+                            "description": "Current value or data-binding: { \"path\": \"/form/fieldname\" }."
+                        }
+                    },
+                    "required": [ "component", "options", "value" ],
+                    "unevaluatedProperties": false
+                }
+            ]
+        },
+        "Button": {
+            "description": "A clickable interface component used to execute specific commands, trigger events, or submit user form payloads.",
+            "allOf": [
+                { "$ref": "#/$defs/ComponentCommon" },
+                {
+                    "type": "object",
+                    "title": "Button",
+                    "properties": {
+                        "component": { "const": "Button" },
+                        "label": {
+                            "type": "string",
+                            "description": "Button text shown to the user."
+                        },
+                        "variant": {
+                            "type": "string",
+                            "enum": [ "default", "primary", "borderless" ],
+                            "default": "default",
+                            "description": "default | primary | borderless"
+                        },
+                        "action": {
+                            "type": "object",
+                            "description": "Action on click: { \"event\": { \"name\": \"submit_form\" } }.",
+                            "properties": {
+                                "event": {
+                                    "type": "object",
+                                    "required": [ "name" ],
+                                    "properties": {
+                                        "name": { "type": "string" },
+                                        "context": {
+                                            "type": "object",
+                                            "additionalProperties": true
+                                        }
+                                    }
+                                }
+                            },
+                            "required": [ "event" ]
+                        }
+                    },
+                    "required": [ "component", "label", "action" ],
+                    "unevaluatedProperties": false
+                }
+            ]
+        },
+        "CheckBox": {
+            "description": "A basic selection control allowing users to toggle binary options between true (checked) and false (unchecked) state models.",
+            "allOf": [
+                { "$ref": "#/$defs/ComponentCommon" },
+                {
+                    "type": "object",
+                    "title": "CheckBox",
+                    "properties": {
+                        "component": { "const": "CheckBox" },
+                        "label": {
+                            "type": "string",
+                            "description": "Checkbox label."
+                        },
+                        "value": {
+                            "$ref": "#/$defs/BooleanValue",
+                            "description": "Current value or data-binding: { \"path\": \"/form/fieldname\" }."
+                        }
+                    },
+                    "required": [ "component", "value" ],
+                    "unevaluatedProperties": false
+                }
+            ]
+        },
+        "Chart": {
+            "description": "A graphical representation component that display numeric data.",
+            "allOf": [
+                { "$ref": "#/$defs/ComponentCommon" },
+                {
+                    "type": "object",
+                    "title": "Chart",
+                    "properties": {
+                        "component": { "const": "Chart" },
+                        "label": {
+                            "type": "string",
+                            "description": "Chart title shown as a section heading."
+                        },
+                        "series": {
+                            "type": "array",
+                            "description": "One or more data series to plot.",
+                            "items": {
+                                "type": "object",
+                                "required": [ "name", "data" ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "description": "Series display name shown in the legend."
+                                    },
+                                    "type": {
+                                        "type": "string",
+                                        "enum": [ "Line", "Column", "Bar", "Area" ],
+                                        "default": "Line",
+                                        "description": "Chart type for this series."
+                                    },
+                                    "data": {
+                                        "type": "array",
+                                        "items": { "type": "number" },
+                                        "description": "Numeric values, one per category. Must be populated — never empty."
+                                    },
+                                    "color": {
+                                        "type": "string",
+                                        "description": "Optional hex color, e.g. '#0072C6'."
+                                    },
+                                    "stack": {
+                                        "type": "boolean",
+                                        "description": "Stack this series on top of others (Column/Bar/Area only)."
+                                    }
+                                }
+                            }
+                        },
+                        "categoryAxes": {
+                            "type": "object",
+                            "description": "Category (X) axis configuration.",
+                            "properties": {
+                                "categoryAxis": {
+                                    "type": "object",
+                                    "required": [ "categories" ],
+                                    "properties": {
+                                        "categories": {
+                                            "type": "array",
+                                            "items": { "type": "string" },
+                                            "description": "Ordered X-axis labels (e.g. ['Q1 2024', 'Q2 2024'])."
+                                        },
+                                        "title": {
+                                            "type": "string",
+                                            "description": "X-axis title (e.g. 'Month', 'Quarter')."
+                                        }
+                                    }
+                                }
+                            },
+                            "required": [ "categoryAxis" ]
+                        },
+                        "valueAxes": {
+                            "type": "object",
+                            "description": "Value (Y) axis configuration.",
+                            "properties": {
+                                "valueAxis": {
+                                    "type": "object",
+                                    "properties": {
+                                        "title": {
+                                            "type": "string",
+                                            "description": "Y-axis title (e.g. 'Price (USD)')."
+                                        }
+                                    }
+                                }
+                            },
+                            "required": [ "valueAxis" ]
+                        },
+                        "tooltip": {
+                            "type": "object",
+                            "description": "Tooltip configuration.",
+                            "properties": {
+                                "visible": {
+                                    "type": "boolean",
+                                    "description": "Show tooltip on hover."
+                                }
+                            }
+                        },
+                        "legend": {
+                            "type": "object",
+                            "description": "Legend configuration.",
+                            "properties": {
+                                "visible": {
+                                    "type": "boolean",
+                                    "description": "Show the series legend."
+                                }
+                            }
+                        }
+                    },
+                    "required": [ "component", "label", "series", "categoryAxes" ],
+                    "unevaluatedProperties": false
+                }
+            ]
+        },
+        "Grid": {
+            "description": "A powerful data table component used to render complex rows of data with support for sorting, filtering, resizing, and grouping.",
+            "allOf": [
+                { "$ref": "#/$defs/ComponentCommon" },
+                {
+                    "type": "object",
+                    "title": "Grid",
+                    "properties": {
+                        "component": { "const": "Grid" },
+                        "label": {
+                            "type": "string",
+                            "description": "Grid section heading shown above the table."
+                        },
+                        "columns": {
+                            "type": "array",
+                            "description": "Column definitions — one per data property.",
+                            "items": {
+                                "type": "object",
+                                "required": [ "field" ],
+                                "properties": {
+                                    "field": {
+                                        "type": "string",
+                                        "description": "Property name in each data row, case-sensitive."
+                                    },
+                                    "fieldType": {
+                                        "type": "string",
+                                        "enum": [ "string", "number", "boolean", "date" ],
+                                        "description": "Data type hint."
+                                    },
+                                    "title": {
+                                        "type": "string",
+                                        "description": "Column header text. Defaults to field name."
+                                    },
+                                    "filterable": {
+                                        "type": "boolean",
+                                        "description": "Allow filtering. Default true."
+                                    },
+                                    "sortable": {
+                                        "type": "boolean",
+                                        "description": "Allow sorting. Default true."
+                                    },
+                                    "groupable": {
+                                        "type": "boolean",
+                                        "description": "Allow grouping. Default true."
+                                    },
+                                    "lockable": {
+                                        "type": "boolean",
+                                        "description": "User can lock/freeze this column. Default false."
+                                    },
+                                    "width": {
+                                        "type": "string",
+                                        "description": "Column width in CSS units, e.g. '120px'."
+                                    },
+                                    "visible": {
+                                        "type": "boolean",
+                                        "description": "Show or hide the column. Default true."
+                                    }
+                                }
+                            }
+                        },
+                        "data": {
+                            "type": "array",
+                            "description": "Row data. Each object's property names must match column 'field' values. Always populate with realistic sample data.",
+                            "items": { "type": "object" }
+                        },
+                        "height": {
+                            "type": "string",
+                            "description": "Grid height, e.g. '400px'."
+                        },
+                        "width": {
+                            "type": "string",
+                            "description": "Grid width. Omit to fill container."
+                        },
+                        "pageable": {
+                            "type": "boolean",
+                            "description": "Enable paging. Default false."
+                        },
+                        "pageSize": {
+                            "type": "number",
+                            "description": "Rows per page. Default 10."
+                        },
+                        "page": {
+                            "type": "number",
+                            "description": "Initial page number. Default 1."
+                        },
+                        "resizable": {
+                            "type": "boolean",
+                            "description": "Allow column resizing. Default true."
+                        },
+                        "reorderable": {
+                            "type": "boolean",
+                            "description": "Allow column drag-reordering. Default false."
+                        },
+                        "groupable": {
+                            "type": "boolean",
+                            "description": "Allow row grouping. Default false."
+                        },
+                        "sortable": {
+                            "type": "boolean",
+                            "description": "Enable sorting. Default true."
+                        },
+                        "sortMode": {
+                            "type": "string",
+                            "enum": [ "Single", "Multiple" ],
+                            "description": "Single (default) or Multiple column sort."
+                        },
+                        "filterMode": {
+                            "type": "string",
+                            "enum": [ "None", "FilterRow", "FilterMenu" ],
+                            "description": "None (default), FilterRow, or FilterMenu."
+                        }
+                    },
+                    "required": [ "component", "columns", "data" ],
+                    "unevaluatedProperties": false
+                }
+            ]
+        },
+        "TileLayout": {
+            "description": "A dashboard layout container component used to display a set of reorderable and resizable visual items in a multi-column structure.",
+            "allOf": [
+                { "$ref": "#/$defs/ComponentCommon" },
+                {
+                    "type": "object",
+                    "title": "TileLayout",
+                    "properties": {
+                        "component": { "const": "TileLayout" },
+                        "children": {
+                            "$ref": "#/$defs/ComponentIdList",
+                            "description": "Ordered list of TileLayoutItem component IDs."
+                        }
+                    },
+                    "required": [ "component", "children" ],
+                    "unevaluatedProperties": false
+                }
+            ]
+        },
+        "TileLayoutItem": {
+            "description": "An individual content hosting component positioned within a TileLayout that specifies a single item of a TileLayout component",
+            "allOf": [
+                { "$ref": "#/$defs/ComponentCommon" },
+                {
+                    "type": "object",
+                    "title": "TileLayoutItem",
+                    "properties": {
+                        "component": { "const": "TileLayoutItem" },
+                        "headerText": {
+                            "type": "string",
+                            "description": "Tile header title shown in the tile's title bar."
+                        },
+                        "colSpan": {
+                            "type": "integer",
+                            "description": "Number of grid columns this tile spans. Default 3."
+                        },
+                        "rowSpan": {
+                            "type": "integer",
+                            "description": "Number of grid rows this tile spans. Default 3."
+                        },
+                        "children": {
+                            "$ref": "#/$defs/ComponentIdList",
+                            "description": "Exactly one child component ID (Chart, Grid, or Card)."
+                        }
+                    },
+                    "required": [ "component", "children" ],
+                    "unevaluatedProperties": false
+                }
+            ]
+        }
+    },
+    "$defs": {
+        "ComponentId": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Unique component identifier using kebab-case, e.g. 'first-name-field', 'submit-btn', 'root'."
+        },
+        "ComponentIdList": {
+            "type": "array",
+            "items": { "$ref": "#/$defs/ComponentId" },
+            "minItems": 1,
+            "description": "Ordered list of component IDs referencing children in the flat adjacency list."
+        },
+        "DataBinding": {
+            "type": "object",
+            "properties": {
+                "path": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "JSON Pointer path to the field in the live data model, always starting with /form/, e.g. '/form/email'."
+                }
+            },
+            "required": [ "path" ],
+            "additionalProperties": false,
+            "description": "Links a component property to the live data model so that user edits are captured and submitted."
+        },
+        "StringValue": {
+            "oneOf": [
+                { "type": "string" },
+                { "$ref": "#/$defs/DataBinding" }
+            ],
+            "description": "Either a plain string literal or a data binding { \"path\": \"/form/fieldname\" }. Use a binding for all user-editable fields."
+        },
+        "BooleanValue": {
+            "oneOf": [
+                { "type": "boolean" },
+                { "$ref": "#/$defs/DataBinding" }
+            ],
+            "description": "Either a plain boolean (true/false) or a data binding { \"path\": \"/form/fieldname\" }."
+        },
+        "StringListValue": {
+            "oneOf": [
+                {
+                    "type": "array",
+                    "items": { "type": "string" }
+                },
+                { "$ref": "#/$defs/DataBinding" }
+            ],
+            "description": "Either an array of string values or a data binding { \"path\": \"/form/fieldname\" }."
+        },
+        "ComponentCommon": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "Unique component ID, kebab-case."
+                },
+                "weight": {
+                    "type": "number",
+                    "description": "Optional layout weight for proportional sizing within a Row, e.g. 1 for equal-width columns."
+                }
+            },
+            "required": [ "id" ]
+        }
+    }
+}

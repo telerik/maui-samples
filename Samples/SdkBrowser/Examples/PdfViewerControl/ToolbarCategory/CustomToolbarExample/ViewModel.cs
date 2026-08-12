@@ -1,9 +1,9 @@
-﻿using Microsoft.Maui.Controls;
+using Microsoft.Maui.Controls;
 using System;
 using System.IO;
 using System.Windows.Input;
-using Telerik.Windows.Documents.Fixed.FormatProviders.Pdf;
-using Telerik.Windows.Documents.Fixed.Model;
+using Telerik.Documents.Fixed.FormatProviders.Pdf;
+using Telerik.Documents.Fixed.Model;
 
 namespace SDKBrowserMaui.Examples.PdfViewerControl.ToolbarCategory.CustomToolbarExample
 {

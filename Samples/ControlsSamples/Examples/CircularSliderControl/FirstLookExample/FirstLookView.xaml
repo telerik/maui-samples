@@ -1,0 +1,467 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:local="clr-namespace:QSF.Examples.CircularSliderControl.FirstLookExample"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        x:Class="QSF.Examples.CircularSliderControl.FirstLookExample.FirstLookView"
+                        Padding="{OnIdiom Default='16, 20', Phone=0}">
+
+    <telerik:RadContentView.Resources>
+        <Shadow x:Key="ModeButtonShadow"
+                Brush="#30000000"
+                Offset="0,3"
+                Radius="7"
+                Opacity="0.18" />
+
+        <Color x:Key="ClimateSecondaryTextColor">#6B7A9E</Color>
+        <Color x:Key="ClimateHighlightIconColor">#1F81FE</Color>
+        <Color x:Key="ClimateSunIconColor">#FDC000</Color>
+
+        <Style x:Key="CardBorderStyle" TargetType="telerik:RadBorder">
+            <Setter Property="BackgroundColor" Value="{DynamicResource ItemBackgroundColor}" />
+            <Setter Property="CornerRadius" Value="16" />
+            <Setter Property="Padding" Value="{OnPlatform Default='12', MacCatalyst='25'}" />
+            <Setter Property="Shadow">
+                <Setter.Value>
+                    <Shadow Brush="#22000000"
+                            Offset="0,1"
+                            Radius="4"
+                            Opacity="{OnPlatform Default=0.2, MacCatalyst=0.9, WinUI=0.9}" />
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="CardBorderSmallStyle" TargetType="telerik:RadBorder" BasedOn="{StaticResource CardBorderStyle}">
+            <Setter Property="Padding" Value="8" />
+            <Setter Property="Margin" Value="{OnPlatform Default=0, WinUI='0, -12, 0, 0'}" />
+        </Style>
+
+        <ControlTemplate x:Key="SliderCenterContentTemplate">
+            <VerticalStackLayout VerticalOptions="Center"
+                                 HorizontalOptions="Center"
+                                 Spacing="4"
+                                 Margin="0, -10, 0, 0">
+                <Label Text="{Binding TemperatureText}"
+                       FontSize="48"
+                       HorizontalOptions="Center" />
+                <Label Text="{Binding HeatingStatusText}"
+                       Style="{StaticResource BaseLabelStyle}"
+                       FontSize="13"
+                       TextColor="{Binding ModeStatusColor}"
+                       HorizontalOptions="Center" />
+            </VerticalStackLayout>
+        </ControlTemplate>
+
+        <DataTemplate x:Key="StatCardTemplate">
+            <telerik:RadBorder Style="{StaticResource CardBorderSmallStyle}"
+                               FlexLayout.Basis="30%">
+                <VerticalStackLayout Spacing="8"
+                                     HorizontalOptions="Center">
+                    <Label Text="{Binding Icon}"
+                           TextColor="{Binding IconColor}"
+                           FontFamily="{Binding IconFontFamily}"
+                           FontSize="24"
+                           HorizontalOptions="Center" />
+                    <Label Text="{Binding Label}"
+                           Style="{StaticResource BaseLabelStyle}"
+                           FontSize="13"
+                           TextColor="{DynamicResource ClimateSecondaryTextColor}"
+                           HorizontalOptions="Center" />
+                    <Label Text="{Binding Value}"
+                           Style="{StaticResource BaseLabelStyle}"
+                           FontSize="16"
+                           FontAttributes="Bold"
+                           HorizontalOptions="Center" />
+                </VerticalStackLayout>
+            </telerik:RadBorder>
+        </DataTemplate>
+
+        <Style x:Key="SegmentedControlSelectionIndicatorStyle" TargetType="telerik:RadBorder" BasedOn="{StaticResource RadSegmentedControlSelectionIndicatorStyle}">
+            <Setter Property="BackgroundColor" Value="{Binding BindingContext.ModeAccentColor, Source={RelativeSource AncestorType={x:Type telerik:RadContentView}}}" />
+        </Style>
+
+        <Style TargetType="telerik:RadSegmentedControlItemView" BasedOn="{StaticResource RadSegmentedControlItemViewStyle}">
+            <Setter Property="SelectedTextColor" Value="#FFFFFF" />
+            <Setter Property="HorizontalOptions" Value="Fill" />
+        </Style>
+
+        <Style x:Key="SectionLabelStyle" TargetType="Label" BasedOn="{StaticResource BaseLabelStyle}">
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="FontSize" Value="{OnPlatform Default=14, WinUI=16}" />
+            <Setter Property="Margin" Value="0, 0, 0, 8" />
+        </Style>
+
+        <Style x:Key="SystemOffDimmedSectionStyle" TargetType="VerticalStackLayout">
+            <Style.Triggers>
+                <DataTrigger TargetType="VerticalStackLayout" Binding="{Binding IsSystemOn}" Value="False">
+                    <Setter Property="Opacity" Value="0.45" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="StatLabelStyle" TargetType="Label" BasedOn="{StaticResource BaseLabelStyle}">
+            <Setter Property="FontSize" Value="{OnPlatform Default='13', MacCatalyst='14'}" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+        </Style>
+
+        <Style x:Key="StatValueStyle" TargetType="Label" BasedOn="{StaticResource BaseLabelStyle}">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+        </Style>
+
+        <Style x:Key="ModeCollectionItemViewStyle" TargetType="telerik:RadCollectionViewItemView">
+            <Setter Property="ControlTemplate">
+                <ControlTemplate>
+                    <ContentPresenter />
+                </ControlTemplate>
+            </Setter>
+            <Setter Property="MinimumWidthRequest" Value="{OnPlatform Default=60, WinUI=36}" />
+            <Setter Property="MinimumHeightRequest" Value="80" />
+            <Setter Property="CornerRadius" Value="8" />
+            <Setter Property="BackgroundColor" Value="{OnPlatform Default={DynamicResource ItemBackgroundColor}, MacCatalyst={DynamicResource DefaultBackgroundColor}, WinUI={DynamicResource CircularSliderButtonBackgroundColor}}" />
+            <Setter Property="BorderThickness" Value="{OnIdiom Default=0, Desktop=1}" />
+            <Setter Property="BorderColor" Value="{DynamicResource DefaultBorderColor}" />
+            <Setter Property="Padding" Value="{OnPlatform Default='8, 12', MacCatalyst='0'}" />
+            <Setter Property="HorizontalOptions" Value="{OnPlatform Default=Center, WinUI=Fill}" />
+            <Setter Property="VerticalOptions" Value="Center" />
+            <Setter Property="Shadow" Value="{OnIdiom Default={StaticResource ModeButtonShadow}, Desktop={x:Null}}" />
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup Name="CommonStates">
+                        <VisualState Name="Normal" />
+                        <VisualState Name="MouseOver" />
+                        <VisualState Name="Selected" />
+                        <VisualState Name="FocusedSelected" />
+                        <VisualState Name="Disabled" />
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+            <Style.Triggers>
+                <DataTrigger TargetType="telerik:RadCollectionViewItemView"
+                             Binding="{Binding Source={RelativeSource Self}, Path=IsSelected}"
+                             Value="True">
+                    <Setter Property="BackgroundColor" Value="{Binding BindingContext.ModeAccentColor, Source={RelativeSource AncestorType={x:Type telerik:RadContentView}}}" />
+                    <Setter Property="BorderColor" Value="{Binding BindingContext.ModeAccentColor, Source={RelativeSource AncestorType={x:Type telerik:RadContentView}}}" />
+                </DataTrigger>
+                <MultiTrigger TargetType="telerik:RadCollectionViewItemView">
+                    <MultiTrigger.Conditions>
+                        <BindingCondition Binding="{Binding Source={RelativeSource Self}, Path=IsMouseOver}" Value="True" />
+                        <BindingCondition Binding="{Binding Source={RelativeSource Self}, Path=IsSelected}" Value="False" />
+                    </MultiTrigger.Conditions>
+                    <Setter Property="BackgroundColor" Value="{DynamicResource RadBaseHoverColor}" />
+                </MultiTrigger>
+                <MultiTrigger TargetType="telerik:RadCollectionViewItemView">
+                    <MultiTrigger.Conditions>
+                        <BindingCondition Binding="{Binding Source={RelativeSource Self}, Path=IsMouseOver}" Value="False" />
+                        <BindingCondition Binding="{Binding Source={RelativeSource Self}, Path=IsSelected}" Value="False" />
+                    </MultiTrigger.Conditions>
+                    <Setter Property="BackgroundColor" Value="{OnPlatform Default={DynamicResource ItemBackgroundColor}, MacCatalyst={DynamicResource DefaultBackgroundColor}, WinUI={DynamicResource CircularSliderButtonBackgroundColor}}" />
+                    <Setter Property="BorderColor" Value="{DynamicResource DefaultBorderColor}" />
+                </MultiTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <DataTemplate x:Key="ModeCollectionItemTemplate">
+            <Grid>
+                <VerticalStackLayout Spacing="6"
+                                     HorizontalOptions="Center"
+                                     VerticalOptions="Center">
+                    <Label x:Name="ModeItemIconLabel"
+                           Text="{Binding Icon}"
+                           FontFamily="{Binding FontFamily}"
+                           FontSize="24"
+                           HorizontalOptions="Center"
+                           HorizontalTextAlignment="Center">
+                        <Label.Triggers>
+                            <DataTrigger TargetType="Label"
+                                         Binding="{Binding Source={RelativeSource AncestorType={x:Type telerik:RadCollectionViewItemView}}, Path=IsSelected}"
+                                         Value="True">
+                                <Setter Property="TextColor" Value="#FFFFFF" />
+                            </DataTrigger>
+                        </Label.Triggers>
+                    </Label>
+                    <Label x:Name="ModeItemTextLabel"
+                           Text="{Binding Name}"
+                           FontSize="{OnPlatform Default='13', MacCatalyst='14'}"
+                           HorizontalOptions="Center"
+                           HorizontalTextAlignment="Center">
+                        <Label.Triggers>
+                            <DataTrigger TargetType="Label"
+                                         Binding="{Binding Source={RelativeSource AncestorType={x:Type telerik:RadCollectionViewItemView}}, Path=IsSelected}"
+                                         Value="True">
+                                <Setter Property="TextColor" Value="#FFFFFF" />
+                            </DataTrigger>
+                        </Label.Triggers>
+                    </Label>
+                </VerticalStackLayout>
+            </Grid>
+        </DataTemplate>
+    </telerik:RadContentView.Resources>
+    <Grid>
+        <ScrollView BackgroundColor="{DynamicResource DefaultBackgroundColor}"
+                    IsVisible="{OnIdiom Phone=True, Desktop=False}">
+            <Grid x:Name="MobileLayoutGrid"
+                  MaximumWidthRequest="1280"
+                  Padding="16, 18"
+                  ColumnSpacing="28"
+                  RowSpacing="16"
+                  HorizontalOptions="Center"
+                  RowDefinitions="Auto, Auto, Auto, Auto, Auto"
+                  ColumnDefinitions="*">
+
+                <Label Text="Smart Climate"
+                       Style="{StaticResource BaseLabelStyle}"
+                       FontSize="20" />
+
+                <Grid Grid.Row="1"
+                      VerticalOptions="Start"
+                      ColumnDefinitions="*, *"
+                      ColumnSpacing="12">
+                    <telerik:RadBorder Style="{StaticResource CardBorderStyle}">
+                        <VerticalStackLayout Spacing="12">
+                            <Label Text="System"
+                                   HorizontalOptions="Start"
+                                   Style="{StaticResource StatLabelStyle}" />
+                            <HorizontalStackLayout Spacing="8"
+                                                   VerticalOptions="Center">
+                                <Switch x:Name="systemSwitchMobile"
+                                        IsToggled="{Binding IsSystemOn, Mode=TwoWay}"
+                                        ThumbColor="{OnPlatform Default={DynamicResource TextOnAccentColor}, Android={Binding BindingContext.ModeAccentColor, Source={RelativeSource AncestorType={x:Type telerik:RadContentView}}}, WinUI={Binding BindingContext.ModeAccentColor, Source={RelativeSource AncestorType={x:Type telerik:RadContentView}}}}"
+                                        OnColor="{OnPlatform Default={Binding BindingContext.ModeAccentMutedColor, Source={RelativeSource AncestorType={x:Type telerik:RadContentView}}}, iOS={Binding BindingContext.ModeAccentColor, Source={RelativeSource AncestorType={x:Type telerik:RadContentView}}}, MacCatalyst={Binding BindingContext.ModeAccentColor, Source={RelativeSource AncestorType={x:Type telerik:RadContentView}}}}"
+                                        VerticalOptions="Center" />
+                                <Label Style="{StaticResource BaseLabelStyle}"
+                                       TextColor="{Binding BindingContext.ModeAccentColor, Source={RelativeSource AncestorType={x:Type telerik:RadContentView}}}"
+                                       FontAttributes="Bold"
+                                       VerticalOptions="Center"
+                                       Text="Off">
+                                    <Label.Triggers>
+                                        <DataTrigger TargetType="Label" Binding="{Binding IsSystemOn}" Value="True">
+                                            <Setter Property="Text" Value="On" />
+                                        </DataTrigger>
+                                    </Label.Triggers>
+                                </Label>
+                            </HorizontalStackLayout>
+                        </VerticalStackLayout>
+                    </telerik:RadBorder>
+
+                    <telerik:RadBorder Grid.Column="1"
+                                       Style="{StaticResource CardBorderStyle}">
+                        <VerticalStackLayout Spacing="12">
+                            <Label Text="Outdoor"
+                                   HorizontalOptions="Start"
+                                   Style="{StaticResource StatLabelStyle}" />
+                            <HorizontalStackLayout Spacing="8"
+                                                   VerticalOptions="Center">
+                                <Label FontFamily="{x:Static telerik:TelerikFont.Name}"
+                                       FontSize="20"
+                                       Text="{x:Static telerik:TelerikFont.IconBrightnessContrast}"
+                                       TextColor="{StaticResource ClimateSunIconColor}"
+                                       HorizontalOptions="Center" />
+                                <Label Text="{Binding OutdoorTemperature}"
+                                       Style="{StaticResource BaseLabelStyle}"
+                                       FontSize="20"
+                                       FontAttributes="Bold"
+                                       VerticalOptions="Center" />
+                            </HorizontalStackLayout>
+                        </VerticalStackLayout>
+                    </telerik:RadBorder>
+                </Grid>
+
+                <telerik:RadBorder x:Name="SliderCard"
+                                   Grid.Row="2"
+                                   Grid.Column="0"
+                                   VerticalOptions="Center"
+                                   MaximumWidthRequest="620">
+                    <Grid Margin="0, 20, 0, 0">
+                        <telerik:RadCircularSlider IsEnabled="{Binding IsSystemOn}"
+                                                   Value="{Binding Temperature, Mode=TwoWay}"
+                                                   Minimum="16"
+                                                   Maximum="30"
+                                                   ThumbFill="{Binding BindingContext.ModeAccentColor, Source={RelativeSource AncestorType={x:Type telerik:RadContentView}}}"
+                                                   BackTrackColor="{Binding BindingContext.ModeAccentMutedColor, Source={RelativeSource AncestorType={x:Type telerik:RadContentView}}}"
+                                                   RangeTrackFill="{Binding BindingContext.ModeAccentColor, Source={RelativeSource AncestorType={x:Type telerik:RadContentView}}}"
+                                                   BackTrackThickness="8"
+                                                   RadiusFactor="0.9"
+                                                   StartAngle="225"
+                                                   SweepAngle="270"
+                                                   SweepDirection="Clockwise"
+                                                   TickThickness="1.5"
+                                                   TicksPlacement="None"
+                                                   InRangeTickColor="{Binding BindingContext.ModeAccentColor, Source={RelativeSource AncestorType={x:Type telerik:RadContentView}}}"
+                                                   OutOfRangeTickColor="{Binding BindingContext.ModeAccentMutedColor, Source={RelativeSource AncestorType={x:Type telerik:RadContentView}}}"
+                                                   LabelStep="3"
+                                                   TickStep="1"
+                                                   LabelsPlacement="None"
+                                                   SnapMode="SnapToTicks"
+                                                   HeightRequest="{OnPlatform Default=390, Android=260, iOS=260}"
+                                                   TooltipStringFormat="{}{0:N0}°C"
+                                                   HorizontalOptions="Fill">
+                        </telerik:RadCircularSlider>
+                        <ContentView ControlTemplate="{StaticResource SliderCenterContentTemplate}"
+                                     InputTransparent="True" />
+                    </Grid>
+                </telerik:RadBorder>
+
+                <VerticalStackLayout Grid.Row="3"
+                                     Grid.Column="0"
+                                     Style="{StaticResource SystemOffDimmedSectionStyle}"
+                                     IsEnabled="{Binding IsSystemOn}"
+                                     VerticalOptions="Start">
+                    <Label Text="Mode"
+                           Style="{StaticResource SectionLabelStyle}" />
+                    <telerik:RadCollectionView ItemsSource="{Binding ModeOptions}"
+                                               SelectedItem="{Binding SelectedModeItem, Mode=TwoWay}"
+                                               ItemTemplate="{StaticResource ModeCollectionItemTemplate}"
+                                               ItemViewStyle="{StaticResource ModeCollectionItemViewStyle}"
+                                               SelectionMode="Single">
+                        <telerik:RadCollectionView.ItemsLayout>
+                            <telerik:CollectionViewGridLayout Orientation="Vertical"
+                                                              SpanCount="5"
+                                                              HorizontalItemSpacing="8"
+                                                              VerticalItemSpacing="0" />
+                        </telerik:RadCollectionView.ItemsLayout>
+                    </telerik:RadCollectionView>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Spacing="8"
+                                     Style="{StaticResource SystemOffDimmedSectionStyle}"
+                                     Grid.Row="4"
+                                     IsEnabled="{Binding IsSystemOn}"
+                                     Grid.Column="0">
+                    <Label Text="Fan speed"
+                           Margin="0, 16, 0, 0"
+                           Style="{StaticResource SectionLabelStyle}" />
+                    <telerik:RadSegmentedControl x:Name="profileTypeSegmented"
+                                                 WidthRequest="350"
+                                                 DisplayMemberPath="Name"
+                                                 HorizontalOptions="Start"
+                                                 SelectionIndicatorStyle="{StaticResource SegmentedControlSelectionIndicatorStyle}"
+                                                 BackgroundColor="{DynamicResource ItemBackgroundColor}"
+                                                 ItemsSource="{Binding FanSpeedOptions}"
+                                                 SelectedItem="{Binding SelectedFanSpeedOption, Mode=TwoWay}" />
+                </VerticalStackLayout>
+            </Grid>
+        </ScrollView>
+
+        <Grid x:Name="DesktopLayoutGrid"
+              MaximumWidthRequest="1280"
+              ColumnSpacing="{OnPlatform MacCatalyst=40, WinUI=32}"
+              RowSpacing="24"
+              HorizontalOptions="Start"
+              RowDefinitions="Auto, Auto"
+              ColumnDefinitions="{OnPlatform MacCatalyst='400, Auto', WinUI='1.5*, 1.5*'}"
+              IsVisible="{OnIdiom Phone=False, Desktop=True}">
+
+            <Label Text="Climate Control"
+                   Grid.ColumnSpan="2"
+                   Style="{StaticResource BaseLabelStyle}"
+                   FontSize="24"
+                   Margin="{OnPlatform MacCatalyst='0, 0, 0, 12'}" />
+
+            <VerticalStackLayout Grid.Row="1"
+                                 MinimumWidthRequest="{OnPlatform WinUI=250}"
+                                 Grid.Column="0">
+                <telerik:RadBorder x:Name="SliderCardDesktop"
+                                   Shadow="{x:Null}"
+                                   Background="Transparent">
+                    <Grid>
+                        <telerik:RadCircularSlider IsEnabled="{Binding IsSystemOn}"
+                                                   Value="{Binding Temperature, Mode=TwoWay}"
+                                                   Minimum="16"
+                                                   Maximum="30"
+                                                   ThumbFill="{Binding BindingContext.ModeAccentColor, Source={RelativeSource AncestorType={x:Type telerik:RadContentView}}}"
+                                                   BackTrackColor="{Binding BindingContext.ModeAccentMutedColor, Source={RelativeSource AncestorType={x:Type telerik:RadContentView}}}"
+                                                   RangeTrackFill="{Binding BindingContext.ModeAccentColor, Source={RelativeSource AncestorType={x:Type telerik:RadContentView}}}"
+                                                   BackTrackThickness="8"
+                                                   RadiusFactor="0.9"
+                                                   StartAngle="225"
+                                                   SweepAngle="270"
+                                                   SweepDirection="Clockwise"
+                                                   TickStep="1"
+                                                   TickThickness="1.5"
+                                                   TicksPlacement="None"
+                                                   InRangeTickColor="{Binding BindingContext.ModeAccentColor, Source={RelativeSource AncestorType={x:Type telerik:RadContentView}}}"
+                                                   OutOfRangeTickColor="{Binding BindingContext.ModeAccentMutedColor, Source={RelativeSource AncestorType={x:Type telerik:RadContentView}}}"
+                                                   LabelStep="3"
+                                                   LabelsPlacement="None"
+                                                   SnapMode="SnapToTicks"
+                                                   HeightRequest="350"
+                                                   TooltipStringFormat="{}{0:N0}°C"
+                                                   HorizontalOptions="Fill">
+                        </telerik:RadCircularSlider>
+                        <ContentView ControlTemplate="{StaticResource SliderCenterContentTemplate}"
+                                     InputTransparent="True" />
+                    </Grid>
+                </telerik:RadBorder>
+
+                <FlexLayout BindableLayout.ItemsSource="{Binding StatCards}"
+                            BindableLayout.ItemTemplate="{StaticResource StatCardTemplate}"
+                            Direction="Row"
+                            JustifyContent="SpaceBetween" />
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Grid.Row="1"
+                                 Grid.Column="1"
+                                 Spacing="{OnPlatform MacCatalyst=32, WinUI=33}"
+                                 HorizontalOptions="Fill"
+                                 VerticalOptions="Start">
+                <telerik:RadBorder Style="{StaticResource CardBorderStyle}">
+                    <VerticalStackLayout IsEnabled="{Binding IsSystemOn}"
+                                         Style="{StaticResource SystemOffDimmedSectionStyle}"
+                                         Spacing="12"
+                                         HorizontalOptions="Fill">
+                        <Label Text="Mode"
+                               Style="{StaticResource SectionLabelStyle}" />
+                        <telerik:RadCollectionView ItemsSource="{Binding ModeOptions}"
+                                                   SelectedItem="{Binding SelectedModeItem, Mode=TwoWay}"
+                                                   ItemTemplate="{StaticResource ModeCollectionItemTemplate}"
+                                                   ItemViewStyle="{StaticResource ModeCollectionItemViewStyle}"
+                                                   SelectionMode="Single"
+                                                   HorizontalOptions="{OnPlatform MacCatalyst=Start, WinUI=Fill}">
+                            <telerik:RadCollectionView.ItemsLayout>
+                                <telerik:CollectionViewGridLayout Orientation="Vertical"
+                                                                  SpanCount="5"
+                                                                  HorizontalItemSpacing="8"
+                                                                  VerticalItemSpacing="0" />
+                            </telerik:RadCollectionView.ItemsLayout>
+                        </telerik:RadCollectionView>
+                    </VerticalStackLayout>
+                </telerik:RadBorder>
+
+                <telerik:RadBorder Style="{StaticResource CardBorderStyle}">
+                    <VerticalStackLayout IsEnabled="{Binding IsSystemOn}"
+                                         Style="{StaticResource SystemOffDimmedSectionStyle}"
+                                         Spacing="12">
+                        <Label Text="Fan speed"
+                               Style="{StaticResource SectionLabelStyle}" />
+                        <telerik:RadSegmentedControl x:Name="profileTypeSegmentedDesktop"
+                                                     DisplayMemberPath="Name"
+                                                     HorizontalOptions="Fill"
+                                                     SelectionIndicatorStyle="{StaticResource SegmentedControlSelectionIndicatorStyle}"
+                                                     ItemsSource="{Binding FanSpeedOptions}"
+                                                     BackgroundColor="{OnPlatform MacCatalyst={DynamicResource DefaultBackgroundColor}, WinUI={DynamicResource CircularSliderButtonBackgroundColor}}"
+                                                     BorderColor="{DynamicResource DefaultBorderColor}"
+                                                     BorderThickness="1"
+                                                     SelectedItem="{Binding SelectedFanSpeedOption, Mode=TwoWay}" />
+                    </VerticalStackLayout>
+                </telerik:RadBorder>
+
+                <telerik:RadBorder Style="{StaticResource CardBorderStyle}">
+                    <VerticalStackLayout Spacing="12">
+                        <Label Text="System" Style="{StaticResource SectionLabelStyle}" />
+                        <Label Text="Turn the air conditioner on or off" Style="{StaticResource BaseLabelStyle}" MaxLines="2" />
+                        <HorizontalStackLayout Spacing="12"
+                                               VerticalOptions="Center">
+                            <Switch x:Name="systemSwitchDesktop"
+                                    IsToggled="{Binding IsSystemOn, Mode=TwoWay}"
+                                    ThumbColor="{OnPlatform Default={DynamicResource TextOnAccentColor}, Android={Binding BindingContext.ModeAccentColor, Source={RelativeSource AncestorType={x:Type telerik:RadContentView}}}, WinUI={Binding BindingContext.ModeAccentColor, Source={RelativeSource AncestorType={x:Type telerik:RadContentView}}}}"
+                                    OnColor="{OnPlatform Default={Binding BindingContext.ModeAccentMutedColor, Source={RelativeSource AncestorType={x:Type telerik:RadContentView}}}, iOS={Binding BindingContext.ModeAccentColor, Source={RelativeSource AncestorType={x:Type telerik:RadContentView}}}, MacCatalyst={Binding BindingContext.ModeAccentColor, Source={RelativeSource AncestorType={x:Type telerik:RadContentView}}}}"
+                                    VerticalOptions="Center" />
+                        </HorizontalStackLayout>
+                    </VerticalStackLayout>
+                </telerik:RadBorder>
+            </VerticalStackLayout>
+        </Grid>
+    </Grid>
+</telerik:RadContentView>

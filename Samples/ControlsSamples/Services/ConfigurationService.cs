@@ -51,23 +51,29 @@ namespace QSF.Services
             for (int index = 0; index < count; index++)
             {
                 var control = configuration.Controls[index];
-                if (control.Status == StatusType.Normal 
+                if (control.Status == null 
                     && control.Examples.Any(e => e.Status == StatusType.New || e.Status == StatusType.Updated))
                 {
                     // If we have updated or new example we want to mark the control as updated as well.
                     control.Status = StatusType.Updated;
                 }
 
-                if (control.Status == StatusType.New)
+                if (control.Status == StatusType.New || control.Status == StatusType.Preview)
                 {
-                    // If the control is new we want to mark all examples as new as well.
+                    // If the control is new or preview we want to mark all examples as new as well.
                     foreach (var example in control.Examples)
                     {
-                        if (example.Status == StatusType.Normal)
+                        if (example.Status == null)
                         {
                             example.Status = StatusType.New;
                         }
                     }
+                }
+
+                if (!control.HasAICapability && control.Examples.Any(e => e.HasAICapability))
+                {
+                    // If any example contains AI, mark the control as containing AI as well.
+                    control.HasAICapability = true;
                 }
             }
         }

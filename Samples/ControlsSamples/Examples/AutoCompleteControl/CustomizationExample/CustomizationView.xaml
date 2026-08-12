@@ -4,63 +4,65 @@
              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
              x:Class="QSF.Examples.AutoCompleteControl.CustomizationExample.CustomizationView">
     <Grid.Resources>
-        <Style TargetType="Label" x:Key="titleLabelStyle">
-            <Setter Property="FontSize" Value="24" />
-            <Setter Property="TextColor" Value="#0E88F2" />
-        </Style>
+        <ResourceDictionary>
+            <Style TargetType="Label" x:Key="titleLabelStyle">
+                <Setter Property="FontSize" Value="24" />
+                <Setter Property="TextColor" Value="#0E88F2" />
+            </Style>
 
-        <DataTemplate x:Key="TokenTemplate">
-            <telerik:RadBorder BorderThickness="0"
-                               BackgroundColor="{Binding BackgroundColor}"
-                               CornerRadius="16"
-                               Margin="0,6">
-                <HorizontalStackLayout>
+            <DataTemplate x:Key="TokenTemplate">
+                <telerik:RadBorder BorderThickness="0"
+                                   BackgroundColor="{Binding BackgroundColor}"
+                                   CornerRadius="16"
+                                   Margin="0,6">
+                    <HorizontalStackLayout>
+                        <telerik:RadBorder CornerRadius="10"
+                                           BackgroundColor="#87CCCCCC"
+                                           WidthRequest="20"
+                                           HeightRequest="20"
+                                           Margin="8,0">
+                            <Image Source="{Binding TokenImagePath}" 
+                                   Opacity="0.5"
+                                   HeightRequest="20"
+                                   WidthRequest="20"
+                                   Aspect="Center" />
+                        </telerik:RadBorder>
+                        <Label Text="{Binding Name}"
+                               TextColor="{Binding TextColor}"
+                               VerticalTextAlignment="Center" />
+                        <Label Text="&#xe877;"
+                               FontFamily="TelerikFontExamples"
+                               VerticalTextAlignment="Center"
+                               TextColor="{DynamicResource PlaceholderColor}"
+                               Margin="4,9,9,9">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TokenCloseButton_Tapped" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </HorizontalStackLayout>
+                </telerik:RadBorder>
+            </DataTemplate>
+
+            <DataTemplate x:Key="SuggestionItemTemplate">
+                <HorizontalStackLayout Spacing="8">
                     <telerik:RadBorder CornerRadius="10"
-                                       BackgroundColor="#87CCCCCC"
+                                       BackgroundColor="{Binding BackgroundColor}"
                                        WidthRequest="20"
                                        HeightRequest="20"
-                                       Margin="8,0">
-                        <Image Source="{Binding TokenImagePath}" 
-                               Opacity="0.5"
+                                       Margin="8,4">
+                        <Image Source="{Binding SuggestionImagePath}"
                                HeightRequest="20"
                                WidthRequest="20"
                                Aspect="Center" />
                     </telerik:RadBorder>
-                    <Label Text="{Binding Name}"
-                           TextColor="{Binding TextColor}"
-                           VerticalTextAlignment="Center" />
-                    <Label Text="&#xe877;"
-                           FontFamily="TelerikFontExamples"
-                           VerticalTextAlignment="Center"
-                           TextColor="{DynamicResource PlaceholderColor}"
-                           Margin="4,9,9,9">
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="TokenCloseButton_Tapped" />
-                        </Label.GestureRecognizers>
-                    </Label>
+                    <telerik:RadHighlightLabel VerticalTextAlignment="Center"
+                                               UnformattedText="{Binding Name}"
+                                               TextColor="{DynamicResource DefaultTextColor}"
+                                               HighlightTextColor="{DynamicResource AccentColor8}"
+                                               HighlightText="{Binding Source={x:Reference autoComplete}, Path=SearchText}" />
                 </HorizontalStackLayout>
-            </telerik:RadBorder>
-        </DataTemplate>
-
-        <DataTemplate x:Key="SuggestionItemTemplate">
-            <HorizontalStackLayout Spacing="8">
-                <telerik:RadBorder CornerRadius="10"
-                                   BackgroundColor="{Binding BackgroundColor}"
-                                   WidthRequest="20"
-                                   HeightRequest="20"
-                                   Margin="8,4">
-                    <Image Source="{Binding SuggestionImagePath}"
-                           HeightRequest="20"
-                           WidthRequest="20"
-                           Aspect="Center" />
-                </telerik:RadBorder>
-                <telerik:RadHighlightLabel VerticalTextAlignment="Center"
-                                           UnformattedText="{Binding Name}"
-                                           TextColor="{DynamicResource DefaultTextColor}"
-                                           HighlightTextColor="{DynamicResource AccentColor8}"
-                                           HighlightText="{Binding Source={x:Reference autoComplete}, Path=SearchText}" />
-            </HorizontalStackLayout>
-        </DataTemplate>
+            </DataTemplate>
+        </ResourceDictionary>
     </Grid.Resources>
 
     <Grid RowDefinitions="Auto, *">

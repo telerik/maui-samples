@@ -1,4 +1,4 @@
-﻿using Microsoft.Maui.Controls;
+using Microsoft.Maui.Controls;
 using QSF.Examples.WordsProcessingControl.Converters;
 using QSF.Services;
 using QSF.ViewModels;
@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Telerik.Documents.Core.Fonts;
 using Telerik.Documents.Primitives;
-using Telerik.Windows.Documents.Extensibility;
-using Telerik.Windows.Documents.Fixed.FormatProviders.Pdf;
-using Telerik.Windows.Documents.Fixed.Model;
-using Telerik.Windows.Documents.Fixed.Model.ColorSpaces;
-using Telerik.Windows.Documents.Fixed.Model.Editing;
-using Telerik.Windows.Documents.Fixed.Model.Editing.Flow;
-using Telerik.Windows.Documents.Fixed.Model.Resources;
+using Telerik.Documents.Extensibility;
+using Telerik.Documents.Fixed.FormatProviders.Pdf;
+using Telerik.Documents.Fixed.Model;
+using Telerik.Documents.Fixed.Model.ColorSpaces;
+using Telerik.Documents.Fixed.Model.Editing;
+using Telerik.Documents.Fixed.Model.Editing.Flow;
+using Telerik.Documents.Fixed.Model.Resources;
 
 namespace QSF.Examples.PdfProcessingControl.FirstLookExample
 {

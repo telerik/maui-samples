@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<views:GalleryExampleViewBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                              xmlns:views="clr-namespace:QSF.Views"
+                              xmlns:styles="clr-namespace:QSF.Styles"
+                              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                              xmlns:charts="clr-namespace:Telerik.Maui.Controls.Charts;assembly=Telerik.Maui.Controls"
+                              x:Class="QSF.Examples.ChartsControl.PieDonutSeriesExample.PieDonutSeriesView" >
+    <views:GalleryExampleViewBase.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <styles:GalleryResources/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+        <DataTemplate x:Key="Pie">
+            <charts:RadPieChart x:Name="chart"
+                              AutomationId="pieChart">
+                <charts:RadPieChart.Series>
+                    <charts:PieSeries ValueBinding="Value"
+                                         LabelBinding="Category"
+                                         ItemsSource="{Binding SeriesData}"/>
+                </charts:RadPieChart.Series>
+            </charts:RadPieChart>
+        </DataTemplate>
+        <DataTemplate x:Key="Pie2">
+            <charts:RadPieChart x:Name="chart"
+                              AutomationId="pieChart2">
+                <charts:RadPieChart.Series>
+                    <charts:PieSeries ValueBinding="Value"
+                                         LabelBinding="Category"
+                                         ItemsSource="{Binding SeriesData}"/>
+                </charts:RadPieChart.Series>
+            </charts:RadPieChart>
+        </DataTemplate>
+        <DataTemplate x:Key="Donut">
+            <charts:RadPieChart x:Name="chart"
+                              AutomationId="donutChart">
+                <charts:RadPieChart.Series>
+                    <charts:DonutSeries ValueBinding="Value"
+                                           LabelBinding="Category"
+                                           InnerRadiusFactor="0.4"
+                                           OuterRadiusFactor="0.9"
+                                           ItemsSource="{Binding SeriesData}"/>
+                </charts:RadPieChart.Series>
+            </charts:RadPieChart>
+        </DataTemplate>
+    </views:GalleryExampleViewBase.Resources>
+</views:GalleryExampleViewBase>

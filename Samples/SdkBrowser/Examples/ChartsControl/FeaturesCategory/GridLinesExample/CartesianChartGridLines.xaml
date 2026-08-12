@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:charts="clr-namespace:Telerik.Maui.Controls.Charts;assembly=Telerik.Maui.Controls"
+             xmlns:models="clr-namespace:SDKBrowserMaui.Examples.ChartsControl"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.ChartsControl.FeaturesCategory.GridLinesExample.CartesianChartGridLines">
+    <Grid RowDefinitions="Auto, *"
+          RowSpacing="10">
+        <HorizontalStackLayout Spacing="8">
+            <Label Text="Grid Lines Visibility"
+                   VerticalTextAlignment="Center" />
+            <telerik:RadComboBox WidthRequest="170"
+                                 SelectedItem="{Binding MajorLinesVisibility, Source={x:Reference gridLines}}">
+                <telerik:RadComboBox.ItemsSource>
+                    <x:Array Type="{x:Type charts:ChartGridLinesVisibility}">
+                        <charts:ChartGridLinesVisibility>None</charts:ChartGridLinesVisibility>
+                        <charts:ChartGridLinesVisibility>Horizontal</charts:ChartGridLinesVisibility>
+                        <charts:ChartGridLinesVisibility>Vertical</charts:ChartGridLinesVisibility>
+                        <charts:ChartGridLinesVisibility>Both</charts:ChartGridLinesVisibility>
+                    </x:Array>
+                </telerik:RadComboBox.ItemsSource>
+            </telerik:RadComboBox>
+        </HorizontalStackLayout>
+        <!-- >> chart-cartesian-grid-lines-xaml -->
+        <charts:RadCartesianChart Grid.Row="1">
+            <charts:RadCartesianChart.BindingContext>
+                <models:CategoricalViewModel />
+            </charts:RadCartesianChart.BindingContext>
+            <charts:RadCartesianChart.Grid>
+                <charts:CartesianChartGrid MajorLinesVisibility="Both"
+                                           x:Name="gridLines"
+                                           MajorLineColor="#99865FC5"
+                                           MajorLineThickness="1" />
+            </charts:RadCartesianChart.Grid>
+            <charts:RadCartesianChart.Axes>
+                <charts:CategoricalAxis />
+                <charts:NumericalAxis Location="Left" />
+            </charts:RadCartesianChart.Axes>
+            <charts:RadCartesianChart.Series>
+                <charts:LineSeries HorizontalBinding="Category"
+                                   VerticalBinding="Value"
+                                   ItemsSource="{Binding Data}" />
+            </charts:RadCartesianChart.Series>
+        </charts:RadCartesianChart>
+        <!-- << chart-cartesian-grid-lines-xaml -->
+    </Grid>
+</ContentView>

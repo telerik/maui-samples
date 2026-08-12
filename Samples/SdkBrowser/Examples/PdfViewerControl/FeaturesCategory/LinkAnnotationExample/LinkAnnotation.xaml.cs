@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
-using Telerik.Windows.Documents.Fixed.Model.Actions;
+using Telerik.Documents.Fixed.Model.Actions;
 using Microsoft.Maui.Controls;
 using Microsoft.Maui.ApplicationModel;
 

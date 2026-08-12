@@ -10,19 +10,25 @@ public class StatusTagToStringConverter : IValueConverter
     public string NewValue { get; set; }
     public string UpdatedValue { get; set; }
     public string BetaValue { get; set; }
+    public string PreviewValue { get; set; }
 
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        switch ((StatusType)value)
+        if (value is StatusType status)
         {
-            case StatusType.New:
-                return this.NewValue;
-            case StatusType.Updated:
-                return this.UpdatedValue;
-            case StatusType.Beta:
-                return this.BetaValue;
-            default:
-                break;
+            switch (status)
+            {
+                case StatusType.New:
+                    return this.NewValue;
+                case StatusType.Updated:
+                    return this.UpdatedValue;
+                case StatusType.Beta:
+                    return this.BetaValue;
+                case StatusType.Preview:
+                    return this.PreviewValue;
+                default:
+                    break;
+            }
         }
 
         return null;

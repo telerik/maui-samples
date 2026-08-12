@@ -11,7 +11,8 @@
         </ResourceDictionary>
     </ContentView.Resources>
     <!-- >> richtexteditor-readonly-state -->
-    <Grid RowDefinitions="{OnIdiom Desktop='Auto, Auto, *', Phone='Auto, *, Auto'}">
+    <Grid x:Name="grid"
+          RowDefinitions="{OnIdiom Desktop='Auto, Auto, *', Phone='Auto, *, Auto'}">
         <HorizontalStackLayout Spacing="10" Margin="0, 0, 0, 10">
             <Label Text="ReadOnly State:" VerticalOptions="Center" />
             <Switch IsToggled="{Binding IsReadOnly, Source={x:Reference richTextEditor}}" VerticalOptions="Center" />

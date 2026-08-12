@@ -27,6 +27,8 @@ public class ViewModel : NotifyPropertyChangedBase
             new ColorItem { CustomColor = Color.FromArgb("#FFE162") },
             new ColorItem { CustomColor = Color.FromArgb("#FF6358") },
         };
+
+        this.pickedColor = this.ItemsColors[0];
     }
 
     public ObservableCollection<ColorItem> ItemsColors { get; }
@@ -34,8 +36,23 @@ public class ViewModel : NotifyPropertyChangedBase
     public ColorItem PickedColor
     {
         get => this.pickedColor;
-        set => this.UpdateValue(ref this.pickedColor, value);
+        set
+        {
+            // The drop-down content can clear selection (null) when it closes.
+            // Preserve the last chosen color instead of falling back to transparent.
+            if (value is null)
+            {
+                return;
+            }
+
+            if (this.UpdateValue(ref this.pickedColor, value))
+            {
+                this.OnPropertyChanged(nameof(this.PickedCustomColor));
+            }
+        }
     }
+
+    public Color PickedCustomColor => this.PickedColor?.CustomColor ?? Colors.Transparent;
 }
 
 public class ColorItem

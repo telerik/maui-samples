@@ -17,8 +17,7 @@ namespace CryptoTracker.Pages
         private async void InitializeSelection()
         {
             this.BusyIndicator.IsBusy = true;
-            var coinDataService = DependencyService.Get<ICoinDataService>();
-            var initiallySelectedCoin = (await coinDataService.GetCoinsAsync(1)).FirstOrDefault();
+            var initiallySelectedCoin = (await LocalCoinDataProvider.GetCoinsAsync(1)).FirstOrDefault();
             if (initiallySelectedCoin != null)
             {
                 this.SelectCoin(initiallySelectedCoin);
