@@ -17,6 +17,9 @@ public partial class NavigationItemView : ContentView
     public static readonly BindableProperty StatusProperty = BindableProperty.Create(
         nameof(Status), typeof(StatusType), typeof(NavigationItemView));
 
+    public static readonly BindableProperty HasAICapabilityProperty = BindableProperty.Create(
+        nameof(HasAICapability), typeof(bool), typeof(NavigationItemView));
+
     public static readonly BindableProperty TapCommandProperty = BindableProperty.Create(
         nameof(TapCommand), typeof(ICommand), typeof(NavigationItemView), propertyChanged: (b, o, n) => ((NavigationItemView)b).OnTapCommandChanged());
 
@@ -43,6 +46,12 @@ public partial class NavigationItemView : ContentView
     {
         get { return (StatusType)this.GetValue(StatusProperty); }
         set { this.SetValue(StatusProperty, value); }
+    }
+
+    public bool HasAICapability
+    {
+        get { return (bool)this.GetValue(HasAICapabilityProperty); }
+        set { this.SetValue(HasAICapabilityProperty, value); }
     }
 
     public ICommand TapCommand

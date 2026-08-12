@@ -6,19 +6,20 @@
              xmlns:converters="clr-namespace:QSF.Converters"
              xmlns:qsf="clr-namespace:QSF.Pages"
              ios:Page.UseSafeArea="False"
+             xmlns:telerikMaui="clr-namespace:Telerik.Maui;assembly=Telerik.Maui.Core"
              NavigationPage.HasNavigationBar="False"
              x:Name="home"
              x:Class="QSF.Pages.MainPageMobile">
 
     <ContentPage.Resources>
-        <converters:StatusTagToStringConverter x:Key="StatusTagToStringConverter" NewValue="New" UpdatedValue="Upd" BetaValue="Beta" />
+        <converters:StatusTagToStringConverter x:Key="StatusTagToStringConverter" NewValue="New" UpdatedValue="Upd" BetaValue="Beta" PreviewValue="Prev" />
 
         <DataTemplate x:Key="ControlsCollectionViewHeaderTemplate">
             <Grid RowDefinitions="Auto, Auto"
                   Margin="0, 0, 0, 10">
                 <views:HighlightsView />
                 <Grid Grid.Row="1">
-                    <Label Text="All Controls"
+                    <Label Text="Components"
                            HorizontalOptions="Start"
                            VerticalOptions="End"
                            FontSize="{OnPlatform Default=22, Android=24}" />
@@ -59,15 +60,42 @@
                            Style="{StaticResource DescriptionLabelWithTruncationStyle}" 
                            AutomationId="controlDescription" />
                 </Grid>
-                <telerik:RadBorder Grid.ColumnSpan="2"
-                                   Style="{StaticResource StatusTagBorderStyle}"
-                                   BackgroundColor="{Binding Status, Converter={StaticResource StatusTagToColorConverter}}"
-                                   HorizontalOptions="End"
-                                   VerticalOptions="Start"
-                                   AutomationId="statusTag">
-                    <Label Text="{Binding Status, Converter={StaticResource StatusTagToStringConverter}}"
-                           Style="{StaticResource StatusTagLabelStyle}" />
-                </telerik:RadBorder>
+                <HorizontalStackLayout Grid.ColumnSpan="2"
+                                        HorizontalOptions="End"
+                                        VerticalOptions="Start"
+                                        Spacing="2">
+                    <telerik:RadBorder Style="{StaticResource StatusTagBorderStyle}"
+                                       BackgroundColor="{Binding Status, Converter={StaticResource StatusTagToColorConverter}}"
+                                       AutomationId="statusTag">
+                        <Label Text="{Binding Status, Converter={StaticResource StatusTagToStringConverter}}"
+                               Style="{StaticResource StatusTagLabelStyle}" />
+                    </telerik:RadBorder>
+                    <telerik:RadBorder BackgroundColor="{DynamicResource BadgeAIBackgroundColor}"
+                                       Style="{StaticResource StatusTagBorderStyle}"
+                                       IsVisible="{Binding HasAICapability}"
+                                       AutomationId="aiTag">
+                        <Grid ColumnDefinitions="Auto,Auto"
+                              ColumnSpacing="2"
+                              HorizontalOptions="Center">
+                            <Label Grid.Column="0"
+                                   FontFamily="{x:Static telerikMaui:TelerikFont.Name}"
+                                   Text="{x:Static telerikMaui:TelerikFont.IconSparkle}"
+                                   FontSize="10"
+                                   TextColor="{DynamicResource TextOnAccentColor}"
+                                   LineHeight="1"
+                                   VerticalOptions="Fill"
+                                   VerticalTextAlignment="Center"
+                                   HorizontalTextAlignment="Center"/>
+                            <Label Grid.Column="1"
+                                   Text="AI"
+                                   Style="{StaticResource StatusTagLabelStyle}"
+                                   LineHeight="1"
+                                   VerticalOptions="Fill"
+                                   HorizontalTextAlignment="Center"
+                                   VerticalTextAlignment="Center"/>
+                        </Grid>
+                    </telerik:RadBorder>
+                </HorizontalStackLayout>
             </Grid>
         </DataTemplate>
 

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.CircularSliderControl.StylingCategory.TicksStylingExample.TicksStyling">
+    <ContentView.Resources>
+        <!-- >> circularslider-ticks-styling-styles -->
+        <Style x:Key="CustomInRangeTickStyle" TargetType="telerik:RadBorder">
+            <Setter Property="BackgroundColor" Value="#018383" />
+            <Setter Property="WidthRequest" Value="3" />
+            <Setter Property="HeightRequest" Value="10" />
+        </Style>
+        <Style x:Key="CustomOutOfRangeTickStyle" TargetType="telerik:RadBorder">
+            <Setter Property="BackgroundColor" Value="#830183" />
+            <Setter Property="WidthRequest" Value="2" />
+            <Setter Property="HeightRequest" Value="10" />
+        </Style>
+        <!-- << circularslider-ticks-styling-styles -->
+    </ContentView.Resources>
+    <Grid>
+        <!-- >> circularslider-ticks-styling-xaml -->
+        <telerik:RadCircularSlider Minimum="0"
+                                   Maximum="100"
+                                   Value="35"
+                                   TicksPlacement="Start"
+                                   TickStep="10"
+                                   InRangeTickStyle="{StaticResource CustomInRangeTickStyle}"
+                                   OutOfRangeTickStyle="{StaticResource CustomOutOfRangeTickStyle}"
+                                   HorizontalOptions="Fill"
+                                   VerticalOptions="Start"
+                                   MinimumHeightRequest="300" />
+        <!-- << circularslider-ticks-styling-xaml -->
+    </Grid>
+</ContentView>

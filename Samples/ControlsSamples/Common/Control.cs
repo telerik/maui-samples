@@ -27,9 +27,11 @@ public class Control
 
     public string FeedbackPortalUrl { get; set; }
 
-    public StatusType Status { get; set; }
+    public StatusType? Status { get; set; }
 
     public bool IsThemable { get; set; }
+
+    public bool HasAICapability { get; set; }
 
     public List<Example> Examples { get; set; }
 

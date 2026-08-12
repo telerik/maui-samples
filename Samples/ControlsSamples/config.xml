@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Configuration>
 	<HeaderTitle>Telerik UI for .NET MAUI</HeaderTitle>
 	<HeaderIcon>Logo.png</HeaderIcon>
@@ -11,6 +11,87 @@
 	<ExampleCodeUrl>https://www.github.com/telerik/maui-samples/tree/main/Samples/ControlsSamples/Examples</ExampleCodeUrl>
 
 	<Controls>
+		<Control>
+			<Name>AI</Name>
+			<Status>New</Status>
+			<DisplayName>AI Components &amp; Features</DisplayName>
+			<ShortDescription>Showcases AI-powered scenarios and integrations across Telerik UI for .NET MAUI controls.</ShortDescription>
+			<FullDescription>Telerik UI for .NET MAUI AI Features demonstrate how to integrate artificial intelligence capabilities into your .NET MAUI applications. These examples showcase cross-control AI-powered scenarios such as natural language interactions, intelligent data processing, and AI-driven UI generation, leveraging large language models and other AI services.</FullDescription>
+			<DocumentationURL>https://www.telerik.com/maui-ui/documentation/aicomponents</DocumentationURL>
+			<Examples>
+				<Example>
+					<Name>A2UI</Name>
+					<Page>A2UIView</Page>
+					<DisplayName>AI Flight Assistant (A2UI)</DisplayName>
+					<Description>This example demonstrates the A2UI (AI-to-UI) protocol, which enables an AI agent to dynamically generate fully functional UI at runtime. An AI-powered flight assistant interprets user intent and renders either a research dashboard or a booking form on the fly, composed entirely of Telerik UI for .NET MAUI controls.</Description>
+					<HasAICapability>true</HasAICapability>
+				</Example>
+				<Example>
+					<Status>Normal</Status>
+					<ControlName>DataGrid</ControlName>
+					<Name>SemanticSearch</Name>
+					<Page>SemanticSearchView</Page>
+					<DisplayName>AI Smart DataGrid</DisplayName>
+					<Description>Demonstrates the AI-powered capabilities of the DataGrid control through semantic search and natural-language interactions. It uses a local AI embedding model to match user intent by meaning and helps users explore data with smarter, context-aware queries.</Description>
+					<HasAICapability>true</HasAICapability>
+				</Example>
+				<Example>
+					<Status>Normal</Status>
+					<ControlName>Chat</ControlName>
+					<Name>AIIntegration</Name>
+					<Page>AIIntegrationView</Page>
+					<DisplayName>AI Chat Integration</DisplayName>
+					<Description>This example showcases the integration of the component with an AI service. This enables the user to participate in a person-to-AI conversation.</Description>
+					<HasAICapability>true</HasAICapability>
+				</Example>
+				<Example>
+					<Status>Normal</Status>
+					<ControlName>DataGrid</ControlName>
+					<Name>AIChatIntegration</Name>
+					<Page>AIChatIntegrationView</Page>
+					<DisplayName>AI Chat Assistant</DisplayName>
+					<Description>Showcases the AI-powered features of the DataGrid control by executing natural-language prompts within the RadChat component. Using these prompts, the user can perform operations such as sorting, grouping, filtering, and modifying columns.</Description>
+					<HasAICapability>true</HasAICapability>
+				</Example>
+				<Example>
+					<Status>Normal</Status>
+					<ControlName>DataGrid</ControlName>
+					<Name>PromptControlled</Name>
+					<Page>PromptControlledView</Page>
+					<DisplayName>AI Controlled DataGrid</DisplayName>
+					<Description>Demonstrates the AI-powered features in the DataGrid control. The user can interact with the DataGrid using natural language prompts to perform operations like sorting, grouping, filtering, and column manipulation.</Description>
+					<HasAICapability>true</HasAICapability>
+				</Example>
+				<Example>
+					<Status>Normal</Status>
+					<ControlName>SmartPasteButton</ControlName>
+					<Name>FirstLook</Name>
+					<Page>FirstLookView</Page>
+					<DisplayName>AI SmartPasteButton</DisplayName>
+					<Description>Telerik UI for .NET MAUI SmartPasteButton is an AI-powered component that streamlines data entry by extracting structured information from clipboard content and automatically populating form fields.</Description>
+					<HasAICapability>true</HasAICapability>
+				</Example>
+				<Example>
+					<Status>Normal</Status>
+					<ControlName>PromptInput</ControlName>
+					<Name>FirstLook</Name>
+					<Page>FirstLookView</Page>
+					<DisplayName>PromptInput</DisplayName>
+					<Description>The Telerik UI for .NET MAUI PromptInput is a feature-rich input control that bridges human-AI interaction within your .NET MAUI applications, covering AI-driven scenarios such as chatbots, in-app assistants, and more.</Description>
+					<HasAICapability>true</HasAICapability>
+				</Example>
+				<Example>
+					<Status>Normal</Status>
+					<ControlName>AIPrompt</ControlName>
+					<Name>FirstLook</Name>
+					<Page>FirstLookView</Page>
+					<DisplayName>AIPrompt</DisplayName>
+					<Description>Telerik UI for .NET MAUI AIPrompt component helps integrating Large Language Model (LLM) technology into MAUI applications, adding artificial intelligence features.</Description>
+					<HasAICapability>true</HasAICapability>
+				</Example>
+			</Examples>
+		</Control>
+
 		<Control>
 			<Name>Accordion</Name>
 			<DisplayName>Accordion</DisplayName>
@@ -50,6 +131,7 @@
 					<Page>FirstLookView</Page>
 					<DisplayName>First Look</DisplayName>
 					<Description>Telerik UI for .NET MAUI AIPrompt component helps integrating Large Language Model (LLM) technology into MAUI applications, adding artificial intelligence features.</Description>
+					<HasAICapability>true</HasAICapability>
 				</Example>
 			</Examples>
 		</Control>
@@ -73,6 +155,7 @@
 					<Description>Demonstrates how you could customize the visual appearance of the AutoComplete control through various templates such as TokenTemplate, SuggestionItemTemplate, etc.</Description>
 				</Example>
 				<Example>
+					<Status>Updated</Status>
 					<Name>Configuration</Name>
 					<Page>ConfigurationView</Page>
 					<DisplayName>Configuration</DisplayName>
@@ -194,7 +277,6 @@
 
 		<Control>
 			<Name>Button</Name>
-			<Status>Updated</Status>
 			<DisplayName>Buttons</DisplayName>
 			<ShortDescription>A set of Buttons allowing the invocation of UI functionality on a click, while at the same time providing flexible customization capabilities, ease of use and integration with other components.</ShortDescription>
 			<FullDescription>Telerik UI for .NET MAUI Buttons represent an essential set of components allowing the invocation of UI functionality on a click, while at the same time providing flexible customization capabilities, ease of use and integration with other components.</FullDescription>
@@ -202,20 +284,17 @@
 				<Example>
 					<Name>FirstLook</Name>
 					<Page>FirstLookView</Page>
-					<Status>Updated</Status>
 					<DisplayName>First Look</DisplayName>
 					<Description>This example showcases all supported types of buttons present in Telerik UI for .NET MAUI and some of their key features and capabilities.</Description>
 				</Example>
 				<Example>
 					<Name>Customization</Name>
 					<Page>CustomizationView</Page>
-					<Status>Updated</Status>
 					<DisplayName>Customization</DisplayName>
 					<Description>This example presents the customization capabilities of the supported types of buttons present in Telerik UI for .NET MAUI.</Description>
 				</Example>
 				<Example>
 					<Name>DropDownButton</Name>
-					<Status>New</Status>
 					<Page>DropDownButtonView</Page>
 					<DisplayName>DropDown Button</DisplayName>
 					<Description>This example presents the various configuration options that the RadDropDownButton provides. Adjust the drop-down width and height, toggle the drop-down indicator visibility, change the drop-down position, and explore other settings to see their effects in real-time.</Description>
@@ -333,34 +412,77 @@
 		</Control>
 
 		<Control>
+			<Name>Charts</Name>
+			<DisplayName>Charts (New)</DisplayName>
+			<Status>Preview</Status>
+			<ShortDescription>A new, modern chart component designed to provide improved performance, reliability, and maintainability. It will gradually replace the other Chart.</ShortDescription>
+			<FullDescription>Telerik UI for .NET MAUI New Chart is a new, modern chart component designed to provide improved performance, reliability, and maintainability, rendered with SkiaSharp for fast, pixel-perfect cross-platform graphics. It will gradually reach feature parity with the existing Chart and is intended to replace it.</FullDescription>
+			<Examples>
+				<Example>
+					<Name>AreaSeries</Name>
+					<Page>AreaSeriesView</Page>
+					<DisplayName>Area Series</DisplayName>
+					<Description>Area charts display different colors in the areas below the lines. This colorful and visual display distinguishes the data clearly.</Description>
+				</Example>
+				<Example>
+					<Name>BarSeries</Name>
+					<Page>BarSeriesView</Page>
+					<DisplayName>Bar Series</DisplayName>
+					<Description>Bar chart is one of the most common type of graphs used to display data. Sometimes known as 'column charts' depending on the orientation, bar charts are used to visualize data points as bar blocks where the width/height of each bar denotes the magnitude of its value. This example shows vertical and horizontal bars, each with a single series or multiple clustered series.</Description>
+				</Example>
+				<Example>
+					<Name>LineSeries</Name>
+					<Page>LineSeriesView</Page>
+					<DisplayName>Line Series</DisplayName>
+					<Description>Line charts are often used to plot changes in data over time, such as monthly temperature changes or daily changes in stock market prices. If you are plotting changes in data over time, time is plotted along the horizontal axis and your other data is plotted as individual points along the vertical axis.</Description>
+				</Example>
+				<Example>
+					<Name>NullValues</Name>
+					<Page>NullValuesView</Page>
+					<DisplayName>Null Values</DisplayName>
+					<Description>Line charts and area charts can visualize null values as gaps in the chart.</Description>
+				</Example>
+				<Example>
+					<Name>ScatterSeries</Name>
+					<Page>ScatterSeriesView</Page>
+					<DisplayName>ScatterSeries</DisplayName>
+					<Description>A scatter chart is a two-dimensional graphical representation of a set of data where each x/y variable is represented on the graph as a dot. This type of chart can be used to visually describe relationships between two numerical parameters or to represent distributions. This example plots the same numerical data as points, a line and an area.</Description>
+				</Example>
+				<Example>
+					<Name>PieDonutSeries</Name>
+					<Page>PieDonutSeriesView</Page>
+					<DisplayName>Pie &amp; Donut Series</DisplayName>
+					<Description>The pie chart visualizes its data in the shape of a pie. Each data item is visually represented by a pie/donut slice. The ratio between the space consumed by each slice and the space consumed by the whole chart is the same as the ratio between the value of the data point that it represents and the total value of all data points in the series.</Description>
+				</Example>
+			</Examples>
+		</Control>
+
+		<Control>
 			<Name>Chat</Name>
 			<DisplayName>Chat</DisplayName>
 			<ShortDescription>The Chat component empowers developers to create modern, engaging conversational interfaces in .NET MAUI applications.</ShortDescription>
 			<FullDescription>The Chat component empowers developers to create modern, engaging conversational interfaces in .NET MAUI applications. Its flexible architecture allows effortless integration with chatbots, large language models (LLMs), and custom business logic, enabling rich and intelligent user experiences.</FullDescription>
 			<Examples>
 				<Example>
-					<Status>New</Status>
 					<Name>FirstLook</Name>
 					<Page>FirstLookView</Page>
 					<DisplayName>First Look</DisplayName>
 					<Description>This example shows a person-to-person conversation using the Chat control and demonstrates multiple functionalities, such as quick replies, typing indicator, bulk/single file uploads and downloading/sharing attachments.</Description>
 				</Example>
 				<Example>
-					<Status>New</Status>
 					<Name>AIIntegration</Name>
 					<Page>AIIntegrationView</Page>
 					<DisplayName>AI Integration</DisplayName>
 					<Description>This example showcases the integration of the component with an AI service. This enables the user to participate in a person-to-AI conversation.</Description>
+					<HasAICapability>true</HasAICapability>
 				</Example>
 				<Example>
-					<Status>Updated</Status>
 					<Name>ChatRoom</Name>
 					<Page>ChatRoomView</Page>
 					<DisplayName>Chat Room</DisplayName>
 					<Description>This example demonstrates one way to go about implementing a chat room with multiple participants. Some of the features that are demonstrated are: typing indicator, timebreaks, color customization, MVVM support.</Description>
 				</Example>
 				<Example>
-					<Status>Updated</Status>
 					<Name>Configuration</Name>
 					<Page>ConfigurationView</Page>
 					<DisplayName>Configuration</DisplayName>
@@ -381,6 +503,31 @@
 					<Page>FirstLookView</Page>
 					<DisplayName>First Look</DisplayName>
 					<Description><![CDATA[Telerik UI for .NET MAUI CheckBox is a checkbox control that enables users to make a choice between two mutually exclusive options. In addition, RadCheckBox provides an indeterminate state which indicates the control is neither checked nor unchecked. RadCheckBox exposes various Color properties you could use to customize its visual appearance so that it matches the look &amp; feel of your app.]]></Description>
+				</Example>
+			</Examples>
+		</Control>
+
+		<Control>
+			<Name>CircularSlider</Name>
+			<DisplayName>CircularSlider</DisplayName>
+			<Status>New</Status>
+			<ShortDescription>Enables users to select a value from a defined range by dragging a thumb along a circular arc.</ShortDescription>
+			<FullDescription>Telerik UI for .NET MAUI CircularSlider is a circular slider control that displays a value in a given min-max range. The end user can change the value by dragging the thumb along a circular path. The control supports configurable start angle, sweep angle and direction, ticks, labels, and tooltips for visual clarity.</FullDescription>
+			<Examples>
+				<Example>
+					<Name>FirstLook</Name>
+					<Page>FirstLookView</Page>
+					<DisplayName>First Look</DisplayName>
+					<Status>New</Status>
+					<Description>Telerik UI for .NET MAUI CircularSlider is a circular slider control that displays a value in a given min-max range. The end user can change the value by dragging the thumb along a circular path. The control supports configurable start angle, sweep angle and direction, ticks, labels, and tooltips for visual clarity.</Description>
+				</Example>
+				<Example>
+					<Name>Configuration</Name>
+					<Page>ConfigurationView</Page>
+					<DisplayName>Configuration</DisplayName>
+					<IsConfigurable>true</IsConfigurable>
+					<Status>New</Status>
+					<Description>This example presents the various configuration options that the RadCircularSlider provides. Adjust the ticks and labels placement, frequency, colors, size, customize the look of the track and thumb elements, explore the snap and drag modes, and configure the start angle, sweep angle, sweep direction, and radius factor of the circular arc.</Description>
 				</Example>
 			</Examples>
 		</Control>
@@ -456,8 +603,8 @@
 					<Description>This example demonstrates how to implement paging functionality using the RadDataPager control.</Description>
 				</Example>
 				<Example>
-					<Name>Configuration</Name>
 					<Status>Updated</Status>
+					<Name>Configuration</Name>
 					<Page>ConfigurationView</Page>
 					<DisplayName>Configuration</DisplayName>
 					<IsConfigurable>true</IsConfigurable>
@@ -523,7 +670,6 @@
 		<Control>
 			<Name>DataGrid</Name>
 			<DisplayName>DataGrid</DisplayName>
-			<Status>Updated</Status>
 			<ShortDescription>A powerful and feature-rich control used to visualize and edit data represented in a tabular fashion.</ShortDescription>
 			<FullDescription>Telerik UI for .NET MAUI DataGrid control provides the ability to easily perform operations like sorting, filtering, grouping and editing over the underlying data.</FullDescription>
 			<Examples>
@@ -539,20 +685,21 @@
 					<Page>SemanticSearchView</Page>
 					<DisplayName>AI Smart DataGrid</DisplayName>
 					<Description>Demonstrates the AI-powered capabilities of the DataGrid control through semantic search and natural-language interactions. It uses a local AI embedding model to match user intent by meaning and helps users explore data with smarter, context-aware queries. The user can interact with the DataGrid using natural language prompts to perform operations like sorting, grouping, filtering, and column manipulation.</Description>
+					<HasAICapability>true</HasAICapability>
 				</Example>
 				<Example>
-					<Status>New</Status>
 					<Name>AIChatIntegration</Name>
 					<Page>AIChatIntegrationView</Page>
 					<DisplayName>AI Chat Assistant</DisplayName>
 					<Description>Showcases the AI‑powered features of the DataGrid control by executing natural‑language prompts within the RadChat component. Using these prompts, the user can perform operations such as sorting, grouping, filtering, and modifying columns.</Description>
+					<HasAICapability>true</HasAICapability>
 				</Example>
 				<Example>
-					<Status>New</Status>
 					<Name>PromptControlled</Name>
 					<Page>PromptControlledView</Page>
 					<DisplayName>AI Controlled DataGrid</DisplayName>
 					<Description>Demonstrates the AI-powered features in the DataGrid control. The user can interact with the DataGrid using natural language prompts to perform operations like sorting, grouping, filtering, and column manipulation.</Description>
+					<HasAICapability>true</HasAICapability>
 				</Example>
 				<Example>
 					<Name>FrozenColumns</Name>
@@ -651,14 +798,12 @@
 					<Description>This example demonstrates how to implement paging functionality of larger data using the RadDataPager control.</Description>
 				</Example>
 				<Example>
-					<Status>New</Status>
 					<Name>ExportToExcel</Name>
 					<Page>ExportToExcelView</Page>
 					<DisplayName>Export Data To Excel</DisplayName>
 					<Description>This example demonstrates how to export data from the DataGrid control to excel.</Description>
 				</Example>
 				<Example>
-					<Status>New</Status>
 					<Name>ExportToPdf</Name>
 					<Page>ExportToPdfView</Page>
 					<DisplayName>Export Data To PDF</DisplayName>
@@ -747,7 +892,6 @@
 		</Control>
 
 		<Control>
-			<Status>New</Status>
 			<Name>Editor</Name>
 			<DisplayName>Editor</DisplayName>
 			<ShortDescription>Enhances the Maui Editor by providing means for customizing its look, adding an input validation feature, selection on focus functionality and more.</ShortDescription>
@@ -1081,16 +1225,15 @@
 		<Control>
 			<Name>PromptInput</Name>
 			<DisplayName>PromptInput</DisplayName>
-			<Status>New</Status>
 			<ShortDescription>A feature-rich input control that bridges human-AI interaction within your .NET MAUI applications.</ShortDescription>
 			<FullDescription>The Telerik UI for .NET MAUI PromptInput is a feature-rich input control that bridges human-AI interaction within your .NET MAUI applications. It provides a polished, ready-made interface for sending prompts and managing the full input lifecycle in AI-driven scenarios such as chatbots, in-app assistants, and more. Beyond text input, the control supports voice dictation, file attachments, and in-app camera capture, covering everything users need to engage naturally within a conversational experience.</FullDescription>
 			<Examples>
 				<Example>
-					<Status>New</Status>
 					<Name>FirstLook</Name>
 					<Page>FirstLookView</Page>
 					<DisplayName>First Look</DisplayName>
 					<Description>The Telerik UI for .NET MAUI PromptInput is a feature-rich input control that bridges human-AI interaction within your .NET MAUI applications. It provides a polished, ready-made interface for sending prompts and managing the full input lifecycle in AI-driven scenarios such as chatbots, in-app assistants, and more. Beyond text input, the control supports voice dictation, file attachments, and in-app camera capture, covering everything users need to engage naturally within a conversational experience.</Description>
+					<HasAICapability>true</HasAICapability>
 				</Example>
 		  </Examples>
 		</Control>
@@ -1201,28 +1344,24 @@
 		<Control>
 			<Name>SegmentedControl</Name>
 			<DisplayName>SegmentedControl</DisplayName>
-			<Status>Updated</Status>
 			<ShortDescription>Displays horizontally aligned, mutually exclusive options, which can be selected by the user.</ShortDescription>
 			<FullDescription>Telerik UI for .NET MAUI SegmentedControl enables you to display several options in a convenient picker and select value with a single tap.</FullDescription>
 			<Examples>
 				<Example>
 					<Name>FirstLook</Name>
 					<Page>FirstLookView</Page>
-					<Status>Updated</Status>
 					<DisplayName>First Look</DisplayName>
 					<Description>Telerik UI for .NET MAUI SegmentedControl enables you to display several options in a convenient picker and select value with a single tap. This example showcases the usage of the SegmentedControl in a MVVM environment. Images can easily be displayed in the SegmentedControl, and styles can be used to achieve the same look for the SegmentedControl's in your application.</Description>
 				</Example>
 				<Example>
 					<Name>Configuration</Name>
 					<Page>ConfigurationView</Page>
-					<Status>New</Status>
 					<DisplayName>Configuration</DisplayName>
 					<Description>This example presents the various configuration options that the RadSegmentedControl provides.</Description>
 				</Example>
 				<Example>
 					<Name>ItemTemplate</Name>
 					<Page>ItemTemplateView</Page>
-					<Status>New</Status>
 					<DisplayName>Item Template</DisplayName>
 					<Description>This example showcases how to customize each item of the RadSegmentedControl, by defining separate ItemTemplate instances.</Description>
 				</Example>
@@ -1331,17 +1470,16 @@
 
 		<Control>
 			<Name>SmartPasteButton</Name>
-			<Status>New</Status>
 			<DisplayName>SmartPasteButton</DisplayName>
 			<ShortDescription>A button that enables smart pasting of text into input fields.</ShortDescription>
 			<FullDescription>Telerik UI for .NET MAUI SmartPasteButton is an AI-powered component that streamlines data entry by extracting structured information from clipboard content and automatically populating form fields.</FullDescription>
 			<Examples>
 				<Example>
 					<Name>FirstLook</Name>
-					<Status>New</Status>
 					<Page>FirstLookView</Page>
 					<DisplayName>First Look</DisplayName>
 					<Description>Telerik UI for .NET MAUI SmartPasteButton is an AI-powered component that streamlines data entry by extracting structured information from clipboard content and automatically populating form fields.</Description>
+					<HasAICapability>true</HasAICapability>
 				</Example>
 			</Examples>
 		</Control>
@@ -1628,7 +1766,7 @@
 
 	<HighlightedControls>
 		<HighlightedControl>
-			<DisplayName>Editor</DisplayName>
+			<DisplayName>CircularSlider</DisplayName>
 		</HighlightedControl>
 		<HighlightedControl>
 			<DisplayName>DataGrid</DisplayName>
@@ -1651,9 +1789,9 @@
 			<DisplayName>AI Smart DataGrid</DisplayName>
 		</HighlightedExample>
 		<HighlightedExample>
-			<ControlName>DataGrid</ControlName>
-			<ExampleName>AIChatIntegration</ExampleName>
-			<DisplayName>DataGrid AI Chat Assistant</DisplayName>
+			<ControlName>AI</ControlName>
+			<ExampleName>A2UI</ExampleName>
+			<DisplayName>AI Flight Assistant (A2UI)</DisplayName>
 		</HighlightedExample>
 	</HighlightedExamples>
 
@@ -1682,9 +1820,9 @@
 
 	<DemoApps>
 		<DemoApp>
-			<Icon>logo_cryptoapp.png</Icon>
-			<DisplayText>Crypto Tracker</DisplayText>
-			<Url>https://docs.telerik.com/devtools/maui/demos-and-sample-apps/crypto-app?utm_medium=product&amp;utm_source=appstores&amp;utm_campaign=maui-awareness-maui-qsf-showcase</Url>
+			<Icon>logo_crm.png</Icon>
+			<DisplayText>CRM</DisplayText>
+			<Url>https://docs.telerik.com/devtools/maui/demos-and-sample-apps/crm-app?utm_medium=product&amp;utm_source=appstores&amp;utm_campaign=maui-awareness-maui-qsf-showcase</Url>
 		</DemoApp>
 		<DemoApp>
 			<Icon>logo_progress.png</Icon>
@@ -1692,7 +1830,9 @@
 			<Url>https://docs.telerik.com/devtools/maui/demos-and-sample-apps/maui-demo-app?utm_medium=product&amp;utm_source=appstores&amp;utm_campaign=maui-awareness-maui-qsf-showcase</Url>
 		</DemoApp>
 		<DemoApp>
-			<Icon>icon_csharp_cw.png</Icon>
+			<Icon>logo_cryptoapp.png</Icon>
+			<DisplayText>Crypto Tracker</DisplayText>
+			<Url>https://docs.telerik.com/devtools/maui/demos-and-sample-apps/crypto-app?utm_medium=product&amp;utm_source=appstores&amp;utm_campaign=maui-awareness-maui-qsf-showcase</Url>
 		</DemoApp>
 		<DemoApp>
 			<Icon>icon_csharp_ccw.png</Icon>

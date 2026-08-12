@@ -1,4 +1,4 @@
-﻿<Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+<Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:QSF"
              xmlns:styles="clr-namespace:QSF.Styles"
@@ -7,6 +7,7 @@
              xmlns:viewModels="clr-namespace:QSF.ViewModels"
              xmlns:windows="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.WindowsSpecific;assembly=Microsoft.Maui.Controls"
              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:telerikMaui="clr-namespace:Telerik.Maui;assembly=Telerik.Maui.Core"
              x:Class="QSF.App">
     <Application.Resources>
         <ResourceDictionary>
@@ -63,11 +64,46 @@
                            Style="{StaticResource StatusTagLabelStyle}" />
                 </telerik:RadBorder>
             </DataTemplate>
+            <DataTemplate x:Key="PreviewStatusTemplate">
+                <telerik:RadBorder BackgroundColor="{DynamicResource AccentColor8}"
+                                   Style="{StaticResource StatusTagBorderStyle}">
+                    <Label Text="Prev"
+                           Style="{StaticResource StatusTagLabelStyle}" />
+                </telerik:RadBorder>
+            </DataTemplate>
             <converters:StatusTagToTemplateConverter x:Key="StatusTagToTemplateConverter"
                                                      NormalTemplate="{StaticResource NormalStatusTemplate}"
                                                      NewTemplate="{StaticResource NewStatusTemplate}"
                                                      UpdatedTemplate="{StaticResource UpdatedStatusTemplate}"
-                                                     BetaTemplate="{StaticResource BetaStatusTemplate}" />
+                                                     BetaTemplate="{StaticResource BetaStatusTemplate}"
+                                                     PreviewTemplate="{StaticResource PreviewStatusTemplate}" />
+            <DataTemplate x:Key="AITagTemplate">
+                <telerik:RadBorder BackgroundColor="{DynamicResource BadgeAIBackgroundColor}"
+                                   Style="{StaticResource StatusTagBorderStyle}">
+                    <Grid ColumnDefinitions="Auto,Auto"
+                          ColumnSpacing="{OnPlatform Default=3, WinUI=2}"
+                          HorizontalOptions="Center">
+                        <Label Grid.Column="0"
+                               FontFamily="{x:Static telerikMaui:TelerikFont.Name}"
+                               Text="{x:Static telerikMaui:TelerikFont.IconSparkle}"
+                               FontSize="{OnPlatform Default=10, WinUI=8.5}"
+                               TextColor="{DynamicResource TextOnAccentColor}"
+                               LineHeight="1"
+                               VerticalOptions="Fill"
+                               VerticalTextAlignment="Center"
+                               HorizontalTextAlignment="Center" />
+                        <Label Grid.Column="1"
+                               Text="AI"
+                               Style="{StaticResource StatusTagLabelStyle}"
+                               LineHeight="1"
+                               VerticalOptions="Fill"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center" />
+                    </Grid>
+                </telerik:RadBorder>
+            </DataTemplate>
+            <converters:BoolToAITagTemplateConverter x:Key="BoolToAITagTemplateConverter"
+                                                     AITemplate="{StaticResource AITagTemplate}" />
             <Style x:Key="BaseLabelStyle" TargetType="Label">
                 <Setter Property="TextColor" Value="{DynamicResource DefaultTextColor}" />
             </Style>

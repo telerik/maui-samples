@@ -6,6 +6,7 @@ using Android.App;
 using Android.Content.PM;
 using Android.OS;
 using AndroidX.AppCompat.App;
+using AndroidX.Core.View;
 using QSF.Services;
 
 namespace QSF
@@ -23,16 +24,24 @@ namespace QSF
 
             base.OnCreate(bundle);
 
+#if NET10_0_OR_GREATER
+            ViewCompat.SetOnApplyWindowInsetsListener(this.Window.DecorView, new ConsumeInsetsListener());
+            if (Build.VERSION.SdkInt < BuildVersionCodes.VanillaIceCream)
+            {
+                this.Window.SetStatusBarColor(App.ApplicationAccentColor.ToPlatform());
+            }
+#else
             this.Window.ClearFlags(Android.Views.WindowManagerFlags.TranslucentStatus);
             this.Window.SetStatusBarColor(App.ApplicationAccentColor.ToPlatform());
+#endif
 
             this.Window.InsetsController.SetSystemBarsAppearance(
                 (int)Android.Views.WindowInsetsControllerAppearance.LightNavigationBars,
                 (int)Android.Views.WindowInsetsControllerAppearance.LightNavigationBars);
 
             this.Window.InsetsController.SetSystemBarsAppearance(
-                (int)Android.Views.WindowInsetsControllerAppearance.LightStatusBars,
-                0);
+                0,
+                (int)Android.Views.WindowInsetsControllerAppearance.LightStatusBars);
 
             Microsoft.Maui.ApplicationModel.Platform.Init(this, bundle);
         }
@@ -42,5 +51,16 @@ namespace QSF
             Microsoft.Maui.ApplicationModel.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
+
+#if NET10_0_OR_GREATER
+        private class ConsumeInsetsListener : Java.Lang.Object, IOnApplyWindowInsetsListener
+        {
+            public WindowInsetsCompat OnApplyWindowInsets(Android.Views.View v, WindowInsetsCompat insets)
+            {
+                ViewCompat.OnApplyWindowInsets(v, insets);
+                return WindowInsetsCompat.Consumed;
+            }
+        }
+#endif
     }
 }

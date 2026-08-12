@@ -5,5 +5,6 @@ public enum StatusType
     Normal,
     New,
     Beta,
-    Updated
+    Updated,
+    Preview
 }

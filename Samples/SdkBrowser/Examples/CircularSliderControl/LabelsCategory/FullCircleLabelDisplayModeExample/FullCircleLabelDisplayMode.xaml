@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:circularSlider="clr-namespace:Telerik.Maui.Controls.CircularSlider;assembly=Telerik.Maui.Controls"
+             x:Class="SDKBrowserMaui.Examples.CircularSliderControl.LabelsCategory.FullCircleLabelDisplayModeExample.FullCircleLabelDisplayMode">
+    <ContentView.Resources>
+        <x:Array x:Key="FullCircleLabelDisplayModes" Type="{x:Type circularSlider:CircularSliderFullCircleLabelDisplayMode}">
+            <circularSlider:CircularSliderFullCircleLabelDisplayMode>ShowFirst</circularSlider:CircularSliderFullCircleLabelDisplayMode>
+            <circularSlider:CircularSliderFullCircleLabelDisplayMode>ShowLast</circularSlider:CircularSliderFullCircleLabelDisplayMode>
+        </x:Array>
+    </ContentView.Resources>
+    <Grid RowDefinitions="Auto, Auto"
+          RowSpacing="10">
+        <HorizontalStackLayout Grid.Row="0"
+                               Spacing="5"
+                               HorizontalOptions="Center">
+            <Label Text="Full circle label display mode:"
+                   VerticalOptions="Center" />
+            <telerik:RadComboBox ItemsSource="{StaticResource FullCircleLabelDisplayModes}"
+                                 SelectedItem="{Binding Source={x:Reference circularSlider}, Path=FullCircleLabelDisplayMode, Mode=TwoWay}"
+                                 IsClearButtonVisible="False"
+                                 WidthRequest="150" />
+        </HorizontalStackLayout>
+        <!-- >> circularslider-full-circle-label-display-mode -->
+        <telerik:RadCircularSlider x:Name="circularSlider"
+                                   Grid.Row="1"
+                                   Minimum="0"
+                                   Maximum="100"
+                                   Value="35"
+                                   StartAngle="90"
+                                   SweepAngle="360"
+                                   LabelsPlacement="End"
+                                   LabelStep="10"
+                                   FullCircleLabelDisplayMode="ShowLast"
+                                   HorizontalOptions="Fill"
+                                   MinimumHeightRequest="300" />
+        <!-- << circularslider-full-circle-label-display-mode -->
+    </Grid>
+</ContentView>

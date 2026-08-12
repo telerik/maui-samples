@@ -1,4 +1,4 @@
-﻿using Microsoft.Maui.Controls;
+using Microsoft.Maui.Controls;
 using QSF.Services;
 using QSF.ViewModels;
 using System;
@@ -10,10 +10,10 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Telerik.Documents.Common.Model;
 using Telerik.Documents.Media;
-using Telerik.Windows.Documents.Spreadsheet.FormatProviders;
-using Telerik.Windows.Documents.Spreadsheet.FormatProviders.OpenXml.Xlsx;
-using Telerik.Windows.Documents.Spreadsheet.Model;
-using Telerik.Windows.Documents.Spreadsheet.Model.ConditionalFormattings;
+using Telerik.Documents.Spreadsheet.FormatProviders;
+using Telerik.Documents.Spreadsheet.FormatProviders.OpenXml.Xlsx;
+using Telerik.Documents.Spreadsheet.Model;
+using Telerik.Documents.Spreadsheet.Model.ConditionalFormattings;
 
 namespace QSF.Examples.SpreadProcessingControl.ConditionalFormattingExample
 {

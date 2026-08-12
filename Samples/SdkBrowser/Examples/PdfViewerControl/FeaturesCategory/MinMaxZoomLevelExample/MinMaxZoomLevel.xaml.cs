@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
-using Telerik.Windows.Documents.Fixed.Model;
+using Telerik.Documents.Fixed.Model;
 using Microsoft.Maui.Controls;
 
 namespace SDKBrowserMaui.Examples.PdfViewerControl.FeaturesCategory.MinMaxZoomLevelExample;
@@ -56,7 +56,7 @@ public partial class MinMaxZoomLevel : ContentView
     // >> pdfviewer-key-features-source-fixed-method
     private void ImportFixedDocument()
     {
-        Telerik.Windows.Documents.Fixed.FormatProviders.Pdf.PdfFormatProvider provider = new Telerik.Windows.Documents.Fixed.FormatProviders.Pdf.PdfFormatProvider();
+        Telerik.Documents.Fixed.FormatProviders.Pdf.PdfFormatProvider provider = new Telerik.Documents.Fixed.FormatProviders.Pdf.PdfFormatProvider();
         Assembly assembly = typeof(MinMaxZoomLevel).Assembly;
         string fileName = assembly.GetManifestResourceNames().FirstOrDefault(n => n.Contains("pdf-processing.pdf"));
         using (Stream stream = assembly.GetManifestResourceStream(fileName))

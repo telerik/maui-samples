@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.CircularSliderControl.StylingCategory.TicksStyleSelectorExample"
+             x:Class="SDKBrowserMaui.Examples.CircularSliderControl.StylingCategory.TicksStyleSelectorExample.TicksStyleSelector">
+    <ContentView.Resources>
+        <!-- >> circularslider-tickstyleselector-selector -->
+        <local:CustomTickStyleSelector x:Key="CustomTickStyleSelector">
+            <local:CustomTickStyleSelector.MajorTickStyle>
+                <Style TargetType="telerik:RadBorder">
+                    <Setter Property="BackgroundColor" Value="#018383" />
+                    <Setter Property="WidthRequest" Value="3" />
+                    <Setter Property="HeightRequest" Value="10" />
+                </Style>
+            </local:CustomTickStyleSelector.MajorTickStyle>
+            <local:CustomTickStyleSelector.MinorTickStyle>
+                <Style TargetType="telerik:RadBorder">
+                    <Setter Property="BackgroundColor" Value="#830183" />
+                    <Setter Property="WidthRequest" Value="1" />
+                    <Setter Property="HeightRequest" Value="6" />
+                </Style>
+            </local:CustomTickStyleSelector.MinorTickStyle>
+        </local:CustomTickStyleSelector>
+        <!-- << circularslider-tickstyleselector-selector -->
+    </ContentView.Resources>
+    <Grid>
+        <!-- >> circularslider-tickstyleselector-xaml -->
+        <telerik:RadCircularSlider Minimum="0"
+                                   Maximum="100"
+                                   Value="35"
+                                   TicksPlacement="End"
+                                   TickStep="2"
+                                   TickStyleSelector="{StaticResource CustomTickStyleSelector}"
+                                   HorizontalOptions="Fill"
+                                   VerticalOptions="Start"
+                                   MinimumHeightRequest="300" />
+        <!-- << circularslider-tickstyleselector-xaml -->
+    </Grid>
+</ContentView>

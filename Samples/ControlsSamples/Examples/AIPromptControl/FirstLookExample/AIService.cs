@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Telerik.Windows.Documents.Flow.FormatProviders.Rtf.Exceptions;
-using Telerik.Windows.Documents.Spreadsheet.Expressions.Functions;
+using Telerik.Documents.Flow.FormatProviders.Rtf.Exceptions;
+using Telerik.Documents.Spreadsheet.Expressions.Functions;
 
 namespace QSF.Examples.AIPromptControl.FirstLookExample;
 

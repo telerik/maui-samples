@@ -15,8 +15,6 @@ public partial class App : Application
         Application.AccentColor = Color.FromArgb("#045DEA");
 
         this.InitializeComponent();
-
-        DependencyService.Register<ICoinDataService, CoinDataService>();
     }
 
     protected override Window CreateWindow(IActivationState activationState)

@@ -1,28 +1,20 @@
+using Microsoft.Maui.Controls;
+using SDKBrowserMaui.Behaviors;
 using System;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
-// >> android-keyboard-namespace
-using AndroidSpecific = Microsoft.Maui.Controls.PlatformConfiguration.AndroidSpecific;
-// << android-keyboard-namespace
-using Telerik.Maui;
 using Telerik.Maui.Controls.RichTextEditor;
-using Microsoft.Maui.Controls;
-using Microsoft.Maui.Devices;
-using SDKBrowserMaui.Behaviors;
 
 namespace SDKBrowserMaui.Examples.RichTextEditorControl.FeaturesCategory.ReadOnlyStateExample;
 
 public partial class ReadOnlyState : ContentView
 {
-    // >> android-keyborad
-    private AndroidSpecific.WindowSoftInputModeAdjust lastInputMode = AndroidSpecific.WindowSoftInputModeAdjust.Unspecified;
-    // << android-keyborad
     public ReadOnlyState()
-	{
-		InitializeComponent();
+    {
+        InitializeComponent();
 
         // >> richtexteditor-readonly-state-code-behind
         Func<CancellationToken, Task<Stream>> streamFunc = ct => Task.Run(() =>
@@ -37,38 +29,6 @@ public partial class ReadOnlyState : ContentView
         // << richtexteditor-readonly-state-code-behind
 
         this.richTextEditor.Behaviors.Add(new PickImageBehavior());
+        this.grid.Behaviors.Add(new AndroidKeyboardPaddingBehavior());
     }
-
-    // >> android-specific-keyborad
-    protected override void OnParentSet()
-    {
-        base.OnParentSet();
-        if (DeviceInfo.Current.Platform == DevicePlatform.Android)
-        {
-            if (this.Parent != null)
-            {
-                if (this.lastInputMode == AndroidSpecific.WindowSoftInputModeAdjust.Unspecified)
-                {
-                    this.lastInputMode = GetSoftInputMode();
-                }
-
-                SetSoftInputMode(AndroidSpecific.WindowSoftInputModeAdjust.Resize);
-            }
-            else
-            {
-                SetSoftInputMode(this.lastInputMode);
-            }
-        }
-    }
-
-    private static AndroidSpecific.WindowSoftInputModeAdjust GetSoftInputMode()
-    {
-        return AndroidSpecific.Application.GetWindowSoftInputModeAdjust(Application.Current);
-    }
-
-    private static void SetSoftInputMode(AndroidSpecific.WindowSoftInputModeAdjust inputMode)
-    {
-        AndroidSpecific.Application.SetWindowSoftInputModeAdjust(Application.Current, inputMode);
-    }
-    // << android-specific-keyborad
 }

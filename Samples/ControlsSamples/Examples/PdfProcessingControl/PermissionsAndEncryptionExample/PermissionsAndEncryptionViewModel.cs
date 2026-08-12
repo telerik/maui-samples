@@ -1,4 +1,4 @@
-﻿using Microsoft.Maui.Controls;
+using Microsoft.Maui.Controls;
 using Microsoft.Maui.Devices;
 using QSF.Services;
 using QSF.ViewModels;
@@ -7,10 +7,10 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
-using Telerik.Windows.Documents.Fixed.FormatProviders.Pdf;
-using Telerik.Windows.Documents.Fixed.FormatProviders.Pdf.Export;
-using Telerik.Windows.Documents.Fixed.FormatProviders.Pdf.Model.Encryption;
-using Telerik.Windows.Documents.Fixed.Model;
+using Telerik.Documents.Fixed.FormatProviders.Pdf;
+using Telerik.Documents.Fixed.FormatProviders.Pdf.Export;
+using Telerik.Documents.Fixed.FormatProviders.Pdf.Model.Encryption;
+using Telerik.Documents.Fixed.Model;
 
 namespace QSF.Examples.PdfProcessingControl.PermissionsAndEncryptionExample;
 

@@ -25,5 +25,7 @@ public class Example
 
     public bool IsThemable { get; set; }
 
-    public StatusType Status { get; set; }
+    public bool HasAICapability { get; set; }
+
+    public StatusType? Status { get; set; }
 }

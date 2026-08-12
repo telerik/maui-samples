@@ -24,8 +24,7 @@ namespace CryptoTracker.ViewModels
         public async void DownloadCoinsAsync(int coinsCount)
         {
             this.IsDataLoading = true;
-            var coinService = DependencyService.Get<ICoinDataService>();
-            var coins = await coinService.GetCoinsAsync(coinsCount);
+            var coins = await LocalCoinDataProvider.GetCoinsAsync(coinsCount);
             coins = coins.Where(c => c.OpeningPrice >= 0.01).ToList();
 
             var topCoins = new List<TrendingCoinData>();

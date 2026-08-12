@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="QSF.Examples.AIControl.A2UIExample.Views.A2UIPromptView"
+             x:Name="self">
+
+    <ContentView.Resources>
+        <telerik:StringToBoolConverter x:Key="StringToBoolConverter" />
+    </ContentView.Resources>
+
+    <VerticalStackLayout Spacing="{OnPlatform Default=4, MacCatalyst=12, WinUI=12}"
+                         Padding="0, 8">
+        <telerik:RadPromptInput x:Name="promptInput"
+                                MaximumWidthRequest="500"
+                                IsMoreButtonVisible="False"
+                                Message="{Binding Prompt}"
+                                Placeholder="{Binding Placeholder}"
+                                IsSpeechToTextButtonVisible="False"
+                                DisplayMode="Expanded"
+                                SendMessageCommand="{Binding SendCommand}" />
+
+        <telerik:RadBorder MaximumWidthRequest="500"
+                           IsVisible="{Binding Error, Converter={StaticResource StringToBoolConverter}}"
+                           BackgroundColor="{DynamicResource A2UIErrorBackgroundColor}"
+                           BorderColor="{DynamicResource A2UIErrorBorderColor}"
+                           BorderThickness="1"
+                           CornerRadius="8">
+            <Grid ColumnDefinitions="3, Auto, *"
+                  ColumnSpacing="8">
+                <BoxView BackgroundColor="{DynamicResource A2UIErrorAccentColor}" />
+                <Label Text="&#xe815;"
+                       Grid.Column="1"
+                       FontSize="14"
+                       FontFamily="TelerikFontExamples"
+                       Margin="8, 8, 0, 8"
+                       VerticalTextAlignment="Center"
+                       TextColor="{DynamicResource A2UIErrorTextColor}" />
+                <Label Grid.Column="2"
+                       Text="{Binding Error}"
+                       FontSize="13"
+                       Margin="0, 8, 10, 8"
+                       LineBreakMode="WordWrap"
+                       VerticalTextAlignment="Center"
+                       TextColor="{DynamicResource A2UIErrorTextColor}" />
+            </Grid>
+        </telerik:RadBorder>
+
+        <Label MaximumWidthRequest="500"
+               Text="{Binding StatusText}"
+               FontSize="12"
+               LineHeight="1.33"
+               Opacity="0.8"
+               IsVisible="{Binding StatusText, Converter={StaticResource StringToBoolConverter}}" />
+
+        <ContentView x:Name="rendererContainer" />
+    </VerticalStackLayout>
+</ContentView>

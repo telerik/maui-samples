@@ -1,8 +1,8 @@
 using QSF.Examples.WordsProcessingControl.Converters;
 using Telerik.Maui.Controls;
-using Telerik.Windows.Documents.Extensibility;
-using Telerik.Windows.Documents.Flow.Extensibility;
-using Telerik.Windows.Documents.Flow.FormatProviders.Pdf;
+using Telerik.Documents.Extensibility;
+using Telerik.Documents.Flow.Extensibility;
+using Telerik.Documents.Flow.FormatProviders.Pdf;
 
 namespace QSF.Examples.WordsProcessingControl.TableOfContentsExample;
 

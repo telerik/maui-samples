@@ -11,24 +11,31 @@ namespace QSF.Converters
         public DataTemplate NewTemplate { get; set; }
         public DataTemplate UpdatedTemplate { get; set; }
         public DataTemplate BetaTemplate { get; set; }
+        public DataTemplate PreviewTemplate { get; set; }
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             DataTemplate statusTagTemplate = this.NormalTemplate;
 
-            switch ((StatusType)value)
+            if (value is StatusType status)
             {
-                case StatusType.New:
-                    statusTagTemplate = this.NewTemplate;
-                    break;
-                case StatusType.Updated:
-                    statusTagTemplate = this.UpdatedTemplate;
-                    break;
-                case StatusType.Beta:
-                    statusTagTemplate = this.BetaTemplate;
-                    break;
-                default:
-                    break;
+                switch (status)
+                {
+                    case StatusType.New:
+                        statusTagTemplate = this.NewTemplate;
+                        break;
+                    case StatusType.Updated:
+                        statusTagTemplate = this.UpdatedTemplate;
+                        break;
+                    case StatusType.Beta:
+                        statusTagTemplate = this.BetaTemplate;
+                        break;
+                    case StatusType.Preview:
+                        statusTagTemplate = this.PreviewTemplate;
+                        break;
+                    default:
+                        break;
+                }
             }
 
             return statusTagTemplate.CreateContent();

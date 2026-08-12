@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:charts="clr-namespace:Telerik.Maui.Controls.Charts;assembly=Telerik.Maui.Controls"
+             xmlns:models="clr-namespace:SDKBrowserMaui.Examples.ChartsControl"
+             x:Class="SDKBrowserMaui.Examples.ChartsControl.GettingStartedCategory.GettingStartedExample.CartesianChartGettingStarted">
+    <!-- >> chart-cartesian-getting-started-xaml -->
+    <charts:RadCartesianChart>
+        <charts:RadCartesianChart.BindingContext>
+            <models:CategoricalViewModel />
+        </charts:RadCartesianChart.BindingContext>
+        <charts:RadCartesianChart.Axes>
+            <charts:CategoricalAxis />
+            <charts:NumericalAxis />
+        </charts:RadCartesianChart.Axes>
+        <charts:RadCartesianChart.Series>
+            <charts:BarSeries HorizontalBinding="Category"
+                              VerticalBinding="Value"
+                              ItemsSource="{Binding Data}" />
+        </charts:RadCartesianChart.Series>
+    </charts:RadCartesianChart>
+    <!-- << chart-cartesian-getting-started-xaml -->
+</ContentView>

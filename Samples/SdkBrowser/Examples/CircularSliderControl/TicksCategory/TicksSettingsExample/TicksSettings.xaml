@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:rangeSlider="clr-namespace:Telerik.Maui.Controls.RangeSlider;assembly=Telerik.Maui.Controls"
+             x:Class="SDKBrowserMaui.Examples.CircularSliderControl.TicksCategory.TicksSettingsExample.TicksSettings">
+    <ContentView.Resources>
+        <x:Array x:Key="TicksPlacements" Type="{x:Type rangeSlider:SliderTicksPlacement}">
+            <rangeSlider:SliderTicksPlacement>None</rangeSlider:SliderTicksPlacement>
+            <rangeSlider:SliderTicksPlacement>Start</rangeSlider:SliderTicksPlacement>
+            <rangeSlider:SliderTicksPlacement>Center</rangeSlider:SliderTicksPlacement>
+            <rangeSlider:SliderTicksPlacement>End</rangeSlider:SliderTicksPlacement>
+        </x:Array>
+    </ContentView.Resources>
+        <Grid RowDefinitions="Auto, Auto, Auto"
+                    RowSpacing="10">
+                <HorizontalStackLayout Grid.Row="0"
+                                                             Spacing="5"
+                               HorizontalOptions="Center">
+            <Label Text="Ticks placement:"
+                   VerticalOptions="Center" />
+            <telerik:RadComboBox ItemsSource="{StaticResource TicksPlacements}"
+                                 SelectedItem="{Binding Source={x:Reference circularSlider}, Path=TicksPlacement, Mode=TwoWay}"
+                                 IsClearButtonVisible="False"
+                                 WidthRequest="150" />
+        </HorizontalStackLayout>
+                     <HorizontalStackLayout Grid.Row="1"
+                                   Spacing="5"
+                               HorizontalOptions="Center">
+            <Label Text="Tick step:"
+                   VerticalOptions="Center" />
+            <telerik:RadNumericInput Value="{Binding Source={x:Reference circularSlider}, Path=TickStep, Mode=TwoWay}"
+                                     Minimum="5"
+                                     Maximum="20"
+                                     Step="5"
+                                     WidthRequest="150" />
+        </HorizontalStackLayout>
+        <!-- >> circularslider-ticks-settings -->
+        <telerik:RadCircularSlider Grid.Row="2"
+                                   x:Name="circularSlider"
+                                   Minimum="0"
+                                   Maximum="100"
+                                   Value="35"
+                                   TicksPlacement="End"
+                                   TickStep="5"
+                                   SnapMode="SnapToTicks"
+                                   HorizontalOptions="Fill"
+                                   VerticalOptions="Start"
+                                   MinimumHeightRequest="300" />
+        <!-- << circularslider-ticks-settings -->
+    </Grid>
+</ContentView>

@@ -28,6 +28,7 @@
     <!-- Background Colors -->
     <Color x:Key="BadgeNewBackgroundColor">#FD5064</Color>
     <Color x:Key="BadgeUpdatedBackgroundColor">#FF9040</Color>
+    <Color x:Key="BadgeAIBackgroundColor">#04A2AA</Color>
     <Color x:Key="CollectionViewItemPointerOverBackgroundColor">#FAFAFA</Color>
     <Color x:Key="DefaultBackgroundColor">#F8F8F8</Color>
     <Color x:Key="IconBackgroundColor">#F8F8F8</Color>
@@ -62,7 +63,7 @@
     <Color x:Key="PickerBackgroundColor1">#ECF6FE</Color>
     <Color x:Key="PickerBackgroundColor2">#FEF2F1</Color>
     <Color x:Key="PickerBackgroundColor3">#FFF4EB</Color>
-    <Color x:Key="PickerBorderColor1">#D6EBFC</Color> 
+    <Color x:Key="PickerBorderColor1">#D6EBFC</Color>
     <Color x:Key="PickerBorderColor2">#FEE5E3</Color>
     <Color x:Key="PickerBorderColor3">#FFE9D8</Color>
     <Color x:Key="PickerSelectedBorderColor1">#0E88F2</Color>
@@ -110,6 +111,10 @@
     <Color x:Key="HighlightedExampleBorderColor">#4FC6CB</Color>
 
     <!-- Examples Colors -->
+    <Color x:Key="A2UIErrorBackgroundColor">#FFF5F5</Color>
+    <Color x:Key="A2UIErrorBorderColor">#FECACA</Color>
+    <Color x:Key="A2UIErrorAccentColor">#DC2626</Color>
+    <Color x:Key="A2UIErrorTextColor">#B42318</Color>
     <Color x:Key="AccordionCustomizationAvatarLabelTextColor">#CCCCCC</Color>
     <Color x:Key="AccordionCustomizationCollapsedBackgroundColor">#151950</Color>
     <Color x:Key="AccordionCustomizationExpandedBackgroundColor">#7C59B6</Color>
@@ -126,10 +131,11 @@
         <On Platform="iOS" Value="#F3F3F3" />
     </OnPlatform>
     <Color x:Key="ChartLineColor">#A9A9A9</Color>
-    <OnPlatform x:Key="ChartMajorLineColor" x:TypeArguments="Color" Default="#EDEDED">
+    <OnPlatform x:Key="ChartGridMajorLineColor" x:TypeArguments="Color" Default="#EDEDED">
         <On Platform="WinUI" Value="Transparent" />
     </OnPlatform>
     <Color x:Key="ChartLabelHeaderTextColor">#757575</Color>
+    <Color x:Key="CircularSliderButtonBackgroundColor">#F0F0F0</Color>
     <Color x:Key="CollectionViewExampleIconBackgroundColor">#1F7C59B6</Color>
     <Color x:Key="CollectionViewIconBackgroundColor">#1F040405</Color>
     <Color x:Key="CustomizationButtonBackgroundColor">#FFFFFF</Color>
@@ -203,6 +209,7 @@
 
     <!-- ColorFilters Colors -->
     <telerikTheming:ColorFilter x:Key="AccentColor8DisabledColor" Color="{StaticResource AccentColor8}" Alpha="0.38" />
+    <telerikTheming:ColorFilter x:Key="A2UIStepOuterRingColor" Color="{StaticResource AccentColor8}" Lighten="0.68" />
     <telerikTheming:ColorFilter x:Key="SwitchToggledOffThumbColor" Lighten="{OnPlatform Default=0, Android=-0.07, WinUI=0.36}">
         <telerikTheming:ColorFilter.Color>
             <OnPlatform x:TypeArguments="Color" Default="{StaticResource TextOnAccentColor}">
@@ -255,7 +262,7 @@
         <On Platform="WinUI" Value="#DFDFDF" />
         <On Platform="MacCatalyst" Value="#DFDFDF" />
     </OnPlatform>
-     <OnPlatform x:Key="MenuItemPointerOverBackgroundColor" x:TypeArguments="Color" Default="#E6E6EC">
+    <OnPlatform x:Key="MenuItemPointerOverBackgroundColor" x:TypeArguments="Color" Default="#E6E6EC">
         <On Platform="WinUI" Value="#0A000000" />
     </OnPlatform>
     <OnPlatform x:Key="MenuItemSelectedBackgroundColor" x:TypeArguments="Color" Default="#E6E6EC">
@@ -264,11 +271,6 @@
     <OnPlatform x:Key="DataGridAIViewBackgroundColor" x:TypeArguments="Color" Default="#F7F7F7">
         <On Platform="WinUI" Value="#F5F5F5" />
     </OnPlatform>
-     <!-- <OnPlatform x:Key="SwitchToggledOnThumbColor" x:TypeArguments="Color" Default="{StaticResource TextOnAccentColor}">
-        <On Platform="Android" Value="#2B0B98" />
-    </OnPlatform> -->
-
-    <!-- Platform-Specific Brushes -->
     <OnPlatform x:Key="EditorBorderBrush" x:TypeArguments="Brush">
         <On Platform="Android">
             <SolidColorBrush Color="#9E9E9E" />
@@ -303,6 +305,7 @@
     <converters:StatusTagToColorConverter x:Key="StatusTagToColorConverter"
                                           NewColor="{StaticResource BadgeNewBackgroundColor}"
                                           UpdatedColor="{StaticResource BadgeUpdatedBackgroundColor}"
-                                          BetaColor="{StaticResource AccentColor8}" />
+                                          BetaColor="{StaticResource AccentColor8}"
+                                          PreviewColor="{StaticResource AccentColor8}" />
 
 </ResourceDictionary>

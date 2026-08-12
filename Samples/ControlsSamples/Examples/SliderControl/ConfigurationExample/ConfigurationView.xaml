@@ -52,6 +52,14 @@
                         <RowDefinition Height="{OnIdiom Default=0, Phone=*}" />
                     </Grid.RowDefinitions>
                     <VerticalStackLayout Style="{OnIdiom Default={StaticResource GroupAtExampleAreaWithColumnBreakStyle}, Phone={StaticResource GroupAtExampleAreaStyle}}">
+                        
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Ticks Placement:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <telerik:RadComboBox ItemsSource="{Binding TicksPlacements}"
+                                                 SelectedItem="{Binding TicksPlacement, Mode=TwoWay}"
+                                                 IsClearButtonVisible="False" />
+                        </VerticalStackLayout>
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="Tick Step:"
                                    Style="{StaticResource VerticalGroupLabelStyle}" />
@@ -61,13 +69,6 @@
                                                      VerticalOptions="Center"
                                                      Value="{Binding TickStep}"
                                                      Step="1" />
-                        </VerticalStackLayout>
-                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
-                            <Label Text="Ticks Placement:"
-                                   Style="{StaticResource VerticalGroupLabelStyle}" />
-                            <telerik:RadComboBox ItemsSource="{Binding TicksPlacements}"
-                                                 SelectedItem="{Binding TicksPlacement, Mode=TwoWay}"
-                                                 IsClearButtonVisible="False" />
                         </VerticalStackLayout>
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="In-range Tick Color:"
@@ -108,6 +109,13 @@
                                          Grid.Row="{OnIdiom Default=0, Phone=1}"
                                          Style="{StaticResource GroupAtExampleAreaStyle}">
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Labels Placement:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <telerik:RadComboBox ItemsSource="{Binding LabelsPlacements}"
+                                                 SelectedItem="{Binding LabelsPlacement, Mode=TwoWay}"
+                                                 IsClearButtonVisible="False" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="Label Step:"
                                    Style="{StaticResource VerticalGroupLabelStyle}" />
                             <telerik:RadNumericInput x:Name="labelStepNumeric"
@@ -116,13 +124,6 @@
                                                      VerticalOptions="Center"
                                                      Value="{Binding LabelStep}"
                                                      Step="10" />
-                        </VerticalStackLayout>
-                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
-                            <Label Text="Labels Placement:"
-                                   Style="{StaticResource VerticalGroupLabelStyle}" />
-                            <telerik:RadComboBox ItemsSource="{Binding LabelsPlacements}"
-                                                 SelectedItem="{Binding LabelsPlacement, Mode=TwoWay}"
-                                                 IsClearButtonVisible="False" />
                         </VerticalStackLayout>
                         <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
                             <Label Text="Text Color:"

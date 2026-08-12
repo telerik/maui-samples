@@ -1,6 +1,6 @@
-﻿using SkiaSharp;
-using Telerik.Windows.Documents.Extensibility;
-using Telerik.Windows.Documents.Fixed.FormatProviders.Pdf.Export;
+using SkiaSharp;
+using Telerik.Documents.Extensibility;
+using Telerik.Documents.Fixed.FormatProviders.Pdf.Export;
 
 namespace QSF.Examples.WordsProcessingControl.Converters
 {

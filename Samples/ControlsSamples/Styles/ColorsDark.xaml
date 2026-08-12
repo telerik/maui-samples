@@ -28,6 +28,7 @@
     <!-- Background Colors -->
     <Color x:Key="BadgeNewBackgroundColor">#D03B4E</Color>
     <Color x:Key="BadgeUpdatedBackgroundColor">#954B16</Color>
+    <Color x:Key="BadgeAIBackgroundColor">#1E7A83</Color>
     <Color x:Key="CollectionViewItemPointerOverBackgroundColor">#2E2E2E</Color>
     <OnPlatform x:Key="DefaultBackgroundColor" x:TypeArguments="Color" Default="#1C1C1C">
         <On Platform="iOS" Value="#121212" />
@@ -81,6 +82,10 @@
     <Color x:Key="PickerSelectedBorderColor2">#F96759</Color>
     <Color x:Key="PickerSelectedBorderColor3">#FFC766</Color>
 
+    <Color x:Key="A2UIErrorBackgroundColor">#2B171A</Color>
+    <Color x:Key="A2UIErrorBorderColor">#7F1D1D</Color>
+    <Color x:Key="A2UIErrorAccentColor">#EF4444</Color>
+    <Color x:Key="A2UIErrorTextColor">#FCA5A5</Color>
     <Color x:Key="CollectionViewMessageDataProviderBackgroundColor1">#FFAC3E</Color>
     <Color x:Key="CollectionViewMessageDataProviderBackgroundColor2">#FD5064</Color>
     <Color x:Key="CollectionViewMessageDataProviderBackgroundColor3">#55D3DE</Color>
@@ -146,10 +151,11 @@
         <On Platform="iOS" Value="#2A2A2A" />
     </OnPlatform>
     <Color x:Key="ChartLineColor">#3F3F3F</Color>
-    <OnPlatform x:Key="ChartMajorLineColor" x:TypeArguments="Color" Default="#3F3F3F">
+    <OnPlatform x:Key="ChartGridMajorLineColor" x:TypeArguments="Color" Default="#3F3F3F">
         <On Platform="WinUI" Value="Transparent" />
     </OnPlatform>
     <Color x:Key="ChartLabelHeaderTextColor">#ABABAB</Color>
+    <Color x:Key="CircularSliderButtonBackgroundColor">#1C1C1C</Color>
     <Color x:Key="CollectionViewExampleIconBackgroundColor">#2E1E47</Color>
     <Color x:Key="CollectionViewIconBackgroundColor">#CC333333</Color>
     <Color x:Key="CustomizationButtonBackgroundColor">#1A1A1A</Color>
@@ -254,6 +260,7 @@
         </telerikTheming:ColorFilter.Color>
      </telerikTheming:ColorFilter>
     <telerikTheming:ColorFilter x:Key="AccentColor8DisabledColor" Color="{StaticResource AccentColor8}" Alpha="0.50" />
+    <telerikTheming:ColorFilter x:Key="A2UIStepOuterRingColor" Color="{StaticResource AccentColor8}" Lighten="0.38" />
     <telerikTheming:ColorFilter x:Key="DefaultTextColorAlpha60" Color="{StaticResource DefaultTextColor}" Alpha="0.6" />
     <telerikTheming:ColorFilter x:Key="CollectionViewDragVisualBackgroundColor">
         <telerikTheming:ColorFilter.Color>
@@ -276,6 +283,7 @@
             <On Platform="iOS" Value="#007AFF" />
         </OnPlatform>
     </telerikTheming:ColorFilter>
+
     <!-- Platform-Specific Colors -->
     <OnPlatform x:Key="AutoCompleteSuggestionViewBackgroundColor" x:TypeArguments="Color" Default="#000000">
         <On Platform="WinUI" Value="#3A3A3A" />
@@ -319,6 +327,7 @@
     <converters:StatusTagToColorConverter x:Key="StatusTagToColorConverter"
                                           NewColor="{StaticResource BadgeNewBackgroundColor}"
                                           UpdatedColor="{StaticResource BadgeUpdatedBackgroundColor}"
-                                          BetaColor="{StaticResource AccentColor8}" />
+                                          BetaColor="{StaticResource AccentColor8}"
+                                          PreviewColor="{StaticResource AccentColor8}" />
 
 </ResourceDictionary>

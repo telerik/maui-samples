@@ -11,19 +11,25 @@ public class StatusTagToColorConverter : IValueConverter
     public Color NewColor { get; set; }
     public Color UpdatedColor { get; set; }
     public Color BetaColor { get; set; }
+    public Color PreviewColor { get; set; }
 
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        switch ((StatusType)value)
+        if (value is StatusType status)
         {
-            case StatusType.New:
-                return this.NewColor;
-            case StatusType.Updated:
-                return this.UpdatedColor;
-            case StatusType.Beta:
-                return this.BetaColor;
-            default:
-                break;
+            switch (status)
+            {
+                case StatusType.New:
+                    return this.NewColor;
+                case StatusType.Updated:
+                    return this.UpdatedColor;
+                case StatusType.Beta:
+                    return this.BetaColor;
+                case StatusType.Preview:
+                    return this.PreviewColor;
+                default:
+                    break;
+            }
         }
 
         return null;

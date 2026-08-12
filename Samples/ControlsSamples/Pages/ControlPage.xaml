@@ -54,10 +54,13 @@
                                LineBreakMode="WordWrap"
                                Style="{StaticResource LabelStyle}" />
                     </VerticalStackLayout>
-                    <ContentView Content="{Binding Status, Converter={StaticResource StatusTagToTemplateConverter}}"
-                                 HorizontalOptions="End"
-                                 VerticalOptions="End"
-                                 Margin="0, 0, 12, 6" />
+                    <HorizontalStackLayout HorizontalOptions="End"
+                                            VerticalOptions="End"
+                                            Spacing="2"
+                                            Margin="0, 0, 12, 6">
+                        <ContentView Content="{Binding Status, Converter={StaticResource StatusTagToTemplateConverter}}"
+                                     AutomationId="statusTag" />
+                    </HorizontalStackLayout>
                 </Grid>
             </telerik:RadBorder>
         </DataTemplate>

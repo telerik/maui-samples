@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:charts="clr-namespace:Telerik.Maui.Controls.Charts;assembly=Telerik.Maui.Controls"
+             xmlns:models="clr-namespace:SDKBrowserMaui.Examples.ChartsControl"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.ChartsControl.FeaturesCategory.DataPointLabelsExample.CartesianChartDataPointLabels">
+    <Grid RowDefinitions="Auto, *"
+          RowSpacing="10">
+        <HorizontalStackLayout Spacing="8">
+            <telerik:RadCheckBox IsChecked="{Binding ShowLabels, Source={x:Reference barSeries}}"
+                                 VerticalOptions="Center" />
+            <Label Text="Show data point labels" VerticalTextAlignment="Center" />
+        </HorizontalStackLayout>
+            <!-- >> chart-cartesian-data-point-labels-xaml -->
+        <charts:RadCartesianChart Grid.Row="1">
+            <charts:RadCartesianChart.BindingContext>
+                <models:CategoricalViewModel />
+            </charts:RadCartesianChart.BindingContext>
+            <charts:RadCartesianChart.Resources>
+                <Style x:Key="dataPointLabelStyle" TargetType="charts:ChartLabelAppearance">
+                    <Setter Property="TextColor" Value="#3F51B5" />
+                    <Setter Property="FontSize" Value="11" />
+                    <Setter Property="FontAttributes" Value="Bold" />
+                </Style>
+            </charts:RadCartesianChart.Resources>
+            <charts:RadCartesianChart.Axes>
+                <charts:CategoricalAxis />
+                <charts:NumericalAxis />
+            </charts:RadCartesianChart.Axes>
+            <charts:RadCartesianChart.Series>
+                <charts:BarSeries HorizontalBinding="Category"
+                                  VerticalBinding="Value"
+                                  x:Name="barSeries"
+                                  ItemsSource="{Binding Data}"
+                                  ShowLabels="True"
+                                  LabelStyle="{StaticResource dataPointLabelStyle}"
+                                  LabelOffset="0, 8" />
+            </charts:RadCartesianChart.Series>
+        </charts:RadCartesianChart>
+        <!-- << chart-cartesian-data-point-labels-xaml -->
+    </Grid>
+</ContentView>

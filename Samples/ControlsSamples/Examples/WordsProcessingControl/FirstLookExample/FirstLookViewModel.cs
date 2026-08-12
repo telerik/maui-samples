@@ -1,4 +1,4 @@
-﻿using Microsoft.Maui.Controls;
+using Microsoft.Maui.Controls;
 using QSF.Services;
 using QSF.ViewModels;
 using System;
@@ -9,15 +9,15 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Telerik.Documents.Common.Model;
 using Telerik.Documents.Core.Fonts;
-using Telerik.Windows.Documents.Common.FormatProviders;
-using Telerik.Windows.Documents.Flow.FormatProviders.Docx;
-using Telerik.Windows.Documents.Flow.FormatProviders.Html;
-using Telerik.Windows.Documents.Flow.FormatProviders.Rtf;
-using Telerik.Windows.Documents.Flow.FormatProviders.Txt;
-using Telerik.Windows.Documents.Flow.Model;
-using Telerik.Windows.Documents.Flow.Model.Editing;
-using Telerik.Windows.Documents.Primitives;
-using TelerikDocumentsFlowModel = Telerik.Windows.Documents.Flow.Model.Styles;
+using Telerik.Documents.Common.FormatProviders;
+using Telerik.Documents.Flow.FormatProviders.Docx;
+using Telerik.Documents.Flow.FormatProviders.Html;
+using Telerik.Documents.Flow.FormatProviders.Rtf;
+using Telerik.Documents.Flow.FormatProviders.Txt;
+using Telerik.Documents.Flow.Model;
+using Telerik.Documents.Flow.Model.Editing;
+using Telerik.Documents.Primitives;
+using TelerikDocumentsFlowModel = Telerik.Documents.Flow.Model.Styles;
 
 namespace QSF.Examples.WordsProcessingControl.FirstLookExample
 {

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.CircularSliderControl.StylingCategory.ThumbStylingExample.ThumbStyling">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <!-- >> circularslider-value-elements-styling -->
+            <Style x:Key="CustomRangeTrackStyle" TargetType="telerik:SliderRangeTrack">
+                <Setter Property="TrackThickness" Value="10" />
+                <Setter Property="Fill" Value="#80CBC4" />
+                <Setter Property="Stroke" Value="#B2DFDB" />
+                <Setter Property="StrokeThickness" Value="1" />
+            </Style>
+            <Style x:Key="CustomThumbStyle" TargetType="telerik:SliderThumb">
+                <Setter Property="Fill" Value="#009688" />
+                <Setter Property="Stroke" Value="#00897B" />
+                <Setter Property="StrokeThickness" Value="2" />
+            </Style>
+            <!-- << circularslider-value-elements-styling -->
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <Grid>
+        <!-- >> circularslider-value-elements-styling-xaml -->
+        <telerik:RadCircularSlider Minimum="0"
+                                   Maximum="100"
+                                   Value="35"
+                                   RangeTrackStyle="{StaticResource CustomRangeTrackStyle}"
+                                   ThumbStyle="{StaticResource CustomThumbStyle}"
+                                   HorizontalOptions="Fill"
+                                   VerticalOptions="Start"
+                                   MinimumHeightRequest="300" />
+        <!-- << circularslider-value-elements-styling-xaml -->
+    </Grid>
+</ContentView>

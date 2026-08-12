@@ -16,8 +16,8 @@
         <telerik:RadBusyIndicator.BusyContent>
             <Label Text="Loading Data" HorizontalOptions="Center" HeightRequest="60" />
         </telerik:RadBusyIndicator.BusyContent>
-        <Grid RowDefinitions="Auto, *" RowSpacing="20">
-            <telerik:RadBorder Style="{StaticResource CollectionViewBorderWrapStyle}"
+        <Grid RowDefinitions="Auto, *, Auto" RowSpacing="20">
+            <telerik:RadBorder Grid.Row="0" Style="{StaticResource CollectionViewBorderWrapStyle}"
                                Padding="20, 10" MinimumHeightRequest="155">
                 <telerik:RadCollectionView ItemTapped="OnTrendingCollectionViewItemTapped"
                                            SelectionMode="None"
@@ -25,7 +25,7 @@
                                            ItemsSource="{Binding TrendingCoins}"
                                            ItemViewStyle="{StaticResource TrendingCollectionViewItemStyle}">
                     <telerik:RadCollectionView.HeaderTemplate>
-                        <DataTemplate x:Key="HeaderTemplate">
+                        <DataTemplate>
                             <Grid>
                                 <Label Text="Trending" Style="{StaticResource TrendingTitleStyle}" Padding="0, 12"/>
                             </Grid>
@@ -85,6 +85,15 @@
                     </telerik:RadCollectionView.ItemsLayout>
                 </telerik:RadCollectionView>
             </telerik:RadBorder>
+
+            <Label Grid.Row="2"
+                   Text="Demo data only. Prices and charts are not real market data."
+                   FontSize="13"
+                   TextColor="#B45309"
+                   BackgroundColor="#FEF3C7"
+                   Padding="10, 6"
+                   HorizontalTextAlignment="Center"
+                   HorizontalOptions="Fill" />
         </Grid>
     </telerik:RadBusyIndicator>
 </ContentView>

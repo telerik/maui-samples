@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.CircularSliderControl.GettingStartedCategory.GettingStartedExample.CircularSliderGettingStartedXaml">
+    <ContentView.Resources>
+        <Style TargetType="telerik:RadCircularSlider">
+            <Setter Property="HorizontalOptions" Value="Fill" />
+            <Setter Property="VerticalOptions" Value="Start" />
+            <Setter Property="MinimumHeightRequest" Value="300" />
+        </Style>
+    </ContentView.Resources>
+    <Grid>
+        <!-- >> circularslider-getting-started-xaml -->
+        <telerik:RadCircularSlider Minimum="0"
+                                   Maximum="100"
+                                   Value="35" />
+        <!-- << circularslider-getting-started-xaml -->
+    </Grid>
+</ContentView>

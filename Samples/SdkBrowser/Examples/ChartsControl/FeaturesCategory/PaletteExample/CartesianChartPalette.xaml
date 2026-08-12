@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:charts="clr-namespace:Telerik.Maui.Controls.Charts;assembly=Telerik.Maui.Controls"
+             xmlns:models="clr-namespace:SDKBrowserMaui.Examples.ChartsControl"
+             x:Class="SDKBrowserMaui.Examples.ChartsControl.FeaturesCategory.PaletteExample.CartesianChartPalette">
+    <!-- >> chart-cartesian-palette-xaml -->
+    <charts:RadCartesianChart>
+        <charts:RadCartesianChart.BindingContext>
+            <models:MultiSeriesViewModel />
+        </charts:RadCartesianChart.BindingContext>
+        <charts:RadCartesianChart.Palette>
+            <charts:ChartPalette>
+                <charts:ChartPalette.Entries>
+                    <charts:ChartPaletteEntry FillColor="#FF7043" />
+                    <charts:ChartPaletteEntry FillColor="#42A5F5" />
+                </charts:ChartPalette.Entries>
+            </charts:ChartPalette>
+        </charts:RadCartesianChart.Palette>
+        <charts:RadCartesianChart.Axes>
+            <charts:CategoricalAxis />
+            <charts:NumericalAxis />
+        </charts:RadCartesianChart.Axes>
+        <charts:RadCartesianChart.Series>
+            <charts:BarSeries HorizontalBinding="Category"
+                              VerticalBinding="ProductA"
+                              ItemsSource="{Binding Data}" />
+            <charts:BarSeries HorizontalBinding="Category"
+                              VerticalBinding="ProductB"
+                              ItemsSource="{Binding Data}" />
+        </charts:RadCartesianChart.Series>
+    </charts:RadCartesianChart>
+    <!-- << chart-cartesian-palette-xaml -->
+</ContentView>

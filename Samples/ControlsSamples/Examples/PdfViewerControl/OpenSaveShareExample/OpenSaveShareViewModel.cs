@@ -13,8 +13,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Telerik.Maui.Controls.PdfViewer;
-using Telerik.Windows.Documents.Fixed.FormatProviders.Pdf;
-using Telerik.Windows.Documents.Fixed.Model;
+using Telerik.Documents.Fixed.FormatProviders.Pdf;
+using Telerik.Documents.Fixed.Model;
 
 namespace QSF.Examples.PdfViewerControl.OpenSaveShareExample;
 

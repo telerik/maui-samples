@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -7,9 +7,9 @@ using System.Windows.Input;
 using Microsoft.Maui.Controls;
 using QSF.Services;
 using QSF.ViewModels;
-using Telerik.Windows.Documents.Fixed.FormatProviders.Pdf;
-using Telerik.Windows.Documents.Fixed.FormatProviders.Pdf.Export;
-using Telerik.Windows.Documents.Fixed.Model;
+using Telerik.Documents.Fixed.FormatProviders.Pdf;
+using Telerik.Documents.Fixed.FormatProviders.Pdf.Export;
+using Telerik.Documents.Fixed.Model;
 
 namespace QSF.Examples.PdfProcessingControl.NotEmbeddingFontsExample
 {

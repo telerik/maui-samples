@@ -9,9 +9,21 @@
             <Setter Property="VerticalOptions" Value="Center" />
             <Setter Property="Margin" Value="0, 0, 0, 8" />
         </Style>
+        <VisualStateGroupList x:Key="DropDownButtonEmptyVisualStates">
+            <VisualStateGroup Name="CommonStates">
+                <VisualState Name="Normal" />
+                <VisualState Name="Pressed" />
+                <VisualState Name="Opened" />
+                <VisualState Name="Disabled" />
+                <VisualState Name="MouseOver" />
+                <VisualState Name="FocusedMouseOver" />
+                <VisualState Name="FocusedPressed" />
+            </VisualStateGroup>
+        </VisualStateGroupList>
         <!-- >> dropdownbutton-templates-datatemplate -->
         <DataTemplate x:Key="DropDownTemplate">
             <telerik:RadCollectionView ItemsSource="{Binding ItemsColors}"
+                                       SelectionMode="Single"
                                        SelectedItem="{Binding PickedColor, Mode=TwoWay}">
                 <telerik:RadCollectionView.ItemTemplate>
                     <DataTemplate>
@@ -36,10 +48,11 @@
         <telerik:RadDropDownButton WidthRequest="60"
                                    Content="&#xe89d;"
                                    TextColor="Black"
-                                   BackgroundColor="{Binding PickedColor.CustomColor}"
+                                   Background="{Binding PickedCustomColor, Mode=OneWay}"
                                    FontFamily="TelerikFontExamples"
                                    HorizontalOptions="Start"
-                                   DropDownContentTemplate="{StaticResource DropDownTemplate}" />
+                                   DropDownContentTemplate="{StaticResource DropDownTemplate}"
+                                   VisualStateManager.VisualStateGroups="{StaticResource DropDownButtonEmptyVisualStates}" />
         <!-- << dropdownbutton-templates-dropdowncontenttemplate -->
     </VerticalStackLayout>
 </ContentView>

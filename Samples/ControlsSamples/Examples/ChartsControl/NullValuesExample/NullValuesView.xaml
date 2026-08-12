@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<views:GalleryExampleViewBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                              xmlns:views="clr-namespace:QSF.Views"
+                              xmlns:styles="clr-namespace:QSF.Styles"
+                              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                              xmlns:charts="clr-namespace:Telerik.Maui.Controls.Charts;assembly=Telerik.Maui.Controls"
+                              xmlns:system="clr-namespace:System;assembly=netstandard"
+                              x:Class="QSF.Examples.ChartsControl.NullValuesExample.NullValuesView">
+    <views:GalleryExampleViewBase.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <styles:GalleryResources/>
+            </ResourceDictionary.MergedDictionaries>
+            <DataTemplate x:Key="line">
+                <charts:RadCartesianChart AutomationId="cartesianChartLine">
+                    <charts:RadCartesianChart.Grid>
+                        <charts:CartesianChartGrid MajorLinesVisibility="Horizontal"/>
+                    </charts:RadCartesianChart.Grid>
+                    <charts:RadCartesianChart.Axes>
+                        <charts:CategoricalAxis Location="Bottom"/>
+                        <charts:NumericalAxis Location="Left"
+                                                 Minimum="0"
+                                                 Maximum="100"/>
+                    </charts:RadCartesianChart.Axes>
+                    <charts:RadCartesianChart.Series>
+                        <charts:LineSeries HorizontalBinding="Category"
+                                              VerticalBinding="Value"
+                                              ItemsSource="{Binding SeriesData}"/>
+                    </charts:RadCartesianChart.Series>
+                </charts:RadCartesianChart>
+            </DataTemplate>
+            <DataTemplate x:Key="lineArea">
+                <charts:RadCartesianChart>
+                    <charts:RadCartesianChart.Grid>
+                        <charts:CartesianChartGrid MajorLinesVisibility="Horizontal"/>
+                    </charts:RadCartesianChart.Grid>
+                    <charts:RadCartesianChart.Axes>
+                        <charts:CategoricalAxis Location="Bottom"/>
+                        <charts:NumericalAxis Location="Left"
+                                                 Minimum="0"
+                                                 Maximum="100"/>
+                    </charts:RadCartesianChart.Axes>
+                    <charts:RadCartesianChart.Series>
+                        <charts:AreaSeries HorizontalBinding="Category"
+                                              VerticalBinding="Value"
+                                              ItemsSource="{Binding SeriesData}"/>
+                    </charts:RadCartesianChart.Series>
+                </charts:RadCartesianChart>
+            </DataTemplate>
+        </ResourceDictionary>
+    </views:GalleryExampleViewBase.Resources>
+    <views:GalleryExampleViewBase.HeaderContent>
+        <Label Text="{Binding Source={x:Static system:DateTime.Now}, Path=Year, StringFormat='Monthly sales revenue, {0}'}"
+               Style="{StaticResource labelHeaderStyle}"
+               Margin="0, 6, 0, 0" />
+    </views:GalleryExampleViewBase.HeaderContent>
+</views:GalleryExampleViewBase>

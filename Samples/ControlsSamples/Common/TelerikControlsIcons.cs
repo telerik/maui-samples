@@ -7,7 +7,8 @@ internal static class TelerikControlsIcons
     private static Dictionary<string, string> ControlsIcons = new()
     {
         { "Accordion", char.ConvertFromUtf32(0xe000) },
-        { "AIPrompt", char.ConvertFromUtf32(0xe041) },
+        { "AI", char.ConvertFromUtf32(0xe041) },
+        { "AIPrompt", char.ConvertFromUtf32(0xe04e) },
         { "AutoComplete", char.ConvertFromUtf32(0xe001) },
         { "BadgeView", char.ConvertFromUtf32(0xe002) },
         { "Barcode", char.ConvertFromUtf32(0xe003) },
@@ -17,8 +18,10 @@ internal static class TelerikControlsIcons
         { "Button", char.ConvertFromUtf32(0xe006) },
         { "Calendar", char.ConvertFromUtf32(0xe007) },
         { "Chart", char.ConvertFromUtf32(0xe008) },
+        { "Charts", char.ConvertFromUtf32(0xe008) },
         { "Chat", char.ConvertFromUtf32(0xe00f) },
         { "CheckBox", char.ConvertFromUtf32(0xe010) },
+        { "CircularSlider", char.ConvertFromUtf32(0xe04d) },
         { "CollectionView", char.ConvertFromUtf32(0xe03f) },
         { "ComboBox", char.ConvertFromUtf32(0xe011) },
         { "DataForm", char.ConvertFromUtf32(0xe012) },
@@ -115,9 +118,9 @@ internal static class TelerikControlsIcons
         }
         else
         {
-            if (controlName.Equals("Chart"))
+            if (controlName.Equals("Chart") || controlName.Equals("Charts"))
             {
-                return ChartExamplesIcons[exampleName];
+                return ChartExamplesIcons.TryGetValue(exampleName, out var chartIcon) ? chartIcon : string.Empty;
             }
             else
             {

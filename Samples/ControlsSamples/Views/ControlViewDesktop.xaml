@@ -29,6 +29,7 @@
                                           Header="{Binding DisplayName}"
                                           Icon="{Binding Icon}"
                                           Status="{Binding Status}"
+                                          HasAICapability="{Binding HasAICapability}"
                                           Margin="6, 0, 0, 0">
                     <views:NavigationItemView.ControlTemplate>
                         <ControlTemplate>
@@ -53,10 +54,12 @@
                                        WidthRequest="180"
                                        LineBreakMode="TailTruncation" 
                                        AutomationId="exampleNameInExamplesList" />
-                                <ContentView Content="{TemplateBinding Status, Converter={StaticResource StatusTagToTemplateConverter}}"
-                                             HorizontalOptions="End"
-                                             VerticalOptions="Center" 
-                                             AutomationId="statusTagInExamplesList" />
+                                <HorizontalStackLayout Spacing="2"
+                                                        HorizontalOptions="End"
+                                                        VerticalOptions="Center">
+                                    <ContentView Content="{TemplateBinding Status, Converter={StaticResource StatusTagToTemplateConverter}}"
+                                                 AutomationId="statusTagInExamplesList" />
+                                </HorizontalStackLayout>
                             </HorizontalStackLayout>
                         </ControlTemplate>
                     </views:NavigationItemView.ControlTemplate>
