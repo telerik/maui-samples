@@ -4,11 +4,19 @@ This repository contains sample applications built with the **Telerik UI for .NE
 
 ## Demos Description
 
+### CRM Demo Application
+
+The Telerik UI for .NET MAUI CRM demo application is a real-case CRM application that shows changes in customer relationship management, built with the Telerik UI for .NET MAUI controls. In this demo, you can see in action many of the .NET MAUI controls in the library, including the CollectionView, DataGrid, Charts, and TabView.
+
+You can find more information on the CRM Demo Application in the following documentation article: [CRM Demo Application](https://www.telerik.com/maui-ui/documentation/demos-and-sample-apps/crm-app).
+
+<p align="center"> <img src="Images/Telerik-UI-For-MAUI-CRM-Image.png"/></p>
+
 ### Crypto Tracker Demo Application
 
 The Telerik Crypto Tracker demo is a cross-platform .NET MAUI application targeting Android, iOS, macOS, and WinUI. It is designed to demonstrate a real-life crypto application that shows changes in cryptocurrency prices, built with the [Telerik UI for .NET MAUI controls](https://www.telerik.com/maui-ui).
 
-You can find more information on the Crypto Tracker Demo Application in the following documentation article: [Crypto Tracker Demo Application](https://docs.telerik.com/devtools/maui/demos-and-sample-apps/crypto-app).
+You can find more information on the Crypto Tracker Demo Application in the following documentation article: [Crypto Tracker Demo Application](https://www.telerik.com/maui-ui/documentation/demos-and-sample-apps/crypto-app).
 
 <p align="center"> <img src="Images/Telerik-UI-For-MAUI-CryptoTracker-Image.png"/></p>
 
@@ -16,7 +24,7 @@ You can find more information on the Crypto Tracker Demo Application in the foll
 
 The Telerik UI for .NET MAUI Controls Samples application provides many scenario-specific use cases designed to show off a subset of features for each component.
 
-You can find more information on the Controls Samples Application in the following documentation article: [Controls Samples Application](https://docs.telerik.com/devtools/maui/demos-and-sample-apps/controls-showcase-app).
+You can find more information on the Controls Samples Application in the following documentation article: [Controls Samples Application](https://www.telerik.com/maui-ui/documentation/demos-and-sample-apps/controls-showcase-app).
 
 <p align="center"> <img src="Images/Telerik-UI-For-MAUI-ControlsSamples-Image.png"/></p>
 
@@ -24,7 +32,7 @@ You can find more information on the Controls Samples Application in the followi
 
 The Telerik UI for .NET MAUI SDKBrowser is a set of examples that explain how to use the features of a control. The SDKBrowser shows the components in their pure form without adding extra styling and polishing. It's the go-to source for "how do I use X in Y control". Most of the code snippets available in the documentation are directly generated from the examples in the SDKBrowser (you can see special comments in the code for this).
 
-You can find more information on the SDK Browser Application in the following documentation article: [SDKBrowser Application](https://docs.telerik.com/devtools/maui/demos-and-sample-apps/sdkbrowser-app).
+You can find more information on the SDK Browser Application in the following documentation article: [SDKBrowser Application](https://www.telerik.com/maui-ui/documentation/demos-and-sample-apps/sdkbrowser-app).
 
 <p align="center"> <img src="Images/Telerik-UI-For-MAUI-SDKBrowser-Image.png"/></p>
 
