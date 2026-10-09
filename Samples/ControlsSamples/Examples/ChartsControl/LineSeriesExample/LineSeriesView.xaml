@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?> 
+<?xml version="1.0" encoding="utf-8" ?>
 <views:GalleryExampleViewBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
                               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                               xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
@@ -20,13 +20,31 @@
                     <charts:RadCartesianChart.Axes>
                         <charts:CategoricalAxis Location="Bottom"/>
                         <charts:NumericalAxis Location="Left"
-                                                 Minimum="0"
-                                                 Maximum="100"/>
+                                              Minimum="0"
+                                              Maximum="100" />
                     </charts:RadCartesianChart.Axes>
                     <charts:RadCartesianChart.Series>
                         <charts:LineSeries HorizontalBinding="Category"
-                                              VerticalBinding="Value"
-                                              ItemsSource="{Binding SeriesData}"/>
+                                           VerticalBinding="Value"
+                                           ItemsSource="{Binding SeriesData}" />
+                    </charts:RadCartesianChart.Series>
+                </charts:RadCartesianChart>
+            </DataTemplate>
+            <DataTemplate x:Key="spline">
+                <charts:RadCartesianChart AutomationId="cartesianSplineChart">
+                    <charts:RadCartesianChart.Grid>
+                        <charts:CartesianChartGrid MajorLinesVisibility="Horizontal"/>
+                    </charts:RadCartesianChart.Grid>
+                    <charts:RadCartesianChart.Axes>
+                        <charts:CategoricalAxis Location="Bottom"/>
+                        <charts:NumericalAxis Location="Left"
+                                              Minimum="0"
+                                              Maximum="100" />
+                    </charts:RadCartesianChart.Axes>
+                    <charts:RadCartesianChart.Series>
+                        <charts:SplineSeries HorizontalBinding="Category"
+                                             VerticalBinding="Value"
+                                             ItemsSource="{Binding SeriesData}"/>
                     </charts:RadCartesianChart.Series>
                 </charts:RadCartesianChart>
             </DataTemplate>

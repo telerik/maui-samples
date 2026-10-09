@@ -183,6 +183,8 @@ public class HomeViewModel : PageViewModel
             {
                 highlighted.Icon = control.Icon;
             }
+
+            highlighted.Control = control;
         }
 
         return result;
@@ -222,6 +224,8 @@ public class HomeViewModel : PageViewModel
             {
                 highlighted.Description = example.Description;
             }
+
+            highlighted.Example = example;
         }
 
         return result;

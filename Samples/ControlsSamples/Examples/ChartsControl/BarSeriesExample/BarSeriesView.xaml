@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?> 
+<?xml version="1.0" encoding="utf-8" ?>
 <views:GalleryExampleViewBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
                               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                               xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
@@ -20,12 +20,12 @@
                     <charts:RadCartesianChart.Axes>
                         <charts:CategoricalAxis Location="Bottom"/>
                         <charts:NumericalAxis Location="Left"
-                                                 Minimum="0"/>
+                                              Minimum="0"/>
                     </charts:RadCartesianChart.Axes>
                     <charts:RadCartesianChart.Series>
                         <charts:BarSeries HorizontalBinding="Category"
-                                             VerticalBinding="Value"
-                                             ItemsSource="{Binding SeriesData}"/>
+                                          VerticalBinding="Value"
+                                          ItemsSource="{Binding SeriesData}"/>
                     </charts:RadCartesianChart.Series>
                 </charts:RadCartesianChart>
             </DataTemplate>
@@ -37,15 +37,59 @@
                     <charts:RadCartesianChart.Axes>
                         <charts:CategoricalAxis Location="Bottom"/>
                         <charts:NumericalAxis Location="Left"
-                                                 Minimum="0"/>
+                                              Minimum="0"/>
                     </charts:RadCartesianChart.Axes>
                     <charts:RadCartesianChart.Series>
                         <charts:BarSeries HorizontalBinding="Category"
-                                             VerticalBinding="Value"
-                                             ItemsSource="{Binding SeriesData}"/>
+                                          VerticalBinding="Value"
+                                          ItemsSource="{Binding SeriesData}"/>
                         <charts:BarSeries HorizontalBinding="Category"
-                                             VerticalBinding="Value"
-                                             ItemsSource="{Binding SecondSeriesData}"/>
+                                          VerticalBinding="Value"
+                                          ItemsSource="{Binding SecondSeriesData}"/>
+                    </charts:RadCartesianChart.Series>
+                </charts:RadCartesianChart>
+            </DataTemplate>
+            <DataTemplate x:Key="stacked">
+                <charts:RadCartesianChart AutomationId="cartesianChart3">
+                    <charts:RadCartesianChart.Grid>
+                        <charts:CartesianChartGrid MajorLinesVisibility="Horizontal"/>
+                    </charts:RadCartesianChart.Grid>
+                    <charts:RadCartesianChart.Axes>
+                        <charts:CategoricalAxis Location="Bottom"/>
+                        <charts:NumericalAxis Location="Left"
+                                              Minimum="0"/>
+                    </charts:RadCartesianChart.Axes>
+                    <charts:RadCartesianChart.Series>
+                        <charts:BarSeries HorizontalBinding="Category"
+                                          VerticalBinding="Value"
+                                          ItemsSource="{Binding SeriesData}"
+                                          CombineMode="Stack"/>
+                        <charts:BarSeries HorizontalBinding="Category"
+                                          VerticalBinding="Value"
+                                          ItemsSource="{Binding SecondSeriesData}"
+                                          CombineMode="Stack"/>
+                    </charts:RadCartesianChart.Series>
+                </charts:RadCartesianChart>
+            </DataTemplate>
+            <DataTemplate x:Key="stacked100">
+                <charts:RadCartesianChart AutomationId="cartesianChart4">
+                    <charts:RadCartesianChart.Grid>
+                        <charts:CartesianChartGrid MajorLinesVisibility="Horizontal"/>
+                    </charts:RadCartesianChart.Grid>
+                    <charts:RadCartesianChart.Axes>
+                        <charts:CategoricalAxis Location="Bottom"/>
+                        <charts:NumericalAxis Location="Left"
+                                              Minimum="0"/>
+                    </charts:RadCartesianChart.Axes>
+                    <charts:RadCartesianChart.Series>
+                        <charts:BarSeries HorizontalBinding="Category"
+                                          VerticalBinding="Value"
+                                          ItemsSource="{Binding SeriesData}"
+                                          CombineMode="Stack100"/>
+                        <charts:BarSeries HorizontalBinding="Category"
+                                          VerticalBinding="Value"
+                                          ItemsSource="{Binding SecondSeriesData}"
+                                          CombineMode="Stack100"/>
                     </charts:RadCartesianChart.Series>
                 </charts:RadCartesianChart>
             </DataTemplate>
@@ -56,20 +100,20 @@
                     </charts:RadCartesianChart.Grid>
                     <charts:RadCartesianChart.Axes>
                         <charts:CategoricalAxis x:Name="horBarCategoricalAxis"
-                                                   Location="Left"/>
+                                                Location="Left"/>
                         <charts:NumericalAxis x:Name="horBarNumericalAxis"
-                                                 Location="Bottom"
-                                                 Minimum="0"/>
+                                              Location="Bottom"
+                                              Minimum="0"/>
                     </charts:RadCartesianChart.Axes>
                     <charts:RadCartesianChart.Series>
                         <!-- Orientation is driven by explicit HorizontalAxis/VerticalAxis references (not axis
                              declaration order): the numerical axis must be assigned to HorizontalAxis and the
                              categorical axis to VerticalAxis to produce horizontal bars. -->
                         <charts:BarSeries HorizontalAxis="{x:Reference horBarNumericalAxis}"
-                                             VerticalAxis="{x:Reference horBarCategoricalAxis}"
-                                             HorizontalBinding="Value"
-                                             VerticalBinding="Category"
-                                             ItemsSource="{Binding SeriesData}"/>
+                                          VerticalAxis="{x:Reference horBarCategoricalAxis}"
+                                          HorizontalBinding="Value"
+                                          VerticalBinding="Category"
+                                          ItemsSource="{Binding SeriesData}"/>
                     </charts:RadCartesianChart.Series>
                 </charts:RadCartesianChart>
             </DataTemplate>
@@ -80,22 +124,78 @@
                     </charts:RadCartesianChart.Grid>
                     <charts:RadCartesianChart.Axes>
                         <charts:CategoricalAxis x:Name="horClusterCategoricalAxis"
-                                                   Location="Left"/>
+                                                Location="Left"/>
                         <charts:NumericalAxis x:Name="horClusterNumericalAxis"
-                                                 Location="Bottom"
-                                                 Minimum="0"/>
+                                              Location="Bottom"
+                                              Minimum="0"/>
                     </charts:RadCartesianChart.Axes>
                     <charts:RadCartesianChart.Series>
                         <charts:BarSeries HorizontalAxis="{x:Reference horClusterNumericalAxis}"
-                                             VerticalAxis="{x:Reference horClusterCategoricalAxis}"
-                                             HorizontalBinding="Value"
-                                             VerticalBinding="Category"
-                                             ItemsSource="{Binding SeriesData}"/>
+                                          VerticalAxis="{x:Reference horClusterCategoricalAxis}"
+                                          HorizontalBinding="Value"
+                                          VerticalBinding="Category"
+                                          ItemsSource="{Binding SeriesData}"/>
                         <charts:BarSeries HorizontalAxis="{x:Reference horClusterNumericalAxis}"
-                                             VerticalAxis="{x:Reference horClusterCategoricalAxis}"
-                                             HorizontalBinding="Value"
-                                             VerticalBinding="Category"
-                                             ItemsSource="{Binding SecondSeriesData}"/>
+                                          VerticalAxis="{x:Reference horClusterCategoricalAxis}"
+                                          HorizontalBinding="Value"
+                                          VerticalBinding="Category"
+                                          ItemsSource="{Binding SecondSeriesData}"/>
+                    </charts:RadCartesianChart.Series>
+                </charts:RadCartesianChart>
+            </DataTemplate>
+            <DataTemplate x:Key="horStacked">
+                <charts:RadCartesianChart AutomationId="cartesianChart7">
+                    <charts:RadCartesianChart.Grid>
+                        <charts:CartesianChartGrid MajorLinesVisibility="Vertical"/>
+                    </charts:RadCartesianChart.Grid>
+                    <charts:RadCartesianChart.Axes>
+                        <charts:CategoricalAxis x:Name="horStackedCategoricalAxis"
+                                                Location="Left"/>
+                        <charts:NumericalAxis x:Name="horStackedNumericalAxis"
+                                              Location="Bottom"
+                                              Minimum="0"/>
+                    </charts:RadCartesianChart.Axes>
+                    <charts:RadCartesianChart.Series>
+                        <charts:BarSeries HorizontalAxis="{x:Reference horStackedNumericalAxis}"
+                                          VerticalAxis="{x:Reference horStackedCategoricalAxis}"
+                                          HorizontalBinding="Value"
+                                          VerticalBinding="Category"
+                                          ItemsSource="{Binding SeriesData}"
+                                          CombineMode="Stack"/>
+                        <charts:BarSeries HorizontalAxis="{x:Reference horStackedNumericalAxis}"
+                                          VerticalAxis="{x:Reference horStackedCategoricalAxis}"
+                                          HorizontalBinding="Value"
+                                          VerticalBinding="Category"
+                                          ItemsSource="{Binding SecondSeriesData}"
+                                          CombineMode="Stack"/>
+                    </charts:RadCartesianChart.Series>
+                </charts:RadCartesianChart>
+            </DataTemplate>
+            <DataTemplate x:Key="horStacked100">
+                <charts:RadCartesianChart AutomationId="cartesianChart8">
+                    <charts:RadCartesianChart.Grid>
+                        <charts:CartesianChartGrid MajorLinesVisibility="Vertical"/>
+                    </charts:RadCartesianChart.Grid>
+                    <charts:RadCartesianChart.Axes>
+                        <charts:CategoricalAxis x:Name="horStacked100CategoricalAxis"
+                                                Location="Left"/>
+                        <charts:NumericalAxis x:Name="horStacked100NumericalAxis"
+                                              Location="Bottom"
+                                              Minimum="0"/>
+                    </charts:RadCartesianChart.Axes>
+                    <charts:RadCartesianChart.Series>
+                        <charts:BarSeries HorizontalAxis="{x:Reference horStacked100NumericalAxis}"
+                                          VerticalAxis="{x:Reference horStacked100CategoricalAxis}"
+                                          HorizontalBinding="Value"
+                                          VerticalBinding="Category"
+                                          ItemsSource="{Binding SeriesData}"
+                                          CombineMode="Stack100"/>
+                        <charts:BarSeries HorizontalAxis="{x:Reference horStacked100NumericalAxis}"
+                                          VerticalAxis="{x:Reference horStacked100CategoricalAxis}"
+                                          HorizontalBinding="Value"
+                                          VerticalBinding="Category"
+                                          ItemsSource="{Binding SecondSeriesData}"
+                                          CombineMode="Stack100"/>
                     </charts:RadCartesianChart.Series>
                 </charts:RadCartesianChart>
             </DataTemplate>
@@ -104,6 +204,6 @@
     <views:GalleryExampleViewBase.HeaderContent>
         <Label Text="{Binding Source={x:Static system:DateTime.Now}, Path=Year, StringFormat='Monthly sales revenue, {0}'}"
                Style="{StaticResource labelHeaderStyle}"
-               Margin="0, 6, 0, 0" />
+               Margin="0, 6, 0, 0"/>
     </views:GalleryExampleViewBase.HeaderContent>
 </views:GalleryExampleViewBase>

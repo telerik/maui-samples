@@ -81,14 +81,14 @@ internal partial class MouseHelper
 
     private void OnPlatformViewChanged(object oldValue)
     {
-#if WINDOWS
+#if WINDOWS || MACCATALYST
         this.HandlePlatformViewChanged(oldValue);
 #endif
     }
 
     private void OnMouseCursorTypeChanged()
     {
-#if WINDOWS || MACCATALYST
+#if WINDOWS
         this.HandleMouseCursorTypeChanged();
 #endif
     }

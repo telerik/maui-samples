@@ -90,9 +90,27 @@ public static class TestingExtensions
 
                 android.OnNewIntent((activity, intent) =>
                 {
+                    bool wasAppUnderTest = instance.IsAppUnderTest;
                     if (!instance.IsAppUnderTest && intent != null)
                     {
                         instance.IsAppUnderTest = intent.GetBooleanExtra("TK_TEST", false);
+                    }
+
+                    if (!instance.TestCommandTcpPort.HasValue && intent != null)
+                    {
+                        int providedPort = intent.GetIntExtra("TK_TEST_TCP_COMMAND_PORT", -1);
+                        if (providedPort != -1)
+                        {
+                            instance.TestCommandTcpPort = providedPort;
+                        }
+                    }
+
+                    if (!wasAppUnderTest && instance.IsAppUnderTest)
+                    {
+                        SetAutomationIds();
+                        StopScrollBarsHiding();
+                        StopEntryEmojiCompat();
+                        BootUpCommandServer(instance);
                     }
                 });
             });
@@ -331,6 +349,9 @@ public static class TestingExtensions
         {
             port = cmdLinePort;
         }
+
+        testingService.TestCommandTcpPort = port;
+
         // Experimental TCP commands for testing
         try
         {
@@ -365,6 +386,13 @@ public static class TestingExtensions
                 Console.WriteLine($"TEST COMMAND> {line}");
                 try
                 {
+                    if (line.Equals("TK_TEST_STATUS", StringComparison.OrdinalIgnoreCase))
+                    {
+                        await writer.WriteLineAsync($"TK_TEST_READY|{testingService.TestCommandTcpPort ?? DefaultTestCommandTcpPort}");
+                        await writer.FlushAsync();
+                        continue;
+                    }
+
                     var result = await testingService.HandleCommandAsync(line);
                     if (!string.IsNullOrWhiteSpace(result))
                     {

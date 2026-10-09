@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:converters="clr-namespace:QSF.Converters"
@@ -11,6 +11,11 @@
              x:Class="QSF.Views.HighlightsView">
     <VisualElement.Resources>
         <converters:NullOrEmptyToValueConverter x:Key="UrlToOpacityConverter" NullValue="0.3" DefaultValue="1.0" />
+        <converters:StatusTagToStringConverter x:Key="StatusTagToStringConverter" NewValue="NEW" UpdatedValue="UPD" BetaValue="BETA" PreviewValue="PREV" />
+        <Color x:Key="HighlightedControlStatusTagBackgroundColor">#1affffff</Color>
+        <Color x:Key="HighlightedControlStatusTagBorderColor">#46ffffff</Color>
+        <Color x:Key="HighlightedExampleStatusTagBackgroundColor">#36ffffff</Color>
+        <Color x:Key="HighlightedExampleStatusTagBorderColor">#66ffffff</Color>
         <converters:KeyValueConverter x:Key="IconSourceToImageAspectConverter">
             <Aspect x:Key="logo_crm.png">Center</Aspect>
             <Aspect x:Key="logo_progress.png">Center</Aspect>
@@ -50,19 +55,30 @@
                                           CommandParameter="{Binding}" />
                 </View.GestureRecognizers>
                 <Grid RowDefinitions="Auto, Auto"
-                      ColumnDefinitions="Auto, *"
+                      ColumnDefinitions="Auto, *, Auto"
                       Margin="6">
                     <Label Grid.RowSpan="2"
                            FontFamily="TelerikControlsIcons"
                            Text="{Binding Icon}"
-                           TextColor="#FFFFFF"
+                           TextColor="{DynamicResource TextOnAccentColor}"
                            FontSize="24"
                            Margin="10, 5, 15, 5" />
                     <Label Text="{Binding DisplayName}"
                            Grid.Column="1"
                            Grid.RowSpan="{OnIdiom Desktop=1, Default=2}"
                            Style="{StaticResource MainHighlightLabelStyle}" 
-                           AutomationId="highlightedControlName"/>
+                           AutomationId="highlightedControlName" />
+                    <telerik:RadBorder Grid.Column="2"
+                                       Style="{StaticResource StatusTagBorderStyle}"
+                                       VerticalOptions="Start"
+                                       BorderThickness="1"
+                                       BorderColor="{StaticResource HighlightedControlStatusTagBorderColor}"
+                                       BackgroundColor="{StaticResource HighlightedControlStatusTagBackgroundColor}"
+                                       IsVisible="{Binding Control.Status, Converter={StaticResource NullOrEmptyToBoolConverter}}"
+                                       AutomationId="statusTag">
+                        <Label Text="{Binding Control.Status, Converter={StaticResource StatusTagToStringConverter}}"
+                               Style="{StaticResource StatusTagLabelStyle}" />
+                    </telerik:RadBorder>
                     <Label Text="{Binding ShortDescription}"
                            Grid.Column="1"
                            Grid.Row="1"
@@ -81,19 +97,29 @@
                                           CommandParameter="{Binding}" />
                 </View.GestureRecognizers>
                 <Grid RowDefinitions="Auto, Auto"
-                      ColumnDefinitions="Auto, *"
+                      ColumnDefinitions="Auto, *, Auto"
                       Margin="6">
                     <Label Grid.RowSpan="2"
                            FontFamily="TelerikControlsIcons"
                            Text="{Binding Icon}"
-                           TextColor="#FFFFFF"
+                           TextColor="{DynamicResource TextOnAccentColor}"
                            FontSize="24"
                            Margin="10, 5, 15, 5" />
                     <Label Text="{Binding DisplayName}"
                            Grid.Column="1"
                            Grid.RowSpan="{OnIdiom Desktop=1, Default=2}"
                            Style="{StaticResource MainHighlightLabelStyle}" 
-                           AutomationId="highlightedControlName"/>
+                           AutomationId="highlightedControlName" />
+                    <telerik:RadBorder Grid.Column="2"
+                                       Style="{StaticResource StatusTagBorderStyle}"
+                                       VerticalOptions="Start"
+                                       BorderThickness="1"
+                                       BorderColor="{StaticResource HighlightedExampleStatusTagBorderColor}"
+                                       BackgroundColor="{StaticResource HighlightedExampleStatusTagBackgroundColor}"
+                                       IsVisible="{Binding Example.Status, Converter={StaticResource NullOrEmptyToBoolConverter}}">
+                        <Label Text="{Binding Example.Status, Converter={StaticResource StatusTagToStringConverter}}"
+                               Style="{StaticResource StatusTagLabelStyle}" />
+                    </telerik:RadBorder>
                     <Label Text="{Binding Description}"
                            Grid.Column="1"
                            Grid.Row="1"
@@ -148,7 +174,7 @@
                             <Label Text="&#xe041;"
                                    FontFamily="TelerikControlsIcons"
                                    VerticalOptions="Center"
-                                   TextColor="#FFFFFF"
+                                   TextColor="{DynamicResource TextOnAccentColor}"
                                    FontSize="24" />
                             <Label Text="{Binding HighlightedExamplesTitle}"
                                    Style="{StaticResource TitleHighlightLabelStyle}"
@@ -230,7 +256,7 @@
                             <Label Text="&#xe041;"
                                    FontFamily="TelerikControlsIcons"
                                    VerticalOptions="Center"
-                                   TextColor="#FFFFFF"
+                                   TextColor="{DynamicResource TextOnAccentColor}"
                                    Margin="0, 8, 0, 0"
                                    FontSize="24" />
                             <Label Text="{Binding HighlightedExamplesTitle}"

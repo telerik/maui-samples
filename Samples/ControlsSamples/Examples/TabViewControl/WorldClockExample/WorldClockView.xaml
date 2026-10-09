@@ -2,6 +2,7 @@
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
                         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                         xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        xmlns:telerikMauiControls="clr-namespace:Telerik.Maui.Controls;assembly=Telerik.Maui.Controls"
                         x:Class="QSF.Examples.TabViewControl.WorldClockExample.WorldClockView"
                         Margin="5">
     <ContentView.Resources>
@@ -11,7 +12,8 @@
                 <Setter Property="BackgroundColor" Value="{DynamicResource TabViewHeaderBackgroundColor}" />
             </Style>
 
-            <Style TargetType="telerik:TabViewHeaderItem" x:Key="TabViewHeaderItemStyle">
+            <Style TargetType="telerik:TabViewHeaderItem" x:Key="TabViewHeaderItemStyle_Default">
+                <Setter Property="telerikMauiControls:FocusBorderUtils.BorderBrush" Value="{OnPlatform WinUI={DynamicResource DefaultTextColor}}" />
                 <Setter Property="FontSize" Value="16"/>
                 <Setter Property="TextColor" Value="{DynamicResource DefaultTextColor}"/>
                 <Setter Property="VisualStateManager.VisualStateGroups">
@@ -25,8 +27,43 @@
                             </VisualState>
                             <VisualState Name="Selected">
                                 <VisualState.Setters>
+                                    <Setter Property="TextColor" Value="{DynamicResource TextOnAccentColor}" />
+                                    <Setter Property="BackgroundColor" Value="{DynamicResource AccentColor8}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+
+            <Style TargetType="telerik:TabViewHeaderItem" x:Key="TabViewHeaderItemStyle_MacCatalyst" BasedOn="{StaticResource TabViewHeaderItemStyle_Default}">
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup Name="CommonStates">
+                            <VisualState Name="Normal"/>
+                            <VisualState Name="Focused">
+                                <VisualState.Setters>
+                                    <Setter Property="BorderColor" Value="{DynamicResource AccentColor6Alpha50}" />
+                                    <Setter Property="BorderThickness" Value="4" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="Selected">
+                                <VisualState.Setters>
                                     <Setter Property="TextColor" Value="White" />
                                     <Setter Property="BackgroundColor" Value="{DynamicResource AccentColor8}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="FocusedSelected">
+                                <VisualState.Setters>
+                                    <Setter Property="TextColor" Value="White" />
+                                    <Setter Property="BackgroundColor" Value="{DynamicResource AccentColor8}"/>
+                                    <Setter Property="BorderColor" Value="{DynamicResource AccentColor6Alpha50}"/>
+                                    <Setter Property="BorderThickness" Value="4"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="Disabled">
+                                <VisualState.Setters>
+                                    <Setter Property="Opacity" Value="0.7" />
                                 </VisualState.Setters>
                             </VisualState>
                         </VisualStateGroup>
@@ -84,7 +121,7 @@
     </ContentView.Resources>
     <ContentView.Content>
         <telerik:RadTabView HeaderStyle="{StaticResource TabViewHeaderStyle}"
-                            HeaderItemStyle="{StaticResource TabViewHeaderItemStyle}"
+                            HeaderItemStyle="{OnPlatform Default={StaticResource TabViewHeaderItemStyle_Default}, MacCatalyst={StaticResource TabViewHeaderItemStyle_MacCatalyst}}"
                             AutomationId="tabView">
             <telerik:TabViewItem HeaderText="Sofia" >
                     <telerik:TabViewItem.Content>

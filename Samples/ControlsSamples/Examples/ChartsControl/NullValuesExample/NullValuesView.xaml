@@ -20,13 +20,13 @@
                     <charts:RadCartesianChart.Axes>
                         <charts:CategoricalAxis Location="Bottom"/>
                         <charts:NumericalAxis Location="Left"
-                                                 Minimum="0"
-                                                 Maximum="100"/>
+                                              Minimum="0"
+                                              Maximum="100"/>
                     </charts:RadCartesianChart.Axes>
                     <charts:RadCartesianChart.Series>
                         <charts:LineSeries HorizontalBinding="Category"
-                                              VerticalBinding="Value"
-                                              ItemsSource="{Binding SeriesData}"/>
+                                           VerticalBinding="Value"
+                                           ItemsSource="{Binding SeriesData}"/>
                     </charts:RadCartesianChart.Series>
                 </charts:RadCartesianChart>
             </DataTemplate>
@@ -38,13 +38,13 @@
                     <charts:RadCartesianChart.Axes>
                         <charts:CategoricalAxis Location="Bottom"/>
                         <charts:NumericalAxis Location="Left"
-                                                 Minimum="0"
-                                                 Maximum="100"/>
+                                              Minimum="0"
+                                              Maximum="100"/>
                     </charts:RadCartesianChart.Axes>
                     <charts:RadCartesianChart.Series>
                         <charts:AreaSeries HorizontalBinding="Category"
-                                              VerticalBinding="Value"
-                                              ItemsSource="{Binding SeriesData}"/>
+                                           VerticalBinding="Value"
+                                           ItemsSource="{Binding SeriesData}"/>
                     </charts:RadCartesianChart.Series>
                 </charts:RadCartesianChart>
             </DataTemplate>

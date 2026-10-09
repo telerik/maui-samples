@@ -21,13 +21,18 @@
                 <Grid Grid.Row="1">
                     <Label Text="Components"
                            HorizontalOptions="Start"
-                           VerticalOptions="End"
+                           VerticalOptions="Center"
+                           VerticalTextAlignment="Center"
                            FontSize="{OnPlatform Default=22, Android=24}" />
                     <telerik:RadButton Command="{Binding NavigateToDownloadTrialCommand}"
                                        HorizontalOptions="End"
+                                       ContentLayout="Right, 4"
+                                       Padding="{OnPlatform iOS=0, Android='0, 4, 0, 0'}"
+                                       TextTransform="None"
+                                       VerticalOptions="Center"
+                                       VerticalContentAlignment="Center"
                                        Style="{StaticResource MoreInfoButtonStyle}"
                                        MinimumWidthRequest="{OnPlatform iOS=120}"
-                                       MinimumHeightRequest="{OnPlatform iOS=44}"
                                        AutomationId="moreInfoButton" />
                 </Grid>
             </Grid>

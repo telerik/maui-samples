@@ -7,4 +7,5 @@ public class HighlightedExample
     public string ExampleName { get; set; }
     public string DisplayName { get; set; }
     public string Description { get; set; }
+    public Example Example { get; set; }
 }

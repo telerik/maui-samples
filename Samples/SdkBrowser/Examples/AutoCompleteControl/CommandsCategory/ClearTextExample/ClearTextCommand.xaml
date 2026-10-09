@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.AutoCompleteControl.CommandsCategory.ClearTextExample"
+             x:Class="SDKBrowserMaui.Examples.AutoCompleteControl.CommandsCategory.ClearTextExample.ClearTextCommand">
+    <VerticalStackLayout Spacing="10">
+        <Label Text="Select email recipients. Tapping the clear button asks for confirmation whether the recipients should be cleared." />
+        <!-- >> autocomplete-custom-cleartext -->
+        <telerik:RadAutoComplete ItemsSource="{Binding Source}"
+                                 TextSearchPath="Name"
+                                 DisplayMode="Tokens"
+                                 Placeholder="To:"
+                                 WidthRequest="{OnPlatform MacCatalyst=300, WinUI=300}"
+                                 HorizontalOptions="{OnPlatform MacCatalyst=Start, WinUI=Start}">
+            <telerik:RadAutoComplete.ClearTextCommand>
+                <local:CustomAutoCompleteClearTextCommand />
+            </telerik:RadAutoComplete.ClearTextCommand>
+        </telerik:RadAutoComplete>
+        <!-- << autocomplete-custom-cleartext -->
+    </VerticalStackLayout>
+</ContentView>

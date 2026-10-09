@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:charts="clr-namespace:Telerik.Maui.Controls.Charts;assembly=Telerik.Maui.Controls"
+             xmlns:models="clr-namespace:SDKBrowserMaui.Examples.ChartsControl.SeriesCategory.StackedBarSeriesExample"
+             x:Class="SDKBrowserMaui.Examples.ChartsControl.SeriesCategory.StackedBarSeriesExample.StackedBarSeries">
+    <Grid RowDefinitions="Auto, *">
+        <HorizontalStackLayout Spacing="10" Padding="10">
+            <Label Text="CombineMode: " VerticalOptions="Center" />
+            <telerik:RadComboBox x:Name="combineModeComboBox"
+                                 SelectedIndex="0"
+                                 MinimumWidthRequest="200"
+                                 SelectionChanged="OnCombineModeSelectionChanged">
+                <telerik:RadComboBox.ItemsSource>
+                    <x:Array Type="{x:Type charts:ChartBarCombineMode}">
+                        <charts:ChartBarCombineMode>Stack</charts:ChartBarCombineMode>
+                        <charts:ChartBarCombineMode>Stack100</charts:ChartBarCombineMode>
+                        <charts:ChartBarCombineMode>Cluster</charts:ChartBarCombineMode>
+                    </x:Array>
+                </telerik:RadComboBox.ItemsSource>
+            </telerik:RadComboBox>
+        </HorizontalStackLayout>
+        <!-- >> chart-cartesian-bar-series-combinemode-xaml -->
+        <charts:RadCartesianChart Grid.Row="1">
+            <charts:RadCartesianChart.BindingContext>
+                <models:ViewModel />
+            </charts:RadCartesianChart.BindingContext>
+            <charts:RadCartesianChart.Axes>
+                <charts:CategoricalAxis />
+                <charts:NumericalAxis Location="Left" />
+            </charts:RadCartesianChart.Axes>
+            <charts:RadCartesianChart.Series>
+                <charts:BarSeries x:Name="barseriesFirst"
+                                  HorizontalBinding="Category"
+                                  VerticalBinding="Value"
+                                  ItemsSource="{Binding Data1}"
+                                  CombineMode="Stack" />
+                <charts:BarSeries x:Name="barseriesSecond"
+                                  VerticalBinding="Value"
+                                  HorizontalBinding="Category"
+                                  CombineMode="Stack"
+                                  ItemsSource="{Binding Data2}" />
+            </charts:RadCartesianChart.Series>
+        </charts:RadCartesianChart>
+        <!-- << chart-cartesian-bar-series-combinemode-xaml -->
+    </Grid>
+
+</ContentView>

@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.ToolbarControl.VisualStatesCategory.VisualStatesExample.VisualStates">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <!-- >> toolbar-visual-states-button-style -->
+            <Style TargetType="telerik:ButtonToolbarItemView" x:Key="buttonItemStyle">
+                <Setter Property="CornerRadius" Value="4" />
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="Transparent" />
+                                    <Setter Property="TextColor" Value="#1188FF" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="PointerOver">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#E6F2FF" />
+                                    <Setter Property="TextColor" Value="#0A5CBF" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Opened">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#1188FF" />
+                                    <Setter Property="TextColor" Value="White" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Disabled">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="Transparent" />
+                                    <Setter Property="TextColor" Value="#B0B0B0" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+            <!-- << toolbar-visual-states-button-style -->
+
+            <!-- >> toolbar-visual-states-selectable-style -->
+            <Style TargetType="telerik:SelectableButtonToolbarItemView" x:Key="selectableItemStyle">
+                <Setter Property="CornerRadius" Value="4" />
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="Transparent" />
+                                    <Setter Property="TextColor" Value="#1188FF" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="PointerOver">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#E6F2FF" />
+                                    <Setter Property="TextColor" Value="#0A5CBF" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Selected">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#1188FF" />
+                                    <Setter Property="TextColor" Value="White" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="SelectedDisabled">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#9FC8F0" />
+                                    <Setter Property="TextColor" Value="White" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Disabled">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="Transparent" />
+                                    <Setter Property="TextColor" Value="#B0B0B0" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+            <!-- << toolbar-visual-states-selectable-style -->
+
+            <!-- >> toolbar-visual-states-splitbutton-style -->
+            <Style TargetType="telerik:SplitButtonToolbarItemView" x:Key="splitButtonItemStyle">
+                <Setter Property="CornerRadius" Value="4" />
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="TextColor" Value="#1188FF" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="PointerOver">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#E6F2FF" />
+                                    <Setter Property="TextColor" Value="#0A5CBF" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Disabled">
+                                <VisualState.Setters>
+                                    <Setter Property="TextColor" Value="#B0B0B0" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+            <!-- << toolbar-visual-states-splitbutton-style -->
+
+            <!-- >> toolbar-visual-states-label-style -->
+            <Style TargetType="telerik:LabelToolbarItemView" x:Key="labelItemStyle">
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="TextColor" Value="#0A5CBF" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="PointerOver">
+                                <VisualState.Setters>
+                                    <Setter Property="TextColor" Value="#1188FF" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Disabled">
+                                <VisualState.Setters>
+                                    <Setter Property="TextColor" Value="#B0B0B0" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+            <!-- << toolbar-visual-states-label-style -->
+
+            <!-- >> toolbar-visual-states-dropdown-content-style -->
+            <Style TargetType="telerik:DropDownButtonToolbarItemViewContent" x:Key="dropDownContentStyle">
+                <Setter Property="BackgroundColor" Value="#F0F7FF" />
+                <Setter Property="BorderBrush" Value="#1188FF" />
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="CornerRadius" Value="8" />
+                <Setter Property="ContentPadding" Value="4" />
+            </Style>
+            <!-- << toolbar-visual-states-dropdown-content-style -->
+
+            <!-- >> toolbar-visual-states-entry-style -->
+            <Style TargetType="telerik:RadEntry" x:Key="entryStyle">
+                <Setter Property="Placeholder" Value="Search here or type a URL" />
+                <Setter Property="ReserveSpaceForErrorView" Value="False" />
+                <Setter Property="TextColor" Value="#0A5CBF" />
+            </Style>
+            <!-- << toolbar-visual-states-entry-style -->
+
+            <!-- >> toolbar-visual-states-busyindicator-style -->
+            <Style TargetType="telerik:RadBusyIndicator" x:Key="busyIndicatorStyle">
+                <Setter Property="AnimationType" Value="Animation9" />
+                <Setter Property="AnimationContentColor" Value="#1188FF" />
+            </Style>
+            <!-- << toolbar-visual-states-busyindicator-style -->
+
+            <!-- >> toolbar-visual-states-overflow-menu-button-style -->
+            <Style TargetType="telerik:OverflowMenuButtonToolbarItemView" x:Key="overflowMenuButtonStyle">
+                <Setter Property="CornerRadius" Value="4" />
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="Transparent" />
+                                    <Setter Property="TextColor" Value="#1188FF" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="PointerOver">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#E6F2FF" />
+                                    <Setter Property="TextColor" Value="#0A5CBF" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Opened">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#1188FF" />
+                                    <Setter Property="TextColor" Value="White" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Disabled">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="Transparent" />
+                                    <Setter Property="TextColor" Value="#B0B0B0" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+            <!-- << toolbar-visual-states-overflow-menu-button-style -->
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <ScrollView>
+        <VerticalStackLayout Spacing="10"
+                             Padding="0, 10">
+            <Label Text="Every toolbar item below applies custom visual states. Hover to trigger PointerOver, toggle or select items for the Selected state, open the drop-down items for the Opened state and note the Disabled and styled drop-down content."
+                   Margin="0, 0, 0, 6" />
+            <!-- >> toolbar-visual-states -->
+            <telerik:RadToolbar x:Name="toolbarVisualStates"
+                                AutomationId="toolbarVisualStates"
+                                OverflowMenuButtonStyle="{StaticResource overflowMenuButtonStyle}">
+                <telerik:RadToolbar.Resources>
+                    <Style TargetType="telerik:ButtonToolbarItemView"
+                           BasedOn="{StaticResource buttonItemStyle}" />
+                    <Style TargetType="telerik:DropDownButtonToolbarItemView"
+                           BasedOn="{StaticResource buttonItemStyle}" />
+                    <Style TargetType="telerik:ListPickerButtonToolbarItemView"
+                           BasedOn="{StaticResource buttonItemStyle}" />
+                    <Style TargetType="telerik:OptionsButtonToolbarItemView"
+                           BasedOn="{StaticResource buttonItemStyle}" />
+                    <Style TargetType="telerik:NavigationButtonToolbarItemView"
+                           BasedOn="{StaticResource buttonItemStyle}" />
+                    <Style TargetType="telerik:ToggleButtonToolbarItemView"
+                           BasedOn="{StaticResource selectableItemStyle}" />
+                    <Style TargetType="telerik:RadioButtonToolbarItemView"
+                           BasedOn="{StaticResource selectableItemStyle}" />
+                    <Style TargetType="telerik:SplitButtonToolbarItemView"
+                           BasedOn="{StaticResource splitButtonItemStyle}" />
+                    <Style TargetType="telerik:LabelToolbarItemView"
+                           BasedOn="{StaticResource labelItemStyle}" />
+                    <Style TargetType="telerik:EntryToolbarItemView">
+                        <Setter Property="EntryStyle" Value="{StaticResource entryStyle}" />
+                        <Setter Property="WidthRequest" Value="220" />
+                    </Style>
+                    <Style TargetType="telerik:BusyIndicatorToolbarItemView">
+                        <Setter Property="BusyIndicatorStyle" Value="{StaticResource busyIndicatorStyle}" />
+                        <Setter Property="VerticalOptions" Value="Center" />
+                    </Style>
+                </telerik:RadToolbar.Resources>
+
+                <telerik:LabelToolbarItem Text="Formatting:" />
+                <telerik:ButtonToolbarItem Text="Button">
+                    <telerik:ButtonToolbarItem.ImageSource>
+                        <FontImageSource Glyph="{x:Static telerik:TelerikFont.IconUndo}"
+                                         FontFamily="{x:Static telerik:TelerikFont.Name}"
+                                         Size="16" />
+                    </telerik:ButtonToolbarItem.ImageSource>
+                </telerik:ButtonToolbarItem>
+                <telerik:SeparatorToolbarItem />
+                <telerik:ToggleButtonToolbarItem Text="ToggleButton">
+                    <telerik:ToggleButtonToolbarItem.ImageSource>
+                        <FontImageSource Glyph="{x:Static telerik:TelerikFont.IconBold}"
+                                         FontFamily="{x:Static telerik:TelerikFont.Name}"
+                                         Size="16" />
+                    </telerik:ToggleButtonToolbarItem.ImageSource>
+                </telerik:ToggleButtonToolbarItem>
+                <telerik:SeparatorToolbarItem />
+                <telerik:GroupToolbarItem>
+                    <telerik:RadioButtonToolbarItem Text="Left">
+                        <telerik:RadioButtonToolbarItem.ImageSource>
+                            <FontImageSource Glyph="{x:Static telerik:TelerikFont.IconAlignLeft}"
+                                             FontFamily="{x:Static telerik:TelerikFont.Name}"
+                                             Size="16" />
+                        </telerik:RadioButtonToolbarItem.ImageSource>
+                    </telerik:RadioButtonToolbarItem>
+                    <telerik:RadioButtonToolbarItem Text="Center">
+                        <telerik:RadioButtonToolbarItem.ImageSource>
+                            <FontImageSource Glyph="{x:Static telerik:TelerikFont.IconAlignCenter}"
+                                             FontFamily="{x:Static telerik:TelerikFont.Name}"
+                                             Size="16" />
+                        </telerik:RadioButtonToolbarItem.ImageSource>
+                    </telerik:RadioButtonToolbarItem>
+                    <telerik:RadioButtonToolbarItem Text="Right">
+                        <telerik:RadioButtonToolbarItem.ImageSource>
+                            <FontImageSource Glyph="{x:Static telerik:TelerikFont.IconAlignRight}"
+                                             FontFamily="{x:Static telerik:TelerikFont.Name}"
+                                             Size="16" />
+                        </telerik:RadioButtonToolbarItem.ImageSource>
+                    </telerik:RadioButtonToolbarItem>
+                </telerik:GroupToolbarItem>
+                <telerik:SeparatorToolbarItem />
+                <telerik:ButtonToolbarItem Text="Disabled"
+                                           IsEnabled="False">
+                    <telerik:ButtonToolbarItem.ImageSource>
+                        <FontImageSource Glyph="{x:Static telerik:TelerikFont.IconRedo}"
+                                         FontFamily="{x:Static telerik:TelerikFont.Name}"
+                                         Size="16" />
+                    </telerik:ButtonToolbarItem.ImageSource>
+                </telerik:ButtonToolbarItem>
+                <telerik:SeparatorToolbarItem />
+                <telerik:DropDownButtonToolbarItem Text="DropDownButton"
+                                                   DropDownContentStyle="{StaticResource dropDownContentStyle}">
+                    <telerik:DropDownButtonToolbarItem.ImageSource>
+                        <FontImageSource Glyph="{x:Static telerik:TelerikFont.IconBulleting}"
+                                         FontFamily="{x:Static telerik:TelerikFont.Name}"
+                                         Size="16" />
+                    </telerik:DropDownButtonToolbarItem.ImageSource>
+                    <telerik:DropDownButtonToolbarItem.DropDownContentTemplate>
+                        <ControlTemplate>
+                            <telerik:DropDownButtonToolbarItemViewContent>
+                                <VerticalStackLayout Padding="10">
+                                    <Label Text="Bulleted" />
+                                    <Label Text="Numbered" />
+                                    <Label Text="Multilevel" />
+                                </VerticalStackLayout>
+                            </telerik:DropDownButtonToolbarItemViewContent>
+                        </ControlTemplate>
+                    </telerik:DropDownButtonToolbarItem.DropDownContentTemplate>
+                </telerik:DropDownButtonToolbarItem>
+                <telerik:SeparatorToolbarItem />
+                <telerik:SplitButtonToolbarItem Text="Save As...">
+                    <telerik:SplitButtonToolbarItem.ImageSource>
+                        <FontImageSource Glyph="{x:Static telerik:TelerikFont.IconShare}"
+                                         FontFamily="{x:Static telerik:TelerikFont.Name}"
+                                         Size="16" />
+                    </telerik:SplitButtonToolbarItem.ImageSource>
+                    <telerik:ButtonToolbarItem Text="Save as TXT" />
+                    <telerik:ButtonToolbarItem Text="Save as DOCX" />
+                    <telerik:ButtonToolbarItem Text="Save as PDF" />
+                </telerik:SplitButtonToolbarItem>
+                <telerik:SeparatorToolbarItem />
+                <telerik:ListPickerButtonToolbarItem Text="ListPickerButton">
+                    <telerik:ListPickerButtonToolbarItem.ImageSource>
+                        <FontImageSource Glyph="{x:Static telerik:TelerikFont.IconFontSize}"
+                                         FontFamily="{x:Static telerik:TelerikFont.Name}"
+                                         Size="16" />
+                    </telerik:ListPickerButtonToolbarItem.ImageSource>
+                    <telerik:ListPickerButtonToolbarItem.ItemsSource>
+                        <x:Array Type="{x:Type x:Int32}">
+                            <x:Int32>8</x:Int32>
+                            <x:Int32>10</x:Int32>
+                            <x:Int32>12</x:Int32>
+                            <x:Int32>14</x:Int32>
+                        </x:Array>
+                    </telerik:ListPickerButtonToolbarItem.ItemsSource>
+                </telerik:ListPickerButtonToolbarItem>
+                <telerik:SeparatorToolbarItem />
+                <telerik:OptionsButtonToolbarItem Text="Filters">
+                    <telerik:OptionsButtonToolbarItem.ImageSource>
+                        <FontImageSource Glyph="{x:Static telerik:TelerikFont.IconFilters}"
+                                         FontFamily="{x:Static telerik:TelerikFont.Name}"
+                                         Size="16" />
+                    </telerik:OptionsButtonToolbarItem.ImageSource>
+                    <telerik:OptionsButtonToolbarItem.OptionsContentTemplate>
+                        <ControlTemplate>
+                            <VerticalStackLayout Spacing="10"
+                                                 WidthRequest="200"
+                                                 Padding="20">
+                                <Label Text="Brightness" />
+                                <Slider />
+                                <Label Text="Contrast" />
+                                <Slider />
+                            </VerticalStackLayout>
+                        </ControlTemplate>
+                    </telerik:OptionsButtonToolbarItem.OptionsContentTemplate>
+                </telerik:OptionsButtonToolbarItem>
+            </telerik:RadToolbar>
+
+            <Label Text="NavigationButton (with Slider) and Label items:"
+                   FontAttributes="Bold"
+                   Margin="0, 10, 0, 0" />
+            <telerik:RadToolbar x:Name="toolbarNavigationVisualStates"
+                                AutomationId="toolbarNavigationVisualStates"
+                                OverflowMenuButtonStyle="{StaticResource overflowMenuButtonStyle}">
+                <telerik:RadToolbar.Resources>
+                    <Style TargetType="telerik:NavigationButtonToolbarItemView"
+                           BasedOn="{StaticResource buttonItemStyle}">
+                        <Setter Property="VerticalOptions" Value="Center" />
+                    </Style>
+                    <Style TargetType="telerik:LabelToolbarItemView"
+                           BasedOn="{StaticResource labelItemStyle}">
+                        <Setter Property="DisplayOptions" Value="Text" />
+                    </Style>
+                </telerik:RadToolbar.Resources>
+                <telerik:LabelToolbarItem Text="Brightness Level:" />
+                <telerik:NavigationButtonToolbarItem Text="NavigationButton">
+                    <telerik:NavigationButtonToolbarItem.ImageSource>
+                        <FontImageSource Glyph="{x:Static telerik:TelerikFont.IconBrightness}"
+                                         FontFamily="{x:Static telerik:TelerikFont.Name}"
+                                         Size="16" />
+                    </telerik:NavigationButtonToolbarItem.ImageSource>
+                    <telerik:SliderToolbarItem Minimum="0"
+                                               Maximum="100"
+                                               Value="50" />
+                </telerik:NavigationButtonToolbarItem>
+            </telerik:RadToolbar>
+
+            <Label Text="Entry and BusyIndicator items:"
+                   FontAttributes="Bold"
+                   Margin="0, 10, 0, 0" />
+            <telerik:RadToolbar x:Name="toolbarEntryVisualStates"
+                                AutomationId="toolbarEntryVisualStates"
+                                OverflowMenuButtonStyle="{StaticResource overflowMenuButtonStyle}">
+                <telerik:RadToolbar.Resources>
+                    <Style TargetType="telerik:ButtonToolbarItemView"
+                           BasedOn="{StaticResource buttonItemStyle}">
+                        <Setter Property="VerticalOptions" Value="Center" />
+                    </Style>
+                    <Style TargetType="telerik:LabelToolbarItemView"
+                           BasedOn="{StaticResource labelItemStyle}" />
+                    <Style TargetType="telerik:EntryToolbarItemView">
+                        <Setter Property="EntryStyle" Value="{StaticResource entryStyle}" />
+                        <Setter Property="WidthRequest" Value="220" />
+                    </Style>
+                    <Style TargetType="telerik:BusyIndicatorToolbarItemView">
+                        <Setter Property="BusyIndicatorStyle" Value="{StaticResource busyIndicatorStyle}" />
+                        <Setter Property="HorizontalOptions" Value="Start" />
+                    </Style>
+                </telerik:RadToolbar.Resources>
+                <telerik:ButtonToolbarItem Text="Reload">
+                    <telerik:ButtonToolbarItem.ImageSource>
+                        <FontImageSource Glyph="&#xe86e;"
+                                         FontFamily="{x:Static telerik:TelerikFont.Name}"
+                                         Size="16" />
+                    </telerik:ButtonToolbarItem.ImageSource>
+                </telerik:ButtonToolbarItem>
+                <telerik:EntryToolbarItem Text="https://www.telerik.com" />
+                <telerik:LabelToolbarItem Text="Loading page..." />
+                <telerik:BusyIndicatorToolbarItem IsBusy="True" />
+            </telerik:RadToolbar>
+            <!-- << toolbar-visual-states -->
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentView>

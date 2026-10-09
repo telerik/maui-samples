@@ -1,32 +1,48 @@
 #if MACCATALYST
 using AppKit;
-using System;
+using UIKit;
 
 namespace QSF.Helpers;
 
 partial class MouseHelper
 {
-    private void HandleMouseCursorTypeChanged()
+    private UIHoverGestureRecognizer hoverGesture;
+
+    // NSCursor.Set() is global, not scoped to a view, so it must be driven by native hover state instead of a one-time apply.
+    private void HandlePlatformViewChanged(object oldValue)
     {
-        if (this.view.IsLoaded)
+        if (oldValue is UIView oldNativeView && this.hoverGesture != null)
         {
-            this.UpdatePlatformCursor();
+            oldNativeView.RemoveGestureRecognizer(this.hoverGesture);
+            this.hoverGesture = null;
         }
-        else
+
+        if (this.platformView is UIView nativeView)
         {
-            this.view.Loaded += this.View_Loaded;
+            this.hoverGesture = new UIHoverGestureRecognizer(this.OnHoverGestureRecognized);
+            nativeView.AddGestureRecognizer(this.hoverGesture);
         }
     }
 
-    private void View_Loaded(object sender, EventArgs e)
+    private void OnHoverGestureRecognized()
     {
-        this.view.Loaded -= this.View_Loaded;
-        this.UpdatePlatformCursor();
+        switch (this.hoverGesture.State)
+        {
+            case UIGestureRecognizerState.Began:
+            case UIGestureRecognizerState.Changed:
+                this.UpdatePlatformCursor(this.mouseCursorType);
+                break;
+            case UIGestureRecognizerState.Ended:
+            case UIGestureRecognizerState.Cancelled:
+            case UIGestureRecognizerState.Failed:
+                this.UpdatePlatformCursor(MouseCursorType.Arrow);
+                break;
+        }
     }
 
-    private void UpdatePlatformCursor()
+    private void UpdatePlatformCursor(MouseCursorType cursorType)
     {
-        switch(this.mouseCursorType)
+        switch (cursorType)
         {
             case MouseCursorType.Arrow:
                 NSCursor.ArrowCursor.Set();

@@ -20,6 +20,7 @@ namespace QSF.Examples.ChartsControl.AreaSeriesExample
             return new GalleryItemViewModelBase[]
             {
                 new SeriesGalleryItemViewModel("chartarea1headeractive.png", "chartarea1headerinactive.png", "lineArea", seriesData),
+                new SeriesGalleryItemViewModel("chartarea3headeractive.png", "chartarea3headerinactive.png", "splineArea", seriesData)
             };
         }
     }

@@ -14,33 +14,33 @@
         </ResourceDictionary>
         <DataTemplate x:Key="Pie">
             <charts:RadPieChart x:Name="chart"
-                              AutomationId="pieChart">
+                                AutomationId="pieChart">
                 <charts:RadPieChart.Series>
                     <charts:PieSeries ValueBinding="Value"
-                                         LabelBinding="Category"
-                                         ItemsSource="{Binding SeriesData}"/>
+                                      LabelBinding="Category"
+                                      ItemsSource="{Binding SeriesData}"/>
                 </charts:RadPieChart.Series>
             </charts:RadPieChart>
         </DataTemplate>
         <DataTemplate x:Key="Pie2">
             <charts:RadPieChart x:Name="chart"
-                              AutomationId="pieChart2">
+                                AutomationId="pieChart2">
                 <charts:RadPieChart.Series>
                     <charts:PieSeries ValueBinding="Value"
-                                         LabelBinding="Category"
-                                         ItemsSource="{Binding SeriesData}"/>
+                                      LabelBinding="Category"
+                                      ItemsSource="{Binding SeriesData}"/>
                 </charts:RadPieChart.Series>
             </charts:RadPieChart>
         </DataTemplate>
         <DataTemplate x:Key="Donut">
             <charts:RadPieChart x:Name="chart"
-                              AutomationId="donutChart">
+                                AutomationId="donutChart">
                 <charts:RadPieChart.Series>
                     <charts:DonutSeries ValueBinding="Value"
-                                           LabelBinding="Category"
-                                           InnerRadiusFactor="0.4"
-                                           OuterRadiusFactor="0.9"
-                                           ItemsSource="{Binding SeriesData}"/>
+                                        LabelBinding="Category"
+                                        InnerRadiusFactor="0.4"
+                                        OuterRadiusFactor="0.9"
+                                        ItemsSource="{Binding SeriesData}"/>
                 </charts:RadPieChart.Series>
             </charts:RadPieChart>
         </DataTemplate>
