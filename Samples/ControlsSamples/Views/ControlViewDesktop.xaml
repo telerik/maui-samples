@@ -1,7 +1,8 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:telerikMaui="clr-namespace:Telerik.Maui;assembly=Telerik.Maui.Core"
              xmlns:converters="clr-namespace:QSF.Converters"
              xmlns:layouts="clr-namespace:QSF.Layouts"
              xmlns:views="clr-namespace:QSF.Views"
@@ -37,14 +38,29 @@
                                 <telerik:RadBorder BackgroundColor="{DynamicResource IconBackgroundColor}"
                                                    Margin="6, 4, 4, 4"
                                                    CornerRadius="4">
-                                    <Label FontFamily="TelerikControlsIcons"
-                                           Text="{TemplateBinding Icon}"
-                                           TextColor="{DynamicResource AccentColor8}"
-                                           FontSize="24"
-                                           Margin="4"
-                                           HorizontalOptions="Center"
-                                           VerticalOptions="Center" 
-                                           AutomationId="exampleIconInExampleList" />
+                                        <Label FontFamily="TelerikControlsIcons"
+                                               Text="{TemplateBinding Icon}"
+                                               TextColor="{DynamicResource AccentColor8}"
+                                               FontSize="24"
+                                               Margin="4"
+                                               HorizontalOptions="Center"
+                                               VerticalOptions="Center" 
+                                               AutomationId="exampleIconInExampleList" />
+                                </telerik:RadBorder>
+                                <telerik:RadBorder Margin="-8, -1, 0, 0"
+                                                   VerticalOptions="Start"
+                                                   IsVisible="{Binding HasAICapability}"
+                                                   WidthRequest="{OnPlatform MacCatalyst=12, WinUI=13}"
+                                                   HeightRequest="{OnPlatform MacCatalyst=12, WinUI=13}"
+                                                   CornerRadius="30"
+                                                   BackgroundColor="{DynamicResource BadgeAIBackgroundColor}"
+                                                   InputTransparent="True">
+                                    <Label Text="&#xe840;"
+                                           FontFamily="TelerikFontExamples"
+                                           TextColor="{DynamicResource TextOnAccentColor}"
+                                           FontSize="10"
+                                           HorizontalTextAlignment="Center"
+                                           VerticalTextAlignment="Center" />
                                 </telerik:RadBorder>
                                 <Label Text="{TemplateBinding Header}"
                                        Margin="8, 0, 6, 0"
@@ -55,8 +71,8 @@
                                        LineBreakMode="TailTruncation" 
                                        AutomationId="exampleNameInExamplesList" />
                                 <HorizontalStackLayout Spacing="2"
-                                                        HorizontalOptions="End"
-                                                        VerticalOptions="Center">
+                                                       HorizontalOptions="End"
+                                                       VerticalOptions="Center">
                                     <ContentView Content="{TemplateBinding Status, Converter={StaticResource StatusTagToTemplateConverter}}"
                                                  AutomationId="statusTagInExamplesList" />
                                 </HorizontalStackLayout>

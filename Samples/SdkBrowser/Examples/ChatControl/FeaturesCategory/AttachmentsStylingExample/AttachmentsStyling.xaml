@@ -60,40 +60,67 @@
                 </telerik:ChatFileExtensionToImageSourceConverterItem>
             </telerik:ChatFileExtensionToImageSourceConverter>
             <!-- << chat-styling-image-outgoing-messages -->
-            
-            <!-- >> chat-styling-attachments-messages -->
+
+            <!-- >> chat-styling-attachments-outgoing-dropdown-visualstates -->
             <VisualStateGroupList x:Key="ChatOutgoingMessageAttachmentsDropDownMenuButtonVisualStates">
                 <VisualStateGroup Name="CommonStates">
                     <VisualState Name="Normal" />
                     <VisualState Name="Focused" />
-                    <VisualState Name="PointerOver">
+                    <VisualState Name="MouseOver">
                         <VisualState.Setters>
-                            <Setter Property="telerik:RadDropDownButton.Background" Value="#EBEBEB" />
+                            <Setter Property="telerik:RadDropDownButton.Background" Value="#4A8BC4" />
                         </VisualState.Setters>
                     </VisualState>
                     <VisualState Name="FocusedMouseOver">
                         <VisualState.Setters>
-                            <Setter Property="telerik:RadDropDownButton.Background" Value="#EBEBEB" />
+                            <Setter Property="telerik:RadDropDownButton.Background" Value="#4A8BC4" />
                         </VisualState.Setters>
                     </VisualState>
                     <VisualState Name="Opened">
                         <VisualState.Setters>
-                            <Setter Property="telerik:RadDropDownButton.Background" Value="#D6D6D6" />
+                            <Setter Property="telerik:RadDropDownButton.Background" Value="#2E6A9E" />
                         </VisualState.Setters>
                     </VisualState>
                 </VisualStateGroup>
             </VisualStateGroupList>
+            <!-- << chat-styling-attachments-outgoing-dropdown-visualstates -->
+
+            <!-- >> chat-styling-attachments-incoming-dropdown-visualstates -->
+            <VisualStateGroupList x:Key="ChatIncomingMessageAttachmentsDropDownMenuButtonVisualStates">
+                <VisualStateGroup Name="CommonStates">
+                    <VisualState Name="Normal" />
+                    <VisualState Name="Focused" />
+                    <VisualState Name="MouseOver">
+                        <VisualState.Setters>
+                            <Setter Property="telerik:RadDropDownButton.Background" Value="#3DBBB3" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState Name="FocusedMouseOver">
+                        <VisualState.Setters>
+                            <Setter Property="telerik:RadDropDownButton.Background" Value="#3DBBB3" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState Name="Opened">
+                        <VisualState.Setters>
+                            <Setter Property="telerik:RadDropDownButton.Background" Value="#22968E" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+            <!-- << chat-styling-attachments-incoming-dropdown-visualstates -->
+
+            <!-- >> chat-styling-attachments-outgoing-messageattachmentstyle -->
             <Style x:Key="OutgoingAttachmentImageStyle" TargetType="Image">
                 <Setter Property="Source" Value="{Binding Attachment.FileName, Source={RelativeSource Mode=TemplatedParent}, Converter={StaticResource ChatOutgoingFileExtensionToImageSourceConverter}}" />
             </Style>
             <Style x:Key="OutgoingChatMessageAttachmentDropDownMenuButtonStyle" TargetType="telerik:RadDropDownButton">
-                <Setter Property="TextColor" Value="#000000" />
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="Background" Value="Transparent" />
                 <Setter Property="VisualStateManager.VisualStateGroups" Value="{StaticResource ChatOutgoingMessageAttachmentsDropDownMenuButtonVisualStates}" />
             </Style>
             <Style x:Key="OutgoingAttachmentActionsViewStyle" TargetType="telerik:ChatMessageAttachmentActionsView">
                 <Setter Property="MenuButtonStyle" Value="{StaticResource OutgoingChatMessageAttachmentDropDownMenuButtonStyle}" />
             </Style>
-
             <Style x:Key="OutgoingMessageAttachmentStyle" TargetType="telerik:ChatMessageAttachmentView">
                 <Setter Property="ImageStyle" Value="{StaticResource OutgoingAttachmentImageStyle}" />
                 <Setter Property="TitleStyle">
@@ -112,6 +139,39 @@
                 </Setter>
                 <Setter Property="ActionsViewStyle" Value="{StaticResource OutgoingAttachmentActionsViewStyle}" />
             </Style>
+            <!-- << chat-styling-attachments-outgoing-messageattachmentstyle -->
+
+            <!-- >> chat-styling-attachments-incoming-messageattachmentstyle -->
+            <Style x:Key="IncomingAttachmentImageStyle" TargetType="Image">
+                <Setter Property="Source" Value="{Binding Attachment.FileName, Source={RelativeSource Mode=TemplatedParent}, Converter={StaticResource ChatFileExtensionToImageSourceConverter}}" />
+            </Style>
+            <Style x:Key="IncomingChatMessageAttachmentDropDownMenuButtonStyle" TargetType="telerik:RadDropDownButton">
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="VisualStateManager.VisualStateGroups" Value="{StaticResource ChatIncomingMessageAttachmentsDropDownMenuButtonVisualStates}" />
+            </Style>
+            <Style x:Key="IncomingAttachmentActionsViewStyle" TargetType="telerik:ChatMessageAttachmentActionsView">
+                <Setter Property="MenuButtonStyle" Value="{StaticResource IncomingChatMessageAttachmentDropDownMenuButtonStyle}" />
+            </Style>
+            <Style x:Key="IncomingMessageAttachmentStyle" TargetType="telerik:ChatMessageAttachmentView">
+                <Setter Property="ImageStyle" Value="{StaticResource IncomingAttachmentImageStyle}" />
+                <Setter Property="TitleStyle">
+                    <Setter.Value>
+                        <Style TargetType="Label">
+                            <Setter Property="TextColor" Value="Black" />
+                        </Style>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="SubtitleStyle">
+                    <Setter.Value>
+                        <Style TargetType="Label">
+                            <Setter Property="TextColor" Value="Black" />
+                        </Style>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="ActionsViewStyle" Value="{StaticResource IncomingAttachmentActionsViewStyle}" />
+            </Style>
+            <!-- << chat-styling-attachments-incoming-messageattachmentstyle -->
 
             <Style x:Key="DownloadButtonStyle" TargetType="telerik:RadTemplatedButton" >
                 <Setter Property="TextColor" Value="Black" />
@@ -122,29 +182,29 @@
                             <VisualState Name="Focused" />
                             <VisualState Name="MouseOver">
                                 <VisualState.Setters>
-                                    <Setter Property="BackgroundColor" Value="#EBEBEB" />
+                                    <Setter Property="BackgroundColor" Value="#2AFFFFFF" />
                                 </VisualState.Setters>
                             </VisualState>
                             <VisualState Name="FocusedMouseOver">
                                 <VisualState.Setters>
-                                    <Setter Property="BackgroundColor" Value="#EBEBEB" />
+                                    <Setter Property="BackgroundColor" Value="#2AFFFFFF" />
                                 </VisualState.Setters>
                             </VisualState>
                             <VisualState Name="Pressed">
                                 <VisualState.Setters>
-                                    <Setter Property="TextColor" Value="{DynamicResource RadOnPrimaryColorAlpha80}" />
-                                    <Setter Property="BackgroundColor" Value="#D6D6D6" />
+                                    <Setter Property="TextColor" Value="Black" />
+                                    <Setter Property="BackgroundColor" Value="#4AFFFFFF" />
                                 </VisualState.Setters>
                             </VisualState>
                             <VisualState Name="FocusedPressed">
                                 <VisualState.Setters>
-                                    <Setter Property="TextColor" Value="{DynamicResource RadOnPrimaryColorAlpha80}" />
-                                    <Setter Property="BackgroundColor" Value="#D6D6D6" />
+                                    <Setter Property="TextColor" Value="Black" />
+                                    <Setter Property="BackgroundColor" Value="#4AFFFFFF" />
                                 </VisualState.Setters>
                             </VisualState>
                             <VisualState Name="Disabled">
                                 <VisualState.Setters>
-                                    <Setter Property="TextColor" Value="#FFFFFF" />
+                                    <Setter Property="TextColor" Value="#2AFFFFFF" />
                                 </VisualState.Setters>
                             </VisualState>
                         </VisualStateGroup>
@@ -152,15 +212,37 @@
                 </Setter>
             </Style>
 
+            <!-- << chat-styling-attachments-messages -->
+            <Style x:Key="IncomingAttachmentsListViewStyle" TargetType="telerik:ChatMessageAttachmentsListView">
+                <Setter Property="AttachmentStyle" Value="{StaticResource IncomingMessageAttachmentStyle}" />
+                <Setter Property="DownloadAllButtonStyle" Value="{StaticResource DownloadButtonStyle}" />
+            </Style>
             <Style x:Key="OutgoingAttachmentsListViewStyle" TargetType="telerik:ChatMessageAttachmentsListView">
                 <Setter Property="AttachmentStyle" Value="{StaticResource OutgoingMessageAttachmentStyle}" />
                 <Setter Property="DownloadAllButtonStyle" Value="{StaticResource DownloadButtonStyle}" />
+            </Style>
+            <Style TargetType="telerik:ChatIncomingAttachmentsMessageView" ApplyToDerivedTypes="True">
+                <Setter Property="BorderStyle">
+                    <Setter.Value>
+                        <Style TargetType="telerik:RadBorder">
+                            <Setter Property="BackgroundColor" Value="#80CBC4" />
+                        </Style>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="LabelStyle">
+                    <Setter.Value>
+                        <Style TargetType="Label">
+                            <Setter Property="TextColor" Value="Black" />
+                        </Style>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="AttachmentsListViewStyle" Value="{StaticResource IncomingAttachmentsListViewStyle}" />
             </Style>
             <Style TargetType="telerik:ChatOutgoingAttachmentsMessageView" ApplyToDerivedTypes="True">
                 <Setter Property="BorderStyle">
                     <Setter.Value>
                         <Style TargetType="telerik:RadBorder">
-                            <Setter Property="BackgroundColor" Value="#80CBC4" />
+                            <Setter Property="BackgroundColor" Value="#5B9BD5" />
                         </Style>
                     </Setter.Value>
                 </Setter>
@@ -172,23 +254,6 @@
                     </Setter.Value>
                 </Setter>
                 <Setter Property="AttachmentsListViewStyle" Value="{StaticResource OutgoingAttachmentsListViewStyle}" />
-            </Style>
-            
-            <Style TargetType="telerik:ChatAttachmentsMessageView" ApplyToDerivedTypes="True">
-                <Setter Property="BorderStyle">
-                    <Setter.Value>
-                        <Style TargetType="telerik:RadBorder">
-                            <Setter Property="BackgroundColor" Value="#80CBC4" />
-                        </Style>
-                    </Setter.Value>
-                </Setter>
-                <Setter Property="LabelStyle">
-                    <Setter.Value>
-                        <Style TargetType="Label">
-                            <Setter Property="TextColor" Value="Black" />
-                        </Style>
-                    </Setter.Value>
-                </Setter>
             </Style>
             <!-- << chat-styling-attachments-messages -->
             

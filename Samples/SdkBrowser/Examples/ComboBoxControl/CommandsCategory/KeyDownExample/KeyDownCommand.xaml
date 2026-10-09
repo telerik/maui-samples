@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.ComboBoxControl.CommandsCategory.KeyDownExample"
+             x:Class="SDKBrowserMaui.Examples.ComboBoxControl.CommandsCategory.KeyDownExample.KeyDownCommand">
+    <VerticalStackLayout Spacing="10">
+        <Label Text="Select a city, then press Delete or Backspace to clear the selected city." />
+        <!-- >> combobox-custom-keydown -->
+        <telerik:RadComboBox ItemsSource="{Binding Items}"
+                             Placeholder="Select a city"
+                             DisplayMemberPath="Name"
+                             WidthRequest="300"
+                             HorizontalOptions="Start">
+            <telerik:RadComboBox.KeyDownCommand>
+                <local:CustomComboBoxKeyDownCommand />
+            </telerik:RadComboBox.KeyDownCommand>
+        </telerik:RadComboBox>
+        <!-- << combobox-custom-keydown -->
+    </VerticalStackLayout>
+</ContentView>

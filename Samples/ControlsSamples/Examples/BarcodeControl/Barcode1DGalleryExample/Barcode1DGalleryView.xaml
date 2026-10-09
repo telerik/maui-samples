@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
                         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                         xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
@@ -39,8 +39,8 @@
             </Style>
 
             <Style x:Key="BarcodeStyle" TargetType="telerik:RadBarcode">
-                <Setter Property="ForegroundColor" Value="{DynamicResource DefaultTextColor}"/>
-                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="ForegroundColor" Value="{DynamicResource BarcodeScannerForegroundColor}"/>
+                <Setter Property="BackgroundColor" Value="{DynamicResource BarcodeScannerBackgroundColor}"/>
             </Style>
         </ResourceDictionary>
     </telerik:RadContentView.Resources>
@@ -87,7 +87,7 @@
                     <ColumnDefinition Width="3*" />
                 </Grid.ColumnDefinitions>
                 <telerik:RadBarcode Value="0123456789"
-                                    BackgroundColor="Transparent"
+                                    BackgroundColor="{DynamicResource BarcodeScannerBackgroundColor}"
                                     Style="{DynamicResource BarcodeStyle}"
                                     AutomationId="code11Barcode">
                     <telerik:RadBarcode.Symbology>
@@ -122,7 +122,7 @@
                     <ColumnDefinition Width="3*" />
                 </Grid.ColumnDefinitions>
                 <telerik:RadBarcode Value="ASCII characters"
-                                    BackgroundColor="Transparent"
+                                    BackgroundColor="{DynamicResource BarcodeScannerBackgroundColor}"
                                     Style="{StaticResource BarcodeStyle}"
                                     AutomationId="code128barcode">
                     <telerik:RadBarcode.Symbology>
@@ -157,7 +157,7 @@
                     <ColumnDefinition Width="3*" />
                 </Grid.ColumnDefinitions>
                 <telerik:RadBarcode Value="0123456789"
-                                    BackgroundColor="Transparent"
+                                    BackgroundColor="{DynamicResource BarcodeScannerBackgroundColor}"
                                     Style="{StaticResource BarcodeStyle}"
                                     AutomationId="code128Abarcode">
                     <telerik:RadBarcode.Symbology>
@@ -192,7 +192,7 @@
                     <ColumnDefinition Width="3*" />
                 </Grid.ColumnDefinitions>
                 <telerik:RadBarcode Value="0123456789"
-                                    BackgroundColor="Transparent"
+                                    BackgroundColor="{DynamicResource BarcodeScannerBackgroundColor}"
                                     Style="{StaticResource BarcodeStyle}"
                                     AutomationId="code128Bbarcode">
                     <telerik:RadBarcode.Symbology>
@@ -227,7 +227,7 @@
                     <ColumnDefinition Width="3*" />
                 </Grid.ColumnDefinitions>
                 <telerik:RadBarcode Value="0123456789"
-                                    BackgroundColor="Transparent"
+                                    BackgroundColor="{DynamicResource BarcodeScannerBackgroundColor}"
                                     Style="{StaticResource BarcodeStyle}"
                                     AutomationId="code128Cbarcode">
                     <telerik:RadBarcode.Symbology>
@@ -262,7 +262,7 @@
                     <ColumnDefinition Width="3*" />
                 </Grid.ColumnDefinitions>
                 <telerik:RadBarcode Value="0123456789"
-                                    BackgroundColor="Transparent"
+                                    BackgroundColor="{DynamicResource BarcodeScannerBackgroundColor}"
                                     Style="{StaticResource BarcodeStyle}"
                                     AutomationId="code25StandardBarcode">
                     <telerik:RadBarcode.Symbology>
@@ -297,7 +297,7 @@
                     <ColumnDefinition Width="3*" />
                 </Grid.ColumnDefinitions>
                 <telerik:RadBarcode Value="0123456789"
-                                    BackgroundColor="Transparent"
+                                    BackgroundColor="{DynamicResource BarcodeScannerBackgroundColor}"
                                     Style="{StaticResource BarcodeStyle}"
                                     AutomationId="code25InterleavedBarcode">
                     <telerik:RadBarcode.Symbology>
@@ -332,7 +332,7 @@
                     <ColumnDefinition Width="3*" />
                 </Grid.ColumnDefinitions>
                 <telerik:RadBarcode Value="0123456789"
-                                    BackgroundColor="Transparent"
+                                    BackgroundColor="{DynamicResource BarcodeScannerBackgroundColor}"
                                     Style="{StaticResource BarcodeStyle}"
                                     AutomationId="code39Barcode">
                     <telerik:RadBarcode.Symbology>
@@ -367,7 +367,7 @@
                     <ColumnDefinition Width="3*" />
                 </Grid.ColumnDefinitions>
                 <telerik:RadBarcode Value="ASCII characters"
-                                    BackgroundColor="Transparent"
+                                    BackgroundColor="{DynamicResource BarcodeScannerBackgroundColor}"
                                     Style="{StaticResource BarcodeStyle}"
                                     AutomationId="code39ExtendedBarcode">
                     <telerik:RadBarcode.Symbology>
@@ -402,7 +402,7 @@
                     <ColumnDefinition Width="3*" />
                 </Grid.ColumnDefinitions>
                 <telerik:RadBarcode Value="0123456789"
-                                    BackgroundColor="Transparent"
+                                    BackgroundColor="{DynamicResource BarcodeScannerBackgroundColor}"
                                     Style="{StaticResource BarcodeStyle}"
                                     AutomationId="code93Barcode">
                     <telerik:RadBarcode.Symbology>
@@ -437,7 +437,7 @@
                     <ColumnDefinition Width="3*" />
                 </Grid.ColumnDefinitions>
                 <telerik:RadBarcode Value="ASCII characters"
-                                    BackgroundColor="Transparent"
+                                    BackgroundColor="{DynamicResource BarcodeScannerBackgroundColor}"
                                     Style="{StaticResource BarcodeStyle}"
                                     AutomationId="code93ExtendedBarcode">
                     <telerik:RadBarcode.Symbology>
@@ -472,7 +472,7 @@
                     <ColumnDefinition Width="3*" />
                 </Grid.ColumnDefinitions>
                 <telerik:RadBarcode Value="0123456789"
-                                    BackgroundColor="Transparent"
+                                    BackgroundColor="{DynamicResource BarcodeScannerBackgroundColor}"
                                     Style="{StaticResource BarcodeStyle}"
                                     AutomationId="codeMSIbarcode">
                     <telerik:RadBarcode.Symbology>
@@ -507,7 +507,7 @@
                     <ColumnDefinition Width="3*" />
                 </Grid.ColumnDefinitions>
                 <telerik:RadBarcode Value="0123456789"
-                                    BackgroundColor="Transparent"
+                                    BackgroundColor="{DynamicResource BarcodeScannerBackgroundColor}"
                                     Style="{StaticResource BarcodeStyle}"
                                     AutomationId="barcodeEAN128">
                     <telerik:RadBarcode.Symbology>
@@ -542,7 +542,7 @@
                     <ColumnDefinition Width="3*" />
                 </Grid.ColumnDefinitions>
                 <telerik:RadBarcode Value="0123456789"
-                                    BackgroundColor="Transparent"
+                                    BackgroundColor="{DynamicResource BarcodeScannerBackgroundColor}"
                                     Style="{StaticResource BarcodeStyle}"
                                     AutomationId="barcodeEAN128A">
                     <telerik:RadBarcode.Symbology>
@@ -577,7 +577,7 @@
                     <ColumnDefinition Width="3*" />
                 </Grid.ColumnDefinitions>
                 <telerik:RadBarcode Value="0123456789"
-                                    BackgroundColor="Transparent"
+                                    BackgroundColor="{DynamicResource BarcodeScannerBackgroundColor}"
                                     Style="{StaticResource BarcodeStyle}"
                                     AutomationId="barcodeEAN128B">
                     <telerik:RadBarcode.Symbology>
@@ -612,7 +612,7 @@
                     <ColumnDefinition Width="3*" />
                 </Grid.ColumnDefinitions>
                 <telerik:RadBarcode Value="0123456789"
-                                    BackgroundColor="Transparent"
+                                    BackgroundColor="{DynamicResource BarcodeScannerBackgroundColor}"
                                     Style="{StaticResource BarcodeStyle}"
                                     AutomationId="barcodeEAN128C">
                     <telerik:RadBarcode.Symbology>
@@ -647,7 +647,7 @@
                     <ColumnDefinition Width="3*" />
                 </Grid.ColumnDefinitions>
                 <telerik:RadBarcode Value="012345678912"
-                                    BackgroundColor="Transparent"
+                                    BackgroundColor="{DynamicResource BarcodeScannerBackgroundColor}"
                                     Style="{StaticResource BarcodeStyle}"
                                     AutomationId="barcodeEAN13">
                     <telerik:RadBarcode.Symbology>
@@ -682,7 +682,7 @@
                     <ColumnDefinition Width="3*" />
                 </Grid.ColumnDefinitions>
                 <telerik:RadBarcode Value="0123456"
-                                    BackgroundColor="Transparent"
+                                    BackgroundColor="{DynamicResource BarcodeScannerBackgroundColor}"
                                     Style="{StaticResource BarcodeStyle}"
                                     AutomationId="barcodeEAN8">
                     <telerik:RadBarcode.Symbology>
@@ -717,7 +717,7 @@
                     <ColumnDefinition Width="3*" />
                 </Grid.ColumnDefinitions>
                 <telerik:RadBarcode Value="01234567899876543210"
-                                    BackgroundColor="Transparent"
+                                    BackgroundColor="{DynamicResource BarcodeScannerBackgroundColor}"
                                     Style="{StaticResource BarcodeStyle}"
                                     AutomationId="intelligentMailBarcode">
                     <telerik:RadBarcode.Symbology>
@@ -752,7 +752,7 @@
                     <ColumnDefinition Width="3*" />
                 </Grid.ColumnDefinitions>
                 <telerik:RadBarcode Value="012345678998"
-                                    BackgroundColor="Transparent"
+                                    BackgroundColor="{DynamicResource BarcodeScannerBackgroundColor}"
                                     Style="{StaticResource BarcodeStyle}"
                                     AutomationId="planetBarcode">
                     <telerik:RadBarcode.Symbology>
@@ -787,7 +787,7 @@
                     <ColumnDefinition Width="3*" />
                 </Grid.ColumnDefinitions>
                 <telerik:RadBarcode Value="0123456789"
-                                    BackgroundColor="Transparent"
+                                    BackgroundColor="{DynamicResource BarcodeScannerBackgroundColor}"
                                     Style="{StaticResource BarcodeStyle}"
                                     AutomationId="postnetBarcode">
                     <telerik:RadBarcode.Symbology>
@@ -822,7 +822,7 @@
                     <ColumnDefinition Width="3*" />
                 </Grid.ColumnDefinitions>
                 <telerik:RadBarcode Value="0123456789"
-                                    BackgroundColor="Transparent"
+                                    BackgroundColor="{DynamicResource BarcodeScannerBackgroundColor}"
                                     Style="{StaticResource BarcodeStyle}"
                                     AutomationId="barcodeUPCA">
                     <telerik:RadBarcode.Symbology>
@@ -857,7 +857,7 @@
                     <ColumnDefinition Width="3*" />
                 </Grid.ColumnDefinitions>
                 <telerik:RadBarcode Value="0234501"
-                                    BackgroundColor="Transparent"
+                                    BackgroundColor="{DynamicResource BarcodeScannerBackgroundColor}"
                                     Style="{StaticResource BarcodeStyle}"
                                     AutomationId="barcodeUPCE">
                     <telerik:RadBarcode.Symbology>
@@ -892,7 +892,7 @@
                     <ColumnDefinition Width="3*" />
                 </Grid.ColumnDefinitions>
                 <telerik:RadBarcode Value="01"
-                                    BackgroundColor="Transparent"
+                                    BackgroundColor="{DynamicResource BarcodeScannerBackgroundColor}"
                                     Style="{StaticResource BarcodeStyle}"
                                     AutomationId="barcodeUPCSupplement2">
                     <telerik:RadBarcode.Symbology>
@@ -927,7 +927,7 @@
                     <ColumnDefinition Width="3*" />
                 </Grid.ColumnDefinitions>
                 <telerik:RadBarcode Value="01234"
-                                    BackgroundColor="Transparent"
+                                    BackgroundColor="{DynamicResource BarcodeScannerBackgroundColor}"
                                     Style="{StaticResource BarcodeStyle}"
                                     AutomationId="barcodeUPCSupplement5">
                     <telerik:RadBarcode.Symbology>

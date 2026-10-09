@@ -29,13 +29,17 @@
                          Color="{DynamicResource ApplicationAccentColor}"
                          Size="{OnPlatform Default=16, MacCatalyst=20}" />
         <DataTemplate x:Key="ControlItemTemplate">
-            <Grid ColumnDefinitions="*, Auto"
+            <Grid ColumnDefinitions="*, Auto, Auto"
                   Margin="{OnPlatform MacCatalyst='0, 0, 9, 0', WinUI='0, 0, 8, 0'}">
                 <Label Text="{Binding DisplayName}"
                        TextColor="{Binding TextColor, Source={RelativeSource AncestorType={x:Type telerik:NavigationViewItemView}}}"
                        VerticalOptions="Center" />
                 <ContentView Grid.Column="1"
                              Content="{Binding Status, Converter={StaticResource StatusTagToTemplateConverter}}"
+                             VerticalOptions="Center"
+                             Margin="{OnPlatform MacCatalyst='0, 0, 5, 0', WinUI='0, 0, 10, 0'}" />
+                <ContentView Grid.Column="2"
+                             Content="{Binding HasAICapability, Converter={StaticResource BoolToAITagTemplateConverter}}"
                              VerticalOptions="Center"
                              Margin="{OnPlatform MacCatalyst='0, 0, 5, 0', WinUI='0, 0, 10, 0'}" />
             </Grid>

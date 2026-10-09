@@ -30,8 +30,12 @@ namespace QSF.Examples.ChartsControl.BarSeriesExample
             {
                 new SeriesGalleryItemViewModel("chartbar1headeractive.png", "chartbar1headerinactive.png", "bar", seriesData),
                 new SeriesGalleryItemViewModel("chartbar2headeractive.png", "chartbar2headerinactive.png", "cluster", seriesData, secondSeriesData),
+                new SeriesGalleryItemViewModel("chartbar3headeractive.png", "chartbar3headerinactive.png", "stacked", seriesData, secondSeriesData),
+                new SeriesGalleryItemViewModel("chartbar4headeractive.png", "chartbar4headerinactive.png", "stacked100", seriesData, secondSeriesData),
                 new SeriesGalleryItemViewModel("chartbar5headeractive.png", "chartbar5headerinactive.png", "horBar", seriesData),
                 new SeriesGalleryItemViewModel("chartbar6headeractive.png", "chartbar6headerinactive.png", "horCluster", seriesData, secondSeriesData),
+                new SeriesGalleryItemViewModel("chartbar7headeractive.png", "chartbar7headerinactive.png", "horStacked", seriesData, secondSeriesData),
+                new SeriesGalleryItemViewModel("chartbar8headeractive.png", "chartbar8headerinactive.png", "horStacked100", seriesData, secondSeriesData),
             };
         }
     }

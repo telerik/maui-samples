@@ -26,6 +26,12 @@
                              Size="24"
                              Color="#FFFFFF" />
 
+            <FontImageSource x:Key="MoreInfoChevronImageSource"
+                             FontFamily="{x:Static telerikMaui:TelerikFont.Name}"
+                             Glyph="{x:Static telerikMaui:TelerikFont.IconRightArrow}"
+                             Size="14"
+                             Color="{DynamicResource AccentColor8}" />
+
             <Style TargetType="Label">
                 <Setter Property="TextColor" Value="{DynamicResource DefaultTextColor}" />
             </Style>
@@ -65,7 +71,7 @@
                 </telerik:RadBorder>
             </DataTemplate>
             <DataTemplate x:Key="PreviewStatusTemplate">
-                <telerik:RadBorder BackgroundColor="{DynamicResource AccentColor8}"
+                <telerik:RadBorder BackgroundColor="{DynamicResource BadgePreviewColor}"
                                    Style="{StaticResource StatusTagBorderStyle}">
                     <Label Text="Prev"
                            Style="{StaticResource StatusTagLabelStyle}" />
@@ -216,10 +222,10 @@
                 <Setter Property="Text" Value="{OnIdiom Phone='More Info', Desktop=''}" />
                 <Setter Property="HorizontalContentAlignment" Value="End" />
                 <Setter Property="VerticalOptions" Value="Center" />
-                <Setter Property="FontSize" Value="{OnPlatform MacCatalyst=Small, iOS=Small, Default=Default}" />
-                <Setter Property="ImageSource" Value="{OnIdiom Desktop=info_desktop.png, Default=info_mobile.png}" />
-                <Setter Property="Padding" Value="{OnPlatform Default='12, 10', MacCatalyst=0, WinUI=0}" />
-                <Setter Property="BorderWidth" Value="{OnIdiom Phone=2, Desktop=0}" />
+                <Setter Property="FontSize" Value="{OnPlatform Default=Small, Android=16, WinUI=Default}" />
+                <Setter Property="ImageSource" Value="{OnIdiom Phone={StaticResource MoreInfoChevronImageSource}, Desktop=info_desktop.png, Default=''}" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="BorderWidth" Value="0" />
             </Style>
             <Style x:Key="DefaultBusyIndicatorStyle" TargetType="telerik:RadBusyIndicator">
                 <Setter Property="AnimationContentColor" Value="{DynamicResource AccentColor8}" />

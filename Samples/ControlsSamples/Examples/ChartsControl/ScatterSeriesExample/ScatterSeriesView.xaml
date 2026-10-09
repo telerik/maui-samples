@@ -19,19 +19,19 @@
                     </charts:RadCartesianChart.Grid>
                     <charts:RadCartesianChart.Axes>
                         <charts:NumericalAxis Location="Bottom"
-                                                 Minimum="0"
-                                                 Maximum="100"/>
+                                              Minimum="0"
+                                              Maximum="100"/>
                         <charts:NumericalAxis Location="Left"/>
                     </charts:RadCartesianChart.Axes>
                     <charts:RadCartesianChart.Series>
                         <charts:PointSeries HorizontalBinding="Value"
-                                               VerticalBinding="ValueY"
-                                               PointSize="10"
-                                               ItemsSource="{Binding SeriesData}"/>
+                                            VerticalBinding="ValueY"
+                                            PointSize="10"
+                                            ItemsSource="{Binding SeriesData}"/>
                         <charts:PointSeries HorizontalBinding="Value"
-                                               VerticalBinding="ValueY"
-                                               PointSize="10"
-                                               ItemsSource="{Binding SecondSeriesData}"/>
+                                            VerticalBinding="ValueY"
+                                            PointSize="10"
+                                            ItemsSource="{Binding SecondSeriesData}"/>
                     </charts:RadCartesianChart.Series>
                 </charts:RadCartesianChart>
             </DataTemplate>
@@ -42,14 +42,14 @@
                     </charts:RadCartesianChart.Grid>
                     <charts:RadCartesianChart.Axes>
                         <charts:NumericalAxis Location="Bottom"
-                                                 Minimum="0"
-                                                 Maximum="100"/>
+                                              Minimum="0"
+                                              Maximum="100"/>
                         <charts:NumericalAxis Location="Left"/>
                     </charts:RadCartesianChart.Axes>
                     <charts:RadCartesianChart.Series>
                         <charts:LineSeries HorizontalBinding="Value"
-                                              VerticalBinding="ValueY"
-                                              ItemsSource="{Binding SeriesData}"/>
+                                           VerticalBinding="ValueY"
+                                           ItemsSource="{Binding SeriesData}"/>
                     </charts:RadCartesianChart.Series>
                 </charts:RadCartesianChart>
             </DataTemplate>
@@ -60,14 +60,14 @@
                     </charts:RadCartesianChart.Grid>
                     <charts:RadCartesianChart.Axes>
                         <charts:NumericalAxis Location="Bottom"
-                                                 Minimum="0"
-                                                 Maximum="100"/>
+                                              Minimum="0"
+                                              Maximum="100"/>
                         <charts:NumericalAxis Location="Left"/>
                     </charts:RadCartesianChart.Axes>
                     <charts:RadCartesianChart.Series>
                         <charts:AreaSeries HorizontalBinding="Value"
-                                              VerticalBinding="ValueY"
-                                              ItemsSource="{Binding SeriesData}"/>
+                                           VerticalBinding="ValueY"
+                                           ItemsSource="{Binding SeriesData}"/>
                     </charts:RadCartesianChart.Series>
                 </charts:RadCartesianChart>
             </DataTemplate>

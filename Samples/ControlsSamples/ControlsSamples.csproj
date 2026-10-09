@@ -63,6 +63,8 @@
 		<ItemGroup>
 			<NativeCopyLocalItems Remove="@(NativeCopyLocalItems)" Condition="$([System.String]::Copy('%(NativeCopyLocalItems.PathInPackage)').Contains('linux-'))" />
 			<ResolvedFileToPublish Remove="@(ResolvedFileToPublish)" Condition="$([System.String]::Copy('%(ResolvedFileToPublish.PathInPackage)').Contains('linux-'))" />
+			<AndroidLibrary Remove="@(AndroidLibrary)" Condition="$([System.String]::Copy('%(AndroidLibrary.Identity)').Contains('onnxruntime-genai.aar'))" />
+            <AndroidLibrary Remove="@(AndroidLibrary)" Condition="$([System.String]::Copy('%(AndroidLibrary.Identity)').Contains('onnxruntime-extensions.aar'))" />
 		</ItemGroup>
 	</Target>
 
@@ -138,30 +140,27 @@
 		<PackageReference Include="Telerik.Documents.Spreadsheet" Version="$(DPLVersion)" />
 		<PackageReference Include="Telerik.Documents.SpreadsheetStreaming" Version="$(DPLVersion)" />
 		<PackageReference Include="Telerik.Zip" Version="$(DPLVersion)" />
+		<PackageReference Include="Telerik.AI.SmartComponents.Extensions" Version="2.1.0" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Telerik.AI.SmartComponents.Extensions" Version="2.1.0" />
-		<PackageReference Include="Microsoft.SemanticKernel.Connectors.Onnx" Version="1.77.0-alpha" />
-		<PackageReference Include="Microsoft.ML.OnnxRuntime.Extensions.Dummy" Version="0.13.0" />
+		<PackageReference Include="Microsoft.SemanticKernel.Connectors.Onnx" Version="1.79.0-alpha" />
+		<PackageReference Condition="$(TargetFramework.ToLower().Contains('-ios')) == true or $(TargetFramework.ToLower().Contains('-maccatalyst')) == true" Include="Microsoft.ML.OnnxRuntime.Extensions.Dummy" Version="0.13.0" />
 	</ItemGroup>
 
 	<ItemGroup Condition="$(TargetFramework.ToLower().Contains('net9'))">
 		<PackageReference Include="Microsoft.Maui.Controls" Condition=" $(CustomMauiNet9Version) == '' " Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Controls" Condition=" $(CustomMauiNet9Version) != '' " Version="$(CustomMauiNet9Version)" />
-		<PackageReference Include="System.Text.Json" Version="10.0.9" />
 	</ItemGroup>
 
 	<ItemGroup Condition="$(TargetFramework.ToLower().Contains('net10'))">
 		<PackageReference Include="Microsoft.Maui.Controls" Condition=" $(CustomMauiNet10Version) == '' " Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Controls" Condition=" $(CustomMauiNet10Version) != '' " Version="$(CustomMauiNet10Version)" />
-		<PackageReference Include="System.Text.Json" Version="10.0.9" />
 	</ItemGroup>
 
 	<ItemGroup Condition="$(TargetFramework.ToLower().Contains('net11'))">
 		<PackageReference Include="Microsoft.Maui.Controls" Condition=" $(CustomMauiNet11Version) == '' " Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Controls" Condition=" $(CustomMauiNet11Version) != '' " Version="$(CustomMauiNet11Version)" />
-		<PackageReference Include="System.Text.Json" Version="11.0.0-preview.6.26359.118" />
 	</ItemGroup>
 
 	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">

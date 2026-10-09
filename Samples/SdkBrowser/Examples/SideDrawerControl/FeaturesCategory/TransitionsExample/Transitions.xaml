@@ -27,8 +27,8 @@
                 </StackLayout>
             </telerik:RadSideDrawer.MainContent>
             <telerik:RadSideDrawer.DrawerContent>
-                <Grid WidthRequest="220">
-                    <ListView x:Name="drawerList" />
+                <Grid>
+                    <telerik:RadCollectionView x:Name="drawerList" />
                 </Grid>
             </telerik:RadSideDrawer.DrawerContent>
         </telerik:RadSideDrawer>

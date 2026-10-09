@@ -29,6 +29,7 @@
     <Color x:Key="BadgeNewBackgroundColor">#FD5064</Color>
     <Color x:Key="BadgeUpdatedBackgroundColor">#FF9040</Color>
     <Color x:Key="BadgeAIBackgroundColor">#04A2AA</Color>
+    <Color x:Key="BadgePreviewColor">#7C59B6</Color>
     <Color x:Key="CollectionViewItemPointerOverBackgroundColor">#FAFAFA</Color>
     <Color x:Key="DefaultBackgroundColor">#F8F8F8</Color>
     <Color x:Key="IconBackgroundColor">#F8F8F8</Color>
@@ -123,6 +124,8 @@
     <Color x:Key="BarcodeBoardingPassBoxViewBackgroundColor">#0F000000</Color>
     <Color x:Key="BarcodeBoardingPassTextColor">#4A4E52</Color>
     <Color x:Key="BarcodeDataMatrixBorderColor">#202223</Color>
+    <Color x:Key="BarcodeScannerBackgroundColor">#FFFFFF</Color>
+    <Color x:Key="BarcodeScannerForegroundColor">#000000</Color>
     <Color x:Key="BorderFirstLookSeparatorColor">#DCE7F2</Color>
     <Color x:Key="CalendarCustomizationBackgroundColor">#F3F3F3</Color>
     <Color x:Key="CalendarCustomizationLabelBackgroundColor">#F2EFF9</Color>
@@ -247,6 +250,7 @@
     <telerikTheming:ColorFilter x:Key="EntryBackgroundColor" Color="#FFFFFF" Alpha="{OnPlatform Default=1, Android=0, WinUI=0.7}" />
     <telerikTheming:ColorFilter x:Key="SchedulerDialogFooterBackgroundColor" Color="#FFFFFF" Alpha="{OnPlatform Default=1, MacCatalyst=0}" Lighten="{OnPlatform Default=0, Android=-0.03, iOS=-0.03, WinUI=-0.05}" />
     <telerikTheming:ColorFilter x:Key="DataGridAIChatBackgroundColor" Color="#FFFFFF" Lighten="{OnPlatform Default=-0.05, Android=-0.03}" />
+    <telerikTheming:ColorFilter x:Key="AccentColor6Alpha50" Color="{StaticResource AccentColor6}" Alpha="0.5" />
     <telerikTheming:ColorFilter x:Key="PromptInputFirstLookButtonBackgroundColor" Alpha="{OnPlatform Default=1, Android=0.12, iOS=0.12}">
         <OnPlatform x:TypeArguments="Color" Default="#F3F3F3">
             <On Platform="Android" Value="{StaticResource ApplicationAccentColor}" />
@@ -306,6 +310,6 @@
                                           NewColor="{StaticResource BadgeNewBackgroundColor}"
                                           UpdatedColor="{StaticResource BadgeUpdatedBackgroundColor}"
                                           BetaColor="{StaticResource AccentColor8}"
-                                          PreviewColor="{StaticResource AccentColor8}" />
+                                          PreviewColor="{StaticResource BadgePreviewColor}" />
 
 </ResourceDictionary>

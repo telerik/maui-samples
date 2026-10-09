@@ -1,8 +1,10 @@
 <Project>
   <!-- platform version number information -->
   <PropertyGroup Condition="$(TargetFramework.Contains('net9.0-ios')) OR $(TargetFramework.Contains('10.0-ios')) OR $(TargetFramework.Contains('11.0-ios'))">
-    <SupportedOSPlatformVersion>13.0</SupportedOSPlatformVersion>
-    <TargetPlatformMinVersion>13.0</TargetPlatformMinVersion>
+    <SupportedOSPlatformVersion Condition="'$(OutputType)' == 'Exe'">15.0</SupportedOSPlatformVersion>
+    <SupportedOSPlatformVersion Condition="'$(OutputType)' != 'Exe'">13.0</SupportedOSPlatformVersion>
+    <TargetPlatformMinVersion Condition="'$(OutputType)' == 'Exe'">15.0</TargetPlatformMinVersion>
+    <TargetPlatformMinVersion Condition="'$(OutputType)' != 'Exe'">13.0</TargetPlatformMinVersion>
   </PropertyGroup>
   <PropertyGroup Condition="$(TargetFramework.Contains('-tvos'))">
     <SupportedOSPlatformVersion>10.0</SupportedOSPlatformVersion>

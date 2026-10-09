@@ -11,8 +11,8 @@ namespace Telerik.AppUtils.Services;
 /// <summary>
 /// Handles CAPTURE_WINDOW commands from the test TCP server.
 /// Captures the full app window using Win32 PrintWindow (PW_RENDERFULLCONTENT), which captures
-/// DirectComposition surfaces including WebView2 content — without involving WinAppDriver/UIA,
-/// so it avoids the 60-second hang that occurs when WinAppDriver traverses the WebView2 UIA tree.
+/// DirectComposition surfaces including WebView2 content without traversing the UI Automation tree,
+/// avoiding the 60-second hang caused by inspecting the WebView2 UIA subtree.
 ///
 /// Command format: CAPTURE_WINDOW:{expectedHtmlText}
 ///   - expectedHtmlText: optional. If provided, polls the RadRichTextEditor until the HTML

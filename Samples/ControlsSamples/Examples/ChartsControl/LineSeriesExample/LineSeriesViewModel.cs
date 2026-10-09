@@ -20,6 +20,7 @@ public class LineSeriesViewModel : GalleryExampleViewModelBase
         return new GalleryItemViewModelBase[]
         {
             new SeriesGalleryItemViewModel("chartline1headeractive.png", "chartline1headerinactive.png", "line", seriesData),
+            new SeriesGalleryItemViewModel("chartline3headeractive.png", "chartline3headerinactive.png", "spline", seriesData)
         };
     }
 }

@@ -60,6 +60,8 @@
                                             Margin="0, 0, 12, 6">
                         <ContentView Content="{Binding Status, Converter={StaticResource StatusTagToTemplateConverter}}"
                                      AutomationId="statusTag" />
+                        <ContentView Content="{Binding HasAICapability, Converter={StaticResource BoolToAITagTemplateConverter}}"
+                                     AutomationId="aiTag" />
                     </HorizontalStackLayout>
                 </Grid>
             </telerik:RadBorder>
