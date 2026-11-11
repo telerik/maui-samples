@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.CarouselControl"
+             x:Class="SDKBrowserMaui.Examples.CarouselControl.CommandsCategory.NavigationCommandsExample.NavigationCommands">
+    <ContentView.BindingContext>
+        <local:CarouselViewModel />
+    </ContentView.BindingContext>
+    <Grid RowDefinitions="Auto, Auto, *, Auto" RowSpacing="12" Padding="12">
+        <HorizontalStackLayout Spacing="8">
+            <telerik:RadCheckBox x:Name="allowPreviousCheckBox" IsChecked="{Binding AllowPrevious, Source={x:Reference carousel}}" VerticalOptions="Center" />
+            <Label Text="Allow Previous" VerticalOptions="Center" />
+        </HorizontalStackLayout>
+        <HorizontalStackLayout Grid.Row="1" Spacing="8">
+            <telerik:RadCheckBox x:Name="allowNextCheckBox" IsChecked="{Binding AllowNext, Source={x:Reference carousel}}" VerticalOptions="Center" />
+            <Label Text="Allow Next" VerticalOptions="Center" />
+        </HorizontalStackLayout>
+        <!-- >> carousel-navigation-commands -->
+        <telerik:RadCarousel x:Name="carousel"
+                             Grid.Row="2"
+                             MaximumHeightRequest="260"
+                             ItemsSource="{Binding Items}">
+            <telerik:RadCarousel.ItemTemplate>
+                <DataTemplate x:DataType="local:CarouselItem">
+                    <Image Source="{Binding Image}" Aspect="AspectFill" />
+                </DataTemplate>
+            </telerik:RadCarousel.ItemTemplate>
+        </telerik:RadCarousel>
+        <HorizontalStackLayout Grid.Row="3" Spacing="12" HorizontalOptions="Center">
+            <telerik:RadButton Text="Previous"
+                               Command="{Binding NavigatePreviousCommand, Source={x:Reference carousel}}" />
+            <telerik:RadButton Text="Next"
+                               Command="{Binding NavigateNextCommand, Source={x:Reference carousel}}" />
+        </HorizontalStackLayout>
+    </Grid>
+    <!-- << carousel-navigation-commands -->
+</ContentView>

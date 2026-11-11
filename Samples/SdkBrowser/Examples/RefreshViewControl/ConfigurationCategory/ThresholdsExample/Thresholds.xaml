@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.RefreshViewControl.ConfigurationCategory.ThresholdsExample.Thresholds">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Style TargetType="HorizontalStackLayout">
+                <Setter Property="Spacing" Value="8" />
+            </Style>
+            <Style TargetType="Label">
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+            </Style>
+            <Style TargetType="Slider">
+                <Setter Property="WidthRequest" Value="150" />
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <!-- >> refreshview-thresholds -->
+    <telerik:RadRefreshView x:Name="refreshView"
+                            IndicatorThreshold="20"
+                            PullingThreshold="120"
+                            IndicatorAreaLength="64"
+                            Refreshing="OnRefreshing">
+        <VerticalStackLayout Padding="20"
+                             Spacing="10"
+                             BackgroundColor="#EEEEEE">
+            <VerticalStackLayout Spacing="4">
+                <HorizontalStackLayout>
+                    <Label Text="{Binding Source={x:Reference refreshView}, Path=IndicatorThreshold, StringFormat='IndicatorThreshold: {0:F0}'}" />
+                    <Slider Maximum="60"
+                            Minimum="0"
+                            Value="{Binding Source={x:Reference refreshView}, Path=IndicatorThreshold}" />
+                </HorizontalStackLayout>
+                <HorizontalStackLayout>
+                    <Label Text="{Binding Source={x:Reference refreshView}, Path=PullingThreshold, StringFormat='PullingThreshold: {0:F0}'}" />
+                    <Slider Maximum="200"
+                            Minimum="80"
+                            Value="{Binding Source={x:Reference refreshView}, Path=PullingThreshold}" />
+                </HorizontalStackLayout>
+                <HorizontalStackLayout>
+                    <Label Text="{Binding Source={x:Reference refreshView}, Path=IndicatorAreaLength, StringFormat='IndicatorAreaLength: {0:F0}'}" />
+                    <Slider Maximum="120"
+                            Minimum="30"
+                            Value="{Binding Source={x:Reference refreshView}, Path=IndicatorAreaLength}" />
+                </HorizontalStackLayout>
+                <Label Text="{Binding Source={x:Reference refreshView}, Path=Progress, StringFormat='Progress: {0:P0}'}" />
+            </VerticalStackLayout>
+            <Label Text="Pull down and observe how the thresholds affect the gesture." />
+            <Label x:Name="statusLabel"
+                   Text="Not refreshed yet" />
+        </VerticalStackLayout>
+    </telerik:RadRefreshView>
+    <!-- << refreshview-thresholds -->
+</ContentView>

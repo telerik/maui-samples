@@ -10,6 +10,7 @@
                 <Setter Property="Padding" Value="{OnPlatform Default=8, WinUI=4, iOS=6, MacCatalyst=0}" />
                 <Setter Property="ContentPadding" Value="{OnIdiom Desktop='4, 0'}" />
                 <Setter Property="FontSize" Value="{OnPlatform Default=14, MacCatalyst=13, iOS=17}" />
+                <Setter Property="TextColor" Value="{DynamicResource DefaultTextColor}" />
             </Style>
 
             <Style TargetType="telerik:LabelToolbarItemView" x:Key="AvatarToolbarItemStyle">

@@ -12,9 +12,8 @@ public partial class MainPageDesktop : ContentPage
     {
         this.InitializeComponent();
         this.BindingContext = new HomeViewModel(testingService);
-
 #if WINDOWS
-#if NET10_0_OR_GREATER
+#if NET10_0
         this.Resources["DefaultItemGridMargin"] = new Thickness(0, 0, 3, 3);
 #else
         this.Resources["DefaultItemGridMargin"] = new Thickness(0);

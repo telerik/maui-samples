@@ -24,16 +24,11 @@ namespace QSF
 
             base.OnCreate(bundle);
 
-#if NET10_0_OR_GREATER
             ViewCompat.SetOnApplyWindowInsetsListener(this.Window.DecorView, new ConsumeInsetsListener());
             if (Build.VERSION.SdkInt < BuildVersionCodes.VanillaIceCream)
             {
                 this.Window.SetStatusBarColor(App.ApplicationAccentColor.ToPlatform());
             }
-#else
-            this.Window.ClearFlags(Android.Views.WindowManagerFlags.TranslucentStatus);
-            this.Window.SetStatusBarColor(App.ApplicationAccentColor.ToPlatform());
-#endif
 
             this.Window.InsetsController.SetSystemBarsAppearance(
                 (int)Android.Views.WindowInsetsControllerAppearance.LightNavigationBars,
@@ -52,7 +47,6 @@ namespace QSF
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
-#if NET10_0_OR_GREATER
         private class ConsumeInsetsListener : Java.Lang.Object, IOnApplyWindowInsetsListener
         {
             public WindowInsetsCompat OnApplyWindowInsets(Android.Views.View v, WindowInsetsCompat insets)
@@ -61,6 +55,5 @@ namespace QSF
                 return WindowInsetsCompat.Consumed;
             }
         }
-#endif
     }
 }

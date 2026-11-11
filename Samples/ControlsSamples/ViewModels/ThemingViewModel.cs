@@ -99,7 +99,6 @@ namespace QSF.ViewModels
                     var oldTheme = this.currentTheme;
                     var newTheme = value;
                     this.currentTheme = newTheme;
-                    this.OnPropertyChanged();
                     this.TelemetryService.TrackThemeChanged(newTheme.Value);
 
                     Application.Current.Dispatcher.Dispatch(() =>
@@ -114,6 +113,7 @@ namespace QSF.ViewModels
                         }
 
                         TelerikThemeResources.AppTheme = this.currentTheme.Value;
+                        this.OnPropertyChanged();
                         this.ThemeChangedCallback?.Invoke(oldTheme, newTheme);
 #if WINDOWS
                         TelerikTitleBarHelper.SetRequestedTheme(IsDarkMode);

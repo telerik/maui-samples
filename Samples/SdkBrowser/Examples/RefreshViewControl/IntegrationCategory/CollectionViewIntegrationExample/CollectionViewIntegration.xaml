@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.RefreshViewControl.IntegrationCategory"
+             x:Class="SDKBrowserMaui.Examples.RefreshViewControl.IntegrationCategory.CollectionViewIntegrationExample.CollectionViewIntegration">
+    <ContentView.BindingContext>
+        <local:ViewModel />
+    </ContentView.BindingContext>
+    <!-- >> refreshview-integration-collectionview -->
+    <telerik:RadRefreshView IsRefreshing="{Binding IsRefreshing}"
+                            Command="{Binding RefreshCommand}">
+        <telerik:RadCollectionView ItemsSource="{Binding Items}">
+            <telerik:RadCollectionView.ItemTemplate>
+                <DataTemplate x:DataType="local:Customer">
+                    <VerticalStackLayout Padding="10, 6">
+                        <Label Text="{Binding Name}"
+                               FontAttributes="Bold" />
+                        <Label Text="{Binding City, StringFormat='City: {0}'}" />
+                        <Label Text="{Binding Orders, StringFormat='Orders: {0}'}"
+                               TextColor="Gray" />
+                    </VerticalStackLayout>
+                </DataTemplate>
+            </telerik:RadCollectionView.ItemTemplate>
+        </telerik:RadCollectionView>
+    </telerik:RadRefreshView>
+    <!-- << refreshview-integration-collectionview -->
+</ContentView>

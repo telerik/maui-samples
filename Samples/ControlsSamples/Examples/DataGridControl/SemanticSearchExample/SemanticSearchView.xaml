@@ -34,7 +34,7 @@
                                             SearchMode="SemanticSearch"
                                             SuggestedPrompts="{Binding SuggestedPrompts}">
                     <telerik:DataGridAISettings.PromptInputStyle>
-                        <Style TargetType="telerik:DataGridAIPromptInput">
+                        <Style TargetType="telerik:DataGridAIPromptInput" BasedOn="{StaticResource DataGridAIPromptInputStyle}">
                             <Setter Property="IsSpeechToTextButtonVisible" Value="{x:Null}" />
                             <Setter Property="SpeechToTextButtonStyle">
                                 <Setter.Value>

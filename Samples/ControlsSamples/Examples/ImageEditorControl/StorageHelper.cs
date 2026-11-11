@@ -61,14 +61,7 @@ namespace QSF.Examples.ImageEditorControl
 
         private static string GetLocalFolder(params string[] filePrefixes)
         {
-            //var fileSystemService = DependencyService.Get<IFileSystemService>();
-            //var localPath = fileSystemService.GetLocalFolder();
-
-#if WINDOWS
-            var localPath = Windows.Storage.ApplicationData.Current.LocalFolder.Path;
-#else
-            var localPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
-#endif
+            string localPath = Microsoft.Maui.Storage.FileSystem.AppDataDirectory;
             foreach (var filePrefix in filePrefixes)
             {
                 localPath = Path.Combine(localPath, filePrefix);

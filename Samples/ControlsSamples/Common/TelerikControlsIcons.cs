@@ -17,6 +17,7 @@ internal static class TelerikControlsIcons
         { "BusyIndicator", char.ConvertFromUtf32(0xe005) },
         { "Button", char.ConvertFromUtf32(0xe006) },
         { "Calendar", char.ConvertFromUtf32(0xe007) },
+        { "Carousel", char.ConvertFromUtf32(0xe04f) },
         { "Chart", char.ConvertFromUtf32(0xe008) },
         { "Charts", char.ConvertFromUtf32(0xe008) },
         { "Chat", char.ConvertFromUtf32(0xe00f) },
@@ -51,6 +52,7 @@ internal static class TelerikControlsIcons
         { "PromptInput", char.ConvertFromUtf32(0xe04b) },
         { "RangeSlider", char.ConvertFromUtf32(0xe027) },
         { "Rating", char.ConvertFromUtf32(0xe028) },
+        { "RefreshView", char.ConvertFromUtf32(0xe050) },
         { "RichTextEditor", char.ConvertFromUtf32(0xe029) },
         { "Scheduler", char.ConvertFromUtf32(0xe02a) },
         { "SegmentedControl", char.ConvertFromUtf32(0xe02b) },
@@ -79,6 +81,7 @@ internal static class TelerikControlsIcons
 
     private static Dictionary<string, string> ChartExamplesIcons = new()
     {
+        { "FirstLook", char.ConvertFromUtf32(0xe008) },
         { "AreaSeries", char.ConvertFromUtf32(0xe040) },
         { "BarSeries", char.ConvertFromUtf32(0xe008) },
         { "FinancialSeries", char.ConvertFromUtf32(0xe009) },

@@ -6,8 +6,8 @@
              x:Class="SDKBrowserMaui.Examples.CollectionViewControl.PullToRefreshCategory.PullToRefreshExample.PullToRefresh">
     
     <!-- >> collectionview-pull-to-refresh-xaml -->
-    <RefreshView IsRefreshing="{Binding IsRefreshing}"
-                 Command="{Binding RefreshCommand}">
+    <telerik:RadRefreshView IsRefreshing="{Binding IsRefreshing}"
+                            Command="{Binding RefreshCommand}">
         <telerik:RadCollectionView ItemsSource="{Binding People}">
             <telerik:RadCollectionView.ItemTemplate>
                 <DataTemplate>
@@ -21,9 +21,9 @@
                 </DataTemplate>
             </telerik:RadCollectionView.ItemTemplate>
         </telerik:RadCollectionView>
-        <RefreshView.BindingContext>
+        <telerik:RadRefreshView.BindingContext>
             <local:ViewModel />
-        </RefreshView.BindingContext>
-    </RefreshView>
+        </telerik:RadRefreshView.BindingContext>
+    </telerik:RadRefreshView>
     <!-- << collectionview-pull-to-refresh-xaml -->
 </ContentView>

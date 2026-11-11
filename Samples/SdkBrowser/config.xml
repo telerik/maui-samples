@@ -830,6 +830,92 @@
 			</Categories>
 		</Control>
 		<Control>
+			<Name>Carousel</Name>
+			<Title>Carousel</Title>
+			<Categories>
+				<Category>
+					<Name>GettingStarted</Name>
+					<Title>Getting Started</Title>
+					<Examples>
+						<Example>
+							<Page>CarouselGettingStartedXaml</Page>
+							<Name>GettingStarted</Name>
+							<Title>Getting Started - Xaml</Title>
+						</Example>
+						<Example>
+							<Page>CarouselGettingStartedCSharp</Page>
+							<Name>GettingStarted</Name>
+							<Title>Getting Started - C#</Title>
+						</Example>
+					</Examples>
+				</Category>
+				<Category>
+					<Name>Configuration</Name>
+					<Title>Configuration</Title>
+					<Examples>
+						<Example>
+							<Page>ItemSizeAndSpacing</Page>
+							<Name>ItemSizeAndSpacing</Name>
+							<Title>Item Size and Spacing</Title>
+						</Example>
+						<Example>
+							<Page>Orientation</Page>
+							<Name>Orientation</Name>
+							<Title>Orientation</Title>
+						</Example>
+						<Example>
+							<Page>HighlightedItem</Page>
+							<Name>HighlightedItem</Name>
+							<Title>Highlighted Item</Title>
+						</Example>
+						<Example>
+							<Page>ItemEffects</Page>
+							<Name>ItemEffects</Name>
+							<Title>Item Effects</Title>
+						</Example>
+					</Examples>
+				</Category>
+				<Category>
+					<Name>Events</Name>
+					<Title>Events</Title>
+					<Examples>
+						<Example>
+							<Page>Events</Page>
+							<Name>Events</Name>
+							<Title>Events</Title>
+						</Example>
+					</Examples>
+				</Category>
+				<Category>
+					<Name>Commands</Name>
+					<Title>Commands</Title>
+					<Examples>
+						<Example>
+							<Page>NavigationCommands</Page>
+							<Name>NavigationCommands</Name>
+							<Title>Navigation Commands</Title>
+						</Example>
+					</Examples>
+				</Category>
+				<Category>
+					<Name>Styling</Name>
+					<Title>Styling</Title>
+					<Examples>
+						<Example>
+							<Page>ItemViewStyle</Page>
+							<Name>ItemViewStyle</Name>
+							<Title>Item View Style</Title>
+						</Example>
+						<Example>
+							<Page>ItemViewStyleSelector</Page>
+							<Name>ItemViewStyleSelector</Name>
+							<Title>Item View Style Selector</Title>
+						</Example>
+					</Examples>
+				</Category>
+			</Categories>
+		</Control>
+		<Control>
 			<Name>Charts</Name>
 			<Title>Charts (New)</Title>
 			<Categories>
@@ -889,6 +975,16 @@
 							<Title>Stacked Bar Series</Title>
 						</Example>
 						<Example>
+							<Page>CartesianChartCandlestickSeries</Page>
+							<Name>CandlestickSeries</Name>
+							<Title>Candlestick Series</Title>
+						</Example>
+						<Example>
+							<Page>CartesianChartOhlcSeries</Page>
+							<Name>OhlcSeries</Name>
+							<Title>Ohlc Series</Title>
+						</Example>
+						<Example>
 							<Page>PieChartPieSeries</Page>
 							<Name>PieSeries</Name>
 							<Title>Pie Series</Title>
@@ -919,6 +1015,11 @@
 							<Name>ExplicitAxes</Name>
 							<Title>Multiple Axes</Title>
 						</Example>
+						<Example>
+							<Page>CartesianChartLabelLayout</Page>
+							<Name>LabelLayout</Name>
+							<Title>Axis Label Rotation and Staggering</Title>
+						</Example>
 					</Examples>
 				</Category>
 				<Category>
@@ -929,6 +1030,11 @@
 							<Page>CartesianChartGridLines</Page>
 							<Name>GridLines</Name>
 							<Title>Grid Lines</Title>
+						</Example>
+						<Example>
+							<Page>CartesianChartAnnotations</Page>
+							<Name>Annotations</Name>
+							<Title>Annotations</Title>
 						</Example>
 						<Example>
 							<Page>CartesianChartPalette</Page>
@@ -3618,6 +3724,11 @@
 							<Title>Link Annotation</Title>
 						</Example>
 						<Example>
+							<Page>LinkAnnotationCustomScheme</Page>
+							<Name>LinkAnnotationCustomScheme</Name>
+							<Title>Link Annotation - Custom Scheme</Title>
+						</Example>
+						<Example>
 							<Page>SourceException</Page>
 							<Name>SourceException</Name>
 							<Title>SourceException Handling</Title>
@@ -4055,6 +4166,119 @@
 			</Categories>
 		</Control>
 		<Control>
+			<Name>RefreshView</Name>
+			<Title>RefreshView</Title>
+			<Categories>
+				<Category>
+					<Name>GettingStarted</Name>
+					<Title>Getting Started</Title>
+					<Examples>
+						<Example>
+							<Page>GettingStartedXaml</Page>
+							<Name>GettingStarted</Name>
+							<Title>Getting Started - Xaml</Title>
+						</Example>
+						<Example>
+							<Page>GettingStartedCSharp</Page>
+							<Name>GettingStarted</Name>
+							<Title>Getting Started - CSharp</Title>
+						</Example>
+					</Examples>
+				</Category>
+				<Category>
+					<Name>Configuration</Name>
+					<Title>Configuration</Title>
+					<Examples>
+						<Example>
+							<Page>IndicatorType</Page>
+							<Name>IndicatorType</Name>
+							<Title>Indicator Type</Title>
+						</Example>
+						<Example>
+							<Page>PullDirection</Page>
+							<Name>PullDirection</Name>
+							<Title>Pull Direction</Title>
+						</Example>
+						<Example>
+							<Page>TransitionMode</Page>
+							<Name>TransitionMode</Name>
+							<Title>Transition Mode</Title>
+						</Example>
+						<Example>
+							<Page>Thresholds</Page>
+							<Name>Thresholds</Name>
+							<Title>Thresholds and Indicator Area Length</Title>
+						</Example>
+						<Example>
+							<Page>RefreshState</Page>
+							<Name>RefreshState</Name>
+							<Title>Refresh State</Title>
+						</Example>
+					</Examples>
+				</Category>
+				<Category>
+					<Name>Events</Name>
+					<Title>Events</Title>
+					<Examples>
+						<Example>
+							<Page>Events</Page>
+							<Name>Events</Name>
+							<Title>Events</Title>
+						</Example>
+					</Examples>
+				</Category>
+				<Category>
+					<Name>Commands</Name>
+					<Title>Commands</Title>
+					<Examples>
+						<Example>
+							<Page>Commands</Page>
+							<Name>Commands</Name>
+							<Title>Commands</Title>
+						</Example>
+					</Examples>
+				</Category>
+				<Category>
+					<Name>Styling</Name>
+					<Title>Styling</Title>
+					<Examples>
+						<Example>
+							<Page>Styling</Page>
+							<Name>Styling</Name>
+							<Title>Indicator Styling</Title>
+						</Example>
+					</Examples>
+				</Category>
+				<Category>
+					<Name>Templates</Name>
+					<Title>Templates</Title>
+					<Examples>
+						<Example>
+							<Page>Templates</Page>
+							<Name>Templates</Name>
+							<Title>Pulling and Refreshing Templates</Title>
+						</Example>
+					</Examples>
+				</Category>
+				<Category>
+					<Name>Integration</Name>
+					<Title>Integration</Title>
+					<Examples>
+						<Example>
+							<Page>CollectionViewIntegration</Page>
+							<Name>CollectionViewIntegration</Name>
+							<Title>RadCollectionView Integration</Title>
+						</Example>
+						<Example>
+							<Page>DataGridIntegration</Page>
+							<Name>DataGridIntegration</Name>
+							<Title>RadDataGrid Integration</Title>
+						</Example>
+					</Examples>
+				</Category>
+			</Categories>
+		</Control>
+		<Control>
 			<Name>RichTextEditor</Name>
 			<Title>RichTextEditor</Title>
 			<Categories>
@@ -4152,6 +4376,11 @@
 							<Page>HyperlinkErrorHandling</Page>
 							<Name>HyperlinkErrorHandling</Name>
 							<Title>Hyperlink Error Handling</Title>
+						</Example>
+						<Example>
+							<Page>HyperlinkOpening</Page>
+							<Name>HyperlinkOpening</Name>
+							<Title>Hyperlink Opening</Title>
 						</Example>
 					</Examples>
 				</Category>

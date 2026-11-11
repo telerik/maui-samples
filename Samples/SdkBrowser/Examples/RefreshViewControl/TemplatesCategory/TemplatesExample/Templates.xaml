@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.RefreshViewControl.TemplatesCategory.TemplatesExample.Templates">
+    <!-- >> refreshview-templates -->
+    <telerik:RadRefreshView x:Name="refreshView"
+                            IndicatorAreaLength="60"
+                            Refreshing="OnRefreshing">
+        <telerik:RadRefreshView.PullingTemplate>
+            <DataTemplate>
+                <telerik:RadBorder BackgroundColor="#E0F2F1">
+                    <VerticalStackLayout HorizontalOptions="Center"
+                                         VerticalOptions="Center"
+                                         Spacing="4"
+                                         BackgroundColor="#E0F2F1">
+                        <Label Text="Release to refresh"
+                               HorizontalOptions="Center"
+                               Opacity="{Binding Progress}" />
+                        <ProgressBar Progress="{Binding Progress}"
+                                     WidthRequest="120"
+                                     ProgressColor="#00897B" />
+                    </VerticalStackLayout>
+                </telerik:RadBorder>
+            </DataTemplate>
+        </telerik:RadRefreshView.PullingTemplate>
+        <telerik:RadRefreshView.RefreshingTemplate>
+            <DataTemplate>
+                <telerik:RadBorder BackgroundColor="#E0F2F1">
+                    <HorizontalStackLayout HorizontalOptions="Center"
+                                           VerticalOptions="Center"
+                                           Spacing="8">
+                        <ActivityIndicator IsRunning="True"
+                                           Color="#00897B"
+                                           WidthRequest="24"
+                                           HeightRequest="24" />
+                        <Label Text="Loading..."
+                               VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+                </telerik:RadBorder>
+            </DataTemplate>
+        </telerik:RadRefreshView.RefreshingTemplate>
+        <VerticalStackLayout Padding="20"
+                             Spacing="10"
+                             BackgroundColor="#EEEEEE">
+            <Label Text="Pull down to see the custom PullingTemplate and RefreshingTemplate." />
+            <Label x:Name="statusLabel"
+                   Text="Not refreshed yet" />
+        </VerticalStackLayout>
+    </telerik:RadRefreshView>
+    <!-- << refreshview-templates -->
+</ContentView>

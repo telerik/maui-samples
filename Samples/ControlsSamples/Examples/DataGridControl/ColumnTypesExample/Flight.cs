@@ -6,6 +6,8 @@ namespace QSF.Examples.DataGridControl.ColumnTypesExample
     {
         public DateTime Date { get; set; }
 
+        public string Day { get; set; }
+
         public DateTime Time { get; set; }
 
         public string Id { get; set; }

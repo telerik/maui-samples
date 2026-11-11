@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.RichTextEditorControl.EventsCategory.HyperlinkOpeningExample.HyperlinkOpening">
+    <Grid x:Name="grid"
+          RowDefinitions="{OnIdiom Desktop='Auto, *', Phone='*, Auto'}">
+        <telerik:RadRichTextEditorToolbar x:Name="richTextToolbar"
+                                          Grid.Row="{OnIdiom Desktop=0, Phone=1}"
+                                          ZIndex="10"
+                                          RichTextEditor="{x:Reference richTextEditor}" />
+        <!-- >> richtexteditor-hyperlinkopening-xaml -->
+        <telerik:RadRichTextEditor x:Name="richTextEditor"
+                                   HyperlinkOpening="RichTextEditor_HyperlinkOpening"
+                                   Grid.Row="{OnIdiom Desktop=1, Phone=0}" />
+        <!-- << richtexteditor-hyperlinkopening-xaml -->
+    </Grid>
+</ContentView>

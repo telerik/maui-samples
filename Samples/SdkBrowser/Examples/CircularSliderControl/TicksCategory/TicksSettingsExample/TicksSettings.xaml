@@ -12,21 +12,21 @@
             <rangeSlider:SliderTicksPlacement>End</rangeSlider:SliderTicksPlacement>
         </x:Array>
     </ContentView.Resources>
-        <Grid RowDefinitions="Auto, Auto, Auto"
-                    RowSpacing="10">
-                <HorizontalStackLayout Grid.Row="0"
-                                                             Spacing="5"
-                               HorizontalOptions="Center">
+    <Grid RowDefinitions="Auto, Auto, Auto"
+          RowSpacing="10">
+        <HorizontalStackLayout Grid.Row="0"
+                                   Spacing="5"
+                                   HorizontalOptions="Center">
             <Label Text="Ticks placement:"
-                   VerticalOptions="Center" />
+                    VerticalOptions="Center" />
             <telerik:RadComboBox ItemsSource="{StaticResource TicksPlacements}"
                                  SelectedItem="{Binding Source={x:Reference circularSlider}, Path=TicksPlacement, Mode=TwoWay}"
                                  IsClearButtonVisible="False"
                                  WidthRequest="150" />
         </HorizontalStackLayout>
-                     <HorizontalStackLayout Grid.Row="1"
+            <HorizontalStackLayout Grid.Row="1"
                                    Spacing="5"
-                               HorizontalOptions="Center">
+                                   HorizontalOptions="Center">
             <Label Text="Tick step:"
                    VerticalOptions="Center" />
             <telerik:RadNumericInput Value="{Binding Source={x:Reference circularSlider}, Path=TickStep, Mode=TwoWay}"

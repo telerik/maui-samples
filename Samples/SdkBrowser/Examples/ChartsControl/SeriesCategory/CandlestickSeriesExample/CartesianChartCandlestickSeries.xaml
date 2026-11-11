@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:charts="clr-namespace:Telerik.Maui.Controls.Charts;assembly=Telerik.Maui.Controls"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.ChartsControl.SeriesCategory"
+             x:Class="SDKBrowserMaui.Examples.ChartsControl.SeriesCategory.CandlestickSeriesExample.CartesianChartCandlestickSeries">
+    <!-- >> chart-cartesian-candlestick-series-xaml -->
+    <charts:RadCartesianChart>
+        <charts:RadCartesianChart.BindingContext>
+            <local:FinancialViewModel />
+        </charts:RadCartesianChart.BindingContext>
+        <charts:RadCartesianChart.Axes>
+            <charts:DateTimeAxis LabelFormat="MMM"
+                                 MajorStepUnit="Month" />
+            <charts:NumericalAxis Location="Left" />
+        </charts:RadCartesianChart.Axes>
+        <charts:RadCartesianChart.Series>
+            <charts:CandlestickSeries HorizontalBinding="Category"
+                                      OpenBinding="Open"
+                                      HighBinding="High"
+                                      LowBinding="Low"
+                                      CloseBinding="Close"
+                                      ItemsSource="{Binding Data}" />
+        </charts:RadCartesianChart.Series>
+    </charts:RadCartesianChart>
+    <!-- << chart-cartesian-candlestick-series-xaml -->
+</ContentView>

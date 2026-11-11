@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.CarouselControl"
+             xmlns:example="clr-namespace:SDKBrowserMaui.Examples.CarouselControl.StylingCategory.ItemViewStyleSelectorExample"
+             x:Class="SDKBrowserMaui.Examples.CarouselControl.StylingCategory.ItemViewStyleSelectorExample.ItemViewStyleSelector">
+    <ContentView.BindingContext>
+        <local:CarouselViewModel />
+    </ContentView.BindingContext>
+    <ContentView.Resources>
+        <!-- >> carousel-item-view-style-selector -->
+        <Style x:Key="DishItemStyle" TargetType="telerik:RadCarouselItemView">
+            <Setter Property="CornerRadius" Value="16" />
+            <Setter Property="Margin" Value="4" />
+            <Setter Property="BorderThickness" Value="4" />
+        </Style>
+        <example:DishItemStyleSelector x:Key="DishItemStyleSelector">
+            <example:DishItemStyleSelector.BlueberryPancakesStyle>
+                <Style TargetType="telerik:RadCarouselItemView" BasedOn="{StaticResource DishItemStyle}">
+                    <Setter Property="BorderColor" Value="#24485C" />
+                    <Setter Property="BackgroundColor" Value="#E3ECF1" />
+                </Style>
+            </example:DishItemStyleSelector.BlueberryPancakesStyle>
+            <example:DishItemStyleSelector.BologneseStyle>
+                <Style TargetType="telerik:RadCarouselItemView" BasedOn="{StaticResource DishItemStyle}">
+                    <Setter Property="BorderColor" Value="#8B4A28" />
+                    <Setter Property="BackgroundColor" Value="#F3E6DC" />
+                </Style>
+            </example:DishItemStyleSelector.BologneseStyle>
+            <example:DishItemStyleSelector.SpaghettiStyle>
+                <Style TargetType="telerik:RadCarouselItemView" BasedOn="{StaticResource DishItemStyle}">
+                    <Setter Property="BorderColor" Value="#C45120" />
+                    <Setter Property="BackgroundColor" Value="#FBE8DC" />
+                </Style>
+            </example:DishItemStyleSelector.SpaghettiStyle>
+            <example:DishItemStyleSelector.LemonHerbChickenStyle>
+                <Style TargetType="telerik:RadCarouselItemView" BasedOn="{StaticResource DishItemStyle}">
+                    <Setter Property="BorderColor" Value="#D7B72C" />
+                    <Setter Property="BackgroundColor" Value="#FCF5D7" />
+                </Style>
+            </example:DishItemStyleSelector.LemonHerbChickenStyle>
+            <example:DishItemStyleSelector.FineDiningStyle>
+                <Style TargetType="telerik:RadCarouselItemView" BasedOn="{StaticResource DishItemStyle}">
+                    <Setter Property="BorderColor" Value="#354253" />
+                    <Setter Property="BackgroundColor" Value="#E6E9EE" />
+                </Style>
+            </example:DishItemStyleSelector.FineDiningStyle>
+            <example:DishItemStyleSelector.RaspberryCakeStyle>
+                <Style TargetType="telerik:RadCarouselItemView" BasedOn="{StaticResource DishItemStyle}">
+                    <Setter Property="BorderColor" Value="#B51F35" />
+                    <Setter Property="BackgroundColor" Value="#F9E1E5" />
+                </Style>
+            </example:DishItemStyleSelector.RaspberryCakeStyle>
+            <example:DishItemStyleSelector.SalmonCanapesStyle>
+                <Style TargetType="telerik:RadCarouselItemView" BasedOn="{StaticResource DishItemStyle}">
+                    <Setter Property="BorderColor" Value="#ED8048" />
+                    <Setter Property="BackgroundColor" Value="#FDEBDD" />
+                </Style>
+            </example:DishItemStyleSelector.SalmonCanapesStyle>
+            <example:DishItemStyleSelector.ShrimpFettuccineStyle>
+                <Style TargetType="telerik:RadCarouselItemView" BasedOn="{StaticResource DishItemStyle}">
+                    <Setter Property="BorderColor" Value="#23665D" />
+                    <Setter Property="BackgroundColor" Value="#E0EFEB" />
+                </Style>
+            </example:DishItemStyleSelector.ShrimpFettuccineStyle>
+        </example:DishItemStyleSelector>
+        <!-- << carousel-item-view-style-selector -->
+    </ContentView.Resources>
+    <!-- >> carousel-item-view-style-selector-usage -->
+    <Grid MaximumHeightRequest="{OnPlatform Android=400, iOS=400, MacCatalyst=550, WinUI=550}">
+        <telerik:RadCarousel ItemsSource="{Binding Items}"
+                             ItemViewStyleSelector="{StaticResource DishItemStyleSelector}"
+                             ItemSpacing="6"
+                             VerticalOptions="Start"
+                             Margin="{OnPlatform MacCatalyst=24, WinUI=24}">
+            <telerik:RadCarousel.ItemTemplate>
+                <DataTemplate x:DataType="local:CarouselItem">
+                    <Border StrokeThickness="0"
+                            StrokeShape="RoundRectangle 8"
+                            Margin="10">
+                        <Image Source="{Binding Image}"
+                               Aspect="AspectFill"/>
+                    </Border>
+                </DataTemplate>
+            </telerik:RadCarousel.ItemTemplate>
+        </telerik:RadCarousel>
+    </Grid>
+    <!-- << carousel-item-view-style-selector-usage -->
+</ContentView>

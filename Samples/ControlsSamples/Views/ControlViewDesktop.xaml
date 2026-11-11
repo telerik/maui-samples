@@ -238,8 +238,8 @@
                                 <ScrollView Grid.Row="1"
                                             Padding="{OnPlatform Android='0, 0, 4, 0', iOS='0, 0, 8, 0', MacCatalyst='0, 0, 20, 0', WinUI='0, 0, 14, 0'}"
                                             AutomationId="configurationArea">
-                                    <telerik:RadBorder Content="{Binding Converter={StaticResource ModelToConfigurationAreaConverter}}"
-                                                       BindingContext="{Binding Path=Content.BindingContext, Source={Reference exampleContainer}}" />
+                                    <telerik:RadBorder x:Name="configurationAreaContainer"
+                                                       Content="{Binding Converter={StaticResource ModelToConfigurationAreaConverter}}" />
                                 </ScrollView>
                             </Grid>
                         </Grid>

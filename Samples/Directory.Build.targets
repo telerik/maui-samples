@@ -1,6 +1,6 @@
 <Project>
   <!-- platform version number information -->
-  <PropertyGroup Condition="$(TargetFramework.Contains('net9.0-ios')) OR $(TargetFramework.Contains('10.0-ios')) OR $(TargetFramework.Contains('11.0-ios'))">
+  <PropertyGroup Condition="$(TargetFramework.Contains('10.0-ios')) OR $(TargetFramework.Contains('11.0-ios'))">
     <SupportedOSPlatformVersion Condition="'$(OutputType)' == 'Exe'">15.0</SupportedOSPlatformVersion>
     <SupportedOSPlatformVersion Condition="'$(OutputType)' != 'Exe'">13.0</SupportedOSPlatformVersion>
     <TargetPlatformMinVersion Condition="'$(OutputType)' == 'Exe'">15.0</TargetPlatformMinVersion>
@@ -10,7 +10,7 @@
     <SupportedOSPlatformVersion>10.0</SupportedOSPlatformVersion>
     <TargetPlatformMinVersion>10.0</TargetPlatformMinVersion>
   </PropertyGroup>
-  <PropertyGroup Condition="$(TargetFramework.Contains('net9.0-maccatalyst')) OR $(TargetFramework.Contains('10.0-maccatalyst'))">
+  <PropertyGroup Condition="$(TargetFramework.Contains('10.0-maccatalyst'))">
     <SupportedOSPlatformVersion>15.0</SupportedOSPlatformVersion>
     <TargetPlatformMinVersion>15.0</TargetPlatformMinVersion>
   </PropertyGroup>

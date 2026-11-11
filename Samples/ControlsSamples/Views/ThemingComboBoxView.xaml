@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <telerik:RadBorder xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                    xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
@@ -32,7 +32,6 @@
             <Setter Property="TextColor" Value="{DynamicResource DefaultTextColor}" />
             <Setter Property="Content" Value="{x:Static telerik:TelerikFont.IconDownArrow}" />
             <Setter Property="AutomationId" Value="RadComboBoxDropDownButton" />
-            <Setter Property="VisualStateManager.VisualStateGroups" Value="{StaticResource EmptyVisualState}" />
         </Style>
         <Style x:Key="ThemeSwatchBorderStyle" TargetType="telerik:RadBorder">
             <Setter Property="WidthRequest" Value="20" />
@@ -123,13 +122,16 @@
                     <Label Grid.Column="1"
                            Text="{Binding DisplayFullName}"
                            VerticalOptions="Center" />
-                    <Rectangle Fill="{DynamicResource ApplicationAccentColor}"
-                               WidthRequest="4"
+                    <Rectangle WidthRequest="4"
                                HeightRequest="16"
                                RadiusX="2"
                                RadiusY="2"
                                HorizontalOptions="Start"
-                               VerticalOptions="Center" />
+                               VerticalOptions="Center">
+                        <Rectangle.Fill>
+                            <SolidColorBrush Color="{DynamicResource ApplicationAccentColor}" />
+                        </Rectangle.Fill>
+                    </Rectangle>
                 </Grid>
             </telerik:RadComboBoxItem>
         </DataTemplate>
@@ -155,23 +157,29 @@
                        VerticalTextAlignment="Center" />
             </Grid>
         </DataTemplate>
+        <Style x:Key="ThemingComboBox" TargetType="telerik:RadComboBox">
+            <Setter Property="BackgroundColor" Value="Transparent" />
+            <Setter Property="BorderColor" Value="Transparent" />
+            <Setter Property="DropDownBackgroundColor" Value="{DynamicResource DefaultBackgroundColor}" />
+            <Setter Property="DropDownBorderColor" Value="{DynamicResource DefaultBorderColor}" />
+            <Setter Property="DropDownCornerRadius" Value="{OnPlatform MacCatalyst=6, WinUI=4}" />
+            <Setter Property="WidthRequest" Value="180" />
+            <Setter Property="HeightRequest" Value="{OnPlatform MacCatalyst=38, WinUI=32}" />
+            <Setter Property="VerticalOptions" Value="Center" />
+            <Setter Property="DropDownWidth" Value="250" />
+            <Setter Property="DropDownMaxHeight" Value="{OnPlatform MacCatalyst=270}" />
+            <Setter Property="IsClearButtonVisible" Value="False" />
+            <Setter Property="ItemTemplate" Value="{StaticResource ThemesComboItemTemplate}" />
+            <Setter Property="SelectedItemTemplate" Value="{StaticResource ThemesComboSelectedItemTemplate}" />
+            <Setter Property="SelectionBoxTemplate" Value="{StaticResource ThemesComboSelectionBoxTemplate}" />
+            <Setter Property="DropDownButtonStyle" Value="{StaticResource ThemesComboBoxDropDownButtonStyle}" />
+            <Setter Property="VisualStateManager.VisualStateGroups" Value="{StaticResource EmptyVisualState}" />
+        </Style>
     </VisualElement.Resources>
     <Grid>
         <telerik:RadComboBox x:Name="themesCombo"
-                             BackgroundColor="Transparent"
-                             BorderColor="Transparent"
-                             IsClearButtonVisible="False"
+                             Style="{StaticResource ThemingComboBox}"
                              ItemsSource="{Binding ThemesList}"
-                             SelectedItem="{Binding CurrentTheme, Mode=TwoWay}"
-                             ItemTemplate="{StaticResource ThemesComboItemTemplate}"
-                             SelectedItemTemplate="{StaticResource ThemesComboSelectedItemTemplate}"
-                             SelectionBoxTemplate="{StaticResource ThemesComboSelectionBoxTemplate}"
-                             DropDownButtonStyle="{StaticResource ThemesComboBoxDropDownButtonStyle}"
-                             WidthRequest="{OnPlatform MacCatalyst=180, WinUI=180}"
-                             HeightRequest="{OnPlatform MacCatalyst=38, WinUI=32}"
-                             DropDownWidth="250"
-                             DropDownMaxHeight="{OnPlatform MacCatalyst=270}"
-                             VerticalOptions="Center"
-                             VisualStateManager.VisualStateGroups="{StaticResource EmptyVisualState}" />
+                             SelectedItem="{Binding CurrentTheme, Mode=TwoWay}" />
     </Grid>
 </telerik:RadBorder>

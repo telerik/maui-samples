@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:charts="clr-namespace:Telerik.Maui.Controls.Charts;assembly=Telerik.Maui.Controls"
+             xmlns:models="clr-namespace:SDKBrowserMaui.Examples.ChartsControl"
+             x:Class="SDKBrowserMaui.Examples.ChartsControl.FeaturesCategory.AnnotationsExample.CartesianChartAnnotations">
+    <Grid RowDefinitions="Auto,Auto,*" RowSpacing="10">
+        <HorizontalStackLayout Spacing="5">
+            <Label Text="Threshold:"
+                   VerticalTextAlignment="Center" />
+            <Slider x:Name="threshold"
+                    Minimum="0"
+                    Maximum="100"
+                    WidthRequest="200"
+                    Value="60" />
+        </HorizontalStackLayout>
+        <HorizontalStackLayout Grid.Row="1" 
+                               Spacing="5">
+            <Label Text="Category boundaries:"
+                   VerticalTextAlignment="Center"/>
+            <telerik:RadComboBox WidthRequest="220"
+                                 SelectedItem="{Binding CategoryBoundaryMode, Source={x:Reference categoryBand}}">
+                <telerik:RadComboBox.ItemsSource>
+                    <x:Array Type="{x:Type charts:ChartCategoryBoundaryMode}">
+                        <charts:ChartCategoryBoundaryMode>WholeCategorySlots</charts:ChartCategoryBoundaryMode>
+                        <charts:ChartCategoryBoundaryMode>CategoryPositions</charts:ChartCategoryBoundaryMode>
+                    </x:Array>
+                </telerik:RadComboBox.ItemsSource>
+            </telerik:RadComboBox>
+        </HorizontalStackLayout>
+        <!-- >> charts-annotations-xaml -->
+        <charts:RadCartesianChart Grid.Row="2">
+            <charts:RadCartesianChart.BindingContext>
+                <models:CategoricalViewModel />
+            </charts:RadCartesianChart.BindingContext>
+            <charts:RadCartesianChart.Axes>
+                <charts:CategoricalAxis x:Name="categories" />
+                <charts:NumericalAxis x:Name="values" Location="Left" Minimum="0" Maximum="100" />
+            </charts:RadCartesianChart.Axes>
+            <charts:RadCartesianChart.Series>
+                <charts:BarSeries HorizontalBinding="Category" VerticalBinding="Value" ItemsSource="{Binding Data}" />
+            </charts:RadCartesianChart.Series>
+            <charts:RadCartesianChart.Annotations>
+                <charts:ChartCategoricalPlotBandAnnotation x:Name="categoryBand"
+                                                           Axis="{x:Reference categories}"
+                                                           From="Feb"
+                                                           To="Apr" />
+                <charts:ChartPlotBandAnnotation Axis="{x:Reference categories}"
+                                                From="Feb"
+                                                To="Apr"
+                                                Fill="{x:Null}"
+                                                Stroke="OrangeRed"
+                                                StrokeThickness="2" />
+                <charts:ChartPlotBandAnnotation Axis="{x:Reference values}"
+                                                From="20"
+                                                To="40"
+                                                Fill="LightGreen"
+                                                Opacity="0.3"
+                                                StrokeThickness="0" />
+                <charts:ChartGridLineAnnotation Axis="{x:Reference values}"
+                                                Value="{Binding Value, Source={x:Reference threshold}}"
+                                                StrokeThickness="2"
+                                                StrokeDashArray="4,2" />
+            </charts:RadCartesianChart.Annotations>
+        </charts:RadCartesianChart>
+        <!-- << charts-annotations-xaml -->
+    </Grid>
+</ContentView>

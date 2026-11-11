@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.CarouselControl"
+             x:Class="SDKBrowserMaui.Examples.CarouselControl.ConfigurationCategory.HighlightedItemExample.HighlightedItem">
+    <ContentView.BindingContext>
+        <local:CarouselViewModel />
+    </ContentView.BindingContext>
+    <Grid RowDefinitions="Auto, Auto, *" RowSpacing="24" Padding="12">
+        <HorizontalStackLayout Spacing="8">
+            <Label Text="Highlighted Index:" VerticalOptions="Center" />
+            <telerik:RadNumericInput Minimum="0"
+                                     Maximum="7"
+                                     Value="{Binding HighlightedIndex, Source={x:Reference carousel}}"
+                                     WidthRequest="160" />
+        </HorizontalStackLayout>
+        <!-- >> carousel-highlighted-item -->
+        <Label Grid.Row="1"
+               Text="{Binding HighlightedItem.Title, Source={x:Reference carousel}, StringFormat='Highlighted Item: {0}', x:DataType={x:Null}}" />
+        <!-- << carousel-highlighted-item -->
+
+        <!-- >> carousel-highlighted-itemindex -->
+        <telerik:RadCarousel x:Name="carousel"
+                             Grid.Row="2"
+                             MaximumHeightRequest="{OnPlatform Android=450, iOS=450}"
+                             VerticalOptions="{OnPlatform Android=Start, iOS=Start}"
+                             ItemsSource="{Binding Items}"
+                             HighlightedIndex="2">
+            <telerik:RadCarousel.ItemTemplate>
+                <DataTemplate x:DataType="local:CarouselItem">
+                    <Image Source="{Binding Image}" Aspect="AspectFill" />
+                </DataTemplate>
+            </telerik:RadCarousel.ItemTemplate>
+        </telerik:RadCarousel>
+        <!-- << carousel-highlighted-itemindex -->
+    </Grid>
+</ContentView>

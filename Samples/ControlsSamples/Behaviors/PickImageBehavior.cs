@@ -32,7 +32,7 @@ namespace QSF.Behaviors
 
             if (fileResult != null)
             {
-#if NET10_0_OR_GREATER && (IOS || MACCATALYST)
+#if IOS || MACCATALYST
                 var imageType = GetImageType(fileResult.FileName);
 
                 RichTextImageSource imageSource;
@@ -63,7 +63,7 @@ namespace QSF.Behaviors
             }
         }
 
-#if NET10_0_OR_GREATER && (IOS || MACCATALYST)
+#if IOS || MACCATALYST
         private static bool IsImageExtension(string extension)
         {
             return extension?.ToLowerInvariant() is ".heic" or ".heif" or ".jpg" or ".jpeg" or ".png" or ".gif" or ".webp" or ".bmp" or ".tiff" or ".tif";

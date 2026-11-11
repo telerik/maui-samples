@@ -30,6 +30,8 @@ public class ScatterSeriesViewModel : GalleryExampleViewModelBase
         {
             new SeriesGalleryItemViewModel("chartscattered1headeractive.png", "chartscattered1headerinactive.png", "ScatterPointSeries", seriesData, secondSeriesData),
             new SeriesGalleryItemViewModel("chartscattered2headeractive.png", "chartscattered2headerinactive.png", "ScatterLineSeries", seriesData),
+            new SeriesGalleryItemViewModel("chartscattered3headeractive.png", "chartscattered3headerinactive.png", "ScatterSplineAreaSeries", seriesData),
+            new SeriesGalleryItemViewModel("chartscattered4headeractive.png", "chartscattered4headerinactive.png", "ScatterSplineSeries", seriesData),
             new SeriesGalleryItemViewModel("chartscattered5headeractive.png", "chartscattered5headerinactive.png", "ScatterAreaSeries", seriesData),
         };
     }

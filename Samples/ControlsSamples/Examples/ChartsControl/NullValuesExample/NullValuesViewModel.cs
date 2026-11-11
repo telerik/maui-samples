@@ -20,10 +20,27 @@ public class NullValuesViewModel : GalleryExampleViewModelBase
             new DataItem { Category = "Fresh&Green", Value = 10 }
         };
 
+        var secondSeriesData = new ObservableCollection<DataItem>()
+        {
+            new DataItem { Category = "Greenings", Value = 60 },
+            new DataItem { Category = "Perfecto", Value = 47 },
+            new DataItem { Category = "NearBy", Value = 51 },
+            new DataItem { Category = "Stop&Shop", Value = 32 },
+            new DataItem { Category = "Other", },
+            new DataItem { Category = "Lidl", Value = 43 },
+            new DataItem { Category = "FamilyStore", Value = 26 },
+            new DataItem { Category = "Fresh&Green", Value = 82 }
+        };
+
         return new GalleryItemViewModelBase[]
         {
             new SeriesGalleryItemViewModel("chartline1headeractive.png", "chartline1headerinactive.png", "line", seriesData),
+            new SeriesGalleryItemViewModel("chartline2headeractive.png", "chartline2headerinactive.png", "stackedLine", seriesData, secondSeriesData),
+            new SeriesGalleryItemViewModel("chartline3headeractive.png", "chartline3headerinactive.png", "spline", seriesData),
+            new SeriesGalleryItemViewModel("chartline4headeractive.png", "chartline4headerinactive.png", "stackedSpline", seriesData, secondSeriesData),
             new SeriesGalleryItemViewModel("chartarea1headeractive.png", "chartarea1headerinactive.png", "lineArea", seriesData),
+            new SeriesGalleryItemViewModel("chartarea2headeractive.png", "chartarea2headerinactive.png", "stackedLineArea", seriesData, secondSeriesData),
+            new SeriesGalleryItemViewModel("chartarea3headeractive.png", "chartarea3headerinactive.png", "splineArea", seriesData)
         };
     }
 }

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        xmlns:local="clr-namespace:QSF.Examples.CarouselControl.FirstLookExample"
+                        x:Class="QSF.Examples.CarouselControl.FirstLookExample.FirstLookView"
+                        Padding="{OnPlatform Android='8, 0', iOS='8, 0', MacCatalyst='16', WinUI='16, 8'}"
+                        x:DataType="local:FirstLookViewModel">
+    <telerik:RadContentView.Resources>
+        <Style x:Key="TitleLabelStyle" TargetType="Label" BasedOn="{StaticResource BaseLabelStyle}">
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="HorizontalTextAlignment" Value="Center" />
+            <Setter Property="FontSize" Value="{OnPlatform Default=20, MacCatalyst=28}" />
+        </Style>
+        <Style x:Key="DescriptionLabelStyle" TargetType="Label" BasedOn="{StaticResource BaseLabelStyle}">
+            <Setter Property="HorizontalTextAlignment" Value="Center" />
+            <Setter Property="TextColor" Value="{DynamicResource DefaultTextColorAlpha60}" />
+        </Style>
+        <Color x:Key="DishAccentColor">#FFD600</Color>
+        <Style x:Key="DishLabelStyle" TargetType="Label" BasedOn="{StaticResource BaseLabelStyle}">
+            <Setter Property="TextColor" Value="{DynamicResource TextOnAccentColor}" />
+        </Style>
+        <Style TargetType="Label" BasedOn="{StaticResource DishLabelStyle}" />
+        <Style x:Key="DishTitleLabelStyle" TargetType="Label" BasedOn="{StaticResource DishLabelStyle}">
+            <Setter Property="FontSize" Value="{OnPlatform Default=18, MacCatalyst=20, WinUI=20}" />
+            <Setter Property="FontAttributes" Value="{OnIdiom Default=Bold, Phone=None}" />
+        </Style>
+        <Shadow x:Key="DishItemShadow"
+                Offset="{OnPlatform Default='0, 0', MacCatalyst='0, 4', WinUI='0, 2'}"
+                Radius="{OnPlatform Default=5, MacCatalyst=16, WinUI=7}"
+                Brush="{OnPlatform Default=#66000000, iOS=#4D000000, Android=#00000000}" />
+        <Style x:Key="DishItemBorderStyle" TargetType="telerik:RadBorder">
+            <Setter Property="Margin" Value="{OnPlatform Default='4, 8', Android=8, MacCatalyst=16, WinUI='9, 16'}" />
+            <Setter Property="CornerRadius" Value="8" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="BorderColor" Value="{DynamicResource DefaultBorderColor}" />
+            <Setter Property="Shadow" Value="{StaticResource DishItemShadow}" />
+        </Style>
+        <Style x:Key="DishItemContentStyle_Android" TargetType="Grid">
+            <Setter Property="telerik:ViewUtils.CornerRadius" Value="8" />
+        </Style>
+        <DataTemplate x:Key="DishItemTemplate" x:DataType="local:Dish">
+            <telerik:RadBorder Style="{StaticResource DishItemBorderStyle}">
+                <Grid Style="{OnPlatform Android={StaticResource DishItemContentStyle_Android}}">
+                    <Image Source="{Binding Image}"
+                           Aspect="AspectFill"
+                           SemanticProperties.Description="{Binding Name}" />
+                    <Grid InputTransparent="True"
+                          ColumnDefinitions="*, Auto"
+                          IsVisible="{Binding IsHighlighted, Source={RelativeSource AncestorType={x:Type telerik:RadCarouselItemView}}}">
+                        <Rectangle>
+                            <Rectangle.Fill>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                    <GradientStop Color="Transparent" Offset="0.35" />
+                                    <GradientStop Color="#E6000000" Offset="1" />
+                                </LinearGradientBrush>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <VerticalStackLayout Padding="{OnIdiom Default=24, Phone=12}"
+                                             Spacing="{OnPlatform Android=5, iOS=5, MacCatalyst=4, WinUI=4}"
+                                             VerticalOptions="End">
+                            <Label Text="{Binding Category}"
+                                   FontSize="{OnPlatform Default=12, MacCatalyst=14}"
+                                   FontAttributes="Bold"
+                                   TextColor="{StaticResource DishAccentColor}" />
+                            <Grid ColumnDefinitions="*, Auto">
+                                <Label Text="{Binding Name}"
+                                       Style="{StaticResource DishTitleLabelStyle}"
+                                       Margin="0, 0, 8, 0" />
+                                <Label Text="{Binding Price, StringFormat='&#x20AC;{0:0}'}"
+                                       Grid.Column="1"
+                                       Style="{StaticResource DishTitleLabelStyle}" />
+                            </Grid>
+                            <HorizontalStackLayout Spacing="6" Margin="0, 0, 0, 2">
+                                <Label FontSize="{OnIdiom Default=12, Phone=8}"
+                                       CharacterSpacing="3"
+                                       HeightRequest="{OnIdiom Default=12, Phone=8}"
+                                       VerticalOptions="Center"
+                                       SemanticProperties.Description="{Binding Rating, StringFormat='{0:0.0} out of 5 stars'}">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{Binding SelectedRatingMarks}"
+                                                  TextColor="{StaticResource DishAccentColor}" />
+                                            <Span Text="{Binding UnselectedRatingMarks}"
+                                                  TextColor="#88FFFFFF" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Label Text="{Binding Rating, StringFormat='{0:0.0}'}"
+                                       FontSize="12"
+                                       TextColor="{OnIdiom Default={StaticResource DishAccentColor}, Phone=#FFFFFF}" />
+                            </HorizontalStackLayout>
+                            <Label Text="{Binding Description}"
+                                   FontSize="{OnPlatform Android=13, iOS=13, MacCatalyst=14, WinUI=14}"
+                                   Opacity="0.8" />
+                        </VerticalStackLayout>
+                    </Grid>
+                </Grid>
+            </telerik:RadBorder>
+        </DataTemplate>
+    </telerik:RadContentView.Resources>
+    <Grid RowDefinitions="Auto, Auto, Auto"
+          MaximumWidthRequest="{OnPlatform MacCatalyst=1600, WinUI=1400}"
+          VerticalOptions="Start"
+          HorizontalOptions="Start">
+        <VerticalStackLayout Margin="16, 24, 16, 16"
+                             Spacing="8">
+            <Label Text="Discover your next favorite"
+                   Style="{StaticResource TitleLabelStyle}"
+                   SemanticProperties.HeadingLevel="Level1"
+                   AutomationId="discoverDishesTitle" />
+            <Label Text="Explore delicious dishes, find new flavors, and get inspired for your next meal."
+                   Style="{StaticResource DescriptionLabelStyle}"
+                   MaximumWidthRequest="{OnPlatform Android=480, iOS=480}"
+                   HorizontalOptions="Center"
+                   AutomationId="discoverDishesDescription" />
+        </VerticalStackLayout>
+        <Grid x:Name="CarouselHost"
+              Grid.Row="1"
+              SizeChanged="OnCarouselHostSizeChanged"
+              HeightRequest="{OnPlatform WinUI=520, MacCatalyst=640, Android=460, iOS=500}">
+            <telerik:RadCarousel x:Name="DishesCarousel"
+                                 ItemsSource="{Binding Dishes}"
+                                 MinimumWidthRequest="{OnPlatform MacCatalyst=450, WinUI=450}"
+                                 HighlightedIndex="2"
+                                 ItemSpacing="4"
+                                 PeekAreaRatio="{OnPlatform Default=0.70, Android=0.35, iOS=0.30, MacCatalyst=0.75}"
+                                 ItemTemplate="{StaticResource DishItemTemplate}" />
+        </Grid>
+        <Label Grid.Row="2"
+               Text="Swipe to explore more dishes"
+               Style="{StaticResource DescriptionLabelStyle}"
+               FontSize="12"
+               Margin="16, 12, 16, 16"
+               AutomationId="exploreDishesHint" />
+    </Grid>
+</telerik:RadContentView>

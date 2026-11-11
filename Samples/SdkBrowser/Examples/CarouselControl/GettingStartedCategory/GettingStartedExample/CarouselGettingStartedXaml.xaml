@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.CarouselControl"
+             x:Class="SDKBrowserMaui.Examples.CarouselControl.GettingStartedCategory.GettingStartedExample.CarouselGettingStartedXaml">
+    <!-- >> carousel-getting-started-xaml -->
+    <ContentView.BindingContext>
+        <local:CarouselViewModel />
+    </ContentView.BindingContext>
+    <telerik:RadCarousel ItemsSource="{Binding Items}"
+                         VerticalOptions="Center">
+        <telerik:RadCarousel.ItemTemplate>
+            <DataTemplate x:DataType="local:CarouselItem">
+                <Image Source="{Binding Image}" Aspect="AspectFill" />
+            </DataTemplate>
+        </telerik:RadCarousel.ItemTemplate>
+    </telerik:RadCarousel>
+    <!-- << carousel-getting-started-xaml -->
+</ContentView>

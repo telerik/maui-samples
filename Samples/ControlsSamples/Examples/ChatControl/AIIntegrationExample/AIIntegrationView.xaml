@@ -13,7 +13,7 @@
         <Style x:Key="SpeechToTextButtonStyle" TargetType="telerik:RadSpeechToTextButton" BasedOn="{StaticResource ChatSpeechToTextButtonStyle}">
             <Setter Property="SpeechRecognizerCreator" Value="{x:Static utilities:SpeechRecognizerProvider.SpeechRecognizerCreator}" />
         </Style>
-        <Style x:Key="ChatPromptInputStyle" TargetType="telerik:RadPromptInput">
+        <Style x:Key="ChatPromptInputStyle" TargetType="telerik:RadPromptInput" BasedOn="{StaticResource RadPromptInputStyle}">
             <Setter Property="SpeechToTextButtonStyle" Value="{OnPlatform WinUI={StaticResource SpeechToTextButtonStyle}}" />
         </Style>
     </VisualElement.Resources>

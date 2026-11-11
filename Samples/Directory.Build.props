@@ -10,12 +10,11 @@
     <MacCatalystOnly>false</MacCatalystOnly>
     <DotNetOnly>false</DotNetOnly>
     <TelerikVersion>*</TelerikVersion>
-    <DplVersion>2026.3.810</DplVersion>
-    <CustomMauiNet9Version></CustomMauiNet9Version>
+    <DplVersion>2026.4.1109</DplVersion>
     <CustomMauiNet10Version>10.0.60</CustomMauiNet10Version>
     <CustomMauiNet11Version></CustomMauiNet11Version>
     <SkiaSharpVersion>3.119.1</SkiaSharpVersion>
-    <TelerikLicensingVersion>[1.9.2,2)</TelerikLicensingVersion>
+    <TelerikLicensingVersion>[1.11.3,2)</TelerikLicensingVersion>
 
     <UseSourceProjects>false</UseSourceProjects>
     <UseSourceAssemblies>false</UseSourceAssemblies>
@@ -23,7 +22,6 @@
     <UsePlatformAssemblies>false</UsePlatformAssemblies>
 
     <DotNetVersion Condition=" $(DotNetVersion) == '' ">Net10</DotNetVersion>
-    <NetPlatform Condition=" $(DotNetVersion) == 'Net9' ">net9.0</NetPlatform>
     <NetPlatform Condition=" $(DotNetVersion) == 'Net10' ">net10.0</NetPlatform>
     <NetPlatform Condition=" $(DotNetVersion) == 'Net11' ">net11.0</NetPlatform>
     <AndroidPlatform>$(NetPlatform)-android</AndroidPlatform>
@@ -31,6 +29,7 @@
     <MacCatalystPlatform>$(NetPlatform)-maccatalyst</MacCatalystPlatform>
     <WindowsPlatform>$(NetPlatform)-windows10.0.19041.0</WindowsPlatform>
     <ValidateXcodeVersion>false</ValidateXcodeVersion>
+    <ValidateSceneManifest>false</ValidateSceneManifest>
 
     <!-- Prevent the dotnet/maui submodule (eng/Versions.targets) from overriding the AzDO pipeline build number. -->
     <_SkipUpdateBuildNumber>true</_SkipUpdateBuildNumber>

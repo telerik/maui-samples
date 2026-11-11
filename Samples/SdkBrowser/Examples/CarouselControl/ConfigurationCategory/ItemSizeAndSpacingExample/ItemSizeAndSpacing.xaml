@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.CarouselControl"
+             x:Class="SDKBrowserMaui.Examples.CarouselControl.ConfigurationCategory.ItemSizeAndSpacingExample.ItemSizeAndSpacing">
+    <ContentView.BindingContext>
+        <local:CarouselViewModel />
+    </ContentView.BindingContext>
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Style TargetType="HorizontalStackLayout">
+                <Setter Property="Spacing" Value="8" />
+            </Style>
+            <Style TargetType="Label">
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <Grid RowDefinitions="Auto, Auto, *" RowSpacing="12" Padding="12">
+        <HorizontalStackLayout>
+            <Label Text="{Binding Value, Source={x:Reference peekSlider}, StringFormat='Peek Area Ratio (item size): {0:F2}'}" />
+            <Slider x:Name="peekSlider" WidthRequest="150" Minimum="0.6" Maximum="1" Value="{Binding PeekAreaRatio, Source={x:Reference carousel}}" />
+        </HorizontalStackLayout>
+        <HorizontalStackLayout Grid.Row="1">
+            <Label Text="{Binding Value, Source={x:Reference spacingSlider}, StringFormat='Item Spacing: {0:F0}'}" />
+            <Slider x:Name="spacingSlider" WidthRequest="150" Minimum="0" Maximum="50" Value="{Binding ItemSpacing, Source={x:Reference carousel}}" />
+        </HorizontalStackLayout>
+        <!-- >> carousel-item-size-and-spacing -->
+        <telerik:RadCarousel Grid.Row="2"
+                             ItemsSource="{Binding Items}"
+                             PeekAreaRatio="0.7"
+                             ItemSpacing="10"
+                             x:Name="carousel">
+            <telerik:RadCarousel.ItemTemplate>
+                <DataTemplate x:DataType="local:CarouselItem">
+                    <Image Source="{Binding Image}" Aspect="AspectFill" />
+                </DataTemplate>
+            </telerik:RadCarousel.ItemTemplate>
+        </telerik:RadCarousel>
+        <!-- << carousel-item-size-and-spacing -->
+    </Grid>
+</ContentView>

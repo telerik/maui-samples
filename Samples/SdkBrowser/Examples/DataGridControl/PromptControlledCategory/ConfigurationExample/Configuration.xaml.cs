@@ -115,11 +115,7 @@ public partial class Configuration : ContentView
     // >> datagrid-aiprompt-config-show-error-method
     private async Task ShowErrorAsync(string message)
     {
-#if NET10_0_OR_GREATER
         await Application.Current?.Windows[0].Page?.DisplayAlertAsync("Error", message, "OK");
-#else
-        await Application.Current?.Windows[0].Page?.DisplayAlert("Error", message, "OK");
-#endif
     }
     // << datagrid-aiprompt-config-show-error-method
 

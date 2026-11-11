@@ -17,10 +17,23 @@ namespace QSF.Examples.ChartsControl.AreaSeriesExample
                 new DataItem(){Category = "Fresh&Green", Value = 10}
             };
 
+            var secondSeriesData = new ObservableCollection<DataItem>()
+            {
+                new DataItem(){Category = "Greenings", Value = 60},
+                new DataItem(){Category = "Perfecto", Value = 47},
+                new DataItem(){Category = "NearBy", Value = 51},
+                new DataItem(){Category = "FamilyStore", Value = 26},
+                new DataItem(){Category = "Fresh&Green", Value = 82}
+            };
+
             return new GalleryItemViewModelBase[]
             {
                 new SeriesGalleryItemViewModel("chartarea1headeractive.png", "chartarea1headerinactive.png", "lineArea", seriesData),
-                new SeriesGalleryItemViewModel("chartarea3headeractive.png", "chartarea3headerinactive.png", "splineArea", seriesData)
+                new SeriesGalleryItemViewModel("chartarea2headeractive.png", "chartarea2headerinactive.png", "stackedLineArea", seriesData, secondSeriesData),
+                new SeriesGalleryItemViewModel("chartarea5headeractive.png", "chartarea5headerinactive.png", "stacked100LineArea", seriesData, secondSeriesData),
+                new SeriesGalleryItemViewModel("chartarea3headeractive.png", "chartarea3headerinactive.png", "splineArea", seriesData),
+                new SeriesGalleryItemViewModel("chartarea4headeractive.png", "chartarea4headerinactive.png", "stackedSplineArea", seriesData, secondSeriesData),
+                new SeriesGalleryItemViewModel("chartarea6headeractive.png", "chartarea6headerinactive.png", "stacked100SplineArea", seriesData, secondSeriesData)
             };
         }
     }

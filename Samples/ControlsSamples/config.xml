@@ -13,7 +13,6 @@
 	<Controls>
 		<Control>
 			<Name>AI</Name>
-			<Status>New</Status>
 			<DisplayName>AI Components &amp; Features</DisplayName>
 			<ShortDescription>Showcases AI-powered scenarios and integrations across Telerik UI for .NET MAUI controls.</ShortDescription>
 			<FullDescription>Telerik UI for .NET MAUI AI Features demonstrate how to integrate artificial intelligence capabilities into your .NET MAUI applications. These examples showcase cross-control AI-powered scenarios such as natural language interactions, intelligent data processing, and AI-driven UI generation, leveraging large language models and other AI services.</FullDescription>
@@ -27,7 +26,6 @@
 					<HasAICapability>true</HasAICapability>
 				</Example>
 				<Example>
-					<Status>Normal</Status>
 					<ControlName>DataGrid</ControlName>
 					<Name>SemanticSearch</Name>
 					<Page>SemanticSearchView</Page>
@@ -36,7 +34,6 @@
 					<HasAICapability>true</HasAICapability>
 				</Example>
 				<Example>
-					<Status>Normal</Status>
 					<ControlName>Chat</ControlName>
 					<Name>AIIntegration</Name>
 					<Page>AIIntegrationView</Page>
@@ -45,7 +42,6 @@
 					<HasAICapability>true</HasAICapability>
 				</Example>
 				<Example>
-					<Status>Normal</Status>
 					<ControlName>DataGrid</ControlName>
 					<Name>AIChatIntegration</Name>
 					<Page>AIChatIntegrationView</Page>
@@ -54,7 +50,6 @@
 					<HasAICapability>true</HasAICapability>
 				</Example>
 				<Example>
-					<Status>Normal</Status>
 					<ControlName>DataGrid</ControlName>
 					<Name>PromptControlled</Name>
 					<Page>PromptControlledView</Page>
@@ -63,7 +58,6 @@
 					<HasAICapability>true</HasAICapability>
 				</Example>
 				<Example>
-					<Status>Normal</Status>
 					<ControlName>SmartPasteButton</ControlName>
 					<Name>FirstLook</Name>
 					<Page>FirstLookView</Page>
@@ -72,7 +66,6 @@
 					<HasAICapability>true</HasAICapability>
 				</Example>
 				<Example>
-					<Status>Normal</Status>
 					<ControlName>PromptInput</ControlName>
 					<Name>FirstLook</Name>
 					<Page>FirstLookView</Page>
@@ -81,7 +74,6 @@
 					<HasAICapability>true</HasAICapability>
 				</Example>
 				<Example>
-					<Status>Normal</Status>
 					<ControlName>AIPrompt</ControlName>
 					<Name>FirstLook</Name>
 					<Page>FirstLookView</Page>
@@ -155,7 +147,6 @@
 					<Description>Demonstrates how you could customize the visual appearance of the AutoComplete control through various templates such as TokenTemplate, SuggestionItemTemplate, etc.</Description>
 				</Example>
 				<Example>
-					<Status>Updated</Status>
 					<Name>Configuration</Name>
 					<Page>ConfigurationView</Page>
 					<DisplayName>Configuration</DisplayName>
@@ -354,6 +345,30 @@
 		</Control>
 
 		<Control>
+			<Name>Carousel</Name>
+			<DisplayName>Carousel</DisplayName>
+			<Status>New</Status>
+			<ShortDescription>Browse a sequence of items with animated transitions and previews of adjacent items.</ShortDescription>
+			<FullDescription>Telerik UI for .NET MAUI Carousel displays a scrollable sequence of items with a highlighted item and previews of its neighbors. Custom item templates, animated scaling and opacity, and swipe or command-based navigation let you create engaging content showcases.</FullDescription>
+			<Examples>
+				<Example>
+					<Name>FirstLook</Name>
+					<Page>FirstLookView</Page>
+					<DisplayName>First Look</DisplayName>
+					<Status>New</Status>
+					<Description>Telerik UI for .NET MAUI Carousel displays a scrollable sequence of items with a highlighted item and previews of its neighbors. Custom item templates, animated scaling and opacity, and swipe or command-based navigation let you create engaging content showcases.</Description>
+				</Example>
+				<Example>
+					<Name>Configuration</Name>
+					<Page>ConfigurationView</Page>
+					<DisplayName>Configuration</DisplayName>
+					<Status>New</Status>
+					<Description>This example presents the various configuration options that the RadCarousel provides. Switch the orientation, change the highlighted index, adjust the peek area ratio and item spacing, and control navigation to previous and next items.</Description>
+				</Example>
+			</Examples>
+		</Control>
+
+		<Control>
 			<Name>Chart</Name>
 			<DisplayName>Chart</DisplayName>
 			<ShortDescription>A large collection of chart and graph types for data visualization.</ShortDescription>
@@ -414,10 +429,17 @@
 		<Control>
 			<Name>Charts</Name>
 			<DisplayName>Charts (New)</DisplayName>
-			<Status>Preview</Status>
+			<Status>New</Status>
 			<ShortDescription>A new, modern chart component designed to provide improved performance, reliability, and maintainability. It will gradually replace the other Chart.</ShortDescription>
 			<FullDescription>Telerik UI for .NET MAUI New Chart is a new, modern chart component designed to provide improved performance, reliability, and maintainability, rendered with SkiaSharp for fast, pixel-perfect cross-platform graphics. It will gradually reach feature parity with the existing Chart and is intended to replace it.</FullDescription>
 			<Examples>
+				<Example>
+					<Name>FirstLook</Name>
+					<Page>FirstLookView</Page>
+					<DisplayName>First Look</DisplayName>
+					<Status>New</Status>
+					<Description>Operations dashboard that brings together all chart types of the new Chart - area, line, spline, spline area, bar, point (scatter), pie, donut, candlestick and OHLC series, including stacking and null-value gaps.</Description>
+				</Example>
 				<Example>
 					<Name>AreaSeries</Name>
 					<Page>AreaSeriesView</Page>
@@ -429,6 +451,12 @@
 					<Page>BarSeriesView</Page>
 					<DisplayName>Bar Series</DisplayName>
 					<Description>Bar chart is one of the most common type of graphs used to display data. Sometimes known as 'column charts' depending on the orientation, bar charts are used to visualize data points as bar blocks where the width/height of each bar denotes the magnitude of its value. This example shows vertical and horizontal bars, each with a single series or multiple clustered series.</Description>
+				</Example>
+				<Example>
+					<Name>FinancialSeries</Name>
+					<Page>FinancialSeriesView</Page>
+					<DisplayName>Financial Series</DisplayName>
+					<Description>The financial series are represented by the OhlcSeries and CandlestickSeries classes which differ in the way they visualize the data point. OHLC stands for Open, High, Low and Close.</Description>
 				</Example>
 				<Example>
 					<Name>LineSeries</Name>
@@ -510,7 +538,6 @@
 		<Control>
 			<Name>CircularSlider</Name>
 			<DisplayName>CircularSlider</DisplayName>
-			<Status>New</Status>
 			<ShortDescription>Enables users to select a value from a defined range by dragging a thumb along a circular arc.</ShortDescription>
 			<FullDescription>Telerik UI for .NET MAUI CircularSlider is a circular slider control that displays a value in a given min-max range. The end user can change the value by dragging the thumb along a circular path. The control supports configurable start angle, sweep angle and direction, ticks, labels, and tooltips for visual clarity.</FullDescription>
 			<Examples>
@@ -518,7 +545,6 @@
 					<Name>FirstLook</Name>
 					<Page>FirstLookView</Page>
 					<DisplayName>First Look</DisplayName>
-					<Status>New</Status>
 					<Description>Telerik UI for .NET MAUI CircularSlider is a circular slider control that displays a value in a given min-max range. The end user can change the value by dragging the thumb along a circular path. The control supports configurable start angle, sweep angle and direction, ticks, labels, and tooltips for visual clarity.</Description>
 				</Example>
 				<Example>
@@ -526,7 +552,6 @@
 					<Page>ConfigurationView</Page>
 					<DisplayName>Configuration</DisplayName>
 					<IsConfigurable>true</IsConfigurable>
-					<Status>New</Status>
 					<Description>This example presents the various configuration options that the RadCircularSlider provides. Adjust the ticks and labels placement, frequency, colors, size, customize the look of the track and thumb elements, explore the snap and drag modes, and configure the start angle, sweep angle, sweep direction, and radius factor of the circular arc.</Description>
 				</Example>
 			</Examples>
@@ -584,6 +609,7 @@
 					<IsConfigurable>true</IsConfigurable>
 				</Example>
 				<Example>
+                  <Status>Updated</Status>
 					<Name>PullToRefresh</Name>
 					<Page>PullToRefreshView</Page>
 					<DisplayName>Pull to Refresh</DisplayName>
@@ -603,7 +629,6 @@
 					<Description>This example demonstrates how to implement paging functionality using the RadDataPager control.</Description>
 				</Example>
 				<Example>
-					<Status>Updated</Status>
 					<Name>Configuration</Name>
 					<Page>ConfigurationView</Page>
 					<DisplayName>Configuration</DisplayName>
@@ -670,6 +695,7 @@
 		<Control>
 			<Name>DataGrid</Name>
 			<DisplayName>DataGrid</DisplayName>
+			<Status>Updated</Status>
 			<ShortDescription>A powerful and feature-rich control used to visualize and edit data represented in a tabular fashion.</ShortDescription>
 			<FullDescription>Telerik UI for .NET MAUI DataGrid control provides the ability to easily perform operations like sorting, filtering, grouping and editing over the underlying data.</FullDescription>
 			<Examples>
@@ -680,7 +706,6 @@
 					<Description>Telerik UI for .NET MAUI DataGrid control provides the ability to easily perform operations like sorting, filtering, grouping and editing over the underlying data.</Description>
 				</Example>
 				<Example>
-					<Status>New</Status>
 					<Name>SemanticSearch</Name>
 					<Page>SemanticSearchView</Page>
 					<DisplayName>AI Smart DataGrid</DisplayName>
@@ -723,12 +748,18 @@
 					<Description>Demonstrates how you can easily store big clusters of data in the DataGrid</Description>
 				</Example>
 				<Example>
-					<Status>Updated</Status>
 					<Name>ColumnTypes</Name>
 					<Page>ColumnTypesView</Page>
 					<DisplayName>Column Types</DisplayName>
 					<IsConfigurable>true</IsConfigurable>
 					<Description>Demonstrates the different type of columns that DataGrid control provides. Column types such as Text, Boolean, Template, Date, Time, Numeric. Also there is an option for hiding the column headers.</Description>
+				</Example>
+				<Example>
+					<Status>New</Status>
+					<Name>PullToRefresh</Name>
+					<Page>PullToRefreshView</Page>
+					<DisplayName>Pull to Refresh</DisplayName>
+					<Description>Demonstrates the ability to refresh the DataGrid data by using the pull to refresh functionality provided by the RadRefreshView control.</Description>
 				</Example>
 				<Example>
 					<Name>DataFormatting</Name>
@@ -1275,6 +1306,46 @@
 		</Control>
 
 		<Control>
+			<Name>RefreshView</Name>
+			<DisplayName>RefreshView</DisplayName>
+			<Status>New</Status>
+			<ShortDescription>A view that can be refreshed by a user interaction, such as a pull gesture.</ShortDescription>
+			<FullDescription>Telerik UI for .NET MAUI RefreshView is a container control that can be refreshed by a user interaction. Wrap any content, and let your users load the latest data with a pull gesture on mobile and desktop or by triggering the refresh programmatically.</FullDescription>
+			<Examples>
+				<Example>
+					<Name>FirstLook</Name>
+					<Page>FirstLookView</Page>
+					<DisplayName>First Look</DisplayName>
+					<Status>New</Status>
+					<Description>Telerik UI for .NET MAUI RefreshView is a container control that can be refreshed by a user interaction. Wrap any content, not only scrollable views, and let your users load the latest data with a pull gesture on mobile and desktop or by triggering the refresh programmatically.</Description>
+				</Example>
+				<Example>
+					<Name>Configuration</Name>
+					<Page>ConfigurationView</Page>
+					<DisplayName>Configuration</DisplayName>
+					<Status>New</Status>
+					<Description>This example presents the various configuration options that the RadRefreshView provides. Choose the indicator type, transition mode, and pull direction, enable or disable the refresh, and adjust the pulling threshold and indicator threshold.</Description>
+				</Example>
+				<Example>
+					<Status>New</Status>
+					<ControlName>CollectionView</ControlName>
+					<Name>PullToRefresh</Name>
+					<Page>PullToRefreshView</Page>
+					<DisplayName>CollectionView</DisplayName>
+					<Description>Demonstrates the ability to refresh the CollectionView data by using the pull to refresh functionality.</Description>
+				</Example>
+				<Example>
+					<Status>New</Status>
+					<ControlName>DataGrid</ControlName>
+					<Name>PullToRefresh</Name>
+					<Page>PullToRefreshView</Page>
+					<DisplayName>DataGrid</DisplayName>
+					<Description>Demonstrates the ability to refresh the DataGrid data by using the pull to refresh functionality provided by the RadRefreshView control.</Description>
+				</Example>
+			</Examples>
+		</Control>
+
+		<Control>
 			<Name>RichTextEditor</Name>
 			<DisplayName>RichTextEditor</DisplayName>
 			<ShortDescription>WYSIWYG control that can display and edit HTML content.</ShortDescription>
@@ -1766,10 +1837,10 @@
 
 	<HighlightedControls>
 		<HighlightedControl>
-			<DisplayName>CircularSlider</DisplayName>
+			<DisplayName>Charts (New)</DisplayName>
 		</HighlightedControl>
 		<HighlightedControl>
-			<DisplayName>DataGrid</DisplayName>
+			<DisplayName>Carousel</DisplayName>
 		</HighlightedControl>
 		<HighlightedControl>
 			<DisplayName>CollectionView</DisplayName>

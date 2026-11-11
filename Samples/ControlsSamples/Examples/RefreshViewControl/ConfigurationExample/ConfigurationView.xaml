@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<telerik:RadContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+                        xmlns:styles="clr-namespace:QSF.Styles"
+                        x:Class="QSF.Examples.RefreshViewControl.ConfigurationExample.ConfigurationView"
+                        Padding="{OnIdiom Default='16, 20', Phone=0}">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <styles:ConfigurationViewResources />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <Grid RowDefinitions="{OnPlatform Default='300, *', WinUI='320, *'}">
+        <telerik:RadBorder Style="{StaticResource ControlWrapperBorderStyle}" />
+        <telerik:RadRefreshView x:Name="refreshView"
+                                IsRefreshing="{Binding IsRefreshing}"
+                                Command="{Binding RefreshCommand}"
+                                IsRefreshEnabled="{Binding IsRefreshEnabled}"
+                                IndicatorType="{Binding IndicatorType}"
+                                TransitionMode="{Binding TransitionMode}"
+                                PullDirection="{Binding PullDirection}"
+                                PullingThreshold="{Binding PullingThreshold}"
+                                IndicatorThreshold="{Binding IndicatorThreshold}">
+            <telerik:RadCollectionView x:Name="collectionView"
+                                       Margin="0, 40, 0, 0"
+                                       ItemsSource="{Binding Items}">
+                <telerik:RadCollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <VerticalStackLayout Padding="12, 8" Spacing="2">
+                            <Label Text="{Binding Title}"
+                                   FontAttributes="Bold"
+                                   TextColor="{DynamicResource DefaultTextColor}" />
+                            <Label Text="{Binding Description}"
+                                   FontSize="12"
+                                   TextColor="{DynamicResource DefaultTextColor}"
+                                   Opacity="0.7" />
+                        </VerticalStackLayout>
+                    </DataTemplate>
+                </telerik:RadCollectionView.ItemTemplate>
+            </telerik:RadCollectionView>
+        </telerik:RadRefreshView>
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Style="{StaticResource RootAtExampleAreaStyle}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="{OnIdiom Default=*, Phone=0}" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="{OnIdiom Default=0, Phone=*}" />
+                    </Grid.RowDefinitions>
+                    <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                        <HorizontalStackLayout telerik:RadCheckBox.ToggleOnTap="{x:Reference isRefreshingCheckBox}"
+                                               Style="{StaticResource CheckBoxGroupStyle}">
+                            <telerik:RadCheckBox x:Name="isRefreshingCheckBox"
+                                                 IsChecked="{Binding IsRefreshingPinned, Mode=TwoWay}" />
+                            <Label Text="Is Refreshing"
+                                   Style="{StaticResource HorizontalGroupLabelAtEndStyle}" />
+                        </HorizontalStackLayout>
+                    </VerticalStackLayout>
+                </Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="{OnIdiom Default=*, Phone=0}" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="{OnIdiom Default=0, Phone=*}" />
+                    </Grid.RowDefinitions>
+                    <VerticalStackLayout Style="{OnIdiom Default={StaticResource GroupAtExampleAreaWithColumnBreakStyle}, Phone={StaticResource GroupAtExampleAreaStyle}}">
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Indicator Type:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <telerik:RadComboBox ItemsSource="{Binding IndicatorTypes}"
+                                                 SelectedItem="{Binding IndicatorType, Mode=TwoWay}"
+                                                 IsClearButtonVisible="False" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Transition Mode:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <telerik:RadComboBox ItemsSource="{Binding TransitionModes}"
+                                                 SelectedItem="{Binding TransitionMode, Mode=TwoWay}"
+                                                 IsClearButtonVisible="False" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Pull Direction:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <telerik:RadComboBox ItemsSource="{Binding PullDirections}"
+                                                 SelectedItem="{Binding PullDirection, Mode=TwoWay}"
+                                                 IsClearButtonVisible="False" />
+                        </VerticalStackLayout>
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Grid.Column="{OnIdiom Default=1, Phone=0}"
+                                         Grid.Row="{OnIdiom Default=0, Phone=1}"
+                                         Style="{StaticResource GroupAtExampleAreaStyle}">
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Pulling Threshold:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <telerik:RadNumericInput Minimum="20"
+                                                     Maximum="200"
+                                                     Step="10"
+                                                     Value="{Binding PullingThreshold}" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Indicator Threshold:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <telerik:RadNumericInput Minimum="0"
+                                                     Maximum="100"
+                                                     Step="5"
+                                                     Value="{Binding IndicatorThreshold}" />
+                        </VerticalStackLayout>
+                    </VerticalStackLayout>
+                </Grid>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</telerik:RadContentView>

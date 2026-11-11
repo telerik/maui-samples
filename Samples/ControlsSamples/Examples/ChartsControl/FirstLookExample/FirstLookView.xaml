@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:charts="clr-namespace:Telerik.Maui.Controls.Charts;assembly=Telerik.Maui.Controls"
+             xmlns:local="clr-namespace:QSF.Examples.ChartsControl.FirstLookExample"
+             x:Class="QSF.Examples.ChartsControl.FirstLookExample.FirstLookView">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Style x:Key="CardStyle" TargetType="telerik:RadBorder">
+                <Setter Property="BackgroundColor" Value="{DynamicResource SecondaryBackgroundColor}" />
+                <Setter Property="BorderColor" Value="{DynamicResource RadBorderColor}" />
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="CornerRadius" Value="4" />
+                <Setter Property="Padding" Value="{OnIdiom Default='16', Phone='12'}" />
+                <Setter Property="HeightRequest" Value="{OnIdiom Default=300, Phone=280}" />
+            </Style>
+            <Style x:Key="KpiCardStyle" TargetType="telerik:RadBorder" BasedOn="{StaticResource CardStyle}">
+                <Setter Property="HeightRequest" Value="-1" />
+            </Style>
+            <Style x:Key="CardTitleStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="{OnIdiom Default=16, Phone=15}" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="TextColor" Value="{DynamicResource DefaultTextColor}" />
+            </Style>
+            <Style x:Key="CardSubtitleStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="12" />
+                <Setter Property="TextColor" Value="{DynamicResource PlaceholderColor}" />
+                <Setter Property="Margin" Value="0, 2, 0, 8" />
+            </Style>
+            <Style x:Key="KpiTitleStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="12" />
+                <Setter Property="TextColor" Value="{DynamicResource PlaceholderColor}" />
+            </Style>
+            <Style x:Key="KpiValueStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="{OnIdiom Default=24, Phone=20}" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="TextColor" Value="{DynamicResource DefaultTextColor}" />
+            </Style>
+            <Style x:Key="KpiTrendStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="12" />
+                <Setter Property="TextColor" Value="{DynamicResource ChartsSuccessTextColor}" />
+                <Style.Triggers>
+                    <DataTrigger TargetType="Label" Binding="{Binding IsPositive}" Value="False">
+                        <Setter Property="TextColor" Value="{DynamicResource ChartsErrorTextColor}" />
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            <Style x:Key="KpiTrendBadgeStyle" TargetType="telerik:RadBorder">
+                <Setter Property="BackgroundColor" Value="#2621A366" />
+                <Setter Property="CornerRadius" Value="6" />
+                <Setter Property="Padding" Value="8, 4" />
+                <Setter Property="VerticalOptions" Value="Start" />
+                <Style.Triggers>
+                    <DataTrigger TargetType="telerik:RadBorder" Binding="{Binding IsPositive}" Value="False">
+                        <Setter Property="BackgroundColor" Value="#26E63633" />
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            <Style x:Key="LegendTextStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="12" />
+                <Setter Property="TextColor" Value="{DynamicResource DefaultTextColor}" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+            <Style x:Key="LegendHeaderStyle" TargetType="Label" BasedOn="{StaticResource LegendTextStyle}">
+                <Setter Property="TextColor" Value="{DynamicResource PlaceholderColor}" />
+            </Style>
+            <Style x:Key="LegendMarkerStyle" TargetType="local:ChartLegendMarker">
+                <Setter Property="WidthRequest" Value="12" />
+                <Setter Property="HeightRequest" Value="12" />
+                <Setter Property="CornerRadius" Value="2" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+            <Style x:Key="LegendStyle" TargetType="telerik:RadCollectionView">
+                <Setter Property="SelectionMode" Value="None" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="ItemViewStyle">
+                    <Style TargetType="telerik:RadCollectionViewItemView">
+                        <Setter Property="BorderThickness" Value="0" />
+                    </Style>
+                </Setter>
+            </Style>
+            <Style x:Key="FinancialTooltipStyle" TargetType="charts:ChartTooltip">
+                <Setter Property="Padding" Value="8, 4" />
+                <Setter Property="BackgroundColor" Value="{DynamicResource SecondaryBackgroundColor}" />
+                <Setter Property="BorderColor" Value="{DynamicResource RadBorderColor}" />
+                <Setter Property="BorderThickness" Value="1" />
+            </Style>
+            <DataTemplate x:Key="FinancialTooltipTemplate" x:DataType="charts:ChartTooltipContext">
+                <Grid ColumnSpacing="6">
+                    <VerticalStackLayout Spacing="6">
+                    <BoxView Grid.ColumnSpan="2"
+                             HeightRequest="8"
+                             Color="{Binding SeriesColor}"
+                             VerticalOptions="Center" />
+                    
+                        <Label Grid.Column="1"
+                               Text="{Binding DataItem.Open, StringFormat='Open: ${0:F2}'}"
+                               FontSize="12"
+                               TextColor="{DynamicResource DefaultTextColor}"
+                               VerticalOptions="Center" />
+                        <Label Grid.Column="1"
+                               Text="{Binding DataItem.Close, StringFormat='Close: ${0:F2}'}"
+                               FontSize="12"
+                               TextColor="{DynamicResource DefaultTextColor}"
+                               VerticalOptions="Center" />
+                    </VerticalStackLayout>
+                </Grid>
+            </DataTemplate>
+            <DataTemplate x:Key="KpiTemplate">
+                <telerik:RadBorder Style="{StaticResource KpiCardStyle}">
+                    <Grid ColumnDefinitions="Auto, *, Auto" RowDefinitions="Auto, Auto" ColumnSpacing="12" RowSpacing="{OnIdiom Default=0, Phone=8}">
+                        <telerik:RadBorder WidthRequest="{OnIdiom Default=48, Phone=40}"
+                                           HeightRequest="{OnIdiom Default=48, Phone=40}"
+                                           CornerRadius="8"
+                                           VerticalOptions="Center"
+                                           BackgroundColor="{Binding IconBackgroundColor}">
+                            <Path Data="{Binding Icon}"
+                                  Stroke="{Binding IconColor}"
+                                  StrokeThickness="2"
+                                  StrokeLineJoin="Round"
+                                  StrokeLineCap="Round"
+                                  Aspect="Uniform"
+                                  WidthRequest="22"
+                                  HeightRequest="22"
+                                  HorizontalOptions="Center"
+                                  VerticalOptions="Center" />
+                        </telerik:RadBorder>
+                        <VerticalStackLayout Grid.Row="{OnIdiom Default=0, Phone=1}"
+                                             Grid.Column="{OnIdiom Default=1, Phone=0}"
+                                             Grid.ColumnSpan="{OnIdiom Default=1, Phone=3}"
+                                             Spacing="2"
+                                             VerticalOptions="Center">
+                            <Label Text="{Binding Title}" Style="{StaticResource KpiTitleStyle}" />
+                            <Label Text="{Binding Value}" Style="{StaticResource KpiValueStyle}" />
+                            <Label Text="{Binding Subtitle}" Style="{StaticResource KpiTitleStyle}" />
+                        </VerticalStackLayout>
+                        <telerik:RadBorder Grid.Column="2" Style="{StaticResource KpiTrendBadgeStyle}">
+                            <Label Text="{Binding Trend}" Style="{StaticResource KpiTrendStyle}" FontAttributes="Bold" />
+                        </telerik:RadBorder>
+                    </Grid>
+                </telerik:RadBorder>
+            </DataTemplate>
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+    <ScrollView>
+        <Grid x:Name="dashboard"
+              Padding="{OnIdiom Default='24', Phone='12'}"
+              RowSpacing="{OnIdiom Default=16, Phone=12}"
+              ColumnSpacing="16"
+              MinimumWidthRequest="400">
+
+            <!-- Header -->
+            <VerticalStackLayout x:Name="headerPanel" Spacing="2">
+                <Label Text="Sales Overview" FontSize="{OnIdiom Default=26, Phone=22}" FontAttributes="Bold" TextColor="{DynamicResource DefaultTextColor}" />
+                <Label Text="Performance at a glance" FontSize="14" TextColor="{DynamicResource PlaceholderColor}" />
+            </VerticalStackLayout>
+
+            <!-- KPIs -->
+            <Grid x:Name="kpiPanel"
+                  RowSpacing="{OnIdiom Default=16, Phone=12}"
+                  ColumnSpacing="{OnIdiom Default=16, Phone=12}" />
+
+            <!-- Revenue trend: Area + Line + Spline -->
+            <telerik:RadBorder x:Name="revenueCard" Style="{StaticResource CardStyle}">
+                <Grid RowDefinitions="Auto, Auto, *">
+                    <Label Text="Revenue Trend" Style="{StaticResource CardTitleStyle}" />
+                    <Label Grid.Row="1" Text="Costs (actual) vs. target vs. forecast, $M" Style="{StaticResource CardSubtitleStyle}" />
+                    <charts:RadCartesianChart Grid.Row="2" AutomationId="revenueChart">
+                        <charts:RadCartesianChart.Grid>
+                            <charts:CartesianChartGrid MajorLinesVisibility="Horizontal" />
+                        </charts:RadCartesianChart.Grid>
+                        <charts:RadCartesianChart.Axes>
+                            <charts:CategoricalAxis Location="Bottom" PlotMode="OnTicks" />
+                            <charts:NumericalAxis Location="Left" />
+                        </charts:RadCartesianChart.Axes>
+                        <charts:RadCartesianChart.Series>
+                            <charts:AreaSeries DisplayName="Costs (actual)"
+                                               HorizontalBinding="Category"
+                                               VerticalBinding="Value"
+                                               ItemsSource="{Binding RevenueCosts}" />
+                            <charts:LineSeries DisplayName="Target"
+                                               HorizontalBinding="Category"
+                                               VerticalBinding="Value"
+                                               ItemsSource="{Binding RevenueTarget}" />
+                            <charts:SplineSeries DisplayName="Forecast"
+                                                 HorizontalBinding="Category"
+                                                 VerticalBinding="Value"
+                                                 ItemsSource="{Binding Revenue}" />
+                        </charts:RadCartesianChart.Series>
+                    </charts:RadCartesianChart>
+                </Grid>
+            </telerik:RadBorder>
+
+            <!-- Sales by channel: Donut -->
+            <telerik:RadBorder x:Name="channelsCard" Style="{StaticResource CardStyle}">
+                <Grid RowDefinitions="Auto, Auto, *">
+                    <Label Text="Sales by Channel" Style="{StaticResource CardTitleStyle}" />
+                    <Label Grid.Row="1" Text="Share of total sales, %" Style="{StaticResource CardSubtitleStyle}" />
+                    <Grid Grid.Row="2" ColumnDefinitions="*, Auto" ColumnSpacing="12">
+                        <charts:RadPieChart AutomationId="channelsChart">
+                            <charts:RadPieChart.Series>
+                                <charts:DonutSeries ValueBinding="Value"
+                                                    LabelBinding="Category"
+                                                    InnerRadiusFactor="0.55"
+                                                    OuterRadiusFactor="0.9"
+                                                    ItemsSource="{Binding Channels}" />
+                            </charts:RadPieChart.Series>
+                        </charts:RadPieChart>
+
+                        <telerik:RadCollectionView Grid.Column="1"
+                                                   AutomationId="channelsLegend"
+                                                   WidthRequest="80"
+                                                   Style="{StaticResource LegendStyle}"
+                                                   ItemsSource="{Binding ChannelsLegend}">
+                            <telerik:RadCollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid ColumnDefinitions="Auto, *" ColumnSpacing="8" Padding="0, 4">
+                                        <local:ChartLegendMarker PaletteIndex="{Binding PaletteIndex}" Style="{StaticResource LegendMarkerStyle}" />
+                                        <Label Grid.Column="1" Text="{Binding Value}" Style="{StaticResource LegendTextStyle}" />
+                                    </Grid>
+                                </DataTemplate>
+                            </telerik:RadCollectionView.ItemTemplate>
+                        </telerik:RadCollectionView>
+                    </Grid>
+                </Grid>
+            </telerik:RadBorder>
+
+            <!-- Regional sales: stacked Bar -->
+            <telerik:RadBorder x:Name="regionsCard" Style="{StaticResource CardStyle}">
+                <Grid RowDefinitions="Auto, Auto, *">
+                    <Label Text="Sales by Region" Style="{StaticResource CardTitleStyle}" />
+                    <Label Grid.Row="1" Text="Quarterly sales by region, $M" Style="{StaticResource CardSubtitleStyle}" />
+                    <Grid Grid.Row="2" ColumnDefinitions="*, Auto" ColumnSpacing="12">
+                        <charts:RadCartesianChart AutomationId="regionsChart">
+                            <charts:RadCartesianChart.Grid>
+                                <charts:CartesianChartGrid MajorLinesVisibility="Horizontal" />
+                            </charts:RadCartesianChart.Grid>
+                            <charts:RadCartesianChart.Axes>
+                                <charts:CategoricalAxis Location="Bottom" />
+                                <charts:NumericalAxis Location="Left" />
+                            </charts:RadCartesianChart.Axes>
+                            <charts:RadCartesianChart.Series>
+                                <charts:BarSeries DisplayName="North America" CombineMode="Stack"
+                                                  HorizontalBinding="Category" VerticalBinding="Value"
+                                                  ItemsSource="{Binding RegionNorthAmerica}" />
+                                <charts:BarSeries DisplayName="Europe" CombineMode="Stack"
+                                                  HorizontalBinding="Category" VerticalBinding="Value"
+                                                  ItemsSource="{Binding RegionEurope}" />
+                                <charts:BarSeries DisplayName="Asia Pacific" CombineMode="Stack"
+                                                  HorizontalBinding="Category" VerticalBinding="Value"
+                                                  ItemsSource="{Binding RegionAsiaPacific}" />
+                                <charts:BarSeries DisplayName="Latin America" CombineMode="Stack"
+                                                  HorizontalBinding="Category" VerticalBinding="Value"
+                                                  ItemsSource="{Binding RegionLatinAmerica}" />
+                            </charts:RadCartesianChart.Series>
+                        </charts:RadCartesianChart>
+                        <Grid Grid.Column="1" VerticalOptions="Center" WidthRequest="{OnIdiom Default=150, Phone=140}">
+                            <telerik:RadCollectionView AutomationId="regionsLegend"
+                                                       Style="{StaticResource LegendStyle}"
+                                                       ItemsSource="{Binding RegionsLegend}">
+                                <telerik:RadCollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid ColumnDefinitions="Auto, *, Auto" ColumnSpacing="8" Padding="0, 4">
+                                            <local:ChartLegendMarker PaletteIndex="{Binding PaletteIndex}" Style="{StaticResource LegendMarkerStyle}" />
+                                            <Label Grid.Column="1" Text="{Binding Name}" Style="{StaticResource LegendTextStyle}" LineBreakMode="TailTruncation" />
+                                            <Label Grid.Column="2" Text="{Binding Value}" Style="{StaticResource LegendTextStyle}" />
+                                        </Grid>
+                                    </DataTemplate>
+                                </telerik:RadCollectionView.ItemTemplate>
+                            </telerik:RadCollectionView>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </telerik:RadBorder>
+
+            <!-- Campaign ROI: Point (scatter) -->
+            <telerik:RadBorder x:Name="campaignsCard" Style="{StaticResource CardStyle}">
+                <Grid RowDefinitions="Auto, Auto, *">
+                    <Label Text="Campaign Performance" Style="{StaticResource CardTitleStyle}" />
+                    <Label Grid.Row="1" Text="Spend vs. return, $K - paid search (ROAS 3.2×) and paid social (ROAS 2.4×)" Style="{StaticResource CardSubtitleStyle}" />
+                    <charts:RadCartesianChart Grid.Row="2" AutomationId="campaignsChart">
+                        <charts:RadCartesianChart.Grid>
+                            <charts:CartesianChartGrid MajorLinesVisibility="Both" />
+                        </charts:RadCartesianChart.Grid>
+                        <charts:RadCartesianChart.Axes>
+                            <charts:NumericalAxis Location="Bottom" Minimum="0" Maximum="400" />
+                            <charts:NumericalAxis Location="Left" Minimum="0" Maximum="800" />
+                        </charts:RadCartesianChart.Axes>
+                        <charts:RadCartesianChart.Series>
+                            <charts:PointSeries DisplayName="Paid Search" PointSize="10"
+                                                HorizontalBinding="Value"
+                                                VerticalBinding="ValueY"
+                                                ItemsSource="{Binding CampaignsSearch}" />
+                            <charts:PointSeries DisplayName="Paid Social" PointSize="10"
+                                                HorizontalBinding="Value"
+                                                VerticalBinding="ValueY"
+                                                ItemsSource="{Binding CampaignsSocial}" />
+                        </charts:RadCartesianChart.Series>
+                    </charts:RadCartesianChart>
+                </Grid>
+            </telerik:RadBorder>
+
+            <!-- Product mix: Pie -->
+            <telerik:RadBorder x:Name="productsCard" Style="{StaticResource CardStyle}">
+                <Grid RowDefinitions="Auto, Auto, *">
+                    <Label Text="Product Mix" Style="{StaticResource CardTitleStyle}" />
+                    <Label Grid.Row="1" Text="Share of total sales by product, %" Style="{StaticResource CardSubtitleStyle}" />
+                    <charts:RadPieChart Grid.Row="2" AutomationId="productsChart">
+                        <charts:RadPieChart.Series>
+                            <charts:PieSeries ValueBinding="Value"
+                                              LabelBinding="Label"
+                                              ShowLabels="True"
+                                              ItemsSource="{Binding ProductMix}">
+                                <charts:PieSeries.LabelStyle>
+                                    <Style TargetType="charts:ChartLabelAppearance">
+                                        <Setter Property="TextColor" Value="{AppThemeBinding Light=White, Dark=Black}" />
+                                        <Setter Property="FontAttributes" Value="Bold" />
+                                    </Style>
+                                </charts:PieSeries.LabelStyle>
+                            </charts:PieSeries>
+                        </charts:RadPieChart.Series>
+                    </charts:RadPieChart>
+                </Grid>
+            </telerik:RadBorder>
+
+            <!-- Share price: Candlestick -->
+            <telerik:RadBorder x:Name="candlestickCard" Style="{StaticResource CardStyle}">
+                <Grid RowDefinitions="Auto, Auto, *">
+                    <Label Text="Share Price" Style="{StaticResource CardTitleStyle}" />
+                    <Label Grid.Row="1" Text="Weekly open, high, low and close - candlestick, $" Style="{StaticResource CardSubtitleStyle}" />
+                    <charts:RadCartesianChart Grid.Row="2" AutomationId="candlestickChart">
+                        <charts:RadCartesianChart.ChartBehaviors>
+                            <charts:ChartTooltipBehavior PlacementMode="DataPoint"
+                                                         TooltipContentTemplate="{StaticResource FinancialTooltipTemplate}"
+                                                         TooltipStyle="{StaticResource FinancialTooltipStyle}" />
+                        </charts:RadCartesianChart.ChartBehaviors>
+                        <charts:RadCartesianChart.Grid>
+                            <charts:CartesianChartGrid MajorLinesVisibility="Horizontal" />
+                        </charts:RadCartesianChart.Grid>
+                        <charts:RadCartesianChart.Axes>
+                            <charts:CategoricalAxis Location="Bottom" LabelInterval="3" LabelFitMode="Rotate" />
+                            <charts:NumericalAxis Location="Left" Minimum="95" Maximum="130" />
+                        </charts:RadCartesianChart.Axes>
+                        <charts:RadCartesianChart.Series>
+                            <charts:CandlestickSeries HorizontalBinding="Category"
+                                                      OpenBinding="Open"
+                                                      HighBinding="High"
+                                                      LowBinding="Low"
+                                                      CloseBinding="Close"
+                                                      ItemsSource="{Binding StockPrices}" />
+                        </charts:RadCartesianChart.Series>
+                    </charts:RadCartesianChart>
+                </Grid>
+            </telerik:RadBorder>
+
+            <!-- Website traffic with outage: Line chart -->
+            <telerik:RadBorder x:Name="trafficCard" Style="{StaticResource CardStyle}">
+                <Grid RowDefinitions="Auto, Auto, *">
+                    <Label Text="Website Traffic" Style="{StaticResource CardTitleStyle}" />
+                    <Label Grid.Row="1" Text="Visits, K - the gap marks missing data on Thursday" Style="{StaticResource CardSubtitleStyle}" />
+                    <charts:RadCartesianChart Grid.Row="2" AutomationId="trafficChart">
+                        <charts:RadCartesianChart.Grid>
+                            <charts:CartesianChartGrid MajorLinesVisibility="Horizontal" />
+                        </charts:RadCartesianChart.Grid>
+                        <charts:RadCartesianChart.Axes>
+                            <charts:CategoricalAxis Location="Bottom" />
+                            <charts:NumericalAxis Location="Left" />
+                        </charts:RadCartesianChart.Axes>
+                        <charts:RadCartesianChart.Series>
+                            <charts:LineSeries DisplayName="Visits"
+                                               HorizontalBinding="Category"
+                                               VerticalBinding="Value"
+                                               ItemsSource="{Binding Traffic}" />
+                        </charts:RadCartesianChart.Series>
+                    </charts:RadCartesianChart>
+                </Grid>
+            </telerik:RadBorder>
+
+            <!-- Customer growth: stacked SplineArea -->
+            <telerik:RadBorder x:Name="customersCard" Style="{StaticResource CardStyle}">
+                <Grid RowDefinitions="Auto, Auto, *">
+                    <Label Text="Customer Growth" Style="{StaticResource CardTitleStyle}" />
+                    <Label Grid.Row="1" Text="New and returning customers, K" Style="{StaticResource CardSubtitleStyle}" />
+                    <charts:RadCartesianChart Grid.Row="2" AutomationId="customersChart">
+                        <charts:RadCartesianChart.Grid>
+                            <charts:CartesianChartGrid MajorLinesVisibility="Horizontal" />
+                        </charts:RadCartesianChart.Grid>
+                        <charts:RadCartesianChart.Axes>
+                            <charts:CategoricalAxis Location="Bottom" PlotMode="OnTicks" />
+                            <charts:NumericalAxis Location="Left" />
+                        </charts:RadCartesianChart.Axes>
+                        <charts:RadCartesianChart.Series>
+                            <charts:SplineAreaSeries DisplayName="Returning" CombineMode="Stack"
+                                                     HorizontalBinding="Category" VerticalBinding="Value"
+                                                     ItemsSource="{Binding ReturningCustomers}" />
+                            <charts:SplineAreaSeries DisplayName="New" CombineMode="Stack"
+                                                     HorizontalBinding="Category" VerticalBinding="Value"
+                                                     ItemsSource="{Binding NewCustomers}" />
+                        </charts:RadCartesianChart.Series>
+                    </charts:RadCartesianChart>
+                </Grid>
+            </telerik:RadBorder>
+
+            <!-- Share price range: OHLC -->
+            <telerik:RadBorder x:Name="ohlcCard" Style="{StaticResource CardStyle}">
+                <Grid RowDefinitions="Auto, Auto, *">
+                    <Label Text="Price Range" Style="{StaticResource CardTitleStyle}" />
+                    <Label Grid.Row="1" Text="Weekly open, high, low and close - OHLC bars, $" Style="{StaticResource CardSubtitleStyle}" />
+                    <charts:RadCartesianChart Grid.Row="2" AutomationId="ohlcChart">
+                        <charts:RadCartesianChart.ChartBehaviors>
+                            <charts:ChartTooltipBehavior PlacementMode="DataPoint"
+                                                         TooltipContentTemplate="{StaticResource FinancialTooltipTemplate}"
+                                                         TooltipStyle="{StaticResource FinancialTooltipStyle}" />
+                        </charts:RadCartesianChart.ChartBehaviors>
+                        <charts:RadCartesianChart.Grid>
+                            <charts:CartesianChartGrid MajorLinesVisibility="Horizontal" />
+                        </charts:RadCartesianChart.Grid>
+                        <charts:RadCartesianChart.Axes>
+                            <charts:CategoricalAxis Location="Bottom" LabelInterval="3" LabelFitMode="Rotate" />
+                            <charts:NumericalAxis Location="Left" Minimum="95" Maximum="130" />
+                        </charts:RadCartesianChart.Axes>
+                        <charts:RadCartesianChart.Series>
+                            <charts:OhlcSeries HorizontalBinding="Category"
+                                               OpenBinding="Open"
+                                               HighBinding="High"
+                                               LowBinding="Low"
+                                               CloseBinding="Close"
+                                               ItemsSource="{Binding StockPrices}" />
+                        </charts:RadCartesianChart.Series>
+                    </charts:RadCartesianChart>
+                </Grid>
+            </telerik:RadBorder>
+        </Grid>
+    </ScrollView>
+</ContentView>
