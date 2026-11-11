@@ -12,12 +12,11 @@
                                     Command="{Binding RefreshCommand}"
                                     Margin="0, 0, 0, 20"
                                     HorizontalOptions="Start" />
-        <RefreshView Grid.Row="1"
-                     RefreshColor="{DynamicResource DefaultTextColor}"
-                     IsRefreshing="{Binding IsRefreshing}"
-                     Command="{Binding RefreshCommand}"
-                     HorizontalOptions="Start"
-                     AutomationId="pullToRefreshButton" >
+        <telerik:RadRefreshView Grid.Row="1"
+                                IsRefreshing="{Binding IsRefreshing}"
+                                Command="{Binding RefreshCommand}"
+                                HorizontalOptions="Start"
+                                AutomationId="pullToRefreshButton" >
             <telerik:RadCollectionView ItemsSource="{Binding Recipes}"
                                        ItemViewStyle="{StaticResource CollectionViewItemStyle}"
                                        AutomationId="collectionView">
@@ -58,6 +57,6 @@
                     </DataTemplate>
                 </telerik:RadCollectionView.ItemTemplate>
             </telerik:RadCollectionView>
-        </RefreshView>
+        </telerik:RadRefreshView>
     </Grid>
 </ContentView>

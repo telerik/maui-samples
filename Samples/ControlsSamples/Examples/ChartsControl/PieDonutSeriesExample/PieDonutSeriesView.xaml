@@ -9,7 +9,7 @@
     <views:GalleryExampleViewBase.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <styles:GalleryResources/>
+                <styles:GalleryResources />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
         <DataTemplate x:Key="Pie">
@@ -18,7 +18,7 @@
                 <charts:RadPieChart.Series>
                     <charts:PieSeries ValueBinding="Value"
                                       LabelBinding="Category"
-                                      ItemsSource="{Binding SeriesData}"/>
+                                      ItemsSource="{Binding SeriesData}" />
                 </charts:RadPieChart.Series>
             </charts:RadPieChart>
         </DataTemplate>
@@ -28,7 +28,7 @@
                 <charts:RadPieChart.Series>
                     <charts:PieSeries ValueBinding="Value"
                                       LabelBinding="Category"
-                                      ItemsSource="{Binding SeriesData}"/>
+                                      ItemsSource="{Binding SeriesData}" />
                 </charts:RadPieChart.Series>
             </charts:RadPieChart>
         </DataTemplate>
@@ -40,7 +40,7 @@
                                         LabelBinding="Category"
                                         InnerRadiusFactor="0.4"
                                         OuterRadiusFactor="0.9"
-                                        ItemsSource="{Binding SeriesData}"/>
+                                        ItemsSource="{Binding SeriesData}" />
                 </charts:RadPieChart.Series>
             </charts:RadPieChart>
         </DataTemplate>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="SDKBrowserMaui.Examples.RefreshViewControl.StylingCategory.StylingExample.Styling">
+    <ContentView.Resources>
+        <!-- >> refreshview-styling-circularindicatorstyle -->
+        <Style x:Key="CircularIndicatorStyle" TargetType="telerik:RadCircularRefreshViewIndicator">
+            <Setter Property="Color" Value="#00897B" />
+            <Setter Property="CircleBackgroundColor" Value="#E0F2F1" />
+            <Setter Property="CircleRadius" Value="22" />
+            <Setter Property="StrokeThickness" Value="4" />
+            <Setter Property="CircleShadowColor" Value="#00897B" />
+            <Setter Property="CircleShadowOpacity" Value="0.4" />
+            <Setter Property="CircleShadowOffset" Value="0,3" />
+            <Setter Property="CircleShadowBlurRadius" Value="6" />
+        </Style>
+        <!-- << refreshview-styling-circularindicatorstyle -->
+        <!-- >> refreshview-styling-spinnerindicatorstyle -->
+        <Style x:Key="SpinnerIndicatorStyle" TargetType="telerik:RadSpinnerRefreshViewIndicator">
+            <Setter Property="Color" Value="#8660C5" />
+            <Setter Property="WidthRequest" Value="36" />
+            <Setter Property="HeightRequest" Value="36" />
+        </Style>
+        <!-- << refreshview-styling-spinnerindicatorstyle -->
+        <!-- >> refreshview-styling-arrowindicatorstyle -->
+        <Style x:Key="ArrowIndicatorStyle" TargetType="telerik:RadArrowRefreshViewIndicator">
+            <Setter Property="Color" Value="#E65100" />
+            <Setter Property="WidthRequest" Value="48" />
+            <Setter Property="HeightRequest" Value="48" />
+        </Style>
+        <!-- << refreshview-styling-arrowindicatorstyle -->
+    </ContentView.Resources>
+    <Grid RowDefinitions="*, *, *"
+          RowSpacing="10">
+        <!-- >> refreshview-styling-circular -->
+        <telerik:RadRefreshView x:Name="circularRefreshView"
+                                IndicatorType="Circular"
+                                BackgroundColor="#EEEEEE"
+                                IndicatorStyle="{StaticResource CircularIndicatorStyle}"
+                                Refreshing="OnRefreshing">
+            <Label Text="Circular indicator - pull down"
+                   Padding="20" />
+        </telerik:RadRefreshView>
+        <!-- << refreshview-styling-circular -->
+        <!-- >> refreshview-styling-spinner -->
+        <telerik:RadRefreshView x:Name="spinnerRefreshView"
+                                Grid.Row="1"
+                                IndicatorType="Spinner"
+                                BackgroundColor="#EEEEEE"
+                                IndicatorStyle="{StaticResource SpinnerIndicatorStyle}"
+                                Refreshing="OnRefreshing">
+            <Label Text="Spinner indicator - pull down"
+                   Padding="20" />
+        </telerik:RadRefreshView>
+        <!-- << refreshview-styling-spinner -->
+        <!-- >> refreshview-styling-arrow -->
+        <telerik:RadRefreshView x:Name="arrowRefreshView"
+                                Grid.Row="2"
+                                IndicatorType="Arrow"
+                                BackgroundColor="#EEEEEE"
+                                IndicatorStyle="{StaticResource ArrowIndicatorStyle}"
+                                Refreshing="OnRefreshing">
+            <Label Text="Arrow indicator - pull down"
+                   Padding="20" />
+        </telerik:RadRefreshView>
+        <!-- << refreshview-styling-arrow -->
+    </Grid>
+</ContentView>

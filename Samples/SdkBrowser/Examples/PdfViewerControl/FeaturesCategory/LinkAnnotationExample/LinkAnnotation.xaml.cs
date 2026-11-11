@@ -30,21 +30,29 @@ public partial class LinkAnnotation : ContentView
     }
 
     // >> pdfviewer-annotations-event
+    private static readonly string[] AllowedSchemes = { "http", "https", "mailto" };
+
     private void LinkTapped(object sender, Telerik.Maui.Controls.PdfViewer.Annotations.LinkAnnotationTappedEventArgs e)
     {
-        var action = e.LinkAnnotation.Actions.FirstOrDefault();
-        if (action is UriAction uriAction)
+        var action = e.LinkAnnotation.Actions?.FirstOrDefault();
+        if (action is UriAction uriAction && uriAction.Uri != null)
         {
             e.Handled = true;
 
-            Application.Current.Windows[0].Page.DisplayAlert("Confirm", "Are you sure you want to navigate", "Yes", "No").ContinueWith(t =>
+            Uri uri = uriAction.Uri;
+            if (!uri.IsAbsoluteUri || !AllowedSchemes.Contains(uri.Scheme, StringComparer.OrdinalIgnoreCase))
+            {
+                return;
+            }
+
+            Application.Current.Windows[0].Page.DisplayAlert("Confirm", $"Are you sure you want to navigate to {uri}?", "Yes", "No").ContinueWith(t =>
             {
                 bool shouldNavigateAway = t.Status == TaskStatus.RanToCompletion ? t.Result : false;
                 if (shouldNavigateAway)
                 {
                     Dispatcher.Dispatch(() =>
                     {
-                        Launcher.OpenAsync(uriAction.Uri);
+                        Launcher.OpenAsync(uri);
                     });
                 }
             });

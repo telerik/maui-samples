@@ -148,11 +148,7 @@ public partial class AIChatSuggestionsView : ContentView
 
         this.isAnimating = true;
 
-#if NET10_0_OR_GREATER
         await this.itemsContainer.TranslateToAsync(newOffset, 0, AnimationDuration, Easing.CubicOut);
-#else
-        await this.itemsContainer.TranslateTo(newOffset, 0, AnimationDuration, Easing.CubicOut);
-#endif
         
         this.currentOffset = newOffset;
         this.isAnimating = false;

@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:telerikMaui="clr-namespace:Telerik.Maui;assembly=Telerik.Maui.Core"
+             xmlns:styles="clr-namespace:QSF.Styles"
+             xmlns:local="clr-namespace:QSF.Examples.CarouselControl.ConfigurationExample"
+             x:Class="QSF.Examples.CarouselControl.ConfigurationExample.ConfigurationView"
+             x:DataType="local:ConfigurationViewModel"
+             Padding="{OnIdiom Default='16, 20', Phone=0}">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <styles:ConfigurationViewResources />
+            </ResourceDictionary.MergedDictionaries>
+            <Shadow x:Key="RadCarouselItemShadow"
+                    Offset="{OnPlatform Android='0, 0', iOS='0, 3', MacCatalyst='0, 2', WinUI='0, 0'}"
+                    Radius="{OnPlatform Default=8, Android=4, WinUI=6}"
+                    Brush="{OnPlatform Default=#4D000000, Android=#66000000}" />
+            <Style TargetType="telerik:RadComboBox" BasedOn="{StaticResource RadComboBoxStyle}">
+                <Setter Property="HorizontalOptions" Value="Fill" />
+                <Setter Property="IsClearButtonVisible" Value="False" />
+            </Style>
+
+            <DataTemplate x:Key="ItemTemplate" x:DataType="x:String">
+                <Grid Padding="8">
+                    <telerik:RadBorder Background="{DynamicResource AccentColor8}"
+                                       CornerRadius="8"
+                                       Shadow="{StaticResource RadCarouselItemShadow}">
+                        <Label Text="{Binding .}"
+                               Style="{StaticResource BaseLabelStyle}"
+                               TextColor="{DynamicResource TextOnAccentColor}"
+                               FontSize="36"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"
+                               AutomationId="carouselItemLabel" />
+                    </telerik:RadBorder>
+                </Grid>
+            </DataTemplate>
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+    <Grid RowDefinitions="Auto, *">
+        <telerik:RadBorder Style="{StaticResource ControlWrapperBorderStyle}"
+                           Padding="{OnPlatform Default=0,WinUI=8}"
+                           VerticalOptions="Start">
+            <Grid RowDefinitions="Auto, Auto" RowSpacing="24">
+                <telerik:RadCarousel x:Name="carousel"
+                                     HeightRequest="280"
+                                     ItemsSource="{Binding Items}"
+                                     ItemTemplate="{StaticResource ItemTemplate}"
+                                     Orientation="{Binding Orientation}"
+                                     HighlightedIndex="{Binding HighlightedIndex, Mode=TwoWay}"
+                                     PeekAreaRatio="{Binding PeekAreaRatio}"
+                                     ItemSpacing="{Binding ItemSpacing}"
+                                     AllowNext="{Binding AllowNext}"
+                                     AllowPrevious="{Binding AllowPrevious}"
+                                     AreItemEffectsEnabled="{Binding AreItemEffectsEnabled}"
+                                     AutomationId="carousel"
+                                     Margin="0, 16, 0, 0" />
+                <Grid Grid.Row="1"
+                      ColumnDefinitions="Auto, Auto"
+                      ColumnSpacing="16"
+                      Padding="16, 0"
+                      Margin="0, 0, 0, 16"
+                      HorizontalOptions="Center"
+                      IsVisible="{OnPlatform Default=True, Android=False, iOS=False}">
+                    <telerik:RadTemplatedButton Content="{x:Static telerikMaui:TelerikFont.IconLeftArrow}"
+                                                FontFamily="{x:Static telerikMaui:TelerikFont.Name}"
+                                                FontSize="40"
+                                                TextColor="{DynamicResource AccentColor8}"
+                                                Background="Transparent"
+                                                BorderBrush="Transparent"
+                                                IsEnabled="{Binding AllowPrevious}"
+                                                Command="{Binding NavigatePreviousCommand, Source={x:Reference carousel}}"
+                                                SemanticProperties.Description="Previous"
+                                                AutomationId="previousButton" />
+                    <telerik:RadTemplatedButton Grid.Column="1"
+                                                Content="{x:Static telerikMaui:TelerikFont.IconRightArrow}"
+                                                FontFamily="{x:Static telerikMaui:TelerikFont.Name}"
+                                                FontSize="40"
+                                                TextColor="{DynamicResource AccentColor8}"
+                                                Background="Transparent"
+                                                BorderBrush="Transparent"
+                                                IsEnabled="{Binding AllowNext}"
+                                                Command="{Binding NavigateNextCommand, Source={x:Reference carousel}}"
+                                                SemanticProperties.Description="Next"
+                                                AutomationId="nextButton" />
+                </Grid>
+            </Grid>
+        </telerik:RadBorder>
+
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Style="{StaticResource RootAtExampleAreaStyle}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="{OnIdiom Default=*, Phone=0}" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="{OnIdiom Default=0, Phone=*}" />
+                    </Grid.RowDefinitions>
+                    <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaWithColumnBreakStyle}">
+                        <Label Text="Carousel Settings"
+                               Style="{StaticResource SectionHeadingLabelStyle}" />
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Orientation:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <telerik:RadComboBox ItemsSource="{Binding Orientations}"
+                                                 SelectedItem="{Binding Orientation, Mode=TwoWay}"
+                                                 AutomationId="orientationComboBox" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="{Binding PeekAreaRatio, StringFormat='Peek Area Ratio: {0:0.0}'}"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <Grid ColumnDefinitions="Auto, *, Auto">
+                                <Label Text="0" Style="{StaticResource HorizontalGroupLabelAtStartStyle}" />
+                                <telerik:RadSlider Grid.Column="1"
+                                                   Minimum="0"
+                                                   Maximum="0.9"
+                                                   TickStep="0.1"
+                                                   SnapMode="SnapToTicks"
+                                                   Value="{Binding PeekAreaRatio, Mode=TwoWay}"
+                                                   AutomationId="peekAreaRatioSlider" />
+                                <Label Grid.Column="2"
+                                       Text="0.9"
+                                       Style="{StaticResource HorizontalGroupLabelAtEndStyle}" />
+                            </Grid>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="{Binding ItemSpacing, StringFormat='Item Spacing: {0:0}'}"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <Grid ColumnDefinitions="Auto, *, Auto">
+                                <Label Text="0" Style="{StaticResource HorizontalGroupLabelAtStartStyle}" />
+                                <telerik:RadSlider Grid.Column="1"
+                                                   Minimum="0"
+                                                   Maximum="50"
+                                                   TickStep="2"
+                                                   SnapMode="SnapToTicks"
+                                                   Value="{Binding ItemSpacing, Mode=TwoWay}"
+                                                   AutomationId="itemSpacingSlider" />
+                                <Label Grid.Column="2"
+                                       Text="50"
+                                       Style="{StaticResource HorizontalGroupLabelAtEndStyle}" />
+                            </Grid>
+                        </VerticalStackLayout>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Grid.Column="{OnIdiom Default=1, Phone=0}"
+                                         Grid.Row="{OnIdiom Default=0, Phone=1}">
+                        <Label Text="Navigation and Effects"
+                               Style="{StaticResource SectionHeadingLabelStyle}" />
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <Label Text="Highlighted Index:"
+                                   Style="{StaticResource VerticalGroupLabelStyle}" />
+                            <telerik:RadNumericInput Minimum="0"
+                                                     Maximum="{Binding MaximumHighlightedIndex}"
+                                                     Step="1"
+                                                     Value="{Binding HighlightedIndex, Mode=TwoWay}"
+                                                     AutomationId="highlightedIndexNumeric" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Style="{StaticResource GroupAtExampleAreaStyle}">
+                            <HorizontalStackLayout telerik:RadCheckBox.ToggleOnTap="{Reference allowPreviousCheckBox}"
+                                                   Style="{StaticResource CheckBoxGroupStyle}">
+                                <telerik:RadCheckBox x:Name="allowPreviousCheckBox"
+                                                     IsChecked="{Binding AllowPrevious, Mode=TwoWay}"
+                                                     AutomationId="allowPreviousCheckBox" />
+                                <Label Text="Allow Previous"
+                                       Style="{StaticResource HorizontalGroupLabelAtEndStyle}" />
+                            </HorizontalStackLayout>
+                            <HorizontalStackLayout telerik:RadCheckBox.ToggleOnTap="{Reference allowNextCheckBox}"
+                                                   Style="{StaticResource CheckBoxGroupStyle}">
+                                <telerik:RadCheckBox x:Name="allowNextCheckBox"
+                                                     IsChecked="{Binding AllowNext, Mode=TwoWay}"
+                                                     AutomationId="allowNextCheckBox" />
+                                <Label Text="Allow Next"
+                                       Style="{StaticResource HorizontalGroupLabelAtEndStyle}" />
+                            </HorizontalStackLayout>
+                        </VerticalStackLayout>
+                        <HorizontalStackLayout telerik:RadCheckBox.ToggleOnTap="{Reference itemEffectsCheckBox}"
+                                               Style="{StaticResource CheckBoxGroupStyle}">
+                            <telerik:RadCheckBox x:Name="itemEffectsCheckBox"
+                                                 IsChecked="{Binding AreItemEffectsEnabled, Mode=TwoWay}"
+                                                 AutomationId="itemEffectsCheckBox" />
+                            <Label Text="Enable Item Effects"
+                                   Style="{StaticResource HorizontalGroupLabelAtEndStyle}" />
+                        </HorizontalStackLayout>
+                    </VerticalStackLayout>
+                </Grid>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentView>

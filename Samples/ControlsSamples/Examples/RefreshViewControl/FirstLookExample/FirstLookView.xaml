@@ -1,0 +1,463 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             MinimumWidthRequest="{OnPlatform MacCatalyst=530}"
+             x:Class="QSF.Examples.RefreshViewControl.FirstLookExample.FirstLookView"
+             Padding="16, 20">
+    <ContentView.Resources>
+
+        <Style x:Key="CardBorderStyle" TargetType="telerik:RadBorder">
+            <Setter Property="CornerRadius" Value="16" />
+            <Setter Property="Padding" Value="{OnIdiom Default='20, 16', Phone='16'}" />
+        </Style>
+
+        <Style x:Key="SmallCardBorderStyle" TargetType="telerik:RadBorder" BasedOn="{StaticResource CardBorderStyle}">
+            <Setter Property="Padding" Value="16" />
+            <Setter Property="HeightRequest" Value="{OnPlatform Android=100, iOS=85, MacCatalyst=100, WinUI=85}" />
+            <Setter Property="Margin" Value="0, 0, 4, 8" />
+            <Setter Property="FlexLayout.Basis" Value="180" />
+            <Setter Property="FlexLayout.Grow" Value="1" />
+            <Setter Property="FlexLayout.Shrink" Value="0" />
+        </Style>
+
+        <Style x:Key="MobileSmallCardBorderStyle" TargetType="telerik:RadBorder" BasedOn="{StaticResource CardBorderStyle}">
+            <Setter Property="Padding" Value="8, 16" />
+        </Style>
+
+        <Style x:Key="CardIconStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="{OnIdiom Default=24, Phone=36}" />
+            <Setter Property="VerticalOptions" Value="Center" />
+            <Setter Property="VerticalTextAlignment" Value="Center" />
+        </Style>
+
+        <Style x:Key="CardTitleStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="TextColor" Value="{DynamicResource TextOnAccentColor}" />
+            <Setter Property="VerticalOptions" Value="Center" />
+            <Setter Property="VerticalTextAlignment" Value="Center" />
+        </Style>
+
+        <Style x:Key="CardValueStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="TextColor" Value="{DynamicResource TextOnAccentColor}" />
+        </Style>
+
+        <Style x:Key="HighLowLabelStyle" TargetType="Label">
+            <Setter Property="TextColor" Value="{DynamicResource RefreshViewFirstLookPrimaryTextColor}" />
+            <Setter Property="VerticalOptions" Value="Center" />
+            <Setter Property="VerticalTextAlignment" Value="Center" />
+        </Style>
+
+        <Style x:Key="TitleStyle" TargetType="Label">
+            <Setter Property="Text" Value="Weather today" />
+            <Setter Property="TextColor" Value="{DynamicResource RefreshViewFirstLookPrimaryTextColor}" />
+            <Setter Property="FontSize" Value="{OnPlatform Android=20, iOS=20, MacCatalyst=28, WinUI=20}" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="LineBreakMode" Value="NoWrap" />
+        </Style>
+
+        <Style x:Key="LocationStyle" TargetType="Label">
+            <Setter Property="Text" Value="{Binding Location}" />
+            <Setter Property="TextColor" Value="{OnIdiom Default={DynamicResource RefreshViewFirstLookPrimaryTextColor}, Phone={DynamicResource RefreshViewFirstLookSecondaryTextColor}}" />
+            <Setter Property="FontSize" Value="{OnIdiom Default=14, Phone=18}" />
+            <Setter Property="LineBreakMode" Value="NoWrap" />
+        </Style>
+
+        <Style x:Key="LastUpdatedStyle" TargetType="Label">
+            <Setter Property="Text" Value="{Binding LastUpdatedText}" />
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="TextColor" Value="{DynamicResource RefreshViewFirstLookSecondaryTextColor}" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+        </Style>
+    </ContentView.Resources>
+
+    <telerik:RadRefreshView IsRefreshing="{Binding IsRefreshing}"
+                            Command="{Binding RefreshCommand}"
+                            MaximumWidthRequest="{OnPlatform MacCatalyst=900, WinUI=900}"
+                            HorizontalOptions="{OnPlatform MacCatalyst=Start, WinUI=Start}"
+                            AutomationId="refreshView">
+        <ScrollView>
+            <Grid x:Name="LayoutHost"
+                  RowDefinitions="Auto, Auto">
+
+                <!-- Desktop layout -->
+                <Grid Grid.Row="1"
+                      IsVisible="{OnIdiom Default=True, Phone=False}"
+                      HorizontalOptions="Start"
+                      Padding="{OnPlatform MacCatalyst=12, WinUI='8, 0'}"
+                      RowSpacing="{OnPlatform MacCatalyst=16, WinUI=8}"
+                      RowDefinitions="Auto, Auto, Auto, Auto, Auto">
+
+                    <Grid ColumnDefinitions="*, Auto"
+                          ColumnSpacing="12"
+                          HorizontalOptions="Fill"
+                          Padding="0, 0, 8, 0">
+                        <VerticalStackLayout Spacing="4">
+                            <Label Style="{StaticResource TitleStyle}" />
+                            <Label Style="{StaticResource LocationStyle}" />
+                        </VerticalStackLayout>
+                        <telerik:RadButton x:Name="RefreshButton"
+                                           Grid.Column="1"
+                                           Style="{StaticResource SubmitButtonStyle}"
+                                           Text="Refresh"
+                                           Command="{Binding RefreshCommand}"
+                                           IsEnabled="{Binding IsRefreshing, Converter={StaticResource InvertedBooleanConverter}}"
+                                           HorizontalOptions="End"
+                                           VerticalOptions="Start"
+                                           AutomationId="refreshButton">
+                            <telerik:RadButton.ImageSource>
+                                <FontImageSource Glyph="{x:Static telerik:TelerikFont.IconRefresh}"
+                                                 FontFamily="{x:Static telerik:TelerikFont.Name}"
+                                                 Size="16"
+                                                 Color="{Binding TextColor, Source={x:Reference RefreshButton}}" />
+                            </telerik:RadButton.ImageSource>
+                        </telerik:RadButton>
+                    </Grid>
+                    <telerik:RadBorder Grid.Row="1"
+                                       Style="{StaticResource CardBorderStyle}"
+                                       MinimumWidthRequest="500"
+                                       Padding="24">
+                        <Grid ColumnDefinitions="Auto, Auto, Auto"
+                              ColumnSpacing="16">
+                            <Grid Grid.Column="0"
+                                  ColumnDefinitions="Auto, *"
+                                  ColumnSpacing="20"
+                                  VerticalOptions="Center">
+                                <Label Text="{Binding ConditionIcon}"
+                                       FontFamily="{Binding ConditionIconFontFamily}"
+                                       FontSize="64"
+                                       TextColor="{DynamicResource RefreshViewFirstLookSunColor}"
+                                       VerticalOptions="Center" />
+                                <VerticalStackLayout Grid.Column="1"
+                                                     VerticalOptions="Center">
+                                    <Label Text="{Binding TemperatureText}"
+                                           FontSize="48"
+                                           FontAttributes="Bold"
+                                           TextColor="{DynamicResource RefreshViewFirstLookPrimaryTextColor}"
+                                           HorizontalTextAlignment="Start" />
+                                    <Label Text="{Binding Condition}"
+                                           FontSize="16"
+                                           FontAttributes="Bold"
+                                           TextColor="{DynamicResource RefreshViewFirstLookPrimaryTextColor}"
+                                           HorizontalTextAlignment="Start" />
+                                </VerticalStackLayout>
+                            </Grid>
+                            <BoxView Grid.Column="1"
+                                     WidthRequest="1"
+                                     HeightRequest="{OnPlatform MacCatalyst=56, WinUI=64}"
+                                     Color="{DynamicResource DefaultBorderColor}"
+                                     HorizontalOptions="End"
+                                     VerticalOptions="Center"
+                                     Margin="16, 0" />
+                            <Grid Grid.Column="2"
+                                  ColumnDefinitions="Auto, Auto"
+                                  RowDefinitions="Auto, Auto"
+                                  ColumnSpacing="12"
+                                  RowSpacing="8"
+                                  VerticalOptions="Center">
+                                <Label Text="High"
+                                       FontSize="14"
+                                       Style="{StaticResource HighLowLabelStyle}" />
+                                <Label Grid.Column="1"
+                                       Text="{Binding HighText}"
+                                       FontSize="16"
+                                       FontAttributes="Bold"
+                                       Style="{StaticResource HighLowLabelStyle}" />
+                                <Label Grid.Row="1"
+                                       Text="Low"
+                                       FontSize="14"
+                                       Style="{StaticResource HighLowLabelStyle}" />
+                                <Label Grid.Row="1"
+                                       Grid.Column="1"
+                                       Text="{Binding LowText}"
+                                       FontSize="16"
+                                       FontAttributes="Bold"
+                                       Style="{StaticResource HighLowLabelStyle}" />
+                            </Grid>
+                        </Grid>
+                    </telerik:RadBorder>
+
+                    <FlexLayout Grid.Row="2"
+                                Direction="Row"
+                                Wrap="Wrap"
+                                AlignItems="Stretch"
+                                AlignContent="Start"
+                                Margin="0">
+                        <telerik:RadBorder Style="{StaticResource SmallCardBorderStyle}" 
+                                           BackgroundColor="{DynamicResource RefreshViewFirstLookWindCardColor}">
+                            <VerticalStackLayout Spacing="8">
+                                <HorizontalStackLayout Spacing="8">
+                                    <Label Text="&#xe8c2;"
+                                           FontFamily="TelerikFontExamples"
+                                           TextColor="{DynamicResource TextOnAccentColor}"
+                                           Style="{StaticResource CardIconStyle}" />
+                                    <Label Text="Wind" Style="{StaticResource CardTitleStyle}" />
+                                </HorizontalStackLayout>
+                                <Label Text="{Binding WindText}" Style="{StaticResource CardValueStyle}" />
+                            </VerticalStackLayout>
+                        </telerik:RadBorder>
+                        <telerik:RadBorder Style="{StaticResource SmallCardBorderStyle}" BackgroundColor="{DynamicResource RefreshViewFirstLookHumidityCardColor}">
+                            <VerticalStackLayout Spacing="8">
+                                <HorizontalStackLayout Spacing="8">
+                                    <Label Text="{x:Static telerik:TelerikFont.IconBlur}"
+                                           FontFamily="{x:Static telerik:TelerikFont.Name}"
+                                           TextColor="{DynamicResource TextOnAccentColor}"
+                                           Style="{StaticResource CardIconStyle}" />
+                                    <Label Text="Humidity" Style="{StaticResource CardTitleStyle}" />
+                                </HorizontalStackLayout>
+                                <Label Text="{Binding HumidityText}" Style="{StaticResource CardValueStyle}" />
+                            </VerticalStackLayout>
+                        </telerik:RadBorder>
+                        <telerik:RadBorder Style="{StaticResource SmallCardBorderStyle}" BackgroundColor="{DynamicResource RefreshViewFirstLookFeelsLikeCardColor}">
+                            <VerticalStackLayout Spacing="8">
+                                <HorizontalStackLayout Spacing="8">
+                                    <Label Text="&#xe85c;"
+                                           FontFamily="TelerikFontExamples"
+                                           TextColor="{DynamicResource TextOnAccentColor}"
+                                           Style="{StaticResource CardIconStyle}" />
+                                    <Label Text="Feels like" Style="{StaticResource CardTitleStyle}" />
+                                </HorizontalStackLayout>
+                                <Label Text="{Binding FeelsLikeText}"
+                                       Style="{StaticResource CardValueStyle}"
+                                       Margin="3, 0, 0, 0" />
+                            </VerticalStackLayout>
+                        </telerik:RadBorder>
+                        <telerik:RadBorder Style="{StaticResource SmallCardBorderStyle}" BackgroundColor="{DynamicResource RefreshViewFirstLookUVCardColor}">
+                            <VerticalStackLayout Spacing="8">
+                                <HorizontalStackLayout Spacing="8">
+                                    <Label Text="{x:Static telerik:TelerikFont.IconBrightness}"
+                                           FontFamily="{x:Static telerik:TelerikFont.Name}"
+                                           TextColor="{DynamicResource TextOnAccentColor}"
+                                           Style="{StaticResource CardIconStyle}" />
+                                    <Label Text="UV index" Style="{StaticResource CardTitleStyle}" />
+                                </HorizontalStackLayout>
+                                <Label Style="{StaticResource CardValueStyle}"
+                                       Margin="6, 0, 0, 0"
+                                       VerticalOptions="Center">
+                                    <Label.Text>
+                                        <MultiBinding StringFormat="{}{0} &#xB7; {1}">
+                                            <Binding Path="UVIndex" />
+                                            <Binding Path="UVCategory" />
+                                        </MultiBinding>
+                                    </Label.Text>
+                                </Label>
+                            </VerticalStackLayout>
+                        </telerik:RadBorder>
+                    </FlexLayout>
+
+                    <VerticalStackLayout Grid.Row="3" Spacing="12" Margin="{OnPlatform MacCatalyst='0, 8, 8, 0', WinUI='0, 0, 8, 0'}">
+                        <Label Text="Next hours"
+                               FontSize="20"
+                               FontAttributes="Bold"
+                               TextColor="{DynamicResource RefreshViewFirstLookPrimaryTextColor}" />
+                        <FlexLayout Direction="Row"
+                                    Margin="-1, 0"
+                                    BindableLayout.ItemsSource="{Binding HourlyForecast}">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <telerik:RadBorder CornerRadius="12"
+                                                       Padding="8, 12"
+                                                       Margin="2, 0"
+                                                       FlexLayout.Grow="1"
+                                                       FlexLayout.Basis="0"
+                                                       BackgroundColor="{DynamicResource RefreshViewFirstLookHourlyCardColor}">
+                                        <VerticalStackLayout Spacing="6">
+                                            <Label Text="{Binding Time}"
+                                                   FontSize="13"
+                                                   TextColor="{DynamicResource RefreshViewFirstLookSecondaryTextColor}"
+                                                   HorizontalOptions="Center" />
+                                            <Label Text="{Binding Icon}"
+                                                   FontFamily="{Binding IconFontFamily}"
+                                                   FontSize="24"
+                                                   TextColor="{DynamicResource RefreshViewFirstLookSunColor}"
+                                                   HorizontalOptions="Center" />
+                                            <Label Text="{Binding Temperature}"
+                                                   FontSize="18"
+                                                   FontAttributes="Bold"
+                                                   TextColor="{DynamicResource RefreshViewFirstLookPrimaryTextColor}"
+                                                   HorizontalOptions="Center" />
+                                        </VerticalStackLayout>
+                                    </telerik:RadBorder>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </FlexLayout>
+                    </VerticalStackLayout>
+
+                    <HorizontalStackLayout Grid.Row="4"
+                                           Spacing="8"
+                                           HorizontalOptions="Center"
+                                           Margin="0, 16, 0, 0">
+                        <Label Text="{x:Static telerik:TelerikFont.IconClock}"
+                               FontFamily="{x:Static telerik:TelerikFont.Name}"
+                               FontSize="13"
+                               TextColor="{DynamicResource RefreshViewFirstLookSecondaryTextColor}"
+                               VerticalOptions="Center" />
+                        <Label Style="{StaticResource LastUpdatedStyle}"
+                               VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+                </Grid>
+
+                <!-- Mobile layout -->
+                <Grid Grid.Row="1"
+                      IsVisible="{OnIdiom Default=False, Phone=true}"
+                      RowSpacing="16"
+                      RowDefinitions="Auto, Auto, Auto, Auto, Auto">
+                    <VerticalStackLayout Spacing="4">
+                        <Label Style="{StaticResource TitleStyle}" />
+                        <Label Style="{StaticResource LocationStyle}" />
+                    </VerticalStackLayout>
+
+                    <telerik:RadBorder Grid.Row="1"
+                                       BackgroundColor="{DynamicResource ItemBackgroundColor}"
+                                       Style="{StaticResource CardBorderStyle}"
+                                       Padding="24">
+                        <Grid ColumnDefinitions="Auto, *"
+                              ColumnSpacing="24">
+                            <Label Text="{Binding ConditionIcon}"
+                                   FontFamily="{Binding ConditionIconFontFamily}"
+                                   FontSize="80"
+                                   TextColor="{DynamicResource RefreshViewFirstLookSunColor}"
+                                   VerticalOptions="Center" />
+                            <VerticalStackLayout Grid.Column="1"
+                                                 VerticalOptions="Center">
+                                <Label Text="{Binding TemperatureText}"
+                                       FontSize="64"
+                                       FontAttributes="Bold"
+                                       TextColor="{DynamicResource RefreshViewFirstLookPrimaryTextColor}" />
+                                <Label Text="{Binding Condition}"
+                                       FontSize="20"
+                                       FontAttributes="Bold"
+                                       TextColor="{DynamicResource RefreshViewFirstLookPrimaryTextColor}" />
+                                <Label Text="{Binding HighLowText}"
+                                       FontSize="16"
+                                       TextColor="{DynamicResource RefreshViewFirstLookSecondaryTextColor}" />
+                            </VerticalStackLayout>
+                        </Grid>
+                    </telerik:RadBorder>
+
+                    <Grid Grid.Row="2"
+                          ColumnDefinitions="*, *"
+                          RowDefinitions="Auto, Auto"
+                          ColumnSpacing="8"
+                          RowSpacing="8">
+                        <telerik:RadBorder Style="{StaticResource MobileSmallCardBorderStyle}" BackgroundColor="{DynamicResource RefreshViewFirstLookWindCardColor}">
+                            <Grid ColumnDefinitions="Auto, *" ColumnSpacing="8">
+                                <Label Text="&#xe8c2;"
+                                       FontFamily="TelerikFontExamples"
+                                       TextColor="{DynamicResource TextOnAccentColor}"
+                                       Style="{StaticResource CardIconStyle}" />
+                                <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
+                                    <Label Text="Wind" Style="{StaticResource CardTitleStyle}" />
+                                    <Label Text="{Binding WindText}" Style="{StaticResource CardValueStyle}" />
+                                </VerticalStackLayout>
+                            </Grid>
+                        </telerik:RadBorder>
+                        <telerik:RadBorder Grid.Column="1"
+                                           Style="{StaticResource MobileSmallCardBorderStyle}"
+                                           BackgroundColor="{DynamicResource RefreshViewFirstLookHumidityCardColor}">
+                            <Grid ColumnDefinitions="Auto, *" ColumnSpacing="8">
+                                <Label Text="{x:Static telerik:TelerikFont.IconBlur}"
+                                       FontFamily="{x:Static telerik:TelerikFont.Name}"
+                                       TextColor="{DynamicResource TextOnAccentColor}"
+                                       Style="{StaticResource CardIconStyle}" />
+                                <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
+                                    <Label Text="Humidity" Style="{StaticResource CardTitleStyle}" />
+                                    <Label Text="{Binding HumidityText}" Style="{StaticResource CardValueStyle}" />
+                                </VerticalStackLayout>
+                            </Grid>
+                        </telerik:RadBorder>
+                        <telerik:RadBorder Grid.Row="1"
+                                           Style="{StaticResource MobileSmallCardBorderStyle}"
+                                           BackgroundColor="{DynamicResource RefreshViewFirstLookFeelsLikeCardColor}">
+                            <Grid ColumnDefinitions="Auto, *" ColumnSpacing="8">
+                                <Label Text="&#xe85c;"
+                                       FontFamily="TelerikFontExamples"
+                                       TextColor="{DynamicResource TextOnAccentColor}"
+                                       Style="{StaticResource CardIconStyle}" />
+                                <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
+                                    <Label Text="Feels like" Style="{StaticResource CardTitleStyle}" />
+                                    <Label Text="{Binding FeelsLikeText}" Style="{StaticResource CardValueStyle}" />
+                                </VerticalStackLayout>
+                            </Grid>
+                        </telerik:RadBorder>
+                        <telerik:RadBorder Grid.Row="1"
+                                           Grid.Column="1"
+                                           Style="{StaticResource MobileSmallCardBorderStyle}"
+                                           BackgroundColor="{DynamicResource RefreshViewFirstLookUVCardColor}">
+                            <Grid ColumnDefinitions="Auto, *" ColumnSpacing="8">
+                                <Label Text="{x:Static telerik:TelerikFont.IconBrightness}"
+                                       FontFamily="{x:Static telerik:TelerikFont.Name}"
+                                       TextColor="{DynamicResource TextOnAccentColor}"
+                                       Style="{StaticResource CardIconStyle}" />
+                                <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
+                                    <Label Text="UV index" Style="{StaticResource CardTitleStyle}" />
+                                    <Label Style="{StaticResource CardValueStyle}" VerticalOptions="Center" LineBreakMode="NoWrap" MaxLines="1">
+                                        <Label.Text>
+                                            <MultiBinding StringFormat="{}{0} &#xB7; {1}">
+                                                <Binding Path="UVIndex" />
+                                                <Binding Path="UVCategory" />
+                                            </MultiBinding>
+                                        </Label.Text>
+                                    </Label>
+                                </VerticalStackLayout>
+                            </Grid>
+                        </telerik:RadBorder>
+                    </Grid>
+
+                    <VerticalStackLayout Grid.Row="3" Spacing="12" Margin="0, 16, 0, 0">
+                        <Label Text="Next hours"
+                               FontSize="20"
+                               FontAttributes="Bold"
+                               TextColor="{DynamicResource RefreshViewFirstLookPrimaryTextColor}" />
+                        <FlexLayout Direction="Row"
+                                    Margin="-2, 0"
+                                    BindableLayout.ItemsSource="{Binding HourlyForecast}">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <telerik:RadBorder CornerRadius="12"
+                                                       Padding="8, 12"
+                                                       Margin="2, 0"
+                                                       FlexLayout.Grow="1"
+                                                       FlexLayout.Basis="0"
+                                                       BackgroundColor="{DynamicResource RefreshViewFirstLookHourlyCardColor}">
+                                        <VerticalStackLayout Spacing="6">
+                                            <Label Text="{Binding Time}"
+                                                   FontSize="13"
+                                                   TextColor="{DynamicResource RefreshViewFirstLookSecondaryTextColor}"
+                                                   HorizontalOptions="Center" />
+                                            <Label Text="{Binding Icon}"
+                                                   FontFamily="{Binding IconFontFamily}"
+                                                   FontSize="24"
+                                                   TextColor="{DynamicResource RefreshViewFirstLookSunColor}"
+                                                   HorizontalOptions="Center" />
+                                            <Label Text="{Binding Temperature}"
+                                                   FontSize="18"
+                                                   FontAttributes="Bold"
+                                                   TextColor="{DynamicResource RefreshViewFirstLookPrimaryTextColor}"
+                                                   HorizontalOptions="Center" />
+                                        </VerticalStackLayout>
+                                    </telerik:RadBorder>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </FlexLayout>
+                    </VerticalStackLayout>
+
+                    <HorizontalStackLayout Grid.Row="4"
+                                           Spacing="8"
+                                           Margin="0, 8, 0, 0"
+                                           HorizontalOptions="Center">
+                        <Label Text="{x:Static telerik:TelerikFont.IconClock}"
+                               FontFamily="{x:Static telerik:TelerikFont.Name}"
+                               FontSize="14"
+                               TextColor="{DynamicResource RefreshViewFirstLookSecondaryTextColor}"
+                               VerticalOptions="Center" />
+                        <Label Style="{StaticResource LastUpdatedStyle}"
+                               VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+                </Grid>
+            </Grid>
+        </ScrollView>
+    </telerik:RadRefreshView>
+</ContentView>

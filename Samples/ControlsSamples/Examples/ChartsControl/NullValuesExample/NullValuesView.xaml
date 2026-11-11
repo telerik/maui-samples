@@ -10,41 +10,153 @@
     <views:GalleryExampleViewBase.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <styles:GalleryResources/>
+                <styles:GalleryResources />
             </ResourceDictionary.MergedDictionaries>
             <DataTemplate x:Key="line">
                 <charts:RadCartesianChart AutomationId="cartesianChartLine">
                     <charts:RadCartesianChart.Grid>
-                        <charts:CartesianChartGrid MajorLinesVisibility="Horizontal"/>
+                        <charts:CartesianChartGrid MajorLinesVisibility="Horizontal" />
                     </charts:RadCartesianChart.Grid>
                     <charts:RadCartesianChart.Axes>
-                        <charts:CategoricalAxis Location="Bottom"/>
+                        <charts:CategoricalAxis Location="Bottom"
+                                                PlotMode="OnTicks" />
                         <charts:NumericalAxis Location="Left"
                                               Minimum="0"
-                                              Maximum="100"/>
+                                              Maximum="100" />
                     </charts:RadCartesianChart.Axes>
                     <charts:RadCartesianChart.Series>
                         <charts:LineSeries HorizontalBinding="Category"
                                            VerticalBinding="Value"
-                                           ItemsSource="{Binding SeriesData}"/>
+                                           ItemsSource="{Binding SeriesData}" />
                     </charts:RadCartesianChart.Series>
                 </charts:RadCartesianChart>
             </DataTemplate>
             <DataTemplate x:Key="lineArea">
                 <charts:RadCartesianChart>
                     <charts:RadCartesianChart.Grid>
-                        <charts:CartesianChartGrid MajorLinesVisibility="Horizontal"/>
+                        <charts:CartesianChartGrid MajorLinesVisibility="Horizontal" />
                     </charts:RadCartesianChart.Grid>
                     <charts:RadCartesianChart.Axes>
-                        <charts:CategoricalAxis Location="Bottom"/>
+                        <charts:CategoricalAxis Location="Bottom"
+                                                PlotMode="OnTicks" />
                         <charts:NumericalAxis Location="Left"
                                               Minimum="0"
-                                              Maximum="100"/>
+                                              Maximum="100" />
                     </charts:RadCartesianChart.Axes>
                     <charts:RadCartesianChart.Series>
                         <charts:AreaSeries HorizontalBinding="Category"
                                            VerticalBinding="Value"
-                                           ItemsSource="{Binding SeriesData}"/>
+                                           ItemsSource="{Binding SeriesData}" />
+                    </charts:RadCartesianChart.Series>
+                </charts:RadCartesianChart>
+            </DataTemplate>
+            <DataTemplate x:Key="spline">
+                <charts:RadCartesianChart AutomationId="cartesianChartSpline">
+                    <charts:RadCartesianChart.Grid>
+                        <charts:CartesianChartGrid MajorLinesVisibility="Horizontal" />
+                    </charts:RadCartesianChart.Grid>
+                    <charts:RadCartesianChart.Axes>
+                        <charts:CategoricalAxis Location="Bottom"
+                                                PlotMode="OnTicks" />
+                        <charts:NumericalAxis Location="Left"
+                                              Minimum="0"
+                                              Maximum="100" />
+                    </charts:RadCartesianChart.Axes>
+                    <charts:RadCartesianChart.Series>
+                        <charts:SplineSeries HorizontalBinding="Category"
+                                             VerticalBinding="Value"
+                                             ItemsSource="{Binding SeriesData}" />
+                    </charts:RadCartesianChart.Series>
+                </charts:RadCartesianChart>
+            </DataTemplate>
+            <DataTemplate x:Key="stackedLine">
+                <charts:RadCartesianChart AutomationId="cartesianChartStackedLine">
+                    <charts:RadCartesianChart.Grid>
+                        <charts:CartesianChartGrid MajorLinesVisibility="Horizontal" />
+                    </charts:RadCartesianChart.Grid>
+                    <charts:RadCartesianChart.Axes>
+                        <charts:CategoricalAxis Location="Bottom"
+                                                PlotMode="OnTicks" />
+                        <charts:NumericalAxis Location="Left"
+                                              Minimum="0"
+                                              Maximum="100" />
+                    </charts:RadCartesianChart.Axes>
+                    <charts:RadCartesianChart.Series>
+                        <charts:LineSeries HorizontalBinding="Category"
+                                           VerticalBinding="Value"
+                                           ItemsSource="{Binding SeriesData}"
+                                           CombineMode="Stack" />
+                        <charts:LineSeries HorizontalBinding="Category"
+                                           VerticalBinding="Value"
+                                           ItemsSource="{Binding SecondSeriesData}"
+                                           CombineMode="Stack" />
+                    </charts:RadCartesianChart.Series>
+                </charts:RadCartesianChart>
+            </DataTemplate>
+            <DataTemplate x:Key="stackedSpline">
+                <charts:RadCartesianChart AutomationId="cartesianChartStackedSpline">
+                    <charts:RadCartesianChart.Grid>
+                        <charts:CartesianChartGrid MajorLinesVisibility="Horizontal" />
+                    </charts:RadCartesianChart.Grid>
+                    <charts:RadCartesianChart.Axes>
+                        <charts:CategoricalAxis Location="Bottom"
+                                                PlotMode="OnTicks" />
+                        <charts:NumericalAxis Location="Left"
+                                              Minimum="0"
+                                              Maximum="100" />
+                    </charts:RadCartesianChart.Axes>
+                    <charts:RadCartesianChart.Series>
+                        <charts:SplineSeries HorizontalBinding="Category"
+                                             VerticalBinding="Value"
+                                             ItemsSource="{Binding SeriesData}"
+                                             CombineMode="Stack" />
+                        <charts:SplineSeries HorizontalBinding="Category"
+                                             VerticalBinding="Value"
+                                             ItemsSource="{Binding SecondSeriesData}"
+                                             CombineMode="Stack" />
+                    </charts:RadCartesianChart.Series>
+                </charts:RadCartesianChart>
+            </DataTemplate>
+            <DataTemplate x:Key="splineArea">
+                <charts:RadCartesianChart AutomationId="cartesianChartSplineArea">
+                    <charts:RadCartesianChart.Grid>
+                        <charts:CartesianChartGrid MajorLinesVisibility="Horizontal" />
+                    </charts:RadCartesianChart.Grid>
+                    <charts:RadCartesianChart.Axes>
+                        <charts:CategoricalAxis Location="Bottom"
+                                                PlotMode="OnTicks" />
+                        <charts:NumericalAxis Location="Left"
+                                              Minimum="0"
+                                              Maximum="100" />
+                    </charts:RadCartesianChart.Axes>
+                    <charts:RadCartesianChart.Series>
+                        <charts:SplineAreaSeries HorizontalBinding="Category"
+                                                 VerticalBinding="Value"
+                                                 ItemsSource="{Binding SeriesData}" />
+                    </charts:RadCartesianChart.Series>
+                </charts:RadCartesianChart>
+            </DataTemplate>
+            <DataTemplate x:Key="stackedLineArea">
+                <charts:RadCartesianChart AutomationId="cartesianChartStackedLineArea">
+                    <charts:RadCartesianChart.Grid>
+                        <charts:CartesianChartGrid MajorLinesVisibility="Horizontal" />
+                    </charts:RadCartesianChart.Grid>
+                    <charts:RadCartesianChart.Axes>
+                        <charts:CategoricalAxis Location="Bottom"
+                                                PlotMode="OnTicks" />
+                        <charts:NumericalAxis Location="Left"
+                                              Minimum="0"
+                                              Maximum="100" />
+                    </charts:RadCartesianChart.Axes>
+                    <charts:RadCartesianChart.Series>
+                        <charts:AreaSeries HorizontalBinding="Category"
+                                           VerticalBinding="Value"
+                                           ItemsSource="{Binding SeriesData}"
+                                           CombineMode="Stack" />
+                        <charts:AreaSeries HorizontalBinding="Category"
+                                           VerticalBinding="Value"
+                                           ItemsSource="{Binding SecondSeriesData}"
+                                           CombineMode="Stack" />
                     </charts:RadCartesianChart.Series>
                 </charts:RadCartesianChart>
             </DataTemplate>

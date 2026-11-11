@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:charts="clr-namespace:Telerik.Maui.Controls.Charts;assembly=Telerik.Maui.Controls"
+             xmlns:models="clr-namespace:SDKBrowserMaui.Examples.ChartsControl"
+             x:Class="SDKBrowserMaui.Examples.ChartsControl.AxesCategory.LabelLayoutExample.CartesianChartLabelLayout">
+    <!-- >> chart-axis-label-layout-xaml -->
+    <charts:RadCartesianChart MinimumHeightRequest="300">
+        <charts:RadCartesianChart.BindingContext>
+            <models:CategoricalViewModel />
+        </charts:RadCartesianChart.BindingContext>
+        <charts:RadCartesianChart.Axes>
+            <charts:CategoricalAxis LabelFitMode="Rotate"
+                                    LabelRotationAngle="-45"
+                                    LabelDockPoint="1,0" />
+            <charts:NumericalAxis Minimum="0" Maximum="100" />
+        </charts:RadCartesianChart.Axes>
+        <charts:RadCartesianChart.Series>
+            <charts:LineSeries HorizontalBinding="Category"
+                                VerticalBinding="Value"
+                                ItemsSource="{Binding Data}" />
+        </charts:RadCartesianChart.Series>
+    </charts:RadCartesianChart>
+    <!-- << chart-axis-label-layout-xaml -->
+</ContentView>

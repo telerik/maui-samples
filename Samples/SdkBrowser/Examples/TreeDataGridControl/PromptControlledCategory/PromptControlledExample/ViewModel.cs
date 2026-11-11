@@ -209,11 +209,7 @@ public class ViewModel
 
     private async Task ShowErrorAsync(string message)
     {
-#if NET10_0_OR_GREATER
         await Microsoft.Maui.Controls.Application.Current?.Windows[0].Page?.DisplayAlertAsync("Error", message, "OK");
-#else
-        await Microsoft.Maui.Controls.Application.Current?.Windows[0].Page?.DisplayAlert("Error", message, "OK");
-#endif
     }
 }
 // << treedatagrid-prompt-viewmodel

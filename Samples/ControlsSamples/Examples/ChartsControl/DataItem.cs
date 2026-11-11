@@ -5,5 +5,6 @@ namespace QSF.Examples.ChartsControl
         public string Category { get; set; }
         public double? Value { get; set; }
         public double? ValueY { get; set; }
+        public string Label { get; set; }
     }
 }

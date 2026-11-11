@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.CarouselControl"
+             x:Class="SDKBrowserMaui.Examples.CarouselControl.ConfigurationCategory.OrientationExample.Orientation">
+    <ContentView.BindingContext>
+        <local:CarouselViewModel />
+    </ContentView.BindingContext>
+    <!-- >> carousel-orientation -->
+    <telerik:RadCarousel ItemsSource="{Binding Items}"
+                         Orientation="Vertical"
+                         MaximumHeightRequest="{OnPlatform MacCatalyst=1000, WinUI=1000}"
+                         WidthRequest="{OnPlatform MacCatalyst=500, WinUI=500}"
+                         HorizontalOptions="Center"
+                         VerticalOptions="Center">
+        <telerik:RadCarousel.ItemTemplate>
+            <DataTemplate x:DataType="local:CarouselItem">
+                <Image Source="{Binding Image}" Aspect="AspectFill" />
+            </DataTemplate>
+        </telerik:RadCarousel.ItemTemplate>
+    </telerik:RadCarousel>
+    <!-- << carousel-orientation -->
+</ContentView>

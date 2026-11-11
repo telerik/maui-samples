@@ -46,11 +46,7 @@
 
 	<ItemGroup Condition="'$(SolutionName)' != 'Telerik.Maui' And '$(UseSourceProjects)' != 'True' And '$(UseSourceAssemblies)' != 'True'">
 		<PackageReference Include="Telerik.UI.for.Maui" Version="$(TelerikVersion)" />
-	</ItemGroup>
-
-	<ItemGroup Condition="$(TargetFramework.ToLower().Contains('net9'))">
-		<PackageReference Include="Microsoft.Maui.Controls" Condition=" $(CustomMauiNet9Version) == '' " Version="$(MauiVersion)" />
-		<PackageReference Include="Microsoft.Maui.Controls" Condition=" $(CustomMauiNet9Version) != '' " Version="$(CustomMauiNet9Version)" />
+		<PackageReference Include="Telerik.Licensing" Version="[$(TelerikLicensingVersionOverride)]" Condition=" '$(TelerikLicensingVersionOverride)' != '' And '$(TelerikLicensingVersionOverride)' != 'default' " />
 	</ItemGroup>
 
 	<ItemGroup Condition="$(TargetFramework.ToLower().Contains('net10'))">

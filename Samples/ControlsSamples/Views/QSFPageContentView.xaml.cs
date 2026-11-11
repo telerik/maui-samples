@@ -110,13 +110,8 @@ public partial class QSFPageContentView : RadContentView
                 var insets = Microsoft.Maui.ApplicationModel.Platform.CurrentActivity?.Window?.DecorView?.RootView?.RootWindowInsets;
                 if (insets != null) {
                     var density = Microsoft.Maui.Devices.DeviceDisplay.MainDisplayInfo.Density;
-#if NET10_0_OR_GREATER
                     this.SafeAreaGridWithHeader.RowDefinitions[0].Height = insets.GetInsetsIgnoringVisibility(Android.Views.WindowInsets.Type.StatusBars()).Top / density;
                     this.SafeAreaGridWithHeader.RowDefinitions[3].Height = insets.GetInsetsIgnoringVisibility(Android.Views.WindowInsets.Type.NavigationBars()).Bottom / density;
-#else
-                    this.SafeAreaGridWithHeader.RowDefinitions[0].Height = 0;
-                    this.SafeAreaGridWithHeader.RowDefinitions[3].Height = 0;
-#endif
                     this.SafeAreaGridWithHeader.ColumnDefinitions[0].Width = insets.StableInsetLeft / density;
                     this.SafeAreaGridWithHeader.ColumnDefinitions[2].Width = insets.StableInsetRight / density;
 

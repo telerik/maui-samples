@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.CarouselControl"
+             x:Class="SDKBrowserMaui.Examples.CarouselControl.StylingCategory.ItemViewStyleExample.ItemViewStyle">
+    <ContentView.BindingContext>
+        <local:CarouselViewModel />
+    </ContentView.BindingContext>
+    <ContentView.Resources>
+        <!-- >> carousel-item-view-style -->
+        <Style x:Key="CarouselItemViewStyle" TargetType="telerik:RadCarouselItemView">
+            <Setter Property="CornerRadius" Value="8" />
+            <Setter Property="BorderThickness" Value="3" />
+            <Setter Property="BorderColor" Value="#B39DDB" />
+            <Setter Property="BackgroundColor" Value="#EDE7F6" />
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Highlighted">
+                            <VisualState.Setters>
+                                <Setter Property="BorderColor" Value="#673AB7" />
+                                <Setter Property="BackgroundColor" Value="#D1C4E9" />
+                                <Setter Property="BorderThickness" Value="3" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+        <!-- << carousel-item-view-style -->
+    </ContentView.Resources>
+    <!-- >> carousel-item-view-style-usage -->
+    <Grid MaximumHeightRequest="{OnPlatform Android=400, iOS=400, MacCatalyst=550, WinUI=550}">
+        <telerik:RadCarousel ItemsSource="{Binding Items}"
+                             ItemViewStyle="{StaticResource CarouselItemViewStyle}"
+                             VerticalOptions="Start"
+                             Margin="0, 24, 0, 0">
+            <telerik:RadCarousel.ItemTemplate>
+                <DataTemplate x:DataType="local:CarouselItem">
+                    <Image Source="{Binding Image}" Aspect="AspectFill"/>
+                </DataTemplate>
+            </telerik:RadCarousel.ItemTemplate>
+        </telerik:RadCarousel>
+        <!-- << carousel-item-view-style-usage -->
+    </Grid>
+</ContentView>

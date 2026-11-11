@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<views:GalleryExampleViewBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                              xmlns:views="clr-namespace:QSF.Views"
+                              xmlns:styles="clr-namespace:QSF.Styles"
+                              xmlns:charts="clr-namespace:Telerik.Maui.Controls.Charts;assembly=Telerik.Maui.Controls"
+                              x:Class="QSF.Examples.ChartsControl.FinancialSeriesExample.FinancialSeriesView">
+    <views:GalleryExampleViewBase.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <styles:GalleryResources />
+            </ResourceDictionary.MergedDictionaries>
+            <DataTemplate x:Key="OhlcSeries">
+                <charts:RadCartesianChart AutomationId="cartesianChartOhlcSeries">
+                    <charts:RadCartesianChart.Grid>
+                        <charts:CartesianChartGrid MajorLinesVisibility="Horizontal" />
+                    </charts:RadCartesianChart.Grid>
+                    <charts:RadCartesianChart.Axes>
+                        <charts:DateTimeAxis Location="Bottom"
+                                             LabelFormat="dd/MM"
+                                             MajorStep="1"
+                                             LabelInterval="{OnPlatform Default=3, Android=5, iOS=5}"
+                                             MajorStepUnit="Day" />
+                        <charts:NumericalAxis Location="Left"
+                                              Minimum="320"
+                                              Maximum="370" />
+                    </charts:RadCartesianChart.Axes>
+                    <charts:RadCartesianChart.Series>
+                        <charts:OhlcSeries HorizontalBinding="DateCategory"
+                                           OpenBinding="Open"
+                                           HighBinding="High"
+                                           LowBinding="Low"
+                                           CloseBinding="Close"
+                                           ItemsSource="{Binding SeriesData}" />
+                    </charts:RadCartesianChart.Series>
+                </charts:RadCartesianChart>
+            </DataTemplate>
+            <DataTemplate x:Key="CandlestickSeries">
+                <charts:RadCartesianChart AutomationId="cartesianChartCandlestickSeries">
+                    <charts:RadCartesianChart.Grid>
+                        <charts:CartesianChartGrid MajorLinesVisibility="Horizontal" />
+                    </charts:RadCartesianChart.Grid>
+                    <charts:RadCartesianChart.Axes>
+                        <charts:DateTimeAxis Location="Bottom"
+                                             LabelFormat="dd/MM"
+                                             MajorStep="1"
+                                             LabelInterval="{OnPlatform Default=3, Android=5, iOS=5}"
+                                             MajorStepUnit="Day" />
+                        <charts:NumericalAxis Location="Left"
+                                              Minimum="320"
+                                              Maximum="370" />
+                    </charts:RadCartesianChart.Axes>
+                    <charts:RadCartesianChart.Series>
+                        <charts:CandlestickSeries HorizontalBinding="DateCategory"
+                                                  OpenBinding="Open"
+                                                  HighBinding="High"
+                                                  LowBinding="Low"
+                                                  CloseBinding="Close"
+                                                  ItemsSource="{Binding SeriesData}" />
+                    </charts:RadCartesianChart.Series>
+                </charts:RadCartesianChart>
+            </DataTemplate>
+        </ResourceDictionary>
+    </views:GalleryExampleViewBase.Resources>
+    <views:GalleryExampleViewBase.HeaderContent>
+        <Label Text="Apple Stocks, 2022"
+               Style="{StaticResource labelHeaderStyle}"
+               Margin="0, 6, 0, 0" />
+    </views:GalleryExampleViewBase.HeaderContent>
+</views:GalleryExampleViewBase>

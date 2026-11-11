@@ -16,10 +16,6 @@ public partial class FirstLookView : RadContentView
 
     private void ApplySwitchOffColor()
     {
-#if IOS && NET9_0
-        return;
-#endif
-
         var offColorProperty = typeof(Microsoft.Maui.Controls.Switch).GetProperty("OffColor");
         if (offColorProperty == null)
         {

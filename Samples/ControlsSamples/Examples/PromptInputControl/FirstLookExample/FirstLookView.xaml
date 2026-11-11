@@ -112,7 +112,7 @@
                 </Setter>
             </Style>
 
-            <Style x:Key="SuggestionButtonStyle" TargetType="telerik:RadTemplatedButton">
+            <Style x:Key="SuggestionButtonStyle" TargetType="telerik:RadTemplatedButton" BasedOn="{StaticResource RadTemplatedButtonStyle}">
                 <Setter Property="CornerRadius" Value="{OnPlatform Default=4, Android=8, iOS=8}" />
                 <Setter Property="Background" Value="{DynamicResource PromptInputFirstLookButtonBackgroundColor}" />
                 <Setter Property="BorderBrush" Value="Transparent" />

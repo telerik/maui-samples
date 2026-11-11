@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:local="clr-namespace:SDKBrowserMaui.Examples.CarouselControl"
+             x:Class="SDKBrowserMaui.Examples.CarouselControl.EventsCategory.EventsExample.Events">
+    <ContentView.BindingContext>
+        <local:CarouselViewModel />
+    </ContentView.BindingContext>
+    <Grid RowDefinitions="*, Auto, Auto" RowSpacing="8" Padding="12">
+        <!-- >> carousel-events -->
+        <telerik:RadCarousel MaximumHeightRequest="260"
+                             ItemsSource="{Binding Items}"
+                             HighlightedItemChanged="OnHighlightedItemChanged"
+                             Scrolled="OnScrolled">
+            <telerik:RadCarousel.ItemTemplate>
+                <DataTemplate x:DataType="local:CarouselItem">
+                    <Image Source="{Binding Image}" Aspect="AspectFill" />
+                </DataTemplate>
+            </telerik:RadCarousel.ItemTemplate>
+        </telerik:RadCarousel>
+        <!-- << carousel-events -->
+        <Label x:Name="highlightedLabel" Grid.Row="1" Text="HighlightedItemChanged: -" />
+        <Label x:Name="scrolledLabel" Grid.Row="2" Text="Scrolled: -" />
+    </Grid>
+</ContentView>

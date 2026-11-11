@@ -57,11 +57,6 @@
 		<PackageReference Include="Telerik.AI.SmartComponents.Extensions" Version="2.1.0" />
 	</ItemGroup>
 
-	<ItemGroup Condition="$(TargetFramework.ToLower().Contains('net9'))">
-		<PackageReference Include="Microsoft.Maui.Controls" Condition=" $(CustomMauiNet9Version) == '' " Version="$(MauiVersion)" />
-		<PackageReference Include="Microsoft.Maui.Controls" Condition=" $(CustomMauiNet9Version) != '' " Version="$(CustomMauiNet9Version)" />
-	</ItemGroup>
-
 	<ItemGroup Condition="$(TargetFramework.ToLower().Contains('net10'))">
 		<PackageReference Include="Microsoft.Maui.Controls" Condition=" $(CustomMauiNet10Version) == '' " Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Controls" Condition=" $(CustomMauiNet10Version) != '' " Version="$(CustomMauiNet10Version)" />
